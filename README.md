@@ -1,7 +1,7 @@
 All_You_Need_Is_AI
 ==============================
 
-Convert my insights and learnings into knowledge[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D about AI[3~[3~[3~[2~[3~[3~[3~[C[C[C[C into knowledge
+Convert my insights and learnings into knowledge about AI into knowledge
 
 Project Organization
 ------------

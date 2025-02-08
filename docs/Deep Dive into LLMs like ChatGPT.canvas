@@ -1,0 +1,10 @@
+{
+	"nodes":[
+		{"id":"56126123e77f06d1","x":-700,"y":-380,"width":1400,"height":100,"color":"1","type":"text","text":"# Understanding of what is happening in a ChatGPT like systems starting from giving a prompt and getting a response. "},
+		{"id":"83c1603d08b93bca","x":-640,"y":-200,"width":540,"height":340,"type":"text","text":"\n## Step1: download and preprocess the internet\nhttps://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1\n\n![[Pasted image 20250208211827.png]]"},
+		{"id":"103ec471340c1876","x":-60,"y":-200,"width":520,"height":340,"type":"text","text":"## Step 2: tokenization\nhttps://tiktokenizer.vercel.app/\n\nConvert between raw text into sequences of symbols ($tokens$)\nexample: ~5000 Unicode characters\n~=40,000 bits (2 possible tokens)\n~=5000 bytes (256 possible tokens)\n~=1300 GPT-4 tokens (100,277 possible tokens)"},
+		{"type":"text","text":"## Step 3: Neural Network Training\n\n![[Pasted image 20250208215620.png]]\n\n\n### Neural Network Internals\n\n![[Pasted image 20250208215942.png]]\n\n","id":"2d519f5de6f8c6bc","x":-640,"y":180,"width":760,"height":720},
+		{"id":"9f3b825dfb3fba26","x":140,"y":180,"width":480,"height":340,"type":"text","text":"## Step 4: Inference\n\n\n![[Pasted image 20250208220028.png]]\n"}
+	],
+	"edges":[]
+}

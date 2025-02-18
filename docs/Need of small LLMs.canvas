@@ -1,6 +1,7 @@
 {
 	"nodes":[
-		{"id":"975dd2a3ab572bfe","x":-600,"y":-380,"width":250,"height":60,"type":"text","text":"`Bigger is always better?`"}
+		{"id":"975dd2a3ab572bfe","x":-600,"y":-380,"width":250,"height":60,"type":"text","text":"`Bigger is always better?`"},
+		{"id":"74c6da14011a22ca","x":-125,"y":-30,"width":265,"height":90,"type":"text","text":"Ilya Sutskever: \"Pre-training as we know it will unquestionably end\""}
 	],
 	"edges":[]
 }

@@ -1,8 +1,9 @@
 {
 	"nodes":[
-		{"id":"975dd2a3ab572bfe","x":-600,"y":-380,"width":250,"height":60,"type":"text","text":"`Bigger is always better?`"},
+		{"id":"975dd2a3ab572bfe","x":-600,"y":-380,"width":250,"height":60,"type":"text","text":"**AI World**: `Bigger is always better?`"},
 		{"id":"74c6da14011a22ca","x":-240,"y":-395,"width":265,"height":90,"type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\""},
-		{"id":"1ff9c65f36bc8203","x":240,"y":-240,"width":345,"height":90,"type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\""}
+		{"id":"1ff9c65f36bc8203","x":240,"y":-240,"width":345,"height":90,"type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\""},
+		{"id":"695b3771b21dad4d","x":-125,"y":-30,"width":425,"height":270,"type":"text","text":"![[Pasted image 20250218165106.png]]"}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

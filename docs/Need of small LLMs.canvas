@@ -10,7 +10,8 @@
 		{"id":"e0ebe2768211b078","x":-387,"y":820,"width":456,"height":132,"type":"text","text":"### What can we do?\n\nfine-tune a specialized small language model (SLM) for your specific domain"},
 		{"id":"3e0c41467356d493","x":20,"y":980,"width":556,"height":539,"type":"text","text":"![[Pasted image 20250218170542.png]]"},
 		{"id":"89418ee9050ebda4","x":400,"y":600,"width":556,"height":247,"type":"text","text":"![[Pasted image 20250218170833.png]]"},
-		{"id":"4eedae2ec040a89a","x":-500,"y":1620,"width":820,"height":640,"type":"text","text":"## Performance on Specialized Tasks\n\nMany studies show that for highly specialized tasks, small models can not only compete with large LLMs, but often outperform them.\n![[Pasted image 20250218171906.png]]\n\n#### Examples:\n1. **Medicine:** The [Diabetica-7B model](https://arxiv.org/pdf/2409.13191)\n2. **Legal Sector:** [An SLM with just 0.2B parameters](https://arxiv.org/pdf/2311.09825)\n3. **Mathematical Tasks:** [Research by Google DeepMind](https://arxiv.org/pdf/2408.16737)\n4. **Content Moderation:** [LLaMA 3.1 8B outperformed](https://arxiv.org/pdf/2410.13155)"}
+		{"id":"4eedae2ec040a89a","x":-500,"y":1620,"width":720,"height":340,"type":"text","text":"## Performance on Specialized Tasks\n\nMany studies show that for highly specialized tasks, small models can not only compete with large LLMs, but often outperform them.\n#### Examples:\n1. **Medicine:** The [Diabetica-7B model](https://arxiv.org/pdf/2409.13191)\n2. **Legal Sector:** [An SLM with just 0.2B parameters](https://arxiv.org/pdf/2311.09825)\n3. **Mathematical Tasks:** [Research by Google DeepMind](https://arxiv.org/pdf/2408.16737)\n4. **Content Moderation:** [LLaMA 3.1 8B outperformed](https://arxiv.org/pdf/2410.13155)"},
+		{"id":"4bca55c15910134a","x":-20,"y":2100,"width":587,"height":312,"type":"text","text":"![[Pasted image 20250218171906.png]]"}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
@@ -19,6 +20,7 @@
 		{"id":"bfe66b9b91ad7fc8","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b5e4dc96b84f2dcd","toSide":"top"},
 		{"id":"bd31937407095fe0","fromNode":"e0ebe2768211b078","fromSide":"bottom","toNode":"3e0c41467356d493","toSide":"left","label":"1. Economical to maintain\n2. Consume fewer resources\n3. Require less data\n4. Can run on modest hardware "},
 		{"id":"f5a5b4bf8c3f6c17","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"89418ee9050ebda4","toSide":"top"},
-		{"id":"b4809fc0507d552f","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"e0ebe2768211b078","toSide":"top","color":"4"}
+		{"id":"b4809fc0507d552f","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"e0ebe2768211b078","toSide":"top","color":"4"},
+		{"id":"06a12a9aeeeda360","fromNode":"4eedae2ec040a89a","fromSide":"bottom","toNode":"4bca55c15910134a","toSide":"left"}
 	]
 }

@@ -1,10 +1,11 @@
 {
 	"nodes":[
 		{"id":"975dd2a3ab572bfe","x":-600,"y":-380,"width":250,"height":60,"type":"text","text":"`Bigger is always better?`"},
-		{"id":"74c6da14011a22ca","x":-240,"y":-395,"width":265,"height":90,"type":"text","text":"Ilya Sutskever: \"Pre-training as we know it will unquestionably end\""},
-		{"id":"1ff9c65f36bc8203","x":-125,"y":-30,"width":345,"height":90,"type":"text","text":"HuggingFace CEO: \" predicts that up to 99% of use cases could be addressed using SLMs\""}
+		{"id":"74c6da14011a22ca","x":-240,"y":-395,"width":265,"height":90,"type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\""},
+		{"id":"1ff9c65f36bc8203","x":240,"y":-240,"width":345,"height":90,"type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\""}
 	],
 	"edges":[
-		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"}
+		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
+		{"id":"756a87ca4cd8f6bb","fromNode":"74c6da14011a22ca","fromSide":"right","toNode":"1ff9c65f36bc8203","toSide":"left","label":"era of scaling is coming to a close"}
 	]
 }

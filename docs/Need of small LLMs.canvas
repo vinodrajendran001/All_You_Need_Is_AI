@@ -8,13 +8,15 @@
 		{"id":"b5e4dc96b84f2dcd","x":-85,"y":600,"width":445,"height":144,"type":"text","text":"### [The Moxie robot](https://arstechnica.com/gadgets/2024/12/startup-will-brick-800-emotional-support-robot-for-kids-without-refunds/)  shutting down due to the high operational costs of the API"},
 		{"id":"695b3771b21dad4d","x":-388,"y":-120,"width":485,"height":370,"type":"text","text":"## Do you need LLMs at all?\n![[Pasted image 20250218165106.png]]"},
 		{"id":"e0ebe2768211b078","x":-387,"y":820,"width":456,"height":132,"type":"text","text":"### What can we do?\n\nfine-tune a specialized small language model (SLM) for your specific domain"},
-		{"id":"3e0c41467356d493","x":20,"y":980,"width":556,"height":539,"type":"text","text":"![[Pasted image 20250218170542.png]]"}
+		{"id":"3e0c41467356d493","x":20,"y":980,"width":556,"height":539,"type":"text","text":"![[Pasted image 20250218170542.png]]"},
+		{"id":"89418ee9050ebda4","x":400,"y":600,"width":556,"height":247,"type":"text","text":"![[Pasted image 20250218170833.png]]"}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
 		{"id":"756a87ca4cd8f6bb","fromNode":"74c6da14011a22ca","fromSide":"right","toNode":"1ff9c65f36bc8203","toSide":"left","label":"era of scaling is coming to a close"},
 		{"id":"3c4050d7eae8be07","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b9b05e253f9a7538","toSide":"top"},
 		{"id":"bfe66b9b91ad7fc8","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b5e4dc96b84f2dcd","toSide":"top"},
-		{"id":"bd31937407095fe0","fromNode":"e0ebe2768211b078","fromSide":"bottom","toNode":"3e0c41467356d493","toSide":"left","label":"1. Economical to maintain\n2. Consume fewer resources\n3. Require less data\n4. Can run on modest hardware "}
+		{"id":"bd31937407095fe0","fromNode":"e0ebe2768211b078","fromSide":"bottom","toNode":"3e0c41467356d493","toSide":"left","label":"1. Economical to maintain\n2. Consume fewer resources\n3. Require less data\n4. Can run on modest hardware "},
+		{"id":"f5a5b4bf8c3f6c17","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"89418ee9050ebda4","toSide":"top"}
 	]
 }

@@ -1,0 +1,33 @@
+{
+	"nodes":[
+		{"id":"f3d727ff44314854","type":"text","text":"# Deepseek\n\n![[Pasted image 20250206093214.png]]","x":-760,"y":-460,"width":445,"height":330},
+		{"id":"c211d312d6c07e0c","type":"text","text":"- Open weights model\n- smaller/distilled version\n- reasoning model like openAI O1.","x":-200,"y":-340,"width":325,"height":110},
+		{"id":"4490d03dc6076828","type":"text","text":"# How LLMs are trained\n\n![[Pasted image 20250206093501.png]]","x":-760,"y":-80,"width":605,"height":310},
+		{"id":"6d8f82a5b6bfb9f1","type":"text","text":"1. Language modelling: Train the model to predict the next word using massive amount of web data.\n2. SFT: makes the model more useful in following instructions and answering questions.\n3. Preference Tuning: further polishes its behaviors and aligns to human preferences","x":-80,"y":23,"width":805,"height":105},
+		{"id":"0c5df55f8bd330e9","type":"text","text":"# Deepseek-R1 Training recipe\n\n![[Pasted image 20250206093846.png]]","x":-750,"y":260,"width":585,"height":284},
+		{"id":"de25c361d878be77","type":"text","text":"# 1. Long chains of reasoning SFT Data\n\n![[Pasted image 20250206094058.png]]","x":-320,"y":580,"width":685,"height":445},
+		{"id":"d1d3c050fadcccc0","type":"text","text":"This is a large number of long chain-of-thought reasoning examples (600,000 of them). These are very hard to come by and very expensive to label with humans at this scale.","x":420,"y":740,"width":425,"height":126},
+		{"id":"25f44f17552c912e","type":"text","text":"# 2. An interim high-quality reasoning LLM\n\n![[Pasted image 20250206094524.png]]","x":-320,"y":1080,"width":685,"height":400},
+		{"id":"a8183cdf19f4bcb5","type":"text","text":"- This data is created by a precursor to R1\n- The interim reasoning model is inspired by a third model called `R1-Zero` excels at solving reasoning problems. ","x":420,"y":1217,"width":425,"height":126},
+		{"id":"955b398908edaf4f","type":"text","text":"# 3. Creating reasoning models with large scale RL \n\n![[Pasted image 20250206101646.png]]","x":-320,"y":1520,"width":685,"height":440},
+		{"id":"f4e6d09f58bc6de7","type":"text","text":"- RL is used to create the interim reasoning model.\n- The interim model is then used to generate the SFT reasoning examples.","x":420,"y":1677,"width":425,"height":126},
+		{"id":"5295ab87a4b4ca01","type":"text","text":"# 3.1 Large-Scale Reasoning-Oriented Reinforcement Learning (R1-Zero)\n\n![[Pasted image 20250206095253.png]]","x":980,"y":1610,"width":440,"height":261},
+		{"id":"b36d1e770fbd85fa","type":"text","text":"# 3.2 Creating SFT reasoning data with the interim reasoning model \n\n\n- Cold start data: it goes through an supervised fine-tuning (SFT) training step on a few thousand examples of reasoning problems\n\t![[Pasted image 20250206100433.png]]\n- But wait, if we have this data, then why are we relying on the RL process?\n\t-  This dataset might be 5,000 examples (which is possible to source), but to train R1, 600,000 examples were needed.\n- ![[Pasted image 20250206100513.png]]\n- SFT training examples\n\t-![[Pasted image 20250206100646.png]]","x":-2240,"y":-80,"width":1315,"height":1791},
+		{"id":"d164d5bfaab22df9","type":"text","text":"# 3.3 General RL training phase\n\n- Process is similar to the RL process we've seen before\n- For non-reasoning applications, it utilizes **heelpfulness **and **safety reward** model\n\n![[Pasted image 20250206101010.png]]","x":-2240,"y":1871,"width":960,"height":680},
+		{"id":"6f6ed5b6c9c25b4f","type":"text","text":"# Architecture\n\n- DeepSeek-R1 is a stack of [Transformer](https://jalammar.github.io/illustrated-transformer/) decoder blocks. I\n\t- It’s made up 61 of them. \n\t- The first three are dense, but the rest are mixture-of-experts layers\n- ![[Pasted image 20250206101412.png]]\n- In terms of model dimension size and other hyperparameters, they look like this:\n- ![[Pasted image 20250206101433.png]]","x":-760,"y":2211,"width":1035,"height":1152},
+		{"id":"7a3b70e5abcfe30a","type":"text","text":"## Example\n\nWe can present a question like this to the model in a training step, and generate multiple possible solutions.\n\n\n![[Pasted image 20250206095641.png]]\n\n\n![[Pasted image 20250206095658.png]]\n\n\n![[Pasted image 20250206095725.png]]\n\n\n## These reward signals and model updates are how the model continues improving on tasks over the RL training process\n\n![[Pasted image 20250206095748.png]]\n\n## Corresponding with the improvement of this capability is the length of the generated response, where the model generates more thinking tokens to process the problem.\n\n![[Pasted image 20250206095824.png]]\n\n\n","x":1500,"y":-240,"width":915,"height":2837}
+	],
+	"edges":[
+		{"id":"8daff6e55532d457","fromNode":"f3d727ff44314854","fromSide":"right","toNode":"c211d312d6c07e0c","toSide":"left"},
+		{"id":"b69eb79e5f1787d3","fromNode":"6d8f82a5b6bfb9f1","fromSide":"left","toNode":"4490d03dc6076828","toSide":"right"},
+		{"id":"c5b98cb4c7240a72","fromNode":"0c5df55f8bd330e9","fromSide":"bottom","toNode":"de25c361d878be77","toSide":"left"},
+		{"id":"e500067d635d9f33","fromNode":"d1d3c050fadcccc0","fromSide":"left","toNode":"de25c361d878be77","toSide":"right"},
+		{"id":"c8dcb673f419b17d","fromNode":"de25c361d878be77","fromSide":"bottom","toNode":"25f44f17552c912e","toSide":"top"},
+		{"id":"1ea500670b05de11","fromNode":"a8183cdf19f4bcb5","fromSide":"left","toNode":"25f44f17552c912e","toSide":"right"},
+		{"id":"c1619f3d4c39f522","fromNode":"f4e6d09f58bc6de7","fromSide":"left","toNode":"955b398908edaf4f","toSide":"right"},
+		{"id":"857faf9a32340ac8","fromNode":"5295ab87a4b4ca01","fromSide":"left","toNode":"f4e6d09f58bc6de7","toSide":"right"},
+		{"id":"6f6b847dc790043b","fromNode":"7a3b70e5abcfe30a","fromSide":"left","toNode":"5295ab87a4b4ca01","toSide":"right"},
+		{"id":"13ab63541bfe197d","fromNode":"b36d1e770fbd85fa","fromSide":"right","toNode":"955b398908edaf4f","toSide":"left"},
+		{"id":"5b064d67842fe420","fromNode":"d164d5bfaab22df9","fromSide":"right","toNode":"955b398908edaf4f","toSide":"left"}
+	]
+}

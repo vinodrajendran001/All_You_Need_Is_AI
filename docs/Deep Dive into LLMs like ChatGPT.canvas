@@ -1,10 +1,15 @@
 {
 	"nodes":[
-		{"id":"56126123e77f06d1","x":-700,"y":-380,"width":1400,"height":100,"color":"1","type":"text","text":"# Understanding of what is happening in a ChatGPT like systems starting from giving a prompt and getting a response. "},
-		{"id":"83c1603d08b93bca","x":-640,"y":-200,"width":540,"height":340,"type":"text","text":"\n## Step1: download and preprocess the internet\nhttps://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1\n\n![[Pasted image 20250208211827.png]]"},
-		{"id":"103ec471340c1876","x":-60,"y":-200,"width":520,"height":340,"type":"text","text":"## Step 2: tokenization\nhttps://tiktokenizer.vercel.app/\n\nConvert between raw text into sequences of symbols ($tokens$)\nexample: ~5000 Unicode characters\n~=40,000 bits (2 possible tokens)\n~=5000 bytes (256 possible tokens)\n~=1300 GPT-4 tokens (100,277 possible tokens)"},
-		{"type":"text","text":"## Step 3: Neural Network Training\n\n![[Pasted image 20250208215620.png]]\n\n\n### Neural Network Internals\n\n![[Pasted image 20250208215942.png]]\n\n","id":"2d519f5de6f8c6bc","x":-640,"y":180,"width":760,"height":720},
-		{"id":"9f3b825dfb3fba26","x":140,"y":180,"width":480,"height":340,"type":"text","text":"## Step 4: Inference\n\n\n![[Pasted image 20250208220028.png]]\n"}
+		{"id":"56126123e77f06d1","type":"text","text":"# Understanding of what is happening in a ChatGPT like systems starting from giving a prompt and getting a response. ","x":-700,"y":-380,"width":1400,"height":100,"color":"1"},
+		{"id":"9f3b825dfb3fba26","type":"text","text":"## Step 4: Inference\n\n\n![[Pasted image 20250208220028.png]]\n","x":140,"y":180,"width":480,"height":340},
+		{"type":"text","text":"## Step 3: Neural Network Training\n\n![[Pasted image 20250208215620.png]]\n\n\n### Neural Network Internals\n\n![[Pasted image 20250208215942.png]]\n\n","id":"2d519f5de6f8c6bc","x":-640,"y":180,"width":780,"height":800},
+		{"id":"1aacb26a55313079","type":"text","text":"\n![[Pasted image 20250212165110.png]]","x":-1160,"y":188,"width":353,"height":784},
+		{"id":"887e59edd467b950","type":"text","text":"## Demo: reproducing OpenAI's GPT-2\n\n- GPT-2 was published by OpenAI in 2019\n- Paper: \"Language Models are Unsupervised Multitask Learners\"\n\n##### Transformer with neural network with\n- 1.6 billion parameters\n- maximum context length of 1024 tokens\n- trained on about 100 billion tokens\n\n##### Reproduction code `llm.c`\nhttps://github.com/karpathy/llm.c/discussions/677\n\n![[Pasted image 20250212165601.png]]\n\n","x":380,"y":840,"width":820,"height":600},
+		{"id":"83c1603d08b93bca","type":"text","text":"\n## Step1: download and preprocess the internet\nhttps://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1\n\n![[Pasted image 20250208211827.png]]","x":-640,"y":-240,"width":540,"height":340},
+		{"id":"103ec471340c1876","type":"text","text":"## Step 2: tokenization\nhttps://tiktokenizer.vercel.app/\n\nConvert between raw text into sequences of symbols ($tokens$)\nexample: ~5000 Unicode characters\n~=40,000 bits (2 possible tokens)\n~=5000 bytes (256 possible tokens)\n~=1300 GPT-4 tokens (100,277 possible tokens)\n\n![[Pasted image 20250212170311.png]]","x":-80,"y":-240,"width":560,"height":400},
+		{"id":"8b6fb6a1103043c0","x":-355,"y":947,"width":1075,"height":533,"type":"text","text":"## Base Model\n\n- OpenAI GPT-2 (2019): 1.6 billion parameters trained on 100 billion tokens\n- LLama 3 (2024): 405 billion parameters trained on 15 trillion tokens\n\n### What is the release of a model?\n1. The code for running the Transformer (e.g. 200 lines of code in python)\n2. The parameters of the Transformer (e.g. 1.6 billion numbers)\n\nRun the LLama 3.1 304B base model:\n[Hyperbolic AI Dashboard](https://app.hyperbolic.xyz/models/llama31-405b-base-bf-16)\n\n"}
 	],
-	"edges":[]
+	"edges":[
+		{"id":"e80107cc3f0554c7","fromNode":"1aacb26a55313079","fromSide":"right","toNode":"2d519f5de6f8c6bc","toSide":"left"}
+	]
 }

@@ -10,7 +10,7 @@
 		{"id":"e0ebe2768211b078","x":-387,"y":820,"width":456,"height":132,"type":"text","text":"### What can we do?\n\nfine-tune a specialized small language model (SLM) for your specific domain"},
 		{"id":"3e0c41467356d493","x":20,"y":980,"width":556,"height":539,"type":"text","text":"![[Pasted image 20250218170542.png]]"},
 		{"id":"89418ee9050ebda4","x":400,"y":600,"width":556,"height":247,"type":"text","text":"![[Pasted image 20250218170833.png]]"},
-		{"id":"4eedae2ec040a89a","x":-500,"y":1620,"width":720,"height":400,"type":"text","text":"## Performance on Specialized Tasks\n\nMany studies show that for highly specialized tasks, small models can not only compete with large LLMs, but often outperform them.\n\n![[Pasted image 20250218171551.png]]"}
+		{"id":"4eedae2ec040a89a","x":-500,"y":1620,"width":760,"height":440,"type":"text","text":"## Performance on Specialized Tasks\n\nMany studies show that for highly specialized tasks, small models can not only compete with large LLMs, but often outperform them.\n![[Pasted image 20250218171906.png]]\n"}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

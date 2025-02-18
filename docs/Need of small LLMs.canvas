@@ -4,7 +4,9 @@
 		{"id":"74c6da14011a22ca","x":-240,"y":-395,"width":265,"height":90,"type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\""},
 		{"id":"1ff9c65f36bc8203","x":240,"y":-240,"width":345,"height":90,"type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\""},
 		{"id":"695b3771b21dad4d","x":-600,"y":-120,"width":485,"height":370,"type":"text","text":"## Do you need LLMs at all?\n![[Pasted image 20250218165106.png]]"},
-		{"id":"cc13dd702cb9f245","x":60,"y":20,"width":465,"height":157,"type":"text","text":"## Cost Efficiency\n\n**Economics of LLM**: it includes the need for expensive hardware, infrastructure costs, energy costs and environmental consequences."}
+		{"id":"cc13dd702cb9f245","x":60,"y":20,"width":465,"height":157,"type":"text","text":"## Cost Efficiency\n\n**Economics of LLM**: it includes the need for expensive hardware, infrastructure costs, energy costs and environmental consequences."},
+		{"id":"b9b05e253f9a7538","x":-132,"y":300,"width":385,"height":137,"type":"text","text":"### OpenAI’s recent announcement of a **$200/month** Pro plan is a signal that costs are rising"},
+		{"id":"b5e4dc96b84f2dcd","x":-125,"y":156,"width":585,"height":304,"type":"text","text":"### [The Moxie robot](https://arstechnica.com/gadgets/2024/12/startup-will-brick-800-emotional-support-robot-for-kids-without-refunds/) "}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

@@ -24,8 +24,8 @@
 		{"id":"487fafb32ea38982","x":-523,"y":3960,"width":643,"height":80,"type":"text","text":"## Potential Limitations of SLMs compared to LLMs\n\n"},
 		{"id":"99a705e4db780b82","x":-226,"y":3764,"width":250,"height":60,"type":"text","text":""},
 		{"id":"3e0c2932171d12a8","x":-769,"y":4200,"width":306,"height":60,"type":"text","text":"### Limited Task Flexibility"},
-		{"id":"9a1e60f81a9a4aff","type":"text","text":"### Context Window Limitations","x":-379,"y":4200,"width":306,"height":60},
-		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap","x":29,"y":4200,"width":306,"height":60}
+		{"id":"9a1e60f81a9a4aff","type":"text","text":"### Context Window Limitations","x":-379,"y":4200,"width":359,"height":60},
+		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap","x":29,"y":4200,"width":351,"height":60}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
@@ -39,6 +39,9 @@
 		{"id":"a9e47b41064a505f","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"a4d62678ebea4b37","toSide":"top"},
 		{"id":"07bb8d9e9403cb6f","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"881db5fc3aea95e3","toSide":"top"},
 		{"id":"3a4d9648d1254662","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"c4b2d5dbb4ac045e","toSide":"top"},
-		{"id":"c1ee9d20d7bf8d56","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"e480c4ed4a0193c6","toSide":"top"}
+		{"id":"c1ee9d20d7bf8d56","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"e480c4ed4a0193c6","toSide":"top"},
+		{"id":"ae10c3d0f939675f","fromNode":"487fafb32ea38982","fromSide":"bottom","toNode":"3e0c2932171d12a8","toSide":"top"},
+		{"id":"344bac52084f8144","fromNode":"487fafb32ea38982","fromSide":"bottom","toNode":"9a1e60f81a9a4aff","toSide":"top"},
+		{"id":"dde6c06e3367cf58","fromNode":"487fafb32ea38982","fromSide":"bottom","toNode":"6dcd43b25217bf85","toSide":"top"}
 	]
 }

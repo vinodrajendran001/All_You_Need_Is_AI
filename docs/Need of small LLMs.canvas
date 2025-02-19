@@ -1,6 +1,5 @@
 {
 	"nodes":[
-		{"id":"3e0c2932171d12a8","x":-226,"y":3764,"width":250,"height":60,"type":"text","text":""},
 		{"id":"975dd2a3ab572bfe","type":"text","text":"**AI World**: `Bigger is always better?`","x":-600,"y":-380,"width":250,"height":60},
 		{"id":"74c6da14011a22ca","type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\"","x":-240,"y":-395,"width":265,"height":90},
 		{"id":"1ff9c65f36bc8203","type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\"","x":240,"y":-240,"width":345,"height":90},
@@ -23,7 +22,10 @@
 		{"id":"e480c4ed4a0193c6","x":-463,"y":3020,"width":583,"height":320,"type":"text","text":"## Smaller models are easier to verify and update\n\n![[Pasted image 20250219094038.png]]"},
 		{"id":"8b1d48870ab48e17","x":-582,"y":3460,"width":764,"height":440,"type":"text","text":"## AI Agents: the Perfect Use Case\n\nImagine you are building a system to analyze financial documents. Instead of using one large model, you can break the task into several specialized agents:\n\n![[Pasted image 20250219094245.png]]\n"},
 		{"id":"487fafb32ea38982","x":-523,"y":3960,"width":643,"height":80,"type":"text","text":"## Potential Limitations of SLMs compared to LLMs\n\n"},
-		{"id":"99a705e4db780b82","x":-226,"y":3764,"width":250,"height":60,"type":"text","text":""}
+		{"id":"99a705e4db780b82","x":-226,"y":3764,"width":250,"height":60,"type":"text","text":""},
+		{"id":"3e0c2932171d12a8","x":-769,"y":4200,"width":306,"height":60,"type":"text","text":"### Limited Task Flexibility"},
+		{"id":"9a1e60f81a9a4aff","type":"text","text":"### Context Window Limitations","x":-379,"y":4200,"width":306,"height":60},
+		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap","x":29,"y":4200,"width":306,"height":60}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

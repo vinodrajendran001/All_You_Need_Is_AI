@@ -1,18 +1,18 @@
 {
 	"nodes":[
-		{"id":"975dd2a3ab572bfe","x":-600,"y":-380,"width":250,"height":60,"type":"text","text":"**AI World**: `Bigger is always better?`"},
-		{"id":"74c6da14011a22ca","x":-240,"y":-395,"width":265,"height":90,"type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\""},
-		{"id":"1ff9c65f36bc8203","x":240,"y":-240,"width":345,"height":90,"type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\""},
-		{"id":"cc13dd702cb9f245","x":-388,"y":320,"width":465,"height":157,"type":"text","text":"## Cost Efficiency\n\n**Economics of LLM**: it includes the need for expensive hardware, infrastructure costs, energy costs and environmental consequences."},
-		{"id":"b9b05e253f9a7538","x":-580,"y":600,"width":385,"height":137,"type":"text","text":"### OpenAI’s recent announcement of a **$200/month** Pro plan is a signal that costs are rising"},
-		{"id":"b5e4dc96b84f2dcd","x":-85,"y":600,"width":445,"height":144,"type":"text","text":"### [The Moxie robot](https://arstechnica.com/gadgets/2024/12/startup-will-brick-800-emotional-support-robot-for-kids-without-refunds/)  shutting down due to the high operational costs of the API"},
-		{"id":"695b3771b21dad4d","x":-388,"y":-120,"width":485,"height":370,"type":"text","text":"## Do you need LLMs at all?\n![[Pasted image 20250218165106.png]]"},
-		{"id":"e0ebe2768211b078","x":-387,"y":820,"width":456,"height":132,"type":"text","text":"### What can we do?\n\nfine-tune a specialized small language model (SLM) for your specific domain"},
-		{"id":"3e0c41467356d493","x":20,"y":980,"width":556,"height":539,"type":"text","text":"![[Pasted image 20250218170542.png]]"},
-		{"id":"89418ee9050ebda4","x":400,"y":600,"width":556,"height":247,"type":"text","text":"![[Pasted image 20250218170833.png]]"},
-		{"id":"4eedae2ec040a89a","x":-500,"y":1620,"width":720,"height":340,"type":"text","text":"## Performance on Specialized Tasks\n\nMany studies show that for highly specialized tasks, small models can not only compete with large LLMs, but often outperform them.\n#### Examples:\n1. **Medicine:** The [Diabetica-7B model](https://arxiv.org/pdf/2409.13191)\n2. **Legal Sector:** [An SLM with just 0.2B parameters](https://arxiv.org/pdf/2311.09825)\n3. **Mathematical Tasks:** [Research by Google DeepMind](https://arxiv.org/pdf/2408.16737)\n4. **Content Moderation:** [LLaMA 3.1 8B outperformed](https://arxiv.org/pdf/2410.13155)"},
-		{"id":"4bca55c15910134a","x":-20,"y":2100,"width":587,"height":312,"type":"text","text":"![[Pasted image 20250218171906.png]]"},
-		{"id":"1a3f5093c05f66b8","x":-167,"y":2579,"width":547,"height":241,"type":"text","text":"## Security, Privacy and Regulatory\n\n"}
+		{"id":"975dd2a3ab572bfe","type":"text","text":"**AI World**: `Bigger is always better?`","x":-600,"y":-380,"width":250,"height":60},
+		{"id":"74c6da14011a22ca","type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\"","x":-240,"y":-395,"width":265,"height":90},
+		{"id":"1ff9c65f36bc8203","type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\"","x":240,"y":-240,"width":345,"height":90},
+		{"id":"cc13dd702cb9f245","type":"text","text":"## Cost Efficiency\n\n**Economics of LLM**: it includes the need for expensive hardware, infrastructure costs, energy costs and environmental consequences.","x":-388,"y":320,"width":465,"height":157},
+		{"id":"b9b05e253f9a7538","type":"text","text":"### OpenAI’s recent announcement of a **$200/month** Pro plan is a signal that costs are rising","x":-580,"y":600,"width":385,"height":137},
+		{"id":"b5e4dc96b84f2dcd","type":"text","text":"### [The Moxie robot](https://arstechnica.com/gadgets/2024/12/startup-will-brick-800-emotional-support-robot-for-kids-without-refunds/)  shutting down due to the high operational costs of the API","x":-85,"y":600,"width":445,"height":144},
+		{"id":"695b3771b21dad4d","type":"text","text":"## Do you need LLMs at all?\n![[Pasted image 20250218165106.png]]","x":-388,"y":-120,"width":485,"height":370},
+		{"id":"e0ebe2768211b078","type":"text","text":"### What can we do?\n\nfine-tune a specialized small language model (SLM) for your specific domain","x":-387,"y":820,"width":456,"height":132},
+		{"id":"4eedae2ec040a89a","type":"text","text":"## Performance on Specialized Tasks\n\nMany studies show that for highly specialized tasks, small models can not only compete with large LLMs, but often outperform them.\n#### Examples:\n1. **Medicine:** The [Diabetica-7B model](https://arxiv.org/pdf/2409.13191)\n2. **Legal Sector:** [An SLM with just 0.2B parameters](https://arxiv.org/pdf/2311.09825)\n3. **Mathematical Tasks:** [Research by Google DeepMind](https://arxiv.org/pdf/2408.16737)\n4. **Content Moderation:** [LLaMA 3.1 8B outperformed](https://arxiv.org/pdf/2410.13155)","x":-500,"y":1620,"width":720,"height":340},
+		{"id":"89418ee9050ebda4","type":"text","text":"![[Pasted image 20250218170833.png]]","x":-1136,"y":549,"width":556,"height":247},
+		{"id":"3e0c41467356d493","type":"text","text":"![[Pasted image 20250218170542.png]]","x":100,"y":980,"width":556,"height":539},
+		{"id":"4bca55c15910134a","type":"text","text":"![[Pasted image 20250218171906.png]]","x":220,"y":1634,"width":587,"height":312},
+		{"id":"1a3f5093c05f66b8","type":"text","text":"## Security, Privacy and Regulatory\n\n","x":-500,"y":2100,"width":760,"height":420}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
@@ -20,8 +20,6 @@
 		{"id":"3c4050d7eae8be07","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b9b05e253f9a7538","toSide":"top"},
 		{"id":"bfe66b9b91ad7fc8","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b5e4dc96b84f2dcd","toSide":"top"},
 		{"id":"bd31937407095fe0","fromNode":"e0ebe2768211b078","fromSide":"bottom","toNode":"3e0c41467356d493","toSide":"left","label":"1. Economical to maintain\n2. Consume fewer resources\n3. Require less data\n4. Can run on modest hardware "},
-		{"id":"f5a5b4bf8c3f6c17","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"89418ee9050ebda4","toSide":"top"},
-		{"id":"b4809fc0507d552f","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"e0ebe2768211b078","toSide":"top","color":"4"},
-		{"id":"06a12a9aeeeda360","fromNode":"4eedae2ec040a89a","fromSide":"bottom","toNode":"4bca55c15910134a","toSide":"left"}
+		{"id":"b4809fc0507d552f","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"e0ebe2768211b078","toSide":"top","color":"4"}
 	]
 }

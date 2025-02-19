@@ -55,10 +55,11 @@ Project Organization
 --------
 
 ### Obsidian Notes
-1. [Deep Dive into LLMs like ChatGPT](docs/Deep Dive into LLMs like ChatGPT.canvas)
+1. [[Deep Dive into LLMs like ChatGPT.canvas|Deep Dive into LLMs like ChatGPT]]
 2. [[Foundations of LLMs.canvas|Foundations of LLMs]]
 3. [[Reasoning Frameworks.canvas|Reasoning Frameworks]]
 4. [[Agentic Tools.canvas|Agentic Tools]]
 5. [[Alibaba's qwen 2.5.canvas|Alibaba's qwen 2.5]]
 6. [[Deepseek-R1.canvas|Deepseek-R1]]
 7. [[SaaS Agents.canvas|SaaS Agents]]
+8. [[Need of small LLMs.canvas|Need of small LLMs]]

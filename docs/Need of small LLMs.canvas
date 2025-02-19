@@ -19,7 +19,8 @@
 		{"id":"a4d62678ebea4b37","type":"text","text":"## Running on Isolated and low-end hardware\n- can operate almost anywhere: from a local server in a private network to a doctor’s or inspector’s device.","x":-549,"y":2680,"width":349,"height":220},
 		{"id":"881db5fc3aea95e3","type":"text","text":"## New Regulations Updates and Adaptation\n- enables a quick response to new requirements without the need for large-scale infrastructure upgrades","x":-129,"y":2680,"width":349,"height":220},
 		{"id":"c4b2d5dbb4ac045e","type":"text","text":"## Distributed Security Architecture\n- enable the creation of a distributed security system. \n**Security  component:**\n\n- Specializes in a specific task.\n- Can be independently updated and tested.\n- Scales separately from the others.","x":296,"y":2680,"width":484,"height":220},
-		{"id":"e480c4ed4a0193c6","x":-463,"y":3020,"width":586,"height":376,"type":"text","text":"## Smaller models are easier to verify and update\n\n![[Pasted image 20250219094038.png]]"}
+		{"id":"e480c4ed4a0193c6","x":-463,"y":3020,"width":583,"height":320,"type":"text","text":"## Smaller models are easier to verify and update\n\n![[Pasted image 20250219094038.png]]"},
+		{"id":"8b1d48870ab48e17","x":-226,"y":3491,"width":566,"height":309,"type":"text","text":"## AI Agents: the Perfect Use Case"}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
@@ -32,6 +33,7 @@
 		{"id":"056adbb33cfba5b2","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"2ac4b76a2f347f61","toSide":"top"},
 		{"id":"a9e47b41064a505f","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"a4d62678ebea4b37","toSide":"top"},
 		{"id":"07bb8d9e9403cb6f","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"881db5fc3aea95e3","toSide":"top"},
-		{"id":"3a4d9648d1254662","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"c4b2d5dbb4ac045e","toSide":"top"}
+		{"id":"3a4d9648d1254662","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"c4b2d5dbb4ac045e","toSide":"top"},
+		{"id":"c1ee9d20d7bf8d56","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"e480c4ed4a0193c6","toSide":"top"}
 	]
 }

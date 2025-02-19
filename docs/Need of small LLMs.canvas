@@ -19,7 +19,7 @@
 		{"id":"a4d62678ebea4b37","type":"text","text":"## Running on Isolated and low-end hardware\n- can operate almost anywhere: from a local server in a private network to a doctor’s or inspector’s device.","x":-549,"y":2680,"width":349,"height":220},
 		{"id":"881db5fc3aea95e3","type":"text","text":"## New Regulations Updates and Adaptation\n- enables a quick response to new requirements without the need for large-scale infrastructure upgrades","x":-129,"y":2680,"width":349,"height":220},
 		{"id":"c4b2d5dbb4ac045e","type":"text","text":"## Distributed Security Architecture\n- enable the creation of a distributed security system. \n**Security  component:**\n\n- Specializes in a specific task.\n- Can be independently updated and tested.\n- Scales separately from the others.","x":296,"y":2680,"width":484,"height":220},
-		{"id":"e480c4ed4a0193c6","x":-226,"y":2944,"width":250,"height":60,"type":"text","text":"## Example\n\n"}
+		{"id":"e480c4ed4a0193c6","x":-226,"y":2944,"width":522,"height":296,"type":"text","text":"## Example\n\nA medical application could use a cascade of three models:\n\na medical application could use a cascade of three models:"}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

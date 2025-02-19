@@ -12,7 +12,7 @@
 		{"id":"89418ee9050ebda4","type":"text","text":"![[Pasted image 20250218170833.png]]","x":-1136,"y":549,"width":556,"height":247},
 		{"id":"3e0c41467356d493","type":"text","text":"![[Pasted image 20250218170542.png]]","x":100,"y":980,"width":556,"height":539},
 		{"id":"4bca55c15910134a","type":"text","text":"![[Pasted image 20250218171906.png]]","x":220,"y":1634,"width":587,"height":312},
-		{"id":"1a3f5093c05f66b8","type":"text","text":"## Security, Privacy and Regulatory\n\nUsing LLMs through APIs\n- Passing sensitive data to external providers\n- Increasing the risk of leaks\n- Complicati","x":-500,"y":2100,"width":760,"height":420}
+		{"id":"1a3f5093c05f66b8","type":"text","text":"## Security, Privacy and Regulatory\n\nUsing LLMs through APIs\n- Passing sensitive data to external providers\n- Increasing the risk of leaks\n- Complicating compliance with strict regulations (HIPAA, GDPR, and CCPA)\n\n### Too dependent on third-party SLAs.","x":-500,"y":2100,"width":660,"height":280}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

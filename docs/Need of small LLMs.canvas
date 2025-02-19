@@ -15,9 +15,9 @@
 		{"id":"1a3f5093c05f66b8","type":"text","text":"## Security, Privacy and Regulatory\n\nUsing LLMs through APIs\n- Passing sensitive data to external providers\n- Increasing the risk of leaks\n- Complicating compliance with strict regulations (HIPAA, GDPR, and CCPA)\n\n### Too dependent on third-party SLAs.","x":-500,"y":2100,"width":660,"height":320},
 		{"id":"a67d7a326b760952","x":160,"y":2120,"width":620,"height":280,"type":"text","text":"![[Pasted image 20250219092932.png]]"},
 		{"id":"2b6d974f3dcd9629","type":"text","text":"### How \"small guys\" (SLMs) can help here?","x":-404,"y":2520,"width":469,"height":63},
-		{"id":"2ac4b76a2f347f61","x":-920,"y":2680,"width":291,"height":220,"type":"text","text":"## Simplified Audits\n\neasier to understand how the model processes data, implement your own encryption or logging, and show auditors that information never leaves a trusted environment"},
-		{"id":"a4d62678ebea4b37","type":"text","text":"## Running on Isolated and low-end hardware","x":-549,"y":2680,"width":349,"height":87},
-		{"id":"881db5fc3aea95e3","type":"text","text":"## New Regulations Updates and Adaptation","x":-129,"y":2680,"width":349,"height":87},
+		{"id":"2ac4b76a2f347f61","x":-920,"y":2680,"width":320,"height":220,"type":"text","text":"## Simplified Audits\n\n- easier to understand how the model processes data, implement your own encryption or logging, and show auditors that information never leaves a trusted environment"},
+		{"id":"a4d62678ebea4b37","type":"text","text":"## Running on Isolated and low-end hardware\n- can operate almost anywhere: from a local server in a private network to a doctor’s or inspector’s device.","x":-549,"y":2680,"width":349,"height":220},
+		{"id":"881db5fc3aea95e3","type":"text","text":"## New Regulations Updates and Adaptation\n- ","x":-129,"y":2680,"width":349,"height":220},
 		{"id":"c4b2d5dbb4ac045e","type":"text","text":"## Distributed Security Architecture","x":296,"y":2680,"width":349,"height":87}
 	],
 	"edges":[

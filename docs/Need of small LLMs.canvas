@@ -15,10 +15,10 @@
 		{"id":"1a3f5093c05f66b8","type":"text","text":"## Security, Privacy and Regulatory\n\nUsing LLMs through APIs\n- Passing sensitive data to external providers\n- Increasing the risk of leaks\n- Complicating compliance with strict regulations (HIPAA, GDPR, and CCPA)\n\n### Too dependent on third-party SLAs.","x":-500,"y":2100,"width":660,"height":320},
 		{"id":"a67d7a326b760952","x":160,"y":2120,"width":620,"height":280,"type":"text","text":"![[Pasted image 20250219092932.png]]"},
 		{"id":"2b6d974f3dcd9629","type":"text","text":"### How \"small guys\" (SLMs) can help here?","x":-404,"y":2520,"width":469,"height":63},
-		{"id":"2ac4b76a2f347f61","x":-920,"y":2680,"width":291,"height":87,"type":"text","text":"## Simplified Audits"},
+		{"id":"2ac4b76a2f347f61","x":-920,"y":2680,"width":291,"height":220,"type":"text","text":"## Simplified Audits\n\neasier to understand how the model processes data, implement your own encryption or logging, and show auditors that information never leaves a trusted environment"},
 		{"id":"a4d62678ebea4b37","type":"text","text":"## Running on Isolated and low-end hardware","x":-549,"y":2680,"width":349,"height":87},
 		{"id":"881db5fc3aea95e3","type":"text","text":"## New Regulations Updates and Adaptation","x":-129,"y":2680,"width":349,"height":87},
-		{"id":"c4b2d5dbb4ac045e","type":"text","text":"## New Regulations Updates and Adaptation","x":296,"y":2680,"width":349,"height":87}
+		{"id":"c4b2d5dbb4ac045e","type":"text","text":"## Distributed Security Architecture","x":296,"y":2680,"width":349,"height":87}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
@@ -27,6 +27,10 @@
 		{"id":"bfe66b9b91ad7fc8","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b5e4dc96b84f2dcd","toSide":"top"},
 		{"id":"bd31937407095fe0","fromNode":"e0ebe2768211b078","fromSide":"bottom","toNode":"3e0c41467356d493","toSide":"left","label":"1. Economical to maintain\n2. Consume fewer resources\n3. Require less data\n4. Can run on modest hardware "},
 		{"id":"b4809fc0507d552f","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"e0ebe2768211b078","toSide":"top","color":"4"},
-		{"id":"4f07d5753cdc6f84","fromNode":"1a3f5093c05f66b8","fromSide":"bottom","toNode":"2b6d974f3dcd9629","toSide":"top"}
+		{"id":"4f07d5753cdc6f84","fromNode":"1a3f5093c05f66b8","fromSide":"bottom","toNode":"2b6d974f3dcd9629","toSide":"top"},
+		{"id":"056adbb33cfba5b2","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"2ac4b76a2f347f61","toSide":"top"},
+		{"id":"a9e47b41064a505f","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"a4d62678ebea4b37","toSide":"top"},
+		{"id":"07bb8d9e9403cb6f","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"881db5fc3aea95e3","toSide":"top"},
+		{"id":"3a4d9648d1254662","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"c4b2d5dbb4ac045e","toSide":"top"}
 	]
 }

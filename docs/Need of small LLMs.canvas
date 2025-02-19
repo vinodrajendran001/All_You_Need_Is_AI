@@ -13,7 +13,8 @@
 		{"id":"3e0c41467356d493","type":"text","text":"![[Pasted image 20250218170542.png]]","x":100,"y":980,"width":556,"height":539},
 		{"id":"4bca55c15910134a","type":"text","text":"![[Pasted image 20250218171906.png]]","x":220,"y":1634,"width":587,"height":312},
 		{"id":"1a3f5093c05f66b8","type":"text","text":"## Security, Privacy and Regulatory\n\nUsing LLMs through APIs\n- Passing sensitive data to external providers\n- Increasing the risk of leaks\n- Complicating compliance with strict regulations (HIPAA, GDPR, and CCPA)\n\n### Too dependent on third-party SLAs.","x":-500,"y":2100,"width":660,"height":320},
-		{"id":"a67d7a326b760952","x":160,"y":2120,"width":620,"height":280,"type":"text","text":"![[Pasted image 20250219092932.png]]"}
+		{"id":"a67d7a326b760952","x":160,"y":2120,"width":620,"height":280,"type":"text","text":"![[Pasted image 20250219092932.png]]"},
+		{"id":"2b6d974f3dcd9629","type":"text","text":"### What can we do?\n\nfine-tune a specialized small language model (SLM) for your specific domain","x":-329,"y":2497,"width":456,"height":132}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

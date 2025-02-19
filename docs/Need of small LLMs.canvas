@@ -25,7 +25,7 @@
 		{"id":"99a705e4db780b82","x":-226,"y":3764,"width":250,"height":60,"type":"text","text":""},
 		{"id":"9a1e60f81a9a4aff","type":"text","text":"### Context Window Limitations\n\n![[Pasted image 20250219095641.png]]","x":-400,"y":4200,"width":520,"height":360},
 		{"id":"3e0c2932171d12a8","x":-1080,"y":4200,"width":641,"height":360,"type":"text","text":"### Limited Task Flexibility\n\n![[Pasted image 20250219095553.png]]"},
-		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap","x":182,"y":4200,"width":351,"height":60}
+		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap\n\n- SLMs **typically don’t hit the parameter levels required for advanced logical reasoning or deep contextual understanding**.","x":182,"y":4200,"width":518,"height":320}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

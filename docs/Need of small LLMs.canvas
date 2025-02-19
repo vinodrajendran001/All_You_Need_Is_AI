@@ -1,7 +1,5 @@
 {
 	"nodes":[
-		{"id":"975dd2a3ab572bfe","type":"text","text":"**AI World**: `Bigger is always better?`","x":-600,"y":-380,"width":250,"height":60},
-		{"id":"74c6da14011a22ca","type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\"","x":-240,"y":-395,"width":265,"height":90},
 		{"id":"1ff9c65f36bc8203","type":"text","text":"**HuggingFace CEO**: \"Predicts that up to 99% of use cases could be addressed using SLMs\"","x":240,"y":-240,"width":345,"height":90},
 		{"id":"cc13dd702cb9f245","type":"text","text":"## Cost Efficiency\n\n**Economics of LLM**: it includes the need for expensive hardware, infrastructure costs, energy costs and environmental consequences.","x":-388,"y":320,"width":465,"height":157},
 		{"id":"b9b05e253f9a7538","type":"text","text":"### OpenAI’s recent announcement of a **$200/month** Pro plan is a signal that costs are rising","x":-580,"y":600,"width":385,"height":137},
@@ -26,7 +24,9 @@
 		{"id":"9a1e60f81a9a4aff","type":"text","text":"### Context Window Limitations\n\n![[Pasted image 20250219095641.png]]","x":-400,"y":4200,"width":520,"height":360},
 		{"id":"3e0c2932171d12a8","x":-1080,"y":4200,"width":641,"height":360,"type":"text","text":"### Limited Task Flexibility\n\n![[Pasted image 20250219095553.png]]"},
 		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap\n\n- SLMs **typically don’t hit the parameter levels required for advanced logical reasoning or deep contextual understanding**.\n-  [recent research by Hugging Face shows](https://huggingface.co/spaces/HuggingFaceH4/blogpost-scaling-test-time-compute) that **test-time compute scaling** can partially bridge this gap","x":182,"y":4200,"width":478,"height":240},
-		{"id":"08ed9e276585a184","x":-618,"y":4740,"width":833,"height":300,"type":"text","text":"## Closing Thoughts\n\n- **SLM agents can significantly reduce costs, improve accuracy, and simplify compliance with regulatory requirements.**\n\n- You don’t need to completely abandon LLMs – **you can gradually replace only some components with SLMs**\n\n- In the end, the **key to success is to adapt**. Start with a large model, evaluate where it performs best, and then optimize your architecture to avoid overpaying for unnecessary capabilities and compromising data privacy."}
+		{"id":"08ed9e276585a184","x":-618,"y":4740,"width":833,"height":300,"type":"text","text":"## Closing Thoughts\n\n- **SLM agents can significantly reduce costs, improve accuracy, and simplify compliance with regulatory requirements.**\n\n- You don’t need to completely abandon LLMs – **you can gradually replace only some components with SLMs**\n\n- In the end, the **key to success is to adapt**. Start with a large model, evaluate where it performs best, and then optimize your architecture to avoid overpaying for unnecessary capabilities and compromising data privacy."},
+		{"id":"975dd2a3ab572bfe","type":"text","text":"**AI World**: `Bigger is always better?`","x":-1080,"y":-395,"width":310,"height":75},
+		{"id":"74c6da14011a22ca","type":"text","text":"**Ilya Sutskever**: \"Pre-training as we know it will unquestionably end\"","x":-520,"y":-402,"width":265,"height":90}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},
@@ -34,7 +34,7 @@
 		{"id":"3c4050d7eae8be07","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b9b05e253f9a7538","toSide":"top"},
 		{"id":"bfe66b9b91ad7fc8","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"b5e4dc96b84f2dcd","toSide":"top"},
 		{"id":"bd31937407095fe0","fromNode":"e0ebe2768211b078","fromSide":"bottom","toNode":"3e0c41467356d493","toSide":"left","label":"1. Economical to maintain\n2. Consume fewer resources\n3. Require less data\n4. Can run on modest hardware "},
-		{"id":"b4809fc0507d552f","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"e0ebe2768211b078","toSide":"top","color":"4"},
+		{"id":"b4809fc0507d552f","fromNode":"cc13dd702cb9f245","fromSide":"bottom","toNode":"e0ebe2768211b078","toSide":"top"},
 		{"id":"4f07d5753cdc6f84","fromNode":"1a3f5093c05f66b8","fromSide":"bottom","toNode":"2b6d974f3dcd9629","toSide":"top"},
 		{"id":"056adbb33cfba5b2","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"2ac4b76a2f347f61","toSide":"top"},
 		{"id":"a9e47b41064a505f","fromNode":"2b6d974f3dcd9629","fromSide":"bottom","toNode":"a4d62678ebea4b37","toSide":"top"},

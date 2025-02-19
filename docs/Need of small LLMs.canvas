@@ -23,9 +23,9 @@
 		{"id":"8b1d48870ab48e17","x":-582,"y":3460,"width":764,"height":440,"type":"text","text":"## AI Agents: the Perfect Use Case\n\nImagine you are building a system to analyze financial documents. Instead of using one large model, you can break the task into several specialized agents:\n\n![[Pasted image 20250219094245.png]]\n"},
 		{"id":"487fafb32ea38982","x":-523,"y":3960,"width":643,"height":80,"type":"text","text":"## Potential Limitations of SLMs compared to LLMs\n\n"},
 		{"id":"99a705e4db780b82","x":-226,"y":3764,"width":250,"height":60,"type":"text","text":""},
-		{"id":"3e0c2932171d12a8","x":-769,"y":4200,"width":390,"height":360,"type":"text","text":"### Limited Task Flexibility\n\n![[Pasted image 20250219095553.png]]"},
-		{"id":"9a1e60f81a9a4aff","type":"text","text":"### Context Window Limitations","x":-379,"y":4200,"width":359,"height":60},
-		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap","x":29,"y":4200,"width":351,"height":60}
+		{"id":"9a1e60f81a9a4aff","type":"text","text":"### Context Window Limitations\n\n![[Pasted image 20250219095641.png]]","x":-400,"y":4200,"width":520,"height":360},
+		{"id":"3e0c2932171d12a8","x":-1080,"y":4200,"width":641,"height":360,"type":"text","text":"### Limited Task Flexibility\n\n![[Pasted image 20250219095553.png]]"},
+		{"id":"6dcd43b25217bf85","type":"text","text":"### Emergence Capabilities Gap","x":182,"y":4200,"width":351,"height":60}
 	],
 	"edges":[
 		{"id":"1e5c8ca6c73a0166","fromNode":"975dd2a3ab572bfe","fromSide":"right","toNode":"74c6da14011a22ca","toSide":"left"},

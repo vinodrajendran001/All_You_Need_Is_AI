@@ -7,7 +7,7 @@
 		{"id":"a7a30d2a077619ed","x":-835,"y":1320,"width":600,"height":771,"type":"text","text":"![[Pasted image 20250302211146.png]]"},
 		{"id":"538dd025789e11d3","x":-1160,"y":-680,"width":941,"height":840,"type":"text","text":"## Decoder-only Pre-Training\n\n- Predicts the distribution of tokens at a position given its preceding tokens, and the output is the token with the maximum probability\n- Transformer decoder as a language model by simply removing cross-attention sub-layers from it\n- Given a sequence of $m$ tokens $\\{x_{0}, ..., x_{m}\\}$, the loss on this sequence is the sum of the loss over the positions $\\{0, ..., m - 1\\}$, given by\n![[Pasted image 20250302212236.png]]\n\n\n![[Pasted image 20250302212327.png]]"},
 		{"type":"text","text":"## Illustration of unsupervised, supervised and self-supervised pre-training\n\n![[Pasted image 20250214144312.png]]","id":"e117cbdd6cf9b78c","x":-1160,"y":-1360,"width":927,"height":640},
-		{"id":"19db0e32d759c7ed","x":-155,"y":2007,"width":795,"height":473,"type":"text","text":"## Encoder-Decoder Pretraining\n\n- encoder-decoder architectures are often used to model sequence-to-sequence problems,  \nsuch as machine translation and question answering."}
+		{"id":"19db0e32d759c7ed","x":-155,"y":2007,"width":1035,"height":913,"type":"text","text":"## Encoder-Decoder Pretraining\n\n- encoder-decoder architectures are often used to model sequence-to-sequence problems,  such as machine translation and question answering.\n\n### Training\n\n![[Pasted image 20250302224116.png]]"}
 	],
 	"edges":[
 		{"id":"ff35a852fde6427f","fromNode":"468d56c4b4b641cf","fromSide":"bottom","toNode":"a7a30d2a077619ed","toSide":"top"},

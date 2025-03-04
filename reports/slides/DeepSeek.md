@@ -10,5 +10,11 @@ Vinod
 ---
 ## LLM-MDP (as used in DeepSeek R1)
 
-![[Pasted image 20250304231944.png | ]]
+![[Pasted image 20250304231944.png | 512 512]]
 
+---
+## PPO vs GRPO
+
+![[Pasted image 20250304232043.png]]
+
+---

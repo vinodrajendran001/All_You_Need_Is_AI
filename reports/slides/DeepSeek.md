@@ -19,6 +19,11 @@ Vinod
 25 x 55
 </grid>
 
+<grid drag="90 20" drop="5 -10" bg="gray">
+90  x 20
+</grid>
+
+
 
 ---
 

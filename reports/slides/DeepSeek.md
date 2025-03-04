@@ -11,12 +11,12 @@ Vinod
 ## MDP Background
 
 
-<grid drag="60 55" drop="5 10" bg="red">
+<grid drag="50 50" drop="5 10" bg="red">
 60 x 55
 </grid>
 
-<grid drag="25 55" drop="-5 10" style=bg="green">
-25 x 55
+<grid drag="51 50" drop="5 10" style=bg="green">
+25 x 50
 </grid>
 
 <grid drag="90 20" drop="5 -10" bg="gray">

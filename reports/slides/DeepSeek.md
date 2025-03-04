@@ -15,8 +15,26 @@ Vinod
 60 x 55
 </grid>
 
-<grid drag="25 50" drop="-5 10" style=bg="green">
-25 x 50
+<grid drag="40 50" drop="-5 10" style=bg="green">
+
+```
+Prompt (Initial State):  
+"Solve this math problem: What is 12 + 15?"  
+  
+Possible Actions (Next Tokens):  
+- "Let's"  
+- "The"  
+- "12"  
+- ...  
+  
+Trajectory Example:  
+"Let's solve this step by step:  
+1) First, we have 12  
+2) Adding 15 to it  
+3) 12 + 15 = 27  
+Therefore, the answer is 27."
+```
+
 </grid>
 
 <grid drag="90 20" drop="5 -10" bg="gray">

@@ -5,11 +5,15 @@ Vinod
 ---
 # Understanding MDP
 
-<split no-margin>
+
+<grid drag="90 20" drop="5 -10" bg="gray">
 
 >A Markov decision process (MDP) is defined as a stochastic decision-making process that uses a mathematical framework to model the decision-making of a dynamic system in scenarios where the results are either random or controlled by a decision maker, which makes sequential decisions over time.
 
-</split>
+</grid>
+
+
+
 
 
 <split left="2" right="1" gap="2">

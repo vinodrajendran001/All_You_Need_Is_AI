@@ -1,6 +1,6 @@
-# Need of Small LLMs (SLMs)
+# DeepSeek
 
-### Vinod
+Vinod
 
 ----
 

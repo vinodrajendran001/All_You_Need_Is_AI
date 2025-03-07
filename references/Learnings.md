@@ -9,4 +9,5 @@
 ## 07.03.2025
 
 - [ExplainGithub](https://link.mail.beehiiv.com/ss/c/u001.P5VhhHEXt9ALLSlwafYXZDsZ5nkBYN111z4zMhLNbpvvStaH_RVxXoFakxZmYQnHCIysNPji6-U9OVbW36ojnyT6_Gm6GmAQCaI5xs_8xHTUlGLUg56QWf9mOo06AU9y-lDyk6WO4zOigEa-3GXmYYRBuYdJKdtGXm9a4UEvhzecq3CKkAEBtMMSPJ6JJgDinB8L_Ma_zaKhD1UpZD1bYMLfnSRdLPHm6assuHrM5fzWAcNyNd39kht_yYl7lQY9/4ek/QMyLH5BEROS9uD9EUJjc7w/h26/h001.OKxVLlY9xOO6ID11sN7t-u7zC9D-eTExoTcBglzTAjM "https://link.mail.beehiiv.com/ss/c/u001.P5VhhHEXt9ALLSlwafYXZDsZ5nkBYN111z4zMhLNbpvvStaH_RVxXoFakxZmYQnHCIysNPji6-U9OVbW36ojnyT6_Gm6GmAQCaI5xs_8xHTUlGLUg56QWf9mOo06AU9y-lDyk6WO4zOigEa-3GXmYYRBuYdJKdtGXm9a4UEvhzecq3CKkAEBtMMSPJ6JJgDinB8L_Ma_zaKhD1UpZD1bYMLfnSRdLPHm6assuHrM5fzWAcNyNd39kht_yYl7lQY9/4ek/QMyLH5BEROS9uD9EUJjc7w/h26/h001.OKxVLlY9xOO6ID11sN7t-u7zC9D-eTExoTcBglzTAjM") > Turn hours of code reading into minutes of understanding.
+- https://github.com/fmind/mlops-python-package - Kickstart your MLOps initiative with a flexible, robust, and productive Python package.
 - 

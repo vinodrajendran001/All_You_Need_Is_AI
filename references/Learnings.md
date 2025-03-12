@@ -34,4 +34,6 @@
 	- [**50%**](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/tech-forward/open-source-in-the-age-of-ai) **Of Companies That Use AI Incorporate Open-Source Solutions**
 	- **Nearly Half Of Tech Leaders (**[**49%**](https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html)**) Say AI Is Now Fully Integrated Into Business Strategy**
 2. [Open R1 for Students - Hugging Face NLP Course](https://huggingface.co/learn/nlp-course/en/chapter12/1)
+3. Reinforcement Learning
+https://www.youtube.com/watch?v=ZHMWHr9811U&list=PLEhdbSEZZbDaFWPX4gehhwB9vJZJ1DNm8&index=3
 

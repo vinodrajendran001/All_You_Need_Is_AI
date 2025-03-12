@@ -12,3 +12,25 @@
 - https://github.com/fmind/mlops-python-package - Kickstart your MLOps initiative with a flexible, robust, and productive Python package.
 - **[TAID: A Novel Method for Efficient Knowledge Transfer from Large Language Models to Small Language Models](https://substack.com/redirect/d3c1d03e-ada9-4d41-b406-787df40ffb26?j=eyJ1IjoiMTg2bzVvIn0.-AuoIYywR1ZESApp8FJseCWwCCZIKj8CtVTdemeZC-Q "https://substack.com/redirect/d3c1d03e-ada9-4d41-b406-787df40ffb26?j=eyJ1IjoiMTg2bzVvIn0.-AuoIYywR1ZESApp8FJseCWwCCZIKj8CtVTdemeZC-Q")**
 
+## 12.03.2025
+
+## Learnings
+
+1. 15 Mind-Blowing AI Statistics Everyone Must Know About Now 
+
+	- [**34 million**](https://amitkumar2211.medium.com/fun-fact-ai-creates-about-34-million-images-every-single-day-99a7bbd0fd63) **AI-Generated Images Created Daily**
+	- [**71%**](https://artsmart.ai/blog/ai-image-generator-market-statistics/) **Of Social Media Images Now AI-Generated**
+	- **Deepfake Fraud Attempts Surge To** [**6.5%**](https://www.insurancetimes.co.uk/news/fraud-attempts-with-deepfakes-surge-over-last-three-years/1454509.article) **Worldwide**
+	- **Tech Giants Investing** [**$320 Billion**](https://www.businessinsider.com/big-tech-ai-capex-spend-meta-google-amazon-microsoft-earnings-2025-2) **In AI Development For 2025**
+	- **Global AI Services Market To Reach** [**$243 Billion**](https://www.statista.com/outlook/tmo/artificial-intelligence/worldwide) **This Year**
+	- [**97%**](https://www.ey.com/en_us/newsroom/2024/12/ey-research-artificial-intelligence-investments-set-to-remain-strong-in-2025-but-senior-leaders-recognize-emerging-risks) **Of Leaders Investing In AI Report Positive Return On Investment**
+	- [**25%**](https://www.deloitte.com/global/en/about/press-room/deloitte-globals-2025-predictions-report.html) **Of Enterprises Will Deploy AI Agents This Year**
+	- **Healthcare AI Market Valued At** [**$38.7**](https://explodingtopics.com/blog/ai-market-size-stats) **Billion, Doubling Since 2023**
+	- **Adoption Gap:** [**81%**](https://www.businessinsider.com/ai-adoption-worker-survey-big-tech-spending-2025?utm_source=chatgpt.com) **Of Workers Still Not Using AI Tools**
+	- **Trust Divide: AI** [**Acceptance**](https://www.axios.com/2025/02/13/trust-ai-china-us) **High In India (77%) and China (72%), Low In America ((32%)**
+	- **AI Influencer Economy Approaching** [**$7 Billion**](https://artsmart.ai/blog/ai-influencer-statistics/) **Valuation**
+	- **Data Centers To Consume** [**5%**](https://www.mckinsey.com/featured-insights/sustainable-inclusive-growth/charts/ais-power-binge) **Of U.S. Power, Doubling By 2030**
+	- [**30%**](https://www.deloitte.com/global/en/about/press-room/deloitte-globals-2025-predictions-report.html) **Of New Smartphones To Feature On-Device GenAI**
+	- [**50%**](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/tech-forward/open-source-in-the-age-of-ai) **Of Companies That Use AI Incorporate Open-Source Solutions**
+	- **Nearly Half Of Tech Leaders (**[**49%**](https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html)**) Say AI Is Now Fully Integrated Into Business Strategy**
+2. [Open R1 for Students - Hugging Face NLP Course](https://huggingface.co/learn/nlp-course/en/chapter12/1)

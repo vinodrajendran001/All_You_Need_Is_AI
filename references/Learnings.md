@@ -39,3 +39,237 @@
 	- Github: https://github.com/MathFoundationRL/Book-Mathematical-Foundation-of-Reinforcement-Learning
 
 ![[Pasted image 20250312133027.png]]
+
+## 13.03.2025
+
+![[Pasted image 20250313230642.png]]
+
+
+**
+
+From my 12+ years of experience as a full-stack developer, working at Fortune 500 companies like PayPal and many other startups, I’ve gathered valuable insights that have helped me succeed in solving complex problems during coding interviews. Here’s what I’ve learned:
+
+### 1. If the Input Array is Sorted
+
+When you are given a sorted array, there are two go-to techniques that will make your job easier:
+
+#### Binary Search
+
+-   When to use it: Binary search is the optimal solution for searching for an element or solving problems related to finding a position in a sorted array.
+    
+-   How it works: Binary search works by repeatedly dividing the search interval in half. It starts by comparing the target value to the element in the middle. If they are not equal, it eliminates half of the search space.
+    
+-   Key advantage: It operates in O(log n) time complexity, which is much faster than a linear scan (O(n)).
+    
+
+#### Two Pointers
+
+-   When to use it: If the problem asks to find pairs or elements satisfying certain conditions (e.g., sum equals to a target), two pointers is your best choice for a sorted array.
+    
+-   How it works: You initiate two pointers—one starting from the beginning of the array and the other from the end—and move them toward each other based on the condition you're trying to satisfy.
+    
+-   Key advantage: The time complexity of this approach is O(n), and it's very efficient for problems involving pairs or finding relationships between elements in sorted arrays.
+    
+
+---
+
+### 2. If Asked for All Permutations/Subsets
+
+When you're asked to generate all permutations or subsets of a given set, the solution is usually based on backtracking.
+
+#### Backtracking
+
+-   When to use it: Backtracking is a powerful technique for solving problems where you have to explore all possibilities or combinations in a constrained space, like generating all permutations or subsets.
+    
+-   How it works: It involves exploring a potential solution space by building solutions incrementally, then abandoning a solution as soon as it is determined that it cannot be extended to a valid solution (this is known as "pruning").
+    
+-   Key advantage: This method ensures you explore all possible combinations or permutations and works efficiently by reducing the search space through pruning.
+    
+
+---
+
+### 3. If Given a Tree
+
+When you're working with a tree, whether it's a binary tree or a general tree, there are two main strategies you should consider: Depth-First Search (DFS) and Breadth-First Search (BFS).
+
+#### DFS
+
+-   When to use it: DFS is most useful when you need to explore all possible paths (e.g., for finding paths, maximum depths, or solving tree traversal problems).
+    
+-   How it works: DFS explores as deep as possible down a branch before backtracking. It can be implemented recursively or using a stack.
+    
+-   Key advantage: It allows you to explore deeply nested nodes and works well for problems like pathfinding or tree traversal.
+    
+
+#### BFS
+
+-   When to use it: BFS is ideal for level-order traversals, finding the shortest path in unweighted graphs, or problems where you need to explore nodes level by level.
+    
+-   How it works: BFS explores all neighbors of a node at the present depth level before moving on to nodes at the next depth level.
+    
+-   Key advantage: BFS guarantees that you find the shortest path in an unweighted graph and is useful for problems that require finding nodes at a certain level.
+    
+
+---
+
+### 4. If Given a Graph
+
+Graphs, whether directed, undirected, weighted, or unweighted, require two basic traversal techniques:
+
+#### DFS
+
+-   When to use it: Use DFS when you need to explore all possible paths in a graph (like finding connected components or cycles).
+    
+-   How it works: DFS can be implemented recursively or with an explicit stack. It explores deeper into the graph before backtracking.
+    
+-   Key advantage: It's suitable for problems where deep exploration is needed, such as topological sorting or cycle detection.
+    
+
+#### BFS
+
+-   When to use it: BFS is best when you're looking for the shortest path, level-order traversal, or connected components.
+    
+-   How it works: BFS uses a queue to explore nodes level by level. It’s optimal for problems where the shortest path or level information is important.
+    
+-   Key advantage: BFS guarantees finding the shortest path in an unweighted graph and is ideal for problems like shortest-path algorithms.
+    
+
+---
+
+### 5. If Given a Linked List
+
+When given a linked list, two pointers is the most efficient technique.
+
+#### Two Pointers
+
+-   When to use it: Two pointers are used for problems such as detecting cycles in a linked list, finding the middle node, or reversing a linked list.
+    
+-   How it works: You initialize two pointers—slow and fast—where the slow pointer advances one step at a time, and the fast pointer advances two steps. This is helpful in problems involving the middle of a list or detecting loops.
+    
+-   Key advantage: This approach reduces time complexity and works effectively for problems requiring traversal with conditions on the steps.
+    
+
+---
+
+### 6. If Recursion is Banned
+
+Recursion can often be replaced by using a stack to simulate the recursion process.
+
+#### Stack
+
+-   When to use it: Use a stack to replace recursion for problems like depth-first search or when the recursive solution leads to a stack overflow due to deep recursion.
+    
+-   How it works: You maintain a stack of nodes or elements to process, and the algorithm processes them in a controlled, iterative manner.
+    
+-   Key advantage: It helps avoid the pitfalls of deep recursion and stack overflows while achieving the same result.
+    
+
+---
+
+### 7. If You Must Solve In-Place
+
+If the problem requires in-place operations, meaning you cannot use extra memory, you’ll rely on techniques like swapping values or storing multiple values in a single pointer.
+
+#### Swap Corresponding Values
+
+-   When to use it: This is useful for problems like reversing an array or swapping elements to solve problems like sorting.
+    
+-   How it works: You swap two values in-place without needing extra space.
+    
+-   Key advantage: It minimizes space complexity to O(1) while performing the operation efficiently.
+    
+
+#### Store Multiple Values in the Same Pointer
+
+-   When to use it: This is typically used in problems like sorting or rearranging arrays where you can overwrite existing values as you progress.
+    
+-   How it works: You can overwrite or re-use memory locations to store intermediate values, which reduces memory usage.
+    
+-   Key advantage: It saves space and allows in-place modification of data structures.
+    
+
+---
+
+### 8. If Asked for Maximum/Minimum Subarray/Subset/Options
+
+Dynamic programming (DP) is your go-to approach for solving these problems efficiently.
+
+#### Dynamic Programming
+
+-   When to use it: DP is used for problems where the problem can be broken down into overlapping subproblems that can be solved optimally. It’s particularly useful for problems involving finding the maximum or minimum values in a sequence.
+    
+-   How it works: DP stores intermediate results to avoid redundant calculations. It can be implemented in both bottom-up (iterative) or top-down (recursive with memoization) approaches.
+    
+-   Key advantage: DP reduces time complexity from exponential to polynomial time in many cases, which makes it ideal for optimization problems.
+    
+
+---
+
+### 9. If Asked for Top/Least K Items
+
+For problems where you need to find the top K or least K elements, heaps or QuickSelect are the most efficient choices.
+
+#### Heap
+
+-   When to use it: Heaps are optimal for finding the k-th largest or smallest elements in an unsorted list.
+    
+-   How it works: A heap is a binary tree where each parent node is either larger or smaller than its child nodes. For top K or least K elements, a heap can be used to efficiently extract the largest or smallest elements.
+    
+-   Key advantage: Heaps provide an O(log n) time complexity for insertions and deletions, making them efficient for dynamic data.
+    
+
+#### QuickSelect
+
+-   When to use it: QuickSelect is an efficient algorithm for finding the k-th largest or smallest element without fully sorting the array.
+    
+-   How it works: QuickSelect partitions the array and selects a subset of elements to recursively find the desired element in O(n) time on average.
+    
+-   Key advantage: QuickSelect is faster than sorting the entire array when you only need to find the k-th element.
+    
+
+---
+
+### 10. If Asked for Common Strings
+
+For problems that involve finding common strings or substrings, maps or tries are the best solutions.
+
+#### Map
+
+-   When to use it: A hash map can be used to track occurrences of strings, helping find common substrings or strings with certain properties.
+    
+-   How it works: You store the string’s frequency or occurrence in a map, and then easily retrieve values based on certain conditions.
+    
+-   Key advantage: Maps provide O(1) time complexity for lookups, making them highly efficient for these problems.
+    
+
+#### Trie
+
+-   When to use it: A Trie is optimal for problems involving string matching or prefix-based queries.
+    
+-   How it works: A Trie is a tree-like data structure used for storing a dynamic set of strings, which is useful for finding common substrings or prefixes.
+    
+-   Key advantage: It allows for fast lookups and prefix-based searches in O(n) time complexity.
+    
+
+---
+
+### 11. General Strategy
+
+For problems not falling under any specific category, you can often use maps/sets for O(1) time complexity and O(n) space, or sorting for O(n log n) time complexity and O(1) space (depending on the problem).
+
+#### Maps/Sets
+
+-   When to use it: Maps and sets are used to store unique elements or key-value pairs. These structures give you efficient access to elements and allow you to check for membership in constant time.
+    
+-   Key advantage: They provide fast operations for insertion, deletion, and lookup, making them ideal for many problems involving unique elements or memberships.
+    
+
+#### Sorting
+
+-   When to use it: Sorting is useful when you need to reorder data to apply algorithms like binary search or when working with problems like finding the kth smallest/largest element.
+    
+-   Key advantage: Sorting provides a way to convert a complex problem into a more manageable one, and many algorithms like binary search work well with sorted data.
+    
+
+  
+**

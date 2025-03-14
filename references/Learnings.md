@@ -288,7 +288,7 @@ This is platooning, a leader — and followers.
 
 And it works like this:
 
-
+![[Pasted image 20250314090914.png]]
 
 The problem is, it never really worked.  
 It can work from a "prototype" perspective, but (to my knowledge) I don't think the autonomous truck world ever adopted platooning as a solution.

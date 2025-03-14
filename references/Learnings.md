@@ -271,4 +271,66 @@ For problems not falling under any specific category, you can often use maps/set
 -   Key advantage: Sorting provides a way to convert a complex problem into a more manageable one, and many algorithms like binary search work well with sorted data.
     
 
+
+## 14.03.2025
+
+**Can Zenoh revive Autonomous Vehicle Platooning?**
+
+First what is Autonomous Vehicle Platooning?
+
+**Rather than having a fleet of autonomous vehicles;** you have ONE autonomous vehicle that acts as a "master", and other "automated" vehicles that act as followers.
+
+**Imagine a convoy of trucks**, where the first truck has all the sensors and intelligence, and communicates the instructions to its followers that then "break" or steer the vehicle.
+
+This is platooning, a leader — and followers.
+
+**There are tons of theoretical advantages to using a platooning solution:** reduced drag, shortest distance, no need to equip the entire fleet of truck with LiDARs, ...
+
+And it works like this:
+
+![undefined](blob:https://teams.microsoft.com/39ec37f5-195f-4716-b58e-832a6f6372aa)
+
+The problem is, it never really worked.  
+It can work from a "prototype" perspective, but (to my knowledge) I don't think the autonomous truck world ever adopted platooning as a solution.
+
+**One of the reasons is latency**. You can't risk sending a "break" instruction 1 second too late when a convoy of trucks drive at 90 km/h. It's way too risky.
+
+So what could you do?  
   
+**You could try and reduce that communication latency.**
+
+**Zenoh?**
+
+Sounds both Biblical & Star Wars like.  
+  
+Whoever named it is a genius.  
+  
+And what is it? It's a better middleware for ROS.
+
+**ROS— a very brief definition would be**: ROS is a middleware framework that helps algorithms communicate. We can have an object detector receiving images from multiple cameras and forwarding objects to a Trajectory Planner. It's turning independent algorithms into a system.
+
+To explain why Zenoh is a good idea, let me share a simple graph decomposing ROS into 4 main parts: Nodes, Tools, Robotics, and Ecosystem.
+
+![image](blob:https://teams.microsoft.com/d275dacf-8238-4115-a121-bc28af5e44bb)
+
+According to this:
+
+- ROS = Nodes Management + Robotics Customization + Tools + Ecosystem
+
+But the "nodes" part is NOT really ROS. It's a standard protocol, like TCP for ROS1, and something called DDS for ROS2.
+
+**And what is Zenoh? A replacement for TCP and DDS in the "Nodes" part.**
+
+This means when you use it, nothing visibly changes: you still have Gazebo, messaging, etc... but under the hood, the protocol changes communication.
+
+**This is an under-the-hood modification.**
+
+**But it's very powerful, because while DDS (what ROS2 uses by default) was built for wired robotics, Zenoh is built for wireless robotics.**
+
+And when you replace the default ROS protocol, you turn a wired robot into a wireless robot.
+
+**And I think this is a solution to revive autonomous vehicle Platooning...**
+
+**But you could also enable tons of other wireless applications, like Fleet Navigation, Drone Delivery, V2X, and many others...**
+
+Source: thinkautonomous.ai

@@ -288,7 +288,7 @@ This is platooning, a leader — and followers.
 
 And it works like this:
 
-![undefined](blob:https://teams.microsoft.com/39ec37f5-195f-4716-b58e-832a6f6372aa)
+
 
 The problem is, it never really worked.  
 It can work from a "prototype" perspective, but (to my knowledge) I don't think the autonomous truck world ever adopted platooning as a solution.
@@ -311,7 +311,7 @@ And what is it? It's a better middleware for ROS.
 
 To explain why Zenoh is a good idea, let me share a simple graph decomposing ROS into 4 main parts: Nodes, Tools, Robotics, and Ecosystem.
 
-![image](blob:https://teams.microsoft.com/d275dacf-8238-4115-a121-bc28af5e44bb)
+![[Pasted image 20250314090710.png]]
 
 According to this:
 
@@ -333,4 +333,3 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 **But you could also enable tons of other wireless applications, like Fleet Navigation, Drone Delivery, V2X, and many others...**
 
-Source: thinkautonomous.ai

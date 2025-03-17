@@ -333,5 +333,4 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 **But you could also enable tons of other wireless applications, like Fleet Navigation, Drone Delivery, V2X, and many others...**
 
-## 17.03.2025
 

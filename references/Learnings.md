@@ -334,3 +334,6 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 **But you could also enable tons of other wireless applications, like Fleet Navigation, Drone Delivery, V2X, and many others...**
 
 
+## 17.03.2025
+
+- https://github.com/graviraja/MLOps-Basics - The goal of the series is to understand the basics of MLOps like model building, monitoring, configurations, testing, packaging, deployment, cicd, etc.

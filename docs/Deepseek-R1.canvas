@@ -18,7 +18,7 @@
 		{"id":"7a3b70e5abcfe30a","type":"text","text":"## Example\n\nWe can present a question like this to the model in a training step, and generate multiple possible solutions.\n\n\n![[Pasted image 20250206095641.png]]\n\n\n![[Pasted image 20250206095658.png]]\n\n\n![[Pasted image 20250206095725.png]]\n\n\n## These reward signals and model updates are how the model continues improving on tasks over the RL training process\n\n![[Pasted image 20250206095748.png]]\n\n## Corresponding with the improvement of this capability is the length of the generated response, where the model generates more thinking tokens to process the problem.\n\n![[Pasted image 20250206095824.png]]\n\n\n","x":1500,"y":-240,"width":915,"height":2837},
 		{"id":"93e43f2d46c7837d","x":-1180,"y":3520,"width":514,"height":82,"type":"text","text":"## Multi-Head Latent Attention (MLA)"},
 		{"id":"4363f6c56a4ddca5","x":-1180,"y":3740,"width":769,"height":364,"type":"text","text":"![[Pasted image 20250319174658.png]]"},
-		{"id":"102b71b365b99c09","x":-300,"y":3702,"width":735,"height":440,"type":"text","text":"- Reduce the **KV Cache Size** by factor of `57` \n\n![[Pasted image 20250319174755.png]]"}
+		{"id":"102b71b365b99c09","x":-300,"y":3702,"width":735,"height":440,"type":"text","text":"- Reduce the **KV Cache Size** by factor of `~57`\n- Generating text `6` times faster than the traditional `Transformer`\n\n![[Pasted image 20250319174755.png]]"}
 	],
 	"edges":[
 		{"id":"8daff6e55532d457","fromNode":"f3d727ff44314854","fromSide":"right","toNode":"c211d312d6c07e0c","toSide":"left"},

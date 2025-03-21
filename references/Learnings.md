@@ -343,3 +343,4 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 - https://karpathy.bearblog.dev/digital-hygiene/ - A list of things you can do to live a secure digital life.
 - https://ezyang.github.io/ai-blindspots/ - A list of coding blindspots in large language models (focused on the Sonnet family).
 - [Agent S2](https://www.simular.ai/agent-s2) -Agent S2: An Open, Modular, and Scalable Framework for Computer Use Agents
+- 

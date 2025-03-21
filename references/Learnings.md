@@ -340,6 +340,6 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 ## 21.03.2025
 
-- https://karpathy.bearblog.dev/digital-hygiene/
-- https://ezyang.github.io/ai-blindspots/
+- https://karpathy.bearblog.dev/digital-hygiene/ - A list of things you can do to live a secure digital life.
+- https://ezyang.github.io/ai-blindspots/ - A list of coding blindspots in large language models (focused on the Sonnet family).
 - 

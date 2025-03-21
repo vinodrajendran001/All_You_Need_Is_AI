@@ -341,4 +341,5 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 ## 21.03.2025
 
 - https://karpathy.bearblog.dev/digital-hygiene/
+- https://ezyang.github.io/ai-blindspots/
 - 

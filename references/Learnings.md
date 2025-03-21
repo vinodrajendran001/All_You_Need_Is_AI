@@ -337,3 +337,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 ## 17.03.2025
 
 - https://github.com/graviraja/MLOps-Basics - The goal of the series is to understand the basics of MLOps like model building, monitoring, configurations, testing, packaging, deployment, cicd, etc.
+
+## 21.03.2025
+
+- 

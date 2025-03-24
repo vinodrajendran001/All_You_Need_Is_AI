@@ -363,10 +363,10 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	🌟 Regular updates with the latest advancements in GenAI  
 	🤝 Share your own agent creations with the community
 	
-- Agentic RAG
-- 𝗡𝗮𝘁𝗶𝘃𝗲 𝗥𝗔𝗚  
+- **Agentic RAG**
+	𝗡𝗮𝘁𝗶𝘃𝗲 𝗥𝗔𝗚  
 	In Native RAG, the most common implementation nowadays, the user query is processed through a pipeline that includes retrieval, reranking, synthesis, and generation of a response.  
-	  
+		  
 	This process leverages retrieval and generation-based methods to provide accurate and contextually relevant answers.  
 	  
 	𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗥𝗔𝗚  

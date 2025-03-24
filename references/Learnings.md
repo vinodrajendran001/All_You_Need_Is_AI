@@ -362,4 +362,32 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	🛠️ Practical, ready-to-use agent implementations  
 	🌟 Regular updates with the latest advancements in GenAI  
 	🤝 Share your own agent creations with the community
-- ![[Pasted image 20250324192032.png]]
+	
+- Agentic RAG
+- 𝗡𝗮𝘁𝗶𝘃𝗲 𝗥𝗔𝗚  
+	In Native RAG, the most common implementation nowadays, the user query is processed through a pipeline that includes retrieval, reranking, synthesis, and generation of a response.  
+	  
+	This process leverages retrieval and generation-based methods to provide accurate and contextually relevant answers.  
+	  
+	𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗥𝗔𝗚  
+	Agentic RAG is an advanced, agent-based approach to question answering over multiple documents in a coordinated manner. It involves comparing different documents, summarizing specific documents, or comparing various summaries.  
+	  
+	Agentic RAG is a flexible framework that supports complex tasks requiring planning, multi-step reasoning, tool use, and learning over time.  
+	  
+	𝗞𝗲𝘆 𝗖𝗼𝗺𝗽𝗼𝗻𝗲𝗻𝘁𝘀 𝗮𝗻𝗱 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲  
+	- Document Agents: Each document is assigned a dedicated agent capable of answering questions and summarizing within its own document.  
+	  
+	- Meta-Agent: A top-level agent manages all the document agents, orchestrating their interactions and integrating their outputs to generate a coherent and comprehensive response.  
+	  
+	𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗮𝗻𝗱 𝗕𝗲𝗻𝗲𝗳𝗶𝘁𝘀  
+	- Autonomy: Agents act independently to retrieve, process, and generate information.  
+	  
+	- Adaptability: The system can adjust strategies based on new data and changing contexts.  
+	  
+	- Proactivity: Agents can anticipate needs and take preemptive actions to achieve goals.  
+	Applications  
+	  
+	Agentic RAG is particularly useful in scenarios requiring thorough and nuanced information processing and decision-making.  
+	  
+	A few days ago, I discussed how the future of AI lies in AI Agents. RAG is currently the most popular use case, and with an agentic architecture, you will supercharge RAG!
+	![[Pasted image 20250324192032.png]]

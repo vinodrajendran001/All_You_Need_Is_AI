@@ -344,4 +344,22 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 - https://ezyang.github.io/ai-blindspots/ - A list of coding blindspots in large language models (focused on the Sonnet family).
 - [Agent S2](https://www.simular.ai/agent-s2) -Agent S2: An Open, Modular, and Scalable Framework for Computer Use Agents
 - [rkinas/cuda-learning: This repository is a curated collection of resources, tutorials, and practical examples designed to guide you through the journey of mastering CUDA programming. Whether you're just starting or looking to optimize and scale your GPU-accelerated applications.](https://github.com/rkinas/cuda-learning)
-- 
+
+## 24.03.2025
+
+- https://github.com/NirDiamant/GenAI_Agents
+	It is a great resource for:  
+	1/ learning  
+	2/ building  
+	3/ sharing AI Agents  
+	  
+	ranging from simple conversational bots to complex, multi-agent systems.  
+	  
+	Key features:  
+	🎓 Learn to build GenAI agents from beginner to advanced levels  
+	🧠 Explore a wide range of agent architectures and applications  
+	📚 Step-by-step tutorials and comprehensive documentation  
+	🛠️ Practical, ready-to-use agent implementations  
+	🌟 Regular updates with the latest advancements in GenAI  
+	🤝 Share your own agent creations with the community
+	

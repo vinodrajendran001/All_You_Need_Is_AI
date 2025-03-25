@@ -40,14 +40,15 @@
         <div>
             <p>This paper investigates whether compute-optimal scaling laws in LLM development are skill-dependent by examining knowledge-based tasks and reasoning skills, affirming that they indeed are. Through extensive ablation studies on various pretraining datamixes, it is shown that knowledge and reasoning skills like code generation fundamentally differ in scaling behavior, independent of datamix composition. Using a misspecified validation set can significantly misalign compute-optimal parameter counts by nearly 50% based on skill composition.</p>
             <p>
-                🔗 <a href="https://arxiv.org/abs/2503.10061"></a>
+                🔗 <a href="https://arxiv.org/abs/2503.10061">Compute Optimal Scaling of Skills: Knowledge vs Reasoning</a>
             </p>
         </div>
         <div>
-            <img src="Pasted image 20250325104949.png" alt="Block Diffusion" style="width: 100%; max-height: 400px;">
+            <img src="Pasted image 20250325105456.png" alt="Compute Optimal Scaling of Skills: Knowledge vs Reasoning" style="width: 100%; max-height: 400px;">
         </div>
     </div>
 </section>
+
 
 
 

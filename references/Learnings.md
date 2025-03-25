@@ -422,3 +422,5 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	- A Review of DeepSeek Models 
 	- A Survey on Efficient Reasoning 
 	- Agentic Memory for LLM Agents
+- [GenAI-Showcase/notebooks/agents at main · mongodb-developer/GenAI-Showcase](https://github.com/mongodb-developer/GenAI-Showcase/tree/main/notebooks/agents) - Jupyter Notebooks demonstrating how to build AI agents using various frameworks and MongoDB Atlas as the vector store and memory provider.
+- 

@@ -55,11 +55,11 @@
         <div>
             <p>DAPO introduces a novel Decoupled Clip and Dynamic Sampling Policy Optimization algorithm, enhancing LLMs' reasoning capabilities to achieve state-of-the-art performance, demonstrated by scoring 50 points on AIME 2024 with Qwen2.5-32B. The paper outlines four critical techniques facilitating large-scale LLM reinforcement learning success, addressing challenges in reproducibility and advancing research in this field.</p>
             <p>
-                🔗 <a href="https://arxiv.org/abs/2503.10061">Compute Optimal Scaling of Skills: Knowledge vs Reasoning</a>
+                🔗 <a href="https://arxiv.org/abs/2503.14476">DAPO: An Open-Source LLM Reinforcement Learning System at Scale</a>
             </p>
         </div>
         <div>
-            <img src="Pasted image 20250325105456.png" alt="Compute Optimal Scaling of Skills: Knowledge vs Reasoning" style="width: 100%; max-height: 400px;">
+            <img src="Pasted image 20250325110016.png" alt="" style="width: 100%; max-height: 400px;">
         </div>
     </div>
 </section>

@@ -70,7 +70,7 @@
         <div>
             <p>Contextual fine-tuning enhances LLMs by incorporating instructional prompts that mimic human cognitive strategies, facilitating rapid adaptation to new datasets and improving domain-specific understanding, particularly in medical and financial domains.</p>
             <p>
-                🔗 <a href="https://arxiv.org/abs/2503.14476">DAPO: An Open-Source LLM Reinforcement Learning System at Scale</a>
+                🔗 <a href="https://arxiv.org/abs/2503.09032">Teaching LLMs How to Learn with Contextual Fine-Tuning</a>
             </p>
         </div>
         <div>

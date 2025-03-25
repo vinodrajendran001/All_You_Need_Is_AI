@@ -50,10 +50,10 @@
 </section>
 ---
 <section>
-    <h4>DAPO</h4>
+    <h4>DAPO: An Open-Source LLM Reinforcement Learning System at Scale</h4>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
         <div>
-            <p>This paper investigates whether compute-optimal scaling laws in LLM development are skill-dependent by examining knowledge-based tasks and reasoning skills, affirming that they indeed are. Through extensive ablation studies on various pretraining datamixes, it is shown that knowledge and reasoning skills like code generation fundamentally differ in scaling behavior, independent of datamix composition. Using a misspecified validation set can significantly misalign compute-optimal parameter counts by nearly 50% based on skill composition.</p>
+            <p>DAPO introduces a novel Decoupled Clip and Dynamic Sampling Policy Optimization algorithm, enhancing LLMs' reasoning capabilities to achieve state-of-the-art performance, demonstrated by scoring 50 points on AIME 2024 with Qwen2.5-32B. The paper outlines four critical techniques facilitating large-scale LLM reinforcement learning success, addressing challenges in reproducibility and advancing research in this field.</p>
             <p>
                 🔗 <a href="https://arxiv.org/abs/2503.10061">Compute Optimal Scaling of Skills: Knowledge vs Reasoning</a>
             </p>

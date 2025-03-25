@@ -64,7 +64,20 @@
     </div>
 </section>
 ---
-
+<section>
+    <h4>Teaching LLMs How to Learn with Contextual fine-Tuning</h4>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
+        <div>
+            <p>Contextual fine-tuning enhances LLMs by incorporating instructional prompts that mimic human cognitive strategies, facilitating rapid adaptation to new datasets and improving domain-specific understanding, particularly in medical and financial domains.</p>
+            <p>
+                🔗 <a href="https://arxiv.org/abs/2503.14476">DAPO: An Open-Source LLM Reinforcement Learning System at Scale</a>
+            </p>
+        </div>
+        <div>
+            <img src="Pasted image 20250325110016.png" alt="DAPO" style="width: 100%; max-height: 400px;">
+        </div>
+    </div>
+</section>
 
 
 

@@ -411,4 +411,9 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	- How much do LLMs learn from negative examples? 
 	- Tokenize Image as a Set 
 	- Search-R1 
-	- Measuring AI Ability to Complete Long Tasks - Does Your VLM Get Lost in the Long Video Sampling Dilemma? - Unified Autoregressive Visual Generation and Understanding with Continuous Tokens - Personalize Anything for Free with Diffusion Transformer - The KoLMogorov Test: Compression by Code Generation - Optimizing ML Training with Metagradient Descent
+	- Measuring AI Ability to Complete Long Tasks 
+	- Does Your VLM Get Lost in the Long Video Sampling Dilemma? 
+	- Unified Autoregressive Visual Generation and Understanding with Continuous Tokens
+	- Personalize Anything for Free with Diffusion Transformer 
+	- The KoLMogorov Test: Compression by Code Generation 
+	- Optimizing ML Training with Metagradient Descent

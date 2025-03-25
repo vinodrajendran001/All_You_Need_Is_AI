@@ -14,18 +14,13 @@
   <div>
     <img src="Pasted image 20250325101836.png" style="width: 100%; height: auto;">
   </div>
+  Paper: [https://arxiv.org/abs/2503.10622](https://t.co/hRlxWQMXuk)
+  <div>
+	  
+  </div>
 </div>
 ---
-#### Transformers without normalization
 
-::: layout
-:: left
-Transformers can achieve or surpass normalized performance using a simple technique called Dynamic Tanh (DyT), replacing normalization layers with an element-wise operation inspired by tanh-like mappings observed in layer norm, validated across various tasks in computer vision and LLMs.
-:: 
-:: right
-![[Pasted image 20250325101836.png]]
-::
-:::
 
 
 

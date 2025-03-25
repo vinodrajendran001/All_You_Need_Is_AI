@@ -74,10 +74,11 @@
             </p>
         </div>
         <div>
-            <img src="Pasted image 20250325110016.png" alt="DAPO" style="width: 100%; max-height: 400px;">
+            <img src="Pasted image 20250325110456.png" alt="Teaching LLMs How to Learn with Contextual fine-Tuning" style="width: 100%; max-height: 400px;">
         </div>
     </div>
 </section>
+---
 
 
 

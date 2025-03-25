@@ -7,7 +7,7 @@
 
 #### Transformers without normalization
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: left;">
   <div>
     <p>Transformers can achieve or surpass normalized performance using a simple technique called Dynamic Tanh (DyT), replacing normalization layers with an element-wise operation inspired by tanh-like mappings observed in layer norm, validated across various tasks in computer vision and LLMs.</p>
   </div>

@@ -29,7 +29,7 @@
             </p>
         </div>
         <div>
-            <img src="Pasted image 20250325101836.png" alt="Transformers without Normalization" style="width: 100%; max-height: 400px;">
+            <img src="Pasted image 20250325104949.png" alt="Block Diffusion" style="width: 100%; max-height: 400px;">
         </div>
     </div>
 </section>

@@ -391,3 +391,11 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	  
 	A few days ago, I discussed how the future of AI lies in AI Agents. RAG is currently the most popular use case, and with an agentic architecture, you will supercharge RAG!
 	![[Pasted image 20250324192032.png]]
+
+## 25.03.2025
+
+- Last 2 week's top AI/ML research papers:
+	- Transformers without Normalization 
+	- Block Diffusion 
+	- Compute Optimal Scaling of Skills 
+	- DAPO: An OS LLM RL System at Scale - Teaching LLMs How to Learn with Contextual Fine-Tuning - GR00T N1 - Why the Brain Cannot Be a Digital Computer - RWKV-7 "Goose" with Expressive Dynamic State Evolution - Why Do Multi-Agent LLM Systems Fail? - Chain-of-Thought Reasoning In The Wild Is Not Always Faithful - Light-R1 - Where do Large Vision-Language Models Look at when Answering Questions? - Improving Planning of Agents for Long-Horizon Tasks - UniCombine - How much do LLMs learn from negative examples? - Tokenize Image as a Set - Search-R1 - Measuring AI Ability to Complete Long Tasks - Does Your VLM Get Lost in the Long Video Sampling Dilemma? - Unified Autoregressive Visual Generation and Understanding with Continuous Tokens - Personalize Anything for Free with Diffusion Transformer - The KoLMogorov Test: Compression by Code Generation - Optimizing ML Training with Metagradient Descent

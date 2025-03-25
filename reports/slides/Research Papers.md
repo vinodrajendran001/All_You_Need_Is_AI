@@ -14,7 +14,7 @@
   <div>
     <img src="Pasted image 20250325101836.png" style="width: 100%; height: auto;">
   </div>
-  Paper: [https://arxiv.org/abs/2503.10622](https://t.co/hRlxWQMXuk)
+	  [P](https://arxiv.org/abs/2503.10622)
   <div>
 	  
   </div>

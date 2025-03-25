@@ -417,3 +417,8 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	- Personalize Anything for Free with Diffusion Transformer 
 	- The KoLMogorov Test: Compression by Code Generation 
 	- Optimizing ML Training with Metagradient Descent
+	- DeepMesh 
+	- Thinking Machines 
+	- A Review of DeepSeek Models 
+	- A Survey on Efficient Reasoning 
+	- Agentic Memory for LLM Agents

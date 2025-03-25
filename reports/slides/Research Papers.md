@@ -40,7 +40,7 @@
         <div>
             <p>This paper investigates whether compute-optimal scaling laws in LLM development are skill-dependent by examining knowledge-based tasks and reasoning skills, affirming that they indeed are. Through extensive ablation studies on various pretraining datamixes, it is shown that knowledge and reasoning skills like code generation fundamentally differ in scaling behavior, independent of datamix composition. Using a misspecified validation set can significantly misalign compute-optimal parameter counts by nearly 50% based on skill composition.</p>
             <p>
-                🔗 <a href="https://arxiv.org/abs/2503.09573">Block Diffusion: Interpolating Between Autoregressive and Diffusion Language Models</a>
+                🔗 <a href="https://arxiv.org/abs/2503.10061"></a>
             </p>
         </div>
         <div>

@@ -14,7 +14,7 @@
   <div>
     <img src="Pasted image 20250325101836.png" style="width: 100%; height: auto;">
   </div>
-	  [P](https://arxiv.org/abs/2503.10622)
+	  <p>[[2503.10622] Transformers without Normalization](https://arxiv.org/abs/2503.10622)</p>
   <div>
 	  
   </div>

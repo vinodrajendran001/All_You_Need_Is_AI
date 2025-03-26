@@ -183,8 +183,8 @@ Umsetzungsschritte
 
 ::: block
 1.  Klärt bitte die Moderationsverantwortung und schafft Euch eine Arbeitsumgebung<br><br>
-2.  Untersucht bitte anhand der nachfolgend abgebildeten Matrix die Stärken und Schwächen von typischen Meetings, die ihr erlebt habt. Tragt dazu Stichworte zusammen und visualisiert Euer Gespräch auf der Pinnwand in der Matrix<br><br>
-3. Nutzt bitte die Dreischrittmethode und die dazugehörenden Einstellungen und Haltungen
+3.  Untersucht bitte anhand der nachfolgend abgebildeten Matrix die Stärken und Schwächen von typischen Meetings, die ihr erlebt habt. Tragt dazu Stichworte zusammen und visualisiert Euer Gespräch auf der Pinnwand in der Matrix<br><br>
+4. Nutzt bitte die Dreischrittmethode und die dazugehörenden Einstellungen und Haltungen
 :::
 
 ---
@@ -204,3 +204,6 @@ Umsetzungsschritte
 ::: source
 ###### Quelle: Ballreich, R. (2009): Wege aus der Stressfalle. In: Ballreich, R./Held, W./Leschke, M. (2009): Stress-Balance. S. 6-60. Esslingen
 :::
+
+
+

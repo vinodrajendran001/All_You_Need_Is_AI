@@ -60,9 +60,9 @@ Vinod
 :::
 
 - Trained on vast, diverse datasets -> ability to generalize across a variety of contexts
-- They could generate text, images, and even videos
-- Focusing on predictive capabilities for narrowly defined tasks
-- Required significant domain-specific expertise
+- Can generate text, images, videos, etc.
+- Fixed in time
+- Difficult to adapt
 - Approach that lacked scalability and slowed adoption
 ![[Pasted image 20250327161558.png]]
 

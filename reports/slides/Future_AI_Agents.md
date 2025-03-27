@@ -81,8 +81,8 @@ Vinod
 	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
 - **Example**: Insurance Recommendation		
   ![[Pasted image 20250327162618.png | 400]]
-	- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
-	- RAG effectively handles tasks like this, but it relies on **fixed workflows** -> every interaction and execution path must be pre-defined
+- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
+- RAG effectively handles tasks like this, but it relies on **fixed workflows** -> every interaction and execution path must be pre-defined
 
 ---
 

@@ -25,5 +25,5 @@
 </grid>
 
 <grid drag="100 6" drop="bottom">
-###### © 2022 Lernende Organisation<!-- element style="font-weight:300" -->
+###### © 2025 Vinod<!-- element style="font-weight:300" -->
 </grid>

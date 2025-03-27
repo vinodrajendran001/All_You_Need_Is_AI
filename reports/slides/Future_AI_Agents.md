@@ -10,9 +10,11 @@ maxScale: 4
 ::: block
 Vinod
 :::
-
 ::: block
-###### Quelle: Ballreich, R.: Problemlösen im Dialog. In: Agogik Nr. 4, December 2000. P. 1-68
+
+:::
+::: block
+###### Reference: [The Future of AI Agents is Event-Driven | by Sean Falconer | Mar, 2025 | Medium](https://seanfalconer.medium.com/the-future-of-ai-agents-is-event-driven-9e25124060d6)
 :::
 
 ---

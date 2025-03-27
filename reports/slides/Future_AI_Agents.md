@@ -30,14 +30,14 @@ Vinod
 
 <!-- slide template="[[tpl-con-splash]]" -->
 
-# **The First Wave of AI**
+# **The First Wave of AI
 
 ---
 
 <!-- slide template="[[tpl-con-default-slide]]" -->
 
 ::: title
-### **Meine Erfahrungen mit Besprechungen in Gruppen I**
+### **Predictive Models**
 :::
 
 Selbst-Assessment: Bitte schreibe Deine Einschätzung auf:

@@ -53,6 +53,21 @@ Vinod
 # **The Second Wave of AI**
 
 ---
+<!-- slide template="[[tpl-con-default-slide]]" -->
+
+::: title
+### **Predictive Models**
+:::
+
+- Revolved around traditional machine learning
+- Focusing on predictive capabilities for narrowly defined tasks
+- Required significant domain-specific expertise
+- Approach that lacked scalability and slowed adoption
+
+![[Pasted image 20250327160838.png | 500]]
+
+---
+
 
 <!-- slide template="[[tpl-con-default-slide]]" -->
 

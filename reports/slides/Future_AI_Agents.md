@@ -78,7 +78,7 @@ Vinod
 ### **Compound AI**
 :::
 
-- Trained on vast, diverse datasets -> ability to generalize across a variety of contexts
+- Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers
 - Can generate text, images, videos, etc. -> opens up new opportunities
 - Fixed in time - unable to incorporate new or dynamic information
 - Difficult to adapt

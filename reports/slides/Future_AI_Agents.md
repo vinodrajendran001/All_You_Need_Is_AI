@@ -48,6 +48,11 @@ Vinod
 ![[Pasted image 20250327160838.png | 500]]
 
 ---
+<!-- slide template="[[tpl-con-splash]]" -->
+
+# **The Second Wave of AI**
+
+---
 
 <!-- slide template="[[tpl-con-default-slide]]" -->
 

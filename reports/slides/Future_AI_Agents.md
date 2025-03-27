@@ -11,6 +11,10 @@ maxScale: 4
 Vinod
 :::
 
+::: block
+###### Quelle: Ballreich, R.: Problemlösen im Dialog. In: Agogik Nr. 4, December 2000. P. 1-68
+:::
+
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->
 

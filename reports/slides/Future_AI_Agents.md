@@ -43,12 +43,6 @@ Vinod
 Selbst-Assessment: Bitte schreibe Deine Einschätzung auf:
 
 
-|                                              | Wie viel Zeit verbringst Du ungefähr in Gruppen- Besprechungen: wöchentlich, monatlich? 0% - 100% | Wie zufriedenstellend verlaufen diese Besprechungen? 0% - 100% | Wie hoch ist der Energielevel der TeilnehmerInnen 0% - 100% |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------- |
-| Teammeetings mit meinem Vorgesetzten         |                                                                                                   |                                                                |                                                             |
-| Teammeetings mit meinen Mitarbeiter:innen    |                                                                                                   |                                                                |                                                             |
-| Teammeetings mit anderen Kollegen, Kunden... |                                                                                                   |                                                                |                                                             |
-
 ---
 
 <!-- slide template="[[tpl-con-default-slide]]" -->

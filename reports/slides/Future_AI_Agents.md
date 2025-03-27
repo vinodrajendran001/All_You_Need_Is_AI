@@ -15,7 +15,7 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### _**The Evolution of AI**_
+### _**Agenda**_
 :::
 
 ::: block
@@ -30,7 +30,7 @@ Vinod
 
 <!-- slide template="[[tpl-con-splash]]" -->
 
-# **1. Wie wichtig sind<br>Team-Meetings**
+# **The First Wave of AI**
 
 ---
 

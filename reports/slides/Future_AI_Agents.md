@@ -14,7 +14,7 @@ Vinod
 
 :::
 ::: block
-###### Reference: [The Future of AI Agents is Event-Driven | by Sean Falconer | Mar, 2025 | Medium](https://seanfalconer.medium.com/the-future-of-ai-agents-is-event-driven-9e25124060d6)
+###### Reference: https://seanfalconer.medium.com/the-future-of-ai-agents-is-event-driven-9e25124060d6
 :::
 
 ---

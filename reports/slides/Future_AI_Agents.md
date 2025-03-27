@@ -72,7 +72,7 @@ Vinod
 # **Compound AI Bridges the Gap**
 
 ---
-<!-- slide template="[[tpl-con-default-slide]]" -->
+<!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
 ### **Compound AI**

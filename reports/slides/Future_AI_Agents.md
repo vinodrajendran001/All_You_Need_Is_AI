@@ -45,6 +45,7 @@ Vinod
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption
 
+![[Pasted image 20250327160838.png]]
 
 ---
 

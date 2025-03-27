@@ -40,7 +40,9 @@ Vinod
 ### **Predictive Models**
 :::
 
-Selbst-Assessment: Bitte schreibe Deine Einschätzung auf:
+- Revolved around traditional machine learning
+- Focusing on predictive capabilities for narrowly defined tasks
+- Required significant expertise
 
 
 ---

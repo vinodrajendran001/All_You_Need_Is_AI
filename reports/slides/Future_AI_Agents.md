@@ -67,7 +67,25 @@ Vinod
 ![[Pasted image 20250327161558.png]]
 
 ---
+<!-- slide template="[[tpl-con-splash]]" -->
 
+# **Compound AI Bridges the Gap**
+
+---
+<!-- slide template="[[tpl-con-default-slide]]" -->
+
+::: title
+### **Compound AI**
+:::
+
+- Trained on vast, diverse datasets -> ability to generalize across a variety of contexts
+- Can generate text, images, videos, etc. -> opens up new opportunities
+- Fixed in time - unable to incorporate new or dynamic information
+- Difficult to adapt
+- Fine-tuning can address domain-specific needs, but it’s expensive and error-prone
+![[Pasted image 20250327161558.png]]
+
+---
 
 <!-- slide template="[[tpl-con-default-slide]]" -->
 

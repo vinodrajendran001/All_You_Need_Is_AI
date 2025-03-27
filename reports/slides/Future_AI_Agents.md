@@ -59,7 +59,8 @@ Vinod
 ### **Generative Models**
 :::
 
-- Trained on vast, diverse datasets -> 
+- Trained on vast, diverse datasets -> ability to generalize across a variety of contexts
+- They could generate text, images, and even videos
 - Focusing on predictive capabilities for narrowly defined tasks
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption

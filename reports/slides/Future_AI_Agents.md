@@ -60,8 +60,8 @@ Vinod
 :::
 
 - Trained on vast, diverse datasets -> ability to generalize across a variety of contexts
-- Can generate text, images, videos, etc.
-- Fixed in time
+- Can generate text, images, videos, etc. -> opens 
+- Fixed in time - unable to incorporate new or dynamic information
 - Difficult to adapt
 - Approach that lacked scalability and slowed adoption
 ![[Pasted image 20250327161558.png]]

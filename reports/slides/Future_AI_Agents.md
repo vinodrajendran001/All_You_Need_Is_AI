@@ -30,7 +30,7 @@ Vinod
 
 <!-- slide template="[[tpl-con-splash]]" -->
 
-# **The First Wave of AI
+# **The First Wave of AI**
 
 ---
 
@@ -45,7 +45,7 @@ Vinod
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption
 
-![[Pasted image 20250327160838.png]]
+![[Pasted image 20250327160838.png | 500]]
 
 ---
 

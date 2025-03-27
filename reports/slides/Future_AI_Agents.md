@@ -79,11 +79,9 @@ Vinod
 :::
 
 - Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers
-- Can generate text, images, videos, etc. -> opens up new opportunities
-- Fixed in time - unable to incorporate new or dynamic information
-- Difficult to adapt
-- Fine-tuning can address domain-specific needs, but it’s expensive and error-prone
-![[Pasted image 20250327161558.png]]
+	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
+- **Insurance Recommendation** example
+
 
 ---
 

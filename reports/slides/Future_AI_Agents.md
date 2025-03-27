@@ -6,16 +6,16 @@ maxScale: 4
 ---
 <!-- slide template="[[tpl-con-title]]" -->
 
-## Basisprozesse beim Beraten und Entscheiden in Teams
+## The Future of AI Agents is Event-Driven
 ::: block
-#### Matthäus Szturc
+Vinod
 :::
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### _**Agenda**_
+### _**The Evolution of AI**_
 :::
 
 ::: block

@@ -42,7 +42,8 @@ Vinod
 
 - Revolved around traditional machine learning
 - Focusing on predictive capabilities for narrowly defined tasks
-- Required significant expertise
+- Required significant domain-specific expertise
+- Approach that lacked scalability and slowed adoption
 
 
 ---

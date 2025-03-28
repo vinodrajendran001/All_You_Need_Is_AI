@@ -430,3 +430,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 - [n8n-io/n8n: Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.](https://github.com/n8n-io/n8n?tab=readme-ov-file) - n8n is a workflow automation platform that gives technical teams the flexibility of code with the speed of no-code. With 400+ integrations, native AI capabilities, and a fair-code license, n8n lets you build powerful automations while maintaining full control over your data and deployments.
 - [The Future of AI Agents is Event-Driven | by Sean Falconer | Mar, 2025 | Medium](https://seanfalconer.medium.com/the-future-of-ai-agents-is-event-driven-9e25124060d6)
+
+## 28.03.2025
+
+- Alibaba [released](") Qwen2.5-Omni-7B, a new multimodal AI capable of processing text, images, audio, and video simultaneously while being efficient enough to run directly on consumer hardware like smartphones and laptops

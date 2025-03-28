@@ -156,10 +156,10 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Planning Turns Goals Into Actions**
+### **Multi-Agent Collaboration: Modular Thinking**
 :::
 
-- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
+- Multi-agent systems take a modular approach to problem-solving by assigning specific tasks to specialized agents.
 - Useful for solving multi-step problems or managing workflows with dependencies.
 ![[Pasted image 20250328095347.png | 600]]
 ---

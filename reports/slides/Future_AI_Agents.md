@@ -229,7 +229,7 @@ Vinod
 	- EDA enables components to communicate asynchronously through events.
 	- Services don’t wait on each other — they react to what’s happening in real-time.
 
-#### 📝T**his approach made systems more resilient and adaptable, allowing them to handle the complexity of modern workflows.**
+#### 📝The future of AI isn’t just about building smarter agents — it’s about creating systems that can evolve and scale as the technology advances.**
 
 :::<!-- element pad="0 0 0 0" -->
 

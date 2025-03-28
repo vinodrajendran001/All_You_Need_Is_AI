@@ -215,6 +215,29 @@ Vinod
 
 # **What's the Solution?**
 ---
+<!-- slide template="[[tpl-con-3-2]]" -->
+
+::: title
+### **Event-Driven Architectures**
+:::
+
+::: left
+ - Scaling agents — whether a single agent or a collaborative system — hinges on their ability to access and share data effortlessly.
+- Connecting agents to the tools and data they need is fundamentally a **distributed systems problem**.
+	- Mirrors the challenges faced in designing microservices, where components must communicate efficiently without creating bottlenecks or rigid dependencies.
+-  You could connect agents and tools through RPC and APIs, but that’s a recipe for tightly coupled systems.
+	- Tight coupling makes it harder to scale, adapt, or support multiple consumers of the same data.
+
+#### 📝**Agents need flexibility in accessing other agents, services, and platforms without any rigid dependencies.**
+
+:::<!-- element pad="0 0 0 0" -->
+
+::: right
+![[Pasted image 20250328102800.png | 500]] 
+
+:::<!-- element pad="0 0 0 0"-->
+
+---
 
 
 <!-- slide template="[[tpl-con-default-slide]]" -->

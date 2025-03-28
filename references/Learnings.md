@@ -434,4 +434,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 ## 28.03.2025
 
 - Alibaba [released](https://qwenlm.github.io/blog/qwen2.5-omni/) Qwen2.5-Omni-7B, a new multimodal AI capable of processing text, images, audio, and video simultaneously while being efficient enough to run directly on consumer hardware like smartphones and laptops.
-- 
+- The [Model context protocol](https://modelcontextprotocol.io/introduction) (aka MCP) is a way to provide tools and context to the LLM. From the MCP docs:
+	```Quote
+	MCP is an open protocol that standardizes how applications provide context to LLMs. Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect your devices to various peripherals and accessories, MCP provides a standardized way to connect AI models to different data sources and tools.
+	```

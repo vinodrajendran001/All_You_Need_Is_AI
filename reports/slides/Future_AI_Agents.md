@@ -202,7 +202,7 @@ Vinod
 ```text
 Agents need flexibility in accessing other agents, services, and platforms without dependecies.
 ```
-:::<!-- element pad="0 0 0 20px" -->
+:::<!-- element pad="0 0 0 0" -->
 
 ::: right
 ![[Pasted image 20250328102800.png | 500]] 

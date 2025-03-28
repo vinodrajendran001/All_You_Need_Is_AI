@@ -81,13 +81,11 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Predictive Models**
+### **Reflection**
 :::
 
-- Revolved around traditional machine learning
-- Focusing on predictive capabilities for narrowly defined tasks
-- Required significant domain-specific expertise
-- Approach that lacked scalability and slowed adoption
+- Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
+ 
  ![[Pasted image 20250327162618.png]]
 
 ---

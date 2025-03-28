@@ -77,7 +77,8 @@ _Fig2: Simple prompt and response with an LLM_
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption
  
- ![[Pasted image 20250327162618.png | 500]]
+ ![[Pasted image 20250327162618.png | 400]]
+ _Fig3: Simple RAG architecture_
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

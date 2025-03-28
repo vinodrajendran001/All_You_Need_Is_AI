@@ -250,6 +250,8 @@ Vinod
 - Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
 - Useful for solving multi-step problems or managing workflows with dependencies.
 
+![[Pasted image 20250328104605.png | 500]]
+
 ---
 
 <!-- slide template="[[tpl-con-default-box]]" -->
@@ -271,6 +273,7 @@ Vinod
 - Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
 - Useful for solving multi-step problems or managing workflows with dependencies.
 
+![[Pasted image 20250328104544.png | 500]]
 ---
 
 <!-- slide template="[[tpl-con-default-slide]]" -->

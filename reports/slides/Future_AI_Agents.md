@@ -156,20 +156,6 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Agentic RAG**
-:::
-
-- Agents can determine in real time what data they need, where to find it, and how to refine their queries based on the task at hand.
-- Well-suited for handling complex, multi-step workflows that require responsiveness and adaptability.
-- **Example**: An agent creating a marketing strategy 
-
-![[Pasted image 20250328101149.png | 400]]
-
----
-
-<!-- slide template="[[tpl-con-default-box]]" -->
-
-::: title
 ### **Multi-Agent Collaboration: Modular Thinking**
 :::
 

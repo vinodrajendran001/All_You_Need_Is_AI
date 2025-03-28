@@ -252,6 +252,26 @@ Vinod
 
 ---
 
+<!-- slide template="[[tpl-con-default-box]]" -->
+
+::: title
+### **Decoupling While Keeping Context Intact**
+:::
+
+- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
+- Useful for solving multi-step problems or managing workflows with dependencies.
+
+---
+<!-- slide template="[[tpl-con-default-box]]" -->
+
+::: title
+### **Scaling Agents with Event-Driven Architecture**
+:::
+
+- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
+- Useful for solving multi-step problems or managing workflows with dependencies.
+
+---
 
 <!-- slide template="[[tpl-con-default-slide]]" -->
 

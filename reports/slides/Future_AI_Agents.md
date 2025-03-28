@@ -248,6 +248,7 @@ Vinod
 :::
 
 - Agents are similar to microservices but they go further.
+	- While microservices typically process discrete operations, agents rely on shared, context-rich information to reason, make decisions, and collaborate.
 - Useful for solving multi-step problems or managing workflows with dependencies.
 
 ![[Pasted image 20250328104605.png | 500]]

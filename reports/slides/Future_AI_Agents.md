@@ -199,9 +199,9 @@ Vinod
 	- Mirrors the challenges faced in designing microservices, where components must communicate efficiently without creating bottlenecks or rigid dependencies.
 -  You could connect agents and tools through RPC and APIs, but that’s a recipe for tightly coupled systems.
 	- Tight coupling makes it harder to scale, adapt, or support multiple consumers of the same data.
-```text
-Agents need flexibility in accessing other agents, services, and platforms without dependecies.
-```
+
+📝**Agents need flexibility in accessing other agents, services, and platforms without dependencies.**
+
 :::<!-- element pad="0 0 0 0" -->
 
 ::: right

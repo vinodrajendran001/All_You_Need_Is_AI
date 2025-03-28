@@ -196,7 +196,7 @@ Vinod
 ::: left
  - Scaling agents — whether a single agent or a collaborative system — hinges on their ability to access and share data effortlessly.
 - Connecting agents to the tools and data they need is fundamentally a **distributed systems problem**.
-
+	- Mirrors the challenges faced in designing microservices, where components must communicate efficiently without creating bottlenecks or rigid dependencies.
 -  Agents flip traditional control logic on its head.
 	- They can reason, use tools, and access memory — all dynamically.
 :::<!-- element pad="0 0 0 20px" -->

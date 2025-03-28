@@ -129,7 +129,7 @@ Vinod
 <!-- slide template="[[tpl-con-3-2]]" -->
 
 ::: title
-### **Compound AI**
+### **Reflection**
 :::
 
 ::: left

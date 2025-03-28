@@ -160,7 +160,8 @@ Vinod
 :::
 
 - Agents can determine in real time what data they need, where to find it, and how to refine their queries based on the task at hand.
-- Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
+- Well-suited for handling complex, multi-step workflows that require responsiveness and adaptability.
+- **Example**: 
 
 ---
 

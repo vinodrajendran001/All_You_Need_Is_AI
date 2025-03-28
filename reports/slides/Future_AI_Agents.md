@@ -133,6 +133,7 @@ _Fig2: Simple prompt and response with an LLM_
 - Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
 - Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
 ![[Pasted image 20250328095347.png | 600]]
+_Fig7: Reflection design pattern for agents_
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->

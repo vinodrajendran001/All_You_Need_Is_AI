@@ -262,8 +262,9 @@ Vinod
 ### **Decoupling While Keeping Context Intact**
 :::
 
-- Building flexible systems doesn’t mean sacrificing context.
-- Useful for solving multi-step problems or managing workflows with dependencies.
+- Today's AI stack involves MLOps managing pipelines, data scientists selecting models, and developers building interfaces.
+- A tightly coupled design creates dependencies, slowing delivery and adaptability.
+- EDA ensures that workflows stay loosely coupled, allowing each team to innovate independently.
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->

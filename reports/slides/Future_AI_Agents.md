@@ -121,7 +121,7 @@ _Fig2: Simple prompt and response with an LLM_
 - Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
 	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
 ![[Pasted image 20250328095055.png | 450]] 
-	_Fig6: Reflection design pattern for agents_
+_Fig6: Reflection design pattern for agents_
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->
@@ -132,7 +132,7 @@ _Fig2: Simple prompt and response with an LLM_
 
 - Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
 - Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
-![[Pasted image 20250328095347.png | 600]]
+![[Pasted image 20250328095347.png | 500]]
 _Fig7: Reflection design pattern for agents_
 
 ---

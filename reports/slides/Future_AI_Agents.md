@@ -224,9 +224,10 @@ Vinod
 ::: left
  - In the early days, software systems were monoliths -> Everything lived in a single, tightly integrated codebase.
 - Microservices changed this
-	- By breaking applications into smaller, independently deployable component but comes with a challenge of Tight coupling
--  You could connect agents and tools through RPC and APIs, but that’s a recipe for tightly coupled systems.
-	- Tight coupling makes it harder to scale, adapt, or support multiple consumers of the same data.
+	- By breaking applications into smaller, independently deployable component but comes with a challenge of **Tight coupling**
+-  EDA solved the problem.
+	- EDA enables components to communicate asynchronously through events.
+	- Services don’t wait on each other — they react to what’s happening in real-time.
 
 #### 📝**Agents need flexibility in accessing other agents, services, and platforms without any rigid dependencies.**
 

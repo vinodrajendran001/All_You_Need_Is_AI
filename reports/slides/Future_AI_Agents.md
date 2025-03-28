@@ -295,7 +295,18 @@ Vinod
 
 :::<!-- element pad="0 0 0 0"-->
 
+---
+<!-- slide template="[[tpl-con-default-box]]" -->
 
+::: title
+### **Decoupling While Keeping Context Intact**
+:::
+
+- AI architectures must evolve to keep up with rapid advancements.
+- 48% of senior IT leaders are ready to integrate AI agents, showing strong demand.
+- Event-Driven Architecture (EDA) enables flexible, scalable, and resilient AI systems.
+- EDA ensures seamless integration and real-time workflows.
+- Adopting EDA provides a competitive edge—those who don’t risk falling behind.
 
 ---
 

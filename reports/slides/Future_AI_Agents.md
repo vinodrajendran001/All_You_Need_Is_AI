@@ -268,16 +268,31 @@ Vinod
 	- Application layers don’t need to understand the AI’s internals — they simply consume results when needed.
 
 ---
-<!-- slide template="[[tpl-con-default-box]]" -->
+<!-- slide template="[[tpl-con-3-2]]" -->
 
 ::: title
-### **Scaling Agents with Event-Driven Architecture**
+### **Event-Driven Architectures (EDA)**
 :::
 
-- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
-- Useful for solving multi-step problems or managing workflows with dependencies.
+::: left
+ - In the early days, software systems were monoliths -> Everything lived in a single, tightly integrated codebase.
+- Microservices changed this
+	- By breaking applications into smaller, independently deployable component but comes with a challenge of **Tight coupling**
+-  EDA solved the problem.
+	- EDA enables components to communicate asynchronously through events.
+	- Services don’t wait on each other — they react to what’s happening in real-time.
 
-![[Pasted image 20250328104544.png | 500]]
+#### 📝The future of AI isn’t just about building smarter agents — it’s about creating systems that can evolve and scale as the technology advances -> EDA is the foundation for this future**
+
+:::<!-- element pad="0 0 0 0" -->
+
+::: right
+
+![[Pasted image 20250328104544.png]]
+
+:::<!-- element pad="0 0 0 0"-->
+
+
 
 ---
 

@@ -101,8 +101,8 @@ _Fig2: Simple prompt and response with an LLM_
 :::<!-- element pad="0 0 0 20px" -->
 
 ::: right
- ![[Pasted image 20250328094219.png | 300]]
- _Fig4: Control logic, programmatic versus agentic_
+ ![[Pasted image 20250328094219.png | 200]]
+ Fig4: Control logic, programmatic versus agentic_
  ![[Pasted image 20250328094331.png | 300]]
  _Fig5: Agent architecture (Inspired by_ [_https://arxiv.org/pdf/2304.03442_](https://arxiv.org/pdf/2304.03442)_)_ 
 :::<!-- element pad="0 0 0 10px"-->

@@ -98,22 +98,16 @@ Vinod
 :::
 
 ::: right
- ![[Pasted image 20250327162618.png | 400]]
+ ![[Pasted image 20250327162618.png]]
 :::<!-- element pad="0 0 0 20px" -->
 
 ::: left
  - Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers.
 	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
 -  **Example**: Insurance Recommendation	
-	- - This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
-	- RAG effectively handles tasks like this, but it relies on **fixed workflows** -> every interaction and execution path must be pre-defined
-:::<!-- element pad="80px 0"-->
-- Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers.
-	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
-- **Example**: Insurance Recommendation		
-  ![[Pasted image 20250327162618.png | 400]]
 	- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
 	- RAG effectively handles tasks like this, but it relies on **fixed workflows** -> every interaction and execution path must be pre-defined
+:::<!-- element pad="80px 0"-->
 
 ---
 

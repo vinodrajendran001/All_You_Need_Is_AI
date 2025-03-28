@@ -438,4 +438,5 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	```Quote
 	MCP is an open protocol that standardizes how applications provide context to LLMs. Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect your devices to various peripherals and accessories, MCP provides a standardized way to connect AI models to different data sources and tools.
 	```
-- Playwright MCP is a Model Context Protocol (MCP) server that enables large language models to interact with web pages using Playwright, bypassing the need for screenshots or visually-tuned models.
+- [microsoft/playwright-mcp: Playwright Tools for MCP](https://github.com/microsoft/playwright-mcp?tab=readme-ov-file) is a Model Context Protocol (MCP) server that enables large language models to interact with web pages using Playwright, bypassing the need for screenshots or visually-tuned models.
+- 

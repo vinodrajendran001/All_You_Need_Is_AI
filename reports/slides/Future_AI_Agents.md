@@ -97,6 +97,11 @@ Vinod
 :::<!-- element pad="80px 0"-->
 
 ---
+<!-- slide template="[[tpl-con-splash]]" -->
+
+# **The Rise of Agentic AI**
+
+---
 <!-- slide template="[[tpl-con-3-2]]" -->
 
 ::: title
@@ -104,7 +109,7 @@ Vinod
 :::
 
 ::: left
- - Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers.
+ - Agents bring something new to the table: **dynamic, context-driven workflows**.
 	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
 -  **Example**: Insurance Recommendation	
 	- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.

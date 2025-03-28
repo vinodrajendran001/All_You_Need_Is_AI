@@ -285,7 +285,7 @@ Vinod
 	- MCP provides a universal standard for integrating AI systems with external tools, data sources, and applications, ensuring secure and seamless access to up-to-date information.
 	- MCP reduces development effort while enabling context-aware decision-making.
 
-#### 📝EDA addresses many of the challenges MCP aims to solve**
+#### 📝**EDA addresses many of the challenges MCP aims to solve**
 
 :::<!-- element pad="0 0 0 0" -->
 

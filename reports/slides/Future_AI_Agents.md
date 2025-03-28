@@ -110,10 +110,9 @@ Vinod
 
 ::: left
  - Agents bring something new to the table: **dynamic, context-driven workflows**.
-	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
--  **Example**: Insurance Recommendation	
-	- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
-	- RAG effectively handles tasks like this, but it relies on **fixed workflows** -> every interaction and execution path must be pre-defined
+	- Unlike fixed paths, agentic systems figure out the next steps on the fly, adapting to the situation at hand.
+-  Agents flip traditional control logic on its head.
+- 
 :::<!-- element pad="0 0 0 20px" -->
 
 ::: right

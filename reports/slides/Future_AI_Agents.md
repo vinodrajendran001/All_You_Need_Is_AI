@@ -101,7 +101,7 @@ _Fig2: Simple prompt and response with an LLM_
 :::<!-- element pad="0 0 0 20px" -->
 
 ::: right
- ![[Pasted image 20250328094219.png | 200]]
+ ![[Pasted image 20250328094219.png | 260]]
  Fig4: Control logic, programmatic versus agentic_
  ![[Pasted image 20250328094331.png | 300]]
  _Fig5: Agent architecture (Inspired by_ [_https://arxiv.org/pdf/2304.03442_](https://arxiv.org/pdf/2304.03442)_)_ 
@@ -121,6 +121,7 @@ _Fig2: Simple prompt and response with an LLM_
 - Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
 	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
 ![[Pasted image 20250328095055.png]] 
+_Fig6: Reflection design pattern for agents_
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->

@@ -96,7 +96,7 @@ Vinod
 ::: title
 ### **Compound AI**
 :::
-- Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers
+- Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers.
 	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
 - **Example**: Insurance Recommendation		
   ![[Pasted image 20250327162618.png | 400]]

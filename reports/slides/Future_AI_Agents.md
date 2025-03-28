@@ -135,11 +135,12 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Reflection**
+### **Tool Use Expands Agent Capabilities**
 :::
 
-- Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
-	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
+- Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
+- Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
+	
 ![[Pasted image 20250328095055.png]] 
 ---
 

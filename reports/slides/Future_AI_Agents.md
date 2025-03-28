@@ -160,7 +160,9 @@ Vinod
 :::
 
 - Multi-agent systems take a modular approach to problem-solving by assigning specific tasks to specialized agents.
-- Useful for solving multi-step problems or managing workflows with dependencies.
+- The modular design reduces complexity for individual agents by keeping their context focused on their specific tasks.
+- A related technique is [**Mixture-of-Experts (MoE)**](https://huggingface.co/blog/moe), which employs specialized submodels, or “experts,” within a single framework.
+	- 
 ![[Pasted image 20250328095347.png | 600]]
 ---
 

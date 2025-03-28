@@ -281,8 +281,8 @@ Vinod
 	- Low Latency
 	- Loose Coupling
 	- Event Persistence
--  EDA solved the problem.
-	- EDA enables components to communicate asynchronously through events.
+-  This architecture is a natural fit for frameworks like Anthropic’s [Model Context Protocol](https://www.anthropic.com/news/model-context-protocol) (MCP).
+	- MCP provides a universal standard for integrating AI systems with external tools, data sources, and applications, ensuring secure and seamless access to up-to-date information.
 	- Services don’t wait on each other — they react to what’s happening in real-time.
 
 #### 📝The future of AI isn’t just about building smarter agents — it’s about creating systems that can evolve and scale as the technology advances -> EDA is the foundation for this future**

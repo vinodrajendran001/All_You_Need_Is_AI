@@ -38,7 +38,7 @@ Vinod
 - Approach that lacked scalability and slowed adoption
 
 ![[Pasted image 20250327160838.png | 300]]
-_The traditional machine learning workflow_
+_Fig1: The traditional machine learning workflow_
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
@@ -58,6 +58,7 @@ _The traditional machine learning workflow_
 - Difficult to adapt
 - Fine-tuning can address domain-specific needs, but it’s expensive and error-prone
 ![[Pasted image 20250327161558.png]]
+_Fig2: Simple prompt and response with an LLM_
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

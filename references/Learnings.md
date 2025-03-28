@@ -433,4 +433,5 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 ## 28.03.2025
 
-- Alibaba [released](") Qwen2.5-Omni-7B, a new multimodal AI capable of processing text, images, audio, and video simultaneously while being efficient enough to run directly on consumer hardware like smartphones and laptops
+- Alibaba [released](https://qwenlm.github.io/blog/qwen2.5-omni/) Qwen2.5-Omni-7B, a new multimodal AI capable of processing text, images, audio, and video simultaneously while being efficient enough to run directly on consumer hardware like smartphones and laptops.
+- 

@@ -121,8 +121,13 @@ Vinod
  ![[Pasted image 20250328094331.png]]
 :::<!-- element pad="0 0 0 0"-->
 
-
 ---
+<!-- slide template="[[tpl-con-splash]]" -->
+
+# **How Design Patt**
+---
+
+
 <!-- slide template="[[tpl-con-default-slide]]" -->
 
 ::: title

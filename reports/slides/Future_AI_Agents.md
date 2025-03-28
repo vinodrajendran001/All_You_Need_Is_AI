@@ -229,12 +229,14 @@ Vinod
 	- EDA enables components to communicate asynchronously through events.
 	- Services don’t wait on each other — they react to what’s happening in real-time.
 
-#### 📝**Agents need flexibility in accessing other agents, services, and platforms without any rigid dependencies.**
+#### 📝T**his approach made systems more resilient and adaptable, allowing them to handle the complexity of modern workflows.**
 
 :::<!-- element pad="0 0 0 0" -->
 
 ::: right
-![[Pasted image 20250328102800.png | 500]] 
+![[Pasted image 20250328103825.png]]
+
+
 
 :::<!-- element pad="0 0 0 0"-->
 

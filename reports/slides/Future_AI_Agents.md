@@ -85,8 +85,8 @@ Vinod
 :::
 
 - Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
- 
- ![[Pasted image 20250327162618.png]]
+	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
+![[Pasted image 20250328095055.png]] 
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

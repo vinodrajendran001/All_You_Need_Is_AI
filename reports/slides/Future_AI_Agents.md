@@ -156,10 +156,10 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Tool Use Expands Agent Capabilities**
+### **Agentic RAG**
 :::
 
-- Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
+- Agents can determine in real time what data they need, where to find it, and how to refine their queries based on the task at hand.
 - Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
 
 ---

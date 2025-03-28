@@ -120,8 +120,8 @@ _Fig2: Simple prompt and response with an LLM_
 
 - Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
 	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
-![[Pasted image 20250328095055.png]] 
-_Fig6: Reflection design pattern for agents_
+![[Pasted image 20250328095055.png | 450]] 
+	_Fig6: Reflection design pattern for agents_
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->

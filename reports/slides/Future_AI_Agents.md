@@ -143,6 +143,16 @@ Vinod
 ![[Pasted image 20250328095347.png | 600]]
 
 ---
+<!-- slide template="[[tpl-con-default-box]]" -->
+
+::: title
+### **Planning Turns Goals int**
+:::
+
+- Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
+- Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
+![[Pasted image 20250328095347.png | 600]]
+---
 
 
 <!-- slide template="[[tpl-con-default-slide]]" -->

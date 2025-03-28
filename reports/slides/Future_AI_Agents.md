@@ -276,8 +276,11 @@ Vinod
 
 ::: left
  - EDA is the backbone of this transition to agentic systems.
-- Microservices changed this
-	- By breaking applications into smaller, independently deployable component but comes with a challenge of **Tight coupling**
+- As discussed [here](https://hubertdulay.substack.com/p/event-driven-agent-mesh), platforms like Kafka exemplify the advantages of EDA in an agent-driven system:
+	- Horizontal Scalability
+	- Low Latency
+	- Loose Coupling
+	- Event Persistence
 -  EDA solved the problem.
 	- EDA enables components to communicate asynchronously through events.
 	- Services don’t wait on each other — they react to what’s happening in real-time.

@@ -200,13 +200,13 @@ Vinod
 -  You could connect agents and tools through RPC and APIs, but that’s a recipe for tightly coupled systems.
 	- Tight coupling makes it harder to scale, adapt, or support multiple consumers of the same data.
 ```text
-Agents need flexibility seamlessly able to access other agents, services, and platforms without dependecies.
+Agents need flexibility in accessing other agents, services, and platforms without dependecies.
 ```
 :::<!-- element pad="0 0 0 20px" -->
 
 ::: right
- ![[Pasted image 20250328094219.png]]
- ![[Pasted image 20250328094331.png]]
+![[Pasted image 20250328102800.png | 500]] 
+
 :::<!-- element pad="0 0 0 0"-->
 
 ---

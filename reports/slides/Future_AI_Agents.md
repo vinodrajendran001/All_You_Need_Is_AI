@@ -234,9 +234,9 @@ Vinod
 :::<!-- element pad="0 0 0 0" -->
 
 ::: right
-![[Pasted image 20250328103825.png]]
+![[Pasted image 20250328103825.png | 300]]
 
-
+![[Pasted image 20250328103834.png]]
 
 :::<!-- element pad="0 0 0 0"-->
 

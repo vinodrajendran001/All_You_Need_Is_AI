@@ -211,6 +211,11 @@ Vinod
 
 ---
 
+<!-- slide template="[[tpl-con-splash]]" -->
+
+# **What's the Solution?**
+---
+
 
 <!-- slide template="[[tpl-con-default-slide]]" -->
 

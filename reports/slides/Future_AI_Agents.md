@@ -194,8 +194,8 @@ Vinod
 :::
 
 ::: left
- - Agents bring something new to the table: **dynamic, context-driven workflows**.
-	- Unlike fixed paths, agentic systems figure out the next steps on the fly, adapting to the situation at hand.
+ - Scaling agents — whether a single agent or a collaborative system — hinges on their ability to access and share data effortlessly.
+- Connecting agents to the tools and data they need is fundamentally a **distributed systems problem**.
 
 -  Agents flip traditional control logic on its head.
 	- They can reason, use tools, and access memory — all dynamically.

@@ -78,23 +78,17 @@ Vinod
 # **Compound AI Bridges the Gap**
 
 ---
-<!-- slide template="[[tpl-con-3-2]]" -->
+<!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Compound AI**
+### **Predictive Models**
 :::
 
-::: left
- - Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers.
-	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
--  **Example**: Insurance Recommendation	
-	- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
-	- RAG effectively handles tasks like this, but it relies on **fixed workflows** -> every interaction and execution path must be pre-defined
-:::<!-- element pad="0 0 0 20px" -->
-
-::: right
+- Revolved around traditional machine learning
+- Focusing on predictive capabilities for narrowly defined tasks
+- Required significant domain-specific expertise
+- Approach that lacked scalability and slowed adoption
  ![[Pasted image 20250327162618.png]]
-:::<!-- element pad="80px 0"-->
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

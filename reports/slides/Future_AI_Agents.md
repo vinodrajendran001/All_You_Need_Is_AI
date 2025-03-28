@@ -223,8 +223,8 @@ Vinod
 
 ::: left
  - In the early days, software systems were monoliths -> Everything lived in a single, tightly integrated codebase.
-- Connecting agents to the tools and data they need is fundamentally a **distributed systems problem**.
-	- Mirrors the challenges faced in designing microservices, where components must communicate efficiently without creating bottlenecks or rigid dependencies.
+- Microservices changed this
+	- By breaking applications into smaller, independently deployable component
 -  You could connect agents and tools through RPC and APIs, but that’s a recipe for tightly coupled systems.
 	- Tight coupling makes it harder to scale, adapt, or support multiple consumers of the same data.
 

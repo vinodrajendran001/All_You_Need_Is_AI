@@ -179,7 +179,7 @@ Vinod
 - Well-suited for handling complex, multi-step workflows that require responsiveness and adaptability.
 - **Example**: An agent creating a marketing strategy 
 
--![[Pasted image 20250328101149.png | 400]]
+![[Pasted image 20250328101149.png | 400]]
 
 ---
 

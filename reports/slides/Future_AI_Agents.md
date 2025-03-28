@@ -146,11 +146,11 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Planning Turns Goals int**
+### **Planning Turns Goals Into Actions**
 :::
 
-- Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
-- Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
+- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
+- Useful for solving multi-step problems or managing workflows with dependencies.
 ![[Pasted image 20250328095347.png | 600]]
 ---
 

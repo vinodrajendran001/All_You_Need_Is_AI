@@ -123,6 +123,8 @@ Vinod
 :::<!-- element pad="0 0 0 0"-->
 
 
+![[Pasted image 20250328094331.png]]
+:::<!-- element pad="-1 -1 -1 -1"-->
 
 ---
 <!-- slide template="[[tpl-con-default-slide]]" -->

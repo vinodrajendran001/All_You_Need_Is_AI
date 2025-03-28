@@ -265,6 +265,7 @@ Vinod
 - Today's AI stack involves MLOps managing pipelines, data scientists selecting models, and developers building interfaces.
 - A tightly coupled design creates dependencies, slowing delivery and adaptability.
 - EDA ensures that workflows stay loosely coupled, allowing each team to innovate independently.
+	- Application layers don’t need to understand the AI’s internals — they simply consume results when needed.
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->

@@ -119,8 +119,10 @@ Vinod
 :::<!-- element pad="0 0 0 20px" -->
 
 ::: right
- ![[Pasted image 20250327162618.png]]
-:::<!-- element pad="80px 0"-->
+ ![[Pasted image 20250328094219.png]]
+:::<!-- element pad="0 0 0 0"-->
+
+
 
 ---
 <!-- slide template="[[tpl-con-default-slide]]" -->

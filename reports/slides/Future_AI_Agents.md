@@ -156,6 +156,17 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
+### **Tool Use Expands Agent Capabilities**
+:::
+
+- Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
+- Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
+
+---
+
+<!-- slide template="[[tpl-con-default-box]]" -->
+
+::: title
 ### **Multi-Agent Collaboration: Modular Thinking**
 :::
 
@@ -164,6 +175,10 @@ Vinod
 - A related technique is [Mixture-of-Experts (MoE)](https://huggingface.co/blog/moe), which employs specialized submodels, or “experts,” within a single framework.
 	- MoE dynamically routes tasks to the most relevant expert, optimizing computational resources and enhancing performance.
 ![[Pasted image 20250328100348.png | 400]]
+---
+<!-- slide template="[[tpl-con-splash]]" -->
+
+# **Agentic RAG: Adaptive and Context-Aware Retrieval**
 ---
 
 

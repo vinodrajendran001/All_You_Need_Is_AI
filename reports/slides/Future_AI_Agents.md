@@ -81,12 +81,15 @@ Vinod
 <!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
-### **Reflection**
+### **Predictive Model**
 :::
 
-- Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
-	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
-![[Pasted image 20250328095055.png]] 
+- Revolved around traditional machine learning
+- Focusing on predictive capabilities for narrowly defined tasks
+- Required significant domain-specific expertise
+- Approach that lacked scalability and slowed adoption
+ 
+ ![[Pasted image 20250327162618.png | 500]]
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
@@ -118,23 +121,26 @@ Vinod
 
 # **How Design Patterns Shape Smarter Agents**
 ---
-<!-- slide template="[[tpl-con-3-2]]" -->
+<!-- slide template="[[tpl-con-default-box]]" -->
 
 ::: title
 ### **Reflection**
 :::
 
-::: left
- - Integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers.
-	- Allowing AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot
--  **Example**: Insurance Recommendation	
-	- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
-	- RAG effectively handles tasks like this, but it relies on **fixed workflows** -> every interaction and execution path must be pre-defined
-:::<!-- element pad="0 0 0 20px" -->
+- Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
+	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
+![[Pasted image 20250328095055.png]] 
 
-::: right
- ![[Pasted image 20250327162618.png]]
+---
+<!-- slide template="[[tpl-con-default-box]]" -->
 
+::: title
+### **Reflection**
+:::
+
+- Allows agents to evaluate their own decisions and improve their output before taking action or providing a final response.
+	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
+![[Pasted image 20250328095055.png]] 
 ---
 
 

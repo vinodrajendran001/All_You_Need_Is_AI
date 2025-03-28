@@ -133,7 +133,7 @@ _Fig6: Reflection design pattern for agents_
 - Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
 - Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
 ![[Pasted image 20250328095347.png | 500]]
-_Fig7: Tool us_
+_Fig7: Tool use design pattern for agents_
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->
@@ -145,7 +145,7 @@ _Fig7: Tool us_
 - Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
 - Useful for solving multi-step problems or managing workflows with dependencies.
 ![[Pasted image 20250328100028.png]]
-_Fig7: Reflection design pattern for agents_
+_Fig7: Planning design pattern for agents_
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->
@@ -159,6 +159,8 @@ _Fig7: Reflection design pattern for agents_
 - A related technique is [Mixture-of-Experts (MoE)](https://huggingface.co/blog/moe), which employs specialized submodels, or “experts,” within a single framework.
 	- MoE dynamically routes tasks to the most relevant expert, optimizing computational resources and enhancing performance.
 ![[Pasted image 20250328100348.png | 400]]
+_FigMulti-agent collaboration design pattern for agents_
+
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 

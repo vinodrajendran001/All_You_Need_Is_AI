@@ -262,7 +262,7 @@ Vinod
 ### **Decoupling While Keeping Context Intact**
 :::
 
-- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
+- Building flexible systems doesn’t mean sacrificing context.
 - Useful for solving multi-step problems or managing workflows with dependencies.
 
 ---

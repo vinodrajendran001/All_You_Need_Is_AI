@@ -151,6 +151,16 @@ Vinod
 
 - Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
 - Useful for solving multi-step problems or managing workflows with dependencies.
+![[Pasted image 20250328100028.png]]
+---
+<!-- slide template="[[tpl-con-default-box]]" -->
+
+::: title
+### **Planning Turns Goals Into Actions**
+:::
+
+- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
+- Useful for solving multi-step problems or managing workflows with dependencies.
 ![[Pasted image 20250328095347.png | 600]]
 ---
 

@@ -241,6 +241,16 @@ Vinod
 :::<!-- element pad="0 0 0 0"-->
 
 ---
+<!-- slide template="[[tpl-con-default-box]]" -->
+
+::: title
+### **Agents as Microservices with Informational Dependencies**
+:::
+
+- Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
+- Useful for solving multi-step problems or managing workflows with dependencies.
+
+---
 
 
 <!-- slide template="[[tpl-con-default-slide]]" -->

@@ -283,9 +283,9 @@ Vinod
 	- Event Persistence
 -  This architecture is a natural fit for frameworks like Anthropic’s [Model Context Protocol](https://www.anthropic.com/news/model-context-protocol) (MCP).
 	- MCP provides a universal standard for integrating AI systems with external tools, data sources, and applications, ensuring secure and seamless access to up-to-date information.
-	- Services don’t wait on each other — they react to what’s happening in real-time.
+	- MCP reduces development effort while enabling context-aware decision-making.
 
-#### 📝The future of AI isn’t just about building smarter agents — it’s about creating systems that can evolve and scale as the technology advances -> EDA is the foundation for this future**
+#### 📝EDA addresses many of the challenges MCP aims to solve**
 
 :::<!-- element pad="0 0 0 0" -->
 

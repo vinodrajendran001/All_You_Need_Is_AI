@@ -124,7 +124,7 @@ Vinod
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 
-# **How Design Patt**
+# **How Design Patterns Shape Smarter Agents**
 ---
 
 

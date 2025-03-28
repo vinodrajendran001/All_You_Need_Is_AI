@@ -271,11 +271,11 @@ Vinod
 <!-- slide template="[[tpl-con-3-2]]" -->
 
 ::: title
-### **Event-Driven Architectures (EDA)**
+### **Scaling Agents with Event-Driven Architecture**
 :::
 
 ::: left
- - In the early days, software systems were monoliths -> Everything lived in a single, tightly integrated codebase.
+ - EDA is the backbone of this transition to agentic systems.
 - Microservices changed this
 	- By breaking applications into smaller, independently deployable component but comes with a challenge of **Tight coupling**
 -  EDA solved the problem.

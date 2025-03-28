@@ -224,7 +224,7 @@ Vinod
 ::: left
  - In the early days, software systems were monoliths -> Everything lived in a single, tightly integrated codebase.
 - Microservices changed this
-	- By breaking applications into smaller, independently deployable component
+	- By breaking applications into smaller, independently deployable component but comes with a challenge of Tight coupling
 -  You could connect agents and tools through RPC and APIs, but that’s a recipe for tightly coupled systems.
 	- Tight coupling makes it harder to scale, adapt, or support multiple consumers of the same data.
 

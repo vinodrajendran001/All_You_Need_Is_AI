@@ -161,9 +161,9 @@ Vinod
 
 - Multi-agent systems take a modular approach to problem-solving by assigning specific tasks to specialized agents.
 - The modular design reduces complexity for individual agents by keeping their context focused on their specific tasks.
-- A related technique is [**Mixture-of-Experts (MoE)**](https://huggingface.co/blog/moe), which employs specialized submodels, or “experts,” within a single framework.
-	- 
-![[Pasted image 20250328095347.png | 600]]
+- A related technique is [Mixture-of-Experts (MoE)](https://huggingface.co/blog/moe), which employs specialized submodels, or “experts,” within a single framework.
+	- MoE dynamically routes tasks to the most relevant expert, optimizing computational resources and enhancing performance.
+![[Pasted image 20250328095347.png | 400]]
 ---
 
 

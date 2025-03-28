@@ -183,6 +183,10 @@ Vinod
 
 ---
 
+<!-- slide template="[[tpl-con-splash]]" -->
+
+# **The Challenges with Scaling Intelligent Agents**
+---
 
 
 <!-- slide template="[[tpl-con-default-slide]]" -->

@@ -58,7 +58,7 @@ Vinod
 - Difficult to adapt
 - Fine-tuning can address domain-specific needs, but it’s expensive and error-prone
 ![[Pasted image 20250327161558.png]]
-_Fig2: Simple prompt and response with an LLM_
+*Fig2: Simple prompt and response with an LLM*
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

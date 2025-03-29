@@ -271,7 +271,6 @@ _Fig14: An Event-Driven architecture for AI agents_
 
 ---
 <!-- slide template="[[tpl-con-3-2]]" -->
-
 ::: title
 ### **Scaling Agents with Event-Driven Architecture**
 :::

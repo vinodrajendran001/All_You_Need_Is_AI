@@ -38,8 +38,8 @@ Vinod
 - Approach that lacked scalability and slowed adoption
 <center>
 ![[Pasted image 20250327160838.png | 300]]
+*Fig1: The traditional machine learning workflow*
 </center>
-<center>Fig1: The traditional machine learning workflow</center>
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

@@ -255,8 +255,8 @@ _Fig13: Event-Driven Architecture_
 - For instance, an agent might pull customer data from a CRM, analyze live analytics, and use external tools — all while sharing updates with other agents.
 	- EDA can solve this challenge by acting as a **central nervous system** for data.
 
-![[Pasted image 20250328104605.png | 300]]
-_Fig14: _
+![[Pasted image 20250328104605.png | 200]]
+_Fig14: An Event-Driven architecture for AI agents_
 
 ---
 
@@ -296,6 +296,7 @@ _Fig14: _
 ::: right
 
 ![[Pasted image 20250328104544.png]]
+_Fig_
 
 :::<!-- element pad="0 0 0 0"-->
 

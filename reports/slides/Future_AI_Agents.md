@@ -54,11 +54,10 @@ Vinod
 ### **Generative Models**
 :::
 
-- Trained on vast, diverse datasets -> ability to generalize across a variety of contexts
-- Can generate text, images, videos, etc. -> opens up new opportunities
-- Fixed in time - unable to incorporate new or dynamic information
-- Difficult to adapt
-- Fine-tuning can address domain-specific needs, but it’s expensive and error-prone
+-   Learned from vast, diverse datasets → enhanced generalization across contexts
+-   Capable of generating text, images, videos → unlocking new possibilities
+-   Static in nature → struggles with incorporating real-time information
+-   Challenging to adapt → requires costly and complex fine-tuning for domain-specific needs
 <center>
 ![[Pasted image 20250327161558.png]]
 *Fig2: Simple prompt and response with an LLM*

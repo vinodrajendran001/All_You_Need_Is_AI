@@ -62,7 +62,8 @@ Vinod
 <center>
 ![[Pasted image 20250327161558.png]]
 *Fig2: Simple prompt and response with an LLM*
-</center
+</center>
+
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 

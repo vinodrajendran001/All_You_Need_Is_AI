@@ -38,7 +38,7 @@ Vinod
 - Approach that lacked scalability and slowed adoption
 
 <figure>
-  <img alt="img-name", src=![[Pasted image 20250327160838.png]], width="300">
+  <img src="">
   <br>
     <em>caption</em>
 </figure>

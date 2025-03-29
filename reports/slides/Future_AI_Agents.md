@@ -84,10 +84,6 @@ Vinod
  ![[Pasted image 20250327162618.png | 400]]
  _Fig3: Simple RAG architecture_
 
-|  ![[Pasted image 20250327162618.png | 400]] | 
-| ------------------------ | 
-|<center>Caption</center> |
-
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 
@@ -111,8 +107,9 @@ Vinod
 ::: right
  ![[Pasted image 20250328094219.png | 260]]
  Fig4: Control logic, programmatic versus agentic_
- ![[Pasted image 20250328094331.png | 300]]
+ ![[Pasted image 20250328094331.png | 290]]
  _Fig5: Agent architecture (Inspired by_ [_https://arxiv.org/pdf/2304.03442_](https://arxiv.org/pdf/2304.03442)_)_ 
+ 
 :::<!-- element pad="0 0 0 10px"-->
 
 ---

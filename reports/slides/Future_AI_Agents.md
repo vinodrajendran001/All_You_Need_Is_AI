@@ -294,7 +294,7 @@ _Fig14: An Event-Driven architecture for AI agents_
 ![[Pasted image 20250328104544.png]]
 _Fig15: Agents as event producers and consumers on a real-time streaming platform_
 
-:::<!-- element pad="0 0 0 10px"-->
+:::<!-- element pad="00 0 0 0"-->
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->

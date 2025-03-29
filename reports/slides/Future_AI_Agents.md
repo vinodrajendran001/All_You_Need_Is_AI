@@ -79,9 +79,9 @@ Vinod
 	- This modular design allows AI to combine tools, fetch relevant data, and tailor outputs in a way that static models cannot.
 - **Example**: Insurance recommendation
 
- ![[Pasted image 20250327162618.png | 400]]
+ ![[Pasted image 20250327162618.png | 300]]
  _Fig3: Simple RAG architecture_
-
+- fhd
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 

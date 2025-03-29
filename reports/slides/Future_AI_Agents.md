@@ -59,9 +59,10 @@ Vinod
 - Fixed in time - unable to incorporate new or dynamic information
 - Difficult to adapt
 - Fine-tuning can address domain-specific needs, but it’s expensive and error-prone
+<center>
 ![[Pasted image 20250327161558.png]]
 *Fig2: Simple prompt and response with an LLM*
-
+</center
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 

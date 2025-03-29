@@ -39,7 +39,7 @@ Vinod
 
 <figure>
   <img src=![[Pasted image 20250327160838.png]]>
-    <figcaption>caption</em>
+  <figcaption>caption</figcaption>
 </figure>
 
 ![[Pasted image 20250327160838.png | 300]]

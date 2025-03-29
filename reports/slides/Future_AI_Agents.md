@@ -149,7 +149,7 @@ _Fig7: Tool use design pattern for agents_
 
 - Agents with planning capabilities can break down high-level objectives into actionable steps, organizing tasks in a logical sequence.
 - Useful for solving multi-step problems or managing workflows with dependencies.
-![[Pasted image 20250328100028.png]]
+![[Pasted image 20250328100028.png | 600]]
 _Fig8: Planning design pattern for agents_
 
 ---

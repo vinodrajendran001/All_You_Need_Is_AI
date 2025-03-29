@@ -37,11 +37,11 @@ Vinod
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption
 
-<p align="center">
+<figure>
   <img alt="img-name", src=![[Pasted image 20250327160838.png]], width="300">
   <br>
     <em>caption</em>
-</p>
+</figure>
 
 ![[Pasted image 20250327160838.png | 300]]
 *Fig1: The traditional machine learning workflow*

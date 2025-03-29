@@ -282,7 +282,7 @@ _Fig14: An Event-Driven architecture for AI agents_
 	- Loose Coupling
 	- Event Persistence
 -  This architecture is a natural fit for frameworks like Anthropic’s [Model Context Protocol](https://www.anthropic.com/news/model-context-protocol) (MCP).
-	- MCP offers a universal standard for integrating AI systems with external tools, data sources, and applications, ensuring secure and real-time access.
+	- MCP offers a universal standard for integrating AI systems with external tools, data sources, and applications, ensuring secure and real-time access to the latest information.
 	- MCP minimizes development effort while enabling context-aware decision-making.
 
 #### 📝**EDA addresses many of the challenges MCP aims to solve**
@@ -294,7 +294,7 @@ _Fig14: An Event-Driven architecture for AI agents_
 ![[Pasted image 20250328104544.png]]
 _Fig15: Agents as event producers and consumers on a real-time streaming platform_
 
-:::<!-- element pad="0 0 0 0"-->
+:::<!-- element pad="0 0 0 10px"-->
 
 ---
 <!-- slide template="[[tpl-con-default-box]]" -->

@@ -182,7 +182,7 @@ _Fig9: Multi-agent collaboration design pattern for agents_
 - **Example**: An agent creating a marketing strategy 
 
 ![[Pasted image 20250328101149.png | 300]]
-_Fig10: Agentic RAG design pattern for agents_
+_Fig10: Agentic RAG design pattern_
 
 ---
 
@@ -209,7 +209,7 @@ _Fig10: Agentic RAG design pattern for agents_
 
 ::: right
 ![[Pasted image 20250328102800.png | 500]] 
-
+_Fig11: Single agent dependencies_
 :::<!-- element pad="0 0 0 0"-->
 
 ---
@@ -238,7 +238,7 @@ _Fig10: Agentic RAG design pattern for agents_
 
 ::: right
 ![[Pasted image 20250328103825.png | 300]]
-
+_Fig12: Tightly-c_
 ![[Pasted image 20250328103834.png]]
 
 :::<!-- element pad="0 0 0 0"-->

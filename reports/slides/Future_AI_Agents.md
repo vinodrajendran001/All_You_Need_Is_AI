@@ -176,8 +176,8 @@ _Fig9: Multi-agent collaboration design pattern for agents_
 ### **Agentic RAG**
 :::
 
-- Agents can determine in real time what data they need, where to find it, and how to refine their queries based on the task at hand.
-- Well-suited for handling complex, multi-step workflows that require responsiveness and adaptability.
+- Agents can instantly assess the data required, identify its sources, and adjust their queries based on the task at hand.
+- Ideal for managing intricate, multi-step processes that demand flexibility and quick adaptability.
 - **Example**: An agent creating a marketing strategy 
 
 ![[Pasted image 20250328101149.png | 300]]

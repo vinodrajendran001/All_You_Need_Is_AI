@@ -81,7 +81,8 @@ Vinod
 
  ![[Pasted image 20250327162618.png | 300]]
  _Fig3: Simple RAG architecture_
-- fhd
+- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
+	- Relies on **fixed workflows**, meaning every interaction and execution path must be pre-defined.
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 

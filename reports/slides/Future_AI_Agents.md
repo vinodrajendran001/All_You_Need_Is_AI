@@ -248,10 +248,10 @@ _Fig13: Event-Driven Architecture_
 ### **Agents as Microservices with Informational Dependencies**
 :::
 
-- Agents are similar to microservices but they go further.
-	- While microservices typically process discrete operations, agents rely on shared, context-rich information to reason, make decisions, and collaborate.
-- For instance, an agent might pull customer data from a CRM, analyze live analytics, and use external tools — all while sharing updates with other agents.
-	- EDA can solve this challenge by acting as a **central nervous system** for data.
+- Agents share similarities with microservices but go a step further.
+	- While microservices handle discrete operations, agents leverage shared, context-rich information to reason, make decisions, and collaborate.
+- For example, an agent could pull customer data from a CRM, analyze live analytics, and interact with external tools, all while updating other agents.
+	- Event-Driven Architecture (EDA) can address this challenge by serving as the central nervous system for data.
 
 ![[Pasted image 20250328104605.png | 200]]
 _Fig14: An Event-Driven architecture for AI agents_

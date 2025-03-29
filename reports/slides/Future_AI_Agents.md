@@ -75,7 +75,7 @@ Vinod
 ### **Predictive Model**
 :::
 
-- Revolved around traditional machine learning
+-  [Compound AI](https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/) systems integrate generative models with other components like programmatic logic, data retrieval mechanisms, and validation layers.
 - Focusing on predictive capabilities for narrowly defined tasks
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption

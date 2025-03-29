@@ -123,7 +123,7 @@ Vinod
 :::
 
 - Agents assess and enhance their outputs before taking action or finalizing responses.
-	- Enables agents to catch and correct mistakes, refine their reasoning, and ensure higher-quality outcomes.
+	- They identify mistakes, refine reasoning, and ensure high-quality outcomes.
 ![[Pasted image 20250328095055.png | 450]] 
 _Fig6: Reflection design pattern for agents_
 
@@ -134,8 +134,8 @@ _Fig6: Reflection design pattern for agents_
 ### **Tool Use Expands Agent Capabilities**
 :::
 
-- Interfacing with external tools extends an agent’s functionality, allowing it to perform tasks like retrieving data, automating processes, or executing deterministic workflows.
-- Tool use bridges the gap between flexible decision-making and predictable, reliable execution.
+- Agents can interact with external tools to retrieve data, automate tasks, and execute workflows.
+- Tool usage combines adaptive decision-making with predictable execution.
 ![[Pasted image 20250328095347.png | 500]]
 _Fig7: Tool use design pattern for agents_
 

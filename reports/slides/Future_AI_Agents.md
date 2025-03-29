@@ -224,9 +224,8 @@ _Fig11: Single agent dependencies_
 :::
 
 ::: left
- - In the early days, software systems were monoliths -> Everything lived in a single, tightly integrated codebase.
-- Microservices changed this
-	- By breaking applications into smaller, independently deployable component but comes with a challenge of **Tight coupling**
+ - In the early days, software systems were monolithic — everything existed within a single, tightly integrated codebase.
+- Microservices revolutionized this by breaking applications into smaller, independently deployable components, though it introduced the challenge of tight coupling.
 -  EDA solved the problem.
 	- EDA enables components to communicate asynchronously through events.
 	- Services don’t wait on each other — they react to what’s happening in real-time.

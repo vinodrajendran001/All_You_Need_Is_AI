@@ -32,10 +32,10 @@ Vinod
 ### **Predictive Models**
 :::
 
-- Revolved around traditional machine learning
-- Focusing on predictive capabilities for narrowly defined tasks
-- Required significant domain-specific expertise
-- Approach that lacked scalability and slowed adoption
+-   Centered on conventional ML techniques
+-   Optimized for narrow, task-specific predictions
+-   Heavily reliant on domain expertise
+-   Limited scalability, slowing broader adoption
 <center>
 ![[Pasted image 20250327160838.png | 300]]
 

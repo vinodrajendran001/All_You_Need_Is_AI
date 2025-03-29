@@ -227,10 +227,10 @@ _Fig11: Single agent dependencies_
  - In the early days, software systems were monolithic — everything existed within a single, tightly integrated codebase.
 - Microservices revolutionized this by breaking applications into smaller, independently deployable components, though it introduced the challenge of tight coupling.
 -  EDA solved the problem.
-	- EDA enables components to communicate asynchronously through events.
-	- Services don’t wait on each other — they react to what’s happening in real-time.
+	- EDA allows components to communicate asynchronously via events.
+	-  Services no longer depend on each other’s completion — they react to real-time events as they happen.
 
-#### 📝The future of AI isn’t just about building smarter agents — it’s about creating systems that can evolve and scale as the technology advances -> EDA is the foundation for this future**
+#### 📝The future of AI isn’t just about building smarter agents; it’s about creating systems that can evolve and scale with advancing technology — EDA forms the foundation for this future.
 
 :::<!-- element pad="0 0 0 0" -->
 

@@ -181,8 +181,8 @@ _Fig9: Multi-agent collaboration design pattern for agents_
 - Well-suited for handling complex, multi-step workflows that require responsiveness and adaptability.
 - **Example**: An agent creating a marketing strategy 
 
-![[Pasted image 20250328101149.png | 400]]
-_Reflection design pattern for agents_
+![[Pasted image 20250328101149.png | 300]]
+_Fig10: Agentic RAG design pattern for agents_
 
 ---
 

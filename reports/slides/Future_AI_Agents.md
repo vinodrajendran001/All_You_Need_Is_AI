@@ -182,6 +182,7 @@ _Fig9: Multi-agent collaboration design pattern for agents_
 - **Example**: An agent creating a marketing strategy 
 
 ![[Pasted image 20250328101149.png | 400]]
+_Reflection design pattern for agents_
 
 ---
 

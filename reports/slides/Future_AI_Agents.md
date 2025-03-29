@@ -36,9 +36,10 @@ Vinod
 - Focusing on predictive capabilities for narrowly defined tasks
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption
-
+<center>
 ![[Pasted image 20250327160838.png | 300]]
-<center>Fig1: The traditional machine learning workflow*</center>
+</center>
+<center>Fig1: The traditional machine learning workflow</center>
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

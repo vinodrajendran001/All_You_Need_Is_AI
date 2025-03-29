@@ -163,7 +163,7 @@ _Fig8: Planning design pattern for agents_
 - The modular design reduces complexity for individual agents by keeping their context focused on their specific tasks.
 - A related technique is [Mixture-of-Experts (MoE)](https://huggingface.co/blog/moe), which employs specialized submodels, or “experts,” within a single framework.
 	- MoE dynamically routes tasks to the most relevant expert, optimizing computational resources and enhancing performance.
-![[Pasted image 20250328100348.png | 400]]
+![[Pasted image 20250328100348.png | 290]]
 _Fig9: Multi-agent collaboration design pattern for agents_
 
 ---

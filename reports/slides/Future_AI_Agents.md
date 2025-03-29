@@ -16,7 +16,7 @@ Vinod
 ::: block
 ###### Reference: https://seanfalconer.medium.com/the-future-of-ai-agents-is-event-driven-9e25124060d6
 :::
-
+![[Pasted image 20250329215929.png]]
 
 ---
 

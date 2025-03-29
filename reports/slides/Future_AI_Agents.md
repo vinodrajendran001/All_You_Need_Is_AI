@@ -96,11 +96,11 @@ Vinod
 :::
 
 ::: left
- - Agents bring something new to the table: **dynamic, context-driven workflows**.
-	- Unlike fixed paths, agentic systems figure out the next steps on the fly, adapting to the situation at hand.
+-   **Agents enable dynamic, context-driven workflows**
+    -   Unlike fixed paths, they determine next steps in real time, adapting to changing situations.
 
--  Agents flip traditional control logic on its head.
-	- They can reason, use tools, and access memory — all dynamically.
+-   **Shifting control logic**
+    -   Agents can **reason, utilize tools, and access memory** dynamically, redefining traditional AI workflows.
 :::<!-- element pad="0 0 0 20px" -->
 
 ::: right

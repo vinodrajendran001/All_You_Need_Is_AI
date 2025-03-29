@@ -38,7 +38,7 @@ Vinod
 - Approach that lacked scalability and slowed adoption
 
 <figure>
-  <img src="">
+  <img src="reports/figures/Pasted image%2020250327160838.png">
   <br>
     <em>caption</em>
 </figure>

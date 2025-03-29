@@ -84,7 +84,9 @@ Vinod
  ![[Pasted image 20250327162618.png | 400]]
  _Fig3: Simple RAG architecture_
 
-|  | | ------------------------ | | <center>Caption</center> |
+|  ![[Pasted image 20250327162618.png | 400]] | 
+| ------------------------ | 
+|<center>Caption</center> |
 
 ---
 <!-- slide template="[[tpl-con-splash]]" -->

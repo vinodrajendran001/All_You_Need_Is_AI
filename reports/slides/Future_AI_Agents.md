@@ -277,7 +277,7 @@ _Fig14: An Event-Driven architecture for AI agents_
 :::
 
 ::: left
- - EDA is the backbone of this transition to agentic systems.
+ - Event-Driven Architecture (EDA) is the backbone of the transition to agent-based systems.
 - As discussed [here](https://hubertdulay.substack.com/p/event-driven-agent-mesh), platforms like Kafka exemplify the advantages of EDA in an agent-driven system:
 	- Horizontal Scalability
 	- Low Latency

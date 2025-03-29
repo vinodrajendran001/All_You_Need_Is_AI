@@ -196,7 +196,7 @@ _Fig10: Agentic RAG design pattern_
 :::
 
 ::: left
- - Scaling agents — whether a single agent or a collaborative system — hinges on their ability to access and share data effortlessly.
+ - Scaling agents — whether individually or within a collaborative system, depends on their ability to seamlessly access and share data.
 - Connecting agents to the tools and data they need is fundamentally a **distributed systems problem**.
 	- Mirrors the challenges faced in designing microservices, where components must communicate efficiently without creating bottlenecks or rigid dependencies.
 -  You could connect agents and tools through RPC and APIs, but that’s a recipe for tightly coupled systems.

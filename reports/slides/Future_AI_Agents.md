@@ -264,9 +264,9 @@ _Fig14: An Event-Driven architecture for AI agents_
 ### **Decoupling While Keeping Context Intact**
 :::
 
-- Today's AI stack involves MLOps managing pipelines, data scientists selecting models, and developers building interfaces.
-- A tightly coupled design creates dependencies, slowing delivery and adaptability.
-- EDA ensures that workflows stay loosely coupled, allowing each team to innovate independently.
+- Today’s AI stack includes MLOps managing pipelines, data scientists selecting models, and developers building interfaces.
+- Tightly coupled designs introduce dependencies that slow down delivery and hinder adaptability.
+- Event-Driven Architecture (EDA) keeps workflows loosely coupled, enabling each team to innovate independently.
 	- Application layers don’t need to understand the AI’s internals — they simply consume results when needed.
 
 ---

@@ -80,10 +80,10 @@ Vinod
 - Focusing on predictive capabilities for narrowly defined tasks
 - Required significant domain-specific expertise
 - Approach that lacked scalability and slowed adoption
- 
+ <center>
  ![[Pasted image 20250327162618.png | 400]]
  _Fig3: Simple RAG architecture_
-
+</center>
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 

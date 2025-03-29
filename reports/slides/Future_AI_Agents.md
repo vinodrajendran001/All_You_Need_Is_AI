@@ -57,7 +57,7 @@ Vinod
 -   Learned from vast, diverse datasets → enhanced generalization across contexts
 -   Capable of generating text, images, videos → unlocking new possibilities
 -   Static in nature → struggles with incorporating real-time information
--   Challenging to adapt → requires costly and complex fine-tuning for domain-specific needs
+-   Challenging to adapt → fine-tuning can address domain-specific needs, but it’s expensive and error-prone 
 <center>
 ![[Pasted image 20250327161558.png]]
 *Fig2: Simple prompt and response with an LLM*

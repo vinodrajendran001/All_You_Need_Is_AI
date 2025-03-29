@@ -278,15 +278,14 @@ _Fig14: An Event-Driven architecture for AI agents_
 
 ::: left
  - Event-Driven Architecture (EDA) is the backbone of the transition to agent-based systems.
-- As discussed [here](https://hubertdulay.substack.com/p/event-driven-agent-mesh), platforms like Kafka exemplify the advantages of EDA in an agent-driven system:
+- As discussed [here](https://hubertdulay.substack.com/p/event-driven-agent-mesh), platforms like Kafka demonstrate the key benefits of EDA in an agent-driven system:
 	- Horizontal Scalability
 	- Low Latency
 	- Loose Coupling
 	- Event Persistence
 -  This architecture is a natural fit for frameworks like Anthropic’s [Model Context Protocol](https://www.anthropic.com/news/model-context-protocol) (MCP).
-	- MCP provides a universal standard for integrating AI systems with external tools, data sources, and applications, ensuring secure and seamless access to up-to-date information.
-	- MCP reduces development effort while enabling context-aware decision-making.
-
+	- MCP offers a universal standard for integrating AI systems with external tools, data sources, and applications, ensuring secure, real-time access to the latest information.
+	- MCP minimizes development effort while enabling context-aware decision-making.
 #### 📝**EDA addresses many of the challenges MCP aims to solve**
 
 :::<!-- element pad="0 0 0 0" -->

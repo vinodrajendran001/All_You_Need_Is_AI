@@ -75,14 +75,14 @@ Vinod
 ### **Compund AI**
 :::
 
--  [Compound AI](https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/)**systems** integrate generative models with programmatic logic, data retrieval, and validation layers.
+-  [Compound AI](https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/) systems integrate generative models with programmatic logic, data retrieval, and validation layers.
 	-   Enables AI to fetch relevant data, combine tools, and produce more tailored outputs.
 - **Example**: Insurance recommendation
 
  ![[Pasted image 20250327162618.png | 300]]
  _Fig3: Simple RAG architecture_
-- This process, known as **Retrieval-Augmented Generation (RAG)**, bridges the gap between static AI and real-world needs by dynamically incorporating relevant data into the model’s workflow.
-	- Relies on **fixed workflows**, meaning every interaction and execution path must be pre-defined.
+- This process, known as **Retrieval-Augmented Generation (RAG)**, dynamically incorporates external data into AI workflows..
+	- However, it depends on **fixed workflows**, requiring predefined execution paths for every interaction.
 ---
 <!-- slide template="[[tpl-con-splash]]" -->
 

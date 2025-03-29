@@ -39,7 +39,7 @@ Vinod
 <center>
 ![[Pasted image 20250327160838.png | 300]]
 
-<center>Fig1: The traditional machine learning workflow<>
+*Fig1: The traditional machine learning workflow*
 </center>
 
 ---

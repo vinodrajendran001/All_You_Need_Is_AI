@@ -238,9 +238,9 @@ _Fig11: Single agent dependencies_
 
 ::: right
 ![[Pasted image 20250328103825.png | 300]]
-_Fig12: Tightly-c_
+_Fig12: Tightly-coupled Microservices_
 ![[Pasted image 20250328103834.png]]
-
+_Fig13: Event-Driven Architecture_
 :::<!-- element pad="0 0 0 0"-->
 
 ---
@@ -256,6 +256,7 @@ _Fig12: Tightly-c_
 	- EDA can solve this challenge by acting as a **central nervous system** for data.
 
 ![[Pasted image 20250328104605.png | 300]]
+_Fig14: _
 
 ---
 

@@ -200,9 +200,9 @@ _Fig10: Agentic RAG design pattern_
 - Connecting agents to necessary tools and data is essentially a **distributed systems challenge**.
 	- This resembles the complexities of designing microservices, where components must communicate efficiently while avoiding bottlenecks and rigid dependencies.
 -  While connecting agents and tools via RPC and APIs is possible, it often leads to tightly coupled systems.
-	- Tight coupling makes it harder to scale, adapt, or support multiple consumers of the same data.
+	- Tight coupling can hinder scalability, adaptability, and the ability to support multiple data consumers.
 
-#### 📝**Agents need flexibility in accessing other agents, services, and platforms without any rigid dependencies.**
+#### 📝**Agents must have the flexibility to access other agents, services, and platforms without being constrained by rigid dependencies.**
 
 :::<!-- element pad="0 0 0 0" -->
 

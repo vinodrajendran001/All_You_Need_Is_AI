@@ -466,4 +466,3 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 ## 02.04.2025
 
 - [agno-agi/agno: A lightweight library for building Multimodal Agents. Give LLMs superpowers like memory, knowledge, tools and reasoning.](https://github.com/agno-agi/agno) - It helps you build multimodal AI agents that generate text, images, audio, and video. It runs 10,000x faster than LangGraph with 50x lower memory use. Agents use memory, tools, and reasoning. Support structured outputs, RAG via vector DBs, real-time monitoring, and multi-agent coordination. Works with any model or provider.
-- 

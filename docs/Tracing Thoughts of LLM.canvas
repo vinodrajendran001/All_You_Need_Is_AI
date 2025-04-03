@@ -22,7 +22,7 @@
 		{"id":"e43ccb7c0f4fa240","x":-174,"y":3860,"width":565,"height":277,"type":"text","text":"If you ask how it figured out that 36+59 is 95, it describes the standard algorithm involving carrying the 1.\n\n![[Pasted image 20250403105226.png]]"},
 		{"id":"76a19d8ae72d0d18","type":"text","text":"This may reflect the fact that the model learns to explain math by simulating explanations written by people, but that it has to learn to do math \"in its head\" directly, without any such hints, and develops its own internal strategies to do so.","x":-124,"y":4220,"width":465,"height":140},
 		{"id":"9f5db87ce97fdf99","x":-240,"y":4520,"width":645,"height":50,"type":"text","text":"# Are Claude’s explanations always faithful?"},
-		{"id":"669f7b69ea80b4d6","x":-125,"y":4659,"width":250,"height":60,"type":"text","text":"\"think out loud\" can "}
+		{"id":"669f7b69ea80b4d6","x":-140,"y":4660,"width":445,"height":81,"type":"text","text":"\"think out loud\" can sometimes gives better answer as well as misleading answer"}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
@@ -41,6 +41,7 @@
 		{"id":"d7e1f183ef9eba93","fromNode":"247701509eac9fcb","fromSide":"bottom","toNode":"3e9c44d6241af3e2","toSide":"top"},
 		{"id":"d801faa9bc1ef502","fromNode":"3e9c44d6241af3e2","fromSide":"bottom","toNode":"e30cb33dfd259849","toSide":"top"},
 		{"id":"85b1249291c5e18a","fromNode":"e30cb33dfd259849","fromSide":"bottom","toNode":"e43ccb7c0f4fa240","toSide":"top"},
-		{"id":"032e478cd34ab055","fromNode":"e43ccb7c0f4fa240","fromSide":"bottom","toNode":"76a19d8ae72d0d18","toSide":"top"}
+		{"id":"032e478cd34ab055","fromNode":"e43ccb7c0f4fa240","fromSide":"bottom","toNode":"76a19d8ae72d0d18","toSide":"top"},
+		{"id":"e46a4067f0b46d33","fromNode":"9f5db87ce97fdf99","fromSide":"bottom","toNode":"669f7b69ea80b4d6","toSide":"top"}
 	]
 }

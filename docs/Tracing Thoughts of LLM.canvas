@@ -12,7 +12,8 @@
 		{"id":"26a5fb6d6b215b70","type":"text","text":"# Does Claude plan its rhymes?","x":-125,"y":1500,"width":465,"height":91},
 		{"id":"4028a0e7708cbeca","x":-115,"y":2240,"width":445,"height":91,"type":"text","text":"This demonstrates both planning ability and adaptive flexibility—Claude can modify its approach when the intended outcome changes."},
 		{"id":"f351676dc42b4a95","x":-195,"y":1820,"width":605,"height":363,"type":"text","text":"![[Pasted image 20250403103225.png]]"},
-		{"id":"590b1aa2feb2fdc8","x":-120,"y":1660,"width":455,"height":91,"type":"text","text":"Initial guess: Claude was writing word-by-word without much forethought until the end of the line, where it would make sure to pick a word that rhymes."}
+		{"id":"590b1aa2feb2fdc8","x":-120,"y":1660,"width":455,"height":91,"type":"text","text":"Initial guess: Claude was writing word-by-word without much forethought until the end of the line, where it would make sure to pick a word that rhymes."},
+		{"id":"6f49947b4a7cc53b","x":-125,"y":2520,"width":250,"height":60,"type":"text","text":"# Mental Math"}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},

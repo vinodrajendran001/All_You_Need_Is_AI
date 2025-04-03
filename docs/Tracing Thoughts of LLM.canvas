@@ -38,7 +38,8 @@
 		{"id":"14adfea47805fb8f","x":-145,"y":8060,"width":445,"height":133,"type":"text","text":"This allows Claude to answer the question when it knows the answer. In contrast, when asked about an unknown entity (\"Michael Batkin\"), it declines to answer."},
 		{"id":"4df89ea6b019a1fa","x":-145,"y":8280,"width":445,"height":140,"type":"text","text":"By intervening in the model and activating the \"known answer\" features (or inhibiting the \"unknown name\" or \"can’t answer\" features), we’re able to _cause the model to hallucinate_ (quite consistently!) that Michael Batkin plays chess."},
 		{"id":"23fe35185d11aed2","x":-125,"y":8520,"width":405,"height":114,"type":"text","text":"Sometimes, this sort of “misfire” of the “known answer” circuit happens naturally, without us intervening, resulting in a hallucination."},
-		{"id":"dfcab254ea4da946","x":-24,"y":8740,"width":203,"height":69,"type":"text","text":"# Jailbreaks"}
+		{"id":"dfcab254ea4da946","x":-24,"y":8740,"width":203,"height":69,"type":"text","text":"# Jailbreaks"},
+		{"id":"6b3a797dad1ef8c8","x":-155,"y":8900,"width":465,"height":160,"type":"text","text":"![[Pasted image 20250403111749.png]]"}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
@@ -71,6 +72,7 @@
 		{"id":"6d3eb04a6cd14321","fromNode":"2e0cfcf2fb52732f","fromSide":"bottom","toNode":"620fa32890391650","toSide":"top"},
 		{"id":"8a5a28bcc83d0205","fromNode":"620fa32890391650","fromSide":"bottom","toNode":"14adfea47805fb8f","toSide":"top"},
 		{"id":"98ec738ba4da8b4e","fromNode":"14adfea47805fb8f","fromSide":"bottom","toNode":"4df89ea6b019a1fa","toSide":"top"},
-		{"id":"312fac992f8a9385","fromNode":"4df89ea6b019a1fa","fromSide":"bottom","toNode":"23fe35185d11aed2","toSide":"top"}
+		{"id":"312fac992f8a9385","fromNode":"4df89ea6b019a1fa","fromSide":"bottom","toNode":"23fe35185d11aed2","toSide":"top"},
+		{"id":"e5b9df3c8978fd90","fromNode":"dfcab254ea4da946","fromSide":"bottom","toNode":"6b3a797dad1ef8c8","toSide":"top"}
 	]
 }

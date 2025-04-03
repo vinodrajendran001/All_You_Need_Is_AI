@@ -17,7 +17,7 @@
 		{"id":"fe334a584eee5246","type":"text","text":"How does a system trained to predict the next word in a sequence learn to calculate, say, `36+59`, without writing out each step?","x":-119,"y":2580,"width":455,"height":100},
 		{"id":"9b5d167bb364d56f","type":"text","text":"Guess: \n- the model might have memorized massive addition tables (or)\n- follows the traditional longhand addition algorithms that we learn in school.","x":-119,"y":2760,"width":455,"height":180},
 		{"id":"247701509eac9fcb","x":-144,"y":3020,"width":505,"height":301,"type":"text","text":"![[Pasted image 20250403104648.png]]"},
-		{"id":"3e9c44d6241af3e2","x":-125,"y":3078,"width":525,"height":182,"type":"text","text":"- Claude employs multiple computational paths that work in parallel."}
+		{"id":"3e9c44d6241af3e2","x":-125,"y":3078,"width":525,"height":182,"type":"text","text":"Claude employs multiple computational paths that work in parallel.\n\t1. One path computes a rough approximation of the answer\n\t2. other focuses on precisely determining the last digit of the sum."}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},

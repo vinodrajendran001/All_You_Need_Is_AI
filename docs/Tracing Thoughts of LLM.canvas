@@ -1,6 +1,7 @@
 {
 	"nodes":[
-		{"id":"4033bba4d60fa9c5","x":-125,"y":-30,"width":445,"height":210,"type":"text","text":"## Motivation:\n\nKnowing how models like `Claude` think would allow us to have a better understanding of their abilities and help us to ensure that they're doing what we intend them to."}
+		{"id":"4033bba4d60fa9c5","x":-220,"y":-340,"width":445,"height":210,"type":"text","text":"## Motivation:\n\n- Understanding how models like `Claude` think helps us assess their capabilities.\n- This ensures they perform as intended and align with our expectations."},
+		{"id":"746d7b4aad464ea3","x":-125,"y":-30,"width":250,"height":60,"type":"text","text":"Claude sometimes thinks in a conceptual space that is shared between languages, suggesting it has a kind of universal “language of thought.”"}
 	],
 	"edges":[]
 }

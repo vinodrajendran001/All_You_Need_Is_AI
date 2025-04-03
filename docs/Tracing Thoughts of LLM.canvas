@@ -42,7 +42,8 @@
 		{"id":"6b3a797dad1ef8c8","x":-155,"y":8900,"width":465,"height":160,"type":"text","text":"![[Pasted image 20250403111749.png]]"},
 		{"id":"6cbd38ed3bac72b8","x":-140,"y":9140,"width":435,"height":103,"type":"text","text":"1. Why is this so confusing for the model? \n2. Why does it continue to write the sentence, producing bomb-making instructions?"},
 		{"id":"f795ce23d8e51246","x":-255,"y":9320,"width":665,"height":424,"type":"text","text":"![[Pasted image 20250403112002.png]]"},
-		{"id":"237ebc0b5fcfcc88","x":-125,"y":9419,"width":420,"height":101,"type":"text","text":" output was influenced by features promoting correct grammar and self-consistency."}
+		{"id":"237ebc0b5fcfcc88","x":-132,"y":9800,"width":420,"height":101,"type":"text","text":" output was influenced by features promoting correct grammar and self-consistency."},
+		{"id":"41617f2d2a024639","x":-189,"y":9960,"width":535,"height":110,"type":"text","text":"The model only managed to pivot to refusal after completing a grammatically coherent sentence (and thus having satisfied the pressure from the features that push it towards coherence)."}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
@@ -78,6 +79,8 @@
 		{"id":"312fac992f8a9385","fromNode":"4df89ea6b019a1fa","fromSide":"bottom","toNode":"23fe35185d11aed2","toSide":"top"},
 		{"id":"e5b9df3c8978fd90","fromNode":"dfcab254ea4da946","fromSide":"bottom","toNode":"6b3a797dad1ef8c8","toSide":"top"},
 		{"id":"6b1a1ded32d8e0f3","fromNode":"6b3a797dad1ef8c8","fromSide":"bottom","toNode":"6cbd38ed3bac72b8","toSide":"top"},
-		{"id":"07f8fdc064ed575b","fromNode":"6cbd38ed3bac72b8","fromSide":"bottom","toNode":"f795ce23d8e51246","toSide":"top"}
+		{"id":"07f8fdc064ed575b","fromNode":"6cbd38ed3bac72b8","fromSide":"bottom","toNode":"f795ce23d8e51246","toSide":"top"},
+		{"id":"f67678397383281b","fromNode":"f795ce23d8e51246","fromSide":"bottom","toNode":"237ebc0b5fcfcc88","toSide":"top"},
+		{"id":"54bb128725b94685","fromNode":"237ebc0b5fcfcc88","fromSide":"bottom","toNode":"41617f2d2a024639","toSide":"top"}
 	]
 }

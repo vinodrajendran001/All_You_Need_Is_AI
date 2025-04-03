@@ -6,13 +6,16 @@
 		{"id":"4ded7dffea91049f","x":280,"y":20,"width":325,"height":130,"type":"text","text":"Claude, on occasion, will give a plausible-sounding argument designed to agree with the user rather than to follow logical steps."},
 		{"id":"e5affd08cbcffbad","x":-125,"y":249,"width":465,"height":91,"type":"text","text":"# How is Claude multilingual?"},
 		{"id":"1145a78ee9474aa3","x":-240,"y":440,"width":695,"height":340,"type":"text","text":"![[Pasted image 20250403102642.png]]"},
-		{"id":"a085bf08e0d9c05b","x":-145,"y":880,"width":505,"height":125,"type":"text","text":"evidence for a kind of conceptual universality—a shared abstract space where meanings exist and where thinking can happen before being translated into specific languages."}
+		{"id":"a085bf08e0d9c05b","x":-145,"y":880,"width":505,"height":125,"type":"text","text":"evidence for a kind of conceptual universality—a shared abstract space where meanings exist and where thinking can happen before being translated into specific languages."},
+		{"id":"7b14031b842131c8","x":-145,"y":1100,"width":505,"height":100,"type":"text","text":" More practically, it suggests Claude can learn something in one language and apply that knowledge when speaking another."},
+		{"id":"e543013ad50adffa","x":-125,"y":939,"width":250,"height":60,"type":"text","text":"Research: Studying how the model shares what it knows across contexts is important to understanding its most advanced reasoning capabilities, which generalize across many domains"}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
 		{"id":"3632a893b1782c26","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"990b32655417a052","toSide":"top"},
 		{"id":"3af489600651fade","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"4ded7dffea91049f","toSide":"top"},
 		{"id":"c9afb6463aee3cbf","fromNode":"e5affd08cbcffbad","fromSide":"bottom","toNode":"1145a78ee9474aa3","toSide":"top"},
-		{"id":"40f24d8d04eef415","fromNode":"1145a78ee9474aa3","fromSide":"bottom","toNode":"a085bf08e0d9c05b","toSide":"top"}
+		{"id":"40f24d8d04eef415","fromNode":"1145a78ee9474aa3","fromSide":"bottom","toNode":"a085bf08e0d9c05b","toSide":"top"},
+		{"id":"f6e01b2a78478921","fromNode":"a085bf08e0d9c05b","fromSide":"bottom","toNode":"7b14031b842131c8","toSide":"top"}
 	]
 }

@@ -1,6 +1,6 @@
 {
 	"nodes":[
-		{"id":"4033bba4d60fa9c5","x":-125,"y":-30,"width":445,"height":210,"type":"text","text":"## Motivation:\n\nKnowing how models like `Claude` think would allow us to have a better understanding of their abilities"}
+		{"id":"4033bba4d60fa9c5","x":-125,"y":-30,"width":445,"height":210,"type":"text","text":"## Motivation:\n\nKnowing how models like `Claude` think would allow us to have a better understanding of their abilities and help us to ensure that they're doing what we intend them to."}
 	],
 	"edges":[]
 }

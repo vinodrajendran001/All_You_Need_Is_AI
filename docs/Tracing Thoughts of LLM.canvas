@@ -37,7 +37,8 @@
 		{"id":"620fa32890391650","x":-225,"y":7600,"width":605,"height":384,"type":"text","text":"![[Pasted image 20250403111351.png]]"},
 		{"id":"14adfea47805fb8f","x":-145,"y":8060,"width":445,"height":133,"type":"text","text":"This allows Claude to answer the question when it knows the answer. In contrast, when asked about an unknown entity (\"Michael Batkin\"), it declines to answer."},
 		{"id":"4df89ea6b019a1fa","x":-145,"y":8280,"width":445,"height":140,"type":"text","text":"By intervening in the model and activating the \"known answer\" features (or inhibiting the \"unknown name\" or \"can’t answer\" features), we’re able to _cause the model to hallucinate_ (quite consistently!) that Michael Batkin plays chess."},
-		{"id":"23fe35185d11aed2","x":-125,"y":8520,"width":405,"height":114,"type":"text","text":"Sometimes, this sort of “misfire” of the “known answer” circuit happens naturally, without us intervening, resulting in a hallucination."}
+		{"id":"23fe35185d11aed2","x":-125,"y":8520,"width":405,"height":114,"type":"text","text":"Sometimes, this sort of “misfire” of the “known answer” circuit happens naturally, without us intervening, resulting in a hallucination."},
+		{"id":"dfcab254ea4da946","x":-24,"y":8740,"width":203,"height":69,"type":"text","text":"# Jailbreaks"}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},

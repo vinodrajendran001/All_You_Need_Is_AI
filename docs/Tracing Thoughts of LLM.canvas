@@ -14,7 +14,8 @@
 		{"id":"f351676dc42b4a95","x":-195,"y":1820,"width":605,"height":363,"type":"text","text":"![[Pasted image 20250403103225.png]]"},
 		{"id":"590b1aa2feb2fdc8","x":-120,"y":1660,"width":455,"height":91,"type":"text","text":"Initial guess: Claude was writing word-by-word without much forethought until the end of the line, where it would make sure to pick a word that rhymes."},
 		{"id":"6f49947b4a7cc53b","x":-17,"y":2440,"width":250,"height":60,"type":"text","text":"# Mental Math"},
-		{"id":"fe334a584eee5246","type":"text","text":"How does a system trained to predict the next word in a sequence learn to calculate, say, `36+59`, without writing out each step?","x":-119,"y":2580,"width":455,"height":100}
+		{"id":"fe334a584eee5246","type":"text","text":"How does a system trained to predict the next word in a sequence learn to calculate, say, `36+59`, without writing out each step?","x":-119,"y":2580,"width":455,"height":100},
+		{"id":"9b5d167bb364d56f","type":"text","text":"Guess: \n- the model might have memorized massive addition tables (or)\n- follows the traditional longhand addition algorithms that we learn in school.","x":-119,"y":2760,"width":455,"height":180}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
@@ -27,6 +28,7 @@
 		{"id":"d6f7b58d2da3c095","fromNode":"f351676dc42b4a95","fromSide":"bottom","toNode":"4028a0e7708cbeca","toSide":"top"},
 		{"id":"cdbc5ffd5e556209","fromNode":"26a5fb6d6b215b70","fromSide":"bottom","toNode":"590b1aa2feb2fdc8","toSide":"top"},
 		{"id":"d36824d8783c788a","fromNode":"590b1aa2feb2fdc8","fromSide":"bottom","toNode":"f351676dc42b4a95","toSide":"top"},
-		{"id":"1ad901c183e6708f","fromNode":"6f49947b4a7cc53b","fromSide":"bottom","toNode":"fe334a584eee5246","toSide":"top"}
+		{"id":"1ad901c183e6708f","fromNode":"6f49947b4a7cc53b","fromSide":"bottom","toNode":"fe334a584eee5246","toSide":"top"},
+		{"id":"c77727ae125d7c6a","fromNode":"fe334a584eee5246","fromSide":"bottom","toNode":"9b5d167bb364d56f","toSide":"top"}
 	]
 }

@@ -8,7 +8,8 @@
 		{"id":"1145a78ee9474aa3","x":-240,"y":440,"width":695,"height":340,"type":"text","text":"![[Pasted image 20250403102642.png]]"},
 		{"id":"a085bf08e0d9c05b","x":-145,"y":880,"width":505,"height":125,"type":"text","text":"evidence for a kind of conceptual universality—a shared abstract space where meanings exist and where thinking can happen before being translated into specific languages."},
 		{"id":"7b14031b842131c8","x":-145,"y":1100,"width":505,"height":100,"type":"text","text":" More practically, it suggests Claude can learn something in one language and apply that knowledge when speaking another."},
-		{"id":"e543013ad50adffa","x":-125,"y":939,"width":250,"height":60,"type":"text","text":"Research: Studying how the model shares what it knows across contexts is important to understanding its most advanced reasoning capabilities, which generalize across many domains"}
+		{"id":"e543013ad50adffa","x":-145,"y":1260,"width":505,"height":120,"type":"text","text":"**Research**: Studying how the model shares what it knows across contexts is important to understanding its most advanced reasoning capabilities, which generalize across many domains"},
+		{"id":"26a5fb6d6b215b70","type":"text","text":"# Does Claude plan its rhymes?","x":-125,"y":1500,"width":465,"height":91}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
@@ -16,6 +17,7 @@
 		{"id":"3af489600651fade","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"4ded7dffea91049f","toSide":"top"},
 		{"id":"c9afb6463aee3cbf","fromNode":"e5affd08cbcffbad","fromSide":"bottom","toNode":"1145a78ee9474aa3","toSide":"top"},
 		{"id":"40f24d8d04eef415","fromNode":"1145a78ee9474aa3","fromSide":"bottom","toNode":"a085bf08e0d9c05b","toSide":"top"},
-		{"id":"f6e01b2a78478921","fromNode":"a085bf08e0d9c05b","fromSide":"bottom","toNode":"7b14031b842131c8","toSide":"top"}
+		{"id":"f6e01b2a78478921","fromNode":"a085bf08e0d9c05b","fromSide":"bottom","toNode":"7b14031b842131c8","toSide":"top"},
+		{"id":"689a3ac6c6c0078a","fromNode":"7b14031b842131c8","fromSide":"bottom","toNode":"e543013ad50adffa","toSide":"top"}
 	]
 }

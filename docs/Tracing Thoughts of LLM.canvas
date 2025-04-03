@@ -26,7 +26,8 @@
 		{"id":"a4897c77c8bcd419","x":-210,"y":4820,"width":585,"height":82,"type":"text","text":" interpretability can help tell apart \"faithful\" from \"unfaithful\" reasoning."},
 		{"id":"363a6c03128dc319","x":-350,"y":5000,"width":865,"height":475,"type":"text","text":"![[Pasted image 20250403110406.png]]"},
 		{"id":"2937afaaa756cf23","x":-140,"y":5580,"width":445,"height":117,"type":"text","text":"Even though it does claim to have run a calculation, our interpretability techniques reveal no evidence at all of that calculation having occurred."},
-		{"id":"8f1665fc04681382","x":-132,"y":5800,"width":430,"height":143,"type":"text","text":"Even more interestingly, when given a hint about the answer, Claude sometimes works backwards, finding intermediate steps that would lead to that target, thus displaying a form of [motivated reasoning](https://en.wikipedia.org/wiki/Motivated_reasoning)."}
+		{"id":"8f1665fc04681382","x":-132,"y":5800,"width":430,"height":143,"type":"text","text":"Even more interestingly, when given a hint about the answer, Claude sometimes works backwards, finding intermediate steps that would lead to that target, thus displaying a form of [motivated reasoning](https://en.wikipedia.org/wiki/Motivated_reasoning)."},
+		{"id":"972797be6c78d280","x":-125,"y":6147,"width":405,"height":73,"type":"text","text":"# Multi-Step Reasoning"}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},

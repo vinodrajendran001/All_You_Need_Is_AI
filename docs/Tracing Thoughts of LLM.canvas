@@ -20,7 +20,7 @@
 		{"id":"3e9c44d6241af3e2","x":-174,"y":3400,"width":565,"height":202,"type":"text","text":"Claude employs multiple computational paths that work in parallel.\n\t1. One path computes a rough approximation of the answer\n\t2. other focuses on precisely determining the last digit of the sum.\n### involving a mix of approximate and precise strategies"},
 		{"id":"e30cb33dfd259849","x":-124,"y":3680,"width":465,"height":97,"type":"text","text":"Claude seems to be unaware of the sophisticated \"mental math\" strategies that it learned during training."},
 		{"id":"e43ccb7c0f4fa240","x":-174,"y":3860,"width":565,"height":277,"type":"text","text":"If you ask how it figured out that 36+59 is 95, it describes the standard algorithm involving carrying the 1.\n\n![[Pasted image 20250403105226.png]]"},
-		{"id":"76a19d8ae72d0d18","type":"text","text":"Claude seems to be unaware of the sophisticated \"mental math\" strategies that it learned during training.","x":-232,"y":3897,"width":465,"height":97}
+		{"id":"76a19d8ae72d0d18","type":"text","text":"This may reflect the fact that the model learns to explain math by simulating explanations written by people, but that it has to learn to do math \"in its head\" directly, without any such hints, and develops its own internal strategies to do so.","x":-124,"y":4220,"width":465,"height":140}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
@@ -38,6 +38,7 @@
 		{"id":"9d11cc9aa7de98cd","fromNode":"9b5d167bb364d56f","fromSide":"bottom","toNode":"247701509eac9fcb","toSide":"top"},
 		{"id":"d7e1f183ef9eba93","fromNode":"247701509eac9fcb","fromSide":"bottom","toNode":"3e9c44d6241af3e2","toSide":"top"},
 		{"id":"d801faa9bc1ef502","fromNode":"3e9c44d6241af3e2","fromSide":"bottom","toNode":"e30cb33dfd259849","toSide":"top"},
-		{"id":"85b1249291c5e18a","fromNode":"e30cb33dfd259849","fromSide":"bottom","toNode":"e43ccb7c0f4fa240","toSide":"top"}
+		{"id":"85b1249291c5e18a","fromNode":"e30cb33dfd259849","fromSide":"bottom","toNode":"e43ccb7c0f4fa240","toSide":"top"},
+		{"id":"032e478cd34ab055","fromNode":"e43ccb7c0f4fa240","fromSide":"bottom","toNode":"76a19d8ae72d0d18","toSide":"top"}
 	]
 }

@@ -31,7 +31,8 @@
 		{"id":"a4d74546b598946c","x":-155,"y":6300,"width":465,"height":73,"type":"text","text":"Guess: language model might answer complex questions is simply by memorizing the answers."},
 		{"id":"26e59ee4956e1558","x":-245,"y":6460,"width":645,"height":367,"type":"text","text":"![[Pasted image 20250403110801.png]]"},
 		{"id":"008d8dfad2dbfbc9","x":-175,"y":6920,"width":505,"height":75,"type":"text","text":"the model is _combining_ independent facts to reach its answer rather than regurgitating a memorized response."},
-		{"id":"a01e22e5ea0c16d7","type":"text","text":"# Multi-Step Reasoning","x":-202,"y":7257,"width":405,"height":73}
+		{"id":"a01e22e5ea0c16d7","type":"text","text":"# Hallucinations","x":-62,"y":7120,"width":280,"height":63},
+		{"id":"e7cc260a5b6a0536","x":-174,"y":7280,"width":505,"height":77,"type":"text","text":"Basic level: language model training incentivizes hallucination: models are always supposed to give a guess for the next word."}
 	],
 	"edges":[
 		{"id":"12fbcfe682d2e704","fromNode":"4033bba4d60fa9c5","fromSide":"bottom","toNode":"746d7b4aad464ea3","toSide":"top"},
@@ -58,6 +59,7 @@
 		{"id":"456c28da470c4c8f","fromNode":"2937afaaa756cf23","fromSide":"bottom","toNode":"8f1665fc04681382","toSide":"top"},
 		{"id":"e45b3cc6272053af","fromNode":"972797be6c78d280","fromSide":"bottom","toNode":"a4d74546b598946c","toSide":"top"},
 		{"id":"c4b070558c22d0c7","fromNode":"a4d74546b598946c","fromSide":"bottom","toNode":"26e59ee4956e1558","toSide":"top"},
-		{"id":"bfd953076f173f70","fromNode":"26e59ee4956e1558","fromSide":"bottom","toNode":"008d8dfad2dbfbc9","toSide":"top"}
+		{"id":"bfd953076f173f70","fromNode":"26e59ee4956e1558","fromSide":"bottom","toNode":"008d8dfad2dbfbc9","toSide":"top"},
+		{"id":"d514f0418614df1d","fromNode":"a01e22e5ea0c16d7","fromSide":"bottom","toNode":"e7cc260a5b6a0536","toSide":"top"}
 	]
 }

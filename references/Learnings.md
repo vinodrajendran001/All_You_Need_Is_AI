@@ -474,4 +474,3 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 ## 09.04.2025
 
 - [Browser MCP - MCP server for your browser](https://browsermcp.io/) Browser MCP allows users to connect AI apps to their browsers to automate tasks. Automation happens locally on users' machines, resulting in better performance without network latency. Browser activity stays on-device and isn't sent to remote servers. Browser MCP uses existing browser profiles, keeping users logged into all of their services. It avoids CAPTCHAs by using real browser fingerprints.
-- 

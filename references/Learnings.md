@@ -482,3 +482,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	2. How to build robust evals
 		- Use LLMs to generate questions from the text  
 		- Evals should evaluate positional robustness (i.e., have questions at the beginning, middle, and end of text)
+	3. Potential challenges  
+		- Open-ended questions may have no single correct answer, making reference-based evals trickly. For example: What is the theme of this novel?  
+		- Questions should be representative of prod traffic, with a mix of factual, inferential, summarization, definitional questions.
+		- 

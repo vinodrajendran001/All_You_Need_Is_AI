@@ -471,6 +471,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 - [MCP-Use](https://github.com/pietrozullo/mcp-use) is the open source way to connect any LLM to MCP tools and build custom agents that have tool access, without using closed source or application clients. 
 
-## 08.04.2025
+## 09.04.2025
 
+- [Browser MCP - MCP server for your browser](https://browsermcp.io/) Browser MCP allows users to connect AI apps to their browsers to automate tasks. Automation happens locally on users' machines, resulting in better performance without network latency. Browser activity stays on-device and isn't sent to remote servers. Browser MCP uses existing browser profiles, keeping users logged into all of their services. It avoids CAPTCHAs by using real browser fingerprints.
 - 

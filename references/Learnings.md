@@ -474,3 +474,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 ## 09.04.2025
 
 - [Browser MCP - MCP server for your browser](https://browsermcp.io/) Browser MCP allows users to connect AI apps to their browsers to automate tasks. Automation happens locally on users' machines, resulting in better performance without network latency. Browser activity stays on-device and isn't sent to remote servers. Browser MCP uses existing browser profiles, keeping users logged into all of their services. It avoids CAPTCHAs by using real browser fingerprints.
+- If you were building a Q&A feature (or chatbot) based on very long documents (like books), what evals would you focus on?
+	- Faithfulness: Grounding of answers in document's content. Not to be confused with correctness—an answer can be correct (based on updated information) but not faithful to the document. Sub-metric: Precision of citations  
+• Helpfulness: Usefulness (directly addresses the question with enough detail and explanation) and completeness (does not omit important details); an answer can be faithful but not helpful if too brief or doesn't answer the question  
+• Evaluate separately: Faithfulness = binary label -> LLM-evaluator; Helpfulness = pairwise comparisons -> reward model

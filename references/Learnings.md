@@ -490,5 +490,3 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 	4. Benchmark Datasets
 		![[Pasted image 20250409093922.png]]
 
-## 12.04.2025
-

@@ -492,3 +492,4 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 ## 14.04.2025
 
+- 

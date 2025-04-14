@@ -493,5 +493,6 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 ## 14.04.2025
 
 - To make your OWN agent (to automate anything)
-	- **The two main tools non-coders (and some coders) use to do this are** [**Make**]([Make | Automation Software | Connect Apps & Design Workflows | Make](https://www.make.com/en)) **and** [**n8N**]()**.**
-	- 
+	- **The two main tools non-coders (and some coders) use to do this are** [**Make**]([Make | Automation Software | Connect Apps & Design Workflows | Make](https://www.make.com/en)) **and** [**n8N**]([Powerful Workflow Automation Software & Tools - n8n](https://n8n.io/))**.**
+	- Make is the every man’s tool, while n8n is the coder’s preference (it’s kinda like the Claude to [Make.com]([Make | Automation Software | Connect Apps & Design Workflows | Make](https://www.make.com/en))’s ChatGPT—_all the cool kids use n8n).
+	- Tutorials: 

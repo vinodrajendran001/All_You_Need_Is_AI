@@ -499,3 +499,75 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 		- https://www.youtube.com/live/NUPjbWsSe7s
 		- https://www.youtube.com/watch?v=yzvLfHb0nqE
 		- https://www.youtube.com/watch?v=H0YRniHh2tg
+
+
+- 
+ 1️⃣ 𝗖𝗨𝗗𝗔  
+Parallel computing platform and API to accelerate computation on NVIDIA GPUs.  
+  
+Keypoints:  
+↳ Kernels - C/C++ functions.  
+↳ Thread - executes the kernel instructions.  
+↳ Block - groups of threads.  
+↳ Grid - collection of blocks.  
+↳ Streaming Multiprocessor (SM) - processor units that execute thread blocks.  
+  
+When a CUDA program invokes a kernel grid, the thread blocks are distributed to the SMs.  
+  
+CUDA follows the SIMT (Single Instruction Multiple Threads) architecture to execute threads logic and uses a Barrier to gather and synchronize Threads.  
+  
+2️⃣ 𝗰𝘂𝗗𝗡𝗡  
+Library with highly tuned implementations for standard routines such as:  
+↳ forward and backward convolution  
+↳ attention  
+↳ matmul, pooling, and normalization - which are used in all NN Architectures.  
+  
+3️⃣ 𝗧𝗲𝗻𝘀𝗼𝗿𝗥𝗧  
+If we unpack a model architecture, we have multiple layer types, operations, layer connections, activations, etc. Imagine an NN architecture as a complex Graph of operations.  
+  
+TensorRT can:  
+↳ Scan that graph  
+↳ Identify bottlenecks  
+↳ Optimize  
+↳ Remove, merge layers  
+↳ Reduce layer precisions,  
+↳ Many other optimizations.  
+  
+4️⃣ 𝗧𝗲𝗻𝘀𝗼𝗿𝗥𝗧-𝗟𝗟𝗠  
+Inference Engine that brings the TensorRT Compiler optimizations to Transformer-based models.  
+  
+Covers the advanced and custom requirements for LLMs, such as:  
+↳ KV Caching  
+↳ Inflight Batching  
+↳ Optimized Attention Kernels  
+↳Tensor Parallel  
+↳ Pipeline Parallel.  
+  
+5️⃣ 𝗧𝗿𝗶𝘁𝗼𝗻 𝗜𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗦𝗲𝗿𝘃𝗲𝗿  
+An open source, high-performance, and secure serving system for AI Workloads. Devs can optimize their models, define serving configurations in Protobuf Text files, and deploy.  
+  
+It supports multiple framework backends, including:  
+↳ Native PyTorch, TensorFlow  
+↳ TensorRT, TensorRT-LLM  
+↳ Custom BLS (Bussiness Language Scripting) with Python Backends  
+  
+6️⃣ 𝗡𝗩𝗜𝗗𝗜𝗔 𝗡𝗜𝗠  
+Set of plug-and-play inference microservices that package up multiple NVIDIA libraries and frameworks highly tuned for serving LLMs to production cluster & datacenters scale.  
+  
+It has:  
+↳ CUDA, cuDNN  
+↳ TensorRT  
+↳ Triton Server  
+↳ Many other libraries - baked in.  
+  
+NIM provides the optimal serving configuration for an LLM.  
+  
+7️⃣ 𝗗𝘆𝗻𝗮𝗺𝗼 𝗜𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗙𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸  
+The newest inference framework for accelerating and scaling GenAI workloads.  
+  
+Composed of modular blocks, robust and scalable.  
+  
+Implements:  
+↳ Elastic compute - GPU Planner  
+↳ KV Routing, Sharing, and Caching  
+↳ Disaggregated Serving of Prefill and Decode.

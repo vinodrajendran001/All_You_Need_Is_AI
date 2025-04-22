@@ -655,15 +655,16 @@ Next Gen UI
 - Multimodal understanding - Initial study made using Gemini, Microsoft Phi and Qwen2.5-VL. It could able to decode the drowsiness, distraction , emotion to an extent well. Initial experiments suggest to be more explicit with the prompt
 - Human factor rule base - updated the rule base with a focus on describing the characteristics of the desired assets instead of being specific to each media type to make it more robust.
 	Human factor expert came up with a score based approach for layout type selection but current this has gap in selecting the variant of layout
+	
 Corp lab phase 2:
 
-- Discussion with Dah Chiun about UI scaling framework topic for corp lab phase 2 and it was decided to 
+- Discussion with Dah Chiun about UI scaling framework topic for corp lab phase 2 and it was decided to remove it from phase 2 topic
 
-two topics are finalized 
-- Methods to make Perception-based ADAS models deployable on HPC - high priority
-- LLMs on HPC - low priority
+- two topics are finalized 
+	- Methods to make Perception-based ADAS models deployable on HPC - high priority
+	- LLMs on HPC - low priority
 
 
-- UI scaling framework is out of scope for corp lab phase 2
-
+Expert:
+	- Updated SG AOT leaders about the expe
 

@@ -643,4 +643,4 @@ These 7 GitHub repos are the ones I always recommend:
 	3. grounded rewards
 	4. non‑human modes of reasoning
 - [How we build effective agents](https://www.youtube.com/watch?v=D7_ipDqhtwk )
-- 
+- [AI is Like Cars](https://ozorn.in/blog/ai-cars/)

@@ -652,5 +652,5 @@ Next Gen UI
 
 - Software architect exploring SKIVI tool - A Android base - UI tool developed by electrobit
 - Pia asked us to come up with a requirements for Demo to discuss with AWS on deploying our solution
-- Multimodal understanding - Initial study made using Gemini, Microsoft Phi and Qwen2.5-VL 
+- Multimodal understanding - Initial study made using Gemini, Microsoft Phi and Qwen2.5-VL. It could able to decode the drowsinessm
 - 

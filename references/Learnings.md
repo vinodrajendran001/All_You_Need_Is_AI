@@ -654,4 +654,4 @@ Next Gen UI
 - Pia asked us to come up with a requirements for Demo to discuss with AWS on deploying our solution
 - Multimodal understanding - Initial study made using Gemini, Microsoft Phi and Qwen2.5-VL. It could able to decode the drowsiness, distraction , emotion to an extent well. Initial experiments suggest to be more explicit with the prompt
 - Human factor rule base - updated the rule base with a focus on describing the characteristics of the desired assets instead of being specific to each media type to make it more robust.
-The 
+Human factor expert came up with a score based approach for layout type selection but curre

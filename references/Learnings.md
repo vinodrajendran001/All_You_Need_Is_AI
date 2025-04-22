@@ -641,4 +641,4 @@ These 7 GitHub repos are the ones I always recommend:
 	1. streams of lifelong experience 
 	2. sensor‑motor actions
 	3. grounded rewards
-	4. non‑human modes of reasoning.
+	4. non‑human modes of reasoning

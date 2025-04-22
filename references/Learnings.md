@@ -646,7 +646,6 @@ These 7 GitHub repos are the ones I always recommend:
 - [AI is Like Cars](https://ozorn.in/blog/ai-cars/)
 
 
-Vinod:
 
 
 

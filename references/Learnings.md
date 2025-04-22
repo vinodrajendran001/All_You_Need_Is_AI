@@ -657,6 +657,8 @@ Next Gen UI
 	Human factor expert came up with a score based approach for layout type selection but current this has gap in selecting the variant of layout
 Corp lab phase 2:
 
+- Discussion with Dah Chiun about UI scaling framework topic for corp lab phase 2 and it was decided to 
+
 two topics are finalized 
 - Methods to make Perception-based ADAS models deployable on HPC - high priority
 - LLMs on HPC - low priority

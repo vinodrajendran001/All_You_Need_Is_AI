@@ -659,4 +659,9 @@ Corp lab phase 2:
 
 two topics are finalized 
 - Methods to make Perception-based ADAS models deployable on HPC - high priority
-- LLMs on HPC - 
+- LLMs on HPC - low priority
+
+
+- UI scaling framework is out of scope for corp lab phase 2
+
+

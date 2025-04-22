@@ -638,4 +638,7 @@ These 7 GitHub repos are the ones I always recommend:
 	    A hypergraph-based RAG method. By capturing both pairwise and complex relationships in domain-specific knowledge, it improves factual accuracy and reduces hallucinations, especially in high-stakes fields like medicine, surpassing Graph RAG and Light RAG. Its lightweight version also doubles retrieval speed
 
 - From “Era of Human Data” to “Era of Experience”
-	- 
+	1. streams of lifelong experience 
+	2. sensor‑motor actions
+	3. grounded rewards
+	4. non‑human modes of reasoning.

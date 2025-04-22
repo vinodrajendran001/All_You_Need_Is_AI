@@ -658,4 +658,4 @@ Next Gen UI
 Corp lab phase 2:
 
 two topics are finalized 
-- 
+- Bringing Perception-based ADAS  models on HPC 

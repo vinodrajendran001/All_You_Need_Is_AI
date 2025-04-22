@@ -650,4 +650,4 @@ Vinod:
 
 Next Gen UI
 
-- 
+- Software architect exploring SKIVI tool - A Android base - UI tool developed by ele

@@ -627,3 +627,4 @@ These 7 GitHub repos are the ones I always recommend:
 	  
 	8. CDF-RAG -> [CDF-RAG: Causal Dynamic Feedback for Adaptive Retrieval-Augmented Generation (2504.12560)](https://huggingface.co/papers/2504.12560)  
 	Works with causal graphs and enables multi-hop causal reasoning, refining queries. It validates responses against causal pathways
+	

@@ -648,25 +648,5 @@ These 7 GitHub repos are the ones I always recommend:
 
 Vinod:
 
-Next Gen UI
 
-- Software architect exploring SKIVI tool - A Android base - UI tool developed by electrobit
-- Pia asked us to come up with a requirements for Demo to discuss with AWS on deploying our solution
-- Multimodal understanding - Initial study made using Gemini, Microsoft Phi and Qwen2.5-VL. It could able to decode the drowsiness, distraction , emotion to an extent well. Initial experiments suggest to be more explicit with the prompt
-- Human factor rule base - updated the rule base with a focus on describing the characteristics of the desired assets instead of being specific to each media type to make it more robust.
-	Human factor expert came up with a score based approach for layout type selection but current this has gap in selecting the variant of layout
-	
-Corp lab phase 2:
-
-- Discussion with Dah Chiun about UI scaling framework topic for corp lab phase 2 and it was decided to remove it from phase 2 topic
-
-- two topics are finalized 
-	- Methods to make Perception-based ADAS models deployable on HPC - high priority
-	- LLMs on HPC - low priority
-
-
-Expert:
-	- Updated SG AOT leaders about the expert nomination process and timeline
-	- Discussion with Vincent as part of AI hours - AI art, Claude's AI microscope findings - He requested to contribute something to AI art which can develop curiosity for the people about generative AI - I made a small video using AI video platform you'll see it next week
-	- This Thursday will be vi
 

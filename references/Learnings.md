@@ -667,6 +667,6 @@ Corp lab phase 2:
 
 Expert:
 	- Updated SG AOT leaders about the expert nomination process and timeline
-	- Discussion with Vincent as part of AI hours - AI art, Claude's AI microscope findings - He requested to contribute something to AI art which can develop curiosity for the people about generative AI - I made a small video using AI video pl
-	- 
+	- Discussion with Vincent as part of AI hours - AI art, Claude's AI microscope findings - He requested to contribute something to AI art which can develop curiosity for the people about generative AI - I made a small video using AI video platform you'll see it next week
+	- This Thursday will be vi
 

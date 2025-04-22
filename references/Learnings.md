@@ -627,4 +627,15 @@ These 7 GitHub repos are the ones I always recommend:
 	  
 	8. CDF-RAG -> [CDF-RAG: Causal Dynamic Feedback for Adaptive Retrieval-Augmented Generation (2504.12560)](https://huggingface.co/papers/2504.12560)  
 	Works with causal graphs and enables multi-hop causal reasoning, refining queries. It validates responses against causal pathways
-	
+
+	9. NodeRAG -> [https://huggingface.co/papers/2504.11544](https://huggingface.co/papers/2504.11544)  
+	    Uses well-designed heterogeneous graph structures and focuses on graph design to ensure smooth integration of graph algorithms. It outperforms GraphRAG and LightRAG on multi-hop and open-ended QA benchmarks
+	    
+	10. HeteRAG -> [https://huggingface.co/papers/2504.10529](https://huggingface.co/papers/2504.10529)  
+	    This heterogeneous RAG framework decouples knowledge chunk representations. It uses multi-granular views for retrieval and concise chunks for generation, along with adaptive prompt tuning
+	    
+	11. Hyper-RAG -> [https://huggingface.co/papers/2504.08758](https://huggingface.co/papers/2504.08758)  
+	    A hypergraph-based RAG method. By capturing both pairwise and complex relationships in domain-specific knowledge, it improves factual accuracy and reduces hallucinations, especially in high-stakes fields like medicine, surpassing Graph RAG and Light RAG. Its lightweight version also doubles retrieval speed
+
+- From “Era of Human Data” to “Era of Experience”
+	- 

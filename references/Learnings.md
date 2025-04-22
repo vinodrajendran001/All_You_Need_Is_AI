@@ -651,4 +651,6 @@ Vinod:
 Next Gen UI
 
 - Software architect exploring SKIVI tool - A Android base - UI tool developed by elextrobit
-- Pia asked us to come up with a requirements for Demo to discuss t
+- Pia asked us to come up with a requirements for Demo to discuss with AWS on deploying our solution
+- Multimodal understanding - Initial study made using Gemini and Microsoft 
+- 

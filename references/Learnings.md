@@ -667,5 +667,5 @@ Corp lab phase 2:
 
 Expert:
 	- Updated SG AOT leaders about the expert nomination process and timeline
-	- Discussion with Vincent as part of AI
+	- Discussion with Vincent as part of AI hours - AI art, Claude's AI microscope findings - He requested to contribute something to AI art which can develop curiosity for the people 
 

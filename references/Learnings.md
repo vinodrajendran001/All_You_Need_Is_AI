@@ -666,5 +666,6 @@ Corp lab phase 2:
 
 
 Expert:
-	- Updated SG AOT leaders about the expe
+	- Updated SG AOT leaders about the expert nomination process and timeline
+	- Discussion with Vincent about 
 

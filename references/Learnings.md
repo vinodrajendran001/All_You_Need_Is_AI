@@ -648,7 +648,8 @@ These 7 GitHub repos are the ones I always recommend:
 
 # 29.04.2025
 
-- AgenticSeek: Private, Local Manus Alternative
+- AgenticSeek: Private, Local Manus Alternative - [Fosowl/agenticSeek: A open, local Manus AI alternative. No APIs, No $200 monthly bills. Enjoy an autonomous agent that thinks, browses the web, and code for the sole cost of electricity.](https://github.com/Fosowl/agenticSeek)
+- 
 
 
 

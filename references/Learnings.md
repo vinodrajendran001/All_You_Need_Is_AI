@@ -646,6 +646,9 @@ These 7 GitHub repos are the ones I always recommend:
 - [AI is Like Cars](https://ozorn.in/blog/ai-cars/)
 
 
+# 29.04.2025
+
+- AgenticSeek: Private, Local Manus Alternative
 
 
 

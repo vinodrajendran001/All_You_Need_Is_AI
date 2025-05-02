@@ -657,8 +657,7 @@ These 7 GitHub repos are the ones I always recommend:
   An open-source LLM evaluation tool used to debug, evaluate, monitor LLM applications, RAG systems, and agentic workflows with comprehensive tracing, automated evaluations, and production-ready dashboards.
 - [allenai/OLMoE: OLMoE: Open Mixture-of-Experts Language Models](https://github.com/allenai/OLMoE)
   Fully open, state-of-the-art Mixture of Expert model with 1.3 billion active and 6.9 billion total parameters.
-- [https://ai.stanford.edu/blog/verbatim-memorization/](Demystifying Verbatim Memorization in Large Language Models)
-- 
+- [Demystifying Verbatim Memorization in Large Language Models](https://ai.stanford.edu/blog/verbatim-memorization/)
 
 
 

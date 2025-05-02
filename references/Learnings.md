@@ -653,7 +653,9 @@ These 7 GitHub repos are the ones I always recommend:
 
 # 02.05.2025
 
-
+- https://github.com/comet-ml/opik
+  An open-source LLM evaluation tool used to debug, evaluate, monitor LLM applications, RAG systems, and agentic workflows with comprehensive tracing, automated evaluations, and production-ready dashboards.
+- 
 
 
 

@@ -668,5 +668,5 @@ These 7 GitHub repos are the ones I always recommend:
 	- **Big Context Window**: Supports 32K tokens by default and can be extended to 64K, making it well-suited for long documents such as legal cases, financial reports, or dense academic papers.
 - Amazon's NOVA premier is built to teach
   ![[Pasted image 20250505093614.png]]
-- 
+
 

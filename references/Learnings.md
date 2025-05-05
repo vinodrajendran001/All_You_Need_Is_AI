@@ -662,6 +662,11 @@ These 7 GitHub repos are the ones I always recommend:
 
 # 05.05.2025
 
-
+- Microsoft Phi 4 Reasoning Models:
+	- **Chain-Of-Thought Reasoning**: These models follow a clear, step-by-step approach to problem-solving, making their logic transparent and more reliable compared to other compact models that often rely on quick guesses.
+    
+-**High-Quality Training**: Phi-4 Mini was trained on 1M synthetic math questions from DeepSeek R1. The larger models were trained on curated web content and OpenAI's o3-mini demos.
+    
+- **Big Context Window**: Supports 32K tokens by default and can be extended to 64K, making it well-suited for long documents such as legal cases, financial reports, or dense academic papers.
 
 

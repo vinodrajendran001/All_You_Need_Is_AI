@@ -1,5 +1,5 @@
 
-# Mechanistic interpretability of LLMs
+## Abstract
 
 Mechanistic interpretability seeks to explain the internal workings of large language models (LLMs) by decomposing their computations into human‐understandable components such as neurons, circuits, and representations, and recent research has produced a wealth of methodologies to formalize, test, and apply such explanations (1.1)
 
@@ -36,4 +36,9 @@ Despite significant progress, several challenges remain in the field of mechanis
 ### Applications and Implications for AI Safety and Model Alignment 
 
 Mechanistic interpretability does not only advance theoretical understanding but also has significant practical implications for AI safety, model auditability, and robustness. By identifying specific circuits or neurons that contribute to undesirable behaviors such as hallucination, bias, or over-reliance on spurious correlations, researchers can target interventions to edit or steer model behavior without harming overall performance (5.4, 3.2). Such interventions have been successfully applied to factual knowledge editing and safety steering, enabling models to be both more controllable and less prone to undesirable outputs in high-stakes applications such as financial services or healthcare (9.3, 17.1). In turn, this detailed mechanistic understanding forms the foundation for rigorous validation and certification protocols that are essential for deploying LLMs in safety-critical environments (2.2, 3.1).
+
+
+
+
+
 

@@ -40,6 +40,8 @@ Mechanistic interpretability does not only advance theoretical understanding but
 ### Future Research Directions and Promising Areas for Publication
 
 1. Development of automated hypothesis generation methods that integrate human-in-the-loop approaches with large-scale causal testing frameworks; such methods would reduce the manual effort involved in circuit discovery and provide scalable techniques to analyze even trillion-parameter models (2.5, 12.1).
+2. There is a need to develop dynamic interpretability methods that account for the temporal evolution of representations during training, particularly focusing on the abrupt phase transitions associated with emergent capabilities; this research could leverage advanced visualization and real-time perturbation techniques, bridging the gap between static interpretability and dynamic learning processes in LLMs (16.2, 2.7)
+3. 
 
 
 

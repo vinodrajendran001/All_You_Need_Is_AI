@@ -670,3 +670,6 @@ These 7 GitHub repos are the ones I always recommend:
   ![[Pasted image 20250505093614.png]]
 
 
+# 06.05.2025
+
+- 

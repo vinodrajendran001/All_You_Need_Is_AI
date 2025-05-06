@@ -672,4 +672,5 @@ These 7 GitHub repos are the ones I always recommend:
 
 # 06.05.2025
 
+- https://huggingface.co/learn - HuggingFace just dropped 9 new courses to level up your AI skills.
 - 

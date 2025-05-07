@@ -679,7 +679,7 @@ These 7 GitHub repos are the ones I always recommend:
 
 # 07.05.2025
 
-- [Scaling Long Context and RAG: Insights from Google DeepMind]([Google AI: Release Notes podcast episode on long context](https://blog.google/technology/google-deepmind/release-notes-podcast-long-context/?utm_source=alphasignal))
+- [Scaling Long Context and RAG: Insights from Google DeepMind]([Google AI: Release Notes podcast episode on long context](https://blog.google/technology/google-deepmind/release-notes-podcast-long-context/))
   The "Release Notes Podcast: Long Context and RAG" episode by Google Deepmind dives deep into scaling context windows and improving long-context models. Hosted by Logan Kilpatrick, Google DeepMind’s Nikolay Savinov explores key challenges and advancements in this area, with a focus on Retrieval-Augmented Generation (RAG) and long context models.  
   You will learn:
 	- Why token count matters and how models handle multi-million-token inputs  

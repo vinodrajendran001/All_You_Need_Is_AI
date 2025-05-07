@@ -692,5 +692,5 @@ These 7 GitHub repos are the ones I always recommend:
 - The workflow to make videos: 
 	1. GPT-4o wrote the script (I made some tweaks) 
 	2. [@krea_ai](https://x.com/krea_ai)generated the starting image 
-	3. [@elevenlabsio](https://x.com/elevenlabsio) made the audio (I used one of the ASMR voices in the library) 
+	3. [@elevenlabsio](https://x.com/elevenlabsio) made the audio
 	4. [@hedra_labs](https://x.com/hedra_labs) animated it

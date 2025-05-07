@@ -688,4 +688,10 @@ These 7 GitHub repos are the ones I always recommend:
 	- What’s changed since the 1.5 Pro release in terms of attention and inference  
 	- Tips for structuring inputs, optimizing infrastructure, and managing cost  
 	- Where long context fits into agent architectures and reasoning workflows
-- To m
+- The workflow to make videos: 
+	1. GPT-4o wrote the script (I made some tweaks) 
+	2. [@krea_ai](https://x.com/krea_ai)generated the starting image 
+	3. 
+
+[@elevenlabsio](https://x.com/elevenlabsio) made the audio (I used one of the ASMR voices in the library) 
+4.[@hedra_labs](https://x.com/hedra_labs) animated it

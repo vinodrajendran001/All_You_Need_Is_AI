@@ -694,3 +694,8 @@ These 7 GitHub repos are the ones I always recommend:
 	2. [@krea_ai](https://x.com/krea_ai)generated the starting image 
 	3. [@elevenlabsio](https://x.com/elevenlabsio) made the audio
 	4. [@hedra_labs](https://x.com/hedra_labs) animated it
+
+# 08.05.2025
+
+- Official inference framework for 1-bit LLMs - https://github.com/microsoft/bitnet
+- 

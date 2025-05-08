@@ -698,4 +698,4 @@ These 7 GitHub repos are the ones I always recommend:
 # 08.05.2025
 
 - Official inference framework for 1-bit LLMs - https://github.com/microsoft/bitnet
-- 
+- Olympus: A Universal Task Router for Computer Vision Tasks - https://github.com/yuanze-lin/Olympus

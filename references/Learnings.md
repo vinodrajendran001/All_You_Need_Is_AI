@@ -1,4 +1,4 @@
-pip install## 27.02.2025
+## 27.02.2025
 
 - [A guide to JAX for PyTorch developers | Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/guide-to-jax-for-pytorch-developers)
 - [deeptutor.knowhiz.us/upload](https://deeptutor.knowhiz.us/upload) - Paper reading assistant with deeper understanding.

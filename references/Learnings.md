@@ -700,4 +700,5 @@ These 7 GitHub repos are the ones I always recommend:
 - Official inference framework for 1-bit LLMs - https://github.com/microsoft/bitnet
 - Olympus: A Universal Task Router for Computer Vision Tasks - https://github.com/yuanze-lin/Olympus
 - [What Every AI Engineer Should Know About A2A, MCP & ACP | by Edwin Lisowski | Apr, 2025 | Medium](https://medium.com/@elisowski/what-every-ai-engineer-should-know-about-a2a-mcp-acp-8335a210a742)
+  ![[Pasted image 20250508100420.png]]
 - 

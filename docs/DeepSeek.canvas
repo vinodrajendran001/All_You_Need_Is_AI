@@ -10,7 +10,7 @@
 		{"id":"6a68c7106db212c2","type":"file","file":"All_You_Need_Is_AI/docs/Images/Pasted image 20250509103632.png","x":-140,"y":160,"width":399,"height":216},
 		{"id":"66eb8efe3618d93f","x":300,"y":77,"width":400,"height":383,"type":"file","file":"Pasted image 20250509103810.png"},
 		{"id":"3be87468d59de86e","x":780,"y":160,"width":250,"height":60,"type":"text","text":"Emergent behavior"},
-		{"id":"c2d19b64d22a0f78","x":185,"y":652,"width":250,"height":60,"type":"text","text":"As the size of mode increases "}
+		{"id":"c2d19b64d22a0f78","x":323,"y":762,"width":355,"height":68,"type":"text","text":"As the size of model increases -> LLM properties emerge"}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
@@ -18,6 +18,7 @@
 		{"id":"46359842809339ba","fromNode":"b02d672a35ec7f73","fromSide":"bottom","toNode":"3bb65cb2d15e2fe0","toSide":"left"},
 		{"id":"5f9bcfe939a5c185","fromNode":"66eb8efe3618d93f","fromSide":"right","toNode":"3be87468d59de86e","toSide":"left"},
 		{"id":"b3694ecf13fa8ece","fromNode":"467b0df69ca9600f","fromSide":"bottom","toNode":"bc48ddb9164b1b43","toSide":"left"},
-		{"id":"7426058ee1db1f86","fromNode":"3bb65cb2d15e2fe0","fromSide":"bottom","toNode":"6a68c7106db212c2","toSide":"left"}
+		{"id":"7426058ee1db1f86","fromNode":"3bb65cb2d15e2fe0","fromSide":"bottom","toNode":"6a68c7106db212c2","toSide":"left"},
+		{"id":"3d0ecab69b4c0ed6","fromNode":"bc48ddb9164b1b43","fromSide":"right","toNode":"c2d19b64d22a0f78","toSide":"left"}
 	]
 }

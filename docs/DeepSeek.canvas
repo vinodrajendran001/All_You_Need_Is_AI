@@ -7,7 +7,9 @@
 		{"id":"3bb65cb2d15e2fe0","type":"text","text":"LLMs have billions of parameters","x":-330,"y":60,"width":250,"height":60},
 		{"id":"6a68c7106db212c2","type":"file","file":"All_You_Need_Is_AI/docs/Images/Pasted image 20250509103632.png","x":-327,"y":160,"width":399,"height":216},
 		{"id":"66eb8efe3618d93f","x":140,"y":77,"width":400,"height":383,"type":"file","file":"Pasted image 20250509103810.png"},
-		{"id":"3be87468d59de86e","x":600,"y":160,"width":250,"height":60,"type":"text","text":"Emergent behavior"}
+		{"id":"3be87468d59de86e","x":600,"y":160,"width":250,"height":60,"type":"text","text":"Emergent behavior"},
+		{"id":"467b0df69ca9600f","type":"text","text":"## Emergent properties","x":-455,"y":560,"width":375,"height":60},
+		{"id":"bc48ddb9164b1b43","x":-330,"y":720,"width":400,"height":232,"type":"file","file":"Pasted image 20250509104002.png"}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},

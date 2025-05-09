@@ -34,7 +34,8 @@
 		{"id":"08e07cca9f82a491","type":"text","text":"### Mixture of Experts (MoE)","x":-672,"y":3200,"width":250,"height":60},
 		{"id":"a7e592b4259855b4","type":"text","text":"### Multi-token prediction (MTP)","x":-672,"y":3300,"width":250,"height":60},
 		{"id":"46204befcc1e0c4f","type":"text","text":"### Quantization","x":-672,"y":3400,"width":250,"height":60},
-		{"id":"1eae3e94f1f00a89","type":"text","text":"### Rotary Positional Encodings (RoPE)","x":-672,"y":3500,"width":250,"height":80}
+		{"id":"1eae3e94f1f00a89","type":"text","text":"### Rotary Positional Encodings (RoPE)","x":-672,"y":3500,"width":250,"height":80},
+		{"id":"aa6380369165019d","type":"text","text":"### The Rise of RL","x":-280,"y":3100,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},

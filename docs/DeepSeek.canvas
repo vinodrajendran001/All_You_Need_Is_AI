@@ -39,7 +39,7 @@
 		{"id":"feb832feac32fa91","type":"text","text":"### NVIDIA Parallel Thread Execution (PTX)","x":160,"y":3100,"width":360,"height":100},
 		{"id":"ebf6a7b05f3cc575","type":"text","text":"## Model Ecosystem","x":620,"y":2980,"width":345,"height":60},
 		{"id":"686721a3b7227d31","type":"text","text":"### Model distillation into small models","x":680,"y":3100,"width":360,"height":100},
-		{"id":"4da982af2dc0885f","type":"text","text":"### The Rise of RL - GRPO\n\nuse RL to teach complex reasoning of the model","x":-280,"y":3340,"width":360,"height":160}
+		{"id":"4da982af2dc0885f","type":"text","text":"### Rule-based reward system","x":-280,"y":3340,"width":360,"height":90}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
@@ -69,8 +69,9 @@
 		{"id":"e119c897e941f460","fromNode":"37ed3c08d5d980d0","fromSide":"left","toNode":"a7e592b4259855b4","toSide":"left"},
 		{"id":"ee72dc7a554d7740","fromNode":"37ed3c08d5d980d0","fromSide":"left","toNode":"46204befcc1e0c4f","toSide":"left"},
 		{"id":"eb1840bc379cb0d1","fromNode":"37ed3c08d5d980d0","fromSide":"left","toNode":"1eae3e94f1f00a89","toSide":"left"},
-		{"id":"b71622a4f8152cb8","fromNode":"6a62121fa62e8383","fromSide":"bottom","toNode":"aa6380369165019d","toSide":"top"},
 		{"id":"8c58e3ee67ee5926","fromNode":"aef410a39d7c9ed8","fromSide":"bottom","toNode":"feb832feac32fa91","toSide":"top"},
-		{"id":"0a3ea388ae0319ea","fromNode":"ebf6a7b05f3cc575","fromSide":"bottom","toNode":"686721a3b7227d31","toSide":"top"}
+		{"id":"0a3ea388ae0319ea","fromNode":"ebf6a7b05f3cc575","fromSide":"bottom","toNode":"686721a3b7227d31","toSide":"top"},
+		{"id":"2d3739e63b5b9c7a","fromNode":"6a62121fa62e8383","fromSide":"left","toNode":"aa6380369165019d","toSide":"left"},
+		{"id":"1a9bbc169ebeef0d","fromNode":"6a62121fa62e8383","fromSide":"left","toNode":"4da982af2dc0885f","toSide":"left"}
 	]
 }

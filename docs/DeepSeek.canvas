@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"2dd9677741874ebd","x":-580,"y":-240,"width":250,"height":60,"type":"text","text":"Sequence of words"},
+		{"id":"4576f4be0c8095df","x":-200,"y":-240,"width":145,"height":60,"type":"text","text":"# LLM"},
+		{"id":"949558b242e40a0c","x":60,"y":-240,"width":250,"height":60,"type":"text","text":"Next token prediction"}
+	],
+	"edges":[
+		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
+		{"id":"d3b7eb4a04fee603","fromNode":"4576f4be0c8095df","fromSide":"right","toNode":"949558b242e40a0c","toSide":"left"}
+	]
+}

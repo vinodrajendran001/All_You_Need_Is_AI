@@ -12,7 +12,9 @@
 		{"id":"3be87468d59de86e","x":780,"y":160,"width":250,"height":60,"type":"text","text":"Emergent behavior"},
 		{"id":"c2d19b64d22a0f78","x":323,"y":762,"width":355,"height":68,"type":"text","text":"As the size of model increases -> LLM properties emerge"},
 		{"id":"09863f2356a2766a","x":-455,"y":1040,"width":250,"height":60,"type":"text","text":"## Tasks"},
-		{"id":"7913beeb39cd0fbd","x":-180,"y":1220,"width":250,"height":60,"type":"text","text":"LLMs can do a wide range of task"}
+		{"id":"7913beeb39cd0fbd","x":-180,"y":1220,"width":250,"height":60,"type":"text","text":"LLMs can do a wide range of tasks"},
+		{"id":"7dac9b18455ecd45","type":"text","text":"## Transformers","x":-455,"y":1440,"width":250,"height":60},
+		{"id":"203f0496a411dff5","x":-180,"y":1620,"width":250,"height":60,"type":"text","text":"Secret sauce"}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
@@ -21,6 +23,8 @@
 		{"id":"5f9bcfe939a5c185","fromNode":"66eb8efe3618d93f","fromSide":"right","toNode":"3be87468d59de86e","toSide":"left"},
 		{"id":"b3694ecf13fa8ece","fromNode":"467b0df69ca9600f","fromSide":"bottom","toNode":"bc48ddb9164b1b43","toSide":"left"},
 		{"id":"7426058ee1db1f86","fromNode":"3bb65cb2d15e2fe0","fromSide":"bottom","toNode":"6a68c7106db212c2","toSide":"left"},
-		{"id":"3d0ecab69b4c0ed6","fromNode":"bc48ddb9164b1b43","fromSide":"right","toNode":"c2d19b64d22a0f78","toSide":"left"}
+		{"id":"3d0ecab69b4c0ed6","fromNode":"bc48ddb9164b1b43","fromSide":"right","toNode":"c2d19b64d22a0f78","toSide":"left"},
+		{"id":"4804c1ec0c63ec62","fromNode":"09863f2356a2766a","fromSide":"bottom","toNode":"7913beeb39cd0fbd","toSide":"left"},
+		{"id":"e5455f9a579f13fa","fromNode":"7dac9b18455ecd45","fromSide":"bottom","toNode":"203f0496a411dff5","toSide":"left"}
 	]
 }

@@ -5,11 +5,14 @@
 		{"id":"949558b242e40a0c","type":"text","text":"Next token prediction","x":60,"y":-240,"width":250,"height":60},
 		{"id":"b02d672a35ec7f73","type":"text","text":"## Size","x":-455,"y":-40,"width":125,"height":50},
 		{"id":"3bb65cb2d15e2fe0","type":"text","text":"LLMs have billions of parameters","x":-330,"y":60,"width":250,"height":60},
-		{"id":"6a68c7106db212c2","type":"file","file":"All_You_Need_Is_AI/docs/Images/Pasted image 20250509103632.png","x":-327,"y":160,"width":399,"height":216}
+		{"id":"6a68c7106db212c2","type":"file","file":"All_You_Need_Is_AI/docs/Images/Pasted image 20250509103632.png","x":-327,"y":160,"width":399,"height":216},
+		{"id":"66eb8efe3618d93f","x":140,"y":77,"width":400,"height":383,"type":"file","file":"Pasted image 20250509103810.png"},
+		{"id":"3be87468d59de86e","x":600,"y":160,"width":250,"height":60,"type":"text","text":"Emergent behavior"}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
 		{"id":"d3b7eb4a04fee603","fromNode":"4576f4be0c8095df","fromSide":"right","toNode":"949558b242e40a0c","toSide":"left"},
-		{"id":"46359842809339ba","fromNode":"b02d672a35ec7f73","fromSide":"bottom","toNode":"3bb65cb2d15e2fe0","toSide":"left"}
+		{"id":"46359842809339ba","fromNode":"b02d672a35ec7f73","fromSide":"bottom","toNode":"3bb65cb2d15e2fe0","toSide":"left"},
+		{"id":"5f9bcfe939a5c185","fromNode":"66eb8efe3618d93f","fromSide":"right","toNode":"3be87468d59de86e","toSide":"left"}
 	]
 }

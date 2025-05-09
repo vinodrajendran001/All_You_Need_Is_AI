@@ -1,6 +1,5 @@
 {
 	"nodes":[
-		{"id":"37ed3c08d5d980d0","x":-104,"y":2867,"width":250,"height":60,"type":"text","text":""},
 		{"id":"2dd9677741874ebd","type":"text","text":"Sequence of words","x":-580,"y":-240,"width":250,"height":60},
 		{"id":"4576f4be0c8095df","type":"text","text":"# LLM","x":-200,"y":-240,"width":145,"height":60},
 		{"id":"949558b242e40a0c","type":"text","text":"Next token prediction","x":60,"y":-240,"width":250,"height":60},
@@ -27,7 +26,10 @@
 		{"id":"e667dfb2f8e0314a","type":"text","text":"671B","x":-60,"y":2595,"width":250,"height":60},
 		{"id":"81695a62b4a4b67b","type":"text","text":"R1","x":-227,"y":2700,"width":107,"height":50},
 		{"id":"1944b16ad5a31683","type":"text","text":"Reasoning model","x":-60,"y":2695,"width":250,"height":60},
-		{"id":"2df491605917a3ee","x":-455,"y":2840,"width":520,"height":60,"type":"text","text":"# What is special about DeepSeek?"}
+		{"id":"2df491605917a3ee","x":-455,"y":2840,"width":520,"height":60,"type":"text","text":"# What is special about DeepSeek?"},
+		{"id":"37ed3c08d5d980d0","x":-720,"y":2980,"width":345,"height":60,"type":"text","text":"## Innovative Architecture"},
+		{"id":"6a62121fa62e8383","type":"text","text":"## Training Methodology","x":-320,"y":2980,"width":345,"height":60},
+		{"id":"aef410a39d7c9ed8","type":"text","text":"## ","x":80,"y":2980,"width":345,"height":60}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},

@@ -10,7 +10,9 @@
 		{"id":"6a68c7106db212c2","type":"file","file":"All_You_Need_Is_AI/docs/Images/Pasted image 20250509103632.png","x":-140,"y":160,"width":399,"height":216},
 		{"id":"66eb8efe3618d93f","x":300,"y":77,"width":400,"height":383,"type":"file","file":"Pasted image 20250509103810.png"},
 		{"id":"3be87468d59de86e","x":780,"y":160,"width":250,"height":60,"type":"text","text":"Emergent behavior"},
-		{"id":"c2d19b64d22a0f78","x":323,"y":762,"width":355,"height":68,"type":"text","text":"As the size of model increases -> LLM properties emerge"}
+		{"id":"c2d19b64d22a0f78","x":323,"y":762,"width":355,"height":68,"type":"text","text":"As the size of model increases -> LLM properties emerge"},
+		{"id":"09863f2356a2766a","x":-455,"y":1040,"width":250,"height":60,"type":"text","text":"## Tasks"},
+		{"id":"7913beeb39cd0fbd","x":-180,"y":1220,"width":250,"height":60,"type":"text","text":"LLMs can do a wide range of task"}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},

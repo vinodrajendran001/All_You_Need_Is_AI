@@ -16,7 +16,7 @@
 		{"id":"7dac9b18455ecd45","type":"text","text":"## Transformers","x":-455,"y":1440,"width":250,"height":60},
 		{"id":"203f0496a411dff5","x":-180,"y":1620,"width":250,"height":60,"type":"text","text":"Secret sauce"},
 		{"id":"64b310da76b49050","x":-455,"y":1780,"width":730,"height":60,"type":"text","text":"# Building LLMs = Pretraining + Finetuning"},
-		{"id":"d46e004349573ba0","x":-20,"y":1960,"width":552,"height":280,"type":"file","file":"Pasted image 20250509104543.png"}
+		{"id":"33efdb08f1ed0bde","x":0,"y":1940,"width":640,"height":283,"type":"file","file":"Pasted image 20250509104746.png"}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
@@ -28,6 +28,6 @@
 		{"id":"3d0ecab69b4c0ed6","fromNode":"bc48ddb9164b1b43","fromSide":"right","toNode":"c2d19b64d22a0f78","toSide":"left"},
 		{"id":"4804c1ec0c63ec62","fromNode":"09863f2356a2766a","fromSide":"bottom","toNode":"7913beeb39cd0fbd","toSide":"left"},
 		{"id":"e5455f9a579f13fa","fromNode":"7dac9b18455ecd45","fromSide":"bottom","toNode":"203f0496a411dff5","toSide":"left"},
-		{"id":"e8b7dfe0845872e6","fromNode":"64b310da76b49050","fromSide":"bottom","toNode":"d46e004349573ba0","toSide":"left"}
+		{"id":"102e7d455d5a9621","fromNode":"64b310da76b49050","fromSide":"bottom","toNode":"33efdb08f1ed0bde","toSide":"left"}
 	]
 }

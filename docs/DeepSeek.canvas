@@ -26,10 +26,12 @@
 		{"id":"e667dfb2f8e0314a","type":"text","text":"671B","x":-60,"y":2595,"width":250,"height":60},
 		{"id":"81695a62b4a4b67b","type":"text","text":"R1","x":-227,"y":2700,"width":107,"height":50},
 		{"id":"1944b16ad5a31683","type":"text","text":"Reasoning model","x":-60,"y":2695,"width":250,"height":60},
-		{"id":"2df491605917a3ee","x":-455,"y":2840,"width":520,"height":60,"type":"text","text":"# What is special about DeepSeek?"},
 		{"id":"37ed3c08d5d980d0","x":-720,"y":2980,"width":345,"height":60,"type":"text","text":"## Innovative Architecture"},
 		{"id":"6a62121fa62e8383","type":"text","text":"## Training Methodology","x":-320,"y":2980,"width":345,"height":60},
-		{"id":"aef410a39d7c9ed8","type":"text","text":"## ","x":80,"y":2980,"width":345,"height":60}
+		{"id":"aef410a39d7c9ed8","type":"text","text":"## GPU Optimization Tricks","x":80,"y":2980,"width":345,"height":60},
+		{"id":"2df491605917a3ee","x":-407,"y":2820,"width":520,"height":60,"type":"text","text":"# What is special about DeepSeek?"},
+		{"id":"bbb35e103512b6cd","x":-672,"y":3100,"width":250,"height":60,"type":"text","text":"### Multi-head Latent Attention"},
+		{"id":"08e07cca9f82a491","type":"text","text":"### Multi-head Latent Attention","x":-672,"y":3200,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
@@ -50,6 +52,9 @@
 		{"id":"70725e7dee065e0f","fromNode":"e3b83d6ca066b33f","fromSide":"bottom","toNode":"16210ed843f6fb3a","toSide":"left"},
 		{"id":"4245d1c00720da54","fromNode":"81695a62b4a4b67b","fromSide":"right","toNode":"1944b16ad5a31683","toSide":"left"},
 		{"id":"411ddcb8b6d84680","fromNode":"e3b83d6ca066b33f","fromSide":"bottom","toNode":"81695a62b4a4b67b","toSide":"left"},
-		{"id":"91ce82a7cbbc4049","fromNode":"16210ed843f6fb3a","fromSide":"bottom","toNode":"81695a62b4a4b67b","toSide":"top","color":"1"}
+		{"id":"91ce82a7cbbc4049","fromNode":"16210ed843f6fb3a","fromSide":"bottom","toNode":"81695a62b4a4b67b","toSide":"top","color":"1"},
+		{"id":"00561764f88ec5a7","fromNode":"2df491605917a3ee","fromSide":"bottom","toNode":"37ed3c08d5d980d0","toSide":"top"},
+		{"id":"c9097ae5e296c49e","fromNode":"2df491605917a3ee","fromSide":"bottom","toNode":"6a62121fa62e8383","toSide":"top"},
+		{"id":"76ce495cc663808f","fromNode":"2df491605917a3ee","fromSide":"bottom","toNode":"aef410a39d7c9ed8","toSide":"top"}
 	]
 }

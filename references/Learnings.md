@@ -703,3 +703,19 @@ These 7 GitHub repos are the ones I always recommend:
   ![[Pasted image 20250508100420.png]]
 - [Building News Agents for Daily News Recaps with MCP, Q, and tmux](https://eugeneyan.com/writing/news-agents/)
 
+
+# 09.05.2025
+
+- DeepSeek series introduction: [https://lnkd.in/gRcNE-sg](https://lnkd.in/gRcNE-sg)  
+-  DeepSeek basics: [https://lnkd.in/gEUzFtrC](https://lnkd.in/gEUzFtrC)  
+-  Journey of a token into the LLM architecture: [https://lnkd.in/gUnabApX](https://lnkd.in/gUnabApX)  
+-  Attention mechanism explained in 1 hour: [https://lnkd.in/gSVXDn2e](https://lnkd.in/gSVXDn2e)  
+-  Self Attention Mechanism - Handwritten from scratch: [https://lnkd.in/gN85qVSK](https://lnkd.in/gN85qVSK)  
+- Causal Attention Explained: Don't Peek into the Future: [https://lnkd.in/gNPwCJWT](https://lnkd.in/gNPwCJWT)  
+- Multi-Head Attention Visually Explained: [https://lnkd.in/gPr-XrwE](https://lnkd.in/gPr-XrwE)  
+- Multi-Head Attention Handwritten from Scratch: [https://lnkd.in/gzb6Xvy6](https://lnkd.in/gzb6Xvy6)  
+- Key Value Cache from Scratch: [https://lnkd.in/gn8zgdc7](https://lnkd.in/gn8zgdc7)  
+- Multi-Query Attention Explained: [https://lnkd.in/gvt3AyRh](https://lnkd.in/gvt3AyRh)  
+(11) Understand Grouped Query Attention (GQA): [https://lnkd.in/geFFq_95](https://lnkd.in/geFFq_95)  
+(12) Multi-Head Latent Attention From Scratch: [https://lnkd.in/g3z8PkCZ](https://lnkd.in/g3z8PkCZ)  
+(13) Multi-Head Latent Attention Coded from Scratch in Python (will premier on 18th April): [https://lnkd.in/g9drDgGZ](https://lnkd.in/g9drDgGZ)

@@ -702,3 +702,4 @@ These 7 GitHub repos are the ones I always recommend:
 - [What Every AI Engineer Should Know About A2A, MCP & ACP | by Edwin Lisowski | Apr, 2025 | Medium](https://medium.com/@elisowski/what-every-ai-engineer-should-know-about-a2a-mcp-acp-8335a210a742)
   ![[Pasted image 20250508100420.png]]
 - [Building News Agents for Daily News Recaps with MCP, Q, and tmux](https://eugeneyan.com/writing/news-agents/)
+

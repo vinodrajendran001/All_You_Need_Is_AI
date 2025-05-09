@@ -17,7 +17,10 @@
 		{"id":"203f0496a411dff5","x":-180,"y":1620,"width":250,"height":60,"type":"text","text":"Secret sauce"},
 		{"id":"64b310da76b49050","x":-455,"y":1780,"width":730,"height":60,"type":"text","text":"# Building LLMs = Pretraining + Finetuning"},
 		{"id":"33efdb08f1ed0bde","x":0,"y":1940,"width":640,"height":283,"type":"file","file":"Pasted image 20250509104746.png"},
-		{"id":"e3b83d6ca066b33f","x":-67,"y":2260,"width":250,"height":60,"type":"text","text":"# Deep"}
+		{"id":"e3b83d6ca066b33f","x":-455,"y":2300,"width":335,"height":60,"type":"text","text":"# DeepSeek Models"},
+		{"id":"af6e64a325d2f480","x":-227,"y":2400,"width":107,"height":50,"type":"text","text":"V1"},
+		{"id":"49801066ea1e917a","x":-60,"y":2395,"width":250,"height":60,"type":"text","text":"Math + Coder"},
+		{"id":"6bf5107ecb0a04a3","type":"text","text":"V1","x":-227,"y":2500,"width":107,"height":50}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
@@ -29,6 +32,8 @@
 		{"id":"3d0ecab69b4c0ed6","fromNode":"bc48ddb9164b1b43","fromSide":"right","toNode":"c2d19b64d22a0f78","toSide":"left"},
 		{"id":"4804c1ec0c63ec62","fromNode":"09863f2356a2766a","fromSide":"bottom","toNode":"7913beeb39cd0fbd","toSide":"left"},
 		{"id":"e5455f9a579f13fa","fromNode":"7dac9b18455ecd45","fromSide":"bottom","toNode":"203f0496a411dff5","toSide":"left"},
-		{"id":"102e7d455d5a9621","fromNode":"64b310da76b49050","fromSide":"bottom","toNode":"33efdb08f1ed0bde","toSide":"left"}
+		{"id":"102e7d455d5a9621","fromNode":"64b310da76b49050","fromSide":"bottom","toNode":"33efdb08f1ed0bde","toSide":"left"},
+		{"id":"766cf65b138234ac","fromNode":"af6e64a325d2f480","fromSide":"right","toNode":"49801066ea1e917a","toSide":"left"},
+		{"id":"db5567bb2edafcb3","fromNode":"e3b83d6ca066b33f","fromSide":"bottom","toNode":"af6e64a325d2f480","toSide":"left"}
 	]
 }

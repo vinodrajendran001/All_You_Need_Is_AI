@@ -20,7 +20,10 @@
 		{"id":"e3b83d6ca066b33f","x":-455,"y":2300,"width":335,"height":60,"type":"text","text":"# DeepSeek Models"},
 		{"id":"af6e64a325d2f480","x":-227,"y":2400,"width":107,"height":50,"type":"text","text":"V1"},
 		{"id":"49801066ea1e917a","x":-60,"y":2395,"width":250,"height":60,"type":"text","text":"Math + Coder"},
-		{"id":"6bf5107ecb0a04a3","type":"text","text":"V1","x":-227,"y":2500,"width":107,"height":50}
+		{"id":"f1b5839699d25398","type":"text","text":"Coder","x":-60,"y":2495,"width":250,"height":60},
+		{"id":"6bf5107ecb0a04a3","type":"text","text":"V2","x":-227,"y":2500,"width":107,"height":50},
+		{"id":"16210ed843f6fb3a","type":"text","text":"V3","x":-227,"y":2600,"width":107,"height":50},
+		{"id":"e667dfb2f8e0314a","type":"text","text":"671B","x":-60,"y":2595,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"12b970b15a170e78","fromNode":"2dd9677741874ebd","fromSide":"right","toNode":"4576f4be0c8095df","toSide":"left"},
@@ -34,6 +37,10 @@
 		{"id":"e5455f9a579f13fa","fromNode":"7dac9b18455ecd45","fromSide":"bottom","toNode":"203f0496a411dff5","toSide":"left"},
 		{"id":"102e7d455d5a9621","fromNode":"64b310da76b49050","fromSide":"bottom","toNode":"33efdb08f1ed0bde","toSide":"left"},
 		{"id":"766cf65b138234ac","fromNode":"af6e64a325d2f480","fromSide":"right","toNode":"49801066ea1e917a","toSide":"left"},
-		{"id":"db5567bb2edafcb3","fromNode":"e3b83d6ca066b33f","fromSide":"bottom","toNode":"af6e64a325d2f480","toSide":"left"}
+		{"id":"db5567bb2edafcb3","fromNode":"e3b83d6ca066b33f","fromSide":"bottom","toNode":"af6e64a325d2f480","toSide":"left"},
+		{"id":"f5aafcd057cf1228","fromNode":"6bf5107ecb0a04a3","fromSide":"right","toNode":"f1b5839699d25398","toSide":"left"},
+		{"id":"743d17ba981c3789","fromNode":"e3b83d6ca066b33f","fromSide":"bottom","toNode":"6bf5107ecb0a04a3","toSide":"left"},
+		{"id":"3d31efe6520a609b","fromNode":"16210ed843f6fb3a","fromSide":"right","toNode":"e667dfb2f8e0314a","toSide":"left"},
+		{"id":"70725e7dee065e0f","fromNode":"e3b83d6ca066b33f","fromSide":"bottom","toNode":"16210ed843f6fb3a","toSide":"left"}
 	]
 }

@@ -732,7 +732,3 @@ Build DeepSeek from Scratch
 - [**Hugging Face has released nanoVLM**](https://huggingface.co/lusxvr/nanoVLM-222M), a compact PyTorch-based framework that lets you train a vision-language model from scratch in just 750 lines of code. It’s designed to be readable, modular, and easy to extend, making it ideal for learning, prototyping, or research. The model uses a SigLIP-B/16 vision encoder and a SmolLM2 language decoder. All code is open on GitHub and the Hugging Face Hub.
 - [**llama.cpp now supports vision input**](https://github.com/ggml-org/llama.cpp/blob/master/docs/multimodal.md), letting you run multimodal models locally using `llama-mtmd-cli` or `llama-server`. Models like Gemma 3, Qwen2.5 VL, and SmolVLM are already supported, and you can enable vision with a simple `-hf` flag or load your own projector file if needed. What’s nice is that vision is now built directly into the server—no extra hacks or plugins. This makes it easier to manage, faster to update, and cleaner to use across different tools.
 
-
-
-
-model -> tflite (.pb) -> Apache TVM (Tensor Virtual Machine) [only supports till v18]-> 

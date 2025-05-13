@@ -722,3 +722,6 @@ Build DeepSeek from Scratch
 - Multi-Head Latent Attention From Scratch: [https://lnkd.in/g3z8PkCZ](https://lnkd.in/g3z8PkCZ)  
 - Multi-Head Latent Attention Coded from Scratch in Python: [https://lnkd.in/g9drDgGZ](https://lnkd.in/g9drDgGZ)
 
+## 13.05.2025
+
+- [ZeroSearch: Incentivize the Search Capability of LLMs without Searching]([Alibaba-NLP/ZeroSearch: ZeroSearch: Incentivize the Search Capability of LLMs without Searching](https://github.com/Alibaba-nlp/ZeroSearch))

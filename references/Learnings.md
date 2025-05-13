@@ -721,3 +721,4 @@ Build DeepSeek from Scratch
 - Understand Grouped Query Attention (GQA): [https://lnkd.in/geFFq_95](https://lnkd.in/geFFq_95)  
 - Multi-Head Latent Attention From Scratch: [https://lnkd.in/g3z8PkCZ](https://lnkd.in/g3z8PkCZ)  
 - Multi-Head Latent Attention Coded from Scratch in Python: [https://lnkd.in/g9drDgGZ](https://lnkd.in/g9drDgGZ)
+

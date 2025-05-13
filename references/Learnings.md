@@ -735,4 +735,4 @@ Build DeepSeek from Scratch
 
 
 
-model -> tflite (.pb) -> Apache TVM (Tensor Virtual Machine) -> 
+model -> tflite (.pb) -> Apache TVM (Tensor Virtual Machine) [only supports till v18]-> 

@@ -735,6 +735,8 @@ Build DeepSeek from Scratch
 ## 14.05.2025
 
 - Sakana AI unveiled [Continuous Thought Machines (CTMs)]([Continuous Thought Machines](https://pub.sakana.ai/ctm/)), a new type of model that makes AI more brain-like by allowing it to “think” step-by-step over time instead of making instant decisions like current AI systems do.
+
+	**Example code:** [continuous-thought-machines/examples/01_mnist.ipynb at main · SakanaAI/continuous-thought-machines](https://github.com/SakanaAI/continuous-thought-machines/blob/main/examples/01_mnist.ipynb)
 ### 1. **Internal Recurrence (aka "Thought Steps")**
 
 	Think of this as the model taking time to **internally reflect or think**, even if the input is static (like an image). Each "tick" is one such **thought step**.

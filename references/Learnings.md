@@ -745,3 +745,14 @@ Build DeepSeek from Scratch
 	- CTM has **internal ticks** (e.g., T=75), meaning it reflects **T times** internally on a given input before responding.
 	
 	 **Analogy: Like solving a maze — you stop, stare at the image, and think step-by-step what path to take before actually moving.**
+
+### 2. **Neuron-Level Models (Private MLPs per Neuron)**
+	
+	Each neuron in CTM **remembers the last M steps** of its own activity and has a **private MLP** to decide its next activation. This is **very different** from traditional models where all neurons share the same update rules.
+	
+	- Input goes into a **"synapse" MLP** to produce pre-activations.
+	    
+	- Each neuron takes a **history of its pre-activations** and processes it using its own MLP to get its output (post-activation).
+	    
+	
+> 	📌 Analogy: Imagine each neuron is a tiny agent with its own memory and rulebook. It watches its past behavior and decides what to do next, independently.

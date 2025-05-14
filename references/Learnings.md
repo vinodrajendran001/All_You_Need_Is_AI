@@ -765,3 +765,35 @@ Build DeepSeek from Scratch
 
 	**Analogy: Imagine a team solving a puzzle. The more certain pairs of people "think in sync" over time, the more important their coordination is. That synchronization becomes the team's strategy.**
 
+### Pseudocode
+
+```
+### Step 1 to T (Internal Ticks, like 75 thought steps):
+
+At each tick:
+
+1. **Build pre-activations** using the synapse MLP based on current state and attention over image.
+    
+2. Each neuron:
+    
+    - Looks at its own history of pre-activations.
+        
+    - Runs its **own private MLP** to decide its new post-activation.
+        
+3. Collect post-activations for all neurons → build a time history.
+    
+4. Compute **synchronization matrix** (how neuron pairs are co-active).
+    
+5. Use part of synchronization matrix to:
+    
+    - Read data (attention queries)
+        
+    - Predict output logits (dog/cat probabilities).
+        
+6. Store prediction & certainty for current tick.
+    
+
+Repeat this T times.
+```
+
+

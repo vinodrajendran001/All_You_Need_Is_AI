@@ -735,8 +735,7 @@ Build DeepSeek from Scratch
 ## 14.05.2025
 
 - Sakana AI unveiled [Continuous Thought Machines (CTMs)]([Continuous Thought Machines](https://pub.sakana.ai/ctm/)), a new type of model that makes AI more brain-like by allowing it to “think” step-by-step over time instead of making instant decisions like current AI systems do.
-  
-  ### 1. **Internal Recurrence (aka "Thought Steps")**
+### 1. **Internal Recurrence (aka "Thought Steps")**
 
 	Think of this as the model taking time to **internally reflect or think**, even if the input is static (like an image). Each "tick" is one such **thought step**.
 	
@@ -753,6 +752,16 @@ Build DeepSeek from Scratch
 	- Input goes into a **"synapse" MLP** to produce pre-activations.
 	    
 	- Each neuron takes a **history of its pre-activations** and processes it using its own MLP to get its output (post-activation).
-	    
-	
-> 	📌 Analogy: Imagine each neuron is a tiny agent with its own memory and rulebook. It watches its past behavior and decides what to do next, independently.
+	  
+ 	**Analogy: Imagine each neuron is a tiny agent with its own memory and rulebook. It watches its past behavior and decides what to do next, independently.**
+
+### 3. **Synchronization as the Representation**
+
+Instead of just using the current neuron activations, CTM **tracks how neuron activations synchronize over time**.
+
+- At each tick, it computes **how pairs of neurons are co-activated** over time.
+    
+- This creates a **synchronization matrix**, which becomes the actual representation used to **read data** (attention) and **make predictions**.
+    
+
+> 📌 Analogy: Imagine a team solving a puzzle. The more certain pairs of people "think in sync" over time, the more important their coordination is. That synchronization becomes the team's strategy.

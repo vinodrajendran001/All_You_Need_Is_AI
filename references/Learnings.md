@@ -757,11 +757,11 @@ Build DeepSeek from Scratch
 
 ### 3. **Synchronization as the Representation**
 
-Instead of just using the current neuron activations, CTM **tracks how neuron activations synchronize over time**.
+	Instead of just using the current neuron activations, CTM **tracks how neuron activations synchronize over time**.
+	
+	- At each tick, it computes **how pairs of neurons are co-activated** over time.
+	    
+	- This creates a **synchronization matrix**, which becomes the actual representation used to **read data** (attention) and **make predictions**.
 
-- At each tick, it computes **how pairs of neurons are co-activated** over time.
-    
-- This creates a **synchronization matrix**, which becomes the actual representation used to **read data** (attention) and **make predictions**.
-    
+	**Analogy: Imagine a team solving a puzzle. The more certain pairs of people "think in sync" over time, the more important their coordination is. That synchronization becomes the team's strategy.**
 
-> 📌 Analogy: Imagine a team solving a puzzle. The more certain pairs of people "think in sync" over time, the more important their coordination is. That synchronization becomes the team's strategy.

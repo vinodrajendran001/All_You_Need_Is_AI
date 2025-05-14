@@ -796,4 +796,14 @@ At each tick:
 Repeat this T times.
 ```
 
+### Final Step: Choose Which Tick(s) to Learn From
 
+- Compute loss and certainty at each tick.
+    
+- Instead of just using the final tick, use:
+    
+    - `t₁ = tick with lowest loss`
+        
+    - `t₂ = tick with highest certainty`
+        
+- Final loss: average of these two → encourages learning from both strong predictions and confident thoughts.

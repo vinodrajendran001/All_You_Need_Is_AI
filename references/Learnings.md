@@ -809,3 +809,7 @@ Repeat this T times.
     - `t₂ = tick with highest certainty`
         
 - Final loss: average of these two → encourages learning from both strong predictions and confident thoughts.
+
+
+## 15.05.2025
+

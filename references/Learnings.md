@@ -704,7 +704,7 @@ These 7 GitHub repos are the ones I always recommend:
 - [Building News Agents for Daily News Recaps with MCP, Q, and tmux](https://eugeneyan.com/writing/news-agents/)
 
 
-# 09.05.2025
+## 09.05.2025
 
 Build DeepSeek from Scratch
 
@@ -817,4 +817,4 @@ Repeat this T times.
 
 ## 20.05.2025
 
-- [Master Model Context Protocol (MCP) with this free course]([Welcome to the 🤗 Model Context Protocol (MCP) Course - Hugging Face MCP Course](https://huggingface.co/learn/mcp-course/unit0/introduction)). Learn MCP architecture, SDKs, and end-to-end application building. Gain hands-on experience with real-world use cases, community projects, and partner tools. Earn a certificate by completing assignments and join the active community for ongoing support.
+- [Model Context Protocol (MCP) Course - Hugging Face MCP Course](https://huggingface.co/learn/mcp-course/unit0/introduction)). Learn MCP architecture, SDKs, and end-to-end application building. Gain hands-on experience with real-world use cases, community projects, and partner tools. Earn a certificate by completing assignments and join the active community for ongoing support.

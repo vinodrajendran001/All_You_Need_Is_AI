@@ -646,12 +646,12 @@ These 7 GitHub repos are the ones I always recommend:
 - [AI is Like Cars](https://ozorn.in/blog/ai-cars/)
 
 
-# 29.04.2025
+## 29.04.2025
 
 - AgenticSeek: Private, Local Manus Alternative - [Fosowl/agenticSeek: A open, local Manus AI alternative. No APIs, No $200 monthly bills. Enjoy an autonomous agent that thinks, browses the web, and code for the sole cost of electricity.](https://github.com/Fosowl/agenticSeek)
 - A local open source deep research - https://substack.com/redirect/06ab6d6b-e918-42a0-af4e-23bd6cd9e9cc?j=eyJ1IjoiMTg2bzVvIn0.-AuoIYywR1ZESApp8FJseCWwCCZIKj8CtVTdemeZC-Q
 
-# 02.05.2025
+## 02.05.2025
 
 - https://github.com/comet-ml/opik
   An open-source LLM evaluation tool used to debug, evaluate, monitor LLM applications, RAG systems, and agentic workflows with comprehensive tracing, automated evaluations, and production-ready dashboards.
@@ -660,7 +660,7 @@ These 7 GitHub repos are the ones I always recommend:
 - [Demystifying Verbatim Memorization in Large Language Models](https://ai.stanford.edu/blog/verbatim-memorization/)
 
 
-# 05.05.2025
+## 05.05.2025
 
 - Microsoft Phi 4 Reasoning Models:
 	- **Chain-Of-Thought Reasoning**: These models follow a clear, step-by-step approach to problem-solving, making their logic transparent and more reliable compared to other compact models that often rely on quick guesses.
@@ -670,14 +670,14 @@ These 7 GitHub repos are the ones I always recommend:
   ![[Pasted image 20250505093614.png]]
 
 
-# 06.05.2025
+## 06.05.2025
 
 - https://huggingface.co/learn - HuggingFace just dropped 9 new courses to level up your AI skills.
 - [This webinar by Stanford introduces agentic language models](https://link.alphasignal.ai/JxcCLM "https://link.alphasignal.ai/JxcCLM"), their usage patterns, applications, best practices, and ethical considerations.
 - [WindSurf CEO discusses how they pivoted](https://link.alphasignal.ai/xNkrgV "https://link.alphasignal.ai/xNkrgV") to AI coding tools, outpacing Copilot, and startup-building lessons.
 - [YC's guide shows how to use LLMs](https://link.alphasignal.ai/P9mo8n "https://link.alphasignal.ai/P9mo8n") like Claude Code to build, debug, and refactor apps fast.
 
-# 07.05.2025
+## 07.05.2025
 
 - [Scaling Long Context and RAG: Insights from Google DeepMind]([Google AI: Release Notes podcast episode on long context](https://blog.google/technology/google-deepmind/release-notes-podcast-long-context/))
   The "Release Notes Podcast: Long Context and RAG" episode by Google Deepmind dives deep into scaling context windows and improving long-context models. Hosted by Logan Kilpatrick, Google DeepMind’s Nikolay Savinov explores key challenges and advancements in this area, with a focus on Retrieval-Augmented Generation (RAG) and long context models.  
@@ -695,7 +695,7 @@ These 7 GitHub repos are the ones I always recommend:
 	3. [@elevenlabsio](https://x.com/elevenlabsio) made the audio
 	4. [@hedra_labs](https://x.com/hedra_labs) animated it
 
-# 08.05.2025
+## 08.05.2025
 
 - Official inference framework for 1-bit LLMs - https://github.com/microsoft/bitnet
 - Olympus: A Universal Task Router for Computer Vision Tasks - https://github.com/yuanze-lin/Olympus

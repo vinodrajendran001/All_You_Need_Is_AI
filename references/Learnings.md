@@ -818,3 +818,8 @@ Repeat this T times.
 ## 20.05.2025
 
 - [Model Context Protocol (MCP) Course - Hugging Face MCP Course](https://huggingface.co/learn/mcp-course/unit0/introduction)). Learn MCP architecture, SDKs, and end-to-end application building. Gain hands-on experience with real-world use cases, community projects, and partner tools. Earn a certificate by completing assignments and join the active community for ongoing support.
+
+## 23.05.2025
+
+- [The State of LLM Reasoning Model Inference](https://magazine.sebastianraschka.com/p/state-of-llm-reasoning-and-inference-scaling) An article that explores recent research advancements in reasoning-optimized LLMs, with a particular focus on inference-time compute scaling.
+- 

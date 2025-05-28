@@ -672,7 +672,7 @@ These 7 GitHub repos are the ones I always recommend:
 
 ## 06.05.2025
 
-- https://huggingface.co/learn - HuggingFace just dropped 9 new courses to level up your AI skills.
+- [HuggingFace Learning](https://huggingface.co/learn) - HuggingFace just dropped 9 new courses to level up your AI skills.
 - [This webinar by Stanford introduces agentic language models](https://link.alphasignal.ai/JxcCLM "https://link.alphasignal.ai/JxcCLM"), their usage patterns, applications, best practices, and ethical considerations.
 - [WindSurf CEO discusses how they pivoted](https://link.alphasignal.ai/xNkrgV "https://link.alphasignal.ai/xNkrgV") to AI coding tools, outpacing Copilot, and startup-building lessons.
 - [YC's guide shows how to use LLMs](https://link.alphasignal.ai/P9mo8n "https://link.alphasignal.ai/P9mo8n") like Claude Code to build, debug, and refactor apps fast.

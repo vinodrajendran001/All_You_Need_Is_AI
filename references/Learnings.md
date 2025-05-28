@@ -35,8 +35,8 @@
 	- **Nearly Half Of Tech Leaders (**[**49%**](https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html)**) Say AI Is Now Fully Integrated Into Business Strategy**
 2. [Open R1 for Students - Hugging Face NLP Course](https://huggingface.co/learn/nlp-course/en/chapter12/1)
 3. Reinforcement Learning Course
-	- [Watch video]https://www.youtube.com/watch?v=ZHMWHr9811U&list=PLEhdbSEZZbDaFWPX4gehhwB9vJZJ1DNm8&index=3
-	- Github: https://github.com/MathFoundationRL/Book-Mathematical-Foundation-of-Reinforcement-Learning
+	- [Watch video](https://www.youtube.com/watch?v=ZHMWHr9811U&list=PLEhdbSEZZbDaFWPX4gehhwB9vJZJ1DNm8&index=3)
+	- [Github](https://github.com/MathFoundationRL/Book-Mathematical-Foundation-of-Reinforcement-Learning)
 
 ![[Pasted image 20250312133027.png]]
 
@@ -336,7 +336,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 ## 17.03.2025
 
-- https://github.com/graviraja/MLOps-Basics - The goal of the series is to understand the basics of MLOps like model building, monitoring, configurations, testing, packaging, deployment, cicd, etc.
+- [MLOps-Basics](https://github.com/graviraja/MLOps-Basics) - The goal of the series is to understand the basics of MLOps like model building, monitoring, configurations, testing, packaging, deployment, cicd, etc.
 
 ## 21.03.2025
 

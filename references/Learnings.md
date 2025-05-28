@@ -824,3 +824,7 @@ Repeat this T times.
 - [The State of LLM Reasoning Model Inference](https://magazine.sebastianraschka.com/p/state-of-llm-reasoning-and-inference-scaling) An article that explores recent research advancements in reasoning-optimized LLMs, with a particular focus on inference-time compute scaling.
 - [Why We Think | Lil'Log](https://lilianweng.github.io/posts/2025-05-01-thinking/) Lilian Weng explores how giving LLMs extra "thinking time" and enabling them to show intermediate steps (like Chain-of-Thought) significantly improves their ability to solve complex problems.
 - https://github.com/lmcache/lmcache An LLM serving engine extension to reduce TTFT and increase throughput, especially under long-context scenarios.
+
+## 28.05.2025
+
+- [Prompt Engineering for Traders: How I Made ChatGPT and Claude Fight to Improve My Trading Strategy](https://roguequant.substack.com/p/prompt-engineering-for-traders-how)

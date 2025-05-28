@@ -828,3 +828,4 @@ Repeat this T times.
 ## 28.05.2025
 
 - [Prompt Engineering for Traders: How I Made ChatGPT and Claude Fight to Improve My Trading Strategy](https://roguequant.substack.com/p/prompt-engineering-for-traders-how)
+- 

@@ -347,7 +347,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 ## 24.03.2025
 
-- https://github.com/NirDiamant/GenAI_Agents
+- [GenAI Agents](https://github.com/NirDiamant/GenAI_Agents)
 	It is a great resource for:  
 	1/ learning  
 	2/ building  
@@ -444,7 +444,7 @@ And when you replace the default ROS protocol, you turn a wired robot into a wir
 
 ## 30.03.2025
 
-- https://github.com/ai-dynamo/dynamo - NVIDIA Dynamo is a high-throughput low-latency inference framework designed for serving generative AI and reasoning models in multi-node distributed environments.
+- [](https://github.com/ai-dynamo/dynamo) - NVIDIA Dynamo is a high-throughput low-latency inference framework designed for serving generative AI and reasoning models in multi-node distributed environments.
 
 ## 01.04.2025
 

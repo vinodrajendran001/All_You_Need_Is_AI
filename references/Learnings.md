@@ -9,7 +9,7 @@
 ## 07.03.2025
 
 - [ExplainGithub](https://link.mail.beehiiv.com/ss/c/u001.P5VhhHEXt9ALLSlwafYXZDsZ5nkBYN111z4zMhLNbpvvStaH_RVxXoFakxZmYQnHCIysNPji6-U9OVbW36ojnyT6_Gm6GmAQCaI5xs_8xHTUlGLUg56QWf9mOo06AU9y-lDyk6WO4zOigEa-3GXmYYRBuYdJKdtGXm9a4UEvhzecq3CKkAEBtMMSPJ6JJgDinB8L_Ma_zaKhD1UpZD1bYMLfnSRdLPHm6assuHrM5fzWAcNyNd39kht_yYl7lQY9/4ek/QMyLH5BEROS9uD9EUJjc7w/h26/h001.OKxVLlY9xOO6ID11sN7t-u7zC9D-eTExoTcBglzTAjM "https://link.mail.beehiiv.com/ss/c/u001.P5VhhHEXt9ALLSlwafYXZDsZ5nkBYN111z4zMhLNbpvvStaH_RVxXoFakxZmYQnHCIysNPji6-U9OVbW36ojnyT6_Gm6GmAQCaI5xs_8xHTUlGLUg56QWf9mOo06AU9y-lDyk6WO4zOigEa-3GXmYYRBuYdJKdtGXm9a4UEvhzecq3CKkAEBtMMSPJ6JJgDinB8L_Ma_zaKhD1UpZD1bYMLfnSRdLPHm6assuHrM5fzWAcNyNd39kht_yYl7lQY9/4ek/QMyLH5BEROS9uD9EUJjc7w/h26/h001.OKxVLlY9xOO6ID11sN7t-u7zC9D-eTExoTcBglzTAjM") > Turn hours of code reading into minutes of understanding.
-- https://github.com/fmind/mlops-python-package - Kickstart your MLOps initiative with a flexible, robust, and productive Python package.
+- [MLOps python package](https://github.com/fmind/mlops-python-package) - Kickstart your MLOps initiative with a flexible, robust, and productive Python package.
 - **[TAID: A Novel Method for Efficient Knowledge Transfer from Large Language Models to Small Language Models](https://substack.com/redirect/d3c1d03e-ada9-4d41-b406-787df40ffb26?j=eyJ1IjoiMTg2bzVvIn0.-AuoIYywR1ZESApp8FJseCWwCCZIKj8CtVTdemeZC-Q "https://substack.com/redirect/d3c1d03e-ada9-4d41-b406-787df40ffb26?j=eyJ1IjoiMTg2bzVvIn0.-AuoIYywR1ZESApp8FJseCWwCCZIKj8CtVTdemeZC-Q")**
 
 ## 12.03.2025
@@ -35,7 +35,7 @@
 	- **Nearly Half Of Tech Leaders (**[**49%**](https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html)**) Say AI Is Now Fully Integrated Into Business Strategy**
 2. [Open R1 for Students - Hugging Face NLP Course](https://huggingface.co/learn/nlp-course/en/chapter12/1)
 3. Reinforcement Learning Course
-	- Watch video: https://www.youtube.com/watch?v=ZHMWHr9811U&list=PLEhdbSEZZbDaFWPX4gehhwB9vJZJ1DNm8&index=3
+	- [Watch video]https://www.youtube.com/watch?v=ZHMWHr9811U&list=PLEhdbSEZZbDaFWPX4gehhwB9vJZJ1DNm8&index=3
 	- Github: https://github.com/MathFoundationRL/Book-Mathematical-Foundation-of-Reinforcement-Learning
 
 ![[Pasted image 20250312133027.png]]

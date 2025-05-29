@@ -849,3 +849,10 @@ Repeat this T times.
   
   **Take for example, VoxelNet.**  
   This pioneer approach comes directly from Apple's Project Titan Lab, and most of the algorithms you see today come partly from this one.
+  
+  **How does VoxelNet work?** it "voxelizes" the point cloud (transforms the points into minecraft voxels), and then uses 3D Convolutional Neural Networks to learn the features and process them.
+  
+  But this approach is slow.
+  
+  
+  

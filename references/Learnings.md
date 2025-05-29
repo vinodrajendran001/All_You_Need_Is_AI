@@ -870,7 +870,7 @@ Repeat this T times.
   **The truth is that the field was essentially using and re-using the same 11 Blocks over and over again.**   
   And that using these 11 blocks, you could build almost ANY architecture!
   
-  ![[Pasted image 20250529094440.png]]
+  
   
   
   

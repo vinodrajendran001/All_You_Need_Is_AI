@@ -870,8 +870,9 @@ Repeat this T times.
   **The truth is that the field was essentially using and re-using the same 11 Blocks over and over again.**   
   And that using these 11 blocks, you could build almost ANY architecture!
   
+  ![[1e3f1e2a-26aa-4e88-968b-fc5127480706.gif]]
   
-  
+  Almost every algorithm you will see use a combination of these 11 blocks. Whether it's VoxelNet, PointPillars, SECOND, or more recent ones as we're studying in depth in my LiDAR Object Detection DLC.
   
   
   

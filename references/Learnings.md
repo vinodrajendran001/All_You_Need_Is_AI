@@ -844,3 +844,5 @@ Repeat this T times.
 
 ## 29.05.2026
 
+- How to build almost ANY LiDAR Object Detector!
+  

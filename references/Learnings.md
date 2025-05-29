@@ -867,6 +867,8 @@ Repeat this T times.
   
   Things like **Voxelization** (VFE) and **3D CNNs** (3D Backbones) used in VoxelNet, but also 2D Transformations (used in PointPillars), or **PointNets** (PFE), and others..
   
+  The t field was essentially using and re-using the same 11 Blocks over and over again.   
+  And that using these 11 blocks, you could build almost ANY architecture!
   
   
   

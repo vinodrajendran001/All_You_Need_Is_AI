@@ -862,6 +862,9 @@ Repeat this T times.
   
   By converting the 3D problem (3D Voxels, 3D CNNs, etc...), into a 2D problem (2D Pillars, 2D CNNs, ...). Like a miracle, the pillar technique worked and made the algorithm real-time.
   
+  But one question remains...  
+  **How do you learn something as wide as 3D Deep Learning?**
+  
   
   
   

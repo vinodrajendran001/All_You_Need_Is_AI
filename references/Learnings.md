@@ -865,6 +865,7 @@ Repeat this T times.
   But one question remains...  
   **How do you learn something as wide as 3D Deep Learning?**
   
+  Things like **Voxelization** (VFE) and **3D CNNs** (3D Backbones) used in VoxelNet, but also 2D Transformations (used in PointPillars), or **PointNets** (PFE), and others..
   
   
   

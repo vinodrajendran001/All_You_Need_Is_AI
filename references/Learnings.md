@@ -844,7 +844,7 @@ Repeat this T times.
 
 ## 29.05.2026
 
-- How to build almost ANY LiDAR Object Detector!
+- **How to build almost ANY LiDAR Object Detector!**
   And it's about building detector frameworks, rather than detector algorithms.
   
   **Take for example, VoxelNet.**  

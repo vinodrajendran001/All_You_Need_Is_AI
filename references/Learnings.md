@@ -854,7 +854,17 @@ Repeat this T times.
   
   But __this approach is slow__.
   
-  And this is when, in 2018, Holger Caesar, and his team of researchers invented another algorithm: Point Pillars.
+  And this is when, in 2018, Holger Caesar and his team of researchers invented another algorithm: Point Pillars.
+  
+  This approach makes VoxelNet real-time.
+  
+  How?
+  
+  By converting the 3D problem (3D Voxels, 3D CNNs, etc...), into a 2D problem (2D Pillars, 2D CNNs, ...). Like a miracle, the pillar technique worked and made the algorithm real-time.
+  
+  
+  
+  
   
   
   

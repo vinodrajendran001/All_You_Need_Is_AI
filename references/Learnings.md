@@ -852,7 +852,9 @@ Repeat this T times.
   
   **How does VoxelNet work?** it "voxelizes" the point cloud (transforms the points into minecraft voxels), and then uses 3D Convolutional Neural Networks to learn the features and process them.
   
-  But this approach is slow.
+  But __this approach is slow__.
+  
+  And this is when, in 2018, Holger Caesar, and his team of researchers invented another algorithm: Point Pillars.
   
   
   

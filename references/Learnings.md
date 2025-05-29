@@ -845,4 +845,7 @@ Repeat this T times.
 ## 29.05.2026
 
 - How to build almost ANY LiDAR Object Detector!
+  And it's about building detector frameworks, rather than detector algorithms.
   
+  **Take for example, VoxelNet.**  
+  This pioneer approach comes directly from Apple's Project Titan Lab, and most of the algorithms you see today come partly from this one.

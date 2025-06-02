@@ -877,7 +877,8 @@ Repeat this T times.
 
 ## 02.06.2025
 
-
+- [How to use LLMs better](https://learnhowtolearn.org/wiki/how-to-use-llms-better/)
+- 
   
   
   

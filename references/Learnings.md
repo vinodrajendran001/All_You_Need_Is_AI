@@ -886,7 +886,8 @@ Repeat this T times.
 
 ## 11.06.2025
 
-- 
+- [Why DeepSeek models](https://link.mail.beehiiv.com/ss/c/u001.22XVe7hOOQo4HoFgEcBa7zqumjfm_NASJ7K6cNJWrimeYgKQX57beE6ymTe2h8WUUkvP0Txg_HWDBfvk4UNlSLkMrgmkzpMFz-VFlOsyLw-Kj1fgxwq-vcDKc7lOWNYSAXrLnGCFnibjA-aSrOm2FPg-ADuLZz2RYjDbHW0_wj0FlufiGTWAovvxR84VmLTyS-Tz37kKya-m26BYMfQdsCEBszwgPzW3gFclqUTcjpMCEj1H8_EZPVkKKpGAUjD1oTQOcxQre-epCtmZ1dqkzzWzDvNGu_dre9nGd-c0yaM/4h8/y1Tk4PPFTv-mXy2JviCycw/h33/h001.6STPmKkDQU2KPNIU02FDly1xEiWcRPNFQaKNbxHgObY "https://link.mail.beehiiv.com/ss/c/u001.22XVe7hOOQo4HoFgEcBa7zqumjfm_NASJ7K6cNJWrimeYgKQX57beE6ymTe2h8WUUkvP0Txg_HWDBfvk4UNlSLkMrgmkzpMFz-VFlOsyLw-Kj1fgxwq-vcDKc7lOWNYSAXrLnGCFnibjA-aSrOm2FPg-ADuLZz2RYjDbHW0_wj0FlufiGTWAovvxR84VmLTyS-Tz37kKya-m26BYMfQdsCEBszwgPzW3gFclqUTcjpMCEj1H8_EZPVkKKpGAUjD1oTQOcxQre-epCtmZ1dqkzzWzDvNGu_dre9nGd-c0yaM/4h8/y1Tk4PPFTv-mXy2JviCycw/h33/h001.6STPmKkDQU2KPNIU02FDly1xEiWcRPNFQaKNbxHgObY") are good at reasoning
+-  An open-source video generation tool that generates cinematic videos. Supports script-to-video, lip-sync, music, LoRA effects, and storyboards. Runs locally and doesn’t enforce any length restrictions.
 
   
   

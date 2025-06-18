@@ -894,7 +894,10 @@ Repeat this T times.
 - [Local Deep Researcher](https://github.com/langchain-ai/local-deep-researcher) This walkthrough shows how to run DeepSeek-R1 locally using Ollama, load its 14B distilled model, and test JSON-mode outputs. You’ll build a self-contained research agent that performs web search, summarization, and iterative reflection.
 - [How to Choose Large Language Models: A Developer’s Guide to LLMs](https://www.youtube.com/watch?v=pYax2rupKEY) Learn how to evaluate LLMs using real-world benchmarks, open-source leaderboards, and your own data. This guide compares proprietary and open models, shows how to run Granite with Ollama, and walks through RAG setups.
 
-##
+## 18.06.2025
+
+- Sakana’s new [text-to-LoRA tool](https://github.com/SakanaAI/text-to-lora) lets you customize AI models by typing what you want it to be good at, like “help with math problems” or “write marketing copy,” and it creates a specialized version in seconds ([paper](https://arxiv.org/abs/2506.06105)).
+- 
 
   
   

@@ -897,7 +897,7 @@ Repeat this T times.
 ## 18.06.2025
 
 - Sakana’s new [text-to-LoRA tool](https://github.com/SakanaAI/text-to-lora) lets you customize AI models by typing what you want it to be good at, like “help with math problems” or “write marketing copy,” and it creates a specialized version in seconds ([paper](https://arxiv.org/abs/2506.06105)).
-- 
+- [vosk-api]() Run offline speech recognition using Vosk with real-time inference.
 
   
   

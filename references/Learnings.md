@@ -902,6 +902,7 @@ Repeat this T times.
 ## 19.06.2025
 
 - [TauricResearch/TradingAgents: TradingAgents: Multi-Agents LLM Financial Trading Framework](https://github.com/tauricresearch/tradingagents)
+- [comet-ml/opik: Debug, evaluate, and monitor your LLM applications, RAG systems, and agentic workflows with comprehensive tracing, automated evaluations, and production-ready dashboards.](https://github.com/comet-ml/opik)
 - 
 
   

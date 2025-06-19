@@ -901,7 +901,8 @@ Repeat this T times.
 
 ## 19.06.2025
 
-
+- [TauricResearch/TradingAgents: TradingAgents: Multi-Agents LLM Financial Trading Framework](https://github.com/tauricresearch/tradingagents)
+- 
 
   
   

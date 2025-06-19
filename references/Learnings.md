@@ -899,6 +899,10 @@ Repeat this T times.
 - Sakana’s new [text-to-LoRA tool](https://github.com/SakanaAI/text-to-lora) lets you customize AI models by typing what you want it to be good at, like “help with math problems” or “write marketing copy,” and it creates a specialized version in seconds ([paper](https://arxiv.org/abs/2506.06105)).
 - [alphacep/vosk-api: Offline speech recognition API for Android, iOS, Raspberry Pi and servers with Python, Java, C# and Node](https://github.com/alphacep/vosk-api) Run offline speech recognition using Vosk with real-time inference.
 
+## 19.06.2025
+
+
+
   
   
   

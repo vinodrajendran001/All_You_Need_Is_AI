@@ -1,6 +1,7 @@
 {
 	"nodes":[
-		{"id":"c965c491413e7334","x":-125,"y":-30,"width":250,"height":60,"type":"text","text":"### Initial objective\n"}
+		{"id":"c965c491413e7334","x":-180,"y":-220,"width":305,"height":110,"type":"text","text":"### Initial objective\n- 3D scene reconstruction from set of 2D images\n\n#### Assumption:\n- the object of the "},
+		{"id":"d606d23cf989f609","x":-125,"y":-30,"width":250,"height":60,"type":"text","text":""}
 	],
 	"edges":[]
 }

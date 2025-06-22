@@ -2,7 +2,7 @@
 	"nodes":[
 		{"id":"1ebce1b08a9c4d4f","x":-360,"y":-200,"width":285,"height":96,"type":"text","text":"- The objects/elements present in the scene are static"},
 		{"id":"c965c491413e7334","x":-120,"y":-500,"width":380,"height":140,"type":"text","text":"### objective\n- 3D scene reconstruction from set of 2D images\n"},
-		{"id":"d606d23cf989f609","x":-417,"y":-20,"width":400,"height":400,"type":"text","text":"### Vanilla NeRF\n\n**Input**\nCamera position: $p(x,y,z)$\nViewing direction: $\\theta, \\phi$\nPositional encoding: $\\gamma(x,y,z,\\theta,\\phi)$\n\n**Output**\nRadiance: RGB\nDensity: $\\sigma$\n\n**Loss**\n$Loss = \\sum_{pixel} \\| C_{predicted} - C_{gr\\underline{o}truth}$\n"}
+		{"id":"d606d23cf989f609","x":-417,"y":-20,"width":400,"height":400,"type":"text","text":"### Vanilla NeRF\n\n**Input**\nCamera position: $p(x,y,z)$\nViewing direction: $\\theta, \\phi$\nPositional encoding: $\\gamma(x,y,z,\\theta,\\phi)$\n\n**Output**\nRadiance: RGB\nDensity: $\\sigma$\n\n**Loss**\n$Loss = \\sum_{pixel} \\| C_{predicted} - C_{}$\n"}
 	],
 	"edges":[
 		{"id":"1210373d445a85d9","fromNode":"c965c491413e7334","fromSide":"bottom","toNode":"1ebce1b08a9c4d4f","toSide":"top","label":"Assumption 1"},

@@ -1,7 +1,7 @@
 {
 	"nodes":[
 		{"id":"c965c491413e7334","x":-180,"y":-440,"width":380,"height":260,"type":"text","text":"### Initial objective\n- 3D scene reconstruction from set of 2D images\n#### Assumption:\n- The objects/elements present in the scene are static"},
-		{"id":"d606d23cf989f609","x":-400,"y":-100,"width":440,"height":360,"type":"text","text":"### NeRF\n\n**Input**\nCamera position: $p(x,y,z)$\nViewing direction: $\\theta, \\epsilon$\n"}
+		{"id":"d606d23cf989f609","x":-400,"y":-100,"width":440,"height":360,"type":"text","text":"### NeRF\n\n**Input**\nCamera position: $p(x,y,z)$\nViewing direction: $\\theta, \\phi$\n"}
 	],
 	"edges":[]
 }

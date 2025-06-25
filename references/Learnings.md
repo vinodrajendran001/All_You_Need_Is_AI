@@ -906,7 +906,7 @@ Repeat this T times.
 
 ## 25.06.2025
 
-- 
+- [Basic facts about GPUs | Damek Davis’ Website](https://damek.github.io/random/basic-facts-about-gpus/)This article discusses how GPUs work, covering topics like compute and memory hierarchy, performance regimes, strategies for increasing performance, and more.
 
 
   

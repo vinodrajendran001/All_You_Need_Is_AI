@@ -908,6 +908,12 @@ Repeat this T times.
 
 - [Basic facts about GPUs | Damek Davis’ Website](https://damek.github.io/random/basic-facts-about-gpus/)This article discusses how GPUs work, covering topics like compute and memory hierarchy, performance regimes, strategies for increasing performance, and more.
 
+## 27.06.2025
+
+- [patchy631/ai-engineering-hub: In-depth tutorials on LLMs, RAGs and real-world AI agent applications.](https://github.com/patchy631/ai-engineering-hub) - In-depth tutorials on LLMs, RAGs and real-world AI agent applications.
+
+
+
 
   
   

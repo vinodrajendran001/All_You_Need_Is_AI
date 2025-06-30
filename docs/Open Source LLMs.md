@@ -179,4 +179,11 @@ Multi-Query Attention (MQA) maintains multiple query heads but uses a **single s
 - Just ONE K projection matrix
 - Just ONE V projection matrix
 
-### Grouped-Query 
+### Grouped-Query Attention (GQA)
+
+GQA finds a middle ground between MHA and MQA by creating groups of query heads that share key and value projections:
+
+- Multiple Q projection matrices (e.g., 32 of them)
+- Multiple K projection matrices (e.g., 8 of them)
+- Multiple V projection matrices (e.g., 8 of them)
+- Each K/V projection is shared among a group of Q projections

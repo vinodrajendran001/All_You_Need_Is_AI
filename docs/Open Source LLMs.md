@@ -78,4 +78,4 @@ $$
 z = softmax\bigg(\frac{qk^{T}}{\sqrt{d_{k}}}\bigg)v 
 $$
 
-1. Query vector from the la
+1. Query vector from the LAST token ("the")

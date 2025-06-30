@@ -85,6 +85,18 @@ Token embeddings:
 ```
 
 
+#### Causal Attention Mask 
+
+In autoregressive models like GPT, we use a causal mask to ensure tokens can only attend to themselves and previous tokens (not future ones):
+
+```
+Attention Mask:
+[1, 0, 0, 0]  # "The" can only see itself
+[1, 1, 0, 0]  # "dog" can see "The" and itself
+[1, 1, 1, 0]  # "chases" can see "The", "dog", and itself
+[1, 1, 1, 1]  # "the" can see all previous tokens and itself
+```
+
 ### Cross Attention
 
 

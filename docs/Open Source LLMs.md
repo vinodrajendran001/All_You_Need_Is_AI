@@ -238,3 +238,8 @@ In a long document analysis with SWA:
     - This allows processing sequences longer than model's training length
 
 
+## Positional Encoding
+
+
+
+

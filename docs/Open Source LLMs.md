@@ -361,3 +361,16 @@ With ALiBi (assuming m = 0.2):
 
 After softmax, "cat" pays more attention to itself, less to distant tokens
 ```
+
+Each attention head gets a different slope:
+```
+Head 1: m₁ = 2⁻⁸
+Head 2: m₂ = 2⁻⁷
+...
+Head h: mₕ = 2⁻⁸⁽ʰ⁻¹⁾ʰ
+```
+
+This allows different heads to focus on different distance ranges.
+
+
+

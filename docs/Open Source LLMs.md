@@ -72,9 +72,10 @@ K4: Embedding ("the") x WK
 V4: Embedding ("the") x WV
 ```
 
-### Standard Attention
+### Standard Self-Attention Calculation
 
 $$ 
 z = softmax\bigg(\frac{qk^{T}}{\sqrt{d_{k}}}\bigg)v 
 $$
 
+1. Query vector from the la

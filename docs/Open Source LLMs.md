@@ -49,9 +49,20 @@ In self-attention:
 Example string: "The dog chases the"
 
 Step 1: Tokenize the input 
+```
 ["The", "dog", "chases", "the"]
+```
 
 Each token gets converted into embedding vector
+
+```
+"The"     → [0.2, 0.5, -0.3, 0.1]
+"dog"     → [0.8, 0.2, 0.7, -0.5]
+"chases"  → [0.3, 0.9, 0.2, 0.4]
+"the"     → [0.2, 0.4, -0.3, 0.1]
+```
+
+
 ### Standard Attention
 
 $$ 

@@ -373,4 +373,22 @@ Head h: mₕ = 2⁻⁸⁽ʰ⁻¹⁾ʰ
 This allows different heads to focus on different distance ranges.
 
 
+#### Practical Impact
 
+ALiBi changes how tokens attend to each other based purely on their distance:
+
+1. No changes to token embeddings:
+    - The model processes token embeddings exactly as before
+    - The positional bias is applied directly to attention scores
+2. For generation:
+    - Recent tokens get more attention than distant ones
+    - The bias grows linearly with distance, unlike exponential decay in other methods
+3. For extrapolation:
+    - The linear penalty continues naturally beyond training length
+    - No special handling needed for longer sequences
+#### Key Advantages
+
+- Natively handles sequences longer than those seen in training
+- Simple implementation with minimal overhead
+- Different heads can specialize in different distance ranges
+- No positional embeddings to train

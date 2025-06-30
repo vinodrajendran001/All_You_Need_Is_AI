@@ -281,8 +281,7 @@ Unlike absolute encodings that add position information, RoPE applies a position
     - The token's position in the sequence
     - The dimension pair (different dimension pairs rotate at different rates)
 
-
-
+For a token at position m, the rotation for dimension pair j is:
 
 
 ### Attention with Linear BIases (ALiBi)

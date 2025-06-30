@@ -912,7 +912,9 @@ Repeat this T times.
 
 - [patchy631/ai-engineering-hub: In-depth tutorials on LLMs, RAGs and real-world AI agent applications.](https://github.com/patchy631/ai-engineering-hub) - In-depth tutorials on LLMs, RAGs and real-world AI agent applications.
 
+## 30.06.2025
 
+- In-depth explanation of REWARD moDELS
 
 
   

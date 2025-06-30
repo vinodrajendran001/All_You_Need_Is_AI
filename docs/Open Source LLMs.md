@@ -179,6 +179,19 @@ Multi-Query Attention (MQA) maintains multiple query heads but uses a **single s
 - Just ONE K projection matrix
 - Just ONE V projection matrix
 
+
+In a text generation scenario with MQA:
+
+1. When processing "The cat sat on the":
+    - We compute one key and one value vector per token
+    - We compute multiple query vectors for each token
+2. For the next token prediction:
+    - Multiple query vectors from the last token ("the") each focus on different aspects
+    - But all query heads use the same set of key and value vectors
+3. During KV caching:
+    - We only store ONE key and ONE value per token
+    - This drastically reduces memory requirements
+
 ### Grouped-Query Attention (GQA)
 
 GQA finds a middle ground between MHA and MQA by creating groups of query heads that share key and value projections:

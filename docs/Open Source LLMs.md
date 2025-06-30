@@ -245,6 +245,13 @@ In a long document analysis with SWA:
 
 Absolute positional encoding assigns a unique vector to each position in a sequence. This vector is added to the token embedding before it enters the transformer layers.
 
+In the original transformer paper, sinusoidal functions with different frequencies create these position vectors:
+
+```
+PE(pos, 2i) = sin(pos / 10000^(2i/d))
+PE(pos, 2i+1) = cos(pos / 10000^(2i/d))
+```
+
 ```
 Position: 0       1      2     3    4     5
           ↓       ↓      ↓     ↓    ↓     ↓

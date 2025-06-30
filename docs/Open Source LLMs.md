@@ -340,7 +340,24 @@ Attention_Score(i, j) = (Qᵢ · Kⱼ) - m × |i-j|
 ```
 
 Where:
-
 - `i` is the query position
 - `j` is the key position
 - `m` is a head-specific negative slope
+
+For a sentence "The cat sat":
+
+```
+Token "cat" (position 1) computing attention:
+
+Standard attention scores (without positional information):
+"The" (pos 0): 0.8
+"cat" (pos 1): 1.0
+"sat" (pos 2): 0.7
+
+With ALiBi (assuming m = 0.2):
+"The" (pos 0): 0.8 - 0.2×|1-0| = 0.8 - 0.2 = 0.6
+"cat" (pos 1): 1.0 - 0.2×|1-1| = 1.0 - 0 = 1.0
+"sat" (pos 2): 0.7 - 0.2×|1-2| = 0.7 - 0.2 = 0.5
+
+After softmax, "cat" pays more attention to itself, less to distant tokens
+```

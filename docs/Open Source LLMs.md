@@ -243,7 +243,7 @@ In a long document analysis with SWA:
 
 ### Absolute Positional Encoding
 
-
+Absolute positional encoding assigns a unique vector to each position in a sequence. This vector is added to the token embedding before it enters the transformer layers.
 
 ### Rotatory Position Embeddings (RoPE)
 

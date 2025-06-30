@@ -42,3 +42,7 @@
 
 ### Standard Attention
 
+$$ 
+z = \frac{}{}  
+
+$$

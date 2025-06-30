@@ -17,3 +17,6 @@
 	2. Grouped-Query Attention (GQA)
 	3. Multi-Query Attention (MQA)
 	4. Sliding Window Attention (SWA)
+2. Positional Encoding
+	1. Rotational Positional Encoding (RoPE)
+	2. 

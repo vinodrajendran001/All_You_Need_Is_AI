@@ -99,5 +99,6 @@ Attention Mask:
 
 ### Cross Attention
 
-
+- Queries (Q)
+- 
 

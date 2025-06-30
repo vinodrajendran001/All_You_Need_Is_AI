@@ -213,3 +213,31 @@ In a text generation scenario with GQA:
 3. During KV caching:
     - We store 8 keys and 8 values per token (instead of 32)
     - This gives a 4x memory reduction compared to MHA
+
+### Sliding Window Attention (SWA)
+
+Sliding Window Attention (SWA) limits each token to attend only to a fixed window of surrounding tokens, rather than the entire sequence:
+
+- Each token attends only to tokens within a fixed window (e.g., 4096 tokens)
+- Tokens outside this window are ignored
+- This creates a "sliding window" of attention as we move through the sequence
+
+```
+
+Full Attention:                     Sliding Window Attention:
+                                    (Window size = 3)
+0 1 2 3 4 5 6 7 8 9                 0 1 2 3 4 5 6 7 8 9
+↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑                 ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑
+└─┴─┴─┴─┴─┴─┴─┴─┴─┘                 └─┴─┘
+  Token 5 attends                     ├─┴─┘
+  to all tokens                       │ ├─┴─┘
+                                      │ │ ├─┴─┘
+                                      │ │ │ ├─┴─┘
+                                      │ │ │ │ ├─┴─┘
+                                      │ │ │ │ │ ├─┴─┘
+                                      │ │ │ │ │ │ ├─┴─┘
+                                      └─┴─┘ │ │ │ │ ├─┴─┘
+                                        Token 5 only attends
+                                        to tokens 2-8
+```
+`

@@ -200,3 +200,16 @@ GQA finds a middle ground between MHA and MQA by creating groups of query heads 
 - Multiple K projection matrices (e.g., 8 of them)
 - Multiple V projection matrices (e.g., 8 of them)
 - Each K/V projection is shared among a group of Q projections
+
+In a text generation scenario with GQA:
+
+1. When processing "The cat sat on the":
+    - We compute 8 different key vectors and 8 different value vectors per token
+    - We compute 32 query vectors (8 groups with 4 queries each)
+2. For next token prediction:
+    - Queries in the same group attend to the same key and value projections
+    - Different groups attend to different key and value projections
+    - This preserves some diversity while reducing memory requirements
+3. During KV caching:
+    - We store 8 keys and 8 values per token (instead of 32)
+    - This gives a 4x memory reduction compared to MHA

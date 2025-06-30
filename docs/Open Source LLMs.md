@@ -263,6 +263,9 @@ Result:   "The"  "cat"  "sat"  "on" "the" "mat"
           +pos0  +pos1  +pos2  +pos3 +pos4 +pos5
 ```
 
+
+
+
 ### Rotatory Position Embeddings (RoPE)
 
 ### Attention with Linear BIases (ALiBi)

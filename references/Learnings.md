@@ -914,7 +914,7 @@ Repeat this T times.
 
 ## 30.06.2025
 
-- In-depth explanation of REWARD moDELS
+- [Reward Models - by Cameron R. Wolfe, Ph.D.](https://cameronrwolfe.substack.com/p/reward-models) In-depth explanation of **Reward Models**
 
 
   

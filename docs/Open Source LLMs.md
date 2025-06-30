@@ -85,7 +85,7 @@ Step 3: Attention score calculation
 ```
 Attention scores = (Q4 . K1, Q4 . K2, Q4 . K3, Q4 . K4) 
 
-
+*The denominator part ignored here*
 
 Attention weights = softmax(Attention scores)
                   = [0.1, 0.2, 0.4, 0.3]
@@ -93,4 +93,8 @@ Attention weights = softmax(Attention scores)
 Output = 0.1 x V1, 0.2 x V2, 0.4 x V3, O.3 x V4
 
 ```
+
+Step 4: Processing through the network
+
+
 

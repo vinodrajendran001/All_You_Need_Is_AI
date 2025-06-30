@@ -241,5 +241,9 @@ In a long document analysis with SWA:
 ## Positional Encoding
 
 
+### Absolute Positional Encoding
 
+### Rotatory Position Embeddings (RoPE)
+
+### Attention with Linear BIases (A)
 

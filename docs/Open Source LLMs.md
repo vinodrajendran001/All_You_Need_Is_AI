@@ -243,7 +243,10 @@ In a long document analysis with SWA:
 
 ### Absolute Positional Encoding
 
+
+
 ### Rotatory Position Embeddings (RoPE)
 
-### Attention with Linear BIases (A)
+### Attention with Linear BIases (ALiBi)
+
 

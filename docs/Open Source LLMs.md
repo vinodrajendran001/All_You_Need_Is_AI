@@ -131,3 +131,5 @@ ENCODER SIDE                         DECODER SIDE
                          v
                   Output prediction
 ```
+
+In models like CLIP, DALL-E, and LLaVA, cross-attention plays a crucial role in connecting different modalities:

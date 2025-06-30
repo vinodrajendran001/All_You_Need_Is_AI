@@ -40,11 +40,13 @@
 
 ## Attention Mechanism
 
+Query (Q): What the current token is "looking for"
+Key (K): What each token "advertises" or "offer" about itself
+Value (V): The actual information content each token contributes
+
 ### Standard Attention
 
 $$ 
 z = softmax\bigg(\frac{qk^{T}}{\sqrt{d_{k}}}\bigg)v 
 $$
-Query (Q): What the current token is "looking for"
-Key (K): 
-Value (V): 
+

@@ -222,23 +222,19 @@ Sliding Window Attention (SWA) limits each token to attend only to a fixed windo
 - Tokens outside this window are ignored
 - This creates a "sliding window" of attention as we move through the sequence
 
-```
+In a long document analysis with SWA:
 
-Full Attention:                     Sliding Window Attention:
-                                    (Window size = 3)
-0 1 2 3 4 5 6 7 8 9                 0 1 2 3 4 5 6 7 8 9
-↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑                 ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑
-└─┴─┴─┴─┴─┴─┴─┴─┴─┘                 └─┴─┘
-  Token 5 attends                     ├─┴─┘
-  to all tokens                       │ ├─┴─┘
-                                      │ │ ├─┴─┘
-                                      │ │ │ ├─┴─┘
-                                      │ │ │ │ ├─┴─┘
-                                      │ │ │ │ │ ├─┴─┘
-                                      │ │ │ │ │ │ ├─┴─┘
-                                      └─┴─┘ │ │ │ │ ├─┴─┘
-                                        Token 5 only attends
-                                        to tokens 2-8
-```
+1. When processing a 10,000-token document with window size 4096:
+    
+    - For token at position 5000, attention is limited to tokens 903-5000
+    - For token at position 9000, attention is limited to tokens 4904-9000
+2. Next token prediction with window size 4096:
+    
+    - The last token only attends to the previous 4095 tokens
+    - Older information isn't directly accessible but can still influence prediction through cascading attention layers
+3. During KV caching:
+    
+    - We only need to store the most recent window of keys and values
+    - This allows processing sequences longer than model's training length
 
 

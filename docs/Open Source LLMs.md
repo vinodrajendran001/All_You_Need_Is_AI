@@ -66,9 +66,12 @@ Step 2: Creating Query, Key, and Value Vectors
 
 For the last token "the" (which is trying to predict the next token)
 
-Q4: Embedding
-K4:
-V4: 
+```
+
+```
+Q4: Embedding ("the") x WQ
+K4: Embedding ("the") x WK
+V4: Embedding ("the") x WV
 ### Standard Attention
 
 $$ 

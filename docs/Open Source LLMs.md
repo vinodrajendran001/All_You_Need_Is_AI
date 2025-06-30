@@ -329,4 +329,18 @@ RoPE enables the model to understand relative positions naturally:
 
 ALiBi takes a completely different approach: instead of modifying token representations, it directly adds a position-dependent penalty to attention scores based on distance between tokens.
 
+#### How It Works
 
+1. Compute standard attention scores between query and key vectors
+2. Apply a distance-based penalty that grows linearly with the distance between tokens
+3. Different attention heads get different penalty slopes
+
+```
+Attention_Score(i, j) = (Qᵢ · Kⱼ) - m × |i-j|
+```
+
+Where:
+
+- `i` is the query position
+- `j` is the key position
+- `m` is a head-specific negative slope

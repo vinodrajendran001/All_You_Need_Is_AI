@@ -19,4 +19,12 @@
 	4. Sliding Window Attention (SWA)
 2. Positional Encoding
 	1. Rotational Positional Encoding (RoPE)
-	2. 
+	2. Attention with Linear Biases (ALiBi)
+	3. Absolution Positional Encoding
+3. Parameter Efficiency
+	1. Dense Models
+	2. Mixture-of-Experts
+4. Activation Function
+	1. SwiGLU
+	2. GeGLU
+	3. 

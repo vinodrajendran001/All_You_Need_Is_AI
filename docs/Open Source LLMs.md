@@ -282,8 +282,16 @@ Unlike absolute encodings that add position information, RoPE applies a position
     - The dimension pair (different dimension pairs rotate at different rates)
 
 For a token at position m, the rotation for dimension pair j is:
+```
+θⱼ(m) = m × base^(-2j/d)
+```
 
+Where `base` is typically 10000, similar to absolute positional encoding.
 
+For the word "cat" at position 2:
+```
+
+```
 ### Attention with Linear BIases (ALiBi)
 
 

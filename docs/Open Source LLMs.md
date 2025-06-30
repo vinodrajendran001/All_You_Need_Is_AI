@@ -1,5 +1,5 @@
 
 Architecture Commonalities
 
-1. Decoder 
+1. Transformers
 2. 

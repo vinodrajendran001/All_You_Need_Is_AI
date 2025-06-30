@@ -99,4 +99,7 @@ Step 4: Processing through the network
 This output goes through the fully-feedforward network and eventually to the final layer which produces a probability distribution over the vocabulary, predicting "cat" with high probability.
 
 
+### Cross Attention
+
+
 

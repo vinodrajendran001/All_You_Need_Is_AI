@@ -158,3 +158,15 @@ IMAGE ENCODER                      TEXT DECODER
                     elements
 
 ```
+
+### Multi-Head Attention (MHA)
+
+- Each head has its own query (Q), key (K), and value (V) projection matrices
+- Each head produces its own attention output
+- These outputs are concatenated and projected to produce the final output
+
+In a model with 32 attention heads, MHA uses:
+
+- 32 different Q projection matrices
+- 32 different K projection matrices
+- 32 different V projection matrices

@@ -178,3 +178,5 @@ Multi-Query Attention (MQA) maintains multiple query heads but uses a **single s
 - Multiple different Q projection matrices (e.g., 32 of them)
 - Just ONE K projection matrix
 - Just ONE V projection matrix
+
+### Grouped-Query 

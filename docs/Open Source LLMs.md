@@ -46,8 +46,12 @@ In self-attention:
 - Key (K): What each token "advertises" or "offer" about itself
 - Value (V): The actual information content each token contributes
 
-Example string: []
+Example string: "The dog chases the"
 
+Step 1: Tokenize the input 
+["The", "dog", "chases", "the"]
+
+Each token gets converted into embedding vector
 ### Standard Attention
 
 $$ 

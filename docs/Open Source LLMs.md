@@ -20,7 +20,7 @@
 2. Positional Encoding
 	1. Rotational Positional Encoding (RoPE)
 	2. Attention with Linear Biases (ALiBi)
-	3. Absolution Positional Encoding
+	3. Absolute Positional Encoding
 3. Parameter Efficiency
 	1. Dense Models
 	2. Mixture-of-Experts
@@ -241,5 +241,7 @@ In a long document analysis with SWA:
 ## Positional Encoding
 
 
-
+1. Absolute Positional Encoding
+2. RoPE
+3. ALiBi
 

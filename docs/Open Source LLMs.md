@@ -290,8 +290,26 @@ Where `base` is typically 10000, similar to absolute positional encoding.
 
 For the word "cat" at position 2:
 ```
+Original embedding dimensions: [0.5, 0.8, 0.3, 0.2, ...]
 
+After RoPE (with simplified numbers):
+- Dimensions 0-1: Rotate by 2θ₀ = 2 radians
+  [0.5, 0.8] → [-0.8, 0.5]
+  
+- Dimensions 2-3: Rotate by 2θ₁ = 0.2 radians
+  [0.3, 0.2] → [0.27, 0.24]
+  
+- And so on for other dimension pairs
 ```
+
+The key insight is that these rotations create a specific pattern when computing attention:
+```
+When comparing positions m and n in attention:
+Dot product becomes influenced by (m-n)
+```
+
+
+
 ### Attention with Linear BIases (ALiBi)
 
 

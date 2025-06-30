@@ -96,5 +96,7 @@ Output = 0.1 x V1, 0.2 x V2, 0.4 x V3, O.3 x V4
 
 Step 4: Processing through the network
 
+This output goes through the fully-feedforward network and eventually to the final layer which produces a probability distribution over the vocabulary, predicting "cat" with high probability.
+
 
 

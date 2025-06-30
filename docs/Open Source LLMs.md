@@ -245,6 +245,17 @@ In a long document analysis with SWA:
 
 Absolute positional encoding assigns a unique vector to each position in a sequence. This vector is added to the token embedding before it enters the transformer layers.
 
+```
+Position: 0       1      2     3    4     5
+          ↓       ↓      ↓     ↓    ↓     ↓
+Tokens:   "The"  "cat"  "sat"  "on" "the" "mat"
+          +      +      +      +    +     +
+PE:       PE₀    PE₁    PE₂    PE₃  PE₄   PE₅
+          ↓      ↓      ↓      ↓    ↓     ↓
+Result:   "The"  "cat"  "sat"  "on" "the" "mat"
+          +pos0  +pos1  +pos2  +pos3 +pos4 +pos5
+```
+
 ### Rotatory Position Embeddings (RoPE)
 
 ### Attention with Linear BIases (ALiBi)

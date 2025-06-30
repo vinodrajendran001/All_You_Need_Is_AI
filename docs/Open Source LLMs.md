@@ -133,3 +133,28 @@ ENCODER SIDE                         DECODER SIDE
 ```
 
 In models like CLIP, DALL-E, and LLaVA, cross-attention plays a crucial role in connecting different modalities:
+
+```
+IMAGE ENCODER                      TEXT DECODER
+(Visual features)                 (Text generation)
+
+  Image patch 1 → V1                 Text token 1 → T1
+  Image patch 2 → V2                 Text token 2 → T2
+  Image patch 3 → V3                 Text token 3 → T3
+  ...                                ...
+            |                            |
+            |                            |
+            v                            v
+        Keys & Values                  Queries
+            |                            |
+            |                            |
+            +------------+---------------+
+                         |
+                         v
+                    Cross-Attention
+                         |
+                         v
+              Text referring to visual
+                    elements
+
+```

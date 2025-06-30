@@ -52,8 +52,6 @@ $$
 z = softmax\bigg(\frac{qk^{T}}{\sqrt{d_{k}}}\bigg)v 
 $$
 
-1. Query vector from the LAST token ("the" in our example)
-2. Key and Value vectors from ALL positions (including the last position)
 
 ```
 Token embeddings:

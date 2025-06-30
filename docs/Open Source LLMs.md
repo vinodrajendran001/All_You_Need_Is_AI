@@ -28,7 +28,7 @@
 	1. SwiGLU
 	2. GeGLU
 	3. ReLU variants
-5. Contex Length
+5. Context Length
 	1. Standard (2K-4K)
 	2. Medium (8K)
 	3. Long (32K+)

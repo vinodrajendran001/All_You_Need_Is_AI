@@ -241,7 +241,5 @@ In a long document analysis with SWA:
 ## Positional Encoding
 
 
-1. Absolute Positional Encoding
-2. RoPE
-3. ALiBi
+
 

@@ -43,6 +43,6 @@
 ### Standard Attention
 
 $$ 
-z = \frac{qk}{\sqrt{d_{k}}}  
-
+z = softmax\bigg(\frac{qk^{T}}{\sqrt{d_{k}}}\bigg)v 
 $$
+

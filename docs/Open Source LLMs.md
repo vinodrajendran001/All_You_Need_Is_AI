@@ -62,6 +62,8 @@ Each token gets converted into embedding vector
 "the"     → [0.2, 0.4, -0.3, 0.1]
 ```
 
+Step 2: Creating Query, Key, and Value Vectors
+
 
 ### Standard Attention
 

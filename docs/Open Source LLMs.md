@@ -274,6 +274,14 @@ Result:   "The"  "cat"  "sat"  "on" "the" "mat"
 
 RoPE encodes position by rotating token vectors in a high-dimensional space. The rotation angle is proportional to the position and varies across dimensions.
 
+Unlike absolute encodings that add position information, RoPE applies a position-dependent rotation to query and key vectors:
+
+1. Split embedding dimensions into pairs (dim0, dim1), (dim2, dim3), etc.
+2. For each pair, apply a 2D rotation where the angle depends on:
+    - The token's position in the sequence
+    - The dimension pair (different dimension pairs rotate at different rates)
+
+
 
 
 

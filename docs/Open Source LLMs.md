@@ -320,6 +320,13 @@ RoPE enables the model to understand relative positions naturally:
     - Its attention to position 1 ("sat") is influenced by relative distance 1
     - The attention mechanism inherently understands these distances
 
-### Attention with Linear BIases (ALiBi)
+#### Key Advantages
+
+- Seamlessly encodes relative positions in the attention mechanism
+- Better generalization to unseen sequence lengths
+- Can be extended to longer contexts through frequency scaling
+### Attention with Linear Biases (ALiBi)
+
+ALiBi takes a completely different approach: instead of modifying token representations, it directly adds a position-dependent penalty to attention scores based on distance between tokens.
 
 

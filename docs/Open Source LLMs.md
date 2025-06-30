@@ -36,3 +36,9 @@
 	1. KV Caching
 	2. Flash Attention
 	3. Quantization Friendly design
+
+
+## Attention Mechanism
+
+### Standard Attention
+

@@ -10,3 +10,10 @@
 7. Residual connections: facilitate gradient flow during traning
 8. Training pipeline: two stage approach: pretraining on large corpora followed by instruction tuning
 
+## Key Differentiators
+
+1. Attention Mechanism
+	1. Standard Attention
+	2. Grouped-Query Attention (GQA)
+	3. Multi-Query Attention (MQA)
+	4. Sliding Windown

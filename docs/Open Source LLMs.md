@@ -99,6 +99,6 @@ Attention Mask:
 
 ### Cross Attention
 
-- Queries (Q)
-- 
+- Queries (Q): Come from the decoder's current sequence
+- Keys (K) and Values (V): Come from the encoder's processed input sequence
 

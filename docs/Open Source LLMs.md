@@ -83,5 +83,5 @@ $$
 
 Step 3: Attention score calculation
 ```
-At
+Attention scores = (Q4 . K1, Q4 . K2) 
 ```

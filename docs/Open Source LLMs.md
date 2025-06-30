@@ -43,6 +43,6 @@
 ### Standard Attention
 
 $$ 
-z = \frac{}{}  
+z = \frac{qk}{\sqrt{d_{k}}}  
 
 $$

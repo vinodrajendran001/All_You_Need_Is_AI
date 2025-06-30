@@ -46,6 +46,8 @@ In self-attention:
 - Key (K): What each token "advertises" or "offer" about itself
 - Value (V): The actual information content each token contributes
 
+Example string: []
+
 ### Standard Attention
 
 $$ 

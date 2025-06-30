@@ -40,6 +40,8 @@
 
 ## Attention Mechanism
 
+In self-attention:
+
 Query (Q): What the current token is "looking for"
 Key (K): What each token "advertises" or "offer" about itself
 Value (V): The actual information content each token contributes

@@ -308,7 +308,17 @@ When comparing positions m and n in attention:
 Dot product becomes influenced by (m-n)
 ```
 
+#### Practical Impact
 
+RoPE enables the model to understand relative positions naturally:
+
+1. For self-attention:
+    - The dot product between query and key naturally encodes their relative distance
+    - Tokens at similar relative distances have similar attention patterns
+2. For token "cat" at position 2 attending to other tokens:
+    - Its attention to position 0 ("The") is influenced by relative distance 2
+    - Its attention to position 1 ("sat") is influenced by relative distance 1
+    - The attention mechanism inherently understands these distances
 
 ### Attention with Linear BIases (ALiBi)
 

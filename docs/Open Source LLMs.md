@@ -170,3 +170,11 @@ In a model with 32 attention heads, MHA uses:
 - 32 different Q projection matrices
 - 32 different K projection matrices
 - 32 different V projection matrices
+
+### Multi-Query Attention (MQA)
+
+Multi-Query Attention (MQA) maintains multiple query heads but uses a **single shared key and value head**:
+
+- Multiple different Q projection matrices (e.g., 32 of them)
+- Just ONE K projection matrix
+- Just ONE V projection matrix

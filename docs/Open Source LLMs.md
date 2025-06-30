@@ -46,33 +46,7 @@ In self-attention:
 - Key (K): What each token "advertises" or "offer" about itself
 - Value (V): The actual information content each token contributes
 
-Example string: "The dog chases the"
-
-Step 1: Tokenize the input 
-```
-["The", "dog", "chases", "the"]
-```
-
-Each token gets converted into embedding vector
-
-```
-"The"     → [0.2, 0.5, -0.3, 0.1]
-"dog"     → [0.8, 0.2, 0.7, -0.5]
-"chases"  → [0.3, 0.9, 0.2, 0.4]
-"the"     → [0.2, 0.4, -0.3, 0.1]
-```
-
-Step 2: Creating Query, Key, and Value Vectors
-
-For the last token "the" (which is trying to predict the next token)
-
-```
-Q4: Embedding ("the") x WQ
-K4: Embedding ("the") x WK
-V4: Embedding ("the") x WV
-```
-
-### Standard Self-Attention Calculation
+Standard Self-Attention Calculation
 
 $$ 
 z = softmax\bigg(\frac{qk^{T}}{\sqrt{d_{k}}}\bigg)v 
@@ -81,22 +55,36 @@ $$
 1. Query vector from the LAST token ("the" in our example)
 2. Key and Value vectors from ALL positions (including the last position)
 
-Step 3: Attention score calculation
 ```
-Attention scores = (Q4 . K1, Q4 . K2, Q4 . K3, Q4 . K4) 
+Token embeddings:
+"The"    : E1
+"dog"    : E2 
+"chases" : E3
+"the"    : E4
 
-*The denominator part ignored here*
+1. Generate Q, K, V for each position:
+   Q1, K1, V1 = E1 × WQ, E1 × WK, E1 × WV  # for "The"
+   Q2, K2, V2 = E2 × WQ, E2 × WK, E2 × WV  # for "dog"
+   Q3, K3, V3 = E3 × WQ, E3 × WK, E3 × WV  # for "chases"
+   Q4, K4, V4 = E4 × WQ, E4 × WK, E4 × WV  # for "the"
 
-Attention weights = softmax(Attention scores)
-                  = [0.1, 0.2, 0.4, 0.3]
-
-Output = 0.1 x V1, 0.2 x V2, 0.4 x V3, O.3 x V4
-
+2. For next token prediction, use Q4 (query from "the"):
+   
+   Attention scores from position 4:
+   - Score between "the" and "The": Q4 · K1 = 0.7
+   - Score between "the" and "dog": Q4 · K2 = 0.5
+   - Score between "the" and "chases": Q4 · K3 = 0.3
+   - Score between "the" and "the": Q4 · K4 = 0.9
+   
+   After softmax:
+   Attention weights = [0.2, 0.15, 0.1, 0.55]
+   
+   Weighted sum:
+   Context vector = 0.2×V1 + 0.15×V2 + 0.1×V3 + 0.55×V4
+   
+3. This context vector (after feed-forward processing) informs 
+   the prediction of the next token, likely "cat"
 ```
-
-Step 4: Processing through the network
-
-This output goes through the fully-feedforward network and eventually to the final layer which produces a probability distribution over the vocabulary, predicting "cat" with high probability.
 
 
 ### Cross Attention

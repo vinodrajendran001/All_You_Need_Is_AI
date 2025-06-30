@@ -263,10 +263,16 @@ Result:   "The"  "cat"  "sat"  "on" "the" "mat"
           +pos0  +pos1  +pos2  +pos3 +pos4 +pos5
 ```
 
+#### Limitations
 
+- Limited to a fixed maximum sequence length
+- Position 1000 has a completely different encoding than position 999 with no notion of them being close
+- Struggles to generalize to positions beyond training length
 
 
 ### Rotatory Position Embeddings (RoPE)
+
+RoPE encodes position by rotating token vectors in a high-dimensional space. The rotation angle is proportional to the position and varies across dimensions.
 
 
 

@@ -64,7 +64,7 @@ Each token gets converted into embedding vector
 
 Step 2: Creating Query, Key, and Value Vectors
 
-
+For the last token "the" (which is trying to predict the next token)
 ### Standard Attention
 
 $$ 

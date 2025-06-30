@@ -102,3 +102,32 @@ Attention Mask:
 - Queries (Q): Come from the decoder's current sequence
 - Keys (K) and Values (V): Come from the encoder's processed input sequence
 
+```
+ENCODER SIDE                         DECODER SIDE
+(English Input)                      (Spanish Output)
+
+  "The"    → H1                         "El" → Z1
+  "black"  → H2                        "gato" → Z2
+  "cat"    → H3                        "negro" → Z3
+  "sleeps" → H4                        ...
+  "on"     → H5
+  "the"    → H6
+  "mat"    → H7
+            |                            |
+            |                            |
+            v                            v
+        Keys & Values                  Queries
+            |                            |
+            |                            |
+            +------------+---------------+
+                         |
+                         v
+                    Cross-Attention
+                         |
+                         v
+              Contextual information
+              from input sequence
+                         |
+                         v
+                  Output prediction
+```

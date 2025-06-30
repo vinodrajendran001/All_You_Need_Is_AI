@@ -31,4 +31,8 @@
 5. Contex Length
 	1. Standard (2K-4K)
 	2. Medium (8K)
-	3. Long (3)
+	3. Long (32K+)
+6. Inference Optimization
+	1. KV Caching
+	2. Flash Attention
+	3. Quantization Friendly design

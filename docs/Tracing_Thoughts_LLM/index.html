@@ -65,6 +65,12 @@
 
 /* 19. THANK YOU SLIDE */div#\:\$p>svg>foreignObject>section.thank-you{text-align:center;justify-content:center}div#\:\$p>svg>foreignObject>section.thank-you :is(h1,marp-h1){font-size:3em;margin-bottom:1em}div#\:\$p>svg>foreignObject>section.thank-you p{font-size:1.2em;margin:0.5em 0;color:var(--aumovio-cyan)}
 
+/* 20. Two columns centered adjusted */div#\:\$p>svg>foreignObject>section.two-columns-centered-adj{display:grid;grid-template-columns:1fr 1fr; /* Two equal columns for text and image */gap:30px; /* Space between the columns */align-items:center; /* Align both columns vertically at the center */text-align:left; /* Align text column */height:100%; /* Ensure the slide covers the full height */box-sizing:border-box /* Ensure padding doesn’t affect layout */}
+
+/* Left Column (Text Content) */div#\:\$p>svg>foreignObject>section.two-columns-centered-adj .col1{padding-right:20px; /* Space between text and image */display:flex; /* Flex layout for better control of text content */flex-direction:column; /* Stack elements in the column */justify-content:center; /* Vertically center-align content */text-align:left /* Align text content towards the left */}
+
+/* Right Column (Image Content) */div#\:\$p>svg>foreignObject>section.two-columns-centered-adj .col2{padding-left:20px; /* Space between image and text */display:flex; /* Flex layout for image alignment */justify-content:center; /* Horizontal centering of image */align-items:center /* Vertical centering of image */}div#\:\$p>svg>foreignObject>section.two-columns-centered-adj .col2 img{max-width:90%; /* Adjust image width to stay within its column */height:auto /* Maintain aspect ratio of the image */}
+
 /* ==========================================================================
    AUTO-SCALING UTILITIES
    ========================================================================== */
@@ -78,6 +84,8 @@
 /* ==========================================================================
    RESPONSIVE ADJUSTMENTS
    ========================================================================== */@media (max-width:1280px){div#\:\$p>svg>foreignObject>section{font-size:30px;padding:50px}div#\:\$p>svg>foreignObject>section{--marpit-root-font-size:30px}div#\:\$p>svg>foreignObject>section.four-columns{font-size:0.7em}div#\:\$p>svg>foreignObject>section.four-columns{--marpit-root-font-size:0.7em}div#\:\$p>svg>foreignObject>section.six-columns{font-size:0.6em}div#\:\$p>svg>foreignObject>section.six-columns{--marpit-root-font-size:0.6em}div#\:\$p>svg>foreignObject>section.eight-columns{font-size:0.5em}div#\:\$p>svg>foreignObject>section.eight-columns{--marpit-root-font-size:0.5em}}@media (max-width:960px){div#\:\$p>svg>foreignObject>section{font-size:25px;padding:40px}div#\:\$p>svg>foreignObject>section{--marpit-root-font-size:25px}div#\:\$p>svg>foreignObject>section.four-columns{grid-template-columns:1fr 1fr}div#\:\$p>svg>foreignObject>section.six-columns{grid-template-columns:repeat(3,1fr)}div#\:\$p>svg>foreignObject>section.eight-columns{grid-template-columns:repeat(4,1fr)}}
+
+/* Responsive Fix for Smaller Screens */@media (max-width:768px){div#\:\$p>svg>foreignObject>section.two-columns-centered-adj{grid-template-columns:1fr; /* Stack columns vertically for responsiveness */gap:20px /* Reduce space between columns */}div#\:\$p>svg>foreignObject>section.two-columns-centered-adj .col1,div#\:\$p>svg>foreignObject>section.two-columns-centered-adj .col2{text-align:center; /* Center-align for stacked layout */padding:0 /* Remove excess padding */}div#\:\$p>svg>foreignObject>section .col2 img{max-width:100% /* Ensure image fits while stacked */}}
 
 /* ==========================================================================
    ANIMATION SUPPORT
@@ -131,8 +139,8 @@
 <p><img src="images/gg_nn.png" alt="" /></p>
 <footer>Vinod</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-footer="Vinod" data-paginate="true" data-theme="aumovio" data-marpit-pagination="12" style="--footer:Vinod;--paginate:true;--theme:aumovio;" data-marpit-pagination-total="35" data-size="16:9">
-<h1 id="abstract-features">Abstract Features</h1>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-footer="Vinod" data-paginate="true" data-class="normal-slide" data-theme="aumovio" class="normal-slide" data-marpit-pagination="12" style="--footer:Vinod;--paginate:true;--class:normal-slide;--theme:aumovio;--marpit-advanced-background-split:50%;" data-marpit-pagination-total="35" data-size="16:9" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/abstract.png&quot;);background-size:contain;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="12" data-footer="Vinod" data-paginate="true" data-class="normal-slide" data-theme="aumovio" class="normal-slide" data-marpit-pagination="12" style="--footer:Vinod;--paginate:true;--class:normal-slide;--theme:aumovio;--marpit-advanced-background-split:50%;" data-marpit-pagination-total="35" data-size="16:9" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3 id="abstract-features">Abstract Features</h3>
 <ul>
 <li>Sycophantic phrase</li>
 <li>Secrecy</li>
@@ -145,7 +153,7 @@
 </ul>
 <footer>Vinod</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-footer="Vinod" data-paginate="true" data-class="picture" data-theme="aumovio" class="picture" data-marpit-pagination="13" style="--footer:Vinod;--paginate:true;--class:picture;--theme:aumovio;" data-marpit-pagination-total="35" data-size="16:9">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-footer="Vinod" data-paginate="true" data-class="normal-slide" data-theme="aumovio" class="normal-slide" data-marpit-pagination="12" style="" data-marpit-pagination-total="35" data-size="16:9" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-footer="Vinod" data-paginate="true" data-class="picture" data-theme="aumovio" class="picture" data-marpit-pagination="13" style="--footer:Vinod;--paginate:true;--class:picture;--theme:aumovio;" data-marpit-pagination-total="35" data-size="16:9">
 <p><img src="images/DonaldTrump.png" alt="trump" /></p>
 <footer>Vinod</footer>
 </section>
@@ -222,11 +230,17 @@
 <footer>Vinod</footer>
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-footer="Vinod" data-paginate="true" data-class="two-columns-centered" data-theme="aumovio" class="two-columns-centered" data-marpit-pagination="31" style="" data-marpit-pagination-total="35" data-size="16:9" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="left"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-footer="Vinod" data-paginate="true" data-theme="aumovio" data-marpit-pagination="32" style="--footer:Vinod;--paginate:true;--theme:aumovio;" data-marpit-pagination-total="35" data-size="16:9">
-<h1 id="how-researchers-proved-these-findings">How Researchers Proved These Findings</h1>
+<h3 id="how-researchers-proved-these-findings">How Researchers Proved These Findings</h3>
 <ul>
-<li><strong>Attribution Graphs</strong></li>
-<li><strong>Intervention Experiments</strong></li>
-<li><strong>Cross-layer Transcoders</strong></li>
+<li>
+<p><strong>Attribution Graphs</strong> : Mapping computational pathways in Claude’s reasoning processes by grouping related neural features into interpretable steps.</p>
+</li>
+<li>
+<p><strong>Intervention Experiments</strong>:  Measuring output changes when specific features were inhibited or activated.</p>
+</li>
+<li>
+<p><strong>Cross-layer Transcoders</strong>: Decomposing neural activity into sparse features to link concepts across model layers.</p>
+</li>
 </ul>
 <p>Read the full paper: <a href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">https://transformer-circuits.pub/2025/attribution-graphs/biology.html</a></p>
 <footer>Vinod</footer>
@@ -238,10 +252,10 @@
 <p>Interpretable features in LLMs are <strong>highly abstract</strong> and capable of <strong>influencing large models</strong>.</p>
 </li>
 <li>
-<p>LLMs can <strong>plan ahead</strong>, <strong>navigate meaning across languages</strong>, and sometimes <strong>generate explanations that diverge from their actual reasoning</strong></p>
+<p>LLMs can <strong>plan ahead</strong>, <strong>navigate meaning across languages</strong>, and sometimes <strong>generate explanations that diverge from their actual reasoning</strong>.</p>
 </li>
 <li>
-<p>Understanding LLM is <strong>foundational for safety, trust, and impactful applications</strong></p>
+<p>Understanding LLM is <strong>foundational for safety, trust, and impactful applications</strong>.</p>
 </li>
 </ul>
 <footer>Vinod</footer>

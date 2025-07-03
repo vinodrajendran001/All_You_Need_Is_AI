@@ -88,16 +88,18 @@ marp: true
 ![](images/gg_nn.png)
 
 ---
-# Abstract Features
-
+<!-- _class: normal-slide -->
+### Abstract Features
 - Sycophantic phrase
-- Secrecy 
+- Secrecy
 - Code error
 - Bias
 - Deception
 - Power-seeking
 - Criminal
-- ...
+- ...  
+
+![bg right fit](images/abstract.png)
 
 ---
 <!-- _class: picture-->
@@ -235,11 +237,13 @@ marp: true
 ![bg left fit](images/mis5_ending.png)
 
 ---
-# How Researchers Proved These Findings
+### How Researchers Proved These Findings
 
-- **Attribution Graphs**
-- **Intervention Experiments**
-- **Cross-layer Transcoders**
+- **Attribution Graphs** : Mapping computational pathways in Claude’s reasoning processes by grouping related neural features into interpretable steps.
+
+- **Intervention Experiments**:  Measuring output changes when specific features were inhibited or activated.
+
+- **Cross-layer Transcoders**: Decomposing neural activity into sparse features to link concepts across model layers.
 
 
 Read the full paper: https://transformer-circuits.pub/2025/attribution-graphs/biology.html
@@ -249,9 +253,9 @@ Read the full paper: https://transformer-circuits.pub/2025/attribution-graphs/bi
 
 - Interpretable features in LLMs are **highly abstract** and capable of **influencing large models**.
 
-- LLMs can **plan ahead**, **navigate meaning across languages**, and sometimes **generate explanations that diverge from their actual reasoning**
+- LLMs can **plan ahead**, **navigate meaning across languages**, and sometimes **generate explanations that diverge from their actual reasoning**.
 
-- Understanding LLM is **foundational for safety, trust, and impactful applications**
+- Understanding LLM is **foundational for safety, trust, and impactful applications**.
 
 
 

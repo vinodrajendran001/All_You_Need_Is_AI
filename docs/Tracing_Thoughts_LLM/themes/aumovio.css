@@ -507,6 +507,40 @@ section.thank-you p {
   color: var(--aumovio-cyan);
 }
 
+/* 20. Two columns centered adjusted */
+
+section.two-columns-centered-adj {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns for text and image */
+  gap: 30px; /* Space between the columns */
+  align-items: center; /* Align both columns vertically at the center */
+  text-align: left; /* Align text column */
+  height: 100%; /* Ensure the slide covers the full height */
+  box-sizing: border-box; /* Ensure padding doesn’t affect layout */
+}
+
+/* Left Column (Text Content) */
+section.two-columns-centered-adj .col1 {
+  padding-right: 20px; /* Space between text and image */
+  display: flex; /* Flex layout for better control of text content */
+  flex-direction: column; /* Stack elements in the column */
+  justify-content: center; /* Vertically center-align content */
+  text-align: left; /* Align text content towards the left */
+}
+
+/* Right Column (Image Content) */
+section.two-columns-centered-adj .col2 {
+  padding-left: 20px; /* Space between image and text */
+  display: flex; /* Flex layout for image alignment */
+  justify-content: center; /* Horizontal centering of image */
+  align-items: center; /* Vertical centering of image */
+}
+
+section.two-columns-centered-adj .col2 img {
+  max-width: 90%; /* Adjust image width to stay within its column */
+  height: auto; /* Maintain aspect ratio of the image */
+}
+
 /* ==========================================================================
    AUTO-SCALING UTILITIES
    ========================================================================== */
@@ -553,6 +587,24 @@ section.large h2 { font-size: 2em; }
   section.four-columns { grid-template-columns: 1fr 1fr; }
   section.six-columns { grid-template-columns: repeat(3, 1fr); }
   section.eight-columns { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Responsive Fix for Smaller Screens */
+@media (max-width: 768px) {
+  section.two-columns-centered-adj {
+    grid-template-columns: 1fr; /* Stack columns vertically for responsiveness */
+    gap: 20px; /* Reduce space between columns */
+  }
+
+  section.two-columns-centered-adj .col1,
+  section.two-columns-centered-adj .col2 {
+    text-align: center; /* Center-align for stacked layout */
+    padding: 0; /* Remove excess padding */
+  }
+
+  .col2 img {
+    max-width: 100%; /* Ensure image fits while stacked */
+  }
 }
 
 /* ==========================================================================

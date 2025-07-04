@@ -918,7 +918,8 @@ Repeat this T times.
 
 ## 04.07.2025
 
-
+- https://github.com/SakanaAI/treequest - A flexible answer tree search library featuring **AB-MCTS**, useful for (but not limited to) LLM inference-time scaling.
+- 
 
   
   

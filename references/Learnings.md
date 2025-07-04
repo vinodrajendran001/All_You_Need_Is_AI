@@ -920,8 +920,7 @@ Repeat this T times.
 
 - https://github.com/SakanaAI/treequest - A flexible answer tree search library featuring **AB-MCTS**, useful for (but not limited to) LLM inference-time scaling.
 - https://www.dyad.sh/ - Free, local, open-source alternative to Lovable / v0 / Bolt.
-- Marc Andreessen's career advice
-  ![[Pasted image 20250704093057.png]]
+
  
 
   

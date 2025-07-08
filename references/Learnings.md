@@ -935,7 +935,13 @@ Repeat this T times.
 		- **LIPS**: Blends symbolic reasoning with LLM capabilities (neural reasoning) for inequality proofs.
 		- **Chain-of-Reasoning (CoR)**: Unifies reasoning across natural language, code, and symbolic math, dynamically blending all three aspects for cross-domain generalization.
 	- [ ] **R3GAN**: It derives a regularized relativistic GAN loss that leads to stability and convergence, removing the need for heuristics and allowing the use of modern architectures
-	-[  ]
+	- [ ] **Transformers without Normalization**: Meta proposes **Dynamic Tanh (DyT)** – a super simple and efficient function that mimics how normalization works.
+		- DyT works just as well as normalization layers (or even better)
+- It doesn't need extra calculations
+    
+- Requires less tuning
+    
+- Works for images, language, supervised learning, and even self-supervised learning
 
   
   

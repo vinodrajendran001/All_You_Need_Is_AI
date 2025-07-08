@@ -928,12 +928,13 @@ Repeat this T times.
 - Research that you need to know
 	1. New Methods for Boosting Reasoning in Small and Large Models from Microsoft Research
 		- **rStar-Math**: Brings deep reasoning capabilities to small models (1.5B–7B parameters) using:
-    
-    - Monte Carlo Tree Search (MCTS),
-        
-    - Process-level supervision via preference modeling,
-        
-    - Iterative self-improvement cycles.
+    	    - Monte Carlo Tree Search (MCTS),
+		    - Process-level supervision via preference modeling,
+		    - Iterative self-improvement cycles.
+		- **Logic-RL** framework: Rewards the model only if both the reasoning process and the final answer are correct.
+		- **LIPS**: Blends symbolic reasoning with LLM capabilities (neural reasoning) for inequality proofs.
+		- **Chain-of-Reasoning (CoR)**: Unifies reasoning across natural language, code, and symbolic math, dynamically blending all three aspects for cross-domain generalization.
+	2. 
 
   
   

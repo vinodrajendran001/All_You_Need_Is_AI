@@ -937,11 +937,9 @@ Repeat this T times.
 	- [ ] **R3GAN**: It derives a regularized relativistic GAN loss that leads to stability and convergence, removing the need for heuristics and allowing the use of modern architectures
 	- [ ] **Transformers without Normalization**: Meta proposes **Dynamic Tanh (DyT)** – a super simple and efficient function that mimics how normalization works.
 		- DyT works just as well as normalization layers (or even better)
-- It doesn't need extra calculations
-    
-- Requires less tuning
-    
-- Works for images, language, supervised learning, and even self-supervised learning
+		- It doesn't need extra calculations
+		- Requires less tuning
+		- Works for images, language, supervised learning, and even self-supervised learning
 
   
   

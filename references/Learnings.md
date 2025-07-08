@@ -934,6 +934,7 @@ Repeat this T times.
 		- **Logic-RL** framework: Rewards the model only if both the reasoning process and the final answer are correct.
 		- **LIPS**: Blends symbolic reasoning with LLM capabilities (neural reasoning) for inequality proofs.
 		- **Chain-of-Reasoning (CoR)**: Unifies reasoning across natural language, code, and symbolic math, dynamically blending all three aspects for cross-domain generalization.
+	1. **R3GAN**: It derives a regularized relativistic GAN loss that leads to stability and convergence, removing the need for heuristics and allowing the use of modern architectures
 	2. 
 
   

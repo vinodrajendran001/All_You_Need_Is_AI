@@ -961,7 +961,6 @@ This is good news for open-source as there's still a use case for fine-tuning! T
 - if you want to do image segmentation, use a model like EoMT (see my post last week)  
 - etc.  
   
-Since this paper is pretty cool I've submitted it to Daily Papers here: [https://lnkd.in/eGMxSkhW](https://lnkd.in/eGMxSkhW)  
-Source: [https://lnkd.in/eezkVs_r](https://lnkd.in/eezkVs_r)
+
   
   

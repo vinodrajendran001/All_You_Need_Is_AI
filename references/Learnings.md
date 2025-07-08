@@ -925,7 +925,15 @@ Repeat this T times.
 
 - A prompt that writes your Entire Business Plan in minutes.
   ![[Pasted image 20250708084943.png]]
-- 
+- Research that you need to know
+	1. New Methods for Boosting Reasoning in Small and Large Models from Microsoft Research
+		- **rStar-Math**: Brings deep reasoning capabilities to small models (1.5B–7B parameters) using:
+    
+    - Monte Carlo Tree Search (MCTS),
+        
+    - Process-level supervision via preference modeling,
+        
+    - Iterative self-improvement cycles.
 
   
   

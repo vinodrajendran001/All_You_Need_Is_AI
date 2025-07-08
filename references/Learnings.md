@@ -925,6 +925,7 @@ Repeat this T times.
 
 - A prompt that writes your Entire Business Plan in minutes.
   ![[Pasted image 20250708084943.png]]
+- 
 
   
   

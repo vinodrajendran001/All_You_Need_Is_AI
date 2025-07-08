@@ -926,7 +926,7 @@ Repeat this T times.
 - A prompt that writes your Entire Business Plan in minutes.
   ![[Pasted image 20250708084943.png]]
 - Research that you need to know
-	1. New Methods for Boosting Reasoning in Small and Large Models from Microsoft Research
+	- [ ] New Methods for Boosting Reasoning in Small and Large Models from Microsoft Research
 		- **rStar-Math**: Brings deep reasoning capabilities to small models (1.5B–7B parameters) using:
     	    - Monte Carlo Tree Search (MCTS),
 		    - Process-level supervision via preference modeling,
@@ -934,8 +934,8 @@ Repeat this T times.
 		- **Logic-RL** framework: Rewards the model only if both the reasoning process and the final answer are correct.
 		- **LIPS**: Blends symbolic reasoning with LLM capabilities (neural reasoning) for inequality proofs.
 		- **Chain-of-Reasoning (CoR)**: Unifies reasoning across natural language, code, and symbolic math, dynamically blending all three aspects for cross-domain generalization.
-	1. **R3GAN**: It derives a regularized relativistic GAN loss that leads to stability and convergence, removing the need for heuristics and allowing the use of modern architectures
-	2. 
+	- [ ] **R3GAN**: It derives a regularized relativistic GAN loss that leads to stability and convergence, removing the need for heuristics and allowing the use of modern architectures
+	-[  ]
 
   
   

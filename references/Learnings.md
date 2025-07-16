@@ -944,6 +944,10 @@ Repeat this T times.
   
 ## 16.07.2025
 
+- A Reddit user deposited $400 into Robinhood, then let ChatGPT pick option trades. 100% win reate over 10 days. He uploads spreadsheets and screenshots with detailed fundamentals, options chains, technical indicators, and macro data, then tells each model to filter that information and propose trades that fit strict probability-of-profit and risk limits. They still place and close orders manually but plan to keep the head-to-head test running for 6 months.
+  This is his prompt
+  ```text
 
+    ```
   
   

@@ -957,4 +957,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 18.07.2025
 
 - [How to Build Your Own AI Agent](https://www.theneuron.ai/explainer-articles/how-to-build-your-own-ai-agent-without-being-a-pro-coder)
+- [ripienaar/free-for-dev: A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev](https://github.com/ripienaar/free-for-dev)
 - 

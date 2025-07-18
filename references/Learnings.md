@@ -953,4 +953,7 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 17.07.2025
 
 - [To be a better programmer, write little proofs in your head](https://the-nerve-blog.ghost.io/to-be-a-better-programmer-write-little-proofs-in-your-head/) One trick that helps developers write code faster and more accurately is to sketch proofs in your head when you're working on something difficult. Doing this without interrupting flow takes a lot of practice, but once you get good at it, you'll find a surprising amount of code will work on the first or second try. This article demonstrates a few examples of how this technique can be applied.
-  
+
+## 18.07.2025
+
+- 

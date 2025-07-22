@@ -959,3 +959,9 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 - [How to Build Your Own AI Agent](https://www.theneuron.ai/explainer-articles/how-to-build-your-own-ai-agent-without-being-a-pro-coder)
 - [ripienaar/free-for-dev: A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev](https://github.com/ripienaar/free-for-dev)
 - [googleapis/genai-toolbox: MCP Toolbox for Databases is an open source MCP server for databases.](https://github.com/googleapis/genai-toolbox)
+
+
+## 22.07.2025
+
+- https://gradientflow.substack.com/p/superposition-meets-productiona-guide
+- 

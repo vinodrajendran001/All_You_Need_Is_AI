@@ -965,3 +965,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 - https://gradientflow.substack.com/p/superposition-meets-productiona-guide - A DeepMind veteran on the future of AI and quantum
 - https://github.com/presenton/presenton - Open-Source AI Presentation Generator and API (Gamma Alternative)
+
+## 24.07.2025
+
+- [How to build an Agent](https://ampcode.com/how-to-build-an-agent)
+- 

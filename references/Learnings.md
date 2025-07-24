@@ -969,4 +969,6 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 24.07.2025
 
 - [How to build an Agent](https://ampcode.com/how-to-build-an-agent)
-- 
+- [mozilla-ai/any-agent: A single interface to use and evaluate different agent frameworks](https://github.com/mozilla-ai/any-agent)
+
+

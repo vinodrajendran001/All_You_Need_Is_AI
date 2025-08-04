@@ -974,3 +974,6 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 31.07.2025
 
 - [The Anatomy of a Modern LLM. A complete walkthrough of the… | by Damian Tran | Jul, 2025 | Medium](https://medium.com/@damianvtran/the-anatomy-of-a-modern-llm-0347afd72514)
+
+## 04.08.2025
+

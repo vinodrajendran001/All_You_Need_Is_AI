@@ -977,4 +977,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 04.08.2025
 
-- https://github.com/rasbt/LLMs-from-scratch/tree/main/ch05/11_qwen3) 
+- [Coding Qwen3 From Scratch](https://github.com/rasbt/LLMs-from-scratch/tree/main/ch05/11_qwen3) 
+- 

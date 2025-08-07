@@ -160,5 +160,9 @@ The roadmap is structured in 5 major domains: NLP, Computer Vision (CV), Large L
 
 3 years plan
 
-Common goal between AI and ANS milestones / goal
+Common goal between AI and ANS team
+
+important deliverables / goal for 3 years
+
+Le
 

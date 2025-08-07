@@ -984,4 +984,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 07.08.2025
 
 - [Sparsify transformers with SAEs and transcoders](https://github.com/EleutherAI/sparsify)
-- 
+- https://yexijiang.substack.com/p/if-you-understand-life-youve-already An article that demystifies the fundamental concepts of reinforcement learning by illustrating them through relatable human experiences and everyday life scenarios.

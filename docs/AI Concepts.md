@@ -181,31 +181,20 @@ AOT people are involved in project where the outcome of inno/research gets succe
 
 
 
-## Agreed Common 3-Year Goals and Deliverables between AI and ANS
+## Common Goals and Deliverables (3-year horizon)
 
+- Important joint objectives between AI and ANS teams
+- deliverables to be achieved over next 3 years
 
-## Business Case for AI Model Integration with ANS Chips
+## Business Breakdown - AI Model Running on ANS PL1 Chip
 
-### Product Strategy Options
-* **Option 1:** License AI features as software modules to automotive manufacturers
-* **Option 2:** Offer complete AI-enhanced cockpit solutions with proprietary hardware
-* **Option 3:** Develop a tiered approach with both component and full-system offerings
+- **Key Questions:**
+    - What is ANS PL1 planning to do with this capability?
+    - Will they sell AI features as standalone products?
+    - Will they sell complete cockpit systems with integrated AI?
+    - Who are the potential customers for these offerings?
+    - What revenue potential does this integration represent?
 
-### Target Customers
-* Tier-1 automotive suppliers seeking differentiation
-* Vehicle OEMs focused on next-generation user experiences
-* Premium automotive brands requiring advanced cockpit capabilities
-* Commercial fleet operators seeking efficiency and safety improvements
+Vincent needs clarity on these business aspects to determine if the project is financially sustainable over time.
 
-### Revenue Potential
-* Initial licensing and integration fees
-* Recurring subscription for AI model updates
-* Volume-based hardware sales with AI acceleration capabilities
-* Service contracts for customization and optimization
-
-### Business Sustainability Assessment
-Vincent needs this information to evaluate if the collaboration represents a viable long-term business opportunity with sufficient return on investment to justify continued resource allocation.
-
-The AOT team's involvement hinges on whether this research project can successfully transition to a profitable business segment for Aumovio, ensuring that innovation efforts align with sustainable commercial outcomes.
-
-test
+The AOT team members are currently participating in this project with the expectation that innovation/research outcomes will translate into successful business opportunities for Aumovio.

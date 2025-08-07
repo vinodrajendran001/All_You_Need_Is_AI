@@ -980,4 +980,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 - [Coding Qwen3 From Scratch](https://github.com/rasbt/LLMs-from-scratch/tree/main/ch05/11_qwen3) 
 - 16 Coding Patterns That Make Interviews Easy
   ![[Pasted image 20250804095245.png]]
+
+## 07.08.2025
+
+- [Sparsify transformers with SAEs and transcoders](https://github.com/EleutherAI/sparsify)
 - 

@@ -164,5 +164,9 @@ Common goal between AI and ANS team
 
 important deliverables / goal for 3 years
 
-Le
+Let's say ANS have the AI model running on to their chip - what is it they are going to do it?
+- sell the AI features?
+- sell the cockpit with AI features
+
+
 

@@ -166,11 +166,11 @@ important deliverables / goal for 3 years
 
 Let's say ANS have the AI model running on to their chip - Business breakdown
 
-what is it they are going to do it?
+what is it the ANS PL1 are going to do it?
 - sell the AI features?
-- sell the cockpit with AI features
+- sell the cockpit with AI features?
 - who is the interested parties to buy this?
-- what is the rev
+- what is the revenue it would generate?
 
 
 

@@ -158,42 +158,6 @@ The roadmap is structured in 5 major domains: NLP, Computer Vision (CV), Large L
 ---
 
 
-Common goal between AI and ANS team
-
-<list>
-
-important deliverables / goal for 3 years
-
-<list>
-
-Let's say ANS have the AI model running on to their chip - Business breakdown
-
-what is it the ANS PL1 are going to do it?
-- sell the AI features?
-- sell the cockpit with AI features?
-- who is the interested parties to buy this?
-- what is the revenue it would generate?
-
-Vincent wants to know this to know whether this project is
-sustainable
-AOT people are involved in project where the outcome of inno/research gets succesfull business to aumovio
 
 
-
-
-Common Goals and Deliverables (3-year horizon)
-
-- Important joint objectives between AI and ANS teams
-- deliverables to be achieved over next 3 years
-
-Business Breakdown - AI Model Running on ANS PL1 Chip
-
-- Key Questions:
-    - What is ANS PL1 planning to do with this capability?
-    - Will they sell AI features as standalone products?
-    - Will they sell complete cockpit systems with integrated AI?
-    - Who are the potential customers for these offerings?
-    - What revenue potential does this integration represent?
-
-Vincent needs clarity on these business aspects to determine if the project is financially sustainable over time.
 

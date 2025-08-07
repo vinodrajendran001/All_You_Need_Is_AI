@@ -176,6 +176,7 @@ what is it the ANS PL1 are going to do it?
 
 Vincent wants to know this to know whether this project is
 sustainable
-AOT people are involved in project where the outcome of 
+AOT people are involved in project where the outcome of inno/research gets succesfull business to aumovio
+
 
 

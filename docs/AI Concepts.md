@@ -181,14 +181,14 @@ AOT people are involved in project where the outcome of inno/research gets succe
 
 
 
-## Common Goals and Deliverables (3-year horizon)
+Common Goals and Deliverables (3-year horizon)
 
 - Important joint objectives between AI and ANS teams
 - deliverables to be achieved over next 3 years
 
-## Business Breakdown - AI Model Running on ANS PL1 Chip
+Business Breakdown - AI Model Running on ANS PL1 Chip
 
-- **Key Questions:**
+- Key Questions:
     - What is ANS PL1 planning to do with this capability?
     - Will they sell AI features as standalone products?
     - Will they sell complete cockpit systems with integrated AI?
@@ -197,4 +197,3 @@ AOT people are involved in project where the outcome of inno/research gets succe
 
 Vincent needs clarity on these business aspects to determine if the project is financially sustainable over time.
 
-The AOT team members are currently participating in this project with the expectation that innovation/research outcomes will translate into successful business opportunities for Aumovio.

@@ -156,3 +156,9 @@ The roadmap is structured in 5 major domains: NLP, Computer Vision (CV), Large L
 3. **Applications in Robotics/Games**: RL for real-world systems (e.g., AlphaGo, AlphaStar).  
 
 ---
+
+
+3 years plan
+
+Common goal between AI and ANS milestones / goal
+

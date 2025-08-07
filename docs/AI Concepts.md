@@ -158,9 +158,9 @@ The roadmap is structured in 5 major domains: NLP, Computer Vision (CV), Large L
 ---
 
 
-3 years plan
-
 Common goal between AI and ANS team
+
+<list out
 
 important deliverables / goal for 3 years
 
@@ -174,4 +174,6 @@ what is it the ANS PL1 are going to do it?
 
 Vincent wants to know this to know whether this project is
 sustainable
+AOT people are involved in project which brings business to Aumovio
+
 

@@ -14,7 +14,10 @@
 		{"type":"text","text":"User-generated  data","id":"946324efb15222e9","x":-412,"y":-87,"width":207,"height":54},
 		{"type":"text","text":"Third-party data data","id":"8df6a79ce22c7a70","x":-412,"y":20,"width":207,"height":50},
 		{"id":"b504d6d88251a85b","x":-412,"y":-200,"width":136,"height":50,"type":"text","text":"Input data"},
-		{"type":"text","text":"#### Data Format","id":"d09834d83b2d26e4","x":-231,"y":311,"width":185,"height":60}
+		{"type":"text","text":"#### Data Model","id":"d09834d83b2d26e4","x":-700,"y":660,"width":185,"height":60},
+		{"id":"54b63c66f1fe38ce","x":-412,"y":560,"width":154,"height":60,"type":"text","text":"Relational"},
+		{"type":"text","text":"Document","id":"41ae12ff52aeec9e","x":-412,"y":690,"width":154,"height":60},
+		{"type":"text","text":"Document","id":"f234ff5ecd4bdded","x":-412,"y":820,"width":154,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

@@ -32,7 +32,9 @@
 		{"type":"text","text":"parque","id":"b9b86fa14f1a87f6","x":60,"y":335,"width":114,"height":50},
 		{"type":"text","text":"avro","id":"34a641e1f81aa3cf","x":60,"y":395,"width":114,"height":50},
 		{"type":"text","text":"protobuf","id":"a5acdd6d5d502cc6","x":60,"y":470,"width":114,"height":50},
-		{"type":"text","text":"pickle","id":"7e61001a5109e4a4","x":60,"y":535,"width":114,"height":50}
+		{"type":"text","text":"pickle","id":"7e61001a5109e4a4","x":60,"y":535,"width":114,"height":50},
+		{"type":"text","text":"SQL, NOSQL","id":"1e86421ae4264924","x":-120,"y":560,"width":114,"height":60},
+		{"type":"text","text":"MYSQL","id":"b3335cb2184bd8bf","x":-120,"y":660,"width":114,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

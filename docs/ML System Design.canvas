@@ -23,7 +23,8 @@
 		{"type":"text","text":"Analytical","id":"ce768940e3bc1f9d","x":-412,"y":1070,"width":154,"height":60},
 		{"type":"text","text":"### Modes of Data Flow","id":"33c925b58873e617","x":-755,"y":1260,"width":247,"height":80},
 		{"type":"text","text":"Database","id":"e784fa8c502adca5","x":-412,"y":1180,"width":154,"height":60},
-		{"type":"text","text":"Database","id":"0eb16af8e05ca728","x":-278,"y":999,"width":154,"height":60}
+		{"type":"text","text":"Service","id":"0eb16af8e05ca728","x":-412,"y":1270,"width":154,"height":60},
+		{"type":"text","text":"Real time","id":"bb0b3b9b0c6c023b","x":-412,"y":1360,"width":154,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -39,6 +40,9 @@
 		{"id":"99369e5e3ccad602","fromNode":"d09834d83b2d26e4","fromSide":"right","toNode":"41ae12ff52aeec9e","toSide":"left"},
 		{"id":"bec419baf2be8514","fromNode":"d09834d83b2d26e4","fromSide":"right","toNode":"f234ff5ecd4bdded","toSide":"left"},
 		{"id":"0ab9bf813e2d587d","fromNode":"9585c5f1e1411573","fromSide":"right","toNode":"b9a40d88888fd1a4","toSide":"left"},
-		{"id":"ea4cfa086cd149f2","fromNode":"9585c5f1e1411573","fromSide":"right","toNode":"ce768940e3bc1f9d","toSide":"left"}
+		{"id":"ea4cfa086cd149f2","fromNode":"9585c5f1e1411573","fromSide":"right","toNode":"ce768940e3bc1f9d","toSide":"left"},
+		{"id":"da8d614735b67faa","fromNode":"33c925b58873e617","fromSide":"right","toNode":"e784fa8c502adca5","toSide":"left"},
+		{"id":"a5586aa9196539cb","fromNode":"33c925b58873e617","fromSide":"right","toNode":"0eb16af8e05ca728","toSide":"left"},
+		{"id":"d49cf420186f5b81","fromNode":"33c925b58873e617","fromSide":"right","toNode":"bb0b3b9b0c6c023b","toSide":"left"}
 	]
 }

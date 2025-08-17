@@ -1,7 +1,10 @@
 {
 	"nodes":[
 		{"id":"05118a6da1666181","x":-720,"y":-320,"width":225,"height":70,"type":"text","text":"### Data Engineering"},
-		{"id":"9deccae842abce52","x":-125,"y":-30,"width":185,"height":50,"type":"text","text":"### Training Data"}
+		{"id":"9deccae842abce52","x":-380,"y":-320,"width":200,"height":70,"type":"text","text":"### Training Data"},
+		{"id":"a7f17393788855da","x":-80,"y":-320,"width":260,"height":70,"type":"text","text":"### Feature Engineering"},
+		{"id":"fea5ba9905c60e60","x":280,"y":-320,"width":265,"height":70,"type":"text","text":"### Model Development"},
+		{"id":"780d52f1c95e6c3e","x":280,"y":-169,"width":250,"height":60,"type":"text","text":"### Model Deployment"}
 	],
 	"edges":[]
 }

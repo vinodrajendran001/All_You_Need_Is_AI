@@ -18,15 +18,15 @@
 		{"type":"text","text":"Text","id":"72e50a7f2364e2d7","x":-120,"y":220,"width":114,"height":50},
 		{"type":"text","text":"Unreadable","id":"68c1d2a54749098a","x":-340,"y":420,"width":154,"height":50},
 		{"id":"d9096696037ae23f","x":-120,"y":420,"width":114,"height":50,"type":"text","text":"Binary"},
-		{"type":"text","text":"User-generated  data","id":"946324efb15222e9","x":-340,"y":-87,"width":207,"height":54},
-		{"type":"text","text":"Third-party data data","id":"8df6a79ce22c7a70","x":-340,"y":20,"width":207,"height":50},
 		{"id":"b504d6d88251a85b","x":-340,"y":-200,"width":136,"height":50,"type":"text","text":"Input data"},
 		{"type":"text","text":"### Batchs vs Stream Processing","id":"ecdfdf63b0ca5c42","x":-700,"y":1580,"width":247,"height":80},
 		{"type":"text","text":"Database","id":"e784fa8c502adca5","x":-340,"y":1280,"width":154,"height":60},
 		{"type":"text","text":"Service","id":"0eb16af8e05ca728","x":-340,"y":1370,"width":154,"height":60},
 		{"type":"text","text":"Real time","id":"bb0b3b9b0c6c023b","x":-340,"y":1460,"width":154,"height":60},
 		{"type":"text","text":"### Modes of Data Flow","id":"33c925b58873e617","x":-700,"y":1360,"width":247,"height":80},
-		{"type":"text","text":"ETL","id":"b5aa6c9a0addbc7d","x":-340,"y":1180,"width":154,"height":60}
+		{"type":"text","text":"ETL","id":"b5aa6c9a0addbc7d","x":-340,"y":1180,"width":154,"height":60},
+		{"type":"text","text":"User-generated  data","id":"946324efb15222e9","x":-340,"y":-114,"width":207,"height":54},
+		{"type":"text","text":"Third-party data data","id":"8df6a79ce22c7a70","x":-340,"y":-20,"width":207,"height":50}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

@@ -36,7 +36,8 @@
 		{"type":"text","text":"SQL, NOSQL","id":"1e86421ae4264924","x":-120,"y":560,"width":114,"height":60},
 		{"type":"text","text":"MySQL, PostgreSQL","id":"b3335cb2184bd8bf","x":-120,"y":660,"width":140,"height":60},
 		{"type":"text","text":"Apache Iceberg, DuckDB","id":"15c9ef2fd20abb52","x":-63,"y":1070,"width":180,"height":60},
-		{"type":"text","text":"CockroachDB","id":"444fcfe47a988a84","x":-60,"y":940,"width":160,"height":60}
+		{"type":"text","text":"CockroachDB","id":"444fcfe47a988a84","x":-60,"y":940,"width":160,"height":60},
+		{"type":"text","text":"Service","id":"36c9eaff5078d573","x":-60,"y":1310,"width":154,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

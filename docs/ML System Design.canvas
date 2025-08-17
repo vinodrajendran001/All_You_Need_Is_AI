@@ -34,7 +34,9 @@
 		{"type":"text","text":"protobuf","id":"a5acdd6d5d502cc6","x":60,"y":470,"width":114,"height":50},
 		{"type":"text","text":"pickle","id":"7e61001a5109e4a4","x":60,"y":535,"width":114,"height":50},
 		{"type":"text","text":"SQL, NOSQL","id":"1e86421ae4264924","x":-120,"y":560,"width":114,"height":60},
-		{"type":"text","text":"MySQL, PostgreSQL","id":"b3335cb2184bd8bf","x":-120,"y":660,"width":140,"height":60}
+		{"type":"text","text":"MySQL, PostgreSQL","id":"b3335cb2184bd8bf","x":-120,"y":660,"width":140,"height":60},
+		{"type":"text","text":"CockroachDB","id":"444fcfe47a988a84","x":-120,"y":940,"width":160,"height":60},
+		{"type":"text","text":"Apache Iceberg, DuckDB","id":"15c9ef2fd20abb52","x":-120,"y":1070,"width":160,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -66,6 +68,9 @@
 		{"id":"60f18f24b58955f2","fromNode":"d9096696037ae23f","fromSide":"right","toNode":"a5acdd6d5d502cc6","toSide":"left"},
 		{"id":"2d84044d6614b468","fromNode":"d9096696037ae23f","fromSide":"right","toNode":"7e61001a5109e4a4","toSide":"left"},
 		{"id":"36707e4b65c6b73c","fromNode":"54b63c66f1fe38ce","fromSide":"right","toNode":"1e86421ae4264924","toSide":"left"},
-		{"id":"f241098253dd0878","fromNode":"41ae12ff52aeec9e","fromSide":"right","toNode":"b3335cb2184bd8bf","toSide":"left"}
+		{"id":"f241098253dd0878","fromNode":"41ae12ff52aeec9e","fromSide":"right","toNode":"b3335cb2184bd8bf","toSide":"left"},
+		{"id":"d078a77e45f20f3b","fromNode":"b9a40d88888fd1a4","fromSide":"right","toNode":"444fcfe47a988a84","toSide":"left"},
+		{"id":"7c8c13f23c952994","fromNode":"ce768940e3bc1f9d","fromSide":"right","toNode":"444fcfe47a988a84","toSide":"left"},
+		{"id":"003019afe0f28ef9","fromNode":"ce768940e3bc1f9d","fromSide":"right","toNode":"15c9ef2fd20abb52","toSide":"left"}
 	]
 }

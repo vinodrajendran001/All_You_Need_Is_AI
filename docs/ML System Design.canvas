@@ -28,7 +28,11 @@
 		{"type":"text","text":"User-generated  data","id":"946324efb15222e9","x":-340,"y":-114,"width":207,"height":54},
 		{"type":"text","text":"Third-party data data","id":"8df6a79ce22c7a70","x":-340,"y":-20,"width":207,"height":50},
 		{"type":"text","text":"csv","id":"385059e6f5717d5a","x":60,"y":170,"width":114,"height":50},
-		{"type":"text","text":"json","id":"cdfb560bcc3a3e39","x":60,"y":270,"width":114,"height":50}
+		{"type":"text","text":"json","id":"cdfb560bcc3a3e39","x":60,"y":270,"width":114,"height":50},
+		{"type":"text","text":"parque","id":"b9b86fa14f1a87f6","x":60,"y":335,"width":114,"height":50},
+		{"type":"text","text":"avro","id":"34a641e1f81aa3cf","x":60,"y":395,"width":114,"height":50},
+		{"type":"text","text":"proto","id":"a5acdd6d5d502cc6","x":60,"y":470,"width":114,"height":50},
+		{"type":"text","text":"csv","id":"7e61001a5109e4a4","x":60,"y":535,"width":114,"height":50}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

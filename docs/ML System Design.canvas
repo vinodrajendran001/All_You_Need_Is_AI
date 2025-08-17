@@ -21,7 +21,9 @@
 		{"type":"text","text":"#### Data Storage and Processing Engine","id":"9585c5f1e1411573","x":-755,"y":1060,"width":240,"height":80},
 		{"type":"text","text":"Transactional","id":"b9a40d88888fd1a4","x":-412,"y":940,"width":154,"height":60},
 		{"type":"text","text":"Analytical","id":"ce768940e3bc1f9d","x":-412,"y":1070,"width":154,"height":60},
-		{"type":"text","text":"### Modes of Data Flow","id":"33c925b58873e617","x":-727,"y":1240,"width":240,"height":80}
+		{"type":"text","text":"### Modes of Data Flow","id":"33c925b58873e617","x":-755,"y":1260,"width":247,"height":80},
+		{"type":"text","text":"Database","id":"e784fa8c502adca5","x":-412,"y":1180,"width":154,"height":60},
+		{"type":"text","text":"Database","id":"0eb16af8e05ca728","x":-278,"y":999,"width":154,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

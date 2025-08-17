@@ -19,7 +19,6 @@
 		{"type":"text","text":"Unreadable","id":"68c1d2a54749098a","x":-340,"y":420,"width":154,"height":50},
 		{"type":"text","text":"Binary","id":"d9096696037ae23f","x":-120,"y":420,"width":114,"height":50},
 		{"type":"text","text":"Input data","id":"b504d6d88251a85b","x":-340,"y":-200,"width":207,"height":50},
-		{"type":"text","text":"### Batchs vs Stream Processing","id":"ecdfdf63b0ca5c42","x":-700,"y":1580,"width":247,"height":80},
 		{"type":"text","text":"Database","id":"e784fa8c502adca5","x":-340,"y":1280,"width":154,"height":60},
 		{"type":"text","text":"Service","id":"0eb16af8e05ca728","x":-340,"y":1370,"width":154,"height":60},
 		{"type":"text","text":"Real time","id":"bb0b3b9b0c6c023b","x":-340,"y":1460,"width":154,"height":60},
@@ -38,7 +37,10 @@
 		{"type":"text","text":"Apache Iceberg, DuckDB","id":"15c9ef2fd20abb52","x":-63,"y":1070,"width":180,"height":60},
 		{"type":"text","text":"CockroachDB","id":"444fcfe47a988a84","x":-60,"y":940,"width":160,"height":60},
 		{"type":"text","text":"REST, RPC","id":"36c9eaff5078d573","x":-57,"y":1370,"width":154,"height":60},
-		{"type":"text","text":"Apache Kafka, AWS Kinesis, RabbitMQ, Apache RocketMQ","id":"939def4cc7d0a455","x":-57,"y":1460,"width":277,"height":60}
+		{"type":"text","text":"Apache Kafka, AWS Kinesis, RabbitMQ, Apache RocketMQ","id":"939def4cc7d0a455","x":-57,"y":1460,"width":277,"height":60},
+		{"type":"text","text":"### Batchs vs Stream Processing","id":"ecdfdf63b0ca5c42","x":-700,"y":1660,"width":247,"height":80},
+		{"type":"text","text":"Batch","id":"2698a49abd3bca34","x":-340,"y":1600,"width":154,"height":60},
+		{"type":"text","text":"Batch","id":"4bef5fda3376be2d","x":-340,"y":1740,"width":154,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

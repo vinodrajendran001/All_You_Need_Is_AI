@@ -58,7 +58,8 @@
 		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":695,"y":745,"width":250,"height":60},
 		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":720,"y":885,"width":280,"height":75},
 		{"id":"ff46ba83b422c9ba","type":"text","text":"Hand-label","x":1045,"y":520,"width":250,"height":60},
-		{"id":"eaac523073da9a57","type":"text","text":"Hand-label","x":1079,"y":285,"width":250,"height":60}
+		{"id":"eaac523073da9a57","type":"text","text":"Label function","x":1045,"y":620,"width":250,"height":60},
+		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1360,"y":650,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

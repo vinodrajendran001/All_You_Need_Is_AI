@@ -72,8 +72,9 @@
 		{"id":"6f7ebcf757a2c55a","type":"text","text":"Algorithm","x":1045,"y":1560,"width":250,"height":60},
 		{"id":"77a03e4ba4a85b35","type":"text","text":"F1, Precision, Recall, ROC curve","x":1420,"y":1288,"width":250,"height":60},
 		{"id":"d97ce37a80bc8a51","type":"text","text":"Resampling (oversampling, and undersampling)","x":1420,"y":1430,"width":260,"height":60},
-		{"id":"0f5d9261fc6763e7","type":"text","text":"","x":1420,"y":1520,"width":250,"height":60},
-		{"id":"37ae64f517ff96d7","type":"text","text":"","x":1032,"y":1348,"width":250,"height":60}
+		{"id":"0f5d9261fc6763e7","type":"text","text":"Cost-sensitive learning","x":1420,"y":1520,"width":250,"height":60},
+		{"id":"37ae64f517ff96d7","type":"text","text":"Class-balance loss","x":1420,"y":1620,"width":250,"height":60},
+		{"id":"28f44f029533eb5b","type":"text","text":"Focal loss","x":1420,"y":1715,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -142,6 +143,9 @@
 		{"id":"9a4ce54de7f3b779","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"839bad8e20ba15a5","toSide":"left"},
 		{"id":"23bf5460bbad2073","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"6f7ebcf757a2c55a","toSide":"left"},
 		{"id":"5a687f2bcef73a2f","fromNode":"839bad8e20ba15a5","fromSide":"right","toNode":"77a03e4ba4a85b35","toSide":"left"},
-		{"id":"8f7e2a1f222b1966","fromNode":"da47f53b5b0f9670","fromSide":"right","toNode":"d97ce37a80bc8a51","toSide":"left"}
+		{"id":"8f7e2a1f222b1966","fromNode":"da47f53b5b0f9670","fromSide":"right","toNode":"d97ce37a80bc8a51","toSide":"left"},
+		{"id":"c4271b6977f92f9c","fromNode":"6f7ebcf757a2c55a","fromSide":"right","toNode":"0f5d9261fc6763e7","toSide":"left"},
+		{"id":"35d9bd5871291642","fromNode":"6f7ebcf757a2c55a","fromSide":"right","toNode":"37ae64f517ff96d7","toSide":"left"},
+		{"id":"c0f0e497fc5e225b","fromNode":"6f7ebcf757a2c55a","fromSide":"right","toNode":"28f44f029533eb5b","toSide":"left"}
 	]
 }

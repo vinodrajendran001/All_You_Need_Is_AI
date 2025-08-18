@@ -65,7 +65,7 @@
 		{"id":"eaac523073da9a57","type":"text","text":"Natural labels","x":1045,"y":730,"width":250,"height":60},
 		{"id":"ff46ba83b422c9ba","type":"text","text":"Hand labels","x":1045,"y":620,"width":250,"height":60},
 		{"id":"0835299f1524c222","type":"text","text":"Label Multiplicity","x":1420,"y":560,"width":250,"height":60},
-		{"id":"d2bb7dcdac80b570","type":"text","text":"Label Multiplicity","x":1420,"y":650,"width":250,"height":60}
+		{"id":"d2bb7dcdac80b570","type":"text","text":"Data Lineage","x":1420,"y":650,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

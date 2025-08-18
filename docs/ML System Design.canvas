@@ -60,7 +60,7 @@
 		{"id":"ff46ba83b422c9ba","type":"text","text":"Hand labels","x":1045,"y":520,"width":250,"height":60},
 		{"id":"eaac523073da9a57","type":"text","text":"Natural labels","x":1045,"y":620,"width":250,"height":60},
 		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1360,"y":650,"width":250,"height":60},
-		{"id":"aaeb01eef7c33408","type":"text","text":"Natural labels","x":1045,"y":715,"width":250,"height":60}
+		{"id":"aaeb01eef7c33408","type":"text","text":"Handling the Lack of Labels","x":1045,"y":715,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -113,6 +113,9 @@
 		{"id":"bd7d8a53dc79d327","fromNode":"dc19f600caba3f40","fromSide":"right","toNode":"46ebf874d34476cc","toSide":"left"},
 		{"id":"9605c37e8b0752d7","fromNode":"dc19f600caba3f40","fromSide":"right","toNode":"27ef04fcbdf50e2b","toSide":"left"},
 		{"id":"ee707c1f444459ed","fromNode":"5ded6ddfb08dc9e4","fromSide":"right","toNode":"8a0b8b889cd852b0","toSide":"left"},
-		{"id":"f44f32cbe9b1cd90","fromNode":"5ded6ddfb08dc9e4","fromSide":"right","toNode":"e7ad037a86f04fbf","toSide":"left"}
+		{"id":"f44f32cbe9b1cd90","fromNode":"5ded6ddfb08dc9e4","fromSide":"right","toNode":"e7ad037a86f04fbf","toSide":"left"},
+		{"id":"be9fa9f40ae391b9","fromNode":"e1f633be0067f05a","fromSide":"right","toNode":"ff46ba83b422c9ba","toSide":"left"},
+		{"id":"645eeea224b6e5d8","fromNode":"e1f633be0067f05a","fromSide":"right","toNode":"eaac523073da9a57","toSide":"left"},
+		{"id":"c3216d4c1dead1ef","fromNode":"e1f633be0067f05a","fromSide":"right","toNode":"aaeb01eef7c33408","toSide":"left"}
 	]
 }

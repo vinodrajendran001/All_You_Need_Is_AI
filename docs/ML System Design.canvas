@@ -55,15 +55,15 @@
 		{"id":"46ebf874d34476cc","type":"text","text":"reservoir sampling","x":1420,"y":365,"width":250,"height":60},
 		{"id":"27ef04fcbdf50e2b","type":"text","text":"importance sampling","x":1420,"y":460,"width":250,"height":60},
 		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":695,"y":620,"width":250,"height":60},
-		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":695,"y":745,"width":250,"height":60},
-		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":720,"y":885,"width":280,"height":75},
 		{"id":"ff46ba83b422c9ba","type":"text","text":"Hand labels","x":1045,"y":520,"width":250,"height":60},
 		{"id":"eaac523073da9a57","type":"text","text":"Natural labels","x":1045,"y":620,"width":250,"height":60},
-		{"id":"aaeb01eef7c33408","type":"text","text":"Handling the Lack of Labels","x":1045,"y":715,"width":250,"height":60},
-		{"id":"4ff45d55816b5259","type":"text","text":"Weak supervision","x":1360,"y":685,"width":250,"height":60},
-		{"id":"7257582e73e1da5c","type":"text","text":"Semi-supervision","x":1360,"y":775,"width":250,"height":60},
-		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1360,"y":960,"width":250,"height":60},
-		{"id":"1b4038a0df7d4859","type":"text","text":"Transfer ","x":1360,"y":863,"width":250,"height":60}
+		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":665,"y":1260,"width":280,"height":75},
+		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":665,"y":1120,"width":250,"height":60},
+		{"id":"7257582e73e1da5c","type":"text","text":"Semi-supervision","x":1440,"y":905,"width":250,"height":60},
+		{"id":"1b4038a0df7d4859","type":"text","text":"Transfer learning","x":1440,"y":993,"width":250,"height":60},
+		{"id":"aaeb01eef7c33408","type":"text","text":"Handling the Lack of Labels","x":1045,"y":903,"width":250,"height":60},
+		{"id":"4ff45d55816b5259","type":"text","text":"Weak supervision","x":1440,"y":820,"width":250,"height":60},
+		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1440,"y":1090,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -120,6 +120,9 @@
 		{"id":"be9fa9f40ae391b9","fromNode":"e1f633be0067f05a","fromSide":"right","toNode":"ff46ba83b422c9ba","toSide":"left"},
 		{"id":"645eeea224b6e5d8","fromNode":"e1f633be0067f05a","fromSide":"right","toNode":"eaac523073da9a57","toSide":"left"},
 		{"id":"c3216d4c1dead1ef","fromNode":"e1f633be0067f05a","fromSide":"right","toNode":"aaeb01eef7c33408","toSide":"left"},
-		{"id":"0eb31284ddae4e4d","fromNode":"aaeb01eef7c33408","fromSide":"right","toNode":"beb4b8b25b722719","toSide":"left"}
+		{"id":"0eb31284ddae4e4d","fromNode":"aaeb01eef7c33408","fromSide":"right","toNode":"beb4b8b25b722719","toSide":"left"},
+		{"id":"e578c2a0f534a4f9","fromNode":"aaeb01eef7c33408","fromSide":"right","toNode":"4ff45d55816b5259","toSide":"left"},
+		{"id":"3fcd4a93dc6bca46","fromNode":"aaeb01eef7c33408","fromSide":"right","toNode":"7257582e73e1da5c","toSide":"left"},
+		{"id":"9a7e5baa92ed1241","fromNode":"aaeb01eef7c33408","fromSide":"right","toNode":"1b4038a0df7d4859","toSide":"left"}
 	]
 }

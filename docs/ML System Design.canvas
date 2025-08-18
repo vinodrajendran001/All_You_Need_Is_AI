@@ -44,8 +44,8 @@
 		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":2280,"y":-320,"width":240,"height":69},
 		{"type":"text","text":"### Training Data","id":"9deccae842abce52","x":720,"y":-320,"width":200,"height":70},
 		{"id":"dc19f600caba3f40","type":"text","text":"Random sampling","x":1080,"y":240,"width":250,"height":60},
-		{"id":"8034a90cdab311e2","x":720,"y":-40,"width":250,"height":60,"type":"text","text":"### Sampling"},
-		{"id":"5ded6ddfb08dc9e4","x":1045,"y":-100,"width":250,"height":60,"type":"text","text":"Non-probabilistic sampling"},
+		{"id":"8034a90cdab311e2","type":"text","text":"### Sampling","x":720,"y":-40,"width":250,"height":60},
+		{"id":"5ded6ddfb08dc9e4","type":"text","text":"Non-probabilistic sampling","x":1045,"y":-100,"width":250,"height":60},
 		{"id":"66385926a03fc6db","type":"text","text":"convenience sampling","x":1420,"y":-160,"width":250,"height":60},
 		{"id":"8a0b8b889cd852b0","type":"text","text":"snowball sampling","x":1420,"y":-70,"width":250,"height":60},
 		{"id":"0a4b4272467bf18d","type":"text","text":"judgement sampling","x":1420,"y":20,"width":250,"height":60},
@@ -71,7 +71,9 @@
 		{"id":"da47f53b5b0f9670","type":"text","text":"Change data distribution","x":1045,"y":1430,"width":250,"height":60},
 		{"id":"6f7ebcf757a2c55a","type":"text","text":"Algorithm","x":1045,"y":1560,"width":250,"height":60},
 		{"id":"77a03e4ba4a85b35","type":"text","text":"F1, Precision, Recall, ROC curve","x":1420,"y":1288,"width":250,"height":60},
-		{"id":"d97ce37a80bc8a51","type":"text","text":"F1, Precision, Recall, ROC curve","x":1032,"y":1348,"width":250,"height":60}
+		{"id":"d97ce37a80bc8a51","type":"text","text":"Resampling (oversampling, and undersampling)","x":1420,"y":1430,"width":260,"height":60},
+		{"id":"0f5d9261fc6763e7","type":"text","text":"","x":1420,"y":1520,"width":250,"height":60},
+		{"id":"37ae64f517ff96d7","type":"text","text":"","x":1032,"y":1348,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -139,6 +141,7 @@
 		{"id":"56635b8d3787fa8f","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"da47f53b5b0f9670","toSide":"left"},
 		{"id":"9a4ce54de7f3b779","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"839bad8e20ba15a5","toSide":"left"},
 		{"id":"23bf5460bbad2073","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"6f7ebcf757a2c55a","toSide":"left"},
-		{"id":"5a687f2bcef73a2f","fromNode":"839bad8e20ba15a5","fromSide":"right","toNode":"77a03e4ba4a85b35","toSide":"left"}
+		{"id":"5a687f2bcef73a2f","fromNode":"839bad8e20ba15a5","fromSide":"right","toNode":"77a03e4ba4a85b35","toSide":"left"},
+		{"id":"8f7e2a1f222b1966","fromNode":"da47f53b5b0f9670","fromSide":"right","toNode":"d97ce37a80bc8a51","toSide":"left"}
 	]
 }

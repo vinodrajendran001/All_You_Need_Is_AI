@@ -74,7 +74,10 @@
 		{"id":"37ae64f517ff96d7","type":"text","text":"Class-balance loss","x":1420,"y":1620,"width":250,"height":60},
 		{"id":"28f44f029533eb5b","type":"text","text":"Focal loss","x":1420,"y":1715,"width":250,"height":60},
 		{"type":"text","text":"### Training Data","id":"9deccae842abce52","x":720,"y":-321,"width":200,"height":70},
-		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":720,"y":1960,"width":280,"height":75}
+		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":720,"y":1960,"width":280,"height":75},
+		{"id":"522e8a3f78797367","type":"text","text":"Data synthesis","x":1045,"y":2160,"width":250,"height":60},
+		{"id":"bcc320aaafa950e9","type":"text","text":"Petrubations","x":1045,"y":1998,"width":250,"height":60},
+		{"id":"6fdb4b08c7100908","type":"text","text":"Simple label-preserving transformations","x":1032,"y":1814,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

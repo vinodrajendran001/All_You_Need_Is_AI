@@ -67,9 +67,9 @@
 		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":720,"y":758,"width":250,"height":60},
 		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":635,"y":1700,"width":280,"height":75},
 		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":720,"y":1430,"width":250,"height":60},
-		{"id":"839bad8e20ba15a5","type":"text","text":"Right choice of Metrics","x":1032,"y":1348,"width":250,"height":60},
-		{"id":"da47f53b5b0f9670","type":"text","text":"Shift data distribution","x":1032,"y":1490,"width":250,"height":60},
-		{"id":"6f7ebcf757a2c55a","type":"text","text":"Shift data distribution","x":1032,"y":1620,"width":250,"height":60}
+		{"id":"839bad8e20ba15a5","type":"text","text":"Right choice of Metrics","x":1045,"y":1288,"width":250,"height":60},
+		{"id":"da47f53b5b0f9670","type":"text","text":"Shift data distribution","x":1045,"y":1430,"width":250,"height":60},
+		{"id":"6f7ebcf757a2c55a","type":"text","text":"Algorithm","x":1045,"y":1560,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -133,6 +133,9 @@
 		{"id":"410c1c7c7357ee14","fromNode":"ff46ba83b422c9ba","fromSide":"right","toNode":"0835299f1524c222","toSide":"left"},
 		{"id":"6956f160b84f0b51","fromNode":"ff46ba83b422c9ba","fromSide":"right","toNode":"d2bb7dcdac80b570","toSide":"left"},
 		{"id":"12bd847fbf0a890e","fromNode":"eaac523073da9a57","fromSide":"right","toNode":"509d6769ed428740","toSide":"left"},
-		{"id":"b1da5353a76b7932","fromNode":"9deccae842abce52","fromSide":"left","toNode":"e1f633be0067f05a","toSide":"left"}
+		{"id":"b1da5353a76b7932","fromNode":"9deccae842abce52","fromSide":"left","toNode":"e1f633be0067f05a","toSide":"left"},
+		{"id":"56635b8d3787fa8f","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"da47f53b5b0f9670","toSide":"left"},
+		{"id":"9a4ce54de7f3b779","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"839bad8e20ba15a5","toSide":"left"},
+		{"id":"23bf5460bbad2073","fromNode":"e7da1ba50fba718e","fromSide":"right","toNode":"6f7ebcf757a2c55a","toSide":"left"}
 	]
 }

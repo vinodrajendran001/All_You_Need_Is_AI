@@ -1,6 +1,5 @@
 {
 	"nodes":[
-		{"id":"8034a90cdab311e2","x":993,"y":6,"width":250,"height":60,"type":"text","text":""},
 		{"type":"text","text":"### Data Engineering","id":"05118a6da1666181","x":-720,"y":-320,"width":225,"height":70},
 		{"type":"text","text":"#### Data Format","id":"644cfa0b25cbef35","x":-700,"y":300,"width":185,"height":60},
 		{"type":"text","text":"#### Data Sources","id":"9af20d3dd78701d1","x":-700,"y":-120,"width":185,"height":60},
@@ -43,7 +42,10 @@
 		{"type":"text","text":"### Feature Engineering","id":"a7f17393788855da","x":1560,"y":-321,"width":260,"height":70},
 		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":1920,"y":-321,"width":265,"height":70},
 		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":2280,"y":-320,"width":240,"height":69},
-		{"type":"text","text":"### Training Data","id":"9deccae842abce52","x":720,"y":-320,"width":200,"height":70}
+		{"type":"text","text":"### Training Data","id":"9deccae842abce52","x":720,"y":-320,"width":200,"height":70},
+		{"id":"8034a90cdab311e2","x":720,"y":-140,"width":250,"height":60,"type":"text","text":"### Sampling"},
+		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":720,"y":40,"width":250,"height":60},
+		{"id":"f8fae9d224d8a135","type":"text","text":"### Class Imbalance","x":720,"y":220,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

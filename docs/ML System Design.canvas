@@ -48,7 +48,9 @@
 		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":695,"y":335,"width":250,"height":60},
 		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":695,"y":210,"width":250,"height":60},
 		{"id":"5ded6ddfb08dc9e4","x":1040,"y":-225,"width":250,"height":60,"type":"text","text":"Non-probabilistic sampling"},
-		{"id":"dc19f600caba3f40","type":"text","text":"Random sampling","x":1040,"y":-80,"width":250,"height":60}
+		{"id":"dc19f600caba3f40","type":"text","text":"Random sampling","x":1040,"y":-80,"width":250,"height":60},
+		{"id":"bddb37dc86d4238f","type":"text","text":"stratified sampling","x":993,"y":6,"width":250,"height":60},
+		{"id":"a552fd4c468eda93","type":"text","text":"stratified sampling","x":993,"y":110,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

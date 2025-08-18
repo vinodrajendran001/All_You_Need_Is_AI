@@ -56,17 +56,17 @@
 		{"id":"27ef04fcbdf50e2b","type":"text","text":"importance sampling","x":1420,"y":460,"width":250,"height":60},
 		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":665,"y":1260,"width":280,"height":75},
 		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":665,"y":1120,"width":250,"height":60},
-		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":665,"y":760,"width":250,"height":60},
 		{"id":"ff46ba83b422c9ba","type":"text","text":"Hand labels","x":1045,"y":620,"width":250,"height":60},
 		{"id":"0835299f1524c222","type":"text","text":"Label Multiplicity","x":1420,"y":560,"width":250,"height":60},
 		{"id":"d2bb7dcdac80b570","type":"text","text":"Data Lineage","x":1420,"y":650,"width":250,"height":60},
-		{"id":"7257582e73e1da5c","type":"text","text":"Semi-supervision","x":1440,"y":935,"width":250,"height":60},
-		{"id":"1b4038a0df7d4859","type":"text","text":"Transfer learning","x":1440,"y":1023,"width":250,"height":60},
-		{"id":"4ff45d55816b5259","type":"text","text":"Weak supervision","x":1440,"y":850,"width":250,"height":60},
-		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1440,"y":1120,"width":250,"height":60},
 		{"id":"aaeb01eef7c33408","type":"text","text":"Handling the Lack of Labels","x":1045,"y":933,"width":250,"height":60},
 		{"id":"eaac523073da9a57","type":"text","text":"Natural labels","x":1045,"y":760,"width":250,"height":60},
-		{"id":"509d6769ed428740","type":"text","text":"Feedback loop l","x":1440,"y":760,"width":250,"height":60}
+		{"id":"7257582e73e1da5c","type":"text","text":"Semi-supervision","x":1420,"y":933,"width":250,"height":60},
+		{"id":"1b4038a0df7d4859","type":"text","text":"Transfer learning","x":1420,"y":1021,"width":250,"height":60},
+		{"id":"4ff45d55816b5259","type":"text","text":"Weak supervision","x":1420,"y":848,"width":250,"height":60},
+		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1420,"y":1118,"width":250,"height":60},
+		{"id":"509d6769ed428740","type":"text","text":"Feedback loop length","x":1420,"y":758,"width":250,"height":60},
+		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":720,"y":758,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -128,6 +128,8 @@
 		{"id":"3fcd4a93dc6bca46","fromNode":"aaeb01eef7c33408","fromSide":"right","toNode":"7257582e73e1da5c","toSide":"left"},
 		{"id":"9a7e5baa92ed1241","fromNode":"aaeb01eef7c33408","fromSide":"right","toNode":"1b4038a0df7d4859","toSide":"left"},
 		{"id":"410c1c7c7357ee14","fromNode":"ff46ba83b422c9ba","fromSide":"right","toNode":"0835299f1524c222","toSide":"left"},
-		{"id":"6956f160b84f0b51","fromNode":"ff46ba83b422c9ba","fromSide":"right","toNode":"d2bb7dcdac80b570","toSide":"left"}
+		{"id":"6956f160b84f0b51","fromNode":"ff46ba83b422c9ba","fromSide":"right","toNode":"d2bb7dcdac80b570","toSide":"left"},
+		{"id":"12bd847fbf0a890e","fromNode":"eaac523073da9a57","fromSide":"right","toNode":"509d6769ed428740","toSide":"left"},
+		{"id":"b1da5353a76b7932","fromNode":"9deccae842abce52","fromSide":"left","toNode":"e1f633be0067f05a","toSide":"left"}
 	]
 }

@@ -54,8 +54,6 @@
 		{"id":"a552fd4c468eda93","type":"text","text":"weighted sampling","x":1420,"y":275,"width":250,"height":60},
 		{"id":"46ebf874d34476cc","type":"text","text":"reservoir sampling","x":1420,"y":365,"width":250,"height":60},
 		{"id":"27ef04fcbdf50e2b","type":"text","text":"importance sampling","x":1420,"y":460,"width":250,"height":60},
-		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":665,"y":1260,"width":280,"height":75},
-		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":665,"y":1120,"width":250,"height":60},
 		{"id":"ff46ba83b422c9ba","type":"text","text":"Hand labels","x":1045,"y":620,"width":250,"height":60},
 		{"id":"0835299f1524c222","type":"text","text":"Label Multiplicity","x":1420,"y":560,"width":250,"height":60},
 		{"id":"d2bb7dcdac80b570","type":"text","text":"Data Lineage","x":1420,"y":650,"width":250,"height":60},
@@ -66,7 +64,12 @@
 		{"id":"4ff45d55816b5259","type":"text","text":"Weak supervision","x":1420,"y":848,"width":250,"height":60},
 		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1420,"y":1118,"width":250,"height":60},
 		{"id":"509d6769ed428740","type":"text","text":"Feedback loop length","x":1420,"y":758,"width":250,"height":60},
-		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":720,"y":758,"width":250,"height":60}
+		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":720,"y":758,"width":250,"height":60},
+		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":635,"y":1700,"width":280,"height":75},
+		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":720,"y":1430,"width":250,"height":60},
+		{"id":"839bad8e20ba15a5","type":"text","text":"Right choice of Metrics","x":1032,"y":1348,"width":250,"height":60},
+		{"id":"da47f53b5b0f9670","type":"text","text":"Shift data distribution","x":1032,"y":1490,"width":250,"height":60},
+		{"id":"6f7ebcf757a2c55a","type":"text","text":"Shift data distribution","x":1032,"y":1620,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

@@ -42,7 +42,6 @@
 		{"type":"text","text":"### Feature Engineering","id":"a7f17393788855da","x":1560,"y":-321,"width":260,"height":70},
 		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":1920,"y":-321,"width":265,"height":70},
 		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":2280,"y":-320,"width":240,"height":69},
-		{"type":"text","text":"### Training Data","id":"9deccae842abce52","x":720,"y":-320,"width":200,"height":70},
 		{"id":"dc19f600caba3f40","type":"text","text":"Random sampling","x":1080,"y":240,"width":250,"height":60},
 		{"id":"8034a90cdab311e2","type":"text","text":"### Sampling","x":720,"y":-40,"width":250,"height":60},
 		{"id":"5ded6ddfb08dc9e4","type":"text","text":"Non-probabilistic sampling","x":1045,"y":-100,"width":250,"height":60},
@@ -65,7 +64,6 @@
 		{"id":"beb4b8b25b722719","type":"text","text":"Active Learning","x":1420,"y":1118,"width":250,"height":60},
 		{"id":"509d6769ed428740","type":"text","text":"Feedback loop length","x":1420,"y":758,"width":250,"height":60},
 		{"id":"e1f633be0067f05a","type":"text","text":"### Labeling","x":720,"y":758,"width":250,"height":60},
-		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":635,"y":1700,"width":280,"height":75},
 		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":720,"y":1430,"width":250,"height":60},
 		{"id":"839bad8e20ba15a5","type":"text","text":"Right choice of Metrics","x":1045,"y":1288,"width":250,"height":60},
 		{"id":"da47f53b5b0f9670","type":"text","text":"Change data distribution","x":1045,"y":1430,"width":250,"height":60},
@@ -74,7 +72,9 @@
 		{"id":"d97ce37a80bc8a51","type":"text","text":"Resampling (oversampling, and undersampling)","x":1420,"y":1430,"width":260,"height":60},
 		{"id":"0f5d9261fc6763e7","type":"text","text":"Cost-sensitive learning","x":1420,"y":1520,"width":250,"height":60},
 		{"id":"37ae64f517ff96d7","type":"text","text":"Class-balance loss","x":1420,"y":1620,"width":250,"height":60},
-		{"id":"28f44f029533eb5b","type":"text","text":"Focal loss","x":1420,"y":1715,"width":250,"height":60}
+		{"id":"28f44f029533eb5b","type":"text","text":"Focal loss","x":1420,"y":1715,"width":250,"height":60},
+		{"type":"text","text":"### Training Data","id":"9deccae842abce52","x":720,"y":-321,"width":200,"height":70},
+		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":720,"y":1960,"width":280,"height":75}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -146,6 +146,7 @@
 		{"id":"8f7e2a1f222b1966","fromNode":"da47f53b5b0f9670","fromSide":"right","toNode":"d97ce37a80bc8a51","toSide":"left"},
 		{"id":"c4271b6977f92f9c","fromNode":"6f7ebcf757a2c55a","fromSide":"right","toNode":"0f5d9261fc6763e7","toSide":"left"},
 		{"id":"35d9bd5871291642","fromNode":"6f7ebcf757a2c55a","fromSide":"right","toNode":"37ae64f517ff96d7","toSide":"left"},
-		{"id":"c0f0e497fc5e225b","fromNode":"6f7ebcf757a2c55a","fromSide":"right","toNode":"28f44f029533eb5b","toSide":"left"}
+		{"id":"c0f0e497fc5e225b","fromNode":"6f7ebcf757a2c55a","fromSide":"right","toNode":"28f44f029533eb5b","toSide":"left"},
+		{"id":"2e8463355ae5065a","fromNode":"9deccae842abce52","fromSide":"left","toNode":"e7da1ba50fba718e","toSide":"left"}
 	]
 }

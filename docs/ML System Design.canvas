@@ -68,7 +68,7 @@
 		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":635,"y":1700,"width":280,"height":75},
 		{"id":"e7da1ba50fba718e","type":"text","text":"### Class Imbalance","x":720,"y":1430,"width":250,"height":60},
 		{"id":"839bad8e20ba15a5","type":"text","text":"Right choice of Metrics","x":1045,"y":1288,"width":250,"height":60},
-		{"id":"da47f53b5b0f9670","type":"text","text":"Shift data distribution","x":1045,"y":1430,"width":250,"height":60},
+		{"id":"da47f53b5b0f9670","type":"text","text":"Change data distribution","x":1045,"y":1430,"width":250,"height":60},
 		{"id":"6f7ebcf757a2c55a","type":"text","text":"Algorithm","x":1045,"y":1560,"width":250,"height":60}
 	],
 	"edges":[

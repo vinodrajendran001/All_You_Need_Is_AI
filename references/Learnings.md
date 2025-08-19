@@ -994,5 +994,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 19.08.2025
 
 - [GitHub - Arindam200/awesome-ai-apps: A collection of projects showcasing RAG, agents, workflows, and other AI use cases](https://github.com/Arindam200/awesome-ai-apps)
-- https://blog.bytebytego.com/p/how-llms-see-the-world
+- [How LLMs See the World](https://blog.bytebytego.com/p/how-llms-see-the-world)
 - [How LLMs See Images, Audio, and More](https://substack.com/home/post/p-170918672)

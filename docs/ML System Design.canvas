@@ -81,11 +81,13 @@
 		{"id":"2062a97c3c007177","x":1820,"y":-160,"width":250,"height":60,"type":"text","text":"Learned Features Vs Engineered Features"},
 		{"id":"8216c3ab05037abe","type":"text","text":"Common Feature Engineering Operations","x":1820,"y":-40,"width":250,"height":60},
 		{"id":"c3d5ce41515205c5","type":"text","text":"Handling Missing Values\n(MAR, MNAR, MCAR)","x":2200,"y":-100,"width":250,"height":60},
-		{"id":"aa823066780950f4","x":2504,"y":-157,"width":176,"height":57,"type":"text","text":"Deletion"},
-		{"id":"bd94090775347dbf","type":"text","text":"Imputation","x":2504,"y":-65,"width":176,"height":55},
-		{"id":"01bcb2e3d3a72bae","type":"text","text":"Scaling","x":2504,"y":25,"width":176,"height":55},
-		{"id":"e6ed0c173cf13ff4","type":"text","text":"Discretization","x":2504,"y":115,"width":176,"height":55},
-		{"id":"47c5dbcb5f7c9a4c","type":"text","text":"Encoding Categorical Features","x":2504,"y":195,"width":176,"height":55}
+		{"id":"aa823066780950f4","x":2504,"y":-157,"width":216,"height":57,"type":"text","text":"Deletion"},
+		{"id":"bd94090775347dbf","type":"text","text":"Imputation","x":2504,"y":-65,"width":216,"height":55},
+		{"id":"01bcb2e3d3a72bae","type":"text","text":"Scaling","x":2504,"y":25,"width":216,"height":55},
+		{"id":"e6ed0c173cf13ff4","type":"text","text":"Discretization","x":2504,"y":115,"width":216,"height":55},
+		{"id":"47c5dbcb5f7c9a4c","type":"text","text":"Encoding Categorical Features","x":2504,"y":195,"width":216,"height":55},
+		{"id":"ed3d1ec6d3036125","type":"text","text":"Feature Crossing","x":2504,"y":278,"width":216,"height":55},
+		{"id":"f50740846f997c78","type":"text","text":"Discrete and Continu","x":2504,"y":365,"width":216,"height":55}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

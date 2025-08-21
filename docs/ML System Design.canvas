@@ -94,7 +94,9 @@
 		{"id":"6077f5fb447c3aef","type":"text","text":"Detection","x":2160,"y":818,"width":220,"height":60},
 		{"id":"5137faa1b08a15b5","type":"text","text":"Splitting time-correlated data randomly instead of by time","x":2520,"y":530,"width":249,"height":90},
 		{"id":"f905c4acd2643abd","type":"text","text":"Scaling before splitting","x":2520,"y":650,"width":249,"height":60},
-		{"id":"a53144599ed3d6da","type":"text","text":"Filling in missing data with statistics from the test split","x":2520,"y":743,"width":249,"height":90}
+		{"id":"a53144599ed3d6da","type":"text","text":"Filling in missing data with statistics from the test split","x":2520,"y":743,"width":249,"height":90},
+		{"id":"8364507de8678665","type":"text","text":"Poor handling of data duplication before splitting","x":2520,"y":878,"width":249,"height":90},
+		{"id":"3417145e326a0323","type":"text","text":"Group leakage","x":2520,"y":1006,"width":249,"height":50}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

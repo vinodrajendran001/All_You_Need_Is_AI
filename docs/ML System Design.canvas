@@ -39,9 +39,6 @@
 		{"type":"text","text":"Stream","id":"4bef5fda3376be2d","x":-340,"y":1740,"width":154,"height":60},
 		{"type":"text","text":"MapReduce, Spark","id":"c58e760bb8800ab9","x":-57,"y":1600,"width":154,"height":60},
 		{"type":"text","text":"Apache Flink, KSQL, Spark Streaming","id":"dc56a34af4331577","x":-57,"y":1740,"width":217,"height":60},
-		{"type":"text","text":"### Feature Engineering","id":"a7f17393788855da","x":1560,"y":-321,"width":260,"height":70},
-		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":1920,"y":-321,"width":265,"height":70},
-		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":2280,"y":-320,"width":240,"height":69},
 		{"id":"dc19f600caba3f40","type":"text","text":"Random sampling","x":1080,"y":240,"width":250,"height":60},
 		{"id":"8034a90cdab311e2","type":"text","text":"### Sampling","x":720,"y":-40,"width":250,"height":60},
 		{"id":"5ded6ddfb08dc9e4","type":"text","text":"Non-probabilistic sampling","x":1045,"y":-100,"width":250,"height":60},
@@ -77,7 +74,10 @@
 		{"id":"f8fae9d224d8a135","type":"text","text":"### Data Augmentation","x":720,"y":1960,"width":280,"height":75},
 		{"id":"6fdb4b08c7100908","type":"text","text":"Simple label-preserving transformations","x":1045,"y":1860,"width":250,"height":60},
 		{"id":"522e8a3f78797367","type":"text","text":"Data synthesis","x":1045,"y":2080,"width":250,"height":60},
-		{"id":"bcc320aaafa950e9","type":"text","text":"Petrubations","x":1045,"y":1968,"width":250,"height":60}
+		{"id":"bcc320aaafa950e9","type":"text","text":"Petrubations","x":1045,"y":1968,"width":250,"height":60},
+		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":2940,"y":-321,"width":240,"height":69},
+		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":2620,"y":-322,"width":265,"height":70},
+		{"type":"text","text":"### Feature Engineering","id":"a7f17393788855da","x":1820,"y":-321,"width":260,"height":70}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

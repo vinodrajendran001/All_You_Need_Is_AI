@@ -96,7 +96,8 @@
 		{"id":"f905c4acd2643abd","type":"text","text":"Scaling before splitting","x":2520,"y":650,"width":249,"height":60},
 		{"id":"a53144599ed3d6da","type":"text","text":"Filling in missing data with statistics from the test split","x":2520,"y":743,"width":249,"height":90},
 		{"id":"8364507de8678665","type":"text","text":"Poor handling of data duplication before splitting","x":2520,"y":878,"width":249,"height":90},
-		{"id":"3417145e326a0323","type":"text","text":"Group leakage","x":2520,"y":1006,"width":249,"height":50}
+		{"id":"3417145e326a0323","type":"text","text":"Group leakage","x":2520,"y":1006,"width":249,"height":50},
+		{"id":"be16de8dd056e8a9","type":"text","text":"Leakage from data generation process","x":2520,"y":1093,"width":249,"height":50}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -185,6 +186,10 @@
 		{"id":"20c10b56b0cd3581","fromNode":"a7f17393788855da","fromSide":"left","toNode":"2062a97c3c007177","toSide":"left"},
 		{"id":"67f86a0dbff4b1f5","fromNode":"a7f17393788855da","fromSide":"left","toNode":"8216c3ab05037abe","toSide":"left"},
 		{"id":"4f5f1cb56e8eadf3","fromNode":"0f3c60ed47cadd1d","fromSide":"right","toNode":"9d87dc43a014817f","toSide":"left"},
-		{"id":"3b9bb487c20813c8","fromNode":"0f3c60ed47cadd1d","fromSide":"right","toNode":"6077f5fb447c3aef","toSide":"left"}
+		{"id":"3b9bb487c20813c8","fromNode":"0f3c60ed47cadd1d","fromSide":"right","toNode":"6077f5fb447c3aef","toSide":"left"},
+		{"id":"c7aa87128843b62f","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"5137faa1b08a15b5","toSide":"left"},
+		{"id":"ca95bc4baffa3a37","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"f905c4acd2643abd","toSide":"left"},
+		{"id":"c959127ccb61cf7d","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"a53144599ed3d6da","toSide":"left"},
+		{"id":"823cc4ffae512dbe","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"8364507de8678665","toSide":"left"}
 	]
 }

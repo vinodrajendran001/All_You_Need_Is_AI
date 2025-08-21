@@ -78,7 +78,9 @@
 		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":2940,"y":-321,"width":240,"height":69},
 		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":2620,"y":-322,"width":265,"height":70},
 		{"type":"text","text":"### Feature Engineering","id":"a7f17393788855da","x":1820,"y":-321,"width":260,"height":70},
-		{"id":"2062a97c3c007177","x":1820,"y":-160,"width":250,"height":60,"type":"text","text":"Learned Features Vs Engineered Features"}
+		{"id":"2062a97c3c007177","x":1820,"y":-160,"width":250,"height":60,"type":"text","text":"Learned Features Vs Engineered Features"},
+		{"id":"8216c3ab05037abe","type":"text","text":"Common Feature Engineering Operations","x":1820,"y":-40,"width":250,"height":60},
+		{"id":"c3d5ce41515205c5","type":"text","text":"Handling Missing Values","x":2200,"y":-100,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

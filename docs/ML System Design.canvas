@@ -101,9 +101,9 @@
 		{"id":"8b56000fbf02caf7","type":"text","text":"Keep an eye out for new features added to the model","x":2520,"y":1430,"width":249,"height":60},
 		{"id":"768ca330fb36d3e5","type":"text","text":"Measure how important a feature or set of features","x":2520,"y":1318,"width":249,"height":90},
 		{"id":"6077f5fb447c3aef","type":"text","text":"Detection","x":2160,"y":1363,"width":220,"height":60},
-		{"id":"0afd1ec81314af70","type":"text","text":"Feature Importance","x":2160,"y":1715,"width":220,"height":60},
-		{"id":"12ea8659271361b2","type":"text","text":"Engineering good features","x":1820,"y":1820,"width":250,"height":60},
-		{"id":"f30e61493f305844","type":"text","text":"Feature Generalization","x":2160,"y":1920,"width":220,"height":60}
+		{"id":"0afd1ec81314af70","type":"text","text":"Feature Importance","x":2160,"y":1620,"width":220,"height":60},
+		{"id":"12ea8659271361b2","type":"text","text":"Engineering good features","x":1820,"y":1725,"width":250,"height":60},
+		{"id":"f30e61493f305844","type":"text","text":"Feature Generalization","x":2160,"y":1825,"width":220,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

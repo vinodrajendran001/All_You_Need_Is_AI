@@ -79,15 +79,15 @@
 		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":2620,"y":-322,"width":265,"height":70},
 		{"type":"text","text":"### Feature Engineering","id":"a7f17393788855da","x":1820,"y":-321,"width":260,"height":70},
 		{"id":"2062a97c3c007177","x":1820,"y":-160,"width":250,"height":60,"type":"text","text":"Learned Features Vs Engineered Features"},
-		{"id":"8216c3ab05037abe","type":"text","text":"Common Feature Engineering Operations","x":1820,"y":-40,"width":250,"height":60},
-		{"id":"c3d5ce41515205c5","type":"text","text":"Handling Missing Values\n(MAR, MNAR, MCAR)","x":2200,"y":-100,"width":250,"height":60},
-		{"id":"aa823066780950f4","x":2504,"y":-157,"width":249,"height":57,"type":"text","text":"Deletion"},
-		{"id":"bd94090775347dbf","type":"text","text":"Imputation","x":2504,"y":-65,"width":249,"height":55},
-		{"id":"01bcb2e3d3a72bae","type":"text","text":"Scaling","x":2504,"y":25,"width":249,"height":55},
-		{"id":"e6ed0c173cf13ff4","type":"text","text":"Discretization","x":2504,"y":115,"width":249,"height":55},
-		{"id":"47c5dbcb5f7c9a4c","type":"text","text":"Encoding Categorical Features","x":2504,"y":195,"width":249,"height":55},
-		{"id":"ed3d1ec6d3036125","type":"text","text":"Feature Crossing","x":2504,"y":278,"width":249,"height":57},
-		{"id":"f50740846f997c78","type":"text","text":"Discrete and Continuous Positional Encodings","x":2504,"y":365,"width":249,"height":60}
+		{"id":"8216c3ab05037abe","type":"text","text":"Common Feature Engineering Operations","x":1820,"y":190,"width":250,"height":60},
+		{"id":"c3d5ce41515205c5","type":"text","text":"Handling Missing Values\n(MAR, MNAR, MCAR)","x":2160,"y":190,"width":220,"height":60},
+		{"id":"01bcb2e3d3a72bae","type":"text","text":"Scaling","x":2520,"y":103,"width":249,"height":55},
+		{"id":"e6ed0c173cf13ff4","type":"text","text":"Discretization","x":2520,"y":193,"width":249,"height":55},
+		{"id":"47c5dbcb5f7c9a4c","type":"text","text":"Encoding Categorical Features","x":2520,"y":273,"width":249,"height":55},
+		{"id":"ed3d1ec6d3036125","type":"text","text":"Feature Crossing","x":2520,"y":356,"width":249,"height":57},
+		{"id":"f50740846f997c78","type":"text","text":"Discrete and Continuous Positional Encodings","x":2520,"y":443,"width":249,"height":60},
+		{"id":"bd94090775347dbf","type":"text","text":"Imputation","x":2520,"y":13,"width":249,"height":55},
+		{"id":"aa823066780950f4","x":2520,"y":-79,"width":249,"height":57,"type":"text","text":"Deletion"}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -164,6 +164,14 @@
 		{"id":"32c37056ffec0193","fromNode":"f8fae9d224d8a135","fromSide":"right","toNode":"6fdb4b08c7100908","toSide":"left"},
 		{"id":"9d6d21debba9ac9a","fromNode":"f8fae9d224d8a135","fromSide":"right","toNode":"bcc320aaafa950e9","toSide":"left"},
 		{"id":"d47beb99c65ab9ad","fromNode":"f8fae9d224d8a135","fromSide":"right","toNode":"522e8a3f78797367","toSide":"left"},
-		{"id":"c17760625d2bb572","fromNode":"9deccae842abce52","fromSide":"left","toNode":"f8fae9d224d8a135","toSide":"left"}
+		{"id":"c17760625d2bb572","fromNode":"9deccae842abce52","fromSide":"left","toNode":"f8fae9d224d8a135","toSide":"left"},
+		{"id":"9c461e7185ad93bf","fromNode":"8216c3ab05037abe","fromSide":"right","toNode":"c3d5ce41515205c5","toSide":"left"},
+		{"id":"d49e6a80032c6345","fromNode":"c3d5ce41515205c5","fromSide":"right","toNode":"aa823066780950f4","toSide":"left"},
+		{"id":"a576f7a72da481ac","fromNode":"c3d5ce41515205c5","fromSide":"right","toNode":"bd94090775347dbf","toSide":"left"},
+		{"id":"73c012de057e856e","fromNode":"c3d5ce41515205c5","fromSide":"right","toNode":"01bcb2e3d3a72bae","toSide":"left"},
+		{"id":"bf065563cd65e911","fromNode":"c3d5ce41515205c5","fromSide":"right","toNode":"e6ed0c173cf13ff4","toSide":"left"},
+		{"id":"1122fc123c67b233","fromNode":"c3d5ce41515205c5","fromSide":"right","toNode":"47c5dbcb5f7c9a4c","toSide":"left"},
+		{"id":"e8c116f72924a25c","fromNode":"c3d5ce41515205c5","fromSide":"right","toNode":"ed3d1ec6d3036125","toSide":"left"},
+		{"id":"c03793cecbbc0b10","fromNode":"c3d5ce41515205c5","fromSide":"right","toNode":"f50740846f997c78","toSide":"left"}
 	]
 }

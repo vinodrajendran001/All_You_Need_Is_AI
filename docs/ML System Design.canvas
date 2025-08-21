@@ -96,12 +96,12 @@
 		{"id":"3417145e326a0323","type":"text","text":"Group leakage","x":2520,"y":1006,"width":249,"height":50},
 		{"id":"be16de8dd056e8a9","type":"text","text":"Leakage from data generation process","x":2520,"y":1093,"width":249,"height":50},
 		{"id":"12ea8659271361b2","type":"text","text":"Engineering good features","x":1820,"y":1520,"width":250,"height":60},
-		{"id":"6077f5fb447c3aef","type":"text","text":"Detection","x":2160,"y":1318,"width":220,"height":60},
 		{"id":"0f3c60ed47cadd1d","type":"text","text":"Data Leakage","x":1820,"y":943,"width":250,"height":50},
 		{"id":"c051515d4db4e9d6","type":"text","text":"Measure the predictive power of each or set of features","x":2520,"y":1198,"width":249,"height":90},
-		{"id":"1e0d6ff7de46fbbf","type":"text","text":"Be careful of the test split","x":2520,"y":1460,"width":249,"height":60},
-		{"id":"8b56000fbf02caf7","type":"text","text":"Keep an eye out for new features added to the model","x":2520,"y":1370,"width":249,"height":60},
-		{"id":"768ca330fb36d3e5","type":"text","text":"Measure how important a feature or","x":2860,"y":1325,"width":249,"height":90}
+		{"id":"1e0d6ff7de46fbbf","type":"text","text":"Be careful of the test split","x":2520,"y":1520,"width":249,"height":60},
+		{"id":"8b56000fbf02caf7","type":"text","text":"Keep an eye out for new features added to the model","x":2520,"y":1430,"width":249,"height":60},
+		{"id":"768ca330fb36d3e5","type":"text","text":"Measure how important a feature or set of features","x":2520,"y":1318,"width":249,"height":90},
+		{"id":"6077f5fb447c3aef","type":"text","text":"Detection","x":2160,"y":1363,"width":220,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -196,6 +196,11 @@
 		{"id":"c959127ccb61cf7d","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"a53144599ed3d6da","toSide":"left"},
 		{"id":"823cc4ffae512dbe","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"8364507de8678665","toSide":"left"},
 		{"id":"911340acda7bd4af","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"3417145e326a0323","toSide":"left"},
-		{"id":"843086bcea3159fd","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"be16de8dd056e8a9","toSide":"left"}
+		{"id":"843086bcea3159fd","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"be16de8dd056e8a9","toSide":"left"},
+		{"id":"7214c7c18186837f","fromNode":"6077f5fb447c3aef","fromSide":"right","toNode":"c051515d4db4e9d6","toSide":"left"},
+		{"id":"8523b990c9a9e7e8","fromNode":"6077f5fb447c3aef","fromSide":"right","toNode":"768ca330fb36d3e5","toSide":"left"},
+		{"id":"78c8688f0e60f3c3","fromNode":"6077f5fb447c3aef","fromSide":"right","toNode":"8b56000fbf02caf7","toSide":"left"},
+		{"id":"0e3a964d1d4edae7","fromNode":"6077f5fb447c3aef","fromSide":"right","toNode":"1e0d6ff7de46fbbf","toSide":"left"},
+		{"id":"db5e893e6f7a93ab","fromNode":"a7f17393788855da","fromSide":"left","toNode":"0f3c60ed47cadd1d","toSide":"left"}
 	]
 }

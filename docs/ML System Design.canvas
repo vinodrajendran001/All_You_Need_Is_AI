@@ -88,16 +88,16 @@
 		{"id":"f50740846f997c78","type":"text","text":"Discrete and Continuous Positional Encodings","x":2520,"y":443,"width":249,"height":60},
 		{"id":"bd94090775347dbf","type":"text","text":"Imputation","x":2520,"y":13,"width":249,"height":55},
 		{"id":"aa823066780950f4","x":2520,"y":-79,"width":249,"height":57,"type":"text","text":"Deletion"},
-		{"id":"12ea8659271361b2","type":"text","text":"Engineering good features","x":1820,"y":961,"width":250,"height":60},
-		{"id":"0f3c60ed47cadd1d","type":"text","text":"Data Leakage","x":1820,"y":740,"width":250,"height":60},
 		{"id":"9d87dc43a014817f","type":"text","text":"Common causes","x":2160,"y":650,"width":220,"height":60},
-		{"id":"6077f5fb447c3aef","type":"text","text":"Detection","x":2160,"y":818,"width":220,"height":60},
 		{"id":"5137faa1b08a15b5","type":"text","text":"Splitting time-correlated data randomly instead of by time","x":2520,"y":530,"width":249,"height":90},
 		{"id":"f905c4acd2643abd","type":"text","text":"Scaling before splitting","x":2520,"y":650,"width":249,"height":60},
 		{"id":"a53144599ed3d6da","type":"text","text":"Filling in missing data with statistics from the test split","x":2520,"y":743,"width":249,"height":90},
 		{"id":"8364507de8678665","type":"text","text":"Poor handling of data duplication before splitting","x":2520,"y":878,"width":249,"height":90},
 		{"id":"3417145e326a0323","type":"text","text":"Group leakage","x":2520,"y":1006,"width":249,"height":50},
-		{"id":"be16de8dd056e8a9","type":"text","text":"Leakage from data generation process","x":2520,"y":1093,"width":249,"height":50}
+		{"id":"be16de8dd056e8a9","type":"text","text":"Leakage from data generation process","x":2520,"y":1093,"width":249,"height":50},
+		{"id":"12ea8659271361b2","type":"text","text":"Engineering good features","x":1820,"y":1520,"width":250,"height":60},
+		{"id":"6077f5fb447c3aef","type":"text","text":"Detection","x":2160,"y":1318,"width":220,"height":60},
+		{"id":"0f3c60ed47cadd1d","type":"text","text":"Data Leakage","x":1820,"y":943,"width":250,"height":50}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -190,6 +190,8 @@
 		{"id":"c7aa87128843b62f","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"5137faa1b08a15b5","toSide":"left"},
 		{"id":"ca95bc4baffa3a37","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"f905c4acd2643abd","toSide":"left"},
 		{"id":"c959127ccb61cf7d","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"a53144599ed3d6da","toSide":"left"},
-		{"id":"823cc4ffae512dbe","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"8364507de8678665","toSide":"left"}
+		{"id":"823cc4ffae512dbe","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"8364507de8678665","toSide":"left"},
+		{"id":"911340acda7bd4af","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"3417145e326a0323","toSide":"left"},
+		{"id":"843086bcea3159fd","fromNode":"9d87dc43a014817f","fromSide":"right","toNode":"be16de8dd056e8a9","toSide":"left"}
 	]
 }

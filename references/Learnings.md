@@ -1006,4 +1006,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 27.08.2025
 
 - [In-depth review of industry trends in AI, LLMs, Machine Learning, Computer Science, and Quantitative Finance.](https://github.com/junfanz1/AI-LLM-ML-CS-Quant-Review/tree/main)
-- 
+

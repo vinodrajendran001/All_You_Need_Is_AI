@@ -1010,4 +1010,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 02.09.2025
 
 - [DeepCode: Open Agentic Coding](https://github.com/HKUDS/DeepCode)
-- https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic
+- [Understanding LLMs: Insights from Mechanistic Interpretability](https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic)

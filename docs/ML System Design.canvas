@@ -121,7 +121,8 @@
 		{"type":"text","text":"Objective Function","id":"2383b645c1ec1f22","x":3008,"y":191,"width":232,"height":60},
 		{"type":"text","text":"Regression","id":"188827422d571052","x":3380,"y":73,"width":232,"height":60},
 		{"type":"text","text":"MAE","id":"6537131640b48546","x":3680,"y":158,"width":232,"height":60},
-		{"type":"text","text":"Evaluating ML Models","id":"d0ef0d601ea6f839","x":3008,"y":710,"width":232,"height":60}
+		{"type":"text","text":"Evaluating ML Models","id":"d0ef0d601ea6f839","x":3008,"y":710,"width":232,"height":60},
+		{"type":"text","text":"Ensembles","id":"bf1d831ce3cdf6ea","x":3008,"y":878,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

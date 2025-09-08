@@ -102,7 +102,6 @@
 		{"type":"text","text":"Feature Importance","id":"0afd1ec81314af70","x":2160,"y":1620,"width":220,"height":60},
 		{"type":"text","text":"Engineering good features","id":"12ea8659271361b2","x":1820,"y":1725,"width":250,"height":60},
 		{"type":"text","text":"Feature Generalization","id":"f30e61493f305844","x":2160,"y":1825,"width":220,"height":60},
-		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":4400,"y":-323,"width":240,"height":69},
 		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":3000,"y":-321,"width":265,"height":70},
 		{"type":"text","text":"Framing ML Problems","id":"4a96298c9b9f38ea","x":3008,"y":-160,"width":232,"height":60},
 		{"type":"text","text":"Types of ML Tasks","id":"2575a8761569cc30","x":3380,"y":-220,"width":232,"height":60},
@@ -131,13 +130,14 @@
 		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1408,"width":232,"height":60},
 		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1600,"width":232,"height":60},
 		{"type":"text","text":"Model Offline Evaluation","id":"1bcba6a2edd33081","x":3008,"y":1800,"width":232,"height":60},
-		{"type":"text","text":"Model Compression","id":"7349f302b9cb5080","x":4580,"y":93,"width":232,"height":60},
-		{"type":"text","text":"Low-rank factorization","id":"c730357342235a88","x":4925,"y":2,"width":232,"height":60},
-		{"type":"text","text":"Knowledge Distillation","id":"10f4e6e993282aed","x":4925,"y":73,"width":232,"height":60},
-		{"type":"text","text":"Pruning","id":"b8fe688b139ca67d","x":4925,"y":153,"width":232,"height":60},
-		{"type":"text","text":"Quantization","id":"beefdb9e7b79883c","x":4925,"y":233,"width":232,"height":60},
-		{"type":"text","text":"ML on Cloud and Edge","id":"603a4d53eee3ed56","x":4580,"y":333,"width":232,"height":60},
-		{"type":"text","text":"Batch prediction vs Online prediction","id":"79a753c8a6280090","x":4580,"y":-127,"width":232,"height":60}
+		{"type":"text","text":"Model Compression","id":"7349f302b9cb5080","x":4720,"y":38,"width":232,"height":60},
+		{"type":"text","text":"Low-rank factorization","id":"c730357342235a88","x":5065,"y":-53,"width":232,"height":60},
+		{"type":"text","text":"Knowledge Distillation","id":"10f4e6e993282aed","x":5065,"y":18,"width":232,"height":60},
+		{"type":"text","text":"Pruning","id":"b8fe688b139ca67d","x":5065,"y":98,"width":232,"height":60},
+		{"type":"text","text":"Quantization","id":"beefdb9e7b79883c","x":5065,"y":178,"width":232,"height":60},
+		{"type":"text","text":"ML on Cloud and Edge","id":"603a4d53eee3ed56","x":4720,"y":278,"width":232,"height":60},
+		{"type":"text","text":"Batch prediction vs Online prediction","id":"79a753c8a6280090","x":4720,"y":-182,"width":232,"height":60},
+		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":4720,"y":-322,"width":240,"height":69}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -271,6 +271,9 @@
 		{"id":"99ea8a23acae8c7f","fromNode":"7349f302b9cb5080","fromSide":"right","toNode":"10f4e6e993282aed","toSide":"left"},
 		{"id":"15fb0301bd851cd1","fromNode":"7349f302b9cb5080","fromSide":"right","toNode":"b8fe688b139ca67d","toSide":"left"},
 		{"id":"04385bd77db80f6c","fromNode":"7349f302b9cb5080","fromSide":"right","toNode":"beefdb9e7b79883c","toSide":"left"},
-		{"id":"dc6083add8494bcd","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"1bcba6a2edd33081","toSide":"left"}
+		{"id":"dc6083add8494bcd","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"1bcba6a2edd33081","toSide":"left"},
+		{"id":"93cbe5011ac34597","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"79a753c8a6280090","toSide":"left"},
+		{"id":"81f836404581a465","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"7349f302b9cb5080","toSide":"left"},
+		{"id":"b783b665ba92185d","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"603a4d53eee3ed56","toSide":"left"}
 	]
 }

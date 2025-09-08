@@ -106,7 +106,9 @@
 		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":3000,"y":-321,"width":265,"height":70},
 		{"type":"text","text":"Framing ML Problems","id":"4a96298c9b9f38ea","x":3008,"y":-160,"width":232,"height":60},
 		{"type":"text","text":"Types of ML Tasks","id":"2575a8761569cc30","x":3380,"y":-220,"width":232,"height":60},
-		{"type":"text","text":"Types of ML Tasks","id":"d58846af8b49cc60","x":3380,"y":-100,"width":232,"height":60}
+		{"type":"text","text":"Objective Functions","id":"d58846af8b49cc60","x":3380,"y":-100,"width":232,"height":60},
+		{"type":"text","text":"Classification","id":"f6b43d371fad0ad5","x":3680,"y":-160,"width":232,"height":60},
+		{"type":"text","text":"Regression","id":"627f02fae2fa42dc","x":3680,"y":-288,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -209,6 +211,11 @@
 		{"id":"db5e893e6f7a93ab","fromNode":"a7f17393788855da","fromSide":"left","toNode":"0f3c60ed47cadd1d","toSide":"left"},
 		{"id":"0dc73a602d91bee5","fromNode":"a7f17393788855da","fromSide":"left","toNode":"12ea8659271361b2","toSide":"left"},
 		{"id":"657cbf1a38d3204f","fromNode":"12ea8659271361b2","fromSide":"right","toNode":"0afd1ec81314af70","toSide":"left"},
-		{"id":"614bacb54d435c5f","fromNode":"12ea8659271361b2","fromSide":"right","toNode":"f30e61493f305844","toSide":"left"}
+		{"id":"614bacb54d435c5f","fromNode":"12ea8659271361b2","fromSide":"right","toNode":"f30e61493f305844","toSide":"left"},
+		{"id":"d010aacf79af68e2","fromNode":"4a96298c9b9f38ea","fromSide":"right","toNode":"2575a8761569cc30","toSide":"left"},
+		{"id":"594390d712dff844","fromNode":"4a96298c9b9f38ea","fromSide":"right","toNode":"d58846af8b49cc60","toSide":"left"},
+		{"id":"18aea601b874fce8","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"4a96298c9b9f38ea","toSide":"left"},
+		{"id":"65b08b87df7089a4","fromNode":"2575a8761569cc30","fromSide":"right","toNode":"627f02fae2fa42dc","toSide":"left"},
+		{"id":"c8714d923269988c","fromNode":"2575a8761569cc30","fromSide":"right","toNode":"f6b43d371fad0ad5","toSide":"left"}
 	]
 }

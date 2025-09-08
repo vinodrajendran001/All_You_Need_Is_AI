@@ -115,8 +115,8 @@
 		{"type":"text","text":"Low Cardinality","id":"07639116df46b20a","x":4260,"y":-198,"width":232,"height":60},
 		{"type":"text","text":"High Cardinality","id":"b23f1890bd3102bf","x":4260,"y":-110,"width":232,"height":60},
 		{"type":"text","text":"Objective Function","id":"2383b645c1ec1f22","x":3008,"y":128,"width":232,"height":60},
-		{"type":"text","text":"Types of ML Tasks","id":"188827422d571052","x":3380,"y":43,"width":232,"height":60},
-		{"type":"text","text":"Types of ML Tasks","id":"8ce8b3ca8369c25b","x":3401,"y":-107,"width":232,"height":60}
+		{"type":"text","text":"Regression","id":"188827422d571052","x":3380,"y":43,"width":232,"height":60},
+		{"type":"text","text":"Classification","id":"8ce8b3ca8369c25b","x":3380,"y":241,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -229,6 +229,8 @@
 		{"id":"dd12d86d4e7f896d","fromNode":"f6b43d371fad0ad5","fromSide":"right","toNode":"1bfaa0b595a84eb8","toSide":"left"},
 		{"id":"1cefd447b55b4527","fromNode":"f6b43d371fad0ad5","fromSide":"right","toNode":"c658af6362f4874c","toSide":"left"},
 		{"id":"a1a8e9c1fe934b78","fromNode":"1bfaa0b595a84eb8","fromSide":"right","toNode":"07639116df46b20a","toSide":"left"},
-		{"id":"99811ba3aba590d8","fromNode":"1bfaa0b595a84eb8","fromSide":"right","toNode":"b23f1890bd3102bf","toSide":"left"}
+		{"id":"99811ba3aba590d8","fromNode":"1bfaa0b595a84eb8","fromSide":"right","toNode":"b23f1890bd3102bf","toSide":"left"},
+		{"id":"eb71ff49eed5ea81","fromNode":"2383b645c1ec1f22","fromSide":"right","toNode":"188827422d571052","toSide":"left"},
+		{"id":"612f1d9a9f3feb68","fromNode":"2383b645c1ec1f22","fromSide":"right","toNode":"8ce8b3ca8369c25b","toSide":"left"}
 	]
 }

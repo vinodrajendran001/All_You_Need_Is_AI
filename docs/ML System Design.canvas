@@ -103,7 +103,10 @@
 		{"type":"text","text":"Engineering good features","id":"12ea8659271361b2","x":1820,"y":1725,"width":250,"height":60},
 		{"type":"text","text":"Feature Generalization","id":"f30e61493f305844","x":2160,"y":1825,"width":220,"height":60},
 		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":4400,"y":-323,"width":240,"height":69},
-		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":3000,"y":-321,"width":265,"height":70}
+		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":3000,"y":-321,"width":265,"height":70},
+		{"type":"text","text":"Framing ML Problems","id":"4a96298c9b9f38ea","x":3008,"y":-160,"width":232,"height":60},
+		{"type":"text","text":"Types of ML Tasks","id":"2575a8761569cc30","x":3380,"y":-220,"width":232,"height":60},
+		{"type":"text","text":"Types of ML Tasks","id":"d58846af8b49cc60","x":3380,"y":-100,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

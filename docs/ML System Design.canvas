@@ -102,8 +102,8 @@
 		{"type":"text","text":"Feature Importance","id":"0afd1ec81314af70","x":2160,"y":1620,"width":220,"height":60},
 		{"type":"text","text":"Engineering good features","id":"12ea8659271361b2","x":1820,"y":1725,"width":250,"height":60},
 		{"type":"text","text":"Feature Generalization","id":"f30e61493f305844","x":2160,"y":1825,"width":220,"height":60},
-		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":3440,"y":-322,"width":240,"height":69},
-		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":3000,"y":-323,"width":265,"height":70}
+		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":4400,"y":-323,"width":240,"height":69},
+		{"type":"text","text":"### Model Development","id":"fea5ba9905c60e60","x":3000,"y":-321,"width":265,"height":70}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

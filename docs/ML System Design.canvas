@@ -124,8 +124,8 @@
 		{"type":"text","text":"Ensembles","id":"bf1d831ce3cdf6ea","x":3008,"y":878,"width":232,"height":60},
 		{"type":"text","text":"Evaluating ML Models","id":"d0ef0d601ea6f839","x":3008,"y":620,"width":232,"height":60},
 		{"type":"text","text":"Bagging (reduce variance)","id":"419fb3a0ef5d3b6b","x":3380,"y":758,"width":232,"height":60},
-		{"type":"text","text":"Boosting","id":"9621a80f69c6dd1d","x":3380,"y":878,"width":232,"height":60},
-		{"type":"text","text":"Stacking","id":"452a5808f3ca2b6f","x":3380,"y":1001,"width":232,"height":60}
+		{"type":"text","text":"Boosting (reduce bias)","id":"9621a80f69c6dd1d","x":3380,"y":878,"width":232,"height":60},
+		{"type":"text","text":"Stacking (generalization)","id":"452a5808f3ca2b6f","x":3380,"y":1001,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -245,6 +245,9 @@
 		{"id":"7523dfffdd312ac9","fromNode":"8ce8b3ca8369c25b","fromSide":"right","toNode":"882a3e3ace8e0657","toSide":"left"},
 		{"id":"1ff4adf914581f90","fromNode":"188827422d571052","fromSide":"right","toNode":"a02fec54f8f89e2b","toSide":"left"},
 		{"id":"e53b26f7c4d5765a","fromNode":"188827422d571052","fromSide":"right","toNode":"6537131640b48546","toSide":"left"},
-		{"id":"eb549f0d614a0e2d","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"2383b645c1ec1f22","toSide":"left"}
+		{"id":"eb549f0d614a0e2d","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"2383b645c1ec1f22","toSide":"left"},
+		{"id":"1562757a7585941c","fromNode":"bf1d831ce3cdf6ea","fromSide":"right","toNode":"419fb3a0ef5d3b6b","toSide":"left"},
+		{"id":"1c466450e2a3a2ec","fromNode":"bf1d831ce3cdf6ea","fromSide":"right","toNode":"9621a80f69c6dd1d","toSide":"left"},
+		{"id":"cb44ce3e302ec5a9","fromNode":"bf1d831ce3cdf6ea","fromSide":"right","toNode":"452a5808f3ca2b6f","toSide":"left"}
 	]
 }

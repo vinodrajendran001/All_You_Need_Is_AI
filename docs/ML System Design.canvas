@@ -111,7 +111,9 @@
 		{"type":"text","text":"Regression","id":"627f02fae2fa42dc","x":3680,"y":-288,"width":232,"height":60},
 		{"type":"text","text":"Binary","id":"38d0e5ecdb6cd890","x":3980,"y":-258,"width":232,"height":60},
 		{"type":"text","text":"Multiclass","id":"1bfaa0b595a84eb8","x":3980,"y":-160,"width":232,"height":60},
-		{"type":"text","text":"Multilabel","id":"c658af6362f4874c","x":3980,"y":-70,"width":232,"height":60}
+		{"type":"text","text":"Multilabel","id":"c658af6362f4874c","x":3980,"y":-70,"width":232,"height":60},
+		{"type":"text","text":"Low Cardinality","id":"07639116df46b20a","x":4260,"y":-198,"width":232,"height":60},
+		{"type":"text","text":"High Cardinality","id":"b23f1890bd3102bf","x":4260,"y":-110,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -222,6 +224,8 @@
 		{"id":"c8714d923269988c","fromNode":"2575a8761569cc30","fromSide":"right","toNode":"f6b43d371fad0ad5","toSide":"left"},
 		{"id":"8267a1e42c8b93de","fromNode":"f6b43d371fad0ad5","fromSide":"right","toNode":"38d0e5ecdb6cd890","toSide":"left"},
 		{"id":"dd12d86d4e7f896d","fromNode":"f6b43d371fad0ad5","fromSide":"right","toNode":"1bfaa0b595a84eb8","toSide":"left"},
-		{"id":"1cefd447b55b4527","fromNode":"f6b43d371fad0ad5","fromSide":"right","toNode":"c658af6362f4874c","toSide":"left"}
+		{"id":"1cefd447b55b4527","fromNode":"f6b43d371fad0ad5","fromSide":"right","toNode":"c658af6362f4874c","toSide":"left"},
+		{"id":"a1a8e9c1fe934b78","fromNode":"1bfaa0b595a84eb8","fromSide":"right","toNode":"07639116df46b20a","toSide":"left"},
+		{"id":"99811ba3aba590d8","fromNode":"1bfaa0b595a84eb8","fromSide":"right","toNode":"b23f1890bd3102bf","toSide":"left"}
 	]
 }

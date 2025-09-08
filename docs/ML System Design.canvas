@@ -114,11 +114,13 @@
 		{"type":"text","text":"Multilabel","id":"c658af6362f4874c","x":3980,"y":-70,"width":232,"height":60},
 		{"type":"text","text":"Low Cardinality","id":"07639116df46b20a","x":4260,"y":-198,"width":232,"height":60},
 		{"type":"text","text":"High Cardinality","id":"b23f1890bd3102bf","x":4260,"y":-110,"width":232,"height":60},
-		{"type":"text","text":"Objective Function","id":"2383b645c1ec1f22","x":3008,"y":128,"width":232,"height":60},
-		{"type":"text","text":"Regression","id":"188827422d571052","x":3380,"y":43,"width":232,"height":60},
-		{"type":"text","text":"Classification","id":"8ce8b3ca8369c25b","x":3380,"y":241,"width":232,"height":60},
-		{"type":"text","text":"Log loss","id":"60e9ac8191c8135f","x":3680,"y":158,"width":232,"height":60},
-		{"type":"text","text":"Cross-entropy","id":"882a3e3ace8e0657","x":3680,"y":325,"width":232,"height":60}
+		{"type":"text","text":"RMSE","id":"a02fec54f8f89e2b","x":3680,"y":-19,"width":232,"height":60},
+		{"type":"text","text":"Classification","id":"8ce8b3ca8369c25b","x":3380,"y":351,"width":232,"height":60},
+		{"type":"text","text":"Log loss","id":"60e9ac8191c8135f","x":3680,"y":268,"width":232,"height":60},
+		{"type":"text","text":"Cross-entropy","id":"882a3e3ace8e0657","x":3680,"y":435,"width":232,"height":60},
+		{"type":"text","text":"Objective Function","id":"2383b645c1ec1f22","x":3008,"y":191,"width":232,"height":60},
+		{"type":"text","text":"Regression","id":"188827422d571052","x":3380,"y":73,"width":232,"height":60},
+		{"type":"text","text":"MAE","id":"6537131640b48546","x":3680,"y":158,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -235,6 +237,8 @@
 		{"id":"eb71ff49eed5ea81","fromNode":"2383b645c1ec1f22","fromSide":"right","toNode":"188827422d571052","toSide":"left"},
 		{"id":"612f1d9a9f3feb68","fromNode":"2383b645c1ec1f22","fromSide":"right","toNode":"8ce8b3ca8369c25b","toSide":"left"},
 		{"id":"77251d2756bba35e","fromNode":"8ce8b3ca8369c25b","fromSide":"right","toNode":"60e9ac8191c8135f","toSide":"left"},
-		{"id":"7523dfffdd312ac9","fromNode":"8ce8b3ca8369c25b","fromSide":"right","toNode":"882a3e3ace8e0657","toSide":"left"}
+		{"id":"7523dfffdd312ac9","fromNode":"8ce8b3ca8369c25b","fromSide":"right","toNode":"882a3e3ace8e0657","toSide":"left"},
+		{"id":"1ff4adf914581f90","fromNode":"188827422d571052","fromSide":"right","toNode":"a02fec54f8f89e2b","toSide":"left"},
+		{"id":"e53b26f7c4d5765a","fromNode":"188827422d571052","fromSide":"right","toNode":"6537131640b48546","toSide":"left"}
 	]
 }

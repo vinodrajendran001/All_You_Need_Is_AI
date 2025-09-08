@@ -125,7 +125,6 @@
 		{"type":"text","text":"Bagging (reduce variance)","id":"419fb3a0ef5d3b6b","x":3380,"y":758,"width":232,"height":60},
 		{"type":"text","text":"Boosting (reduce bias)","id":"9621a80f69c6dd1d","x":3380,"y":878,"width":232,"height":60},
 		{"type":"text","text":"Stacking (generalization)","id":"452a5808f3ca2b6f","x":3380,"y":1001,"width":232,"height":60},
-		{"type":"text","text":"Experiment Tracking and Versioning","id":"fc4ecf8f82fc0b39","x":3008,"y":1288,"width":232,"height":60},
 		{"type":"text","text":"Distributed Training","id":"2ab3aa04c5bb9dd2","x":3008,"y":1520,"width":232,"height":60},
 		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1408,"width":232,"height":60},
 		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1600,"width":232,"height":60},
@@ -137,7 +136,10 @@
 		{"type":"text","text":"Quantization","id":"beefdb9e7b79883c","x":5065,"y":178,"width":232,"height":60},
 		{"type":"text","text":"ML on Cloud and Edge","id":"603a4d53eee3ed56","x":4720,"y":278,"width":232,"height":60},
 		{"type":"text","text":"Batch prediction vs Online prediction","id":"79a753c8a6280090","x":4720,"y":-182,"width":232,"height":60},
-		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":4720,"y":-322,"width":240,"height":69}
+		{"type":"text","text":"### Model Deployment","id":"780d52f1c95e6c3e","x":4720,"y":-322,"width":240,"height":69},
+		{"type":"text","text":"Experiment Tracking and Versioning","id":"fc4ecf8f82fc0b39","x":3008,"y":1228,"width":232,"height":60},
+		{"type":"text","text":"Petrubation Tests","id":"446f3071dca68104","x":3380,"y":1093,"width":232,"height":60},
+		{"type":"text","text":"Petrubation Tests","id":"f0e75b634466d147","x":3448,"y":1393,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

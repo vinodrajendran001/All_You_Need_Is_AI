@@ -131,14 +131,13 @@
 		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1408,"width":232,"height":60},
 		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1600,"width":232,"height":60},
 		{"type":"text","text":"Model Offline Evaluation","id":"1bcba6a2edd33081","x":3008,"y":1800,"width":232,"height":60},
-		{"type":"text","text":"Model Deployment","id":"04c098819c571048","x":3008,"y":2120,"width":232,"height":60},
-		{"type":"text","text":"Model Compression","id":"7349f302b9cb5080","x":3355,"y":2120,"width":232,"height":60},
-		{"type":"text","text":"Low-rank factorization","id":"c730357342235a88","x":3700,"y":2029,"width":232,"height":60},
-		{"type":"text","text":"Knowledge Distillation","id":"10f4e6e993282aed","x":3700,"y":2100,"width":232,"height":60},
-		{"type":"text","text":"Pruning","id":"b8fe688b139ca67d","x":3700,"y":2180,"width":232,"height":60},
-		{"type":"text","text":"Quantization","id":"beefdb9e7b79883c","x":3700,"y":2260,"width":232,"height":60},
-		{"type":"text","text":"ML on Cloud and Edge","id":"603a4d53eee3ed56","x":3355,"y":2360,"width":232,"height":60},
-		{"type":"text","text":"Batch prediction vs Online prediction","id":"79a753c8a6280090","x":3355,"y":1900,"width":232,"height":60}
+		{"type":"text","text":"Model Compression","id":"7349f302b9cb5080","x":4580,"y":93,"width":232,"height":60},
+		{"type":"text","text":"Low-rank factorization","id":"c730357342235a88","x":4925,"y":2,"width":232,"height":60},
+		{"type":"text","text":"Knowledge Distillation","id":"10f4e6e993282aed","x":4925,"y":73,"width":232,"height":60},
+		{"type":"text","text":"Pruning","id":"b8fe688b139ca67d","x":4925,"y":153,"width":232,"height":60},
+		{"type":"text","text":"Quantization","id":"beefdb9e7b79883c","x":4925,"y":233,"width":232,"height":60},
+		{"type":"text","text":"ML on Cloud and Edge","id":"603a4d53eee3ed56","x":4580,"y":333,"width":232,"height":60},
+		{"type":"text","text":"Batch prediction vs Online prediction","id":"79a753c8a6280090","x":4580,"y":-127,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -272,8 +271,6 @@
 		{"id":"99ea8a23acae8c7f","fromNode":"7349f302b9cb5080","fromSide":"right","toNode":"10f4e6e993282aed","toSide":"left"},
 		{"id":"15fb0301bd851cd1","fromNode":"7349f302b9cb5080","fromSide":"right","toNode":"b8fe688b139ca67d","toSide":"left"},
 		{"id":"04385bd77db80f6c","fromNode":"7349f302b9cb5080","fromSide":"right","toNode":"beefdb9e7b79883c","toSide":"left"},
-		{"id":"eb1fecbcbcc8209b","fromNode":"04c098819c571048","fromSide":"right","toNode":"7349f302b9cb5080","toSide":"left"},
-		{"id":"6da3b79fa66ec6c6","fromNode":"04c098819c571048","fromSide":"right","toNode":"79a753c8a6280090","toSide":"left"},
-		{"id":"2328f86d36415106","fromNode":"04c098819c571048","fromSide":"right","toNode":"603a4d53eee3ed56","toSide":"left"}
+		{"id":"dc6083add8494bcd","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"1bcba6a2edd33081","toSide":"left"}
 	]
 }

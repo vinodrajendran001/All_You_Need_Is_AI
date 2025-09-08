@@ -140,10 +140,10 @@
 		{"type":"text","text":"Model Calibration","id":"39976818e081bc64","x":3380,"y":1318,"width":232,"height":60},
 		{"type":"text","text":"Confidence Measurement","id":"1f879dbbecaf3b5c","x":3380,"y":1400,"width":232,"height":60},
 		{"type":"text","text":"Model Offline Evaluation","id":"1bcba6a2edd33081","x":3008,"y":2180,"width":232,"height":60},
-		{"type":"text","text":"Distributed Training","id":"2ab3aa04c5bb9dd2","x":3008,"y":1912,"width":232,"height":60},
-		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1800,"width":232,"height":60},
-		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1992,"width":232,"height":60},
-		{"type":"text","text":"Slice-based Measurement","id":"0d22420dd0a56151","x":3380,"y":1490,"width":232,"height":60}
+		{"type":"text","text":"Slice-based Measurement","id":"0d22420dd0a56151","x":3380,"y":1490,"width":232,"height":60},
+		{"type":"text","text":"Distributed Training","id":"2ab3aa04c5bb9dd2","x":3008,"y":1752,"width":232,"height":60},
+		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1640,"width":232,"height":60},
+		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1832,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -282,6 +282,10 @@
 		{"id":"81f836404581a465","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"7349f302b9cb5080","toSide":"left"},
 		{"id":"b783b665ba92185d","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"603a4d53eee3ed56","toSide":"left"},
 		{"id":"b922ac5a93173f4e","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"446f3071dca68104","toSide":"left"},
-		{"id":"939d3f2ca08ed33f","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"f0e75b634466d147","toSide":"left"}
+		{"id":"939d3f2ca08ed33f","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"f0e75b634466d147","toSide":"left"},
+		{"id":"235f53099664217b","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"9ab9714850d6ab96","toSide":"left"},
+		{"id":"db0a34940d874f69","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"39976818e081bc64","toSide":"left"},
+		{"id":"330eb0c97d3d41f7","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"1f879dbbecaf3b5c","toSide":"left"},
+		{"id":"1e7edb00c8e127d9","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"0d22420dd0a56151","toSide":"left"}
 	]
 }

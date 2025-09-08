@@ -129,7 +129,8 @@
 		{"type":"text","text":"Experiment Tracking and Versioning","id":"fc4ecf8f82fc0b39","x":3008,"y":1288,"width":232,"height":60},
 		{"type":"text","text":"Distributed Training","id":"2ab3aa04c5bb9dd2","x":3008,"y":1520,"width":232,"height":60},
 		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1408,"width":232,"height":60},
-		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1600,"width":232,"height":60}
+		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1600,"width":232,"height":60},
+		{"type":"text","text":"Model Offline Evaluation","id":"1bcba6a2edd33081","x":3008,"y":1800,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -256,6 +257,8 @@
 		{"id":"cd5a06609dc08f93","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"d0ef0d601ea6f839","toSide":"left"},
 		{"id":"05333668ff2fd614","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"bf1d831ce3cdf6ea","toSide":"left"},
 		{"id":"91f7a381a441be76","fromNode":"2ab3aa04c5bb9dd2","fromSide":"right","toNode":"facd4ad8647fd769","toSide":"left"},
-		{"id":"3b687a08d48e9dea","fromNode":"2ab3aa04c5bb9dd2","fromSide":"right","toNode":"d990bc204d92e268","toSide":"left"}
+		{"id":"3b687a08d48e9dea","fromNode":"2ab3aa04c5bb9dd2","fromSide":"right","toNode":"d990bc204d92e268","toSide":"left"},
+		{"id":"0f6d889692672331","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"fc4ecf8f82fc0b39","toSide":"left"},
+		{"id":"37eefd29620b3855","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"2ab3aa04c5bb9dd2","toSide":"left"}
 	]
 }

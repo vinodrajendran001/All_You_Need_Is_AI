@@ -126,7 +126,7 @@
 		{"type":"text","text":"Bagging (reduce variance)","id":"419fb3a0ef5d3b6b","x":3380,"y":758,"width":232,"height":60},
 		{"type":"text","text":"Boosting (reduce bias)","id":"9621a80f69c6dd1d","x":3380,"y":878,"width":232,"height":60},
 		{"type":"text","text":"Stacking (generalization)","id":"452a5808f3ca2b6f","x":3380,"y":1001,"width":232,"height":60},
-		{"type":"text","text":"Ensembles","id":"fc4ecf8f82fc0b39","x":3008,"y":1288,"width":232,"height":60}
+		{"type":"text","text":"Experiment Tracking and Versioning","id":"fc4ecf8f82fc0b39","x":3008,"y":1288,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

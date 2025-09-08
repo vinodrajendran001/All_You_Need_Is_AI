@@ -131,7 +131,9 @@
 		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1408,"width":232,"height":60},
 		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1600,"width":232,"height":60},
 		{"type":"text","text":"Model Offline Evaluation","id":"1bcba6a2edd33081","x":3008,"y":1800,"width":232,"height":60},
-		{"type":"text","text":"Model Deployment","id":"04c098819c571048","x":3008,"y":2120,"width":232,"height":60}
+		{"type":"text","text":"Model Deployment","id":"04c098819c571048","x":3008,"y":2120,"width":232,"height":60},
+		{"type":"text","text":"Batch prediction vs Online prediction","id":"79a753c8a6280090","x":3355,"y":1969,"width":232,"height":60},
+		{"type":"text","text":"Model Compression","id":"7349f302b9cb5080","x":3355,"y":2090,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},

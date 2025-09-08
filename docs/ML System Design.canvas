@@ -125,7 +125,6 @@
 		{"type":"text","text":"Bagging (reduce variance)","id":"419fb3a0ef5d3b6b","x":3380,"y":758,"width":232,"height":60},
 		{"type":"text","text":"Boosting (reduce bias)","id":"9621a80f69c6dd1d","x":3380,"y":878,"width":232,"height":60},
 		{"type":"text","text":"Stacking (generalization)","id":"452a5808f3ca2b6f","x":3380,"y":1001,"width":232,"height":60},
-		{"type":"text","text":"Model Offline Evaluation","id":"1bcba6a2edd33081","x":3008,"y":1800,"width":232,"height":60},
 		{"type":"text","text":"Model Compression","id":"7349f302b9cb5080","x":4720,"y":38,"width":232,"height":60},
 		{"type":"text","text":"Low-rank factorization","id":"c730357342235a88","x":5065,"y":-53,"width":232,"height":60},
 		{"type":"text","text":"Knowledge Distillation","id":"10f4e6e993282aed","x":5065,"y":18,"width":232,"height":60},
@@ -138,10 +137,13 @@
 		{"type":"text","text":"Petrubation Tests","id":"446f3071dca68104","x":3380,"y":1093,"width":232,"height":60},
 		{"type":"text","text":"Invariance Tests","id":"f0e75b634466d147","x":3380,"y":1168,"width":232,"height":60},
 		{"type":"text","text":"Directional Expectation Tests","id":"9ab9714850d6ab96","x":3380,"y":1243,"width":232,"height":60},
-		{"type":"text","text":"Distributed Training","id":"2ab3aa04c5bb9dd2","x":3008,"y":1632,"width":232,"height":60},
-		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1520,"width":232,"height":60},
-		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1712,"width":232,"height":60},
-		{"type":"text","text":"Model Calibration","id":"39976818e081bc64","x":3380,"y":1318,"width":232,"height":60}
+		{"type":"text","text":"Model Calibration","id":"39976818e081bc64","x":3380,"y":1318,"width":232,"height":60},
+		{"type":"text","text":"Confidence Measurement","id":"1f879dbbecaf3b5c","x":3380,"y":1400,"width":232,"height":60},
+		{"type":"text","text":"Model Offline Evaluation","id":"1bcba6a2edd33081","x":3008,"y":2180,"width":232,"height":60},
+		{"type":"text","text":"Distributed Training","id":"2ab3aa04c5bb9dd2","x":3008,"y":1912,"width":232,"height":60},
+		{"type":"text","text":"Model Parallelism","id":"facd4ad8647fd769","x":3380,"y":1800,"width":232,"height":60},
+		{"type":"text","text":"Data Parallelism","id":"d990bc204d92e268","x":3380,"y":1992,"width":232,"height":60},
+		{"type":"text","text":"Slice-based Measurement","id":"0d22420dd0a56151","x":3380,"y":1490,"width":232,"height":60}
 	],
 	"edges":[
 		{"id":"b320e83202ad1408","fromNode":"644cfa0b25cbef35","fromSide":"right","toNode":"95e4d363ee3376f1","toSide":"left"},
@@ -278,6 +280,8 @@
 		{"id":"dc6083add8494bcd","fromNode":"fea5ba9905c60e60","fromSide":"left","toNode":"1bcba6a2edd33081","toSide":"left"},
 		{"id":"93cbe5011ac34597","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"79a753c8a6280090","toSide":"left"},
 		{"id":"81f836404581a465","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"7349f302b9cb5080","toSide":"left"},
-		{"id":"b783b665ba92185d","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"603a4d53eee3ed56","toSide":"left"}
+		{"id":"b783b665ba92185d","fromNode":"780d52f1c95e6c3e","fromSide":"left","toNode":"603a4d53eee3ed56","toSide":"left"},
+		{"id":"b922ac5a93173f4e","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"446f3071dca68104","toSide":"left"},
+		{"id":"939d3f2ca08ed33f","fromNode":"fc4ecf8f82fc0b39","fromSide":"right","toNode":"f0e75b634466d147","toSide":"left"}
 	]
 }

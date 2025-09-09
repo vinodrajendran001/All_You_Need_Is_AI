@@ -1011,3 +1011,7 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 - [DeepCode: Open Agentic Coding](https://github.com/HKUDS/DeepCode)
 - [Understanding LLMs: Insights from Mechanistic Interpretability](https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic)
+
+## 09.09.2025
+
+- [Jupyter Agent 2 - a Hugging Face Space by lvwerra](https://huggingface.co/spaces/lvwerra/jupyter-agent-2)

@@ -1019,4 +1019,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 11.09.2025
 
 - [Pytorch Tutorials](https://github.com/niconielsen32/pytorch-tutorials/tree/main)
-- https://github.com/silvaxxx1/MyLLM)
+- [MyLLM: Building _My_ Meta_Bot — From Scratch, For Real](https://github.com/silvaxxx1/MyLLM)

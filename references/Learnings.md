@@ -1029,4 +1029,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 29.09.2025
 
 - [Becoming a Research Engineer at a Big LLM Lab -- 18 Months of Strategic Career Development](https://www.maxmynter.com/pages/blog/jobhunt)
+- [AlmondGod/tinyworlds: A minimal implementation of DeepMind's Genie world model](https://github.com/AlmondGod/tinyworlds)
 - 

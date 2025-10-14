@@ -1035,4 +1035,3 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 14.10.2025
 
 - [karpathy/nanochat: The best ChatGPT that $100 can buy.](https://github.com/karpathy/nanochat)
-- 

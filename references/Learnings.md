@@ -1031,3 +1031,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 - [Becoming a Research Engineer at a Big LLM Lab -- 18 Months of Strategic Career Development](https://www.maxmynter.com/pages/blog/jobhunt)
 - [AlmondGod/tinyworlds: A minimal implementation of DeepMind's Genie world model](https://github.com/AlmondGod/tinyworlds)
 - [Post-training 101](https://tokens-for-thoughts.notion.site/post-training-101)
+
+## 14.10.2025
+
+- [karpathy/nanochat: The best ChatGPT that $100 can buy.](https://github.com/karpathy/nanochat)
+- 

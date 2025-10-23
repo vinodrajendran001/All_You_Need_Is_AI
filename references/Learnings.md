@@ -1035,3 +1035,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 14.10.2025
 
 - [karpathy/nanochat: The best ChatGPT that $100 can buy.](https://github.com/karpathy/nanochat)
+
+## 23.10.2025
+
+- [jingyaogong/minimind: 🚀🚀 「大模型」2小时完全从0训练26M的小参数GPT！🌏 Train a 26M-parameter GPT from scratch in just 2h!](https://github.com/jingyaogong/minimind)
+- 

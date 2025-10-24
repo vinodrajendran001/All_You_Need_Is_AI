@@ -1040,3 +1040,7 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 - [jingyaogong/minimind: 🚀🚀 「大模型」2小时完全从0训练26M的小参数GPT！🌏 Train a 26M-parameter GPT from scratch in just 2h!](https://github.com/jingyaogong/minimind)
 - [BERT is just a Single Text Diffusion Step | nathan.rs](https://nathan.rs/posts/roberta-diffusion/)
+
+## 24.10.2025
+
+- 

@@ -1043,4 +1043,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 24.10.2025
 
-- [# Understanding Reinforcement Learning for Model Training, and future directions with GRAPE](https://arxiv.org/abs/2509.04501)
+- [Understanding Reinforcement Learning for Model Training, and future directions with GRAPE](https://arxiv.org/abs/2509.04501)

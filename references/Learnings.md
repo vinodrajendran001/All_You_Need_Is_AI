@@ -1044,3 +1044,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 24.10.2025
 
 - [Understanding Reinforcement Learning for Model Training, and future directions with GRAPE](https://arxiv.org/abs/2509.04501)
+
+## 31.10.2025
+
+- [ovg-project/kvcached: Virtualized Elastic KV Cache for Dynamic GPU Sharing and Beyond](https://github.com/ovg-project/kvcached)
+- [LLM Inference Economics from First Principles](https://www.tensoreconomics.com/p/llm-inference-economics-from-first)

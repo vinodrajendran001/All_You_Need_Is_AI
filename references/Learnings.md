@@ -1049,3 +1049,7 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 - [ovg-project/kvcached: Virtualized Elastic KV Cache for Dynamic GPU Sharing and Beyond](https://github.com/ovg-project/kvcached)
 - [LLM Inference Economics from First Principles](https://www.tensoreconomics.com/p/llm-inference-economics-from-first)
+
+## 11.11.2025
+
+- 

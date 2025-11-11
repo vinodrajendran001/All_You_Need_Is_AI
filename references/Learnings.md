@@ -1052,4 +1052,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 11.11.2025
 
+- [Alibaba-NLP/DeepResearch: Tongyi Deep Research, the Leading Open-source Deep Research Agent](https://github.com/Alibaba-NLP/DeepResearch/)
 - 

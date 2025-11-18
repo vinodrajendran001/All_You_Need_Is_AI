@@ -1053,3 +1053,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 11.11.2025
 
 - [Alibaba-NLP/DeepResearch: Tongyi Deep Research, the Leading Open-source Deep Research Agent](https://github.com/Alibaba-NLP/DeepResearch/)
+
+## 18.11.2025
+
+- [How Grab Built an AI Foundation Model To Understand Customers Better](https://blog.bytebytego.com/p/how-grab-built-an-ai-foundation-model)
+- 

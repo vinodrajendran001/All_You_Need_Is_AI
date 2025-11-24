@@ -1057,3 +1057,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 18.11.2025
 
 - [How Grab Built an AI Foundation Model To Understand Customers Better](https://blog.bytebytego.com/p/how-grab-built-an-ai-foundation-model)
+
+## 24.11.2025
+
+- [Olmo Improvement Benchmark](https://allenai.org/blog/olmo3)
+- 

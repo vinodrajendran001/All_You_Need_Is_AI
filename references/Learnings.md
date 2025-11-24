@@ -1060,5 +1060,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 24.11.2025
 
-- [Olmo Improvement Benchmark](https://allenai.org/blog/olmo3)
+- [Olmo 3: Charting a path through the model flow to lead open-source AI](https://allenai.org/blog/olmo3)
 - 

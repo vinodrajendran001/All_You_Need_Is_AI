@@ -1065,4 +1065,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 08.01.2026
 
 - the simplest way to start "vibe coding" with no experience - https://x.com/resdegen/status/2008277182238343636
-- 
+- [Recursive Language Models: the paradigm of 2026](https://www.primeintellect.ai/blog/rlm)

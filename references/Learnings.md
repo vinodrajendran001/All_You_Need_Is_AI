@@ -1061,4 +1061,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 24.11.2025
 
 - [Olmo 3: Charting a path through the model flow to lead open-source AI](https://allenai.org/blog/olmo3)
+
+## 08.01.2026
+
+- the simplest way to start "vibe coding" with no experience - https://x.com/resdegen/status/2008277182238343636
 - 

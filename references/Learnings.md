@@ -1069,4 +1069,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 20.01.2026
 
-- https://www.mihaileric.com/The-Emperor-Has-No-Clothes
+- How to code claude code in 200 lines of code - https://www.mihaileric.com/The-Emperor-Has-No-Clothes
+- 

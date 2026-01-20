@@ -1070,4 +1070,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 20.01.2026
 
 - How to code claude code in 200 lines of code - https://www.mihaileric.com/The-Emperor-Has-No-Clothes
-- 
+- [How I AI: Teresa Torres's Claude Code System for Task Management, Automated Research, and 'Lazy' Prompting | ChatPRD Blog](https://www.chatprd.ai/how-i-ai/teresa-torres-claude-code-obsdian-task-management)

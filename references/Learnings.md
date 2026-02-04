@@ -1082,4 +1082,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 04.02.2026
 
 - https://github.com/gavrielc/nanoclaw - Lightweight, secure, and built to be understood and customized for your own needs.
-- 
+- https://github.com/HKUDS/nanobot - ultra-lightweight personal AI assistant inspired by Clawdbot

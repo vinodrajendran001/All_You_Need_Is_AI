@@ -1084,6 +1084,12 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 - https://github.com/gavrielc/nanoclaw - Lightweight, secure, and built to be understood and customized for your own needs inspired by Clawdbot
 - https://github.com/HKUDS/nanobot - ultra-lightweight personal AI assistant inspired by Clawdbot
 
+<<<<<<< HEAD
 ## 04.03.2026
 
 - https://github.com/ZHZisZZ/dllm - Simple Diffusion Language Modeling
+=======
+## 09.03.2026
+
+- https://github.com/RightNow-AI/openfang - OpenFang is an **open-source Agent Operating System**
+>>>>>>> origin/main

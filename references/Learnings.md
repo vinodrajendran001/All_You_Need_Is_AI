@@ -1086,4 +1086,4 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 09.03.2026
 
-- https://github.com/RightNow-AI/openfang - 
+- https://github.com/RightNow-AI/openfang - OpenFang is an **open-source Agent Operating System**

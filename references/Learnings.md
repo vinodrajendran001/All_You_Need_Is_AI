@@ -1101,4 +1101,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 16.03.2026
 
 - [Gen-Verse/OpenClaw-RL: OpenClaw-RL: Train any agent simply by talking](https://github.com/Gen-Verse/OpenClaw-RL)
-- 
+- [I want to learn how to use Claude Skills (full course)](https://x.com/hooeem/status/2031755971265974632)
+- [open-jarvis/OpenJarvis: Personal AI, On Personal Devices](https://github.com/open-jarvis/OpenJarvis)

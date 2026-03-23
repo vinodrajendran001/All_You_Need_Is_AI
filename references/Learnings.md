@@ -1084,7 +1084,7 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 - https://github.com/gavrielc/nanoclaw - Lightweight, secure, and built to be understood and customized for your own needs inspired by Clawdbot
 - https://github.com/HKUDS/nanobot - ultra-lightweight personal AI assistant inspired by Clawdbot
 
-<<<<<<< HEAD
+
 ## 04.03.2026
 
 - https://github.com/ZHZisZZ/dllm - Simple Diffusion Language Modeling
@@ -1103,3 +1103,8 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 - [Gen-Verse/OpenClaw-RL: OpenClaw-RL: Train any agent simply by talking](https://github.com/Gen-Verse/OpenClaw-RL)
 - [I want to learn how to use Claude Skills (full course)](https://x.com/hooeem/status/2031755971265974632)
 - [open-jarvis/OpenJarvis: Personal AI, On Personal Devices](https://github.com/open-jarvis/OpenJarvis)
+
+## 23.03.2026
+
+- https://github.com/vinodrajendran001/AutoResearchClaw
+- https://github.com/Cenrax/researchswarm

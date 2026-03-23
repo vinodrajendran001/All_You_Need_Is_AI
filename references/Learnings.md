@@ -1106,5 +1106,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 23.03.2026
 
-- [https://github.com/vinodrajendran001/AutoResearchClaw[]
+- [AutoResearchClaw: Chat an Idea. Get a Paper. Fully Autonomous & Self-Evolving](https://github.com/vinodrajendran001/AutoResearchClaw)
 - [Research Swarm - Paper-to-Production AI Pipeline](https://github.com/Cenrax/researchswarm)

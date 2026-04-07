@@ -1116,4 +1116,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 07.04.2026
 
+- [kevinrgu/autoagent: autonomous harness engineering](https://github.com/kevinrgu/autoagent/tree/main)
 - 

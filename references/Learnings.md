@@ -1123,5 +1123,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 ## 09.04.2026
 
 - [Andrej Karpathy posted his LLM Knowledge Bases workflow just last week, and someone already shipped a Skill he described.]([https://github.com/safishamsi/graphify])
-- [](https://googlecloudplatform.github.io/scion/overview/)
-- 
+- [Google Cloud just open-sourced a multi-agent orchestration framework. It lets Claude Code, Gemini CLI, and Codex all work on your codebase at the same time.](https://googlecloudplatform.github.io/scion/overview/)
+- https://x.com/googlegemma/status/2041512106269319328

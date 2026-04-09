@@ -1113,3 +1113,17 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 - [instructkr/claw-code: The fastest repo in history to surpass 50K stars ⭐, reaching the milestone in just 2 hours after publication. Better Harness Tools, not merely storing the archive of leaked Claude Code but also make real things done. Now rewriting in Rust.](https://github.com/instructkr/claw-code)
 - [Strategic research thinking agents for Claude Code — idea evaluation, project triage, and structured brainstorming to help you do research that matters.](https://github.com/andrehuang/research-companion/)
+- https://github.com/andrehuang/research-companion/)
+
+## 07.04.2026
+
+- [kevinrgu/autoagent: autonomous harness engineering](https://github.com/kevinrgu/autoagent/tree/main)
+- [garrytan/gstack: Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA](https://github.com/garrytan/gstack)
+- [How to Build Your Second Brain](https://x.com/NickSpisak_/status/2040448463540830705)
+
+## 09.04.2026
+
+- [Andrej Karpathy posted his LLM Knowledge Bases workflow just last week, and someone already shipped a Skill he described.]([https://github.com/safishamsi/graphify])
+- [Google Cloud just open-sourced a multi-agent orchestration framework. It lets Claude Code, Gemini CLI, and Codex all work on your codebase at the same time.](https://googlecloudplatform.github.io/scion/overview/)
+- [OpenClaw + Ollama + Gemma 4 26B for local agentic setup](https://x.com/googlegemma/status/2041512106269319328)
+

@@ -1126,5 +1126,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 - [Andrej Karpathy posted his LLM Knowledge Bases workflow just last week, and someone already shipped a Skill he described.]([https://github.com/safishamsi/graphify])
 - [Google Cloud just open-sourced a multi-agent orchestration framework. It lets Claude Code, Gemini CLI, and Codex all work on your codebase at the same time.](https://googlecloudplatform.github.io/scion/overview/)
 - [OpenClaw + Ollama + Gemma 4 26B for local agentic setup](https://x.com/googlegemma/status/2041512106269319328)
-- https://github.com/nousresearch/hermes-agent
+- [**The self-improving AI agent built by Nous Research.** It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions.](https://github.com/nousresearch/hermes-agent)
 

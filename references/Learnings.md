@@ -1130,4 +1130,5 @@ System Instructions You are ChatGPT, Head of Options Research at an elite quant 
 
 ## 27.04.2026
 
+- [hugohe3/ppt-master: AI generates natively editable PPTX from any document — real PowerPoint shapes, not images — no design skills needed](https://github.com/hugohe3/ppt-master)
 - 

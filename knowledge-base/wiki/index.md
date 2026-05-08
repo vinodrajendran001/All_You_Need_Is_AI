@@ -6,6 +6,7 @@ tags:
   - index
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
+  - src-2026-05-08-murphy-reinforcement-learning-overview
 status: active
 ---
 
@@ -23,6 +24,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Schema-Driven Knowledge Base]] - Why a schema file turns a generic model into a disciplined maintainer.
 - [[Ingest Query Lint Loop]] - The three recurring operations that keep the wiki alive.
 - [[Index and Log]] - Why the catalog and ledger are first-class control surfaces.
+- [[Reinforcement Learning]] - Hub page for sequential decision making and RL method families.
 
 ## Entities
 
@@ -32,6 +34,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 ## Sources
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
+- [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
 
 ## Control files
 

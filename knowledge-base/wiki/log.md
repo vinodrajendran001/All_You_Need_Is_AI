@@ -6,6 +6,7 @@ tags:
   - log
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
+  - src-2026-05-08-murphy-reinforcement-learning-overview
 status: active
 ---
 
@@ -24,3 +25,10 @@ Append-only operational history for the wiki.
 - Captured the raw gist in `knowledge-base/raw/sources/2026-05-08 Andrej Karpathy - LLM Wiki.md`.
 - Created [[Andrej Karpathy - LLM Wiki]] as the first source summary page.
 - Seeded [[AI Knowledge Base Overview]], [[Persistent Wiki]], [[Schema-Driven Knowledge Base]], [[Ingest Query Lint Loop]], [[Index and Log]], [[Andrej Karpathy]], and [[Obsidian]] from the source.
+
+## [2026-05-08] ingest | Kevin Murphy - Reinforcement Learning: An Overview
+
+- Captured the paper as `knowledge-base/raw/sources/2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview.pdf`.
+- Added [[2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview]] as the immutable raw-source note with arXiv metadata and abstract.
+- Created [[Kevin Murphy - Reinforcement Learning - An Overview]] as the source summary page.
+- Seeded [[Reinforcement Learning]] as the first domain concept page derived from the paper and updated [[AI Knowledge Base Overview]] plus the index.

@@ -32,3 +32,16 @@ Append-only operational history for the wiki.
 - Added [[2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview]] as the immutable raw-source note with arXiv metadata and abstract.
 - Created [[Kevin Murphy - Reinforcement Learning - An Overview]] as the source summary page.
 - Seeded [[Reinforcement Learning]] as the first domain concept page derived from the paper and updated [[AI Knowledge Base Overview]] plus the index.
+
+## [2026-05-08] query | Mathematical foundations for reinforcement learning
+
+- Filed [[2026-05-08 Mathematical Foundations for Reinforcement Learning]] in response to a query about the math needed to go from Murphy's survey to expert-level RL understanding.
+- Linked the answer into the index as the first durable query note in the knowledge base.
+
+## [2026-05-08] lint | knowledge-base/wiki
+
+- Audited the wiki for broken internal links, orphans, thin seed pages, and schema conformance.
+- Confirmed all internal wikilinks resolve and no wiki pages are orphaned.
+- Fixed a stale claim in [[AI Knowledge Base Overview]] about empty operational folders.
+- Added missing `## Related pages` sections to both source summary pages to align them with the schema.
+- Filed [[2026-05-08 Wiki Lint Pass]] and linked it from the index.

@@ -37,3 +37,4 @@ RL is one of the major domains already represented in the broader vault, and thi
 
 - [[Kevin Murphy - Reinforcement Learning - An Overview]]
 - [[AI Knowledge Base Overview]]
+- [[2026-05-08 Mathematical Foundations for Reinforcement Learning]]

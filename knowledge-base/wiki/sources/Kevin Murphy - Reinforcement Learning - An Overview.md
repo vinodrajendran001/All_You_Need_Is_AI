@@ -46,3 +46,9 @@ This is the first domain-specific paper ingested into the knowledge base, so it 
 
 - Raw capture note: [[2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview]]
 - Local PDF: [2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview.pdf](../../raw/sources/2026-05-08%20Kevin%20Murphy%20-%20Reinforcement%20Learning%20-%20An%20Overview.pdf)
+
+## Related pages
+
+- [[Reinforcement Learning]]
+- [[AI Knowledge Base Overview]]
+- [[2026-05-08 Mathematical Foundations for Reinforcement Learning]]

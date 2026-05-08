@@ -52,3 +52,13 @@ This pattern fits the workspace well because the vault already contains AI notes
 ## Citations
 
 - Raw capture: [[knowledge-base/raw/sources/2026-05-08 Andrej Karpathy - LLM Wiki|2026-05-08 Andrej Karpathy - LLM Wiki]]
+
+## Related pages
+
+- [[AI Knowledge Base Overview]]
+- [[Persistent Wiki]]
+- [[Schema-Driven Knowledge Base]]
+- [[Ingest Query Lint Loop]]
+- [[Index and Log]]
+- [[Andrej Karpathy]]
+- [[Obsidian]]

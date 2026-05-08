@@ -41,7 +41,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 
 - Existing notes elsewhere in the workspace have not yet been ingested into this structure.
 - Reinforcement learning has a top-level hub page now, but its subtopics are not yet broken into dedicated notes.
-- The `queries/`, `syntheses/`, and `lint/` folders are ready but intentionally empty until real work accumulates there.
+- The `queries/` folder is now active, but `syntheses/` and `lint/` are still at seed-stage and need more accumulated work before they become genuinely useful.
 - No search tooling has been added yet because the index is enough at the current scale.
 
 ## Related pages

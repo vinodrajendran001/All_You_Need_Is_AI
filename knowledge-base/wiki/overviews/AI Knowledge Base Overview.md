@@ -8,6 +8,7 @@ tags:
   - knowledge-base
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
+  - src-2026-05-08-murphy-reinforcement-learning-overview
 status: active
 ---
 
@@ -25,7 +26,7 @@ The workspace now implements Karpathy's three-layer pattern:
 - Curated wiki pages live under `knowledge-base/wiki/`.
 - The operating schema lives in the root [[CLAUDE]] note.
 
-The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests.
+The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]].
 
 ## Key pages
 
@@ -34,10 +35,12 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Schema-Driven Knowledge Base]] - how the schema keeps maintenance disciplined
 - [[Ingest Query Lint Loop]] - the repeating maintenance cycle
 - [[Index and Log]] - control files that help the LLM navigate the vault
+- [[Reinforcement Learning]] - first domain hub page seeded from an ingested paper
 
 ## Gaps
 
 - Existing notes elsewhere in the workspace have not yet been ingested into this structure.
+- Reinforcement learning has a top-level hub page now, but its subtopics are not yet broken into dedicated notes.
 - The `queries/`, `syntheses/`, and `lint/` folders are ready but intentionally empty until real work accumulates there.
 - No search tooling has been added yet because the index is enough at the current scale.
 
@@ -48,3 +51,4 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Schema-Driven Knowledge Base]]
 - [[Index and Log]]
 - [[Obsidian]]
+- [[Reinforcement Learning]]

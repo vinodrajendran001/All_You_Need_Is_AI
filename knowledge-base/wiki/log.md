@@ -8,6 +8,7 @@ source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-05-08-murphy-reinforcement-learning-overview
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-04-22-perplexity-search-augmented-lm
 status: active
 ---
 
@@ -71,3 +72,11 @@ Append-only operational history for the wiki.
 - Created [[Perplexity]] entity page.
 - Updated [[Reinforcement Learning]] with cross-links to the new search-agent RL techniques.
 - Updated [[AI Knowledge Base Overview]] and the index with the new source and concepts.
+
+## [2026-05-13] lint | knowledge-base/wiki (pass 2)
+
+- Re-audited `knowledge-base/wiki` after the Perplexity ingest, including broken links, orphans, related-pages coverage, frontmatter, thin pages, index/log completeness, raw-source coverage, and cross-link density.
+- Found one broken wikilink to [[Group Relative Policy Optimization]] and fixed it by creating the missing concept page.
+- Added reciprocal cross-links from [[Tool Use and Function Calling]] and [[Agentic Loop]] to the new search-agent pages to improve integration density.
+- Confirmed that all internal wikilinks now resolve, no substantive pages are orphaned, all scoped pages include `## Related pages`, and all non-PDF raw sources are covered by source summary pages.
+- Filed [[2026-05-13 Lint Pass 2]] and linked it from the index.

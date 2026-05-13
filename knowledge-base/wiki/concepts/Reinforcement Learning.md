@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-13
 tags:
   - concept
   - reinforcement-learning
   - sequential-decision-making
 source_ids:
   - src-2026-05-08-murphy-reinforcement-learning-overview
+  - src-2026-04-22-perplexity-search-augmented-lm
 status: active
 ---
 
@@ -26,6 +27,7 @@ RL is one of the major domains already represented in the broader vault, and thi
 - A useful top-level map of RL should span value-based, policy-based, and model-based approaches rather than treating any one of them as the whole field.
 - The field also extends into multi-agent RL, offline RL, hierarchical RL, and intrinsic reward.
 - LLM training now intersects directly with RL, which makes RL relevant to this vault's LLM focus rather than a separate side topic.
+- Perplexity's search-agent pipeline demonstrates a concrete production use of RL for LLMs: GRPO with gated reward aggregation, anchored efficiency penalties, and rubric-based rewards. See [[Search-Augmented Language Models]] and [[Reward Design for RL]].
 - This page should remain a hub page until narrower RL subtopic pages are added.
 
 ## Open questions
@@ -36,5 +38,8 @@ RL is one of the major domains already represented in the broader vault, and thi
 ## Related pages
 
 - [[Kevin Murphy - Reinforcement Learning - An Overview]]
+- [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[Search-Augmented Language Models]]
+- [[Reward Design for RL]]
 - [[AI Knowledge Base Overview]]
 - [[2026-05-08 Mathematical Foundations for Reinforcement Learning]]

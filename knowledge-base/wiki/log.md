@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-13
 tags:
   - log
 source_ids:
@@ -29,7 +29,7 @@ Append-only operational history for the wiki.
 ## [2026-05-08] ingest | Kevin Murphy - Reinforcement Learning: An Overview
 
 - Captured the paper as `knowledge-base/raw/sources/2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview.pdf`.
-- Added [[2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview]] as the immutable raw-source note with arXiv metadata and abstract.
+- Added `knowledge-base/raw/sources/2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview.md` as the immutable raw-source note with arXiv metadata and abstract.
 - Created [[Kevin Murphy - Reinforcement Learning - An Overview]] as the source summary page.
 - Seeded [[Reinforcement Learning]] as the first domain concept page derived from the paper and updated [[AI Knowledge Base Overview]] plus the index.
 

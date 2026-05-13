@@ -25,7 +25,7 @@ Without a schema, the model behaves like a generic assistant. With a schema, it 
 
 - The schema is the operational contract between human and LLM.
 - It encodes how ingests happen, how durable answers get filed, and how the wiki gets linted.
-- In this workspace, the root [[CLAUDE]] file is the schema and `knowledge-base/` is the maintained surface it governs.
+- In this workspace, the root `CLAUDE.md` file is the schema and `knowledge-base/` is the maintained surface it governs.
 - The schema should evolve as the vault grows, especially when new page types or workflows prove useful.
 
 ## Open questions

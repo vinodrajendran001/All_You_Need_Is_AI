@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-13
 source_id: src-2026-05-08-karpathy-llm-wiki
 source_title: LLM Wiki
 source_author: Andrej Karpathy
@@ -51,7 +51,7 @@ This pattern fits the workspace well because the vault already contains AI notes
 
 ## Citations
 
-- Raw capture: [[knowledge-base/raw/sources/2026-05-08 Andrej Karpathy - LLM Wiki|2026-05-08 Andrej Karpathy - LLM Wiki]]
+- Raw capture: `knowledge-base/raw/sources/2026-05-08 Andrej Karpathy - LLM Wiki.md`
 
 ## Related pages
 

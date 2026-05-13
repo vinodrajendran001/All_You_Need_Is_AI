@@ -25,7 +25,7 @@ The workspace now implements Karpathy's three-layer pattern:
 
 - Raw sources live under `knowledge-base/raw/`.
 - Curated wiki pages live under `knowledge-base/wiki/`.
-- The operating schema lives in the root [[CLAUDE]] note.
+- The operating schema lives in the root `CLAUDE.md` note.
 
 The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]].
 

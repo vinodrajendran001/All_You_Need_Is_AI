@@ -56,6 +56,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 - [[2026-05-08 Wiki Lint Pass]] - Structural lint pass covering link integrity, schema conformance, and current wiki gaps.
 - [[2026-05-13 Lint Pass]] - Comprehensive lint pass covering structural integrity, coverage, and immediate fixes.
+- [[2026-05-13 Lint Pass 2]] - Follow-up lint pass after the Perplexity ingest, covering new-page integration and residual structural issues.
 
 ## Control files
 

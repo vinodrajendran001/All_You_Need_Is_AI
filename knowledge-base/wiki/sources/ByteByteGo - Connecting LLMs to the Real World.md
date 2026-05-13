@@ -60,7 +60,7 @@ A ByteByteGo article (published 2026-05-04) tracing the evolution from LLMs as i
 
 ## Raw capture
 
-- [[Connecting LLMs to the Real World Tool Use, Function Calling, and MCP]]
+- `knowledge-base/raw/sources/Connecting LLMs to the Real World Tool Use, Function Calling, and MCP.md`
 
 ## Related pages
 

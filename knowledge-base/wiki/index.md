@@ -8,6 +8,7 @@ source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-05-08-murphy-reinforcement-learning-overview
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-04-22-perplexity-search-augmented-lm
 status: active
 ---
 
@@ -29,18 +30,22 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
+- [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
+- [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 
 ## Entities
 
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
+- [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
 
 ## Sources
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
 - [[ByteByteGo - Connecting LLMs to the Real World]] - Tool use, function calling, and MCP evolution from isolated LLMs to real-world agents.
+- [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 
 ## Queries
 
@@ -53,4 +58,4 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Control files
 
-- [[knowledge-base/wiki/log|Knowledge Base Log]] - Chronological record of scaffolding, ingests, queries, and lint passes.
+- [[knowledge-base/wiki/log|Knowledge Base Log]] - Chronological record o

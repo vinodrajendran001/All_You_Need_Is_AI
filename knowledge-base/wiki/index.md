@@ -32,6 +32,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
+- [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 
 ## Entities
 

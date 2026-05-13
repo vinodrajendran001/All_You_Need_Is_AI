@@ -65,6 +65,7 @@ A Perplexity Research article (published 2026-04-22) describing their post-train
 - [[AI Knowledge Base Overview]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
+- [[Group Relative Policy Optimization]]
 - [[Reinforcement Learning]]
 - [[Tool Use and Function Calling]]
 - [[Agentic Loop]]

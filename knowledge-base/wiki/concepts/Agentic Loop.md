@@ -10,7 +10,7 @@ status: active
 
 # Agentic Loop
 
-The iterative cycle by which an LLM-powered application plans, acts, observes, and responds — potentially over multiple rounds of tool calls within a single user request.
+The iterative cycle by which an LLM-powered application plans, acts, observes, and responds — potentially over multiple rounds of tool calls within a single user request. [[Search-Augmented Language Models]] are a concrete case where this loop becomes a trained search policy rather than a one-off interaction pattern.
 
 ## How it works
 
@@ -42,4 +42,6 @@ The model decides *what* should happen. The application layer decides *whether* 
 
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
+- [[Search-Augmented Language Models]]
+- [[Reward Design for RL]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

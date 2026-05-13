@@ -32,7 +32,7 @@ The key principle: **correctness is a necessary condition** before any preferenc
 
 ## Anchored efficiency penalties
 
-Rather than penalising tool calls or length in absolute terms (which suppresses necessary exploration), penalties are computed **relative to successful solutions within the same GRPO group**:
+Rather than penalising tool calls or length in absolute terms (which suppresses necessary exploration), penalties are computed **relative to successful solutions within the same [[Group Relative Policy Optimization|GRPO]] group**:
 
 - **Tool-call penalty** — excess calls beyond a baseline sampled from the group's "winner set" (correct rollouts).
 - **Length penalty** — penalises verbose winners and terse losers, anchored to group-specific length baselines from correct-and-preferred rollouts.
@@ -48,6 +48,7 @@ Different data types produce different gradient magnitudes. Perplexity uses a 90
 ## Related pages
 
 - [[Search-Augmented Language Models]]
+- [[Group Relative Policy Optimization]]
 - [[Reinforcement Learning]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Agentic Loop]]

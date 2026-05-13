@@ -7,6 +7,7 @@ tags:
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-05-08-murphy-reinforcement-learning-overview
+  - src-2026-05-12-vinod-expert-workshop-copilot-cli
 status: active
 ---
 
@@ -29,12 +30,14 @@ Start here. This file is the content-oriented routing layer for the wiki.
 ## Entities
 
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
+- [[GitHub Copilot CLI]] - Interactive terminal assistant by GitHub for LLM-powered coding.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 
 ## Sources
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
+- [[May Expert Workshop - Copilot CLI Setup]] - Step-by-step Copilot CLI setup guide from the May 2026 expert workshop.
 
 ## Queries
 

@@ -10,6 +10,7 @@ source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-05-08-murphy-reinforcement-learning-overview
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-04-22-perplexity-search-augmented-lm
 status: active
 ---
 
@@ -27,7 +28,7 @@ The workspace now implements Karpathy's three-layer pattern:
 - Curated wiki pages live under `knowledge-base/wiki/`.
 - The operating schema lives in the root `CLAUDE.md` note.
 
-The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]].
+The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]]. The fourth source, [[Perplexity - Advancing Search-Augmented Language Models]], deepens the RL and agents area with a concrete production pipeline for [[Search-Augmented Language Models]] and introduces [[Reward Design for RL]] as a cross-cutting concept.
 
 ## Key pages
 
@@ -40,6 +41,8 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Tool Use and Function Calling]] - how LLMs request real-world actions
 - [[Model Context Protocol]] - open standard for universal tool integration
 - [[Agentic Loop]] - the iterative cycle powering multi-step tool use
+- [[Search-Augmented Language Models]] - LLMs with RL-trained search tool policies
+- [[Reward Design for RL]] - composite reward signals for multi-objective LLM training
 
 ## Gaps
 
@@ -60,3 +63,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Model Context Protocol]]
 - [[Agentic Loop]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
+- [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[Search-Augmented Language Models]]
+- [[Reward Design for RL]]
+- [[Perplexity]]

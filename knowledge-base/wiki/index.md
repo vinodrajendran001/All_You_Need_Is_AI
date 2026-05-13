@@ -58,4 +58,4 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Control files
 
-- [[knowledge-base/wiki/log|Knowledge Base Log]] - Chronological record o
+- [[knowledge-base/wiki/log|Knowledge Base Log]] - Chronological record of scaffolding, ingests, queries, and lint passes.

@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-13
 tags:
   - overview
   - ai
@@ -9,6 +9,7 @@ tags:
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-05-08-murphy-reinforcement-learning-overview
+  - src-2026-05-04-bytebytego-llm-tool-use-mcp
 status: active
 ---
 
@@ -26,7 +27,7 @@ The workspace now implements Karpathy's three-layer pattern:
 - Curated wiki pages live under `knowledge-base/wiki/`.
 - The operating schema lives in the root [[CLAUDE]] note.
 
-The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]].
+The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]].
 
 ## Key pages
 
@@ -36,6 +37,9 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Ingest Query Lint Loop]] - the repeating maintenance cycle
 - [[Index and Log]] - control files that help the LLM navigate the vault
 - [[Reinforcement Learning]] - first domain hub page seeded from an ingested paper
+- [[Tool Use and Function Calling]] - how LLMs request real-world actions
+- [[Model Context Protocol]] - open standard for universal tool integration
+- [[Agentic Loop]] - the iterative cycle powering multi-step tool use
 
 ## Gaps
 
@@ -52,3 +56,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Index and Log]]
 - [[Obsidian]]
 - [[Reinforcement Learning]]
+- [[Tool Use and Function Calling]]
+- [[Model Context Protocol]]
+- [[Agentic Loop]]
+- [[ByteByteGo - Connecting LLMs to the Real World]]

@@ -45,3 +45,11 @@ Append-only operational history for the wiki.
 - Fixed a stale claim in [[AI Knowledge Base Overview]] about empty operational folders.
 - Added missing `## Related pages` sections to both source summary pages to align them with the schema.
 - Filed [[2026-05-08 Wiki Lint Pass]] and linked it from the index.
+
+## [2026-05-13] ingest | Connecting LLMs to the Real World: Tool Use, Function Calling, and MCP
+
+- Moved raw capture from `raw/` to `raw/sources/` per schema convention.
+- Created [[ByteByteGo - Connecting LLMs to the Real World]] as source summary page with 10 durable claims and an adoption timeline.
+- Seeded three new concept pages: [[Tool Use and Function Calling]], [[Model Context Protocol]], and [[Agentic Loop]].
+- Created [[ByteByteGo]] entity page.
+- Updated [[AI Knowledge Base Overview]] and the index with the new domain area (LLM tooling and agents).

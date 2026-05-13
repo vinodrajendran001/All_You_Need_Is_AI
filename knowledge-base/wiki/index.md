@@ -7,6 +7,7 @@ tags:
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-05-08-murphy-reinforcement-learning-overview
+  - src-2026-05-04-bytebytego-llm-tool-use-mcp
 status: active
 ---
 
@@ -25,16 +26,21 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Ingest Query Lint Loop]] - The three recurring operations that keep the wiki alive.
 - [[Index and Log]] - Why the catalog and ledger are first-class control surfaces.
 - [[Reinforcement Learning]] - Hub page for sequential decision making and RL method families.
+- [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
+- [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
+- [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
 
 ## Entities
 
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
+- [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 
 ## Sources
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
+- [[ByteByteGo - Connecting LLMs to the Real World]] - Tool use, function calling, and MCP evolution from isolated LLMs to real-world agents.
 
 ## Queries
 

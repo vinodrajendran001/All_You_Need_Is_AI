@@ -27,7 +27,7 @@ RL is one of the major domains already represented in the broader vault, and thi
 - A useful top-level map of RL should span value-based, policy-based, and model-based approaches rather than treating any one of them as the whole field.
 - The field also extends into multi-agent RL, offline RL, hierarchical RL, and intrinsic reward.
 - LLM training now intersects directly with RL, which makes RL relevant to this vault's LLM focus rather than a separate side topic.
-- Perplexity's search-agent pipeline demonstrates a concrete production use of RL for LLMs: GRPO with gated reward aggregation, anchored efficiency penalties, and rubric-based rewards. See [[Search-Augmented Language Models]] and [[Reward Design for RL]].
+- Perplexity's search-agent pipeline demonstrates a concrete production use of RL for LLMs: [[Group Relative Policy Optimization|GRPO]] with gated reward aggregation, anchored efficiency penalties, and rubric-based rewards. See [[Search-Augmented Language Models]] and [[Reward Design for RL]].
 - This page should remain a hub page until narrower RL subtopic pages are added.
 
 ## Open questions

@@ -23,7 +23,7 @@ Perplexity Research describes a two-stage post-training recipe:
 
 1. **SFT stage** — establishes deployment-critical behaviours (guardrails, instruction following, language consistency) using preference-oriented examples and production-format tool-use trajectories. Base models: Qwen3.5 family.
 
-2. **RL stage** — uses GRPO (Group Relative Policy Optimization) with a composite reward:
+2. **RL stage** — uses [[Group Relative Policy Optimization]] (GRPO) with a composite reward:
    - **Baseline correctness** — binary signal: did the answer match ground truth (QA) or satisfy all rubrics (chat)?
    - **Preference score** — Bradley-Terry model trained on human and cross-model preference data.
    - **Efficiency penalty** — group-relative, anchored penalties for excessive tool calls and verbose responses.

@@ -24,6 +24,7 @@ LLMs are text-prediction engines with no built-in ability to interact with the o
 - **Structured output** — function calls are JSON, making them machine-parseable and validatable before execution.
 - **Multi-step chaining** — the model can call several tools in sequence within a single user request, forming an [[Agentic Loop]].
 - **Provider fragmentation** — before [[Model Context Protocol|MCP]], each provider (OpenAI, Anthropic, Google) had its own schema format, creating an N×M integration problem.
+- **Search as tool use** — web search agents are a concrete instance of this pattern; see [[Search-Augmented Language Models]] for the RL-trained version.
 
 ## Historical context
 
@@ -35,4 +36,5 @@ LLMs are text-prediction engines with no built-in ability to interact with the o
 
 - [[Model Context Protocol]]
 - [[Agentic Loop]]
+- [[Search-Augmented Language Models]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

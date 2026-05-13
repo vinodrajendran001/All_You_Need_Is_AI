@@ -62,3 +62,12 @@ Append-only operational history for the wiki.
 - Confirmed there are no orphan substantive pages, no missing `## Related pages` sections in scoped content folders, no frontmatter omissions, and no thin pages below the current body-text threshold.
 - Verified every scoped content page is listed in the index, every ingest in the log has a corresponding source summary page, and every file in `raw/sources/` is covered by a source summary page.
 - Filed [[2026-05-13 Lint Pass]] and linked it from the index.
+
+## [2026-05-13] ingest | Advancing Search-Augmented Language Models
+
+- Raw capture already in `raw/sources/Advancing Search-Augmented Language Models.md`.
+- Created [[Perplexity - Advancing Search-Augmented Language Models]] as source summary page with 10 durable claims covering the two-stage SFT→RL pipeline, gated reward aggregation, anchored efficiency penalties, and benchmark results.
+- Seeded two new concept pages: [[Search-Augmented Language Models]] and [[Reward Design for RL]].
+- Created [[Perplexity]] entity page.
+- Updated [[Reinforcement Learning]] with cross-links to the new search-agent RL techniques.
+- Updated [[AI Knowledge Base Overview]] and the index with the new source and concepts.

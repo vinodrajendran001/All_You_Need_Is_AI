@@ -7,6 +7,7 @@ tags:
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-05-08-murphy-reinforcement-learning-overview
+  - src-2026-05-04-bytebytego-llm-tool-use-mcp
 status: active
 ---
 
@@ -53,3 +54,11 @@ Append-only operational history for the wiki.
 - Seeded three new concept pages: [[Tool Use and Function Calling]], [[Model Context Protocol]], and [[Agentic Loop]].
 - Created [[ByteByteGo]] entity page.
 - Updated [[AI Knowledge Base Overview]] and the index with the new domain area (LLM tooling and agents).
+
+## [2026-05-13] lint | knowledge-base/wiki
+
+- Audited `knowledge-base/wiki` for broken internal wikilinks, orphans, related-pages coverage, frontmatter conformance, thin pages, index completeness, log consistency, and raw-source coverage.
+- Fixed six broken or out-of-scope wikilinks by replacing unresolved wiki targets with valid in-scope references or explicit raw-source file paths.
+- Confirmed there are no orphan substantive pages, no missing `## Related pages` sections in scoped content folders, no frontmatter omissions, and no thin pages below the current body-text threshold.
+- Verified every scoped content page is listed in the index, every ingest in the log has a corresponding source summary page, and every file in `raw/sources/` is covered by a source summary page.
+- Filed [[2026-05-13 Lint Pass]] and linked it from the index.

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-13
 tags:
   - concept
   - schema

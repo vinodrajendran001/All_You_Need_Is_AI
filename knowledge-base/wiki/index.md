@@ -10,6 +10,7 @@ source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-alphasignal-return-of-recursion
+  - src-2026-05-18-pocketflow-tutorial-docs
 status: active
 ---
 
@@ -28,6 +29,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Ingest Query Lint Loop]] - The three recurring operations that keep the wiki alive.
 - [[Index and Log]] - Why the catalog and ledger are first-class control surfaces.
 - [[Reinforcement Learning]] - Hub page for sequential decision making and RL method families.
+- [[Transformer Architecture]] - Decoder-only Transformer synthesis spanning attention, RoPE, and KV-cache inference.
+- [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
+- [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
+- [[Model Quantization and Efficiency]] - Quantization, KV cache, and LoRA as core efficiency levers.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
@@ -44,6 +49,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
 - [[Alpha Signal]]
+- [[The Pocket]] - Organization behind PocketFlow and its tutorial-documentation curriculum.
 
 ## Sources
 
@@ -52,6 +58,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - Connecting LLMs to the Real World]] - Tool use, function calling, and MCP evolution from isolated LLMs to real-world agents.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 - [[Alpha Signal - The Return of Recursion]]
+- [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
 
 ## Queries
 

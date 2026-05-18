@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-05-13
+updated: 2026-05-18
 tags:
   - concept
   - reinforcement-learning
@@ -9,6 +9,7 @@ tags:
 source_ids:
   - src-2026-05-08-murphy-reinforcement-learning-overview
   - src-2026-04-22-perplexity-search-augmented-lm
+  - src-2026-05-18-pocketflow-tutorial-docs
 status: active
 ---
 
@@ -28,6 +29,8 @@ RL is one of the major domains already represented in the broader vault, and thi
 - The field also extends into multi-agent RL, offline RL, hierarchical RL, and intrinsic reward.
 - LLM training now intersects directly with RL, which makes RL relevant to this vault's LLM focus rather than a separate side topic.
 - Perplexity's search-agent pipeline demonstrates a concrete production use of RL for LLMs: [[Group Relative Policy Optimization|GRPO]] with gated reward aggregation, anchored efficiency penalties, and rubric-based rewards. See [[Search-Augmented Language Models]] and [[Reward Design for RL]].
+- [[The Pocket - PocketFlow Tutorial Docs]] adds a much more tutorialized RL ladder to this vault: multi-armed bandits, finite MDPs, Monte Carlo methods, temporal-difference learning, policy gradients/PPO, and n-step bootstrapping.
+- That collection also sharpens one of this page's open questions: the bridge between classic RL and RL-for-LLMs is not incidental. Policy-gradient methods for alignment sit naturally on top of the same foundations as bandits, value functions, Bellman-style reasoning, and model-free control.
 - This page should remain a hub page until narrower RL subtopic pages are added.
 
 ## Open questions
@@ -38,9 +41,11 @@ RL is one of the major domains already represented in the broader vault, and thi
 ## Related pages
 
 - [[Kevin Murphy - Reinforcement Learning - An Overview]]
+- [[The Pocket - PocketFlow Tutorial Docs]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Perplexity]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
+- [[LLM Training Pipeline]]
 - [[AI Knowledge Base Overview]]
 - [[2026-05-08 Mathematical Foundations for Reinforcement Learning]]

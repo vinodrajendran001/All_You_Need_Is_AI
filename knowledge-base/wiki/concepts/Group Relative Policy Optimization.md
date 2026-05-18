@@ -5,6 +5,7 @@ updated: 2026-05-18
 tags: [rl, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
+  - src-2026-05-18-pocketflow-tutorial-docs
 status: active
 ---
 
@@ -25,11 +26,17 @@ In this vault, GRPO is the optimisation method behind Perplexity's RL stage for 
 - Convert those scores into relative advantages inside the group, so the policy learns from better-than-peer rollouts.
 - Use importance-sampling corrections to reduce training-inference mismatch during optimisation.
 
+## Broader context
+
+The PocketFlow tutorials on policy gradients and RLHF make the surrounding optimization ladder explicit: REINFORCE leads to baselines and actor-critic methods, which in turn lead to PPO-style constrained policy optimization. That broader framing helps place GRPO as one member of a larger family of LLM post-training objectives rather than as an isolated search-agent trick. See [[LLM Training Pipeline]] and [[The Pocket - PocketFlow Tutorial Docs]].
+
 ## Related pages
 
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[The Pocket - PocketFlow Tutorial Docs]]
 - [[Perplexity]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
+- [[LLM Training Pipeline]]
 - [[Reinforcement Learning]]
 - [[AI Knowledge Base Overview]]

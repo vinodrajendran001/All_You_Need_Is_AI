@@ -1,10 +1,11 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [rl, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
+  - src-2026-05-18-pocketflow-tutorial-docs
 status: active
 ---
 
@@ -45,10 +46,16 @@ For non-verifiable tasks (rewriting, planning, open-ended chat), deployment requ
 
 Different data types produce different gradient magnitudes. Perplexity uses a 90/10 prompt mixture (verifiable QA / rubric-based) to balance the harder QA signal against the easier rubric signal.
 
+## Broader alignment context
+
+[[The Pocket - PocketFlow Tutorial Docs]] expands the background behind this page by walking through reward-model training in RLHF, the Bradley-Terry preference formulation, and DPO as a direct preference-learning alternative. Together, those tutorials make reward design easier to place inside the wider [[LLM Training Pipeline]] rather than treating it as a search-agent-only concern.
+
 ## Related pages
 
 - [[Search-Augmented Language Models]]
 - [[Group Relative Policy Optimization]]
 - [[Reinforcement Learning]]
+- [[The Pocket - PocketFlow Tutorial Docs]]
+- [[LLM Training Pipeline]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Agentic Loop]]

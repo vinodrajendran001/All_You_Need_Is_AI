@@ -10,6 +10,7 @@ source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-alphasignal-return-of-recursion
+  - src-2026-05-18-pocketflow-tutorial-docs
 status: active
 ---
 
@@ -97,3 +98,12 @@ Append-only operational history for the wiki.
 - Corrected invalid frontmatter in [[Kevin Murphy - Reinforcement Learning - An Overview]] and refreshed stale maturity wording in [[AI Knowledge Base Overview]].
 - Strengthened reciprocal cross-links across Karpathy-, ByteByteGo-, and Perplexity-derived pages.
 - Filed [[2026-05-18 Lint Pass]] and linked it from the index.
+
+## [2026-05-18] ingest | The Pocket - PocketFlow Tutorial Docs
+
+- Captured 39 tutorial documents from the PocketFlow Tutorial Video Generator repo to `raw/sources/pocketflow-tutorial-docs/`.
+- Created raw source note and [[The Pocket - PocketFlow Tutorial Docs]] source summary page.
+- Created [[The Pocket]] entity page.
+- Created new concept pages: [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], [[Model Quantization and Efficiency]].
+- Updated [[Reinforcement Learning]] with cross-links to detailed RL tutorial content.
+- Updated index and overview.

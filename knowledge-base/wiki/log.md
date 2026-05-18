@@ -89,3 +89,11 @@ Append-only operational history for the wiki.
 - Created [[Latent-Space Reasoning]] and [[Recursive Architectures]] concept pages.
 - Created [[Alpha Signal]] entity page.
 - Updated index, overview, and log.
+
+## [2026-05-18] lint | Full wiki lint pass
+
+- Audited `knowledge-base/wiki` for broken wikilinks, orphans, related-pages coverage, frontmatter conformance, thin pages, contradiction risk, index/log completeness, raw-source coverage, and cross-link density.
+- Fixed all broken control-file wikilinks by normalizing them to [[index|Knowledge Base Index]] and [[log|Knowledge Base Log]].
+- Corrected invalid frontmatter in [[Kevin Murphy - Reinforcement Learning - An Overview]] and refreshed stale maturity wording in [[AI Knowledge Base Overview]].
+- Strengthened reciprocal cross-links across Karpathy-, ByteByteGo-, and Perplexity-derived pages.
+- Filed [[2026-05-18 Lint Pass]] and linked it from the index.

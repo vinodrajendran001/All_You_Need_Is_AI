@@ -125,3 +125,11 @@ Append-only operational history for the wiki.
 - Created [[Retrieval-Augmented Generation]] concept page synthesizing across Classic, Graph, and Agentic RAG tiers.
 - Updated [[Search-Augmented Language Models]], [[Agentic Loop]], and [[Tool Use and Function Calling]] with RAG cross-links.
 - Updated index and overview.
+
+## [2026-05-18] lint | Full wiki lint pass (post-ingest)
+
+- Re-audited broken wikilinks, orphans, related-pages coverage, frontmatter, thin pages, index completeness, log consistency, raw-source coverage, cross-link density, and staleness risk across `knowledge-base/wiki`.
+- Found no broken wikilinks, orphan substantive pages, missing related-pages sections, frontmatter gaps, thin substantive pages, index omissions, log mismatches, or raw-source coverage gaps.
+- Corrected a stale source-ordering claim in [[AI Knowledge Base Overview]] so the Han Fang and RAG ingests now match chronological ingest order.
+- Added an explicit raw-capture citation to [[Alpha Signal - The Return of Recursion]] to make the recursion-source coverage clearer.
+- Filed [[2026-05-18 Lint Pass 2]] and linked it from the index.

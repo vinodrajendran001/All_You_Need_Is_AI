@@ -46,6 +46,10 @@ The article frames these systems as specialized reasoning engines rather than ge
 - [[index|Knowledge Base Index]]
 - [[log|Knowledge Base Log]]
 
+## Raw capture
+
+`knowledge-base/raw/sources/The return of recursion - How AI is rethinking complex reasoning.md`
+
 ## Related pages
 
 - [[Latent-Space Reasoning]]

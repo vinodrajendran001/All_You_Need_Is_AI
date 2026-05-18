@@ -7,6 +7,7 @@ source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-05-18-rag-architecture-comparison
 status: active
 ---
 
@@ -45,6 +46,8 @@ Perplexity's pipeline is one specialized application of a broader post-training 
 
 Search-augmented LMs can be seen as a production-grade evolution of [[Reinforcement Learning|RL]]-trained retrieval-augmented generation, where the model actively decides its retrieval strategy rather than following a fixed retrieve-then-generate pipeline.
 
+More specifically, they are a concrete form of [[Retrieval-Augmented Generation|Agentic RAG]]: retrieval is no longer a single preprocessing step but a learned, iterative policy over search actions, evidence gathering, and answer synthesis.
+
 ## Relationship to tool use
 
 Search is a specific instance of [[Tool Use and Function Calling]]. The model issues structured `search_web` calls, and the [[Agentic Loop]] handles execution and result integration. The efficiency penalties described here directly address the cost of unnecessary tool invocations.
@@ -59,4 +62,5 @@ Search is a specific instance of [[Tool Use and Function Calling]]. The model is
 - [[Reinforcement Learning]]
 - [[Tool Use and Function Calling]]
 - [[Agentic Loop]]
+- [[Retrieval-Augmented Generation]]
 - [[Perplexity]]

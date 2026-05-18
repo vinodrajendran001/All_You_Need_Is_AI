@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-05-13
+updated: 2026-05-18
 tags:
   - index
 source_ids:
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-05-08-murphy-reinforcement-learning-overview
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-04-22-perplexity-search-augmented-lm
+  - src-2026-05-18-alphasignal-return-of-recursion
 status: active
 ---
 
@@ -33,6 +34,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
+- [[Latent-Space Reasoning]]
+- [[Recursive Architectures]]
 
 ## Entities
 
@@ -40,6 +43,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
+- [[Alpha Signal]]
 
 ## Sources
 
@@ -47,6 +51,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
 - [[ByteByteGo - Connecting LLMs to the Real World]] - Tool use, function calling, and MCP evolution from isolated LLMs to real-world agents.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
+- [[Alpha Signal - The Return of Recursion]]
 
 ## Queries
 

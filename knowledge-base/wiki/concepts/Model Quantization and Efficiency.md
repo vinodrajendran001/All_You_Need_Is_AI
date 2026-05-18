@@ -10,6 +10,7 @@ tags:
   - efficiency
 source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-05-18-hanfang-pytorch-practice
 status: active
 ---
 
@@ -37,6 +38,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
   - **Deployment-time efficiency** — quantization and cache-aware inference
   - **Post-training efficiency** — LoRA and other parameter-efficient adaptation methods
 - The collection also makes clear that efficiency always trades against something: accuracy, implementation complexity, memory overhead for caches, or the representational limits of low-rank updates.
+- [[Han Fang - PyTorch Practice]] adds a more operations-level layer to this page: it demonstrates gradient accumulation by scaling micro-batch loss, sketches checkpointing as a memory/computation trade-off, shows CUDA mixed-precision training with `autocast` and `GradScaler`, and applies dynamic `qint8` quantization as a compact inference-time optimization.
 
 ## Open questions
 
@@ -47,6 +49,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
+- [[Han Fang - PyTorch Practice]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]

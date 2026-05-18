@@ -10,6 +10,7 @@ tags:
   - backpropagation
 source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-05-18-hanfang-pytorch-practice
 status: active
 ---
 
@@ -36,6 +37,7 @@ This vault has several higher-level pages about LLMs and RL, but those topics de
   - **bias correction** to avoid tiny early updates.
 - That makes Adam a practical answer to two weaknesses of vanilla gradient descent: memoryless updates and one-size-fits-all learning rates.
 - Taken together, these tutorials imply a strong vault-level pattern: before treating Transformers and RLHF as special, first recognize that they are compositions of the same core objects—tensors, matrix multiplies, gradients, losses, and optimizers.
+- [[Han Fang - PyTorch Practice]] complements that conceptual story with runnable interview-style implementations of stable softmax, custom BatchNorm, a hand-built SGD-with-momentum optimizer, and masked attention, making the page's abstractions feel like ordinary PyTorch building blocks rather than separate theory.
 
 ## Open questions
 
@@ -46,6 +48,7 @@ This vault has several higher-level pages about LLMs and RL, but those topics de
 
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
+- [[Han Fang - PyTorch Practice]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]
 - [[Model Quantization and Efficiency]]

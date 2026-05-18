@@ -10,6 +10,7 @@ tags:
   - post-training
 source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-05-18-hanfang-pytorch-practice
 status: active
 ---
 
@@ -40,6 +41,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
   - **SFT** teaches response format and instruction-following behavior.
   - **Preference optimization** teaches ranking-sensitive behavior under human or learned reward signals.
   - **LoRA / efficiency methods** make those updates cheaper to run.
+- [[Han Fang - PyTorch Practice]] is useful here as a lower-level implementation companion: it covers step/exponential/cosine schedulers, warmup-plus-cosine decay, gradient clipping, weight initialization, multi-GPU wrapping, and `eval()`/`no_grad()` inference hygiene—the practical mechanics any real LLM training stack still depends on.
 
 ## Open questions
 
@@ -50,6 +52,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
+- [[Han Fang - PyTorch Practice]]
 - [[Transformer Architecture]]
 - [[Neural Network Fundamentals]]
 - [[Reinforcement Learning]]

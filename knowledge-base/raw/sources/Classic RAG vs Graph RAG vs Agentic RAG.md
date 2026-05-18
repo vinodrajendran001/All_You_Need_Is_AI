@@ -1,3 +1,16 @@
+---
+type: raw-source
+source_id: src-2026-05-18-rag-architecture-comparison
+title: "Classic RAG vs Graph RAG vs Agentic RAG"
+author: Unknown (LinkedIn post)
+url: null
+captured: 2026-05-18
+tags:
+  - rag
+  - retrieval-augmented-generation
+  - knowledge-graphs
+  - agentic-ai
+---
 
 RAG is not one architecture. Picking the wrong one is why your retrieval keeps failing.  
   

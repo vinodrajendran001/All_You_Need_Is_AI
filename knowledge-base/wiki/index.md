@@ -11,6 +11,7 @@ source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-alphasignal-return-of-recursion
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-05-18-hanfang-pytorch-practice
 status: active
 ---
 
@@ -46,6 +47,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
+- [[Han Fang]] - Author of the PyTorch Practice interview tutorial.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
 - [[Alpha Signal]]
@@ -59,6 +61,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 - [[Alpha Signal - The Return of Recursion]]
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
+- [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.
 
 ## Queries
 

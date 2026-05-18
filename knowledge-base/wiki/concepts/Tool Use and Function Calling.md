@@ -1,10 +1,11 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [tool-use, function-calling, llm, agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-05-18-rag-architecture-comparison
 status: active
 ---
 
@@ -25,6 +26,7 @@ LLMs are text-prediction engines with no built-in ability to interact with the o
 - **Multi-step chaining** — the model can call several tools in sequence within a single user request, forming an [[Agentic Loop]].
 - **Provider fragmentation** — before [[Model Context Protocol|MCP]], each provider (OpenAI, Anthropic, Google) had its own schema format, creating an N×M integration problem.
 - **Search as tool use** — web search agents are a concrete instance of this pattern; see [[Search-Augmented Language Models]] for the RL-trained version.
+- **Retrieval as tool use** — vector search, graph traversal, SQL lookup, and browser/search calls are common retrieval tools inside [[Retrieval-Augmented Generation]] systems, especially in the agentic variant.
 
 ## Historical context
 
@@ -37,4 +39,5 @@ LLMs are text-prediction engines with no built-in ability to interact with the o
 - [[Model Context Protocol]]
 - [[Agentic Loop]]
 - [[Search-Augmented Language Models]]
+- [[Retrieval-Augmented Generation]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

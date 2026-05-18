@@ -11,6 +11,7 @@ source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-alphasignal-return-of-recursion
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-05-18-hanfang-pytorch-practice
 status: active
 ---
 
@@ -106,4 +107,12 @@ Append-only operational history for the wiki.
 - Created [[The Pocket]] entity page.
 - Created new concept pages: [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], [[Model Quantization and Efficiency]].
 - Updated [[Reinforcement Learning]] with cross-links to detailed RL tutorial content.
+- Updated index and overview.
+
+## [2026-05-18] ingest | Han Fang - PyTorch Practice
+
+- Captured 7 files (5 Python scripts + README + runner) from the pytorch-practice repo to `raw/sources/pytorch-practice/`.
+- Created raw source note and [[Han Fang - PyTorch Practice]] source summary page.
+- Created [[Han Fang]] entity page.
+- Updated [[Neural Network Fundamentals]], [[Transformer Architecture]], [[Model Quantization and Efficiency]], and [[LLM Training Pipeline]] with cross-links to from-scratch PyTorch implementations.
 - Updated index and overview.

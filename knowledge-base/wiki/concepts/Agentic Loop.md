@@ -5,6 +5,7 @@ updated: 2026-05-18
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-05-18-rag-architecture-comparison
 status: active
 ---
 
@@ -22,6 +23,8 @@ The iterative cycle by which an LLM-powered application plans, acts, observes, a
 6. Steps 3–5 repeat as needed.
 
 This multi-step looping is the foundation of **AI agents** — systems where the model autonomously plans and executes complex tasks by chaining multiple tool calls in sequence.
+
+[[Retrieval-Augmented Generation|Agentic RAG]] is a direct example: the loop becomes a multi-step retrieval policy in which the model plans a search, calls retrieval tools, inspects the evidence, and decides whether another retrieval step is needed before answering.
 
 ## Example
 
@@ -43,6 +46,7 @@ The model decides *what* should happen. The application layer decides *whether* 
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
 - [[Search-Augmented Language Models]]
+- [[Retrieval-Augmented Generation]]
 - [[Reward Design for RL]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[ByteByteGo]]

@@ -6,6 +6,7 @@ tags: [search, rag, agents, llm, retrieval]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-05-18-pocketflow-tutorial-docs
 status: active
 ---
 
@@ -29,6 +30,10 @@ Perplexity Research describes a two-stage post-training recipe:
    - **Efficiency penalty** — group-relative, anchored penalties for excessive tool calls and verbose responses.
    - Correctness gates preference credit (gated aggregation), preventing reward hacking.
 
+## Broader training context
+
+Perplexity's pipeline is one specialized application of a broader post-training stack. [[The Pocket - PocketFlow Tutorial Docs]] supplies the first-principles background for that stack across pretraining, SFT, RLHF + PPO, DPO, LoRA, and policy gradients; see [[LLM Training Pipeline]] for the synthesized version.
+
 ## Key challenges
 
 - **Multi-objective tension** — optimising accuracy alone causes tool overuse; optimising brevity sacrifices reliability.
@@ -47,8 +52,10 @@ Search is a specific instance of [[Tool Use and Function Calling]]. The model is
 ## Related pages
 
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[The Pocket - PocketFlow Tutorial Docs]]
 - [[ByteByteGo]]
 - [[Reward Design for RL]]
+- [[LLM Training Pipeline]]
 - [[Reinforcement Learning]]
 - [[Tool Use and Function Calling]]
 - [[Agentic Loop]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-18
 tags:
   - concept
   - workflow
@@ -38,5 +38,7 @@ This loop turns the knowledge base into a living system rather than a pile of no
 - [[Schema-Driven Knowledge Base]]
 - [[Index and Log]]
 - [[Persistent Wiki]]
+- [[Andrej Karpathy]]
+- [[Obsidian]]
 - [[Andrej Karpathy - LLM Wiki]]
 - [[AI Knowledge Base Overview]]

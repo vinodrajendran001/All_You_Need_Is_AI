@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -22,3 +22,5 @@ ByteByteGo published a comprehensive article on LLM tool use, function calling, 
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
+- [[Agentic Loop]]
+- [[AI Knowledge Base Overview]]

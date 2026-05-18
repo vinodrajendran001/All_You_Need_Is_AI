@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [mcp, protocol, tool-use, agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -56,5 +56,6 @@ MCP does **not** replace function calling. Function calling is how the model sig
 
 - [[Tool Use and Function Calling]]
 - [[Agentic Loop]]
+- [[Search-Augmented Language Models]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[AI Knowledge Base Overview]]

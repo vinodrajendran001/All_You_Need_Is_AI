@@ -133,3 +133,9 @@ Append-only operational history for the wiki.
 - Corrected a stale source-ordering claim in [[AI Knowledge Base Overview]] so the Han Fang and RAG ingests now match chronological ingest order.
 - Added an explicit raw-capture citation to [[Alpha Signal - The Return of Recursion]] to make the recursion-source coverage clearer.
 - Filed [[2026-05-18 Lint Pass 2]] and linked it from the index.
+
+## [2026-05-18] lint | Full wiki lint pass (post-consolidation)
+
+- No broken wikilinks, orphan substantive pages, missing `## Related pages` sections, frontmatter gaps, thin pages, index omissions, log mismatches, raw-source coverage gaps, or cross-link density failures were found across `knowledge-base/wiki`.
+- Verified that both `raw/sources/pytorch-practice/` and `raw/sources/2026-05-18 Han Fang - PyTorch Practice.md` intentionally map to [[Han Fang - PyTorch Practice]], so no new source summary was needed.
+- Filed [[2026-05-18 Lint Pass 3]] and linked it from the index.

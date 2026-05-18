@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [rl, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -28,6 +28,8 @@ In this vault, GRPO is the optimisation method behind Perplexity's RL stage for 
 ## Related pages
 
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[Perplexity]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
 - [[Reinforcement Learning]]
+- [[AI Knowledge Base Overview]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [search, rag, agents, llm, retrieval]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -47,6 +47,7 @@ Search is a specific instance of [[Tool Use and Function Calling]]. The model is
 ## Related pages
 
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[ByteByteGo]]
 - [[Reward Design for RL]]
 - [[Reinforcement Learning]]
 - [[Tool Use and Function Calling]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -45,3 +45,4 @@ The model decides *what* should happen. The application layer decides *whether* 
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
+- [[ByteByteGo]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-18
 entity_kind: person
 tags:
   - entity
@@ -32,4 +32,5 @@ His gist defines the operating pattern used here: immutable raw sources, an LLM-
 - [[Andrej Karpathy - LLM Wiki]]
 - [[Persistent Wiki]]
 - [[Schema-Driven Knowledge Base]]
+- [[Index and Log]]
 - [[AI Knowledge Base Overview]]

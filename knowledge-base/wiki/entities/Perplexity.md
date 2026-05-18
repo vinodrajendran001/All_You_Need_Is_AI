@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organisation
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-18
 tags: [search, ai, agents, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -30,5 +30,6 @@ Perplexity published a detailed technical article on their post-training pipelin
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
+- [[Group Relative Policy Optimization]]
 - [[Reinforcement Learning]]
 - [[AI Knowledge Base Overview]]

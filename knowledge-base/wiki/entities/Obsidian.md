@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-18
 entity_kind: tool
 tags:
   - entity
@@ -32,5 +32,7 @@ The `LLM Wiki` pattern assumes a human can inspect live markdown pages while the
 
 - [[AI Knowledge Base Overview]]
 - [[Persistent Wiki]]
+- [[Schema-Driven Knowledge Base]]
+- [[Index and Log]]
 - [[Andrej Karpathy - LLM Wiki]]
 - [[Andrej Karpathy]]

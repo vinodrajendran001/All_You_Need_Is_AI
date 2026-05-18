@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
+  - src-2026-05-18-rag-architecture-comparison
 status: active
 ---
 
@@ -115,4 +116,12 @@ Append-only operational history for the wiki.
 - Created raw source note and [[Han Fang - PyTorch Practice]] source summary page.
 - Created [[Han Fang]] entity page.
 - Updated [[Neural Network Fundamentals]], [[Transformer Architecture]], [[Model Quantization and Efficiency]], and [[LLM Training Pipeline]] with cross-links to from-scratch PyTorch implementations.
+- Updated index and overview.
+
+## [2026-05-18] ingest | Classic RAG vs Graph RAG vs Agentic RAG
+
+- Added frontmatter to raw source `Classic RAG vs Graph RAG vs Agentic RAG.md`.
+- Created [[Classic RAG vs Graph RAG vs Agentic RAG]] source summary page.
+- Created [[Retrieval-Augmented Generation]] concept page synthesizing across Classic, Graph, and Agentic RAG tiers.
+- Updated [[Search-Augmented Language Models]], [[Agentic Loop]], and [[Tool Use and Function Calling]] with RAG cross-links.
 - Updated index and overview.

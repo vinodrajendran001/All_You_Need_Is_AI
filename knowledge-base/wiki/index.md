@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
+  - src-2026-05-18-rag-architecture-comparison
 status: active
 ---
 
@@ -38,6 +39,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
+- [[Retrieval-Augmented Generation]] - Hub page for Classic, Graph, and Agentic RAG architectures.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 - [[Latent-Space Reasoning]]
@@ -61,6 +63,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 - [[Alpha Signal - The Return of Recursion]]
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
+- [[Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.
 
 ## Queries

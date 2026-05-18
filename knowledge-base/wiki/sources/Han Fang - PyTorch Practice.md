@@ -21,7 +21,7 @@ status: active
 
 ## Overview
 
-[[Han Fang - PyTorch Practice]] is a compact **code-first PyTorch curriculum** organized into **five progressive modules**: tensor basics, autograd, neural networks, interview problems, and advanced topics. The repository is explicitly interview-oriented, but its main value for this vault is broader: it turns core deep-learning ideas into runnable scripts that show how implementations actually behave.
+This source is a compact **code-first PyTorch curriculum** organized into **five progressive modules**: tensor basics, autograd, neural networks, interview problems, and advanced topics. The repository is explicitly interview-oriented, but its main value for this vault is broader: it turns core deep-learning ideas into runnable scripts that show how implementations actually behave.
 
 The teaching style is unusually durable for a wiki because the source does not just describe APIs; it repeatedly builds mechanisms from scratch—softmax, BatchNorm, SGD with momentum, attention, schedulers, and quantization-adjacent workflows—then places them back inside standard PyTorch training loops.
 

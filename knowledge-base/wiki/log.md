@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-05-13
+updated: 2026-05-18
 tags:
   - log
 source_ids:
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-05-08-murphy-reinforcement-learning-overview
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-04-22-perplexity-search-augmented-lm
+  - src-2026-05-18-alphasignal-return-of-recursion
 status: active
 ---
 
@@ -80,3 +81,11 @@ Append-only operational history for the wiki.
 - Added reciprocal cross-links from [[Tool Use and Function Calling]] and [[Agentic Loop]] to the new search-agent pages to improve integration density.
 - Confirmed that all internal wikilinks now resolve, no substantive pages are orphaned, all scoped pages include `## Related pages`, and all non-PDF raw sources are covered by source summary pages.
 - Filed [[2026-05-13 Lint Pass 2]] and linked it from the index.
+
+## [2026-05-18] ingest | Alpha Signal - The Return of Recursion
+
+- Raw source already in `knowledge-base/raw/sources/The return of recursion - How AI is rethinking complex reasoning.md`.
+- Created [[Alpha Signal - The Return of Recursion]] source summary page.
+- Created [[Latent-Space Reasoning]] and [[Recursive Architectures]] concept pages.
+- Created [[Alpha Signal]] entity page.
+- Updated index, overview, and log.

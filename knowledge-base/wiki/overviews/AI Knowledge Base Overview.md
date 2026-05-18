@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-05-13
+updated: 2026-05-18
 tags:
   - overview
   - ai
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-05-08-murphy-reinforcement-learning-overview
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-04-22-perplexity-search-augmented-lm
+  - src-2026-05-18-alphasignal-return-of-recursion
 status: active
 ---
 
@@ -28,7 +29,7 @@ The workspace now implements Karpathy's three-layer pattern:
 - Curated wiki pages live under `knowledge-base/wiki/`.
 - The operating schema lives in the root `CLAUDE.md` note.
 
-The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]]. The fourth source, [[Perplexity - Advancing Search-Augmented Language Models]], deepens the RL and agents area with a concrete production pipeline for [[Search-Augmented Language Models]] and introduces [[Reward Design for RL]] as a cross-cutting concept.
+The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]]. The fourth source, [[Perplexity - Advancing Search-Augmented Language Models]], deepens the RL and agents area with a concrete production pipeline for [[Search-Augmented Language Models]] and introduces [[Reward Design for RL]] as a cross-cutting concept. The fifth source, [[Alpha Signal - The Return of Recursion]], adds a new branch around [[Latent-Space Reasoning]] and [[Recursive Architectures]], framing recursive computation as a complementary path to faster, lower-cost reasoning systems.
 
 ## Key pages
 
@@ -43,6 +44,8 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Agentic Loop]] - the iterative cycle powering multi-step tool use
 - [[Search-Augmented Language Models]] - LLMs with RL-trained search tool policies
 - [[Reward Design for RL]] - composite reward signals for multi-objective LLM training
+- [[Latent-Space Reasoning]] - reasoning through internal latent states instead of explicit token traces
+- [[Recursive Architectures]] - modern recursive reasoning systems such as HRM, TRM, and RecursiveMAS
 
 ## Gaps
 
@@ -66,4 +69,8 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
+- [[Latent-Space Reasoning]]
+- [[Recursive Architectures]]
+- [[Alpha Signal - The Return of Recursion]]
+- [[Alpha Signal]]
 - [[Perplexity]]

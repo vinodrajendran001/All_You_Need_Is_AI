@@ -77,6 +77,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-05-13 Lint Pass 2]] - Follow-up lint pass after the Perplexity ingest, covering new-page integration and residual structural issues.
 - [[2026-05-18 Lint Pass]] - Full-vault lint pass covering broken links, schema conformance, coverage gaps, and cross-link fixes.
 - [[2026-05-18 Lint Pass 2]] - Post-ingest full wiki lint covering structural checks, raw-source coverage, and one overview staleness fix.
+- [[2026-05-18 Lint Pass 3]] - Post-consolidation full wiki lint verifying structural integrity and Han Fang raw-source coverage.
 
 ## Control files
 

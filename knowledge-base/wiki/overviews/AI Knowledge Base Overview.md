@@ -33,7 +33,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 
 ## Key pages
 
-- [[knowledge-base/wiki/index|Knowledge Base Index]] - main entry point into the wiki
+- [[index|Knowledge Base Index]] - main entry point into the wiki
 - [[Persistent Wiki]] - the central idea behind the whole system
 - [[Schema-Driven Knowledge Base]] - how the schema keeps maintenance disciplined
 - [[Ingest Query Lint Loop]] - the repeating maintenance cycle
@@ -44,6 +44,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Agentic Loop]] - the iterative cycle powering multi-step tool use
 - [[Search-Augmented Language Models]] - LLMs with RL-trained search tool policies
 - [[Reward Design for RL]] - composite reward signals for multi-objective LLM training
+- [[Group Relative Policy Optimization]] - relative-policy optimisation method used in the Perplexity RL stage
 - [[Latent-Space Reasoning]] - reasoning through internal latent states instead of explicit token traces
 - [[Recursive Architectures]] - modern recursive reasoning systems such as HRM, TRM, and RecursiveMAS
 
@@ -51,7 +52,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 
 - Existing notes elsewhere in the workspace have not yet been ingested into this structure.
 - Reinforcement learning has a top-level hub page now, but its subtopics are not yet broken into dedicated notes.
-- The `queries/` folder is now active, but `syntheses/` and `lint/` are still at seed-stage and need more accumulated work before they become genuinely useful.
+- The `queries/` folder is active, `lint/` now has recurring reports, and `syntheses/` remains the least-developed content area.
 - No search tooling has been added yet because the index is enough at the current scale.
 
 ## Related pages

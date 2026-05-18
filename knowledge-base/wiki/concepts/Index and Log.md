@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-18
 tags:
   - concept
   - navigation
@@ -35,8 +35,10 @@ Together they give both the human and the LLM lightweight navigation and memory 
 
 ## Related pages
 
-- [[knowledge-base/wiki/index|Knowledge Base Index]]
-- [[knowledge-base/wiki/log|Knowledge Base Log]]
+- [[index|Knowledge Base Index]]
+- [[log|Knowledge Base Log]]
 - [[Ingest Query Lint Loop]]
 - [[Persistent Wiki]]
+- [[Schema-Driven Knowledge Base]]
+- [[Obsidian]]
 - [[Andrej Karpathy - LLM Wiki]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-05-13
+updated: 2026-05-18
 tags:
   - concept
   - schema
@@ -37,6 +37,8 @@ Without a schema, the model behaves like a generic assistant. With a schema, it 
 
 - [[Persistent Wiki]]
 - [[Ingest Query Lint Loop]]
+- [[Index and Log]]
+- [[Obsidian]]
 - [[AI Knowledge Base Overview]]
 - [[Andrej Karpathy - LLM Wiki]]
-- [[knowledge-base/wiki/index|Knowledge Base Index]]
+- [[index|Knowledge Base Index]]

@@ -1,9 +1,9 @@
 ---
 type: source-summary
 created: 2026-05-08
-updated: 2026-05-13
+updated: 2026-05-18
 source_id: src-2026-05-08-murphy-reinforcement-learning-overview
-source_title: Reinforcement Learning: An Overview
+source_title: "Reinforcement Learning: An Overview"
 source_author: Kevin Murphy
 source_url: https://arxiv.org/abs/2412.05265
 tags:

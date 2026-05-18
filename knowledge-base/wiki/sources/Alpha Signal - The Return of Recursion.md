@@ -43,8 +43,8 @@ The article frames these systems as specialized reasoning engines rather than ge
 - [[Recursive Architectures]]
 - [[Alpha Signal]]
 - [[AI Knowledge Base Overview]]
-- [[knowledge-base/wiki/index|Knowledge Base Index]]
-- [[knowledge-base/wiki/log|Knowledge Base Log]]
+- [[index|Knowledge Base Index]]
+- [[log|Knowledge Base Log]]
 
 ## Related pages
 

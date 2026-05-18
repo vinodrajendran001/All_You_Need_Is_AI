@@ -1,7 +1,7 @@
 ---
 type: lint-report
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-18
 scope: knowledge-base/wiki
 tags:
   - lint
@@ -32,8 +32,8 @@ Manual and structural lint of `knowledge-base/wiki`, covering internal link inte
 - Added `## Related pages` sections to:
   - [[Andrej Karpathy - LLM Wiki]]
   - [[Kevin Murphy - Reinforcement Learning - An Overview]]
-- Added this lint report to [[knowledge-base/wiki/index|Knowledge Base Index]].
-- Appended the lint pass to [[knowledge-base/wiki/log|Knowledge Base Log]].
+- Added this lint report to [[index|Knowledge Base Index]].
+- Appended the lint pass to [[log|Knowledge Base Log]].
 
 ## Follow-ups
 
@@ -43,8 +43,8 @@ Manual and structural lint of `knowledge-base/wiki`, covering internal link inte
 
 ## Related pages
 
-- [[knowledge-base/wiki/index|Knowledge Base Index]]
-- [[knowledge-base/wiki/log|Knowledge Base Log]]
+- [[index|Knowledge Base Index]]
+- [[log|Knowledge Base Log]]
 - [[AI Knowledge Base Overview]]
 - [[Reinforcement Learning]]
 - [[2026-05-08 Mathematical Foundations for Reinforcement Learning]]

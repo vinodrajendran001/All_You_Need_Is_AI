@@ -10,6 +10,7 @@ tags:
   - inference
 source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-05-18-hanfang-pytorch-practice
 status: active
 ---
 
@@ -35,6 +36,7 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
   - **Relational** — attention as context construction
   - **Operational** — caching and masking as the mechanics of real generation
 - A useful durable takeaway is that modern LLM improvements often modify one of these layers rather than replacing the whole architecture: RoPE changes positional handling, KV cache changes inference-time state reuse, and quantization changes numerical/storage strategy.
+- [[Han Fang - PyTorch Practice]] reinforces the implementation view with a from-scratch multi-head attention module that projects Q/K/V, reshapes them to `(batch, heads, seq, d_k)`, applies padding and causal masks inside scaled dot-product attention, and then concatenates heads back into the model dimension.
 
 ## Open questions
 
@@ -45,6 +47,7 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
+- [[Han Fang - PyTorch Practice]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]

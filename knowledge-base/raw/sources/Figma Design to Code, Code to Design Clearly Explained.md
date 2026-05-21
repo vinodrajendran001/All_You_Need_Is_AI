@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-figma-design-code
 title: "Figma Design to Code, Code to Design: Clearly Explained"
 source: "https://blog.bytebytego.com/p/figma-design-to-code-code-to-design"
 author:

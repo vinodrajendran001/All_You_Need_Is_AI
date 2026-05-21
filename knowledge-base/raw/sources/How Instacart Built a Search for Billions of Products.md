@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-instacart-search
 title: "How Instacart Built a Search for Billions of Products"
 source: "https://blog.bytebytego.com/p/how-instacart-built-a-search-for"
 author:

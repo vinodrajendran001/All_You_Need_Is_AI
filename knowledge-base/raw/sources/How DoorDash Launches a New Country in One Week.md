@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-doordash-country-launch
 title: "How DoorDash Launches a New Country in One Week"
 source: "https://blog.bytebytego.com/p/how-doordash-launches-a-new-country"
 author:

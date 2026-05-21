@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-snapchat-predictions
 title: "How Snapchat Serves a Billion Predictions Per Second"
 source: "https://blog.bytebytego.com/p/how-snapchat-serves-a-billion-predictions"
 author:

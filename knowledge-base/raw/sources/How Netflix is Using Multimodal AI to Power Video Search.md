@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-netflix-multimodal-search
 title: "How Netflix is Using Multimodal AI to Power Video Search"
 source: "https://blog.bytebytego.com/p/how-netflix-is-using-multimodal-ai"
 author:

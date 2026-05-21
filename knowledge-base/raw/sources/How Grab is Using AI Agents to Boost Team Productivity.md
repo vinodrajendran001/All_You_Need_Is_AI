@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-grab-ai-agents
 title: "How Grab is Using AI Agents to Boost Team Productivity"
 source: "https://blog.bytebytego.com/p/how-grab-is-using-ai-agents-to-boost"
 author:

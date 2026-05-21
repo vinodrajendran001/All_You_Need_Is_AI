@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-amazon-llm-recommendations
 title: "How Amazon Uses LLMs to Recommend Products"
 source: "https://blog.bytebytego.com/p/how-amazon-uses-llms-to-recommend"
 author:

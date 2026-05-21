@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-05-21-bytebytego-monolithic-microservices-serverless
 title: "EP210: Monolithic vs Microservices vs Serverless"
 source: "https://blog.bytebytego.com/p/ep210-monolithic-vs-microservices"
 author:

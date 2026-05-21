@@ -14,6 +14,7 @@ source_ids:
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-leetcode-templates
+  - src-2026-05-21-bytebytego-batch
 status: active
 ---
 
@@ -40,7 +41,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
+- [[AI Agents in Production]] - Real-world deployment of AI agents for team productivity and design workflows.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
+- [[ML Systems at Scale]] - Production ML serving patterns from Netflix, Snapchat, Amazon, and Instacart.
 - [[Retrieval-Augmented Generation]] - Hub page for Classic, Graph, and Agentic RAG architectures.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
@@ -62,6 +65,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
 - [[ByteByteGo - Connecting LLMs to the Real World]] - Tool use, function calling, and MCP evolution from isolated LLMs to real-world agents.
+- [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]] - Eight articles on production ML systems, AI agents, and architecture patterns.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 - [[Alpha Signal - The Return of Recursion]]
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.

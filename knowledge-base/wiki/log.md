@@ -14,6 +14,7 @@ source_ids:
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-leetcode-templates
+  - src-2026-05-21-bytebytego-batch
 status: active
 ---
 
@@ -154,3 +155,11 @@ Append-only operational history for the wiki.
 - Found no structural defects; all substantive pages resolve, are indexed, have valid frontmatter, and remain covered by the log and raw-source graph.
 - Flagged the MCP timeline/security notes as time-sensitive monitor items for future ingests, but found no current contradictions requiring content edits.
 - Filed [[2026-05-21 Lint Pass]] and linked it from the index.
+
+## [2026-05-21] ingest | ByteByteGo - System Design and AI at Scale (May 2026 Batch)
+
+- Added source_id frontmatter to 8 raw ByteByteGo articles in `raw/sources/`.
+- Created composite source summary [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]].
+- Created new concept pages: [[ML Systems at Scale]] and [[AI Agents in Production]].
+- Updated [[ByteByteGo]] entity page, [[Agentic Loop]], [[Model Context Protocol]], [[Search-Augmented Language Models]], and [[Retrieval-Augmented Generation]] with cross-links.
+- Updated index and overview.

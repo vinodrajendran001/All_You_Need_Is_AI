@@ -12,6 +12,8 @@ tags:
   - data-structures
   - leetcode
   - interview-prep
+source_ids:
+  - src-2026-05-21-leetcode-templates
 status: active
 ---
 

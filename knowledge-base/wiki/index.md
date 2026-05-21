@@ -86,6 +86,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-05-18 Lint Pass 2]] - Post-ingest full wiki lint covering structural checks, raw-source coverage, and one overview staleness fix.
 - [[2026-05-18 Lint Pass 3]] - Post-consolidation full wiki lint verifying structural integrity and Han Fang raw-source coverage.
 - [[2026-05-21 Lint Pass]] - Seventh comprehensive lint pass covering full-wiki structural integrity after the Universal LeetCode Templates ingest.
+- [[2026-05-21 Lint Pass 2]] - Eighth comprehensive lint pass covering full-wiki structural integrity after the ByteByteGo system-design batch ingest.
 
 ## Control files
 

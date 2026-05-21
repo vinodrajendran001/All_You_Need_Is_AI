@@ -147,3 +147,10 @@ Append-only operational history for the wiki.
 - Created [[Universal LeetCode Templates]] source summary page.
 - Created [[Algorithm Templates for Interviews]] concept page synthesizing DSA templates with ML interview prep.
 - Updated index and overview.
+
+## [2026-05-21] lint | Full wiki lint pass
+
+- Audited 45 markdown wiki pages for broken wikilinks, orphan pages, related-pages coverage, frontmatter conformance, thin pages, index completeness, log consistency, raw-source coverage, cross-link density, and staleness risk.
+- Found no structural defects; all substantive pages resolve, are indexed, have valid frontmatter, and remain covered by the log and raw-source graph.
+- Flagged the MCP timeline/security notes as time-sensitive monitor items for future ingests, but found no current contradictions requiring content edits.
+- Filed [[2026-05-21 Lint Pass]] and linked it from the index.

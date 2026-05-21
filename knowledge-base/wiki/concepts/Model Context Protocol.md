@@ -1,10 +1,11 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-18
+updated: 2026-05-21
 tags: [mcp, protocol, tool-use, agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-05-21-bytebytego-batch
 status: active
 ---
 
@@ -36,6 +37,12 @@ On startup, the client connects to available servers, asks each to describe its 
 
 MCP does **not** replace function calling. Function calling is how the model signals it wants to use a tool. MCP standardises how tools are described, discovered, and invoked so that the same tool works across any compliant model. They are complementary layers.
 
+## Production example: Figma’s design↔code workflow
+
+Figma’s MCP server is a concrete production example of why the protocol matters. The useful part is not just that tools like `get_design_context`, `get_metadata`, `generate_figma_design`, and `use_figma` can be called from coding agents; it is that the server transforms raw design JSON into a token-efficient representation that better matches how developers think.
+
+That example highlights an important point: a good MCP server is not merely an API wrapper. It chooses what context to expose, how to compress it, and which workflows deserve dedicated tools. Figma’s documented **scan first, then zoom in** pattern also shows how MCP server design is inseparable from context-window management.
+
 ## Adoption timeline
 
 | Date | Event |
@@ -56,6 +63,8 @@ MCP does **not** replace function calling. Function calling is how the model sig
 
 - [[Tool Use and Function Calling]]
 - [[Agentic Loop]]
+- [[AI Agents in Production]]
 - [[Search-Augmented Language Models]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
+- [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[AI Knowledge Base Overview]]

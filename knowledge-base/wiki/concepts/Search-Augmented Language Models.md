@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-18
+updated: 2026-05-21
 tags: [search, rag, agents, llm, retrieval]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-rag-architecture-comparison
+  - src-2026-05-21-bytebytego-batch
 status: active
 ---
 
@@ -48,6 +49,12 @@ Search-augmented LMs can be seen as a production-grade evolution of [[Reinforcem
 
 More specifically, they are a concrete form of [[Retrieval-Augmented Generation|Agentic RAG]]: retrieval is no longer a single preprocessing step but a learned, iterative policy over search actions, evidence gathering, and answer synthesis.
 
+## Production retrieval parallels
+
+Netflix and Instacart are useful non-chatbot reference points for this concept. Netflix’s multimodal search stack fuses annotations offline, then serves hybrid keyword-plus-vector retrieval over time buckets. Instacart similarly blends lexical retrieval with ANN-based semantic search and uses relational filters such as inventory availability before ranking.
+
+These systems are not themselves search-augmented LMs, but they show the **production retrieval patterns** that agentic search systems inherit: hybrid retrieval, pre-filtering, candidate narrowing, and careful latency management around embeddings.
+
 ## Relationship to tool use
 
 Search is a specific instance of [[Tool Use and Function Calling]]. The model issues structured `search_web` calls, and the [[Agentic Loop]] handles execution and result integration. The efficiency penalties described here directly address the cost of unnecessary tool invocations.
@@ -55,6 +62,8 @@ Search is a specific instance of [[Tool Use and Function Calling]]. The model is
 ## Related pages
 
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
+- [[ML Systems at Scale]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[ByteByteGo]]
 - [[Reward Design for RL]]

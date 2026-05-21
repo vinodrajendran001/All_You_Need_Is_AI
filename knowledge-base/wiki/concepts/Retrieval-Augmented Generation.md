@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-21
 tags: [rag, retrieval, agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
+  - src-2026-05-21-bytebytego-batch
 status: active
 ---
 
@@ -79,6 +80,16 @@ Typical use cases:
 
 Perplexity's training pipeline is especially important here because it shows that retrieval quality is not only a systems problem; it is also a post-training problem. The model must be optimized to use retrieval tools effectively.
 
+## Production analogues beyond chatbots
+
+Several production search and recommendation stacks look RAG-like even when they are not implemented as general-purpose chat systems.
+
+- **Netflix** persists raw multimodal annotations, fuses them into one-second buckets, and retrieves them through hybrid keyword-plus-vector search before reconstructing useful clip spans.
+- **Instacart** combines lexical and semantic retrieval with inventory-aware filtering, showing how retrieval pipelines depend on external operational state.
+- **Amazon COSMO** pairs a knowledge graph with a smaller generation model and cache, effectively serving retrieved commonsense features to downstream ranking and navigation systems.
+
+These examples broaden the intuition behind RAG: the important pattern is not “chat over PDFs,” but **retrieve structured external context at inference time, then let a downstream model or ranking stage use it**.
+
 ## Relation to the agentic loop
 
 [[Agentic Loop]] describes the generic plan-act-observe cycle behind multi-step tool use. Agentic RAG is that same loop specialized for retrieval: the plan is a search strategy, the actions are retrieval/tool calls, the observations are returned documents or structured results, and the loop may repeat until the evidence is sufficient.
@@ -98,6 +109,8 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
+- [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
+- [[ML Systems at Scale]]
 - [[Search-Augmented Language Models]]
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]

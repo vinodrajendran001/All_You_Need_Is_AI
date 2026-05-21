@@ -1130,27 +1130,27 @@ Complexity: LRU Cache: O(1) per operation, O(capacity) space. Min Stack: O(1) pe
 🗺️ Quick Reference — Pattern Recognition Cheat Sheet
 
 
-|**Signal in Problem**|**Template**|
-|---|---|
-|Contiguous subarray/substring, optimal range|Sliding Window|
-|Sorted array + pair/target|Two Pointers|
-|Sorted / search space halving / min-max feasibility|Binary Search|
-|Shortest path (unweighted), level-by-level|BFS|
-|Explore all paths, connected components, trees|DFS|
-|"All" combinations / permutations / subsets|Backtracking|
-|Min/max cost, number of ways, overlapping subproblems|Dynamic Programming|
-|Next greater/smaller element|Monotonic Stack|
-|Top-K, merge K sorted, median stream|Heap|
-|Reverse, cycle, merge linked lists|Linked List|
-|Prefix matching, word dictionary|Trie|
-|Dynamic connectivity, redundant edges|Union-Find|
-|Subarray sum = K, range queries|Prefix Sum|
-|Task ordering, prerequisites, DAG|Topological Sort|
-|Overlapping intervals, meeting rooms|Greedy (Intervals)|
-|XOR tricks, bitmask subsets, powers of 2|Bit Manipulation|
-|Weighted shortest path|Dijkstra|
-|Sliding window max/min in O(1)|Monotonic Deque|
-|Custom data structure with O(1) guarantees|Design|
+| **Signal in Problem**                                 | **Template**        |
+| ----------------------------------------------------- | ------------------- |
+| Contiguous subarray/substring, optimal range          | Sliding Window      |
+| Sorted array + pair/target                            | Two Pointers        |
+| Sorted / search space halving / min-max feasibility   | Binary Search       |
+| Shortest path (unweighted), level-by-level            | BFS                 |
+| Explore all paths, connected components, trees        | DFS                 |
+| "All" combinations / permutations / subsets           | Backtracking        |
+| Min/max cost, number of ways, overlapping subproblems | Dynamic Programming |
+| Next greater/smaller element                          | Monotonic Stack     |
+| Top-K, merge K sorted, median stream                  | Heap                |
+| Reverse, cycle, merge linked lists                    | Linked List         |
+| Prefix matching, word dictionary                      | Trie                |
+| Dynamic connectivity, redundant edges                 | Union-Find          |
+| Subarray sum = K, range queries                       | Prefix Sum          |
+| Task ordering, prerequisites, DAG                     | Topological Sort    |
+| Overlapping intervals, meeting rooms                  | Greedy (Intervals)  |
+| XOR tricks, bitmask subsets, powers of 2              | Bit Manipulation    |
+| Weighted shortest path                                | Dijkstra            |
+| Sliding window max/min in O(1)                        | Monotonic Deque     |
+| Custom data structure with O(1) guarantees            | Design              |
 
 
 

@@ -1,3 +1,18 @@
+---
+type: raw-source
+source_id: src-2026-05-21-leetcode-templates
+title: "Universal LeetCode Templates — The Complete Arsenal"
+author: Unknown (community-compiled)
+url: null
+captured: 2026-05-21
+tags:
+  - algorithms
+  - data-structures
+  - leetcode
+  - interview-prep
+  - competitive-programming
+---
+
 Below is a comprehensive collection of battle-tested templates, organized by topic. Each template includes pattern recognition signals, inline comments, and complexity analysis.
 
 1. 📐 Sliding Window

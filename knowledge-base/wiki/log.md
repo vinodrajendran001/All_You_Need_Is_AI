@@ -163,3 +163,10 @@ Append-only operational history for the wiki.
 - Created new concept pages: [[ML Systems at Scale]] and [[AI Agents in Production]].
 - Updated [[ByteByteGo]] entity page, [[Agentic Loop]], [[Model Context Protocol]], [[Search-Augmented Language Models]], and [[Retrieval-Augmented Generation]] with cross-links.
 - Updated index and overview.
+
+## [2026-05-21] lint | Full wiki lint pass (post-ByteByteGo batch)
+
+- Audited `knowledge-base/wiki` for broken wikilinks, orphan pages, related-pages coverage, frontmatter conformance, thin pages, index completeness, log consistency, raw-source coverage, cross-link density, and contradiction/staleness risk.
+- Found no structural defects; all substantive pages resolve, are indexed, have valid frontmatter, and remain covered by the log and raw-source graph, including the composite ByteByteGo batch mapping.
+- No immediate content-page fixes were required beyond control-file updates.
+- Filed [[2026-05-21 Lint Pass 2]] and linked it from the index.

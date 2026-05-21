@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-05-18
+updated: 2026-05-21
 tags:
   - index
 source_ids:
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-05-18-rag-architecture-comparison
+  - src-2026-05-21-leetcode-templates
 status: active
 ---
 
@@ -34,6 +35,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Transformer Architecture]] - Decoder-only Transformer synthesis spanning attention, RoPE, and KV-cache inference.
 - [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
+- [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
 - [[Model Quantization and Efficiency]] - Quantization, KV cache, and LoRA as core efficiency levers.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
@@ -65,6 +67,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
 - [[Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.
+- [[Universal LeetCode Templates]] - 20 battle-tested algorithm templates with pattern recognition and complexity analysis.
 
 ## Queries
 

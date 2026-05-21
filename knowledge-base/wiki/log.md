@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-05-18
+updated: 2026-05-21
 tags:
   - log
 source_ids:
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-05-18-rag-architecture-comparison
+  - src-2026-05-21-leetcode-templates
 status: active
 ---
 
@@ -139,3 +140,10 @@ Append-only operational history for the wiki.
 - No broken wikilinks, orphan substantive pages, missing `## Related pages` sections, frontmatter gaps, thin pages, index omissions, log mismatches, raw-source coverage gaps, or cross-link density failures were found across `knowledge-base/wiki`.
 - Verified that both `raw/sources/pytorch-practice/` and `raw/sources/2026-05-18 Han Fang - PyTorch Practice.md` intentionally map to [[Han Fang - PyTorch Practice]], so no new source summary was needed.
 - Filed [[2026-05-18 Lint Pass 3]] and linked it from the index.
+
+## [2026-05-21] ingest | Universal LeetCode Templates — The Complete Arsenal
+
+- Added frontmatter to raw source `Universal LeetCode Templates — The Complete Arsenal.md`.
+- Created [[Universal LeetCode Templates]] source summary page.
+- Created [[Algorithm Templates for Interviews]] concept page synthesizing DSA templates with ML interview prep.
+- Updated index and overview.

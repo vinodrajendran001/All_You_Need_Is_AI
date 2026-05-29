@@ -181,3 +181,9 @@ Append-only operational history for the wiki.
 - Created [[DoorDash]] entity page.
 - Updated [[ML Systems at Scale]], [[Retrieval-Augmented Generation]], and [[ByteByteGo]] with cross-links.
 - Updated index and overview.
+
+## [2026-05-29] lint | Full wiki lint pass
+
+- Audited 54 markdown wiki pages for broken wikilinks, orphan pages, related-pages coverage, frontmatter conformance, thin pages, index completeness, log consistency, raw-source coverage, cross-link density, and contradiction/staleness risk.
+- Strengthened [[Search-Augmented Language Models]] and [[ML Systems at Scale]] with [[LLM-as-a-Judge]] links and DoorDash-derived evaluation notes so the new production-evaluation branch is fully integrated.
+- Filed [[2026-05-29 Lint Pass]] and linked it from the index.

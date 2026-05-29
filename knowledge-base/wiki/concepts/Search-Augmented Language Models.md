@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-21
+updated: 2026-05-29
 tags: [search, rag, agents, llm, retrieval]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-28-doordash-llm-judge
 status: active
 ---
 
@@ -55,6 +56,12 @@ Netflix and Instacart are useful non-chatbot reference points for this concept. 
 
 These systems are not themselves search-augmented LMs, but they show the **production retrieval patterns** that agentic search systems inherit: hybrid retrieval, pre-filtering, candidate narrowing, and careful latency management around embeddings.
 
+## Evaluation has to scale too
+
+Production search systems also need evaluation loops that move at production speed. [[DoorDash - LLM-as-a-Judge for Search Evaluation]] shows one durable pattern: convert vague relevance labels into explicit binary facets, calibrate a judge against a golden set, then run that evaluator continuously for monitoring and regression testing.
+
+That makes [[LLM-as-a-Judge]] relevant to search-augmented systems even when the serving stack looks different from Perplexity's web-search agent. If search quality depends on synonym handling, constraint satisfaction, and multi-intent parsing, the evaluation system becomes part of the product loop rather than a separate annotation afterthought.
+
 ## Relationship to tool use
 
 Search is a specific instance of [[Tool Use and Function Calling]]. The model issues structured `search_web` calls, and the [[Agentic Loop]] handles execution and result integration. The efficiency penalties described here directly address the cost of unnecessary tool invocations.
@@ -64,6 +71,8 @@ Search is a specific instance of [[Tool Use and Function Calling]]. The model is
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ML Systems at Scale]]
+- [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
+- [[LLM-as-a-Judge]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[ByteByteGo]]
 - [[Reward Design for RL]]

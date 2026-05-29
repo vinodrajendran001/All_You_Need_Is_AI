@@ -5,6 +5,8 @@ author:
   - "[[ByteByteGo]]"
 published: 2026-05-27
 created: 2026-05-28
+type: raw-source
+source_id: src-2026-05-28-bytebytego-airtable-search
 description: "In this article, we will look at how Airtable’s data infrastructure team built its architecture, the challenges they faced, the tradeoffs they accepted, and why the choices they made only make sense once their data is properly understood."
 tags:
   - "clippings"

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-05-21
+updated: 2026-05-29
 tags:
   - concept
   - machine-learning
@@ -9,6 +9,7 @@ tags:
   - scale
 source_ids:
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-28-bytebytego-airtable-search
 status: active
 ---
 
@@ -46,6 +47,7 @@ The surface tasks differ, but embeddings show up everywhere:
 - Snap relies on embedding-heavy ranking models and ANN-style retrieval services for large corpora.
 - Amazon uses embeddings to filter out generated commonsense statements that are just paraphrases of the original query or product text.
 - Instacart uses vector search to recover intent for vague grocery queries such as “healthy foods.”
+- Airtable's Omni search layer stores per-base embeddings in self-hosted Milvus because the vectors are about 10x the size of the source rows and need dedicated ANN infrastructure.
 
 Even when systems are not called “RAG,” they increasingly operate like retrieval systems over learned representations.
 
@@ -76,6 +78,8 @@ These systems repeatedly make explicit trade-offs:
 
 There is no universally best architecture; there are only architectures that fit the workload and the operational budget.
 
+Airtable's Omni search layer sharpens that point. One partition per customer base simplified isolation and deletion, but only remained manageable because Airtable capped Milvus at 400 collections × 1,000 partitions, chose memory-hungry HNSW to hit sub-500 ms p99 latency with 99%+ recall, and then used hot/cold unloading so idle tenants did not consume RAM continuously.
+
 ## Why this matters for AI infrastructure
 
 These examples show that “ML at scale” is really a systems-discipline question. The model is only one component inside a broader architecture of stores, indexes, filters, ranking stages, caches, and feedback loops. That same architecture vocabulary also underlies [[Search-Augmented Language Models]] and many forms of [[Retrieval-Augmented Generation]], even when the end product is not a chatbot.
@@ -83,6 +87,7 @@ These examples show that “ML at scale” is really a systems-discipline questi
 ## Related pages
 
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
+- [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[ByteByteGo]]
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]

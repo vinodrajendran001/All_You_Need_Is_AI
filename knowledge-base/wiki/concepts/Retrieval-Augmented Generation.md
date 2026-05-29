@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-21
+updated: 2026-05-29
 tags: [rag, retrieval, agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-28-bytebytego-airtable-search
 status: active
 ---
 
@@ -87,8 +88,11 @@ Several production search and recommendation stacks look RAG-like even when they
 - **Netflix** persists raw multimodal annotations, fuses them into one-second buckets, and retrieves them through hybrid keyword-plus-vector search before reconstructing useful clip spans.
 - **Instacart** combines lexical and semantic retrieval with inventory-aware filtering, showing how retrieval pipelines depend on external operational state.
 - **Amazon COSMO** pairs a knowledge graph with a smaller generation model and cache, effectively serving retrieved commonsense features to downstream ranking and navigation systems.
+- **Airtable Omni** is a production example of classic RAG-like semantic retrieval over customer-owned tables: retrieve a small, relevant row set from a dedicated vector store, then pass only that slice downstream to the AI feature instead of exposing the full base.
 
 These examples broaden the intuition behind RAG: the important pattern is not “chat over PDFs,” but **retrieve structured external context at inference time, then let a downstream model or ranking stage use it**.
+
+Airtable also makes the infrastructure point explicit: once retrieval is multi-tenant and memory-heavy, partitioning strategy, ANN index economics, and hot/cold loading become first-class RAG design decisions rather than implementation details.
 
 ## Relation to the agentic loop
 
@@ -110,6 +114,7 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
+- [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[ML Systems at Scale]]
 - [[Search-Augmented Language Models]]
 - [[Agentic Loop]]

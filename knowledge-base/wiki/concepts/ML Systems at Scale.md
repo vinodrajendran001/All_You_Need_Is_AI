@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
+  - src-2026-05-28-doordash-llm-judge
 status: active
 ---
 
@@ -80,14 +81,22 @@ There is no universally best architecture; there are only architectures that fit
 
 Airtable's Omni search layer sharpens that point. One partition per customer base simplified isolation and deletion, but only remained manageable because Airtable capped Milvus at 400 collections × 1,000 partitions, chose memory-hungry HNSW to hit sub-500 ms p99 latency with 99%+ recall, and then used hot/cold unloading so idle tenants did not consume RAM continuously.
 
+## Evaluation infrastructure is production infrastructure
+
+Serving stacks are only half of the story. [[DoorDash - LLM-as-a-Judge for Search Evaluation]] shows that once search quality depends on compositional natural-language intent, the evaluation loop itself becomes a system component. Explicit rubrics, adjudicated golden sets, and a calibrated [[LLM-as-a-Judge]] can be run daily for monitoring and PR guardrails, replacing slower human-only review cycles.
+
+That is a production-systems lesson, not just an evaluation anecdote: if quality measurement cannot keep up with model and ranking changes, the rest of the stack loses its feedback loop.
+
 ## Why this matters for AI infrastructure
 
-These examples show that “ML at scale” is really a systems-discipline question. The model is only one component inside a broader architecture of stores, indexes, filters, ranking stages, caches, and feedback loops. That same architecture vocabulary also underlies [[Search-Augmented Language Models]] and many forms of [[Retrieval-Augmented Generation]], even when the end product is not a chatbot.
+These examples show that “ML at scale” is really a systems-discipline question. The model is only one component inside a broader architecture of stores, indexes, filters, ranking stages, caches, feedback loops, and evaluation infrastructure. That same architecture vocabulary also underlies [[Search-Augmented Language Models]] and many forms of [[Retrieval-Augmented Generation]], even when the end product is not a chatbot.
 
 ## Related pages
 
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
+- [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
+- [[LLM-as-a-Judge]]
 - [[ByteByteGo]]
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]

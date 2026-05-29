@@ -6,6 +6,8 @@ author:
   - "[[Heather Song]]"
 published: 2026-05-15
 created: 2026-05-28
+type: raw-source
+source_id: src-2026-05-28-doordash-llm-judge
 description: "How DoorDash uses LLM-as-a-judge to evaluate natural language search, replacing noisy human labels with scalable, facet-based AI evaluation."
 tags:
   - "clippings"

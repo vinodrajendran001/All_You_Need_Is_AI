@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-05-21
+updated: 2026-05-29
 tags:
   - index
 source_ids:
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-leetcode-templates
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-28-bytebytego-airtable-search
+  - src-2026-05-28-doordash-llm-judge
 status: active
 ---
 
@@ -43,8 +45,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
 - [[AI Agents in Production]] - Real-world deployment of AI agents for team productivity and design workflows.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
-- [[ML Systems at Scale]] - Production ML serving patterns from Netflix, Snapchat, Amazon, and Instacart.
+- [[ML Systems at Scale]] - Production ML serving patterns from Netflix, Snapchat, Amazon, Instacart, and Airtable.
 - [[Retrieval-Augmented Generation]] - Hub page for Classic, Graph, and Agentic RAG architectures.
+- [[LLM-as-a-Judge]] - Using calibrated LLMs to evaluate search relevance and generation quality at scale.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 - [[Latent-Space Reasoning]]
@@ -54,6 +57,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
+- [[DoorDash]] - Delivery platform; source for LLM-as-a-Judge search evaluation and country-launch architecture.
 - [[Han Fang]] - Author of the PyTorch Practice interview tutorial.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
@@ -66,6 +70,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
 - [[ByteByteGo - Connecting LLMs to the Real World]] - Tool use, function calling, and MCP evolution from isolated LLMs to real-world agents.
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]] - Eight articles on production ML systems, AI agents, and architecture patterns.
+- [[ByteByteGo - How Airtable Built the Search Layer]] - Vector search architecture with HNSW, hot/cold tiering, and hierarchical partitioning.
+- [[DoorDash - LLM-as-a-Judge for Search Evaluation]] - Facet-based LLM evaluation replacing noisy human annotation for NL search.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 - [[Alpha Signal - The Return of Recursion]]
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.

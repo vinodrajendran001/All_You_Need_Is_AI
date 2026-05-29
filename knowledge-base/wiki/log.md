@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-05-21
+updated: 2026-05-29
 tags:
   - log
 source_ids:
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-leetcode-templates
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-28-bytebytego-airtable-search
+  - src-2026-05-28-doordash-llm-judge
 status: active
 ---
 
@@ -170,3 +172,12 @@ Append-only operational history for the wiki.
 - Found no structural defects; all substantive pages resolve, are indexed, have valid frontmatter, and remain covered by the log and raw-source graph, including the composite ByteByteGo batch mapping.
 - No immediate content-page fixes were required beyond control-file updates.
 - Filed [[2026-05-21 Lint Pass 2]] and linked it from the index.
+
+## [2026-05-29] ingest | Airtable Search + DoorDash LLM-as-a-Judge
+
+- Added source_id frontmatter to 2 new raw articles.
+- Created [[ByteByteGo - How Airtable Built the Search Layer]] and [[DoorDash - LLM-as-a-Judge for Search Evaluation]] source summary pages.
+- Created [[LLM-as-a-Judge]] concept page.
+- Created [[DoorDash]] entity page.
+- Updated [[ML Systems at Scale]], [[Retrieval-Augmented Generation]], and [[ByteByteGo]] with cross-links.
+- Updated index and overview.

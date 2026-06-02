@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-05-29
+updated: 2026-06-02
 tags:
   - index
 source_ids:
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
+  - src-2026-06-02-dwarkesh-eric-jang-alphago
+  - src-2026-06-02-dwarkesh-eric-jang-flashcards
 status: active
 ---
 
@@ -54,6 +56,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
 - [[World Models]] - Learned predictive models for planning, control, and embodied intelligence.
+- [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
+- [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
 
 ## Entities
 
@@ -66,6 +70,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Alpha Signal]]
 - [[The Pocket]] - Organization behind PocketFlow and its tutorial-documentation curriculum.
 - [[Y Combinator]] - Startup accelerator and publisher of YC Paper Club frontier-research sessions.
+- [[Eric Jang]] - Researcher whose AlphaGo reconstruction ties together MCTS, RL, and autoresearch.
 
 ## Sources
 
@@ -82,6 +87,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.
 - [[Universal LeetCode Templates]] - 20 battle-tested algorithm templates with pattern recognition and complexity analysis.
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] - Frontier-research discussion session spanning inference, diffusion control, world models, generalization, and pretraining scaling.
+- [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]] - Long-form interview connecting AlphaGo, MCTS, RL-for-LLMs, and autoresearch loops.
+- [[Dwarkesh Patel - Eric Jang Flashcards]] - Retrieval-oriented companion distilling MCTS, self-play, and AlphaZero training into compact Q/A form.
 
 ## Queries
 

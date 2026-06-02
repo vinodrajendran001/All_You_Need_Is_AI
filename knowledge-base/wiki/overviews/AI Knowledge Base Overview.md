@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-05-29
+updated: 2026-06-02
 tags:
   - overview
   - ai
@@ -19,6 +19,8 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
+  - src-2026-06-02-dwarkesh-eric-jang-alphago
+  - src-2026-06-02-dwarkesh-eric-jang-flashcards
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
 status: active
 ---
@@ -37,7 +39,7 @@ The workspace now implements Karpathy's three-layer pattern:
 - Curated wiki pages live under `knowledge-base/wiki/`.
 - The operating schema lives in the root `CLAUDE.md` note.
 
-The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]]. The fourth source, [[Perplexity - Advancing Search-Augmented Language Models]], deepens the RL and agents area with a concrete production pipeline for [[Search-Augmented Language Models]] and introduces [[Reward Design for RL]] as a cross-cutting concept. The fifth source, [[Alpha Signal - The Return of Recursion]], adds a new branch around [[Latent-Space Reasoning]] and [[Recursive Architectures]], framing recursive computation as a complementary path to faster, lower-cost reasoning systems. The sixth source, [[The Pocket - PocketFlow Tutorial Docs]], adds a major tutorial library covering LLM internals, LLM training pipelines, reinforcement-learning methods, and mathematical foundations, and it seeds [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], and [[Model Quantization and Efficiency]]. The seventh source, [[Han Fang - PyTorch Practice]], reinforces that practical deep-learning branch with a compact interview-oriented PyTorch repo full of runnable from-scratch implementations for optimization, normalization, attention, training-loop mechanics, and model-efficiency techniques. The eighth source, [[Classic RAG vs Graph RAG vs Agentic RAG]], adds a retrieval-architecture taxonomy that unifies Classic, Graph, and Agentic RAG under the new hub page [[Retrieval-Augmented Generation]]. The ninth source, [[Universal LeetCode Templates]], expands the interview-preparation branch beyond ML implementation drills into reusable DSA problem-solving patterns, and it seeds [[Algorithm Templates for Interviews]] as a bridge between LeetCode-style template selection and [[Han Fang - PyTorch Practice]]. The tenth source, [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]], broadens the vault into production system design and ML-at-scale, seeding [[ML Systems at Scale]] and [[AI Agents in Production]] while connecting AI concepts to real architectures at Netflix, Snap, Amazon, Instacart, Grab, Figma, and DoorDash. The eleventh source, [[ByteByteGo - How Airtable Built the Search Layer]], deepens the retrieval branch with a concrete vector-search infrastructure case study around Milvus partitioning, HNSW latency/recall tradeoffs, and hot/cold memory tiering for Airtable's AI features. The twelfth source, [[DoorDash - LLM-as-a-Judge for Search Evaluation]], opens a new evaluation branch around [[LLM-as-a-Judge]], showing how facet-based rubrics, calibration, and continuous automated judging can replace noisy periodic annotation for natural-language search. The thirteenth source, [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]], adds a frontier-research conversation artifact that strengthens the vault's inference-efficiency and pretraining branches while seeding [[World Models]] as a new planning-and-prediction concept.
+The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]]. The fourth source, [[Perplexity - Advancing Search-Augmented Language Models]], deepens the RL and agents area with a concrete production pipeline for [[Search-Augmented Language Models]] and introduces [[Reward Design for RL]] as a cross-cutting concept. The fifth source, [[Alpha Signal - The Return of Recursion]], adds a new branch around [[Latent-Space Reasoning]] and [[Recursive Architectures]], framing recursive computation as a complementary path to faster, lower-cost reasoning systems. The sixth source, [[The Pocket - PocketFlow Tutorial Docs]], adds a major tutorial library covering LLM internals, LLM training pipelines, reinforcement-learning methods, and mathematical foundations, and it seeds [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], and [[Model Quantization and Efficiency]]. The seventh source, [[Han Fang - PyTorch Practice]], reinforces that practical deep-learning branch with a compact interview-oriented PyTorch repo full of runnable from-scratch implementations for optimization, normalization, attention, training-loop mechanics, and model-efficiency techniques. The eighth source, [[Classic RAG vs Graph RAG vs Agentic RAG]], adds a retrieval-architecture taxonomy that unifies Classic, Graph, and Agentic RAG under the new hub page [[Retrieval-Augmented Generation]]. The ninth source, [[Universal LeetCode Templates]], expands the interview-preparation branch beyond ML implementation drills into reusable DSA problem-solving patterns, and it seeds [[Algorithm Templates for Interviews]] as a bridge between LeetCode-style template selection and [[Han Fang - PyTorch Practice]]. The tenth source, [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]], broadens the vault into production system design and ML-at-scale, seeding [[ML Systems at Scale]] and [[AI Agents in Production]] while connecting AI concepts to real architectures at Netflix, Snap, Amazon, Instacart, Grab, Figma, and DoorDash. The eleventh source, [[ByteByteGo - How Airtable Built the Search Layer]], deepens the retrieval branch with a concrete vector-search infrastructure case study around Milvus partitioning, HNSW latency/recall tradeoffs, and hot/cold memory tiering for Airtable's AI features. The twelfth source, [[DoorDash - LLM-as-a-Judge for Search Evaluation]], opens a new evaluation branch around [[LLM-as-a-Judge]], showing how facet-based rubrics, calibration, and continuous automated judging can replace noisy periodic annotation for natural-language search. The thirteenth source, [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]], adds a frontier-research conversation artifact that strengthens the vault's inference-efficiency and pretraining branches while seeding [[World Models]] as a new planning-and-prediction concept. The fourteenth and fifteenth sources, [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]] and [[Dwarkesh Patel - Eric Jang Flashcards]], deepen the RL branch with a worked AlphaGo example, seed [[Monte Carlo Tree Search]], and add [[Automated AI Research]] as a realistic agentic-research concept.
 
 ## Key pages
 
@@ -53,6 +55,8 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Algorithm Templates for Interviews]] - template-selection map connecting classic DSA interview patterns with ML engineering preparation
 - [[Model Quantization and Efficiency]] - quantization, KV cache, and LoRA as deployment/adaptation efficiency levers
 - [[World Models]] - learned predictive models for planning, control, and embodied intelligence
+- [[Monte Carlo Tree Search]] - search-time planning plus dense policy targets from AlphaGo-style supervision
+- [[Automated AI Research]] - autoresearch loops, experiment execution, and the remaining bottlenecks in research agents
 - [[Tool Use and Function Calling]] - how LLMs request real-world actions
 - [[Model Context Protocol]] - open standard for universal tool integration
 - [[Agentic Loop]] - the iterative cycle powering multi-step tool use
@@ -112,10 +116,13 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
+- [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
+- [[Dwarkesh Patel - Eric Jang Flashcards]]
 - [[Han Fang - PyTorch Practice]]
 - [[Universal LeetCode Templates]]
 - [[Algorithm Templates for Interviews]]
 - [[Han Fang]]
+- [[Eric Jang]]
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
 - [[Alpha Signal - The Return of Recursion]]

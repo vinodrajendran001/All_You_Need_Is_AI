@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-21
+updated: 2026-06-02
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-bytebytego-batch
+  - src-2026-06-02-dwarkesh-eric-jang-alphago
 status: active
 ---
 
@@ -30,6 +31,8 @@ This multi-step looping is the foundation of **AI agents** — systems where the
 ## Production form
 
 Grab’s analytics-support assistant shows what the loop looks like in a real enterprise workflow. A classifier routes a Slack question to specialist agents for data inspection, code search, and on-call health checks; a summarizer then integrates the findings; and higher-risk enhancement requests move to a separate human-gated path. The core loop is still plan → act → observe, but in production it often spans **multiple specialist agents, tool boundaries, and approval steps** rather than a single model repeatedly calling one tool.
+
+The Eric Jang interview adds a research-facing version of the same idea: an **autoresearch loop** where models help implement experiments, run them, and tune hyperparameters across iterations. The limit, for now, is not looping itself but research navigation — deciding which question to investigate next and knowing when a line of attack is a dead end.
 
 ## Example
 
@@ -57,3 +60,5 @@ The model decides *what* should happen. The application layer decides *whether* 
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo]]
+- [[Automated AI Research]]
+- [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]

@@ -22,6 +22,7 @@ source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-06-02-alphasignal-look-past-rag-pipeline
 status: active
 ---
 
@@ -223,3 +224,10 @@ Append-only operational history for the wiki.
 - Found no structural defects: no broken links, no orphans, no missing related-pages sections, and no index omissions.
 - Expanded [[Alpha Signal]], [[Andrej Karpathy]], and [[Obsidian]] to address the only immediate content issue: thin entity coverage.
 - Filed [[2026-06-02 Lint Pass]] and linked it from the index.
+
+## [2026-06-02] ingest | Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline
+
+- Mapped the local raw capture `knowledge-base/raw/sources/As AI agents evolve, we need to look past the RAG pipeline.md` into a source summary page, preserving the fact that the capture did not include the original publication URL.
+- Created [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]].
+- Seeded [[Direct Corpus Interaction]].
+- Updated [[Retrieval-Augmented Generation]], [[AI Agents in Production]], [[Tool Use and Function Calling]], [[Alpha Signal]], [[AI Knowledge Base Overview]], and the index with the new retrieval-interface branch.

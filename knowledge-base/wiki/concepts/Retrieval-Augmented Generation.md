@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-29
+updated: 2026-06-02
 tags: [rag, retrieval, agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
+  - src-2026-06-02-alphasignal-look-past-rag-pipeline
 status: active
 ---
 
@@ -21,6 +22,8 @@ The general pattern of improving LLM outputs by **retrieving external context at
 In its simplest form, RAG means: retrieve relevant information, place it into the model context, then generate an answer grounded in that evidence. The key advantage is freshness and specificity: the system can use information that is too recent, too specialized, or too large to fit reliably inside model weights alone.
 
 RAG is best treated as a **family of architectures**, not a single pipeline. As retrieval problems become more relational or more reasoning-heavy, the retrieval layer tends to evolve from fixed vector search into graph traversal and then into agentic, multi-step search.
+
+The new [[Direct Corpus Interaction]] source adds an important refinement: sometimes the next step beyond fixed vector retrieval is not a better retriever but a **higher-resolution interface to the raw corpus itself**.
 
 ## Three tiers of RAG
 
@@ -102,6 +105,12 @@ Airtable also makes the infrastructure point explicit: once retrieval is multi-t
 
 RAG is also a subtype of [[Tool Use and Function Calling]]. A vector store, search engine, SQL database, browser, or knowledge-graph query engine can all be exposed as tools. What changes across Classic, Graph, and Agentic RAG is how much control the model has over those tools and how many retrieval rounds it performs.
 
+## Direct corpus interaction and hybrid retrieval
+
+The Alpha Signal DCI article argues that coding and IT-operations agents often fail under vector-only retrieval because the missing evidence is lexical or procedural rather than semantic: exact error strings, version constraints, file paths, and weak cross-file signals. If a vector index filters that evidence out before the agent begins reasoning, the loop starts from the wrong evidence set.
+
+[[Direct Corpus Interaction]] is one answer. Instead of only retrieving chunks from an index, the agent can inspect the live corpus through terminal-like tools, refine its hypotheses, and search again. For large corpora, the article recommends a hybrid design: semantic retrieval for broad candidate discovery, then DCI for precise verification and local expansion.
+
 ## Why the distinction matters
 
 The three-tier framing prevents a common failure mode: diagnosing every weak retrieval system as "bad embeddings" when the real issue is architectural mismatch.
@@ -116,8 +125,10 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[ML Systems at Scale]]
+- [[Direct Corpus Interaction]]
 - [[Search-Augmented Language Models]]
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
+- [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[AI Knowledge Base Overview]]

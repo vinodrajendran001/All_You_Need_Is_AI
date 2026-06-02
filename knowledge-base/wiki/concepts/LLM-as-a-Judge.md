@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-05-29
+updated: 2026-06-02
 tags:
   - concept
   - llm-evaluation
@@ -9,12 +9,14 @@ tags:
   - quality-assurance
 source_ids:
   - src-2026-05-28-doordash-llm-judge
+  - src-2026-06-02-bytebytego-doordash-testing-system
+  - src-2026-05-29-braintrust-multi-turn-scoring
 status: active
 ---
 
 # LLM-as-a-Judge
 
-LLM-as-a-Judge is the pattern of using a language model to evaluate outputs such as search results, recommendations, summaries, or generated answers against an explicit rubric. It does not eliminate human judgment; instead, it packages human intent into a calibrated evaluator that can run far more consistently and far more often than manual review alone.
+LLM-as-a-Judge is the pattern of using a language model to evaluate outputs such as search results, recommendations, summaries, generated answers, or full conversation traces against an explicit rubric. It does not eliminate human judgment; instead, it packages human intent into a calibrated evaluator that can run far more consistently and far more often than manual review alone.
 
 ## Why it works
 
@@ -31,12 +33,18 @@ In this vault, the pattern is especially relevant where retrieval and generation
 3. **Calibrate against a golden set.** The judge should be measured against adjudicated examples, not blindly trusted because it sounds plausible.
 4. **Use structured criteria.** The G-EVAL result generalizes: explicit, step-by-step judging criteria tend to produce more reliable evaluations than unconstrained scoring prompts.
 5. **Version the rubric.** Evaluation changes over time, so rubric updates and re-baselining need to be treated as part of the system, not as ad hoc prompt edits.
+6. **Exploit the generator-verifier gap.** Open-ended generation is often harder than narrow verification. DoorDash's chatbot-testing system is a good example: binary policy checks over a full transcript are easier to calibrate than the original support-generation task.
+7. **Score the right unit of work.** Braintrust's multi-turn scoring pattern shows that some systems need both turn-level and trace-level judges because local response quality and full-conversation success are different things.
 
-## DoorDash as a production case study
+## Production case studies
 
 [[DoorDash - LLM-as-a-Judge for Search Evaluation]] is a strong production example. DoorDash found that natural-language search queries such as "cozy date night dinner" encode multiple interacting constraints that human annotators applied inconsistently. Their solution was a three-phase workflow: define facet-based rubrics, calibrate an LLM judge against a golden set, then automate evaluation for daily monitoring and PR-level regression checks.
 
 The case study matters because it frames judge quality as a measurement-design problem rather than a model-magic problem. The LLM becomes useful when the rubric is explicit, the context is complete enough, and disagreements trigger rubric or prompt refinement instead of blind trust.
+
+[[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] extends the pattern from search relevance into support-chatbot development. There the judge is not only monitoring a live system; it is part of an offline simulation flywheel that evaluates full multi-turn conversations and acts as a release gate for prompt and architecture changes.
+
+[[Braintrust - How to evaluate multi-turn conversations]] adds the instrumentation and operations side: group turns into traces, score both individual responses and whole conversations, run scorers asynchronously in production, and use traffic-level clustering to find recurring failure modes.
 
 ## Limitations
 
@@ -45,7 +53,11 @@ LLM judges still need human calibration, especially on edge cases where domain e
 ## Related pages
 
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
+- [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
+- [[Braintrust - How to evaluate multi-turn conversations]]
 - [[DoorDash]]
+- [[Braintrust]]
+- [[Multi-Turn Evaluation]]
 - [[Search-Augmented Language Models]]
 - [[ML Systems at Scale]]
 - [[Retrieval-Augmented Generation]]

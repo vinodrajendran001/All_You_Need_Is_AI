@@ -23,6 +23,8 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
+  - src-2026-06-02-bytebytego-doordash-testing-system
+  - src-2026-05-29-braintrust-multi-turn-scoring
 status: active
 ---
 
@@ -231,3 +233,10 @@ Append-only operational history for the wiki.
 - Created [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]].
 - Seeded [[Direct Corpus Interaction]].
 - Updated [[Retrieval-Augmented Generation]], [[AI Agents in Production]], [[Tool Use and Function Calling]], [[Alpha Signal]], [[AI Knowledge Base Overview]], and the index with the new retrieval-interface branch.
+
+## [2026-06-02] ingest | DoorDash chatbot evaluation + Braintrust multi-turn scoring
+
+- Mapped `knowledge-base/raw/sources/How DoorDash Built a Testing System to Evaluate LLMs.md` into [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]].
+- Mapped `knowledge-base/raw/sources/How to evaluate multi-turn conversations - Blog.md` into [[Braintrust - How to evaluate multi-turn conversations]].
+- Seeded [[Multi-Turn Evaluation]] and [[Braintrust]].
+- Updated [[LLM-as-a-Judge]], [[ML Systems at Scale]], [[DoorDash]], [[AI Knowledge Base Overview]], and the index to integrate the new evaluation branch.

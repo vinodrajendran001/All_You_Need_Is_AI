@@ -12,6 +12,8 @@ source_ids:
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-06-02-bytebytego-doordash-testing-system
+  - src-2026-05-29-braintrust-multi-turn-scoring
 status: active
 ---
 
@@ -90,6 +92,10 @@ Serving stacks are only half of the story. [[DoorDash - LLM-as-a-Judge for Searc
 
 That is a production-systems lesson, not just an evaluation anecdote: if quality measurement cannot keep up with model and ranking changes, the rest of the stack loses its feedback loop.
 
+The newer [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] source pushes the same lesson into chatbot development. There, evaluation infrastructure includes an offline customer simulator, transcript-derived scenarios, realistic mock backend state, binary trace-level LLM judges, and a release-gating pass-rate target. The system is not just scoring outcomes after the fact; it is actively shaping how quickly the product can improve.
+
+[[Braintrust - How to evaluate multi-turn conversations]] complements that pattern with the lower-level mechanics of trace instrumentation and online scoring: group turns into one conversation object, score both turns and traces, and aggregate failures with clustering rather than relying on manual spot checks.
+
 ## Why this matters for AI infrastructure
 
 These examples show that “ML at scale” is really a systems-discipline question. The model is only one component inside a broader architecture of stores, indexes, filters, ranking stages, caches, feedback loops, and evaluation infrastructure. That same architecture vocabulary also underlies [[Search-Augmented Language Models]] and many forms of [[Retrieval-Augmented Generation]], even when the end product is not a chatbot.
@@ -99,8 +105,11 @@ These examples show that “ML at scale” is really a systems-discipline questi
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
+- [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
+- [[Braintrust - How to evaluate multi-turn conversations]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[LLM-as-a-Judge]]
+- [[Multi-Turn Evaluation]]
 - [[AI Accelerator Architecture]]
 - [[ByteByteGo]]
 - [[Search-Augmented Language Models]]

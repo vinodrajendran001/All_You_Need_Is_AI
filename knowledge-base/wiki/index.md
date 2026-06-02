@@ -23,6 +23,8 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
+  - src-2026-06-02-bytebytego-doordash-testing-system
+  - src-2026-05-29-braintrust-multi-turn-scoring
 status: active
 ---
 
@@ -55,6 +57,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Retrieval-Augmented Generation]] - Hub page for Classic, Graph, and Agentic RAG architectures.
 - [[Direct Corpus Interaction]] - Raw-file retrieval via terminal tools as a precision layer for agentic search.
 - [[LLM-as-a-Judge]] - Using calibrated LLMs to evaluate search relevance and generation quality at scale.
+- [[Multi-Turn Evaluation]] - Turn-level plus conversation-level scoring for simulated and live multi-turn systems.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 - [[Latent-Space Reasoning]]
@@ -68,6 +71,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
+- [[Braintrust]] - Evaluation platform whose material in this vault focuses on multi-turn traces and online scoring.
 - [[DoorDash]] - Delivery platform; source for LLM-as-a-Judge search evaluation and country-launch architecture.
 - [[Han Fang]] - Author of the PyTorch Practice interview tutorial.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
@@ -89,6 +93,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 - [[Alpha Signal - The Return of Recursion]]
 - [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]] - Argument that coding agents need higher-resolution corpus interfaces than vector-only RAG, motivating DCI and hybrid retrieval.
+- [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] - Support-chatbot simulation and evaluation flywheel with transcript-derived scenarios and LLM judges.
+- [[Braintrust - How to evaluate multi-turn conversations]] - Operational recipe for turn-level and trace-level evaluation over grouped conversation traces.
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
 - [[Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.

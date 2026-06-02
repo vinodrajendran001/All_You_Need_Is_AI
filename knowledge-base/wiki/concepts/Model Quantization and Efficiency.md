@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
+  - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
 status: active
 ---
 
@@ -29,6 +30,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - The `quantization` tutorial focuses on **numerical/storage efficiency**. It explains the affine mapping from floats to low-bit integers through scale and zero-point, then shows why the real deployment trade-offs live in choices such as weights-only quantization, mixed precision, per-channel granularity, group size, and the PTQ-vs-QAT decision.
 - The core intuition is that LLM inference is often constrained by **memory bandwidth** as much as by raw arithmetic. Compressing weights reduces the amount of data that must be moved from memory to compute units.
 - The `kv_cache` tutorial targets a different bottleneck: **autoregressive recomputation**. Instead of re-projecting the entire prefix at every decoding step, the model stores past keys and values and only extends the cache with the new token's contribution.
+- The YC Paper Club session broadens this page from storage/caching tricks to **algorithmic inference efficiency**. Its opening talk argues that inference itself is now a frontier research problem, using speculative decoding as an example of latency reduction beyond just quantization or KV-cache reuse.
 - The `lora` tutorial addresses **adaptation efficiency** rather than inference speed. It freezes the large pretrained weight matrix and learns a low-rank update `BA`, which dramatically reduces the number of trainable parameters needed during fine-tuning.
 - These techniques are complementary rather than competing:
   - **Quantization** shrinks stored model state.
@@ -50,6 +52,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]
+- [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]

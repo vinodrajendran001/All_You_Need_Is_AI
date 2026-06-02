@@ -17,6 +17,7 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
+  - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
 status: active
 ---
 
@@ -187,3 +188,11 @@ Append-only operational history for the wiki.
 - Audited 54 markdown wiki pages for broken wikilinks, orphan pages, related-pages coverage, frontmatter conformance, thin pages, index completeness, log consistency, raw-source coverage, cross-link density, and contradiction/staleness risk.
 - Strengthened [[Search-Augmented Language Models]] and [[ML Systems at Scale]] with [[LLM-as-a-Judge]] links and DoorDash-derived evaluation notes so the new production-evaluation branch is fully integrated.
 - Filed [[2026-05-29 Lint Pass]] and linked it from the index.
+
+## [2026-06-02] ingest | Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club
+
+- Captured the YouTube video metadata as `knowledge-base/raw/sources/2026-06-02 Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club.md`.
+- Saved the auto-generated transcript in both VTT and cleaned text form under `knowledge-base/raw/assets/`.
+- Created [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] as the source summary page.
+- Seeded [[World Models]] and [[Y Combinator]].
+- Updated [[Model Quantization and Efficiency]], [[LLM Training Pipeline]], [[AI Knowledge Base Overview]], and the index with the new source.

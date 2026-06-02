@@ -240,3 +240,10 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/How to evaluate multi-turn conversations - Blog.md` into [[Braintrust - How to evaluate multi-turn conversations]].
 - Seeded [[Multi-Turn Evaluation]] and [[Braintrust]].
 - Updated [[LLM-as-a-Judge]], [[ML Systems at Scale]], [[DoorDash]], [[AI Knowledge Base Overview]], and the index to integrate the new evaluation branch.
+
+## [2026-06-02] lint | Full wiki lint pass (post-evaluation ingests)
+
+- Audited 74 markdown wiki pages for broken wikilinks, relative links, orphan pages, related-pages coverage, frontmatter conformance, thin pages, index completeness, and staleness risk.
+- Found no structural defects: no broken links, no orphans, no missing related-pages sections, no frontmatter gaps, and no index omissions.
+- Re-checked the active gap statements in [[AI Knowledge Base Overview]] and left them unchanged because they remain accurate.
+- Filed [[2026-06-02 Lint Pass 2]] and linked it from the index.

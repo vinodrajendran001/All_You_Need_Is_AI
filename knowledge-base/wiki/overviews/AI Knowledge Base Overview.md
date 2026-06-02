@@ -112,6 +112,8 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]
+- [[Monte Carlo Tree Search]]
+- [[Automated AI Research]]
 - [[World Models]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]

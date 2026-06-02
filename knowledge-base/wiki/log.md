@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-05-29
+updated: 2026-06-02
 tags:
   - log
 source_ids:
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
+  - src-2026-06-02-dwarkesh-eric-jang-alphago
+  - src-2026-06-02-dwarkesh-eric-jang-flashcards
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
 status: active
 ---
@@ -196,3 +198,11 @@ Append-only operational history for the wiki.
 - Created [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] as the source summary page.
 - Seeded [[World Models]] and [[Y Combinator]].
 - Updated [[Model Quantization and Efficiency]], [[LLM Training Pipeline]], [[AI Knowledge Base Overview]], and the index with the new source.
+
+## [2026-06-02] ingest | Dwarkesh Patel - Eric Jang interview + flashcards
+
+- Captured the article as `knowledge-base/raw/sources/2026-06-02 Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch.md` and preserved extracted body HTML plus readable transcript assets under `knowledge-base/raw/assets/`.
+- Captured the flashcards as `knowledge-base/raw/sources/2026-06-02 Dwarkesh Patel - Eric Jang Flashcards.md` and preserved structured JSON plus readable markdown assets under `knowledge-base/raw/assets/`.
+- Created [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]] and [[Dwarkesh Patel - Eric Jang Flashcards]] as source summary pages.
+- Seeded [[Monte Carlo Tree Search]], [[Automated AI Research]], and [[Eric Jang]].
+- Updated [[Reinforcement Learning]], [[Agentic Loop]], [[AI Knowledge Base Overview]], and the index with the new sources and concepts.

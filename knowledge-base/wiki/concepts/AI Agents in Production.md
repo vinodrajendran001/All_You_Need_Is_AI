@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-05-21
+updated: 2026-06-02
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-18-rag-architecture-comparison
+  - src-2026-06-02-alphasignal-look-past-rag-pipeline
 status: active
 ---
 
@@ -32,6 +33,8 @@ Both Grab and Figma show that raw access is usually the wrong product surface.
 
 The production answer in both cases is the same: expose **fewer, better, more model-legible interfaces**. That is exactly the systems layer described by [[Tool Use and Function Calling]] and standardized, in Figma’s case, by [[Model Context Protocol]].
 
+The new [[Direct Corpus Interaction]] source adds an important counterpoint: "better interface" does not always mean "higher-level interface." For debugging and code-search agents, hiding the corpus entirely behind vector retrieval can remove the exact strings, paths, and version pins the agent needs. In those tasks, the right production surface may be a bounded terminal-style interface over raw files rather than a prefiltered semantic layer.
+
 ## Context management is a first-class production problem
 
 Agents fail when context grows faster than the orchestration layer can compress it.
@@ -40,6 +43,8 @@ Agents fail when context grows faster than the orchestration layer can compress 
 - Figma explicitly recommends a **scan, then zoom in** workflow using `get_metadata` before `get_design_context` so agents do not blow through MCP response budgets.
 
 This makes context shaping part of the product design. Production agents need not only the right tools but also the right amount of context at the right time.
+
+DCI sharpens this lesson. Raw `grep` and `find` output can be more faithful than chunk retrieval, but it can also flood the context window or stall the loop with overly broad commands. Production DCI therefore still needs shaping: limits, filters, staged exploration, and interfaces that keep raw access legible.
 
 ## Risk-based autonomy beats one-size-fits-all automation
 
@@ -65,7 +70,9 @@ The common pattern is not “let the model do everything.” It is **design an e
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
+- [[Direct Corpus Interaction]]
 - [[Retrieval-Augmented Generation]]
+- [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]

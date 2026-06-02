@@ -22,6 +22,7 @@ source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-flashcards
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-06-02-alphasignal-look-past-rag-pipeline
 status: active
 ---
 
@@ -52,6 +53,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
 - [[ML Systems at Scale]] - Production ML serving patterns from Netflix, Snapchat, Amazon, Instacart, and Airtable.
 - [[Retrieval-Augmented Generation]] - Hub page for Classic, Graph, and Agentic RAG architectures.
+- [[Direct Corpus Interaction]] - Raw-file retrieval via terminal tools as a precision layer for agentic search.
 - [[LLM-as-a-Judge]] - Using calibrated LLMs to evaluate search relevance and generation quality at scale.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
@@ -86,6 +88,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]] - Facet-based LLM evaluation replacing noisy human annotation for NL search.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
 - [[Alpha Signal - The Return of Recursion]]
+- [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]] - Argument that coding agents need higher-resolution corpus interfaces than vector-only RAG, motivating DCI and hybrid retrieval.
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
 - [[Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.

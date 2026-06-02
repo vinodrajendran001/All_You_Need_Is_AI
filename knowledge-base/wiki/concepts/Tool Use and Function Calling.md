@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-18
+updated: 2026-06-02
 tags: [tool-use, function-calling, llm, agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-rag-architecture-comparison
+  - src-2026-06-02-alphasignal-look-past-rag-pipeline
 status: active
 ---
 
@@ -27,6 +28,9 @@ LLMs are text-prediction engines with no built-in ability to interact with the o
 - **Provider fragmentation** — before [[Model Context Protocol|MCP]], each provider (OpenAI, Anthropic, Google) had its own schema format, creating an N×M integration problem.
 - **Search as tool use** — web search agents are a concrete instance of this pattern; see [[Search-Augmented Language Models]] for the RL-trained version.
 - **Retrieval as tool use** — vector search, graph traversal, SQL lookup, and browser/search calls are common retrieval tools inside [[Retrieval-Augmented Generation]] systems, especially in the agentic variant.
+- **Terminal access can be tool use too** — some agent tasks work better with low-level corpus interfaces such as `grep`, `find`, `cat`, `sed`, and shell pipelines than with vector search alone. This is the intuition behind [[Direct Corpus Interaction]].
+
+The important nuance is that raw power still has to be wrapped in a model-legible interface. Terminal-style tools can expose precise evidence that a vector retriever would miss, but without good constraints they can also overwhelm the model with noise or create unsafe execution surfaces.
 
 ## Historical context
 
@@ -40,4 +44,5 @@ LLMs are text-prediction engines with no built-in ability to interact with the o
 - [[Agentic Loop]]
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
+- [[Direct Corpus Interaction]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

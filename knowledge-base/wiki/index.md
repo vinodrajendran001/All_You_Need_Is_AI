@@ -121,6 +121,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-05-21 Lint Pass 2]] - Eighth comprehensive lint pass covering full-wiki structural integrity after the ByteByteGo system-design batch ingest.
 - [[2026-05-29 Lint Pass]] - Ninth comprehensive lint pass covering the full wiki after the Airtable search and DoorDash LLM-as-a-Judge ingests.
 - [[2026-06-02 Lint Pass]] - Tenth comprehensive lint pass covering the post-Reiner wiki and fixing three thin entity pages.
+- [[2026-06-02 Lint Pass 2]] - Eleventh comprehensive lint pass covering the expanded evaluation branch and finding no new structural defects.
 
 ## Control files
 

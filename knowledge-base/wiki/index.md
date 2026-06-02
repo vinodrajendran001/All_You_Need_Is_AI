@@ -17,6 +17,7 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
+  - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
 status: active
 ---
 
@@ -52,6 +53,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
+- [[World Models]] - Learned predictive models for planning, control, and embodied intelligence.
 
 ## Entities
 
@@ -63,6 +65,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
 - [[Alpha Signal]]
 - [[The Pocket]] - Organization behind PocketFlow and its tutorial-documentation curriculum.
+- [[Y Combinator]] - Startup accelerator and publisher of YC Paper Club frontier-research sessions.
 
 ## Sources
 
@@ -78,6 +81,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.
 - [[Universal LeetCode Templates]] - 20 battle-tested algorithm templates with pattern recognition and complexity analysis.
+- [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] - Frontier-research discussion session spanning inference, diffusion control, world models, generalization, and pretraining scaling.
 
 ## Queries
 

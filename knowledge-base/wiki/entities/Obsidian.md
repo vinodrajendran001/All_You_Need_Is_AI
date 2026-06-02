@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-08
-updated: 2026-05-18
+updated: 2026-06-02
 entity_kind: tool
 tags:
   - entity
@@ -27,6 +27,8 @@ The `LLM Wiki` pattern assumes a human can inspect live markdown pages while the
 - The source recommends Obsidian Web Clipper as a fast path for getting articles into the raw corpus.
 - Local attachment downloads fit naturally into `knowledge-base/raw/assets/`.
 - Graph view is especially useful for spotting hubs, weakly linked areas, and orphans.
+- Obsidian's local-first file model fits this vault because the knowledge base is meant to remain transparent and inspectable as plain markdown, not hidden behind an app-specific database.
+- The tool is also a good fit for the ingest/query/lint loop because templates, wikilinks, and backlinks make maintenance work visible to both the human reader and the LLM maintainer.
 
 ## Related pages
 
@@ -34,5 +36,6 @@ The `LLM Wiki` pattern assumes a human can inspect live markdown pages while the
 - [[Persistent Wiki]]
 - [[Schema-Driven Knowledge Base]]
 - [[Index and Log]]
+- [[Ingest Query Lint Loop]]
 - [[Andrej Karpathy - LLM Wiki]]
 - [[Andrej Karpathy]]

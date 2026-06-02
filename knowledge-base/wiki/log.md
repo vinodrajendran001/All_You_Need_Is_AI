@@ -20,6 +20,8 @@ source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-02-dwarkesh-eric-jang-flashcards
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
+  - src-2026-06-02-dwarkesh-reiner-pope-chip-design
+  - src-2026-06-02-dwarkesh-reiner-pope-flashcards
 status: active
 ---
 
@@ -206,3 +208,18 @@ Append-only operational history for the wiki.
 - Created [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]] and [[Dwarkesh Patel - Eric Jang Flashcards]] as source summary pages.
 - Seeded [[Monte Carlo Tree Search]], [[Automated AI Research]], and [[Eric Jang]].
 - Updated [[Reinforcement Learning]], [[Agentic Loop]], [[AI Knowledge Base Overview]], and the index with the new sources and concepts.
+
+## [2026-06-02] ingest | Dwarkesh Patel - Reiner Pope article + flashcards
+
+- Captured the article as `knowledge-base/raw/sources/2026-06-02 Dwarkesh Patel - Reiner Pope - Chip design from the bottom up.md` and preserved extracted body HTML plus readable transcript assets under `knowledge-base/raw/assets/`.
+- Captured the flashcards as `knowledge-base/raw/sources/2026-06-02 Dwarkesh Patel - Reiner Pope Flashcards.md` and preserved structured JSON plus readable markdown assets under `knowledge-base/raw/assets/`.
+- Created [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]] and [[Dwarkesh Patel - Reiner Pope Flashcards]] as source summary pages.
+- Seeded [[AI Accelerator Architecture]] and [[Reiner Pope]].
+- Updated [[Model Quantization and Efficiency]], [[ML Systems at Scale]], [[LLM Training Pipeline]], [[AI Knowledge Base Overview]], and the index with the new sources and hardware/compute branch.
+
+## [2026-06-02] lint | Full wiki lint pass
+
+- Audited 67 markdown wiki pages for broken wikilinks, relative links, orphan pages, related-pages coverage, frontmatter conformance, thin pages, index completeness, and staleness risk.
+- Found no structural defects: no broken links, no orphans, no missing related-pages sections, and no index omissions.
+- Expanded [[Alpha Signal]], [[Andrej Karpathy]], and [[Obsidian]] to address the only immediate content issue: thin entity coverage.
+- Filed [[2026-06-02 Lint Pass]] and linked it from the index.

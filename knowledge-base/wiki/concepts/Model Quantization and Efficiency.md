@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-02
 tags:
   - concept
   - llm
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
+  - src-2026-06-02-dwarkesh-reiner-pope-chip-design
+  - src-2026-06-02-dwarkesh-reiner-pope-flashcards
 status: active
 ---
 
@@ -29,8 +31,10 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 
 - The `quantization` tutorial focuses on **numerical/storage efficiency**. It explains the affine mapping from floats to low-bit integers through scale and zero-point, then shows why the real deployment trade-offs live in choices such as weights-only quantization, mixed precision, per-channel granularity, group size, and the PTQ-vs-QAT decision.
 - The core intuition is that LLM inference is often constrained by **memory bandwidth** as much as by raw arithmetic. Compressing weights reduces the amount of data that must be moved from memory to compute units.
+- The Reiner Pope hardware lecture adds a physical reason low precision matters so much: arithmetic circuits scale roughly faster than linearly with bit width, while surrounding movement and storage costs stay stubbornly large. That is why smaller precisions such as FP4/FP8 can buy more than a naive 2x gain.
 - The `kv_cache` tutorial targets a different bottleneck: **autoregressive recomputation**. Instead of re-projecting the entire prefix at every decoding step, the model stores past keys and values and only extends the cache with the new token's contribution.
 - The YC Paper Club session broadens this page from storage/caching tricks to **algorithmic inference efficiency**. Its opening talk argues that inference itself is now a frontier research problem, using speculative decoding as an example of latency reduction beyond just quantization or KV-cache reuse.
+- The Reiner Pope flashcards make the deployment-side bound explicit: per-token latency is the **max of compute time and memory time**. Batch size amortizes weight loads until either arithmetic or KV-cache fetch dominates, and long-context serving eventually crosses into a memory-bound regime that shows up even in API pricing.
 - The `lora` tutorial addresses **adaptation efficiency** rather than inference speed. It freezes the large pretrained weight matrix and learns a low-rank update `BA`, which dramatically reduces the number of trainable parameters needed during fine-tuning.
 - These techniques are complementary rather than competing:
   - **Quantization** shrinks stored model state.
@@ -53,6 +57,9 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
+- [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
+- [[Dwarkesh Patel - Reiner Pope Flashcards]]
+- [[AI Accelerator Architecture]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]

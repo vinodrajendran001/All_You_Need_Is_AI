@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-02
 tags:
   - concept
   - llm
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
+  - src-2026-06-02-dwarkesh-reiner-pope-flashcards
 status: active
 ---
 
@@ -29,6 +30,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 
 - **Pretraining** is the foundation. The `pretrain` tutorial presents it as self-supervised next-token prediction over massive unlabeled corpora. The base model learns grammar, world knowledge, and long-range statistical structure by repeatedly minimizing cross-entropy on tokenized text.
 - The YC Paper Club presentation on **Pretraining Under Infinite Compute** sharpens one frontier question inside this stage: if the dataset is fixed but compute keeps increasing, how much extra generalization can optimization still extract? That is a useful counterpoint to the usual "just scale data and parameters" story.
+- The Reiner Pope flashcards add a deployment-economics perspective to the same stage: once you count **pretraining + RL + inference** together, it can become rational to pretrain far beyond Chinchilla-optimal data scales if heavy downstream RL and long-lived inference dominate lifetime cost.
 - Pretraining creates a capable but misaligned model: the collection repeatedly describes it as a powerful **text-completion engine** or "statistical parrot." It knows language, but it does not inherently know how to behave like an assistant.
 - **Supervised Fine-Tuning (SFT)** is the first post-training correction. The `sft` tutorial shows the crucial engineering trick: convert prompt/response examples into a single chat-formatted sequence, then **mask the loss on user-side tokens** so the model is only penalized on the assistant response.
 - SFT produces instruction following, but it still treats quality as if there were exactly one correct answer per prompt. That makes it strong at imitation, weaker at learning nuanced preference orderings.
@@ -56,6 +58,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
+- [[Dwarkesh Patel - Reiner Pope Flashcards]]
+- [[AI Accelerator Architecture]]
 - [[Transformer Architecture]]
 - [[Neural Network Fundamentals]]
 - [[Reinforcement Learning]]

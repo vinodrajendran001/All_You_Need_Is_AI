@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-05-29
+updated: 2026-06-02
 tags:
   - concept
   - machine-learning
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
+  - src-2026-06-02-dwarkesh-reiner-pope-flashcards
 status: active
 ---
 
@@ -37,6 +38,7 @@ At scale, latency often comes from moving data around rather than from the model
 - Instacart roughly doubled search speed by moving joins and filtering into Postgres: **bring the compute to the data**.
 - Amazon’s two-tier cache exists because even a good smaller model is too expensive to run synchronously for every search.
 - Netflix accepts offline fusion delay so that cross-modal intersection work never blocks ingestion or interactive search.
+- The Reiner Pope flashcards show the same locality law at cluster scale: an MoE layer naturally fits within one NVLink-connected rack because expert routing is all-to-all, while cross-rack bandwidth turns the same pattern into a bottleneck.
 
 This is the practical face of ML systems engineering: placement of data and computation often dominates algorithm choice.
 
@@ -76,6 +78,7 @@ These systems repeatedly make explicit trade-offs:
 - Snap balances smaller models, cheaper compute, and faster iteration against ever-growing model size and traffic.
 - Amazon refreshes COSMO daily, accepting weaker real-time adaptability in exchange for predictable serving economics.
 - Instacart consolidates into Postgres/pgvector for simpler filtering and recall, but acknowledges scale ceilings for very large vector indexes.
+- Reiner Pope’s flashcards sharpen the training-side version of the same tradeoff: pipeline parallelism reduces some placement pressure but introduces bubbles, weak KV-cache savings at long context, and even model-architecture constraints that slow research iteration.
 
 There is no universally best architecture; there are only architectures that fit the workload and the operational budget.
 
@@ -96,7 +99,9 @@ These examples show that “ML at scale” is really a systems-discipline questi
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
+- [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[LLM-as-a-Judge]]
+- [[AI Accelerator Architecture]]
 - [[ByteByteGo]]
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]

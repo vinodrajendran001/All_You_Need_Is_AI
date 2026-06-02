@@ -20,6 +20,8 @@ source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-02-dwarkesh-eric-jang-flashcards
+  - src-2026-06-02-dwarkesh-reiner-pope-chip-design
+  - src-2026-06-02-dwarkesh-reiner-pope-flashcards
 status: active
 ---
 
@@ -58,6 +60,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[World Models]] - Learned predictive models for planning, control, and embodied intelligence.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
+- [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
 
 ## Entities
 
@@ -71,6 +74,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[The Pocket]] - Organization behind PocketFlow and its tutorial-documentation curriculum.
 - [[Y Combinator]] - Startup accelerator and publisher of YC Paper Club frontier-research sessions.
 - [[Eric Jang]] - Researcher whose AlphaGo reconstruction ties together MCTS, RL, and autoresearch.
+- [[Reiner Pope]] - Hardware researcher whose material ties chip design to LLM throughput and serving math.
 
 ## Sources
 
@@ -89,6 +93,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] - Frontier-research discussion session spanning inference, diffusion control, world models, generalization, and pretraining scaling.
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]] - Long-form interview connecting AlphaGo, MCTS, RL-for-LLMs, and autoresearch loops.
 - [[Dwarkesh Patel - Eric Jang Flashcards]] - Retrieval-oriented companion distilling MCTS, self-play, and AlphaZero training into compact Q/A form.
+- [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]] - Blackboard lecture on AI chip design from logic gates to GPUs, TPUs, FPGAs, and memory hierarchy.
+- [[Dwarkesh Patel - Reiner Pope Flashcards]] - Structured companion on LLM training/serving math, batching, memory bandwidth, MoE racks, and pipeline parallelism.
 
 ## Queries
 
@@ -105,6 +111,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-05-21 Lint Pass]] - Seventh comprehensive lint pass covering full-wiki structural integrity after the Universal LeetCode Templates ingest.
 - [[2026-05-21 Lint Pass 2]] - Eighth comprehensive lint pass covering full-wiki structural integrity after the ByteByteGo system-design batch ingest.
 - [[2026-05-29 Lint Pass]] - Ninth comprehensive lint pass covering the full wiki after the Airtable search and DoorDash LLM-as-a-Judge ingests.
+- [[2026-06-02 Lint Pass]] - Tenth comprehensive lint pass covering the post-Reiner wiki and fixing three thin entity pages.
 
 ## Control files
 

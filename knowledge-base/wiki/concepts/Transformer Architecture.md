@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-03
 tags:
   - concept
   - llm
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
+  - src-2026-06-03-fareed-khan-train-llm-from-scratch
 status: active
 ---
 
@@ -37,6 +38,7 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
   - **Operational** — caching and masking as the mechanics of real generation
 - A useful durable takeaway is that modern LLM improvements often modify one of these layers rather than replacing the whole architecture: RoPE changes positional handling, KV cache changes inference-time state reuse, and quantization changes numerical/storage strategy.
 - [[Han Fang - PyTorch Practice]] reinforces the implementation view with a from-scratch multi-head attention module that projects Q/K/V, reshapes them to `(batch, heads, seq, d_k)`, applies padding and causal masks inside scaled dot-product attention, and then concatenates heads back into the model dimension.
+- [[Fareed Khan - Train LLM From Scratch]] adds a plain GPT-style baseline implementation: learned token and absolute position embeddings, repeated blocks of causal multi-head attention plus MLP, layer normalization, and a simple multinomial sampling loop for next-token generation. That is a useful complement to newer RoPE/KV-cache-oriented explanations because it makes the unadorned decoder-only backbone concrete.
 
 ## Open questions
 
@@ -48,6 +50,7 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]
+- [[Fareed Khan - Train LLM From Scratch]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]

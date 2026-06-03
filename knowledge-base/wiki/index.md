@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-02
+updated: 2026-06-03
 tags:
   - index
 source_ids:
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
+  - src-2026-06-03-fareed-khan-train-llm-from-scratch
 status: active
 ---
 
@@ -73,6 +74,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
 - [[Braintrust]] - Evaluation platform whose material in this vault focuses on multi-turn traces and online scoring.
 - [[DoorDash]] - Delivery platform; source for LLM-as-a-Judge search evaluation and country-launch architecture.
+- [[Fareed Khan]] - Repository author whose code-first LLM project ties Pile preprocessing, Transformer implementation, and training into one workflow.
 - [[Han Fang]] - Author of the PyTorch Practice interview tutorial.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
@@ -104,6 +106,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Dwarkesh Patel - Eric Jang Flashcards]] - Retrieval-oriented companion distilling MCTS, self-play, and AlphaZero training into compact Q/A form.
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]] - Blackboard lecture on AI chip design from logic gates to GPUs, TPUs, FPGAs, and memory hierarchy.
 - [[Dwarkesh Patel - Reiner Pope Flashcards]] - Structured companion on LLM training/serving math, batching, memory bandwidth, MoE racks, and pipeline parallelism.
+- [[Fareed Khan - Train LLM From Scratch]] - Code-first PyTorch repo for Pile preprocessing, decoder-only Transformer training, and text generation.
 
 ## Queries
 

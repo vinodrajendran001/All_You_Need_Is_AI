@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-02
+updated: 2026-06-03
 tags:
   - concept
   - llm
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-06-03-fareed-khan-train-llm-from-scratch
 status: active
 ---
 
@@ -46,6 +47,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
   - **Preference optimization** teaches ranking-sensitive behavior under human or learned reward signals.
   - **LoRA / efficiency methods** make those updates cheaper to run.
 - [[Han Fang - PyTorch Practice]] is useful here as a lower-level implementation companion: it covers step/exponential/cosine schedulers, warmup-plus-cosine decay, gradient clipping, weight initialization, multi-GPU wrapping, and `eval()`/`no_grad()` inference hygiene—the practical mechanics any real LLM training stack still depends on.
+- [[Fareed Khan - Train LLM From Scratch]] adds an end-to-end pretraining implementation path: download shards of The Pile, tokenize them with `tiktoken` `r50k_base`, append `<|endoftext|>` separators, pack tokens into HDF5, train a decoder-only model with AdamW and periodic dev evaluation, then sample from the saved checkpoint. It is a strong code-first bridge between the conceptual pipeline and an actual runnable GPT-style pretraining stack.
+- The same repository also contains a separate `sft_rlhf_guide.ipynb`, which signals that the author's mental model of the pipeline extends past base pretraining into post-training stages rather than stopping at next-token prediction.
 
 ## Open questions
 
@@ -57,6 +60,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]
+- [[Fareed Khan - Train LLM From Scratch]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[AI Accelerator Architecture]]

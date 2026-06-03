@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-21
+updated: 2026-06-03
 tags:
   - concept
   - neural-networks
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-05-21-leetcode-templates
+  - src-2026-06-03-fareed-khan-train-llm-from-scratch
 status: active
 ---
 
@@ -39,6 +40,7 @@ This vault has several higher-level pages about LLMs and RL, but those topics de
 - That makes Adam a practical answer to two weaknesses of vanilla gradient descent: memoryless updates and one-size-fits-all learning rates.
 - Taken together, these tutorials imply a strong vault-level pattern: before treating Transformers and RLHF as special, first recognize that they are compositions of the same core objects—tensors, matrix multiplies, gradients, losses, and optimizers.
 - [[Han Fang - PyTorch Practice]] complements that conceptual story with runnable interview-style implementations of stable softmax, custom BatchNorm, a hand-built SGD-with-momentum optimizer, and masked attention, making the page's abstractions feel like ordinary PyTorch building blocks rather than separate theory.
+- [[Fareed Khan - Train LLM From Scratch]] reinforces the same point at the LLM scale: a language model still reduces to familiar PyTorch pieces such as embeddings, MLPs, attention modules, batch iterators, AdamW updates, and cross-entropy loss. The repo is a useful reminder that "LLM training" is mostly these standard components composed at larger scale.
 - For the complementary DSA side of interview preparation, [[Algorithm Templates for Interviews]] covers the reusable array, graph, DP, and data-structure patterns that often appear alongside ML-specific coding rounds.
 
 ## Open questions
@@ -51,6 +53,7 @@ This vault has several higher-level pages about LLMs and RL, but those topics de
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]
+- [[Fareed Khan - Train LLM From Scratch]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]
 - [[Model Quantization and Efficiency]]

@@ -26,6 +26,8 @@ source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
+  - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
+  - src-2026-06-03-nvidia-locateanything
 status: active
 ---
 
@@ -48,7 +50,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
-- [[Model Quantization and Efficiency]] - Quantization, KV cache, and LoRA as core efficiency levers.
+- [[Model Quantization and Efficiency]] - Quantization, KV cache, LoRA, and sparse activation as core efficiency levers.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
@@ -59,11 +61,13 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Direct Corpus Interaction]] - Raw-file retrieval via terminal tools as a precision layer for agentic search.
 - [[LLM-as-a-Judge]] - Using calibrated LLMs to evaluate search relevance and generation quality at scale.
 - [[Multi-Turn Evaluation]] - Turn-level plus conversation-level scoring for simulated and live multi-turn systems.
+- [[Mixture of Experts]] - Sparse architectures that activate only part of the network per token.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
 - [[World Models]] - Learned predictive models for planning, control, and embodied intelligence.
+- [[Vision-Language Grounding]] - Text-conditioned spatial localization for objects, GUIs, documents, and scenes.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
 - [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
@@ -76,6 +80,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[DoorDash]] - Delivery platform; source for LLM-as-a-Judge search evaluation and country-launch architecture.
 - [[Fareed Khan]] - Repository author whose code-first LLM project ties Pile preprocessing, Transformer implementation, and training into one workflow.
 - [[Han Fang]] - Author of the PyTorch Practice interview tutorial.
+- [[Liquid AI]] - Model company focused here on sparse on-device assistants and local tool calling.
+- [[NVIDIA]] - Research organization whose current source opens the multimodal grounding branch.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
 - [[Alpha Signal]]
@@ -107,6 +113,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]] - Blackboard lecture on AI chip design from logic gates to GPUs, TPUs, FPGAs, and memory hierarchy.
 - [[Dwarkesh Patel - Reiner Pope Flashcards]] - Structured companion on LLM training/serving math, batching, memory bandwidth, MoE racks, and pipeline parallelism.
 - [[Fareed Khan - Train LLM From Scratch]] - Code-first PyTorch repo for Pile preprocessing, decoder-only Transformer training, and text generation.
+- [[Liquid AI - LFM2.5-8B-A1B]] - On-device MoE model emphasizing sparse inference, long context, multilingual tokenization, and local tool calling.
+- [[NVIDIA - LocateAnything]] - Parallel Box Decoding framework for fast, high-quality visual grounding and detection.
 
 ## Queries
 

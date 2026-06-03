@@ -26,6 +26,8 @@ source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
+  - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
+  - src-2026-06-03-nvidia-locateanything
 status: active
 ---
 
@@ -255,3 +257,10 @@ Append-only operational history for the wiki.
 - Created [[Fareed Khan - Train LLM From Scratch]] as the source summary page.
 - Seeded [[Fareed Khan]].
 - Updated [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], [[AI Knowledge Base Overview]], and the index with the new code-first LLM training source.
+
+## [2026-06-03] ingest | Liquid AI LFM2.5 + NVIDIA LocateAnything
+
+- Mapped `knowledge-base/raw/sources/LFM2.5-8B-A1B An Even Better On-Device Mixture of Experts.md` into [[Liquid AI - LFM2.5-8B-A1B]].
+- Mapped `knowledge-base/raw/sources/LocateAnything.md` into [[NVIDIA - LocateAnything]].
+- Seeded [[Mixture of Experts]], [[Vision-Language Grounding]], [[Liquid AI]], and [[NVIDIA]].
+- Updated [[Model Quantization and Efficiency]], [[AI Accelerator Architecture]], [[AI Agents in Production]], [[AI Knowledge Base Overview]], and the index to integrate the new sparse-model and multimodal-grounding branches.

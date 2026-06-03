@@ -28,6 +28,8 @@ source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
+  - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
+  - src-2026-06-03-nvidia-locateanything
 status: active
 ---
 
@@ -45,7 +47,7 @@ The workspace now implements Karpathy's three-layer pattern:
 - Curated wiki pages live under `knowledge-base/wiki/`.
 - The operating schema lives in the root `CLAUDE.md` note.
 
-The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]]. The fourth source, [[Perplexity - Advancing Search-Augmented Language Models]], deepens the RL and agents area with a concrete production pipeline for [[Search-Augmented Language Models]] and introduces [[Reward Design for RL]] as a cross-cutting concept. The fifth source, [[Alpha Signal - The Return of Recursion]], adds a new branch around [[Latent-Space Reasoning]] and [[Recursive Architectures]], framing recursive computation as a complementary path to faster, lower-cost reasoning systems. The sixth source, [[The Pocket - PocketFlow Tutorial Docs]], adds a major tutorial library covering LLM internals, LLM training pipelines, reinforcement-learning methods, and mathematical foundations, and it seeds [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], and [[Model Quantization and Efficiency]]. The seventh source, [[Han Fang - PyTorch Practice]], reinforces that practical deep-learning branch with a compact interview-oriented PyTorch repo full of runnable from-scratch implementations for optimization, normalization, attention, training-loop mechanics, and model-efficiency techniques. The eighth source, [[Classic RAG vs Graph RAG vs Agentic RAG]], adds a retrieval-architecture taxonomy that unifies Classic, Graph, and Agentic RAG under the new hub page [[Retrieval-Augmented Generation]]. The ninth source, [[Universal LeetCode Templates]], expands the interview-preparation branch beyond ML implementation drills into reusable DSA problem-solving patterns, and it seeds [[Algorithm Templates for Interviews]] as a bridge between LeetCode-style template selection and [[Han Fang - PyTorch Practice]]. The tenth source, [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]], broadens the vault into production system design and ML-at-scale, seeding [[ML Systems at Scale]] and [[AI Agents in Production]] while connecting AI concepts to real architectures at Netflix, Snap, Amazon, Instacart, Grab, Figma, and DoorDash. The eleventh source, [[ByteByteGo - How Airtable Built the Search Layer]], deepens the retrieval branch with a concrete vector-search infrastructure case study around Milvus partitioning, HNSW latency/recall tradeoffs, and hot/cold memory tiering for Airtable's AI features. The twelfth source, [[DoorDash - LLM-as-a-Judge for Search Evaluation]], opens a new evaluation branch around [[LLM-as-a-Judge]], showing how facet-based rubrics, calibration, and continuous automated judging can replace noisy periodic annotation for natural-language search. The thirteenth source, [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]], adds a frontier-research conversation artifact that strengthens the vault's inference-efficiency and pretraining branches while seeding [[World Models]] as a new planning-and-prediction concept. The fourteenth and fifteenth sources, [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]] and [[Dwarkesh Patel - Eric Jang Flashcards]], deepen the RL branch with a worked AlphaGo example, seed [[Monte Carlo Tree Search]], and add [[Automated AI Research]] as a realistic agentic-research concept. The sixteenth and seventeenth sources, [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]] and [[Dwarkesh Patel - Reiner Pope Flashcards]], open a new hardware-and-compute branch around [[AI Accelerator Architecture]] and strengthen the vault's understanding of throughput, memory bandwidth, cluster topology, and AI-chip design tradeoffs. The eighteenth source, [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]], deepens the retrieval-and-agents branch by seeding [[Direct Corpus Interaction]] and reframing coding-agent retrieval as an interface-design problem rather than only an embeddings problem. The nineteenth and twentieth sources, [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] and [[Braintrust - How to evaluate multi-turn conversations]], deepen the evaluation branch by seeding [[Multi-Turn Evaluation]] and extending [[LLM-as-a-Judge]] from search relevance into full conversation scoring, simulation, and release-gated iteration. The twenty-first source, [[Fareed Khan - Train LLM From Scratch]], reinforces the code-first LLM branch by turning Pile-based pretraining, decoder-only Transformer construction, and single-GPU-oriented experimentation into one runnable repository.
+The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establishes the baseline operating model for future ingests. The second source, [[Kevin Murphy - Reinforcement Learning - An Overview]], seeds the first domain-specific branch of the wiki around [[Reinforcement Learning]]. The third source, [[ByteByteGo - Connecting LLMs to the Real World]], opens the **LLM tooling and agents** branch covering [[Tool Use and Function Calling]], [[Model Context Protocol]], and the [[Agentic Loop]]. The fourth source, [[Perplexity - Advancing Search-Augmented Language Models]], deepens the RL and agents area with a concrete production pipeline for [[Search-Augmented Language Models]] and introduces [[Reward Design for RL]] as a cross-cutting concept. The fifth source, [[Alpha Signal - The Return of Recursion]], adds a new branch around [[Latent-Space Reasoning]] and [[Recursive Architectures]], framing recursive computation as a complementary path to faster, lower-cost reasoning systems. The sixth source, [[The Pocket - PocketFlow Tutorial Docs]], adds a major tutorial library covering LLM internals, LLM training pipelines, reinforcement-learning methods, and mathematical foundations, and it seeds [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], and [[Model Quantization and Efficiency]]. The seventh source, [[Han Fang - PyTorch Practice]], reinforces that practical deep-learning branch with a compact interview-oriented PyTorch repo full of runnable from-scratch implementations for optimization, normalization, attention, training-loop mechanics, and model-efficiency techniques. The eighth source, [[Classic RAG vs Graph RAG vs Agentic RAG]], adds a retrieval-architecture taxonomy that unifies Classic, Graph, and Agentic RAG under the new hub page [[Retrieval-Augmented Generation]]. The ninth source, [[Universal LeetCode Templates]], expands the interview-preparation branch beyond ML implementation drills into reusable DSA problem-solving patterns, and it seeds [[Algorithm Templates for Interviews]] as a bridge between LeetCode-style template selection and [[Han Fang - PyTorch Practice]]. The tenth source, [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]], broadens the vault into production system design and ML-at-scale, seeding [[ML Systems at Scale]] and [[AI Agents in Production]] while connecting AI concepts to real architectures at Netflix, Snap, Amazon, Instacart, Grab, Figma, and DoorDash. The eleventh source, [[ByteByteGo - How Airtable Built the Search Layer]], deepens the retrieval branch with a concrete vector-search infrastructure case study around Milvus partitioning, HNSW latency/recall tradeoffs, and hot/cold memory tiering for Airtable's AI features. The twelfth source, [[DoorDash - LLM-as-a-Judge for Search Evaluation]], opens a new evaluation branch around [[LLM-as-a-Judge]], showing how facet-based rubrics, calibration, and continuous automated judging can replace noisy periodic annotation for natural-language search. The thirteenth source, [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]], adds a frontier-research conversation artifact that strengthens the vault's inference-efficiency and pretraining branches while seeding [[World Models]] as a new planning-and-prediction concept. The fourteenth and fifteenth sources, [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]] and [[Dwarkesh Patel - Eric Jang Flashcards]], deepen the RL branch with a worked AlphaGo example, seed [[Monte Carlo Tree Search]], and add [[Automated AI Research]] as a realistic agentic-research concept. The sixteenth and seventeenth sources, [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]] and [[Dwarkesh Patel - Reiner Pope Flashcards]], open a new hardware-and-compute branch around [[AI Accelerator Architecture]] and strengthen the vault's understanding of throughput, memory bandwidth, cluster topology, and AI-chip design tradeoffs. The eighteenth source, [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]], deepens the retrieval-and-agents branch by seeding [[Direct Corpus Interaction]] and reframing coding-agent retrieval as an interface-design problem rather than only an embeddings problem. The nineteenth and twentieth sources, [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] and [[Braintrust - How to evaluate multi-turn conversations]], deepen the evaluation branch by seeding [[Multi-Turn Evaluation]] and extending [[LLM-as-a-Judge]] from search relevance into full conversation scoring, simulation, and release-gated iteration. The twenty-first source, [[Fareed Khan - Train LLM From Scratch]], reinforces the code-first LLM branch by turning Pile-based pretraining, decoder-only Transformer construction, and single-GPU-oriented experimentation into one runnable repository. The twenty-second and twenty-third sources, [[Liquid AI - LFM2.5-8B-A1B]] and [[NVIDIA - LocateAnything]], extend the vault into sparse on-device assistants and vision-language grounding, seeding [[Mixture of Experts]] and [[Vision-Language Grounding]] as new concept branches.
 
 ## Key pages
 
@@ -59,9 +61,11 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[LLM Training Pipeline]] - pretraining, SFT, RLHF, DPO, and LoRA as one connected map
 - [[Neural Network Fundamentals]] - gradient descent, backpropagation, PyTorch, and Adam as the substrate under higher-level model pages
 - [[Algorithm Templates for Interviews]] - template-selection map connecting classic DSA interview patterns with ML engineering preparation
-- [[Model Quantization and Efficiency]] - quantization, KV cache, and LoRA as deployment/adaptation efficiency levers
+- [[Model Quantization and Efficiency]] - quantization, KV cache, LoRA, and sparse activation as deployment/adaptation efficiency levers
+- [[Mixture of Experts]] - sparse architectures that trade total capacity against lower active compute per token
 - [[AI Accelerator Architecture]] - logic gates, systolic arrays, memory hierarchy, and cluster-scale compute/communication tradeoffs
 - [[World Models]] - learned predictive models for planning, control, and embodied intelligence
+- [[Vision-Language Grounding]] - text-conditioned spatial localization across objects, GUIs, documents, and scenes
 - [[Monte Carlo Tree Search]] - search-time planning plus dense policy targets from AlphaGo-style supervision
 - [[Automated AI Research]] - autoresearch loops, experiment execution, and the remaining bottlenecks in research agents
 - [[Tool Use and Function Calling]] - how LLMs request real-world actions
@@ -86,7 +90,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[ML Systems at Scale]] synthesizes shared serving patterns from Netflix, Snap, Amazon, Instacart, and now Airtable's semantic-search infrastructure.
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]] adds a production evaluation case study for natural-language search.
 - [[LLM-as-a-Judge]] captures the calibrated-LLM-evaluator pattern as a durable concept.
-- [[AI Agents in Production]] captures how Grab and Figma operationalize agents for data engineering and design↔code workflows.
+- [[AI Agents in Production]] captures how Grab and Figma operationalize agents for data engineering and design↔code workflows, and how newer sources extend that frame to local/private and perceptual agents.
 
 ## Gaps
 
@@ -124,7 +128,9 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]
+- [[Mixture of Experts]]
 - [[AI Accelerator Architecture]]
+- [[Vision-Language Grounding]]
 - [[Monte Carlo Tree Search]]
 - [[Automated AI Research]]
 - [[World Models]]
@@ -138,6 +144,8 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
 - [[Braintrust - How to evaluate multi-turn conversations]]
+- [[Liquid AI - LFM2.5-8B-A1B]]
+- [[NVIDIA - LocateAnything]]
 - [[Fareed Khan - Train LLM From Scratch]]
 - [[Han Fang - PyTorch Practice]]
 - [[Universal LeetCode Templates]]
@@ -146,10 +154,11 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 - [[Fareed Khan]]
 - [[Eric Jang]]
 - [[Reiner Pope]]
+- [[Liquid AI]]
+- [[NVIDIA]]
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
 - [[Alpha Signal - The Return of Recursion]]
-- [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
 - [[Alpha Signal]]
 - [[Perplexity]]
 - [[Braintrust]]

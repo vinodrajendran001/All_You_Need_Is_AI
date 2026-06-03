@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-02
+updated: 2026-06-03
 tags:
   - log
 source_ids:
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
+  - src-2026-06-03-fareed-khan-train-llm-from-scratch
 status: active
 ---
 
@@ -247,3 +248,10 @@ Append-only operational history for the wiki.
 - Found no structural defects: no broken links, no orphans, no missing related-pages sections, no frontmatter gaps, and no index omissions.
 - Re-checked the active gap statements in [[AI Knowledge Base Overview]] and left them unchanged because they remain accurate.
 - Filed [[2026-06-02 Lint Pass 2]] and linked it from the index.
+
+## [2026-06-03] ingest | Fareed Khan - Train LLM From Scratch
+
+- Captured the GitHub repository as `knowledge-base/raw/sources/2026-06-03 Fareed Khan - Train LLM From Scratch.md` and saved a commit-pinned README snapshot under `knowledge-base/raw/assets/`.
+- Created [[Fareed Khan - Train LLM From Scratch]] as the source summary page.
+- Seeded [[Fareed Khan]].
+- Updated [[Transformer Architecture]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], [[AI Knowledge Base Overview]], and the index with the new code-first LLM training source.

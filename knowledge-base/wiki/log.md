@@ -264,3 +264,10 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/LocateAnything.md` into [[NVIDIA - LocateAnything]].
 - Seeded [[Mixture of Experts]], [[Vision-Language Grounding]], [[Liquid AI]], and [[NVIDIA]].
 - Updated [[Model Quantization and Efficiency]], [[AI Accelerator Architecture]], [[AI Agents in Production]], [[AI Knowledge Base Overview]], and the index to integrate the new sparse-model and multimodal-grounding branches.
+
+## [2026-06-03] lint | Full wiki lint pass
+
+- Audited 83 markdown wiki pages for broken wikilinks, relative links, orphan pages, related-pages coverage, frontmatter conformance, thin pages, index completeness, and staleness risk.
+- Found no structural defects: no broken links, no orphans, no missing related-pages sections, no frontmatter gaps, and no index omissions among substantive pages.
+- Re-checked the active gap statements in [[AI Knowledge Base Overview]] after the Liquid AI and NVIDIA ingests and left them unchanged because they remain accurate.
+- Filed [[2026-06-03 Lint Pass]] and linked it from the index.

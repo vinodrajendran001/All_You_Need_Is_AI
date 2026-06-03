@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-02
+updated: 2026-06-03
 tags:
   - concept
   - llm
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
 status: active
 ---
 
@@ -36,10 +37,12 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - The YC Paper Club session broadens this page from storage/caching tricks to **algorithmic inference efficiency**. Its opening talk argues that inference itself is now a frontier research problem, using speculative decoding as an example of latency reduction beyond just quantization or KV-cache reuse.
 - The Reiner Pope flashcards make the deployment-side bound explicit: per-token latency is the **max of compute time and memory time**. Batch size amortizes weight loads until either arithmetic or KV-cache fetch dominates, and long-context serving eventually crosses into a memory-bound regime that shows up even in API pricing.
 - The `lora` tutorial addresses **adaptation efficiency** rather than inference speed. It freezes the large pretrained weight matrix and learns a low-rank update `BA`, which dramatically reduces the number of trainable parameters needed during fine-tuning.
+- The Liquid AI LFM2.5 source adds **sparse activation and tokenizer efficiency** as additional levers. An MoE can keep total capacity large while reducing active compute per token, and a larger multilingual tokenizer can improve chars/token enough to lower practical context and throughput costs without changing the rest of the model.
 - These techniques are complementary rather than competing:
   - **Quantization** shrinks stored model state.
   - **KV cache** speeds incremental generation by reusing intermediate attention state.
   - **LoRA** lowers the cost of changing the model during post-training.
+  - **MoE / sparse activation** lowers the amount of the network that is active on each decoding step.
 - Another useful synthesis point is that efficiency can happen at different moments in the lifecycle:
   - **Deployment-time efficiency** — quantization and cache-aware inference
   - **Post-training efficiency** — LoRA and other parameter-efficient adaptation methods
@@ -59,6 +62,8 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
+- [[Liquid AI - LFM2.5-8B-A1B]]
+- [[Mixture of Experts]]
 - [[AI Accelerator Architecture]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]

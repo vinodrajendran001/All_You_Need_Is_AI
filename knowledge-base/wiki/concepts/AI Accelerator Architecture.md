@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-06-03
 tags:
   - concept
   - hardware
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
 status: active
 ---
 
@@ -41,6 +42,7 @@ Model capability is inseparable from hardware structure. Accelerator design dete
   - Batch size amortizes weight fetches until compute or KV-cache fetch dominates.
   - MoE layers fit naturally within a rack because expert routing is all-to-all and NVLink is the right topology for that boundary.
   - Pipeline parallelism can relieve weight placement pressure but introduces bubbles, model-architecture constraints, and weaker-than-expected relief for KV-heavy long-context workloads.
+- The Liquid AI LFM2.5 source adds a deployment-facing MoE view: sparse models separate **total parameters** from **active parameters**, which can make explicit reasoning affordable on laptops and phones. But this only works if runtimes and kernels efficiently handle routing, memory layout, and sparse execution across frameworks such as `llama.cpp`, MLX, vLLM, and SGLang.
 
 ## Open questions
 
@@ -52,6 +54,8 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
+- [[Liquid AI - LFM2.5-8B-A1B]]
+- [[Mixture of Experts]]
 - [[Model Quantization and Efficiency]]
 - [[ML Systems at Scale]]
 - [[LLM Training Pipeline]]

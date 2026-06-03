@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-02
+updated: 2026-06-03
 tags:
   - concept
   - ai-agents
@@ -11,6 +11,8 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
+  - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
+  - src-2026-06-03-nvidia-locateanything
 status: active
 ---
 
@@ -61,6 +63,15 @@ Production agents usually need memory outside the model weights.
 
 In both cases, the agent is effective because the surrounding system remembers more than the immediate prompt.
 
+## Local and perceptual agents widen the production surface
+
+The newer sources show that "production agent" no longer means only a cloud workflow over text tools.
+
+- [[Liquid AI - LFM2.5-8B-A1B]] shows a **local/private deployment path**: a sparse model can run an interactive tool loop with dozens of tools and many MCP servers on a single laptop, which makes inference speed and model architecture part of the product surface.
+- [[NVIDIA - LocateAnything]] shows a **perceptual deployment path**: GUI agents, document agents, and embodied systems need fast and precise grounding over images and screens, so spatial decoding quality becomes as important as text generation quality.
+
+This broadens the agent-design problem. Production agents need not only reasoning and tools, but sometimes also local privacy guarantees and high-fidelity spatial interfaces to the world they act on.
+
 ## The main lesson
 
 The common pattern is not “let the model do everything.” It is **design an environment where the model can do a few high-value things reliably**. That means specialized agents, narrow tools, token-aware context management, human review, and interfaces that encode domain structure instead of dumping raw data.
@@ -73,6 +84,10 @@ The common pattern is not “let the model do everything.” It is **design an e
 - [[Direct Corpus Interaction]]
 - [[Retrieval-Augmented Generation]]
 - [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
+- [[Liquid AI - LFM2.5-8B-A1B]]
+- [[NVIDIA - LocateAnything]]
+- [[Mixture of Experts]]
+- [[Vision-Language Grounding]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]

@@ -7,6 +7,7 @@ source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-04-dss-grpo-cot-compression
 status: active
 ---
 
@@ -27,6 +28,7 @@ In this vault, GRPO first appeared as the optimisation method behind Perplexity'
 - Convert those scores into relative advantages inside the group, so the policy learns from better-than-peer rollouts.
 - Use importance-sampling corrections to reduce training-inference mismatch during optimisation.
 - In the Qualcomm paper, apply the same relative-update idea to a different reward shape: binary answer correctness multiplied by a soft budget-compliance term over total response length.
+- [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] shows that GRPO can also be **segmented**: relative advantages need not be computed only for a whole completion. They can be separated across think and answer spans, then routed with token masks so compression pressure does not leak across the boundary.
 
 ## Broader context
 
@@ -42,5 +44,6 @@ The PocketFlow tutorials on policy gradients and RLHF make the surrounding optim
 - [[Reward Design for RL]]
 - [[LLM Training Pipeline]]
 - [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 - [[Reinforcement Learning]]
 - [[AI Knowledge Base Overview]]

@@ -15,6 +15,13 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-04-progressive-thought-encoding
+  - src-2026-06-04-pace-efficient-reasoning
+  - src-2026-06-04-extreme-ratio-cot-compression
+  - src-2026-06-04-reasoncache
+  - src-2026-06-04-difficulty-aware-entropy-regularization
+  - src-2026-06-04-conpress
+  - src-2026-06-04-dss-grpo-cot-compression
 status: active
 ---
 
@@ -43,6 +50,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - **LoRA** belongs in this pipeline as an efficiency layer rather than a separate learning objective. It changes *how* post-training updates are parameterized by freezing the large base weights and learning a low-rank update, making SFT or preference tuning feasible on smaller hardware budgets.
 - [[Efficient Reasoning on the Edge]] adds a deployment-aware post-training recipe for small reasoning models: SFT on high-quality reasoning traces first unlocks explicit reasoning, then GRPO-based RL applies a budget-aware reward to compress those traces, and separate switcher / verifier heads shape how the model behaves at inference time. This is a useful reminder that post-training objectives may target **shorter reasoning and hardware viability**, not only generic helpfulness or preference alignment.
 - The same paper also weakens the clean separation between "training" and "deployment." Its Quantization-Aware Modular Reasoning setup trains reasoning adapters directly on top of a quantized base model, suggesting that quantization can be part of the post-training recipe itself rather than only a final export step.
+- The newer efficient-reasoning batch makes this even clearer: a growing post-training subfield now optimizes **how much visible reasoning a model emits**. Some approaches use difficulty-aware RL penalties (PACE, CEEH, DSS-GRPO, the Qualcomm paper), some use compressed supervision plus ratio-aware optimisation (Extra-CoT), some exploit self-supervised contextual pressure (ConPress), and some replace long traces with fixed-size vectors or KV caches (Progressive Thought Encoding, ReasonCACHE). See [[Reasoning Compression]].
 - The policy-gradient material in `rl-policy.md` also helps place RLHF historically. PPO is not a mysterious LLM-only trick; it sits on top of REINFORCE, baselines, actor-critic methods, and KL-regularized policy optimization.
 - A good mental model is:
   - **Pretraining** teaches language and latent world structure.
@@ -75,3 +83,4 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Search-Augmented Language Models]]
 - [[Efficient Reasoning on the Edge]]
 - [[On-Device Reasoning]]
+- [[Reasoning Compression]]

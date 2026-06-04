@@ -11,6 +11,13 @@ tags:
 source_ids:
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-04-progressive-thought-encoding
+  - src-2026-06-04-pace-efficient-reasoning
+  - src-2026-06-04-extreme-ratio-cot-compression
+  - src-2026-06-04-reasoncache
+  - src-2026-06-04-difficulty-aware-entropy-regularization
+  - src-2026-06-04-conpress
+  - src-2026-06-04-dss-grpo-cot-compression
 status: active
 ---
 
@@ -38,6 +45,7 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - The branch highlights two complementary strategies:
   - **Sparse activation** (Liquid AI) reduces active compute per token.
   - **Modular reasoning adapters plus routing** (Qualcomm) reduce how often explicit reasoning mode is invoked and how verbose it becomes when active.
+- The newer compression papers broaden this page beyond explicitly mobile deployment. They suggest that token budget, cache size, and visible chain-of-thought length are becoming general optimisation targets across reasoning research, with on-device deployment acting as one especially demanding case. See [[Reasoning Compression]].
 - A deeper lesson is that explicit reasoning itself is a deployment liability. The system must actively manage when to think, how long to think, and whether more test-time compute is worth the extra memory and latency.
 
 ## Open questions
@@ -53,6 +61,7 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Model Quantization and Efficiency]]
 - [[LLM Training Pipeline]]
 - [[AI Agents in Production]]
+- [[Reasoning Compression]]
 - [[Mixture of Experts]]
 - [[Qualcomm AI Research]]
 - [[AI Knowledge Base Overview]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-03
+updated: 2026-06-04
 tags:
   - concept
   - llm
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
+  - src-2026-06-04-efficient-reasoning-edge
 status: active
 ---
 
@@ -40,6 +41,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
   - **DPO**: use the same style of preference data, but skip the explicit reward-model-then-RL loop and directly adjust the policy through relative likelihoods of chosen versus rejected responses against a reference model.
 - The collection's most durable alignment insight is economic as much as algorithmic: **judging is easier than creating**. Preference data scales better than expert-written ideal responses, which is why reward-modeling, PPO-style RL, and DPO all become attractive after SFT.
 - **LoRA** belongs in this pipeline as an efficiency layer rather than a separate learning objective. It changes *how* post-training updates are parameterized by freezing the large base weights and learning a low-rank update, making SFT or preference tuning feasible on smaller hardware budgets.
+- [[Efficient Reasoning on the Edge]] adds a deployment-aware post-training recipe for small reasoning models: SFT on high-quality reasoning traces first unlocks explicit reasoning, then GRPO-based RL applies a budget-aware reward to compress those traces, and separate switcher / verifier heads shape how the model behaves at inference time. This is a useful reminder that post-training objectives may target **shorter reasoning and hardware viability**, not only generic helpfulness or preference alignment.
+- The same paper also weakens the clean separation between "training" and "deployment." Its Quantization-Aware Modular Reasoning setup trains reasoning adapters directly on top of a quantized base model, suggesting that quantization can be part of the post-training recipe itself rather than only a final export step.
 - The policy-gradient material in `rl-policy.md` also helps place RLHF historically. PPO is not a mysterious LLM-only trick; it sits on top of REINFORCE, baselines, actor-critic methods, and KL-regularized policy optimization.
 - A good mental model is:
   - **Pretraining** teaches language and latent world structure.
@@ -70,3 +73,5 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Group Relative Policy Optimization]]
 - [[Reward Design for RL]]
 - [[Search-Augmented Language Models]]
+- [[Efficient Reasoning on the Edge]]
+- [[On-Device Reasoning]]

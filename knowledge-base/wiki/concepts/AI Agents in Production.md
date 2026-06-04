@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-03
+updated: 2026-06-04
 tags:
   - concept
   - ai-agents
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-03-nvidia-locateanything
+  - src-2026-06-04-efficient-reasoning-edge
 status: active
 ---
 
@@ -69,6 +70,7 @@ The newer sources show that "production agent" no longer means only a cloud work
 
 - [[Liquid AI - LFM2.5-8B-A1B]] shows a **local/private deployment path**: a sparse model can run an interactive tool loop with dozens of tools and many MCP servers on a single laptop, which makes inference speed and model architecture part of the product surface.
 - [[NVIDIA - LocateAnything]] shows a **perceptual deployment path**: GUI agents, document agents, and embodied systems need fast and precise grounding over images and screens, so spatial decoding quality becomes as important as text generation quality.
+- [[Efficient Reasoning on the Edge]] adds a **resource-aware local reasoning path**: on-device agents need active control over whether to reason, how long to reason, and how much KV state they can afford. Switcher routing, budget forcing, KV-cache reuse, and verifier-guided parallel decoding become orchestration primitives rather than only model-level tricks.
 
 This broadens the agent-design problem. Production agents need not only reasoning and tools, but sometimes also local privacy guarantees and high-fidelity spatial interfaces to the world they act on.
 
@@ -85,9 +87,12 @@ The common pattern is not “let the model do everything.” It is **design an e
 - [[Retrieval-Augmented Generation]]
 - [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
+- [[Efficient Reasoning on the Edge]]
 - [[NVIDIA - LocateAnything]]
 - [[Mixture of Experts]]
+- [[On-Device Reasoning]]
 - [[Vision-Language Grounding]]
+- [[Qualcomm AI Research]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]

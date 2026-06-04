@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-03
+updated: 2026-06-04
 tags:
   - concept
   - llm
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
+  - src-2026-06-04-efficient-reasoning-edge
 status: active
 ---
 
@@ -38,6 +39,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - The Reiner Pope flashcards make the deployment-side bound explicit: per-token latency is the **max of compute time and memory time**. Batch size amortizes weight loads until either arithmetic or KV-cache fetch dominates, and long-context serving eventually crosses into a memory-bound regime that shows up even in API pricing.
 - The `lora` tutorial addresses **adaptation efficiency** rather than inference speed. It freezes the large pretrained weight matrix and learns a low-rank update `BA`, which dramatically reduces the number of trainable parameters needed during fine-tuning.
 - The Liquid AI LFM2.5 source adds **sparse activation and tokenizer efficiency** as additional levers. An MoE can keep total capacity large while reducing active compute per token, and a larger multilingual tokenizer can improve chars/token enough to lower practical context and throughput costs without changing the rest of the model.
+- [[Efficient Reasoning on the Edge]] turns efficiency into a full reasoning stack rather than an isolated quantization recipe. Its main lesson is that edge viability can require co-design across LoRA adapters, switcher routing, budget-forced RL, KV-cache reuse, parallel test-time scaling, and a quantization setup such as **W4A16KV8** plus Quantization-Aware Modular Reasoning (QAMR).
 - These techniques are complementary rather than competing:
   - **Quantization** shrinks stored model state.
   - **KV cache** speeds incremental generation by reusing intermediate attention state.
@@ -46,6 +48,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - Another useful synthesis point is that efficiency can happen at different moments in the lifecycle:
   - **Deployment-time efficiency** — quantization and cache-aware inference
   - **Post-training efficiency** — LoRA and other parameter-efficient adaptation methods
+- The Qualcomm paper also sharpens the memory-bound view of reasoning: on edge devices, **reasoning tokens themselves are a systems cost** because they enlarge the KV cache and extend the memory-bound decoding phase. Reducing verbosity can therefore matter as much as lowering bitwidth.
 - The collection also makes clear that efficiency always trades against something: accuracy, implementation complexity, memory overhead for caches, or the representational limits of low-rank updates.
 - [[Han Fang - PyTorch Practice]] adds a more operations-level layer to this page: it demonstrates gradient accumulation by scaling micro-batch loss, sketches checkpointing as a memory/computation trade-off, shows CUDA mixed-precision training with `autocast` and `GradScaler`, and applies dynamic `qint8` quantization as a compact inference-time optimization.
 
@@ -63,7 +66,9 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
+- [[Efficient Reasoning on the Edge]]
 - [[Mixture of Experts]]
+- [[On-Device Reasoning]]
 - [[AI Accelerator Architecture]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]

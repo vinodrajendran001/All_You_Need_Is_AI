@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-03
+updated: 2026-06-04
 tags:
   - log
 source_ids:
@@ -29,6 +29,13 @@ source_ids:
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-03-nvidia-locateanything
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-04-progressive-thought-encoding
+  - src-2026-06-04-pace-efficient-reasoning
+  - src-2026-06-04-extreme-ratio-cot-compression
+  - src-2026-06-04-reasoncache
+  - src-2026-06-04-difficulty-aware-entropy-regularization
+  - src-2026-06-04-conpress
+  - src-2026-06-04-dss-grpo-cot-compression
 status: active
 ---
 
@@ -279,3 +286,10 @@ Append-only operational history for the wiki.
 - Created [[Efficient Reasoning on the Edge]] as the source summary page.
 - Seeded [[On-Device Reasoning]] and [[Qualcomm AI Research]].
 - Updated [[Model Quantization and Efficiency]], [[LLM Training Pipeline]], [[Reward Design for RL]], [[Group Relative Policy Optimization]], [[AI Agents in Production]], [[AI Knowledge Base Overview]], and the index to integrate the new on-device reasoning branch.
+
+## [2026-06-04] ingest | Efficient reasoning compression batch
+
+- Downloaded seven arXiv PDFs into `knowledge-base/raw/sources/` and created paired raw-source notes for [[Training Large Reasoning Models Efficiently via Progressive Thought Encoding]], [[PACE - Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning]], [[Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression]], [[ReasonCACHE - Teaching LLMs To Reason Without Weight Updates]], [[Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning]], [[ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure]], and [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]].
+- Created the seven corresponding source summary pages under `knowledge-base/wiki/sources/`.
+- Seeded [[Reasoning Compression]] as a new concept hub for CoT shortening, state-space substitution, and difficulty-aware reasoning-budget control.
+- Updated [[LLM Training Pipeline]], [[Model Quantization and Efficiency]], [[On-Device Reasoning]], [[Reward Design for RL]], [[Group Relative Policy Optimization]], [[Latent-Space Reasoning]], [[Efficient Reasoning on the Edge]], [[AI Knowledge Base Overview]], and the index to integrate the new reasoning-compression branch.

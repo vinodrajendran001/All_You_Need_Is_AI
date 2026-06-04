@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-03
+updated: 2026-06-04
 tags:
   - index
 source_ids:
@@ -29,6 +29,13 @@ source_ids:
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-03-nvidia-locateanything
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-04-progressive-thought-encoding
+  - src-2026-06-04-pace-efficient-reasoning
+  - src-2026-06-04-extreme-ratio-cot-compression
+  - src-2026-06-04-reasoncache
+  - src-2026-06-04-difficulty-aware-entropy-regularization
+  - src-2026-06-04-conpress
+  - src-2026-06-04-dss-grpo-cot-compression
 status: active
 ---
 
@@ -53,6 +60,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
 - [[Model Quantization and Efficiency]] - Quantization, KV cache, LoRA, and sparse activation as core efficiency levers.
 - [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
+- [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
@@ -119,6 +127,13 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Liquid AI - LFM2.5-8B-A1B]] - On-device MoE model emphasizing sparse inference, long context, multilingual tokenization, and local tool calling.
 - [[NVIDIA - LocateAnything]] - Parallel Box Decoding framework for fast, high-quality visual grounding and detection.
 - [[Efficient Reasoning on the Edge]] - End-to-end on-device reasoning pipeline with LoRA adapters, budget forcing, switcher routing, verifier-guided parallel decoding, and 4-bit deployment.
+- [[Training Large Reasoning Models Efficiently via Progressive Thought Encoding]] - Progressive vector encoding for bounded-cache reasoning training and inference.
+- [[PACE - Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning]] - Prefix-protected and difficulty-aware CoT compression.
+- [[Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression]] - Extreme-ratio CoT compression with mixed-ratio SFT and hierarchical optimisation.
+- [[ReasonCACHE - Teaching LLMs To Reason Without Weight Updates]] - Prefix-tuned fixed KV caches that teach reasoning without conventional weight updates.
+- [[Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning]] - Difficulty-aware entropy regularisation for shorter but still exploratory reasoning.
+- [[ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure]] - Self-supervised reasoning compression learned from multi-question prompts.
+- [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] - Segment-wise GRPO that compresses thinking without damaging the final answer.
 
 ## Queries
 

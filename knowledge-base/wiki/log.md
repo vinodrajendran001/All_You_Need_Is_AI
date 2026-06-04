@@ -293,3 +293,9 @@ Append-only operational history for the wiki.
 - Created the seven corresponding source summary pages under `knowledge-base/wiki/sources/`.
 - Seeded [[Reasoning Compression]] as a new concept hub for CoT shortening, state-space substitution, and difficulty-aware reasoning-budget control.
 - Updated [[LLM Training Pipeline]], [[Model Quantization and Efficiency]], [[On-Device Reasoning]], [[Reward Design for RL]], [[Group Relative Policy Optimization]], [[Latent-Space Reasoning]], [[Efficient Reasoning on the Edge]], [[AI Knowledge Base Overview]], and the index to integrate the new reasoning-compression branch.
+
+## [2026-06-04] lint | Full wiki lint pass
+
+- Audited all 95 wiki pages for broken wikilinks, broken relative links, missing frontmatter, missing type/updated fields, missing Related pages sections, thin pages, orphans, and index coverage.
+- Found no structural defects. The wiki is healthy after the seven-paper reasoning-compression batch.
+- Filed [[2026-06-04 Lint Pass]] and linked it from the index.

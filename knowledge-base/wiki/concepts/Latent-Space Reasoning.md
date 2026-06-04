@@ -1,13 +1,15 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-04
 tags:
   - concept
   - reasoning
   - architecture
 source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion
+  - src-2026-06-04-progressive-thought-encoding
+  - src-2026-06-04-reasoncache
 status: active
 ---
 
@@ -35,9 +37,22 @@ In a standard [[Agentic Loop]] or chain-of-thought workflow, the model often ext
 
 Making latent recursive systems work well still depends on training, optimization, and evaluation choices that overlap with [[Reinforcement Learning]] and related post-training methods. Even when these models are not trained with RL directly, the broader problem is similar: how to allocate computation over multiple steps, assign credit across reasoning trajectories, and optimize for accuracy under latency and cost constraints.
 
+## Compression-oriented bridges
+
+The newer efficient-reasoning batch adds two adjacent examples that are not full recursive latent reasoners but still push in the same direction:
+
+- [[Training Large Reasoning Models Efficiently via Progressive Thought Encoding]] progressively compresses intermediate reasoning into fixed-size vectors so RL training and inference can run under bounded cache budgets.
+- [[ReasonCACHE - Teaching LLMs To Reason Without Weight Updates]] distills demonstrations into a reusable key-value cache, letting the model learn reasoning skills without storing every step as long visible text or modifying the base weights in the usual way.
+
+These methods reinforce the same general lesson: useful reasoning state does not always need to survive as a long explicit token trace.
+
 ## Related pages
 
 - [[Recursive Architectures]]
 - [[Agentic Loop]]
 - [[Reinforcement Learning]]
+- [[Reasoning Compression]]
+- [[On-Device Reasoning]]
+- [[Training Large Reasoning Models Efficiently via Progressive Thought Encoding]]
+- [[ReasonCACHE - Teaching LLMs To Reason Without Weight Updates]]
 - [[Alpha Signal - The Return of Recursion]]

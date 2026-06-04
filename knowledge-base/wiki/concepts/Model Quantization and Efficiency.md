@@ -16,6 +16,13 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-04-progressive-thought-encoding
+  - src-2026-06-04-pace-efficient-reasoning
+  - src-2026-06-04-extreme-ratio-cot-compression
+  - src-2026-06-04-reasoncache
+  - src-2026-06-04-difficulty-aware-entropy-regularization
+  - src-2026-06-04-conpress
+  - src-2026-06-04-dss-grpo-cot-compression
 status: active
 ---
 
@@ -40,11 +47,13 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - The `lora` tutorial addresses **adaptation efficiency** rather than inference speed. It freezes the large pretrained weight matrix and learns a low-rank update `BA`, which dramatically reduces the number of trainable parameters needed during fine-tuning.
 - The Liquid AI LFM2.5 source adds **sparse activation and tokenizer efficiency** as additional levers. An MoE can keep total capacity large while reducing active compute per token, and a larger multilingual tokenizer can improve chars/token enough to lower practical context and throughput costs without changing the rest of the model.
 - [[Efficient Reasoning on the Edge]] turns efficiency into a full reasoning stack rather than an isolated quantization recipe. Its main lesson is that edge viability can require co-design across LoRA adapters, switcher routing, budget-forced RL, KV-cache reuse, parallel test-time scaling, and a quantization setup such as **W4A16KV8** plus Quantization-Aware Modular Reasoning (QAMR).
+- The new compression batch adds **reasoning-trace control** as another efficiency lever. Instead of only shrinking weights, activations, or active parameters, these papers shrink or replace the visible reasoning process itself: PACE, Extra-CoT, CEEH, DSS-GRPO, and ConPress shorten explicit CoT traces, while Progressive Thought Encoding and ReasonCACHE replace long token traces with fixed-size vector or KV state. See [[Reasoning Compression]].
 - These techniques are complementary rather than competing:
   - **Quantization** shrinks stored model state.
   - **KV cache** speeds incremental generation by reusing intermediate attention state.
   - **LoRA** lowers the cost of changing the model during post-training.
   - **MoE / sparse activation** lowers the amount of the network that is active on each decoding step.
+  - **Reasoning compression / fixed-state reasoning** reduces or replaces explicit chain-of-thought so decoding spends fewer tokens and less memory.
 - Another useful synthesis point is that efficiency can happen at different moments in the lifecycle:
   - **Deployment-time efficiency** — quantization and cache-aware inference
   - **Post-training efficiency** — LoRA and other parameter-efficient adaptation methods
@@ -69,6 +78,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Efficient Reasoning on the Edge]]
 - [[Mixture of Experts]]
 - [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 - [[AI Accelerator Architecture]]
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]

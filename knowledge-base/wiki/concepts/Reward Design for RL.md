@@ -7,6 +7,10 @@ source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-04-pace-efficient-reasoning
+  - src-2026-06-04-extreme-ratio-cot-compression
+  - src-2026-06-04-difficulty-aware-entropy-regularization
+  - src-2026-06-04-dss-grpo-cot-compression
 status: active
 ---
 
@@ -54,6 +58,15 @@ where `R_budget(L)` is a soft barrier over total generation length rather than a
 - **Soft barriers beat brittle caps during training** — the paper keeps a tolerance window around the requested budget rather than forcing exact token matching.
 - **KL regularization becomes a practical control knob** — in their GRPO setup, the KL coefficient materially affects the accuracy-versus-compression tradeoff.
 
+## Difficulty-aware and segment-aware compression rewards
+
+The newer efficient-reasoning papers broaden this page from one budget-forcing recipe into a small design space for reward shaping:
+
+- [[PACE - Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning]] argues that compression pressure should depend on **both prompt difficulty and reasoning position**, so crucial prefixes are not over-compressed.
+- [[Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning]] shows that shorter-is-better rewards can collapse exploration too early, motivating difficulty-aware entropy regularization plus a shortest-correct-response anchor.
+- [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] separates **think** and **answer** returns, so compression rewards apply only to reasoning tokens and do not accidentally damage the final answer.
+- [[Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression]] pushes farther into hierarchical low-budget optimisation, showing that compression rewards can be structured around achieving correctness at more extreme ratios rather than only trimming average length.
+
 ## Rubric-based rewards
 
 For non-verifiable tasks (rewriting, planning, open-ended chat), deployment requirements are converted into **rubrics**: atomic, objective, necessary checks. A pass@4 calibration filter ensures rubric sets are neither too easy nor too hard.
@@ -76,4 +89,5 @@ Different data types produce different gradient magnitudes. Perplexity uses a 90
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Efficient Reasoning on the Edge]]
 - [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 - [[Agentic Loop]]

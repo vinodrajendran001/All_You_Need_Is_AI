@@ -48,6 +48,7 @@ This source deepens the vault's local/private deployment branch by showing how r
 ## Affected pages
 
 - [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 - [[Model Quantization and Efficiency]]
 - [[LLM Training Pipeline]]
 - [[Reward Design for RL]]

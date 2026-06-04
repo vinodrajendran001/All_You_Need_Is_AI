@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-18
+updated: 2026-06-04
 tags: [rl, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-pocketflow-tutorial-docs
+  - src-2026-06-04-efficient-reasoning-edge
 status: active
 ---
 
@@ -38,6 +39,21 @@ Rather than penalising tool calls or length in absolute terms (which suppresses 
 - **Tool-call penalty** — excess calls beyond a baseline sampled from the group's "winner set" (correct rollouts).
 - **Length penalty** — penalises verbose winners and terse losers, anchored to group-specific length baselines from correct-and-preferred rollouts.
 
+## Budget forcing for concise reasoning
+
+[[Efficient Reasoning on the Edge]] shows a different reward-design pattern for reasoning models deployed on mobile hardware. There, the problem is not tool overuse; it is verbose chain-of-thought that bloats latency and KV-cache footprint. The paper uses a multiplicative objective:
+
+```
+R(y, x) = R_accuracy(y, x) × R_budget(L)
+```
+
+where `R_budget(L)` is a soft barrier over total generation length rather than a simple additive penalty.
+
+- **Correctness stays primary** — the model does not get "style credit" for being short if the final answer is wrong.
+- **Total-length penalties matter** — penalizing only explicit reasoning tokens invites reward hacking, because the model can close the reasoning block early and continue rambling in the final answer.
+- **Soft barriers beat brittle caps during training** — the paper keeps a tolerance window around the requested budget rather than forcing exact token matching.
+- **KL regularization becomes a practical control knob** — in their GRPO setup, the KL coefficient materially affects the accuracy-versus-compression tradeoff.
+
 ## Rubric-based rewards
 
 For non-verifiable tasks (rewriting, planning, open-ended chat), deployment requirements are converted into **rubrics**: atomic, objective, necessary checks. A pass@4 calibration filter ensures rubric sets are neither too easy nor too hard.
@@ -58,4 +74,6 @@ Different data types produce different gradient magnitudes. Perplexity uses a 90
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[LLM Training Pipeline]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[Efficient Reasoning on the Edge]]
+- [[On-Device Reasoning]]
 - [[Agentic Loop]]

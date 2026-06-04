@@ -28,6 +28,7 @@ source_ids:
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-03-nvidia-locateanything
+  - src-2026-06-04-efficient-reasoning-edge
 status: active
 ---
 
@@ -271,3 +272,10 @@ Append-only operational history for the wiki.
 - Found no structural defects: no broken links, no orphans, no missing related-pages sections, no frontmatter gaps, and no index omissions among substantive pages.
 - Re-checked the active gap statements in [[AI Knowledge Base Overview]] after the Liquid AI and NVIDIA ingests and left them unchanged because they remain accurate.
 - Filed [[2026-06-03 Lint Pass]] and linked it from the index.
+
+## [2026-06-04] ingest | Efficient Reasoning on the Edge
+
+- Copied the user-provided PDF into `knowledge-base/raw/sources/2026-06-04 Yelysei Bondarenko et al - Efficient Reasoning on the Edge.pdf` and created the paired raw-source note with arXiv metadata, hash, and local PDF reference.
+- Created [[Efficient Reasoning on the Edge]] as the source summary page.
+- Seeded [[On-Device Reasoning]] and [[Qualcomm AI Research]].
+- Updated [[Model Quantization and Efficiency]], [[LLM Training Pipeline]], [[Reward Design for RL]], [[Group Relative Policy Optimization]], [[AI Agents in Production]], [[AI Knowledge Base Overview]], and the index to integrate the new on-device reasoning branch.

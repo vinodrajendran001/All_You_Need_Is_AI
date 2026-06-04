@@ -28,6 +28,7 @@ source_ids:
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-03-nvidia-locateanything
+  - src-2026-06-04-efficient-reasoning-edge
 status: active
 ---
 
@@ -51,6 +52,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
 - [[Model Quantization and Efficiency]] - Quantization, KV cache, LoRA, and sparse activation as core efficiency levers.
+- [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
@@ -83,6 +85,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Liquid AI]] - Model company focused here on sparse on-device assistants and local tool calling.
 - [[NVIDIA]] - Research organization whose current source opens the multimodal grounding branch.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
+- [[Qualcomm AI Research]] - Mobile/edge deployment group focused here on efficient on-device reasoning.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
 - [[Alpha Signal]]
 - [[The Pocket]] - Organization behind PocketFlow and its tutorial-documentation curriculum.
@@ -115,6 +118,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Fareed Khan - Train LLM From Scratch]] - Code-first PyTorch repo for Pile preprocessing, decoder-only Transformer training, and text generation.
 - [[Liquid AI - LFM2.5-8B-A1B]] - On-device MoE model emphasizing sparse inference, long context, multilingual tokenization, and local tool calling.
 - [[NVIDIA - LocateAnything]] - Parallel Box Decoding framework for fast, high-quality visual grounding and detection.
+- [[Efficient Reasoning on the Edge]] - End-to-end on-device reasoning pipeline with LoRA adapters, budget forcing, switcher routing, verifier-guided parallel decoding, and 4-bit deployment.
 
 ## Queries
 

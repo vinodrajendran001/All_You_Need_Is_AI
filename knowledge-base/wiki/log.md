@@ -37,6 +37,8 @@ source_ids:
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-06-05-fei-fei-li-taxonomy-world-models
+  - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
 status: active
 ---
 
@@ -311,3 +313,18 @@ Append-only operational history for the wiki.
 - Extended [[Tool Use and Function Calling]] with the request/execute separation pattern and why structured output is the prerequisite for reliable tool calls.
 - Extended [[AI Agents in Production]] with the evals + telemetry disciplines (golden datasets, spans/traces, runtime metrics).
 - Updated [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-05] ingest | Fei-Fei Li - A Functional Taxonomy of World Models
+
+- Mapped `knowledge-base/raw/sources/A Functional Taxonomy of World Models.md` into [[Fei-Fei Li - A Functional Taxonomy of World Models]] as the source summary page.
+- Seeded [[World Labs]] and [[Fei-Fei Li]] as new entities.
+- Substantially updated [[World Models]] with the Renderer / Simulator / Planner taxonomy, POMDP-loop framing, Marble product, convergence thesis, and data-scarcity note.
+- Updated [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-05] ingest | Dharma-AI - Direct Preference Optimization Beyond Chatbots
+
+- Mapped `knowledge-base/raw/sources/Direct Preference Optimization Beyond Chatbots.md` into [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] as the source summary page.
+- Created [[Direct Preference Optimization]] as a new concept page with the SFT-vs-DPO mechanical distinction, self-rejection pair methodology, three conditions for applicability, and the completion-level attractor argument.
+- Updated [[LLM Training Pipeline]] with the DPO generalisation insight and self-rejection pairs pattern.
+- Updated [[AI Knowledge Base Overview]], index, and log.
+- Fixed orphan: linked [[2026-06-04 Efficient Reasoning on the Edge - Blog Post]] query from the index.

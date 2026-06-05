@@ -37,6 +37,8 @@ source_ids:
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-06-05-fei-fei-li-taxonomy-world-models
+  - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
 status: active
 ---
 
@@ -79,7 +81,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
-- [[World Models]] - Learned predictive models for planning, control, and embodied intelligence.
+- [[World Models]] - Learned predictive models for planning, control, and embodied intelligence; now includes Fei-Fei Li's Renderer/Simulator/Planner taxonomy and POMDP framing.
+- [[Direct Preference Optimization]] - Completion-level preference learning for chat alignment and structured output reliability; includes self-rejection pair methodology.
 - [[Vision-Language Grounding]] - Text-conditioned spatial localization for objects, GUIs, documents, and scenes.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
@@ -103,6 +106,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Y Combinator]] - Startup accelerator and publisher of YC Paper Club frontier-research sessions.
 - [[Eric Jang]] - Researcher whose AlphaGo reconstruction ties together MCTS, RL, and autoresearch.
 - [[Reiner Pope]] - Hardware researcher whose material ties chip design to LLM throughput and serving math.
+
+- [[Fei-Fei Li]] - Co-founder of World Labs; author of the functional world-model taxonomy using the POMDP loop.
+- [[World Labs]] - AI company focused on spatial intelligence, world models, and unified Renderer/Simulator/Planner foundation models.
 
 ## Sources
 
@@ -138,9 +144,12 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure]] - Self-supervised reasoning compression learned from multi-question prompts.
 - [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] - Segment-wise GRPO that compresses thinking without damaging the final answer.
 - [[pguso - Agents From Scratch]] - Local-first Python repo building one agent across 12 lessons: loop, tools, memory, planning, atomic actions, AoT, evals, and telemetry.
+- [[Fei-Fei Li - A Functional Taxonomy of World Models]] - Renderer/Simulator/Planner taxonomy using the POMDP loop; argues simulation is the linchpin and introduces World Labs' Marble product.
+- [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] - DPO applied to OCR text degeneration suppression using self-generated rejection pairs; 59.4% average degeneration reduction across five model families.
 
 ## Queries
 
+- [[2026-06-04 Efficient Reasoning on the Edge - Blog Post]] - Beginner-friendly self-contained blog post on efficient reasoning for edge devices.
 - [[2026-05-08 Mathematical Foundations for Reinforcement Learning]] - Structured answer on the math stack needed to move from Murphy's survey to RL expertise.
 
 ## Lint reports

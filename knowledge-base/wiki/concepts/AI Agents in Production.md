@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-04
+updated: 2026-06-05
 tags:
   - concept
   - ai-agents
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-03-nvidia-locateanything
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-06-05-pguso-agents-from-scratch
 status: active
 ---
 
@@ -74,6 +75,16 @@ The newer sources show that "production agent" no longer means only a cloud work
 
 This broadens the agent-design problem. Production agents need not only reasoning and tools, but sometimes also local privacy guarantees and high-fidelity spatial interfaces to the world they act on.
 
+## Evals and telemetry as production requirements
+
+[[pguso - Agents From Scratch]] adds two operational disciplines that are absent from the Grab/Figma treatment but are essential for running agents in production:
+
+**Regression testing via golden datasets (Lesson 11):** A prompt change that improves phrasing can silently break JSON parsing, push structured output outside the context window, or alter routing logic. An eval suite — test cases with known inputs and expected outputs, run before every change — catches these silent regressions. The workflow: make prompt change → run evals → if any golden case fails, fix or revert → commit. This is software engineering applied to prompt changes.
+
+**Runtime observability via structured telemetry (Lesson 12):** Evals prevent bad code from shipping; telemetry shows what shipped code is doing. Each LLM call, tool execution, and memory operation is logged as a span with a trace ID that links all operations in one agent interaction. Metrics (success rate, average latency, retry count) give at-a-glance system health. When something goes wrong, filtering logs by trace ID reveals the exact sequence of events.
+
+The practical consequence: in production, a prompt is not done when it "seems to work" — it is done when it passes a golden dataset suite and is covered by runtime tracing that can diagnose failures after deployment.
+
 ## The main lesson
 
 The common pattern is not “let the model do everything.” It is **design an environment where the model can do a few high-value things reliably**. That means specialized agents, narrow tools, token-aware context management, human review, and interfaces that encode domain structure instead of dumping raw data.
@@ -82,6 +93,8 @@ The common pattern is not “let the model do everything.” It is **design an e
 
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
+- [[Agent Planning]]
+- [[Agent Memory]]
 - [[Model Context Protocol]]
 - [[Direct Corpus Interaction]]
 - [[Retrieval-Augmented Generation]]

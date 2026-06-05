@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-02
+updated: 2026-06-05
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-bytebytego-batch
   - src-2026-06-02-dwarkesh-eric-jang-alphago
+  - src-2026-06-05-pguso-agents-from-scratch
 status: active
 ---
 
@@ -49,14 +50,37 @@ The model decides *what* should happen. The application layer decides *whether* 
 - **Validation** — check arguments before execution.
 - **Human-in-the-loop** — require approval for high-stakes actions.
 
+## Ground-up anatomy (from pguso - Agents From Scratch)
+
+[[pguso - Agents From Scratch]] provides the most explicit ground-level treatment of the loop in this vault. Key additions to the above model:
+
+- **An agent is not a clever prompt.** It is a loop with state. The prompt is the least important part; the loop and state machinery around it are what produce multi-step behaviour.
+- **State is explicit.** An `AgentState` object (step count, done flag, current plan) is a plain Python object you can inspect at any time — not a hidden conversation history.
+- **Termination is a first-class design decision.** The loop must have at least one termination condition: the model signals `"action": "done"`, a `max_steps` limit is hit, or a specific goal is achieved. Infinite loops are a bug, not a feature.
+- **Structure beats clever prompting.** Reliability in the loop comes from forcing structured JSON outputs and retrying on validation failure, not from crafting more elaborate prompts.
+- **Premature autonomy is dangerous.** Agency should be added incrementally: first the model responds; then it decides; then it requests actions; only finally does the system execute with less oversight.
+
+The full agent-building progression this source teaches:
+1. Structured output (reliable JSON with validation + retries) — the reliability foundation
+2. Decisions (finite choice spaces) — how the model routes rather than generates
+3. Tool request/execute separation — where safety lives
+4. State + loop — what makes the system an agent rather than a chatbot
+5. Memory → planning → atomic actions → dependency graphs — the intelligence stack
+6. Evals + telemetry — the observability stack without which production operation is guesswork
+
+See [[Agent Planning]] for the planning/execution branch and [[Agent Memory]] for the memory branch.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
 - [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agent Memory]]
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
 - [[Reward Design for RL]]
+- [[pguso - Agents From Scratch]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo]]

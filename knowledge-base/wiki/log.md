@@ -346,3 +346,9 @@ Append-only operational history for the wiki.
 - Extended [[AI Agents in Production]] with named agentic design patterns (ReAct, Plan-and-Execute, Reflection, routing), multi-agent architecture patterns (Orchestrator–Worker, Peer-to-peer, Hierarchical), and context engineering as an orchestration primitive.
 - Extended [[ML Systems at Scale]] with the System Design Academy case study index as a reference map (Netflix, Amazon, Cloudflare, Meta, Stripe, Shopify, and 55+ more).
 - Updated [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-05] lint | Full wiki lint pass 2
+
+- Audited all 108 wiki pages for broken wikilinks, orphans, frontmatter completeness, related-pages coverage, thin pages, and index coverage.
+- Found no structural defects after System Design Academy ingest.
+- Filed [[2026-06-05 Lint Pass 2]] and linked it from the index.

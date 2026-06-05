@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-03-nvidia-locateanything
   - src-2026-06-04-efficient-reasoning-edge
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-06-05-systemdesign42-system-design-academy
 status: active
 ---
 
@@ -85,12 +86,33 @@ This broadens the agent-design problem. Production agents need not only reasonin
 
 The practical consequence: in production, a prompt is not done when it "seems to work" — it is done when it passes a golden dataset suite and is covered by runtime tracing that can diagnose failures after deployment.
 
+## Agentic design patterns and multi-agent architectures
+
+[[systemdesign42 - System Design Academy]] documents several named patterns and multi-agent frameworks in its AI Engineering section that extend this page's framing:
+
+**Agentic design patterns** — recurring structural solutions for how agents decompose and execute tasks. The most common documented patterns are:
+- **ReAct (Reason + Act)**: interleave reasoning steps and tool calls rather than planning fully before acting. Reduces failure scope when environment state is uncertain.
+- **Plan-and-Execute**: generate a complete plan first, then execute steps sequentially or in parallel. Better for deterministic workflows where the task scope is known upfront — aligns with [[Agent Planning]]'s AoT approach.
+- **Reflection**: run the agent output through a critic (another LLM call or a verifier) before committing. Reduces hallucination in high-stakes outputs. The [[Efficient Reasoning on the Edge]] verifier pattern is a resource-constrained form of this.
+- **Tool selection routing**: a lightweight router selects which specialized agent or tool handles each subtask rather than having a single agent call all tools. Mirrors the Grab "decouple brain from hands" pattern.
+
+**Multi-agent architectures** — when the task exceeds the scope, context window, or specialization of a single agent, multiple agents coordinate:
+- **Orchestrator–Worker**: one orchestrator agent decomposes tasks and delegates to specialized worker agents. Each worker has a narrow tool set and focused context. The orchestrator synthesizes results. This is the most common production pattern for complex, long-running tasks.
+- **Peer-to-peer (Collaborative)**: agents communicate bidirectionally, each contributing domain expertise. Useful for multi-discipline tasks where no single agent has all the needed knowledge.
+- **Hierarchical**: nested layers of orchestrators and workers for tasks that require deep decomposition. Complexity cost is high; reserved for tasks where the parallelism gain justifies coordination overhead.
+
+Key production constraint: **context isolation between agents is a reliability requirement**. Each agent should receive only the context it needs for its task. Sharing full conversation history across all agents floods every context window with irrelevant content, degrades specialization, and increases cost. [[Context Engineering]] becomes the discipline for managing what each agent sees.
+
+**Context engineering as an agent-level primitive** — the [[Context Engineering]] framing unifies multiple production patterns already described on this page: Figma's `get_metadata` first / `get_design_context` second workflow is context engineering. Grab's turn summarization and token tracking is context engineering. The On-Device switcher routing that decides whether to reason is context engineering at the inference level. Production agents need context engineering embedded in their orchestration layer, not bolted on afterward.
+
 ## The main lesson
 
 The common pattern is not “let the model do everything.” It is **design an environment where the model can do a few high-value things reliably**. That means specialized agents, narrow tools, token-aware context management, human review, and interfaces that encode domain structure instead of dumping raw data.
 
 ## Related pages
 
+- [[Context Engineering]]
+- [[systemdesign42 - System Design Academy]]
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
 - [[Agent Planning]]

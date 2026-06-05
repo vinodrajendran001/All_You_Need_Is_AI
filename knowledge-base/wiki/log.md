@@ -39,6 +39,7 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-05-fei-fei-li-taxonomy-world-models
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
+  - src-2026-06-05-systemdesign42-system-design-academy
 status: active
 ---
 
@@ -335,3 +336,13 @@ Append-only operational history for the wiki.
 - Found no structural defects after two new ingests (Fei-Fei Li world models taxonomy + DPO beyond chatbots).
 - Discovered and documented the pre-existing Liquid AI validator false-positive (caused by `Path().stem` mis-parsing dots in filenames); corrected the validator.
 - Filed [[2026-06-05 Lint Pass]] and linked it from the index.
+
+## [2026-06-05] ingest | systemdesign42 - System Design Academy
+
+- Fetched the full GitHub repository `systemdesign42/system-design-academy` README (23KB), capturing the complete curated index of 150+ system design articles.
+- Created `knowledge-base/raw/sources/2026-06-05 systemdesign42 - System Design Academy.md` as the raw capture.
+- Created [[systemdesign42 - System Design Academy]] as the source summary page.
+- Seeded [[Context Engineering]] as a new concept page: the discipline of managing the full LLM context window (system prompt, history, retrieval, tool results, token budget) as distinct from prompt engineering; introduces the context-window-as-database framing.
+- Extended [[AI Agents in Production]] with named agentic design patterns (ReAct, Plan-and-Execute, Reflection, routing), multi-agent architecture patterns (Orchestrator–Worker, Peer-to-peer, Hierarchical), and context engineering as an orchestration primitive.
+- Extended [[ML Systems at Scale]] with the System Design Academy case study index as a reference map (Netflix, Amazon, Cloudflare, Meta, Stripe, Shopify, and 55+ more).
+- Updated [[AI Knowledge Base Overview]], index, and log.

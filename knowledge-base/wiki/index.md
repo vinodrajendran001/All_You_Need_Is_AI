@@ -39,6 +39,7 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-05-fei-fei-li-taxonomy-world-models
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
+  - src-2026-06-05-systemdesign42-system-design-academy
 status: active
 ---
 
@@ -82,6 +83,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
 - [[World Models]] - Learned predictive models for planning, control, and embodied intelligence; now includes Fei-Fei Li's Renderer/Simulator/Planner taxonomy and POMDP framing.
+- [[Context Engineering]] - Managing the full LLM context window at inference time: system prompt, history, retrieval, tool results, token budget. Distinct from prompt engineering.
 - [[Direct Preference Optimization]] - Completion-level preference learning for chat alignment and structured output reliability; includes self-rejection pair methodology.
 - [[Vision-Language Grounding]] - Text-conditioned spatial localization for objects, GUIs, documents, and scenes.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
@@ -146,6 +148,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[pguso - Agents From Scratch]] - Local-first Python repo building one agent across 12 lessons: loop, tools, memory, planning, atomic actions, AoT, evals, and telemetry.
 - [[Fei-Fei Li - A Functional Taxonomy of World Models]] - Renderer/Simulator/Planner taxonomy using the POMDP loop; argues simulation is the linchpin and introduces World Labs' Marble product.
 - [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] - DPO applied to OCR text degeneration suppression using self-generated rejection pairs; 59.4% average degeneration reduction across five model families.
+
+- [[systemdesign42 - System Design Academy]] - Curated A-Z index of 150+ system design articles across case studies, fundamentals, AI engineering, and interview prep.
 
 ## Queries
 

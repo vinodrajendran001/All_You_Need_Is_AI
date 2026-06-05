@@ -328,3 +328,10 @@ Append-only operational history for the wiki.
 - Updated [[LLM Training Pipeline]] with the DPO generalisation insight and self-rejection pairs pattern.
 - Updated [[AI Knowledge Base Overview]], index, and log.
 - Fixed orphan: linked [[2026-06-04 Efficient Reasoning on the Edge - Blog Post]] query from the index.
+
+## [2026-06-05] lint | Full wiki lint pass
+
+- Audited all 105 wiki pages for broken wikilinks, orphans, frontmatter completeness, related-pages coverage, and schema conformance.
+- Found no structural defects after two new ingests (Fei-Fei Li world models taxonomy + DPO beyond chatbots).
+- Discovered and documented the pre-existing Liquid AI validator false-positive (caused by `Path().stem` mis-parsing dots in filenames); corrected the validator.
+- Filed [[2026-06-05 Lint Pass]] and linked it from the index.

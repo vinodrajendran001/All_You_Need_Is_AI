@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-04
+updated: 2026-06-05
 tags:
   - index
 source_ids:
@@ -36,6 +36,7 @@ source_ids:
   - src-2026-06-04-difficulty-aware-entropy-regularization
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
+  - src-2026-06-05-pguso-agents-from-scratch
 status: active
 ---
 
@@ -64,6 +65,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
+- [[Agent Planning]] - Planning as data structures, atomic actions, and AoT dependency graphs for safe multi-step execution.
+- [[Agent Memory]] - Short-term context vs long-term persistent storage; explicit fact management for agents.
 - [[AI Agents in Production]] - Real-world deployment of AI agents for team productivity and design workflows.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
 - [[ML Systems at Scale]] - Production ML serving patterns from Netflix, Snapchat, Amazon, Instacart, and Airtable.
@@ -134,6 +137,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning]] - Difficulty-aware entropy regularisation for shorter but still exploratory reasoning.
 - [[ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure]] - Self-supervised reasoning compression learned from multi-question prompts.
 - [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] - Segment-wise GRPO that compresses thinking without damaging the final answer.
+- [[pguso - Agents From Scratch]] - Local-first Python repo building one agent across 12 lessons: loop, tools, memory, planning, atomic actions, AoT, evals, and telemetry.
 
 ## Queries
 

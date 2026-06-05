@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
+  - src-2026-06-05-systemdesign42-system-design-academy
 status: active
 ---
 
@@ -100,8 +101,22 @@ The newer [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] 
 
 These examples show that “ML at scale” is really a systems-discipline question. The model is only one component inside a broader architecture of stores, indexes, filters, ranking stages, caches, feedback loops, and evaluation infrastructure. That same architecture vocabulary also underlies [[Search-Augmented Language Models]] and many forms of [[Retrieval-Augmented Generation]], even when the end product is not a chatbot.
 
+## System Design Academy case studies
+
+[[systemdesign42 - System Design Academy]] adds the most comprehensive case study index currently in this vault — 60+ real company architectures that illustrate production ML system patterns in detail. Notable entries relevant to this page:
+
+- **Netflix** (chaos engineering, microservices failures) — confirms the fault isolation and experimentation-culture patterns described above.
+- **Amazon S3** (11-nines durability, strong consistency) — shows how storage reliability guarantees compound with retrieval and serving architecture.
+- **Cloudflare** (55M RPS / 15 Postgres clusters) — extreme-scale serving from minimal relational infrastructure via query partitioning.
+- **Meta** (99.99999999% cache consistency) — consistency-at-scale patterns complementing the embedding and hybrid retrieval discussion.
+- **Stripe** (rate limiting, idempotent APIs) — payment and API infrastructure patterns for systems that combine ML with strict financial correctness requirements.
+- **Shopify** (32M RPM flash sales, modular monolith) — the modular monolith pattern as an alternative architecture to the microservices default.
+
+The case study index is most valuable as a **reference map** rather than a source of new conceptual claims. When a concrete architecture is needed for any of the 60+ companies listed, the index points to the relevant newsletter article.
+
 ## Related pages
 
+- [[systemdesign42 - System Design Academy]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]

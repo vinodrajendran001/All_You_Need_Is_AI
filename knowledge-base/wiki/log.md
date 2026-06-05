@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-04
+updated: 2026-06-05
 tags:
   - log
 source_ids:
@@ -36,6 +36,7 @@ source_ids:
   - src-2026-06-04-difficulty-aware-entropy-regularization
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
+  - src-2026-06-05-pguso-agents-from-scratch
 status: active
 ---
 
@@ -299,3 +300,14 @@ Append-only operational history for the wiki.
 - Audited all 95 wiki pages for broken wikilinks, broken relative links, missing frontmatter, missing type/updated fields, missing Related pages sections, thin pages, orphans, and index coverage.
 - Found no structural defects. The wiki is healthy after the seven-paper reasoning-compression batch.
 - Filed [[2026-06-04 Lint Pass]] and linked it from the index.
+
+## [2026-06-05] ingest | pguso - Agents From Scratch
+
+- Fetched the full GitHub repository `pguso/agents-from-scratch` via API: README, PHILOSOPHY, QUICKSTART, all 12 lesson markdown files, and the agent/evals/telemetry module listing.
+- Created the immutable raw source note at `knowledge-base/raw/sources/2026-06-05 pguso - Agents From Scratch.md`.
+- Created [[pguso - Agents From Scratch]] as the source summary page.
+- Seeded [[Agent Planning]] (plans as data, atomic actions, AoT dependency graphs) and [[Agent Memory]] (short-term vs long-term, explicit storage) as new concept pages.
+- Extended [[Agentic Loop]] with the ground-up anatomy: state transitions, termination as first-class design, structure-over-cleverness principle, and the full 12-lesson progression.
+- Extended [[Tool Use and Function Calling]] with the request/execute separation pattern and why structured output is the prerequisite for reliable tool calls.
+- Extended [[AI Agents in Production]] with the evals + telemetry disciplines (golden datasets, spans/traces, runtime metrics).
+- Updated [[AI Knowledge Base Overview]], index, and log.

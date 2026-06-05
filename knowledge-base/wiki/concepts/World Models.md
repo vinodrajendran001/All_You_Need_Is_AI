@@ -31,14 +31,35 @@ World models sit at the boundary between generative modeling, planning, robotics
 - The discussion also ties world models to **video models** and broader predictive modeling, suggesting that progress in generative sequence modeling may transfer into control and embodied-policy settings.
 - World models overlap with [[Latent-Space Reasoning]] in that both rely on learned internal predictive structure, but the emphasis is different: latent reasoning is about internal computation steps, while world models are about predicting external environment dynamics.
 
-## Open questions
+### Fei-Fei Li functional taxonomy (2026)
+
+[[Fei-Fei Li - A Functional Taxonomy of World Models]] provides the sharpest conceptual map in this vault. The unifying frame is the **POMDP loop** (agent → action → state → observation → back), and all world model systems are projections of that loop:
+
+| Category | Output | Optimizes for | Maturity |
+|----------|--------|--------------|---------|
+| **Renderer** | Observations (pixels) | Visual plausibility | Commercially mature (text-to-video, image gen) |
+| **Simulator** | State (geometry, physics) | Physical accuracy | Consequential but under-built |
+| **Planner** | Actions | Decision quality | Most nascent |
+
+Key claim: **simulation is the linchpin.** Renderers optimize for plausibility; planners optimize for action; only the simulator operates at the geometry/physics level from which both can be derived. This makes simulators a strategic capability node — they are the bridge between the other two categories.
+
+The hard problems cluster in simulation: 3D data is orders of magnitude scarcer than video, AI-generated geometry can look correct while violating physics constraints, and full multi-physics simulation at scale remains expensive. Data scarcity is worst precisely where capability leverage is highest.
+
+**Convergence thesis:** The essay argues that the renderer/simulator/planner distinction is already dissolving. All three require the same underlying world knowledge (geometry, materials, physics, dynamics), so the logical endpoint is one unified foundation model that switches output format depending on what the downstream consumer needs. [[World Labs]]' **Marble** product — text/image/video → explorable 3D environment outputting both Gaussian splats and collision meshes — illustrates this convergence: one system spans renderer and simulator outputs from the same representation.
+
+### Open questions
 
 - What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
 - Can world models generalize robustly enough for open-ended real-world environments, or will they remain strongest in constrained domains?
+- The unified world model thesis faces a data imbalance problem the essay itself identifies: video data for renderers vastly outweighs 3D+physics data for simulators. Can this gap be closed synthetically?
 
 ## Related pages
 
+- [[Fei-Fei Li - A Functional Taxonomy of World Models]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - [[Latent-Space Reasoning]]
 - [[Reinforcement Learning]]
+- [[AI Agents in Production]]
+- [[World Labs]]
+- [[Fei-Fei Li]]
 - [[AI Knowledge Base Overview]]

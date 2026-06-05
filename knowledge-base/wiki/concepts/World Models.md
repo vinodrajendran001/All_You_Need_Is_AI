@@ -1,14 +1,16 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-06-05
 tags:
   - concept
   - world-models
   - planning
   - robotics
+  - spatial-intelligence
 source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
+  - src-2026-06-05-fei-fei-li-taxonomy-world-models
 status: active
 ---
 

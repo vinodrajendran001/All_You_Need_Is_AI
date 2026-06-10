@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-06-10
 tags:
   - concept
   - agents
@@ -9,6 +9,7 @@ tags:
   - automation
 source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
+  - src-2026-06-10-itsreallyvivek-frontier-ai-labs
 status: active
 ---
 
@@ -29,6 +30,11 @@ This is one of the clearest real-world paths by which AI capability could recurs
 - The harder bottlenecks remain **research taste and navigation**: deciding the next question worth asking, recognizing when a line of inquiry is a dead end, and changing course intelligently.
 - The flashcard-generation workflow described in the same source is a smaller but concrete example of this pattern: a durable agent can read a transcript, incorporate blackboard screenshots, generate visuals, and pass outputs through a critic more effectively than a loose chain of calls.
 - This concept fits naturally alongside the [[Agentic Loop]]: the loop is the general control pattern, while automated research is one high-value application domain with unusually strong feedback loops and unusually costly mistakes.
+- [[itsreallyvivek - some notes on getting into frontier ai labs]] sharpens the bottleneck language. It argues that frontier research and trench engineering are both really about building useful abstractions when no complete map exists. The scarce resource is not information but **judgment**: picking which anomaly, bottleneck, or question actually deserves attention.
+- That framing improves the page's distinction between what agents are already good at and what still resists automation:
+  - **Execution** can often be automated or compressed.
+  - **Abstraction-building and question selection** remain much harder.
+- A durable summary is: automated research becomes more valuable as systems get better at generating possibilities, but that also makes **taste** more important, because the main problem shifts from "can we run this?" to "is this the right thing to run?"
 
 ## Open questions
 
@@ -38,6 +44,7 @@ This is one of the clearest real-world paths by which AI capability could recurs
 ## Related pages
 
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
+- [[itsreallyvivek - some notes on getting into frontier ai labs]]
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
 - [[Eric Jang]]

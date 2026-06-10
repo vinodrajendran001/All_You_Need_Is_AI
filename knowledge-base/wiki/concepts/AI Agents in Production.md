@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-05
+updated: 2026-06-10
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-06-04-efficient-reasoning-edge
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-05-systemdesign42-system-design-academy
+  - src-2026-06-10-bytebytego-token-spend-routing
 status: active
 ---
 
@@ -105,6 +106,18 @@ Key production constraint: **context isolation between agents is a reliability r
 
 **Context engineering as an agent-level primitive** — the [[Context Engineering]] framing unifies multiple production patterns already described on this page: Figma's `get_metadata` first / `get_design_context` second workflow is context engineering. Grab's turn summarization and token tracking is context engineering. The On-Device switcher routing that decides whether to reason is context engineering at the inference level. Production agents need context engineering embedded in their orchestration layer, not bolted on afterward.
 
+## Cost governance and model routing
+
+[[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]] adds the economic version of the same story. Even a well-designed agent still resends large contexts through many loop steps. Once that is true, production quality depends not only on *what* context is sent, but also on *which model* receives each step.
+
+- Kilo's gateway pattern is the cleanest example here: one normalized entry point in front of many providers, plus a routing layer that maps known agent modes (planning, debugging, editing, background work) to model tiers.
+- The strongest production rule is **route on the strongest signal you already have**. If the agent already knows it is in planning mode, use that signal instead of trying to infer difficulty from raw prompt text.
+- This creates a second form of routing distinct from tool routing:
+  - **tool routing** chooses the right tool or specialist agent
+  - **model routing** chooses the right model tier for the current step
+- Routing also introduces a subtle cross-model failure mode: if one provider's reasoning model hands off to another provider's model mid-task, internal intermediate reasoning may have to be dropped because the formats are not mutually readable.
+- The economic lesson is durable: caching helps, but it does not solve high-volume agent spend by itself. Routing and context compression are complementary, and both belong in the production design.
+
 ## The main lesson
 
 The common pattern is not “let the model do everything.” It is **design an environment where the model can do a few high-value things reliably**. That means specialized agents, narrow tools, token-aware context management, human review, and interfaces that encode domain structure instead of dumping raw data.
@@ -112,6 +125,8 @@ The common pattern is not “let the model do everything.” It is **design an e
 ## Related pages
 
 - [[Context Engineering]]
+- [[Model Routing]]
+- [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
 - [[systemdesign42 - System Design Academy]]
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]

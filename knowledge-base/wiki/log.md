@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-05
+updated: 2026-06-10
 tags:
   - log
 source_ids:
@@ -40,6 +40,9 @@ source_ids:
   - src-2026-06-05-fei-fei-li-taxonomy-world-models
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
   - src-2026-06-05-systemdesign42-system-design-academy
+  - src-2026-06-10-0xkato-how-llms-actually-work
+  - src-2026-06-10-bytebytego-token-spend-routing
+  - src-2026-06-10-itsreallyvivek-frontier-ai-labs
 status: active
 ---
 
@@ -352,3 +355,22 @@ Append-only operational history for the wiki.
 - Audited all 108 wiki pages for broken wikilinks, orphans, frontmatter completeness, related-pages coverage, thin pages, and index coverage.
 - Found no structural defects after System Design Academy ingest.
 - Filed [[2026-06-05 Lint Pass 2]] and linked it from the index.
+
+## [2026-06-10] ingest | 0xkato - How LLMs Actually Work
+
+- Mapped `knowledge-base/raw/sources/How LLMs Actually Work.md` into [[0xkato - How LLMs Actually Work]] as the source summary page.
+- Extended [[Transformer Architecture]] with the integrated transformer walkthrough: tokenization, RoPE, GQA, residual stream, RMSNorm, speculative decoding, and the architecture-vs-weights distinction.
+- Updated [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-10] ingest | ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing
+
+- Mapped `knowledge-base/raw/sources/Token Spend Out of Control The Case for Smarter Routing.md` into [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]] as the source summary page.
+- Seeded [[Model Routing]] as a new concept page covering gateways, decision layers, known-signal routing, learned difficulty routing, tiered model selection, and routing failure modes.
+- Extended [[Context Engineering]] with the routing-as-economic-complement framing and extended [[AI Agents in Production]] with model routing as production infrastructure.
+- Updated [[ByteByteGo]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-10] ingest | itsreallyvivek - some notes on getting into frontier ai labs
+
+- Mapped `knowledge-base/raw/sources/some notes on getting into frontier ai labs.md` into [[itsreallyvivek - some notes on getting into frontier ai labs]] as the source summary page.
+- Extended [[Automated AI Research]] with the abstraction / judgment framing: research as compression of uncertainty, engineering as compression of complexity, and taste as the remaining bottleneck.
+- Updated [[AI Knowledge Base Overview]], index, and log.

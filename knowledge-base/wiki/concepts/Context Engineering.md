@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-10
 tags:
   - concept
   - context-engineering
@@ -10,6 +10,7 @@ tags:
   - production-ai
 source_ids:
   - src-2026-06-05-systemdesign42-system-design-academy
+  - src-2026-06-10-bytebytego-token-spend-routing
 status: active
 ---
 
@@ -58,6 +59,18 @@ The clearest framing: the context window is a **fixed-size database** that the m
 
 [[On-Device Reasoning]] operates under hard token budget constraints on mobile-class hardware. Every byte of context competes with reasoning trace length and output. The Qualcomm paper's budget-forcing mechanism is a form of context engineering applied to the *reasoning* portion of the context specifically.
 
+### Routing is the economic complement to context engineering
+
+[[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]] adds an important systems correction: even when you compress history, trim tool results, and retrieve more selectively, long-loop agents still have to resend large contexts many times. Context engineering controls **how many tokens** get sent; [[Model Routing]] controls **which model pays for them**.
+
+The practical synthesis is:
+
+1. **Reduce the context where you can** — summarize, filter, stage retrieval, reserve generation headroom.
+2. **Measure token spend by feature/task** — context cost is often dominated by a few heavy workflows rather than by the highest request count.
+3. **Route on the strongest trustworthy signal you already have** — if the system already knows the task mode (planning vs editing vs background chore), do not infer difficulty from scratch.
+
+Kilo's production numbers are useful here because they show the limit of "just cache more." Even with high cache reuse, spend stayed high because request volume and uncached context were still large. That makes routing and context engineering complementary infrastructure layers rather than competing techniques.
+
 ### Production failure modes that context engineering addresses
 
 - **Lost-in-the-middle**: models attend poorly to content in the middle of long contexts. Solution: place critical information at start or end.
@@ -77,10 +90,12 @@ The clearest framing: the context window is a **fixed-size database** that the m
 - [[Agent Memory]]
 - [[Retrieval-Augmented Generation]]
 - [[On-Device Reasoning]]
+- [[Model Routing]]
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
 - [[Direct Corpus Interaction]]
 - [[Model Context Protocol]]
 - [[LLM Training Pipeline]]
+- [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
 - [[systemdesign42 - System Design Academy]]
 - [[AI Knowledge Base Overview]]

@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
+  - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
 status: active
 ---
 
@@ -35,6 +36,7 @@ This is one of the clearest real-world paths by which AI capability could recurs
   - **Execution** can often be automated or compressed.
   - **Abstraction-building and question selection** remain much harder.
 - A durable summary is: automated research becomes more valuable as systems get better at generating possibilities, but that also makes **taste** more important, because the main problem shifts from "can we run this?" to "is this the right thing to run?"
+- [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] adds the organizational version of the same bottleneck. Frontier post-training recipes now require many specialist teachers, data mixtures, RL runs, distillation stages, and integration steps. That makes research automation less like "one agent finds the answer" and more like **coordination across many experimental subprograms**. The hard part is not only running experiments, but maintaining the recipe graph and deciding which specialist branch deserves more compute.
 
 ## Open questions
 
@@ -45,6 +47,8 @@ This is one of the clearest real-world paths by which AI capability could recurs
 
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
 - [[itsreallyvivek - some notes on getting into frontier ai labs]]
+- [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
+- [[Multi-Teacher On-Policy Distillation]]
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
 - [[Eric Jang]]

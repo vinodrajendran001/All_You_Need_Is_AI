@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-04
+updated: 2026-06-17
 tags: [rl, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-06-04-extreme-ratio-cot-compression
   - src-2026-06-04-difficulty-aware-entropy-regularization
   - src-2026-06-04-dss-grpo-cot-compression
+  - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
 status: active
 ---
 
@@ -75,6 +76,18 @@ For non-verifiable tasks (rewriting, planning, open-ended chat), deployment requ
 
 Different data types produce different gradient magnitudes. Perplexity uses a 90/10 prompt mixture (verifiable QA / rubric-based) to balance the harder QA signal against the easier rubric signal.
 
+## Teacher distributions as RL-era supervision
+
+[[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] adds a newer frontier pattern: not every useful post-training signal is a scalar reward. In [[Multi-Teacher On-Policy Distillation]], the student samples its own rollouts and then matches a relevant specialist teacher's output distribution token by token, often inside an RL framework that can also include verifiable rewards.
+
+This broadens the page's reward-design picture:
+
+- Scalar rewards still matter for correctness, tool success, safety checks, and verifiable domains.
+- Preference losses such as DPO still matter for pairwise comparisons and cleanup.
+- Teacher-distribution losses now matter as a way to consolidate specialist capabilities without forcing all domains into one monolithic reward.
+
+The open design problem is how to combine these signals without creating capability conflicts across domains.
+
 ## Broader alignment context
 
 [[The Pocket - PocketFlow Tutorial Docs]] expands the background behind this page by walking through reward-model training in RLHF, the Bradley-Terry preference formulation, and DPO as a direct preference-learning alternative. Together, those tutorials make reward design easier to place inside the wider [[LLM Training Pipeline]] rather than treating it as a search-agent-only concern.
@@ -88,6 +101,8 @@ Different data types produce different gradient magnitudes. Perplexity uses a 90
 - [[LLM Training Pipeline]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Efficient Reasoning on the Edge]]
+- [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
+- [[Multi-Teacher On-Policy Distillation]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]
 - [[Agentic Loop]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-06-17
 tags:
   - concept
   - llm
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-06-04-difficulty-aware-entropy-regularization
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
+  - src-2026-06-17-prateek-singh-kv-cache-turboquant
 status: active
 ---
 
@@ -47,6 +48,7 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
   - **Modular reasoning adapters plus routing** (Qualcomm) reduce how often explicit reasoning mode is invoked and how verbose it becomes when active.
 - The newer compression papers broaden this page beyond explicitly mobile deployment. They suggest that token budget, cache size, and visible chain-of-thought length are becoming general optimisation targets across reasoning research, with on-device deployment acting as one especially demanding case. See [[Reasoning Compression]].
 - A deeper lesson is that explicit reasoning itself is a deployment liability. The system must actively manage when to think, how long to think, and whether more test-time compute is worth the extra memory and latency.
+- [[Prateek Singh - KV Cache and TurboQuant]] adds the long-context memory version of this lesson. On edge or single-GPU deployments, KV cache can become the limiting resource even before model weights or arithmetic do. This makes [[KV Cache]] optimization (GQA/MQA/MLA, PagedAttention, eviction, predictive skipping, and KV quantization such as TurboQuant) directly relevant to local assistants and long-context private agents.
 
 ## Open questions
 
@@ -59,6 +61,8 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Efficient Reasoning on the Edge]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Model Quantization and Efficiency]]
+- [[KV Cache]]
+- [[Prateek Singh - KV Cache and TurboQuant]]
 - [[LLM Training Pipeline]]
 - [[AI Agents in Production]]
 - [[Reasoning Compression]]

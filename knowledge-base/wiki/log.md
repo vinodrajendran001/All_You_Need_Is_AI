@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-10
+updated: 2026-06-17
 tags:
   - log
 source_ids:
@@ -43,6 +43,8 @@ source_ids:
   - src-2026-06-10-0xkato-how-llms-actually-work
   - src-2026-06-10-bytebytego-token-spend-routing
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
+  - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-06-17-prateek-singh-kv-cache-turboquant
 status: active
 ---
 
@@ -374,3 +376,22 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/some notes on getting into frontier ai labs.md` into [[itsreallyvivek - some notes on getting into frontier ai labs]] as the source summary page.
 - Extended [[Automated AI Research]] with the abstraction / judgment framing: research as compression of uncertainty, engineering as compression of complexity, and taste as the remaining bottleneck.
 - Updated [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-17] ingest | Frontier post-training recipe review with Finbarr Timbers
+
+- Mapped `knowledge-base/raw/sources/Frontier post-training recipe review with Finbarr Timbers.md` into [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] as the source summary page.
+- Seeded [[Multi-Teacher On-Policy Distillation]] as a new concept page covering specialist teachers, on-policy student rollouts, reverse-KL teacher matching, and frontier post-training failure modes.
+- Seeded [[Nathan Lambert]] and [[Finbarr Timbers]] as lightweight entity pages.
+- Updated [[LLM Training Pipeline]], [[Direct Preference Optimization]], [[Reward Design for RL]], [[Automated AI Research]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-17] ingest | Prateek Singh - KV Cache and TurboQuant
+
+- Mapped `knowledge-base/raw/sources/KV Cache & TurboQuant — Prateek Singh PhD.md` into [[Prateek Singh - KV Cache and TurboQuant]] as the source summary page.
+- Seeded [[KV Cache]] as a new concept page covering autoregressive K/V reuse, memory scaling, optimization families, and TurboQuant's rotation + scalar quantization + QJL correction pipeline.
+- Updated [[Transformer Architecture]], [[Model Quantization and Efficiency]], [[On-Device Reasoning]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-17] lint | Full wiki lint pass
+
+- Audited all 119 wiki pages for broken wikilinks, orphans, frontmatter completeness, related-pages coverage, thin pages, source/concept index coverage, raw markdown coverage, and duplicate index `source_ids`.
+- Found no structural defects after the MOPD and KV Cache ingests.
+- Filed [[2026-06-17 Lint Pass]] and linked it from the index.

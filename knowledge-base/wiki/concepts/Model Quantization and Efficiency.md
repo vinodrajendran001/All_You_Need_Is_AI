@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-04
+updated: 2026-06-17
 tags:
   - concept
   - llm
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-06-04-difficulty-aware-entropy-regularization
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
+  - src-2026-06-17-prateek-singh-kv-cache-turboquant
 status: active
 ---
 
@@ -60,6 +61,8 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - The Qualcomm paper also sharpens the memory-bound view of reasoning: on edge devices, **reasoning tokens themselves are a systems cost** because they enlarge the KV cache and extend the memory-bound decoding phase. Reducing verbosity can therefore matter as much as lowering bitwidth.
 - The collection also makes clear that efficiency always trades against something: accuracy, implementation complexity, memory overhead for caches, or the representational limits of low-rank updates.
 - [[Han Fang - PyTorch Practice]] adds a more operations-level layer to this page: it demonstrates gradient accumulation by scaling micro-batch loss, sketches checkpointing as a memory/computation trade-off, shows CUDA mixed-precision training with `autocast` and `GradScaler`, and applies dynamic `qint8` quantization as a compact inference-time optimization.
+- [[Prateek Singh - KV Cache and TurboQuant]] splits the cache bottleneck into its own design space. [[KV Cache]] speeds decoding by storing K/V tensors, but long contexts make the cache itself the dominant memory object. The source maps five optimization families: token eviction (H2O, StreamingLLM), paged allocation (vLLM/PagedAttention), architecture-level sharing (GQA/MQA/MLA), predictive skipping (SnapKV/PyramidKV), and KV quantization.
+- **TurboQuant** is the most specific new technique from that source: rotate KV vectors to smooth outliers, quantize to 3-4 bit centroids, then use QJL sign sketches to correct attention-score bias. The important distinction is that TurboQuant compresses runtime KV cache, not model weights; it should be paired with weight compression when the model weights are also the bottleneck.
 
 ## Open questions
 
@@ -76,6 +79,8 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Efficient Reasoning on the Edge]]
+- [[KV Cache]]
+- [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Mixture of Experts]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]

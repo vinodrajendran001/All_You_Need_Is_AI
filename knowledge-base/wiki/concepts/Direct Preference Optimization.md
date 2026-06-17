@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-17
 tags:
   - concept
   - alignment
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
+  - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
 status: active
 ---
 
@@ -68,11 +69,23 @@ The approach requires:
 
 Text degeneration is a self-reinforcing attractor: once a token dominates its own conditional distribution, every sampling step deepens the loop. SFT's token-level loss cannot target this — it penalizes each token in isolation and has no concept of a "degenerate completion." DPO's completion-level signal can explicitly point the distribution away from these attractors.
 
+### DPO's changing frontier role
+
+[[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] adds an important status update: DPO is less visible in the newest frontier-model recipes than it was in the 2024 open-recipe era. The interview's hypothesis is not that DPO stopped working, but that more industrial on-policy RL / distillation pipelines reduce the need for a separate DPO cleanup stage.
+
+The useful distinction:
+
+- **Bootstrapping / open recipes:** DPO remains attractive because it is simpler than full RL and can refine rough SFT outputs, especially when training data comes from stronger models or heterogeneous sources.
+- **Mature frontier recipes:** when specialist RL, on-policy sampling, verifiable rewards, and teacher consolidation already shape the distribution, DPO may add less marginal value or disappear into broader preference/reward stages.
+
+This makes DPO a pragmatic tool rather than a permanent canonical stage.
+
 ## Open questions
 
 - Does the self-rejection approach generalise beyond OCR to other structured generation tasks (code, SQL, JSON schema compliance)?
 - How should the LLM judge be calibrated to produce preference pairs with consistent quality gaps (avoiding noisy pairs that degrade training)?
 - At what point does DPO shift from fixing failure modes to degrading general capability?
+- Which parts of DPO's value are replaced by MOPD-style teacher consolidation, and which remain uniquely useful?
 
 ## Related pages
 
@@ -81,5 +94,7 @@ Text degeneration is a self-reinforcing attractor: once a token dominates its ow
 - [[Group Relative Policy Optimization]]
 - [[Reinforcement Learning]]
 - [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]]
+- [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
+- [[Multi-Teacher On-Policy Distillation]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[AI Knowledge Base Overview]]

@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-10
+updated: 2026-06-17
 tags:
   - index
 source_ids:
@@ -43,6 +43,8 @@ source_ids:
   - src-2026-06-10-0xkato-how-llms-actually-work
   - src-2026-06-10-bytebytego-token-spend-routing
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
+  - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-06-17-prateek-singh-kv-cache-turboquant
 status: active
 ---
 
@@ -66,6 +68,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
 - [[Model Quantization and Efficiency]] - Quantization, KV cache, LoRA, and sparse activation as core efficiency levers.
+- [[KV Cache]] - Runtime attention-state cache that speeds autoregressive decoding but dominates long-context memory.
 - [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
 - [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
@@ -88,6 +91,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[World Models]] - Learned predictive models for planning, control, and embodied intelligence; now includes Fei-Fei Li's Renderer/Simulator/Planner taxonomy and POMDP framing.
 - [[Context Engineering]] - Managing the full LLM context window at inference time: system prompt, history, retrieval, tool results, token budget. Distinct from prompt engineering.
 - [[Model Routing]] - Choosing among model/provider tiers per request or step to satisfy quality thresholds under cost and latency constraints.
+- [[Multi-Teacher On-Policy Distillation]] - 2026 frontier post-training pattern for consolidating domain-specialist teachers into one student.
 - [[Direct Preference Optimization]] - Completion-level preference learning for chat alignment and structured output reliability; includes self-rejection pair methodology.
 - [[Vision-Language Grounding]] - Text-conditioned spatial localization for objects, GUIs, documents, and scenes.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
@@ -112,6 +116,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Y Combinator]] - Startup accelerator and publisher of YC Paper Club frontier-research sessions.
 - [[Eric Jang]] - Researcher whose AlphaGo reconstruction ties together MCTS, RL, and autoresearch.
 - [[Reiner Pope]] - Hardware researcher whose material ties chip design to LLM throughput and serving math.
+- [[Nathan Lambert]] - Interconnects author focused here on RLHF, post-training, and open/frontier recipe comparisons.
+- [[Finbarr Timbers]] - Post-training researcher whose interview contributions sharpen the MOPD and frontier recipe discussion.
 
 - [[Fei-Fei Li]] - Co-founder of World Labs; author of the functional world-model taxonomy using the POMDP loop.
 - [[World Labs]] - AI company focused on spatial intelligence, world models, and unified Renderer/Simulator/Planner foundation models.
@@ -156,6 +162,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[0xkato - How LLMs Actually Work]] - Clear end-to-end transformer walkthrough covering tokenization, RoPE, attention, GQA, residual streams, RMSNorm, MoE, and speculative decoding.
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]] - Production view of agent economics and model routing, with Kilo as a real routing-layer case study.
 - [[itsreallyvivek - some notes on getting into frontier ai labs]] - Essay-thread on research taste, abstraction-building, and judgment under uncertainty in frontier AI work.
+- [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] - Historical and current map of post-training recipes from InstructGPT to MOPD-style 2026 frontier pipelines.
+- [[Prateek Singh - KV Cache and TurboQuant]] - Interactive KV-cache memory explainer and TurboQuant breakdown for long-context inference compression.
 
 ## Queries
 
@@ -179,6 +187,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-06-04 Lint Pass]] - Thirteenth comprehensive lint pass (95 pages) covering the reasoning-compression batch and finding no structural defects.
 - [[2026-06-05 Lint Pass]] - Fourteenth comprehensive lint pass (105 pages) after World Models taxonomy + DPO ingests; no defects; fixed Liquid AI validator bug and blog-post orphan.
 - [[2026-06-05 Lint Pass 2]] - Fifteenth comprehensive lint pass (108 pages) after System Design Academy ingest; no defects.
+- [[2026-06-17 Lint Pass]] - Sixteenth comprehensive lint pass (119 pages) after MOPD + KV Cache ingests; no defects.
 
 ## Control files
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-10
+updated: 2026-06-17
 tags:
   - concept
   - llm
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
   - src-2026-06-10-0xkato-how-llms-actually-work
+  - src-2026-06-17-prateek-singh-kv-cache-turboquant
 status: active
 ---
 
@@ -47,6 +48,7 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
   - **RMSNorm + pre-norm** are part of the recipe that made very deep Transformers more stable to train.
   - **Speculative decoding** belongs to the generation loop side of the stack, not the training architecture proper.
 - A useful vault-level synthesis from the article is that current model families differ less in fundamental layout than in **trained weights**, **scale/configuration**, and **post-training**. The transformer skeleton has converged more than vendor branding suggests.
+- [[Prateek Singh - KV Cache and TurboQuant]] makes the operational side concrete enough that [[KV Cache]] now deserves its own page. KV cache is not only "store old K/V tensors"; it is the main memory surface for long-context decoding. GQA, MQA, MLA, PagedAttention, token eviction, predictive skipping, and TurboQuant all exist because the attention architecture's cached state grows linearly with context.
 
 ## Open questions
 
@@ -60,6 +62,8 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - [[Han Fang - PyTorch Practice]]
 - [[Fareed Khan - Train LLM From Scratch]]
 - [[0xkato - How LLMs Actually Work]]
+- [[KV Cache]]
+- [[Prateek Singh - KV Cache and TurboQuant]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]

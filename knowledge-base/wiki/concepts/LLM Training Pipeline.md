@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-04
+updated: 2026-06-17
 tags:
   - concept
   - llm
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
+  - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
 status: active
 ---
 
@@ -53,6 +54,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Efficient Reasoning on the Edge]] adds a deployment-aware post-training recipe for small reasoning models: SFT on high-quality reasoning traces first unlocks explicit reasoning, then GRPO-based RL applies a budget-aware reward to compress those traces, and separate switcher / verifier heads shape how the model behaves at inference time. This is a useful reminder that post-training objectives may target **shorter reasoning and hardware viability**, not only generic helpfulness or preference alignment.
 - The same paper also weakens the clean separation between "training" and "deployment." Its Quantization-Aware Modular Reasoning setup trains reasoning adapters directly on top of a quantized base model, suggesting that quantization can be part of the post-training recipe itself rather than only a final export step.
 - The newer efficient-reasoning batch makes this even clearer: a growing post-training subfield now optimizes **how much visible reasoning a model emits**. Some approaches use difficulty-aware RL penalties (PACE, CEEH, DSS-GRPO, the Qualcomm paper), some use compressed supervision plus ratio-aware optimisation (Extra-CoT), some exploit self-supervised contextual pressure (ConPress), and some replace long traces with fixed-size vectors or KV caches (Progressive Thought Encoding, ReasonCACHE). See [[Reasoning Compression]].
+- [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] updates the frontier-level map. The old summary "SFT -> RM -> PPO" is now mostly historical; even "SFT -> DPO -> RLVR" describes open recipes better than the newest frontier ones. The 2026 pattern is many domain-specialist teachers consolidated through [[Multi-Teacher On-Policy Distillation]] or related distillation stages. Post-training is becoming industrial: train specialist math/code/search/safety/agentic teachers, sample from a general student, and use teacher distributions plus RL-style objectives to merge capabilities back into one model.
+- The same source reframes DPO's role. DPO appears less central in the latest frontier recipes when the on-policy RL/distillation pipeline is mature, but remains useful for bootstrapping smaller or open recipes where SFT creates rough distributional edges that still need preference cleanup.
 - The policy-gradient material in `rl-policy.md` also helps place RLHF historically. PPO is not a mysterious LLM-only trick; it sits on top of REINFORCE, baselines, actor-critic methods, and KL-regularized policy optimization.
 - A good mental model is:
   - **Pretraining** teaches language and latent world structure.
@@ -66,7 +69,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
-- Which future post-training recipes will replace the current SFT → preference-optimization default for frontier LLMs?
+- Which future post-training recipes will replace the current SFT -> preference-optimization default for frontier LLMs?
+- How reproducible is MOPD without access to the teacher checkpoints, data mixtures, and organization-level parallelism that produced them?
 
 ## Related pages
 
@@ -83,6 +87,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Group Relative Policy Optimization]]
 - [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]]
 - [[Direct Preference Optimization]]
+- [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
+- [[Multi-Teacher On-Policy Distillation]]
 - [[Reward Design for RL]]
 - [[Search-Augmented Language Models]]
 - [[Efficient Reasoning on the Edge]]

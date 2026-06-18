@@ -72,12 +72,12 @@ A 7-billion parameter model stored in full precision (16-bit floating point) tak
 
 Even if you shrink the model (more on that below), reasoning makes it worse:
 
-| Problem | Why It Hurts on Phones |
-|---------|----------------------|
-| Long output traces | Each generated token is bottlenecked by memory bandwidth, not compute. Phones have ~50-100 GB/s bandwidth vs. ~3000 GB/s on server GPUs. |
-| Growing KV cache | The model stores intermediate attention state for every token generated. A 500-token reasoning trace on a 7B model can consume 1-2 GB of additional memory. |
-| Multiple attempts | Some reasoning systems generate several answers in parallel and pick the best one. That multiplies all costs. |
-| Time-to-first-token | Even starting the generation requires processing the entire input prompt through the model. |
+| Problem             | Why It Hurts on Phones                                                                                                                                      |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Long output traces  | Each generated token is bottlenecked by memory bandwidth, not compute. Phones have ~50-100 GB/s bandwidth vs. ~3000 GB/s on server GPUs.                    |
+| Growing KV cache    | The model stores intermediate attention state for every token generated. A 500-token reasoning trace on a 7B model can consume 1-2 GB of additional memory. |
+| Multiple attempts   | Some reasoning systems generate several answers in parallel and pick the best one. That multiplies all costs.                                               |
+| Time-to-first-token | Even starting the generation requires processing the entire input prompt through the model.                                                                 |
 
 The fundamental bottleneck is: **AI inference on phones is memory-bound, not compute-bound.** The processor spends most of its time *waiting for data to arrive from memory*, not doing math. Every extra token of reasoning means more data movement.
 

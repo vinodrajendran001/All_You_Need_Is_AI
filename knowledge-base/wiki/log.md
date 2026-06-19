@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-17
+updated: 2026-06-19
 tags:
   - log
 source_ids:
@@ -395,3 +395,9 @@ Append-only operational history for the wiki.
 - Audited all 119 wiki pages for broken wikilinks, orphans, frontmatter completeness, related-pages coverage, thin pages, source/concept index coverage, raw markdown coverage, and duplicate index `source_ids`.
 - Found no structural defects after the MOPD and KV Cache ingests.
 - Filed [[2026-06-17 Lint Pass]] and linked it from the index.
+
+## [2026-06-19] query | Efficient Edge Reasoning and TurboQuant
+
+- Filed [[2026-06-19 Efficient Edge Reasoning and TurboQuant]] under `knowledge-base/wiki/queries/`.
+- Synthesized how [[Efficient Reasoning on the Edge]] and [[Prateek Singh - KV Cache and TurboQuant]] meet at the KV-cache bottleneck for local, long-context, and parallel reasoning.
+- Updated the index and log.

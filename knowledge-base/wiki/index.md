@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-17
+updated: 2026-06-19
 tags:
   - index
 source_ids:
@@ -167,6 +167,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Queries
 
+- [[2026-06-19 Efficient Edge Reasoning and TurboQuant]] - Synthesis of how edge reasoning systems and TurboQuant-style KV-cache compression could combine.
 - [[2026-06-04 Efficient Reasoning on the Edge - Blog Post]] - Beginner-friendly self-contained blog post on efficient reasoning for edge devices.
 - [[2026-05-08 Mathematical Foundations for Reinforcement Learning]] - Structured answer on the math stack needed to move from Murphy's survey to RL expertise.
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-05
+updated: 2026-06-22
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -9,6 +9,8 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-06-22-djfarrelly-agent-loop-architecture
+  - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
 ---
 
@@ -34,6 +36,18 @@ This multi-step looping is the foundation of **AI agents** — systems where the
 Grab’s analytics-support assistant shows what the loop looks like in a real enterprise workflow. A classifier routes a Slack question to specialist agents for data inspection, code search, and on-call health checks; a summarizer then integrates the findings; and higher-risk enhancement requests move to a separate human-gated path. The core loop is still plan → act → observe, but in production it often spans **multiple specialist agents, tool boundaries, and approval steps** rather than a single model repeatedly calling one tool.
 
 The Eric Jang interview adds a research-facing version of the same idea: an **autoresearch loop** where models help implement experiments, run them, and tune hyperparameters across iterations. The limit, for now, is not looping itself but research navigation — deciding which question to investigate next and knowing when a line of attack is a dead end.
+
+## Durable loop architecture
+
+[[djfarrelly - The Agent Loop Architecture]] adds the missing runtime layer: a loop is not just `while not done`. In production, a loop is a trigger or schedule plus a decision-maker plus durable execution steps. The source's three-layer model is:
+
+1. **Loop** — cron or event trigger plus LLM decision-maker.
+2. **Skill** — reusable durable workflow that can fetch data, call models, invoke tools, retry, and return a result.
+3. **Orchestrator** — execution engine that checkpoints steps, manages retries, enforces concurrency, stores run history, and survives deploys or crashes.
+
+This reframes the agentic loop from a control-flow pattern into an infrastructure problem. A basic process can restart, but it cannot know which LLM call already happened, whether a Slack message was already sent, or whether a child agent is still running. Durable orchestration prevents duplicate side effects and wasted token spend by resuming from the last successful step.
+
+The Alpha Signal skill-optimization source extends this into **loop engineering**: design repeatable cycles with verifiable goals, memory, metrics, and exit conditions, then let the system optimize the skill artifacts inside that loop. See [[Agent Skill]].
 
 ## Example
 
@@ -77,10 +91,13 @@ See [[Agent Planning]] for the planning/execution branch and [[Agent Memory]] fo
 - [[AI Agents in Production]]
 - [[Agent Planning]]
 - [[Agent Memory]]
+- [[Agent Skill]]
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
 - [[Reward Design for RL]]
 - [[pguso - Agents From Scratch]]
+- [[djfarrelly - The Agent Loop Architecture]]
+- [[Alpha Signal - How your agents can write and optimize their own skills]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo]]

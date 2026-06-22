@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-10
+updated: 2026-06-22
 tags:
   - concept
   - context-engineering
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-06-05-systemdesign42-system-design-academy
   - src-2026-06-10-bytebytego-token-spend-routing
+  - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
 ---
 
@@ -37,6 +38,14 @@ LLM performance at inference time is determined by the content of the context wi
 | **When it matters most** | Few-shot examples, chain-of-thought elicitation | Long conversations, agentic systems, RAG pipelines |
 
 Prompt engineering is a subset of context engineering — once you have the right context architecture, prompt phrasing matters less than what information is present.
+
+### Skill files as optimizable context artifacts
+
+[[Alpha Signal - How your agents can write and optimize their own skills]] adds a concrete artifact type to this page: the [[Agent Skill|skill file]]. A skill file is a standalone markdown operating procedure that enters the agent's context and tells it how to perform a task family, use tools, format outputs, and recover from failures.
+
+The source's important shift is from one-off prompt tweaking to **text-space optimization**. SkillOpt, GEPA, and EvoSkill treat these text artifacts as external state that can be improved through rollouts, verifiers, reflection over trajectories, bounded edits, held-out validation, and rejected-edit buffers. This is context engineering becoming an optimization loop rather than a manual writing exercise.
+
+The caveat is that this only works when the task has a verifiable feedback signal. For subjective or poorly specified work, automated skill-file optimization can overfit to weak evals or introduce hidden regressions.
 
 ### What context engineering manages
 
@@ -88,6 +97,7 @@ Kilo's production numbers are useful here because they show the limit of "just c
 ## Related pages
 
 - [[Agent Memory]]
+- [[Agent Skill]]
 - [[Retrieval-Augmented Generation]]
 - [[On-Device Reasoning]]
 - [[Model Routing]]
@@ -97,5 +107,6 @@ Kilo's production numbers are useful here because they show the limit of "just c
 - [[Model Context Protocol]]
 - [[LLM Training Pipeline]]
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
+- [[Alpha Signal - How your agents can write and optimize their own skills]]
 - [[systemdesign42 - System Design Academy]]
 - [[AI Knowledge Base Overview]]

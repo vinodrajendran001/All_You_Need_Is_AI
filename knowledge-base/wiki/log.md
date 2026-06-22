@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-19
+updated: 2026-06-22
 tags:
   - log
 source_ids:
@@ -45,6 +45,8 @@ source_ids:
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
+  - src-2026-06-22-djfarrelly-agent-loop-architecture
+  - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
 ---
 
@@ -401,3 +403,15 @@ Append-only operational history for the wiki.
 - Filed [[2026-06-19 Efficient Edge Reasoning and TurboQuant]] under `knowledge-base/wiki/queries/`.
 - Synthesized how [[Efficient Reasoning on the Edge]] and [[Prateek Singh - KV Cache and TurboQuant]] meet at the KV-cache bottleneck for local, long-context, and parallel reasoning.
 - Updated the index and log.
+
+## [2026-06-22] ingest | The Agent Loop Architecture
+
+- Mapped `knowledge-base/raw/sources/The Agent Loop Architecture.md` into [[djfarrelly - The Agent Loop Architecture]] as the source summary page.
+- Seeded [[Inngest]] as the concrete durable orchestration platform example.
+- Extended [[Agentic Loop]], [[Agent Planning]], [[AI Agents in Production]], and [[Agent Skill]] with the loop + skill + orchestrator framing, step checkpointing, retries, failure hooks, concurrency controls, and run-history observability.
+
+## [2026-06-22] ingest | How your agents can write and optimize their own skills
+
+- Mapped `knowledge-base/raw/sources/How your agents can write and optimize their own skills.md` into [[Alpha Signal - How your agents can write and optimize their own skills]] as the source summary page.
+- Seeded [[Agent Skill]] as a synthesis page connecting markdown skill files, durable workflows, SkillOpt, GEPA, EvoSkill, and loop engineering.
+- Updated [[Context Engineering]], [[Agentic Loop]], [[AI Agents in Production]], [[Alpha Signal]], [[AI Knowledge Base Overview]], index, and log.

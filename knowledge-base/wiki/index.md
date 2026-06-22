@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-19
+updated: 2026-06-22
 tags:
   - index
 source_ids:
@@ -45,6 +45,8 @@ source_ids:
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
+  - src-2026-06-22-djfarrelly-agent-loop-architecture
+  - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
 ---
 
@@ -75,6 +77,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
 - [[Agent Planning]] - Planning as data structures, atomic actions, and AoT dependency graphs for safe multi-step execution.
+- [[Agent Skill]] - Reusable agent capability artifacts spanning markdown procedures, durable workflows, and optimization loops.
 - [[Agent Memory]] - Short-term context vs long-term persistent storage; explicit fact management for agents.
 - [[AI Agents in Production]] - Real-world deployment of AI agents for team productivity and design workflows.
 - [[Search-Augmented Language Models]] - LLMs that use web search as part of generation, with RL-trained tool-use policies.
@@ -112,6 +115,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Qualcomm AI Research]] - Mobile/edge deployment group focused here on efficient on-device reasoning.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
 - [[Alpha Signal]]
+- [[Inngest]] - Durable workflow/orchestration platform used as the concrete example in the agent loop architecture source.
 - [[The Pocket]] - Organization behind PocketFlow and its tutorial-documentation curriculum.
 - [[Y Combinator]] - Startup accelerator and publisher of YC Paper Club frontier-research sessions.
 - [[Eric Jang]] - Researcher whose AlphaGo reconstruction ties together MCTS, RL, and autoresearch.
@@ -164,6 +168,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[itsreallyvivek - some notes on getting into frontier ai labs]] - Essay-thread on research taste, abstraction-building, and judgment under uncertainty in frontier AI work.
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] - Historical and current map of post-training recipes from InstructGPT to MOPD-style 2026 frontier pipelines.
 - [[Prateek Singh - KV Cache and TurboQuant]] - Interactive KV-cache memory explainer and TurboQuant breakdown for long-context inference compression.
+- [[djfarrelly - The Agent Loop Architecture]] - Durable agent loop architecture organized around loops, skills, orchestration, checkpoints, retries, and run history.
+- [[Alpha Signal - How your agents can write and optimize their own skills]] - SkillOpt, GEPA, EvoSkill, and loop-engineered skill-file optimization for agents.
 
 ## Queries
 

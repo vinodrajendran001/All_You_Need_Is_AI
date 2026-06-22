@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-22
 tags:
   - concept
   - agents
@@ -9,6 +9,7 @@ tags:
   - execution
 source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-06-22-djfarrelly-agent-loop-architecture
 status: active
 ---
 
@@ -86,6 +87,18 @@ A pattern that recurs across sources in this vault:
 
 Keeping these phases separate provides a natural point for validation, human review, resource estimation, and rollback.
 
+### From plan graph to durable execution
+
+[[djfarrelly - The Agent Loop Architecture]] adds a production-runtime requirement to the pguso planning stack. A plan or AoT graph can define the steps, dependencies, and parallel branches, but the execution layer still needs to make each step durable.
+
+The practical bridge is:
+
+- **Plan graph** says what should run and in what dependency order.
+- **Atomic actions** make each node typed and validatable.
+- **Durable orchestration** checkpoints each node, retries failed nodes without replaying successful ones, manages sub-agent lifecycles, and enforces concurrency.
+
+This distinction matters because a correct plan can still be operationally unsafe if a crash causes already-completed side effects to repeat. Planning makes intent inspectable; orchestration makes execution resumable.
+
 ## Open questions
 
 - How should an agent revise its plan mid-execution when early steps fail or return unexpected results?
@@ -98,6 +111,8 @@ Keeping these phases separate provides a natural point for validation, human rev
 - [[Agent Memory]]
 - [[Tool Use and Function Calling]]
 - [[AI Agents in Production]]
+- [[Agent Skill]]
 - [[pguso - Agents From Scratch]]
+- [[djfarrelly - The Agent Loop Architecture]]
 - [[Direct Corpus Interaction]]
 - [[AI Knowledge Base Overview]]

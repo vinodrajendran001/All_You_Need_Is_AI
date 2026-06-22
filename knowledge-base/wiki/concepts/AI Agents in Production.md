@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-10
+updated: 2026-06-22
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-05-systemdesign42-system-design-academy
   - src-2026-06-10-bytebytego-token-spend-routing
+  - src-2026-06-22-djfarrelly-agent-loop-architecture
+  - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
 ---
 
@@ -77,6 +79,16 @@ The newer sources show that "production agent" no longer means only a cloud work
 
 This broadens the agent-design problem. Production agents need not only reasoning and tools, but sometimes also local privacy guarantees and high-fidelity spatial interfaces to the world they act on.
 
+## Durable orchestration and skill libraries
+
+[[djfarrelly - The Agent Loop Architecture]] adds the execution-layer version of production readiness. A production agent loop cannot be only a long-running process, because crashes, deploys, OOMs, and spot-instance reclamations can make the loop forget which step already ran. The durable requirements are step-level checkpoints, independent retries, failure hooks, guaranteed event delivery, concurrency control, sub-agent lifecycle management, hot deploys, and run history.
+
+The source's useful reframing is: agents are **loops + skills + orchestration**. The LLM and tools sit inside that structure. The loop decides when work is needed; the [[Agent Skill|skill]] is the reusable durable workflow; the orchestrator makes the workflow survivable and observable.
+
+[[Alpha Signal - How your agents can write and optimize their own skills]] adds the text-artifact side of the same pattern. It frames a skill as a markdown operating procedure and surveys SkillOpt, GEPA, and EvoSkill as optimization loops that improve those skill files from task trajectories. This connects directly to production evals: self-optimizing skills require verifiers, representative held-out datasets, rejected-edit buffers or version control, and human-visible review.
+
+The combined production rule is: **do not let agents self-modify unobservably**. If agents can write or optimize skills, those skills need versioned text, durable execution, run traces, eval gates, rollback paths, and developer ownership.
+
 ## Evals and telemetry as production requirements
 
 [[pguso - Agents From Scratch]] adds two operational disciplines that are absent from the Grab/Figma treatment but are essential for running agents in production:
@@ -126,6 +138,10 @@ The common pattern is not “let the model do everything.” It is **design an e
 
 - [[Context Engineering]]
 - [[Model Routing]]
+- [[Agent Skill]]
+- [[djfarrelly - The Agent Loop Architecture]]
+- [[Alpha Signal - How your agents can write and optimize their own skills]]
+- [[Inngest]]
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
 - [[systemdesign42 - System Design Academy]]
 - [[Agentic Loop]]

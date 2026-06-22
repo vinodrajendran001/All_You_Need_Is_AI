@@ -47,6 +47,7 @@ source_ids:
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
+  - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
@@ -70,7 +71,7 @@ The first source in the system is [[Andrej Karpathy - LLM Wiki]], which establis
 
 The June 17 ingest adds two dense infrastructure/post-training sources. [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] seeds [[Multi-Teacher On-Policy Distillation]], updating the post-training branch from SFT/DPO/RLVR-era recipes toward 2026 specialist-teacher consolidation, where many domain experts are trained separately and merged through on-policy student rollouts. [[Prateek Singh - KV Cache and TurboQuant]] seeds [[KV Cache]] as a standalone inference-efficiency page and clarifies why long-context AI is often memory-bound: KV cache solves repeated attention compute but becomes the dominant GPU-memory object, motivating PagedAttention, GQA/MQA/MLA, eviction/skipping methods, and TurboQuant-style 3-4 bit cache compression.
 
-The June 22 ingest adds two agent-infrastructure sources. [[djfarrelly - The Agent Loop Architecture]] reframes production agents as **loops + skills + orchestration**, where durable execution, step checkpoints, retries, concurrency, and run history are what make long-running loops safe. [[Alpha Signal - How your agents can write and optimize their own skills]] adds the text-artifact side of the same branch, treating markdown skill files as optimizable external state through SkillOpt, GEPA, EvoSkill, verifiers, held-out evals, and bounded edits. Together they seed [[Agent Skill]] and add [[Inngest]] as the concrete orchestration platform example.
+The June 22 ingest adds agent-infrastructure and research-automation sources. [[djfarrelly - The Agent Loop Architecture]] reframes production agents as **loops + skills + orchestration**, where durable execution, step checkpoints, retries, concurrency, and run history are what make long-running loops safe. [[Alpha Signal - How your agents can write and optimize their own skills]] adds the text-artifact side of the same branch, treating markdown skill files as optimizable external state through SkillOpt, GEPA, EvoSkill, verifiers, held-out evals, and bounded edits. Together they seed [[Agent Skill]] and add [[Inngest]] as the concrete orchestration platform example. [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] seeds [[Recursive Self-Improvement]], separating workflow-level self-improving agents from stronger model-building-level RSI.
 
 ## Key pages
 
@@ -98,6 +99,7 @@ The June 22 ingest adds two agent-infrastructure sources. [[djfarrelly - The Age
 - [[Vision-Language Grounding]] - text-conditioned spatial localization across objects, GUIs, documents, and scenes
 - [[Monte Carlo Tree Search]] - search-time planning plus dense policy targets from AlphaGo-style supervision
 - [[Automated AI Research]] - autoresearch loops, experiment execution, and the remaining bottlenecks in research agents
+- [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems
 - [[Tool Use and Function Calling]] - how LLMs request real-world actions
 - [[Model Context Protocol]] - open standard for universal tool integration
 - [[Agentic Loop]] - the iterative cycle powering multi-step tool use
@@ -170,6 +172,8 @@ The June 22 ingest adds two agent-infrastructure sources. [[djfarrelly - The Age
 - [[Vision-Language Grounding]]
 - [[Monte Carlo Tree Search]]
 - [[Automated AI Research]]
+- [[Recursive Self-Improvement]]
+- [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[World Models]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]

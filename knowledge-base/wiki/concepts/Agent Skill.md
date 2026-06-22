@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
+  - src-2026-06-18-alyona-vert-recursive-self-improvement
 status: active
 ---
 
@@ -51,12 +52,15 @@ This makes a skill file look like "trainable external state." It is not trained 
 
 Durable orchestration makes those optimized skills operational. [[djfarrelly - The Agent Loop Architecture]] argues that a skill must survive restarts, avoid duplicate side effects, expose run history, retry only failed steps, and remain callable by scheduled or event-driven loops. Without that layer, a skill may be a useful instruction document but not dependable production infrastructure.
 
+[[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] sharpens the boundary around "self-improving" language. Optimizing a skill file is workflow-level self-improvement: the agent's procedure improves, but the model-building process has not necessarily improved. Stronger [[Recursive Self-Improvement]] would feed into future AI system creation itself, including training data, model design, evaluation, and post-training recipes.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
 - What governance is needed before agents can safely write, deploy, and revise their own skills?
 - How should teams evaluate skill edits so they improve one task without regressing another?
 - Can skill libraries become portable across models and harnesses, or will they remain tightly coupled to a specific runtime?
+- When is skill optimization merely workflow tuning, and when does it become part of a broader recursive self-improvement loop?
 
 ## Related pages
 
@@ -68,5 +72,7 @@ Durable orchestration makes those optimized skills operational. [[djfarrelly - T
 - [[Agent Memory]]
 - [[djfarrelly - The Agent Loop Architecture]]
 - [[Alpha Signal - How your agents can write and optimize their own skills]]
+- [[Recursive Self-Improvement]]
+- [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[pguso - Agents From Scratch]]
 - [[Inngest]]

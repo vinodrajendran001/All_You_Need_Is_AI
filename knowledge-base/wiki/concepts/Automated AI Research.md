@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-10
+updated: 2026-06-22
 tags:
   - concept
   - agents
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-06-18-alyona-vert-recursive-self-improvement
 status: active
 ---
 
@@ -37,17 +38,22 @@ This is one of the clearest real-world paths by which AI capability could recurs
   - **Abstraction-building and question selection** remain much harder.
 - A durable summary is: automated research becomes more valuable as systems get better at generating possibilities, but that also makes **taste** more important, because the main problem shifts from "can we run this?" to "is this the right thing to run?"
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] adds the organizational version of the same bottleneck. Frontier post-training recipes now require many specialist teachers, data mixtures, RL runs, distillation stages, and integration steps. That makes research automation less like "one agent finds the answer" and more like **coordination across many experimental subprograms**. The hard part is not only running experiments, but maintaining the recipe graph and deciding which specialist branch deserves more compute.
+- [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] adds the recursive-improvement spectrum. Today's systems mostly automate coding, experiments, evaluation, post-training work, and workflow artifacts; stronger [[Recursive Self-Improvement]] would improve the model-building process itself, including data, architectures, training methods, evaluations, and future AI researchers.
+- This distinction keeps the page conservative: self-improving agents can optimize prompts, tools, memory, code, or skills without yet reaching true RSI. The hard jump is from improving a workflow to improving the system that creates better AI systems.
 
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
 - At what point does the main bottleneck shift from execution to selecting fruitful research directions?
+- When does workflow-level self-improvement become model-building-level recursive self-improvement?
 
 ## Related pages
 
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
 - [[itsreallyvivek - some notes on getting into frontier ai labs]]
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
+- [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
+- [[Recursive Self-Improvement]]
 - [[Multi-Teacher On-Policy Distillation]]
 - [[Agentic Loop]]
 - [[AI Agents in Production]]

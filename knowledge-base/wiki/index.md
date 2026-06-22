@@ -45,6 +45,7 @@ source_ids:
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
+  - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
@@ -99,6 +100,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Vision-Language Grounding]] - Text-conditioned spatial localization for objects, GUIs, documents, and scenes.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
+- [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems.
 - [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
 
 ## Entities
@@ -168,6 +170,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[itsreallyvivek - some notes on getting into frontier ai labs]] - Essay-thread on research taste, abstraction-building, and judgment under uncertainty in frontier AI work.
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] - Historical and current map of post-training recipes from InstructGPT to MOPD-style 2026 frontier pipelines.
 - [[Prateek Singh - KV Cache and TurboQuant]] - Interactive KV-cache memory explainer and TurboQuant breakdown for long-context inference compression.
+- [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] - Turing Post AI 101 explainer distinguishing workflow-level self-improving agents from stronger model-building-level RSI.
 - [[djfarrelly - The Agent Loop Architecture]] - Durable agent loop architecture organized around loops, skills, orchestration, checkpoints, retries, and run history.
 - [[Alpha Signal - How your agents can write and optimize their own skills]] - SkillOpt, GEPA, EvoSkill, and loop-engineered skill-file optimization for agents.
 

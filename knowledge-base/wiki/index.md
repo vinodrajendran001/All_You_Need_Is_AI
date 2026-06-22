@@ -198,6 +198,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-06-05 Lint Pass]] - Fourteenth comprehensive lint pass (105 pages) after World Models taxonomy + DPO ingests; no defects; fixed Liquid AI validator bug and blog-post orphan.
 - [[2026-06-05 Lint Pass 2]] - Fifteenth comprehensive lint pass (108 pages) after System Design Academy ingest; no defects.
 - [[2026-06-17 Lint Pass]] - Sixteenth comprehensive lint pass (119 pages) after MOPD + KV Cache ingests; no defects.
+- [[2026-06-22 Lint Pass]] - Seventeenth comprehensive lint pass (127 pages) after agent-skill and RSI ingests; fixed one unreferenced raw source and found no remaining defects.
 
 ## Control files
 

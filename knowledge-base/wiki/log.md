@@ -422,3 +422,10 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/AI 101 What is Recursive Self-Improvement.md` into [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] as the source summary page after the lint pass found it was not referenced by the wiki.
 - Seeded [[Recursive Self-Improvement]] as a new concept page distinguishing workflow-level self-improving agents from stronger model-building-level RSI.
 - Updated [[Automated AI Research]], [[Agent Skill]], [[Recursive Architectures]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-22] lint | Full wiki lint pass
+
+- Audited all 127 wiki pages for broken wikilinks, orphans, frontmatter parse errors, missing `type`/`updated` fields, related-pages coverage, thin pages, index coverage, raw markdown coverage, duplicate index `source_ids`, and source-page `source_id` coverage.
+- Initial pass found one unreferenced raw source, `knowledge-base/raw/sources/AI 101 What is Recursive Self-Improvement.md`; fixed it by ingesting [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] and seeding [[Recursive Self-Improvement]].
+- Re-ran the lint checks and found no remaining structural defects.
+- Filed [[2026-06-22 Lint Pass]] and linked it from the index.

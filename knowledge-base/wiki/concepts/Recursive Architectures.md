@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-22
 tags:
   - concept
   - architecture
@@ -9,6 +9,7 @@ tags:
   - recursion
 source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion
+  - src-2026-06-18-alyona-vert-recursive-self-improvement
 status: active
 ---
 
@@ -44,9 +45,15 @@ Weight sharing lets a small model reuse the same learned transformation many tim
 
 Recursive architectures matter here because they offer a different answer to the reasoning problem than token-heavy prompting or tool-driven loops. They do not replace general-purpose LLMs, but they suggest a complementary design space for specialized reasoning engines and agent systems. Their training and optimization questions also connect naturally to [[Reinforcement Learning]], especially when systems must learn how much computation to spend and how to improve multi-step behavior.
 
+## Not recursive self-improvement
+
+[[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] makes a useful terminology distinction. Recursive architectures reuse computation over internal state to get more reasoning depth from a model. [[Recursive Self-Improvement]] is a broader research-loop idea where AI systems improve the process that creates future AI systems. The two ideas can interact, but they are not the same mechanism.
+
 ## Related pages
 
 - [[Latent-Space Reasoning]]
 - [[Reinforcement Learning]]
 - [[Alpha Signal - The Return of Recursion]]
+- [[Recursive Self-Improvement]]
+- [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[Agentic Loop]]

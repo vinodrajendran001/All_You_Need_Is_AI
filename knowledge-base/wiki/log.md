@@ -45,6 +45,7 @@ source_ids:
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
+  - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
@@ -415,3 +416,9 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/How your agents can write and optimize their own skills.md` into [[Alpha Signal - How your agents can write and optimize their own skills]] as the source summary page.
 - Seeded [[Agent Skill]] as a synthesis page connecting markdown skill files, durable workflows, SkillOpt, GEPA, EvoSkill, and loop engineering.
 - Updated [[Context Engineering]], [[Agentic Loop]], [[AI Agents in Production]], [[Alpha Signal]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-22] ingest | AI 101 - What is Recursive Self-Improvement?
+
+- Mapped `knowledge-base/raw/sources/AI 101 What is Recursive Self-Improvement.md` into [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] as the source summary page after the lint pass found it was not referenced by the wiki.
+- Seeded [[Recursive Self-Improvement]] as a new concept page distinguishing workflow-level self-improving agents from stronger model-building-level RSI.
+- Updated [[Automated AI Research]], [[Agent Skill]], [[Recursive Architectures]], [[AI Knowledge Base Overview]], index, and log.

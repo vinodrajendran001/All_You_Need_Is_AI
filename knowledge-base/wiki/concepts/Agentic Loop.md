@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
@@ -48,6 +49,12 @@ The Eric Jang interview adds a research-facing version of the same idea: an **au
 This reframes the agentic loop from a control-flow pattern into an infrastructure problem. A basic process can restart, but it cannot know which LLM call already happened, whether a Slack message was already sent, or whether a child agent is still running. Durable orchestration prevents duplicate side effects and wasted token spend by resuming from the last successful step.
 
 The Alpha Signal skill-optimization source extends this into **loop engineering**: design repeatable cycles with verifiable goals, memory, metrics, and exit conditions, then let the system optimize the skill artifacts inside that loop. See [[Agent Skill]].
+
+## Agentic RL view
+
+[[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] treats the loop as the rollout generator for [[Agentic Reinforcement Learning]]. Each loop step can include generated text, a structured tool call, an observation from the environment, reward feedback, and updates to external state. This turns the loop into a multi-turn MDP rather than a pure application-control pattern.
+
+The important training implication is that loop traces must preserve which tokens came from the agent, which observations came from tools, where step boundaries occurred, and when termination happened. Those details determine action masks, reward assignment, context construction, and whether the policy update actually matches what happened during rollout.
 
 ## Example
 
@@ -95,6 +102,8 @@ See [[Agent Planning]] for the planning/execution branch and [[Agent Memory]] fo
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
 - [[Reward Design for RL]]
+- [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[pguso - Agents From Scratch]]
 - [[djfarrelly - The Agent Loop Architecture]]
 - [[Alpha Signal - How your agents can write and optimize their own skills]]

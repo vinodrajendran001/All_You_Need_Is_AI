@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-17
+updated: 2026-06-23
 tags: [rl, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-04-difficulty-aware-entropy-regularization
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
 status: active
 ---
 
@@ -88,6 +89,20 @@ This broadens the page's reward-design picture:
 
 The open design problem is how to combine these signals without creating capability conflicts across domains.
 
+## Agentic RL reward design
+
+[[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] extends this page from completion-level rewards to multi-turn [[Agentic Reinforcement Learning]]. The reward object is no longer only a final answer; it can be attached to a trajectory containing agent actions, tool calls, observations, environment state, and termination signals.
+
+Durable patterns from that source:
+
+- **Outcome rewards remain useful** when tasks have verifiable final states, such as correct math answers, passed tests, solved web tasks, or matching a golden environment state.
+- **Process rewards are tempting but risky**. ToRL found that penalizing non-executable code made the agent more conservative and did not improve performance, showing that intermediate penalties can suppress useful exploration.
+- **Action masks matter** because rewards should update agent-generated tokens, not prompts or environment-generated observations.
+- **Advantage normalization becomes environment-aware**. AgentRL normalizes token advantages within task/domain groups, while AutoForge's ERPO scales advantages across valid trajectories from the same environment to stabilize multi-task updates.
+- **Stability rewards are not enough by themselves**. RAGEN/RAGEN-2 show that diversity and signal diagnostics may be needed to avoid echo traps and template collapse.
+
+The shared lesson is that agentic reward design must balance correctness, exploration, environment-specific difficulty, and long-horizon credit assignment rather than simply adding more scalar penalties.
+
 ## Broader alignment context
 
 [[The Pocket - PocketFlow Tutorial Docs]] expands the background behind this page by walking through reward-model training in RLHF, the Bradley-Terry preference formulation, and DPO as a direct preference-learning alternative. Together, those tutorials make reward design easier to place inside the wider [[LLM Training Pipeline]] rather than treating it as a search-agent-only concern.
@@ -95,6 +110,7 @@ The open design problem is how to combine these signals without creating capabil
 ## Related pages
 
 - [[Search-Augmented Language Models]]
+- [[Agentic Reinforcement Learning]]
 - [[Group Relative Policy Optimization]]
 - [[Reinforcement Learning]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
@@ -102,6 +118,7 @@ The open design problem is how to combine these signals without creating capabil
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Efficient Reasoning on the Edge]]
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Multi-Teacher On-Policy Distillation]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]

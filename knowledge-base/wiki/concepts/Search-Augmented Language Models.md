@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-29
+updated: 2026-06-23
 tags: [search, rag, agents, llm, retrieval]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-doordash-llm-judge
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
 status: active
 ---
 
@@ -36,6 +37,8 @@ Perplexity Research describes a two-stage post-training recipe:
 ## Broader training context
 
 Perplexity's pipeline is one specialized application of a broader post-training stack. [[The Pocket - PocketFlow Tutorial Docs]] supplies the first-principles background for that stack across pretraining, SFT, RLHF + PPO, DPO, LoRA, and policy gradients; see [[LLM Training Pipeline]] for the synthesized version.
+
+[[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] generalizes this page's RL picture from search agents to [[Agentic Reinforcement Learning]] broadly. Search is one environment/tool family; the same training issues recur for web navigation, code execution, databases, operating systems, shopping environments, and synthetic tool worlds: isolated rollouts, step-level trajectories, outcome/process rewards, action masks, and context-management rules.
 
 ## Key challenges
 
@@ -76,6 +79,8 @@ Search is a specific instance of [[Tool Use and Function Calling]]. The model is
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[ByteByteGo]]
 - [[Reward Design for RL]]
+- [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[LLM Training Pipeline]]
 - [[Reinforcement Learning]]
 - [[Tool Use and Function Calling]]

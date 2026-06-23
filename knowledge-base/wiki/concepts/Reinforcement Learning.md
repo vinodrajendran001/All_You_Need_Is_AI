@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-06-02
+updated: 2026-06-23
 tags:
   - concept
   - reinforcement-learning
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-02-dwarkesh-eric-jang-flashcards
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
 status: active
 ---
 
@@ -35,12 +36,15 @@ RL is one of the major domains already represented in the broader vault, and thi
 - That collection also sharpens one of this page's open questions: the bridge between classic RL and RL-for-LLMs is not incidental. Policy-gradient methods for alignment sit naturally on top of the same foundations as bandits, value functions, Bellman-style reasoning, and model-free control.
 - The Eric Jang sources add AlphaGo/AlphaZero as the clearest concrete example of an alternative RL regime: **search plus self-play** can turn a sparse terminal reward into dense per-state supervision by making the policy imitate the MCTS-improved move distribution at every state. See [[Monte Carlo Tree Search]].
 - Those same sources sharpen the contrast with RL for LLMs: token-level policy gradients face a much uglier credit-assignment problem, and MCTS does not transfer cleanly because language has unbounded branching and weak partial-trajectory value models.
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] adds the next RL-for-LLMs branch: [[Agentic Reinforcement Learning]]. Instead of optimizing one prompt-response completion, the policy is trained over multi-turn trajectories with tool calls, observations, environment state, outcome/process rewards, action masks, and asynchronous rollout infrastructure.
+- This makes RL for agents look closer to classical sequential decision-making again: the MDP state is not only token context but a joint state of model-visible context plus external environment state.
 - This page should remain a hub page until narrower RL subtopic pages are added.
 
 ## Open questions
 
 - Which RL branches deserve their own pages first as more sources are ingested?
 - How should the vault distinguish classic RL background from modern RL-for-LLMs workflows?
+- Which agentic RL subtopics deserve their own pages first: rollout infrastructure, synthetic environments, or stability failures such as echo traps?
 
 ## Related pages
 
@@ -52,6 +56,8 @@ RL is one of the major domains already represented in the broader vault, and thi
 - [[Perplexity]]
 - [[Eric Jang]]
 - [[Monte Carlo Tree Search]]
+- [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
 - [[LLM Training Pipeline]]

@@ -51,6 +51,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
+  - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
 status: active
 ---
 
@@ -76,6 +77,8 @@ The June 22 ingest adds agent-infrastructure and research-automation sources. [[
 
 The June 23 ingest adds [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]], which seeds [[Agentic Reinforcement Learning]]. This extends the RL branch from single-turn LLM post-training into multi-turn interactive trajectories with tools, environment state, isolated rollouts, asynchronous training infrastructure, action masks, context rules, outcome/process rewards, and stability failures such as echo traps and template collapse.
 
+The later June 23 ingest adds [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]], seeding [[Diffusion Models]] as the vault's first dedicated diffusion page. It separates diffusion from the LLM training branch by explaining forward noising, denoising targets, timestep embeddings, U-Net denoisers, latent diffusion, conditioning, classifier-free guidance, diffusion transformers, and the speed-quality tradeoff in iterative sampling.
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -86,6 +89,7 @@ The June 23 ingest adds [[Cameron R. Wolfe - Agentic RL Frameworks and Best Prac
 - [[Reinforcement Learning]] - first domain hub page seeded from an ingested paper
 - [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments
 - [[Transformer Architecture]] - decoder-only Transformer blueprint plus attention, RoPE, and KV-cache synthesis
+- [[Diffusion Models]] - generative models that learn to reverse noising processes for images and other data
 - [[LLM Training Pipeline]] - pretraining, SFT, RLHF, DPO, and LoRA as one connected map
 - [[Neural Network Fundamentals]] - gradient descent, backpropagation, PyTorch, and Adam as the substrate under higher-level model pages
 - [[Algorithm Templates for Interviews]] - template-selection map connecting classic DSA interview patterns with ML engineering preparation
@@ -169,6 +173,8 @@ The June 23 ingest adds [[Cameron R. Wolfe - Agentic RL Frameworks and Best Prac
 - [[Inngest]]
 - [[Reward Design for RL]]
 - [[Transformer Architecture]]
+- [[Diffusion Models]]
+- [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]

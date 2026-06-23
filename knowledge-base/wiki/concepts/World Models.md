@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-05
+updated: 2026-06-23
 tags:
   - concept
   - world-models
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-05-fei-fei-li-taxonomy-world-models
+  - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
 status: active
 ---
 
@@ -47,6 +48,17 @@ The hard problems cluster in simulation: 3D data is orders of magnitude scarcer 
 
 **Convergence thesis:** The essay argues that the renderer/simulator/planner distinction is already dissolving. All three require the same underlying world knowledge (geometry, materials, physics, dynamics), so the logical endpoint is one unified foundation model that switches output format depending on what the downstream consumer needs. [[World Labs]]' **Marble** product — text/image/video → explorable 3D environment outputting both Gaussian splats and collision meshes — illustrates this convergence: one system spans renderer and simulator outputs from the same representation.
 
+### Diffusion as renderer and trajectory mechanism
+
+[[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] adds the mechanism behind many renderer-style world-model outputs. [[Diffusion Models]] learn a path from Gaussian noise to structured data by repeatedly denoising, often in latent space and often conditioned on text or other control signals.
+
+For world models, the useful distinction is:
+
+- diffusion is a **generative path** from a simple distribution to data;
+- a world model is a **predictive model of environment dynamics**.
+
+Diffusion can implement renderer-like world-model components and can be adapted to video, trajectory, or control settings, as the YC Paper Club source notes. But visual plausibility is not the same as physical simulation. A diffusion renderer can make believable pixels while still violating geometry, causality, or physics unless the broader system grounds it in state and dynamics.
+
 ### Open questions
 
 - What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
@@ -57,6 +69,8 @@ The hard problems cluster in simulation: 3D data is orders of magnitude scarcer 
 
 - [[Fei-Fei Li - A Functional Taxonomy of World Models]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
+- [[Diffusion Models]]
+- [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
 - [[Latent-Space Reasoning]]
 - [[Reinforcement Learning]]
 - [[AI Agents in Production]]

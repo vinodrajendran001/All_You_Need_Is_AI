@@ -49,6 +49,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
+  - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
 status: active
 ---
 
@@ -436,3 +437,9 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/Agentic RL Frameworks and Best Practices.md` into [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] as the source summary page.
 - Seeded [[Agentic Reinforcement Learning]] as a new concept page covering multi-turn MDPs, isolated environment rollouts, asynchronous/disaggregated RL infrastructure, step-level trajectories, action masks, outcome/process rewards, advantage normalization, synthetic environments, echo traps, and template collapse.
 - Updated [[Reinforcement Learning]], [[Reward Design for RL]], [[Group Relative Policy Optimization]], [[Agentic Loop]], [[AI Agents in Production]], [[Context Engineering]], [[LLM Training Pipeline]], [[Search-Augmented Language Models]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-23] ingest | Diffusion Model Visual Breakdown
+
+- Mapped `knowledge-base/raw/sources/Diffusion Model Visual Breakdown.md` into [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] as the source summary page.
+- Seeded [[Diffusion Models]] as a new concept page covering GAN/VAE motivation, DDPM forward noising, noise-prediction loss, timestep embeddings, U-Net denoisers, latent diffusion, conditioning, classifier-free guidance, diffusion transformers, misconceptions, and remaining limitations.
+- Updated [[World Models]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], [[AI Knowledge Base Overview]], index, and log.

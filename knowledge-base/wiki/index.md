@@ -49,6 +49,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
+  - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
 status: active
 ---
 
@@ -69,6 +70,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Reinforcement Learning]] - Hub page for sequential decision making and RL method families.
 - [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments.
 - [[Transformer Architecture]] - Decoder-only Transformer synthesis spanning attention, RoPE, and KV-cache inference.
+- [[Diffusion Models]] - Generative models that learn to reverse noising processes for images and other data.
 - [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
@@ -174,6 +176,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Prateek Singh - KV Cache and TurboQuant]] - Interactive KV-cache memory explainer and TurboQuant breakdown for long-context inference compression.
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] - Turing Post AI 101 explainer distinguishing workflow-level self-improving agents from stronger model-building-level RSI.
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] - Survey of multi-turn, tool-using agent RL frameworks, rollout infrastructure, reward design, and stability failures.
+- [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] - Visual explainer of DDPM noising/denoising, latent diffusion, conditioning, guidance, and diffusion transformers.
 - [[djfarrelly - The Agent Loop Architecture]] - Durable agent loop architecture organized around loops, skills, orchestration, checkpoints, retries, and run history.
 - [[Alpha Signal - How your agents can write and optimize their own skills]] - SkillOpt, GEPA, EvoSkill, and loop-engineered skill-file optimization for agents.
 

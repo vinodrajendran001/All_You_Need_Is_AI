@@ -25,6 +25,7 @@ source_ids:
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
+  - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
 status: active
 ---
 
@@ -67,6 +68,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Han Fang - PyTorch Practice]] is useful here as a lower-level implementation companion: it covers step/exponential/cosine schedulers, warmup-plus-cosine decay, gradient clipping, weight initialization, multi-GPU wrapping, and `eval()`/`no_grad()` inference hygiene—the practical mechanics any real LLM training stack still depends on.
 - [[Fareed Khan - Train LLM From Scratch]] adds an end-to-end pretraining implementation path: download shards of The Pile, tokenize them with `tiktoken` `r50k_base`, append `<|endoftext|>` separators, pack tokens into HDF5, train a decoder-only model with AdamW and periodic dev evaluation, then sample from the saved checkpoint. It is a strong code-first bridge between the conceptual pipeline and an actual runnable GPT-style pretraining stack.
 - The same repository also contains a separate `sft_rlhf_guide.ipynb`, which signals that the author's mental model of the pipeline extends past base pretraining into post-training stages rather than stopping at next-token prediction.
+- [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] is adjacent rather than central to LLM post-training, but it clarifies the broader generative-model branch already present in PocketFlow's `llm-diffusion` lesson. [[Diffusion Models]] use a supervised denoising objective over noised data rather than next-token prediction, which makes them a useful contrast case for understanding how different generative training objectives shape model behavior.
 
 ## Open questions
 
@@ -84,6 +86,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[AI Accelerator Architecture]]
 - [[Transformer Architecture]]
+- [[Diffusion Models]]
+- [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
 - [[Neural Network Fundamentals]]
 - [[Reinforcement Learning]]
 - [[Group Relative Policy Optimization]]

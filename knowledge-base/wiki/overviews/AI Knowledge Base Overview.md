@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-06-22
+updated: 2026-06-23
 tags:
   - overview
   - ai
@@ -48,6 +48,7 @@ source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-18-alyona-vert-recursive-self-improvement
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
@@ -73,6 +74,8 @@ The June 17 ingest adds two dense infrastructure/post-training sources. [[Nathan
 
 The June 22 ingest adds agent-infrastructure and research-automation sources. [[djfarrelly - The Agent Loop Architecture]] reframes production agents as **loops + skills + orchestration**, where durable execution, step checkpoints, retries, concurrency, and run history are what make long-running loops safe. [[Alpha Signal - How your agents can write and optimize their own skills]] adds the text-artifact side of the same branch, treating markdown skill files as optimizable external state through SkillOpt, GEPA, EvoSkill, verifiers, held-out evals, and bounded edits. Together they seed [[Agent Skill]] and add [[Inngest]] as the concrete orchestration platform example. [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] seeds [[Recursive Self-Improvement]], separating workflow-level self-improving agents from stronger model-building-level RSI.
 
+The June 23 ingest adds [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]], which seeds [[Agentic Reinforcement Learning]]. This extends the RL branch from single-turn LLM post-training into multi-turn interactive trajectories with tools, environment state, isolated rollouts, asynchronous training infrastructure, action masks, context rules, outcome/process rewards, and stability failures such as echo traps and template collapse.
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -81,6 +84,7 @@ The June 22 ingest adds agent-infrastructure and research-automation sources. [[
 - [[Ingest Query Lint Loop]] - the repeating maintenance cycle
 - [[Index and Log]] - control files that help the LLM navigate the vault
 - [[Reinforcement Learning]] - first domain hub page seeded from an ingested paper
+- [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments
 - [[Transformer Architecture]] - decoder-only Transformer blueprint plus attention, RoPE, and KV-cache synthesis
 - [[LLM Training Pipeline]] - pretraining, SFT, RLHF, DPO, and LoRA as one connected map
 - [[Neural Network Fundamentals]] - gradient descent, backpropagation, PyTorch, and Adam as the substrate under higher-level model pages
@@ -109,6 +113,7 @@ The June 22 ingest adds agent-infrastructure and research-automation sources. [[
 - [[Direct Corpus Interaction]] - terminal-mediated corpus search as a precision layer for agentic retrieval
 - [[Reward Design for RL]] - composite reward signals for multi-objective LLM training
 - [[Group Relative Policy Optimization]] - relative-policy optimisation method used in the Perplexity RL stage
+- [[Agentic Reinforcement Learning]] - multi-turn RL training for tool-using agents
 - [[Multi-Turn Evaluation]] - turn-level plus conversation-level scoring for simulated and live multi-turn systems
 - [[Latent-Space Reasoning]] - reasoning through internal latent states instead of explicit token traces
 - [[Recursive Architectures]] - modern recursive reasoning systems such as HRM, TRM, and RecursiveMAS
@@ -140,6 +145,8 @@ The June 22 ingest adds agent-infrastructure and research-automation sources. [[
 - [[Index and Log]]
 - [[Obsidian]]
 - [[Reinforcement Learning]]
+- [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
 - [[Agentic Loop]]

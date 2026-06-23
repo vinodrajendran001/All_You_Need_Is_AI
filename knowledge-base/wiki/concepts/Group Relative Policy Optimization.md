@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-04
+updated: 2026-06-23
 tags: [rl, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-04-efficient-reasoning-edge
   - src-2026-06-04-dss-grpo-cot-compression
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
 status: active
 ---
 
@@ -29,6 +30,16 @@ In this vault, GRPO first appeared as the optimisation method behind Perplexity'
 - Use importance-sampling corrections to reduce training-inference mismatch during optimisation.
 - In the Qualcomm paper, apply the same relative-update idea to a different reward shape: binary answer correctness multiplied by a soft budget-compliance term over total response length.
 - [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] shows that GRPO can also be **segmented**: relative advantages need not be computed only for a whole completion. They can be separated across think and answer spans, then routed with token masks so compression pressure does not leak across the boundary.
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] shows how GRPO-style ideas are adapted for [[Agentic Reinforcement Learning]]. Agentic rollouts may contain many environment turns, tool observations, and non-agent tokens, so implementations commonly apply action masks and sometimes normalize advantages across tasks or environments rather than only within one prompt group.
+- The same source also clarifies GRPO's limits: PPO and REINFORCE variants remain competitive, and critic-based PPO can be preferred for very long or compacted trajectories with highly variable numbers of trainable traces.
+
+## Agentic variants and neighboring ideas
+
+- **Task-level advantage normalization** (AgentRL) computes normal GRPO-style trajectory advantages, broadcasts them to agent-generated tokens, then normalizes token-level advantages within a domain/task group so one environment does not dominate the update.
+- **Environment Relative Policy Optimization (ERPO)** (AutoForge) keeps the per-question reward mean from GRPO but scales by reward variation across valid trajectories from the same environment.
+- **StarPO** (RAGEN) is framed as trajectory-level optimization over state-thinking-action-reward traces and can be implemented with GRPO or PPO.
+
+The broader pattern is that group-relative learning survives in agentic RL, but the "group" often needs to reflect task, environment, or trajectory structure rather than only multiple answers to one static prompt.
 
 ## Broader context
 
@@ -37,6 +48,8 @@ The PocketFlow tutorials on policy gradients and RLHF make the surrounding optim
 ## Related pages
 
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[Perplexity]]
 - [[Search-Augmented Language Models]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-22
+updated: 2026-06-23
 tags:
   - concept
   - context-engineering
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-06-05-systemdesign42-system-design-academy
   - src-2026-06-10-bytebytego-token-spend-routing
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
 ---
@@ -46,6 +47,12 @@ Prompt engineering is a subset of context engineering — once you have the righ
 The source's important shift is from one-off prompt tweaking to **text-space optimization**. SkillOpt, GEPA, and EvoSkill treat these text artifacts as external state that can be improved through rollouts, verifiers, reflection over trajectories, bounded edits, held-out validation, and rejected-edit buffers. This is context engineering becoming an optimization loop rather than a manual writing exercise.
 
 The caveat is that this only works when the task has a verifiable feedback signal. For subjective or poorly specified work, automated skill-file optimization can overfit to weak evals or introduce hidden regressions.
+
+### Context rules during agentic RL
+
+[[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] adds a training-time version of context engineering. In [[Agentic Reinforcement Learning]], the full rollout may contain many steps of generated text, tool calls, observations, rewards, and environment state. But the model-visible context at the next step does not have to be a naive append-only transcript.
+
+Agent-R1-style frameworks store the full step-level trajectory, then apply an environment-specific context rule that can preserve, summarize, remove, or transform past steps before the next action. This matters because append-only context can create **context rot**: verbose tool outputs or irrelevant reasoning history crowd out useful state. The source reports that sliding-window context can outperform append-only and summarization strategies in some environments, reinforcing that "more context" is not always better.
 
 ### What context engineering manages
 
@@ -98,6 +105,7 @@ Kilo's production numbers are useful here because they show the limit of "just c
 
 - [[Agent Memory]]
 - [[Agent Skill]]
+- [[Agentic Reinforcement Learning]]
 - [[Retrieval-Augmented Generation]]
 - [[On-Device Reasoning]]
 - [[Model Routing]]
@@ -108,5 +116,6 @@ Kilo's production numbers are useful here because they show the limit of "just c
 - [[LLM Training Pipeline]]
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
 - [[Alpha Signal - How your agents can write and optimize their own skills]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[systemdesign42 - System Design Academy]]
 - [[AI Knowledge Base Overview]]

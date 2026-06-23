@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-22
+updated: 2026-06-23
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-05-systemdesign42-system-design-academy
   - src-2026-06-10-bytebytego-token-spend-routing
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
@@ -99,6 +100,18 @@ The combined production rule is: **do not let agents self-modify unobservably**.
 
 The practical consequence: in production, a prompt is not done when it "seems to work" — it is done when it passes a golden dataset suite and is covered by runtime tracing that can diagnose failures after deployment.
 
+## Training production agents with RL
+
+[[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] adds the training-side mirror of this production picture. If a production agent operates through tools and stateful environments, then [[Agentic Reinforcement Learning]] must train over isolated copies of those environments. Each rollout may need its own filesystem, browser, database, codebase, or simulated tool state so that one trajectory's side effects do not corrupt another's.
+
+This reinforces several production requirements already on this page:
+
+- **Environment isolation** is not only a safety boundary; it is a training requirement.
+- **Standard tool/environment APIs** make new tasks pluggable into both serving and RL training.
+- **Asynchronous orchestration** is needed because long-running agent trajectories have highly variable duration.
+- **Run traces and step boundaries** matter for observability and for policy updates.
+- **Context management** is part of the product and the trainer: retaining all tool output can degrade both inference and RL rollouts.
+
 ## Agentic design patterns and multi-agent architectures
 
 [[systemdesign42 - System Design Academy]] documents several named patterns and multi-agent frameworks in its AI Engineering section that extend this page's framing:
@@ -139,6 +152,8 @@ The common pattern is not “let the model do everything.” It is **design an e
 - [[Context Engineering]]
 - [[Model Routing]]
 - [[Agent Skill]]
+- [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[djfarrelly - The Agent Loop Architecture]]
 - [[Alpha Signal - How your agents can write and optimize their own skills]]
 - [[Inngest]]

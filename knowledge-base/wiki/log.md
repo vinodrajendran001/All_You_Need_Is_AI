@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-22
+updated: 2026-06-23
 tags:
   - log
 source_ids:
@@ -46,6 +46,7 @@ source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-18-alyona-vert-recursive-self-improvement
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
 status: active
@@ -429,3 +430,9 @@ Append-only operational history for the wiki.
 - Initial pass found one unreferenced raw source, `knowledge-base/raw/sources/AI 101 What is Recursive Self-Improvement.md`; fixed it by ingesting [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] and seeding [[Recursive Self-Improvement]].
 - Re-ran the lint checks and found no remaining structural defects.
 - Filed [[2026-06-22 Lint Pass]] and linked it from the index.
+
+## [2026-06-23] ingest | Agentic RL - Frameworks and Best Practices
+
+- Mapped `knowledge-base/raw/sources/Agentic RL Frameworks and Best Practices.md` into [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] as the source summary page.
+- Seeded [[Agentic Reinforcement Learning]] as a new concept page covering multi-turn MDPs, isolated environment rollouts, asynchronous/disaggregated RL infrastructure, step-level trajectories, action masks, outcome/process rewards, advantage normalization, synthetic environments, echo traps, and template collapse.
+- Updated [[Reinforcement Learning]], [[Reward Design for RL]], [[Group Relative Policy Optimization]], [[Agentic Loop]], [[AI Agents in Production]], [[Context Engineering]], [[LLM Training Pipeline]], [[Search-Augmented Language Models]], [[AI Knowledge Base Overview]], index, and log.

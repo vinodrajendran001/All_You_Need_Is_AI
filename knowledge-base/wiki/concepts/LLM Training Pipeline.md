@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-17
+updated: 2026-06-23
 tags:
   - concept
   - llm
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
 status: active
 ---
 
@@ -56,6 +57,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - The newer efficient-reasoning batch makes this even clearer: a growing post-training subfield now optimizes **how much visible reasoning a model emits**. Some approaches use difficulty-aware RL penalties (PACE, CEEH, DSS-GRPO, the Qualcomm paper), some use compressed supervision plus ratio-aware optimisation (Extra-CoT), some exploit self-supervised contextual pressure (ConPress), and some replace long traces with fixed-size vectors or KV caches (Progressive Thought Encoding, ReasonCACHE). See [[Reasoning Compression]].
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] updates the frontier-level map. The old summary "SFT -> RM -> PPO" is now mostly historical; even "SFT -> DPO -> RLVR" describes open recipes better than the newest frontier ones. The 2026 pattern is many domain-specialist teachers consolidated through [[Multi-Teacher On-Policy Distillation]] or related distillation stages. Post-training is becoming industrial: train specialist math/code/search/safety/agentic teachers, sample from a general student, and use teacher distributions plus RL-style objectives to merge capabilities back into one model.
 - The same source reframes DPO's role. DPO appears less central in the latest frontier recipes when the on-policy RL/distillation pipeline is mature, but remains useful for bootstrapping smaller or open recipes where SFT creates rough distributional edges that still need preference cleanup.
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] adds the agentic post-training branch. Here, the rollout is not a single assistant completion but a multi-turn interaction trajectory over tools and environments. That pushes the training pipeline toward asynchronous rollout infrastructure, environment isolation, action masks, step-level trajectories, process/outcome rewards, and variants of GRPO/PPO/REINFORCE adapted to long horizons.
 - The policy-gradient material in `rl-policy.md` also helps place RLHF historically. PPO is not a mysterious LLM-only trick; it sits on top of REINFORCE, baselines, actor-critic methods, and KL-regularized policy optimization.
 - A good mental model is:
   - **Pretraining** teaches language and latent world structure.
@@ -85,6 +87,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Neural Network Fundamentals]]
 - [[Reinforcement Learning]]
 - [[Group Relative Policy Optimization]]
+- [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]]
 - [[Direct Preference Optimization]]
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]

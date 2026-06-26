@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-23
+updated: 2026-06-26
 tags:
   - index
 source_ids:
@@ -50,6 +50,7 @@ source_ids:
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -76,6 +77,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
 - [[Model Quantization and Efficiency]] - Quantization, KV cache, LoRA, and sparse activation as core efficiency levers.
 - [[KV Cache]] - Runtime attention-state cache that speeds autoregressive decoding but dominates long-context memory.
+- [[Small Language Models]] - Small/on-device/high-volume LLMs designed around deployment and inference constraints.
 - [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
 - [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
@@ -177,6 +179,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] - Turing Post AI 101 explainer distinguishing workflow-level self-improving agents from stronger model-building-level RSI.
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] - Survey of multi-turn, tool-using agent RL frameworks, rollout infrastructure, reward design, and stability failures.
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] - Visual explainer of DDPM noising/denoising, latent diffusion, conditioning, guidance, and diffusion transformers.
+- [[ByteByteGo - Large Language Models vs Small Language Models]] - System-design view of SLMs vs LLMs, covering architecture, training, deployment, tradeoffs, and hybrid composition.
 - [[djfarrelly - The Agent Loop Architecture]] - Durable agent loop architecture organized around loops, skills, orchestration, checkpoints, retries, and run history.
 - [[Alpha Signal - How your agents can write and optimize their own skills]] - SkillOpt, GEPA, EvoSkill, and loop-engineered skill-file optimization for agents.
 
@@ -205,6 +208,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-06-05 Lint Pass 2]] - Fifteenth comprehensive lint pass (108 pages) after System Design Academy ingest; no defects.
 - [[2026-06-17 Lint Pass]] - Sixteenth comprehensive lint pass (119 pages) after MOPD + KV Cache ingests; no defects.
 - [[2026-06-22 Lint Pass]] - Seventeenth comprehensive lint pass (127 pages) after agent-skill and RSI ingests; fixed one unreferenced raw source and found no remaining defects.
+- [[2026-06-26 Lint Pass]] - Eighteenth comprehensive lint pass (134 pages) after SLM ingest; no structural defects.
 
 ## Control files
 

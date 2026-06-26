@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-06-26
 tags:
   - concept
   - kv-cache
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-10-0xkato-how-llms-actually-work
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -30,6 +31,7 @@ KV cache turns generation from "reread the whole book every token" into "reuse t
 - [[Transformer Architecture]] treats KV cache as the operational side of attention: architecture is not just a training blueprint, because real decoding depends on cached inference state.
 - [[0xkato - How LLMs Actually Work]] clarifies the basic role of KV cache inside multi-head attention: each attention head would otherwise need old Key and Value vectors for every token repeatedly. Modern GQA reduces memory pressure by letting many query heads share fewer K/V heads.
 - [[Prateek Singh - KV Cache and TurboQuant]] gives the clearest systems framing: KV cache trades repeated compute for memory storage. For short contexts this is an obvious win; for long contexts, memory becomes the main limiter.
+- [[ByteByteGo - Large Language Models vs Small Language Models]] shows how KV-cache pressure shapes [[Small Language Models]]. Grouped-query attention, sliding-window attention, and layer-level cache sharing are not just academic attention variants; they are direct responses to the memory limits of phones, edge devices, and high-volume serving.
 
 ## Memory scaling
 
@@ -56,6 +58,7 @@ KV-cache optimization is not one technique. The current design space has several
 3. **Architecture-level sharing** — GQA, MQA, and MLA reduce the number or representation size of K/V heads. These are powerful but must be built into the model architecture/training recipe.
 4. **Predictive skipping** — SnapKV and PyramidKV use early-layer signals to predict which tokens matter later, trading memory for task-dependent prediction risk.
 5. **KV quantization** — store K/V values in fewer bits. Simple INT8 gives a safe 2x reduction; more aggressive 3-4 bit schemes require additional tricks to avoid corrupting attention scores.
+6. **Sliding-window and cache-sharing designs** — restrict some layers to recent context or reuse cache state across layers. These are especially relevant for small/on-device models where every additional token competes with memory and battery budgets.
 
 ## TurboQuant
 
@@ -78,6 +81,8 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 ## Related pages
 
 - [[Prateek Singh - KV Cache and TurboQuant]]
+- [[Small Language Models]]
+- [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[Transformer Architecture]]
 - [[Model Quantization and Efficiency]]
 - [[On-Device Reasoning]]

@@ -20,6 +20,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -142,6 +143,12 @@ Key production constraint: **context isolation between agents is a reliability r
   - **model routing** chooses the right model tier for the current step
 - Routing also introduces a subtle cross-model failure mode: if one provider's reasoning model hands off to another provider's model mid-task, internal intermediate reasoning may have to be dropped because the formats are not mutually readable.
 - The economic lesson is durable: caching helps, but it does not solve high-volume agent spend by itself. Routing and context compression are complementary, and both belong in the production design.
+- [[ByteByteGo - Large Language Models vs Small Language Models]] adds three concrete hybrid patterns for production agents:
+  - **small-model routing** for common/easy requests with escalation to larger models;
+  - **small-model guardrails** before and after expensive model calls;
+  - **small-model drafting/speculative decoding** where a fast model proposes candidate tokens and a larger model verifies them.
+
+These patterns make [[Small Language Models]] production infrastructure rather than merely weaker substitutes for large models.
 
 ## The main lesson
 
@@ -151,6 +158,8 @@ The common pattern is not “let the model do everything.” It is **design an e
 
 - [[Context Engineering]]
 - [[Model Routing]]
+- [[Small Language Models]]
+- [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[Agent Skill]]
 - [[Agentic Reinforcement Learning]]
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]

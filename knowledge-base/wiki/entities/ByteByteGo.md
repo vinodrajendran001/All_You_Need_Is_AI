@@ -2,13 +2,14 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-06-10
+updated: 2026-06-26
 tags: [newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-06-10-bytebytego-token-spend-routing
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -28,12 +29,16 @@ A third, newer standalone source, [[ByteByteGo - How Airtable Built the Search L
 
 A fourth standalone source, [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]], extends ByteByteGo's coverage into **agent economics and routing infrastructure**. Its key contribution is to treat model routing as production control logic rather than a pricing trick: gateways, decision layers, mode-based routing, tier selection, and budget-aware spend governance become first-class system design topics for agent loops.
 
+A fifth standalone source, [[ByteByteGo - Large Language Models vs Small Language Models]], extends that economics branch into the model-design layer. It explains how deployment target, inference economics, and training budget push teams toward [[Small Language Models]], large models, or hybrid systems that use small models as routers, guardrails, and drafters around larger cores.
+
 ## Related pages
 
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
+- [[ByteByteGo - Large Language Models vs Small Language Models]]
+- [[Small Language Models]]
 - [[ML Systems at Scale]]
 - [[AI Agents in Production]]
 - [[Model Routing]]

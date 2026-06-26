@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-06-10
+updated: 2026-06-26
 tags:
   - concept
   - routing
@@ -10,6 +10,7 @@ tags:
   - cost
 source_ids:
   - src-2026-06-10-bytebytego-token-spend-routing
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -45,16 +46,25 @@ Long-running agents turn model choice into infrastructure. When a system repeate
 - There is a useful vault-level distinction between **inter-model routing** and **intra-model routing**:
   - this page focuses on **inter-model routing** across providers or model tiers
   - [[Mixture of Experts]] and parts of [[On-Device Reasoning]] involve **intra-model routing**, where a router inside one system decides which experts or reasoning paths to activate
+- [[ByteByteGo - Large Language Models vs Small Language Models]] adds the small/large composition version of this pattern. [[Small Language Models]] are useful as the fast, cheap, local, or high-volume tier; large models remain necessary for harder reasoning, broader generalization, and richer world knowledge. Production systems therefore use SLMs as:
+  - **primary handlers** for common/easy requests;
+  - **guardrails** around larger models;
+  - **routers** that estimate difficulty or intent;
+  - **drafters** for speculative decoding.
+- This reframes routing as a capability allocation problem, not only a provider-cost problem. The router must decide when a small model is enough, when to retrieve, when to escalate, and when to block or ask for human review.
 
 ## Open questions
 
 - How accurate can learned difficulty routers become as model landscapes change month to month?
 - At what point does per-step routing degrade quality too much by fragmenting long-horizon reasoning across model families?
 - Can routing become fully budget-aware and self-tuning, the way load balancing became background infrastructure?
+- What confidence or uncertainty signal is reliable enough to let a small model decide it should escalate?
 
 ## Related pages
 
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
+- [[ByteByteGo - Large Language Models vs Small Language Models]]
+- [[Small Language Models]]
 - [[Context Engineering]]
 - [[AI Agents in Production]]
 - [[On-Device Reasoning]]

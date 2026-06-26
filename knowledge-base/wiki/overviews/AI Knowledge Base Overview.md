@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-06-23
+updated: 2026-06-26
 tags:
   - overview
   - ai
@@ -52,6 +52,7 @@ source_ids:
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -79,6 +80,8 @@ The June 23 ingest adds [[Cameron R. Wolfe - Agentic RL Frameworks and Best Prac
 
 The later June 23 ingest adds [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]], seeding [[Diffusion Models]] as the vault's first dedicated diffusion page. It separates diffusion from the LLM training branch by explaining forward noising, denoising targets, timestep embeddings, U-Net denoisers, latent diffusion, conditioning, classifier-free guidance, diffusion transformers, and the speed-quality tradeoff in iterative sampling.
 
+The June 26 ingest adds [[ByteByteGo - Large Language Models vs Small Language Models]], seeding [[Small Language Models]]. It deepens the efficiency and production-inference branches by showing how deployment target, inference economics, and training budget drive small-model architecture, training, quantization, KV-cache design, hardware mapping, and hybrid compositions with larger models.
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -96,11 +99,13 @@ The later June 23 ingest adds [[Mayank Pratap Singh - Diffusion Model Visual Bre
 - [[Model Quantization and Efficiency]] - quantization, KV cache, LoRA, and sparse activation as deployment/adaptation efficiency levers
 - [[KV Cache]] - runtime attention-state storage and compression for long-context decoding
 - [[On-Device Reasoning]] - local reasoning under mobile constraints, where memory, latency, and power shape the whole stack
+- [[Small Language Models]] - small/on-device/high-volume LLMs designed around deployment and inference constraints
 - [[Reasoning Compression]] - shortening, replacing, or budgeting explicit reasoning traces to reduce cost without losing accuracy
 - [[Mixture of Experts]] - sparse architectures that trade total capacity against lower active compute per token
 - [[AI Accelerator Architecture]] - logic gates, systolic arrays, memory hierarchy, and cluster-scale compute/communication tradeoffs
 - [[Context Engineering]] - managing the full context window at inference time as information architecture
 - [[Model Routing]] - selecting model tiers/providers per request so long-loop agent workloads stay affordable
+- [[Small Language Models]] - constrained model designs for local, cheap, or high-volume inference
 - [[Multi-Teacher On-Policy Distillation]] - frontier post-training consolidation from domain-specialist teachers
 - [[World Models]] - learned predictive models (Renderer / Simulator / Planner taxonomy) for planning, control, and embodied intelligence
 - [[Direct Preference Optimization]] - completion-level preference learning; SFT vs DPO mechanical distinction; self-rejection pairs for structured outputs
@@ -178,6 +183,8 @@ The later June 23 ingest adds [[Mayank Pratap Singh - Diffusion Model Visual Bre
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]
+- [[Small Language Models]]
+- [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]
 - [[Mixture of Experts]]

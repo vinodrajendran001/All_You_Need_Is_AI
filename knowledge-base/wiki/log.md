@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-23
+updated: 2026-06-26
 tags:
   - log
 source_ids:
@@ -50,6 +50,7 @@ source_ids:
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -443,3 +444,15 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/Diffusion Model Visual Breakdown.md` into [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] as the source summary page.
 - Seeded [[Diffusion Models]] as a new concept page covering GAN/VAE motivation, DDPM forward noising, noise-prediction loss, timestep embeddings, U-Net denoisers, latent diffusion, conditioning, classifier-free guidance, diffusion transformers, misconceptions, and remaining limitations.
 - Updated [[World Models]], [[LLM Training Pipeline]], [[Neural Network Fundamentals]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-26] ingest | Large Language Models vs Small Language Models
+
+- Mapped `knowledge-base/raw/sources/Large Language Models vs Small Language Models.md` into [[ByteByteGo - Large Language Models vs Small Language Models]] as the source summary page.
+- Seeded [[Small Language Models]] as a new concept page covering constraint-driven model size, KV-cache-aware architecture, data curation, distillation, overtraining, quantization, hardware mapping, small-model limitations, and hybrid routing/guardrail/drafting patterns.
+- Updated [[Model Routing]], [[Model Quantization and Efficiency]], [[On-Device Reasoning]], [[KV Cache]], [[LLM Training Pipeline]], [[AI Agents in Production]], [[ByteByteGo]], [[AI Knowledge Base Overview]], index, and log.
+
+## [2026-06-26] lint | Full wiki lint pass
+
+- Audited all 134 wiki pages for broken wikilinks, orphans, frontmatter parse errors, missing `type`/`updated` fields, related-pages coverage, thin pages, index coverage, raw markdown coverage, duplicate index `source_ids`, and source-page `source_id` coverage.
+- Found no structural defects after the SLM ingest.
+- Filed [[2026-06-26 Lint Pass]] and linked it from the index.

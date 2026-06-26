@@ -26,6 +26,7 @@ source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -69,12 +70,14 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Fareed Khan - Train LLM From Scratch]] adds an end-to-end pretraining implementation path: download shards of The Pile, tokenize them with `tiktoken` `r50k_base`, append `<|endoftext|>` separators, pack tokens into HDF5, train a decoder-only model with AdamW and periodic dev evaluation, then sample from the saved checkpoint. It is a strong code-first bridge between the conceptual pipeline and an actual runnable GPT-style pretraining stack.
 - The same repository also contains a separate `sft_rlhf_guide.ipynb`, which signals that the author's mental model of the pipeline extends past base pretraining into post-training stages rather than stopping at next-token prediction.
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] is adjacent rather than central to LLM post-training, but it clarifies the broader generative-model branch already present in PocketFlow's `llm-diffusion` lesson. [[Diffusion Models]] use a supervised denoising objective over noised data rather than next-token prediction, which makes them a useful contrast case for understanding how different generative training objectives shape model behavior.
+- [[ByteByteGo - Large Language Models vs Small Language Models]] adds the small-model training recipe. [[Small Language Models]] often compensate for lower parameter count through curated/synthetic data, knowledge distillation from larger teachers, and deliberate overtraining relative to compute-optimal token ratios. This reframes training cost as a lifecycle trade: spend more upfront to reduce inference cost across many requests.
 
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
 - Which future post-training recipes will replace the current SFT -> preference-optimization default for frontier LLMs?
 - How reproducible is MOPD without access to the teacher checkpoints, data mixtures, and organization-level parallelism that produced them?
+- When does overtraining a small model become cheaper than serving a larger one?
 
 ## Related pages
 
@@ -88,6 +91,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Transformer Architecture]]
 - [[Diffusion Models]]
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
+- [[Small Language Models]]
+- [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[Neural Network Fundamentals]]
 - [[Reinforcement Learning]]
 - [[Group Relative Policy Optimization]]

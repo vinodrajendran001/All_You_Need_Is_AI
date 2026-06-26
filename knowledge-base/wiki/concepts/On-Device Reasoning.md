@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-06-17
+updated: 2026-06-26
 tags:
   - concept
   - llm
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
+  - src-2026-06-24-bytebytego-llm-vs-slm
 status: active
 ---
 
@@ -49,12 +50,15 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - The newer compression papers broaden this page beyond explicitly mobile deployment. They suggest that token budget, cache size, and visible chain-of-thought length are becoming general optimisation targets across reasoning research, with on-device deployment acting as one especially demanding case. See [[Reasoning Compression]].
 - A deeper lesson is that explicit reasoning itself is a deployment liability. The system must actively manage when to think, how long to think, and whether more test-time compute is worth the extra memory and latency.
 - [[Prateek Singh - KV Cache and TurboQuant]] adds the long-context memory version of this lesson. On edge or single-GPU deployments, KV cache can become the limiting resource even before model weights or arithmetic do. This makes [[KV Cache]] optimization (GQA/MQA/MLA, PagedAttention, eviction, predictive skipping, and KV quantization such as TurboQuant) directly relevant to local assistants and long-context private agents.
+- [[ByteByteGo - Large Language Models vs Small Language Models]] gives the device-model perspective. On-device systems are designed around single-digit gigabytes of memory, battery, thermal limits, and millisecond-scale latency. That pushes models toward [[Small Language Models]], quantization, grouped-query attention, sliding windows, hardware-specific mapping, and hybrid patterns where small local models handle common work while larger server models handle harder requests.
+- The Apple-style split in that source is a durable product pattern: one small on-device model for privacy/latency/common cases, plus a larger server model for harder tasks. For this page, that means "on-device reasoning" is often a **routing architecture**, not a single local model doing everything.
 
 ## Open questions
 
 - When will latent/internal reasoning become more edge-friendly than explicit chain-of-thought?
 - What is the best combination of sparsity, quantization, routing, and verifier design for mobile assistants?
 - Can parallel test-time scaling remain worthwhile on phones once power, thermal limits, and user-perceived latency are included?
+- Which reasoning tasks should stay local for privacy/latency, and which should escalate to a larger cloud model?
 
 ## Related pages
 
@@ -63,6 +67,8 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Model Quantization and Efficiency]]
 - [[KV Cache]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
+- [[Small Language Models]]
+- [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[LLM Training Pipeline]]
 - [[AI Agents in Production]]
 - [[Reasoning Compression]]

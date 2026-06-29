@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-26
+updated: 2026-06-29
 tags:
   - log
 source_ids:
@@ -456,3 +456,33 @@ Append-only operational history for the wiki.
 - Audited all 134 wiki pages for broken wikilinks, orphans, frontmatter parse errors, missing `type`/`updated` fields, related-pages coverage, thin pages, index coverage, raw markdown coverage, duplicate index `source_ids`, and source-page `source_id` coverage.
 - Found no structural defects after the SLM ingest.
 - Filed [[2026-06-26 Lint Pass]] and linked it from the index.
+
+## [2026-06-29] ingest | What Actually Happens During LLM Inference
+
+- Mapped `knowledge-base/raw/sources/What Actually Happens During LLM Inference.md` into [[Nithin - What Actually Happens During LLM Inference]] as the source summary page.
+- Seeded [[LLM Inference]] as a new concept page built around the prefill (compute-bound GEMM) vs decode (memory-bound GEMV) split, mmap loading, weight-format landscape (AWQ/EXL2/FP8/NVFP4/GGUF), and serving engines (vLLM/SGLang/TensorRT-LLM/TGI, PagedAttention, continuous batching).
+- Updated [[KV Cache]] (prefill builds / decode re-reads the cache), [[Model Quantization and Efficiency]] (why decode bytes-moved drives tokens/sec), index, and log.
+
+## [2026-06-29] ingest | A Visual Guide to Quantization
+
+- Mapped `knowledge-base/raw/sources/A Visual Guide to Quantization.md` into [[Maarten Grootendorst - A Visual Guide to Quantization]] as the source summary page.
+- Deepened [[Model Quantization and Efficiency]] with the numerical mechanics: affine map, symmetric vs asymmetric, calibration, PTQ (dynamic/static) vs QAT, GPTQ vs GGUF, and BitNet 1-bit/1.58-bit.
+- Introduced [[Maarten Grootendorst]] as a new entity. Updated [[KV Cache]], [[LLM Inference]], index, and log.
+
+## [2026-06-29] ingest | TurboQuant - Online Vector Quantization
+
+- Mapped `knowledge-base/raw/sources/TurboQuant - Online Vector Quantization with Near-optimal Distortion Rate.md` into [[Siddhant Rai - TurboQuant - Online Vector Quantization]] as the source summary page.
+- Deepened [[KV Cache]] and [[Model Quantization and Efficiency]] with the rate-distortion framing (preserve `qᵀk`), the weight-space vs token-space distinction, and TurboQuant's transform-then-quantize structure (rotation + Lloyd-Max codebook + 1-bit QJL residual). Complements the earlier [[Prateek Singh - KV Cache and TurboQuant]] source.
+- Introduced [[Siddhant Rai]] and [[Vizuara]] as new entities. Updated index and log.
+
+## [2026-06-29] ingest | Nested Learning
+
+- Mapped `knowledge-base/raw/sources/Nested Learning The Illusion of Deep Learning Architecture.md` into [[Siddhant Rai - Nested Learning]] as the source summary page.
+- Seeded [[Nested Learning]] as a new concept page covering the learning spectrum (in-context / continual / inference-time), catastrophic forgetting, the plasticity-stability tradeoff, Titans, the Continuum Memory System, self-modifying layers, and the Hope architecture (Google, arXiv 2512.24695).
+- Updated [[Agent Memory]] (memory-as-structure contrast), [[Retrieval-Augmented Generation]] (why RAG is storage not structure), and [[Recursive Architectures]] (test-time self-modification), preserving the existing storage-memory framing as a recorded tension. Updated index and log.
+
+## [2026-06-29] ingest | Transformers for Video - TimeSformer
+
+- Mapped `knowledge-base/raw/sources/Transformers for Video TimeSformer.md` into [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] as the source summary page (captured 2026-06-28).
+- Seeded [[Video Transformers]] as a new concept page covering video tokenization, the five space-time attention patterns, why divided space-time attention wins on cost and accuracy, the reshape implementation trick, and the comparison with 3D CNNs.
+- Updated [[Transformer Architecture]] (attention factorized along structured axes for video) and the [[Vizuara]] entity. Updated index and log.

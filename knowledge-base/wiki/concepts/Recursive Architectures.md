@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-22
+updated: 2026-06-29
 tags:
   - concept
   - architecture
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion
   - src-2026-06-18-alyona-vert-recursive-self-improvement
+  - src-2026-06-29-siddhant-rai-nested-learning
 status: active
 ---
 
@@ -45,6 +46,10 @@ Weight sharing lets a small model reuse the same learned transformation many tim
 
 Recursive architectures matter here because they offer a different answer to the reasoning problem than token-heavy prompting or tool-driven loops. They do not replace general-purpose LLMs, but they suggest a complementary design space for specialized reasoning engines and agent systems. Their training and optimization questions also connect naturally to [[Reinforcement Learning]], especially when systems must learn how much computation to spend and how to improve multi-step behavior.
 
+## Test-time updates as a recursive idea
+
+[[Siddhant Rai - Nested Learning]] adds an adjacent variant of "reuse computation over evolving state": instead of looping the same block to deepen reasoning, the **Hope** architecture lets a bounded module update its own parameters during inference. The Titans lineage it builds on also revives the RNN-style "update a hidden state over time" intuition that this page traces — but here the state being updated is the *weights themselves*, via a learned update rule (self-modifying layers), not just an activation. The two ideas differ in what recurs (a fixed transformation over latent state vs a self-modified parameter state), but both trade extra inference-time computation for stronger adaptation. See [[Nested Learning]].
+
 ## Not recursive self-improvement
 
 [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] makes a useful terminology distinction. Recursive architectures reuse computation over internal state to get more reasoning depth from a model. [[Recursive Self-Improvement]] is a broader research-loop idea where AI systems improve the process that creates future AI systems. The two ideas can interact, but they are not the same mechanism.
@@ -53,7 +58,9 @@ Recursive architectures matter here because they offer a different answer to the
 
 - [[Latent-Space Reasoning]]
 - [[Reinforcement Learning]]
+- [[Nested Learning]]
 - [[Alpha Signal - The Return of Recursion]]
 - [[Recursive Self-Improvement]]
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
+- [[Siddhant Rai - Nested Learning]]
 - [[Agentic Loop]]

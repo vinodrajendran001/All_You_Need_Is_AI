@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-06-26
+updated: 2026-06-29
 tags:
   - overview
   - ai
@@ -53,6 +53,11 @@ source_ids:
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-06-26-nithin-llm-inference
+  - src-2026-06-28-mayank-pratap-singh-timesformer
+  - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
+  - src-2026-06-29-siddhant-rai-turboquant
+  - src-2026-06-29-siddhant-rai-nested-learning
 status: active
 ---
 
@@ -82,6 +87,8 @@ The later June 23 ingest adds [[Mayank Pratap Singh - Diffusion Model Visual Bre
 
 The June 26 ingest adds [[ByteByteGo - Large Language Models vs Small Language Models]], seeding [[Small Language Models]]. It deepens the efficiency and production-inference branches by showing how deployment target, inference economics, and training budget drive small-model architecture, training, quantization, KV-cache design, hardware mapping, and hybrid compositions with larger models.
 
+The June 26-29 ingest adds five sources spanning quantization, inference, memory, and video. [[Nithin - What Actually Happens During LLM Inference]] seeds [[LLM Inference]] with the **prefill (compute-bound) vs decode (memory-bound)** split that underlies most efficiency work, plus serving-engine patterns (PagedAttention, continuous batching). [[Maarten Grootendorst - A Visual Guide to Quantization]] gives the vault its most thorough treatment of quantization mechanics (affine map, symmetric/asymmetric, PTQ vs QAT, GPTQ vs GGUF, BitNet), deepening [[Model Quantization and Efficiency]]. [[Siddhant Rai - TurboQuant - Online Vector Quantization]] supplies the math behind online KV-cache quantization (rate-distortion, rotation + Lloyd-Max codebook + 1-bit QJL residual), deepening [[KV Cache]]. [[Siddhant Rai - Nested Learning]] seeds [[Nested Learning]], a memory-as-structure / continuous inference-time-learning frame (Titans → Continuum Memory System → Hope) that sharpens [[Agent Memory]], [[Retrieval-Augmented Generation]], and [[Recursive Architectures]]. [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] seeds [[Video Transformers]], extending [[Transformer Architecture]] into spatiotemporal divided space-time attention. These ingests also introduce [[Maarten Grootendorst]], [[Vizuara]], and [[Siddhant Rai]] as entities.
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -92,12 +99,14 @@ The June 26 ingest adds [[ByteByteGo - Large Language Models vs Small Language M
 - [[Reinforcement Learning]] - first domain hub page seeded from an ingested paper
 - [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments
 - [[Transformer Architecture]] - decoder-only Transformer blueprint plus attention, RoPE, and KV-cache synthesis
+- [[Video Transformers]] - extending attention to video via divided space-time attention (TimeSformer)
 - [[Diffusion Models]] - generative models that learn to reverse noising processes for images and other data
 - [[LLM Training Pipeline]] - pretraining, SFT, RLHF, DPO, and LoRA as one connected map
 - [[Neural Network Fundamentals]] - gradient descent, backpropagation, PyTorch, and Adam as the substrate under higher-level model pages
 - [[Algorithm Templates for Interviews]] - template-selection map connecting classic DSA interview patterns with ML engineering preparation
 - [[Model Quantization and Efficiency]] - quantization, KV cache, LoRA, and sparse activation as deployment/adaptation efficiency levers
 - [[KV Cache]] - runtime attention-state storage and compression for long-context decoding
+- [[LLM Inference]] - the prefill (compute-bound) vs decode (memory-bound) split and the serving stack built around it
 - [[On-Device Reasoning]] - local reasoning under mobile constraints, where memory, latency, and power shape the whole stack
 - [[Small Language Models]] - small/on-device/high-volume LLMs designed around deployment and inference constraints
 - [[Reasoning Compression]] - shortening, replacing, or budgeting explicit reasoning traces to reduce cost without losing accuracy
@@ -126,6 +135,7 @@ The June 26 ingest adds [[ByteByteGo - Large Language Models vs Small Language M
 - [[Multi-Turn Evaluation]] - turn-level plus conversation-level scoring for simulated and live multi-turn systems
 - [[Latent-Space Reasoning]] - reasoning through internal latent states instead of explicit token traces
 - [[Recursive Architectures]] - modern recursive reasoning systems such as HRM, TRM, and RecursiveMAS
+- [[Nested Learning]] - continuous inference-time learning and memory-as-structure (Titans, Continuum Memory System, Hope)
 - [[ML Systems at Scale]] - production ML serving patterns spanning multimodal search, recommendation, hybrid retrieval, and vector-search infrastructure.
 - [[LLM-as-a-Judge]] - calibrated LLM evaluators for search relevance, quality assurance, and continuous regression monitoring.
 - [[AI Agents in Production]] - operational patterns for deploying agents with tool boundaries, MCP, guardrails, and human review.

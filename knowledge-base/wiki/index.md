@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-26
+updated: 2026-06-29
 tags:
   - index
 source_ids:
@@ -51,6 +51,11 @@ source_ids:
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-06-26-nithin-llm-inference
+  - src-2026-06-28-mayank-pratap-singh-timesformer
+  - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
+  - src-2026-06-29-siddhant-rai-turboquant
+  - src-2026-06-29-siddhant-rai-nested-learning
 status: active
 ---
 
@@ -107,6 +112,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
 - [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems.
+- [[Nested Learning]] - Continuous inference-time learning and memory-as-structure: Titans, Continuum Memory System, and the Hope architecture.
+- [[LLM Inference]] - Prefill (compute-bound) vs decode (memory-bound) phases and the serving stack built around them.
+- [[Video Transformers]] - Extending attention to video via divided space-time attention (TimeSformer).
 - [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
 
 ## Entities
@@ -133,6 +141,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 - [[Fei-Fei Li]] - Co-founder of World Labs; author of the functional world-model taxonomy using the POMDP loop.
 - [[World Labs]] - AI company focused on spatial intelligence, world models, and unified Renderer/Simulator/Planner foundation models.
+- [[Maarten Grootendorst]] - AI educator and *Hands-On LLMs* co-author; source of the vault's visual quantization guide.
+- [[Vizuara]] - AI-education publisher behind recurring quantization, memory, and vision explainers in this vault.
+- [[Siddhant Rai]] - Vizuara writer behind the vault's TurboQuant and Nested Learning explainers.
 
 ## Sources
 
@@ -182,6 +193,11 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] - System-design view of SLMs vs LLMs, covering architecture, training, deployment, tradeoffs, and hybrid composition.
 - [[djfarrelly - The Agent Loop Architecture]] - Durable agent loop architecture organized around loops, skills, orchestration, checkpoints, retries, and run history.
 - [[Alpha Signal - How your agents can write and optimize their own skills]] - SkillOpt, GEPA, EvoSkill, and loop-engineered skill-file optimization for agents.
+- [[Nithin - What Actually Happens During LLM Inference]] - Prefill (compute-bound GEMM) vs decode (memory-bound GEMV), KV cache, mmap, weight formats, and serving engines.
+- [[Maarten Grootendorst - A Visual Guide to Quantization]] - 50+ illustration walkthrough of quantization: float formats, symmetric/asymmetric, calibration, PTQ/QAT, GPTQ/GGUF, BitNet.
+- [[Siddhant Rai - TurboQuant - Online Vector Quantization]] - Rate-distortion KV-cache quantization via rotation, Lloyd-Max codebooks, and a 1-bit QJL residual.
+- [[Siddhant Rai - Nested Learning]] - Google's continuous inference-time-learning framework: learning spectrum, Titans, Continuum Memory System, and Hope.
+- [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] - Video transformers and five space-time attention patterns; why divided space-time attention wins.
 
 ## Queries
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-06-26
+updated: 2026-06-29
 tags:
   - concept
   - llm
@@ -66,6 +66,7 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Model Quantization and Efficiency]]
 - [[KV Cache]]
+- [[LLM Inference]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Small Language Models]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]

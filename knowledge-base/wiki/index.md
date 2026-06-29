@@ -226,6 +226,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-06-17 Lint Pass]] - Sixteenth comprehensive lint pass (119 pages) after MOPD + KV Cache ingests; no defects.
 - [[2026-06-22 Lint Pass]] - Seventeenth comprehensive lint pass (127 pages) after agent-skill and RSI ingests; fixed one unreferenced raw source and found no remaining defects.
 - [[2026-06-26 Lint Pass]] - Eighteenth comprehensive lint pass (134 pages) after SLM ingest; no structural defects.
+- [[2026-06-29 Lint Pass]] - Nineteenth comprehensive lint pass (147 pages) after the inference/quantization/Nested-Learning/TimeSformer ingest; no structural defects; added LLM Inference cross-links to two edge pages.
 
 ## Control files
 

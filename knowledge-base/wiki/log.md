@@ -486,3 +486,10 @@ Append-only operational history for the wiki.
 - Mapped `knowledge-base/raw/sources/Transformers for Video TimeSformer.md` into [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] as the source summary page (captured 2026-06-28).
 - Seeded [[Video Transformers]] as a new concept page covering video tokenization, the five space-time attention patterns, why divided space-time attention wins on cost and accuracy, the reshape implementation trick, and the comparison with 3D CNNs.
 - Updated [[Transformer Architecture]] (attention factorized along structured axes for video) and the [[Vizuara]] entity. Updated index and log.
+
+## [2026-06-29] lint | Full wiki lint pass
+
+- Audited all 147 wiki pages for broken wikilinks, orphans, frontmatter/YAML parse errors, missing `type`/`updated` fields, `## Related pages` coverage, thin pages (<500 bytes), index coverage, raw-source coverage, duplicate index `source_ids` (51 unique), and source-page `source_id` coverage.
+- Found no structural defects after the inference/quantization/Nested-Learning/TimeSformer ingest.
+- Closed two genuinely useful cross-link gaps: added [[LLM Inference]] to the related pages of [[On-Device Reasoning]] and [[Small Language Models]] (both already linked KV Cache and Model Quantization but not the new prefill/decode hub); bumped their `updated` fields.
+- Filed [[2026-06-29 Lint Pass]] and linked it from the index. Noted `syntheses/` is still empty and that a "long-context inference is memory-bound" synthesis tying [[LLM Inference]], [[KV Cache]], and [[Model Quantization and Efficiency]] is now a strong candidate.

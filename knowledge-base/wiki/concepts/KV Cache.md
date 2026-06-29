@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-06-26
+updated: 2026-06-29
 tags:
   - concept
   - kv-cache
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-06-10-0xkato-how-llms-actually-work
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-06-26-nithin-llm-inference
+  - src-2026-06-29-siddhant-rai-turboquant
 status: active
 ---
 
@@ -32,6 +34,7 @@ KV cache turns generation from "reread the whole book every token" into "reuse t
 - [[0xkato - How LLMs Actually Work]] clarifies the basic role of KV cache inside multi-head attention: each attention head would otherwise need old Key and Value vectors for every token repeatedly. Modern GQA reduces memory pressure by letting many query heads share fewer K/V heads.
 - [[Prateek Singh - KV Cache and TurboQuant]] gives the clearest systems framing: KV cache trades repeated compute for memory storage. For short contexts this is an obvious win; for long contexts, memory becomes the main limiter.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] shows how KV-cache pressure shapes [[Small Language Models]]. Grouped-query attention, sliding-window attention, and layer-level cache sharing are not just academic attention variants; they are direct responses to the memory limits of phones, edge devices, and high-volume serving.
+- [[Nithin - What Actually Happens During LLM Inference]] places the cache inside the inference lifecycle (see [[LLM Inference]]): the **prefill** phase computes and stores the prompt's K/V states so they are never recomputed, and the **decode** phase must re-read the growing cache (plus all weights) every token. This is the concrete reason decode is memory-bandwidth-bound and why cache size directly caps tokens/sec.
 
 ## Memory scaling
 
@@ -71,6 +74,8 @@ The pipeline:
 3. **QJL bias correction** stores lightweight Johnson-Lindenstrauss sign sketches to correct systematic attention-score bias introduced by quantization.
 
 The important distinction: TurboQuant compresses **runtime KV cache**, not model weights. It should be combined with separate weight-compression methods such as GPTQ/AWQ if the model weights themselves are the bottleneck.
+
+[[Siddhant Rai - TurboQuant - Online Vector Quantization]] adds the deeper mathematical account behind this pipeline. It reframes KV quantization as a **rate-distortion problem** whose true objective is preserving the attention inner product `qᵀk ≈ qᵀk̂`, not raw MSE. The reason weight-style methods fail on the cache is statistical: weights are static and roughly Gaussian (calibrate offline once), while KV vectors are **dynamic and shift per input**, so any fixed codebook (INT4 uniform, NF4 Gaussian) is misaligned. TurboQuant therefore *transforms then quantizes* — rotate into a known Gaussian space and apply a **Lloyd-Max optimal codebook** (the "where the vector is" / MSE branch) — and handles the leftover with **QJL**, a Johnson-Lindenstrauss random projection plus 1-bit sign quantization (the "which direction" / inner-product branch). Reported results include perfect needle-in-a-haystack recall at ~4× compression.
 
 ## Open questions
 

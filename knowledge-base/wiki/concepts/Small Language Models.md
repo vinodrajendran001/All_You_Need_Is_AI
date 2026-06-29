@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-06-26
+updated: 2026-06-29
 tags:
   - concept
   - llm
@@ -106,6 +106,7 @@ This makes [[Model Routing]] the operational complement to SLMs. The routing lay
 - [[Model Quantization and Efficiency]]
 - [[On-Device Reasoning]]
 - [[KV Cache]]
+- [[LLM Inference]]
 - [[LLM Training Pipeline]]
 - [[AI Agents in Production]]
 - [[Mixture of Experts]]

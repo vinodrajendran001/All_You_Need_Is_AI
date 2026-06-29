@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-26
+updated: 2026-06-29
 tags:
   - concept
   - llm
@@ -25,6 +25,9 @@ source_ids:
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-06-26-nithin-llm-inference
+  - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
+  - src-2026-06-29-siddhant-rai-turboquant
 status: active
 ---
 
@@ -64,6 +67,9 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Han Fang - PyTorch Practice]] adds a more operations-level layer to this page: it demonstrates gradient accumulation by scaling micro-batch loss, sketches checkpointing as a memory/computation trade-off, shows CUDA mixed-precision training with `autocast` and `GradScaler`, and applies dynamic `qint8` quantization as a compact inference-time optimization.
 - [[Prateek Singh - KV Cache and TurboQuant]] splits the cache bottleneck into its own design space. [[KV Cache]] speeds decoding by storing K/V tensors, but long contexts make the cache itself the dominant memory object. The source maps five optimization families: token eviction (H2O, StreamingLLM), paged allocation (vLLM/PagedAttention), architecture-level sharing (GQA/MQA/MLA), predictive skipping (SnapKV/PyramidKV), and KV quantization.
 - **TurboQuant** is the most specific new technique from that source: rotate KV vectors to smooth outliers, quantize to 3-4 bit centroids, then use QJL sign sketches to correct attention-score bias. The important distinction is that TurboQuant compresses runtime KV cache, not model weights; it should be paired with weight compression when the model weights are also the bottleneck.
+- [[Maarten Grootendorst - A Visual Guide to Quantization]] is the vault's most thorough treatment of the **numerical mechanics** behind weight quantization. It grounds the rest of this page: floating-point layout (sign/exponent/mantissa; BF16 keeps FP32's range, FP16 keeps more precision), the affine map `x_q = round(x/scale + zero_point)`, **symmetric vs asymmetric** mapping, **calibration** (static weights are easy; dynamic activations are hard), the **PTQ vs QAT** decision, and the 4-bit ecosystem — **GPTQ** (layer-wise, Hessian-guided, GPU-oriented, weight-only) vs **GGUF** (super-block/sub-block scales for CPU/Apple-Silicon and split offload). It also covers the **BitNet** 1-bit / 1.58-bit (ternary) frontier, where the "0" state lets a weight ignore a feature.
+- [[Siddhant Rai - TurboQuant - Online Vector Quantization]] supplies the mathematical core behind that KV technique and reframes the whole problem. Its key durable distinction is **weight space (static, offline, roughly Gaussian, well-understood) vs token/activation space (dynamic, online, distribution shifts per input)**. Because KV vectors are dynamic, fixed codebooks (INT4 uniform, NF4 Gaussian) are misaligned; the right objective is **rate-distortion preserving the attention inner product `qᵀk`**, not blind MSE. TurboQuant's answer is *transform-then-quantize* (rotate into a known Gaussian space + Lloyd-Max optimal codebook) plus a 1-bit **QJL** (Johnson-Lindenstrauss) residual, reaching near-optimal distortion online.
+- [[Nithin - What Actually Happens During LLM Inference]] anchors *why* compression pays off, via the **prefill vs decode** split now collected on [[LLM Inference]]: decode is **memory-bandwidth-bound** (it re-reads the whole model + KV cache per token), so shrinking bytes-moved (weight + KV compression) directly raises tokens/sec. The same source lists the deployment-format landscape — AWQ/EXL2 (4-bit GPU), FP8 (Hopper) and NVFP4 (Blackwell) as native low-precision compute formats, and GGUF for consumer/split running.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] adds a model-size systems view. [[Small Language Models]] are not merely scaled-down LLMs; their architecture, training, and deployment are shaped by tight inference constraints. The source highlights grouped-query attention, sliding-window attention, cache sharing, quantization, hardware mapping, data curation, distillation, and overtraining as mutually reinforcing levers for making small models useful in production.
 - A useful synthesis is that efficiency begins before deployment:
   - **architecture** shrinks runtime state such as KV cache;
@@ -86,6 +92,10 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Efficient Reasoning on the Edge]]
+- [[Maarten Grootendorst - A Visual Guide to Quantization]]
+- [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
+- [[Nithin - What Actually Happens During LLM Inference]]
+- [[LLM Inference]]
 - [[KV Cache]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Small Language Models]]

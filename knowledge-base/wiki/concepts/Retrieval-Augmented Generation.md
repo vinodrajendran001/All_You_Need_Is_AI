@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-02
+updated: 2026-06-29
 tags: [rag, retrieval, agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
+  - src-2026-06-29-siddhant-rai-nested-learning
 status: active
 ---
 
@@ -119,6 +120,10 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 - If the answer depends on relationships, **Graph RAG** is a better fit.
 - If the answer depends on iterative search and reasoning across sources, **Agentic RAG** is the right escalation.
 
+## A limit RAG cannot cross: storage vs structure
+
+[[Siddhant Rai - Nested Learning]] adds a pointed critique worth recording here: across all three tiers, RAG adapts a model by **retrieving information into the context window**, never by changing what the model *is*. In that framing RAG is **memory-as-storage**, not **memory-as-structure** — it inherits the context-window ceiling of in-context learning and cannot accumulate integrated knowledge over a long stream of interactions. The proposed alternative ([[Nested Learning]]) folds adaptation into the model's own computation via inference-time updates. This does not make RAG obsolete (it stays auditable, controllable, and training-free), but it marks the boundary of what retrieval alone can do.
+
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
@@ -129,6 +134,9 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 - [[Search-Augmented Language Models]]
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
+- [[Nested Learning]]
+- [[Agent Memory]]
 - [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[Siddhant Rai - Nested Learning]]
 - [[AI Knowledge Base Overview]]

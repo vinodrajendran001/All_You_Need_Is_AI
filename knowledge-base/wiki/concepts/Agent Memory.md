@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-29
 tags:
   - concept
   - agents
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-05-21-bytebytego-batch
+  - src-2026-06-29-siddhant-rai-nested-learning
 status: active
 ---
 
@@ -75,11 +76,20 @@ The important invariant is: **memory content should always be auditable plain da
 
 Both are Python objects the developer can inspect at any time, which is what makes debugging possible.
 
+### A contrasting frame: memory as structure, not storage
+
+The sources above treat memory as **explicit stored data** loaded into context — auditable, plain-text, application-controlled. [[Siddhant Rai - Nested Learning]] introduces a deliberately different and more radical view that is worth preserving alongside it: memory as **learnable structure inside the model's own computation**, updated during inference rather than retrieved into the prompt. See [[Nested Learning]].
+
+- It places memory on a **learning spectrum** — in-context (attention as ephemeral memory, erased when context clears), continual (accumulate across tasks, threatened by catastrophic forgetting), and inference-time (weights update during the forward pass).
+- Its **Continuum Memory System** organizes memory as a chain of modules updated at different frequencies (fast/volatile recent detail → slow/stable consolidated knowledge), a structural answer to the **plasticity-stability tradeoff**.
+- The tension with the storage view is real and intentional: storage memory is auditable but external and inert; structural memory is integrated and adaptive but harder to inspect and carries stability/safety risk. This vault keeps both framings rather than collapsing them.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
 - How should conflicting facts be handled — does a newer memory overwrite an older one, or do both persist?
 - How should memory be scoped when multiple users share an agent system?
+- When is **storage memory** (auditable, external) the right tool versus **structural/inference-time memory** (integrated, adaptive but opaque)? See [[Nested Learning]].
 
 ## Related pages
 
@@ -90,4 +100,6 @@ Both are Python objects the developer can inspect at any time, which is what mak
 - [[pguso - Agents From Scratch]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[Retrieval-Augmented Generation]]
+- [[Nested Learning]]
+- [[Siddhant Rai - Nested Learning]]
 - [[AI Knowledge Base Overview]]

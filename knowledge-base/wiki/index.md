@@ -144,6 +144,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Maarten Grootendorst]] - AI educator and *Hands-On LLMs* co-author; source of the vault's visual quantization guide.
 - [[Vizuara]] - AI-education publisher behind recurring quantization, memory, and vision explainers in this vault.
 - [[Siddhant Rai]] - Vizuara writer behind the vault's TurboQuant and Nested Learning explainers.
+- [[Mayank Pratap Singh]] - Vizuara writer behind the vault's diffusion and TimeSformer/video-transformer explainers.
 
 ## Sources
 

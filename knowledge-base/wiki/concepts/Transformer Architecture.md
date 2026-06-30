@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-28
+updated: 2026-06-30
 tags:
   - concept
   - llm
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-10-0xkato-how-llms-actually-work
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-28-mayank-pratap-singh-timesformer
+  - src-2026-06-30-alisa-liu-book-of-llms
 status: active
 ---
 
@@ -51,6 +52,7 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - A useful vault-level synthesis from the article is that current model families differ less in fundamental layout than in **trained weights**, **scale/configuration**, and **post-training**. The transformer skeleton has converged more than vendor branding suggests.
 - [[Prateek Singh - KV Cache and TurboQuant]] makes the operational side concrete enough that [[KV Cache]] now deserves its own page. KV cache is not only "store old K/V tensors"; it is the main memory surface for long-context decoding. GQA, MQA, MLA, PagedAttention, token eviction, predictive skipping, and TurboQuant all exist because the attention architecture's cached state grows linearly with context.
 - [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] extends the same attention skeleton beyond text and images into the spatiotemporal setting. It shows that the quadratic cost of attention can be controlled by **factorizing it along structured axes** — TimeSformer's divided space-time attention runs temporal then spatial attention with separate Q/K/V projections, cutting cost from `NF+1` to `N+F+2` keys per query while improving accuracy. This is the video branch of the architecture, developed on its own page [[Video Transformers]].
+- [[Alisa Liu - Book of LLMs]] adds an interview-oriented consolidation of this same architecture: Attention, **RMSNorm**, the **SwiGLU FFN** (`(xW₁) ⊙ Swish(xW₂)`), and **RoPE**, plus an unusually explicit "accounting" view — how to count parameters, activation memory, and forward/backward FLOPs. That accounting framing is a useful study layer for the rapid-fire technical-discussion round described in [[ML Research Interview Preparation]].
 
 ## Open questions
 
@@ -63,6 +65,7 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]
 - [[Fareed Khan - Train LLM From Scratch]]
+- [[Alisa Liu - Book of LLMs]]
 - [[0xkato - How LLMs Actually Work]]
 - [[Video Transformers]]
 - [[Mayank Pratap Singh - Transformers for Video - TimeSformer]]

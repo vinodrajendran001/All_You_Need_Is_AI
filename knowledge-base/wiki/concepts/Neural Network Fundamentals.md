@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-23
+updated: 2026-06-30
 tags:
   - concept
   - neural-networks
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-05-21-leetcode-templates
   - src-2026-06-03-fareed-khan-train-llm-from-scratch
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-06-30-alisa-liu-book-of-llms
+  - src-2026-06-30-alisa-liu-math-notes
 status: active
 ---
 
@@ -44,6 +46,7 @@ This vault has several higher-level pages about LLMs and RL, but those topics de
 - [[Fareed Khan - Train LLM From Scratch]] reinforces the same point at the LLM scale: a language model still reduces to familiar PyTorch pieces such as embeddings, MLPs, attention modules, batch iterators, AdamW updates, and cross-entropy loss. The repo is a useful reminder that "LLM training" is mostly these standard components composed at larger scale.
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] adds a complementary generative-model example. A diffusion model still fits the same neural-network training loop — prediction, loss, backward pass, optimizer step — but the target is known Gaussian noise added by the training code, not the next token. This makes [[Diffusion Models]] a clean contrast case for how changing the supervised target changes the whole generative behavior.
 - For the complementary DSA side of interview preparation, [[Algorithm Templates for Interviews]] covers the reusable array, graph, DP, and data-structure patterns that often appear alongside ML-specific coding rounds.
+- [[Alisa Liu - Book of LLMs]] consolidates these fundamentals from an interview-cram angle: it restates the MLP as `h = f(Wx + b)`, stresses that non-linearities are what make depth matter (without them `W₁W₂x = Wx` collapses to one linear map), and adds the numerical-stability tricks (stable softmax / log-sum-exp) and information-theory basis (entropy, cross-entropy, KL) that sit under every loss function. [[Alisa Liu - Math Notes]] supplies the probability/statistics substrate — **maximum likelihood estimation** and the **bias–variance decomposition** — that this page's optimization story ultimately rests on. Both feed [[ML Research Interview Preparation]].
 
 ## Open questions
 
@@ -61,5 +64,8 @@ This vault has several higher-level pages about LLMs and RL, but those topics de
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
 - [[LLM Training Pipeline]]
 - [[Model Quantization and Efficiency]]
-- [[AI Knowledge Base Overview]]
 - [[Algorithm Templates for Interviews]]
+- [[ML Research Interview Preparation]]
+- [[Alisa Liu - Book of LLMs]]
+- [[Alisa Liu - Math Notes]]
+- [[AI Knowledge Base Overview]]

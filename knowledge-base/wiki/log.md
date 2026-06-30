@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-29
+updated: 2026-06-30
 tags:
   - log
 source_ids:
@@ -493,3 +493,26 @@ Append-only operational history for the wiki.
 - Found no structural defects after the inference/quantization/Nested-Learning/TimeSformer ingest.
 - Closed two genuinely useful cross-link gaps: added [[LLM Inference]] to the related pages of [[On-Device Reasoning]] and [[Small Language Models]] (both already linked KV Cache and Model Quantization but not the new prefill/decode hub); bumped their `updated` fields.
 - Filed [[2026-06-29 Lint Pass]] and linked it from the index. Noted `syntheses/` is still empty and that a "long-context inference is memory-bound" synthesis tying [[LLM Inference]], [[KV Cache]], and [[Model Quantization and Efficiency]] is now a strong candidate.
+
+## [2026-06-30] ingest | The AI Research Job Search
+
+- Saved `knowledge-base/raw/sources/2026-06-30 Alisa Liu - The AI Research Job Search.md` and mapped it into [[Alisa Liu - The AI Research Job Search]] as the source summary page.
+- Seeded [[ML Research Interview Preparation]] as a new concept page: the seven-type interview taxonomy (ML coding, general coding, technical discussion, research discussion, behavioral, math, job talk), the study methodology (CS336, transformer-as-muscle-memory, AI-off practice, per-interview cram), and negotiation.
+- Introduced [[Alisa Liu]] as a new entity. Updated [[Algorithm Templates for Interviews]] (general-coding cell of the hub), [[Automated AI Research]] (judgment-over-execution reconciliation), [[itsreallyvivek - some notes on getting into frontier ai labs]] (backlink), index, overview, and log.
+
+## [2026-06-30] ingest | Book of LLMs
+
+- Saved `knowledge-base/raw/sources/2026-06-30 Alisa Liu - Book of LLMs.md` (Notion page captured via rendering proxy; TOC preserved, LaTeX flattened) and mapped it into [[Alisa Liu - Book of LLMs]] as the source summary page.
+- Used it to corroborate and cross-link [[Neural Network Fundamentals]] (MLP/non-linearity/numerical stability/MLE), [[Transformer Architecture]] (Attention/RMSNorm/SwiGLU/RoPE + parameter/FLOP accounting), and [[LLM Inference]] (batching, speculative decoding, Flash Attention). Added as a study-reference pillar of [[ML Research Interview Preparation]]. Updated index, overview, and log.
+
+## [2026-06-30] ingest | Math Notes
+
+- Saved `knowledge-base/raw/sources/2026-06-30 Alisa Liu - Math Notes.md` (Notion page captured via rendering proxy; TOC preserved, LaTeX flattened) and mapped it into [[Alisa Liu - Math Notes]] as the source summary page.
+- It supplies the probability/statistics/puzzle dimension (distributions, inequalities, limit theorems, classic puzzles, MLE, bias–variance) for the math interview round, filling a gap in the interview-prep branch. Linked from [[ML Research Interview Preparation]], [[Neural Network Fundamentals]], and [[Algorithm Templates for Interviews]]. Updated index, overview, and log.
+
+## [2026-06-30] lint | Full wiki lint pass
+
+- Audited all 153 wiki pages for broken wikilinks, orphans, frontmatter/YAML parse errors, missing `type`/`updated` fields, `## Related pages` coverage, thin pages (<500 bytes), index coverage, raw-source coverage, duplicate index `source_ids` (54 unique), and source-page `source_id` coverage.
+- Found no structural defects after the Alisa Liu interview-prep ingest; no fixes required.
+- Recorded one by-design one-directional link ([[Alisa Liu]] → [[Nathan Lambert]], a timeline-format attribution) as acceptable rather than forcing an off-topic backlink onto a post-training-scoped entity page.
+- Filed [[2026-06-30 Lint Pass]] and linked it from the index. Reiterated that `syntheses/` is still empty, with two strong candidate theses noted.

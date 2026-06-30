@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-22
+updated: 2026-06-30
 tags:
   - concept
   - agents
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-18-alyona-vert-recursive-self-improvement
+  - src-2026-06-30-alisa-liu-ai-research-job-search
 status: active
 ---
 
@@ -40,6 +41,7 @@ This is one of the clearest real-world paths by which AI capability could recurs
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]] adds the organizational version of the same bottleneck. Frontier post-training recipes now require many specialist teachers, data mixtures, RL runs, distillation stages, and integration steps. That makes research automation less like "one agent finds the answer" and more like **coordination across many experimental subprograms**. The hard part is not only running experiments, but maintaining the recipe graph and deciding which specialist branch deserves more compute.
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] adds the recursive-improvement spectrum. Today's systems mostly automate coding, experiments, evaluation, post-training work, and workflow artifacts; stronger [[Recursive Self-Improvement]] would improve the model-building process itself, including data, architectures, training methods, evaluations, and future AI researchers.
 - This distinction keeps the page conservative: self-improving agents can optimize prompts, tools, memory, code, or skills without yet reaching true RSI. The hard jump is from improving a workflow to improving the system that creates better AI systems.
+- The same "judgment over execution" thesis shows up in hiring. [[ML Research Interview Preparation]] (from [[Alisa Liu - The AI Research Job Search]]) notes that interview *loops* heavily reward technical breadth and coding, but — echoing [[itsreallyvivek - some notes on getting into frontier ai labs]] — the durable ability labs ultimately select for is the research judgment and abstraction-building this page describes. The practical reconciliation: study to pass the loop, but the long-run edge is the same taste/anomaly-selection skill that makes automated research hard.
 
 ## Open questions
 
@@ -55,6 +57,7 @@ This is one of the clearest real-world paths by which AI capability could recurs
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[Recursive Self-Improvement]]
 - [[Multi-Teacher On-Policy Distillation]]
+- [[ML Research Interview Preparation]]
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
 - [[Eric Jang]]

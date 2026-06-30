@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-05-21T13:36+08:00
+updated: 2026-06-30
 tags:
   - concept
   - algorithms
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-05-21-leetcode-templates
   - src-2026-05-18-hanfang-pytorch-practice
+  - src-2026-06-30-alisa-liu-ai-research-job-search
 status: active
 ---
 
@@ -740,6 +741,8 @@ The new LeetCode source and the existing Han Fang source cover **complementary h
 
 For ML-engineering interviews, both matter. DSA rounds often test whether the candidate can quickly map a prompt to a canonical algorithmic skeleton; ML rounds often test whether the candidate can implement or explain model-training components inside a concrete framework. The two study modes reinforce each other because both reward reusable mental templates rather than ad hoc coding.
 
+This page is the **general-coding** cell of the broader [[ML Research Interview Preparation]] map. That hub (from [[Alisa Liu - The AI Research Job Search]]) places general coding alongside ML coding, technical discussion, research discussion, behavioral, **math**, and the job talk — and notes that strong general-coding foundations also pay off inside ML coding rounds. The math round it describes is covered separately by [[Alisa Liu - Math Notes]] (probability, combinatorics, puzzles, MLE).
+
 ## Meta-strategies
 
 - **Listen for trigger phrases** such as “contiguous,” “shortest path,” “at most `k`,” “minimum feasible,” “top `k`,” or “design a class.”
@@ -747,11 +750,15 @@ For ML-engineering interviews, both matter. DSA rounds often test whether the ca
 - **Identify customization points** early: predicate, recurrence, merge rule, state update, or data-structure API.
 - **Say the complexity out loud** before and after implementation; interviewers use this to judge whether the template choice was principled.
 - **Practice paired coverage**: algorithm templates for general coding rounds, and framework-specific drills for ML rounds.
+- **Practice with AI assistance off** to mimic interview conditions (per [[Alisa Liu - The AI Research Job Search]]).
 
 ## Related pages
 
 - [[Universal LeetCode Templates]]
 - [[Han Fang - PyTorch Practice]]
+- [[ML Research Interview Preparation]]
+- [[Alisa Liu - The AI Research Job Search]]
+- [[Alisa Liu - Math Notes]]
 - [[Neural Network Fundamentals]]
 - [[AI Knowledge Base Overview]]
 - [[index|Knowledge Base Index]]

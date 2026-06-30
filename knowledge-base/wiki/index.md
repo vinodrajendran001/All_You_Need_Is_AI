@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-29
+updated: 2026-06-30
 tags:
   - index
 source_ids:
@@ -56,6 +56,9 @@ source_ids:
   - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-06-30-alisa-liu-ai-research-job-search
+  - src-2026-06-30-alisa-liu-book-of-llms
+  - src-2026-06-30-alisa-liu-math-notes
 status: active
 ---
 
@@ -80,6 +83,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
+- [[ML Research Interview Preparation]] - End-to-end prep for research-scientist hiring loops: interview-type taxonomy, study methodology, math, and negotiation.
 - [[Model Quantization and Efficiency]] - Quantization, KV cache, LoRA, and sparse activation as core efficiency levers.
 - [[KV Cache]] - Runtime attention-state cache that speeds autoregressive decoding but dominates long-context memory.
 - [[Small Language Models]] - Small/on-device/high-volume LLMs designed around deployment and inference constraints.
@@ -145,6 +149,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Vizuara]] - AI-education publisher behind recurring quantization, memory, and vision explainers in this vault.
 - [[Siddhant Rai]] - Vizuara writer behind the vault's TurboQuant and Nested Learning explainers.
 - [[Mayank Pratap Singh]] - Vizuara writer behind the vault's diffusion and TimeSformer/video-transformer explainers.
+- [[Alisa Liu]] - NLP PhD (UW, tokenization); author of the vault's interview-prep cluster (job-search post, Book of LLMs, Math Notes).
 
 ## Sources
 
@@ -199,6 +204,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]] - Rate-distortion KV-cache quantization via rotation, Lloyd-Max codebooks, and a 1-bit QJL residual.
 - [[Siddhant Rai - Nested Learning]] - Google's continuous inference-time-learning framework: learning spectrum, Titans, Continuum Memory System, and Hope.
 - [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] - Video transformers and five space-time attention patterns; why divided space-time attention wins.
+- [[Alisa Liu - The AI Research Job Search]] - Field report on research-scientist interviews: interview-type taxonomy, study methodology, timing, and negotiation.
+- [[Alisa Liu - Book of LLMs]] - Comprehensive LLM study reference (neural nets, transformer, inference, scaling, post-training, parallelism) built for interviews.
+- [[Alisa Liu - Math Notes]] - Probability/statistics/puzzle reference for the quantitative "math" interview round.
 
 ## Queries
 
@@ -227,6 +235,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-06-22 Lint Pass]] - Seventeenth comprehensive lint pass (127 pages) after agent-skill and RSI ingests; fixed one unreferenced raw source and found no remaining defects.
 - [[2026-06-26 Lint Pass]] - Eighteenth comprehensive lint pass (134 pages) after SLM ingest; no structural defects.
 - [[2026-06-29 Lint Pass]] - Nineteenth comprehensive lint pass (147 pages) after the inference/quantization/Nested-Learning/TimeSformer ingest; no structural defects; added LLM Inference cross-links to two edge pages.
+- [[2026-06-30 Lint Pass]] - Twentieth comprehensive lint pass (153 pages) after the Alisa Liu interview-prep ingest; no structural defects; no fixes required.
 
 ## Control files
 

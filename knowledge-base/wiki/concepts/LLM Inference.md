@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-06-29
+updated: 2026-06-30
 tags:
   - concept
   - llm
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-26-nithin-llm-inference
   - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
   - src-2026-06-29-siddhant-rai-turboquant
+  - src-2026-06-30-alisa-liu-book-of-llms
 status: active
 ---
 
@@ -54,6 +55,7 @@ Production engines must serve many concurrent requests:
 
 - The decode/memory-bound view is why [[Reasoning Compression]] treats reasoning tokens as a systems cost: more tokens means more memory-bound decode steps and a larger KV cache.
 - [[Small Language Models]] and [[On-Device Reasoning]] inherit this page's constraints in their most extreme form, where every token competes for memory and power.
+- [[Alisa Liu - Book of LLMs]] adds an interview-oriented checklist of the inference toolbox that complements this hub: **batching & packing**, **speculative decoding** (a small draft model proposes tokens a large model verifies), **KV cache** and how to reduce its size, sampling strategies, and **Flash Attention** (IO-aware exact attention). It is a good rapid-review companion for the inference questions described in [[ML Research Interview Preparation]].
 
 ## Open questions
 
@@ -68,6 +70,7 @@ Production engines must serve many concurrent requests:
 - [[Nithin - What Actually Happens During LLM Inference]]
 - [[Maarten Grootendorst - A Visual Guide to Quantization]]
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
+- [[Alisa Liu - Book of LLMs]]
 - [[Small Language Models]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]

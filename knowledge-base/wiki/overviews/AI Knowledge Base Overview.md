@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-06-29
+updated: 2026-06-30
 tags:
   - overview
   - ai
@@ -58,6 +58,9 @@ source_ids:
   - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-06-30-alisa-liu-ai-research-job-search
+  - src-2026-06-30-alisa-liu-book-of-llms
+  - src-2026-06-30-alisa-liu-math-notes
 status: active
 ---
 
@@ -89,6 +92,8 @@ The June 26 ingest adds [[ByteByteGo - Large Language Models vs Small Language M
 
 The June 26-29 ingest adds five sources spanning quantization, inference, memory, and video. [[Nithin - What Actually Happens During LLM Inference]] seeds [[LLM Inference]] with the **prefill (compute-bound) vs decode (memory-bound)** split that underlies most efficiency work, plus serving-engine patterns (PagedAttention, continuous batching). [[Maarten Grootendorst - A Visual Guide to Quantization]] gives the vault its most thorough treatment of quantization mechanics (affine map, symmetric/asymmetric, PTQ vs QAT, GPTQ vs GGUF, BitNet), deepening [[Model Quantization and Efficiency]]. [[Siddhant Rai - TurboQuant - Online Vector Quantization]] supplies the math behind online KV-cache quantization (rate-distortion, rotation + Lloyd-Max codebook + 1-bit QJL residual), deepening [[KV Cache]]. [[Siddhant Rai - Nested Learning]] seeds [[Nested Learning]], a memory-as-structure / continuous inference-time-learning frame (Titans → Continuum Memory System → Hope) that sharpens [[Agent Memory]], [[Retrieval-Augmented Generation]], and [[Recursive Architectures]]. [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] seeds [[Video Transformers]], extending [[Transformer Architecture]] into spatiotemporal divided space-time attention. These ingests also introduce [[Maarten Grootendorst]], [[Vizuara]], and [[Siddhant Rai]] as entities.
 
+The June 30 ingest adds three sources from [[Alisa Liu]] that consolidate the vault's **interview-preparation** branch. [[Alisa Liu - The AI Research Job Search]] seeds [[ML Research Interview Preparation]] — an end-to-end map of the research-scientist hiring loop (a seven-type interview taxonomy, a study methodology built around Stanford CS336, and notes on timing and negotiation). [[Alisa Liu - Book of LLMs]] is a comprehensive LLM study reference that corroborates [[Transformer Architecture]], [[LLM Inference]], and [[Neural Network Fundamentals]], and [[Alisa Liu - Math Notes]] supplies the probability/statistics dimension (distributions, puzzles, MLE, bias–variance) for the math interview round. Together they connect to the existing [[Algorithm Templates for Interviews]] and reframe [[Automated AI Research]]'s "judgment over execution" thesis as the durable skill behind the hiring loop.
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -104,6 +109,7 @@ The June 26-29 ingest adds five sources spanning quantization, inference, memory
 - [[LLM Training Pipeline]] - pretraining, SFT, RLHF, DPO, and LoRA as one connected map
 - [[Neural Network Fundamentals]] - gradient descent, backpropagation, PyTorch, and Adam as the substrate under higher-level model pages
 - [[Algorithm Templates for Interviews]] - template-selection map connecting classic DSA interview patterns with ML engineering preparation
+- [[ML Research Interview Preparation]] - end-to-end research-scientist interview prep: interview-type taxonomy, study methodology, math round, and negotiation
 - [[Model Quantization and Efficiency]] - quantization, KV cache, LoRA, and sparse activation as deployment/adaptation efficiency levers
 - [[KV Cache]] - runtime attention-state storage and compression for long-context decoding
 - [[LLM Inference]] - the prefill (compute-bound) vs decode (memory-bound) split and the serving stack built around it

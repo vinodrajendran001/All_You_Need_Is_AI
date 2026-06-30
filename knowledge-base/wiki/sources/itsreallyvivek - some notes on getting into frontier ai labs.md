@@ -57,6 +57,7 @@ This source deepens [[Automated AI Research]] by giving a sharper language for t
 ## Related pages
 
 - [[Automated AI Research]]
+- [[ML Research Interview Preparation]]
 - [[AI Agents in Production]]
 - [[Agentic Loop]]
 - [[AI Knowledge Base Overview]]

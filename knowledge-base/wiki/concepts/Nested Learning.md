@@ -76,4 +76,6 @@ CMS organizes memory as a **chain of modules updated at different frequencies**:
 - [[On-Device Reasoning]]
 - [[Transformer Architecture]]
 - [[Latent-Space Reasoning]]
+- [[LLM Reasoning]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]

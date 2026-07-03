@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-29
+updated: 2026-07-03
 tags:
   - concept
   - architecture
@@ -63,4 +63,5 @@ Recursive architectures matter here because they offer a different answer to the
 - [[Recursive Self-Improvement]]
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[Siddhant Rai - Nested Learning]]
+- [[LLM Reasoning]]
 - [[Agentic Loop]]

@@ -107,4 +107,6 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Transformer Architecture]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
+- [[GPU Execution Model]]
+- [[Distributed Training Parallelism]]
 - [[AI Knowledge Base Overview]]

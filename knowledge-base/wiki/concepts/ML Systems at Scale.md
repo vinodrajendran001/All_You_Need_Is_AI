@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-02
+updated: 2026-07-03
 tags:
   - concept
   - machine-learning
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-06-05-systemdesign42-system-design-academy
+  - src-2026-07-03-bytebytego-openai-voice
 status: active
 ---
 
@@ -97,6 +98,15 @@ The newer [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] 
 
 [[Braintrust - How to evaluate multi-turn conversations]] complements that pattern with the lower-level mechanics of trace instrumentation and online scoring: group turns into one conversation object, score both turns and traces, and aggregate failures with clustering rather than relying on manual spot checks.
 
+## Real-time media transport is the same locality problem
+
+[[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]] extends this page from *serving predictions* to *serving a live media stream*, and the same laws apply. OpenAI runs WebRTC voice for 900M weekly users, but WebRTC assumes stable server IPs/ports while Kubernetes treats addresses as disposable — causing port exhaustion and state stickiness. Their answer splits a **stateless edge relay** (protocol-aware packet routing, tiny public footprint, placed geographically close to the user) from a **stateful transceiver** (owns ICE/DTLS/SRTP and the session lifecycle). Two patterns rhyme with the rest of this page:
+
+- **Read what the protocol already carries.** Rather than a hot-path database lookup, the relay routes the first packet by decoding routing metadata OpenAI encodes into the **ICE ufrag** — the media-transport version of "bring the compute to the data" / avoid an extra dependency on the critical path.
+- **Place work near the user.** Global Relay ingress points and Cloudflare geo-steering shorten the first hop, while the session stays anchored to one transceiver for its lifetime — the freshness/latency/placement tradeoff seen across Netflix, Snap, and Instacart, now for real-time audio.
+
+The design is deliberately mundane where it can be (userspace Go, `SO_REUSEPORT`, thread pinning) and is optimised for overwhelmingly 1:1 sessions, which is why it skips the multiparty-oriented SFU. It is the transport half of the [[Real-Time Voice AI]] concept.
+
 ## Why this matters for AI infrastructure
 
 These examples show that “ML at scale” is really a systems-discipline question. The model is only one component inside a broader architecture of stores, indexes, filters, ranking stages, caches, feedback loops, and evaluation infrastructure. That same architecture vocabulary also underlies [[Search-Augmented Language Models]] and many forms of [[Retrieval-Augmented Generation]], even when the end product is not a chatbot.
@@ -119,6 +129,8 @@ The case study index is most valuable as a **reference map** rather than a sourc
 - [[systemdesign42 - System Design Academy]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
+- [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]]
+- [[Real-Time Voice AI]]
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
 - [[Braintrust - How to evaluate multi-turn conversations]]

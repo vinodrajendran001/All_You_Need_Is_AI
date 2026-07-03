@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-06-30
+updated: 2026-07-03
 tags:
   - overview
   - ai
@@ -61,6 +61,12 @@ source_ids:
   - src-2026-06-30-alisa-liu-ai-research-job-search
   - src-2026-06-30-alisa-liu-book-of-llms
   - src-2026-06-30-alisa-liu-math-notes
+  - src-2026-07-01-anastasiia-alekseeva-parallel-training
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-03-bytebytego-openai-voice
+  - src-2026-07-03-bytebytego-thinking-machines-interaction
+  - src-2026-07-03-fergus-finn-cuda-kernel
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 
@@ -94,6 +100,8 @@ The June 26-29 ingest adds five sources spanning quantization, inference, memory
 
 The June 30 ingest adds three sources from [[Alisa Liu]] that consolidate the vault's **interview-preparation** branch. [[Alisa Liu - The AI Research Job Search]] seeds [[ML Research Interview Preparation]] — an end-to-end map of the research-scientist hiring loop (a seven-type interview taxonomy, a study methodology built around Stanford CS336, and notes on timing and negotiation). [[Alisa Liu - Book of LLMs]] is a comprehensive LLM study reference that corroborates [[Transformer Architecture]], [[LLM Inference]], and [[Neural Network Fundamentals]], and [[Alisa Liu - Math Notes]] supplies the probability/statistics dimension (distributions, puzzles, MLE, bias–variance) for the math interview round. Together they connect to the existing [[Algorithm Templates for Interviews]] and reframe [[Automated AI Research]]'s "judgment over execution" thesis as the durable skill behind the hiring loop.
 
+The July 1-3 ingest adds six sources that deepen the **systems and infrastructure** side of the vault. [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] seeds [[Distributed Training Parallelism]], deriving data/tensor/sequence/context/expert/pipeline parallelism (plus FSDP/ZeRO) from the single fact that training is GEMM. [[Fergus Finn - What Happens When You Run a CUDA Kernel]] seeds [[GPU Execution Model]], tracing one kernel from `nvcc` to warps and showing why a low-arithmetic-intensity kernel is memory-bound — the micro-scale version of the decode-is-memory-bound story in [[LLM Inference]]. Two ByteByteGo teardowns seed [[Real-Time Voice AI]] from opposite ends: [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]] covers the WebRTC relay/transceiver transport layer (extending [[ML Systems at Scale]]), while [[ByteByteGo - Inside Thinking Machines Interaction Models]] covers the model-architecture layer (time-aligned micro-turns, fast/slow two-model coordination), introducing [[OpenAI]] and [[Thinking Machines]] as entities. [[Sebastian Raschka - Using Local Coding Agents]] seeds [[Coding Agent Harness]] — the harness/engine split, local open-weight serving, security posture, and harness-driven token economics — and introduces [[Sebastian Raschka]]. [[Alyona Vert - AI Concepts and Techniques in 2026]] is a Turing Post survey that routes named 2026 ideas (mHC, conditional memory, the modular fine-tuning stack, on-policy self-distillation, inference-chip wars, depth-addressable Transformers) into existing concept pages.
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -118,6 +126,8 @@ The June 30 ingest adds three sources from [[Alisa Liu]] that consolidate the va
 - [[Reasoning Compression]] - shortening, replacing, or budgeting explicit reasoning traces to reduce cost without losing accuracy
 - [[Mixture of Experts]] - sparse architectures that trade total capacity against lower active compute per token
 - [[AI Accelerator Architecture]] - logic gates, systolic arrays, memory hierarchy, and cluster-scale compute/communication tradeoffs
+- [[Distributed Training Parallelism]] - data/tensor/sequence/context/expert/pipeline parallelism and FSDP/ZeRO as partitions of the same GEMM
+- [[GPU Execution Model]] - the software path from a CUDA kernel through PTX/SASS to warps, and why kernels are memory- or compute-bound
 - [[Context Engineering]] - managing the full context window at inference time as information architecture
 - [[Model Routing]] - selecting model tiers/providers per request so long-loop agent workloads stay affordable
 - [[Small Language Models]] - constrained model designs for local, cheap, or high-volume inference
@@ -132,6 +142,7 @@ The June 30 ingest adds three sources from [[Alisa Liu]] that consolidate the va
 - [[Model Context Protocol]] - open standard for universal tool integration
 - [[Agentic Loop]] - the iterative cycle powering multi-step tool use
 - [[Agent Skill]] - reusable agent capability artifacts spanning markdown procedures, durable workflows, and optimization loops
+- [[Coding Agent Harness]] - the harness/engine split for running local open-weight coding agents, with security posture and token economics
 - [[Search-Augmented Language Models]] - LLMs with RL-trained search tool policies
 - [[Retrieval-Augmented Generation]] - Classic, Graph, and Agentic RAG as a single retrieval-architecture map
 - [[Direct Corpus Interaction]] - terminal-mediated corpus search as a precision layer for agentic retrieval
@@ -145,6 +156,7 @@ The June 30 ingest adds three sources from [[Alisa Liu]] that consolidate the va
 - [[ML Systems at Scale]] - production ML serving patterns spanning multimodal search, recommendation, hybrid retrieval, and vector-search infrastructure.
 - [[LLM-as-a-Judge]] - calibrated LLM evaluators for search relevance, quality assurance, and continuous regression monitoring.
 - [[AI Agents in Production]] - operational patterns for deploying agents with tool boundaries, MCP, guardrails, and human review.
+- [[Real-Time Voice AI]] - low-latency conversational AI across the transport (WebRTC relay/transceiver) and model (interaction-model micro-turns) layers.
 
 ## System design and ML-at-scale branch
 
@@ -249,3 +261,16 @@ The June 30 ingest adds three sources from [[Alisa Liu]] that consolidate the va
 - [[Perplexity]]
 - [[Braintrust]]
 - [[Y Combinator]]
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
+- [[Distributed Training Parallelism]]
+- [[Alyona Vert - AI Concepts and Techniques in 2026]]
+- [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]]
+- [[ByteByteGo - Inside Thinking Machines Interaction Models]]
+- [[Real-Time Voice AI]]
+- [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
+- [[GPU Execution Model]]
+- [[Sebastian Raschka - Using Local Coding Agents]]
+- [[Coding Agent Harness]]
+- [[OpenAI]]
+- [[Thinking Machines]]
+- [[Sebastian Raschka]]

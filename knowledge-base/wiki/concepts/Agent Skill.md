@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-07-03
 tags:
   - concept
   - agents
@@ -75,4 +75,5 @@ Durable orchestration makes those optimized skills operational. [[djfarrelly - T
 - [[Recursive Self-Improvement]]
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[pguso - Agents From Scratch]]
+- [[Coding Agent Harness]]
 - [[Inngest]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-23
+updated: 2026-07-03
 tags:
   - concept
   - ai-agents
@@ -184,5 +184,6 @@ The common pattern is not “let the model do everything.” It is **design an e
 - [[Vision-Language Grounding]]
 - [[Qualcomm AI Research]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
+- [[Coding Agent Harness]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]

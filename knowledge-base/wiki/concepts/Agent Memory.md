@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-29
+updated: 2026-07-03
 tags:
   - concept
   - agents
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-05-21-bytebytego-batch
   - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
 status: active
 ---
 
@@ -83,6 +84,7 @@ The sources above treat memory as **explicit stored data** loaded into context �
 - It places memory on a **learning spectrum** — in-context (attention as ephemeral memory, erased when context clears), continual (accumulate across tasks, threatened by catastrophic forgetting), and inference-time (weights update during the forward pass).
 - Its **Continuum Memory System** organizes memory as a chain of modules updated at different frequencies (fast/volatile recent detail → slow/stable consolidated knowledge), a structural answer to the **plasticity-stability tradeoff**.
 - The tension with the storage view is real and intentional: storage memory is auditable but external and inert; structural memory is integrated and adaptive but harder to inspect and carries stability/safety risk. This vault keeps both framings rather than collapsing them.
+- [[Alyona Vert - AI Concepts and Techniques in 2026]] adds a third framing to track: **conditional (selective) memory**, illustrated by DeepSeek's Engram, where a model *retrieves* memory through sparse lookups instead of storing everything in parameters or an ever-growing context. Its "U-shaped allocation law" — the best systems balance memory capacity against computation rather than maximising either — is a frontier signal that memory is becoming something a model decides *what to keep and when to fetch*, sitting between the storage and structural poles above.
 
 ## Open questions
 
@@ -102,4 +104,5 @@ The sources above treat memory as **explicit stored data** loaded into context �
 - [[Retrieval-Augmented Generation]]
 - [[Nested Learning]]
 - [[Siddhant Rai - Nested Learning]]
+- [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[AI Knowledge Base Overview]]

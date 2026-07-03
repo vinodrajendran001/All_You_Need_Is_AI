@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-30
+updated: 2026-07-03
 tags:
   - concept
   - llm
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-28-mayank-pratap-singh-timesformer
   - src-2026-06-30-alisa-liu-book-of-llms
+  - src-2026-07-01-anastasiia-alekseeva-parallel-training
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
 status: active
 ---
 
@@ -53,6 +55,8 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - [[Prateek Singh - KV Cache and TurboQuant]] makes the operational side concrete enough that [[KV Cache]] now deserves its own page. KV cache is not only "store old K/V tensors"; it is the main memory surface for long-context decoding. GQA, MQA, MLA, PagedAttention, token eviction, predictive skipping, and TurboQuant all exist because the attention architecture's cached state grows linearly with context.
 - [[Mayank Pratap Singh - Transformers for Video - TimeSformer]] extends the same attention skeleton beyond text and images into the spatiotemporal setting. It shows that the quadratic cost of attention can be controlled by **factorizing it along structured axes** — TimeSformer's divided space-time attention runs temporal then spatial attention with separate Q/K/V projections, cutting cost from `NF+1` to `N+F+2` keys per query while improving accuracy. This is the video branch of the architecture, developed on its own page [[Video Transformers]].
 - [[Alisa Liu - Book of LLMs]] adds an interview-oriented consolidation of this same architecture: Attention, **RMSNorm**, the **SwiGLU FFN** (`(xW₁) ⊙ Swish(xW₂)`), and **RoPE**, plus an unusually explicit "accounting" view — how to count parameters, activation memory, and forward/backward FLOPs. That accounting framing is a useful study layer for the rapid-fire technical-discussion round described in [[ML Research Interview Preparation]].
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] maps *where the compute lives*: almost all of a layer's weight sits in its linear projections — the Q/K/V and output projections in attention and the two MLP GEMMs — while layer norm, softmax, and residuals are element-wise "rounding error." That distribution is exactly why splitting a model across devices means splitting those matrix multiplies, and why attention's head-independence and the MLP's column/row structure are the seams [[Distributed Training Parallelism|tensor parallelism]] cuts along.
+- [[Alyona Vert - AI Concepts and Techniques in 2026]] flags two 2026 directions that treat the *stack of blocks* as more than a fixed pipe: **depth as an addressable dimension** (Kimi's Attention Residuals let the residual stream choose which earlier layers matter; ByteDance Seed's Mixture-of-Depths Attention lets heads retrieve K/V from previous layers), and **DeepSeek's mHC (Manifold-Constrained Hyper-Connections)**, which adds geometric constraints (doubly stochastic matrices, Sinkhorn-Knopp) so inter-layer routing can be more flexible than residual connections without vanishing or exploding. These are frontier signals to track rather than settled replacements for the converged skeleton above.
 
 ## Open questions
 
@@ -73,6 +77,9 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - [[LLM Inference]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[LLM Training Pipeline]]
+- [[Distributed Training Parallelism]]
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
+- [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]
 - [[AI Knowledge Base Overview]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-06-30
+updated: 2026-07-03
 tags:
   - concept
   - llm
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-30-alisa-liu-book-of-llms
+  - src-2026-07-03-bytebytego-thinking-machines-interaction
+  - src-2026-07-03-fergus-finn-cuda-kernel
 status: active
 ---
 
@@ -56,6 +58,8 @@ Production engines must serve many concurrent requests:
 - The decode/memory-bound view is why [[Reasoning Compression]] treats reasoning tokens as a systems cost: more tokens means more memory-bound decode steps and a larger KV cache.
 - [[Small Language Models]] and [[On-Device Reasoning]] inherit this page's constraints in their most extreme form, where every token competes for memory and power.
 - [[Alisa Liu - Book of LLMs]] adds an interview-oriented checklist of the inference toolbox that complements this hub: **batching & packing**, **speculative decoding** (a small draft model proposes tokens a large model verifies), **KV cache** and how to reduce its size, sampling strategies, and **Flash Attention** (IO-aware exact attention). It is a good rapid-review companion for the inference questions described in [[ML Research Interview Preparation]].
+- [[Fergus Finn - What Happens When You Run a CUDA Kernel]] supplies the layer *beneath* prefill/decode: the [[GPU Execution Model]]. Its arithmetic-intensity argument (a low-FLOP kernel runs at ~80% DRAM bandwidth but ~5% issue activity) is exactly why decode — one GEMV re-reading gigabytes per token — is memory-bound, and why "bytes moved" is the right currency for reasoning about tokens/sec.
+- **Streaming, not just batching, is now a serving axis.** [[ByteByteGo - Inside Thinking Machines Interaction Models]] shows real-time [[Real-Time Voice AI|interaction models]] served as 200 ms streaming sessions (a feature contributed to SGLang) with a fast interaction model paired with a slower background reasoning model. This adds a latency-anchored, continuous-input regime to the prefill/decode picture, where the scheduler must sustain sub-second responsiveness while a second model does deep work asynchronously.
 
 ## Open questions
 
@@ -75,5 +79,9 @@ Production engines must serve many concurrent requests:
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]
 - [[AI Accelerator Architecture]]
+- [[GPU Execution Model]]
+- [[Real-Time Voice AI]]
+- [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
+- [[ByteByteGo - Inside Thinking Machines Interaction Models]]
 - [[Transformer Architecture]]
 - [[AI Knowledge Base Overview]]

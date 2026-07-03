@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-23
+updated: 2026-07-03
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 
@@ -91,6 +92,8 @@ The full agent-building progression this source teaches:
 
 See [[Agent Planning]] for the planning/execution branch and [[Agent Memory]] for the memory branch.
 
+The **[[Coding Agent Harness]]** is the most tangible product-facing instance of this loop: a harness like Claude Code, Codex, or Qwen-Code wraps an LLM with exactly the read/edit/run/verify tools, the tool request/execute separation, and the approval gates described above. [[Sebastian Raschka - Using Local Coding Agents]] shows the loop running on a locally-served open-weight model, and makes the operational point that the harness — not just the model — governs how much context is re-fed each iteration and therefore the token cost of the loop.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -99,6 +102,8 @@ See [[Agent Planning]] for the planning/execution branch and [[Agent Memory]] fo
 - [[Agent Planning]]
 - [[Agent Memory]]
 - [[Agent Skill]]
+- [[Coding Agent Harness]]
+- [[Sebastian Raschka - Using Local Coding Agents]]
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
 - [[Reward Design for RL]]

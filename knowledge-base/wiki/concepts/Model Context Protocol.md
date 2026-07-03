@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-05-21
+updated: 2026-07-03
 tags: [mcp, protocol, tool-use, agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -67,4 +67,5 @@ That example highlights an important point: a good MCP server is not merely an A
 - [[Search-Augmented Language Models]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
+- [[Coding Agent Harness]]
 - [[AI Knowledge Base Overview]]

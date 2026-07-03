@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-07-03
 tags:
   - concept
   - reasoning
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-06-04-difficulty-aware-entropy-regularization
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -47,6 +48,7 @@ The usefulness of reasoning models is increasingly bounded not only by accuracy 
   - Extra-CoT trains across a range of compression ratios rather than one fixed target.
 - Another durable pattern is that compression can sometimes **improve** accuracy rather than merely preserve it. The shared intuition is that many reasoning models waste tokens on hesitation, redundant verification, or diffuse exploration. Compression helps when it removes that waste without cutting away the critical logical spine.
 - The branch also shows that efficient reasoning is as much a **systems problem** as a model problem. Token reduction matters because decoding is memory-bound, KV caches grow with trace length, and RL rollout memory scales badly with long visible thoughts.
+- This page is the **"spend less"** dual of [[Test-Time Scaling]]'s "spend more." [[Akhil Arora et al - Current Advances in LLM Reasoning]] unifies the two: "just thinking more is not enough" because more tokens can cause *overthinking*, so the frontier is a **controller** that decides right-sized compute — whether to answer now, think longer, branch, retrieve, or verify. Compression, budget forcing, and adaptive early-exit are the mechanisms that keep that controller from defaulting to maximal-compute, and they connect the efficiency branch directly to the broader [[LLM Reasoning]] map.
 
 ## Open questions
 
@@ -70,3 +72,6 @@ The usefulness of reasoning models is increasingly bounded not only by accuracy 
 - [[Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning]]
 - [[ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure]]
 - [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]]
+- [[Test-Time Scaling]]
+- [[LLM Reasoning]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]

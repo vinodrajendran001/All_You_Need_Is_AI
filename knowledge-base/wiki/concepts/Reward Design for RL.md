@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-23
+updated: 2026-07-03
 tags: [rl, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -107,6 +108,14 @@ The shared lesson is that agentic reward design must balance correctness, explor
 
 [[The Pocket - PocketFlow Tutorial Docs]] expands the background behind this page by walking through reward-model training in RLHF, the Bradley-Terry preference formulation, and DPO as a direct preference-learning alternative. Together, those tutorials make reward design easier to place inside the wider [[LLM Training Pipeline]] rather than treating it as a search-agent-only concern.
 
+## Reward architectures for reasoning
+
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] maps the reward-source landscape that the reasoning field converged on:
+
+- **RLVR (RL with Verifiable Rewards)** removes the neural reward model entirely — a calculator checks math, a test suite checks code, a tag check enforces format — and combines those into one signal. It works as well as or better than learned rewards and creates a contrastive correct-vs-incorrect signal that transfers to unseen problems (the DeepSeek-R1 recipe). This is the reward design behind much of [[LLM Reasoning]] and [[Test-Time Scaling]].
+- **Self-rewarding / generative reward models** ([[LLM-as-a-Judge|LLM-as-Judge]], GenRM) and **process reward models (PRMs)** that score the reasoning *steps* rather than only the outcome sit at the other end: more general, but only as reliable as the judge.
+- **Reward-model reliability is the load-bearing risk.** A flawed verifier lets the policy rank wrong answers higher, and **reward hacking / verifier gaming** is called out as an unsolved 2026 frontier — the same "process rewards are tempting but risky" caution above, now at model scale.
+
 ## Related pages
 
 - [[Search-Augmented Language Models]]
@@ -122,4 +131,7 @@ The shared lesson is that agentic reward design must balance correctness, explor
 - [[Multi-Teacher On-Policy Distillation]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Agentic Loop]]

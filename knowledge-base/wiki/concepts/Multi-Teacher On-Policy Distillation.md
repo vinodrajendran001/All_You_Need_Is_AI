@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -56,6 +57,10 @@ MOPD is one of the clearest 2026 signs that frontier post-training has moved bey
 - **Magnitude of benefit:** the source treats the relative gain of MOPD versus trace-distillation SFT as still unclear.
 - **Transparency:** even when a frontier lab publishes a recipe, the recipe may be too complex to reproduce without the org chart, teacher checkpoints, data mixtures, and implementation details.
 
+## Merging distillation with RL
+
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] shows the 2026 frontier collapsing the SFT-distillation and RL stages into one. Where classic distillation transfers a teacher's traces by pure SFT (DeepSeek-R1 distills ~85–90% of capability into 1.5–70B students; s1 shows 1,000 curated traces can beat o1-preview), newer methods run **KD + RL simultaneously** — the teacher provides the *what* (correct reasoning patterns) while RL discovers the *how* (new strategies beyond the teacher). **RL-aware KD** further weights tokens by reasoning importance so critical steps get more distillation signal than filler, cutting training time ~40% versus a sequential SFT→RL pipeline. This is MOPD's on-policy-consolidation idea pushed one step further: consolidation and exploration in a single loop.
+
 ## Related pages
 
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
@@ -65,4 +70,6 @@ MOPD is one of the clearest 2026 signs that frontier post-training has moved bey
 - [[Group Relative Policy Optimization]]
 - [[Automated AI Research]]
 - [[Alyona Vert - AI Concepts and Techniques in 2026]]
+- [[LLM Reasoning]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]

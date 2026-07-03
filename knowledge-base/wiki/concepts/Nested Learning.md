@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-06-29
+updated: 2026-07-03
 tags:
   - concept
   - nested-learning
@@ -11,6 +11,7 @@ tags:
   - architecture
 source_ids:
   - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -55,6 +56,10 @@ CMS organizes memory as a **chain of modules updated at different frequencies**:
 ### Self-Modifying Titans and Hope
 
 **Self-Modifying Titans** learn their own update rule (meta-learning the write mechanism) instead of using a fixed one. This differs from fine-tuning because updates are local, bounded, and happen at inference. **Hope** = self-modifying sequence model + CMS, trained with a **two-loop structure** (inner-loop parameter updates, outer-loop objective), with inference-time gradients approximated by chunked, amortized updates to keep cost tractable.
+
+## Why continual learning is a reasoning frontier
+
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] lists **continual learning** as one of the open pillars of reasoning, which gives this page's memory-as-structure agenda a concrete problem set with 2025–2026 evidence it is unsolved: **distribution drift** (Spurious Forgetting), **catastrophic forgetting** at post-training scale, **model collapse** from training on synthetic data, **"peak data"** (the field's biggest open question), and **reward hacking**. Nested Learning's inference-time, memory-as-structure approach is one proposed response to exactly these failures — a bridge from the vault's efficiency/memory branch into the broader [[LLM Reasoning]] map.
 
 ## Open questions
 

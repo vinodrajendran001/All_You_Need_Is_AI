@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-30-alisa-liu-book-of-llms
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-03-fergus-finn-cuda-kernel
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -60,6 +61,7 @@ Production engines must serve many concurrent requests:
 - [[Alisa Liu - Book of LLMs]] adds an interview-oriented checklist of the inference toolbox that complements this hub: **batching & packing**, **speculative decoding** (a small draft model proposes tokens a large model verifies), **KV cache** and how to reduce its size, sampling strategies, and **Flash Attention** (IO-aware exact attention). It is a good rapid-review companion for the inference questions described in [[ML Research Interview Preparation]].
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]] supplies the layer *beneath* prefill/decode: the [[GPU Execution Model]]. Its arithmetic-intensity argument (a low-FLOP kernel runs at ~80% DRAM bandwidth but ~5% issue activity) is exactly why decode — one GEMV re-reading gigabytes per token — is memory-bound, and why "bytes moved" is the right currency for reasoning about tokens/sec.
 - **Streaming, not just batching, is now a serving axis.** [[ByteByteGo - Inside Thinking Machines Interaction Models]] shows real-time [[Real-Time Voice AI|interaction models]] served as 200 ms streaming sessions (a feature contributed to SGLang) with a fast interaction model paired with a slower background reasoning model. This adds a latency-anchored, continuous-input regime to the prefill/decode picture, where the scheduler must sustain sub-second responsiveness while a second model does deep work asynchronously.
+- **Inference compute is also a *reasoning* scaling axis.** [[Test-Time Scaling]] (from [[Akhil Arora et al - Current Advances in LLM Reasoning]]) spends extra decode — longer traces, more samples, explicit search, verifiers — to get better answers from a fixed model. That directly stresses this page's constraints: more reasoning tokens mean more memory-bound decode steps and a larger KV cache, which is why the field pairs it with [[Reasoning Compression|budget control]] and with systems work on parallel/speculative decoding and batched-inference determinism (CacheSaver, Parallel-R1).
 
 ## Open questions
 
@@ -83,5 +85,8 @@ Production engines must serve many concurrent requests:
 - [[Real-Time Voice AI]]
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
 - [[ByteByteGo - Inside Thinking Machines Interaction Models]]
+- [[Test-Time Scaling]]
+- [[LLM Reasoning]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Transformer Architecture]]
 - [[AI Knowledge Base Overview]]

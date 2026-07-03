@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-07-03
 tags:
   - concept
   - reinforcement-learning
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -110,6 +111,8 @@ Agentic RL inherits normal RL instability but adds long-horizon agent-specific f
 
 These failures explain why agentic RL needs diagnostics over trajectories, not only final benchmark scores.
 
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] connects this branch to reasoning at inference time: **agentic reasoning with verifier-based control** (reflective MCTS, tool-planning with dual evaluation and pruning) is the [[Test-Time Scaling|test-time]] counterpart to training agentic policies. The deck also flags the field's sharpest open question about multi-agent systems — the **"illusion of MAS advantage"**: does multi-agent orchestration actually beat a single agent under *token-matched* controls, or is the apparent gain just extra compute? Communication overhead and a coordination-failure taxonomy remain undertheorized (MAS-Orchestra, Skill-MAS), which is a caution for how [[Agentic Loop|multi-agent]] rollouts are evaluated here.
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -131,4 +134,7 @@ These failures explain why agentic RL needs diagnostics over trajectories, not o
 - [[LLM Training Pipeline]]
 - [[Search-Augmented Language Models]]
 - [[Agent Skill]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Recursive Self-Improvement]]

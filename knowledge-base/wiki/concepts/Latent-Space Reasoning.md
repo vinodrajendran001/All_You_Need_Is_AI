@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-04
+updated: 2026-07-03
 tags:
   - concept
   - reasoning
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion
   - src-2026-06-04-progressive-thought-encoding
   - src-2026-06-04-reasoncache
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -46,6 +47,8 @@ The newer efficient-reasoning batch adds two adjacent examples that are not full
 
 These methods reinforce the same general lesson: useful reasoning state does not always need to survive as a long explicit token trace.
 
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] gives this its broader framing. Under the frozen-θ view, a trained model already stores latent CoT paths, self-verification, and backtracking; verifier-free [[Test-Time Scaling|test-time search]] "surfaces a latent path" rather than adding knowledge. Latent-space reasoning takes the same premise further — keep the reasoning *inside* the representation instead of externalizing it as tokens — which is why it is a distinct lever within the wider [[LLM Reasoning]] map (and why faithfulness concerns bite less when there is no token trace to be unfaithful in the first place).
+
 ## Related pages
 
 - [[Recursive Architectures]]
@@ -55,4 +58,7 @@ These methods reinforce the same general lesson: useful reasoning state does not
 - [[On-Device Reasoning]]
 - [[Training Large Reasoning Models Efficiently via Progressive Thought Encoding]]
 - [[ReasonCACHE - Teaching LLMs To Reason Without Weight Updates]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Alpha Signal - The Return of Recursion]]

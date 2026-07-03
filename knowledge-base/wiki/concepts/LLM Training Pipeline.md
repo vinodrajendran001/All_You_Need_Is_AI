@@ -29,6 +29,7 @@ source_ids:
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -75,6 +76,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[ByteByteGo - Large Language Models vs Small Language Models]] adds the small-model training recipe. [[Small Language Models]] often compensate for lower parameter count through curated/synthetic data, knowledge distillation from larger teachers, and deliberate overtraining relative to compute-optimal token ratios. This reframes training cost as a lifecycle trade: spend more upfront to reduce inference cost across many requests.
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] supplies the missing *scaling substrate* under every stage above: pretraining and post-training on trillions of tokens only happen because the training step is spread across many accelerators. See [[Distributed Training Parallelism]] for the full taxonomy (data / tensor / sequence / context / expert / pipeline parallelism, plus FSDP/ZeRO memory sharding) — the reason a >1 TB-of-state model can be trained at all, and why the optimiser state (12 of Adam's 16 bytes/param) is the memory villain the whole pipeline is engineered around.
 - [[Alyona Vert - AI Concepts and Techniques in 2026]] signals that the *post-training* half of this map is fragmenting into a modular "beyond-RL" fine-tuning stack: generated adapters (Doc-to-LoRA, Text-to-LoRA), compressed/structured LoRA (LoRA-Squeeze, Kron-LoRA, Mixture of Adapters), gradient-free Evolution Strategies, and on-policy self-distillation (OPSD/SDFT/SDPO). The durable point is *modularity* — capabilities optimised separately and composed — not that RL is going away (see [[Multi-Teacher On-Policy Distillation]]).
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]] supplies the reasoning-focused view of this same pipeline and its central tension: **SFT reproduces the training distribution (and fails out-of-distribution) while RL discovers novel strategies** — with the open question of whether RL *creates* reasoning or *amplifies* latent pre-training capability. It also anchors the reward side in [[Reward Design for RL|RLVR]] (verifiable rewards, no neural reward model) and shows the 2026 frontier **merging distillation with RL** (KDRL, RL-aware KD that up-weights critical reasoning tokens; ~40% faster than sequential SFT→RL), a natural extension of the teacher-consolidation pattern above. See [[LLM Reasoning]].
 
 ## Open questions
 
@@ -114,3 +116,6 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Distributed Training Parallelism]]
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
 - [[Alyona Vert - AI Concepts and Techniques in 2026]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]

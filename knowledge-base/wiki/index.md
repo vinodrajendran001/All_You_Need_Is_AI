@@ -61,6 +61,7 @@ source_ids:
   - src-2026-06-30-alisa-liu-math-notes
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-03-fergus-finn-cuda-kernel
@@ -95,6 +96,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Small Language Models]] - Small/on-device/high-volume LLMs designed around deployment and inference constraints.
 - [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
 - [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
+- [[LLM Reasoning]] - Hub for how models reason (deduction/abduction/induction), the frozen-θ view, evaluation/robustness, and how to make reasoning better.
+- [[Test-Time Scaling]] - Spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
@@ -226,6 +229,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - Inside Thinking Machines Interaction Models]] - Interaction models: time-aligned micro-turns and fast/slow two-model coordination for real-time multimodal AI.
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]] - A vector-add kernel traced from nvcc to warps; occupancy, scheduling, and memory-bound arithmetic intensity.
 - [[Sebastian Raschka - Using Local Coding Agents]] - Building a fully local coding-agent stack (Ollama + harness) with audit, evaluation, and token-economics findings.
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]] - Field-survey tutorial: reasoning taxonomy, robustness/faithfulness, test-time scaling, post-training/RL (RLVR, GRPO, distillation), and frontier pillars.
 
 ## Queries
 

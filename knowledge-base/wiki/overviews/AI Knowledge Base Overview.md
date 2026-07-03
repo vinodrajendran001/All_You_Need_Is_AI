@@ -63,6 +63,7 @@ source_ids:
   - src-2026-06-30-alisa-liu-math-notes
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-03-fergus-finn-cuda-kernel
@@ -102,6 +103,8 @@ The June 30 ingest adds three sources from [[Alisa Liu]] that consolidate the va
 
 The July 1-3 ingest adds six sources that deepen the **systems and infrastructure** side of the vault. [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] seeds [[Distributed Training Parallelism]], deriving data/tensor/sequence/context/expert/pipeline parallelism (plus FSDP/ZeRO) from the single fact that training is GEMM. [[Fergus Finn - What Happens When You Run a CUDA Kernel]] seeds [[GPU Execution Model]], tracing one kernel from `nvcc` to warps and showing why a low-arithmetic-intensity kernel is memory-bound — the micro-scale version of the decode-is-memory-bound story in [[LLM Inference]]. Two ByteByteGo teardowns seed [[Real-Time Voice AI]] from opposite ends: [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]] covers the WebRTC relay/transceiver transport layer (extending [[ML Systems at Scale]]), while [[ByteByteGo - Inside Thinking Machines Interaction Models]] covers the model-architecture layer (time-aligned micro-turns, fast/slow two-model coordination), introducing [[OpenAI]] and [[Thinking Machines]] as entities. [[Sebastian Raschka - Using Local Coding Agents]] seeds [[Coding Agent Harness]] — the harness/engine split, local open-weight serving, security posture, and harness-driven token economics — and introduces [[Sebastian Raschka]]. [[Alyona Vert - AI Concepts and Techniques in 2026]] is a Turing Post survey that routes named 2026 ideas (mHC, conditional memory, the modular fine-tuning stack, on-policy self-distillation, inference-chip wars, depth-addressable Transformers) into existing concept pages.
 
+The 3 July ingest adds the vault's most comprehensive reasoning source: [[Akhil Arora et al - Current Advances in LLM Reasoning]], a full field-survey tutorial (llmreasoning.github.io) captured from Google Slides. It seeds two hub concepts — [[LLM Reasoning]] (how models reason: deduction/abduction/induction, the frozen-θ internal-search vs external-verification frame, faithfulness, robustness, and high-stakes failure) and [[Test-Time Scaling]] (verifier-free vs verifier-based inference-time compute) — and threads through the whole RL/post-training branch: [[Reinforcement Learning]] and [[Group Relative Policy Optimization]] (PPO→GRPO), [[Reward Design for RL]] (RLVR), [[Direct Preference Optimization]], [[Multi-Teacher On-Policy Distillation]] (KD+RL merging), plus [[Monte Carlo Tree Search]], [[LLM-as-a-Judge]] (verifiers), [[Reasoning Compression]], [[Retrieval-Augmented Generation]], [[Agentic Reinforcement Learning]], and [[Nested Learning]].
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -124,6 +127,8 @@ The July 1-3 ingest adds six sources that deepen the **systems and infrastructur
 - [[On-Device Reasoning]] - local reasoning under mobile constraints, where memory, latency, and power shape the whole stack
 - [[Small Language Models]] - small/on-device/high-volume LLMs designed around deployment and inference constraints
 - [[Reasoning Compression]] - shortening, replacing, or budgeting explicit reasoning traces to reduce cost without losing accuracy
+- [[LLM Reasoning]] - hub page: reasoning taxonomy, the frozen-θ view, evaluation/robustness, and the two levers (test-time scaling, post-training)
+- [[Test-Time Scaling]] - spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based
 - [[Mixture of Experts]] - sparse architectures that trade total capacity against lower active compute per token
 - [[AI Accelerator Architecture]] - logic gates, systolic arrays, memory hierarchy, and cluster-scale compute/communication tradeoffs
 - [[Distributed Training Parallelism]] - data/tensor/sequence/context/expert/pipeline parallelism and FSDP/ZeRO as partitions of the same GEMM
@@ -274,3 +279,6 @@ The July 1-3 ingest adds six sources that deepen the **systems and infrastructur
 - [[OpenAI]]
 - [[Thinking Machines]]
 - [[Sebastian Raschka]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]

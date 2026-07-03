@@ -61,6 +61,7 @@ source_ids:
   - src-2026-06-30-alisa-liu-math-notes
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-03-fergus-finn-cuda-kernel
@@ -566,3 +567,12 @@ Append-only operational history for the wiki.
 - Seeded [[Coding Agent Harness]] as a new concept covering the harness/engine split, local open-weight serving (Ollama/OpenAI-compatible endpoint), speed/memory/capability assessment, the finding that token usage is harness-driven not model-driven, and the security-audit posture for locally-run agents.
 - Introduced [[Sebastian Raschka]] as a new entity. Updated [[Small Language Models]], [[On-Device Reasoning]], [[Agentic Loop]], [[Model Routing]], [[Tool Use and Function Calling]], [[Model Context Protocol]], [[Agent Skill]], [[AI Agents in Production]], [[Context Engineering]], index, overview, and log.
 - Also brought the log frontmatter `source_ids` back in sync with the index (the June 26–30 ingests had not been backfilled).
+
+## [2026-07-03] ingest | Current Advances in LLM Reasoning
+
+- Fetched the Google Slides deck via the plain-text export (`exportFormat=txt`; the cross-domain redirect to `googleusercontent.com` needed `curl -k` for a cert-trust quirk) and saved it as `knowledge-base/raw/sources/2026-07-02 Akhil Arora et al - Current Advances in LLM Reasoning.md` (immutable raw-source capture, ~5.6k lines).
+- Mapped it into [[Akhil Arora et al - Current Advances in LLM Reasoning]] as the source summary page (a full field-survey tutorial from llmreasoning.github.io).
+- Seeded two new concept pages: [[LLM Reasoning]] (hub — reasoning taxonomy, the frozen-θ internal-search/external-verification frame, faithfulness, robustness, high-stakes failure) and [[Test-Time Scaling]] (verifier-free vs verifier-based inference-time compute, search & sieve, budget control).
+- Updated the RL/post-training branch: [[Reinforcement Learning]] (RLVR, SFT-reproduces/RL-discovers, create-vs-amplify), [[Group Relative Policy Optimization]] (the crisp PPO-4-models vs GRPO-drops-critic memory argument), [[Reward Design for RL]] (RLVR / PRM / self-rewarding reward architectures, reward hacking), [[Direct Preference Optimization]] (policy-is-the-reward-model), [[LLM Training Pipeline]] (KDRL distillation+RL merging), and [[Multi-Teacher On-Policy Distillation]] (distillation merging with RL).
+- Updated the reasoning/inference branch: [[Monte Carlo Tree Search]] (verifier-free test-time search), [[LLM-as-a-Judge]] (judges as reasoning verifiers: PRM/GenRM), [[Reasoning Compression]] (the "spend less" dual of test-time scaling), [[LLM Inference]] (inference compute as a reasoning scaling axis), [[Latent-Space Reasoning]], [[Retrieval-Augmented Generation]] (retrieval as a reasoning tool; retrieval-vs-memory), [[Agentic Reinforcement Learning]] (agentic reasoning; the "illusion of MAS advantage"), [[Nested Learning]] (continual-learning frontier), and [[Recursive Architectures]].
+- No new entities (one-off tutorial authors, consistent with the vault's multi-author-paper pattern). Updated index, overview, and log.

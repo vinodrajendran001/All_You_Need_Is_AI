@@ -69,4 +69,5 @@ The repo makes one further observation: **structured output is the prerequisite 
 - [[Direct Corpus Interaction]]
 - [[pguso - Agents From Scratch]]
 - [[Coding Agent Harness]]
+- [[Test-Time Scaling]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

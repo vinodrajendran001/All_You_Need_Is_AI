@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-29
+updated: 2026-07-03
 tags: [rag, retrieval, agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -124,6 +125,10 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 
 [[Siddhant Rai - Nested Learning]] adds a pointed critique worth recording here: across all three tiers, RAG adapts a model by **retrieving information into the context window**, never by changing what the model *is*. In that framing RAG is **memory-as-storage**, not **memory-as-structure** — it inherits the context-window ceiling of in-context learning and cannot accumulate integrated knowledge over a long stream of interactions. The proposed alternative ([[Nested Learning]]) folds adaptation into the model's own computation via inference-time updates. This does not make RAG obsolete (it stays auditable, controllable, and training-free), but it marks the boundary of what retrieval alone can do.
 
+## Retrieval as a reasoning tool
+
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] recasts retrieval as one of the *external* levers of reasoning: a verifier-based [[Test-Time Scaling|test-time]] tool the model can call to anchor intermediate claims to ground truth (search-engine/RAG verification), sitting beside code execution and process reward models. It also names the open frontier — **retrieval vs memory**: when should a reasoner look something up versus rely on parametric knowledge (Search-R1, MCTS-RAG, Sleep-time Compute, Mem0)? — and the failure mode of **tool-induced hallucination** and **retrieving even when unnecessary**. This connects RAG to [[LLM Reasoning]] and, in high-stakes settings, to retrieval calibration (MedReason, CARE).
+
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
@@ -139,4 +144,7 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 - [[Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Siddhant Rai - Nested Learning]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]

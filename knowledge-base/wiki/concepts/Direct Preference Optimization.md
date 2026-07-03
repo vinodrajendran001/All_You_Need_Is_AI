@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-17
+updated: 2026-07-03
 tags:
   - concept
   - alignment
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -80,6 +81,8 @@ The useful distinction:
 
 This makes DPO a pragmatic tool rather than a permanent canonical stage.
 
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] gives the crispest one-line intuition for *why* DPO works: **your policy is the reward model** — the log-ratio between the current model and the reference is an implicit reward — so you can skip training a separate reward model and optimize preference pairs directly (make the preferred response more likely, the dispreferred less). In the reasoning-recipe landscape it sits alongside RLVR ([[Reward Design for RL]]) as the lightweight preference-learning option before verifiable-reward RL takes over.
+
 ## Open questions
 
 - Does the self-rejection approach generalise beyond OCR to other structured generation tasks (code, SQL, JSON schema compliance)?
@@ -97,4 +100,6 @@ This makes DPO a pragmatic tool rather than a permanent canonical stage.
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
 - [[Multi-Teacher On-Policy Distillation]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
+- [[LLM Reasoning]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]

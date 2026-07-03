@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-06-23
+updated: 2026-07-03
 tags:
   - concept
   - reinforcement-learning
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-02-dwarkesh-eric-jang-flashcards
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -38,6 +39,7 @@ RL is one of the major domains already represented in the broader vault, and thi
 - Those same sources sharpen the contrast with RL for LLMs: token-level policy gradients face a much uglier credit-assignment problem, and MCTS does not transfer cleanly because language has unbounded branching and weak partial-trajectory value models.
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] adds the next RL-for-LLMs branch: [[Agentic Reinforcement Learning]]. Instead of optimizing one prompt-response completion, the policy is trained over multi-turn trajectories with tool calls, observations, environment state, outcome/process rewards, action masks, and asynchronous rollout infrastructure.
 - This makes RL for agents look closer to classical sequential decision-making again: the MDP state is not only token context but a joint state of model-visible context plus external environment state.
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]] sharpens the RL-for-reasoning branch and its central debate. **RLVR (RL with Verifiable Rewards)** replaces a neural reward model with rule-based checks (calculator for math, test suite for code, tags for format), works as well as or better than learned rewards, and creates a contrastive correct-vs-incorrect signal that transfers to unseen problems — see [[Reward Design for RL]]. The deck also gives the cleanest statement of why [[Group Relative Policy Optimization|GRPO]] made large-scale reasoning RL practical (it drops PPO's separate critic). Crucially it frames an open question: **SFT reproduces the training distribution while RL discovers novel strategies** (Logic-RL generalizes from puzzles to math), but does RL *create* reasoning or merely *amplify* latent pre-training capability (base models show "aha moments" without RL)? See [[LLM Reasoning]].
 - This page should remain a hub page until narrower RL subtopic pages are added.
 
 ## Open questions
@@ -60,6 +62,9 @@ RL is one of the major domains already represented in the broader vault, and thi
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Search-Augmented Language Models]]
 - [[Reward Design for RL]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[LLM Training Pipeline]]
 - [[AI Knowledge Base Overview]]
 - [[2026-05-08 Mathematical Foundations for Reinforcement Learning]]

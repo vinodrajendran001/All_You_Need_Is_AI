@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-23
+updated: 2026-07-03
 tags: [rl, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-06-04-efficient-reasoning-edge
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -32,6 +33,7 @@ In this vault, GRPO first appeared as the optimisation method behind Perplexity'
 - [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] shows that GRPO can also be **segmented**: relative advantages need not be computed only for a whole completion. They can be separated across think and answer spans, then routed with token masks so compression pressure does not leak across the boundary.
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] shows how GRPO-style ideas are adapted for [[Agentic Reinforcement Learning]]. Agentic rollouts may contain many environment turns, tool observations, and non-agent tokens, so implementations commonly apply action masks and sometimes normalize advantages across tasks or environments rather than only within one prompt group.
 - The same source also clarifies GRPO's limits: PPO and REINFORCE variants remain competitive, and critic-based PPO can be preferred for very long or compacted trajectories with highly variable numbers of trainable traces.
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]] gives the crispest statement of *why* GRPO mattered for reasoning: PPO needs **four models** (policy, reward model, critic baseline, and a KL reference); GRPO **drops the critic** and uses the **group mean and standard deviation** as the baseline, keeping the same clipping and a KL penalty to the base model at roughly **half the memory**. That memory saving is what made large-scale RL for reasoning practical.
 
 ## Agentic variants and neighboring ideas
 
@@ -59,4 +61,7 @@ The PocketFlow tutorials on policy gradients and RLHF make the surrounding optim
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]
 - [[Reinforcement Learning]]
+- [[Reward Design for RL]]
+- [[LLM Reasoning]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]

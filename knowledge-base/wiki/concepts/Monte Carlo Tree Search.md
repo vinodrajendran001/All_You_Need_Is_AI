@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-07-03
 tags:
   - concept
   - search
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-02-dwarkesh-eric-jang-flashcards
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -33,6 +34,7 @@ MCTS is one of the clearest bridges between classical search and modern learning
 - The most durable learning insight from this source pair is that MCTS creates **dense per-state targets**. Instead of only learning from a terminal win/loss signal, the policy can imitate the improved MCTS visit distribution at every visited state.
 - That dense supervision helps explain why naive winner-imitation or sparse policy-gradient learning can underperform: the useful signal is drowned out by many neutral or misleading moves.
 - The same mechanism does not port cleanly to LLM reasoning today. The action space is effectively unbounded and partial-trajectory value estimation is much noisier than board-state evaluation in Go.
+- Beyond AlphaGo, MCTS reappears as a **verifier-free test-time search** method for reasoning. [[Akhil Arora et al - Current Advances in LLM Reasoning]] places it alongside Tree-of-Thoughts, beam search, and Fleet of Agents under [[Test-Time Scaling]], and gives the deeper justification: without a pruning/verification "sieve," purely sequential generation accumulates errors exponentially from autoregressive drift — so tree search only pays off when paired with a value function or verifier (the verifier-free vs verifier-based split). This is the same "dense targets vs sparse signal" lesson, now applied to inference rather than training.
 
 ## Open questions
 
@@ -44,5 +46,8 @@ MCTS is one of the clearest bridges between classical search and modern learning
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
 - [[Dwarkesh Patel - Eric Jang Flashcards]]
 - [[Reinforcement Learning]]
+- [[Test-Time Scaling]]
+- [[LLM Reasoning]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[LLM Training Pipeline]]
 - [[Automated AI Research]]

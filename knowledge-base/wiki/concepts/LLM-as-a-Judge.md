@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-06-02
+updated: 2026-07-03
 tags:
   - concept
   - llm-evaluation
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-05-28-doordash-llm-judge
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
+  - src-2026-07-02-arora-llm-reasoning-advances
 status: active
 ---
 
@@ -46,6 +47,10 @@ The case study matters because it frames judge quality as a measurement-design p
 
 [[Braintrust - How to evaluate multi-turn conversations]] adds the instrumentation and operations side: group turns into traces, score both individual responses and whole conversations, run scorers asynchronously in production, and use traffic-level clustering to find recurring failure modes.
 
+## Judges as reasoning verifiers
+
+Beyond product evaluation, the same "calibrated LLM evaluator" idea is the **verifier** that powers reasoning. [[Akhil Arora et al - Current Advances in LLM Reasoning]] frames it as: *verifiers separate generation from evaluation*, and they come in two flavours — **outcome** judges and **process reward models (PRMs)** that score the reasoning steps themselves. Generative reward models (GenRM) and **self-rewarding** setups (a model judging its own outputs via LLM-as-Judge, then improving through iterative DPO) extend the pattern into training. This makes LLM-as-a-Judge a shared substrate across three areas: product QA (this page's case studies), verifier-based [[Test-Time Scaling]] (rank/steer candidate solutions at inference), and [[Reward Design for RL]] (supply the reward signal during RL). The load-bearing caveat is the same everywhere — **a flawed judge/verifier can rank wrong answers higher**, so reward-model reliability and verifier robustness are open problems, not solved infrastructure.
+
 ## Limitations
 
 LLM judges still need human calibration, especially on edge cases where domain experts may reasonably disagree. They can inherit rubric mistakes, miss missing-context problems, and drift away from product reality if the evaluation prompt does not reflect what users actually see. In practice, the safest pattern is human-designed criteria, human adjudication on a golden set, and continuous re-calibration rather than fully autonomous judging.
@@ -61,4 +66,8 @@ LLM judges still need human calibration, especially on edge cases where domain e
 - [[Search-Augmented Language Models]]
 - [[ML Systems at Scale]]
 - [[Retrieval-Augmented Generation]]
+- [[LLM Reasoning]]
+- [[Test-Time Scaling]]
+- [[Reward Design for RL]]
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]

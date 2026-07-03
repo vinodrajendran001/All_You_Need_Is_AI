@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-06-26
+updated: 2026-07-03
 tags:
   - concept
   - routing
@@ -11,6 +11,8 @@ tags:
 source_ids:
   - src-2026-06-10-bytebytego-token-spend-routing
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 
@@ -52,6 +54,7 @@ Long-running agents turn model choice into infrastructure. When a system repeate
   - **routers** that estimate difficulty or intent;
   - **drafters** for speculative decoding.
 - This reframes routing as a capability allocation problem, not only a provider-cost problem. The router must decide when a small model is enough, when to retrieve, when to escalate, and when to block or ask for human review.
+- Two 2026 sources widen the cost surface routing optimises. [[Alyona Vert - AI Concepts and Techniques in 2026]] notes inference is **fragmenting by workload** across specialised hardware (rack-scale Vera Rubin, MatX, Taalas "model-as-hardware"), so routing increasingly spans not just model tiers but *hardware* tiers keyed on cost-per-token, latency, and context handling. [[Sebastian Raschka - Using Local Coding Agents]] adds a subtler lever: for agentic work, **token usage is driven by the harness, not the model** — Claude Code re-feeds far more input context per turn than Codex for equal task success — so choosing the [[Coding Agent Harness]] is itself a routing-style efficiency decision.
 
 ## Open questions
 
@@ -70,5 +73,8 @@ Long-running agents turn model choice into infrastructure. When a system repeate
 - [[On-Device Reasoning]]
 - [[Mixture of Experts]]
 - [[Model Quantization and Efficiency]]
+- [[Coding Agent Harness]]
+- [[Alyona Vert - AI Concepts and Techniques in 2026]]
+- [[Sebastian Raschka - Using Local Coding Agents]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]

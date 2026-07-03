@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-06-05
+updated: 2026-07-03
 tags: [tool-use, function-calling, llm, agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -68,4 +68,5 @@ The repo makes one further observation: **structured output is the prerequisite 
 - [[Retrieval-Augmented Generation]]
 - [[Direct Corpus Interaction]]
 - [[pguso - Agents From Scratch]]
+- [[Coding Agent Harness]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

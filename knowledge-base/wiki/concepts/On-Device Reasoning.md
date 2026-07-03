@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-06-29
+updated: 2026-07-03
 tags:
   - concept
   - llm
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 
@@ -52,6 +53,7 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Prateek Singh - KV Cache and TurboQuant]] adds the long-context memory version of this lesson. On edge or single-GPU deployments, KV cache can become the limiting resource even before model weights or arithmetic do. This makes [[KV Cache]] optimization (GQA/MQA/MLA, PagedAttention, eviction, predictive skipping, and KV quantization such as TurboQuant) directly relevant to local assistants and long-context private agents.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] gives the device-model perspective. On-device systems are designed around single-digit gigabytes of memory, battery, thermal limits, and millisecond-scale latency. That pushes models toward [[Small Language Models]], quantization, grouped-query attention, sliding windows, hardware-specific mapping, and hybrid patterns where small local models handle common work while larger server models handle harder requests.
 - The Apple-style split in that source is a durable product pattern: one small on-device model for privacy/latency/common cases, plus a larger server model for harder tasks. For this page, that means "on-device reasoning" is often a **routing architecture**, not a single local model doing everything.
+- [[Sebastian Raschka - Using Local Coding Agents]] extends on-device deployment from phones to the developer workstation: an open-weight model served locally by Ollama/LM Studio/vLLM (an OpenAI-compatible endpoint) on a Mac Mini or DGX Spark, driving a [[Coding Agent Harness]]. Its constraints echo this page — sustained tokens/sec and bounded memory over *long* agentic contexts (~30 GB for 50k tokens) — and its privacy motivation (keeping data off third-party APIs) is the same one that pushes reasoning onto local hardware.
 
 ## Open questions
 
@@ -69,6 +71,8 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[LLM Inference]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Small Language Models]]
+- [[Coding Agent Harness]]
+- [[Sebastian Raschka - Using Local Coding Agents]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[LLM Training Pipeline]]
 - [[AI Agents in Production]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-06-29
+updated: 2026-07-03
 tags:
   - concept
   - llm
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-04-efficient-reasoning-edge
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 
@@ -91,6 +92,8 @@ The strongest production pattern is hybrid composition:
 
 This makes [[Model Routing]] the operational complement to SLMs. The routing layer decides when the SLM is enough, when to retrieve, when to call a larger model, and when to reject or escalate.
 
+[[Sebastian Raschka - Using Local Coding Agents]] gives SLMs a concrete high-value application: open-weight [[Mixture of Experts|MoE]] models in the 30–35B range (Qwen3.6 35B-A3B, North Mini Code, Nemotron 3 Nano) are now capable enough to serve as **local coding agents**, running at GPT-5.5-like token speed on a Mac Mini or DGX Spark. This reframes "small" as *deployment class* rather than raw quality — the model is one layer, and the [[Coding Agent Harness]] around it does much of the heavy lifting.
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -111,6 +114,8 @@ This makes [[Model Routing]] the operational complement to SLMs. The routing lay
 - [[AI Agents in Production]]
 - [[Mixture of Experts]]
 - [[Reasoning Compression]]
+- [[Coding Agent Harness]]
+- [[Sebastian Raschka - Using Local Coding Agents]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Efficient Reasoning on the Edge]]
 - [[AI Knowledge Base Overview]]

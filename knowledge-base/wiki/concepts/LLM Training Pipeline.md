@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-23
+updated: 2026-07-03
 tags:
   - concept
   - llm
@@ -27,6 +27,8 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-07-01-anastasiia-alekseeva-parallel-training
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
 status: active
 ---
 
@@ -71,6 +73,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - The same repository also contains a separate `sft_rlhf_guide.ipynb`, which signals that the author's mental model of the pipeline extends past base pretraining into post-training stages rather than stopping at next-token prediction.
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]] is adjacent rather than central to LLM post-training, but it clarifies the broader generative-model branch already present in PocketFlow's `llm-diffusion` lesson. [[Diffusion Models]] use a supervised denoising objective over noised data rather than next-token prediction, which makes them a useful contrast case for understanding how different generative training objectives shape model behavior.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] adds the small-model training recipe. [[Small Language Models]] often compensate for lower parameter count through curated/synthetic data, knowledge distillation from larger teachers, and deliberate overtraining relative to compute-optimal token ratios. This reframes training cost as a lifecycle trade: spend more upfront to reduce inference cost across many requests.
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] supplies the missing *scaling substrate* under every stage above: pretraining and post-training on trillions of tokens only happen because the training step is spread across many accelerators. See [[Distributed Training Parallelism]] for the full taxonomy (data / tensor / sequence / context / expert / pipeline parallelism, plus FSDP/ZeRO memory sharding) — the reason a >1 TB-of-state model can be trained at all, and why the optimiser state (12 of Adam's 16 bytes/param) is the memory villain the whole pipeline is engineered around.
+- [[Alyona Vert - AI Concepts and Techniques in 2026]] signals that the *post-training* half of this map is fragmenting into a modular "beyond-RL" fine-tuning stack: generated adapters (Doc-to-LoRA, Text-to-LoRA), compressed/structured LoRA (LoRA-Squeeze, Kron-LoRA, Mixture of Adapters), gradient-free Evolution Strategies, and on-policy self-distillation (OPSD/SDFT/SDPO). The durable point is *modularity* — capabilities optimised separately and composed — not that RL is going away (see [[Multi-Teacher On-Policy Distillation]]).
 
 ## Open questions
 
@@ -107,3 +111,6 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Efficient Reasoning on the Edge]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]
+- [[Distributed Training Parallelism]]
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
+- [[Alyona Vert - AI Concepts and Techniques in 2026]]

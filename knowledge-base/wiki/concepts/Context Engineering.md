@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-23
+updated: 2026-07-03
 tags:
   - concept
   - context-engineering
@@ -118,4 +118,6 @@ Kilo's production numbers are useful here because they show the limit of "just c
 - [[Alpha Signal - How your agents can write and optimize their own skills]]
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[systemdesign42 - System Design Academy]]
+- [[Coding Agent Harness]]
+- [[Real-Time Voice AI]]
 - [[AI Knowledge Base Overview]]

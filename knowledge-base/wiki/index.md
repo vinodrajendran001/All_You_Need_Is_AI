@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-06-30
+updated: 2026-07-03
 tags:
   - index
 source_ids:
@@ -59,6 +59,12 @@ source_ids:
   - src-2026-06-30-alisa-liu-ai-research-job-search
   - src-2026-06-30-alisa-liu-book-of-llms
   - src-2026-06-30-alisa-liu-math-notes
+  - src-2026-07-01-anastasiia-alekseeva-parallel-training
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-03-bytebytego-openai-voice
+  - src-2026-07-03-bytebytego-thinking-machines-interaction
+  - src-2026-07-03-fergus-finn-cuda-kernel
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 
@@ -120,6 +126,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[LLM Inference]] - Prefill (compute-bound) vs decode (memory-bound) phases and the serving stack built around them.
 - [[Video Transformers]] - Extending attention to video via divided space-time attention (TimeSformer).
 - [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
+- [[Distributed Training Parallelism]] - Data/tensor/sequence/context/expert/pipeline parallelism and FSDP/ZeRO as partitions of the same GEMM.
+- [[GPU Execution Model]] - From a CUDA kernel through PTX/SASS to warp scheduling, and why kernels are memory- or compute-bound.
+- [[Real-Time Voice AI]] - Low-latency conversational AI across the WebRTC transport layer and the interaction-model architecture layer.
+- [[Coding Agent Harness]] - The harness/engine split for running local open-weight coding agents; serving, permissions, and token economics.
 
 ## Entities
 
@@ -150,6 +160,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Siddhant Rai]] - Vizuara writer behind the vault's TurboQuant and Nested Learning explainers.
 - [[Mayank Pratap Singh]] - Vizuara writer behind the vault's diffusion and TimeSformer/video-transformer explainers.
 - [[Alisa Liu]] - NLP PhD (UW, tokenization); author of the vault's interview-prep cluster (job-search post, Book of LLMs, Math Notes).
+- [[OpenAI]] - AI lab whose WebRTC voice infrastructure is the vault's real-time transport case study.
+- [[Thinking Machines]] - Human-AI-collaboration research lab behind the interaction-model thesis.
+- [[Sebastian Raschka]] - Educator and *Build an LLM/Reasoning Model (From Scratch)* author; source of the local-coding-agent guide.
 
 ## Sources
 
@@ -207,6 +220,12 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Alisa Liu - The AI Research Job Search]] - Field report on research-scientist interviews: interview-type taxonomy, study methodology, timing, and negotiation.
 - [[Alisa Liu - Book of LLMs]] - Comprehensive LLM study reference (neural nets, transformer, inference, scaling, post-training, parallelism) built for interviews.
 - [[Alisa Liu - Math Notes]] - Probability/statistics/puzzle reference for the quantitative "math" interview round.
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] - Derives the full distributed-training parallelism taxonomy from the fact that training is GEMM.
+- [[Alyona Vert - AI Concepts and Techniques in 2026]] - Turing Post survey mapping named 2026 techniques (mHC, conditional memory, fine-tuning stack, inference chips) to concept pages.
+- [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]] - WebRTC relay/transceiver split and ICE-ufrag first-packet routing for 900M-user voice.
+- [[ByteByteGo - Inside Thinking Machines Interaction Models]] - Interaction models: time-aligned micro-turns and fast/slow two-model coordination for real-time multimodal AI.
+- [[Fergus Finn - What Happens When You Run a CUDA Kernel]] - A vector-add kernel traced from nvcc to warps; occupancy, scheduling, and memory-bound arithmetic intensity.
+- [[Sebastian Raschka - Using Local Coding Agents]] - Building a fully local coding-agent stack (Ollama + harness) with audit, evaluation, and token-economics findings.
 
 ## Queries
 

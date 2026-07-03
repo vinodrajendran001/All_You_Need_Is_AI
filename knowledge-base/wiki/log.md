@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-06-30
+updated: 2026-07-03
 tags:
   - log
 source_ids:
@@ -51,6 +51,20 @@ source_ids:
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-06-26-nithin-llm-inference
+  - src-2026-06-28-mayank-pratap-singh-timesformer
+  - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
+  - src-2026-06-29-siddhant-rai-turboquant
+  - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-06-30-alisa-liu-ai-research-job-search
+  - src-2026-06-30-alisa-liu-book-of-llms
+  - src-2026-06-30-alisa-liu-math-notes
+  - src-2026-07-01-anastasiia-alekseeva-parallel-training
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-03-bytebytego-openai-voice
+  - src-2026-07-03-bytebytego-thinking-machines-interaction
+  - src-2026-07-03-fergus-finn-cuda-kernel
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 
@@ -516,3 +530,39 @@ Append-only operational history for the wiki.
 - Found no structural defects after the Alisa Liu interview-prep ingest; no fixes required.
 - Recorded one by-design one-directional link ([[Alisa Liu]] → [[Nathan Lambert]], a timeline-format attribution) as acceptable rather than forcing an off-topic backlink onto a post-training-scoped entity page.
 - Filed [[2026-06-30 Lint Pass]] and linked it from the index. Reiterated that `syntheses/` is still empty, with two strong candidate theses noted.
+
+## [2026-07-03] ingest | The Simple Maths Behind Parallel Training
+
+- Mapped `knowledge-base/raw/sources/The Simple Maths Behind Parallel Traning.md` into [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] as the source summary page.
+- Seeded [[Distributed Training Parallelism]] as a new concept page covering data parallelism, FSDP/ZeRO memory sharding, Megatron-LM tensor parallelism (column-then-row GEMM split, two all-reduces/layer), sequence parallelism, context parallelism (Ring Attention, DeepSpeed-Ulysses), expert parallelism, and pipeline parallelism — all derived from GEMM independence.
+- Updated [[LLM Training Pipeline]] (parallelism as the scaling substrate), [[Mixture of Experts]] (expert parallelism), [[AI Accelerator Architecture]] (compute-vs-communication at cluster scale), [[Transformer Architecture]] (where the GEMMs live), [[Neural Network Fundamentals]] (Adam's 16 bytes/param), the [[NVIDIA]] entity (Megatron-LM), [[Model Quantization and Efficiency]], index, overview, and log.
+
+## [2026-07-03] ingest | AI Concepts and Techniques in 2026
+
+- Mapped `knowledge-base/raw/sources/AI Concepts and Techniques in 2026 Memory, Inference, Fine-Tuning & Tokens.md` into [[Alyona Vert - AI Concepts and Techniques in 2026]] as the source summary page (a Turing Post survey/landscape pointer).
+- Routed its named 2026 ideas into existing pages rather than creating thin new ones: [[Multi-Teacher On-Policy Distillation]] (on-policy self-distillation OPSD/SDFT/SDPO), [[LLM Training Pipeline]] (modular "beyond-RL" fine-tuning stack), [[AI Accelerator Architecture]] (inference-chip wars: Vera Rubin, MatX, Taalas), [[Model Routing]] (workload fragmentation), [[Transformer Architecture]] (depth-addressable Attention Residuals/MoDA and mHC hyper-connections), and [[Agent Memory]] (Engram/conditional memory). Updated index, overview, and log.
+
+## [2026-07-03] ingest | How OpenAI Delivers Low-Latency Voice AI
+
+- Mapped `knowledge-base/raw/sources/How OpenAI Delivers Low-Latency Voice AI for 900M Users.md` into [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]] as the source summary page.
+- Seeded [[Real-Time Voice AI]] as a new concept (jointly with the Thinking Machines source) and added the transport half: WebRTC vs Kubernetes, the stateless relay / stateful transceiver split, ICE-ufrag first-packet routing, Global Relay geo-steering, and the userspace-Go implementation.
+- Introduced [[OpenAI]] as a new entity. Deepened [[ML Systems at Scale]] with a "real-time media transport is the same locality problem" section. Updated index, overview, and log.
+
+## [2026-07-03] ingest | Inside Thinking Machines' Interaction Models
+
+- Mapped `knowledge-base/raw/sources/Inside Thinking Machines’ Interaction Models.md` into [[ByteByteGo - Inside Thinking Machines Interaction Models]] as the source summary page.
+- Added the model-architecture half of [[Real-Time Voice AI]]: the harness ceiling and Bitter-Lesson argument, time-aligned 200 ms micro-turns, from-scratch audio/video encoders, and fast/slow two-model coordination; benchmarks TimeSpeak/CueSpeak/RepCount-A/ProactiveVideoQA.
+- Introduced [[Thinking Machines]] as a new entity. Updated [[LLM Inference]] (streaming-session serving via SGLang), [[Mixture of Experts]] (276B/12B active interaction model), index, overview, and log.
+
+## [2026-07-03] ingest | What Happens When You Run a CUDA Kernel
+
+- Mapped `knowledge-base/raw/sources/What happens when you run a CUDA kernel.md` into [[Fergus Finn - What Happens When You Run a CUDA Kernel]] as the source summary page.
+- Seeded [[GPU Execution Model]] as a new concept covering the nvcc→PTX→SASS pipeline, the pushbuffer/GPFIFO/QMD/doorbell submission path, compute-work-distributor occupancy, warp eligibility via compiler-written stall counts and scoreboard barriers, and the coalesced memory-bound execution of a low-arithmetic-intensity kernel.
+- Updated [[AI Accelerator Architecture]] (software-execution complement to hardware design), [[LLM Inference]] (arithmetic-intensity grounding of decode-is-memory-bound), the [[NVIDIA]] entity, [[KV Cache]], index, overview, and log.
+
+## [2026-07-03] ingest | Using Local Coding Agents
+
+- Mapped `knowledge-base/raw/sources/Using Local Coding Agents.md` into [[Sebastian Raschka - Using Local Coding Agents]] as the source summary page.
+- Seeded [[Coding Agent Harness]] as a new concept covering the harness/engine split, local open-weight serving (Ollama/OpenAI-compatible endpoint), speed/memory/capability assessment, the finding that token usage is harness-driven not model-driven, and the security-audit posture for locally-run agents.
+- Introduced [[Sebastian Raschka]] as a new entity. Updated [[Small Language Models]], [[On-Device Reasoning]], [[Agentic Loop]], [[Model Routing]], [[Tool Use and Function Calling]], [[Model Context Protocol]], [[Agent Skill]], [[AI Agents in Production]], [[Context Engineering]], index, overview, and log.
+- Also brought the log frontmatter `source_ids` back in sync with the index (the June 26–30 ingests had not been backfilled).

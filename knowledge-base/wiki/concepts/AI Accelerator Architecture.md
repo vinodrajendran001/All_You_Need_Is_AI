@@ -12,6 +12,9 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-chip-design
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
+  - src-2026-07-01-anastasiia-alekseeva-parallel-training
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-07-03-fergus-finn-cuda-kernel
 status: active
 ---
 
@@ -43,6 +46,9 @@ Model capability is inseparable from hardware structure. Accelerator design dete
   - MoE layers fit naturally within a rack because expert routing is all-to-all and NVLink is the right topology for that boundary.
   - Pipeline parallelism can relieve weight placement pressure but introduces bubbles, model-architecture constraints, and weaker-than-expected relief for KV-heavy long-context workloads.
 - The Liquid AI LFM2.5 source adds a deployment-facing MoE view: sparse models separate **total parameters** from **active parameters**, which can make explicit reasoning affordable on laptops and phones. But this only works if runtimes and kernels efficiently handle routing, memory layout, and sparse execution across frameworks such as `llama.cpp`, MLX, vLLM, and SGLang.
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] shows the same compute-vs-communication law at cluster scale from the software side: every distributed-training strategy is a different partition of the same GEMM, chosen to minimise coordination. See [[Distributed Training Parallelism]] — tensor parallelism reduces inter-device traffic to a few all-reduces per layer, MoE all-to-all wants a single NVLink rack (as the flashcards already note), and pipeline point-to-point tolerates slower inter-node links.
+- [[Fergus Finn - What Happens When You Run a CUDA Kernel]] complements this hardware-design page with the **software execution model** on top of the hardware — see [[GPU Execution Model]]. It makes the memory-vs-compute story concrete at the level of one kernel: a low-arithmetic-intensity vector add runs at ~80% of DRAM bandwidth but only ~5% issue activity, i.e. the chip is starved by data movement, not arithmetic — the micro-scale version of this page's central claim.
+- [[Alyona Vert - AI Concepts and Techniques in 2026]] adds the **inference-hardware** frontier: as deployment shifts from training to serving billions of tokens, inference is fragmenting by workload. Three 2026 visions illustrate the spread — NVIDIA's rack-scale Vera Rubin, MatX's programmable LLM-first accelerator, and Taalas's radical "model-as-hardware" approach that bakes a specific model into silicon. This pushes accelerator design toward cost-per-token, latency, and power rather than raw training FLOPS.
 
 ## Open questions
 
@@ -59,4 +65,9 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 - [[Model Quantization and Efficiency]]
 - [[ML Systems at Scale]]
 - [[LLM Training Pipeline]]
+- [[Distributed Training Parallelism]]
+- [[GPU Execution Model]]
+- [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
+- [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
+- [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[Reiner Pope]]

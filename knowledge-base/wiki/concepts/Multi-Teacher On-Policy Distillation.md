@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-07-03
 tags:
   - concept
   - post-training
@@ -10,6 +10,7 @@ tags:
   - frontier-models
 source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-07-02-alyona-vert-ai-concepts-2026
 status: active
 ---
 
@@ -45,6 +46,7 @@ MOPD is one of the clearest 2026 signs that frontier post-training has moved bey
 - Compared with **DPO**, MOPD does not rely on chosen/rejected pairs. It transfers full teacher distributions token by token.
 - Compared with **RLVR**, MOPD can be combined with verifiable rewards, but its supervision comes from specialist teachers rather than only scalar correctness signals.
 - Compared with **trace distillation SFT**, MOPD avoids some off-policy mismatch by training on the current student's rollouts.
+- Compared with **on-policy self-distillation** (OPSD / SDFT / SDPO), highlighted as a 2026 direction by [[Alyona Vert - AI Concepts and Techniques in 2026]], MOPD uses *external* domain teachers while self-distillation makes the *same* model its own teacher — learning from its own improved answer (one that had access to a solution, demo, or richer feedback) versus an uninformed one. Both share the on-policy insight that supervision should come from the student's own trajectories; they differ on where the stronger signal originates.
 
 ## Failure modes and open problems
 
@@ -62,4 +64,5 @@ MOPD is one of the clearest 2026 signs that frontier post-training has moved bey
 - [[Direct Preference Optimization]]
 - [[Group Relative Policy Optimization]]
 - [[Automated AI Research]]
+- [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[AI Knowledge Base Overview]]

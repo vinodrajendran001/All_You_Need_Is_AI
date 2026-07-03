@@ -65,4 +65,5 @@ Real frontier runs combine several axes (often called 3D or 4D parallelism): dat
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
+- [[GPU Execution Model]]
 - [[AI Knowledge Base Overview]]

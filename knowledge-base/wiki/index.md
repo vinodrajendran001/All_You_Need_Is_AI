@@ -259,6 +259,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-06-26 Lint Pass]] - Eighteenth comprehensive lint pass (134 pages) after SLM ingest; no structural defects.
 - [[2026-06-29 Lint Pass]] - Nineteenth comprehensive lint pass (147 pages) after the inference/quantization/Nested-Learning/TimeSformer ingest; no structural defects; added LLM Inference cross-links to two edge pages.
 - [[2026-06-30 Lint Pass]] - Twentieth comprehensive lint pass (153 pages) after the Alisa Liu interview-prep ingest; no structural defects; no fixes required.
+- [[2026-07-03 Lint Pass]] - Twenty-first comprehensive lint pass (170 pages) after the systems/infra batch and the LLM-reasoning deck; no structural defects; added 4 reciprocal cross-links.
 
 ## Control files
 

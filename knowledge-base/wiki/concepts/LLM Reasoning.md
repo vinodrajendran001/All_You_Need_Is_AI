@@ -76,4 +76,5 @@ Open pillars, each with 2025–2026 evidence they are unsolved: retrieval-vs-mem
 - [[Retrieval-Augmented Generation]]
 - [[Agentic Reinforcement Learning]]
 - [[Nested Learning]]
+- [[LLM Inference]]
 - [[AI Knowledge Base Overview]]

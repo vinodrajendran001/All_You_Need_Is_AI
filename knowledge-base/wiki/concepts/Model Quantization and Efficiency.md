@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-06-29
+updated: 2026-07-04
 tags:
   - concept
   - llm
@@ -28,6 +28,7 @@ source_ids:
   - src-2026-06-26-nithin-llm-inference
   - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
   - src-2026-06-29-siddhant-rai-turboquant
+  - src-2026-06-30-onur-sirin-local-llm-memory-hardware
 status: active
 ---
 
@@ -70,6 +71,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Maarten Grootendorst - A Visual Guide to Quantization]] is the vault's most thorough treatment of the **numerical mechanics** behind weight quantization. It grounds the rest of this page: floating-point layout (sign/exponent/mantissa; BF16 keeps FP32's range, FP16 keeps more precision), the affine map `x_q = round(x/scale + zero_point)`, **symmetric vs asymmetric** mapping, **calibration** (static weights are easy; dynamic activations are hard), the **PTQ vs QAT** decision, and the 4-bit ecosystem — **GPTQ** (layer-wise, Hessian-guided, GPU-oriented, weight-only) vs **GGUF** (super-block/sub-block scales for CPU/Apple-Silicon and split offload). It also covers the **BitNet** 1-bit / 1.58-bit (ternary) frontier, where the "0" state lets a weight ignore a feature.
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]] supplies the mathematical core behind that KV technique and reframes the whole problem. Its key durable distinction is **weight space (static, offline, roughly Gaussian, well-understood) vs token/activation space (dynamic, online, distribution shifts per input)**. Because KV vectors are dynamic, fixed codebooks (INT4 uniform, NF4 Gaussian) are misaligned; the right objective is **rate-distortion preserving the attention inner product `qᵀk`**, not blind MSE. TurboQuant's answer is *transform-then-quantize* (rotate into a known Gaussian space + Lloyd-Max optimal codebook) plus a 1-bit **QJL** (Johnson-Lindenstrauss) residual, reaching near-optimal distortion online.
 - [[Nithin - What Actually Happens During LLM Inference]] anchors *why* compression pays off, via the **prefill vs decode** split now collected on [[LLM Inference]]: decode is **memory-bandwidth-bound** (it re-reads the whole model + KV cache per token), so shrinking bytes-moved (weight + KV compression) directly raises tokens/sec. The same source lists the deployment-format landscape — AWQ/EXL2 (4-bit GPU), FP8 (Hopper) and NVFP4 (Blackwell) as native low-precision compute formats, and GGUF for consumer/split running.
+- [[Onur Sirin - How Local LLMs Run]] adds a practical memory-sizing shortcut for local deployment: weight size is approximately `parameters × bytes_per_parameter` (FP16 ≈ 2 bytes/parameter, Q8 ≈ 1, Q4 ≈ 0.5–0.55), and total runtime need is roughly **weights + KV cache + activations + overhead** (about `weights × 1.2` at medium context, but KV must be counted separately at long context). The source also sharpens the warning that **fitting** a Q4 model in memory is not the same as running it at full speed; memory bandwidth and tier placement determine decode speed.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] adds a model-size systems view. [[Small Language Models]] are not merely scaled-down LLMs; their architecture, training, and deployment are shaped by tight inference constraints. The source highlights grouped-query attention, sliding-window attention, cache sharing, quantization, hardware mapping, data curation, distillation, and overtraining as mutually reinforcing levers for making small models useful in production.
 - A useful synthesis is that efficiency begins before deployment:
   - **architecture** shrinks runtime state such as KV cache;
@@ -95,6 +97,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Maarten Grootendorst - A Visual Guide to Quantization]]
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
 - [[Nithin - What Actually Happens During LLM Inference]]
+- [[Onur Sirin - How Local LLMs Run]]
 - [[LLM Inference]]
 - [[KV Cache]]
 - [[Prateek Singh - KV Cache and TurboQuant]]

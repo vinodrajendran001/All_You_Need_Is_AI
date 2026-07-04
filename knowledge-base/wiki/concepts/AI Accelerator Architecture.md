@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-03
+updated: 2026-07-04
 tags:
   - concept
   - hardware
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-07-03-fergus-finn-cuda-kernel
+  - src-2026-06-30-onur-sirin-local-llm-memory-hardware
 status: active
 ---
 
@@ -49,6 +50,7 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] shows the same compute-vs-communication law at cluster scale from the software side: every distributed-training strategy is a different partition of the same GEMM, chosen to minimise coordination. See [[Distributed Training Parallelism]] — tensor parallelism reduces inter-device traffic to a few all-reduces per layer, MoE all-to-all wants a single NVLink rack (as the flashcards already note), and pipeline point-to-point tolerates slower inter-node links.
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]] complements this hardware-design page with the **software execution model** on top of the hardware — see [[GPU Execution Model]]. It makes the memory-vs-compute story concrete at the level of one kernel: a low-arithmetic-intensity vector add runs at ~80% of DRAM bandwidth but only ~5% issue activity, i.e. the chip is starved by data movement, not arithmetic — the micro-scale version of this page's central claim.
 - [[Alyona Vert - AI Concepts and Techniques in 2026]] adds the **inference-hardware** frontier: as deployment shifts from training to serving billions of tokens, inference is fragmenting by workload. Three 2026 visions illustrate the spread — NVIDIA's rack-scale Vera Rubin, MatX's programmable LLM-first accelerator, and Taalas's radical "model-as-hardware" approach that bakes a specific model into silicon. This pushes accelerator design toward cost-per-token, latency, and power rather than raw training FLOPS.
+- [[Onur Sirin - How Local LLMs Run]] adds a local-machine taxonomy that is useful beyond consumer buying advice. It distinguishes **GDDR/VRAM** (tiny but very fast, e.g. RTX 5090), **unified LPDDR-style memory** (flat pool, one speed, e.g. Mac Studio), and **coherent tiered memory** (HBM fast tier plus LPDDR slow tier, e.g. GB300). This reinforces the page's central point: hardware performance is not just arithmetic throughput; it is the shape, capacity, and bandwidth of the memory surface feeding the accelerator.
 
 ## Open questions
 
@@ -70,4 +72,5 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
 - [[Alyona Vert - AI Concepts and Techniques in 2026]]
+- [[Onur Sirin - How Local LLMs Run]]
 - [[Reiner Pope]]

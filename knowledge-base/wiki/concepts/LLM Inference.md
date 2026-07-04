@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-07-03
+updated: 2026-07-04
 tags:
   - concept
   - llm
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-06-30-onur-sirin-local-llm-memory-hardware
 status: active
 ---
 
@@ -45,6 +46,7 @@ This is why per-token latency in long generations is governed by *bytes moved*, 
 - **Weight compression** (see [[Model Quantization and Efficiency]] and [[Maarten Grootendorst - A Visual Guide to Quantization]]) shrinks the bytes that decode must move per token. The source lists AWQ and EXL2 (4-bit GPU serving, important weights kept higher-precision), FP8 (Hopper default) and NVFP4 (Blackwell) as native low-precision formats the cores compute on directly, and GGUF for consumer/split CPU-GPU running.
 - **KV-cache compression** ([[KV Cache]], [[Siddhant Rai - TurboQuant - Online Vector Quantization]]) attacks the *other* growing object decode must read — the cache itself, which at long context can exceed model weights.
 - **Loading format** matters: `mmap` maps the weight file into virtual memory and lazily loads pages on demand, giving near-zero startup and shared physical memory across processes.
+- [[Onur Sirin - How Local LLMs Run]] adds the most concrete **local hardware pipeline** version of this story. It breaks local inference into eight stages — cold load, tokenize, prefill, hold KV cache, decode one token, sample, repeat the generation loop, detokenize/stream — and maps each stage to its bottleneck. The durable refinement is that **capacity** and **bandwidth** are separate questions: a model may fit in memory, but decode speed depends on the bandwidth of the memory tier that actually holds the active weights and KV cache.
 
 ### Serving multiple users
 
@@ -62,6 +64,7 @@ Production engines must serve many concurrent requests:
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]] supplies the layer *beneath* prefill/decode: the [[GPU Execution Model]]. Its arithmetic-intensity argument (a low-FLOP kernel runs at ~80% DRAM bandwidth but ~5% issue activity) is exactly why decode — one GEMV re-reading gigabytes per token — is memory-bound, and why "bytes moved" is the right currency for reasoning about tokens/sec.
 - **Streaming, not just batching, is now a serving axis.** [[ByteByteGo - Inside Thinking Machines Interaction Models]] shows real-time [[Real-Time Voice AI|interaction models]] served as 200 ms streaming sessions (a feature contributed to SGLang) with a fast interaction model paired with a slower background reasoning model. This adds a latency-anchored, continuous-input regime to the prefill/decode picture, where the scheduler must sustain sub-second responsiveness while a second model does deep work asynchronously.
 - **Inference compute is also a *reasoning* scaling axis.** [[Test-Time Scaling]] (from [[Akhil Arora et al - Current Advances in LLM Reasoning]]) spends extra decode — longer traces, more samples, explicit search, verifiers — to get better answers from a fixed model. That directly stresses this page's constraints: more reasoning tokens mean more memory-bound decode steps and a larger KV cache, which is why the field pairs it with [[Reasoning Compression|budget control]] and with systems work on parallel/speculative decoding and batched-inference determinism (CacheSaver, Parallel-R1).
+- **Local hardware adds a topology axis.** [[Onur Sirin - How Local LLMs Run]] distinguishes **flat/uniform memory** (Apple unified memory: one pool, one speed), **tiny-but-fast VRAM** (RTX 5090: very high GDDR bandwidth but little capacity), and **tiered coherent memory** (GB300: HBM fast tier plus LPDDR slow tier). This turns "does it fit?" into "does the active working set sit in the fast pool?"
 
 ## Open questions
 
@@ -88,5 +91,6 @@ Production engines must serve many concurrent requests:
 - [[Test-Time Scaling]]
 - [[LLM Reasoning]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
+- [[Onur Sirin - How Local LLMs Run]]
 - [[Transformer Architecture]]
 - [[AI Knowledge Base Overview]]

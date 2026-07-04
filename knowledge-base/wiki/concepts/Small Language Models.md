@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-07-03
+updated: 2026-07-04
 tags:
   - concept
   - llm
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-06-04-efficient-reasoning-edge
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-06-30-onur-sirin-local-llm-memory-hardware
 status: active
 ---
 
@@ -94,6 +95,8 @@ This makes [[Model Routing]] the operational complement to SLMs. The routing lay
 
 [[Sebastian Raschka - Using Local Coding Agents]] gives SLMs a concrete high-value application: open-weight [[Mixture of Experts|MoE]] models in the 30–35B range (Qwen3.6 35B-A3B, North Mini Code, Nemotron 3 Nano) are now capable enough to serve as **local coding agents**, running at GPT-5.5-like token speed on a Mac Mini or DGX Spark. This reframes "small" as *deployment class* rather than raw quality — the model is one layer, and the [[Coding Agent Harness]] around it does much of the heavy lifting.
 
+[[Onur Sirin - How Local LLMs Run]] adds the local-hardware reality behind that deployment class. **Q4 can make a model fit**, but user experience depends on whether the active model state and [[KV Cache]] sit in fast memory. A 5090 is excellent for models that fit inside 32GB VRAM; unified-memory Macs trade peak speed for a larger flat pool; tiered coherent-memory workstations can fit frontier-scale MoEs but only run at full speed for the portion resident in HBM. That makes SLM-vs-LLM routing partly a memory-topology decision, not only a model-capability decision.
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -116,6 +119,7 @@ This makes [[Model Routing]] the operational complement to SLMs. The routing lay
 - [[Reasoning Compression]]
 - [[Coding Agent Harness]]
 - [[Sebastian Raschka - Using Local Coding Agents]]
+- [[Onur Sirin - How Local LLMs Run]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Efficient Reasoning on the Edge]]
 - [[AI Knowledge Base Overview]]

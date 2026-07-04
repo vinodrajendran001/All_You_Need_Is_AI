@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-07-03
+updated: 2026-07-04
 tags:
   - log
 source_ids:
@@ -66,6 +66,7 @@ source_ids:
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-06-30-onur-sirin-local-llm-memory-hardware
 status: active
 ---
 
@@ -583,3 +584,9 @@ Append-only operational history for the wiki.
 - Found **no structural defects** after the two ingest sessions since 2026-06-30 (the 6-source systems/infra batch and the LLM-reasoning deck).
 - Closed four genuine reciprocal-link gaps between peer concepts: [[Distributed Training Parallelism]]↔[[GPU Execution Model]], [[LLM Reasoning]]→[[LLM Inference]], [[Test-Time Scaling]]→[[Reinforcement Learning]]/[[LLM Training Pipeline]], and [[Tool Use and Function Calling]]→[[Test-Time Scaling]]. Left two specific→general links one-directional by design.
 - Filed [[2026-07-03 Lint Pass]] and linked it from the index. Reiterated that `syntheses/` is still empty, with two now-strong candidate theses (the reasoning "three levers" synthesis and the "long-context inference is memory-bound" synthesis).
+
+## [2026-07-04] ingest | How Local LLMs Run
+
+- Identified `knowledge-base/raw/sources/How Local LLMs Run - Memory and Hardware.md` as the one raw source not yet covered by the wiki and mapped it into [[Onur Sirin - How Local LLMs Run]].
+- Introduced [[Onur Sirin]] as a new entity.
+- Updated [[LLM Inference]] (eight-stage local inference pipeline, capacity-vs-bandwidth distinction), [[AI Accelerator Architecture]] (GDDR/VRAM vs unified memory vs HBM/LPDDR coherent tiers), [[Model Quantization and Efficiency]] (parameter × bytes/parameter sizing, Q4/Q8 shortcuts, total≈weights×1.2), [[On-Device Reasoning]], [[Small Language Models]], index, overview, and log.

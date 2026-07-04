@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-07-03
+updated: 2026-07-04
 tags:
   - concept
   - llm
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-06-17-prateek-singh-kv-cache-turboquant
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-06-30-onur-sirin-local-llm-memory-hardware
 status: active
 ---
 
@@ -54,6 +55,7 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[ByteByteGo - Large Language Models vs Small Language Models]] gives the device-model perspective. On-device systems are designed around single-digit gigabytes of memory, battery, thermal limits, and millisecond-scale latency. That pushes models toward [[Small Language Models]], quantization, grouped-query attention, sliding windows, hardware-specific mapping, and hybrid patterns where small local models handle common work while larger server models handle harder requests.
 - The Apple-style split in that source is a durable product pattern: one small on-device model for privacy/latency/common cases, plus a larger server model for harder tasks. For this page, that means "on-device reasoning" is often a **routing architecture**, not a single local model doing everything.
 - [[Sebastian Raschka - Using Local Coding Agents]] extends on-device deployment from phones to the developer workstation: an open-weight model served locally by Ollama/LM Studio/vLLM (an OpenAI-compatible endpoint) on a Mac Mini or DGX Spark, driving a [[Coding Agent Harness]]. Its constraints echo this page — sustained tokens/sec and bounded memory over *long* agentic contexts (~30 GB for 50k tokens) — and its privacy motivation (keeping data off third-party APIs) is the same one that pushes reasoning onto local hardware.
+- [[Onur Sirin - How Local LLMs Run]] makes the local-deployment tradeoff concrete: Q4 weights may make a model *fit*, but local reasoning only feels usable if the active weights and KV cache sit in a sufficiently fast memory tier. The source's local-hardware comparison (5090, Mac Studio, GB300) is a practical checklist for on-device reasoning: capacity, bandwidth, topology (flat vs tiered), active-parameter count for MoE, and whether overflow drops to a slow tier.
 
 ## Open questions
 
@@ -73,6 +75,7 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Small Language Models]]
 - [[Coding Agent Harness]]
 - [[Sebastian Raschka - Using Local Coding Agents]]
+- [[Onur Sirin - How Local LLMs Run]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[LLM Training Pipeline]]
 - [[AI Agents in Production]]

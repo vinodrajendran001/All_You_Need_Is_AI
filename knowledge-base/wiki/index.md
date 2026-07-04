@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-07-03
+updated: 2026-07-04
 tags:
   - index
 source_ids:
@@ -66,6 +66,7 @@ source_ids:
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-06-30-onur-sirin-local-llm-memory-hardware
 status: active
 ---
 
@@ -166,6 +167,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[OpenAI]] - AI lab whose WebRTC voice infrastructure is the vault's real-time transport case study.
 - [[Thinking Machines]] - Human-AI-collaboration research lab behind the interaction-model thesis.
 - [[Sebastian Raschka]] - Educator and *Build an LLM/Reasoning Model (From Scratch)* author; source of the local-coding-agent guide.
+- [[Onur Sirin]] - Silicon Tales author whose local-LLM guide grounds inference in memory capacity, bandwidth, and hardware topology.
 
 ## Sources
 
@@ -229,6 +231,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - Inside Thinking Machines Interaction Models]] - Interaction models: time-aligned micro-turns and fast/slow two-model coordination for real-time multimodal AI.
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]] - A vector-add kernel traced from nvcc to warps; occupancy, scheduling, and memory-bound arithmetic intensity.
 - [[Sebastian Raschka - Using Local Coding Agents]] - Building a fully local coding-agent stack (Ollama + harness) with audit, evaluation, and token-economics findings.
+- [[Onur Sirin - How Local LLMs Run]] - Local LLM pipeline and memory/hardware guide: eight inference stages, Q4/Q8 sizing, flat vs tiered memory, and "fitting is not full speed."
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]] - Field-survey tutorial: reasoning taxonomy, robustness/faithfulness, test-time scaling, post-training/RL (RLVR, GRPO, distillation), and frontier pillars.
 
 ## Queries

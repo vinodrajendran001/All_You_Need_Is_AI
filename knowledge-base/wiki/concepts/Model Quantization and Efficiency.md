@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-07-04
+updated: 2026-07-06
 tags:
   - concept
   - llm
@@ -112,4 +112,5 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Neural Network Fundamentals]]
 - [[GPU Execution Model]]
 - [[Distributed Training Parallelism]]
+- [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]

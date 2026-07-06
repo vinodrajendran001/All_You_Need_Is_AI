@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - coding-agents
@@ -10,6 +10,7 @@ tags:
   - agents
 source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-07-06-alphasignal-self-improving-harnesses
 status: active
 ---
 
@@ -47,6 +48,10 @@ The harness/engine split reframes several practical questions. A capable model i
 - A harness can read data and manipulate files, so **audit before running**: install/lifecycle hooks, shell execution, file/secret boundaries, MCP/plugins, network calls/telemetry, and update mechanisms. Even with a local model, harnesses can send telemetry/metadata (session IDs, tool metadata) to remote endpoints unless disabled.
 - **Reduce blast radius:** sandbox on separate hardware, a VM, or a dedicated user account; treat untrusted repos as hostile (prompt-injection surface via repo instructions and tool output); disable telemetry/auto-update in config. Proprietary harnesses (Claude Code) are harder to inspect than open-source ones (Codex, Qwen-Code).
 
+### Self-improving harnesses
+
+The harness is increasingly something the AI optimizes, not just something a developer writes. [[Alpha Signal - Why self-improving harnesses are the next frontier]] profiles two systems: **Self-Harness** (Shanghai AI Lab) mines execution traces for recurring failures, proposes rule/prompt edits, and keeps only changes that pass regression tests (33–60% gains on Terminal-Bench-2.0); **HarnessX** (Xiaomi) treats the harness as swappable "processor" modules and uses an RL optimizer (AEGIS) to search structural combinations while guarding against reward hacking and catastrophic forgetting (Qwen-3.5 9B: 33%→47% on GAIA, letting a small model punch above its weight). Both are **loop engineering** with strict verification gates — the durable point is that the leverage shifts from writing the harness to designing the instrumentation and gates that let it safely rewrite itself. This is [[Recursive Self-Improvement|workflow-level self-improvement]] (the procedure improves, not the base model) and it overlaps the skill-optimization loops on [[Agent Skill]].
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -66,5 +71,8 @@ The harness/engine split reframes several practical questions. A capable model i
 - [[Model Routing]]
 - [[Context Engineering]]
 - [[AI Agents in Production]]
+- [[Agent Skill]]
+- [[Recursive Self-Improvement]]
+- [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Sebastian Raschka]]
 - [[AI Knowledge Base Overview]]

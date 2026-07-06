@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-07-06
 tags:
   - concept
   - llm-evaluation
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
+  - src-2026-07-06-sarthak-rastogi-production-agent
 status: active
 ---
 
@@ -33,6 +34,7 @@ Many conversational failures only emerge across turns: repeated questions, contr
 - The DoorDash flywheel extends the pattern from passive scoring into active development. Human reviewers identify a failure mode, engineers write an evaluation, a simulator generates realistic multi-turn chats from historical scenarios, the system runs the assistant against those scenarios, and the resulting pass rate becomes a release gate.
 - Simulation matters because production conversations are too expensive and risky to use as the only testing environment. Synthetic but transcript-grounded multi-turn chats let teams iterate on prompts, context shaping, and backend behavior offline.
 - Aggregation closes the loop. Once turn and trace scores exist at volume, clustering and topic analysis can surface recurring failure modes instead of forcing humans to read every conversation manually.
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]] pushes the same loop into the *release process*: a regression suite re-scores a fixed set of queries on **faithfulness + completeness** against a baseline on every prompt or model change, because a model upgrade that raises average quality can silently regress a specific query category. Paired with A/B model routing (send N% of traffic, compare scores before cutover), evaluation becomes a deployment gate, not just a monitoring surface.
 
 ## Open questions
 
@@ -48,4 +50,6 @@ Many conversational failures only emerge across turns: repeated questions, contr
 - [[ML Systems at Scale]]
 - [[DoorDash]]
 - [[Braintrust]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
+- [[AI Agents in Production]]
 - [[AI Knowledge Base Overview]]

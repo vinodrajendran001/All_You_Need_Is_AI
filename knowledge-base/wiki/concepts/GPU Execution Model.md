@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - gpu
@@ -65,4 +65,5 @@ This is the layer between the model and the metal. [[AI Accelerator Architecture
 - [[Model Quantization and Efficiency]]
 - [[KV Cache]]
 - [[Distributed Training Parallelism]]
+- [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]

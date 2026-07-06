@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - reasoning
@@ -70,4 +70,5 @@ It is one of the two levers for improving reasoning (the other being post-traini
 - [[Latent-Space Reasoning]]
 - [[Reinforcement Learning]]
 - [[LLM Training Pipeline]]
+- [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]

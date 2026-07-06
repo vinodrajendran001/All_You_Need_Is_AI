@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - agents
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-18-alyona-vert-recursive-self-improvement
+  - src-2026-07-06-alphasignal-self-improving-harnesses
 status: active
 ---
 
@@ -54,6 +55,8 @@ Durable orchestration makes those optimized skills operational. [[djfarrelly - T
 
 [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] sharpens the boundary around "self-improving" language. Optimizing a skill file is workflow-level self-improvement: the agent's procedure improves, but the model-building process has not necessarily improved. Stronger [[Recursive Self-Improvement]] would feed into future AI system creation itself, including training data, model design, evaluation, and post-training recipes.
 
+[[Alpha Signal - Why self-improving harnesses are the next frontier]] extends this from *skill files* to the whole *harness*. **Self-Harness** (Shanghai AI Lab) runs the same trainable-external-state loop at the level of the agent's operating rules — mine execution traces for recurring failures, propose harness/prompt edits, and accept a change only if regression tests confirm it doesn't break previously-passing tasks (33–60% gains on Terminal-Bench-2.0). **HarnessX** (Xiaomi) goes structural: it treats the harness as a pipeline of swappable "processor" modules and uses an RL optimizer (AEGIS) to search combinations while guarding against reward hacking and catastrophic forgetting (Qwen-3.5 9B: 33%→47% on GAIA). Both succeed precisely because they enforce **strict verification gates** rather than "loopmaxxing" — unguided inference in a loop — which is the same discipline the skill-optimization frameworks above rely on. This is the harness-level face of [[Coding Agent Harness]].
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -76,4 +79,5 @@ Durable orchestration makes those optimized skills operational. [[djfarrelly - T
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[pguso - Agents From Scratch]]
 - [[Coding Agent Harness]]
+- [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Inngest]]

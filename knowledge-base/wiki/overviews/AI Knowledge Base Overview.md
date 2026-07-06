@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-07-04
+updated: 2026-07-06
 tags:
   - overview
   - ai
@@ -69,6 +69,9 @@ source_ids:
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
+  - src-2026-07-06-mayank-pratap-singh-speculative-decoding
+  - src-2026-07-06-sarthak-rastogi-production-agent
+  - src-2026-07-06-alphasignal-self-improving-harnesses
 status: active
 ---
 
@@ -108,6 +111,8 @@ The 3 July ingest adds the vault's most comprehensive reasoning source: [[Akhil 
 
 The 4 July ingest adds [[Onur Sirin - How Local LLMs Run]], a local-hardware guide that deepens the inference/edge branch. It updates [[LLM Inference]] with an eight-stage local pipeline, [[AI Accelerator Architecture]] with flat/tiered/tiny-fast memory shapes, [[Model Quantization and Efficiency]] with practical Q4/Q8 memory sizing, and [[On-Device Reasoning]] / [[Small Language Models]] with the distinction between **fitting** a model and running it at full speed. It introduces [[Onur Sirin]] as an entity.
 
+The 6 July ingest adds three sources. [[Mayank Pratap Singh - Speculative Decoding in vLLM]] seeds [[Speculative Decoding]] — the lossless draft-then-verify decode accelerator, its α/τ/K economics, and an honest benchmark where it lost — deepening [[LLM Inference]] and [[KV Cache]]. [[Sarthak Rastogi - Making an AI Agent Production-Ready]] gives [[AI Agents in Production]] a full layered-defense architecture (guards-before-graph, safety gate, parallel faithfulness+completeness validation, observability, resilience, eval gates), touching [[LLM-as-a-Judge]] and [[Multi-Turn Evaluation]]. [[Alpha Signal - Why self-improving harnesses are the next frontier]] extends [[Agent Skill]] and [[Coding Agent Harness]] with self-optimizing harnesses (Self-Harness, HarnessX/AEGIS), a concrete workflow-level instance of [[Recursive Self-Improvement]].
+
 ## Key pages
 
 - [[index|Knowledge Base Index]] - main entry point into the wiki
@@ -127,6 +132,7 @@ The 4 July ingest adds [[Onur Sirin - How Local LLMs Run]], a local-hardware gui
 - [[Model Quantization and Efficiency]] - quantization, KV cache, LoRA, and sparse activation as deployment/adaptation efficiency levers
 - [[KV Cache]] - runtime attention-state storage and compression for long-context decoding
 - [[LLM Inference]] - the prefill (compute-bound) vs decode (memory-bound) split and the serving stack built around it
+- [[Speculative Decoding]] - lossless draft-then-verify decode acceleration; a conditional low-load latency bet
 - [[On-Device Reasoning]] - local reasoning under mobile constraints, where memory, latency, and power shape the whole stack
 - [[Small Language Models]] - small/on-device/high-volume LLMs designed around deployment and inference constraints
 - [[Reasoning Compression]] - shortening, replacing, or budgeting explicit reasoning traces to reduce cost without losing accuracy
@@ -285,3 +291,7 @@ The 4 July ingest adds [[Onur Sirin - How Local LLMs Run]], a local-hardware gui
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[LLM Reasoning]]
 - [[Test-Time Scaling]]
+- [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
+- [[Speculative Decoding]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
+- [[Alpha Signal - Why self-improving harnesses are the next frontier]]

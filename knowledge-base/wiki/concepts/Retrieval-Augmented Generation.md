@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-07-03
+updated: 2026-07-06
 tags: [rag, retrieval, agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -147,4 +147,5 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 - [[LLM Reasoning]]
 - [[Test-Time Scaling]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Knowledge Base Overview]]

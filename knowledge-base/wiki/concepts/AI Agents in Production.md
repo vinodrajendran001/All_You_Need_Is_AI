@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - ai-agents
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-07-06-sarthak-rastogi-production-agent
 status: active
 ---
 
@@ -146,9 +147,19 @@ Key production constraint: **context isolation between agents is a reliability r
 - [[ByteByteGo - Large Language Models vs Small Language Models]] adds three concrete hybrid patterns for production agents:
   - **small-model routing** for common/easy requests with escalation to larger models;
   - **small-model guardrails** before and after expensive model calls;
-  - **small-model drafting/speculative decoding** where a fast model proposes candidate tokens and a larger model verifies them.
+  - **small-model drafting/speculative decoding** where a fast model proposes candidate tokens and a larger model verifies them (see [[Speculative Decoding]]).
 
 These patterns make [[Small Language Models]] production infrastructure rather than merely weaker substitutes for large models.
+
+## A layered production architecture
+
+[[Sarthak Rastogi - Making an AI Agent Production-Ready]] gives the vault its most concrete end-to-end blueprint, organized around the failure modes a demo ignores: prompt-injection, cost blowups from re-answering identical questions, no observability at 2am, and partial answers to multi-part questions. The durable, tool-agnostic patterns:
+
+- **Guards before the graph; work inside it.** Cheap protections (rate limiting, logging, and a **semantic cache** check) run *before* the agent framework is even invoked — a cache hit should be a pure lookup-and-return. Everything that *is* work (safety, retrieval, generation, validation) is a node in one graph, with **one trace per request** for debuggability.
+- **Safety is a dedicated first node:** PII scrubbing plus prompt-**attack detection** (an isolated microservice with its own memory budget), treating untrusted input as hostile by default.
+- **Validate the output, not just the input:** run **faithfulness** (hallucination vs retrieved context) and **completeness** (did we answer every part?) checks in parallel — an inline production instance of [[LLM-as-a-Judge]].
+- **Resilience is explicit:** retries with backoff, circuit breakers around external dependencies, and resource isolation so a security model can't starve the main app.
+- **Evals gate change, not just launch:** a regression suite compares faithfulness + completeness against a baseline on every prompt/model change, and A/B testing routes a fraction of traffic before cutover (see [[Multi-Turn Evaluation]]).
 
 ## The main lesson
 
@@ -185,5 +196,7 @@ The common pattern is not “let the model do everything.” It is **design an e
 - [[Qualcomm AI Research]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[Coding Agent Harness]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
+- [[Speculative Decoding]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]

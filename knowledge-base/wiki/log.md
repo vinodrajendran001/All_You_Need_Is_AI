@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-07-04
+updated: 2026-07-06
 tags:
   - log
 source_ids:
@@ -67,6 +67,9 @@ source_ids:
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
+  - src-2026-07-06-mayank-pratap-singh-speculative-decoding
+  - src-2026-07-06-sarthak-rastogi-production-agent
+  - src-2026-07-06-alphasignal-self-improving-harnesses
 status: active
 ---
 
@@ -590,3 +593,28 @@ Append-only operational history for the wiki.
 - Identified `knowledge-base/raw/sources/How Local LLMs Run - Memory and Hardware.md` as the one raw source not yet covered by the wiki and mapped it into [[Onur Sirin - How Local LLMs Run]].
 - Introduced [[Onur Sirin]] as a new entity.
 - Updated [[LLM Inference]] (eight-stage local inference pipeline, capacity-vs-bandwidth distinction), [[AI Accelerator Architecture]] (GDDR/VRAM vs unified memory vs HBM/LPDDR coherent tiers), [[Model Quantization and Efficiency]] (parameter × bytes/parameter sizing, Q4/Q8 shortcuts, total≈weights×1.2), [[On-Device Reasoning]], [[Small Language Models]], index, overview, and log.
+
+## [2026-07-06] ingest | Speculative Decoding in vLLM
+
+- Mapped `knowledge-base/raw/sources/Speculative Decoding Theory and Implementation in vLLM.md` into [[Mayank Pratap Singh - Speculative Decoding in vLLM]].
+- Seeded [[Speculative Decoding]] as a new concept: draft-then-verify, the rejection-sampling correctness proof (exact target distribution), the α/τ/K economics, system limitations (lockstep bubbles, spare-compute/low-batch only, tokenizer match, dual-model VRAM, serial fallback), the method families (n-gram, Medusa, EAGLE), and the honest EAGLE3-on-vLLM run where it came out slower (τ=1.81).
+- Updated [[LLM Inference]] (canonical decode-latency fix), [[KV Cache]] (accepted drafts fill the cache; draft competes for VRAM), [[Model Quantization and Efficiency]], [[GPU Execution Model]], [[Test-Time Scaling]] (contrast: same output faster vs different output), and the [[Mayank Pratap Singh]] entity (third Vizuara explainer). Updated index, overview, and log.
+
+## [2026-07-06] ingest | Making an AI Agent Production-Ready
+
+- Mapped `knowledge-base/raw/sources/Making an AI Agent Production-Ready Tutorial With Code.md` into [[Sarthak Rastogi - Making an AI Agent Production-Ready]].
+- Deepened [[AI Agents in Production]] with a layered-defense blueprint (guards-before-graph, semantic cache, safety gate, parallel faithfulness+completeness validation, one-trace-per-request observability, retries/breakers, eval gates).
+- Updated [[LLM-as-a-Judge]] (judge as an inline production gate: Ragas-style faithfulness + completeness), [[Multi-Turn Evaluation]] (regression suites + A/B routing gate change), and added reciprocal links from [[Retrieval-Augmented Generation]], [[Context Engineering]], [[Model Routing]], and [[Agentic Loop]]. No new entity (one-off author). Updated index, overview, and log.
+
+## [2026-07-06] ingest | Why self-improving harnesses are the next frontier
+
+- Mapped `knowledge-base/raw/sources/Why self-improving harnesses are the next frontier for AI developers.md` into [[Alpha Signal - Why self-improving harnesses are the next frontier]] (companion to the earlier Alpha Signal skill-optimization source).
+- Extended [[Agent Skill]] and [[Coding Agent Harness]] with Self-Harness (Shanghai AI Lab; weakness-mining → proposal → regression-validated) and HarnessX (Xiaomi; processor modules + AEGIS RL optimizer, guards against reward hacking / catastrophic forgetting), both framed as loop engineering with strict verification gates.
+- Updated [[Recursive Self-Improvement]] (concrete workflow-level, not model-building, RSI), [[Reward Design for RL]] (AEGIS as RL-over-harness), and [[Agentic Loop]]. Updated index, overview, and log.
+
+## [2026-07-06] lint | Full wiki lint pass
+
+- Audited all 177 wiki pages for broken wikilinks (resolved vault-wide), orphans, YAML/frontmatter parse errors, missing `type`/`updated` fields, `## Related pages` coverage, thin pages (<500 bytes), index coverage, raw-source coverage (72 raw sources), duplicate index `source_ids` (65 unique), and source-page `source_id` coverage.
+- Found **no structural defects** after the two un-linted ingests since 2026-07-03 (the 2026-07-04 [[Onur Sirin - How Local LLMs Run]] local-hardware ingest and the 2026-07-06 speculative-decoding / production-agent / self-improving-harness ingest).
+- Confirmed the speculative-decoding cluster is already bidirectional; the reciprocal spot check otherwise surfaced only by-design hub→spoke and specific→general one-directional links. Closed two genuine peer gaps: [[Small Language Models]]→[[Speculative Decoding]] and [[Multi-Turn Evaluation]]→[[AI Agents in Production]].
+- Filed [[2026-07-06 Lint Pass]] and linked it from the index. Reiterated that `syntheses/` is still empty, now with three strong candidate theses (reasoning "three levers"; "decode is memory-bound"; "self-improvement is loop engineering").

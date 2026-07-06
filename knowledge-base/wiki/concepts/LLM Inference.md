@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-07-04
+updated: 2026-07-06
 tags:
   - concept
   - llm
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
+  - src-2026-07-06-mayank-pratap-singh-speculative-decoding
 status: active
 ---
 
@@ -65,6 +66,7 @@ Production engines must serve many concurrent requests:
 - **Streaming, not just batching, is now a serving axis.** [[ByteByteGo - Inside Thinking Machines Interaction Models]] shows real-time [[Real-Time Voice AI|interaction models]] served as 200 ms streaming sessions (a feature contributed to SGLang) with a fast interaction model paired with a slower background reasoning model. This adds a latency-anchored, continuous-input regime to the prefill/decode picture, where the scheduler must sustain sub-second responsiveness while a second model does deep work asynchronously.
 - **Inference compute is also a *reasoning* scaling axis.** [[Test-Time Scaling]] (from [[Akhil Arora et al - Current Advances in LLM Reasoning]]) spends extra decode — longer traces, more samples, explicit search, verifiers — to get better answers from a fixed model. That directly stresses this page's constraints: more reasoning tokens mean more memory-bound decode steps and a larger KV cache, which is why the field pairs it with [[Reasoning Compression|budget control]] and with systems work on parallel/speculative decoding and batched-inference determinism (CacheSaver, Parallel-R1).
 - **Local hardware adds a topology axis.** [[Onur Sirin - How Local LLMs Run]] distinguishes **flat/uniform memory** (Apple unified memory: one pool, one speed), **tiny-but-fast VRAM** (RTX 5090: very high GDDR bandwidth but little capacity), and **tiered coherent memory** (GB300: HBM fast tier plus LPDDR slow tier). This turns "does it fit?" into "does the active working set sit in the fast pool?"
+- **Speculative decoding is the canonical decode-latency fix.** [[Speculative Decoding]] ([[Mayank Pratap Singh - Speculative Decoding in vLLM]]) exploits exactly the memory-bound property above: because verifying many tokens in parallel costs about the same weight-load as producing one, a small draft model can propose tokens the target verifies in a single pass — losslessly (same output distribution). It is a **low-load latency optimization** that serving stacks toggle off under saturation, and it is complementary to weight and KV compression (it cuts *weight-loads per token* rather than *bytes*).
 
 ## Open questions
 
@@ -92,5 +94,7 @@ Production engines must serve many concurrent requests:
 - [[LLM Reasoning]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Onur Sirin - How Local LLMs Run]]
+- [[Speculative Decoding]]
+- [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
 - [[Transformer Architecture]]
 - [[AI Knowledge Base Overview]]

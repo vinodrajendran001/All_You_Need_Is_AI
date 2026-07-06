@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-07-04
+updated: 2026-07-06
 tags:
   - index
 source_ids:
@@ -67,6 +67,9 @@ source_ids:
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
+  - src-2026-07-06-mayank-pratap-singh-speculative-decoding
+  - src-2026-07-06-sarthak-rastogi-production-agent
+  - src-2026-07-06-alphasignal-self-improving-harnesses
 status: active
 ---
 
@@ -128,6 +131,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems.
 - [[Nested Learning]] - Continuous inference-time learning and memory-as-structure: Titans, Continuum Memory System, and the Hope architecture.
 - [[LLM Inference]] - Prefill (compute-bound) vs decode (memory-bound) phases and the serving stack built around them.
+- [[Speculative Decoding]] - Lossless decode acceleration: a small draft model guesses, the target verifies in parallel; a conditional low-load latency bet.
 - [[Video Transformers]] - Extending attention to video via divided space-time attention (TimeSformer).
 - [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
 - [[Distributed Training Parallelism]] - Data/tensor/sequence/context/expert/pipeline parallelism and FSDP/ZeRO as partitions of the same GEMM.
@@ -232,6 +236,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]] - A vector-add kernel traced from nvcc to warps; occupancy, scheduling, and memory-bound arithmetic intensity.
 - [[Sebastian Raschka - Using Local Coding Agents]] - Building a fully local coding-agent stack (Ollama + harness) with audit, evaluation, and token-economics findings.
 - [[Onur Sirin - How Local LLMs Run]] - Local LLM pipeline and memory/hardware guide: eight inference stages, Q4/Q8 sizing, flat vs tiered memory, and "fitting is not full speed."
+- [[Mayank Pratap Singh - Speculative Decoding in vLLM]] - Draft-then-verify from first principles through EAGLE3-on-vLLM, ending on an honest run where speculation lost.
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]] - End-to-end production agent architecture: guards-before-graph, safety gate, parallel faithfulness+completeness validation, observability, resilience, eval gates.
+- [[Alpha Signal - Why self-improving harnesses are the next frontier]] - Self-Harness and HarnessX: agents that mine their own failure traces and rewrite/evolve their harness behind verification gates.
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]] - Field-survey tutorial: reasoning taxonomy, robustness/faithfulness, test-time scaling, post-training/RL (RLVR, GRPO, distillation), and frontier pillars.
 
 ## Queries
@@ -263,6 +270,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-06-29 Lint Pass]] - Nineteenth comprehensive lint pass (147 pages) after the inference/quantization/Nested-Learning/TimeSformer ingest; no structural defects; added LLM Inference cross-links to two edge pages.
 - [[2026-06-30 Lint Pass]] - Twentieth comprehensive lint pass (153 pages) after the Alisa Liu interview-prep ingest; no structural defects; no fixes required.
 - [[2026-07-03 Lint Pass]] - Twenty-first comprehensive lint pass (170 pages) after the systems/infra batch and the LLM-reasoning deck; no structural defects; added 4 reciprocal cross-links.
+- [[2026-07-06 Lint Pass]] - Twenty-second comprehensive lint pass (177 pages) after the local-LLM-hardware and speculative-decoding/production-agent/self-improving-harness ingests; no structural defects; added 2 reciprocal cross-links.
 
 ## Control files
 

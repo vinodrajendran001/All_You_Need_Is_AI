@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - routing
@@ -76,5 +76,6 @@ Long-running agents turn model choice into infrastructure. When a system repeate
 - [[Coding Agent Harness]]
 - [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[Sebastian Raschka - Using Local Coding Agents]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]

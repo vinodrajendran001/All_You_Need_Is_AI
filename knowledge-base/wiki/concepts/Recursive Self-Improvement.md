@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-07-06
 tags:
   - concept
   - recursive-self-improvement
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
+  - src-2026-07-06-alphasignal-self-improving-harnesses
 status: active
 ---
 
@@ -45,6 +46,8 @@ The current vault synthesis is conservative:
 
 The source also helps disambiguate RSI from [[Recursive Architectures]]. Recursive architectures reuse computation over internal state to improve reasoning depth. Recursive self-improvement is a socio-technical research loop where AI systems improve future AI systems. They share a word, not a mechanism.
 
+[[Alpha Signal - Why self-improving harnesses are the next frontier]] supplies concrete 2026 examples that sit firmly on the *workflow* end of this spectrum: **Self-Harness** and **HarnessX** let an agent rewrite its own [[Coding Agent Harness|harness]] — mining failure traces, proposing edits, and gating them behind regression tests (HarnessX even frames the search as RL via its AEGIS engine). Crucially, they improve the *operating environment*, not the base model, so their gains are bounded by the model's latent capability — the exact distinction between self-improving agents and stronger model-building RSI. They also inherit the risks named here (reward hacking, catastrophic forgetting), which they claim to guard against but do not prove settled.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -60,4 +63,7 @@ The source also helps disambiguate RSI from [[Recursive Architectures]]. Recursi
 - [[Agent Skill]]
 - [[AI Agents in Production]]
 - [[Recursive Architectures]]
+- [[Agent Skill]]
+- [[Coding Agent Harness]]
+- [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Reinforcement Learning]]

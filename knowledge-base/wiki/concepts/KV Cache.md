@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-06-29
+updated: 2026-07-06
 tags:
   - concept
   - kv-cache
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-06-26-nithin-llm-inference
   - src-2026-06-29-siddhant-rai-turboquant
+  - src-2026-07-06-mayank-pratap-singh-speculative-decoding
 status: active
 ---
 
@@ -77,6 +78,8 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 
 [[Siddhant Rai - TurboQuant - Online Vector Quantization]] adds the deeper mathematical account behind this pipeline. It reframes KV quantization as a **rate-distortion problem** whose true objective is preserving the attention inner product `qᵀk ≈ qᵀk̂`, not raw MSE. The reason weight-style methods fail on the cache is statistical: weights are static and roughly Gaussian (calibrate offline once), while KV vectors are **dynamic and shift per input**, so any fixed codebook (INT4 uniform, NF4 Gaussian) is misaligned. TurboQuant therefore *transforms then quantizes* — rotate into a known Gaussian space and apply a **Lloyd-Max optimal codebook** (the "where the vector is" / MSE branch) — and handles the leftover with **QJL**, a Johnson-Lindenstrauss random projection plus 1-bit sign quantization (the "which direction" / inner-product branch). Reported results include perfect needle-in-a-haystack recall at ~4× compression.
 
+[[Speculative Decoding]] ([[Mayank Pratap Singh - Speculative Decoding in vLLM]]) touches the cache from the other side. Accepted draft tokens are committed straight into the KV cache in one verification pass, so speculation is a way to *fill* the cache faster; but the draft model also **competes for the same VRAM** the cache needs (e.g. ~14 GB for a 7B draft alongside a 70B target), which is exactly why speculation is a low-batch latency play rather than a high-throughput one — the memory it borrows is memory the cache and larger batches cannot use.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -98,4 +101,6 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 - [[Reasoning Compression]]
 - [[Mixture of Experts]]
 - [[GPU Execution Model]]
+- [[Speculative Decoding]]
+- [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
 - [[AI Knowledge Base Overview]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-07-03
+updated: 2026-07-06
 tags: [rl, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -135,3 +135,4 @@ The shared lesson is that agentic reward design must balance correctness, explor
 - [[Test-Time Scaling]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Agentic Loop]]
+- [[Alpha Signal - Why self-improving harnesses are the next frontier]]

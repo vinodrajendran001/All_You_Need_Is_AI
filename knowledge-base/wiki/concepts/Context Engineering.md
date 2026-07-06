@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - context-engineering
@@ -120,4 +120,5 @@ Kilo's production numbers are useful here because they show the limit of "just c
 - [[systemdesign42 - System Design Academy]]
 - [[Coding Agent Harness]]
 - [[Real-Time Voice AI]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Knowledge Base Overview]]

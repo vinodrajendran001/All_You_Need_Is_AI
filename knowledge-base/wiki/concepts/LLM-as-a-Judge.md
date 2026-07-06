@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-07-03
+updated: 2026-07-06
 tags:
   - concept
   - llm-evaluation
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-07-06-sarthak-rastogi-production-agent
 status: active
 ---
 
@@ -51,6 +52,10 @@ The case study matters because it frames judge quality as a measurement-design p
 
 Beyond product evaluation, the same "calibrated LLM evaluator" idea is the **verifier** that powers reasoning. [[Akhil Arora et al - Current Advances in LLM Reasoning]] frames it as: *verifiers separate generation from evaluation*, and they come in two flavours — **outcome** judges and **process reward models (PRMs)** that score the reasoning steps themselves. Generative reward models (GenRM) and **self-rewarding** setups (a model judging its own outputs via LLM-as-Judge, then improving through iterative DPO) extend the pattern into training. This makes LLM-as-a-Judge a shared substrate across three areas: product QA (this page's case studies), verifier-based [[Test-Time Scaling]] (rank/steer candidate solutions at inference), and [[Reward Design for RL]] (supply the reward signal during RL). The load-bearing caveat is the same everywhere — **a flawed judge/verifier can rank wrong answers higher**, so reward-model reliability and verifier robustness are open problems, not solved infrastructure.
 
+## Judges as an inline production gate
+
+[[Sarthak Rastogi - Making an AI Agent Production-Ready]] moves the judge from an offline scorer into the request path itself. Its output-validation node runs two LLM-judged checks **in parallel** before a response is returned: **faithfulness** (is the answer grounded in the retrieved context, i.e. hallucination detection, Ragas-style) and **completeness** (were all parts of a multi-part question answered?). Running the judge inline is the same measurement-design discipline as the case studies above — explicit, narrow, calibratable checks — applied as a live guardrail rather than a monitoring dashboard, and it is a core node of the [[AI Agents in Production|production agent architecture]].
+
 ## Limitations
 
 LLM judges still need human calibration, especially on edge cases where domain experts may reasonably disagree. They can inherit rubric mistakes, miss missing-context problems, and drift away from product reality if the evaluation prompt does not reflect what users actually see. In practice, the safest pattern is human-designed criteria, human adjudication on a golden set, and continuous re-calibration rather than fully autonomous judging.
@@ -70,4 +75,5 @@ LLM judges still need human calibration, especially on edge cases where domain e
 - [[Test-Time Scaling]]
 - [[Reward Design for RL]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Knowledge Base Overview]]

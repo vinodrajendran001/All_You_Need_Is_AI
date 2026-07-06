@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-07-04
+updated: 2026-07-06
 tags:
   - concept
   - llm
@@ -120,6 +120,7 @@ This makes [[Model Routing]] the operational complement to SLMs. The routing lay
 - [[Coding Agent Harness]]
 - [[Sebastian Raschka - Using Local Coding Agents]]
 - [[Onur Sirin - How Local LLMs Run]]
+- [[Speculative Decoding]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Efficient Reasoning on the Edge]]
 - [[AI Knowledge Base Overview]]

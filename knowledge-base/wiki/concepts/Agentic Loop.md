@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-07-03
+updated: 2026-07-06
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -117,3 +117,5 @@ The **[[Coding Agent Harness]]** is the most tangible product-facing instance of
 - [[ByteByteGo]]
 - [[Automated AI Research]]
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
+- [[Alpha Signal - Why self-improving harnesses are the next frontier]]

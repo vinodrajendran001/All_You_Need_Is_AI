@@ -71,6 +71,20 @@ source_ids:
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-07-06-alphasignal-self-improving-harnesses
   - src-2026-07-30-teaching-open-model-science
+  - src-2026-04-20-moonshotai-flashkda-v1
+  - src-2026-07-22-mitchell-hashimoto-simd
+  - src-2026-07-17-netflix-in-house-llm-serving
+  - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
+  - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
+  - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
+  - src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
+  - src-2026-07-29-giles-thomas-gpt2-weights-part-1
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
+  - src-2026-07-27-neural-avb-looped-transformers
+  - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
+  - src-2026-07-21-bytebytego-roblox-world-models
+  - src-2026-07-28-bytebytego-delivery-llm-search
 status: active
 ---
 
@@ -140,6 +154,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[GPU Execution Model]] - From a CUDA kernel through PTX/SASS to warp scheduling, and why kernels are memory- or compute-bound.
 - [[Real-Time Voice AI]] - Low-latency conversational AI across the WebRTC transport layer and the interaction-model architecture layer.
 - [[Coding Agent Harness]] - The harness/engine split for running local open-weight coding agents; serving, permissions, and token economics.
+- [[SIMD]] - CPU vectorization as a practical performance primitive.
+- [[Model Factory]] - Reproducible infrastructure for training experiments, data mixtures, evaluation, and release.
+- [[Tabular Foundation Models]] - Table-native few-/zero-shot prediction as a specialist tool for enterprise data.
+- [[Linear Attention and Recurrent Memory]] - Fixed-size recurrent state as a bounded-memory alternative to token-addressable attention.
 
 ## Entities
 
@@ -243,6 +261,20 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]] - Self-Harness and HarnessX: agents that mine their own failure traces and rewrite/evolve their harness behind verification gates.
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]] - Field-survey tutorial: reasoning taxonomy, robustness/faithfulness, test-time scaling, post-training/RL (RLVR, GRPO, distillation), and frontier pillars.
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]] - Case study of Trinity Mini GRPO + LoRA across biomedical tool investigation and Gene Ontology reasoning, with trace-based promotion criteria.
+- [[MoonshotAI - FlashKDA v1 Deep Dive]] - Fused Kimi Delta Attention kernel design and numerical/performance tradeoffs.
+- [[Mitchell Hashimoto - Everyone Should Know SIMD]] - Practical CPU vectorization guide.
+- [[Netflix - In-House LLM Serving]] - vLLM/Triton serving platform with artifact, schema, constrained-decoding, and observability controls.
+- [[Latent Space - Inside the Model Factory - Eiso Kant, Poolside AI]] - Poolside's reproducible high-throughput model-development system.
+- [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] - Agent efficiency through state deltas, cacheable prefixes, and prefill/decode-aware serving.
+- [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]] - Survey separating durable model/scaffold updates from transient agent state.
+- [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]] - Table-native foundation models as enterprise prediction tools.
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
+- [[@neural_avb - What Are Looped Transformers?]]
+- [[@waterloo_intern - From GPT-2 to Kimi K3]]
+- [[ByteByteGo - Inside Roblox's Bet on World Models]]
+- [[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]]
 
 ## Queries
 

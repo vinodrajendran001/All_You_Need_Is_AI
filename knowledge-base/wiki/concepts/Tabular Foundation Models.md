@@ -21,7 +21,7 @@ Tabular foundation models make few- or zero-shot predictions from labeled table 
 
 ## Related pages
 
-- [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock for Enterprise AI]]
+- [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]]
 - [[AI Agents in Production]]
 - [[Tool Use and Function Calling]]
 - [[Model Routing]]

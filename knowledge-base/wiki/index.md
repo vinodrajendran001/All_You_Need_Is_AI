@@ -307,6 +307,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-07-03 Lint Pass]] - Twenty-first comprehensive lint pass (170 pages) after the systems/infra batch and the LLM-reasoning deck; no structural defects; added 4 reciprocal cross-links.
 - [[2026-07-06 Lint Pass]] - Twenty-second comprehensive lint pass (177 pages) after the local-LLM-hardware and speculative-decoding/production-agent/self-improving-harness ingests; no structural defects; added 2 reciprocal cross-links.
 - [[2026-08-03 Lint Pass]] - Twenty-third comprehensive lint pass covering the scientific open-model ingest; fixed log source-ID drift and found no remaining structural defects.
+- [[2026-08-03 Lint Pass 2]] - Twenty-fourth comprehensive lint pass covering the 14-source systems, agents, architectures, and search batch; no structural defects.
 
 ## Control files
 

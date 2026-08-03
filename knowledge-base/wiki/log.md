@@ -618,3 +618,10 @@ Append-only operational history for the wiki.
 - Found **no structural defects** after the two un-linted ingests since 2026-07-03 (the 2026-07-04 [[Onur Sirin - How Local LLMs Run]] local-hardware ingest and the 2026-07-06 speculative-decoding / production-agent / self-improving-harness ingest).
 - Confirmed the speculative-decoding cluster is already bidirectional; the reciprocal spot check otherwise surfaced only by-design hub→spoke and specific→general one-directional links. Closed two genuine peer gaps: [[Small Language Models]]→[[Speculative Decoding]] and [[Multi-Turn Evaluation]]→[[AI Agents in Production]].
 - Filed [[2026-07-06 Lint Pass]] and linked it from the index. Reiterated that `syntheses/` is still empty, now with three strong candidate theses (reasoning "three levers"; "decode is memory-bound"; "self-improvement is loop engineering").
+## [2026-08-03] ingest | Teaching an Open Model to Do Science
+
+- Identified `knowledge-base/raw/sources/Teaching an Open Model to Do Science.md` as the new raw capture and mapped it into [[Bojan Jakimovski - Teaching an Open Model to Do Science]].
+- Updated [[Agentic Reinforcement Learning]] with the biomedical Drug Tool and BioReason environments, trajectory-level evidence signals, GRPO + LoRA setup, and promotion through held-out metrics plus trace/workflow review.
+- Updated [[Reward Design for RL]] with grounded tool-use, identifier, efficiency, concision, ontology, and strict-JSON reward components, emphasizing that fluent output after failed retrieval must not score like evidence-backed synthesis.
+- Updated [[LLM Training Pipeline]], [[Automated AI Research]], and [[AI Agents in Production]] with the 21-run experimental ledger, specialized open-model adapter recipe, and scientific application deployment gates.
+- Updated index, overview, and source cross-links. No new entity page was needed; the collaborators are represented as organizations or one-off contributors in this source summary.

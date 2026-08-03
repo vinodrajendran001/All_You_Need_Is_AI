@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-07-06
+updated: 2026-08-03
 tags: [rl, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-07-30-teaching-open-model-science
 status: active
 ---
 
@@ -116,6 +117,12 @@ The shared lesson is that agentic reward design must balance correctness, explor
 - **Self-rewarding / generative reward models** ([[LLM-as-a-Judge|LLM-as-Judge]], GenRM) and **process reward models (PRMs)** that score the reasoning *steps* rather than only the outcome sit at the other end: more general, but only as reliable as the judge.
 - **Reward-model reliability is the load-bearing risk.** A flawed verifier lets the policy rank wrong answers higher, and **reward hacking / verifier gaming** is called out as an unsolved 2026 frontier — the same "process rewards are tempting but risky" caution above, now at model scale.
 
+## Scientific workflow rewards
+
+[[Bojan Jakimovski - Teaching an Open Model to Do Science]] shows how reward design can encode a research workflow rather than only a final answer. Its Drug Tool environment combines grounded retrieved facts, appropriate tool selection and arguments, recovery and completion, efficiency, concision, and final synthesis quality. Its BioReason environment combines Gene Ontology F1, ontology-tree similarity, aspect coverage, and strict JSON validity. Diagnostics separately expose hallucinated identifiers, tool errors, rate limits, duplicate calls, and evidence overlap.
+
+The durable pattern is **trajectory evidence plus outcome verification**: a fluent synthesis after failed retrieval should not receive the same reward as a concise answer grounded in successful calls. The case also shows why promotion should include trace review and application testing, since aggregate verifier scores cannot fully establish that scientific evidence seeking was purposeful or that uncertainty was acknowledged.
+
 ## Related pages
 
 - [[Search-Augmented Language Models]]
@@ -136,3 +143,4 @@ The shared lesson is that agentic reward design must balance correctness, explor
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Agentic Loop]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
+- [[Bojan Jakimovski - Teaching an Open Model to Do Science]]

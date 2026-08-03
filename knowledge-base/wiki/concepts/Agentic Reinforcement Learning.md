@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-07-03
+updated: 2026-08-03
 tags:
   - concept
   - reinforcement-learning
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-07-30-teaching-open-model-science
 status: active
 ---
 
@@ -113,6 +114,12 @@ These failures explain why agentic RL needs diagnostics over trajectories, not o
 
 [[Akhil Arora et al - Current Advances in LLM Reasoning]] connects this branch to reasoning at inference time: **agentic reasoning with verifier-based control** (reflective MCTS, tool-planning with dual evaluation and pruning) is the [[Test-Time Scaling|test-time]] counterpart to training agentic policies. The deck also flags the field's sharpest open question about multi-agent systems — the **"illusion of MAS advantage"**: does multi-agent orchestration actually beat a single agent under *token-matched* controls, or is the apparent gain just extra compute? Communication overhead and a coordination-failure taxonomy remain undertheorized (MAS-Orchestra, Skill-MAS), which is a caution for how [[Agentic Loop|multi-agent]] rollouts are evaluated here.
 
+### Scientific tool-use case study
+
+[[Bojan Jakimovski - Teaching an Open Model to Do Science]] demonstrates the framework in a concrete biomedical setting. Drug Tool RL trains evidence-seeking behavior over PubMed, GEO, KEGG, UniProt, STRING, and optional structure/design tools; BioReason trains protein-function inference with strict Gene Ontology JSON. The environments score not only final content but tool choice, arguments, grounded facts, recovery from retrieval failure, completion, efficiency, citations, and format validity. This is a useful distinction between a tool-using agent that produces plausible prose and one whose trajectory leaves auditable evidence.
+
+The project also shows a practical systems recipe: separate rollout and training workers, use GRPO with LoRA on an open MoE, keep fixed held-out protocols, and inspect representative traces alongside aggregate metrics. Run 120 was promoted only after both held-out scores and workflow testing agreed, reinforcing that agentic RL evaluation must include verifier behavior and application-level evidence quality.
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -138,3 +145,4 @@ These failures explain why agentic RL needs diagnostics over trajectories, not o
 - [[Test-Time Scaling]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Recursive Self-Improvement]]
+- [[Bojan Jakimovski - Teaching an Open Model to Do Science]]

@@ -70,6 +70,7 @@ source_ids:
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-07-06-alphasignal-self-improving-harnesses
+  - src-2026-07-30-teaching-open-model-science
 status: active
 ---
 
@@ -128,6 +129,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Vision-Language Grounding]] - Text-conditioned spatial localization for objects, GUIs, documents, and scenes.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
+- [[Bojan Jakimovski - Teaching an Open Model to Do Science]] - Open-model GRPO post-training for biomedical tool use, biological reasoning, and auditable scientific workflows.
 - [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems.
 - [[Nested Learning]] - Continuous inference-time learning and memory-as-structure: Titans, Continuum Memory System, and the Hope architecture.
 - [[LLM Inference]] - Prefill (compute-bound) vs decode (memory-bound) phases and the serving stack built around them.
@@ -240,6 +242,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]] - End-to-end production agent architecture: guards-before-graph, safety gate, parallel faithfulness+completeness validation, observability, resilience, eval gates.
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]] - Self-Harness and HarnessX: agents that mine their own failure traces and rewrite/evolve their harness behind verification gates.
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]] - Field-survey tutorial: reasoning taxonomy, robustness/faithfulness, test-time scaling, post-training/RL (RLVR, GRPO, distillation), and frontier pillars.
+- [[Bojan Jakimovski - Teaching an Open Model to Do Science]] - Case study of Trinity Mini GRPO + LoRA across biomedical tool investigation and Gene Ontology reasoning, with trace-based promotion criteria.
 
 ## Queries
 

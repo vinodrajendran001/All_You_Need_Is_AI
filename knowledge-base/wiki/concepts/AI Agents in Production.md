@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-07-06
+updated: 2026-08-03
 tags:
   - concept
   - ai-agents
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-07-06-sarthak-rastogi-production-agent
+  - src-2026-07-30-teaching-open-model-science
 status: active
 ---
 
@@ -165,6 +166,12 @@ These patterns make [[Small Language Models]] production infrastructure rather t
 
 The common pattern is not “let the model do everything.” It is **design an environment where the model can do a few high-value things reliably**. That means specialized agents, narrow tools, token-aware context management, human review, and interfaces that encode domain structure instead of dumping raw data.
 
+## Scientific application and promotion gates
+
+[[Bojan Jakimovski - Teaching an Open Model to Do Science]] turns those principles into a production-shaped scientific application. A Strands/FastAPI/React harness routes specialist tasks to a promoted LoRA adapter while retaining a larger base model for orchestration. The top-level agent delegates to narrow specialists with explicit tools, sources, and artifact identifiers; Python runs in an isolated sandbox; and plans, reports, and hypotheses are fixed flows rather than unconstrained chat.
+
+The deployment gate is deliberately broader than a benchmark: held-out environment scores, verifier and trace review, and qualitative workflow testing must agree. Review checks whether citations and identifiers are usable, evidence-seeking is purposeful, ambiguity is handled, and uncertainty is acknowledged. This makes evidence provenance and inspectable trajectories first-class production requirements for high-stakes agents.
+
 ## Related pages
 
 - [[Context Engineering]]
@@ -200,3 +207,4 @@ The common pattern is not “let the model do everything.” It is **design an e
 - [[Speculative Decoding]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]
+- [[Bojan Jakimovski - Teaching an Open Model to Do Science]]

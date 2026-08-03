@@ -70,6 +70,7 @@ source_ids:
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-07-06-alphasignal-self-improving-harnesses
+  - src-2026-07-30-teaching-open-model-science
 status: active
 ---
 

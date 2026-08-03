@@ -654,3 +654,9 @@ Append-only operational history for the wiki.
 - Seeded [[SIMD]], [[Model Factory]], [[Tabular Foundation Models]], and [[Linear Attention and Recurrent Memory]].
 - Preserved uncertainty around secondary/social source claims, incomplete survey capture, and company-reported metrics.
 - Updated [[index|Knowledge Base Index]] and source-ID control records.
+
+## [2026-08-03] lint | Full wiki lint pass
+
+- Audited 198 wiki markdown pages: 170 content pages, 80 source summaries, 59 concepts, 30 entities, 1 overview, 3 queries, and 24 lint reports including this pass.
+- Found no actionable broken wikilinks, orphan pages, frontmatter/schema defects, missing related-page sections, thin content pages, index gaps, duplicate source IDs, or source-summary coverage gaps.
+- Confirmed index, overview, and log source IDs agree at 80 entries. Filed [[2026-08-03 Lint Pass 2]] and linked it from the index.

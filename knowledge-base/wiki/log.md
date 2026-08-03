@@ -626,3 +626,10 @@ Append-only operational history for the wiki.
 - Updated [[Reward Design for RL]] with grounded tool-use, identifier, efficiency, concision, ontology, and strict-JSON reward components, emphasizing that fluent output after failed retrieval must not score like evidence-backed synthesis.
 - Updated [[LLM Training Pipeline]], [[Automated AI Research]], and [[AI Agents in Production]] with the 21-run experimental ledger, specialized open-model adapter recipe, and scientific application deployment gates.
 - Updated index, overview, and source cross-links. No new entity page was needed; the collaborators are represented as organizations or one-off contributors in this source summary.
+
+## [2026-08-03] lint | Full wiki lint pass
+
+- Audited 179 wiki markdown files: 152 content pages, 66 source summaries, 55 concepts, 30 entities, 1 overview, 3 queries, and 23 lint reports including this pass.
+- Found no actionable broken wikilinks, orphan pages, frontmatter/schema defects, missing related-page sections, thin content pages, missing index entries, or duplicate index source IDs. Code literals and raw-capture note links were confirmed intentional.
+- Fixed one control-file drift by synchronizing `src-2026-07-30-teaching-open-model-science` into the log frontmatter; index, overview, and log source IDs now agree at 66 unique IDs.
+- Filed [[2026-08-03 Lint Pass]] and linked it from the index.

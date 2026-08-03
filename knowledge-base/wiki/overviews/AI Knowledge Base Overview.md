@@ -72,6 +72,20 @@ source_ids:
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-07-30-teaching-open-model-science
+  - src-2026-04-20-moonshotai-flashkda-v1
+  - src-2026-07-22-mitchell-hashimoto-simd
+  - src-2026-07-17-netflix-in-house-llm-serving
+  - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
+  - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
+  - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
+  - src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
+  - src-2026-07-29-giles-thomas-gpt2-weights-part-1
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
+  - src-2026-07-27-neural-avb-looped-transformers
+  - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
+  - src-2026-07-21-bytebytego-roblox-world-models
+  - src-2026-07-28-bytebytego-delivery-llm-search
   - src-2026-07-06-alphasignal-self-improving-harnesses
 status: active
 ---
@@ -114,6 +128,8 @@ The 3 August ingest adds [[Bojan Jakimovski - Teaching an Open Model to Do Scien
 The 4 July ingest adds [[Onur Sirin - How Local LLMs Run]], a local-hardware guide that deepens the inference/edge branch. It updates [[LLM Inference]] with an eight-stage local pipeline, [[AI Accelerator Architecture]] with flat/tiered/tiny-fast memory shapes, [[Model Quantization and Efficiency]] with practical Q4/Q8 memory sizing, and [[On-Device Reasoning]] / [[Small Language Models]] with the distinction between **fitting** a model and running it at full speed. It introduces [[Onur Sirin]] as an entity.
 
 The 6 July ingest adds three sources. [[Mayank Pratap Singh - Speculative Decoding in vLLM]] seeds [[Speculative Decoding]] — the lossless draft-then-verify decode accelerator, its α/τ/K economics, and an honest benchmark where it lost — deepening [[LLM Inference]] and [[KV Cache]]. [[Sarthak Rastogi - Making an AI Agent Production-Ready]] gives [[AI Agents in Production]] a full layered-defense architecture (guards-before-graph, safety gate, parallel faithfulness+completeness validation, observability, resilience, eval gates), touching [[LLM-as-a-Judge]] and [[Multi-Turn Evaluation]]. [[Alpha Signal - Why self-improving harnesses are the next frontier]] extends [[Agent Skill]] and [[Coding Agent Harness]] with self-optimizing harnesses (Self-Harness, HarnessX/AEGIS), a concrete workflow-level instance of [[Recursive Self-Improvement]].
+
+The August 3 batch broadens the systems branch from serving kernels to specialized production models. [[MoonshotAI - FlashKDA v1 Deep Dive]] and [[Mitchell Hashimoto - Everyone Should Know SIMD]] seed [[Linear Attention and Recurrent Memory]] and [[SIMD]], while [[Netflix - In-House LLM Serving]] contributes a vLLM/Triton production case. [[Latent Space - Inside the Model Factory - Eiso Kant, Poolside AI]] seeds [[Model Factory]]; [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]] formalizes durable model/scaffold updates; and [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]] seeds [[Tabular Foundation Models]]. The remaining sources extend agent-loop efficiency, GPT-2 reproduction evaluation, looped/hybrid architectures, engine-authoritative world models, and marketplace-search integration.
 
 ## Key pages
 

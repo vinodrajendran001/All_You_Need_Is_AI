@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-03
+updated: 2026-08-05
 tags:
   - log
 source_ids:
@@ -660,3 +660,11 @@ Append-only operational history for the wiki.
 - Audited 198 wiki markdown pages: 170 content pages, 80 source summaries, 59 concepts, 30 entities, 1 overview, 3 queries, and 24 lint reports including this pass.
 - Found no actionable broken wikilinks, orphan pages, frontmatter/schema defects, missing related-page sections, thin content pages, index gaps, duplicate source IDs, or source-summary coverage gaps.
 - Confirmed index, overview, and log source IDs agree at 80 entries. Filed [[2026-08-03 Lint Pass 2]] and linked it from the index.
+
+## [2026-08-05] ingest | AI Builder Club - Build AI Agents
+
+- Captured all 63 lessons listed under the Build AI Agents category as immutable Markdown sources in `knowledge-base/raw/sources/`.
+- Created one substantive source-summary page per lesson under `knowledge-base/wiki/sources/`.
+- Added [[AI Builder Club - Build AI Agents]] as the collection synthesis and [[AI Builder Club]] as the publisher entity.
+- Seeded [[Loop Engineering]], [[Graph Engineering]], and [[Agent Security and Governance]].
+- Updated [[Agentic Loop]], [[Context Engineering]], [[Coding Agent Harness]], [[Agent Memory]], [[Agent Skill]], [[Model Context Protocol]], [[Multi-Turn Evaluation]], [[AI Agents in Production]], [[AI Knowledge Base Overview]], and the wiki index.

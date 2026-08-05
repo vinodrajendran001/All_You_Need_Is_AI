@@ -60,6 +60,5 @@ The source clarifies where [[Retrieval-Augmented Generation]] fits within [[Cont
 - [[Context Engineering]]
 - [[Search-Augmented Language Models]]
 - [[Agentic Loop]]
-- [[AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines [2026 Guide]]]
+- [[AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines (2026 Guide)]]
 - [[AI Builder Club - Context Engineering - The Complete Guide (2026)]]
-

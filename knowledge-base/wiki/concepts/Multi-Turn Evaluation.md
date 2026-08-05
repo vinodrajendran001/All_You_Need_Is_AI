@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-07-06
+updated: 2026-08-05
 tags:
   - concept
   - llm-evaluation
@@ -12,6 +12,9 @@ source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-07-06-sarthak-rastogi-production-agent
+  - src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
+  - src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
+  - src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
 status: active
 ---
 
@@ -36,6 +39,10 @@ Many conversational failures only emerge across turns: repeated questions, contr
 - Aggregation closes the loop. Once turn and trace scores exist at volume, clustering and topic analysis can surface recurring failure modes instead of forcing humans to read every conversation manually.
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]] pushes the same loop into the *release process*: a regression suite re-scores a fixed set of queries on **faithfulness + completeness** against a baseline on every prompt or model change, because a model upgrade that raises average quality can silently regress a specific query category. Paired with A/B model routing (send N% of traffic, compare scores before cutover), evaluation becomes a deployment gate, not just a monitoring surface.
 
+### Operate the artifact
+
+[[AI Builder Club - How to Evaluate AI Agents - What Works in 2026]] adds a strong acceptance rule: evaluate the artifact through its real interface rather than only reading the agent's report. Run tests, exercise the UI, inspect generated files, and preserve the full trace so failures can become regression cases. A fresh-context evaluator reduces shared-reasoning bias but does not remove model-family blind spots, so deterministic and behavioral gates remain preferable where possible.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -53,3 +60,7 @@ Many conversational failures only emerge across turns: repeated questions, contr
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Agents in Production]]
 - [[AI Knowledge Base Overview]]
+- [[Loop Engineering]]
+- [[Graph Engineering]]
+- [[Agent Security and Governance]]
+- [[AI Builder Club - Build AI Agents]]

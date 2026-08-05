@@ -1,11 +1,15 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-07-03
+updated: 2026-08-05
 tags: [mcp, protocol, tool-use, agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-21-bytebytego-batch
+  - src-2026-08-05-aibuilderclub-mcp-101-build-mcp-servers
+  - src-2026-08-05-aibuilderclub-mcp-internals-client-server
+  - src-2026-08-05-aibuilderclub-mcp-security-attack-vectors
+  - src-2026-08-05-aibuilderclub-webmcp-complete-guide
 status: active
 ---
 
@@ -59,6 +63,10 @@ That example highlights an important point: a good MCP server is not merely an A
 - The protocol initially prioritised adoption over security; authentication and governance specs matured through multiple revisions.
 - Tool definitions consume context-window tokens — hundreds of tools degrade model reasoning.
 
+The AI Builder Club MCP cluster adds protocol-level detail around JSON-RPC over local STDIO and remote HTTP transports, then sharpens the trust model. Tool descriptions and returned content enter model context, so one malicious server can influence how the agent uses another server's capabilities.
+
+Practical controls include source review, exact-version pinning or vendoring, least-privilege credentials and paths, network and filesystem sandboxing, and re-audit after tool changes. Static review remains incomplete when dependencies, remote configuration, or later updates can alter behavior.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -69,3 +77,5 @@ That example highlights an important point: a good MCP server is not merely an A
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[Coding Agent Harness]]
 - [[AI Knowledge Base Overview]]
+- [[Agent Security and Governance]]
+- [[AI Builder Club - Build AI Agents]]

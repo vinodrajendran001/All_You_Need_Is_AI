@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-07-06
+updated: 2026-08-05
 tags:
   - concept
   - agents
@@ -14,6 +14,9 @@ source_ids:
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-07-06-alphasignal-self-improving-harnesses
+  - src-2026-08-05-aibuilderclub-agent-skills-best-practices-guide
+  - src-2026-08-05-aibuilderclub-google-skills-official-agent-skills-library
+  - src-2026-08-05-aibuilderclub-last30days-skill-real-time-research
 status: active
 ---
 
@@ -57,6 +60,12 @@ Durable orchestration makes those optimized skills operational. [[djfarrelly - T
 
 [[Alpha Signal - Why self-improving harnesses are the next frontier]] extends this from *skill files* to the whole *harness*. **Self-Harness** (Shanghai AI Lab) runs the same trainable-external-state loop at the level of the agent's operating rules — mine execution traces for recurring failures, propose harness/prompt edits, and accept a change only if regression tests confirm it doesn't break previously-passing tasks (33–60% gains on Terminal-Bench-2.0). **HarnessX** (Xiaomi) goes structural: it treats the harness as a pipeline of swappable "processor" modules and uses an RL optimizer (AEGIS) to search combinations while guarding against reward hacking and catastrophic forgetting (Qwen-3.5 9B: 33%→47% on GAIA). Both succeed precisely because they enforce **strict verification gates** rather than "loopmaxxing" — unguided inference in a loop — which is the same discipline the skill-optimization frameworks above rely on. This is the harness-level face of [[Coding Agent Harness]].
 
+### Progressive disclosure and portability
+
+The AI Builder Club skill cluster treats skills as context-efficient packages whose short metadata is always discoverable while full procedures load only when relevant. This progressive disclosure is the main advantage over permanently exposing every instruction or integration.
+
+The collection also cautions against collapsing skills and MCP into one winner. Skills encode procedures and context; MCP standardizes executable tool access. A portable skill can still depend on host-specific hooks, permissions, or tool names, so portability claims need runtime tests rather than file-format compatibility alone.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -81,3 +90,6 @@ Durable orchestration makes those optimized skills operational. [[djfarrelly - T
 - [[Coding Agent Harness]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Inngest]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
+- [[Agent Security and Governance]]

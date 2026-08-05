@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-06
+updated: 2026-08-05
 tags:
   - concept
   - coding-agents
@@ -11,6 +11,10 @@ tags:
 source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-07-06-alphasignal-self-improving-harnesses
+  - src-2026-08-05-aibuilderclub-harness-six-components
+  - src-2026-08-05-aibuilderclub-pi-agent-extensions-guide
+  - src-2026-08-05-aibuilderclub-harness-engineering-agent-production-guide
+  - src-2026-08-05-aibuilderclub-yc-qm-agent-harness-source-read
 status: active
 ---
 
@@ -52,6 +56,12 @@ The harness/engine split reframes several practical questions. A capable model i
 
 The harness is increasingly something the AI optimizes, not just something a developer writes. [[Alpha Signal - Why self-improving harnesses are the next frontier]] profiles two systems: **Self-Harness** (Shanghai AI Lab) mines execution traces for recurring failures, proposes rule/prompt edits, and keeps only changes that pass regression tests (33–60% gains on Terminal-Bench-2.0); **HarnessX** (Xiaomi) treats the harness as swappable "processor" modules and uses an RL optimizer (AEGIS) to search structural combinations while guarding against reward hacking and catastrophic forgetting (Qwen-3.5 9B: 33%→47% on GAIA, letting a small model punch above its weight). Both are **loop engineering** with strict verification gates — the durable point is that the leverage shifts from writing the harness to designing the instrumentation and gates that let it safely rewrite itself. This is [[Recursive Self-Improvement|workflow-level self-improvement]] (the procedure improves, not the base model) and it overlaps the skill-optimization loops on [[Agent Skill]].
 
+### Six production responsibilities
+
+[[AI Builder Club - The 6 Components of a Production Agent Harness]] decomposes the broad harness layer into context management, tools, orchestration, state and memory, evaluation and observability, and constraints and recovery. This makes the harness a failure-diagnosis map: repeated rediscovery points to memory, incomplete work to orchestration, silent wrongness to evaluation, and fragile retries to recovery.
+
+The collection's source reads and extension guides reinforce a security tradeoff. Hooks, plugins, extensions, and MCP servers can improve the harness without changing the model, but each also becomes executable supply-chain input that needs versioning, permission limits, and regression checks.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -76,3 +86,7 @@ The harness is increasingly something the AI optimizes, not just something a dev
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Sebastian Raschka]]
 - [[AI Knowledge Base Overview]]
+- [[Loop Engineering]]
+- [[Graph Engineering]]
+- [[Agent Security and Governance]]
+- [[AI Builder Club - Build AI Agents]]

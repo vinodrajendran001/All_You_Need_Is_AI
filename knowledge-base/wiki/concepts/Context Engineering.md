@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-07-06
+updated: 2026-08-05
 tags:
   - concept
   - context-engineering
@@ -13,6 +13,9 @@ source_ids:
   - src-2026-06-10-bytebytego-token-spend-routing
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-06-22-alphasignal-agent-skill-optimization
+  - src-2026-08-05-aibuilderclub-context-engineering-guide
+  - src-2026-08-05-aibuilderclub-rag-vs-long-context-vs-fine-tuning
+  - src-2026-08-05-aibuilderclub-prompt-context-harness-evolution
 status: active
 ---
 
@@ -95,6 +98,12 @@ Kilo's production numbers are useful here because they show the limit of "just c
 - **Tool result bloat**: tool calls return verbose JSON that fills the window with low-density information. Solution: structured summarization of tool outputs before reinsertion.
 - **Token exhaustion**: the context fills before the model can generate a response. Solution: explicit token budget partitioning with headroom reserved for generation.
 
+### AI Builder Club's four operating strategies
+
+[[AI Builder Club - Context Engineering - The Complete Guide (2026)]] consolidates the operational playbook into four strategies: **offload** detailed artifacts to external storage, **retrieve** them just in time, **isolate** specialist work in separate contexts, and **compress** history while preserving future constraints. It also names poisoning, distraction, confusion, and clash as context failure modes.
+
+The collection adds a cache-level implication: stable prefixes and append-only histories can preserve prefix reuse, while dynamic material placed early invalidates it. Context design therefore affects quality, latency, and cost together.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -122,3 +131,7 @@ Kilo's production numbers are useful here because they show the limit of "just c
 - [[Real-Time Voice AI]]
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Knowledge Base Overview]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
+- [[Graph Engineering]]
+- [[Agent Security and Governance]]

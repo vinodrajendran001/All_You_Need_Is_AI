@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-07-03
+updated: 2026-08-05
 tags:
   - concept
   - agents
@@ -12,6 +12,10 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-08-05-aibuilderclub-ai-agents-101-part-3
+  - src-2026-08-05-aibuilderclub-agent-memory-systems-guide
+  - src-2026-08-05-aibuilderclub-ai-coding-agent-memory-agentmemory
+  - src-2026-08-05-aibuilderclub-codebase-memory-mcp-guide
 status: active
 ---
 
@@ -77,6 +81,16 @@ The important invariant is: **memory content should always be auditable plain da
 
 Both are Python objects the developer can inspect at any time, which is what makes debugging possible.
 
+### Episodic, semantic, and procedural memory
+
+The AI Builder Club collection adds a functional taxonomy:
+
+- **episodic memory** records events and prior runs;
+- **semantic memory** stores durable facts and relationships;
+- **procedural memory** stores reusable instructions, skills, and workflows.
+
+This taxonomy cuts across storage technologies. Files, databases, vector indexes, and codebase maps are implementation choices; the harder questions are what gets written, how stale or conflicting items are handled, and what is promoted into active context. Automatic accumulation without provenance, expiry, or conflict policy creates memory poisoning rather than learning.
+
 ### A contrasting frame: memory as structure, not storage
 
 The sources above treat memory as **explicit stored data** loaded into context â€” auditable, plain-text, application-controlled. [[Siddhant Rai - Nested Learning]] introduces a deliberately different and more radical view that is worth preserving alongside it: memory as **learnable structure inside the model's own computation**, updated during inference rather than retrieved into the prompt. See [[Nested Learning]].
@@ -106,3 +120,6 @@ The sources above treat memory as **explicit stored data** loaded into context â
 - [[Siddhant Rai - Nested Learning]]
 - [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[AI Knowledge Base Overview]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Context Engineering]]
+- [[Agent Security and Governance]]

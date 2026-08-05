@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-07-06
+updated: 2026-08-05
 tags: [agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -13,6 +13,10 @@ source_ids:
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-06-22-alphasignal-agent-skill-optimization
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-08-05-aibuilderclub-ai-agents
+  - src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
+  - src-2026-08-05-aibuilderclub-types-of-agentic-loops
+  - src-2026-08-05-aibuilderclub-graph-engineering-guide-2026
 status: active
 ---
 
@@ -94,6 +98,12 @@ See [[Agent Planning]] for the planning/execution branch and [[Agent Memory]] fo
 
 The **[[Coding Agent Harness]]** is the most tangible product-facing instance of this loop: a harness like Claude Code, Codex, or Qwen-Code wraps an LLM with exactly the read/edit/run/verify tools, the tool request/execute separation, and the approval gates described above. [[Sebastian Raschka - Using Local Coding Agents]] shows the loop running on a locally-served open-weight model, and makes the operational point that the harness — not just the model — governs how much context is re-fed each iteration and therefore the token cost of the loop.
 
+## Loop engineering and loop types
+
+[[AI Builder Club - Build AI Agents]] extends this page with [[Loop Engineering]]: the loop is not complete until its objective, trigger, durable artifacts, verifier, budget, stop condition, and escalation path are explicit. The collection distinguishes turn, goal, time, and proactive loops by what triggers another iteration. It also places [[Graph Engineering]] above the loop only when multiple specialists, routes, permissions, or failure domains are genuinely required.
+
+The durable correction is that repeated generation is not progress by itself. A loop earns autonomy through operational evidence—tests, behavioral checks, metrics, or calibrated review—not through the producing model's confidence.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -119,3 +129,7 @@ The **[[Coding Agent Harness]]** is the most tangible product-facing instance of
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
+- [[Loop Engineering]]
+- [[Graph Engineering]]
+- [[Agent Security and Governance]]
+- [[AI Builder Club - Build AI Agents]]

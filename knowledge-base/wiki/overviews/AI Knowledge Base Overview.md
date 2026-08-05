@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-08-03
+updated: 2026-08-05
 tags:
   - overview
   - ai
@@ -87,6 +87,11 @@ source_ids:
   - src-2026-07-21-bytebytego-roblox-world-models
   - src-2026-07-28-bytebytego-delivery-llm-search
   - src-2026-07-06-alphasignal-self-improving-harnesses
+  - src-2026-08-05-aibuilderclub-ai-agents
+  - src-2026-08-05-aibuilderclub-context-engineering-guide
+  - src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
+  - src-2026-08-05-aibuilderclub-graph-engineering-guide-2026
+  - src-2026-08-05-aibuilderclub-who-owns-your-ai-agents
 status: active
 ---
 
@@ -199,6 +204,12 @@ The August 3 batch broadens the systems branch from serving kernels to specializ
 - [[LLM-as-a-Judge]] captures the calibrated-LLM-evaluator pattern as a durable concept.
 - [[AI Agents in Production]] captures how Grab and Figma operationalize agents for data engineering and design↔code workflows, and how newer sources extend that frame to local/private and perceptual agents.
 
+## Agent engineering curriculum
+
+[[AI Builder Club - Build AI Agents]] integrates 63 lessons into the vault's largest agent-engineering collection. Its main contribution is a layered troubleshooting model—prompt, context, harness, loop, graph—plus the claim that verification and governance determine how much autonomy those layers can safely support.
+
+The ingest seeds [[Loop Engineering]], [[Graph Engineering]], and [[Agent Security and Governance]] while materially extending [[Agentic Loop]], [[Context Engineering]], [[Coding Agent Harness]], [[Agent Memory]], [[Agent Skill]], [[Model Context Protocol]], [[Multi-Turn Evaluation]], and [[AI Agents in Production]]. The individual source pages preserve uncertainty around emerging terminology, social-post interpretations, and time-sensitive product or benchmark claims.
+
 ## Gaps
 
 - Existing notes elsewhere in the workspace have not yet been ingested into this structure.
@@ -233,6 +244,11 @@ The August 3 batch broadens the systems branch from serving kernels to specializ
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[AI Agents in Production]]
 - [[Agent Skill]]
+- [[AI Builder Club]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
+- [[Graph Engineering]]
+- [[Agent Security and Governance]]
 - [[djfarrelly - The Agent Loop Architecture]]
 - [[Alpha Signal - How your agents can write and optimize their own skills]]
 - [[Inngest]]

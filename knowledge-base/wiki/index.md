@@ -154,6 +154,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[GPU Execution Model]] - From a CUDA kernel through PTX/SASS to warp scheduling, and why kernels are memory- or compute-bound.
 - [[Real-Time Voice AI]] - Low-latency conversational AI across the WebRTC transport layer and the interaction-model architecture layer.
 - [[Coding Agent Harness]] - The harness/engine split for running local open-weight coding agents; serving, permissions, and token economics.
+- [[Loop Engineering]] - Designing repeated agent work around objectives, verifiers, state, budgets, stop conditions, and escalation.
+- [[Graph Engineering]] - Coordinating specialized agent or deterministic nodes through explicit routing and shared state.
+- [[Agent Security and Governance]] - Runtime permissions, sandboxing, credentials, ownership, logs, revocation, and autonomy controls.
 - [[SIMD]] - CPU vectorization as a practical performance primitive.
 - [[Model Factory]] - Reproducible infrastructure for training experiments, data mixtures, evaluation, and release.
 - [[Tabular Foundation Models]] - Table-native few-/zero-shot prediction as a specialist tool for enterprise data.
@@ -192,8 +195,75 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Thinking Machines]] - Human-AI-collaboration research lab behind the interaction-model thesis.
 - [[Sebastian Raschka]] - Educator and *Build an LLM/Reasoning Model (From Scratch)* author; source of the local-coding-agent guide.
 - [[Onur Sirin]] - Silicon Tales author whose local-LLM guide grounds inference in memory capacity, bandwidth, and hardware topology.
+- [[AI Builder Club]] - Educational publisher behind the 63-lesson Build AI Agents curriculum.
 
 ## Sources
+
+### AI Builder Club - Build AI Agents (63 lessons)
+
+- [[AI Builder Club - AI Agents in 2026 - Build, Deploy, and Scale (Full Guide)]]
+- [[AI Builder Club - What Is an AI Agent - (AI Agents 101, Part 1)]]
+- [[AI Builder Club - Function Calling Explained - How LLMs Actually Use Tools]]
+- [[AI Builder Club - AI Agent Tools in Python (AI Agents 101, Part 2)]]
+- [[AI Builder Club - AI Agent Memory Across Sessions (Agents 101, Part 3)]]
+- [[AI Builder Club - Agent Memory Systems - The Complete Guide (2026)]]
+- [[AI Builder Club - Multi-Agent Orchestration Patterns (Agents 101, Part 4)]]
+- [[AI Builder Club - Deploy AI Agents to Production (AI Agents 101, Part 5)]]
+- [[AI Builder Club - Agentic Engineering - Karpathy's New Framework]]
+- [[AI Builder Club - Karpathy's agents.md - What It Is and Why It Matters]]
+- [[AI Builder Club - Karpathy's Software 3.0 - The Context Window Is Code]]
+- [[AI Builder Club - Karpathy's LLM Wiki - A Knowledge Base That Compounds]]
+- [[AI Builder Club - How to Build an AI Agent from Scratch in Python (2026)]]
+- [[AI Builder Club - Multi-Agent System Python Tutorial (2026)]]
+- [[AI Builder Club - Hermes Agent - Self-Hosted AI That Never Forgets You (2026)]]
+- [[AI Builder Club - Gemma 4 - Free Agentic AI on Your Laptop (Ollama Setup)]]
+- [[AI Builder Club - MCP 101 - Build Your First MCP Server (Step-by-Step)]]
+- [[AI Builder Club - MCP Internals - STDIO, SSE, and JSON-RPC Explained]]
+- [[AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
+- [[AI Builder Club - Anthropic's 300+ Claude Code Skills - Lessons Learned]]
+- [[AI Builder Club - WebMCP Tutorial - How Agents Use Websites as Tools]]
+- [[AI Builder Club - Context Engineering - The Complete Guide (2026)]]
+- [[AI Builder Club - RAG vs Long Context vs Fine-Tuning - When Each Wins]]
+- [[AI Builder Club - Fix AI Agent Memory Loss in 30 Seconds (agentmemory)]]
+- [[AI Builder Club - Prompt Engineering in 2026 - Techniques That Work]]
+- [[AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines [2026 Guide]]]
+- [[AI Builder Club - google - skills - Google's Official Agent Skills Library]]
+- [[AI Builder Club - last30days-skill - Real-Time Research for AI Agents]]
+- [[AI Builder Club - Codebase Memory MCP - Give Your Coding Agent a Map (2026)]]
+- [[AI Builder Club - Plan vs Default vs Auto Mode - Coding Agent Trust Levels]]
+- [[AI Builder Club - Agent Sandboxes - OS-Level Security for AI Agents (2026)]]
+- [[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]]
+- [[AI Builder Club - The 6 Components of a Production Agent Harness]]
+- [[AI Builder Club - Pi Agent Extensions - Change the Harness, Not Just the Prompt (2026)]]
+- [[AI Builder Club - Harness Engineering - What OpenAI and Anthropic Changed]]
+- [[AI Builder Club - YC QM Agent Harness - A Source-Code Read]]
+- [[AI Builder Club - Loop Engineering Guide (2026)]]
+- [[AI Builder Club - Loop Engineering - The Anthropic Playbook]]
+- [[AI Builder Club - Loop Engineering, Karpathy-Style - The Gen-Verify Loop]]
+- [[AI Builder Club - Karpathy's LOOPS.md - The Rules and What's Verified (2026)]]
+- [[AI Builder Club - The 4 Types of Agentic Loops (Turn, Goal, Time, Proactive)]]
+- [[AI Builder Club - Addy Osmani's Loop Engineering - The 5 Components]]
+- [[AI Builder Club - Self-Improving Agent Loops - The Evolve Run (2026)]]
+- [[AI Builder Club - Loop Engineering Case Study - 30 Days of Real Data (2026)]]
+- [[AI Builder Club - Graph Engineering Guide (2026)]]
+- [[AI Builder Club - Graph Engineering vs Loop Engineering]]
+- [[AI Builder Club - Graph vs Loop - Which Should Your Agent Use -]]
+- [[AI Builder Club - Is Graph Engineering Just LangGraph - LangGraph vs AutoGen vs Google ADK]]
+- [[AI Builder Club - The 5 Layers of AI Engineering]]
+- [[AI Builder Club - Graph Engineering with Claude Code - Anthropic's Agent Graph]]
+- [[AI Builder Club - Peter Steinberger's Loops or Graphs Tweet (2026)]]
+- [[AI Builder Club - Andrew Ng's Agentic Design Patterns, Mapped to Graphs]]
+- [[AI Builder Club - Graph Engineering and the Karpathy Loop - What's Real]]
+- [[AI Builder Club - How to Evaluate AI Agents - What Works in 2026]]
+- [[AI Builder Club - Someone Open-Sourced an Entire AI Company - What It Means]]
+- [[AI Builder Club - Claude Fable 5 - How to Use It and What's Different]]
+- [[AI Builder Club - How to Become an AI-Native Company (2026)]]
+- [[AI Builder Club - How to Review AI-Generated Pull Requests (2026)]]
+- [[AI Builder Club - AI Agent Runaway Cost - Why Your Bill Is Wrong (2026)]]
+- [[AI Builder Club - Agent Tool Permissions - Test That Your Deny Rules Hold (2026)]]
+- [[AI Builder Club - Who Owns Your AI Agents - A Registry, a Runbook and an Honest Score (2026)]]
+- [[AI Builder Club - How to Build an SEO Agent Loop (2026)]]
+- [[AI Builder Club - Social Media Agent Loops - A Cold-Start Playbook (2026)]]
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
@@ -275,6 +345,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[@waterloo_intern - From GPT-2 to Kimi K3]]
 - [[ByteByteGo - Inside Roblox's Bet on World Models]]
 - [[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]]
+
+## Syntheses
+
+- [[AI Builder Club - Build AI Agents]] - Cross-source synthesis of the 63-lesson curriculum: prompt, context, harness, loop, graph, evaluation, security, and governance.
 
 ## Queries
 

@@ -23,6 +23,12 @@ source_ids:
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-07-30-teaching-open-model-science
+  - src-2026-08-05-aibuilderclub-ai-agents-101-part-5
+  - src-2026-08-05-aibuilderclub-harness-six-components
+  - src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
+  - src-2026-08-05-aibuilderclub-ai-agent-runaway-cost
+  - src-2026-08-05-aibuilderclub-agent-tool-permissions-canary
+  - src-2026-08-05-aibuilderclub-who-owns-your-ai-agents
 status: active
 ---
 
@@ -172,6 +178,12 @@ The common pattern is not “let the model do everything.” It is **design an e
 
 The deployment gate is deliberately broader than a benchmark: held-out environment scores, verifier and trace review, and qualitative workflow testing must agree. Review checks whether citations and identifiers are usable, evidence-seeking is purposeful, ambiguity is handled, and uncertainty is acknowledged. This makes evidence provenance and inspectable trajectories first-class production requirements for high-stakes agents.
 
+## Governance is part of the runtime
+
+[[AI Builder Club - Build AI Agents]] adds an operational governance layer to this page. Production readiness includes not only a working graph and eval suite but also a named owner, an inventory of actual credential and tool reach, a kill switch, tested revocation, append-only intent/outcome logs, autonomy levels, and prewritten demotion triggers.
+
+The collection's permission-canary pattern is especially useful: prove that an unguarded route can perform the damaging action, then require the guarded route to preserve the target *and* emit structured denial evidence. Silence is inconclusive. Cost reporting follows the same evidentiary standard—include evaluators, retries, sub-agents, and shared infrastructure, then report cost per successful outcome.
+
 ## Related pages
 
 - [[Context Engineering]]
@@ -208,3 +220,7 @@ The deployment gate is deliberately broader than a benchmark: held-out environme
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]]
+- [[Loop Engineering]]
+- [[Graph Engineering]]
+- [[Agent Security and Governance]]
+- [[AI Builder Club - Build AI Agents]]

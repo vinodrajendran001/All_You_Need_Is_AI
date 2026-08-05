@@ -226,7 +226,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[AI Builder Club - RAG vs Long Context vs Fine-Tuning - When Each Wins]]
 - [[AI Builder Club - Fix AI Agent Memory Loss in 30 Seconds (agentmemory)]]
 - [[AI Builder Club - Prompt Engineering in 2026 - Techniques That Work]]
-- [[AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines [2026 Guide]]]
+- [[AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines (2026 Guide)]]
 - [[AI Builder Club - google - skills - Google's Official Agent Skills Library]]
 - [[AI Builder Club - last30days-skill - Real-Time Research for AI Agents]]
 - [[AI Builder Club - Codebase Memory MCP - Give Your Coding Agent a Map (2026)]]

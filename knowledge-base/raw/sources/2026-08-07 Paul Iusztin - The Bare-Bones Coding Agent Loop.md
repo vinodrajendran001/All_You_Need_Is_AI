@@ -1,14 +1,21 @@
 ---
-title: "The Bare-Bones Coding Agent Loop"
-source: "https://www.decodingai.com/p/the-coding-agent-loop"
-author:
-  - "[[Paul Iusztin]]"
+type: raw-source
+source_id: src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
+title: The Bare-Bones Coding Agent Loop
+author: Paul Iusztin
+url: https://www.decodingai.com/p/the-coding-agent-loop
 published: 2026-07-28
-created: 2026-08-07
-description: "One agent loop, 9 tools, and a terminal you can steer. Pi's feature set on Pydantic AI: the TUI, a steering queue, 3 LLM providers, and a session log."
+captured: 2026-08-07
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - agents
+  - coding-agents
+  - harness
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ### One agent loop, 9 tools, and a terminal you can steer.
 
 In LangChain’s Terminal-Bench experiment, changing only the harness (with the same model) moved a coding agent from ~30th place into the top 5: the harness, not the model, is what makes a coding agent good.

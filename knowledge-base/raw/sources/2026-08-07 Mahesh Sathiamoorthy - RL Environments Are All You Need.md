@@ -1,14 +1,21 @@
 ---
-title: "RL Environments are all you need"
-source: "https://x.com/madiator/status/2084657077637746957"
-author:
-  - "[[@madiator]]"
+type: raw-source
+source_id: src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+title: RL Environments Are All You Need
+author: Mahesh Sathiamoorthy
+url: https://x.com/madiator/status/2084657077637746957
 published: 2026-07-26
-created: 2026-08-07
-description: "Recently I tweeted RL Environments are you need for RSI.Mahesh Sathiamoorthy@madiator·Jul 27Data curation (RL envs) is all you need for RSIQ..."
+captured: 2026-08-07
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - agents
+  - reinforcement-learning
+  - evaluation
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ![Image](https://pbs.twimg.com/media/HO4wSP2awAAzYc_?format=jpg&name=large)
 
 Recently I tweeted RL Environments are you need for RSI.

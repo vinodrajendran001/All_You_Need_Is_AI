@@ -1,14 +1,21 @@
 ---
-title: "The computer use verification skill that every agent needs"
-source: "https://x.com/zachlloydtweets/status/2084411777354277027"
-author:
-  - "[[@zachlloydtweets]]"
+type: raw-source
+source_id: src-2026-08-07-zach-lloyd-computer-use-verification
+title: The computer use verification skill that every agent needs
+author: Zach Lloyd
+url: https://x.com/zachlloydtweets/status/2084411777354277027
 published: 2026-08-04
-created: 2026-08-06
-description: "In this post I’ll describe how to add computer and browser use to your agents to reproduce issues and verify fixes and new features.Prior po..."
+captured: 2026-08-07
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - agents
+  - computer-use
+  - evaluation
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ![Image](https://pbs.twimg.com/media/HO1QQj-XsAANl4f?format=jpg&name=large)
 
 In this post I’ll describe how to add computer and browser use to your agents to reproduce issues and verify fixes and new features.

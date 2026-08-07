@@ -1,13 +1,20 @@
 ---
-title: "Abseil open-source foundational code"
-source: "https://abseil.io/fast/hints.html"
-author:
-published:
-created: 2026-08-07
-description: "Battle-tested, Mom-approved"
+type: raw-source
+source_id: src-2026-08-07-dean-ghemawat-performance-hints
+title: Performance Hints
+author: Jeff Dean and Sanjay Ghemawat
+url: https://abseil.io/fast/hints.html
+captured: 2026-08-07
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - performance
+  - systems
+  - c-plus-plus
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ## Performance Hints
 
 [Jeff Dean](https://research.google/people/jeff/), [Sanjay Ghemawat](https://research.google/people/sanjayghemawat/)

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-05
+updated: 2026-08-07
 tags:
   - concept
   - llm-evaluation
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
   - src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
   - src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
+  - src-2026-08-07-zach-lloyd-computer-use-verification
+  - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
 status: active
 ---
 
@@ -43,6 +45,8 @@ Many conversational failures only emerge across turns: repeated questions, contr
 
 [[AI Builder Club - How to Evaluate AI Agents - What Works in 2026]] adds a strong acceptance rule: evaluate the artifact through its real interface rather than only reading the agent's report. Run tests, exercise the UI, inspect generated files, and preserve the full trace so failures can become regression cases. A fresh-context evaluator reduces shared-reasoning bias but does not remove model-family blind spots, so deterministic and behavioral gates remain preferable where possible.
 
+[[Zach Lloyd - The computer use verification skill that every agent needs]] provides the UI-specific implementation: reproduce and verify modes operate the application and attach screenshots or video to the trace. [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] generalizes the same idea into reusable scored environments that can evaluate model, prompt, skill, or harness changes against held-out tasks.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -64,3 +68,5 @@ Many conversational failures only emerge across turns: repeated questions, contr
 - [[Graph Engineering]]
 - [[Agent Security and Governance]]
 - [[AI Builder Club - Build AI Agents]]
+- [[Zach Lloyd - The computer use verification skill that every agent needs]]
+- [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]

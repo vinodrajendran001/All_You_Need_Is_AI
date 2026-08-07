@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-05
+updated: 2026-08-07
 tags:
   - concept
   - agents
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-agent-skills-best-practices-guide
   - src-2026-08-05-aibuilderclub-google-skills-official-agent-skills-library
   - src-2026-08-05-aibuilderclub-last30days-skill-real-time-research
+  - src-2026-08-07-zach-lloyd-computer-use-verification
+  - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
 status: active
 ---
 
@@ -66,6 +68,10 @@ The AI Builder Club skill cluster treats skills as context-efficient packages wh
 
 The collection also cautions against collapsing skills and MCP into one winner. Skills encode procedures and context; MCP standardizes executable tool access. A portable skill can still depend on host-specific hooks, permissions, or tool names, so portability claims need runtime tests rather than file-format compatibility alone.
 
+### Skills need operational verifiers
+
+[[Zach Lloyd - The computer use verification skill that every agent needs]] is a concrete procedural skill with two observable modes—reproduce and verify—and explicit evidence artifacts. [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] supplies the scaling complement: reusable environments and held-out scores can evaluate or optimize skill instructions without trusting the skill's own report.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -93,3 +99,5 @@ The collection also cautions against collapsing skills and MCP into one winner. 
 - [[AI Builder Club - Build AI Agents]]
 - [[Loop Engineering]]
 - [[Agent Security and Governance]]
+- [[Zach Lloyd - The computer use verification skill that every agent needs]]
+- [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-07-06
+updated: 2026-08-07
 tags:
   - concept
   - recursive-self-improvement
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-07-06-alphasignal-self-improving-harnesses
+  - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
 status: active
 ---
 
@@ -48,6 +49,8 @@ The source also helps disambiguate RSI from [[Recursive Architectures]]. Recursi
 
 [[Alpha Signal - Why self-improving harnesses are the next frontier]] supplies concrete 2026 examples that sit firmly on the *workflow* end of this spectrum: **Self-Harness** and **HarnessX** let an agent rewrite its own [[Coding Agent Harness|harness]] — mining failure traces, proposing edits, and gating them behind regression tests (HarnessX even frames the search as RL via its AEGIS engine). Crucially, they improve the *operating environment*, not the base model, so their gains are bounded by the model's latent capability — the exact distinction between self-improving agents and stronger model-building RSI. They also inherit the risks named here (reward hacking, catastrophic forgetting), which they claim to guard against but do not prove settled.
 
+[[Mahesh Sathiamoorthy - RL Environments Are All You Need]] identifies scored environments as shared infrastructure for this progression. The same held-out tasks can optimize weights, prompts, or harness code. This supports workflow-level self-improvement, but does not remove the stronger RSI bottlenecks: choosing valuable objectives, preventing reward hacking, and generalizing beyond the curated environments.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -67,3 +70,5 @@ The source also helps disambiguate RSI from [[Recursive Architectures]]. Recursi
 - [[Coding Agent Harness]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Reinforcement Learning]]
+- [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
+- [[Continual Learning for Agents]]

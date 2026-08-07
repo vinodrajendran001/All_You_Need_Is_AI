@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-08-05
+updated: 2026-08-07
 tags:
   - concept
   - context-engineering
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-context-engineering-guide
   - src-2026-08-05-aibuilderclub-rag-vs-long-context-vs-fine-tuning
   - src-2026-08-05-aibuilderclub-prompt-context-harness-evolution
+  - src-2026-08-07-avi-chawla-claude-code-cost
 status: active
 ---
 
@@ -104,6 +105,10 @@ Kilo's production numbers are useful here because they show the limit of "just c
 
 The collection adds a cache-level implication: stable prefixes and append-only histories can preserve prefix reuse, while dynamic material placed early invalidates it. Context design therefore affects quality, latency, and cost together.
 
+### Cost attribution confirms the replay tax
+
+[[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]] reports a vendor-associated team analysis in which visible user prompts accounted for only 14% of input tokens. The larger categories were system and skill instructions, MCP schemas, tool results, and prior assistant context. The exact percentages need independent replication, but the mechanism is durable: caching discounts repeated prefixes without removing their volume, and every retained tool result raises the cost of later turns.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -133,5 +138,6 @@ The collection adds a cache-level implication: stable prefixes and append-only h
 - [[AI Knowledge Base Overview]]
 - [[AI Builder Club - Build AI Agents]]
 - [[Loop Engineering]]
+- [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]
 - [[Graph Engineering]]
 - [[Agent Security and Governance]]

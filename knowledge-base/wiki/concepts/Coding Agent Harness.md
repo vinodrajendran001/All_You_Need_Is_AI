@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-05
+updated: 2026-08-07
 tags:
   - concept
   - coding-agents
@@ -15,6 +15,9 @@ source_ids:
   - src-2026-08-05-aibuilderclub-pi-agent-extensions-guide
   - src-2026-08-05-aibuilderclub-harness-engineering-agent-production-guide
   - src-2026-08-05-aibuilderclub-yc-qm-agent-harness-source-read
+  - src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
+  - src-2026-08-07-zach-lloyd-computer-use-verification
+  - src-2026-08-07-avi-chawla-claude-code-cost
 status: active
 ---
 
@@ -62,6 +65,12 @@ The harness is increasingly something the AI optimizes, not just something a dev
 
 The collection's source reads and extension guides reinforce a security tradeoff. Hooks, plugins, extensions, and MCP servers can improve the harness without changing the model, but each also becomes executable supply-chain input that needs versioning, permission limits, and regression checks.
 
+### Steering boundaries, behavioral proof, and cost
+
+[[Paul Iusztin - The Bare-Bones Coding Agent Loop]] adds implementation detail for an interactive harness: steering, follow-up, and abort inputs should be queued separately and injected only at safe model-request or would-stop boundaries. Typed events decouple tools from the terminal, approval requests pause and resume the loop, and append-only JSONL preserves inspectable session state.
+
+[[Zach Lloyd - The computer use verification skill that every agent needs]] adds computer use as a harness capability shared by triage, implementation, and review skills. It turns acceptance criteria into behavioral evidence, while [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]] shows the economic cost of every harness choice: tool schemas, instruction files, results, memory, and prior turns are repeatedly reprocessed.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -90,3 +99,6 @@ The collection's source reads and extension guides reinforce a security tradeoff
 - [[Graph Engineering]]
 - [[Agent Security and Governance]]
 - [[AI Builder Club - Build AI Agents]]
+- [[Paul Iusztin - The Bare-Bones Coding Agent Loop]]
+- [[Zach Lloyd - The computer use verification skill that every agent needs]]
+- [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]

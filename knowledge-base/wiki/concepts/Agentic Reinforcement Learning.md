@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-08-03
+updated: 2026-08-07
 tags:
   - concept
   - reinforcement-learning
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-30-teaching-open-model-science
+  - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-08-07-rllm-realtime-rl-agents
 status: active
 ---
 
@@ -120,6 +122,14 @@ These failures explain why agentic RL needs diagnostics over trajectories, not o
 
 The project also shows a practical systems recipe: separate rollout and training workers, use GRPO with LoRA on an open MoE, keep fixed held-out protocols, and inspect representative traces alongside aggregate metrics. Run 120 was promoted only after both held-out scores and workflow testing agreed, reinforcing that agentic RL evaluation must include verifier behavior and application-level evidence quality.
 
+### Environments as agent data
+
+[[Mahesh Sathiamoorthy - RL Environments Are All You Need]] treats executable environments as the agent-era analogue of curated datasets. They can generate trajectories for weight updates, score automated prompt or harness search, and provide held-out evaluations even when no RL training occurs. This broad framing is useful as long as environment quality, reward validity, and sim-to-real gaps remain explicit.
+
+### From build-time to continual RL
+
+[[rLLM - Continual Learning via Real-Time RL for Agents]] studies the one-rollout-per-task setting expected from production streams. Its batch-normalized advantage compares each task against a cross-task reward baseline, while PPO clipping and truncated importance sampling address stale asynchronous rollouts. This seeds [[Continual Learning for Agents]] and shifts the deployment question from "can the policy learn?" to "how are checkpoints validated, promoted, monitored, and rolled back?"
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -146,3 +156,6 @@ The project also shows a practical systems recipe: separate rollout and training
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Recursive Self-Improvement]]
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]]
+- [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
+- [[rLLM - Continual Learning via Real-Time RL for Agents]]
+- [[Continual Learning for Agents]]

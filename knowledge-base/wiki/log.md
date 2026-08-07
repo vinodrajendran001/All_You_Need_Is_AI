@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-05
+updated: 2026-08-07
 tags:
   - log
 source_ids:
@@ -148,6 +148,12 @@ source_ids:
   - src-2026-08-05-aibuilderclub-who-owns-your-ai-agents
   - src-2026-08-05-aibuilderclub-ai-agent-seo-loop
   - src-2026-08-05-aibuilderclub-ai-agent-social-loop
+  - src-2026-08-07-zach-lloyd-computer-use-verification
+  - src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
+  - src-2026-08-07-avi-chawla-claude-code-cost
+  - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-08-07-rllm-realtime-rl-agents
+  - src-2026-08-07-dean-ghemawat-performance-hints
 status: active
 ---
 
@@ -731,3 +737,10 @@ Append-only operational history for the wiki.
 - Added [[AI Builder Club - Build AI Agents]] as the collection synthesis and [[AI Builder Club]] as the publisher entity.
 - Seeded [[Loop Engineering]], [[Graph Engineering]], and [[Agent Security and Governance]].
 - Updated [[Agentic Loop]], [[Context Engineering]], [[Coding Agent Harness]], [[Agent Memory]], [[Agent Skill]], [[Model Context Protocol]], [[Multi-Turn Evaluation]], [[AI Agents in Production]], [[AI Knowledge Base Overview]], and the wiki index.
+
+## [2026-08-07] ingest | Six new raw sources
+
+- Normalized six new raw captures covering computer-use verification, coding-agent harness design, coding-agent cost attribution, RL environments, real-time continual RL, and foundational software performance.
+- Created source summaries for [[Zach Lloyd - The computer use verification skill that every agent needs]], [[Paul Iusztin - The Bare-Bones Coding Agent Loop]], [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]], [[Mahesh Sathiamoorthy - RL Environments Are All You Need]], [[rLLM - Continual Learning via Real-Time RL for Agents]], and [[Jeff Dean and Sanjay Ghemawat - Performance Hints]].
+- Seeded [[Continual Learning for Agents]] and [[Software Performance Engineering]], plus [[rLLM]] and [[Abseil]] entity pages.
+- Updated the affected agent, evaluation, RL, performance, overview, and index pages while preserving uncertainty around vendor-reported metrics and production-readiness claims.

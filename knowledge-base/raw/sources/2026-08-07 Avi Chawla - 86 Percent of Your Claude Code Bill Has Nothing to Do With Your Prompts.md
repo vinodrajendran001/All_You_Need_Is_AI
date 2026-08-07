@@ -1,14 +1,21 @@
 ---
-title: "86% of Your Claude Code Bill Has Nothing to Do With Your Prompts"
-source: "https://blog.dailydoseofds.com/p/8904b4e2-4510-4221-8e5d-18f44a3a1d59"
-author:
-  - "[[Avi Chawla]]"
+type: raw-source
+source_id: src-2026-08-07-avi-chawla-claude-code-cost
+title: 86% of Your Claude Code Bill Has Nothing to Do With Your Prompts
+author: Avi Chawla
+url: https://blog.dailydoseofds.com/p/8904b4e2-4510-4221-8e5d-18f44a3a1d59
 published: 2026-08-07
-created: 2026-08-07
-description: "You run a Claude Code session and ask it to build a simple Python utility."
+captured: 2026-08-07
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - coding-agents
+  - cost
+  - observability
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 You run a Claude Code session and ask it to build a simple Python utility. The session burns through millions of tokens. The Anthropic console shows the total, but it doesn’t show you where those tokens went.
 
 You assume the cost is your prompts and the generated code. That assumption is wrong.

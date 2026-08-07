@@ -1,13 +1,20 @@
 ---
-title: "Continual Learning via Real-Time RL for Agents"
-source: "https://rllm-project.com/post.html?post=realtime_rl.md"
-author:
-published:
-created: 2026-08-07
-description:
+type: raw-source
+source_id: src-2026-08-07-rllm-realtime-rl-agents
+title: Continual Learning via Real-Time RL for Agents
+author: rLLM
+url: https://rllm-project.com/post.html?post=realtime_rl.md
+captured: 2026-08-07
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - agents
+  - reinforcement-learning
+  - continual-learning
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 Imagine an AI agent that keeps learning after deployment, from the real user interactions it handles every day. This is different from the usual **build-time** training pipeline, where agentic RL happens before the model is shipped: tasks are curated, environments are controlled, and the trainer can often generate multiple rollouts for the same prompt. In a real-time continual learning setting, each production interaction may happen only once, so the model has to learn from a stream of one-off trajectories.
 
 This matters for domains where experience accumulates over time. In automated research, agents could learn from failed hypotheses, experiments, and critiques; in software engineering, they could adapt to a team’s codebase, tests, review style, and recurring bugs. Continual learning lets deployed agents improve from real production experience, instead of staying fixed after launch.

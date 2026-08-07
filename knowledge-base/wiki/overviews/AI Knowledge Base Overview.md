@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-08-05
+updated: 2026-08-07
 tags:
   - overview
   - ai
@@ -92,6 +92,12 @@ source_ids:
   - src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
   - src-2026-08-05-aibuilderclub-graph-engineering-guide-2026
   - src-2026-08-05-aibuilderclub-who-owns-your-ai-agents
+  - src-2026-08-07-zach-lloyd-computer-use-verification
+  - src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
+  - src-2026-08-07-avi-chawla-claude-code-cost
+  - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-08-07-rllm-realtime-rl-agents
+  - src-2026-08-07-dean-ghemawat-performance-hints
 status: active
 ---
 
@@ -210,6 +216,12 @@ The August 3 batch broadens the systems branch from serving kernels to specializ
 
 The ingest seeds [[Loop Engineering]], [[Graph Engineering]], and [[Agent Security and Governance]] while materially extending [[Agentic Loop]], [[Context Engineering]], [[Coding Agent Harness]], [[Agent Memory]], [[Agent Skill]], [[Model Context Protocol]], [[Multi-Turn Evaluation]], and [[AI Agents in Production]]. The individual source pages preserve uncertainty around emerging terminology, social-post interpretations, and time-sensitive product or benchmark claims.
 
+## August 7 additions
+
+Six new sources extend two branches. The agent branch now includes UI-level computer-use verification, a concrete minimal coding harness, category-level coding-agent cost attribution, RL environments as shared optimization infrastructure, and single-rollout continual RL. These additions seed [[Continual Learning for Agents]] and deepen [[Coding Agent Harness]], [[Context Engineering]], [[Multi-Turn Evaluation]], [[Agentic Reinforcement Learning]], and [[AI Agents in Production]].
+
+[[Jeff Dean and Sanjay Ghemawat - Performance Hints]] opens a broader systems-performance branch through [[Software Performance Engineering]], placing [[SIMD]] alongside algorithms, representation, allocation behavior, avoided work, code size, batching, and synchronization.
+
 ## Gaps
 
 - Existing notes elsewhere in the workspace have not yet been ingested into this structure.
@@ -249,6 +261,10 @@ The ingest seeds [[Loop Engineering]], [[Graph Engineering]], and [[Agent Securi
 - [[Loop Engineering]]
 - [[Graph Engineering]]
 - [[Agent Security and Governance]]
+- [[Continual Learning for Agents]]
+- [[Software Performance Engineering]]
+- [[rLLM]]
+- [[Abseil]]
 - [[djfarrelly - The Agent Loop Architecture]]
 - [[Alpha Signal - How your agents can write and optimize their own skills]]
 - [[Inngest]]

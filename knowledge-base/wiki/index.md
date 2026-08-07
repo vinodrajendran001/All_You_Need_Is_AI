@@ -104,6 +104,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Index and Log]] - Why the catalog and ledger are first-class control surfaces.
 - [[Reinforcement Learning]] - Hub page for sequential decision making and RL method families.
 - [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments.
+- [[Continual Learning for Agents]] - Controlled post-deployment learning from one-off, asynchronous agent trajectories.
 - [[Transformer Architecture]] - Decoder-only Transformer synthesis spanning attention, RoPE, and KV-cache inference.
 - [[Diffusion Models]] - Generative models that learn to reverse noising processes for images and other data.
 - [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
@@ -158,6 +159,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Graph Engineering]] - Coordinating specialized agent or deterministic nodes through explicit routing and shared state.
 - [[Agent Security and Governance]] - Runtime permissions, sandboxing, credentials, ownership, logs, revocation, and autonomy controls.
 - [[SIMD]] - CPU vectorization as a practical performance primitive.
+- [[Software Performance Engineering]] - Estimation, profiling, algorithms, memory layout, batching, code size, and concurrency as one optimization discipline.
 - [[Model Factory]] - Reproducible infrastructure for training experiments, data mixtures, evaluation, and release.
 - [[Tabular Foundation Models]] - Table-native few-/zero-shot prediction as a specialist tool for enterprise data.
 - [[Linear Attention and Recurrent Memory]] - Fixed-size recurrent state as a bounded-memory alternative to token-addressable attention.
@@ -196,6 +198,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Sebastian Raschka]] - Educator and *Build an LLM/Reasoning Model (From Scratch)* author; source of the local-coding-agent guide.
 - [[Onur Sirin]] - Silicon Tales author whose local-LLM guide grounds inference in memory capacity, bandwidth, and hardware topology.
 - [[AI Builder Club]] - Educational publisher behind the 63-lesson Build AI Agents curriculum.
+- [[rLLM]] - Open-source framework represented here by its single-rollout real-time RL experiment.
+- [[Abseil]] - Google's open-source C++ libraries and performance-engineering guidance.
 
 ## Sources
 
@@ -264,6 +268,15 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[AI Builder Club - Who Owns Your AI Agents - A Registry, a Runbook and an Honest Score (2026)]]
 - [[AI Builder Club - How to Build an SEO Agent Loop (2026)]]
 - [[AI Builder Club - Social Media Agent Loops - A Cold-Start Playbook (2026)]]
+
+### August 7, 2026 batch
+
+- [[Zach Lloyd - The computer use verification skill that every agent needs]] - Browser/computer-use verification shared across triage, implementation, and review agents.
+- [[Paul Iusztin - The Bare-Bones Coding Agent Loop]] - Minimal coding harness with nine tools, safe steering boundaries, tracing, and JSONL sessions.
+- [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]] - Token attribution across replayed context, tools, schemas, memory, and model choices.
+- [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] - Scored environments as common infrastructure for training and evaluating models, prompts, and harnesses.
+- [[rLLM - Continual Learning via Real-Time RL for Agents]] - Batch-normalized single-rollout RL and stale-policy correction on MigrationBench.
+- [[Jeff Dean and Sanjay Ghemawat - Performance Hints]] - Measurement-led single-binary performance engineering from algorithms to memory and synchronization.
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.

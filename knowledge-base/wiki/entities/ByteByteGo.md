@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-06-26
+updated: 2026-08-12
 tags: [newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -10,6 +10,8 @@ source_ids:
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-06-10-bytebytego-token-spend-routing
   - src-2026-06-24-bytebytego-llm-vs-slm
+  - src-2026-08-12-bytebytego-knowledge-distillation
+  - src-2026-08-12-bytebytego-semantic-feed-retrieval
 status: active
 ---
 
@@ -31,6 +33,8 @@ A fourth standalone source, [[ByteByteGo - Token Spend Out of Control - The Case
 
 A fifth standalone source, [[ByteByteGo - Large Language Models vs Small Language Models]], extends that economics branch into the model-design layer. It explains how deployment target, inference economics, and training budget push teams toward [[Small Language Models]], large models, or hybrid systems that use small models as routers, guardrails, and drafters around larger cores.
 
+Two August 12 sources expand both branches. [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] explains output-, feature-, and synthetic-data [[Knowledge Distillation]], while [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]] compares three large-scale [[Semantic Recommendation Systems]].
+
 ## Related pages
 
 - [[ByteByteGo - Connecting LLMs to the Real World]]
@@ -38,6 +42,10 @@ A fifth standalone source, [[ByteByteGo - Large Language Models vs Small Languag
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]
+- [[ByteByteGo - How Big Models Teach Small Models to Be Smart]]
+- [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]
+- [[Knowledge Distillation]]
+- [[Semantic Recommendation Systems]]
 - [[Small Language Models]]
 - [[ML Systems at Scale]]
 - [[AI Agents in Production]]

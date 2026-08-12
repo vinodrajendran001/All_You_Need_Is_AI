@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-07
+updated: 2026-08-12
 tags:
   - log
 source_ids:
@@ -154,6 +154,10 @@ source_ids:
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-07-rllm-realtime-rl-agents
   - src-2026-08-07-dean-ghemawat-performance-hints
+  - src-2026-08-12-bytebytego-knowledge-distillation
+  - src-2026-08-12-bytebytego-semantic-feed-retrieval
+  - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-08-12-alyona-vert-agent-frameworks-sdks
 status: active
 ---
 
@@ -744,3 +748,10 @@ Append-only operational history for the wiki.
 - Created source summaries for [[Zach Lloyd - The computer use verification skill that every agent needs]], [[Paul Iusztin - The Bare-Bones Coding Agent Loop]], [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]], [[Mahesh Sathiamoorthy - RL Environments Are All You Need]], [[rLLM - Continual Learning via Real-Time RL for Agents]], and [[Jeff Dean and Sanjay Ghemawat - Performance Hints]].
 - Seeded [[Continual Learning for Agents]] and [[Software Performance Engineering]], plus [[rLLM]] and [[Abseil]] entity pages.
 - Updated the affected agent, evaluation, RL, performance, overview, and index pages while preserving uncertainty around vendor-reported metrics and production-readiness claims.
+
+## [2026-08-12] ingest | Distillation, semantic retrieval, loop convergence, and agent frameworks
+
+- Normalized four canonical raw captures and removed one byte-identical duplicate of the loop-convergence article.
+- Created source summaries for [[ByteByteGo - How Big Models Teach Small Models to Be Smart]], [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]], [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]], and [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]].
+- Seeded [[Knowledge Distillation]], [[Semantic Recommendation Systems]], and [[Agent Frameworks]], plus [[Yoko Li]] and [[Alyona Vert]] entity pages.
+- Updated the affected training, efficiency, recommendation, loop, evaluation, harness, graph, production-agent, voice, publisher, overview, and index pages.

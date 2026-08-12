@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-07-03
+updated: 2026-08-12
 tags:
   - concept
   - machine-learning
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-06-05-systemdesign42-system-design-academy
   - src-2026-07-03-bytebytego-openai-voice
+  - src-2026-08-12-bytebytego-semantic-feed-retrieval
 status: active
 ---
 
@@ -111,6 +112,10 @@ The design is deliberately mundane where it can be (userspace Go, `SO_REUSEPORT`
 
 These examples show that “ML at scale” is really a systems-discipline question. The model is only one component inside a broader architecture of stores, indexes, filters, ranking stages, caches, feedback loops, and evaluation infrastructure. That same architecture vocabulary also underlies [[Search-Augmented Language Models]] and many forms of [[Retrieval-Augmented Generation]], even when the end product is not a chatbot.
 
+## Semantic feed retrieval
+
+[[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]] adds three recommendation architectures to the same serving map: LinkedIn's unified dual encoder, Meta's specialized ranking funnel, and YouTube's generative semantic-ID retriever. All shift candidate generation toward meaning, but make different choices about consolidation, objective control, index storage, and invalid outputs. See [[Semantic Recommendation Systems]].
+
 ## System Design Academy case studies
 
 [[systemdesign42 - System Design Academy]] adds the most comprehensive case study index currently in this vault — 60+ real company architectures that illustrate production ML system patterns in detail. Notable entries relevant to this page:
@@ -142,3 +147,5 @@ The case study index is most valuable as a **reference map** rather than a sourc
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
 - [[AI Knowledge Base Overview]]
+- [[Semantic Recommendation Systems]]
+- [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]

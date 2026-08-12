@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-06
+updated: 2026-08-12
 tags:
   - concept
   - reasoning
@@ -10,6 +10,7 @@ tags:
   - search
 source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-08-12-yoko-li-loop-convergence
 status: active
 ---
 
@@ -49,6 +50,10 @@ It is one of the two levers for improving reasoning (the other being post-traini
 
 - Test-time scaling and training are complementary: RL "enters the picture only when you want to use the verifier's feedback to permanently train the base model" so it reasons better *before* test-time scaling is applied. The same verifier can score candidates at inference (VB sampling) or supply the reward signal during RL — and test-time RL (TTRL) blurs the line further.
 
+### Stop when marginal value disappears
+
+[[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] adds the systems-level stopping problem. Returns can plateau or turn negative while token cost continues rising with the transcript. A controller therefore needs more than a fixed sample budget: it should observe progress, detect unreachable targets, meter evaluator cost, and stop when expected improvement no longer justifies another iteration.
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -72,3 +77,5 @@ It is one of the two levers for improving reasoning (the other being post-traini
 - [[LLM Training Pipeline]]
 - [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]
+- [[Loop Engineering]]
+- [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]

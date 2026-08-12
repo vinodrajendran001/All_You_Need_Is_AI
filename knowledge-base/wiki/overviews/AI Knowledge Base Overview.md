@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-08-07
+updated: 2026-08-12
 tags:
   - overview
   - ai
@@ -98,6 +98,10 @@ source_ids:
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-07-rllm-realtime-rl-agents
   - src-2026-08-07-dean-ghemawat-performance-hints
+  - src-2026-08-12-bytebytego-knowledge-distillation
+  - src-2026-08-12-bytebytego-semantic-feed-retrieval
+  - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-08-12-alyona-vert-agent-frameworks-sdks
 status: active
 ---
 
@@ -222,6 +226,12 @@ Six new sources extend two branches. The agent branch now includes UI-level comp
 
 [[Jeff Dean and Sanjay Ghemawat - Performance Hints]] opens a broader systems-performance branch through [[Software Performance Engineering]], placing [[SIMD]] alongside algorithms, representation, allocation behavior, avoided work, code size, batching, and synchronization.
 
+## August 12 additions
+
+Four sources connect training, retrieval, and agent operations. [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] seeds [[Knowledge Distillation]] and distinguishes student training from deployment compression. [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]] seeds [[Semantic Recommendation Systems]] through three contrasting feed-retrieval architectures.
+
+[[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] deepens [[Loop Engineering]] and [[Test-Time Scaling]] with editability, impossibility detection, diminishing returns, and progress-per-dollar stopping rules. [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] seeds [[Agent Frameworks]], mapping current runtimes by control flow, durability, modality, data plane, governance, and abstraction cost.
+
 ## Gaps
 
 - Existing notes elsewhere in the workspace have not yet been ingested into this structure.
@@ -265,6 +275,15 @@ Six new sources extend two branches. The agent branch now includes UI-level comp
 - [[Software Performance Engineering]]
 - [[rLLM]]
 - [[Abseil]]
+- [[Knowledge Distillation]]
+- [[Semantic Recommendation Systems]]
+- [[Agent Frameworks]]
+- [[Yoko Li]]
+- [[Alyona Vert]]
+- [[ByteByteGo - How Big Models Teach Small Models to Be Smart]]
+- [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]
+- [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
+- [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
 - [[djfarrelly - The Agent Loop Architecture]]
 - [[Alpha Signal - How your agents can write and optimize their own skills]]
 - [[Inngest]]

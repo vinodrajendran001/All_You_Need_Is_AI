@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-08-03
+updated: 2026-08-12
 tags:
   - index
 source_ids:
@@ -85,6 +85,10 @@ source_ids:
   - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
   - src-2026-07-21-bytebytego-roblox-world-models
   - src-2026-07-28-bytebytego-delivery-llm-search
+  - src-2026-08-12-bytebytego-knowledge-distillation
+  - src-2026-08-12-bytebytego-semantic-feed-retrieval
+  - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-08-12-alyona-vert-agent-frameworks-sdks
 status: active
 ---
 
@@ -163,6 +167,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Model Factory]] - Reproducible infrastructure for training experiments, data mixtures, evaluation, and release.
 - [[Tabular Foundation Models]] - Table-native few-/zero-shot prediction as a specialist tool for enterprise data.
 - [[Linear Attention and Recurrent Memory]] - Fixed-size recurrent state as a bounded-memory alternative to token-addressable attention.
+- [[Knowledge Distillation]] - Transferring teacher behavior or representations into a smaller student through outputs, features, or synthetic data.
+- [[Semantic Recommendation Systems]] - Meaning-based candidate retrieval across dual encoders, specialized funnels, and generative semantic IDs.
+- [[Agent Frameworks]] - Selecting agent runtimes by control flow, durability, language, modality, governance, and abstraction cost.
 
 ## Entities
 
@@ -200,6 +207,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[AI Builder Club]] - Educational publisher behind the 63-lesson Build AI Agents curriculum.
 - [[rLLM]] - Open-source framework represented here by its single-rollout real-time RL experiment.
 - [[Abseil]] - Google's open-source C++ libraries and performance-engineering guidance.
+- [[Yoko Li]] - AI Builder Club writer whose convergence framework connects editability, verification, stopping rules, and loop economics.
+- [[Alyona Vert]] - Turing Post writer whose sources map recursive self-improvement, emerging AI techniques, and agent frameworks.
 
 ## Sources
 
@@ -277,6 +286,13 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] - Scored environments as common infrastructure for training and evaluating models, prompts, and harnesses.
 - [[rLLM - Continual Learning via Real-Time RL for Agents]] - Batch-normalized single-rollout RL and stale-policy correction on MigrationBench.
 - [[Jeff Dean and Sanjay Ghemawat - Performance Hints]] - Measurement-led single-binary performance engineering from algorithms to memory and synchronization.
+
+### August 12, 2026 batch
+
+- [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] - Knowledge distillation through teacher outputs, internal features, and synthetic data.
+- [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]] - Semantic feed retrieval at LinkedIn, Meta, and YouTube.
+- [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] - Convergence conditions, stopping economics, and task editability for iterative agents.
+- [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] - Capability-oriented map of agent frameworks and SDKs.
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.

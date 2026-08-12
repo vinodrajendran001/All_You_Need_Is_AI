@@ -1,14 +1,20 @@
 ---
-title: "How Big Models Teach Small Models to Be Smart"
-source: "https://blog.bytebytego.com/p/how-big-models-teach-small-models?utm_source=post-email-title&publication_id=817132&post_id=209838175&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+type: raw-source
+source_id: src-2026-08-12-bytebytego-knowledge-distillation
+title: How Big Models Teach Small Models to Be Smart
+author: ByteByteGo
+url: https://blog.bytebytego.com/p/how-big-models-teach-small-models
 published: 2026-08-05
-created: 2026-08-07
-description: "In this article, we will walk through the idea from the ground up."
+captured: 2026-08-12
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - knowledge-distillation
+  - small-language-models
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ## \[Webinar\] Can you prove AI is working? (Sponsored)
 
 ![](https://substackcdn.com/image/fetch/$s_!6jwZ!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5f4b0dd6-9113-47e7-bed8-5a03a5a9764a_1600x900.png)

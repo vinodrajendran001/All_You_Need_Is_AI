@@ -1,14 +1,21 @@
 ---
-title: "13 Frameworks and SDKs for Building AI Agents"
-source: "https://www.turingpost.com/p/frameworks-sdks"
-author:
-  - "[[Alyona Vert.]]"
+type: raw-source
+source_id: src-2026-08-12-alyona-vert-agent-frameworks-sdks
+title: 13 Frameworks and SDKs for Building AI Agents
+author: Alyona Vert
+url: https://www.turingpost.com/p/frameworks-sdks
 published: 2026-08-09
-created: 2026-08-12
-description: "13 AI agent frameworks and SDKs for everything from simple tool use to complex multi-agent workflows, RAG, voice, and production deployment."
+captured: 2026-08-12
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - agents
+  - frameworks
+  - sdks
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ![](https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,quality=80,format=auto,width=720,onerror=redirect/uploads/asset/file/4d907461-9dfa-470c-be37-9c36fa6c7a70/740ed9ae-632d-4ae0-8118-9b1fe8e355f3.jpg)
 
 13 AI agent frameworks and SDKs for everything from simple tool use to complex multi-agent workflows, RAG, voice, and production deployment.

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-07
+updated: 2026-08-12
 tags:
   - concept
   - llm-evaluation
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
   - src-2026-08-07-zach-lloyd-computer-use-verification
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-08-12-yoko-li-loop-convergence
 status: active
 ---
 
@@ -47,6 +48,8 @@ Many conversational failures only emerge across turns: repeated questions, contr
 
 [[Zach Lloyd - The computer use verification skill that every agent needs]] provides the UI-specific implementation: reproduce and verify modes operate the application and attach screenshots or video to the trace. [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] generalizes the same idea into reusable scored environments that can evaluate model, prompt, skill, or harness changes against held-out tasks.
 
+[[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] adds evaluator failure as a trace-level outcome: a loop may diagnose that a target is unreachable while an external evaluator keeps sending it back. Evaluation must therefore distinguish task failure, verifier mismatch, impossibility, and diminishing returns rather than treating every non-pass as another retry.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -70,3 +73,4 @@ Many conversational failures only emerge across turns: repeated questions, contr
 - [[AI Builder Club - Build AI Agents]]
 - [[Zach Lloyd - The computer use verification skill that every agent needs]]
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
+- [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]

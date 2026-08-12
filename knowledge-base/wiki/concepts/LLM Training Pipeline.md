@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-03
+updated: 2026-08-12
 tags:
   - concept
   - llm
@@ -79,6 +79,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Alyona Vert - AI Concepts and Techniques in 2026]] signals that the *post-training* half of this map is fragmenting into a modular "beyond-RL" fine-tuning stack: generated adapters (Doc-to-LoRA, Text-to-LoRA), compressed/structured LoRA (LoRA-Squeeze, Kron-LoRA, Mixture of Adapters), gradient-free Evolution Strategies, and on-policy self-distillation (OPSD/SDFT/SDPO). The durable point is *modularity* — capabilities optimised separately and composed — not that RL is going away (see [[Multi-Teacher On-Policy Distillation]]).
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]] supplies the reasoning-focused view of this same pipeline and its central tension: **SFT reproduces the training distribution (and fails out-of-distribution) while RL discovers novel strategies** — with the open question of whether RL *creates* reasoning or *amplifies* latent pre-training capability. It also anchors the reward side in [[Reward Design for RL|RLVR]] (verifiable rewards, no neural reward model) and shows the 2026 frontier **merging distillation with RL** (KDRL, RL-aware KD that up-weights critical reasoning tokens; ~40% faster than sequential SFT→RL), a natural extension of the teacher-consolidation pattern above. See [[LLM Reasoning]].
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]] provides a reproducible open-model post-training recipe for specialized behavior: start with a 26B MoE with 3B active parameters, apply GRPO through LoRA adapters, and train against two verifiable environments rather than a generic chat preference signal. The 21-run program held the model, optimizer, topology, and held-out protocol fixed while varying one bounded hypothesis at a time; the selected run improved held-out Drug Tool from 70.8% to 81.2% and reached 0.863 on BioReason's composite metric. This is a practical example of the pipeline moving from generic capability to domain-specific, auditable tool use.
+- [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] separates three distillation surfaces inside the pipeline: teacher outputs, teacher features, and teacher-generated synthetic data. Distillation creates a new student model; later quantization or pruning is a separate deployment step. See [[Knowledge Distillation]].
 
 ## Open questions
 
@@ -108,6 +109,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]]
 - [[Direct Preference Optimization]]
+- [[Knowledge Distillation]]
+- [[ByteByteGo - How Big Models Teach Small Models to Be Smart]]
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
 - [[Multi-Teacher On-Policy Distillation]]
 - [[Reward Design for RL]]

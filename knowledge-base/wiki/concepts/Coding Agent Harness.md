@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-07
+updated: 2026-08-12
 tags:
   - concept
   - coding-agents
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
   - src-2026-08-07-zach-lloyd-computer-use-verification
   - src-2026-08-07-avi-chawla-claude-code-cost
+  - src-2026-08-12-alyona-vert-agent-frameworks-sdks
 status: active
 ---
 
@@ -71,6 +72,8 @@ The collection's source reads and extension guides reinforce a security tradeoff
 
 [[Zach Lloyd - The computer use verification skill that every agent needs]] adds computer use as a harness capability shared by triage, implementation, and review skills. It turns acceptance criteria into behavioral evidence, while [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]] shows the economic cost of every harness choice: tool schemas, instruction files, results, memory, and prior turns are repeatedly reprocessed.
 
+[[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] maps this design space to concrete runtimes. The durable selection rule is to choose by control flow, durability, language, data plane, modality, governance, and abstraction cost—not by feature count alone. See [[Agent Frameworks]].
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -102,3 +105,5 @@ The collection's source reads and extension guides reinforce a security tradeoff
 - [[Paul Iusztin - The Bare-Bones Coding Agent Loop]]
 - [[Zach Lloyd - The computer use verification skill that every agent needs]]
 - [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]
+- [[Agent Frameworks]]
+- [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-12
 tags:
   - concept
   - agents
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-graph-engineering-peter-steinberger
   - src-2026-08-05-aibuilderclub-andrew-ng-loop-to-graph-engineering
   - src-2026-08-05-aibuilderclub-graph-engineering-karpathy-loop
+  - src-2026-08-12-alyona-vert-agent-frameworks-sdks
 status: active
 ---
 
@@ -47,6 +48,8 @@ Use the smallest topology that matches the task. Fix prompt, context, tool, or h
 
 The architecture overlaps state machines, DAG schedulers, workflow engines, actor systems, LangGraph, AutoGen, and Google ADK. "Graph engineering" is best treated as a design lens for agent orchestration rather than a new foundational computer-science primitive.
 
+[[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] shows how this lens appears in current runtimes: LangGraph, Google ADK, and Microsoft Agent Framework expose explicit graph/state primitives, while other frameworks favor role-based crews, event workflows, or minimal loops. Framework choice does not determine whether a graph is warranted.
+
 ## Open questions
 
 - What benchmarks reveal the point where specialization exceeds coordination overhead?
@@ -64,4 +67,5 @@ The architecture overlaps state machines, DAG schedulers, workflow engines, acto
 - [[Multi-Turn Evaluation]]
 - [[AI Agents in Production]]
 - [[AI Builder Club - Build AI Agents]]
-
+- [[Agent Frameworks]]
+- [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]

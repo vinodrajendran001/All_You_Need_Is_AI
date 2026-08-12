@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-08-07
+updated: 2026-08-12
 tags:
   - concept
   - ai-agents
@@ -32,6 +32,8 @@ source_ids:
   - src-2026-08-07-zach-lloyd-computer-use-verification
   - src-2026-08-07-avi-chawla-claude-code-cost
   - src-2026-08-07-rllm-realtime-rl-agents
+  - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-08-12-alyona-vert-agent-frameworks-sdks
 status: active
 ---
 
@@ -191,6 +193,8 @@ The collection's permission-canary pattern is especially useful: prove that an u
 
 The August 7 sources add three production controls. Computer-use verifiers can reproduce and verify user-visible behavior with video evidence, but do not replace architectural and security review. Token attribution must include replayed tool results, schemas, memory, and prior context, not only user prompts. Continually trained agents need a promotion boundary: production trajectories may feed training, but updated checkpoints should pass held-out regressions and staged rollout before serving users.
 
+The August 12 sources add two further controls: convergence must include impossibility and diminishing-return exits, and framework adoption must be evaluated as a runtime/governance decision rather than a shortcut around context, evaluation, or security design.
+
 ## Related pages
 
 - [[Context Engineering]]
@@ -234,3 +238,5 @@ The August 7 sources add three production controls. Computer-use verifiers can r
 - [[Zach Lloyd - The computer use verification skill that every agent needs]]
 - [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]
 - [[Continual Learning for Agents]]
+- [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
+- [[Agent Frameworks]]

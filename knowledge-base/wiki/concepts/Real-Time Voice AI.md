@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-12
 tags:
   - concept
   - voice-ai
@@ -44,6 +44,8 @@ The difference between "a conversation" and "a walkie-talkie" is measured in mil
 
 Both sources illustrate the same principle from different layers: **adding a capability through external scaffolding creates a ceiling, with the scaffolding becoming the bottleneck.** OpenAI accepts a turn-based core and invests everything in the transport around it; Thinking Machines bets the durable win is dissolving the harness into the model. The transport problem does not disappear in the interaction-model world — continuous audio/video still needs the low-latency, reliable-connection substrate OpenAI's infrastructure provides, and long sessions strain [[Context Engineering|context management]] and [[KV Cache|attention-state memory]].
 
+[[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] adds LiveKit Agents as a concrete framework option for this branch: programmable real-time participants, WebRTC, turn detection, telephony, tool use, and either composed STT→LLM→TTS or direct real-time models. This is an ecosystem example rather than a comparative performance result.
+
 ## Open questions
 
 - Do interaction models make the harness obsolete, or will the two layers co-evolve (in-model interactivity riding on relay-style transport)?
@@ -61,3 +63,5 @@ Both sources illustrate the same principle from different layers: **adding a cap
 - [[OpenAI]]
 - [[Thinking Machines]]
 - [[AI Knowledge Base Overview]]
+- [[Agent Frameworks]]
+- [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]

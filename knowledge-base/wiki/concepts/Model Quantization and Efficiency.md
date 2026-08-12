@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-07-06
+updated: 2026-08-12
 tags:
   - concept
   - llm
@@ -78,6 +78,8 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
   - **training** uses data quality, distillation, and overtraining to improve capability per parameter;
   - **deployment** applies quantization, cache management, and hardware-specific execution.
 
+[[ByteByteGo - How Big Models Teach Small Models to Be Smart]] clarifies that distillation is not itself compression: it trains a separate student, whereas quantization and pruning alter an existing model's representation. The techniques compose naturally—distill task capability first, then compress the resulting student for its target hardware.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -103,6 +105,8 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Small Language Models]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]
+- [[Knowledge Distillation]]
+- [[ByteByteGo - How Big Models Teach Small Models to Be Smart]]
 - [[Mixture of Experts]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-12
 tags:
   - concept
   - agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-loop-engineering-addy-osmani
   - src-2026-08-05-aibuilderclub-self-improving-agent-loops
   - src-2026-08-05-aibuilderclub-loop-engineering-case-study
+  - src-2026-08-12-yoko-li-loop-convergence
 status: active
 ---
 
@@ -52,6 +53,12 @@ Open loops permit exploration under budgets and quality floors. Closed loops con
 
 "Loop engineering" is useful vocabulary, but much of the machinery predates the label: control loops, CI, workflow engines, retry policies, state machines, and optimization systems already encode objectives, feedback, state, and stop conditions. The durable contribution is the emphasis on verification as the autonomy bottleneck, not a claim that repeated workflows were invented in 2026.
 
+## Convergence and stopping economics
+
+[[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] sharpens the loop contract into four convergence conditions: a target state, observable current state, precise local actions, and an external stopping rule. Editability and verifiability are properties of the task representation, so reframing an opaque output as structured code, SVG paths, or a scene graph can move a task into a regime where repair is possible.
+
+Completion is also economic. Loops need impossibility detection, diminishing-return limits, cost per iteration, and progress per dollar. Otherwise a verifier can repeatedly reject a correct ceiling diagnosis while the growing transcript makes every unproductive iteration more expensive.
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -68,4 +75,5 @@ Open loops permit exploration under budgets and quality floors. Closed loops con
 - [[Agent Skill]]
 - [[Agent Security and Governance]]
 - [[AI Builder Club - Build AI Agents]]
-
+- [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
+- [[Test-Time Scaling]]

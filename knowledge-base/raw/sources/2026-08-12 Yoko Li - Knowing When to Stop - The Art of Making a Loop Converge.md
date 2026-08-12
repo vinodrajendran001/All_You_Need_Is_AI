@@ -1,14 +1,21 @@
 ---
-title: "Knowing When to Stop: The Art of Making a Loop Converge"
-source: "https://a16z.com/knowing-when-to-stop-the-art-of-making-a-loop-converge/"
-author:
-  - "[[Yoko Li]]"
+type: raw-source
+source_id: src-2026-08-12-yoko-li-loop-convergence
+title: Knowing When to Stop - The Art of Making a Loop Converge
+author: Yoko Li
+url: https://a16z.com/knowing-when-to-stop-the-art-of-making-a-loop-converge/
 published: 2026-08-06
-created: 2026-08-11
-description: "The systems that matter will not be the ones that can keep going. They all can."
+captured: 2026-08-12
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - agents
+  - loop-engineering
+  - evaluation
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 How can an AI model know when its work is done?
 
 Well, how does a *human* know when our work is done.

@@ -1,14 +1,20 @@
 ---
-title: "How to Fight Clickbait: Meta, LinkedIn & YouTube Case Studies"
-source: "https://blog.bytebytego.com/p/how-to-fight-clickbait-meta-linkedin"
-author:
-  - "[[ByteByteGo]]"
+type: raw-source
+source_id: src-2026-08-12-bytebytego-semantic-feed-retrieval
+title: How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies
+author: ByteByteGo
+url: https://blog.bytebytego.com/p/how-to-fight-clickbait-meta-linkedin
 published: 2026-08-10
-created: 2026-08-11
-description: "What does it take for a social media platform to stop rewarding clickbait content?"
+captured: 2026-08-12
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - recommendation-systems
+  - semantic-retrieval
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ## Agents Can Now Sign Up for Your App (Sponsored)
 
 ![](https://substackcdn.com/image/fetch/$s_!3-kg!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2418a958-8d25-45fe-9a95-6f0be33c5df7_1200x494.png)

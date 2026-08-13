@@ -87,3 +87,6 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# Keep newly generated knowledge-base queries local.
+knowledge-base/wiki/queries/

@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-08-12
+updated: 2026-08-13
 tags:
   - index
 source_ids:
@@ -85,6 +85,75 @@ source_ids:
   - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
   - src-2026-07-21-bytebytego-roblox-world-models
   - src-2026-07-28-bytebytego-delivery-llm-search
+  - src-2026-08-05-aibuilderclub-ai-agents
+  - src-2026-08-05-aibuilderclub-ai-agents-101-part-1
+  - src-2026-08-05-aibuilderclub-function-calling-how-llms-use-tools
+  - src-2026-08-05-aibuilderclub-ai-agents-101-part-2
+  - src-2026-08-05-aibuilderclub-ai-agents-101-part-3
+  - src-2026-08-05-aibuilderclub-agent-memory-systems-guide
+  - src-2026-08-05-aibuilderclub-ai-agents-101-part-4
+  - src-2026-08-05-aibuilderclub-ai-agents-101-part-5
+  - src-2026-08-05-aibuilderclub-karpathy-agentic-engineering
+  - src-2026-08-05-aibuilderclub-karpathy-agents-md-framework
+  - src-2026-08-05-aibuilderclub-karpathy-software-3-0
+  - src-2026-08-05-aibuilderclub-karpathy-llm-wiki
+  - src-2026-08-05-aibuilderclub-how-to-build-ai-agent-from-scratch
+  - src-2026-08-05-aibuilderclub-multi-agent-system-python-tutorial
+  - src-2026-08-05-aibuilderclub-hermes-nous-research-self-improving-agent
+  - src-2026-08-05-aibuilderclub-gemma4-local-agents
+  - src-2026-08-05-aibuilderclub-mcp-101-build-mcp-servers
+  - src-2026-08-05-aibuilderclub-mcp-internals-client-server
+  - src-2026-08-05-aibuilderclub-mcp-security-attack-vectors
+  - src-2026-08-05-aibuilderclub-agent-skills-best-practices-guide
+  - src-2026-08-05-aibuilderclub-webmcp-complete-guide
+  - src-2026-08-05-aibuilderclub-context-engineering-guide
+  - src-2026-08-05-aibuilderclub-rag-vs-long-context-vs-fine-tuning
+  - src-2026-08-05-aibuilderclub-ai-coding-agent-memory-agentmemory
+  - src-2026-08-05-aibuilderclub-prompt-engineering-guide-2026
+  - src-2026-08-05-aibuilderclub-markitdown-microsoft-convert-files-markdown-llm
+  - src-2026-08-05-aibuilderclub-google-skills-official-agent-skills-library
+  - src-2026-08-05-aibuilderclub-last30days-skill-real-time-research
+  - src-2026-08-05-aibuilderclub-codebase-memory-mcp-guide
+  - src-2026-08-05-aibuilderclub-agent-modes-plan-default-auto
+  - src-2026-08-05-aibuilderclub-agent-sandbox-os-level-security
+  - src-2026-08-05-aibuilderclub-prompt-context-harness-evolution
+  - src-2026-08-05-aibuilderclub-harness-six-components
+  - src-2026-08-05-aibuilderclub-pi-agent-extensions-guide
+  - src-2026-08-05-aibuilderclub-harness-engineering-agent-production-guide
+  - src-2026-08-05-aibuilderclub-yc-qm-agent-harness-source-read
+  - src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
+  - src-2026-08-05-aibuilderclub-loop-engineering-anthropic-playbook
+  - src-2026-08-05-aibuilderclub-loop-engineering-karpathy
+  - src-2026-08-05-aibuilderclub-loops-md-karpathy
+  - src-2026-08-05-aibuilderclub-types-of-agentic-loops
+  - src-2026-08-05-aibuilderclub-loop-engineering-addy-osmani
+  - src-2026-08-05-aibuilderclub-self-improving-agent-loops
+  - src-2026-08-05-aibuilderclub-loop-engineering-case-study
+  - src-2026-08-05-aibuilderclub-graph-engineering-guide-2026
+  - src-2026-08-05-aibuilderclub-graph-engineering-vs-loop-engineering
+  - src-2026-08-05-aibuilderclub-agent-graph-vs-loop-when-to-use
+  - src-2026-08-05-aibuilderclub-is-graph-engineering-just-langgraph
+  - src-2026-08-05-aibuilderclub-five-layers-ai-engineering
+  - src-2026-08-05-aibuilderclub-graph-engineering-with-claude-code
+  - src-2026-08-05-aibuilderclub-graph-engineering-peter-steinberger
+  - src-2026-08-05-aibuilderclub-andrew-ng-loop-to-graph-engineering
+  - src-2026-08-05-aibuilderclub-graph-engineering-karpathy-loop
+  - src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
+  - src-2026-08-05-aibuilderclub-open-source-ai-company-multi-agent
+  - src-2026-08-05-aibuilderclub-claude-fable-5-how-to-use-guide
+  - src-2026-08-05-aibuilderclub-how-to-become-an-ai-native-company
+  - src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
+  - src-2026-08-05-aibuilderclub-ai-agent-runaway-cost
+  - src-2026-08-05-aibuilderclub-agent-tool-permissions-canary
+  - src-2026-08-05-aibuilderclub-who-owns-your-ai-agents
+  - src-2026-08-05-aibuilderclub-ai-agent-seo-loop
+  - src-2026-08-05-aibuilderclub-ai-agent-social-loop
+  - src-2026-08-07-zach-lloyd-computer-use-verification
+  - src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
+  - src-2026-08-07-avi-chawla-claude-code-cost
+  - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-08-07-rllm-realtime-rl-agents
+  - src-2026-08-07-dean-ghemawat-performance-hints
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
   - src-2026-08-12-yoko-li-loop-convergence
@@ -411,6 +480,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-07-06 Lint Pass]] - Twenty-second comprehensive lint pass (177 pages) after the local-LLM-hardware and speculative-decoding/production-agent/self-improving-harness ingests; no structural defects; added 2 reciprocal cross-links.
 - [[2026-08-03 Lint Pass]] - Twenty-third comprehensive lint pass covering the scientific open-model ingest; fixed log source-ID drift and found no remaining structural defects.
 - [[2026-08-03 Lint Pass 2]] - Twenty-fourth comprehensive lint pass covering the 14-source systems, agents, architectures, and search batch; no structural defects.
+- [[2026-08-13 Lint Pass]] - Twenty-fifth comprehensive lint pass; synchronized 153 source IDs across index, overview, and log and found no remaining structural defects.
 
 ## Control files
 

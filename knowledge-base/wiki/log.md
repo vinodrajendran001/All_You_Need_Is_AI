@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-12
+updated: 2026-08-13
 tags:
   - log
 source_ids:
@@ -755,3 +755,10 @@ Append-only operational history for the wiki.
 - Created source summaries for [[ByteByteGo - How Big Models Teach Small Models to Be Smart]], [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]], [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]], and [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]].
 - Seeded [[Knowledge Distillation]], [[Semantic Recommendation Systems]], and [[Agent Frameworks]], plus [[Yoko Li]] and [[Alyona Vert]] entity pages.
 - Updated the affected training, efficiency, recommendation, loop, evaluation, harness, graph, production-agent, voice, publisher, overview, and index pages.
+
+## [2026-08-13] lint | Full wiki lint pass
+
+- Audited 287 wiki Markdown files: 153 source summaries, 67 concepts, 35 entities, 25 lint reports including this pass, 3 queries, 1 overview, 1 synthesis, 1 index, and 1 log.
+- Found no actionable broken wikilinks, orphan pages, frontmatter/schema defects, missing related-page sections, thin substantive pages, index gaps, or duplicate source-summary IDs.
+- Fixed control metadata drift from the August 5 and August 7 ingests by synchronizing index, overview, and log frontmatter at 153 unique source IDs.
+- Reviewed the recent integration for stale claims, unresolved contradictions, and weak cross-links; retained explicit caveats and recorded research gaps in [[2026-08-13 Lint Pass]].

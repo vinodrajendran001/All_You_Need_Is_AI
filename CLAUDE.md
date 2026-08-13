@@ -76,8 +76,9 @@ Type-specific expectations:
 1. Read `knowledge-base/wiki/index.md` first.
 2. Follow links into the most relevant wiki pages before consulting raw sources.
 3. Answer with citations to the source summary pages and raw captures when needed.
-4. If the answer is durable, file it under `knowledge-base/wiki/queries/` or `knowledge-base/wiki/syntheses/`.
-5. Update the index and append a log entry.
+4. If the answer is durable, newly generated query pages may be filed under `knowledge-base/wiki/queries/`, which is local-only and ignored by Git.
+5. Do not add local-only query pages, their titles, or their contents to tracked index, log, overview, concept, entity, or synthesis pages unless the user explicitly asks to publish them.
+6. Existing tracked query pages may remain indexed and maintained normally.
 
 ### Lint
 

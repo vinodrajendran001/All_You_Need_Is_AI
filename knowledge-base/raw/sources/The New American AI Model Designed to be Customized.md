@@ -1,0 +1,290 @@
+---
+title: "The New American AI Model Designed to be Customized"
+source: "https://blog.bytebytego.com/p/the-new-american-ai-model-designed?utm_source=post-email-title&publication_id=817132&post_id=211219768&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
+author:
+  - "[[ByteByteGo]]"
+published: 2026-08-18
+created: 2026-08-19
+description: "In this article, we will work through the various choices Thinking Machines made while building Inkling."
+tags:
+  - "clippings"
+---
+## Cut Your Token Usage by Up to 36% (Sponsored)
+
+![](https://substackcdn.com/image/fetch/$s_!JgZ9!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feff39c80-5839-42a4-a2f5-72bf84468c68_1598x840.png)
+
+AI coding agents can generate code quickly, but CI checks often happen after the agents finish their work. Sonar Vortex changes this pattern. Sonar Vortex operates inside the agent’s coding loop, giving agents architectural context before they write and verifying their output in real time as they produce it. Internal testing found 36% lower token consumption and 92% fewer defects.
+
+---
+
+Thinking Machines released a model called Inkling on July 15, 2026. A few interesting points made in its introduction are as follows:
+
+- Inkling has 66 layers, and each layer holds 256 experts, of which only six activate for any given token \[2\].
+- Most layers can access only a short window of recent text, while a few can access all of it \[1\].
+- Word positions are encoded using a method most labs moved away from years ago.
+
+Thinking Machines, founded by Mira Murati (the ex-CTO of OpenAI), describes its mission as building AI that extends human will and judgment. The company lists four directions of work, which are training strong models, building tools that let people customise models with their own knowledge, developing interfaces that widen the communication channel between people and machines, and publishing research on how models are made \[3\].
+
+Before Inkling, the company shipped Tinker, a service for fine-tuning open models \[4\]. Inkling is the company’s first model trained from scratch \[1\]. The weights sit on Hugging Face under an Apache 2.0 license \[2\], so anyone can download them and retrain the model on their own data.
+
+In this article, we will work through the various choices Thinking Machines made while building Inkling. Here is what we will cover:
+
+- Mixture of Experts, and the gap between 975 billion parameters and 41 billion.
+- The mix of local and global attention layers behind a context window of one million tokens.
+- Position encoding, and the older method Thinking Machines chose over the current standard.
+- How images and audio enter the model without a separately pretrained encoder in front of them.
+- Thinking effort, a setting between 0 and 1 that adjusts how much the model reasons before answering.
+
+*Disclaimer: This post is based on publicly shared details from various sources. References at the end. Please comment if you notice any inaccuracies.*
+
+The diagram below shows where each of these five things sits inside the model.
+
+![](https://substackcdn.com/image/fetch/$s_!Btgc!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87a3ec64-dd86-41e8-b95f-2efe63b53321_2834x2942.png)
+
+## Groundwork
+
+Let us first understand four key terms that are really important to make sense of the architecture:
+
+- **Token:** A token is a chunk of text. Models work with pieces smaller than sentences and usually a bit smaller than words. For example, the sentence “Inkling was released in July” might become six tokens, with common words getting one token each and unusual words getting split into two or three.
+- **Parameter:** A parameter is one number stored inside the model, learned during training. When you read that a model has 975 billion parameters, it is the count of individual numbers sitting in the file. Each one started as random noise and was adjusted millions of times until the model produced sensible text.
+- **Training:** It works by showing the model text, letting it predict the next token, comparing that prediction against the token that actually came next, and then adjusting every parameter slightly in whichever direction would have made the prediction better. The size and direction of each adjustment is called a gradient, and the procedure that computes all of them at once is called backpropagation. By repeating this across trillions of tokens, the parameters settle into values that produce useful predictions.
+- **Layer:** It is one processing stage in the journey of a token. Inkling has 66 of them stacked in order \[2\]. A token’s representation enters layer 1, gets transformed, passes to layer 2, and so on until layer 66, after which the model predicts the next token. Every layer has the same two parts:
+	- An attention step that pulls in information from other tokens in the sequence.
+		- A feed-forward step that transforms the result.
+
+## Sparsity
+
+Inkling separates the cost of storing a model from the cost of running it. This is the reason a model this large is affordable to use.
+
+In an ordinary transformer, the feed-forward step in each layer is a single network, and every token passes through all of it. If that network holds 5 billion parameters, then every token processed involves all 5 billion.
+
+Inkling replaces that single network with 256 smaller ones, called experts. For each token, a selection step picks six of the 256. Only those six run, and the remaining 250 sit idle for that token while handling other tokens instead \[2\]. This design pattern is called Mixture of Experts, and Thinking Machines states that their version largely follows the approach published by DeepSeek \[1\]\[8\].
+
+See the diagram below:
+
+![](https://substackcdn.com/image/fetch/$s_!LGyB!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa1d2fc17-29cf-4f2f-901c-54590d0c22cc_2834x2324.png)
+
+Let’s understand this via a simple example:
+
+- Suppose you build a layer with 10 experts holding 1 billion parameters each, and you run 2 of them per token.
+- The file on disk contains all 10 billion parameters, and every one of them has to be loaded into memory before you can run the model at all.
+- Processing a single token involves 2 billion parameters, so each token costs about a fifth of what it would in an ordinary layer of the same total size.
+
+Inkling does this at scale. The total across the whole model is 975 billion parameters, and the count involved in processing any single token is roughly 41 billion \[1\]. That is about 4 percent of the model running at a time.
+
+The hardware requirements make things clearer. A checkpoint is the saved file holding all the trained parameters. Inkling’s full-precision checkpoint needs at least 2 TB of combined GPU memory, which the model card gives as eight NVIDIA B300 cards or sixteen H200 cards \[2\].
+
+Thinking Machines also talks about a quantised checkpoint. This means the same parameters are stored with less numerical precision, in roughly the way that writing 3.14 instead of 3.14159265 uses less space at the cost of some accuracy. That version needs around 600 GB and fits on four B300 cards \[2\].
+
+---
+
+## What Makes an FDE Role Credible? (Sponsored)
+
+![](https://substackcdn.com/image/fetch/$s_!I4Fl!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffd8c0c4e-3545-4931-872c-7d1ef959acdd_1600x840.png)
+
+Strong candidates are skeptical of vague forward deployed engineer postings, and the title alone won’t earn their trust.
+
+The **[free State of FDE Jobs 2026 Report](https://go.bytebytego.com/Ontologize_081526FDE)** explains what candidates look for, how the market is evolving, and how employers can make these roles easier to understand.
+
+Hiring? You can also bring your openings to [forwarddeployedengineer.com](https://go.bytebytego.com/Ontologize_081526), the focused jobs board for forward-deployed engineers.
+
+---
+
+## Routing
+
+Picking six experts out of 256 sounds simple, but it is not. Here’s how the selection works:
+
+- A small component called the router produces a score for every expert.
+- Each expert has its own list of numbers attached to it, learned during training.
+- The router compares the incoming token’s representation against each of those lists and gets a raw number out, higher when the two match closely.
+- Those raw numbers can be any size, so they get passed through a sigmoid. A sigmoid is a mathematical function that takes any number and converts it into a value between 0 and 1. For example, feed it 8, and you get back about 0.9997. Feed it 0, and you get exactly 0.5. Feed it negative 4, and you get about 0.018. Very large numbers approach 1, very negative numbers approach 0, and everything else ends up somewhere in between. Inkling’s router uses a sigmoid to produce its expert scores \[1\].
+- After scoring, the six highest-scoring experts run, and their outputs are combined using those same scores as weights. An expert scoring 0.9 contributes more to the result than one scoring 0.4.
+
+This approach makes one specific type of failure more probable. To understand the failure, consider what happens across millions of training steps. Suppose, by luck, expert 47 gets picked slightly more often than average early on. It receives more tokens, so it receives more gradient updates, so it improves faster than its neighbours. Since it is better, the router scores it higher. Because it scores higher, it gets picked even more.
+
+If we run that loop long enough, we can end up with a 256-expert layer where perhaps 20 experts handle nearly everything and the other 236 stay underdeveloped. This is called routing collapse. In other words, while we paid to store 256 experts, we got the capability of just 20. There is a second cost too. Since experts are usually spread across different machines, a machine holding four popular experts can become a bottleneck while its neighbours idle \[9\].
+
+The traditional fix for this adds a penalty to the training objective that grows when expert usage is uneven. This means training the model on two things at once: predicting the next token correctly, and keeping expert usage balanced.
+
+The trouble is that these two goals produce gradients pointing in different directions. The prediction gradient might say “increase this parameter,” while the balance penalty says “decrease it.” One of them wins, and either way the model is being pulled away from what you actually wanted. If we set the penalty strength high, the text quality degrades. If we set it too low, the experts collapse anyway \[9\].
+
+Thinking Machines uses a method introduced by Wang and colleagues, which was also adopted by DeepSeek \[1\]\[8\]\[9\]. This method removes the conflict entirely by keeping a separate bias value for each expert, which is just a small number added to that expert’s score. The trick is where the bias gets applied.
+
+![](https://substackcdn.com/image/fetch/$s_!dEzn!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7f9dbcb8-842e-4e86-b5c5-b457f94b0447_3654x1536.png)
+
+Let us walk through a token arriving at a layer in this setup. Consider that the router produces these sigmoid scores for four of the experts.
+
+Expert 47 has been overloaded recently, so its bias has drifted down to −0.15. This drops its selection score below expert 88’s, and expert 88 takes the slot instead. The bias changed which expert got picked. When expert 88’s output is combined into the final result, it is weighted by 0.80, its original router score, with the bias left out. In other words, the bias affects selection only. It never touches the weighting, and it is updated by a simple counting rule that runs outside backpropagation entirely. The main goal is to nudge down busy experts while giving a chance to the quieter experts.
+
+![](https://substackcdn.com/image/fetch/$s_!M1sm!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdecf4d2f-7ba4-44c3-b40c-2feefed68ee2_2280x1116.png)
+
+The result is that expert usage stays balanced, and the training objective receives no competing gradient at all.
+
+One point to note here is that two additional experts run on every single token regardless of routing \[2\]. These are called shared experts, and they hold the general-purpose processing that nearly every token needs. Thinking Machines states that the scores of the six selected routed experts and the two shared experts are normalised together before being used as weights \[1\], which means all eight are scaled to a common range and contribute proportionally. In other words, eight experts run per token in total.
+
+## Attention
+
+Sparsity handles the cost of the feed-forward step. The attention step carries a separate cost that grows far faster, and Inkling manages it by having most layers examine very little.
+
+For every token, the model computes three sets of numbers:
+
+- A query, describing what kind of information this position needs.
+- A key, describing what kind of information this position offers.
+- A value, carrying the actual content this position passes along.
+
+Every token’s query is compared against every earlier token’s key. Strong matches produce high scores, and those scores determine how much of each earlier token’s value gets pulled into the current position. This is how the word “it” in a sentence ends up connected to the noun it refers to.
+
+Since every token compares itself against every earlier token, the number of comparisons grows with the square of the sequence length. For example:
+
+- 1,000 tokens produce roughly 1 million comparisons.
+- 10,000 tokens produce roughly 100 million.
+- 1,000,000 tokens produce roughly 1 trillion.
+
+Inkling supports a context window of one million tokens \[2\], and a trillion comparisons per layer across 66 layers is far beyond what any reasonable amount of hardware can deliver.
+
+This is where a sliding-window layer restricts each token to a fixed number of recent tokens rather than everything before it. If the window is 1,000, then token number 500,000 compares itself against tokens 499,000 through 500,000 and stops there. That is 1,000 comparisons instead of 500,000, and the total for the whole sequence grows in a straight line rather than as a square.
+
+This raises the obvious question that if every layer sees only a small window, how does information from page one of a long document ever reach page four hundred?
+
+Inkling alternates between sliding-window layers and full-attention layers at a ratio of 5:1 \[1\]. Integration notes published by the vLLM project put concrete numbers on the split, describing the 66 layers as 55 sliding-window layers and 11 full-attention layers \[7\].
+
+Information from far away travels through those eleven full layers. For example, picture a fact at token 200 that matters for a prediction at token 900,000. In layer 6, the first full-attention layer, the representation at position 900,000 can reach back and pick up that fact directly. From there, it rides forward within the local representations, is refreshed at layer 12, again at layer 18, and so on. The long-range path exists on roughly one layer in six, and the other five handle nearby context at a fraction of the price.
+
+Inkling also uses 8 key-value heads \[1\]. Attention normally runs several times in parallel with different query, key, and value sets, and each parallel copy is called a head. Sharing a smaller number of key and value sets across many query heads reduces the memory needed while generating text.
+
+See the diagram below that tries to show this setup in a simplistic manner:
+
+![](https://substackcdn.com/image/fetch/$s_!zXGJ!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e9cb247-2d0b-4f03-9b09-e3560ec015ea_3292x1938.png)
+
+There is one practical consequence of this approach. Long-context models often handle the general content of a large document well, but can still miss one specific detail buried in the middle.
+
+## Position
+
+Dealing with a million tokens brings up another question: how does the model represent where each token sits in the sequence?
+
+Thinking Machines picked an older technique over the current standard. This is due to the lengths the model never saw during training.
+
+The comparison between queries and keys involves no information about order. For example, both “the cat bit the man” and “the man bit the cat” contain the same five tokens, so without a position signal, the attention step produces the same comparisons for both. Something has to tell the model that “cat” came before “bit” in one case and after it in the other.
+
+Almost every recent open model uses Rotary Position Embedding, shortened to RoPE. Each token’s query and key are treated as points that get rotated by an angle proportional to that token’s position in the sequence. Token 1 gets a small rotation, token 500 gets a much larger one, and so on.
+
+The usefulness of this shows up when two tokens are compared. Since both were rotated by amounts tied to their own positions, the comparison between them depends on the difference between those two rotations, which tells how far apart they are.
+
+However, those rotation angles were only ever encountered at positions the model actually trained on. If training used sequences up to 32,000 tokens, then every angle the model learned to interpret came from that range. If we ask it about position 900,000, the angle involved falls outside anything it has experience with.
+
+A whole family of techniques exists specifically to stretch RoPE into ranges beyond its training data.
+
+Inkling uses a relative scheme in the style of Shaw and colleagues \[1\]\[10\]. Rather than encoding where each token sits, this approach learns a value for each distance between two tokens and adds that value directly to the comparison score. For example, tokens at positions 5 and 9 are 4 apart. Tokens at positions 500,005 and 500,009 are also 4 apart. A relative scheme treats both pairs identically, because 4 is 4 wherever it occurs. Distances beyond some cutoff, say anything more than 128 apart, all share the same learned value, so a pair 900,000 tokens apart uses a value the model has seen countless times during training. Nothing has to be extrapolated.
+
+The vLLM notes describe the implementation as a learned relative-position term added to the attention scores before they are converted into weights \[7\].
+
+Thinking Machines states that this performed better and extrapolated better to longer sequences than RoPE in their testing \[1\].
+
+![](https://substackcdn.com/image/fetch/$s_!SfIp!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c2d7ec9-2491-4cf9-86fe-a75b3ac8ac84_3024x1536.png)
+
+## Convolutions
+
+Inkling adds one small operation named convolution to handle a job that attention would otherwise have to learn from scratch.
+
+A convolution here means combining each position in the sequence with a few positions immediately before it. Inkling uses a window of four \[7\], so the numbers at position 100 get mixed with the numbers at positions 97, 98, and 99, using a small set of learned weights. Position 101 does the same with 98, 99, and 100. It is a cheap, fixed, strictly local operation.
+
+![](https://substackcdn.com/image/fetch/$s_!YHQe!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc05ab48f-6b5b-4d1e-abbd-3e3bf500507e_2624x1680.png)
+
+To understand better, consider the two tokens that make up “New York.” The second token means something quite different on its own than it does following the first. Attention can learn to make that connection, and it has to learn it, because attention starts as a general comparison mechanism with no built-in preference for nearby tokens over distant ones. A convolution supplies that local mixing directly through its structure, without any training required to discover that neighbours matter.
+
+Thinking Machines places these convolutions at two kinds of locations:
+
+- First, on the keys and values inside each attention layer
+- Second, on the outputs of the attention and feed-forward steps before those outputs rejoin the main path through the model \[1\].
+
+The effect is that immediate context arrives pre-mixed, and attention can spend its capacity on the connections that genuinely require learning.
+
+## Multimodality
+
+Everything so far concerns text moving through the model. Images and audio have to get in first, and Inkling accepts both without a separately trained encoder standing in front of it.
+
+Most multimodal models attach three trained components to a language model:
+
+- A vision encoder, trained on its own beforehand, converts an image into a list of numbers.
+- An audio encoder does the same for sound.
+- Projection layers then convert both into the format the language model works with.
+
+However, in the case of Inkling, Sound arrives as a mel spectrogram, which is a standard way of representing audio as a grid of numbers. Frequency bands run down one axis, short slices of time run across the other, and each cell holds a loudness value. A three-second clip becomes a grid of a few hundred columns.
+
+The dMel method then rounds each of those loudness values to one of a fixed set of levels, in the same way you might round 0.73 to 0.7 \[1\]\[11\]. That is the entire conversion. No separate audio model needs training beforehand, because rounding numbers requires no training.
+
+In the case of images, an image is cut into square patches measuring 40 by 40 pixels \[1\]. A 400 by 400 pixel image therefore becomes 100 patches. Each patch passes through a small four-stage network called an hMLP stem, which combines the pixels within that patch and processes each patch independently of every other one \[1\]\[12\]. The paper describing this reports that it adds under one percent to compute compared with the simplest possible alternative \[12\].
+
+Both then pass through a lightweight conversion layer and join the text tokens in a single sequence, processed by the same 66 layers we have been talking about \[1\]. Thinking Machines states that these multimodal components were trained from scratch on general-domain data \[1\], meaning they learned alongside the rest of the model rather than arriving pretrained.
+
+See the diagram below:
+
+![](https://substackcdn.com/image/fetch/$s_!EKSy!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F075f9d40-31ba-40ac-81b6-4295735cf4a7_2998x2026.png)
+
+One point of confusion can be that the launch announcement labels this as an encoder-free architecture \[1\], while the model card describes images as being encoded via a hierarchical patch encoder \[2\]. Both descriptions are accurate. Encoder-free here means there is no large, separately pretrained encoder network, rather than meaning there is no processing at all.
+
+Moreover, this design predates Inkling. Thinking Machines described the same arrangement two months earlier for their real-time interaction system, using dMel for audio, 40 by 40 patches through an hMLP for images, and a lightweight conversion layer, with every component trained together from scratch \[5\].
+
+## Effort
+
+How long the model reasons before answering is adjustable, and it was trained into the model rather than requested through wording. This impacts the model’s benchmark numbers
+
+Effort is a number between 0 and 1. The documented presets run from 0 for none, through 0.1 for minimal and 0.2 for low, then 0.7 for medium, 0.9 as the default, and 0.99 at the top \[6\]. The spacing between those values is uneven, which is a hint that the number represents a learned response rather than a token allowance.
+
+Mechanically, the setting arrives as text. Before the conversation begins, a system message stating the effort level is inserted ahead of everything else \[6\].
+
+Reasoning models produce a stretch of working out before their final answer. This working-out phase costs tokens like everything else. Thinking Machines trained Inkling’s response to the effort setting during reinforcement learning, a training stage where the model produces complete attempts at tasks and receives a score for each attempt, then adjusts toward whatever scored well.
+
+During that stage, Thinking Machines varied the effort message across attempts while also adjusting the cost charged per token generated:
+
+- An attempt labelled high effort could produce lengthy working-out without much penalty.
+- An attempt labelled low effort was charged heavily for every token, so short answers scored better.
+
+Across many attempts, the connection between the message and the profitable length was learned.
+
+![](https://substackcdn.com/image/fetch/$s_!HytB!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F36881c12-5c86-4d0f-9645-b92eec74296f_3470x2286.png)
+
+Here are some key points about limits:
+
+- Higher effort encourages more reasoning without guaranteeing a longer response or a better one on any single sample.
+- Setting effort to 0 pushes the model toward minimal reasoning without enforcing it as a hard rule.
+- Effort and the maximum token limit are separate settings that work independently, so a high effort setting may need a larger token limit to avoid being cut off.
+
+Sweeping the effort setting across its range produces a curve of score against tokens generated. On the coding benchmark Terminal Bench 2.1, Inkling reaches the same score as NVIDIA’s Nemotron 3 Ultra while producing roughly a third as many tokens \[1\].
+
+## Tradeoffs
+
+Each of the design decisions we have looked at has trade-offs. Let us look at some of them:
+
+- Sparse routing keeps the per-token cost low and requires the entire model in memory regardless. The hardware floor stays high even though each token is cheap.
+- Mostly-local attention makes a million-token window affordable and leaves most layers with a narrow view of the sequence.
+- Relative position encoding removes the extrapolation problem and means every serving framework had to write new code for it, since the surrounding tooling was built around RoPE \[7\].
+- Open weights covers the weights. The training data, the exact recipe, and the training code remain private, and the model card describes data provenance only in general terms \[2\]. The model can be modified, and reproducing or auditing it stays out of reach.
+- Safety behaviour is adjustable by anyone who retrains the model. The model card recommends layering external moderation tools around the model rather than relying on its own refusals, particularly for consumer-facing deployments \[2\].
+
+Thinking Machines states that other models available today, both open and closed, are stronger overall \[1\]. However, considering the availability for fine-tuning from day one, and the quantised checkpoint that brings the hardware requirements down, it is clear that Inkling has been built to be taken and adapted to the company’s use case.
+
+## Conclusion
+
+Let us look at the key ideas we’ve encountered while understanding Inkling’s design and architectural decisions:
+
+- Sparsity separates storage from compute. Total parameters tell you how much memory you need to hold the model. Active parameters tell you how much work each token requires. Inkling stores 975 billion and runs about 41 billion at a time.
+- Routing needs balancing, and the balancing mechanism matters. Applying a bias when selecting experts, while leaving it out when weighting their outputs, keeps usage even without adding a competing goal to training.
+- Long context works because most layers see little. Inkling runs 55 sliding-window layers and 11 full-attention layers, and long-range information travels through the eleven.
+- Position encoding is a decision about untrained lengths. Encoding the distance between tokens, rather than their absolute positions, means a pair 900,000 apart uses a value the model has seen many times.
+- Reasoning effort can be a trained setting. When it is, a benchmark score becomes one point on a curve rather than a fixed property of the model.
+
+**References**
+
+1. [Inkling: Our Open-Weights Model, Thinking Machines Lab](https://thinkingmachines.ai/news/introducing-inkling/)
+2. [Inkling Model Card, Thinking Machines Lab](https://thinkingmachines.ai/model-card/inkling/)
+3. [The Future Worth Building Is Human, Thinking Machines Lab](https://thinkingmachines.ai/blog/the-future-worth-building-is-human/)
+4. [Tinker, Thinking Machines Lab](https://thinkingmachines.ai/tinker/)
+5. [Interaction Models: A Scalable Approach to Human-AI Collaboration, Thinking Machines Lab](https://thinkingmachines.ai/blog/interaction-models/)
+6. [Thinking effort, Tinker Documentation](https://tinker-docs.thinkingmachines.ai/cookbook/inkling/thinking-effort/)
+7. [thinkingmachines/Inkling, vLLM Recipes](https://recipes.vllm.ai/thinkingmachines/Inkling)
+8. [DeepSeek-V3 Technical Report, DeepSeek-AI](https://arxiv.org/abs/2412.19437)
+9. [Auxiliary-Loss-Free Load Balancing Strategy for Mixture-of-Experts](https://arxiv.org/abs/2408.15664)
+10. [Self-Attention with Relative Position Representations](https://arxiv.org/abs/1803.02155)
+11. [dMel: Speech Tokenization made Simple](https://arxiv.org/abs/2407.15835)
+12. [Three things everyone should know about Vision Transformers](https://arxiv.org/abs/2203.09795)

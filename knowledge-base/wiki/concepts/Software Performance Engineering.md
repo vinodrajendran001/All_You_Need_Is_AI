@@ -9,7 +9,7 @@ tags:
   - optimization
 source_ids:
   - src-2026-08-07-dean-ghemawat-performance-hints
-  - src-2026-08-21-ben-joffe-fast-weekday
+  - src-2026-08-21-ben-joffe-fast-day-of-week
   - src-2026-07-22-mitchell-hashimoto-simd
 status: active
 ---

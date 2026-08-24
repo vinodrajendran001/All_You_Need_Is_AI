@@ -171,10 +171,10 @@ source_ids:
   - src-2026-08-20-radixark-miles-v0-1
   - src-2026-08-20-mark-russinovich-fools-gold
   - src-2026-08-20-jeremy-morrell-extensible-software
-  - src-2026-08-21-ben-joffe-fast-weekday
+  - src-2026-08-21-ben-joffe-fast-day-of-week
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
   - src-2026-08-24-edward-yang-parallelize-transformer
-  - src-2026-08-24-openai-gpt-5-6-builder-guide
+  - src-2026-08-24-openai-builders-guide-gpt-5-6
   - src-2026-08-13-himank-sehgal-amazon-ai-interview
   - src-2026-08-13-himank-sehgal-microsoft-ai-interview
   - src-2026-08-13-himank-sehgal-navi-ai-interview

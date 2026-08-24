@@ -10,7 +10,7 @@ tags:
   - infrastructure
 source_ids:
   - src-2026-07-03-bytebytego-openai-voice
-  - src-2026-08-24-openai-gpt-5-6-builder-guide
+  - src-2026-08-24-openai-builders-guide-gpt-5-6
 status: active
 ---
 

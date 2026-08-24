@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-08-24
 tags:
   - concept
   - interview-prep
@@ -14,6 +14,27 @@ source_ids:
   - src-2026-05-21-leetcode-templates
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
+  - src-2026-08-24-himank-sehgal-amazon-applied-scientist
+  - src-2026-08-24-himank-sehgal-google-research-scientist
+  - src-2026-08-24-himank-sehgal-meta-research-scientist
+  - src-2026-08-24-alireza-diri-general-ml
+  - src-2026-08-24-alireza-diri-deep-learning
+  - src-2026-08-24-alireza-diri-nlp
+  - src-2026-08-24-alireza-diri-statistics
+  - src-2026-08-24-alireza-diri-probability
+  - src-2026-08-24-alireza-diri-coding
+  - src-2026-08-24-alireza-diri-hyperparameters
+  - src-2026-08-24-alireza-diri-training-testing
+  - src-2026-08-24-alireza-diri-validation
+  - src-2026-08-24-alireza-diri-metrics
+  - src-2026-08-24-alireza-diri-ml-design
+  - src-2026-08-24-alireza-diri-mlops
+  - src-2026-08-24-alireza-diri-company-questions
+  - src-2026-08-24-alireza-diri-job-interviews
+  - src-2026-08-24-alireza-diri-explainable-ai
+  - src-2026-08-24-alireza-diri-ai-ethics
+  - src-2026-08-24-alireza-diri-ai-agents
+  - src-2026-08-24-alireza-diri-data-engineering
 status: active
 ---
 
@@ -53,6 +74,18 @@ From [[Alisa Liu - The AI Research Job Search]] (one candidate's 11 companies / 
 
 [[itsreallyvivek - some notes on getting into frontier ai labs]] adds a productive counter-frame: the interview *loop* rewards technical breadth, but the deeper ability frontier labs select for is **judgment and abstraction under uncertainty** — forming hypotheses and building useful abstractions when no complete map exists (see [[Automated AI Research]]). Both are true at once: study to pass the loop, but the durable edge is research judgment.
 
+## Company routing and breadth checklist
+
+The Himank Sehgal guides add unofficial company-specific routing:
+
+- Amazon Applied Scientist loops emphasize coding, ML breadth/depth, science application, and Leadership Principles.
+- Google Research Scientist loops connect coding and fundamentals to research discussion and product-scale ML design.
+- Meta Research Scientist loops combine coding, research ownership, ML design, domain depth, and cross-functional impact.
+
+These patterns vary by role and hiring cycle, so they are planning aids rather than guaranteed rubrics.
+
+[[Alireza Diri - AI-ML Interviews Collection]] adds an 18-module breadth checklist spanning fundamentals, deep learning, NLP, statistics, probability, coding, optimization, validation, metrics, design, MLOps, explainability, ethics, agents, and data engineering. Its concise answers are best used to find gaps; derivations, implementation, and primary sources are still needed for depth.
+
 ## Negotiation
 
 A distinct, hard skill that **cannot be solved by studying** (per [[Alisa Liu - The AI Research Job Search]]). Initial offers are designed to be negotiated; a few weeks of effort can equal years of work at the initial offer. Lean on friends to calibrate asks, pre-script what you will/won't share, and anticipate recruiter questions. Watch for "exploding" offers.
@@ -77,3 +110,7 @@ A distinct, hard skill that **cannot be solved by studying** (per [[Alisa Liu - 
 - [[Transformer Architecture]]
 - [[Alisa Liu]]
 - [[AI Knowledge Base Overview]]
+- [[Himank Sehgal - Amazon Applied Scientist Interview Guide]]
+- [[Himank Sehgal - Google Research Scientist Interview Guide]]
+- [[Himank Sehgal - Meta Research Scientist Interview Guide]]
+- [[Alireza Diri - AI-ML Interviews Collection]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-12
+updated: 2026-08-24
 tags:
   - concept
   - agents
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-self-improving-agent-loops
   - src-2026-08-05-aibuilderclub-loop-engineering-case-study
   - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-08-20-liquid-ai-production-loops
 status: active
 ---
 
@@ -59,6 +60,20 @@ Open loops permit exploration under budgets and quality floors. Closed loops con
 
 Completion is also economic. Loops need impossibility detection, diminishing-return limits, cost per iteration, and progress per dollar. Otherwise a verifier can repeatedly reject a correct ceiling diagnosis while the growing transcript makes every unproductive iteration more expensive.
 
+## Production-scale execution as specification discovery
+
+[[Liquid AI - Designing Loops for Production-Grade Work]] shows why an executable target is part of the specification. Coding agents building a tokenizer trainer cleared obvious functional tests but encountered encoding, memory, parallelism, tokenization, ordering, and duplicate-input failures only against real datasets and external reference implementations.
+
+The resulting pattern is:
+
+- specify interfaces and invariants without prescribing the implementation;
+- run against representative production-scale inputs;
+- keep the acceptance harness outside the agent's write boundary;
+- feed exact failures back into bounded iterations;
+- stop only on externally measured behavior.
+
+The case study does not prove universal autonomy, but it demonstrates that iteration can convert production failures into missing requirements that a one-shot prompt never contained.
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -77,3 +92,4 @@ Completion is also economic. Loops need impossibility detection, diminishing-ret
 - [[AI Builder Club - Build AI Agents]]
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
 - [[Test-Time Scaling]]
+- [[Liquid AI - Designing Loops for Production-Grade Work]]

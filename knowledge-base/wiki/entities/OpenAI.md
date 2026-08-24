@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-24
 entity_kind: organization
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
   - infrastructure
 source_ids:
   - src-2026-07-03-bytebytego-openai-voice
+  - src-2026-08-24-openai-gpt-5-6-builder-guide
 status: active
 ---
 
@@ -27,6 +28,7 @@ OpenAI enters the vault as the subject of [[ByteByteGo - How OpenAI Delivers Low
 
 - Also appears indirectly across the vault as a reference point for frontier models (GPT family), agent harnesses (Codex), and post-training recipes.
 - The voice architecture is deliberately optimised for 1:1 (user ↔ model) sessions rather than multiparty calls.
+- [[OpenAI - The Builder's Guide to GPT-5.6]] adds vendor guidance on selecting model variants and reasoning effort, programmatic tool calling, prompt caching, and orchestrator/worker allocation.
 
 ## Related pages
 
@@ -35,3 +37,5 @@ OpenAI enters the vault as the subject of [[ByteByteGo - How OpenAI Delivers Low
 - [[ML Systems at Scale]]
 - [[Coding Agent Harness]]
 - [[AI Knowledge Base Overview]]
+- [[OpenAI - The Builder's Guide to GPT-5.6]]
+- [[Model Routing]]

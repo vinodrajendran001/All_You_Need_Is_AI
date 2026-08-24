@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-24
 tags:
   - concept
   - performance
@@ -9,6 +9,7 @@ tags:
   - optimization
 source_ids:
   - src-2026-08-07-dean-ghemawat-performance-hints
+  - src-2026-08-21-ben-joffe-fast-weekday
   - src-2026-07-22-mitchell-hashimoto-simd
 status: active
 ---
@@ -38,6 +39,8 @@ AI systems inherit ordinary software bottlenecks around parsing, scheduling, mem
 
 [[SIMD]] fits near the end of this hierarchy. Vector instructions can provide large gains for regular data-parallel work, but only after measurement identifies a suitable hot path and the surrounding memory behavior can feed the execution units.
 
+[[Ben Joffe - A Faster Way to Calculate the Day of the Week]] adds a worked arithmetic case study. It derives multiply-add-shift replacements for division and modulus, checks the identities over the target date range, inspects generated assembly, and benchmarks architecture-specific variants. The durable method is not the weekday formula itself: optimization should move from algebraic derivation to proof, exhaustive correctness checks, machine-code inspection, and measurement. Such transformations belong only in demonstrated hot paths because readability and portability can cost more than the saved cycles.
+
 ## Design tensions
 
 Performance is multi-dimensional. Lower latency can increase total CPU use; compact representations can raise decode cost; caching can increase memory; parallelism can reduce wall time while worsening contention. The right objective must include the workload, deployment hardware, service-level goal, and maintenance budget.
@@ -51,9 +54,9 @@ Performance is multi-dimensional. Lower latency can increase total CPU use; comp
 ## Related pages
 
 - [[SIMD]]
+- [[Ben Joffe - A Faster Way to Calculate the Day of the Week]]
 - [[GPU Execution Model]]
 - [[AI Accelerator Architecture]]
 - [[LLM Inference]]
 - [[ML Systems at Scale]]
 - [[Abseil]]
-

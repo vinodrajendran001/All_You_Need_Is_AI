@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-24
 entity_kind: organization
 tags:
   - entity
@@ -11,6 +11,7 @@ tags:
   - human-ai-collaboration
 source_ids:
   - src-2026-07-03-bytebytego-thinking-machines-interaction
+  - src-2026-08-19-bytebytego-inkling
 status: active
 ---
 
@@ -28,6 +29,7 @@ Thinking Machines is the subject of [[ByteByteGo - Inside Thinking Machines Inte
 
 - Built its own benchmarks (TimeSpeak, CueSpeak, RepCount-A, ProactiveVideoQA) because existing voice benchmarks miss proactive, time-aware, and visual behaviours.
 - Explicitly grounds its design philosophy in Rich Sutton's "Bitter Lesson."
+- [[ByteByteGo - The New American AI Model Designed to Be Customized]] adds Inkling, a 952B stored-parameter sparse MoE positioned for adaptation with mixed local/global attention and an exposed reasoning-effort control. These architecture details remain publication- and company-reported.
 
 ## Related pages
 
@@ -36,3 +38,5 @@ Thinking Machines is the subject of [[ByteByteGo - Inside Thinking Machines Inte
 - [[LLM Inference]]
 - [[Mixture of Experts]]
 - [[AI Knowledge Base Overview]]
+- [[ByteByteGo - The New American AI Model Designed to Be Customized]]
+- [[Open Model Ecosystems]]

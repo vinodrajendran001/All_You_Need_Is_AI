@@ -14,27 +14,27 @@ source_ids:
   - src-2026-05-21-leetcode-templates
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
-  - src-2026-08-24-himank-sehgal-amazon-applied-scientist
-  - src-2026-08-24-himank-sehgal-google-research-scientist
-  - src-2026-08-24-himank-sehgal-meta-research-scientist
-  - src-2026-08-24-alireza-diri-general-ml
-  - src-2026-08-24-alireza-diri-deep-learning
-  - src-2026-08-24-alireza-diri-nlp
-  - src-2026-08-24-alireza-diri-statistics
-  - src-2026-08-24-alireza-diri-probability
-  - src-2026-08-24-alireza-diri-coding
-  - src-2026-08-24-alireza-diri-hyperparameters
-  - src-2026-08-24-alireza-diri-training-testing
-  - src-2026-08-24-alireza-diri-validation
-  - src-2026-08-24-alireza-diri-metrics
-  - src-2026-08-24-alireza-diri-ml-design
-  - src-2026-08-24-alireza-diri-mlops
-  - src-2026-08-24-alireza-diri-company-questions
-  - src-2026-08-24-alireza-diri-job-interviews
-  - src-2026-08-24-alireza-diri-explainable-ai
-  - src-2026-08-24-alireza-diri-ai-ethics
-  - src-2026-08-24-alireza-diri-ai-agents
-  - src-2026-08-24-alireza-diri-data-engineering
+  - src-2026-08-13-himank-sehgal-amazon-ai-interview
+  - src-2026-08-13-himank-sehgal-microsoft-ai-interview
+  - src-2026-08-13-himank-sehgal-navi-ai-interview
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-fundamentals
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-pytorch-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-system-design
+  - src-2026-08-18-alireza-diri-aiml-interviews-metrics
+  - src-2026-08-18-alireza-diri-aiml-interviews-feature-engineering
+  - src-2026-08-18-alireza-diri-aiml-interviews-ads-ranking
+  - src-2026-08-18-alireza-diri-aiml-interviews-news-feed
+  - src-2026-08-18-alireza-diri-aiml-interviews-people-you-may-know
+  - src-2026-08-18-alireza-diri-aiml-interviews-video-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-event-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-game-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-image-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-multimodal-video-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-object-detection
+  - src-2026-08-18-alireza-diri-aiml-interviews-autonomous-vehicles
+  - src-2026-08-18-alireza-diri-aiml-interviews-harmful-content
 status: active
 ---
 
@@ -79,12 +79,12 @@ From [[Alisa Liu - The AI Research Job Search]] (one candidate's 11 companies / 
 The Himank Sehgal guides add unofficial company-specific routing:
 
 - Amazon Applied Scientist loops emphasize coding, ML breadth/depth, science application, and Leadership Principles.
-- Google Research Scientist loops connect coding and fundamentals to research discussion and product-scale ML design.
-- Meta Research Scientist loops combine coding, research ownership, ML design, domain depth, and cross-functional impact.
+- Microsoft Applied Scientist loops combine research-paper discussion, DSA, statistics, and ML depth.
+- Navi AI Scientist loops emphasize applied execution, broad system reasoning, and an extended onsite process.
 
 These patterns vary by role and hiring cycle, so they are planning aids rather than guaranteed rubrics.
 
-[[Alireza Diri - AI-ML Interviews Collection]] adds an 18-module breadth checklist spanning fundamentals, deep learning, NLP, statistics, probability, coding, optimization, validation, metrics, design, MLOps, explainability, ethics, agents, and data engineering. Its concise answers are best used to find gaps; derivations, implementation, and primary sources are still needed for depth.
+[[Alireza Diri - AI-ML Interviews Collection]] adds an 18-module checklist spanning fundamentals, coding, system design, metrics, ranking, recommendations, search, vision, autonomous vehicles, and harmful-content detection. Its preparation notes are best used to find gaps; derivations, implementation, and primary sources are still needed for depth.
 
 ## Negotiation
 
@@ -111,6 +111,6 @@ A distinct, hard skill that **cannot be solved by studying** (per [[Alisa Liu - 
 - [[Alisa Liu]]
 - [[AI Knowledge Base Overview]]
 - [[Himank Sehgal - Amazon Applied Scientist Interview Guide]]
-- [[Himank Sehgal - Google Research Scientist Interview Guide]]
-- [[Himank Sehgal - Meta Research Scientist Interview Guide]]
+- [[Himank Sehgal - Microsoft Applied Scientist Interview Guide]]
+- [[Himank Sehgal - Navi AI Scientist Interview Guide]]
 - [[Alireza Diri - AI-ML Interviews Collection]]

@@ -173,27 +173,27 @@ source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
   - src-2026-08-24-edward-yang-parallelize-transformer
   - src-2026-08-24-openai-gpt-5-6-builder-guide
-  - src-2026-08-24-himank-sehgal-amazon-applied-scientist
-  - src-2026-08-24-himank-sehgal-google-research-scientist
-  - src-2026-08-24-himank-sehgal-meta-research-scientist
-  - src-2026-08-24-alireza-diri-general-ml
-  - src-2026-08-24-alireza-diri-deep-learning
-  - src-2026-08-24-alireza-diri-nlp
-  - src-2026-08-24-alireza-diri-statistics
-  - src-2026-08-24-alireza-diri-probability
-  - src-2026-08-24-alireza-diri-coding
-  - src-2026-08-24-alireza-diri-hyperparameters
-  - src-2026-08-24-alireza-diri-training-testing
-  - src-2026-08-24-alireza-diri-validation
-  - src-2026-08-24-alireza-diri-metrics
-  - src-2026-08-24-alireza-diri-ml-design
-  - src-2026-08-24-alireza-diri-mlops
-  - src-2026-08-24-alireza-diri-company-questions
-  - src-2026-08-24-alireza-diri-job-interviews
-  - src-2026-08-24-alireza-diri-explainable-ai
-  - src-2026-08-24-alireza-diri-ai-ethics
-  - src-2026-08-24-alireza-diri-ai-agents
-  - src-2026-08-24-alireza-diri-data-engineering
+  - src-2026-08-13-himank-sehgal-amazon-ai-interview
+  - src-2026-08-13-himank-sehgal-microsoft-ai-interview
+  - src-2026-08-13-himank-sehgal-navi-ai-interview
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-fundamentals
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-pytorch-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-system-design
+  - src-2026-08-18-alireza-diri-aiml-interviews-metrics
+  - src-2026-08-18-alireza-diri-aiml-interviews-feature-engineering
+  - src-2026-08-18-alireza-diri-aiml-interviews-ads-ranking
+  - src-2026-08-18-alireza-diri-aiml-interviews-news-feed
+  - src-2026-08-18-alireza-diri-aiml-interviews-people-you-may-know
+  - src-2026-08-18-alireza-diri-aiml-interviews-video-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-event-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-game-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-image-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-multimodal-video-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-object-detection
+  - src-2026-08-18-alireza-diri-aiml-interviews-autonomous-vehicles
+  - src-2026-08-18-alireza-diri-aiml-interviews-harmful-content
 status: active
 ---
 
@@ -423,8 +423,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Edward Z. Yang - How to Parallelize a Transformer for Training]] - Interactive roofline reasoning for composing distributed-training axes.
 - [[OpenAI - The Builder's Guide to GPT-5.6]] - Model, effort, tool, caching, and multi-agent routing guidance.
 - [[Himank Sehgal - Amazon Applied Scientist Interview Guide]] - Unofficial Amazon role and loop preparation map.
-- [[Himank Sehgal - Google Research Scientist Interview Guide]] - Unofficial Google research interview preparation map.
-- [[Himank Sehgal - Meta Research Scientist Interview Guide]] - Unofficial Meta research interview preparation map.
+- [[Himank Sehgal - Microsoft Applied Scientist Interview Guide]] - Unofficial Microsoft role and loop preparation map.
+- [[Himank Sehgal - Navi AI Scientist Interview Guide]] - Unofficial Navi role and loop preparation map.
 - [[Alireza Diri - AI-ML Interviews Collection]] - Collection summary covering 18 interview-preparation modules.
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.

@@ -2,30 +2,30 @@
 type: source-summary
 created: 2026-08-24
 updated: 2026-08-24
-source_id: src-2026-08-24-alireza-diri-general-ml
+source_id: src-2026-08-18-alireza-diri-aiml-interviews-ml-fundamentals
 source_title: AI-ML Interviews Collection
 source_author: Alireza Diri
-source_url: https://github.com/alirezadir/ai-ml-interviews
+source_url: https://github.com/alirezadir/AIMLInterviews
 tags: [source/summary, interviews, machine-learning, study-guide]
 source_ids:
-  - src-2026-08-24-alireza-diri-general-ml
-  - src-2026-08-24-alireza-diri-deep-learning
-  - src-2026-08-24-alireza-diri-nlp
-  - src-2026-08-24-alireza-diri-statistics
-  - src-2026-08-24-alireza-diri-probability
-  - src-2026-08-24-alireza-diri-coding
-  - src-2026-08-24-alireza-diri-hyperparameters
-  - src-2026-08-24-alireza-diri-training-testing
-  - src-2026-08-24-alireza-diri-validation
-  - src-2026-08-24-alireza-diri-metrics
-  - src-2026-08-24-alireza-diri-ml-design
-  - src-2026-08-24-alireza-diri-mlops
-  - src-2026-08-24-alireza-diri-company-questions
-  - src-2026-08-24-alireza-diri-job-interviews
-  - src-2026-08-24-alireza-diri-explainable-ai
-  - src-2026-08-24-alireza-diri-ai-ethics
-  - src-2026-08-24-alireza-diri-ai-agents
-  - src-2026-08-24-alireza-diri-data-engineering
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-fundamentals
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-pytorch-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-system-design
+  - src-2026-08-18-alireza-diri-aiml-interviews-metrics
+  - src-2026-08-18-alireza-diri-aiml-interviews-feature-engineering
+  - src-2026-08-18-alireza-diri-aiml-interviews-ads-ranking
+  - src-2026-08-18-alireza-diri-aiml-interviews-news-feed
+  - src-2026-08-18-alireza-diri-aiml-interviews-people-you-may-know
+  - src-2026-08-18-alireza-diri-aiml-interviews-video-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-event-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-game-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-image-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-multimodal-video-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-object-detection
+  - src-2026-08-18-alireza-diri-aiml-interviews-autonomous-vehicles
+  - src-2026-08-18-alireza-diri-aiml-interviews-harmful-content
 status: active
 ---
 
@@ -33,16 +33,16 @@ status: active
 
 ## Summary
 
-Alireza Diri's repository is a modular interview reference spanning ML fundamentals, deep learning, NLP, statistics, probability, coding, optimization, validation, metrics, system design, MLOps, company questions, job-process guidance, explainability, ethics, agents, and data engineering. This collection summary represents 18 captured modules without duplicating their largely question-and-answer structure into 18 wiki pages.
+Alireza Diri's repository is a modular interview reference spanning ML fundamentals, general and PyTorch coding, ML system design, metrics, feature engineering, ranking and recommendation systems, search, computer vision, autonomous vehicles, and harmful-content detection. This collection summary represents 18 captured modules without duplicating their interview-guide structure into 18 wiki pages.
 
 ## Key claims
 
 - Interview preparation is broader than model theory: coding, metrics, data systems, production operations, and communication are recurring competencies.
-- The fundamentals modules emphasize concise definitions, mathematical intuition, assumptions, and failure modes.
-- The training, validation, hyperparameter, and metric modules connect model development choices to leakage, bias-variance, class imbalance, and evaluation design.
-- The design, MLOps, and data-engineering modules treat the model as one component of a scalable monitored system.
-- The XAI and ethics modules add interpretability, fairness, accountability, privacy, and governance.
-- The agent module covers planning, memory, tools, multi-agent coordination, evaluation, and safety at interview-survey depth.
+- The fundamentals and coding modules combine conceptual breadth with implementation practice.
+- System-design modules organize answers around requirements, data, features, objectives, training, serving, metrics, and iteration.
+- Ranking and recommendation cases cover ads, feeds, people recommendations, videos, events, and games.
+- Retrieval cases cover text search, image search, and multimodal video search.
+- Specialized cases cover object detection, autonomous vehicles, and harmful-content detection.
 
 ## Why it matters
 
@@ -50,7 +50,7 @@ The collection supplies [[ML Research Interview Preparation]] with a broad curri
 
 ## Tensions / open questions
 
-- Many answers are compressed study notes; they should be verified against primary technical sources before high-stakes use.
+- Many modules are compressed preparation notes; they should be verified against primary technical sources before high-stakes use.
 - Breadth can encourage memorization without derivation, implementation, or experimental reasoning.
 - Company questions and tool-specific material can become stale.
 
@@ -63,12 +63,12 @@ The collection supplies [[ML Research Interview Preparation]] with a broad curri
 
 ## Citations
 
-- Raw modules: [[2026-08-24 Alireza Diri - General ML Interview Questions]], [[2026-08-24 Alireza Diri - Deep Learning Interview Questions]], [[2026-08-24 Alireza Diri - NLP Interview Questions]], [[2026-08-24 Alireza Diri - Statistics Interview Questions]], [[2026-08-24 Alireza Diri - Probability Interview Questions]], [[2026-08-24 Alireza Diri - Coding Interview Questions]], [[2026-08-24 Alireza Diri - Hyperparameters Interview Questions]], [[2026-08-24 Alireza Diri - Training and Testing Interview Questions]], [[2026-08-24 Alireza Diri - Validation Interview Questions]], [[2026-08-24 Alireza Diri - Metrics Interview Questions]], [[2026-08-24 Alireza Diri - ML Design Interview Questions]], [[2026-08-24 Alireza Diri - MLOps Interview Questions]], [[2026-08-24 Alireza Diri - Company Interview Questions]], [[2026-08-24 Alireza Diri - AI and ML Job Interviews]], [[2026-08-24 Alireza Diri - Explainable AI Interview Questions]], [[2026-08-24 Alireza Diri - AI Ethics Interview Questions]], [[2026-08-24 Alireza Diri - AI Agents Interview Questions]], [[2026-08-24 Alireza Diri - Data Engineering Interview Questions]]
-- Repository: https://github.com/alirezadir/ai-ml-interviews
+- Raw modules: [[2026-08-18 Alireza Diri - AIML Interviews - ML Fundamentals]], [[2026-08-18 Alireza Diri - AIML Interviews - ML Coding]], [[2026-08-18 Alireza Diri - AIML Interviews - PyTorch ML Coding]], [[2026-08-18 Alireza Diri - AIML Interviews - ML System Design]], [[2026-08-18 Alireza Diri - AIML Interviews - ML System Metrics]], [[2026-08-18 Alireza Diri - AIML Interviews - Feature Engineering]], [[2026-08-18 Alireza Diri - AIML Interviews - Ads Ranking]], [[2026-08-18 Alireza Diri - AIML Interviews - News Feed Ranking]], [[2026-08-18 Alireza Diri - AIML Interviews - People You May Know]], [[2026-08-18 Alireza Diri - AIML Interviews - Video Recommendation]], [[2026-08-18 Alireza Diri - AIML Interviews - Event Recommendation]], [[2026-08-18 Alireza Diri - AIML Interviews - Game Recommendation]], [[2026-08-18 Alireza Diri - AIML Interviews - Search]], [[2026-08-18 Alireza Diri - AIML Interviews - Image Search]], [[2026-08-18 Alireza Diri - AIML Interviews - Multimodal Video Search]], [[2026-08-18 Alireza Diri - AIML Interviews - Object Detection]], [[2026-08-18 Alireza Diri - AIML Interviews - Autonomous Vehicles]], [[2026-08-18 Alireza Diri - AIML Interviews - Harmful Content Detection]]
+- Repository: https://github.com/alirezadir/AIMLInterviews
 
 ## Related pages
 
 - [[Himank Sehgal - Amazon Applied Scientist Interview Guide]]
-- [[Himank Sehgal - Google Research Scientist Interview Guide]]
-- [[Himank Sehgal - Meta Research Scientist Interview Guide]]
+- [[Himank Sehgal - Microsoft Applied Scientist Interview Guide]]
+- [[Himank Sehgal - Navi AI Scientist Interview Guide]]
 - [[Machine Learning Evaluation]]

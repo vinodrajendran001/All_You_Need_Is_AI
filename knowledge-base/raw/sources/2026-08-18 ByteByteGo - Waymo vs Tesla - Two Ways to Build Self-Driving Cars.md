@@ -1,7 +1,7 @@
 ---
 type: raw-source
 source_id: src-2026-08-18-bytebytego-waymo-vs-tesla
-title: Waymo vs Tesla: Two Ways to Build Self-Driving Cars
+title: 'Waymo vs Tesla: Two Ways to Build Self-Driving Cars'
 author: ByteByteGo
 url: https://blog.bytebytego.com/p/waymo-vs-tesla-two-ways-to-build
 published: 2026-08-17

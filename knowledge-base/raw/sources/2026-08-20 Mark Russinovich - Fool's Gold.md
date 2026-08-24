@@ -1,7 +1,7 @@
 ---
 type: raw-source
 source_id: src-2026-08-20-mark-russinovich-fools-gold
-title: Fool's Gold: Defensive Deception Against Safety-Removal Attacks on Open-Weight Models
+title: 'Fool''s Gold: Defensive Deception Against Safety-Removal Attacks on Open-Weight Models'
 author: Mark Russinovich
 url: https://markrussinovich.github.io/fools-gold/
 captured: 2026-08-20

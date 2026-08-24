@@ -806,3 +806,10 @@ Append-only operational history for the wiki.
 - Seeded [[Agent Plugin Architecture]], [[Open Model Ecosystems]], [[Inference Serving Engines]], [[Defensive Deception for Open Models]], [[LLM-Native Extensible Software]], and [[Autonomous Driving Systems]].
 - Updated the affected skill, security, loop, retrieval, agentic-RL, distributed-training, interview, routing, inference, and performance concepts.
 - Preserved caveats around vendor-reported metrics, unofficial interview guides, secondary newsletter claims, rapidly changing serving products, and experimental security defenses.
+
+## [2026-08-24] lint | Full wiki lint pass
+
+- Audited 314 wiki Markdown files after the fix: 172 source summaries, 73 concepts, 35 entities, 26 lint reports including this pass, 4 queries, 1 overview, 1 synthesis, 1 index, and 1 log.
+- Found one raw clipping stored under `wiki/sources/` without source-summary metadata; returned it to `raw/inbox/` for proper metadata verification and future ingest.
+- Found no remaining actionable broken wikilinks, orphan pages, frontmatter defects, missing related-page sections, thin substantive pages, index gaps, duplicate source-summary IDs, or source-ID coverage gaps.
+- Confirmed index, overview, and log agree at 189 unique source IDs. Filed [[2026-08-24 Lint Pass]].

@@ -14,7 +14,7 @@ source_ids:
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-08-19-bytebytego-inkling
-  - src-2026-08-24-openai-gpt-5-6-builder-guide
+  - src-2026-08-24-openai-builders-guide-gpt-5-6
 status: active
 ---
 

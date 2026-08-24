@@ -2,12 +2,12 @@
 type: source-summary
 created: 2026-08-24
 updated: 2026-08-24
-source_id: src-2026-08-21-ben-joffe-fast-weekday
+source_id: src-2026-08-21-ben-joffe-fast-day-of-week
 source_title: A Faster Way to Calculate the Day of the Week
 source_author: Ben Joffe
 source_url: https://benjoffe.com/fast-weekday
 tags: [source/summary, performance-engineering, arithmetic]
-source_ids: [src-2026-08-21-ben-joffe-fast-weekday]
+source_ids: [src-2026-08-21-ben-joffe-fast-day-of-week]
 status: active
 ---
 

@@ -2,12 +2,12 @@
 type: source-summary
 created: 2026-08-24
 updated: 2026-08-24
-source_id: src-2026-08-24-himank-sehgal-amazon-applied-scientist
+source_id: src-2026-08-13-himank-sehgal-amazon-ai-interview
 source_title: Amazon Applied Scientist Interview Guide
 source_author: Himank Sehgal
-source_url: https://himanksehgal.github.io/interview-prep/companies/amazon.html
+source_url: https://github.com/HimankSehgal/AI-interview-prep/blob/main/amazon.md
 tags: [source/summary, interviews, machine-learning, amazon]
-source_ids: [src-2026-08-24-himank-sehgal-amazon-applied-scientist]
+source_ids: [src-2026-08-13-himank-sehgal-amazon-ai-interview]
 status: active
 ---
 
@@ -39,11 +39,10 @@ The guide adds company-specific evidence to [[ML Research Interview Preparation]
 
 ## Citations
 
-- Raw capture: [[2026-08-24 Himank Sehgal - Amazon Applied Scientist Interview Guide]]
+- Raw capture: [[2026-08-13 Himank Sehgal - Amazon Applied Scientist Interview Guide]]
 
 ## Related pages
 
-- [[Himank Sehgal - Google Research Scientist Interview Guide]]
-- [[Himank Sehgal - Meta Research Scientist Interview Guide]]
+- [[Himank Sehgal - Microsoft Applied Scientist Interview Guide]]
+- [[Himank Sehgal - Navi AI Scientist Interview Guide]]
 - [[Alireza Diri - AI-ML Interviews Collection]]
-

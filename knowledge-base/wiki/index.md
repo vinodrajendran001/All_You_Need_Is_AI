@@ -545,6 +545,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-08-03 Lint Pass]] - Twenty-third comprehensive lint pass covering the scientific open-model ingest; fixed log source-ID drift and found no remaining structural defects.
 - [[2026-08-03 Lint Pass 2]] - Twenty-fourth comprehensive lint pass covering the 14-source systems, agents, architectures, and search batch; no structural defects.
 - [[2026-08-13 Lint Pass]] - Twenty-fifth comprehensive lint pass; synchronized 153 source IDs across index, overview, and log and found no remaining structural defects.
+- [[2026-08-24 Lint Pass]] - Twenty-sixth comprehensive lint pass; returned one misplaced raw clipping to the inbox and found no remaining structural defects across 314 wiki pages.
 
 ## Control files
 

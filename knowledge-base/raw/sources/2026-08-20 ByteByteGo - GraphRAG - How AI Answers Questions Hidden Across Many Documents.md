@@ -1,7 +1,7 @@
 ---
 type: raw-source
 source_id: src-2026-08-20-bytebytego-graphrag
-title: GraphRAG: How AI Answers Questions Hidden Across Many Documents
+title: 'GraphRAG: How AI Answers Questions Hidden Across Many Documents'
 author: ByteByteGo
 url: https://blog.bytebytego.com/p/graphrag-how-ai-answers-questions
 published: 2026-08-19

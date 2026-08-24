@@ -1,7 +1,7 @@
 ---
 type: raw-source
 source_id: src-2026-08-18-hugging-face-state-open-models-summer-2026
-title: State of Open Models: Summer 2026 Observations
+title: 'State of Open Models: Summer 2026 Observations'
 author: Hugging Face
 url: https://huggingface.co/blog/state-of-open-models-summer-2026
 published: 2026-08-14

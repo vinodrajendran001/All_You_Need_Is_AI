@@ -1,7 +1,7 @@
 ---
 type: raw-source
 source_id: src-2026-08-20-radixark-miles-v0-1
-title: Miles v0.1: Production-Level Post-Training
+title: 'Miles v0.1: Production-Level Post-Training'
 author: RadixArk
 url: https://www.lmsys.org/blog/2026-08-18-miles-v0-1
 published: 2026-08-18

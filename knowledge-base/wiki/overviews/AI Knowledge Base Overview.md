@@ -175,27 +175,27 @@ source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
   - src-2026-08-24-edward-yang-parallelize-transformer
   - src-2026-08-24-openai-gpt-5-6-builder-guide
-  - src-2026-08-24-himank-sehgal-amazon-applied-scientist
-  - src-2026-08-24-himank-sehgal-google-research-scientist
-  - src-2026-08-24-himank-sehgal-meta-research-scientist
-  - src-2026-08-24-alireza-diri-general-ml
-  - src-2026-08-24-alireza-diri-deep-learning
-  - src-2026-08-24-alireza-diri-nlp
-  - src-2026-08-24-alireza-diri-statistics
-  - src-2026-08-24-alireza-diri-probability
-  - src-2026-08-24-alireza-diri-coding
-  - src-2026-08-24-alireza-diri-hyperparameters
-  - src-2026-08-24-alireza-diri-training-testing
-  - src-2026-08-24-alireza-diri-validation
-  - src-2026-08-24-alireza-diri-metrics
-  - src-2026-08-24-alireza-diri-ml-design
-  - src-2026-08-24-alireza-diri-mlops
-  - src-2026-08-24-alireza-diri-company-questions
-  - src-2026-08-24-alireza-diri-job-interviews
-  - src-2026-08-24-alireza-diri-explainable-ai
-  - src-2026-08-24-alireza-diri-ai-ethics
-  - src-2026-08-24-alireza-diri-ai-agents
-  - src-2026-08-24-alireza-diri-data-engineering
+  - src-2026-08-13-himank-sehgal-amazon-ai-interview
+  - src-2026-08-13-himank-sehgal-microsoft-ai-interview
+  - src-2026-08-13-himank-sehgal-navi-ai-interview
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-fundamentals
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-pytorch-ml-coding
+  - src-2026-08-18-alireza-diri-aiml-interviews-ml-system-design
+  - src-2026-08-18-alireza-diri-aiml-interviews-metrics
+  - src-2026-08-18-alireza-diri-aiml-interviews-feature-engineering
+  - src-2026-08-18-alireza-diri-aiml-interviews-ads-ranking
+  - src-2026-08-18-alireza-diri-aiml-interviews-news-feed
+  - src-2026-08-18-alireza-diri-aiml-interviews-people-you-may-know
+  - src-2026-08-18-alireza-diri-aiml-interviews-video-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-event-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-game-recommendation
+  - src-2026-08-18-alireza-diri-aiml-interviews-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-image-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-multimodal-video-search
+  - src-2026-08-18-alireza-diri-aiml-interviews-object-detection
+  - src-2026-08-18-alireza-diri-aiml-interviews-autonomous-vehicles
+  - src-2026-08-18-alireza-diri-aiml-interviews-harmful-content
 status: active
 ---
 
@@ -337,7 +337,7 @@ The August 24 ingest adds 36 canonical captures across six connected branches. [
 
 The systems branch now connects [[Inference Serving Engines]], [[Distributed Training Parallelism]], and [[Agentic Reinforcement Learning]] through workload-aware serving, quantitative parallelism selection, and Miles' asynchronous post-training stack. [[Liquid AI - Designing Loops for Production-Grade Work]] adds a production-scale case study to [[Loop Engineering]], and ByteByteGo's GraphRAG article adds local/global community retrieval to [[Retrieval-Augmented Generation]].
 
-The model ecosystem branch adds [[Open Model Ecosystems]], Inkling's sparse customization architecture, and GPT-5.6 model-plus-effort routing. [[Autonomous Driving Systems]] records the structured-versus-learned representation tradeoff in self-driving stacks. The interview branch gains three unofficial company guides and an 18-module collection summarized in [[Alireza Diri - AI-ML Interviews Collection]]. Vendor, company, community, and newsletter claims remain explicitly qualified.
+The model ecosystem branch adds [[Open Model Ecosystems]], Inkling's sparse customization architecture, and GPT-5.6 model-plus-effort routing. [[Autonomous Driving Systems]] records the structured-versus-learned representation tradeoff in self-driving stacks. The interview branch gains unofficial Amazon, Microsoft, and Navi guides plus an 18-module ML interview and system-design collection summarized in [[Alireza Diri - AI-ML Interviews Collection]]. Vendor, company, community, and newsletter claims remain explicitly qualified.
 
 ## Related pages
 

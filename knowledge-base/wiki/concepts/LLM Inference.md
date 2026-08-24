@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-07-06
+updated: 2026-08-24
 tags:
   - concept
   - llm
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
+  - src-2026-08-24-bytebytego-ollama-vllm-sglang
 status: active
 ---
 
@@ -56,6 +57,8 @@ Production engines must serve many concurrent requests:
 - **vLLM and SGLang** focus on dynamic memory via **PagedAttention**, slicing the KV cache into pages and treating VRAM like OS virtual memory to stop fragmentation.
 - **TensorRT-LLM and TGI** lean on graph compilation and custom kernels for raw throughput.
 - **Continuous batching** injects new prefill tasks directly into ongoing decode loops to keep utilization high. Because prefill saturates the tensor cores, active users' decode briefly pauses while a new prompt's prefill runs — a direct consequence of the compute-bound/memory-bound conflict.
+
+[[ByteByteGo - Ollama vs vLLM vs SGLang]] adds a workload-level serving taxonomy. Ollama optimizes low-friction local packaging and use; vLLM optimizes concurrent GPU serving through paged KV management and continuous batching; SGLang adds prefix-tree reuse and structured execution suited to repeated or branching agent contexts. The labels are not permanent feature boundaries, so [[Inference Serving Engines]] treats them as starting hypotheses to test against representative prompts, concurrency, latency targets, and hardware.
 
 ### Connections
 
@@ -98,3 +101,5 @@ Production engines must serve many concurrent requests:
 - [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
 - [[Transformer Architecture]]
 - [[AI Knowledge Base Overview]]
+- [[Inference Serving Engines]]
+- [[ByteByteGo - Ollama vs vLLM vs SGLang]]

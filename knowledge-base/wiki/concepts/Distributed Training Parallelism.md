@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-24
 tags:
   - concept
   - training
@@ -12,6 +12,7 @@ tags:
 source_ids:
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-08-24-edward-yang-parallelize-transformer
 status: active
 ---
 
@@ -49,6 +50,8 @@ A product `AB` can be read column-wise (each output column needs only its own co
 
 Real frontier runs combine several axes (often called 3D or 4D parallelism): data parallelism across replicas, tensor + sequence parallelism inside a node, expert parallelism for MoE layers, and pipeline parallelism across nodes. The [[AI Accelerator Architecture|hardware topology]] decides where each boundary should sit — e.g., an MoE all-to-all wants a single NVLink-connected rack, while pipeline point-to-point tolerates slower cross-node links. The design goal is always the same: maximise multiplications running in parallel while minimising coordination.
 
+[[Edward Z. Yang - How to Parallelize a Transformer for Training]] turns this composition problem into an interactive roofline exercise. Instead of prescribing one mesh, it estimates parameter, optimizer, gradient, and activation memory; FLOPs; collective communication; network domains; and pipeline bubbles for a specific model and cluster. The practical rule is to place communication-intensive axes such as tensor parallelism inside the fastest topology, then use sharding or pipelines to cross slower boundaries only when memory or scale requires them. The model remains an estimate: kernels, contention, load imbalance, and framework overhead still require profiling.
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
@@ -67,3 +70,4 @@ Real frontier runs combine several axes (often called 3D or 4D parallelism): dat
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[GPU Execution Model]]
 - [[AI Knowledge Base Overview]]
+- [[Edward Z. Yang - How to Parallelize a Transformer for Training]]

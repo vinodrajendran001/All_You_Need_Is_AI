@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-13
+updated: 2026-08-24
 tags:
   - log
 source_ids:
@@ -158,6 +158,42 @@ source_ids:
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
+  - src-2026-08-17-google-cloud-agent-plugins
+  - src-2026-08-17-alpha-signal-three-layers-agent-security
+  - src-2026-08-18-hugging-face-state-open-models-summer-2026
+  - src-2026-08-18-harry0703-moneyprinterturbo
+  - src-2026-08-18-bytebytego-waymo-vs-tesla
+  - src-2026-08-19-bytebytego-inkling
+  - src-2026-08-20-bytebytego-graphrag
+  - src-2026-08-20-liquid-ai-production-loops
+  - src-2026-08-20-radixark-miles-v0-1
+  - src-2026-08-20-mark-russinovich-fools-gold
+  - src-2026-08-20-jeremy-morrell-extensible-software
+  - src-2026-08-21-ben-joffe-fast-weekday
+  - src-2026-08-24-bytebytego-ollama-vllm-sglang
+  - src-2026-08-24-edward-yang-parallelize-transformer
+  - src-2026-08-24-openai-gpt-5-6-builder-guide
+  - src-2026-08-24-himank-sehgal-amazon-applied-scientist
+  - src-2026-08-24-himank-sehgal-google-research-scientist
+  - src-2026-08-24-himank-sehgal-meta-research-scientist
+  - src-2026-08-24-alireza-diri-general-ml
+  - src-2026-08-24-alireza-diri-deep-learning
+  - src-2026-08-24-alireza-diri-nlp
+  - src-2026-08-24-alireza-diri-statistics
+  - src-2026-08-24-alireza-diri-probability
+  - src-2026-08-24-alireza-diri-coding
+  - src-2026-08-24-alireza-diri-hyperparameters
+  - src-2026-08-24-alireza-diri-training-testing
+  - src-2026-08-24-alireza-diri-validation
+  - src-2026-08-24-alireza-diri-metrics
+  - src-2026-08-24-alireza-diri-ml-design
+  - src-2026-08-24-alireza-diri-mlops
+  - src-2026-08-24-alireza-diri-company-questions
+  - src-2026-08-24-alireza-diri-job-interviews
+  - src-2026-08-24-alireza-diri-explainable-ai
+  - src-2026-08-24-alireza-diri-ai-ethics
+  - src-2026-08-24-alireza-diri-ai-agents
+  - src-2026-08-24-alireza-diri-data-engineering
 status: active
 ---
 
@@ -762,3 +798,11 @@ Append-only operational history for the wiki.
 - Found no actionable broken wikilinks, orphan pages, frontmatter/schema defects, missing related-page sections, thin substantive pages, index gaps, or duplicate source-summary IDs.
 - Fixed control metadata drift from the August 5 and August 7 ingests by synchronizing index, overview, and log frontmatter at 153 unique source IDs.
 - Reviewed the recent integration for stale claims, unresolved contradictions, and weak cross-links; retained explicit caveats and recorded research gaps in [[2026-08-13 Lint Pass]].
+
+## [2026-08-24] ingest | Agents, model systems, autonomy, and interview preparation
+
+- Normalized 36 canonical raw captures and removed one duplicate rescrape of [[Paul Iusztin - The Bare-Bones Coding Agent Loop]] after matching its author, canonical URL, and body to the existing immutable capture.
+- Created 19 source-summary pages: 15 standalone technical summaries, three company interview guides, and [[Alireza Diri - AI-ML Interviews Collection]] covering 18 repository modules.
+- Seeded [[Agent Plugin Architecture]], [[Open Model Ecosystems]], [[Inference Serving Engines]], [[Defensive Deception for Open Models]], [[LLM-Native Extensible Software]], and [[Autonomous Driving Systems]].
+- Updated the affected skill, security, loop, retrieval, agentic-RL, distributed-training, interview, routing, inference, and performance concepts.
+- Preserved caveats around vendor-reported metrics, unofficial interview guides, secondary newsletter claims, rapidly changing serving products, and experimental security defenses.

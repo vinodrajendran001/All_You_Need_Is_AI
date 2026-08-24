@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-08-24
 entity_kind: organization
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
   - on-device
 source_ids:
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
+  - src-2026-08-20-liquid-ai-production-loops
 status: active
 ---
 
@@ -26,6 +27,7 @@ Liquid AI matters because it adds a deployment-first perspective to the vault's 
 ## Notes
 
 - The current source in the vault is [[Liquid AI - LFM2.5-8B-A1B]].
+- [[Liquid AI - Designing Loops for Production-Grade Work]] adds a coding-agent experiment where real datasets and an external acceptance harness exposed requirements absent from the initial specification.
 - In this knowledge base, Liquid AI mainly strengthens the overlap between efficiency, sparse architectures, and local/private agent deployment.
 - The Localcowork demo is useful because it connects model architecture to a concrete MCP-heavy tool workflow rather than stopping at benchmark tables.
 
@@ -36,3 +38,5 @@ Liquid AI matters because it adds a deployment-first perspective to the vault's 
 - [[Model Quantization and Efficiency]]
 - [[AI Agents in Production]]
 - [[AI Knowledge Base Overview]]
+- [[Liquid AI - Designing Loops for Production-Grade Work]]
+- [[Loop Engineering]]

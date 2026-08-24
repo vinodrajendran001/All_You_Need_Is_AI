@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-07-06
+updated: 2026-08-24
 tags: [rag, retrieval, agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-08-20-bytebytego-graphrag
 status: active
 ---
 
@@ -63,6 +64,10 @@ Typical use cases:
 - supply-chain or organizational relationship tracing
 
 The ingested comparison source also notes that LazyGraphRAG (Microsoft, 2025) reportedly reduces graph retrieval cost to 0.1% of earlier approaches, making graph-backed retrieval more operationally plausible.
+
+[[ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]] adds a second Graph RAG pattern for **corpus-global questions**. The system extracts entities and relations, detects communities, generates hierarchical community summaries, and chooses between local entity-neighborhood search and global aggregation over summaries. This is different from merely following edges around one entity: it precomputes thematic structure so the answer can synthesize signals distributed across many documents.
+
+The benefit comes with an error and cost pipeline of its own. Entity extraction, relation inference, community detection, and summary generation can each lose or distort evidence. Graph RAG is therefore an architectural escalation for relational or global questions, not a default replacement for cheap local retrieval.
 
 ### 3. Agentic RAG
 
@@ -149,3 +154,4 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Knowledge Base Overview]]
+- [[ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]]

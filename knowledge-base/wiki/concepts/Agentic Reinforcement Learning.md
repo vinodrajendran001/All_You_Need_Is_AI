@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-08-07
+updated: 2026-08-24
 tags:
   - concept
   - reinforcement-learning
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-07-30-teaching-open-model-science
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-07-rllm-realtime-rl-agents
+  - src-2026-08-20-radixark-miles-v0-1
 status: active
 ---
 
@@ -130,6 +131,17 @@ The project also shows a practical systems recipe: separate rollout and training
 
 [[rLLM - Continual Learning via Real-Time RL for Agents]] studies the one-rollout-per-task setting expected from production streams. Its batch-normalized advantage compares each task against a cross-task reward baseline, while PPO clipping and truncated importance sampling address stale asynchronous rollouts. This seeds [[Continual Learning for Agents]] and shifts the deployment question from "can the policy learn?" to "how are checkpoints validated, promoted, monitored, and rolled back?"
 
+### Full-stack asynchronous post-training
+
+[[RadixArk - Miles v0.1 Production-Level Post-Training]] supplies a concrete implementation of the rollout systems described above. SGLang workers run asynchronous trajectories, Megatron or FSDP workers train, a weight-update path refreshes inference workers, and sandbox plugins isolate tool environments.
+
+Two details are especially durable:
+
+- **Token-In-Token-Out** preserves exact generated token IDs across tool calls and message reconstruction, avoiding retokenization drift.
+- **Evaluation provenance** attaches asynchronous results to the checkpoint that produced them, even when newer policies exist by completion time.
+
+RadixAttention and session routing reuse multi-turn prefixes, while shared, dedicated, or external evaluators trade resource isolation against throughput. The same architecture intensifies the stale-policy question: higher utilization is not free if trajectories drift too far from current weights.
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -159,3 +171,5 @@ The project also shows a practical systems recipe: separate rollout and training
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
 - [[rLLM - Continual Learning via Real-Time RL for Agents]]
 - [[Continual Learning for Agents]]
+- [[RadixArk - Miles v0.1 Production-Level Post-Training]]
+- [[Inference Serving Engines]]

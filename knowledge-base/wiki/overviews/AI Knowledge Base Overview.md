@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-08-13
+updated: 2026-08-24
 tags:
   - overview
   - ai
@@ -160,6 +160,42 @@ source_ids:
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
+  - src-2026-08-17-google-cloud-agent-plugins
+  - src-2026-08-17-alpha-signal-three-layers-agent-security
+  - src-2026-08-18-hugging-face-state-open-models-summer-2026
+  - src-2026-08-18-harry0703-moneyprinterturbo
+  - src-2026-08-18-bytebytego-waymo-vs-tesla
+  - src-2026-08-19-bytebytego-inkling
+  - src-2026-08-20-bytebytego-graphrag
+  - src-2026-08-20-liquid-ai-production-loops
+  - src-2026-08-20-radixark-miles-v0-1
+  - src-2026-08-20-mark-russinovich-fools-gold
+  - src-2026-08-20-jeremy-morrell-extensible-software
+  - src-2026-08-21-ben-joffe-fast-weekday
+  - src-2026-08-24-bytebytego-ollama-vllm-sglang
+  - src-2026-08-24-edward-yang-parallelize-transformer
+  - src-2026-08-24-openai-gpt-5-6-builder-guide
+  - src-2026-08-24-himank-sehgal-amazon-applied-scientist
+  - src-2026-08-24-himank-sehgal-google-research-scientist
+  - src-2026-08-24-himank-sehgal-meta-research-scientist
+  - src-2026-08-24-alireza-diri-general-ml
+  - src-2026-08-24-alireza-diri-deep-learning
+  - src-2026-08-24-alireza-diri-nlp
+  - src-2026-08-24-alireza-diri-statistics
+  - src-2026-08-24-alireza-diri-probability
+  - src-2026-08-24-alireza-diri-coding
+  - src-2026-08-24-alireza-diri-hyperparameters
+  - src-2026-08-24-alireza-diri-training-testing
+  - src-2026-08-24-alireza-diri-validation
+  - src-2026-08-24-alireza-diri-metrics
+  - src-2026-08-24-alireza-diri-ml-design
+  - src-2026-08-24-alireza-diri-mlops
+  - src-2026-08-24-alireza-diri-company-questions
+  - src-2026-08-24-alireza-diri-job-interviews
+  - src-2026-08-24-alireza-diri-explainable-ai
+  - src-2026-08-24-alireza-diri-ai-ethics
+  - src-2026-08-24-alireza-diri-ai-agents
+  - src-2026-08-24-alireza-diri-data-engineering
 status: active
 ---
 
@@ -296,6 +332,12 @@ Four sources connect training, retrieval, and agent operations. [[ByteByteGo - H
 - Reinforcement learning now has a denser hub page and stronger tutorial coverage, but its major subtopics are still not yet broken into dedicated notes.
 - The `queries/` folder is active, `lint/` now has recurring reports, and `syntheses/` remains the least-developed content area.
 - No search tooling has been added yet because the index is enough at the current scale.
+
+The August 24 ingest adds 36 canonical captures across six connected branches. [[Agent Plugin Architecture]] joins skills and MCP tools into installable bundles, while [[LLM-Native Extensible Software]] applies the same capability-boundary logic to generated application extensions. [[Alpha Signal - The Three Layers of AI Agent Security]] strengthens agent defense in depth, and [[Defensive Deception for Open Models]] records a distinct post-release threat model for open weights.
+
+The systems branch now connects [[Inference Serving Engines]], [[Distributed Training Parallelism]], and [[Agentic Reinforcement Learning]] through workload-aware serving, quantitative parallelism selection, and Miles' asynchronous post-training stack. [[Liquid AI - Designing Loops for Production-Grade Work]] adds a production-scale case study to [[Loop Engineering]], and ByteByteGo's GraphRAG article adds local/global community retrieval to [[Retrieval-Augmented Generation]].
+
+The model ecosystem branch adds [[Open Model Ecosystems]], Inkling's sparse customization architecture, and GPT-5.6 model-plus-effort routing. [[Autonomous Driving Systems]] records the structured-versus-learned representation tradeoff in self-driving stacks. The interview branch gains three unofficial company guides and an 18-module collection summarized in [[Alireza Diri - AI-ML Interviews Collection]]. Vendor, company, community, and newsletter claims remain explicitly qualified.
 
 ## Related pages
 

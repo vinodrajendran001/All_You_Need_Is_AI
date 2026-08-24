@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-08-12
+updated: 2026-08-24
 tags: [newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -12,6 +12,10 @@ source_ids:
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
+  - src-2026-08-18-bytebytego-waymo-vs-tesla
+  - src-2026-08-19-bytebytego-inkling
+  - src-2026-08-20-bytebytego-graphrag
+  - src-2026-08-24-bytebytego-ollama-vllm-sglang
 status: active
 ---
 
@@ -35,6 +39,8 @@ A fifth standalone source, [[ByteByteGo - Large Language Models vs Small Languag
 
 Two August 12 sources expand both branches. [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] explains output-, feature-, and synthetic-data [[Knowledge Distillation]], while [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]] compares three large-scale [[Semantic Recommendation Systems]].
 
+Four August 24 sources extend the publication's architecture coverage into [[Autonomous Driving Systems]], Inkling's sparse customization design, local/global GraphRAG, and workload-oriented inference-engine selection. Their value is comparative orientation; product boundaries and company claims still require primary, current evidence.
+
 ## Related pages
 
 - [[ByteByteGo - Connecting LLMs to the Real World]]
@@ -54,3 +60,7 @@ Two August 12 sources expand both branches. [[ByteByteGo - How Big Models Teach 
 - [[Model Context Protocol]]
 - [[Agentic Loop]]
 - [[AI Knowledge Base Overview]]
+- [[ByteByteGo - Waymo vs Tesla - Two Ways to Build Self-Driving Cars]]
+- [[ByteByteGo - The New American AI Model Designed to Be Customized]]
+- [[ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]]
+- [[ByteByteGo - Ollama vs vLLM vs SGLang]]

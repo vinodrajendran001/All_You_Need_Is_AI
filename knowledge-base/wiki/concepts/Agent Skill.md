@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-07
+updated: 2026-08-24
 tags:
   - concept
   - agents
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-last30days-skill-real-time-research
   - src-2026-08-07-zach-lloyd-computer-use-verification
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-08-17-google-cloud-agent-plugins
 status: active
 ---
 
@@ -72,6 +73,16 @@ The collection also cautions against collapsing skills and MCP into one winner. 
 
 [[Zach Lloyd - The computer use verification skill that every agent needs]] is a concrete procedural skill with two observable modes—reproduce and verify—and explicit evidence artifacts. [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] supplies the scaling complement: reusable environments and held-out scores can evaluate or optimize skill instructions without trusting the skill's own report.
 
+### From skill file to plugin package
+
+[[Google Cloud - Agent Plugins Are the Future of Agent Skills]] adds a distribution layer above progressive disclosure. An Agent Plugin can bundle several `SKILL.md` procedures, MCP servers, static assets, and client-specific configuration behind one manifest. The useful distinction is:
+
+- a **skill** is a discoverable procedure;
+- an **MCP server** exposes executable capabilities;
+- a **plugin** packages both for installation and transport.
+
+The draft keeps component failure boundaries separate and distinguishes read-only packaged assets from client-managed persistent state. Portability remains incomplete because authentication and several client extension formats are not standardized; see [[Agent Plugin Architecture]].
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -101,3 +112,5 @@ The collection also cautions against collapsing skills and MCP into one winner. 
 - [[Agent Security and Governance]]
 - [[Zach Lloyd - The computer use verification skill that every agent needs]]
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
+- [[Google Cloud - Agent Plugins Are the Future of Agent Skills]]
+- [[Agent Plugin Architecture]]

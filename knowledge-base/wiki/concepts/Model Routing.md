@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-07-06
+updated: 2026-08-24
 tags:
   - concept
   - routing
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-08-19-bytebytego-inkling
+  - src-2026-08-24-openai-gpt-5-6-builder-guide
 status: active
 ---
 
@@ -55,6 +57,8 @@ Long-running agents turn model choice into infrastructure. When a system repeate
   - **drafters** for speculative decoding.
 - This reframes routing as a capability allocation problem, not only a provider-cost problem. The router must decide when a small model is enough, when to retrieve, when to escalate, and when to block or ask for human review.
 - Two 2026 sources widen the cost surface routing optimises. [[Alyona Vert - AI Concepts and Techniques in 2026]] notes inference is **fragmenting by workload** across specialised hardware (rack-scale Vera Rubin, MatX, Taalas "model-as-hardware"), so routing increasingly spans not just model tiers but *hardware* tiers keyed on cost-per-token, latency, and context handling. [[Sebastian Raschka - Using Local Coding Agents]] adds a subtler lever: for agentic work, **token usage is driven by the harness, not the model** — Claude Code re-feeds far more input context per turn than Codex for equal task success — so choosing the [[Coding Agent Harness]] is itself a routing-style efficiency decision.
+- [[OpenAI - The Builder's Guide to GPT-5.6]] adds a second routing axis: after selecting a model tier, choose **reasoning effort** based on task risk and complexity. The same guide recommends stronger orchestration with cheaper specialized workers and tool search rather than exposing a large tool schema on every turn.
+- [[ByteByteGo - The New American AI Model Designed to Be Customized]] shows the analogous control inside one sparse model. Inkling activates a small subset of experts per layer and exposes an effort parameter, so deployment can route both computation inside the model and reasoning budget across requests.
 
 ## Open questions
 
@@ -79,3 +83,5 @@ Long-running agents turn model choice into infrastructure. When a system repeate
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[ByteByteGo]]
 - [[AI Knowledge Base Overview]]
+- [[OpenAI - The Builder's Guide to GPT-5.6]]
+- [[ByteByteGo - The New American AI Model Designed to Be Customized]]

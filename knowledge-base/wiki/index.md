@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-08-13
+updated: 2026-08-24
 tags:
   - index
 source_ids:
@@ -158,6 +158,42 @@ source_ids:
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
+  - src-2026-08-17-google-cloud-agent-plugins
+  - src-2026-08-17-alpha-signal-three-layers-agent-security
+  - src-2026-08-18-hugging-face-state-open-models-summer-2026
+  - src-2026-08-18-harry0703-moneyprinterturbo
+  - src-2026-08-18-bytebytego-waymo-vs-tesla
+  - src-2026-08-19-bytebytego-inkling
+  - src-2026-08-20-bytebytego-graphrag
+  - src-2026-08-20-liquid-ai-production-loops
+  - src-2026-08-20-radixark-miles-v0-1
+  - src-2026-08-20-mark-russinovich-fools-gold
+  - src-2026-08-20-jeremy-morrell-extensible-software
+  - src-2026-08-21-ben-joffe-fast-weekday
+  - src-2026-08-24-bytebytego-ollama-vllm-sglang
+  - src-2026-08-24-edward-yang-parallelize-transformer
+  - src-2026-08-24-openai-gpt-5-6-builder-guide
+  - src-2026-08-24-himank-sehgal-amazon-applied-scientist
+  - src-2026-08-24-himank-sehgal-google-research-scientist
+  - src-2026-08-24-himank-sehgal-meta-research-scientist
+  - src-2026-08-24-alireza-diri-general-ml
+  - src-2026-08-24-alireza-diri-deep-learning
+  - src-2026-08-24-alireza-diri-nlp
+  - src-2026-08-24-alireza-diri-statistics
+  - src-2026-08-24-alireza-diri-probability
+  - src-2026-08-24-alireza-diri-coding
+  - src-2026-08-24-alireza-diri-hyperparameters
+  - src-2026-08-24-alireza-diri-training-testing
+  - src-2026-08-24-alireza-diri-validation
+  - src-2026-08-24-alireza-diri-metrics
+  - src-2026-08-24-alireza-diri-ml-design
+  - src-2026-08-24-alireza-diri-mlops
+  - src-2026-08-24-alireza-diri-company-questions
+  - src-2026-08-24-alireza-diri-job-interviews
+  - src-2026-08-24-alireza-diri-explainable-ai
+  - src-2026-08-24-alireza-diri-ai-ethics
+  - src-2026-08-24-alireza-diri-ai-agents
+  - src-2026-08-24-alireza-diri-data-engineering
 status: active
 ---
 
@@ -239,6 +275,12 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Knowledge Distillation]] - Transferring teacher behavior or representations into a smaller student through outputs, features, or synthetic data.
 - [[Semantic Recommendation Systems]] - Meaning-based candidate retrieval across dual encoders, specialized funnels, and generative semantic IDs.
 - [[Agent Frameworks]] - Selecting agent runtimes by control flow, durability, language, modality, governance, and abstraction cost.
+- [[Agent Plugin Architecture]] - Packaging skills, MCP servers, assets, and client configuration into portable capability bundles.
+- [[Open Model Ecosystems]] - How weights, licenses, derivatives, runtimes, model size, and machine consumers shape open-model adoption.
+- [[Inference Serving Engines]] - Workload-oriented selection among local, throughput, and prefix-aware LLM runtimes.
+- [[Defensive Deception for Open Models]] - Reducing the payoff of safety-removal attacks by making attacked behavior unreliable.
+- [[LLM-Native Extensible Software]] - Durable generated extensions behind trusted capability boundaries and isolated workers.
+- [[Autonomous Driving Systems]] - Sensing, representation, prediction, planning, validation, and training tradeoffs in self-driving stacks.
 
 ## Entities
 
@@ -362,6 +404,28 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]] - Semantic feed retrieval at LinkedIn, Meta, and YouTube.
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] - Convergence conditions, stopping economics, and task editability for iterative agents.
 - [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] - Capability-oriented map of agent frameworks and SDKs.
+
+### August 24, 2026 batch
+
+- [[Google Cloud - Agent Plugins Are the Future of Agent Skills]] - Portable bundles joining skills, MCP servers, assets, and client configuration.
+- [[Alpha Signal - The Three Layers of AI Agent Security]] - Infrastructure, runtime, and network enforcement around potentially compromised agents.
+- [[Hugging Face - State of Open Models Summer 2026]] - Hub-derived observations on derivatives, small-model adoption, runtimes, and agent traffic.
+- [[harry0703 - MoneyPrinterTurbo]] - End-to-end multimodal short-video generation and publication workflow.
+- [[ByteByteGo - Waymo vs Tesla - Two Ways to Build Self-Driving Cars]] - Structured multi-sensor versus camera-centered learned autonomy stacks.
+- [[ByteByteGo - The New American AI Model Designed to Be Customized]] - Sparse MoE architecture, mixed attention, and controllable reasoning effort in Inkling.
+- [[ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]] - Entity graphs, communities, and local/global retrieval modes.
+- [[Liquid AI - Designing Loops for Production-Grade Work]] - Production-scale execution and external harnesses as specification discovery.
+- [[RadixArk - Miles v0.1 Production-Level Post-Training]] - Asynchronous rollout, training, sandbox, weight-update, and evaluation infrastructure.
+- [[Mark Russinovich - Fool's Gold]] - Defensive deception against open-weight safety-removal attacks.
+- [[Jeremy Morrell - Extensible Software in the Age of LLMs]] - Generated durable extensions inside isolated capability-constrained workers.
+- [[Ben Joffe - A Faster Way to Calculate the Day of the Week]] - Proof- and benchmark-led arithmetic performance engineering.
+- [[ByteByteGo - Ollama vs vLLM vs SGLang]] - Workload-level taxonomy of local and production inference engines.
+- [[Edward Z. Yang - How to Parallelize a Transformer for Training]] - Interactive roofline reasoning for composing distributed-training axes.
+- [[OpenAI - The Builder's Guide to GPT-5.6]] - Model, effort, tool, caching, and multi-agent routing guidance.
+- [[Himank Sehgal - Amazon Applied Scientist Interview Guide]] - Unofficial Amazon role and loop preparation map.
+- [[Himank Sehgal - Google Research Scientist Interview Guide]] - Unofficial Google research interview preparation map.
+- [[Himank Sehgal - Meta Research Scientist Interview Guide]] - Unofficial Meta research interview preparation map.
+- [[Alireza Diri - AI-ML Interviews Collection]] - Collection summary covering 18 interview-preparation modules.
 
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.

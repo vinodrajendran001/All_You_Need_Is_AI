@@ -71,4 +71,4 @@ The collection supplies [[ML Research Interview Preparation]] with a broad curri
 - [[Himank Sehgal - Amazon Applied Scientist Interview Guide]]
 - [[Himank Sehgal - Microsoft Applied Scientist Interview Guide]]
 - [[Himank Sehgal - Navi AI Scientist Interview Guide]]
-- [[Machine Learning Evaluation]]
+- [[Multi-Turn Evaluation]]

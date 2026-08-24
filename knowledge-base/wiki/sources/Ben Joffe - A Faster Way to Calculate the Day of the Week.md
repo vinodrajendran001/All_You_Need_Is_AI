@@ -44,5 +44,4 @@ Although outside the vault's core AI focus, the method exemplifies [[Software Pe
 
 ## Related pages
 
-- [[A Practical Guide to Writing Faster Python]]
-
+- [[Software Performance Engineering]]

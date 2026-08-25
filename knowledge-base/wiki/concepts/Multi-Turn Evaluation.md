@@ -51,11 +51,18 @@ Many conversational failures only emerge across turns: repeated questions, contr
 
 [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] adds evaluator failure as a trace-level outcome: a loop may diagnose that a target is unreachable while an external evaluator keeps sending it back. Evaluation must therefore distinguish task failure, verifier mismatch, impossibility, and diminishing returns rather than treating every non-pass as another retry.
 
+### Test the test set
+
+Everything above assumes the evaluation set measures what it claims to. [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]] supplies the vault's first rigorous demonstration that this assumption can fail systematically, and its probe design is domain-independent: **construct inputs where the benchmark's answer and the correct answer disagree, then see which one the model produces.** Three transferable instruments — reproduce the benchmark's known reference *errors*, delete the required information from the input and see if it reappears, and offer a choice the input cannot decide — separate recall of the test from capability at the task.
+
+The finding that should change reading habits: on two widely used ASR benchmarks the models with the **lowest** error rate were the most likely to reproduce erroneous references, so leaderboard rank order was partly anti-correlated with the capability being measured. This is the evaluation-side twin of the reward hacking discussed in [[Reward Design for RL]], and it strengthens this page's core argument — a static, public, i.i.d. test set is exactly the artifact an optimiser learns to recognise. The recommended remedies are structural: fully held-out sets, and temporal, speaker, or metadata-based splits rather than random ones. See [[Benchmark Optimization]].
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
 - How much simulation fidelity is enough before offline metrics become misleading?
 - What is the right balance between always-on online scoring and cheaper sampled evaluation?
+- Do agent and coding benchmarks carry a text-side analogue of the acoustic "which test am I taking" cue, and how would a team detect it in their own regression suite?
 
 ## Related pages
 

@@ -58,11 +58,13 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - [[Alisa Liu - Book of LLMs]] adds an interview-oriented consolidation of this same architecture: Attention, **RMSNorm**, the **SwiGLU FFN** (`(xW₁) ⊙ Swish(xW₂)`), and **RoPE**, plus an unusually explicit "accounting" view — how to count parameters, activation memory, and forward/backward FLOPs. That accounting framing is a useful study layer for the rapid-fire technical-discussion round described in [[ML Research Interview Preparation]].
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] maps *where the compute lives*: almost all of a layer's weight sits in its linear projections — the Q/K/V and output projections in attention and the two MLP GEMMs — while layer norm, softmax, and residuals are element-wise "rounding error." That distribution is exactly why splitting a model across devices means splitting those matrix multiplies, and why attention's head-independence and the MLP's column/row structure are the seams [[Distributed Training Parallelism|tensor parallelism]] cuts along.
 - [[Alyona Vert - AI Concepts and Techniques in 2026]] flags two 2026 directions that treat the *stack of blocks* as more than a fixed pipe: **depth as an addressable dimension** (Kimi's Attention Residuals let the residual stream choose which earlier layers matter; ByteDance Seed's Mixture-of-Depths Attention lets heads retrieve K/V from previous layers), and **DeepSeek's mHC (Manifold-Constrained Hyper-Connections)**, which adds geometric constraints (doubly stochastic matrices, Sinkhorn-Knopp) so inter-layer routing can be more flexible than residual connections without vanishing or exploding. These are frontier signals to track rather than settled replacements for the converged skeleton above.
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]] gives the attention-variant lineage a unifying explanation the "KV-cache savings" framing misses. Counting FLOPs and bytes for single-token decode collapses MHA, GQA, MQA, and MLA into one formula with a sliding KV-head count — `1 → H_q/H_kv → H_q → ~2H_q` — in which context length and head dimension cancel entirely. Read this way, **the lineage is a ladder of data reuse**: GQA and MQA reuse one KV across more query heads, and MLA goes further by having a single latent serve as both K and V. Two corrections to common intuitions follow: removing KV heads does not reduce FLOPs (only HBM traffic), and the whole line is a **decode** story — in prefill each K/V is already reused by every later query token, so the reuse is free and even plain MHA is compute-bound. RoPE complicates the picture, since position-dependent rotation breaks the associativity that MLA's absorption relies on; DeepSeek's answer is a RoPE-free absorbed latent plus a small shared RoPE-carrying key segment used for scoring only. See [[Arithmetic Intensity and the Roofline Model]].
 
 ## Open questions
 
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
 - Which efficiency techniques should be treated as architectural essentials versus implementation details?
+- If attention-variant design is really data-reuse design, is the reuse ladder exhausted at "one latent serves as both K and V," or is there a further rung?
 
 ## Related pages
 
@@ -72,6 +74,8 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 - [[Fareed Khan - Train LLM From Scratch]]
 - [[Alisa Liu - Book of LLMs]]
 - [[0xkato - How LLMs Actually Work]]
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]]
+- [[Arithmetic Intensity and the Roofline Model]]
 - [[Video Transformers]]
 - [[Mayank Pratap Singh - Transformers for Video - TimeSformer]]
 - [[KV Cache]]

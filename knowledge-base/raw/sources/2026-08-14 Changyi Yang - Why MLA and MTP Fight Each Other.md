@@ -1,15 +1,22 @@
 ---
-type: inbox-source
-title: "Why MLA and MTP Fight Each Other: Attention Through Arithmetic Intensity"
-source: "https://www.linkedin.com/pulse/why-mla-mtp-fight-each-other-attention-through-arithmetic-yang-npr9c/"
-author:
-published: 2001-08-14
-created: 2026-08-15
-updated: 2026-08-24
+type: raw-source
+source_id: src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+title: 'Why MLA and MTP Fight Each Other: Attention Through Arithmetic Intensity'
+author: Changyi Yang
+url: https://www.linkedin.com/pulse/why-mla-mtp-fight-each-other-attention-through-arithmetic-yang-npr9c/
+published: 2026-08-14
+captured: 2026-08-15
+status: immutable
 tags:
-  - source/inbox
-status: pending
+  - source/raw
+  - attention
+  - arithmetic-intensity
+  - mla
+  - speculative-decoding
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 > **Strongly recommend check this site for better format!** Originally published at [https://changyi.fun/posts/attention-](https://changyi.fun/posts/attention-) [arithmetic-intensity/](https://changyi.fun/posts/attention-arithmetic-intensity/)
 
 I was reading [this post by Su Jianlin](https://kexue.fm/archives/11848) when one sentence stopped me:

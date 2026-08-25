@@ -6,7 +6,7 @@ source_id: src-2026-04-20-moonshotai-flashkda-v1
 source_title: "FlashKDA v1: A Deep Dive"
 source_author: MoonshotAI
 source_url: https://github.com/MoonshotAI/FlashKDA/blob/master/docs/20260420-flashkda-v1-deep-dive.md
-tags: [source-summary, kernels, attention, performance]
+tags: [source/summary, kernels, attention, performance]
 source_ids: [src-2026-04-20-moonshotai-flashkda-v1]
 status: active
 ---

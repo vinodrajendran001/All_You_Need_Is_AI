@@ -2,7 +2,7 @@
 type: concept
 created: 2026-08-24
 updated: 2026-08-24
-tags: [concept, software-architecture, agents, extensibility]
+tags: [concept, software-architecture, ai-agents, extensibility]
 source_ids:
   - src-2026-08-20-jeremy-morrell-extensible-software
   - src-2026-08-17-google-cloud-agent-plugins

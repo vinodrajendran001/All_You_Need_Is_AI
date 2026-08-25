@@ -6,7 +6,7 @@ source_id: src-2026-07-22-mitchell-hashimoto-simd
 source_title: "Everyone Should Know SIMD"
 source_author: Mitchell Hashimoto
 source_url: https://mitchellh.com/writing/everyone-should-know-simd
-tags: [source-summary, simd, cpu, performance]
+tags: [source/summary, simd, cpu, performance]
 source_ids: [src-2026-07-22-mitchell-hashimoto-simd]
 status: active
 ---

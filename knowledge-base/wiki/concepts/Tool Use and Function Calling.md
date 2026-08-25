@@ -2,7 +2,7 @@
 type: concept
 created: 2026-05-13
 updated: 2026-07-03
-tags: [tool-use, function-calling, llm, agents]
+tags: [tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-rag-architecture-comparison

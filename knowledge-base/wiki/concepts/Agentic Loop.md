@@ -2,7 +2,7 @@
 type: concept
 created: 2026-05-13
 updated: 2026-08-05
-tags: [agents, llm, tool-use, loop]
+tags: [ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-rag-architecture-comparison

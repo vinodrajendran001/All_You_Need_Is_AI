@@ -6,7 +6,7 @@ source_author: Perplexity Research
 source_url: "https://research.perplexity.ai/articles/advancing-search-augmented-language-models"
 created: 2026-05-13
 updated: 2026-05-13
-tags: [search, rl, sft, agents, tool-use, perplexity, grpo, reward-design]
+tags: [source/summary, search, rl, sft, ai-agents, tool-use, perplexity, grpo, reward-design]
 status: active
 ---
 

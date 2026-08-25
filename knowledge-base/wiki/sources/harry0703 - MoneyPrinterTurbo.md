@@ -6,7 +6,7 @@ source_id: src-2026-08-18-harry0703-moneyprinterturbo
 source_title: MoneyPrinterTurbo
 source_author: harry0703
 source_url: https://github.com/harry0703/MoneyPrinterTurbo
-tags: [source/summary, agents, multimodal, video]
+tags: [source/summary, ai-agents, multimodal, video]
 source_ids: [src-2026-08-18-harry0703-moneyprinterturbo]
 status: active
 ---

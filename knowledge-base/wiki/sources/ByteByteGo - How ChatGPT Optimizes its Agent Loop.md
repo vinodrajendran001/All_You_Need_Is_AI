@@ -6,7 +6,7 @@ source_id: src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
 source_title: "How ChatGPT Optimizes its Agent Loop: Harness, API, and Inference"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-chatgpt-optimizes-its-agent-loop
-tags: [source-summary, agents, inference, caching]
+tags: [source/summary, ai-agents, inference, caching]
 source_ids: [src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization]
 status: active
 ---

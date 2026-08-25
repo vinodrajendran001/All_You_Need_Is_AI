@@ -6,7 +6,7 @@ source_id: src-2026-07-21-bytebytego-roblox-world-models
 source_title: "Inside Roblox's Bet on World Models"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/inside-robloxs-bet-on-world-models
-tags: [source-summary, world-models, roblox, rendering]
+tags: [source/summary, world-models, roblox, rendering]
 source_ids: [src-2026-07-21-bytebytego-roblox-world-models]
 status: active
 ---

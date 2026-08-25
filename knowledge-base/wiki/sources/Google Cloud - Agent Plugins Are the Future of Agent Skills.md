@@ -6,7 +6,7 @@ source_id: src-2026-08-17-google-cloud-agent-plugins
 source_title: Agent Plugins Are the Future of Agent Skills
 source_author: Google Cloud
 source_url: https://x.com/GoogleCloudTech/status/2087733334617063503
-tags: [source/summary, agents, plugins, mcp]
+tags: [source/summary, ai-agents, plugins, mcp]
 source_ids: [src-2026-08-17-google-cloud-agent-plugins]
 status: active
 ---

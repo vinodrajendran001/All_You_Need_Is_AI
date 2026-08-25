@@ -6,7 +6,7 @@ source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part three: testing overtraining"
 source_author: Giles Thomas
 source_url: https://www.gilesthomas.com/2026/07/why-do-openai-gpt2-weights-beat-mine-3-overtraining
-tags: [source-summary, gpt2, training, evaluation]
+tags: [source/summary, gpt2, training, evaluation]
 source_ids: [src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining]
 status: active
 ---

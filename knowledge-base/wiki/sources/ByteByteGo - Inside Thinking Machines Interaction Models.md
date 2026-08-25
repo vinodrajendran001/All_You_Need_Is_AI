@@ -7,7 +7,7 @@ source_title: "Inside Thinking Machines' Interaction Models"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/inside-thinking-machines-interaction
 tags:
-  - source-summary
+  - source/summary
   - voice-ai
   - multimodal
   - real-time

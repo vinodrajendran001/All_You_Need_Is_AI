@@ -6,7 +6,7 @@ entity_kind: open-source project
 tags:
   - entity
   - reinforcement-learning
-  - agents
+  - ai-agents
 source_ids:
   - src-2026-08-07-rllm-realtime-rl-agents
 status: active

@@ -7,7 +7,7 @@ source_title: "AI Concepts and Techniques in 2026: Memory, Inference, Fine-Tunin
 source_author: Alyona Vert
 source_url: https://www.turingpost.com/p/ai-concepts-and-techniques-in-2026-memory-inference-fine-tuning-tokens
 tags:
-  - source-summary
+  - source/summary
   - survey
   - fine-tuning
   - inference

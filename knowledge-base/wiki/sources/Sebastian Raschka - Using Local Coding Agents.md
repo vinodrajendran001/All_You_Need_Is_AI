@@ -7,7 +7,7 @@ source_title: "Using Local Coding Agents"
 source_author: Sebastian Raschka
 source_url: https://magazine.sebastianraschka.com/p/using-local-coding-agents
 tags:
-  - source-summary
+  - source/summary
   - coding-agents
   - local-llm
   - open-weight

@@ -7,7 +7,7 @@ source_title: "ReasonCACHE: Teaching LLMs To Reason Without Weight Updates"
 source_author: Sharut Gupta et al.
 source_url: https://arxiv.org/abs/2602.02366
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - icl
   - prefix-tuning

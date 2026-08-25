@@ -6,7 +6,7 @@ tags:
   - concept
   - context-engineering
   - prompt-engineering
-  - agents
+  - ai-agents
   - production-ai
 source_ids:
   - src-2026-06-05-systemdesign42-system-design-academy

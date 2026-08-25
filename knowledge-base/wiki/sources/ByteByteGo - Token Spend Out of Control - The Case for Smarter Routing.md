@@ -7,7 +7,7 @@ source_title: Token Spend Out of Control? The Case for Smarter Routing
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/token-spend-out-of-control-the-case
 tags:
-  - source-summary
+  - source/summary
   - routing
   - ai-agents
   - cost

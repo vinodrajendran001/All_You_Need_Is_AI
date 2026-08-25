@@ -7,7 +7,7 @@ source_url: https://github.com/The-Pocket/PocketFlow-Tutorial-Video-Generator/tr
 created: 2026-05-18
 updated: 2026-05-18
 tags:
-  - source-summary
+  - source/summary
   - llm
   - reinforcement-learning
   - machine-learning

@@ -7,7 +7,7 @@ source_title: "What Actually Happens During LLM Inference?"
 source_author: Nithin
 source_url: https://medium.com/@nithinellanki/what-actually-happens-during-llm-inference-e9e756715fc8
 tags:
-  - source-summary
+  - source/summary
   - inference
   - serving
   - kv-cache

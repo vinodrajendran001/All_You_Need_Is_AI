@@ -7,8 +7,8 @@ source_title: The Agent Loop Architecture
 source_author: djfarrelly
 source_url: https://x.com/djfarrelly/status/2067677007140278630
 tags:
-  - source-summary
-  - agents
+  - source/summary
+  - ai-agents
   - orchestration
   - durable-execution
   - skills

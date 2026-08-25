@@ -7,7 +7,7 @@ source_title: A Functional Taxonomy of World Models
 source_author: Fei-Fei Li et al. (World Labs)
 source_url: https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models
 tags:
-  - source-summary
+  - source/summary
   - world-models
   - spatial-intelligence
   - robotics

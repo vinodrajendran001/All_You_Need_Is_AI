@@ -3,11 +3,11 @@ type: source-summary
 source_id: src-2026-05-18-rag-architecture-comparison
 source_title: "Classic RAG vs Graph RAG vs Agentic RAG"
 source_author: Unknown (LinkedIn post)
-source_url: null
+source_url: ""
 created: 2026-05-18
 updated: 2026-05-18
 tags:
-  - source-summary
+  - source/summary
   - rag
   - retrieval-augmented-generation
   - knowledge-graphs

@@ -4,7 +4,7 @@ created: 2026-06-02
 updated: 2026-08-03
 tags:
   - concept
-  - agents
+  - ai-agents
   - research
   - automation
 source_ids:

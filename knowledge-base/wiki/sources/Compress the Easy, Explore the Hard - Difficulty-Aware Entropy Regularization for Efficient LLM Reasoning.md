@@ -7,7 +7,7 @@ source_title: "Compress the Easy, Explore the Hard: Difficulty-Aware Entropy Reg
 source_author: Qin-Wen Luo et al.
 source_url: https://arxiv.org/abs/2602.22642
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - rl
   - entropy

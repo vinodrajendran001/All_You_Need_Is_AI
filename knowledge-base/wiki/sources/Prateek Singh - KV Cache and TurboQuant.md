@@ -7,7 +7,7 @@ source_title: KV Cache & TurboQuant
 source_author: Prateek Singh
 source_url: https://prateeksinghphd.in/kvcache-full-blog.html
 tags:
-  - source-summary
+  - source/summary
   - kv-cache
   - quantization
   - inference

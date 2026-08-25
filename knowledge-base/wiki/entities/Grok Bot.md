@@ -6,7 +6,7 @@ entity_kind: product
 tags:
   - entity
   - product
-  - agents
+  - ai-agents
   - multi-agent
   - automation
 source_ids:

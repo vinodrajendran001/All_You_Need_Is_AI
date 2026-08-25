@@ -7,7 +7,7 @@ source_title: A Visual Guide to Quantization
 source_author: Maarten Grootendorst
 source_url: https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
 tags:
-  - source-summary
+  - source/summary
   - quantization
   - llm
   - inference

@@ -7,7 +7,7 @@ source_title: System Design Academy
 source_author: systemdesign42 (newsletter.systemdesign.one)
 source_url: https://github.com/systemdesign42/system-design-academy
 tags:
-  - source-summary
+  - source/summary
   - system-design
   - ai-engineering
   - distributed-systems

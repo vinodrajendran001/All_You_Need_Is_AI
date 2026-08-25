@@ -7,7 +7,7 @@ source_title: Efficient Reasoning on the Edge
 source_author: Yelysei Bondarenko et al.
 source_url: https://arxiv.org/abs/2603.16867
 tags:
-  - source-summary
+  - source/summary
   - llm
   - reasoning
   - edge-ai

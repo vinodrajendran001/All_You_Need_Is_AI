@@ -7,7 +7,7 @@ source_title: "Transformers for Video: TimeSformer"
 source_author: Mayank Pratap Singh
 source_url: https://vizuara.substack.com/p/transformers-for-video-timesformer
 tags:
-  - source-summary
+  - source/summary
   - transformers
   - video
   - attention

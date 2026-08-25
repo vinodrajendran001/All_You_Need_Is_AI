@@ -8,7 +8,7 @@ source_author: Paul Iusztin
 source_url: https://www.decodingai.com/p/the-coding-agent-loop
 tags:
   - source/summary
-  - agents
+  - ai-agents
   - coding-agents
   - harness
 source_ids:

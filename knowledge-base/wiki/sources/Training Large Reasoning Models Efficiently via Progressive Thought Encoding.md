@@ -7,7 +7,7 @@ source_title: Training Large Reasoning Models Efficiently via Progressive Though
 source_author: Zeliang Zhang et al.
 source_url: https://arxiv.org/abs/2602.16839
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - efficiency
   - rl

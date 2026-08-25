@@ -7,7 +7,7 @@ source_url: https://careersatdoordash.com/blog/doordash-llm-as-a-judge-evaluatin
 created: 2026-05-29
 updated: 2026-05-29
 tags:
-  - source-summary
+  - source/summary
   - llm-evaluation
   - search
   - natural-language-search

@@ -5,13 +5,23 @@ source_title: "ByteByteGo - System Design and AI at Scale (May 2026 Batch)"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com
 created: 2026-05-21
-updated: 2026-05-21
+updated: 2026-08-25
 tags:
-  - source-summary
+  - source/summary
   - system-design
   - machine-learning
   - ai-at-scale
   - architecture
+source_ids:
+  - src-2026-05-21-bytebytego-batch
+  - src-2026-05-21-bytebytego-netflix-multimodal-search
+  - src-2026-05-21-bytebytego-snapchat-predictions
+  - src-2026-05-21-bytebytego-grab-ai-agents
+  - src-2026-05-21-bytebytego-figma-design-code
+  - src-2026-05-21-bytebytego-amazon-llm-recommendations
+  - src-2026-05-21-bytebytego-instacart-search
+  - src-2026-05-21-bytebytego-monolithic-microservices-serverless
+  - src-2026-05-21-bytebytego-doordash-country-launch
 status: active
 ---
 

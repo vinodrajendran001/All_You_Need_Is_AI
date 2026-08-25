@@ -7,7 +7,7 @@ source_title: "LFM2.5-8B-A1B: An Even Better On-Device Mixture of Experts"
 source_author: Liquid AI
 source_url: https://www.liquid.ai/blog/lfm2-5-8b-a1b
 tags:
-  - source-summary
+  - source/summary
   - llm
   - moe
   - on-device

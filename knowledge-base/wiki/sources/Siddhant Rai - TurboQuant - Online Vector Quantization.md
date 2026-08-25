@@ -7,7 +7,7 @@ source_title: "TurboQuant: Online Vector Quantization with Near-optimal Distorti
 source_author: Siddhant Rai
 source_url: https://vizuara.substack.com/p/turboquant-online-vector-quantization
 tags:
-  - source-summary
+  - source/summary
   - quantization
   - kv-cache
   - vector-quantization

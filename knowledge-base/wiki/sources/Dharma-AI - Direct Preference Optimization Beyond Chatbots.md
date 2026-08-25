@@ -7,7 +7,7 @@ source_title: Direct Preference Optimization Beyond Chatbots
 source_author: Erick Lachmann, Pimenta de Freitas Cardoso (Dharma-AI)
 source_url: https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots
 tags:
-  - source-summary
+  - source/summary
   - dpo
   - alignment
   - structured-output

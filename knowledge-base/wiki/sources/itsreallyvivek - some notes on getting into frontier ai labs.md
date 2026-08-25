@@ -7,7 +7,7 @@ source_title: some notes on getting into frontier ai labs
 source_author: itsreallyvivek
 source_url: https://x.com/itsreallyvivek/status/2062924410588406118
 tags:
-  - source-summary
+  - source/summary
   - research
   - engineering
   - abstraction

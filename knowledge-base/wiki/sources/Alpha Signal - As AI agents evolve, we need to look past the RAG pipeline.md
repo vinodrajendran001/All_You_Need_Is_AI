@@ -9,7 +9,7 @@ source_url: ""
 tags:
   - source/summary
   - retrieval
-  - agents
+  - ai-agents
   - rag
   - terminal
 source_ids:

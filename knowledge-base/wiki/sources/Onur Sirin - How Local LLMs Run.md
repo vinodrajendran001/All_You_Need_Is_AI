@@ -7,7 +7,7 @@ source_title: "How Local LLMs Run: Memory and Hardware"
 source_author: Onur Sirin
 source_url: https://silicontales.com/local-llm-complete-guide/?trk=feed_main-feed-card_feed-article-content
 tags:
-  - source-summary
+  - source/summary
   - inference
   - local-llm
   - hardware

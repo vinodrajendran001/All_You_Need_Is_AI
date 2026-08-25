@@ -3,11 +3,11 @@ type: source-summary
 source_id: src-2026-05-21-leetcode-templates
 source_title: "Universal LeetCode Templates — The Complete Arsenal"
 source_author: Unknown (community-compiled)
-source_url: null
+source_url: ""
 created: 2026-05-21
 updated: 2026-05-21
 tags:
-  - source-summary
+  - source/summary
   - algorithms
   - data-structures
   - leetcode

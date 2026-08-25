@@ -7,7 +7,7 @@ source_title: "Speculative Decoding: Theory and Implementation in vLLM"
 source_author: Mayank Pratap Singh
 source_url: https://vizuara.substack.com/p/speculative-decoding-theory-and-implementation
 tags:
-  - source-summary
+  - source/summary
   - inference
   - speculative-decoding
   - serving

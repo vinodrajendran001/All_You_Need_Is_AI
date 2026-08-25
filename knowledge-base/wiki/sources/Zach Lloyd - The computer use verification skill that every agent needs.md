@@ -8,7 +8,7 @@ source_author: Zach Lloyd
 source_url: https://x.com/zachlloydtweets/status/2084411777354277027
 tags:
   - source/summary
-  - agents
+  - ai-agents
   - computer-use
   - evaluation
 source_ids:

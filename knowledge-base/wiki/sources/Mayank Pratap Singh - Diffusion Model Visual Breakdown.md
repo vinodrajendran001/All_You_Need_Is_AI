@@ -7,7 +7,7 @@ source_title: Diffusion Model Visual Breakdown
 source_author: Mayank Pratap Singh
 source_url: https://vizuara.substack.com/p/diffusion-model-visual-breakdown
 tags:
-  - source-summary
+  - source/summary
   - diffusion
   - generative-models
   - image-generation

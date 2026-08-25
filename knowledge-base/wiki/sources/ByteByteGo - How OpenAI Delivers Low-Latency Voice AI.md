@@ -7,7 +7,7 @@ source_title: "How OpenAI Delivers Low-Latency Voice AI for 900M Users"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-openai-delivers-low-latency-voice
 tags:
-  - source-summary
+  - source/summary
   - systems
   - voice-ai
   - webrtc

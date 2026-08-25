@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-08-24
+updated: 2026-08-25
 tags:
   - overview
   - ai
@@ -196,6 +196,11 @@ source_ids:
   - src-2026-08-18-alireza-diri-aiml-interviews-object-detection
   - src-2026-08-18-alireza-diri-aiml-interviews-autonomous-vehicles
   - src-2026-08-18-alireza-diri-aiml-interviews-harmful-content
+  - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-22-grok-bot-systems-engineering-working-note
+  - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+  - src-2026-08-21-hume-ai-asr-benchmark-optimization
 status: active
 ---
 
@@ -333,11 +338,23 @@ Four sources connect training, retrieval, and agent operations. [[ByteByteGo - H
 - The `queries/` folder is active, `lint/` now has recurring reports, and `syntheses/` remains the least-developed content area.
 - No search tooling has been added yet because the index is enough at the current scale.
 
+## August 24 additions
+
 The August 24 ingest adds 36 canonical captures across six connected branches. [[Agent Plugin Architecture]] joins skills and MCP tools into installable bundles, while [[LLM-Native Extensible Software]] applies the same capability-boundary logic to generated application extensions. [[Alpha Signal - The Three Layers of AI Agent Security]] strengthens agent defense in depth, and [[Defensive Deception for Open Models]] records a distinct post-release threat model for open weights.
 
 The systems branch now connects [[Inference Serving Engines]], [[Distributed Training Parallelism]], and [[Agentic Reinforcement Learning]] through workload-aware serving, quantitative parallelism selection, and Miles' asynchronous post-training stack. [[Liquid AI - Designing Loops for Production-Grade Work]] adds a production-scale case study to [[Loop Engineering]], and ByteByteGo's GraphRAG article adds local/global community retrieval to [[Retrieval-Augmented Generation]].
 
 The model ecosystem branch adds [[Open Model Ecosystems]], Inkling's sparse customization architecture, and GPT-5.6 model-plus-effort routing. [[Autonomous Driving Systems]] records the structured-versus-learned representation tradeoff in self-driving stacks. The interview branch gains unofficial Amazon, Microsoft, and Navi guides plus an 18-module ML interview and system-design collection summarized in [[Alireza Diri - AI-ML Interviews Collection]]. Vendor, company, community, and newsletter claims remain explicitly qualified.
+
+## August 25 additions
+
+Five sources add an operations layer to the agent branch and a hardware layer beneath the inference branch.
+
+On agents, [[Grok Bot Systems Engineering Working Note]] and [[Anthropic - The AI-Native SDLC Playbook]] converge independently on the same claim: workflows advance on **typed artifacts and evidence**, never on conversational assurance. The first seeds [[Agent Workflow Maturity]] with a six-level ladder, six invariants, an evidence ladder whose level 0 is "the bot says it is done," and a reversibility-keyed approval policy; the second seeds [[AI-Native Software Development Lifecycle]] with artifact-triggered stages, hooks that govern at act time rather than in later review, and `CLAUDE.md`/`SKILL.md` as versioned institutional knowledge. Both feed [[AI Agents in Production]], [[Agent Skill]], and [[Agent Security and Governance]].
+
+On systems, [[Jacob Peake - AI Chip Architectures]] gives [[AI Accelerator Architecture]] a comparative frame — memory system, precision, interconnect, and the workload each vendor is betting on — and seeds [[Cerebras]], [[Groq]], and a sharper competitive reading of [[NVIDIA]]. [[Changyi Yang - Why MLA and MTP Fight Each Other]] seeds [[Arithmetic Intensity and the Roofline Model]] and supplies the vault's first worked demonstration that two individually sound inference optimizations can compete for the same idle decode compute.
+
+[[Hume AI - Measuring Benchmark Optimization in Speech Recognition]] seeds [[Benchmark Optimization]] with measured evidence that leading ASR systems reproduce known errors in reference transcripts, and that the lowest-WER models are the worst offenders — a caution that generalizes well beyond speech and connects to [[Multi-Turn Evaluation]] and [[Real-Time Voice AI]].
 
 ## Related pages
 

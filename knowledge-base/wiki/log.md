@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-24
+updated: 2026-08-25
 tags:
   - log
 source_ids:
@@ -194,6 +194,11 @@ source_ids:
   - src-2026-08-18-alireza-diri-aiml-interviews-object-detection
   - src-2026-08-18-alireza-diri-aiml-interviews-autonomous-vehicles
   - src-2026-08-18-alireza-diri-aiml-interviews-harmful-content
+  - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-22-grok-bot-systems-engineering-working-note
+  - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+  - src-2026-08-21-hume-ai-asr-benchmark-optimization
 status: active
 ---
 
@@ -813,3 +818,13 @@ Append-only operational history for the wiki.
 - Found one raw clipping stored under `wiki/sources/` without source-summary metadata; returned it to `raw/inbox/` for proper metadata verification and future ingest.
 - Found no remaining actionable broken wikilinks, orphan pages, frontmatter defects, missing related-page sections, thin substantive pages, index gaps, duplicate source-summary IDs, or source-ID coverage gaps.
 - Confirmed index, overview, and log agree at 189 unique source IDs. Filed [[2026-08-24 Lint Pass]].
+
+## [2026-08-25] ingest | AI-native SDLC, agent workflow maturity, accelerators, and benchmark optimization
+
+- Normalized 5 raw captures, corrected two clipper dates that read `2001-08-XX` for 2026 articles, and moved `Grok_Bot_Team.pdf` to `raw/assets/` as the canonical artifact behind [[Grok Bot Systems Engineering Working Note]]. The pending clipping returned to `raw/inbox/` by [[2026-08-24 Lint Pass]] is now ingested as [[Changyi Yang - Why MLA and MTP Fight Each Other]].
+- Created 5 source-summary pages: [[Anthropic - The AI-Native SDLC Playbook]], [[Grok Bot Systems Engineering Working Note]], [[Jacob Peake - AI Chip Architectures]], [[Changyi Yang - Why MLA and MTP Fight Each Other]], and [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]].
+- Seeded [[AI-Native Software Development Lifecycle]], [[Agent Workflow Maturity]], [[Arithmetic Intensity and the Roofline Model]], and [[Benchmark Optimization]], plus entities [[Anthropic]], [[Hugging Face]], [[Hume AI]], [[Cerebras]], [[Groq]], [[Jacob Peake]], and [[Grok Bot]].
+- Integrated the agent-operations material into [[AI Agents in Production]], [[Agent Skill]], [[Agent Security and Governance]], and [[Coding Agent Harness]]; the two independent sources converge on advancing work by typed artifacts and evidence rather than conversational assurance.
+- Integrated the hardware material into [[AI Accelerator Architecture]], [[GPU Execution Model]], [[LLM Inference]], [[Inference Serving Engines]], [[KV Cache]], [[Speculative Decoding]], [[Transformer Architecture]], and [[NVIDIA]]; the ASR findings into [[Real-Time Voice AI]] and [[Multi-Turn Evaluation]].
+- Preserved three attribution caveats: the Changyi Yang byline is inferred from the publication slug and not independently confirmed, the Grok Bot note is unattributed and self-declared as independent synthesis rather than official vendor material, and the Jacob Peake article carries no publication date so `published:` was left blank rather than fabricated.
+- Index, overview, and log now agree at 194 unique source IDs.

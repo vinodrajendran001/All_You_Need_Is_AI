@@ -62,14 +62,37 @@ This architecture assumes the agent process may be compromised. Semantic model r
 
 [[Mark Russinovich - Fool's Gold]] addresses a different boundary: open weights after release. Its defensive-deception proposal does not preserve refusal under weight-space attack; it attempts to deny attackers reliable hazardous output after the attack. That distinction, and its governance risks, are tracked in [[Defensive Deception for Open Models]].
 
+## Approval as an encoded policy
+
+[[Grok Bot Systems Engineering Working Note]] contributes the missing decision layer above the enforcement planes: **when should the agent stop and ask?** Its answer is that approval is a policy keyed on *reversibility*, decided before the first unattended run, and explicitly "not a mood" — it must not depend on how confident the agent sounds.
+
+| Action | Default | Reason |
+| --- | --- | --- |
+| Read approved source | Allow | Reversible observation |
+| Draft internal artifact | Allow | No external effect |
+| Write reversible record | Allow + log | Recoverable |
+| Send or publish externally | Ask | Reputation impact |
+| Delete, pay, or change access | Human | Hard to undo |
+
+Around it sits a **capability budget**: scope limited to approved accounts and folders, a rate ceiling on external writes, a reversibility window that retains prior values, notification on external write or denial, and stop conditions for repeated denial, unknown domains, or instructions found in untrusted content.
+
+The same source restates prompt injection in the form that matters operationally: **emails, webpages, documents, repository issues, and retrieved text are untrusted data, and a webpage must not be able to expand permissions, change system policy, or redirect secrets.** Its minimum controls extend the three planes above with two that are easy to omit — stamp the acting identity and `task_id` *outside* model-generated content, and keep an emergency stop that disables triggers **without deleting evidence**, so an incident remains investigable. Retry budgets are bounded and unknown outcomes are inspected before repetition, which prevents a failing agent from amplifying its own damage. See [[Agent Workflow Maturity]].
+
+[[Anthropic - The AI-Native SDLC Playbook]] shows the same principle inside a software organization, where the enforcement point moves earlier still: hooks act as build-time guardrails and deploy gates, so governance is applied **as the agent acts** rather than in a later review cycle, and managed settings constrain regulated enterprises centrally rather than per developer. The unresolved question this raises is recorded in [[AI-Native Software Development Lifecycle]] — policy now lives in repository shell scripts, and who reviews the guardrails is unaddressed.
+
 ## Open questions
 
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
 - How should organizations govern agents that inherit shared human credentials?
 - Which controls can be standardized without hiding version-specific permission semantics?
+- When policy is executable and lives in the repository, what protects the policy file from the agent it governs?
 
 ## Related pages
 
+- [[Grok Bot Systems Engineering Working Note]]
+- [[Anthropic - The AI-Native SDLC Playbook]]
+- [[Agent Workflow Maturity]]
+- [[AI-Native Software Development Lifecycle]]
 - [[AI Agents in Production]]
 - [[Coding Agent Harness]]
 - [[Tool Use and Function Calling]]

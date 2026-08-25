@@ -85,6 +85,21 @@ The collection also cautions against collapsing skills and MCP into one winner. 
 
 The draft keeps component failure boundaries separate and distinguishes read-only packaged assets from client-managed persistent state. Portability remains incomplete because authentication and several client extension formats are not standardized; see [[Agent Plugin Architecture]].
 
+### What a high-quality skill contains
+
+[[Grok Bot Systems Engineering Working Note]] is the vault's most specific answer to "what makes a skill good," and it reads as an authoring checklist rather than a definition:
+
+- a **narrow activation condition**, so the skill is not invoked everywhere;
+- ordered steps with tool choices and **stop conditions**;
+- positive examples demonstrating the desired artifact;
+- **anti-patterns** showing common but unacceptable shortcuts;
+- acceptance tests the agent can execute without subjective guessing;
+- a version number, owner, and date of last verified run.
+
+Its authoring loop — observe failures, write, evaluate, version, deploy — supplies the operational discipline the page's self-improvement section leaves open, and its triage rule is the sharpest formulation in the vault of *when* to reach for a skill at all: when a bot fails, do not add a longer conversational reminder; decide whether the failure belongs in the **skill** (method), the **environment** (access or path), the **verifier** (quality), or a **hard policy** (risk). Only the first is a skill problem. The stated goal is an accumulating operating system rather than a growing pile of prompt history. See [[Agent Workflow Maturity]].
+
+[[Anthropic - The AI-Native SDLC Playbook]] shows the same object doing governance work in an enterprise setting: a `.claude/skills/secure-api-review/SKILL.md` encodes a compliance procedure as a versioned repository artifact, which makes the review reproducible and auditable rather than dependent on who happened to run it. Both sources converge on the same claim — **a skill's value is that it survives the run that produced it**.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -92,9 +107,14 @@ The draft keeps component failure boundaries separate and distinguishes read-onl
 - How should teams evaluate skill edits so they improve one task without regressing another?
 - Can skill libraries become portable across models and harnesses, or will they remain tightly coupled to a specific runtime?
 - When is skill optimization merely workflow tuning, and when does it become part of a broader recursive self-improvement loop?
+- How many skills can coexist before narrow activation conditions start colliding and retrieval of the right skill becomes its own problem?
 
 ## Related pages
 
+- [[Grok Bot Systems Engineering Working Note]]
+- [[Anthropic - The AI-Native SDLC Playbook]]
+- [[Agent Workflow Maturity]]
+- [[AI-Native Software Development Lifecycle]]
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
 - [[Agent Planning]]

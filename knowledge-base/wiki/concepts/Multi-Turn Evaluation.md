@@ -68,6 +68,8 @@ The finding that should change reading habits: on two widely used ASR benchmarks
 
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
 - [[Braintrust - How to evaluate multi-turn conversations]]
+- [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]]
+- [[Benchmark Optimization]]
 - [[LLM-as-a-Judge]]
 - [[ML Systems at Scale]]
 - [[DoorDash]]

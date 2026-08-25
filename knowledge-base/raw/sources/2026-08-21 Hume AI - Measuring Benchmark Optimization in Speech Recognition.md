@@ -1,20 +1,22 @@
 ---
-title: "Measuring benchmark optimization in speech recognition"
-source: "https://huggingface.co/blog/asr-benchmark-optimization?utm_source=tldrai"
-author:
-  - "[[Theo Lebryk]]"
-  - "[[Eric Bezzam]]"
-  - "[[Alice]]"
-  - "[[David Ayllon]]"
-  - "[[Jakub Piotr Cłapa]]"
-  - "[[Jens Madsen]]"
-  - "[[Panagiotis Tzirakis]]"
+type: raw-source
+source_id: src-2026-08-21-hume-ai-asr-benchmark-optimization
+title: Measuring Benchmark Optimization in Speech Recognition
+author: Theo Lebryk, Eric Bezzam, Alice, David Ayllon, Jakub Piotr Clapa, Jens Madsen, Panagiotis Tzirakis
+url: https://huggingface.co/blog/asr-benchmark-optimization
 published: 2026-08-21
-created: 2026-08-25
-description: "We’re on a journey to advance and democratize artificial intelligence through open source and open science."
+captured: 2026-08-25
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - evaluation
+  - benchmarks
+  - speech-recognition
+  - contamination
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 Public voice AI benchmarks increasingly suggest that models are performing at human levels. Yet those scores don't always reflect how models work in the real-world. Since public benchmarks are open and widely used, models can also become optimized for the tests themselves. Their scores may improve because they have learned benchmark-specific patterns and not because they have become better at the underlying task.
 
 One reason is that traditional benchmarks overlook many of the conditions and qualities that make voice systems reliable, natural, contextually appropriate, and effective in practice. That's why we recently introduced held-out sets in [Real World VoiceEQ](https://huggingface.co/spaces/HumeAI/rw-voice-eq), the [Open-ASR Leaderboard](https://huggingface.co/blog/open-asr-leaderboard-private-data), and the [Far-field ASR Leaderboard](https://huggingface.co/spaces/treble-technologies/ffasr): to measure more of what matters in real-world use.

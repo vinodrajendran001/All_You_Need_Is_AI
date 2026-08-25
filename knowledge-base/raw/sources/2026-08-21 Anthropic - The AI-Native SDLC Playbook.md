@@ -1,13 +1,22 @@
 ---
-title: "The AI-Native SDLC playbook | Claude by Anthropic"
-source: "https://claude.com/blog/the-ai-native-sdlc-playbook?utm_source=tldrai"
-author:
-published: 2001-08-21
-created: 2026-08-25
-description: "How to transform your software development lifecycle with AI—stage by stage."
+type: raw-source
+source_id: src-2026-08-21-anthropic-ai-native-sdlc
+title: The AI-Native SDLC Playbook
+author: Anthropic Applied AI team
+url: https://claude.com/blog/the-ai-native-sdlc-playbook
+published: 2026-08-21
+captured: 2026-08-25
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - sdlc
+  - coding-agents
+  - governance
+  - claude-code
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 ## Code is no longer the bottleneck
 
 Organizations have started using AI to write code at a speed unthinkable one year ago, yet the processes around the code haven't changed at the same pace.

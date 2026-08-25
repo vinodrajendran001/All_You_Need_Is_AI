@@ -1,13 +1,22 @@
 ---
-title: "AI Chip Architectures"
-source: "https://www.jacobpeake.com/ai-chip-architectures"
-author:
+type: raw-source
+source_id: src-2026-08-25-jacob-peake-ai-chip-architectures
+title: AI Chip Architectures
+author: Jacob Peake
+url: https://www.jacobpeake.com/ai-chip-architectures
 published:
-created: 2026-08-25
-description: "A look at AI Chip Architectures. NVIDIA, AMD, TPUs, Trainium, Groq, Cerebras."
+captured: 2026-08-25
+status: immutable
 tags:
-  - "clippings"
+  - source/raw
+  - hardware
+  - accelerators
+  - gpu
+  - tpu
 ---
+
+> Preserve the source body below this line as the canonical capture.
+
 Contents
 
 At the 2018 [International Symposium on Computer Architecture](https://iscaconf.org/), ***[John Hennessy](https://en.wikipedia.org/wiki/John_L._Hennessy)*** and ***[David Patterson](https://en.wikipedia.org/wiki/David_Patterson_\(computer_scientist\))*** delivered their [Turing](https://amturing.acm.org/) Lecture: ***["A New Golden Age for Computer Architecture"](https://dl.acm.org/doi/10.1145/3282307)***.

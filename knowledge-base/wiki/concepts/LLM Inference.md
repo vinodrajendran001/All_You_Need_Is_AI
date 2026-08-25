@@ -72,18 +72,23 @@ Production engines must serve many concurrent requests:
 - **Inference compute is also a *reasoning* scaling axis.** [[Test-Time Scaling]] (from [[Akhil Arora et al - Current Advances in LLM Reasoning]]) spends extra decode — longer traces, more samples, explicit search, verifiers — to get better answers from a fixed model. That directly stresses this page's constraints: more reasoning tokens mean more memory-bound decode steps and a larger KV cache, which is why the field pairs it with [[Reasoning Compression|budget control]] and with systems work on parallel/speculative decoding and batched-inference determinism (CacheSaver, Parallel-R1).
 - **Local hardware adds a topology axis.** [[Onur Sirin - How Local LLMs Run]] distinguishes **flat/uniform memory** (Apple unified memory: one pool, one speed), **tiny-but-fast VRAM** (RTX 5090: very high GDDR bandwidth but little capacity), and **tiered coherent memory** (GB300: HBM fast tier plus LPDDR slow tier). This turns "does it fit?" into "does the active working set sit in the fast pool?"
 - **Speculative decoding is the canonical decode-latency fix.** [[Speculative Decoding]] ([[Mayank Pratap Singh - Speculative Decoding in vLLM]]) exploits exactly the memory-bound property above: because verifying many tokens in parallel costs about the same weight-load as producing one, a small draft model can propose tokens the target verifies in a single pass — losslessly (same output distribution). It is a **low-load latency optimization** that serving stacks toggle off under saturation, and it is complementary to weight and KV compression (it cuts *weight-loads per token* rather than *bytes*).
+- **The decode headroom is finite and shared.** [[Arithmetic Intensity and the Roofline Model]] is now the page that quantifies the framing above. Every optimization here — batching, speculation, multi-token prediction, cache-sharing attention — is a move along the same roofline, spending the compute a memory-bound decode leaves idle. [[Changyi Yang - Why MLA and MTP Fight Each Other]] shows the collision: DeepSeek-style MLA already sits at ~256 FLOP/B at a single query, above the H200 balance point of ~206, so stacking speculation on top pushes the workload past the knee where extra arithmetic costs latency instead of being free. [[Jacob Peake - AI Chip Architectures]] adds the hardware-side corollary that continuous batching does not escape this either: each user still reads their own cache, so long-context decode shifts from **weight-bandwidth-bound to KV-bandwidth-bound**, which is a different bottleneck than the one batching was introduced to fix.
 
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware, and how should schedulers (chunked prefill, disaggregated prefill/decode) exploit it?
 - Which weight + KV compression combinations give the best end-to-end tokens/sec without unacceptable quality loss?
 - As context windows grow, does decode become so memory-bound that KV-cache compression matters more than weight quantization?
+- Should serving stacks measure a workload's arithmetic intensity at runtime and gate batching, speculation, and attention-kernel dispatch on it, rather than configuring each independently?
 
 ## Related pages
 
 - [[KV Cache]]
 - [[Model Quantization and Efficiency]]
 - [[Nithin - What Actually Happens During LLM Inference]]
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]]
+- [[Jacob Peake - AI Chip Architectures]]
+- [[Arithmetic Intensity and the Roofline Model]]
 - [[Maarten Grootendorst - A Visual Guide to Quantization]]
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
 - [[Alisa Liu - Book of LLMs]]

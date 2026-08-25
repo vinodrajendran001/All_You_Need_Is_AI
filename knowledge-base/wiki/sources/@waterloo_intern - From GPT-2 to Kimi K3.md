@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
 source_title: "22580: From GPT2 to Kimi3, Explained"
 source_author: "@waterloo_intern"
@@ -20,6 +20,10 @@ This visual social-media explainer uses GPT-2-to-Kimi scaling as a lens on moder
 ## Caveat
 
 Its Kimi architecture and performance numbers are frontier claims from a secondary explainer and should be checked against primary technical reports.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/22580 From GPT2 to Kimi3, Explained.md`
 
 ## Related pages
 

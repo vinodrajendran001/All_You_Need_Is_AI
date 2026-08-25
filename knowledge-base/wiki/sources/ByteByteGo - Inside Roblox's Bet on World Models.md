@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-21-bytebytego-roblox-world-models
 source_title: "Inside Roblox's Bet on World Models"
 source_author: ByteByteGo
@@ -21,6 +21,10 @@ Roblox's described approach is an engine-authoritative hybrid: deterministic gam
 
 - Conditioning visual generation on engine state constrains the model with geometry and game rules rather than asking it to simulate the whole world.
 - The article frames 2K/60fps delivery, long-context consistency, and multiplayer scale as targets/open work, not established shipped capability.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/Inside Roblox’s Bet on World Models.md`
 
 ## Related pages
 

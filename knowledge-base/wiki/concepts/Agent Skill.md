@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-24
+updated: 2026-08-25
 tags:
   - concept
   - agents
@@ -20,6 +20,8 @@ source_ids:
   - src-2026-08-07-zach-lloyd-computer-use-verification
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-17-google-cloud-agent-plugins
+  - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-22-grok-bot-systems-engineering-working-note
 status: active
 ---
 

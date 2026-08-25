@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-07-03
+updated: 2026-08-25
 tags:
   - concept
   - llm
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-06-30-alisa-liu-book-of-llms
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-02-alyona-vert-ai-concepts-2026
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 status: active
 ---
 

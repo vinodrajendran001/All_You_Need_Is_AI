@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-06
+updated: 2026-08-25
 tags:
   - concept
   - gpu
@@ -10,6 +10,8 @@ tags:
   - hardware
 source_ids:
   - src-2026-07-03-fergus-finn-cuda-kernel
+  - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 status: active
 ---
 

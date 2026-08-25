@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-08-12
+updated: 2026-08-25
 tags:
   - concept
   - ai-agents
@@ -34,6 +34,8 @@ source_ids:
   - src-2026-08-07-rllm-realtime-rl-agents
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
+  - src-2026-08-22-grok-bot-systems-engineering-working-note
+  - src-2026-08-21-anthropic-ai-native-sdlc
 status: active
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-12
+updated: 2026-08-25
 tags:
   - concept
   - llm-evaluation
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-07-zach-lloyd-computer-use-verification
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-08-21-hume-ai-asr-benchmark-optimization
 status: active
 ---
 

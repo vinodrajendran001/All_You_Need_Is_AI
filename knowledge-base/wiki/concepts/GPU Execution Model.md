@@ -53,6 +53,8 @@ This is the layer between the model and the metal. [[AI Accelerator Architecture
 - 32 threads reading consecutive 4-byte floats **coalesce** into four 32-byte sector requests down L1 → L2 → GDDR6X.
 - **Arithmetic intensity** is the deciding ratio: one `FADD` per 12 bytes moved is almost pure data movement, so the kernel runs at ~80% of DRAM throughput with schedulers issuing only ~5% of cycles. The result returns via a completion **semaphore** and a copy engine served from L2 without a DRAM round trip.
 
+That ratio generalises far beyond a vector add, and [[Arithmetic Intensity and the Roofline Model]] develops it into the cross-cutting frame. Two anchors: [[Jacob Peake - AI Chip Architectures]] shows the same law selecting between whole architectures — training and prefill are compute-bound GEMMs while decode degenerates to GEMVs, and every deployed accelerator is a different strategy for the resulting data-movement problem — and [[Changyi Yang - Why MLA and MTP Fight Each Other]] shows it deciding kernel dispatch inside one model, where sglang chooses between two algebraically identical attention bracketings at a crossover of roughly 171 query tokens. The balance point on an H100 under BF16 is about **295 FLOP/byte**, which is the number the ~5% issue activity above is failing to reach by three orders of magnitude.
+
 ## Open questions
 
 - How do compute-bound GEMMs and tensor-core kernels — the workloads that dominate real training/inference — change the scheduling, register, and shared-memory picture drawn by a memory-bound vector add?
@@ -62,6 +64,9 @@ This is the layer between the model and the metal. [[AI Accelerator Architecture
 ## Related pages
 
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
+- [[Jacob Peake - AI Chip Architectures]]
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]]
+- [[Arithmetic Intensity and the Roofline Model]]
 - [[AI Accelerator Architecture]]
 - [[LLM Inference]]
 - [[Model Quantization and Efficiency]]

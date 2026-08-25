@@ -34,10 +34,24 @@ These categories overlap and evolve. Selection should be benchmarked on the actu
 
 Developer convenience, single-request latency, throughput, structured execution, distributed operation, and training integration are different objectives. No engine is "fastest" independently of workload and measurement boundary.
 
+## Engines dispatch on arithmetic intensity, not just on features
+
+[[Changyi Yang - Why MLA and MTP Fight Each Other]] exposes a layer beneath the usual engine comparison. sglang's attention backend chooses between two **algebraically identical** MLA bracketings — expand the latent into K/V for a dense GEMM, or score directly against the wide latent — because their FLOP/byte profiles differ, with a crossover near 171 query tokens. Its DSA backend threshold defaults to exactly `index_topk = 2048`: below that, top-k selects everything and sparsity buys nothing, so the dense kernel wins.
+
+Two implications for engine selection. First, an engine's real differentiator is often **how well its dispatch tracks the workload's position on the roofline** (see [[Arithmetic Intensity and the Roofline Model]]), which no feature checklist captures. Second, engine features interact rather than stack: speculative decoding and continuous batching both spend the compute a memory-bound decode leaves idle, so enabling both on an already high-intensity attention architecture can cost latency. That is a stronger form of this page's decision principle — configuration must be measured per workload, not per engine.
+
+[[Jacob Peake - AI Chip Architectures]] extends the same point to hardware targets. Serving on SRAM-only accelerators ([[Cerebras]], [[Groq]]) inverts the usual assumptions: batching matters far less, KV cache competes directly with weights for the same scarce memory, and compiler constraints — static graphs, no dynamic shapes, no data-dependent control flow on the Cerebras stack — restrict which serving strategies are expressible at all.
+
 ## Related pages
 
 - [[LLM Inference]]
 - [[KV Cache]]
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]]
+- [[Jacob Peake - AI Chip Architectures]]
+- [[Arithmetic Intensity and the Roofline Model]]
+- [[Speculative Decoding]]
+- [[Cerebras]]
+- [[Groq]]
 - [[Agentic Reinforcement Learning]]
 - [[AI Agents in Production]]
 - [[Software Performance Engineering]]

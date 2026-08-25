@@ -61,15 +61,32 @@ Techniques differ mainly in *where drafts come from*: vanilla **draft-target** (
 
 Speculative decoding is complementary to, not a substitute for, the other efficiency levers: [[Model Quantization and Efficiency|quantization]] cuts *bytes per weight*, [[KV Cache|KV-cache compression]] cuts the *other* growing object decode must read, and speculation cuts *weight-loads per token*. It is also the clean opposite of [[Test-Time Scaling]]: speculation makes the **same** output arrive faster, whereas test-time scaling spends extra compute to **change** the output (reason better).
 
+## The headroom speculation depends on can already be spent
+
+The strongest constraint on this page comes from [[Changyi Yang - Why MLA and MTP Fight Each Other]], and it is not about acceptance rate at all. Speculation works because a memory-bound decode leaves GPU compute idle; verifying K drafted tokens in one pass costs arithmetic that was going to waste. Formally, HBM traffic barely grows with the number of verified query positions S while QK/PV compute scales nearly linearly, so `AI(S) ≈ S · AI(S=1)` — speculation is a device for climbing the roofline (see [[Arithmetic Intensity and the Roofline Model]]).
+
+That only pays while there is roofline left. **Attention architectures that maximise cache reuse have already spent it.** DeepSeek-style MLA reaches ~256 FLOP/B at a single query and Kimi K3's MLA layer ~192 FLOP/B, against balance points of ~206 FLOP/B on H200 and the two-to-three-hundred range on H100/B200. Taking S to 2 gives 512 and 384 — past the knee, where the extra verification arithmetic stops being free and **starts costing real latency**. On a low-intensity MQA workload at AI ≈ 70–100 the same speculation is nearly free.
+
+Two corollaries:
+
+- MLA and multi-token prediction are **not independent optimisations**. Both are compute-for-bandwidth trades drawing on one finite pool, which is a different failure mode from the VRAM competition between draft model and cache described above — and it applies even to self-drafting MTP, which borrows no memory at all.
+- Typical speculation windows of 2–8 (at most a few dozen) stay well below the S ≈ 171 crossover at which the dense-GEMM attention algorithm would take over, so speculation does not change which attention kernel is dispatched.
+
+[[Jacob Peake - AI Chip Architectures]] describes the same mechanism from the hardware side: speculative decoding and multi-token prediction exist to promote decode GEMVs back into GEMMs, alongside continuous batching — which means batch size and speculation are also competing for the same headroom, not stacking on it.
+
 ## Open questions
 
 - How can serving stacks predict α online well enough to auto-tune K and the on/off switch per request?
 - Can cross-tokenizer or tokenizer-free speculation relax the same-family constraint?
 - Where is the model-size/batch crossover at which speculation reliably pays, and how does it shift with EAGLE-style feature drafting?
+- Should a serving stack disable speculation automatically for high-arithmetic-intensity attention architectures, and can the balance point be probed at runtime rather than assumed from the datasheet?
 
 ## Related pages
 
 - [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]]
+- [[Jacob Peake - AI Chip Architectures]]
+- [[Arithmetic Intensity and the Roofline Model]]
 - [[LLM Inference]]
 - [[KV Cache]]
 - [[Model Quantization and Efficiency]]

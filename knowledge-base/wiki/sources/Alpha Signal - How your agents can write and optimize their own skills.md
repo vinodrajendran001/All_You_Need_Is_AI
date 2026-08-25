@@ -7,8 +7,8 @@ source_title: How your agents can write and optimize their own skills
 source_author: Alpha Signal
 source_url: ""
 tags:
-  - source-summary
-  - agents
+  - source/summary
+  - ai-agents
   - skills
   - prompt-optimization
   - loop-engineering

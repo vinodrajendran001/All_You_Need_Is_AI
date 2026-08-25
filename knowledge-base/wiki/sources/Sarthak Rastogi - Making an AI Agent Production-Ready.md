@@ -7,8 +7,8 @@ source_title: "Making an AI Agent Production-Ready [Tutorial With Code]"
 source_author: Sarthak Rastogi
 source_url: https://sarthakai.substack.com/p/making-an-ai-agent-production-ready
 tags:
-  - source-summary
-  - agents
+  - source/summary
+  - ai-agents
   - production
   - rag
   - observability

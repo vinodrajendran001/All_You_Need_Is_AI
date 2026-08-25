@@ -7,7 +7,7 @@ source_title: "PACE: Prefix-Protected and Difficulty-Aware Compression for Effic
 source_author: Ren Feng et al.
 source_url: https://arxiv.org/abs/2602.11639
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - compression
   - rl

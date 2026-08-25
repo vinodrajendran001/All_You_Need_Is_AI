@@ -6,7 +6,7 @@ entity_kind: person
 tags:
   - entity
   - ai-education
-  - agents
+  - ai-agents
 source_ids:
   - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-07-02-alyona-vert-ai-concepts-2026

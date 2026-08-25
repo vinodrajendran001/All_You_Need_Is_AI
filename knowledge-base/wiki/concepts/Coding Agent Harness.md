@@ -7,7 +7,7 @@ tags:
   - coding-agents
   - local-llm
   - tooling
-  - agents
+  - ai-agents
 source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-07-06-alphasignal-self-improving-harnesses

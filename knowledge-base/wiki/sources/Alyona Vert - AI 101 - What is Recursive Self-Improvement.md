@@ -7,10 +7,10 @@ source_title: "AI 101: What is Recursive Self-Improvement?"
 source_author: Alyona Vert
 source_url: https://www.turingpost.com/p/what-is-recursive-self-improvement
 tags:
-  - source-summary
+  - source/summary
   - recursive-self-improvement
   - automated-research
-  - agents
+  - ai-agents
 source_ids:
   - src-2026-06-18-alyona-vert-recursive-self-improvement
 status: active

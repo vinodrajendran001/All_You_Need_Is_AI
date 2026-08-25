@@ -8,7 +8,7 @@ source_author: rLLM
 source_url: https://rllm-project.com/post.html?post=realtime_rl.md
 tags:
   - source/summary
-  - agents
+  - ai-agents
   - reinforcement-learning
   - continual-learning
 source_ids:

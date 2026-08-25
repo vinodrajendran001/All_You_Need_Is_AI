@@ -7,7 +7,7 @@ source_title: Towards Efficient Large Language Reasoning Models via Extreme-Rati
 source_author: Yuntian Tang et al.
 source_url: https://arxiv.org/abs/2602.08324
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - compression
   - cot

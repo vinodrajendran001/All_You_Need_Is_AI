@@ -7,7 +7,7 @@ source_title: How LLMs Actually Work
 source_author: 0xkato
 source_url: https://www.0xkato.xyz/how-llms-actually-work/?utm_source=tldrai
 tags:
-  - source-summary
+  - source/summary
   - llm
   - transformer
   - architecture

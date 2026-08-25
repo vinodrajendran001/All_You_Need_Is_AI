@@ -7,7 +7,7 @@ source_title: Frontier post-training recipe review with Finbarr Timbers
 source_author: Nathan Lambert with Finbarr Timbers
 source_url: https://www.interconnects.ai/p/frontier-post-training-recipe-review
 tags:
-  - source-summary
+  - source/summary
   - post-training
   - rl
   - distillation

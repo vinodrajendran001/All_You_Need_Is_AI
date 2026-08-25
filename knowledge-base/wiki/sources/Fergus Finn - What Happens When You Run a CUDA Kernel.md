@@ -7,7 +7,7 @@ source_title: "What happens when you run a CUDA kernel"
 source_author: Fergus Finn
 source_url: https://fergusfinn.com/blog/what-happens-when-you-run-a-gpu-kernel/
 tags:
-  - source-summary
+  - source/summary
   - gpu
   - cuda
   - systems

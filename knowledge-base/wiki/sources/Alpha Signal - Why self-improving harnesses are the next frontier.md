@@ -7,8 +7,8 @@ source_title: "Why self-improving harnesses are the next frontier for AI develop
 source_author: Alpha Signal
 source_url: https://alphasignal.ai/
 tags:
-  - source-summary
-  - agents
+  - source/summary
+  - ai-agents
   - harness
   - self-improvement
   - loop-engineering

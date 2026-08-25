@@ -7,7 +7,7 @@ source_title: "Teaching an Open Model to Do Science"
 source_author: "Bojan Jakimovski, Sara Kovachovska, and Maziyar Panahi"
 source_url: https://www.arcee.ai/blog/teaching-an-open-model-to-do-science
 tags:
-  - source-summary
+  - source/summary
   - scientific-ai
   - agentic-rl
   - post-training

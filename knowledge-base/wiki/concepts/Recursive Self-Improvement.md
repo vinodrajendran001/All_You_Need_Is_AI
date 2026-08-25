@@ -6,7 +6,7 @@ tags:
   - concept
   - recursive-self-improvement
   - automated-research
-  - agents
+  - ai-agents
 source_ids:
   - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-02-dwarkesh-eric-jang-alphago

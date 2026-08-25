@@ -8,7 +8,7 @@ source_author: Alyona Vert
 source_url: https://www.turingpost.com/p/frameworks-sdks
 tags:
   - source/summary
-  - agents
+  - ai-agents
   - frameworks
   - sdks
 source_ids:

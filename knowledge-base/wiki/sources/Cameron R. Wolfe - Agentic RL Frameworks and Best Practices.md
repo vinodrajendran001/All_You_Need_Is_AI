@@ -7,9 +7,9 @@ source_title: "Agentic RL: Frameworks and Best Practices"
 source_author: Cameron R. Wolfe
 source_url: https://cameronrwolfe.substack.com/p/agentic-rl
 tags:
-  - source-summary
+  - source/summary
   - reinforcement-learning
-  - agents
+  - ai-agents
   - post-training
   - tool-use
 source_ids:

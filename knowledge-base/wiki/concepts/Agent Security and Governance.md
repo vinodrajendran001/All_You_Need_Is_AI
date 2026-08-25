@@ -4,7 +4,7 @@ created: 2026-08-05
 updated: 2026-08-25
 tags:
   - concept
-  - agents
+  - ai-agents
   - security
   - governance
 source_ids:

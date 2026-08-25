@@ -7,7 +7,7 @@ source_title: "Nested Learning: The Illusion of Deep Learning Architecture"
 source_author: Siddhant Rai
 source_url: https://vizuara.substack.com/p/nested-learning-the-illusion-of-deep
 tags:
-  - source-summary
+  - source/summary
   - nested-learning
   - inference-time-learning
   - continual-learning

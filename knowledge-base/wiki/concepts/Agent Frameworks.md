@@ -4,7 +4,7 @@ created: 2026-08-12
 updated: 2026-08-12
 tags:
   - concept
-  - agents
+  - ai-agents
   - frameworks
   - sdks
 source_ids:

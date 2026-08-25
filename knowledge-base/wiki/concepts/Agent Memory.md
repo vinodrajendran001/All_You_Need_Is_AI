@@ -4,7 +4,7 @@ created: 2026-06-05
 updated: 2026-08-05
 tags:
   - concept
-  - agents
+  - ai-agents
   - memory
   - state
 source_ids:

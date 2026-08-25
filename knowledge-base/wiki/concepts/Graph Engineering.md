@@ -4,7 +4,7 @@ created: 2026-08-05
 updated: 2026-08-12
 tags:
   - concept
-  - agents
+  - ai-agents
   - multi-agent
   - orchestration
 source_ids:

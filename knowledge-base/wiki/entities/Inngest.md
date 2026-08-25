@@ -5,7 +5,7 @@ updated: 2026-06-22
 entity_kind: orchestration platform
 tags:
   - entity
-  - agents
+  - ai-agents
   - orchestration
   - durable-execution
 source_ids:

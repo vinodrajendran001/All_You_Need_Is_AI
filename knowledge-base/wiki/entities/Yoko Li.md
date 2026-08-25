@@ -5,7 +5,7 @@ updated: 2026-08-12
 entity_kind: person
 tags:
   - entity
-  - agents
+  - ai-agents
   - loop-engineering
 source_ids:
   - src-2026-08-12-yoko-li-loop-convergence

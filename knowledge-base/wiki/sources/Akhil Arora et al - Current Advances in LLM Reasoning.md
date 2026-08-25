@@ -7,7 +7,7 @@ source_title: "Current Advances in LLM Reasoning"
 source_author: Akhil Arora, Vishrav Chaudhary, Julia Kreutzer, Nearchos Potamitis, Lars Klein, Nouha Dziri, Niket Tandon
 source_url: https://docs.google.com/presentation/d/1GoSHhf6BwHwXA6vF_zhSxgsl8ty-8Zav9dGbP6qZsMg/edit?usp=sharing
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - test-time-scaling
   - reinforcement-learning

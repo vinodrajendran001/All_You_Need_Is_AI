@@ -7,7 +7,7 @@ source_url: https://github.com/hanfang/pytorch-practice
 created: 2026-05-18
 updated: 2026-05-18
 tags:
-  - source-summary
+  - source/summary
   - pytorch
   - machine-learning
   - deep-learning

@@ -7,7 +7,7 @@ source_title: "Shorter Thoughts, Same Answers: Difficulty-Scaled Segment-Wise RL
 source_author: Ye Tian and Aijun Liu
 source_url: https://arxiv.org/abs/2603.07598
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - rl
   - grpo

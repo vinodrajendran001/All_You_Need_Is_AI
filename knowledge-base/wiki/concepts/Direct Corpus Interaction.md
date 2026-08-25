@@ -5,7 +5,7 @@ updated: 2026-06-02
 tags:
   - concept
   - retrieval
-  - agents
+  - ai-agents
   - terminal
   - search
 source_ids:

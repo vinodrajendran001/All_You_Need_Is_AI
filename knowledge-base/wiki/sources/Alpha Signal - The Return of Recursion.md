@@ -3,7 +3,7 @@ type: source-summary
 created: 2026-05-18
 updated: 2026-05-18
 tags:
-  - source
+  - source/summary
   - reasoning
   - architecture
   - recursion

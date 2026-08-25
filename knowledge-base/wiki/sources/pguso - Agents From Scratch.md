@@ -7,8 +7,8 @@ source_title: AI Agents from Scratch
 source_author: pguso (GitHub)
 source_url: https://github.com/pguso/agents-from-scratch
 tags:
-  - source-summary
-  - agents
+  - source/summary
+  - ai-agents
   - tutorial
   - python
   - local-llm

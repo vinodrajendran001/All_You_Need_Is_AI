@@ -7,7 +7,7 @@ source_title: Train LLM From Scratch
 source_author: Fareed Khan
 source_url: https://github.com/FareedKhan-dev/train-llm-from-scratch
 tags:
-  - source-summary
+  - source/summary
   - llm
   - transformer
   - pytorch

@@ -7,7 +7,7 @@ source_title: Reflections on the AI research job search
 source_author: Alisa Liu
 source_url: https://alisawuffles.github.io/blog/job-search/
 tags:
-  - source-summary
+  - source/summary
   - careers
   - interview-prep
 status: active

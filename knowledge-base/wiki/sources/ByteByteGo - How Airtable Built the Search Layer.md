@@ -7,7 +7,7 @@ source_url: https://blog.bytebytego.com/p/how-airtable-built-the-search-layer
 created: 2026-05-29
 updated: 2026-05-29
 tags:
-  - source-summary
+  - source/summary
   - vector-search
   - system-design
   - ai-infrastructure

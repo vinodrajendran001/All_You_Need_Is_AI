@@ -7,7 +7,7 @@ source_title: "The Simple Maths Behind Parallel Traning"
 source_author: Anastasiia Alekseeva
 source_url: https://www.linkedin.com/pulse/simple-maths-behind-parallel-traning-anastasiia-alekseeva-oqhye/
 tags:
-  - source-summary
+  - source/summary
   - training
   - distributed-training
   - parallelism

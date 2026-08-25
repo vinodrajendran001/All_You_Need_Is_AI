@@ -7,7 +7,7 @@ source_title: Large Language Models vs Small Language Models
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/large-language-models-vs-small-language
 tags:
-  - source-summary
+  - source/summary
   - llm
   - small-language-models
   - inference

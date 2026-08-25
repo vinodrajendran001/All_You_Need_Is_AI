@@ -7,7 +7,7 @@ source_title: "ConPress: Learning Efficient Reasoning from Multi-Question Contex
 source_author: Jie Deng et al.
 source_url: https://arxiv.org/abs/2602.01472
 tags:
-  - source-summary
+  - source/summary
   - reasoning
   - self-supervision
   - cot

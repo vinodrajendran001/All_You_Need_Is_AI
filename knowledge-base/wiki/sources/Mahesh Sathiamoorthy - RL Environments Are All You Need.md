@@ -8,7 +8,7 @@ source_author: Mahesh Sathiamoorthy
 source_url: https://x.com/madiator/status/2084657077637746957
 tags:
   - source/summary
-  - agents
+  - ai-agents
   - reinforcement-learning
   - evaluation
 source_ids:

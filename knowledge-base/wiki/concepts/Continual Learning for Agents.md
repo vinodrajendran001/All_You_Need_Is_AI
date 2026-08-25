@@ -4,7 +4,7 @@ created: 2026-08-07
 updated: 2026-08-07
 tags:
   - concept
-  - agents
+  - ai-agents
   - continual-learning
   - reinforcement-learning
 source_ids:

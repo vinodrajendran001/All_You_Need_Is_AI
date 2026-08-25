@@ -7,7 +7,7 @@ source_title: LocateAnything
 source_author: NVIDIA Research
 source_url: https://research.nvidia.com/labs/lpr/locate-anything/
 tags:
-  - source-summary
+  - source/summary
   - vision-language
   - grounding
   - multimodal

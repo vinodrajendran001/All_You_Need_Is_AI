@@ -7,7 +7,7 @@ source_title: Alisa's book of LLMs
 source_author: Alisa Liu
 source_url: https://alisawuffles.notion.site/alisa-s-book-of-llms
 tags:
-  - source-summary
+  - source/summary
   - llm
   - study-reference
   - interview-prep

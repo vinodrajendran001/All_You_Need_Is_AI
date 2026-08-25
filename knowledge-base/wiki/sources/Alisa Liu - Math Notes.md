@@ -7,7 +7,7 @@ source_title: Math notes (probability, statistics, puzzles)
 source_author: Alisa Liu
 source_url: https://alisawuffles.notion.site/math-notes
 tags:
-  - source-summary
+  - source/summary
   - mathematics
   - probability
   - statistics

@@ -5,7 +5,7 @@ updated: 2026-08-24
 tags:
   - concept
   - reinforcement-learning
-  - agents
+  - ai-agents
   - post-training
   - tool-use
 source_ids:

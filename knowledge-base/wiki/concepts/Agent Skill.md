@@ -4,7 +4,7 @@ created: 2026-06-22
 updated: 2026-08-25
 tags:
   - concept
-  - agents
+  - ai-agents
   - skills
   - orchestration
   - optimization

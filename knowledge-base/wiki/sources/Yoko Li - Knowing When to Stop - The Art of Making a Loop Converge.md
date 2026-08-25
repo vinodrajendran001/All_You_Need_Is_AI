@@ -8,7 +8,7 @@ source_author: Yoko Li
 source_url: https://a16z.com/knowing-when-to-stop-the-art-of-making-a-loop-converge/
 tags:
   - source/summary
-  - agents
+  - ai-agents
   - loop-engineering
   - evaluation
 source_ids:

@@ -51,7 +51,7 @@ The article connects document preprocessing to [[Retrieval-Augmented Generation]
 
 ## Citations
 
-- Raw capture: [2026-08-05 AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines [2026 Guide]](../../raw/sources/2026-08-05%20AI%20Builder%20Club%20-%20MarkItDown%20-%20PDF%20to%20Markdown%20for%20RAG%20Pipelines%20%5B2026%20Guide%5D.md)
+- Raw capture: [[2026-08-05 AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines (2026 Guide)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/markitdown-microsoft-convert-files-markdown-llm](https://www.aibuilderclub.com/blog/markitdown-microsoft-convert-files-markdown-llm)
 
 ## Related pages

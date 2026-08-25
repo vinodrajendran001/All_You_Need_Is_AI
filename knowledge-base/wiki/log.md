@@ -828,3 +828,13 @@ Append-only operational history for the wiki.
 - Integrated the hardware material into [[AI Accelerator Architecture]], [[GPU Execution Model]], [[LLM Inference]], [[Inference Serving Engines]], [[KV Cache]], [[Speculative Decoding]], [[Transformer Architecture]], and [[NVIDIA]]; the ASR findings into [[Real-Time Voice AI]] and [[Multi-Turn Evaluation]].
 - Preserved three attribution caveats: the Changyi Yang byline is inferred from the publication slug and not independently confirmed, the Grok Bot note is unattributed and self-declared as independent synthesis rather than official vendor material, and the Jacob Peake article carries no publication date so `published:` was left blank rather than fabricated.
 - Index, overview, and log now agree at 194 unique source IDs.
+
+## [2026-08-25] lint | Full wiki lint pass
+
+- Audited 326 tracked wiki pages, 204 raw captures, and 13 assets. Found no broken links, orphans, contradictions, or missing pages; every defect was a consistency or traceability problem.
+- Made [[AI Builder Club - Build AI Agents]] traversable by adding all 63 lesson wikilinks across its six curriculum clusters. The synthesis previously declared 63 source IDs but linked to none of them, leaving 50 lesson pages reachable only from the index.
+- Unified a three-way fork in the source marker tag: normalized 69 pages to the canonical `source/summary` and added it to 2 pages that had none, so all 177 source summaries now agree. Merged `agents` into `ai-agents` across 45 pages. Inline flow-style YAML had hidden this drift from earlier passes.
+- Closed the raw-to-wiki ID gap by declaring the 8 constituent article IDs in [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]; all 150 raw `source_id`s are now claimed by a wiki page.
+- Added `## Raw capture` pointers to 9 source summaries, verifying each pairing by URL rather than filename, and renamed the one raw capture whose square brackets broke wikilink syntax.
+- Recorded but deliberately did not "fix" 310 non-reciprocal hub links, incidental unlinked entity mentions, 49 legacy raw captures without `source_id`, and 5 short summaries whose sources are genuinely short.
+- Confirmed index, overview, and log agree at 194 unique source IDs, and that local-only query material remains absent from all tracked pages. Filed [[2026-08-25 Lint Pass]].

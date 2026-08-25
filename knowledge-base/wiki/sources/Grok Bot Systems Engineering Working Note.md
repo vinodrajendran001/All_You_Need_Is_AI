@@ -5,8 +5,8 @@ updated: 2026-08-25
 source_id: src-2026-08-22-grok-bot-systems-engineering-working-note
 source_title: 2026 Working Note on GrokBot Systems Engineering Practice
 source_author: Unattributed working note
-source_url:
-tags: [source/summary, agents, multi-agent, governance, operations]
+source_url: ""
+tags: [source/summary, ai-agents, multi-agent, governance, operations]
 source_ids: [src-2026-08-22-grok-bot-systems-engineering-working-note]
 status: active
 ---

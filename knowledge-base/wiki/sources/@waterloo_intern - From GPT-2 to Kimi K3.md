@@ -6,7 +6,7 @@ source_id: src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
 source_title: "22580: From GPT2 to Kimi3, Explained"
 source_author: "@waterloo_intern"
 source_url: https://x.com/waterloo_intern/status/2081762065392541951
-tags: [source-summary, kimi, moe, attention, social-post]
+tags: [source/summary, kimi, moe, attention, social-post]
 source_ids: [src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3]
 status: active
 ---

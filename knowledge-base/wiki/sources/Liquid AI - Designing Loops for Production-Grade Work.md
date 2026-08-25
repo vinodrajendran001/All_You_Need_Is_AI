@@ -6,7 +6,7 @@ source_id: src-2026-08-20-liquid-ai-production-loops
 source_title: Designing Loops for Production-Grade Work
 source_author: Liquid AI
 source_url: https://www.liquid.ai/blog/agent-loops
-tags: [source/summary, agents, loop-engineering, evaluation]
+tags: [source/summary, ai-agents, loop-engineering, evaluation]
 source_ids: [src-2026-08-20-liquid-ai-production-loops]
 status: active
 ---

@@ -2,7 +2,7 @@
 type: concept
 created: 2026-05-13
 updated: 2026-06-23
-tags: [search, rag, agents, llm, retrieval]
+tags: [search, rag, ai-agents, llm, retrieval]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-04-bytebytego-llm-tool-use-mcp

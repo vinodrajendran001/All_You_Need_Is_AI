@@ -6,7 +6,7 @@ source_id: src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
 source_title: "Why Tabular Foundation Models Are a Huge Unlock for Enterprise AI"
 source_author: Alpha Signal
 source_url: https://app.alphasignal.ai/
-tags: [source-summary, tabular-data, enterprise, foundation-models]
+tags: [source/summary, tabular-data, enterprise, foundation-models]
 source_ids: [src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai]
 status: active
 ---

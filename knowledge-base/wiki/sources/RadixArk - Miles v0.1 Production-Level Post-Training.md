@@ -6,7 +6,7 @@ source_id: src-2026-08-20-radixark-miles-v0-1
 source_title: Miles v0.1 - Production-Level Post-Training
 source_author: RadixArk
 source_url: https://www.lmsys.org/blog/2026-08-18-miles-v0-1
-tags: [source/summary, reinforcement-learning, post-training, agents]
+tags: [source/summary, reinforcement-learning, post-training, ai-agents]
 source_ids: [src-2026-08-20-radixark-miles-v0-1]
 status: active
 ---

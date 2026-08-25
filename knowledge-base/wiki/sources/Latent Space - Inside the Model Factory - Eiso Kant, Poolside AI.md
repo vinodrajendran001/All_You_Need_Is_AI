@@ -6,7 +6,7 @@ source_id: src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
 source_title: "Inside the Model Factory - Eiso Kant, Poolside AI"
 source_author: Latent Space
 source_url: https://www.latent.space/p/poolside
-tags: [source-summary, training, research, poolside]
+tags: [source/summary, training, research, poolside]
 source_ids: [src-2026-07-23-latent-space-eiso-kant-poolside-model-factory]
 status: active
 ---

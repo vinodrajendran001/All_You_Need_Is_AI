@@ -6,7 +6,7 @@ source_id: src-2026-08-20-jeremy-morrell-extensible-software
 source_title: Extensible Software in the Age of LLMs
 source_author: Jeremy Morrell
 source_url: https://www.jeremymorrell.dev/blog/extensible-software
-tags: [source/summary, software-architecture, agents, extensibility]
+tags: [source/summary, software-architecture, ai-agents, extensibility]
 source_ids: [src-2026-08-20-jeremy-morrell-extensible-software]
 status: active
 ---

@@ -6,7 +6,7 @@ source_id: src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
 source_title: "Self-Improvements in Modern Agentic Systems: A Survey"
 source_author: Zhe Ren et al.
 source_url: https://arxiv.org/html/2607.13104v1
-tags: [source-summary, agents, self-improvement, survey]
+tags: [source/summary, ai-agents, self-improvement, survey]
 source_ids: [src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey]
 status: active
 ---

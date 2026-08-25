@@ -6,7 +6,7 @@ source_id: src-2026-07-28-bytebytego-delivery-llm-search
 source_title: "Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/why-doordash-instacart-and-uber-eats
-tags: [source-summary, search, retrieval, production]
+tags: [source/summary, search, retrieval, production]
 source_ids: [src-2026-07-28-bytebytego-delivery-llm-search]
 status: active
 ---

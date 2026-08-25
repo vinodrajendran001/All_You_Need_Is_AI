@@ -2,7 +2,7 @@
 type: concept
 created: 2026-08-24
 updated: 2026-08-24
-tags: [concept, agents, plugins, interoperability]
+tags: [concept, ai-agents, plugins, interoperability]
 source_ids:
   - src-2026-08-17-google-cloud-agent-plugins
   - src-2026-08-20-jeremy-morrell-extensible-software

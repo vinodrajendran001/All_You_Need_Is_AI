@@ -6,7 +6,7 @@ source_id: src-2026-08-17-alpha-signal-three-layers-agent-security
 source_title: The Three Layers of AI Agent Security - From Sandboxes to Network Proxies
 source_author: Alpha Signal
 source_url: https://app.alphasignal.ai/c?uid=12PIFGaVBFKQnaUyy&cid=ec9fa5befc065772&lid=13LpyUvLNdEPAeCgd&mid=f2fbdfd6-e1a1-41bf-80b3-7c3b4d6aaf88
-tags: [source/summary, agents, security, sandboxes]
+tags: [source/summary, ai-agents, security, sandboxes]
 source_ids: [src-2026-08-17-alpha-signal-three-layers-agent-security]
 status: active
 ---

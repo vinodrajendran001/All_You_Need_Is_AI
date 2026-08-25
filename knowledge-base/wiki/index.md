@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-08-24
+updated: 2026-08-25
 tags:
   - index
 source_ids:
@@ -194,6 +194,11 @@ source_ids:
   - src-2026-08-18-alireza-diri-aiml-interviews-object-detection
   - src-2026-08-18-alireza-diri-aiml-interviews-autonomous-vehicles
   - src-2026-08-18-alireza-diri-aiml-interviews-harmful-content
+  - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-22-grok-bot-systems-engineering-working-note
+  - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+  - src-2026-08-21-hume-ai-asr-benchmark-optimization
 status: active
 ---
 
@@ -281,6 +286,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Defensive Deception for Open Models]] - Reducing the payoff of safety-removal attacks by making attacked behavior unreliable.
 - [[LLM-Native Extensible Software]] - Durable generated extensions behind trusted capability boundaries and isolated workers.
 - [[Autonomous Driving Systems]] - Sensing, representation, prediction, planning, validation, and training tradeoffs in self-driving stacks.
+- [[Arithmetic Intensity and the Roofline Model]] - FLOP-per-byte accounting that decides whether an inference optimization actually helps.
+- [[Benchmark Optimization]] - How leaderboard-fitted systems learn the reference text instead of the underlying task.
+- [[AI-Native Software Development Lifecycle]] - Artifact-triggered development stages with act-time governance and versioned institutional knowledge.
+- [[Agent Workflow Maturity]] - Six-level ladder from single bot to verified team, with invariants, handoffs, and an evidence ladder.
 
 ## Entities
 
@@ -320,6 +329,13 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Abseil]] - Google's open-source C++ libraries and performance-engineering guidance.
 - [[Yoko Li]] - AI Builder Club writer whose convergence framework connects editability, verification, stopping rules, and loop economics.
 - [[Alyona Vert]] - Turing Post writer whose sources map recursive self-improvement, emerging AI techniques, and agent frameworks.
+- [[Anthropic]] - Model developer and Claude Code publisher; source of the AI-native SDLC playbook.
+- [[Hugging Face]] - Model hub and open-source library maintainer; source of the open-model state report.
+- [[Hume AI]] - Speech and voice-AI company; source of the ASR benchmark-optimization study.
+- [[Cerebras]] - Wafer-scale accelerator maker trading yield and model size for extreme memory bandwidth per FLOP.
+- [[Groq]] - LPU maker built on deterministic scheduled execution; its team was acquihired by NVIDIA.
+- [[Jacob Peake]] - Author of the four-question comparative survey of AI chip architectures.
+- [[Grok Bot]] - Agent platform whose public workshop material grounds the vault's workflow-maturity ladder.
 
 ## Sources
 
@@ -507,6 +523,14 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[@waterloo_intern - From GPT-2 to Kimi K3]]
 - [[ByteByteGo - Inside Roblox's Bet on World Models]]
 - [[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]]
+
+### August 25, 2026 batch
+
+- [[Anthropic - The AI-Native SDLC Playbook]] - Artifact-triggered development stages, act-time governance hooks, and versioned institutional knowledge.
+- [[Grok Bot Systems Engineering Working Note]] - Six-level agent workflow maturity ladder with invariants, typed handoffs, and an evidence ladder.
+- [[Jacob Peake - AI Chip Architectures]] - Four-question comparative survey of GPU, wafer-scale, LPU, and dataflow accelerator bets.
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]] - Arithmetic-intensity analysis showing two DeepSeek optimizations competing for the same idle decode compute.
+- [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]] - Three probes showing ASR systems reproducing flawed reference transcripts rather than transcribing audio.
 
 ## Syntheses
 

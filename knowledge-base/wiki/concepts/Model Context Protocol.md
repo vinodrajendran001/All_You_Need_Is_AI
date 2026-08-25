@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-05
+updated: 2026-08-25
 tags: [mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -15,7 +15,7 @@ status: active
 
 # Model Context Protocol
 
-An open standard introduced by Anthropic that defines a common protocol for connecting LLM applications to external tools, data sources, and services.
+An open standard introduced by [[Anthropic]] that defines a common protocol for connecting LLM applications to external tools, data sources, and services.
 
 ## The problem it solves
 

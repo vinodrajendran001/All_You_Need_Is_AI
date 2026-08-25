@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part three: testing overtraining"
 source_author: Giles Thomas
@@ -20,6 +20,10 @@ The final post tests deliberate overtraining as an explanation for the GPT-2 gap
 ## Why it matters
 
 The series supports a narrow but durable lesson: lower held-out language-model loss is not a complete ranking for a task-specific capability. Evaluation must match the behavior under investigation.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/Why do OpenAI's GPT-2 weights beat mine  Part three testing overtraining.md`
 
 ## Related pages
 

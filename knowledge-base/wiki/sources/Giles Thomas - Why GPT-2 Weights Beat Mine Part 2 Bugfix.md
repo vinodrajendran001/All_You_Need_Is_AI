@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part two: the bugfix"
 source_author: Giles Thomas
@@ -20,6 +20,10 @@ The second post finds an experimental bug: checkpoint state was not deeply copie
 ## Why it matters
 
 The result is a concrete reproducibility warning: checkpoint immutability and complete validation matter before interpreting capability gaps as architectural or data effects.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/Why do OpenAI's GPT-2 weights beat mine  Part two the bugfix.md`
 
 ## Related pages
 

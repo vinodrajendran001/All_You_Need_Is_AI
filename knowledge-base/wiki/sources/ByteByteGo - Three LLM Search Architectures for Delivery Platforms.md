@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-28-bytebytego-delivery-llm-search
 source_title: "Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways"
 source_author: ByteByteGo
@@ -20,6 +20,10 @@ The article compares three ways to add LLMs to marketplace search without replac
 ## Why it matters
 
 The durable pattern is **LLM augmentation under product constraints**, not generic chat search: use the model where it resolves ambiguity or representation mismatch, retain deterministic catalogs/rankers, and select a design based on traffic distribution, latency budget, and data assets.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways.md`
 
 ## Related pages
 

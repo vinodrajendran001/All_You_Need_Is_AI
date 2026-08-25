@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-29-giles-thomas-gpt2-weights-part-1
 source_title: "Why do OpenAI's GPT-2 weights beat mine?"
 source_author: Giles Thomas
@@ -16,6 +16,10 @@ status: active
 ## Summary
 
 The first post begins a reproduction investigation: independently trained GPT-2-small-style weights achieved competitive next-token loss yet performed worse than OpenAI GPT-2 on a targeted instruction-following task. It establishes that training loss alone was not enough to explain task behavior.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/Why do OpenAI's GPT-2 weights beat mine.md`
 
 ## Related pages
 

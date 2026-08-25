@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
 source_title: "Self-Improvements in Modern Agentic Systems: A Survey"
 source_author: Zhe Ren et al.
@@ -26,6 +26,10 @@ The survey defines an FM agent as model parameters plus a scaffold of prompts, m
 ## Caveat
 
 The captured text ends during section 6.2.1, so it does not support claims about the survey's promised later evaluation and safety sections.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/Self-Improvements in Modern Agentic Systems A Survey.md`
 
 ## Related pages
 

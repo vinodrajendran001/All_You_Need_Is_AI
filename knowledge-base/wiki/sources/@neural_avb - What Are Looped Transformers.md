@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-25
 source_id: src-2026-07-27-neural-avb-looped-transformers
 source_title: "What are Looped Transformers? Explained clearly"
 source_author: "@neural_avb"
@@ -20,6 +20,10 @@ This short explainer contrasts scaling model parameters with reusing a shared tr
 ## Caveat
 
 The source is a social-media explainer; its architectural framing is useful, but detailed performance or frontier-model claims need primary-source verification.
+
+## Raw capture
+
+- `knowledge-base/raw/sources/What are Looped Transformers Explained clearly.md`
 
 ## Related pages
 

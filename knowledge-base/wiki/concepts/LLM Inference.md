@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-08-24
+updated: 2026-08-25
 tags:
   - concept
   - llm
@@ -19,6 +19,8 @@ source_ids:
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+  - src-2026-08-25-jacob-peake-ai-chip-architectures
 status: active
 ---
 

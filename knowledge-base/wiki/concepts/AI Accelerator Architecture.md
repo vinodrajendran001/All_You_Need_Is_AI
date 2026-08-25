@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-07-04
+updated: 2026-08-25
 tags:
   - concept
   - hardware
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
+  - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 status: active
 ---
 
@@ -51,18 +53,32 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]] complements this hardware-design page with the **software execution model** on top of the hardware — see [[GPU Execution Model]]. It makes the memory-vs-compute story concrete at the level of one kernel: a low-arithmetic-intensity vector add runs at ~80% of DRAM bandwidth but only ~5% issue activity, i.e. the chip is starved by data movement, not arithmetic — the micro-scale version of this page's central claim.
 - [[Alyona Vert - AI Concepts and Techniques in 2026]] adds the **inference-hardware** frontier: as deployment shifts from training to serving billions of tokens, inference is fragmenting by workload. Three 2026 visions illustrate the spread — NVIDIA's rack-scale Vera Rubin, MatX's programmable LLM-first accelerator, and Taalas's radical "model-as-hardware" approach that bakes a specific model into silicon. This pushes accelerator design toward cost-per-token, latency, and power rather than raw training FLOPS.
 - [[Onur Sirin - How Local LLMs Run]] adds a local-machine taxonomy that is useful beyond consumer buying advice. It distinguishes **GDDR/VRAM** (tiny but very fast, e.g. RTX 5090), **unified LPDDR-style memory** (flat pool, one speed, e.g. Mac Studio), and **coherent tiered memory** (HBM fast tier plus LPDDR slow tier, e.g. GB300). This reinforces the page's central point: hardware performance is not just arithmetic throughput; it is the shape, capacity, and bandwidth of the memory surface feeding the accelerator.
+- [[Jacob Peake - AI Chip Architectures]] is now the page's most complete comparative source, covering all six architectures that have won real deployment on shared axes. Three additions matter most here:
+  - **A reusable reading frame.** Understanding any chip reduces to four questions — where data *lives*, how it *moves* to the compute units, what the *compute units* look like, and how chips *talk to each other at scale*. Each architecture is a different strategy for the same data-movement game against the memory wall, and each is reducible to an explicit list of **bets**.
+  - **The divergence has moved up a level.** Per-chip FP8 has converged — B200 (4.5 PF), TPU Ironwood (4.6 PF), and MI355X (10 PF) sit within roughly 2× of each other — so the architectures now differ at the rack and pod, not the die. The TPU's flat-rate-per-chip × massive-pod recipe (9,216-chip Ironwood pods at 42.5 ExaFLOPS FP8) yields more aggregate compute per system than any NVIDIA rack, at the cost of per-chip bandwidth, and its ICI message-passing torus is the deliberate inverse of NVLink's hardware-coherent address space.
+  - **Two architectures that break the table's axes.** [[Cerebras]] has no HBM at all — 44 GB of on-wafer SRAM at ~21 PB/s, about **1.3 bytes per dense FLOP** where GPU rows sit near 0.002 — and executes as pure dataflow across a flat 900,000-core mesh where "the arrival of data is the schedule." [[Groq]] deletes every reactive component so the compiler owns each cycle, and extends that to a fabric that is *scheduled, not routed*, with forward error correction instead of retransmission because a retry would perturb the schedule. Both win per-user decode latency and lose an order of magnitude on throughput per dollar once you batch.
+- Two structural constraints from the same source are worth recording because they bound everything above. **Power per chip is rising fast** — 700 W (Hopper) → 1,000 W (Blackwell) → 1,400 W (B300, MI355X) → ~1,800 W (analyst-estimated Rubin Ultra) — and liquid cooling becomes mandatory above ~1,000 W, so air cooling effectively ends with Hopper. And **software remains the asymmetry the spec tables cannot show**: the Cerebras compiler is a kernel matcher requiring static graphs with no dynamic shapes or data-dependent control flow, which is a different kind of cost from any number in the comparison.
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]] supplies the analytic complement to the hardware survey and is developed in [[Arithmetic Intensity and the Roofline Model]]. The connecting claim: the *shape* of the matmul, not the chip, decides the regime. Training and prefill stack many tokens against the same weights and are compute-bound GEMMs; decode emits one token at a time so every matmul degenerates to a GEMV, and arithmetic intensity drops by orders of magnitude. Batching, speculative decoding, and multi-token prediction all exist to promote those GEMVs back to GEMMs — but under continuous batching each user still reads their own KV cache, so long-context decode shifts from weight-bandwidth-bound to **KV-bandwidth-bound**. That is the hardware reason [[KV Cache]] optimisation is an accelerator concern and not just a memory-capacity one.
 
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
 - How much of future accelerator progress will come from arithmetic innovation versus memory and interconnect innovation?
 - When do software-managed locality strategies become too hard to use effectively, even if they are theoretically more efficient?
+- As bytes-per-FLOP ratios diverge by three orders of magnitude across deployed architectures, does a single comparison frame remain meaningful, or does each architecture now need its own?
 
 ## Related pages
 
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
+- [[Jacob Peake - AI Chip Architectures]]
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]]
+- [[Arithmetic Intensity and the Roofline Model]]
+- [[Cerebras]]
+- [[Groq]]
+- [[NVIDIA]]
+- [[Jacob Peake]]
 - [[Mixture of Experts]]
 - [[Model Quantization and Efficiency]]
 - [[ML Systems at Scale]]

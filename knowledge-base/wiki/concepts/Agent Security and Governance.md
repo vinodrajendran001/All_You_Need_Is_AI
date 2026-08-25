@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-24
+updated: 2026-08-25
 tags:
   - concept
   - agents
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-who-owns-your-ai-agents
   - src-2026-08-17-alpha-signal-three-layers-agent-security
   - src-2026-08-20-mark-russinovich-fools-gold
+  - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-22-grok-bot-systems-engineering-working-note
 status: active
 ---
 

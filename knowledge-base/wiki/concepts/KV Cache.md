@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-07-06
+updated: 2026-08-25
 tags:
   - concept
   - kv-cache
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-06-26-nithin-llm-inference
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 status: active
 ---
 
@@ -36,6 +37,11 @@ KV cache turns generation from "reread the whole book every token" into "reuse t
 - [[Prateek Singh - KV Cache and TurboQuant]] gives the clearest systems framing: KV cache trades repeated compute for memory storage. For short contexts this is an obvious win; for long contexts, memory becomes the main limiter.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] shows how KV-cache pressure shapes [[Small Language Models]]. Grouped-query attention, sliding-window attention, and layer-level cache sharing are not just academic attention variants; they are direct responses to the memory limits of phones, edge devices, and high-volume serving.
 - [[Nithin - What Actually Happens During LLM Inference]] places the cache inside the inference lifecycle (see [[LLM Inference]]): the **prefill** phase computes and stores the prompt's K/V states so they are never recomputed, and the **decode** phase must re-read the growing cache (plus all weights) every token. This is the concrete reason decode is memory-bandwidth-bound and why cache size directly caps tokens/sec.
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]] reframes this page's whole optimization landscape. Cache *size* is the visible variable, but the governing one is **arithmetic intensity** — FLOPs per byte moved (see [[Arithmetic Intensity and the Roofline Model]]). Counting FLOPs and HBM bytes for the attention core during single-token decode collapses the four structures into one formula with a sliding KV-head count: `1 → H_q/H_kv → H_q → ~2H_q` for MHA, GQA, MQA, and MLA. Context length and head dimension cancel out; even MLA's latent dimension cancels. Three consequences revise claims made above:
+  - **Removing KV heads does not reduce FLOPs.** GQA and MQA reduce the *history read from HBM* because one KV serves more query heads. They change nothing about prefill FLOPs at all — they only shrink the cache and push an already-compute-bound prefill further over the line.
+  - **MQA's arithmetic intensity ceiling is the query head count, and architectures fix that number** at 32, 64, or 128. You cannot buy intensity by adding heads, which is why cross-head reuse alone cannot reach a modern GPU's few-hundred FLOP/byte balance point.
+  - **MLA's distinct contribution is having one latent serve as both K and V**, not merely storing fewer bytes. That is where its factor of just under 2 over MQA comes from. Framed this way, the "architecture-level sharing" family above is better read as a **data-reuse ladder** than as a compression ladder.
+- The same source also shows the cache is not one thing to one kernel. The identical MLA computation can be bracketed two ways — expand the latent into K/V for a dense GEMM, or score directly against the wide latent — with a crossover near **S ≈ 171** query tokens, and sglang dispatches on exactly that split. Sparse attention reverses the preference: with DeepSeek-V3.2-style selection of `index_topk = 2048` tokens, the latent path gathers by index and its cost goes from L to k, while the dense path must still expand the entire history because no selective GEMM operator exists.
 
 ## Memory scaling
 
@@ -85,12 +91,15 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
 - Can aggressive KV quantization become a standard serving-kernel feature, or will implementation complexity keep it research-stage?
 - How should agent systems decide when to summarize, evict, quantize, or route around expensive long-context state?
+- If cache-sharing architectures spend the decode compute headroom that speculation also needs, how should a serving stack choose between them per workload rather than per model?
 
 ## Related pages
 
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
 - [[Nithin - What Actually Happens During LLM Inference]]
+- [[Changyi Yang - Why MLA and MTP Fight Each Other]]
+- [[Arithmetic Intensity and the Roofline Model]]
 - [[LLM Inference]]
 - [[Small Language Models]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]

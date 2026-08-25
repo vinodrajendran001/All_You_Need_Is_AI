@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-12
+updated: 2026-08-25
 tags:
   - concept
   - voice-ai
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-07-03-bytebytego-thinking-machines-interaction
+  - src-2026-08-21-hume-ai-asr-benchmark-optimization
 status: active
 ---
 

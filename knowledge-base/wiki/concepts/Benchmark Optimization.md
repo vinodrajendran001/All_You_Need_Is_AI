@@ -10,7 +10,7 @@ tags:
   - measurement
 source_ids:
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
-  - src-2026-08-18-huggingface-state-of-open-models
+  - src-2026-08-18-hugging-face-state-open-models-summer-2026
 status: active
 ---
 

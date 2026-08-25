@@ -197,8 +197,28 @@ The August 7 sources add three production controls. Computer-use verifiers can r
 
 The August 12 sources add two further controls: convergence must include impossibility and diminishing-return exits, and framework adoption must be evaluated as a runtime/governance decision rather than a shortcut around context, evaluation, or security design.
 
+## Operations: state, evidence, and recovery
+
+The architecture material above answers *how to build* a production agent. [[Grok Bot Systems Engineering Working Note]] answers the neglected other half — *how to run one* — and names the specific way deployments fail: if any operational invariant is missing, **the human quietly becomes the memory layer or the recovery system**. Naming five bots does not create a team if the user still copies context, chooses every next step, and checks every result.
+
+Four contributions extend this page directly:
+
+- **Six invariants** every production workflow needs — one current owner, explicit state, a durable artifact, observable evidence, a bounded retry policy, and a clear approval boundary — reducible to a minimum record of `task_id`, `owner`, `status`, `artifact`, `evidence`, `next_deadline`.
+- **Typed handoffs instead of conversation.** A handoff is an interface between owners carrying a named artifact, a single named next owner, an evidence pointer, and the next acceptance test. Correspondingly, **"done," "looks good," and "I handled it" must not advance a workflow** — if the producer cannot point to evidence, the task stays in verifying or blocked. This is a sharper version of the "brain and hands" decoupling above: what crosses the boundary is a checkable object, not a summary.
+- **An evidence ladder gating autonomy**, in which level 0 — the agent asserting completion — is never sufficient, and level 5 is an independent verifier pass. Producer and verifier must be separate, and the verifier must not silently repair the artifact.
+- **The manager owns state, not work.** A router that repeatedly performs specialist work fills its context with execution detail and destroys the role boundary; deterministic routing rules come first, model classification only above a confidence threshold, a human above a risk threshold.
+
+Its **architecture decision rule** is the useful counterweight to this page's accumulating patterns: choose the smallest architecture that externalises the *real* bottleneck — one agent for execution, a skill for repeatability, a routine for continuity, a specialist for durable expertise or permissions, a manager for routing, a verifier for trust — and add parallel workers only after inputs and convergence are stable. Two operational rules round it out: routines need idempotency keys so a retry cannot duplicate an external effect, and **silence is not success**, so a scheduled run that produces nothing must still emit a heartbeat. Developed in [[Agent Workflow Maturity]].
+
+[[Anthropic - The AI-Native SDLC Playbook]] arrives at the same handoff conclusion from the software-organization side, where the typed artifact is a committed `intent.md`, `spec.md`, or `plan.md` and the commit chain doubles as the audit trail. Two independent sources converging on "pass artifacts and evidence, not transcripts" makes it the strongest operational claim in this cluster. See [[AI-Native Software Development Lifecycle]].
+
 ## Related pages
 
+- [[Grok Bot Systems Engineering Working Note]]
+- [[Anthropic - The AI-Native SDLC Playbook]]
+- [[Agent Workflow Maturity]]
+- [[AI-Native Software Development Lifecycle]]
+- [[Grok Bot]]
 - [[Context Engineering]]
 - [[Model Routing]]
 - [[Small Language Models]]

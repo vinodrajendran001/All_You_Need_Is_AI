@@ -75,15 +75,31 @@ The collection's source reads and extension guides reinforce a security tradeoff
 
 [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] maps this design space to concrete runtimes. The durable selection rule is to choose by control flow, durability, language, data plane, modality, governance, and abstraction cost—not by feature count alone. See [[Agent Frameworks]].
 
+### The harness is also an organizational surface
+
+[[Anthropic - The AI-Native SDLC Playbook]] adds a layer this page has not covered: what the harness looks like when a *company* rather than an individual owns it. The same primitives take on governance roles.
+
+- `CLAUDE.md` stops being a convenience file and becomes **versioned institutional knowledge** — commands, conventions, architecture, and an explicit "things Claude gets wrong" section — reviewed and owned like any other artifact.
+- **Hooks are enforcement, not ergonomics.** The same mechanism that enforces conventions at build time gates production deploys behind a named release authorization, which moves policy from review-time documentation into act-time execution.
+- **Plan mode becomes the default entry point**, with the resulting `plan.md` (files that change, order of work, risks, proof) committed as the artifact that triggers implementation.
+- **Subagents and parallel sessions** get a named verifier role (`.claude/agents/verifier.md`), separating the agent that produced work from the agent that checks it.
+- **Review instructions are themselves a committed file.** A `REVIEW.md` defining passes, what "important" means, a nit cap, and a do-not-report list makes agentic review auditable and tunable rather than a prompt someone typed.
+
+The consequence for harness selection: token efficiency and permission model are no longer the only differentiators. **Whether a harness can express policy as executable, version-controlled configuration** becomes decisive at organizational scale. See [[AI-Native Software Development Lifecycle]].
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
 - As open-weight models keep improving, does the harness become the dominant differentiator — and will harness token efficiency matter more than model choice?
 - What is the right default sandboxing and permission model for agents that run untrusted repositories?
+- If hooks and skills encode policy, who reviews the guardrails, and what prevents an agent from editing the file that constrains it?
 
 ## Related pages
 
 - [[Sebastian Raschka - Using Local Coding Agents]]
+- [[Anthropic - The AI-Native SDLC Playbook]]
+- [[AI-Native Software Development Lifecycle]]
+- [[Anthropic]]
 - [[Agentic Loop]]
 - [[Agent Skill]]
 - [[Tool Use and Function Calling]]

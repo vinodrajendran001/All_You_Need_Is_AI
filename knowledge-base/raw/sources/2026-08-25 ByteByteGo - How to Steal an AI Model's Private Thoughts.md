@@ -6,8 +6,16 @@ author:
 published: 2026-08-25
 created: 2026-08-26
 description: "In August 2026, a team at MATS Research, the ELLIS Institute Tübingen, and the Max Planck Institute for Intelligent Systems wanted to test whether the encrypted reasoning blocks that Anthropic, OpenAI, and Google hand back to clients actually keep that reasoning private."
+type: raw-source
+source_id: src-2026-08-25-bytebytego-stealing-reasoning-traces
+captured: 2026-08-26
 tags:
-  - "clippings"
+  - source/raw
+  - reasoning-traces
+  - ai-security
+  - model-distillation
+  - prompt-injection
+  - privacy
 ---
 ## Secure AI and MCP with protocol-level access control (Sponsored)
 

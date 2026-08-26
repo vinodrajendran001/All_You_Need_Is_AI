@@ -48,6 +48,12 @@ The survey also supplies the efficiency comparison that frames NVIDIA's trade-of
 - H100 hardware is the reference point for the arithmetic-intensity analysis in [[Changyi Yang - Why MLA and MTP Fight Each Other]], whose ~295 FLOP/byte roofline ridge determines whether an inference optimization helps or hurts; see [[Arithmetic Intensity and the Roofline Model]].
 - In this knowledge base, NVIDIA strengthens both the multimodal/perception side and the hardware/training-systems side of the graph.
 
+## Documentation as a moat
+
+[[Wafer - AI Performance Engineering Resources]] shows a dimension of NVIDIA's position that hardware comparisons miss: the depth of its public documentation. That learning path can cite the CUDA programming and best-practices guides, the PTX ISA, per-architecture tuning guides for Hopper and Blackwell, and a full profiling toolchain (Nsight Systems, Nsight Compute, Compute Sanitizer) — while its AMD, TPU, and Trainium sections are markedly shorter, a gap the curator attributes to documentation availability rather than deployment share.
+
+The asymmetry is self-reinforcing: engineers learn performance work on the stack that documents itself, and the resulting expertise is stack-specific. The same list keeps **Rubin** on a dated frontier watchlist rather than the core path, on the principle that an announced architecture does not qualify until a specification, a shipped implementation, and a reproducible measurement all exist. See [[Wafer]].
+
 ## Related pages
 
 - [[Jacob Peake - AI Chip Architectures]]
@@ -62,3 +68,6 @@ The survey also supplies the efficiency comparison that frames NVIDIA's trade-of
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
 - [[AI Agents in Production]]
 - [[AI Knowledge Base Overview]]
+- Wafer - AI Performance Engineering Resources
+- Wafer
+- GPU Kernel Optimization

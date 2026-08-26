@@ -53,6 +53,12 @@ Real frontier runs combine several axes (often called 3D or 4D parallelism): dat
 
 [[Edward Z. Yang - How to Parallelize a Transformer for Training]] turns this composition problem into an interactive roofline exercise. Instead of prescribing one mesh, it estimates parameter, optimizer, gradient, and activation memory; FLOPs; collective communication; network domains; and pipeline bubbles for a specific model and cluster. The practical rule is to place communication-intensive axes such as tensor parallelism inside the fastest topology, then use sharding or pipelines to cross slower boundaries only when memory or scale requires them. The model remains an estimate: kernels, contention, load imbalance, and framework overhead still require profiling.
 
+## The collectives and the fabric are part of the design
+
+[[Wafer - AI Performance Engineering Resources]] adds two layers beneath this page's parallelism axes. **Megatron-LM** is the primary reference for tensor and pipeline parallelism at scale, and **NCCL** is the collective communication library whose all-reduce, all-gather, and reduce-scatter primitives every axis is ultimately expressed in — which means a parallelism strategy is partly a bet about which collective the interconnect handles well.
+
+Below that sits the fabric itself: **NVLink/NVSwitch** inside a scale-up domain, and the emerging **UALink** and **Ultra Ethernet** specifications for scale-up and scale-out respectively. These are open standards being written now, and they decide whether the next generation's parallelism strategies are portable across vendors or locked to one. See [[NVIDIA]] on rack-scale NVLink domains and [[AI Accelerator Architecture]] on the competing stacks.
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
@@ -72,3 +78,4 @@ Real frontier runs combine several axes (often called 3D or 4D parallelism): dat
 - [[GPU Execution Model]]
 - [[AI Knowledge Base Overview]]
 - [[Edward Z. Yang - How to Parallelize a Transformer for Training]]
+- Wafer - AI Performance Engineering Resources

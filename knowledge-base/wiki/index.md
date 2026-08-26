@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - index
 source_ids:
@@ -199,6 +199,8 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-08-23-wafer-ai-perf-contributing-source-policy
 status: active
 ---
 
@@ -290,6 +292,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Benchmark Optimization]] - How leaderboard-fitted systems learn the reference text instead of the underlying task.
 - [[AI-Native Software Development Lifecycle]] - Artifact-triggered development stages with act-time governance and versioned institutional knowledge.
 - [[Agent Workflow Maturity]] - Six-level ladder from single bot to verified team, with invariants, handoffs, and an evidence ladder.
+- [[GPU Kernel Optimization]] - The ladder of transformations from a naive kernel to one that saturates the hardware's real limit.
+- [[Prefill-Decode Disaggregation]] - Splitting the two inference phases onto separate hardware pools because their bottlenecks are opposite.
+- [[Serving Benchmarks and Goodput]] - Completions under a latency SLO as the serving metric, and what a reportable performance number requires.
+- [[AI-Generated Kernels]] - Model-written GPU kernels, and why their benchmarks had to be hardened twice.
 
 ## Entities
 
@@ -336,6 +342,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Groq]] - LPU maker built on deterministic scheduled execution; its team was acquihired by NVIDIA.
 - [[Jacob Peake]] - Author of the four-question comparative survey of AI chip architectures.
 - [[Grok Bot]] - Agent platform whose public workshop material grounds the vault's workflow-maturity ladder.
+- [[Wafer]] - AI performance-engineering company; curator of the vault's GPU learning path and its evidence policy.
 
 ## Sources
 
@@ -531,6 +538,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Jacob Peake - AI Chip Architectures]] - Four-question comparative survey of GPU, wafer-scale, LPU, and dataflow accelerator bets.
 - [[Changyi Yang - Why MLA and MTP Fight Each Other]] - Arithmetic-intensity analysis showing two DeepSeek optimizations competing for the same idle decode compute.
 - [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]] - Three probes showing ASR systems reproducing flawed reference transcripts rather than transcribing audio.
+
+### August 26, 2026 batch
+
+- [[Wafer - AI Performance Engineering Resources]] - Curated GPU performance-engineering learning path with an explicit primary-source and reportable-number evidence policy.
 
 ## Syntheses
 

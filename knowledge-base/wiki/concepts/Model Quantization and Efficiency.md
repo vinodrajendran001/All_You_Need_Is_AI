@@ -81,6 +81,14 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 
 [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] clarifies that distillation is not itself compression: it trains a separate student, whereas quantization and pruning alter an existing model's representation. The techniques compose naturally—distill task capability first, then compress the resulting student for its target hardware.
 
+## The primary methods and the format standards
+
+[[Wafer - AI Performance Engineering Resources]] separates this area into methods and formats, a distinction worth keeping.
+
+The methods are post-training and mostly about *where the error goes*: **GPTQ** performs layer-wise weight quantization with second-order error compensation; **SmoothQuant** migrates activation outliers into the weights so both sides become quantizable; **AWQ** protects the small fraction of activation-salient weights rather than treating all weights alike. The shared insight is that quantization error is not uniformly distributed, and the win comes from choosing what to spend the remaining precision on.
+
+The formats are governance rather than technique: the OCP **FP8** and **Microscaling (MX)** specifications define shared low-precision number formats so that a quantized model means the same thing across vendors. Formats decide what hardware can accelerate; methods decide what accuracy survives. The vault's earlier coverage described the methods well and the format layer not at all.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -119,3 +127,5 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - [[Distributed Training Parallelism]]
 - [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]
+- Wafer - AI Performance Engineering Resources
+- GPU Kernel Optimization

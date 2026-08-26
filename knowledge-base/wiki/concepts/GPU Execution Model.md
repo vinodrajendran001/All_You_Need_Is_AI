@@ -56,6 +56,12 @@ This is the layer between the model and the metal. [[AI Accelerator Architecture
 
 That ratio generalises far beyond a vector add, and [[Arithmetic Intensity and the Roofline Model]] develops it into the cross-cutting frame. Two anchors: [[Jacob Peake - AI Chip Architectures]] shows the same law selecting between whole architectures — training and prefill are compute-bound GEMMs while decode degenerates to GEMVs, and every deployed accelerator is a different strategy for the resulting data-movement problem — and [[Changyi Yang - Why MLA and MTP Fight Each Other]] shows it deciding kernel dispatch inside one model, where sglang chooses between two algebraically identical attention bracketings at a crossover of roughly 171 query tokens. The balance point on an H100 under BF16 is about **295 FLOP/byte**, which is the number the ~5% issue activity above is failing to reach by three orders of magnitude.
 
+## The primary documentation layer
+
+[[Wafer - AI Performance Engineering Resources]] insists that the execution model be read from primary sources rather than explainers, and names them: the **CUDA C++ Programming Guide** and **Best Practices Guide** for the model itself, the **PTX ISA** for the virtual instruction set the compiler actually targets, and the per-architecture **tuning guides** (Hopper, Blackwell) for what changed in each generation.
+
+It pairs these with the tools that make the model observable: **Nsight Systems** for timeline-level analysis of where a workload spends wall-clock time, **Nsight Compute** for per-kernel counters, and **Compute Sanitizer** for memory and race correctness. Its position is that a performance claim about a kernel is only meaningful alongside profiler evidence — the same evidence standard [[Serving Benchmarks and Goodput]] applies one layer up. [[GPU Kernel Optimization]] covers what to do with what the profiler shows.
+
 ## Open questions
 
 - How do compute-bound GEMMs and tensor-core kernels — the workloads that dominate real training/inference — change the scheduling, register, and shared-memory picture drawn by a memory-bound vector add?
@@ -75,3 +81,7 @@ That ratio generalises far beyond a vector add, and [[Arithmetic Intensity and t
 - [[Distributed Training Parallelism]]
 - [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]
+- Wafer - AI Performance Engineering Resources
+- GPU Kernel Optimization
+- Serving Benchmarks and Goodput
+- AI-Generated Kernels

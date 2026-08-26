@@ -78,6 +78,12 @@ The clean roofline story assumes attention reads *all* L cached tokens. DeepSeek
 - The balance points are generation-specific. A bandwidth-heavier future part moves the knee and with it every conclusion drawn against it.
 - [[GPU Execution Model]] shows the micro-scale version and the same caveat: a low-intensity vector add runs at ~80% of DRAM bandwidth but only ~5% issue activity — the chip is starved by data movement, not arithmetic.
 
+## Primary sources for the model
+
+[[Wafer - AI Performance Engineering Resources]] places this page's material at the foundation of its learning path and supplies the primary citations the vault had been reasoning from second-hand. The roofline model originates in Williams, Waterman, and Patterson's *Roofline: An Insightful Visual Performance Model for Multicore Architectures*; the transformer-specific application — deriving arithmetic intensity from model dimensions, batch size, and sequence length — is set out in kipply's *Transformer Inference Arithmetic*, which that list treats as the entry point for reasoning about a model's own compute-to-bandwidth ratio before touching any hardware.
+
+The list also makes the model's practical consequence explicit: it is the tool that tells you *which* optimization to reach for. A memory-bound decode is not made faster by a better GEMM kernel, and a compute-bound prefill is not made faster by compressing the KV cache. Every entry in its optimization section is indexed by which side of the ridge point it moves. That is also where [[GPU Kernel Optimization]] begins — the ladder of transformations there is a sequence of moves along this roofline.
+
 ## Open questions
 
 - Is the MLA/MTP conflict a hard architectural limit or a coincidence of current hardware balance points?
@@ -97,3 +103,8 @@ The clean roofline story assumes attention reads *all* L cached tokens. DeepSeek
 - [[Transformer Architecture]]
 - [[Model Quantization and Efficiency]]
 - [[Software Performance Engineering]]
+- Wafer - AI Performance Engineering Resources
+- GPU Kernel Optimization
+- Prefill-Decode Disaggregation
+- Serving Benchmarks and Goodput
+- Wafer

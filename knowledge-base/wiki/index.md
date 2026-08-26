@@ -307,6 +307,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
 - [[Braintrust]] - Evaluation platform whose material in this vault focuses on multi-turn traces and online scoring.
+- [[Cameron R. Wolfe]] - Deep Learning Focus author whose agentic-RL survey reframed eight concept pages; the vault's clearest case of a secondary source doing structural work.
 - [[DoorDash]] - Delivery platform; source for LLM-as-a-Judge search evaluation and country-launch architecture.
 - [[Fareed Khan]] - Repository author whose code-first LLM project ties Pile preprocessing, Transformer implementation, and training into one workflow.
 - [[Han Fang]] - Author of the PyTorch Practice interview tutorial.

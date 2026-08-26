@@ -1,8 +1,10 @@
 ---
 type: entity
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 entity_kind: person
+aliases:
+  - Alyona Vert.
 tags:
   - entity
   - ai-education

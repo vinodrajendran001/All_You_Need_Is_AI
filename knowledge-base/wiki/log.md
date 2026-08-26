@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - log
 source_ids:
@@ -199,6 +199,8 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-08-23-wafer-ai-perf-contributing-source-policy
 status: active
 ---
 
@@ -838,3 +840,14 @@ Append-only operational history for the wiki.
 - Added `## Raw capture` pointers to 9 source summaries, verifying each pairing by URL rather than filename, and renamed the one raw capture whose square brackets broke wikilink syntax.
 - Recorded but deliberately did not "fix" 310 non-reciprocal hub links, incidental unlinked entity mentions, 49 legacy raw captures without `source_id`, and 5 short summaries whose sources are genuinely short.
 - Confirmed index, overview, and log agree at 194 unique source IDs, and that local-only query material remains absent from all tracked pages. Filed [[2026-08-25 Lint Pass]].
+
+## [2026-08-26] ingest | Wafer AI performance engineering resources
+
+- Fetched `wafer-ai/gpu-perf-engineering-resources` from GitHub and captured 2 immutable raw sources: the 22 KB `README.md` learning path and the `CONTRIBUTING.md` source-and-evidence policy. `gh` is unauthenticated here, so the repository was read through the GitHub API and `raw.githubusercontent.com`.
+- Created one source-summary page, [[Wafer - AI Performance Engineering Resources]], declaring both IDs.
+- Seeded four concepts the vault had **zero** prior coverage of — a coverage probe found no mention of FlashAttention, CUTLASS, KernelBench, goodput, Orca, or NCCL anywhere in the wiki: [[GPU Kernel Optimization]], [[Prefill-Decode Disaggregation]], [[Serving Benchmarks and Goodput]], and [[AI-Generated Kernels]]. Added entity [[Wafer]].
+- Resolved a standing open question on [[LLM Inference]]: the disaggregated prefill/decode option it asked about now has its own page, and the residual question was narrowed to when chunked prefill inside one pool beats splitting across two.
+- Recorded the source's evidence policy on [[Benchmark Optimization]] as the five attributes of a reportable number (hardware and software versions, workload shape, precision and algorithm, a baseline, a correctness method), and connected it to the ASR transcript-matching finding already on that page. The same policy is why [[AI-Generated Kernels]] treats KernelBench's two rounds of hardening as a correction rather than a refinement, which in turn corrects [[Recursive Self-Improvement]]: an easy verifier is not a sound one.
+- Supplied primary citations for material previously held second-hand across [[Arithmetic Intensity and the Roofline Model]], [[Transformer Architecture]], [[Inference Serving Engines]], [[KV Cache]], [[Speculative Decoding]], [[Model Quantization and Efficiency]], [[Distributed Training Parallelism]], [[Mixture of Experts]], [[GPU Execution Model]], [[AI Accelerator Architecture]], and [[NVIDIA]].
+- Preserved four caveats in the summary: no individual author is named so the work is attributed to the organization, the list is a curation with no independent verification, the curator is commercially motivated and links its own hiring page, and coverage is NVIDIA-weighted by documentation availability rather than deployment share. The repository states an MIT license in its README but sets no license on the repository itself.
+- Index, overview, and log now agree at 196 unique source IDs.

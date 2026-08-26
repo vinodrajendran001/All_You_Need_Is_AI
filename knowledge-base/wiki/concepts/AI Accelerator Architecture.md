@@ -61,6 +61,12 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 - Two structural constraints from the same source are worth recording because they bound everything above. **Power per chip is rising fast** — 700 W (Hopper) → 1,000 W (Blackwell) → 1,400 W (B300, MI355X) → ~1,800 W (analyst-estimated Rubin Ultra) — and liquid cooling becomes mandatory above ~1,000 W, so air cooling effectively ends with Hopper. And **software remains the asymmetry the spec tables cannot show**: the Cerebras compiler is a kernel matcher requiring static graphs with no dynamic shapes or data-dependent control flow, which is a different kind of cost from any number in the comparison.
 - [[Changyi Yang - Why MLA and MTP Fight Each Other]] supplies the analytic complement to the hardware survey and is developed in [[Arithmetic Intensity and the Roofline Model]]. The connecting claim: the *shape* of the matmul, not the chip, decides the regime. Training and prefill stack many tokens against the same weights and are compute-bound GEMMs; decode emits one token at a time so every matmul degenerates to a GEMV, and arithmetic intensity drops by orders of magnitude. Batching, speculative decoding, and multi-token prediction all exist to promote those GEMVs back to GEMMs — but under continuous batching each user still reads their own KV cache, so long-context decode shifts from weight-bandwidth-bound to **KV-bandwidth-bound**. That is the hardware reason [[KV Cache]] optimisation is an accelerator concern and not just a memory-capacity one.
 
+## The non-NVIDIA stacks have primary documentation too
+
+[[Wafer - AI Performance Engineering Resources]] documents the alternatives at the same level as the incumbent, which is unusual and useful. **AMD CDNA 4** covers the MI350-series architecture with matching ROCm and Composable Kernel material; **Google TPU** is documented from the TPU v4 paper through the Ironwood generation, with JAX and XLA as the programming surface; **AWS Trainium** appears via Trainium3 and the Neuron SDK.
+
+The list is candid that its coverage is NVIDIA-weighted, and equally candid about why: public architectural documentation is unevenly available, and depth of documentation is not a proxy for deployment share. The practical reading is that the *concepts* on this page — memory hierarchy, tensor units, interconnect topology, precision support — port across vendors, while tooling maturity does not. See [[Wafer]] for the curation's own disclosure of this bias, and [[Distributed Training Parallelism]] for the open interconnect standards that would make portability real.
+
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
@@ -91,3 +97,6 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 - [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[Onur Sirin - How Local LLMs Run]]
 - [[Reiner Pope]]
+- Wafer - AI Performance Engineering Resources
+- Wafer
+- GPU Kernel Optimization

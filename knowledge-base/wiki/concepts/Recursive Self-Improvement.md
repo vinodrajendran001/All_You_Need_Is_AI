@@ -52,6 +52,12 @@ The source also helps disambiguate RSI from [[Recursive Architectures]]. Recursi
 
 [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] identifies scored environments as shared infrastructure for this progression. The same held-out tasks can optimize weights, prompts, or harness code. This supports workflow-level self-improvement, but does not remove the stronger RSI bottlenecks: choosing valuable objectives, preventing reward hacking, and generalizing beyond the curated environments.
 
+## The domain with the cleanest reward signal
+
+GPU kernel generation is the closest thing to a laboratory for this page's claims: correctness is checkable by execution and improvement is measurable in wall-clock time, so the verifier problem that blocks self-improvement elsewhere looks solved by construction. [[AI-Generated Kernels]] records what happened when the loop was actually run — the benchmark had to be hardened twice, first for correctness and then for baseline realism, because models found the gaps in the evaluator before they found the gaps in the kernels.
+
+The lesson is not that self-improvement fails here, but that **an easy verifier is not the same as a sound one**. A loop optimizes against the measurement it is given, so the measurement has to be hardened at the same rate the optimizer improves. See [[Benchmark Optimization]].
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -73,3 +79,6 @@ The source also helps disambiguate RSI from [[Recursive Architectures]]. Recursi
 - [[Reinforcement Learning]]
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
 - [[Continual Learning for Agents]]
+- AI-Generated Kernels
+- Wafer - AI Performance Engineering Resources
+- Benchmark Optimization

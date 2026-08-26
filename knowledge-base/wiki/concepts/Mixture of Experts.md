@@ -41,6 +41,12 @@ MoE matters because it changes the tradeoff between **total model capacity** and
 - **Expert parallelism** is the training-side face of that boundary. [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] frames MoE as its own axis of [[Distributed Training Parallelism]]: because only a fraction of experts fire per token, capacity can grow without proportional compute — but tokens must be dispatched by an **all-to-all** collective to whichever device holds their routed expert and collected back, adding a new communication dimension on top of data and tensor parallelism, with expert load-balancing as the central concern (this is why the [[AI Accelerator Architecture|Reiner Pope flashcards]] place an MoE layer inside one NVLink rack).
 - **Interaction models are pushing sparse scale into real-time serving.** [[ByteByteGo - Inside Thinking Machines Interaction Models|Thinking Machines' TML-Interaction-Small]] is a 276B-parameter MoE with only 12B active, deliberately sized so the *active* cost stays inside a 200 ms latency budget — a concrete demonstration that MoE's total-vs-active split is what makes a large model viable for [[Real-Time Voice AI]].
 
+## The systems layer MoE actually runs on
+
+[[Wafer - AI Performance Engineering Resources]] treats MoE primarily as a distributed-systems problem, which is where most of the difficulty lives once the routing algorithm is fixed. **DeepSeek-V3** is its reference report for a large sparse model end to end; **DeepEP** is the expert-parallel communication library that makes all-to-all dispatch and combine affordable; **EPLB** is the expert-parallel load balancer that keeps hot experts from serializing the step; **MegaScale-Infer** addresses serving disaggregation for MoE specifically.
+
+The pattern is that sparsity converts a compute problem into a *communication and balance* problem. Every token's route decides which GPU does its work, so an imbalanced router costs wall-clock time on every device that finished early — a cost entirely invisible in FLOP accounting. That is the same accounting gap [[Arithmetic Intensity and the Roofline Model]] warns about, one level up the stack.
+
 ## Open questions
 
 - When does the routing overhead outweigh the compute saved by sparsity?
@@ -59,3 +65,5 @@ MoE matters because it changes the tradeoff between **total model capacity** and
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
 - [[ByteByteGo - Inside Thinking Machines Interaction Models]]
 - [[Liquid AI]]
+- Wafer - AI Performance Engineering Resources
+- Prefill-Decode Disaggregation

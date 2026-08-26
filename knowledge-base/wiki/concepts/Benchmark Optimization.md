@@ -56,6 +56,20 @@ It also qualifies claims made elsewhere in the vault. [[Hugging Face - State of 
 
 **Measure it continuously.** The analyses were productised as a "Benchmark fitting" tab on the Open ASR Leaderboard with open-sourced scripts and un-normalised model outputs, which is the more durable contribution than any individual number.
 
+## The five attributes of a reportable number
+
+[[Wafer - AI Performance Engineering Resources]] reaches this page's conclusion from the systems side rather than the modelling side, and states the remedy as a publication rule. A performance number is reportable only if it carries all five of:
+
+1. **Hardware and software versions** — which chip, which driver, which library build.
+2. **Workload shape** — sequence lengths, batch sizes, or the request distribution.
+3. **Precision and algorithm** — what was actually computed, at what numerical fidelity.
+4. **A baseline** — what it is faster *than*, and whether that baseline was itself competently optimized.
+5. **A correctness method** — how it was established that the fast version still computes the right answer.
+
+If any item is missing, the number is omitted rather than reported. Two of the five are the ones most often absent and most often decisive: an uncompetitive baseline manufactures a speedup, and a missing correctness method makes speed meaningless. That is precisely the failure mode of [[AI-Generated Kernels]], where generated kernels passed weak tests while computing the wrong thing, and the reason KernelBench needed a hardened successor.
+
+It is the same disease as the transcript-matching failure above, occurring in a domain that was supposed to be immune to it because its ground truth is arithmetic. That it recurs there is the strongest available argument that the problem is structural rather than domain-specific: **whatever is measured becomes the target, so the measurement itself has to be engineered against the optimizer pointed at it.**
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -76,3 +90,6 @@ It also qualifies claims made elsewhere in the vault. [[Hugging Face - State of 
 - [[Hume AI]]
 - [[Recursive Self-Improvement]]
 - [[LLM Reasoning]]
+- Wafer - AI Performance Engineering Resources
+- AI-Generated Kernels
+- Serving Benchmarks and Goodput

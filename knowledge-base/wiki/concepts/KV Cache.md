@@ -87,6 +87,16 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 
 [[Speculative Decoding]] ([[Mayank Pratap Singh - Speculative Decoding in vLLM]]) touches the cache from the other side. Accepted draft tokens are committed straight into the KV cache in one verification pass, so speculation is a way to *fill* the cache faster; but the draft model also **competes for the same VRAM** the cache needs (e.g. ~14 GB for a 7B draft alongside a 70B target), which is exactly why speculation is a low-batch latency play rather than a high-throughput one — the memory it borrows is memory the cache and larger batches cannot use.
 
+## Primary sources for the optimization families
+
+[[Wafer - AI Performance Engineering Resources]] maps this page's families onto their originating work, which is useful because several are known here only through explainers:
+
+- **Fewer heads to cache** — grouped-query attention (GQA) shares key/value heads across query heads; DeepSeek-V2's multi-head latent attention (MLA) compresses them into a latent vector instead.
+- **Fewer bits per entry** — KIVI performs asymmetric 2-bit KV quantization without retraining, complementing the weight-side methods on [[Model Quantization and Efficiency]].
+- **Moving the cache instead of recomputing it** — CacheGen streams and compresses KV state for fast context loading; Mooncake builds a KV-cache-centric disaggregated serving architecture around the same idea.
+
+The last family is the one that changes the shape of a deployment rather than its constants. Once the cache is a transferable artifact rather than a per-GPU side effect, prefill and decode can live on different hardware ([[Prefill-Decode Disaggregation]]) and prefix reuse can span requests and machines rather than being confined to one process.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -114,3 +124,6 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 - [[Speculative Decoding]]
 - [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
 - [[AI Knowledge Base Overview]]
+- Wafer - AI Performance Engineering Resources
+- Prefill-Decode Disaggregation
+- Serving Benchmarks and Goodput

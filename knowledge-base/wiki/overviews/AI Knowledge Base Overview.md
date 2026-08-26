@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - overview
   - ai
@@ -201,6 +201,8 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-08-23-wafer-ai-perf-contributing-source-policy
 status: active
 ---
 
@@ -356,6 +358,16 @@ On systems, [[Jacob Peake - AI Chip Architectures]] gives [[AI Accelerator Archi
 
 [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]] seeds [[Benchmark Optimization]] with measured evidence that leading ASR systems reproduce known errors in reference transcripts, and that the lowest-WER models are the worst offenders — a caution that generalizes well beyond speech and connects to [[Multi-Turn Evaluation]] and [[Real-Time Voice AI]].
 
+## August 26 additions
+
+One source deepens the systems branch into GPU performance engineering, an area the vault had covered only through explainers.
+
+[[Wafer - AI Performance Engineering Resources]] is a curated learning path with an unusually explicit evidence policy: entries must be the paper that introduced a mechanism, an official specification, the implementing repository, or a direct implementer report — and a performance number must carry hardware, workload shape, precision, a baseline, and a correctness method or be omitted entirely. That policy is now recorded on [[Benchmark Optimization]] as the five attributes of a reportable number, and the curator is described on [[Wafer]] along with the caveats: it is a curation rather than original research, commercially motivated, and NVIDIA-weighted by documentation availability.
+
+It seeds four new concepts. [[GPU Kernel Optimization]] gives the vault its first ladder from a naive kernel to one that saturates the hardware's real limit; [[Prefill-Decode Disaggregation]] answers a standing open question on [[LLM Inference]] by splitting the two phases onto separate pools sized for opposite bottlenecks; [[Serving Benchmarks and Goodput]] introduces goodput, TTFT/TPOT, and production-trace workload generation as the metrics a serving comparison must meet; and [[AI-Generated Kernels]] records that the kernel-generation benchmarks had to be hardened twice, which is the vault's sharpest evidence that an easy verifier is not a sound one — a direct correction to [[Recursive Self-Improvement]].
+
+The same source supplies primary citations for material the vault previously held second-hand: the Berkeley roofline paper behind [[Arithmetic Intensity and the Roofline Model]], the FlashAttention lineage behind [[Transformer Architecture]], Orca and PagedAttention and Sarathi behind [[Inference Serving Engines]], GQA/MLA/KIVI/Mooncake behind [[KV Cache]], Leviathan and Medusa and EAGLE behind [[Speculative Decoding]], GPTQ/SmoothQuant/AWQ plus the OCP FP8 and MX format specifications behind [[Model Quantization and Efficiency]], Megatron-LM and NCCL and the UALink/Ultra Ethernet fabric standards behind [[Distributed Training Parallelism]], DeepEP and EPLB behind [[Mixture of Experts]], the PTX ISA and Nsight toolchain behind [[GPU Execution Model]], and the AMD/TPU/Trainium documentation behind [[AI Accelerator Architecture]].
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]
@@ -481,3 +493,9 @@ On systems, [[Jacob Peake - AI Chip Architectures]] gives [[AI Accelerator Archi
 - [[Speculative Decoding]]
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
+- [[Wafer - AI Performance Engineering Resources]]
+- [[Wafer]]
+- [[GPU Kernel Optimization]]
+- [[Prefill-Decode Disaggregation]]
+- [[Serving Benchmarks and Goodput]]
+- [[AI-Generated Kernels]]

@@ -75,6 +75,12 @@ Two corollaries:
 
 [[Jacob Peake - AI Chip Architectures]] describes the same mechanism from the hardware side: speculative decoding and multi-token prediction exist to promote decode GEMVs back into GEMMs, alongside continuous batching — which means batch size and speculation are also competing for the same headroom, not stacking on it.
 
+## Where the technique comes from
+
+[[Wafer - AI Performance Engineering Resources]] supplies the lineage this page has been describing through a single vLLM implementation write-up. The method was introduced independently by Leviathan et al. (*Fast Inference from Transformers via Speculative Decoding*) and Chen et al. (*Accelerating Large Language Model Decoding with Speculative Sampling*), both establishing the property that makes it safe to deploy: the accept/reject rule preserves the target model's output distribution exactly.
+
+Later work removes the separate draft model. **Medusa** attaches multiple decoding heads to the target model itself; **EAGLE** speculates in feature space rather than token space, which raises acceptance rates. Both matter because the standing objection to speculation — that you now have to serve, tune, and keep a second model aligned with the first — is an operational cost rather than a mathematical one, and self-drafting removes it.
+
 ## Open questions
 
 - How can serving stacks predict α online well enough to auto-tune K and the on/off switch per request?
@@ -95,3 +101,5 @@ Two corollaries:
 - [[Test-Time Scaling]]
 - [[Small Language Models]]
 - [[AI Knowledge Base Overview]]
+- Wafer - AI Performance Engineering Resources
+- Serving Benchmarks and Goodput

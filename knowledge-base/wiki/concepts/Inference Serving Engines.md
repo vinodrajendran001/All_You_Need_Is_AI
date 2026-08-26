@@ -43,6 +43,18 @@ Two implications for engine selection. First, an engine's real differentiator is
 
 [[Jacob Peake - AI Chip Architectures]] extends the same point to hardware targets. Serving on SRAM-only accelerators ([[Cerebras]], [[Groq]]) inverts the usual assumptions: batching matters far less, KV cache competes directly with weights for the same scarce memory, and compiler constraints — static graphs, no dynamic shapes, no data-dependent control flow on the Cerebras stack — restrict which serving strategies are expressible at all.
 
+## The mechanisms underneath the engine names
+
+[[Wafer - AI Performance Engineering Resources]] supplies the primary papers for the techniques this page has so far described mainly by engine name:
+
+- **Continuous batching** — Orca, which introduced iteration-level scheduling so finished sequences leave the batch and new ones join without waiting for the slowest member.
+- **Paged KV memory** — PagedAttention/vLLM, which applies virtual-memory paging to the [[KV Cache]] and removes the fragmentation that forced conservative batch sizes.
+- **Chunked prefill** — Sarathi-Serve, which slices long prefills so they interleave with decode instead of stalling it.
+- **Prefix reuse** — SGLang/RadixAttention, which shares cached prefixes across requests that begin the same way — the dominant win for agent and chat workloads with repeated system prompts.
+- **Splitting the phases entirely** — [[Prefill-Decode Disaggregation]], the architectural alternative to interleaving them on one pool.
+
+Knowing which mechanism an engine implements is more durable knowledge than knowing which engine is currently fastest: benchmark leadership rotates, the mechanisms do not. Whether a given engine's advantage is real is a question for [[Serving Benchmarks and Goodput]], which supplies the evidence standard a serving comparison has to meet.
+
 ## Related pages
 
 - [[LLM Inference]]
@@ -56,4 +68,7 @@ Two implications for engine selection. First, an engine's real differentiator is
 - [[Agentic Reinforcement Learning]]
 - [[AI Agents in Production]]
 - [[Software Performance Engineering]]
-
+- Wafer - AI Performance Engineering Resources
+- Prefill-Decode Disaggregation
+- Serving Benchmarks and Goodput
+- GPU Kernel Optimization

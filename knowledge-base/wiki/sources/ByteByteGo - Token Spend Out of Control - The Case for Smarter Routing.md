@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-10
-updated: 2026-06-10
+updated: 2026-08-26
 source_id: src-2026-06-10-bytebytego-token-spend-routing
 source_title: Token Spend Out of Control? The Case for Smarter Routing
 source_author: ByteByteGo
@@ -68,7 +68,7 @@ This source seeds [[Model Routing]] as a distinct concept and materially deepens
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/Token Spend Out of Control The Case for Smarter Routing.md`
+- [[Token Spend Out of Control The Case for Smarter Routing]]
 
 ## Related pages
 

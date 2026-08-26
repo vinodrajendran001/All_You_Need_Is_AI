@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-loop-engineering-anthropic-playbook
 source_title: "Loop Engineering: The Anthropic Playbook"
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ The source provides a compact bridge between [[Agentic Loop]], [[Context Enginee
 
 - Raw capture: [[2026-08-05 AI Builder Club - Loop Engineering - The Anthropic Playbook]]
 - Canonical URL: https://www.aibuilderclub.com/blog/loop-engineering-anthropic-playbook
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Loop Engineering - The Anthropic Playbook]]
 
 ## Related pages
 

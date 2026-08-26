@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-agents-101-part-1
 source_title: 'What Is an AI Agent? (AI Agents 101, Part 1)'
 source_author: AI Builder Club
@@ -52,6 +52,10 @@ The tutorial makes agent behavior inspectable. Its sample implementation exposes
 
 - Raw capture: [[2026-08-05 AI Builder Club - What Is an AI Agent - (AI Agents 101, Part 1)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/ai-agents-101-part-1
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - What Is an AI Agent - (AI Agents 101, Part 1)]]
 
 ## Related pages
 

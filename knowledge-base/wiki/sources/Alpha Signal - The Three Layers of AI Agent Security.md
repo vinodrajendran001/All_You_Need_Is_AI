@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-17-alpha-signal-three-layers-agent-security
 source_title: The Three Layers of AI Agent Security - From Sandboxes to Network Proxies
 source_author: Alpha Signal
@@ -44,6 +44,10 @@ The source gives [[Agent Security and Governance]] a concrete three-plane archit
 ## Citations
 
 - Raw capture: [[2026-08-17 Alpha Signal - The Three Layers of AI Agent Security]]
+
+## Raw capture
+
+- [[2026-08-17 Alpha Signal - The Three Layers of AI Agent Security]]
 
 ## Related pages
 

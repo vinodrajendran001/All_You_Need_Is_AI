@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-18-hugging-face-state-open-models-summer-2026
 source_title: State of Open Models - Summer 2026 Observations
 source_author: Hugging Face
@@ -46,6 +46,10 @@ The article motivates [[Open Model Ecosystems]] as a systems concept spanning li
 
 - Raw capture: [[2026-08-18 Hugging Face - State of Open Models Summer 2026]]
 - Canonical URL: https://huggingface.co/blog/state-of-open-models-summer-2026
+
+## Raw capture
+
+- [[2026-08-18 Hugging Face - State of Open Models Summer 2026]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-mcp-internals-client-server
 source_title: "MCP Internals: STDIO, SSE, and JSON-RPC Explained"
 source_author: AI Builder Club
@@ -51,6 +51,10 @@ The source gives [[Model Context Protocol]] a wire-level explanation and directl
 
 - Raw capture: [[2026-08-05 AI Builder Club - MCP Internals - STDIO, SSE, and JSON-RPC Explained]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/mcp-internals-client-server](https://www.aibuilderclub.com/blog/mcp-internals-client-server)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - MCP Internals - STDIO, SSE, and JSON-RPC Explained]]
 
 ## Related pages
 

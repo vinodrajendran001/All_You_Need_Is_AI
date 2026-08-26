@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-who-owns-your-ai-agents
 source_title: "Who Owns Your AI Agents? A Registry, a Runbook and an Honest Score (2026)"
 source_author: AI Builder Club
@@ -51,6 +51,10 @@ This source adds governance and lifecycle management to [[AI Agents in Productio
 
 - Raw capture: [[2026-08-05 AI Builder Club - Who Owns Your AI Agents - A Registry, a Runbook and an Honest Score (2026)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/who-owns-your-ai-agents](https://www.aibuilderclub.com/blog/who-owns-your-ai-agents)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Who Owns Your AI Agents - A Registry, a Runbook and an Honest Score (2026)]]
 
 ## Related pages
 

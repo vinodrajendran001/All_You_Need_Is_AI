@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-agent-graph-vs-loop-when-to-use
 source_title: "Graph vs Loop: Which Should Your Agent Use?"
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ The source supplies a right-sizing test for [[Agent Planning]], [[Agentic Loop]]
 
 - Raw capture: [[2026-08-05 AI Builder Club - Graph vs Loop - Which Should Your Agent Use -]]
 - Canonical URL: https://www.aibuilderclub.com/blog/agent-graph-vs-loop-when-to-use
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Graph vs Loop - Which Should Your Agent Use -]]
 
 ## Related pages
 

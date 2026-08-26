@@ -2,7 +2,7 @@
 type: concept
 created: 2026-05-18
 updated: 2026-08-24
-tags: [rag, retrieval, ai-agents, knowledge-graphs, llm]
+tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-04-22-perplexity-search-augmented-lm

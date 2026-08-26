@@ -5,7 +5,7 @@ updated: 2026-08-26
 tags:
   - concept
   - llm
-  - transformer
+  - transformers
   - attention
   - inference
 source_ids:

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-26
 source_id: src-2026-04-20-moonshotai-flashkda-v1
 source_title: "FlashKDA v1: A Deep Dive"
 source_author: MoonshotAI
@@ -30,8 +30,9 @@ FlashKDA is a fused GPU kernel implementation of Kimi Delta Attention. The repor
 - [[AI Accelerator Architecture]]
 
 ## Citations
+## Raw capture
 
-- Raw capture: `knowledge-base/raw/sources/FlashKDAdocs20260420-flashkda-v1-deep-dive.md at master.md`
+- [[FlashKDAdocs20260420-flashkda-v1-deep-dive.md at master]]
 
 ## Related pages
 

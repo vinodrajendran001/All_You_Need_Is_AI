@@ -34,6 +34,12 @@ Anthropic also appears indirectly on the hardware side. [[Jacob Peake - AI Chip 
 - Vault sources are vendor material and should be read as such: the SDLC playbook consolidates the Applied AI team's consulting practice, with no baselines or measured outcomes.
 - The playbook credits Jim Blackhurst, Will Steuk, and Jamal Arif for prior work it builds on.
 
+## Reasoning-block exposure
+
+[[ByteByteGo - How to Steal an AI Model's Private Thoughts]] reports that Anthropic returns encrypted reasoning state to clients in a field named `signature`, and that in July 2026 testing **Claude accepted almost every source/target block combination** — the exception being Fable 5, whose blocks only Fable 5 accepted. Claude was also the easiest family to extract from: a single fixed prompt sufficed, where GPT required up to 50 candidate extractions per block.
+
+The mechanism is not a Claude-specific weakness so much as a design shared across providers — the envelope authenticates the model but not the account or conversation. It does, however, mean that anti-distillation training on Claude Opus 4.8 is undercut by Claude Haiku 4.5 accepting the same blocks and transcribing them. See [[Reasoning Trace Privacy]].
+
 ## Related pages
 
 - [[Anthropic - The AI-Native SDLC Playbook]]
@@ -43,3 +49,5 @@ Anthropic also appears indirectly on the hardware side. [[Jacob Peake - AI Chip 
 - [[Agent Security and Governance]]
 - [[AI Accelerator Architecture]]
 - [[AI Knowledge Base Overview]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Reasoning Trace Privacy]]

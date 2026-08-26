@@ -5,7 +5,7 @@ source_title: "Classic RAG vs Graph RAG vs Agentic RAG"
 source_author: Unknown (LinkedIn post)
 source_url: ""
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-08-26
 tags:
   - source/summary
   - rag
@@ -80,7 +80,7 @@ That taxonomy links naturally to [[Search-Augmented Language Models]], [[Agentic
 
 ## Raw capture
 
-`knowledge-base/raw/sources/Classic RAG vs Graph RAG vs Agentic RAG.md`
+[[Classic RAG vs Graph RAG vs Agentic RAG]]
 
 ## Related pages
 

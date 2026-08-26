@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-26
 source_id: src-2026-07-03-sebastian-raschka-local-coding-agents
 source_title: "Using Local Coding Agents"
 source_author: Sebastian Raschka
@@ -57,9 +57,11 @@ This is the vault's most concrete treatment of running agents on open-weight mod
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Using Local Coding Agents.md`
 - Source URL: [https://magazine.sebastianraschka.com/p/using-local-coding-agents](https://magazine.sebastianraschka.com/p/using-local-coding-agents)
+
+## Raw capture
+
+- [[Using Local Coding Agents]]
 
 ## Related pages
 

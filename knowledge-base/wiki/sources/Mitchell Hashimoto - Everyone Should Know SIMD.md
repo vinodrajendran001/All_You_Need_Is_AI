@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-26
 source_id: src-2026-07-22-mitchell-hashimoto-simd
 source_title: "Everyone Should Know SIMD"
 source_author: Mitchell Hashimoto
@@ -31,7 +31,9 @@ This implementation-oriented guide explains CPU vectorization through a practica
 
 ## Citations
 
-- Raw capture: `knowledge-base/raw/sources/Everyone Should Know SIMD.md`
+## Raw capture
+
+- [[Everyone Should Know SIMD]]
 
 ## Related pages
 

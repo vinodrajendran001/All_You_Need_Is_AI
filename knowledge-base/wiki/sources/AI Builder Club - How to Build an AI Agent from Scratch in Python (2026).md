@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-how-to-build-ai-agent-from-scratch
 source_title: How to Build an AI Agent from Scratch in Python (2026)
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The code exposes the minimum control structure beneath richer agent platforms. T
 
 - Raw capture: [[2026-08-05 AI Builder Club - How to Build an AI Agent from Scratch in Python (2026)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/how-to-build-ai-agent-from-scratch
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - How to Build an AI Agent from Scratch in Python (2026)]]
 
 ## Related pages
 

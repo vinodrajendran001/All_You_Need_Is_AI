@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-26
 source_id: src-2026-07-01-anastasiia-alekseeva-parallel-training
 source_title: "The Simple Maths Behind Parallel Traning"
 source_author: Anastasiia Alekseeva
@@ -58,9 +58,11 @@ This is the vault's first source that lays out the **full parallelism taxonomy**
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/The Simple Maths Behind Parallel Traning.md`
 - Source URL: [https://www.linkedin.com/pulse/simple-maths-behind-parallel-traning-anastasiia-alekseeva-oqhye/](https://www.linkedin.com/pulse/simple-maths-behind-parallel-traning-anastasiia-alekseeva-oqhye/)
+
+## Raw capture
+
+- [[The Simple Maths Behind Parallel Traning]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-reasoncache
 source_title: "ReasonCACHE: Teaching LLMs To Reason Without Weight Updates"
 source_author: Sharut Gupta et al.
@@ -47,8 +47,12 @@ This source expands the vault's efficient-reasoning branch beyond token shorteni
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Sharut Gupta et al - ReasonCACHE - Teaching LLMs To Reason Without Weight Updates.md`
+- Raw capture note: [[2026-06-04 Sharut Gupta et al - ReasonCACHE - Teaching LLMs To Reason Without Weight Updates]]
 - Local PDF: [2026-06-04 Sharut Gupta et al - ReasonCACHE - Teaching LLMs To Reason Without Weight Updates.pdf](../../raw/sources/2026-06-04%20Sharut%20Gupta%20et%20al%20-%20ReasonCACHE%20-%20Teaching%20LLMs%20To%20Reason%20Without%20Weight%20Updates.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Sharut Gupta et al - ReasonCACHE - Teaching LLMs To Reason Without Weight Updates]]
 
 ## Related pages
 

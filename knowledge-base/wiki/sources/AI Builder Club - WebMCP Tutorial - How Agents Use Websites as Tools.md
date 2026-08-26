@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-webmcp-complete-guide
 source_title: "WebMCP Tutorial: How Agents Use Websites as Tools"
 source_author: AI Builder Club
@@ -52,6 +52,10 @@ WebMCP extends [[Tool Use and Function Calling]] and [[Model Context Protocol]] 
 
 - Raw capture: [[2026-08-05 AI Builder Club - WebMCP Tutorial - How Agents Use Websites as Tools]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/webmcp-complete-guide](https://www.aibuilderclub.com/blog/webmcp-complete-guide)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - WebMCP Tutorial - How Agents Use Websites as Tools]]
 
 ## Related pages
 

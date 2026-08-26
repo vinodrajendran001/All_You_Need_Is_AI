@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-dss-grpo-cot-compression
 source_title: "Shorter Thoughts, Same Answers: Difficulty-Scaled Segment-Wise RL for CoT Compression"
 source_author: Ye Tian and Aijun Liu
@@ -9,7 +9,7 @@ source_url: https://arxiv.org/abs/2603.07598
 tags:
   - source/summary
   - reasoning
-  - rl
+  - reinforcement-learning
   - grpo
 source_ids:
   - src-2026-06-04-dss-grpo-cot-compression
@@ -48,8 +48,12 @@ This source adds a more fine-grained view of efficient reasoning: the object bei
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Ye Tian et al - Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression.md`
+- Raw capture note: [[2026-06-04 Ye Tian et al - Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]]
 - Local PDF: [2026-06-04 Ye Tian et al - Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression.pdf](../../raw/sources/2026-06-04%20Ye%20Tian%20et%20al%20-%20Shorter%20Thoughts,%20Same%20Answers%20-%20Difficulty-Scaled%20Segment-Wise%20RL%20for%20CoT%20Compression.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Ye Tian et al - Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]]
 
 ## Related pages
 

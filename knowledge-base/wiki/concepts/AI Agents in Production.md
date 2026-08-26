@@ -213,6 +213,19 @@ Its **architecture decision rule** is the useful counterweight to this page's ac
 
 [[Anthropic - The AI-Native SDLC Playbook]] arrives at the same handoff conclusion from the software-organization side, where the typed artifact is a committed `intent.md`, `spec.md`, or `plan.md` and the commit chain doubles as the audit trail. Two independent sources converging on "pass artifacts and evidence, not transcripts" makes it the strongest operational claim in this cluster. See [[AI-Native Software Development Lifecycle]].
 
+## Published traces are an unsanitisable secrets surface
+
+Teams publish agent trajectories for reproducibility, debugging, and evaluation — practices this page and [[Multi-Turn Evaluation]] both encourage. [[ByteByteGo - How to Steal an AI Model's Private Thoughts]] shows the cost. Encrypted reasoning blocks travel inside those traces, they contain whatever the agent read while working, and **the publisher cannot inspect them**.
+
+A scan of 6,708 public agent trajectories from GitHub and Hugging Face decoded 315,320 blocks and found, from genuine user sessions, 62 API keys, 33 passwords, 24 access tokens, 7 private keys, and 30 personal email addresses. 328 sessions leaked at least one item. Perfect scrubbing of the visible text would have removed **none** of it, because sanitisation operates on plaintext only.
+
+Two operational rules follow, and they belong alongside the invariants above:
+
+- **Strip opaque provider artifacts from any trace before publishing.** They cannot be cleaned, only removed.
+- **Treat a resumed public run as untrusted input.** An instruction planted inside a block executes as prior context when the session resumes, and no one in the chain can read the payload.
+
+The credential example is not hypothetical for this audience: an agent asked to remove hardcoded secrets from a repository must read those secrets, so they enter the trace before any answer exists. See [[Reasoning Trace Privacy]].
+
 ## Related pages
 
 - [[Grok Bot Systems Engineering Working Note]]
@@ -263,3 +276,5 @@ Its **architecture decision rule** is the useful counterweight to this page's ac
 - [[Continual Learning for Agents]]
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
 - [[Agent Frameworks]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Reasoning Trace Privacy]]

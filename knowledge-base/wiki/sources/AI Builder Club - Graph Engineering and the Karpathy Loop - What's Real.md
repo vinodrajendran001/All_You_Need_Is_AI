@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-graph-engineering-karpathy-loop
 source_title: "Graph Engineering and the Karpathy Loop: What's Real"
 source_author: AI Builder Club
@@ -50,6 +50,10 @@ The source links [[Automated AI Research]] to production agent design: robust lo
 
 - Raw capture: [[2026-08-05 AI Builder Club - Graph Engineering and the Karpathy Loop - What's Real]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/graph-engineering-karpathy-loop](https://www.aibuilderclub.com/blog/graph-engineering-karpathy-loop)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Graph Engineering and the Karpathy Loop - What's Real]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-18-harry0703-moneyprinterturbo
 source_title: MoneyPrinterTurbo
 source_author: harry0703
@@ -42,8 +42,11 @@ The repository is a concrete reference implementation of an end-to-end multimoda
 
 ## Citations
 
-- Raw capture: [[2026-08-18 harry0703 - MoneyPrinterTurbo]]
 - Repository: https://github.com/harry0703/MoneyPrinterTurbo
+
+## Raw capture
+
+- [[2026-08-18 harry0703 - MoneyPrinterTurbo]]
 
 ## Related pages
 

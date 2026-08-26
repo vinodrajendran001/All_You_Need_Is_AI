@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-26
-updated: 2026-06-26
+updated: 2026-08-26
 source_id: src-2026-06-26-nithin-llm-inference
 source_title: "What Actually Happens During LLM Inference?"
 source_author: Nithin
@@ -54,9 +54,11 @@ This article gives the vault its clearest single statement of the **prefill/deco
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/What Actually Happens During LLM Inference.md`
 - Source URL: [https://medium.com/@nithinellanki/what-actually-happens-during-llm-inference-e9e756715fc8](https://medium.com/@nithinellanki/what-actually-happens-during-llm-inference-e9e756715fc8)
+
+## Raw capture
+
+- [[What Actually Happens During LLM Inference]]
 
 ## Related pages
 

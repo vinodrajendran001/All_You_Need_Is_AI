@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-08-21-anthropic-ai-native-sdlc
 source_title: The AI-Native SDLC Playbook
 source_author: Anthropic Applied AI team
@@ -55,6 +55,10 @@ This is the most concrete vendor description in the vault of what happens to an 
 - Raw capture: [[2026-08-21 Anthropic - The AI-Native SDLC Playbook]]
 - Canonical URL: https://claude.com/blog/the-ai-native-sdlc-playbook
 - The guide credits Jim Blackhurst, Will Steuk, and Jamal Arif for prior work it builds on.
+
+## Raw capture
+
+- [[2026-08-21 Anthropic - The AI-Native SDLC Playbook]]
 
 ## Related pages
 

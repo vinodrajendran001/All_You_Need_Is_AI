@@ -2,7 +2,7 @@
 type: concept
 created: 2026-05-13
 updated: 2026-07-03
-tags: [rl, optimization, grpo, llm, training]
+tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-pocketflow-tutorial-docs

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-agents-101-part-2
 source_title: AI Agent Tools in Python (AI Agents 101, Part 2)
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The article moves from toy tool calling toward a practical harness. It shows tha
 
 - Raw capture: [[2026-08-05 AI Builder Club - AI Agent Tools in Python (AI Agents 101, Part 2)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/ai-agents-101-part-2
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - AI Agent Tools in Python (AI Agents 101, Part 2)]]
 
 ## Related pages
 

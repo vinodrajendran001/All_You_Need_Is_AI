@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-26
 source_id: src-2026-08-07-rllm-realtime-rl-agents
 source_title: Continual Learning via Real-Time RL for Agents
 source_author: rLLM
@@ -57,6 +57,10 @@ This is the vault's first concrete method for [[Continual Learning for Agents]].
 
 - Raw capture: [[2026-08-07 rLLM - Continual Learning via Real-Time RL for Agents]]
 - Canonical URL: https://rllm-project.com/post.html?post=realtime_rl.md
+
+## Raw capture
+
+- [[2026-08-07 rLLM - Continual Learning via Real-Time RL for Agents]]
 
 ## Related pages
 

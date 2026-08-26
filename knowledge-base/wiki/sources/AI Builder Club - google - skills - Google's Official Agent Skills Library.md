@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-google-skills-official-agent-skills-library
 source_title: "google/skills: Google's Official Agent Skills Library"
 source_author: AI Builder Club
@@ -52,6 +52,10 @@ The source adds an ecosystem and governance dimension to [[Agent Skill]]. Offici
 
 - Raw capture: [[2026-08-05 AI Builder Club - google - skills - Google's Official Agent Skills Library]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/google-skills-official-agent-skills-library](https://www.aibuilderclub.com/blog/google-skills-official-agent-skills-library)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - google - skills - Google's Official Agent Skills Library]]
 
 ## Related pages
 

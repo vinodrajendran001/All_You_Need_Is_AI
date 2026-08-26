@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
 source_title: "How to Evaluate AI Agents: What Works in 2026"
 source_author: AI Builder Club
@@ -51,6 +51,10 @@ This source strengthens the connection between [[Multi-Turn Evaluation]], [[LLM-
 
 - Raw capture: [[2026-08-05 AI Builder Club - How to Evaluate AI Agents - What Works in 2026]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/how-to-evaluate-ai-agents](https://www.aibuilderclub.com/blog/how-to-evaluate-ai-agents)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - How to Evaluate AI Agents - What Works in 2026]]
 
 ## Related pages
 

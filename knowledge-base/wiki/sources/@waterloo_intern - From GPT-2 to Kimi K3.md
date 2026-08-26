@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
 source_title: "22580: From GPT2 to Kimi3, Explained"
 source_author: "@waterloo_intern"
@@ -23,7 +23,7 @@ Its Kimi architecture and performance numbers are frontier claims from a seconda
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/22580 From GPT2 to Kimi3, Explained.md`
+- [[22580 From GPT2 to Kimi3, Explained]]
 
 ## Related pages
 

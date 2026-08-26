@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-agents
 source_title: 'AI Agents in 2026: Build, Deploy, and Scale (Full Guide)'
 source_author: AI Builder Club
@@ -55,6 +55,10 @@ The guide supplies a compact map of the engineering stack and resists treating e
 
 - Raw capture: [[2026-08-05 AI Builder Club - AI Agents in 2026 - Build, Deploy, and Scale (Full Guide)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/ai-agents
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - AI Agents in 2026 - Build, Deploy, and Scale (Full Guide)]]
 
 ## Related pages
 

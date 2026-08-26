@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-rag-vs-long-context-vs-fine-tuning
 source_title: "RAG vs Long Context vs Fine-Tuning: When Each Wins"
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The source clarifies where [[Retrieval-Augmented Generation]] fits within [[Cont
 
 - Raw capture: [[2026-08-05 AI Builder Club - RAG vs Long Context vs Fine-Tuning - When Each Wins]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/rag-vs-long-context-vs-fine-tuning](https://www.aibuilderclub.com/blog/rag-vs-long-context-vs-fine-tuning)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - RAG vs Long Context vs Fine-Tuning - When Each Wins]]
 
 ## Related pages
 

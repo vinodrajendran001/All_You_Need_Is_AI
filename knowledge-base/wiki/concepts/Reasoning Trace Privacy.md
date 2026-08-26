@@ -4,7 +4,7 @@ created: 2026-08-26
 updated: 2026-08-26
 tags:
   - concept
-  - ai-security
+  - security
   - reasoning-traces
   - privacy
   - model-distillation

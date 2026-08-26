@@ -46,6 +46,14 @@ The teacher transfers more than correct task behavior. Errors, biases, stylistic
 
 [[Multi-Teacher On-Policy Distillation]] extends the basic pattern by training specialist teachers and consolidating them through student rollouts. The core governance problem remains the same: teacher selection, evaluation independence, provenance, and held-out generalization determine whether apparent transfer is useful.
 
+## Traces are better distillation material than answers, and they are extractable
+
+[[ByteByteGo - How to Steal an AI Model's Private Thoughts]] supplies the adversarial framing this page has lacked. A final answer gives the *endpoint* of a computation; a reasoning trace gives the *methodology* — problem decomposition, intermediate steps, and abandoned branches. Earlier work cited there raised a fine-tuned model's MATH500 accuracy from **68.4% to 76.0%** using approximate traces over answer-only training.
+
+Providers respond with anti-distillation training on flagship models, but [[Reasoning Trace Privacy]] shows the defence is porous: encrypted reasoning blocks from a flagship can be replayed into a cheaper sibling that will transcribe them, at roughly **$720 per 10,000 traces** at Haiku 4.5 pricing — and where blocks come from public datasets, the flagship is never queried at all.
+
+Two implications for this page. First, **unauthorized distillation is cheaper than the defensive literature assumes**, which changes the economics of every open-vs-closed argument. Second, the defence has to be a systems property rather than a training property: refusal training on one model does nothing while a peer accepts the same artifact.
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -61,4 +69,6 @@ The teacher transfers more than correct task behavior. Errors, biases, stylistic
 - [[Multi-Teacher On-Policy Distillation]]
 - [[Recursive Self-Improvement]]
 - [[ByteByteGo - How Big Models Teach Small Models to Be Smart]]
-
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Reasoning Trace Privacy]]
+- [[Agent Security and Governance]]

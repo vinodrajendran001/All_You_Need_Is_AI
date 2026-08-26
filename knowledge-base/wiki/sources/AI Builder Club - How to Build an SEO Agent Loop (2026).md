@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-agent-seo-loop
 source_title: "How to Build an SEO Agent Loop (2026)"
 source_author: AI Builder Club
@@ -51,6 +51,10 @@ The source is a detailed example of verifier design. It shows how an external me
 
 - Raw capture: [[2026-08-05 AI Builder Club - How to Build an SEO Agent Loop (2026)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/ai-agent-seo-loop](https://www.aibuilderclub.com/blog/ai-agent-seo-loop)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - How to Build an SEO Agent Loop (2026)]]
 
 ## Related pages
 

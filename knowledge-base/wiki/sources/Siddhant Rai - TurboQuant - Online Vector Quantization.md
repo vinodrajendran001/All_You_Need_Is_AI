@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-29
-updated: 2026-06-29
+updated: 2026-08-26
 source_id: src-2026-06-29-siddhant-rai-turboquant
 source_title: "TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate"
 source_author: Siddhant Rai
@@ -56,9 +56,11 @@ This is the second, deeper TurboQuant source in the vault. [[Prateek Singh - KV 
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/TurboQuant - Online Vector Quantization with Near-optimal Distortion Rate.md`
 - Source URL: [https://vizuara.substack.com/p/turboquant-online-vector-quantization](https://vizuara.substack.com/p/turboquant-online-vector-quantization)
+
+## Raw capture
+
+- [[TurboQuant - Online Vector Quantization with Near-optimal Distortion Rate]]
 
 ## Related pages
 

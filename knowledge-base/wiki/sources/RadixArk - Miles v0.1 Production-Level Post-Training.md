@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-20-radixark-miles-v0-1
 source_title: Miles v0.1 - Production-Level Post-Training
 source_author: RadixArk
@@ -46,6 +46,10 @@ The source turns [[Agentic Reinforcement Learning]] from an algorithm diagram in
 
 - Raw capture: [[2026-08-20 RadixArk - Miles v0.1 Production-Level Post-Training]]
 - Repository: https://github.com/radixark/miles
+
+## Raw capture
+
+- [[2026-08-20 RadixArk - Miles v0.1 Production-Level Post-Training]]
 
 ## Related pages
 

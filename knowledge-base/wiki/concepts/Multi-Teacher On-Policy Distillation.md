@@ -6,7 +6,7 @@ tags:
   - concept
   - post-training
   - distillation
-  - rl
+  - reinforcement-learning
   - frontier-models
 source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review

@@ -1,14 +1,14 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-08-26
 source_id: src-2026-06-02-dwarkesh-reiner-pope-chip-design
 source_title: Reiner Pope - Chip design from the bottom up
 source_author: Dwarkesh Patel
 source_url: https://www.dwarkesh.com/p/reiner-pope-2
 tags:
   - source/summary
-  - interview
+  - interviews
   - hardware
   - chip-design
   - accelerators
@@ -52,6 +52,10 @@ This source opens a dedicated hardware branch in the vault. It makes the physica
 
 - Raw capture note: [[2026-06-02 Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
 - Readable transcript: [transcript markdown](../../raw/assets/2026-06-02%20Dwarkesh%20Patel%20-%20Reiner%20Pope%20-%20Chip%20design%20from%20the%20bottom%20up%20transcript.md)
+
+## Raw capture
+
+- [[2026-06-02 Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
 
 ## Related pages
 

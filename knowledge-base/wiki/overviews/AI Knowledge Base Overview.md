@@ -203,6 +203,8 @@ source_ids:
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
+  - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 
@@ -368,6 +370,10 @@ It seeds four new concepts. [[GPU Kernel Optimization]] gives the vault its firs
 
 The same source supplies primary citations for material the vault previously held second-hand: the Berkeley roofline paper behind [[Arithmetic Intensity and the Roofline Model]], the FlashAttention lineage behind [[Transformer Architecture]], Orca and PagedAttention and Sarathi behind [[Inference Serving Engines]], GQA/MLA/KIVI/Mooncake behind [[KV Cache]], Leviathan and Medusa and EAGLE behind [[Speculative Decoding]], GPTQ/SmoothQuant/AWQ plus the OCP FP8 and MX format specifications behind [[Model Quantization and Efficiency]], Megatron-LM and NCCL and the UALink/Ultra Ethernet fabric standards behind [[Distributed Training Parallelism]], DeepEP and EPLB behind [[Mixture of Experts]], the PTX ISA and Nsight toolchain behind [[GPU Execution Model]], and the AMD/TPU/Trainium documentation behind [[AI Accelerator Architecture]].
 
+Two further sources arrive the same day on the agent branch. [[Alex L. Zhang - Speculative Programmatic Tool Calling]] gives the vault its first treatment of **the agent action space as a design choice**: [[Programmatic Tool Calling]] makes executable code the action, with every tool a function inside it, which buys composition and context economy that a JSON-schema contract cannot; [[Speculative Tool Execution]] then exploits the resulting structure by pre-launching tool calls parsed from a program the model is still writing. Measured gains are modest (1–1.2×), and the durable point is architectural rather than numerical. Both connect back to [[Speculative Decoding]] one layer down and leave an unresolved governance question that [[Agent Security and Governance]] now records: purity is gated, authority is not.
+
+[[ByteByteGo - How to Steal an AI Model's Private Thoughts]] seeds [[Reasoning Trace Privacy]] with a security finding whose lesson is a systems one. Encrypted reasoning blocks authenticate the model but not the account or conversation, so a block from a flagship can be replayed into a cheaper sibling that transcribes it — meaning **a model family is only as secure as its least protected member**. Two consequences reach this vault's own practice: published agent traces carry secrets that plaintext sanitisation cannot touch (a scan of 6,708 public trajectories recovered API keys, passwords, and private keys), and a planted block is a prompt-injection carrier no one in the chain can inspect. A separate finding lands on [[LLM Reasoning]]: the displayed "thinking" summary is a distinct artifact from the trace and can diverge from it, so it is not evidence of process.
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]
@@ -499,3 +505,9 @@ The same source supplies primary citations for material the vault previously hel
 - [[Prefill-Decode Disaggregation]]
 - [[Serving Benchmarks and Goodput]]
 - [[AI-Generated Kernels]]
+- [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Programmatic Tool Calling]]
+- [[Speculative Tool Execution]]
+- [[Reasoning Trace Privacy]]
+- [[Alex L. Zhang]]

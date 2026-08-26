@@ -4,6 +4,7 @@ created: 2026-06-04
 updated: 2026-06-04
 question: Write a beginner-friendly blog post on Efficient Reasoning on the Edge
 tags:
+  - query
   - blog
   - reasoning
   - edge-ai

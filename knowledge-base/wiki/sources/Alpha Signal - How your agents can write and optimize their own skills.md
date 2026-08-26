@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-08-26
 source_id: src-2026-06-22-alphasignal-agent-skill-optimization
 source_title: How your agents can write and optimize their own skills
 source_author: Alpha Signal
@@ -63,8 +63,11 @@ It complements [[djfarrelly - The Agent Loop Architecture]] by describing the te
 
 ## Citations
 
-- Raw capture: `knowledge-base/raw/sources/How your agents can write and optimize their own skills.md`
 - Capture note: the local raw file is a pasted Alpha Signal article body with inline remote image links and redirect URLs; the original publication URL was not preserved.
+
+## Raw capture
+
+- [[How your agents can write and optimize their own skills]]
 
 ## Related pages
 

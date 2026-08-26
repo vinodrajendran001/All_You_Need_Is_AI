@@ -1,12 +1,12 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-07-27-neural-avb-looped-transformers
 source_title: "What are Looped Transformers? Explained clearly"
 source_author: "@neural_avb"
 source_url: https://x.com/neural_avb/status/2081741935883223196
-tags: [source/summary, transformer, recurrence, social-post]
+tags: [source/summary, transformers, recurrence, social-post]
 source_ids: [src-2026-07-27-neural-avb-looped-transformers]
 status: active
 ---
@@ -23,7 +23,7 @@ The source is a social-media explainer; its architectural framing is useful, but
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/What are Looped Transformers Explained clearly.md`
+- [[What are Looped Transformers Explained clearly]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-17-google-cloud-agent-plugins
 source_title: Agent Plugins Are the Future of Agent Skills
 source_author: Google Cloud
@@ -47,6 +47,10 @@ The proposal extends [[Agent Skill]] from reusable instructions into a distribut
 
 - Raw capture: [[2026-08-17 Google Cloud - Agent Plugins Are the Future of Agent Skills]]
 - Specification: https://agent-plugins.org/specification
+
+## Raw capture
+
+- [[2026-08-17 Google Cloud - Agent Plugins Are the Future of Agent Skills]]
 
 ## Related pages
 

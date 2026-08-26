@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-efficient-reasoning-edge
 source_title: Efficient Reasoning on the Edge
 source_author: Yelysei Bondarenko et al.
@@ -59,8 +59,12 @@ This source deepens the vault's local/private deployment branch by showing how r
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Yelysei Bondarenko et al - Efficient Reasoning on the Edge.md`
+- Raw capture note: [[2026-06-04 Yelysei Bondarenko et al - Efficient Reasoning on the Edge]]
 - Local PDF: [2026-06-04 Yelysei Bondarenko et al - Efficient Reasoning on the Edge.pdf](../../raw/sources/2026-06-04%20Yelysei%20Bondarenko%20et%20al%20-%20Efficient%20Reasoning%20on%20the%20Edge.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Yelysei Bondarenko et al - Efficient Reasoning on the Edge]]
 
 ## Related pages
 

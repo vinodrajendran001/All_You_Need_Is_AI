@@ -201,6 +201,8 @@ source_ids:
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
+  - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 
@@ -296,6 +298,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Prefill-Decode Disaggregation]] - Splitting the two inference phases onto separate hardware pools because their bottlenecks are opposite.
 - [[Serving Benchmarks and Goodput]] - Completions under a latency SLO as the serving metric, and what a reportable performance number requires.
 - [[AI-Generated Kernels]] - Model-written GPU kernels, and why their benchmarks had to be hardened twice.
+- [[Programmatic Tool Calling]] - Executable code as the agent's action space, with tools as functions inside it.
+- [[Speculative Tool Execution]] - Pre-launching tool calls parsed from a partially generated program to overlap them with generation.
+- [[Reasoning Trace Privacy]] - Why encrypted reasoning blocks do not keep hidden chains of thought private.
 
 ## Entities
 
@@ -343,6 +348,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Jacob Peake]] - Author of the four-question comparative survey of AI chip architectures.
 - [[Grok Bot]] - Agent platform whose public workshop material grounds the vault's workflow-maturity ladder.
 - [[Wafer]] - AI performance-engineering company; curator of the vault's GPU learning path and its evidence policy.
+- [[Alex L. Zhang]] - Harness researcher arguing that a code REPL is the only tool an agent system needs.
 
 ## Sources
 
@@ -542,6 +548,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 ### August 26, 2026 batch
 
 - [[Wafer - AI Performance Engineering Resources]] - Curated GPU performance-engineering learning path with an explicit primary-source and reportable-number evidence policy.
+- [[Alex L. Zhang - Speculative Programmatic Tool Calling]] - Overlapping tool execution with token generation when the agent's action space is code in a REPL.
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]] - Encrypted reasoning blocks replayed into cheaper sibling models, exposing hidden traces, secrets, and an injection carrier.
 
 ## Syntheses
 
@@ -582,6 +590,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-08-13 Lint Pass]] - Twenty-fifth comprehensive lint pass; synchronized 153 source IDs across index, overview, and log and found no remaining structural defects.
 - [[2026-08-24 Lint Pass]] - Twenty-sixth comprehensive lint pass; returned one misplaced raw clipping to the inbox and found no remaining structural defects across 314 wiki pages.
 - [[2026-08-25 Lint Pass]] - Twenty-seventh comprehensive lint pass; made the 63-lesson synthesis traversable, unified the forked tag vocabulary, and closed the raw-to-wiki source-ID gap across 326 wiki pages.
+- [[2026-08-26 Lint Pass]] - Twenty-eighth comprehensive lint pass; found four sources that had been summarized but never cited by any concept page, gave all 180 source summaries a working `## Raw capture` pointer, and canonicalized five forked tags that an earlier parser had missed.
 
 ## Control files
 

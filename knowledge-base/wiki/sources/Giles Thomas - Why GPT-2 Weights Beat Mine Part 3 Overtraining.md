@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part three: testing overtraining"
 source_author: Giles Thomas
@@ -23,7 +23,7 @@ The series supports a narrow but durable lesson: lower held-out language-model l
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/Why do OpenAI's GPT-2 weights beat mine  Part three testing overtraining.md`
+- [[Why do OpenAI's GPT-2 weights beat mine  Part three testing overtraining]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-13-himank-sehgal-microsoft-ai-interview
 source_title: Microsoft Applied Scientist Interview Guide
 source_author: Himank Sehgal
@@ -41,6 +41,10 @@ It contributes a role-specific routing map to [[ML Research Interview Preparatio
 ## Citations
 
 - Raw capture: [[2026-08-13 Himank Sehgal - Microsoft Applied Scientist Interview Guide]]
+
+## Raw capture
+
+- [[2026-08-13 Himank Sehgal - Microsoft Applied Scientist Interview Guide]]
 
 ## Related pages
 

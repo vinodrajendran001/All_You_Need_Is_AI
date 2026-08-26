@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-08-26
 source_id: src-2026-06-30-alisa-liu-math-notes
 source_title: Math notes (probability, statistics, puzzles)
 source_author: Alisa Liu
@@ -55,9 +55,11 @@ It supplies the **math/probability** dimension that the vault's interview-prep b
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/2026-06-30 Alisa Liu - Math Notes.md`
 - Source URL: [https://alisawuffles.notion.site/math-notes](https://alisawuffles.notion.site/math-notes)
+
+## Raw capture
+
+- [[2026-06-30 Alisa Liu - Math Notes]]
 
 ## Related pages
 

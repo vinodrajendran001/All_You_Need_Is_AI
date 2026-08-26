@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-gemma4-local-agents
 source_title: 'Gemma 4: Free Agentic AI on Your Laptop (Ollama Setup)'
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ If the reported capabilities and licensing hold, the source points toward agent 
 
 - Raw capture: [[2026-08-05 AI Builder Club - Gemma 4 - Free Agentic AI on Your Laptop (Ollama Setup)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/gemma4-local-agents
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Gemma 4 - Free Agentic AI on Your Laptop (Ollama Setup)]]
 
 ## Related pages
 

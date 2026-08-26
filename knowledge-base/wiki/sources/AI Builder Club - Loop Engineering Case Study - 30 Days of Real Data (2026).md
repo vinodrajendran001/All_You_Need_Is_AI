@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-loop-engineering-case-study
 source_title: "Loop Engineering Case Study: 30 Days of Real Data (2026)"
 source_author: AI Builder Club
@@ -57,6 +57,10 @@ The source gives [[Agentic Loop]] an unusually concrete operational case with bo
 
 - Raw capture: [[2026-08-05 AI Builder Club - Loop Engineering Case Study - 30 Days of Real Data (2026)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/loop-engineering-case-study
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Loop Engineering Case Study - 30 Days of Real Data (2026)]]
 
 ## Related pages
 

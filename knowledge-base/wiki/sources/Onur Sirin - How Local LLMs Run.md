@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-08-26
 source_id: src-2026-06-30-onur-sirin-local-llm-memory-hardware
 source_title: "How Local LLMs Run: Memory and Hardware"
 source_author: Onur Sirin
@@ -62,9 +62,11 @@ This source turns the vault's existing prefill/decode and KV-cache ideas into a 
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/How Local LLMs Run - Memory and Hardware.md`
 - Source URL: [https://silicontales.com/local-llm-complete-guide/](https://silicontales.com/local-llm-complete-guide/?trk=feed_main-feed-card_feed-article-content)
+
+## Raw capture
+
+- [[How Local LLMs Run - Memory and Hardware]]
 
 ## Related pages
 

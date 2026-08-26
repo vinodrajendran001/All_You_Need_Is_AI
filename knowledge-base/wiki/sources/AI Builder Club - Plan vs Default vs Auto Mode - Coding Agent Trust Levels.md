@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-agent-modes-plan-default-auto
 source_title: "Plan vs Default vs Auto Mode: Coding Agent Trust Levels"
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The source develops human-control policy within the [[Coding Agent Harness]]. It
 
 - Raw capture: [[2026-08-05 AI Builder Club - Plan vs Default vs Auto Mode - Coding Agent Trust Levels]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/agent-modes-plan-default-auto](https://www.aibuilderclub.com/blog/agent-modes-plan-default-auto)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Plan vs Default vs Auto Mode - Coding Agent Trust Levels]]
 
 ## Related pages
 

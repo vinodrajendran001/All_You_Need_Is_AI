@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-yc-qm-agent-harness-source-read
 source_title: "YC QM Agent Harness: A Source-Code Read"
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ QM expands [[AI Agents in Production]] beyond single-user agent quality into org
 
 - Raw capture: [[2026-08-05 AI Builder Club - YC QM Agent Harness - A Source-Code Read]]
 - Canonical URL: https://www.aibuilderclub.com/blog/yc-qm-agent-harness-source-read
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - YC QM Agent Harness - A Source-Code Read]]
 
 ## Related pages
 

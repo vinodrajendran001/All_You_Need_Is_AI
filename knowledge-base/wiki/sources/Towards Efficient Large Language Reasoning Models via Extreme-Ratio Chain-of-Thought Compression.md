@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-extreme-ratio-cot-compression
 source_title: Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression
 source_author: Yuntian Tang et al.
@@ -47,8 +47,12 @@ Extra-CoT pushes the vault's efficient-reasoning branch toward **extreme compres
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Yuntian Tang et al - Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression.md`
+- Raw capture note: [[2026-06-04 Yuntian Tang et al - Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression]]
 - Local PDF: [2026-06-04 Yuntian Tang et al - Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression.pdf](../../raw/sources/2026-06-04%20Yuntian%20Tang%20et%20al%20-%20Towards%20Efficient%20Large%20Language%20Reasoning%20Models%20via%20Extreme-Ratio%20Chain-of-Thought%20Compression.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Yuntian Tang et al - Towards Efficient Large Language Reasoning Models via Extreme-Ratio Chain-of-Thought Compression]]
 
 ## Related pages
 

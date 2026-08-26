@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-loop-engineering-karpathy
 source_title: "Loop Engineering, Karpathy-Style: The Gen-Verify Loop"
 source_author: AI Builder Club
@@ -55,6 +55,10 @@ The source gives [[Agentic Loop]] a useful human-factors framing: autonomy is co
 
 - Raw capture: [[2026-08-05 AI Builder Club - Loop Engineering, Karpathy-Style - The Gen-Verify Loop]]
 - Canonical URL: https://www.aibuilderclub.com/blog/loop-engineering-karpathy
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Loop Engineering, Karpathy-Style - The Gen-Verify Loop]]
 
 ## Related pages
 

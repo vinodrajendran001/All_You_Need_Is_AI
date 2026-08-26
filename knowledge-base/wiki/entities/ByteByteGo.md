@@ -3,7 +3,7 @@ type: entity
 entity_kind: publication
 created: 2026-05-13
 updated: 2026-08-26
-tags: [newsletter, system-design, engineering]
+tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-21-bytebytego-batch
@@ -42,6 +42,12 @@ Two August 12 sources expand both branches. [[ByteByteGo - How Big Models Teach 
 
 Four August 24 sources extend the publication's architecture coverage into [[Autonomous Driving Systems]], Inkling's sparse customization design, local/global GraphRAG, and workload-oriented inference-engine selection. Their value is comparative orientation; product boundaries and company claims still require primary, current evidence.
 
+## Security and research explainers
+
+Alongside the system-design material, ByteByteGo also walks through security research. [[ByteByteGo - How to Steal an AI Model's Private Thoughts]] explains an August 2026 paper from MATS Research, the ELLIS Institute Tübingen, and the Max Planck Institute for Intelligent Systems on extracting hidden reasoning from encrypted provider blocks, and seeds [[Reasoning Trace Privacy]].
+
+The usual caveat applies with more force here than on architecture posts: the publication carries its own disclaimer that its content is assembled from publicly shared details and invites correction. Specific figures — leak counts, accuracy deltas, extraction costs — should be attributed to the underlying paper (arXiv:2608.09867) rather than to this explainer.
+
 ## Related pages
 
 - [[ByteByteGo - Connecting LLMs to the Real World]]
@@ -65,3 +71,5 @@ Four August 24 sources extend the publication's architecture coverage into [[Aut
 - [[ByteByteGo - The New American AI Model Designed to Be Customized]]
 - [[ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]]
 - [[ByteByteGo - Ollama vs vLLM vs SGLang]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Reasoning Trace Privacy]]

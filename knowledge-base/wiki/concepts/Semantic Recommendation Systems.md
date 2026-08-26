@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 tags:
   - concept
   - recommendation-systems
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
   - src-2026-05-21-bytebytego-batch
+  - src-2026-07-28-bytebytego-delivery-llm-search
 status: active
 ---
 
@@ -50,6 +51,16 @@ Structured features must be encoded in forms the model can use. Raw popularity c
 
 Moving from engagement to semantics reduces one class of gaming but does not make relevance equal quality. Semantic systems can amplify stereotypes during cold start, reward topic-shaped bait, or consolidate several failure modes into one model.
 
+## Three production answers to the same question
+
+[[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]] is a useful control on this page's enthusiasm, because it shows three large marketplaces adding LLMs to search and arriving at three different architectures — none of which replaces the retrieval stack:
+
+- **DoorDash** constrains LLM query parsing to its existing taxonomy, so the model resolves ambiguity but cannot invent categories the catalog does not have.
+- **Instacart** pairs cached contextual query rewriting for head traffic with online handling for the long tail, spending model calls only where caching cannot reach.
+- **Uber Eats** fine-tunes LLM embeddings and serves them through two-tower ANN retrieval — the dual-encoder shape described above, with the encoder upgraded rather than the architecture replaced.
+
+The durable pattern is **LLM augmentation under product constraints**: use the model where it resolves ambiguity or representation mismatch, keep deterministic catalogs and rankers, and let traffic distribution, latency budget, and available training data pick the design. That there is no single right answer here is the finding, not a gap in the reporting. See [[DoorDash]] and [[Retrieval-Augmented Generation]].
+
 ## Open questions
 
 - How should semantic relevance be balanced against quality, novelty, diversity, integrity, and creator fairness?
@@ -65,4 +76,5 @@ Moving from engagement to semantics reduces one class of gaming but does not mak
 - [[Model Factory]]
 - [[ByteByteGo]]
 - [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]
-
+- [[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]]
+- [[DoorDash]]

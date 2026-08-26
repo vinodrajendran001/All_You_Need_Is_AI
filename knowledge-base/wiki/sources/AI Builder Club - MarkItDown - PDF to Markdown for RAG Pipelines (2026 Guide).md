@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-markitdown-microsoft-convert-files-markdown-llm
 source_title: "MarkItDown: PDF to Markdown for RAG Pipelines [2026 Guide]"
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The article connects document preprocessing to [[Retrieval-Augmented Generation]
 
 - Raw capture: [[2026-08-05 AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines (2026 Guide)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/markitdown-microsoft-convert-files-markdown-llm](https://www.aibuilderclub.com/blog/markitdown-microsoft-convert-files-markdown-llm)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines (2026 Guide)]]
 
 ## Related pages
 

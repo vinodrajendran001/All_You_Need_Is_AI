@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-21-ben-joffe-fast-day-of-week
 source_title: A Faster Way to Calculate the Day of the Week
 source_author: Ben Joffe
@@ -40,7 +40,9 @@ Although outside the vault's core AI focus, the method exemplifies [[Software Pe
 
 ## Citations
 
-- Raw capture: [[2026-08-21 Ben Joffe - A Faster Way to Calculate the Day of the Week]]
+## Raw capture
+
+- [[2026-08-21 Ben Joffe - A Faster Way to Calculate the Day of the Week]]
 
 ## Related pages
 

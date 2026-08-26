@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-08-26
 source_id: src-2026-06-03-nvidia-locateanything
 source_title: LocateAnything
 source_author: NVIDIA Research
@@ -52,8 +52,9 @@ This source opens a new multimodal branch in the vault around **vision-language 
 - [[AI Knowledge Base Overview]]
 
 ## Citations
+## Raw capture
 
-- Raw capture: `knowledge-base/raw/sources/LocateAnything.md`
+- [[LocateAnything]]
 
 ## Related pages
 

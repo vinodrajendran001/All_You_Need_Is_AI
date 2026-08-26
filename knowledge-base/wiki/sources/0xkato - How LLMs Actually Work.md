@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-10
-updated: 2026-06-10
+updated: 2026-08-26
 source_id: src-2026-06-10-0xkato-how-llms-actually-work
 source_title: How LLMs Actually Work
 source_author: 0xkato
@@ -9,7 +9,7 @@ source_url: https://www.0xkato.xyz/how-llms-actually-work/?utm_source=tldrai
 tags:
   - source/summary
   - llm
-  - transformer
+  - transformers
   - architecture
   - inference
 source_ids:
@@ -55,7 +55,7 @@ This source materially deepens [[Transformer Architecture]] by turning several i
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/How LLMs Actually Work.md`
+- [[How LLMs Actually Work]]
 
 ## Related pages
 

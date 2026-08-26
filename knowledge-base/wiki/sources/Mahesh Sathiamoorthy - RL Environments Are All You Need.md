@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-26
 source_id: src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
 source_title: RL Environments Are All You Need
 source_author: Mahesh Sathiamoorthy
@@ -57,6 +57,10 @@ The argument unifies [[Agentic Reinforcement Learning]], [[Multi-Turn Evaluation
 
 - Raw capture: [[2026-08-07 Mahesh Sathiamoorthy - RL Environments Are All You Need]]
 - Canonical URL: https://x.com/madiator/status/2084657077637746957
+
+## Raw capture
+
+- [[2026-08-07 Mahesh Sathiamoorthy - RL Environments Are All You Need]]
 
 ## Related pages
 

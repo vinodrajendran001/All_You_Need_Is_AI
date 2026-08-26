@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-23
+updated: 2026-08-26
 tags:
   - concept
   - world-models
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-05-fei-fei-li-taxonomy-world-models
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-07-21-bytebytego-roblox-world-models
 status: active
 ---
 
@@ -65,6 +66,14 @@ Diffusion can implement renderer-like world-model components and can be adapted 
 - Can world models generalize robustly enough for open-ended real-world environments, or will they remain strongest in constrained domains?
 - The unified world model thesis faces a data imbalance problem the essay itself identifies: video data for renderers vastly outweighs 3D+physics data for simulators. Can this gap be closed synthetically?
 
+## Engine-authoritative hybrids
+
+[[ByteByteGo - Inside Roblox's Bet on World Models]] describes a deployment shape that sidesteps most of this page's hard problems by refusing the strong version of the goal. Deterministic game state, rules, and physics stay in the engine as the authoritative shared-world substrate; a learned model acts as a **video upsampler** conditioned on that state. The generated image is *presentation*, never the authoritative multiplayer state.
+
+The move is worth generalizing. Conditioning generation on engine state constrains the model with geometry and rules instead of asking it to learn a whole consistent world — which converts the two failure modes this page worries about most, long-horizon drift and multi-agent consistency, into problems the engine already solves. What remains for the model is a perceptual task with a ground truth available every frame.
+
+The caveat travels with it: 2K/60fps delivery, long-context visual consistency, and multiplayer scale are stated as **targets and open work**, not shipped capability.
+
 ## Related pages
 
 - [[Fei-Fei Li - A Functional Taxonomy of World Models]]
@@ -77,3 +86,5 @@ Diffusion can implement renderer-like world-model components and can be adapted 
 - [[World Labs]]
 - [[Fei-Fei Li]]
 - [[AI Knowledge Base Overview]]
+- [[ByteByteGo - Inside Roblox's Bet on World Models]]
+- [[ML Systems at Scale]]

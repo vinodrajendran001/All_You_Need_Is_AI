@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 source_id: src-2026-08-12-yoko-li-loop-convergence
 source_title: Knowing When to Stop - The Art of Making a Loop Converge
 source_author: Yoko Li
@@ -58,6 +58,10 @@ The article substantially deepens [[Loop Engineering]] by making convergence—n
 
 - Raw capture: [[2026-08-12 Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
 - Canonical URL: https://a16z.com/knowing-when-to-stop-the-art-of-making-a-loop-converge/
+
+## Raw capture
+
+- [[2026-08-12 Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
 
 ## Related pages
 

@@ -55,6 +55,14 @@ General-purpose reasoning has become the substrate under chat, search, browsing,
 
 Open pillars, each with 2025–2026 evidence they are unsolved: retrieval-vs-memory; verification (calibrated uncertainty, process rewards without human labels, verifier robustness, formal bridges); test-time scaling (sufficiency detection, early exit, test-time RL); **multi-agent systems** (the "illusion of MAS advantage" — does it help under *token-matched* controls?); **continual learning** (catastrophic forgetting, model collapse, "peak data," reward hacking — overlaps [[Nested Learning]]); and systems (parallel/speculative decoding, batched-inference determinism).
 
+## The displayed summary is a different artifact from the trace
+
+[[ByteByteGo - How to Steal an AI Model's Private Thoughts]] documents something this page should hold onto independently of its security framing: the "thinking" block shown alongside an answer is **generated separately** from the full reasoning trace, and the two can diverge substantially.
+
+On an AIME 2025 problem the summary described methodical work through the geometry using the law of cosines. The recovered trace opened by stating the answer from memory and then worked backward toward a justification, with several wrong guesses along the way. The researchers did not measure how often this happens, and note that a smaller model summarising a larger one will compress the original — but one clean counterexample is enough to break the inference.
+
+Two consequences. **Displayed reasoning is not evidence of process**, so it cannot be used to audit how an answer was reached — the same caution [[Latent-Space Reasoning]] raises from the other direction. And recovered traces were frequently telegraphic and ungrammatical rather than fluent English, which matters because trace-based safety monitoring assumes traces are legible. See [[Reasoning Trace Privacy]].
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -79,3 +87,5 @@ Open pillars, each with 2025–2026 evidence they are unsolved: retrieval-vs-mem
 - [[Nested Learning]]
 - [[LLM Inference]]
 - [[AI Knowledge Base Overview]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Reasoning Trace Privacy]]

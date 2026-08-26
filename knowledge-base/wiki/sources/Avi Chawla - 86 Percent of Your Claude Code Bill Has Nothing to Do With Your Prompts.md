@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-26
 source_id: src-2026-08-07-avi-chawla-claude-code-cost
 source_title: 86% of Your Claude Code Bill Has Nothing to Do With Your Prompts
 source_author: Avi Chawla
@@ -57,6 +57,10 @@ The source connects [[Context Engineering]], [[Coding Agent Harness]], [[Model C
 
 - Raw capture: [[2026-08-07 Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]
 - Canonical URL: https://blog.dailydoseofds.com/p/8904b4e2-4510-4221-8e5d-18f44a3a1d59
+
+## Raw capture
+
+- [[2026-08-07 Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]
 
 ## Related pages
 

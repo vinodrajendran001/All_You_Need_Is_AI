@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-10
-updated: 2026-06-10
+updated: 2026-08-26
 source_id: src-2026-06-10-itsreallyvivek-frontier-ai-labs
 source_title: some notes on getting into frontier ai labs
 source_author: itsreallyvivek
@@ -52,7 +52,7 @@ This source deepens [[Automated AI Research]] by giving a sharper language for t
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/some notes on getting into frontier ai labs.md`
+- [[some notes on getting into frontier ai labs]]
 
 ## Related pages
 

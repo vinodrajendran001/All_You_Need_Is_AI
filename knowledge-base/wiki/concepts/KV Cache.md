@@ -18,6 +18,7 @@ source_ids:
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
 status: active
 ---
 
@@ -97,6 +98,12 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 
 The last family is the one that changes the shape of a deployment rather than its constants. Once the cache is a transferable artifact rather than a per-GPU side effect, prefill and decode can live on different hardware ([[Prefill-Decode Disaggregation]]) and prefix reuse can span requests and machines rather than being confined to one process.
 
+## Prefix stability is an application-level concern
+
+[[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] adds the caller's side of prefix reuse. The cache only helps if the prompt prefix is **byte-identical** across turns, so the decision of whether a cache hit happens is made in application code, not in the serving engine. A rotating timestamp, a re-ordered tool list, or a regenerated system preamble at the front of the context turns an apparent hit into a full prefill, and the cost lands as latency on the very first token.
+
+The practical rule is to treat the prefix as a stable interface — append rather than rewrite, and keep anything volatile at the end of the context. This is what makes prefix reuse the dominant win for agent and chat traffic noted in [[Inference Serving Engines]], and why [[Agentic Loop]] treats cache-awareness as a constraint on how a loop is built.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -127,3 +134,5 @@ The last family is the one that changes the shape of a deployment rather than it
 - Wafer - AI Performance Engineering Resources
 - Prefill-Decode Disaggregation
 - Serving Benchmarks and Goodput
+- [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]]
+- [[Agentic Loop]]

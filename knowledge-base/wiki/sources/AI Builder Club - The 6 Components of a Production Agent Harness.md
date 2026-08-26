@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-harness-six-components
 source_title: The 6 Components of a Production Agent Harness
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ The six-part model gives [[Coding Agent Harness]] and [[AI Agents in Production]
 
 - Raw capture: [[2026-08-05 AI Builder Club - The 6 Components of a Production Agent Harness]]
 - Canonical URL: https://www.aibuilderclub.com/blog/harness-six-components
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - The 6 Components of a Production Agent Harness]]
 
 ## Related pages
 

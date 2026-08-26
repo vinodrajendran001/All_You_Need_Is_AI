@@ -82,6 +82,24 @@ The same source restates prompt injection in the form that matters operationally
 
 [[Anthropic - The AI-Native SDLC Playbook]] shows the same principle inside a software organization, where the enforcement point moves earlier still: hooks act as build-time guardrails and deploy gates, so governance is applied **as the agent acts** rather than in a later review cycle, and managed settings constrain regulated enterprises centrally rather than per developer. The unresolved question this raises is recorded in [[AI-Native Software Development Lifecycle]] — policy now lives in repository shell scripts, and who reviews the guardrails is unaddressed.
 
+## Opaque artifacts you carry but cannot inspect
+
+[[ByteByteGo - How to Steal an AI Model's Private Thoughts]] adds a boundary this page's hierarchy did not cover: the **encrypted reasoning block** a provider returns and the client resends on every turn. The cryptography is sound. What is missing is a binding between the block and the context that produced it — the account and the conversation are simply not among the authenticated fields — so a valid block is valid in any session, any account, and (within limits) any model.
+
+Three consequences land directly on this page:
+
+- **A family is only as secure as its least protected member.** Anti-distillation training on a flagship buys little while a cheap sibling in the same family accepts the same block and will transcribe it. The strong model's refusal training never engages, because it was never asked to disclose anything. Generalize this: any tiered deployment where a strong and a weak component share a trust artifact inherits the weak one's posture.
+- **Sanitisation reaches plaintext only.** Teams that publish agent traces scrub the visible text and cannot scrub what they cannot read. A scan of 6,708 public trajectories recovered 62 API keys, 33 passwords, 24 access tokens, and 7 private keys from genuine sessions — none of which perfect plaintext scrubbing would have removed. Treat opaque blocks as secrets to be **stripped**, not cleaned.
+- **Prompt injection gains an unreadable carrier.** An instruction planted inside a block in a shared trace executes when someone resumes that run, and neither the publisher nor the resumer can inspect the payload. This is the injection surface described above, with the defender's inspection capability removed.
+
+See [[Reasoning Trace Privacy]] for the mechanism and the proposed fixes.
+
+## Speculative execution acts before intent is final
+
+[[Speculative Tool Execution]] ([[Alex L. Zhang - Speculative Programmatic Tool Calling]]) introduces a governance question this vault should track. A harness that pre-launches tool calls parsed from a partially generated program is acting on an intention **the model has not finished forming**. The published design gates speculation on *purity* — refusing to speculate anything whose inputs depend on side-effecting functions — which is a correctness control, not an authority control.
+
+Under the reversibility-keyed approval policy above, the missing rule is straightforward and not yet stated anywhere in the literature: **anything requiring approval must never be speculated**, because approval is precisely a judgement about a completed intention. [[Programmatic Tool Calling]] widens this further — when the action is a program rather than a schema-bounded call, sandboxing carries load that argument validation used to.
+
 ## Open questions
 
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
@@ -106,3 +124,8 @@ The same source restates prompt injection in the form that matters operationally
 - [[Alpha Signal - The Three Layers of AI Agent Security]]
 - [[Mark Russinovich - Fool's Gold]]
 - [[Defensive Deception for Open Models]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Reasoning Trace Privacy]]
+- [[Speculative Tool Execution]]
+- [[Programmatic Tool Calling]]
+- [[Alex L. Zhang - Speculative Programmatic Tool Calling]]

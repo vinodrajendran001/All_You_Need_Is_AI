@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-24-edward-yang-parallelize-transformer
 source_title: How to Parallelize a Transformer for Training
 source_author: Edward Z. Yang
@@ -45,7 +45,9 @@ The article upgrades [[Distributed Training Parallelism]] from a glossary into a
 
 ## Citations
 
-- Raw capture: [[2026-08-24 Edward Z. Yang - How to Parallelize a Transformer for Training]]
+## Raw capture
+
+- [[2026-08-24 Edward Z. Yang - How to Parallelize a Transformer for Training]]
 
 ## Related pages
 

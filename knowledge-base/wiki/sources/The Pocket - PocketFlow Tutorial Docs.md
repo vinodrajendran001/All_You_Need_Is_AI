@@ -5,7 +5,7 @@ source_title: "PocketFlow Tutorial Video Generator - Documentation Collection"
 source_author: The Pocket
 source_url: https://github.com/The-Pocket/PocketFlow-Tutorial-Video-Generator/tree/main/docs
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-08-26
 tags:
   - source/summary
   - llm
@@ -98,8 +98,12 @@ It is also an unusually good fit for an Obsidian-style wiki because the material
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-05-18 The Pocket - PocketFlow Tutorial Video Generator Docs.md`
+- Raw capture note: [[2026-05-18 The Pocket - PocketFlow Tutorial Video Generator Docs]]
 - Raw file directory: `knowledge-base/raw/sources/pocketflow-tutorial-docs/`
+
+## Raw capture
+
+- [[2026-05-18 The Pocket - PocketFlow Tutorial Video Generator Docs]]
 
 ## Related pages
 

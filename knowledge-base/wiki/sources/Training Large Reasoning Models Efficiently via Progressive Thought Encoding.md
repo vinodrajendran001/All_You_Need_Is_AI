@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-progressive-thought-encoding
 source_title: Training Large Reasoning Models Efficiently via Progressive Thought Encoding
 source_author: Zeliang Zhang et al.
@@ -10,7 +10,7 @@ tags:
   - source/summary
   - reasoning
   - efficiency
-  - rl
+  - reinforcement-learning
 source_ids:
   - src-2026-06-04-progressive-thought-encoding
 status: active
@@ -50,8 +50,12 @@ This source broadens the vault's efficient-reasoning branch by showing that comp
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Zeliang Zhang et al - Training Large Reasoning Models Efficiently via Progressive Thought Encoding.md`
+- Raw capture note: [[2026-06-04 Zeliang Zhang et al - Training Large Reasoning Models Efficiently via Progressive Thought Encoding]]
 - Local PDF: [2026-06-04 Zeliang Zhang et al - Training Large Reasoning Models Efficiently via Progressive Thought Encoding.pdf](../../raw/sources/2026-06-04%20Zeliang%20Zhang%20et%20al%20-%20Training%20Large%20Reasoning%20Models%20Efficiently%20via%20Progressive%20Thought%20Encoding.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Zeliang Zhang et al - Training Large Reasoning Models Efficiently via Progressive Thought Encoding]]
 
 ## Related pages
 

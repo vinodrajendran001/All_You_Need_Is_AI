@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-conpress
 source_title: "ConPress: Learning Efficient Reasoning from Multi-Question Contextual Pressure"
 source_author: Jie Deng et al.
@@ -46,8 +46,12 @@ ConPress adds a distinct family to the vault's compression branch: efficient rea
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Jie Deng et al - ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure.md`
+- Raw capture note: [[2026-06-04 Jie Deng et al - ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure]]
 - Local PDF: [2026-06-04 Jie Deng et al - ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure.pdf](../../raw/sources/2026-06-04%20Jie%20Deng%20et%20al%20-%20ConPress%20-%20Learning%20Efficient%20Reasoning%20from%20Multi-Question%20Contextual%20Pressure.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Jie Deng et al - ConPress - Learning Efficient Reasoning from Multi-Question Contextual Pressure]]
 
 ## Related pages
 

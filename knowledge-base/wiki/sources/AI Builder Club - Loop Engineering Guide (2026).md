@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
 source_title: Loop Engineering Guide (2026)
 source_author: AI Builder Club
@@ -58,6 +58,10 @@ The guide provides a broad operating model for [[Agentic Loop]] and connects it 
 
 - Raw capture: [[2026-08-05 AI Builder Club - Loop Engineering Guide (2026)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/loop-engineering-guide-2026
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Loop Engineering Guide (2026)]]
 
 ## Related pages
 

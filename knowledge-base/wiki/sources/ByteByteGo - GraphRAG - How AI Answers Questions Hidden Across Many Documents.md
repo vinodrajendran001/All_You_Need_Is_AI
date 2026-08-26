@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-20-bytebytego-graphrag
 source_title: GraphRAG - How AI Answers Questions Hidden Across Many Documents
 source_author: ByteByteGo
@@ -45,6 +45,10 @@ The source deepens the Graph RAG tier within [[Retrieval-Augmented Generation]] 
 ## Citations
 
 - Raw capture: [[2026-08-20 ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]]
+
+## Raw capture
+
+- [[2026-08-20 ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]]
 
 ## Related pages
 

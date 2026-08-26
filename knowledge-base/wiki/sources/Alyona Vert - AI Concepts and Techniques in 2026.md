@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-26
 source_id: src-2026-07-02-alyona-vert-ai-concepts-2026
 source_title: "AI Concepts and Techniques in 2026: Memory, Inference, Fine-Tuning & Tokens"
 source_author: Alyona Vert
@@ -58,9 +58,11 @@ This survey lets the vault absorb a batch of named 2026 techniques without a pag
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/AI Concepts and Techniques in 2026 Memory, Inference, Fine-Tuning & Tokens.md`
 - Source URL: [https://www.turingpost.com/p/ai-concepts-and-techniques-in-2026-memory-inference-fine-tuning-tokens](https://www.turingpost.com/p/ai-concepts-and-techniques-in-2026-memory-inference-fine-tuning-tokens)
+
+## Raw capture
+
+- [[AI Concepts and Techniques in 2026 Memory, Inference, Fine-Tuning & Tokens]]
 
 ## Related pages
 

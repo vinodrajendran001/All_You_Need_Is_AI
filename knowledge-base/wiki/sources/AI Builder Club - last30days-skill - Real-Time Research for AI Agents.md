@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-last30days-skill-real-time-research
 source_title: "last30days-skill: Real-Time Research for AI Agents"
 source_author: AI Builder Club
@@ -52,6 +52,10 @@ The profile illustrates [[Agent Skill]] as an orchestration artifact layered ove
 
 - Raw capture: [[2026-08-05 AI Builder Club - last30days-skill - Real-Time Research for AI Agents]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/last30days-skill-real-time-research](https://www.aibuilderclub.com/blog/last30days-skill-real-time-research)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - last30days-skill - Real-Time Research for AI Agents]]
 
 ## Related pages
 

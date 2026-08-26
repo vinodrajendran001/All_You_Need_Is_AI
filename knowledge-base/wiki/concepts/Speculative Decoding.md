@@ -82,6 +82,14 @@ Two corollaries:
 
 Later work removes the separate draft model. **Medusa** attaches multiple decoding heads to the target model itself; **EAGLE** speculates in feature space rather than token space, which raises acceptance rates. Both matter because the standing objection to speculation — that you now have to serve, tune, and keep a second model aligned with the first — is an operational cost rather than a mathematical one, and self-drafting removes it.
 
+## The same idea, one layer up
+
+[[Speculative Tool Execution]] ([[Alex L. Zhang - Speculative Programmatic Tool Calling]]) applies this page's pattern above the token level: a harness parses tool calls out of a *partially generated* program and pre-launches them, so that if the finished program invokes them they return from cache. Guessing actions instead of tokens.
+
+The structural analogy is close — cheap speculative work overlapped with an expensive serial process, discarded when wrong — but two properties do not carry over. There is **no distributional guarantee**: token speculation is provably lossless because the accept/reject rule preserves the target distribution, while a speculated tool call is either used or wasted, and a wasted one has already consumed money, tokens, and rate limit. And the wrong-guess cost is external rather than internal: a mispredicted draft token costs idle compute, a mispredicted sub-agent call clogs a serving engine other requests are waiting on.
+
+Both techniques exploit the same underlying slack, though, which is worth noting: on a locally served model the engine is memory-bound decoding the main context, so speculative sub-calls consume compute that would otherwise sit idle — the argument on [[Arithmetic Intensity and the Roofline Model]], applied to agent harnesses.
+
 ## Open questions
 
 - How can serving stacks predict α online well enough to auto-tune K and the on/off switch per request?
@@ -104,3 +112,6 @@ Later work removes the separate draft model. **Medusa** attaches multiple decodi
 - [[AI Knowledge Base Overview]]
 - Wafer - AI Performance Engineering Resources
 - Serving Benchmarks and Goodput
+- [[Speculative Tool Execution]]
+- [[Programmatic Tool Calling]]
+- [[Alex L. Zhang - Speculative Programmatic Tool Calling]]

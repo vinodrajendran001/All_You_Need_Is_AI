@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-pi-agent-extensions-guide
 source_title: "Pi Agent Extensions: Change the Harness, Not Just the Prompt (2026)"
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ The source sharpens [[Coding Agent Harness]] by distinguishing configuration, li
 
 - Raw capture: [[2026-08-05 AI Builder Club - Pi Agent Extensions - Change the Harness, Not Just the Prompt (2026)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/pi-agent-extensions-guide
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Pi Agent Extensions - Change the Harness, Not Just the Prompt (2026)]]
 
 ## Related pages
 

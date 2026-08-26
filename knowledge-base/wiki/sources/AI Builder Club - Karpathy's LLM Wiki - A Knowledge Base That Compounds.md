@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-karpathy-llm-wiki
 source_title: 'Karpathy''s LLM Wiki: A Knowledge Base That Compounds'
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The pattern treats synthesis itself as a reusable artifact. It combines provenan
 
 - Raw capture: [[2026-08-05 AI Builder Club - Karpathy's LLM Wiki - A Knowledge Base That Compounds]]
 - Canonical URL: https://www.aibuilderclub.com/blog/karpathy-llm-wiki
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Karpathy's LLM Wiki - A Knowledge Base That Compounds]]
 
 ## Related pages
 

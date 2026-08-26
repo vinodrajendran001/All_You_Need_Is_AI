@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-08-26
 source_id: src-2026-06-22-djfarrelly-agent-loop-architecture
 source_title: The Agent Loop Architecture
 source_author: djfarrelly
@@ -64,9 +64,11 @@ The durable takeaway is that agent reliability depends on an **execution substra
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/The Agent Loop Architecture.md`
 - Source URL: [https://x.com/djfarrelly/status/2067677007140278630](https://x.com/djfarrelly/status/2067677007140278630)
+
+## Raw capture
+
+- [[The Agent Loop Architecture]]
 
 ## Related pages
 

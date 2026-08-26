@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-08-26
 source_id: src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
 source_title: Frontier post-training recipe review with Finbarr Timbers
 source_author: Nathan Lambert with Finbarr Timbers
@@ -9,7 +9,7 @@ source_url: https://www.interconnects.ai/p/frontier-post-training-recipe-review
 tags:
   - source/summary
   - post-training
-  - rl
+  - reinforcement-learning
   - distillation
   - frontier-models
 source_ids:
@@ -66,7 +66,7 @@ This source materially updates the vault's [[LLM Training Pipeline]] page: the p
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/Frontier post-training recipe review with Finbarr Timbers.md`
+- [[Frontier post-training recipe review with Finbarr Timbers]]
 
 ## Related pages
 

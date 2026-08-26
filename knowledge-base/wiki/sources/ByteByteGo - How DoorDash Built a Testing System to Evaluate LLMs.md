@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-08-26
 source_id: src-2026-06-02-bytebytego-doordash-testing-system
 source_title: How DoorDash Built a Testing System to Evaluate LLMs
 source_author: ByteByteGo
@@ -54,8 +54,9 @@ This source deepens the vault's evaluation branch by moving from search relevanc
 - [[AI Knowledge Base Overview]]
 
 ## Citations
+## Raw capture
 
-- Raw capture: `knowledge-base/raw/sources/How DoorDash Built a Testing System to Evaluate LLMs.md`
+- [[How DoorDash Built a Testing System to Evaluate LLMs]]
 
 ## Related pages
 

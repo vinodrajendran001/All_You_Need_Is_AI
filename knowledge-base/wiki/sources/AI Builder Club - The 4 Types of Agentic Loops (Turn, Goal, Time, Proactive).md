@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-types-of-agentic-loops
 source_title: "The 4 Types of Agentic Loops (Turn, Goal, Time, Proactive)"
 source_author: AI Builder Club
@@ -55,6 +55,10 @@ The taxonomy turns abstract autonomy into explicit handoffs and gives [[Agentic 
 
 - Raw capture: [[2026-08-05 AI Builder Club - The 4 Types of Agentic Loops (Turn, Goal, Time, Proactive)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/types-of-agentic-loops
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - The 4 Types of Agentic Loops (Turn, Goal, Time, Proactive)]]
 
 ## Related pages
 

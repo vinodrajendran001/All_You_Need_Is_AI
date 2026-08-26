@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - concept
   - inference
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
 

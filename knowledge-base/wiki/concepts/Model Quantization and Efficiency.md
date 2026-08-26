@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-12
+updated: 2026-08-26
 tags:
   - concept
   - llm
@@ -29,6 +29,7 @@ source_ids:
   - src-2026-06-29-maarten-grootendorst-visual-guide-quantization
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
 

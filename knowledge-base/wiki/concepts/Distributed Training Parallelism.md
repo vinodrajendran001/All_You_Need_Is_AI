@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-24
+updated: 2026-08-26
 tags:
   - concept
   - training
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-08-24-edward-yang-parallelize-transformer
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
 

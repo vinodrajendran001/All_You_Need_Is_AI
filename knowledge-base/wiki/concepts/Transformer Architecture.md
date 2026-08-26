@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - concept
   - llm
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
 

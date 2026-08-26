@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-coding-agent-memory-agentmemory
 source_title: "Fix AI Agent Memory Loss in 30 Seconds (agentmemory)"
 source_author: AI Builder Club
@@ -54,6 +54,10 @@ The profile makes [[Agent Memory]] concrete for [[Coding Agent Harness]] workflo
 
 - Raw capture: [[2026-08-05 AI Builder Club - Fix AI Agent Memory Loss in 30 Seconds (agentmemory)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/ai-coding-agent-memory-agentmemory](https://www.aibuilderclub.com/blog/ai-coding-agent-memory-agentmemory)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Fix AI Agent Memory Loss in 30 Seconds (agentmemory)]]
 
 ## Related pages
 

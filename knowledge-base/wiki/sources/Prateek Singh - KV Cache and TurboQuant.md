@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-08-26
 source_id: src-2026-06-17-prateek-singh-kv-cache-turboquant
 source_title: KV Cache & TurboQuant
 source_author: Prateek Singh
@@ -71,7 +71,7 @@ This source justifies splitting [[KV Cache]] into its own concept page. KV cache
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/KV Cache & TurboQuant — Prateek Singh PhD.md`
+- [[KV Cache & TurboQuant — Prateek Singh PhD]]
 
 ## Related pages
 

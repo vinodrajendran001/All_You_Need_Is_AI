@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-multi-agent-system-python-tutorial
 source_title: Multi-Agent System Python Tutorial (2026)
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The source demonstrates that multi-agent systems can be ordinary, testable appli
 
 - Raw capture: [[2026-08-05 AI Builder Club - Multi-Agent System Python Tutorial (2026)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/multi-agent-system-python-tutorial
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Multi-Agent System Python Tutorial (2026)]]
 
 ## Related pages
 

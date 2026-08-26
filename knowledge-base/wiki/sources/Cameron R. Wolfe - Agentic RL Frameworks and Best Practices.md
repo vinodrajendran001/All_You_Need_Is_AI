@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-08-26
 source_id: src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
 source_title: "Agentic RL: Frameworks and Best Practices"
 source_author: Cameron R. Wolfe
@@ -79,9 +79,11 @@ This source materially expands the vault's RL branch from "LLM post-training on 
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Agentic RL Frameworks and Best Practices.md`
 - Source URL: [https://cameronrwolfe.substack.com/p/agentic-rl](https://cameronrwolfe.substack.com/p/agentic-rl)
+
+## Raw capture
+
+- [[Agentic RL Frameworks and Best Practices]]
 
 ## Related pages
 

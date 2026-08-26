@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-08-22-grok-bot-systems-engineering-working-note
 source_title: 2026 Working Note on GrokBot Systems Engineering Practice
 source_author: Unattributed working note
@@ -59,9 +59,12 @@ This is the vault's most systematic statement of *operations* for multi-agent sy
 
 ## Citations
 
-- Raw capture: [[2026-08-22 Grok Bot Systems Engineering Working Note]]
 - Canonical artefact: `knowledge-base/raw/assets/Grok_Bot_Team.pdf` (18 pages)
 - No public URL accompanied the capture. The document's own reference list is dated to 22 August 2026 and cites the public Grok Bot workshop page, Cursor documentation on Agent Skills, Automations, Cloud Agent Capabilities and Security, and talks by Lauren Tan and Jonas Nelle.
+
+## Raw capture
+
+- [[2026-08-22 Grok Bot Systems Engineering Working Note]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-agent-tool-permissions-canary
 source_title: "Agent Tool Permissions: Test That Your Deny Rules Hold (2026)"
 source_author: AI Builder Club
@@ -51,6 +51,10 @@ The source turns agent permissions from static configuration into a falsifiable 
 
 - Raw capture: [[2026-08-05 AI Builder Club - Agent Tool Permissions - Test That Your Deny Rules Hold (2026)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/agent-tool-permissions-canary](https://www.aibuilderclub.com/blog/agent-tool-permissions-canary)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Agent Tool Permissions - Test That Your Deny Rules Hold (2026)]]
 
 ## Related pages
 

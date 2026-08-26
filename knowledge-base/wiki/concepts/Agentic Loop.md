@@ -1,8 +1,8 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-05
-tags: [ai-agents, llm, tool-use, loop]
+updated: 2026-08-26
+tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-rag-architecture-comparison
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-loop-engineering-guide-2026
   - src-2026-08-05-aibuilderclub-types-of-agentic-loops
   - src-2026-08-05-aibuilderclub-graph-engineering-guide-2026
+  - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
 status: active
 ---
 
@@ -104,6 +105,14 @@ The **[[Coding Agent Harness]]** is the most tangible product-facing instance of
 
 The durable correction is that repeated generation is not progress by itself. A loop earns autonomy through operational evidence—tests, behavioral checks, metrics, or calibrated review—not through the producing model's confidence.
 
+## The loop is also a caching problem
+
+[[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] decomposes agent efficiency into harness, API, and inference layers under one unifying principle: **avoid repeated work**. Preserve cacheable prefixes, transmit state deltas rather than re-serializing the whole conversation, tokenize only new input, overlap independent work, and route requests toward the machine that already holds the relevant state.
+
+The consequence that most changes how a loop should be written is prefix stability. **KV-cache reuse requires the prompt prefix to match exactly**, so any per-turn variation near the front of the context — a timestamp, a reshuffled tool list, a regenerated system preamble — silently converts what looks like a cache hit into a full fresh prefill. A loop that rebuilds its prompt each iteration pays for the whole context every iteration.
+
+This makes cache-awareness a *design constraint on loop structure*, not a serving-side optimization someone else handles: append rather than rewrite, keep volatile content at the end, and treat the prefix as an interface. See [[KV Cache]] and [[Context Engineering]]. The article's TTFT and CPU-utilization figures across hardware generations are reported as one operator's observation rather than a general law.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -133,3 +142,7 @@ The durable correction is that repeated generation is not progress by itself. A 
 - [[Graph Engineering]]
 - [[Agent Security and Governance]]
 - [[AI Builder Club - Build AI Agents]]
+- [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]]
+- [[KV Cache]]
+- [[Context Engineering]]
+- [[LLM Inference]]

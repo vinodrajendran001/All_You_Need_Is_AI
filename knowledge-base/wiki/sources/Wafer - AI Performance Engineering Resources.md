@@ -70,8 +70,8 @@ Finally, its `CONTRIBUTING.md` is a reusable **evidence standard**. The five req
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/2026-08-23 Wafer - AI Performance Engineering.md`
-- `knowledge-base/raw/sources/2026-08-23 Wafer - Contributing Source Policy.md`
+- [[2026-08-23 Wafer - AI Performance Engineering]]
+- [[2026-08-23 Wafer - Contributing Source Policy]]
 
 ## Citations
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-harness-engineering-agent-production-guide
 source_title: "Harness Engineering: What OpenAI and Anthropic Changed"
 source_author: AI Builder Club
@@ -58,6 +58,10 @@ This source integrates [[Context Engineering]], [[Agent Planning]], [[Agent Memo
 
 - Raw capture: [[2026-08-05 AI Builder Club - Harness Engineering - What OpenAI and Anthropic Changed]]
 - Canonical URL: https://www.aibuilderclub.com/blog/harness-engineering-agent-production-guide
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Harness Engineering - What OpenAI and Anthropic Changed]]
 
 ## Related pages
 

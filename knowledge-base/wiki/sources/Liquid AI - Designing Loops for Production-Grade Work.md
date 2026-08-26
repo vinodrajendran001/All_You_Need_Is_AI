@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-20-liquid-ai-production-loops
 source_title: Designing Loops for Production-Grade Work
 source_author: Liquid AI
@@ -45,6 +45,10 @@ This is a concrete case study for [[Loop Engineering]]: the verifier and product
 ## Citations
 
 - Raw capture: [[2026-08-20 Liquid AI - Designing Loops for Production-Grade Work]]
+
+## Raw capture
+
+- [[2026-08-20 Liquid AI - Designing Loops for Production-Grade Work]]
 
 ## Related pages
 

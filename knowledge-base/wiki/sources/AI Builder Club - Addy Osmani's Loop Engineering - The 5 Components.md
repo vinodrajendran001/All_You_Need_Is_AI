@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-loop-engineering-addy-osmani
 source_title: "Addy Osmani's Loop Engineering: The 5 Components"
 source_author: AI Builder Club
@@ -57,6 +57,10 @@ The source directly connects [[Agent Skill]], [[Model Context Protocol]], [[Agen
 
 - Raw capture: [[2026-08-05 AI Builder Club - Addy Osmani's Loop Engineering - The 5 Components]]
 - Canonical URL: https://www.aibuilderclub.com/blog/loop-engineering-addy-osmani
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Addy Osmani's Loop Engineering - The 5 Components]]
 
 ## Related pages
 

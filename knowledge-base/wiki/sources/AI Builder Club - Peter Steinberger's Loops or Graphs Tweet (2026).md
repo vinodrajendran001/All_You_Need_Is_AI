@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-graph-engineering-peter-steinberger
 source_title: "Peter Steinberger's Loops or Graphs Tweet (2026)"
 source_author: AI Builder Club
@@ -47,6 +47,10 @@ The source helps the vault separate architectural history from social-media nami
 
 - Raw capture: [[2026-08-05 AI Builder Club - Peter Steinberger's Loops or Graphs Tweet (2026)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/graph-engineering-peter-steinberger](https://www.aibuilderclub.com/blog/graph-engineering-peter-steinberger)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Peter Steinberger's Loops or Graphs Tweet (2026)]]
 
 ## Related pages
 

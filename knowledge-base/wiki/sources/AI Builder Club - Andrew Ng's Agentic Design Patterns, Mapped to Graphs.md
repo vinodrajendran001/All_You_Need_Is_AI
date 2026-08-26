@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-andrew-ng-loop-to-graph-engineering
 source_title: "Andrew Ng's Agentic Design Patterns, Mapped to Graphs"
 source_author: AI Builder Club
@@ -48,6 +48,10 @@ The source protects attribution while giving [[Agent Planning]] and [[Agentic Lo
 
 - Raw capture: [[2026-08-05 AI Builder Club - Andrew Ng's Agentic Design Patterns, Mapped to Graphs]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/andrew-ng-loop-to-graph-engineering](https://www.aibuilderclub.com/blog/andrew-ng-loop-to-graph-engineering)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Andrew Ng's Agentic Design Patterns, Mapped to Graphs]]
 
 ## Related pages
 

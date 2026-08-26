@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-08-26
 source_id: src-2026-06-30-alisa-liu-book-of-llms
 source_title: Alisa's book of LLMs
 source_author: Alisa Liu
@@ -57,9 +57,11 @@ It strengthens the vault's core technical spine as a consolidated, interview-ori
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/2026-06-30 Alisa Liu - Book of LLMs.md`
 - Source URL: [https://alisawuffles.notion.site/alisa-s-book-of-llms](https://alisawuffles.notion.site/alisa-s-book-of-llms)
+
+## Raw capture
+
+- [[2026-06-30 Alisa Liu - Book of LLMs]]
 
 ## Related pages
 

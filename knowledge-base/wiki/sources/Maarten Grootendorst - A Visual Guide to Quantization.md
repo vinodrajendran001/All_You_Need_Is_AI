@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-29
-updated: 2026-06-29
+updated: 2026-08-26
 source_id: src-2026-06-29-maarten-grootendorst-visual-guide-quantization
 source_title: A Visual Guide to Quantization
 source_author: Maarten Grootendorst
@@ -57,9 +57,11 @@ This source is the most thorough standalone explanation of quantization mechanic
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/A Visual Guide to Quantization.md`
 - Source URL: [https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization)
+
+## Raw capture
+
+- [[A Visual Guide to Quantization]]
 
 ## Related pages
 

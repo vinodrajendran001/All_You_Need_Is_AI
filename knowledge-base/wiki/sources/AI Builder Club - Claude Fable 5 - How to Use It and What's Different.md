@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-claude-fable-5-how-to-use-guide
 source_title: "Claude Fable 5: How to Use It and What's Different"
 source_author: AI Builder Club
@@ -50,6 +50,10 @@ The source is a useful example of model routing as a production decision spannin
 
 - Raw capture: [[2026-08-05 AI Builder Club - Claude Fable 5 - How to Use It and What's Different]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/claude-fable-5-how-to-use-guide](https://www.aibuilderclub.com/blog/claude-fable-5-how-to-use-guide)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Claude Fable 5 - How to Use It and What's Different]]
 
 ## Related pages
 

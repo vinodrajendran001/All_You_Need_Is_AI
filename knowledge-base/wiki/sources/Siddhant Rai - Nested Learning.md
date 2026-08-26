@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-29
-updated: 2026-06-29
+updated: 2026-08-26
 source_id: src-2026-06-29-siddhant-rai-nested-learning
 source_title: "Nested Learning: The Illusion of Deep Learning Architecture"
 source_author: Siddhant Rai
@@ -60,10 +60,12 @@ Nested Learning opens a memory-as-structure branch that the vault's existing pag
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Nested Learning The Illusion of Deep Learning Architecture.md`
 - Source URL: [https://vizuara.substack.com/p/nested-learning-the-illusion-of-deep](https://vizuara.substack.com/p/nested-learning-the-illusion-of-deep)
 - Underlying paper: arXiv 2512.24695 (Google)
+
+## Raw capture
+
+- [[Nested Learning The Illusion of Deep Learning Architecture]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-mcp-security-attack-vectors
 source_title: "MCP Security: 6 Attack Vectors and a 5-Step Audit"
 source_author: AI Builder Club
@@ -52,6 +52,10 @@ The article extends [[Model Context Protocol]] from an interoperability story in
 
 - Raw capture: [[2026-08-05 AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/mcp-security-attack-vectors](https://www.aibuilderclub.com/blog/mcp-security-attack-vectors)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
 
 ## Related pages
 

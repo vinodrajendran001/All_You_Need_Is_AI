@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-18-alireza-diri-aiml-interviews-ml-fundamentals
 source_title: AI-ML Interviews Collection
 source_author: Alireza Diri
@@ -63,8 +63,30 @@ The collection supplies [[ML Research Interview Preparation]] with a broad curri
 
 ## Citations
 
-- Raw modules: [[2026-08-18 Alireza Diri - AIML Interviews - ML Fundamentals]], [[2026-08-18 Alireza Diri - AIML Interviews - ML Coding]], [[2026-08-18 Alireza Diri - AIML Interviews - PyTorch ML Coding]], [[2026-08-18 Alireza Diri - AIML Interviews - ML System Design]], [[2026-08-18 Alireza Diri - AIML Interviews - ML System Metrics]], [[2026-08-18 Alireza Diri - AIML Interviews - Feature Engineering]], [[2026-08-18 Alireza Diri - AIML Interviews - Ads Ranking]], [[2026-08-18 Alireza Diri - AIML Interviews - News Feed Ranking]], [[2026-08-18 Alireza Diri - AIML Interviews - People You May Know]], [[2026-08-18 Alireza Diri - AIML Interviews - Video Recommendation]], [[2026-08-18 Alireza Diri - AIML Interviews - Event Recommendation]], [[2026-08-18 Alireza Diri - AIML Interviews - Game Recommendation]], [[2026-08-18 Alireza Diri - AIML Interviews - Search]], [[2026-08-18 Alireza Diri - AIML Interviews - Image Search]], [[2026-08-18 Alireza Diri - AIML Interviews - Multimodal Video Search]], [[2026-08-18 Alireza Diri - AIML Interviews - Object Detection]], [[2026-08-18 Alireza Diri - AIML Interviews - Autonomous Vehicles]], [[2026-08-18 Alireza Diri - AIML Interviews - Harmful Content Detection]]
 - Repository: https://github.com/alirezadir/AIMLInterviews
+
+## Raw capture
+
+Composite page over 18 module captures:
+
+- [[2026-08-18 Alireza Diri - AIML Interviews - ML Fundamentals]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - ML Coding]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - PyTorch ML Coding]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - ML System Design]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - ML System Metrics]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Feature Engineering]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Ads Ranking]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - News Feed Ranking]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - People You May Know]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Video Recommendation]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Event Recommendation]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Game Recommendation]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Search]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Image Search]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Multimodal Video Search]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Object Detection]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Autonomous Vehicles]]
+- [[2026-08-18 Alireza Diri - AIML Interviews - Harmful Content Detection]]
 
 ## Related pages
 

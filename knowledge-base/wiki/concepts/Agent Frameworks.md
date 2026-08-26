@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
   - src-2026-06-05-systemdesign42-system-design-academy
+  - src-2026-08-18-harry0703-moneyprinterturbo
 status: active
 ---
 
@@ -54,6 +55,14 @@ Choose based on the system being built:
 
 A framework supplies mechanics, not a trustworthy objective or verifier. Teams still need [[Context Engineering]], [[Agent Security and Governance]], [[Multi-Turn Evaluation]], and explicit failure handling. A hand-written loop remains preferable when the task is small and framework features would add more state and context than value.
 
+## Integration breadth as its own architecture
+
+[[harry0703 - MoneyPrinterTurbo]] is a useful counterexample to this page's framework-selection axes, because its value is not in any of them. It turns a keyword into a finished short video by orchestrating script generation, stock or local footage, speech synthesis, subtitles, music, rendering, and optional publishing, exposed through agent, web, API, and CLI surfaces over one workflow — and its architectural contribution is **provider abstraction plus deterministic media stages**, not a new control flow or learning algorithm.
+
+The pattern worth extracting: model-generated content sits in the middle of a pipeline whose surrounding stages are conventional and deterministic. The model writes the script; ffmpeg renders the video. Frameworks are usually compared on how they orchestrate model calls, but a large share of real agent systems are mostly *not* model calls, and the abstraction that matters is the one over providers — hosted APIs, gateways, and local Ollama-compatible models behind one interface.
+
+The caveats are the ones any repository README invites: it reports capabilities rather than controlled quality or reliability evidence, and "one click" conceals substantial configuration, licensing, stock-media rights, provider cost, and auto-publishing policy questions.
+
 ## Open questions
 
 - Which framework behaviors can be compared under equivalent end-to-end tasks?
@@ -69,4 +78,5 @@ A framework supplies mechanics, not a trustworthy objective or verifier. Teams s
 - [[AI Agents in Production]]
 - [[Real-Time Voice AI]]
 - [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
-
+- [[harry0703 - MoneyPrinterTurbo]]
+- [[Model Routing]]

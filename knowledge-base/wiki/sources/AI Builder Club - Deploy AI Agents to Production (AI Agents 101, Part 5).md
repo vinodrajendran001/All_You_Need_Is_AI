@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-agents-101-part-5
 source_title: Deploy AI Agents to Production (AI Agents 101, Part 5)
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The article makes clear that an agent demo becomes a service only when operators
 
 - Raw capture: [[2026-08-05 AI Builder Club - Deploy AI Agents to Production (AI Agents 101, Part 5)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/ai-agents-101-part-5
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Deploy AI Agents to Production (AI Agents 101, Part 5)]]
 
 ## Related pages
 

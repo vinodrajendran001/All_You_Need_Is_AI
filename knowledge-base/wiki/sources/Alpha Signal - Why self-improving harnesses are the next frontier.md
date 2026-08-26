@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-06
-updated: 2026-07-06
+updated: 2026-08-26
 source_id: src-2026-07-06-alphasignal-self-improving-harnesses
 source_title: "Why self-improving harnesses are the next frontier for AI developers"
 source_author: Alpha Signal
@@ -58,8 +58,11 @@ This source extends two vault pages at once. It gives [[Agent Skill]] two concre
 
 ## Citations
 
-- Raw capture: `knowledge-base/raw/sources/Why self-improving harnesses are the next frontier for AI developers.md`
 - Source: Alpha Signal newsletter briefing (Self-Harness, Shanghai AI Lab; HarnessX/AEGIS, Xiaomi Darwin Agent Team, open-sourced on GitHub).
+
+## Raw capture
+
+- [[Why self-improving harnesses are the next frontier for AI developers]]
 
 ## Related pages
 

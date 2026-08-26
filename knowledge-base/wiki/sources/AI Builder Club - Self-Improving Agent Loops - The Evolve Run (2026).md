@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-self-improving-agent-loops
 source_title: "Self-Improving Agent Loops: The Evolve Run (2026)"
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ The source extends [[Agentic Loop]], [[Agent Memory]], and [[Coding Agent Harnes
 
 - Raw capture: [[2026-08-05 AI Builder Club - Self-Improving Agent Loops - The Evolve Run (2026)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/self-improving-agent-loops
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Self-Improving Agent Loops - The Evolve Run (2026)]]
 
 ## Related pages
 

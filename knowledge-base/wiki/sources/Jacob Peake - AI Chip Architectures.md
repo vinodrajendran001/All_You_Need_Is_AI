@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-08-25-jacob-peake-ai-chip-architectures
 source_title: AI Chip Architectures
 source_author: Jacob Peake
@@ -60,6 +60,10 @@ This is the vault's most complete single treatment of [[AI Accelerator Architect
 - Canonical URL: https://www.jacobpeake.com/ai-chip-architectures
 - The source page carries no publication date; 2026-08-25 is the capture date. Its most recent cited events are from mid-2026.
 - Third-party measurements cited within: Artificial Analysis (Cerebras decode throughput), SemiAnalysis (Cerebras and Groq unit economics), SURF (Cerebras CS-2 practitioner evaluation).
+
+## Raw capture
+
+- [[2026-08-25 Jacob Peake - AI Chip Architectures]]
 
 ## Related pages
 

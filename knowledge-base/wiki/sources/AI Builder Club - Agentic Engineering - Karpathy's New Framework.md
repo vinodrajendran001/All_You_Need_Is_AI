@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-karpathy-agentic-engineering
 source_title: 'Agentic Engineering: Karpathy''s New Framework'
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The framing recasts coding-agent use as an engineering management and verificati
 
 - Raw capture: [[2026-08-05 AI Builder Club - Agentic Engineering - Karpathy's New Framework]]
 - Canonical URL: https://www.aibuilderclub.com/blog/karpathy-agentic-engineering
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Agentic Engineering - Karpathy's New Framework]]
 
 ## Related pages
 

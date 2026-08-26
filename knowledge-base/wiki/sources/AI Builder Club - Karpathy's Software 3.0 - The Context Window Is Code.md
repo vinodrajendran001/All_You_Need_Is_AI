@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-karpathy-software-3-0
 source_title: 'Karpathy''s Software 3.0: The Context Window Is Code'
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The framing unifies context engineering, tool design, and agent-native infrastru
 
 - Raw capture: [[2026-08-05 AI Builder Club - Karpathy's Software 3.0 - The Context Window Is Code]]
 - Canonical URL: https://www.aibuilderclub.com/blog/karpathy-software-3-0
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Karpathy's Software 3.0 - The Context Window Is Code]]
 
 ## Related pages
 

@@ -5,8 +5,8 @@ source_title: "Advancing Search-Augmented Language Models"
 source_author: Perplexity Research
 source_url: "https://research.perplexity.ai/articles/advancing-search-augmented-language-models"
 created: 2026-05-13
-updated: 2026-05-13
-tags: [source/summary, search, rl, sft, ai-agents, tool-use, perplexity, grpo, reward-design]
+updated: 2026-08-26
+tags: [source/summary, search, reinforcement-learning, sft, ai-agents, tool-use, perplexity, grpo, reward-design]
 status: active
 ---
 
@@ -58,7 +58,7 @@ A Perplexity Research article (published 2026-04-22) describing their post-train
 
 ## Raw capture
 
-`knowledge-base/raw/sources/Advancing Search-Augmented Language Models.md`
+[[Advancing Search-Augmented Language Models]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-26
 source_id: src-2026-08-07-zach-lloyd-computer-use-verification
 source_title: The computer use verification skill that every agent needs
 source_author: Zach Lloyd
@@ -57,6 +57,10 @@ This is a concrete form of the "operate the artifact" rule in [[Multi-Turn Evalu
 
 - Raw capture: [[2026-08-07 Zach Lloyd - The computer use verification skill that every agent needs]]
 - Canonical URL: https://x.com/zachlloydtweets/status/2084411777354277027
+
+## Raw capture
+
+- [[2026-08-07 Zach Lloyd - The computer use verification skill that every agent needs]]
 
 ## Related pages
 

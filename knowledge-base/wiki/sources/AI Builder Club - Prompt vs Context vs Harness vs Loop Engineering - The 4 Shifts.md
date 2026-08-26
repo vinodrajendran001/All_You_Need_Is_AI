@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-prompt-context-harness-evolution
 source_title: "Prompt vs Context vs Harness vs Loop Engineering: The 4 Shifts"
 source_author: AI Builder Club
@@ -54,6 +54,10 @@ The article provides a synthesis connecting [[Context Engineering]], [[Coding Ag
 
 - Raw capture: [[2026-08-05 AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/prompt-context-harness-evolution](https://www.aibuilderclub.com/blog/prompt-context-harness-evolution)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]]
 
 ## Related pages
 

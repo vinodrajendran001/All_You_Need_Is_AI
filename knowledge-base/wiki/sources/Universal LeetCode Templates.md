@@ -5,7 +5,7 @@ source_title: "Universal LeetCode Templates — The Complete Arsenal"
 source_author: Unknown (community-compiled)
 source_url: ""
 created: 2026-05-21
-updated: 2026-05-21
+updated: 2026-08-26
 tags:
   - source/summary
   - algorithms
@@ -74,7 +74,9 @@ This source gives the vault a **DSA interview-prep layer** that complements the 
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/Universal LeetCode Templates — The Complete Arsenal.md`
+## Raw capture
+
+- [[Universal LeetCode Templates — The Complete Arsenal]]
 
 ## Related pages
 

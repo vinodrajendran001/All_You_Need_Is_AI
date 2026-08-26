@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-08-26
 source_id: src-2026-06-05-systemdesign42-system-design-academy
 source_title: System Design Academy
 source_author: systemdesign42 (newsletter.systemdesign.one)
@@ -72,7 +72,7 @@ Amazon Dynamo, Google Spanner, Meta XFaaS — classic distributed systems papers
 
 ## Raw capture
 
-`knowledge-base/raw/sources/2026-06-05 systemdesign42 - System Design Academy.md`
+[[2026-06-05 systemdesign42 - System Design Academy]]
 
 ## Related pages
 

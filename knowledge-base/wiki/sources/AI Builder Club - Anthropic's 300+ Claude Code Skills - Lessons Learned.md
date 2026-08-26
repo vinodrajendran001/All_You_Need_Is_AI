@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-agent-skills-best-practices-guide
 source_title: "Anthropic's 300+ Claude Code Skills: Lessons Learned"
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The source materially develops [[Agent Skill]] as a context-engineering and work
 
 - Raw capture: [[2026-08-05 AI Builder Club - Anthropic's 300+ Claude Code Skills - Lessons Learned]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/agent-skills-best-practices-guide](https://www.aibuilderclub.com/blog/agent-skills-best-practices-guide)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Anthropic's 300+ Claude Code Skills - Lessons Learned]]
 
 ## Related pages
 

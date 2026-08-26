@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 source_id: src-2026-08-12-bytebytego-semantic-feed-retrieval
 source_title: How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies
 source_author: ByteByteGo
@@ -56,6 +56,10 @@ The comparison seeds [[Semantic Recommendation Systems]] and extends [[ML System
 
 - Raw capture: [[2026-08-12 ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]
 - Canonical URL: https://blog.bytebytego.com/p/how-to-fight-clickbait-meta-linkedin
+
+## Raw capture
+
+- [[2026-08-12 ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]
 
 ## Related pages
 

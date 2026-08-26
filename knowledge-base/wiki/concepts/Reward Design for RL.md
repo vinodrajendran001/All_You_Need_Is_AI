@@ -2,7 +2,7 @@
 type: concept
 created: 2026-05-13
 updated: 2026-08-03
-tags: [rl, reward, training, alignment, llm]
+tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
   - src-2026-05-18-pocketflow-tutorial-docs

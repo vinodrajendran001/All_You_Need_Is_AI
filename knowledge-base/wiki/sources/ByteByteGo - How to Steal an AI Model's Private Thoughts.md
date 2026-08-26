@@ -9,7 +9,7 @@ updated: 2026-08-26
 tags:
   - source/summary
   - reasoning-traces
-  - ai-security
+  - security
   - model-distillation
   - prompt-injection
   - privacy

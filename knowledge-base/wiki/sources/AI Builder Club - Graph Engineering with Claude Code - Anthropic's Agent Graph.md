@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-graph-engineering-with-claude-code
 source_title: "Graph Engineering with Claude Code: Anthropic's Agent Graph"
 source_author: AI Builder Club
@@ -50,6 +50,10 @@ This gives [[Coding Agent Harness]] a concrete implementation of multi-agent orc
 
 - Raw capture: [[2026-08-05 AI Builder Club - Graph Engineering with Claude Code - Anthropic's Agent Graph]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/graph-engineering-with-claude-code](https://www.aibuilderclub.com/blog/graph-engineering-with-claude-code)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Graph Engineering with Claude Code - Anthropic's Agent Graph]]
 
 ## Related pages
 

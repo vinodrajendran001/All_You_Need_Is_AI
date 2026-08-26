@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-08-26
 source_id: src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
 source_title: Inference, Diffusion, World Models, and More | YC Paper Club
 source_author: Y Combinator
@@ -53,6 +53,10 @@ This source broadens the vault from static articles and papers into live researc
 
 - Raw capture note: [[2026-06-02 Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - Transcript asset: [cleaned text transcript](../../raw/assets/2026-06-02%20Y%20Combinator%20-%20Inference%20Diffusion%20World%20Models%20and%20More%20-%20YC%20Paper%20Club%20transcript.txt)
+
+## Raw capture
+
+- [[2026-06-02 Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-08-26
 source_id: src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
 source_title: Diffusion Model Visual Breakdown
 source_author: Mayank Pratap Singh
@@ -63,9 +63,11 @@ This source seeds [[Diffusion Models]] as a first-class concept page in the vaul
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Diffusion Model Visual Breakdown.md`
 - Source URL: [https://vizuara.substack.com/p/diffusion-model-visual-breakdown](https://vizuara.substack.com/p/diffusion-model-visual-breakdown)
+
+## Raw capture
+
+- [[Diffusion Model Visual Breakdown]]
 
 ## Related pages
 

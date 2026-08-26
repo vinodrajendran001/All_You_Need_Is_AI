@@ -5,7 +5,7 @@ source_title: "LLM-as-a-Judge: Evaluating natural language search"
 source_author: Xiaochang Miao, Heather Song (DoorDash)
 source_url: https://careersatdoordash.com/blog/doordash-llm-as-a-judge-evaluating-natural-language-search/
 created: 2026-05-29
-updated: 2026-05-29
+updated: 2026-08-26
 tags:
   - source/summary
   - llm-evaluation
@@ -44,7 +44,7 @@ This source describes how DoorDash operationalized LLM-as-a-judge for natural-la
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/LLM-as-a-Judge Evaluating natural language search.md`
+- [[LLM-as-a-Judge Evaluating natural language search]]
 
 ## Related pages
 

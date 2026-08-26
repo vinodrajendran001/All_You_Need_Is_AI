@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-08-26
 source_id: src-2026-06-05-dharma-ai-dpo-beyond-chatbots
 source_title: Direct Preference Optimization Beyond Chatbots
 source_author: Erick Lachmann, Pimenta de Freitas Cardoso (Dharma-AI)
@@ -51,10 +51,12 @@ This is the first source in the vault that treats DPO outside of chat/preference
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Direct Preference Optimization Beyond Chatbots.md`
 - Source URL: [https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots](https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots)
 - Related arXiv: [2604.14314](https://arxiv.org/abs/2604.14314)
+
+## Raw capture
+
+- [[Direct Preference Optimization Beyond Chatbots]]
 
 ## Related pages
 

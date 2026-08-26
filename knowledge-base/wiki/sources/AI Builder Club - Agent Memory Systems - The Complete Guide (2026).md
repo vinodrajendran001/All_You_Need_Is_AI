@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-agent-memory-systems-guide
 source_title: 'Agent Memory Systems: The Complete Guide (2026)'
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The article shifts attention from “having a vector database” to managing a m
 
 - Raw capture: [[2026-08-05 AI Builder Club - Agent Memory Systems - The Complete Guide (2026)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/agent-memory-systems-guide
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Agent Memory Systems - The Complete Guide (2026)]]
 
 ## Related pages
 

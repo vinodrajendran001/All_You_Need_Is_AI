@@ -5,7 +5,7 @@ source_title: "PyTorch Practice - Learning Tutorial and Interview Prep"
 source_author: Han Fang
 source_url: https://github.com/hanfang/pytorch-practice
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-08-26
 tags:
   - source/summary
   - pytorch
@@ -63,8 +63,12 @@ This source strengthens the vault's practical PyTorch layer. [[The Pocket - Pock
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-05-18 Han Fang - PyTorch Practice.md`
+- Raw capture note: [[2026-05-18 Han Fang - PyTorch Practice]]
 - Raw file directory: `knowledge-base/raw/sources/pytorch-practice/`
+
+## Raw capture
+
+- [[2026-05-18 Han Fang - PyTorch Practice]]
 
 ## Related pages
 

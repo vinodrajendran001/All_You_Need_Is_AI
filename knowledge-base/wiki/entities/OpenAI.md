@@ -31,6 +31,14 @@ OpenAI enters the vault as the subject of [[ByteByteGo - How OpenAI Delivers Low
 - The voice architecture is deliberately optimised for 1:1 (user ↔ model) sessions rather than multiparty calls.
 - [[OpenAI - The Builder's Guide to GPT-5.6]] adds vendor guidance on selecting model variants and reasoning effort, programmatic tool calling, prompt caching, and orchestrator/worker allocation.
 
+## Reasoning-block exposure
+
+[[ByteByteGo - How to Steal an AI Model's Private Thoughts]] reports that OpenAI returns encrypted reasoning state in a field named `encrypted_content`, and that acceptance is **organised by generation**: the GPT-5.6 series accepted blocks from all earlier generations, while older models accepted only their own. That is a narrower surface than Claude's or Gemini's, though not a closed one.
+
+Extraction from GPT was correspondingly harder — up to 50 candidate extractions per block, with output chunked below roughly 50 tokens to avoid a rejection triggered by verbatim reproduction. GPT-5.6 Sol was also the target in the demonstrated prompt-injection vector, where a block carrying an upload instruction was ported into an unrelated slide-editing conversation and executed. See [[Reasoning Trace Privacy]].
+
+The related finding worth carrying forward: recovered GPT traces are frequently **not fluent English** but compressed telegraphic notes with articles dropped and grammar abandoned — which complicates any oversight scheme that assumes traces are readable.
+
 ## Related pages
 
 - [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]]
@@ -40,3 +48,6 @@ OpenAI enters the vault as the subject of [[ByteByteGo - How OpenAI Delivers Low
 - [[AI Knowledge Base Overview]]
 - [[OpenAI - The Builder's Guide to GPT-5.6]]
 - [[Model Routing]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Reasoning Trace Privacy]]
+- [[Programmatic Tool Calling]]

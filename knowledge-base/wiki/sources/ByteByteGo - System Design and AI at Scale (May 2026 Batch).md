@@ -5,7 +5,7 @@ source_title: "ByteByteGo - System Design and AI at Scale (May 2026 Batch)"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com
 created: 2026-05-21
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - source/summary
   - system-design
@@ -175,14 +175,14 @@ DoorDash’s orchestrator, Grab’s classifier-plus-specialists pattern, Figma�
 
 ## Raw captures
 
-- `knowledge-base/raw/sources/How Netflix is Using Multimodal AI to Power Video Search.md`
-- `knowledge-base/raw/sources/How Snapchat Serves a Billion Predictions Per Second.md`
-- `knowledge-base/raw/sources/How Grab is Using AI Agents to Boost Team Productivity.md`
-- `knowledge-base/raw/sources/Figma Design to Code, Code to Design Clearly Explained.md`
-- `knowledge-base/raw/sources/How Amazon Uses LLMs to Recommend Products.md`
-- `knowledge-base/raw/sources/How Instacart Built a Search for Billions of Products.md`
-- `knowledge-base/raw/sources/EP210 Monolithic vs Microservices vs Serverless.md`
-- `knowledge-base/raw/sources/How DoorDash Launches a New Country in One Week.md`
+- [[How Netflix is Using Multimodal AI to Power Video Search]]
+- [[How Snapchat Serves a Billion Predictions Per Second]]
+- [[How Grab is Using AI Agents to Boost Team Productivity]]
+- [[Figma Design to Code, Code to Design Clearly Explained]]
+- [[How Amazon Uses LLMs to Recommend Products]]
+- [[How Instacart Built a Search for Billions of Products]]
+- [[EP210 Monolithic vs Microservices vs Serverless]]
+- [[How DoorDash Launches a New Country in One Week]]
 
 ## Related pages
 

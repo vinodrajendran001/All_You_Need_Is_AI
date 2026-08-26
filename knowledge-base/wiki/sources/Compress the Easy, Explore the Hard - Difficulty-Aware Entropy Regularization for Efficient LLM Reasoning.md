@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-difficulty-aware-entropy-regularization
 source_title: "Compress the Easy, Explore the Hard: Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning"
 source_author: Qin-Wen Luo et al.
@@ -9,7 +9,7 @@ source_url: https://arxiv.org/abs/2602.22642
 tags:
   - source/summary
   - reasoning
-  - rl
+  - reinforcement-learning
   - entropy
 source_ids:
   - src-2026-06-04-difficulty-aware-entropy-regularization
@@ -47,8 +47,12 @@ CEEH strengthens the view that efficient reasoning is as much about **preserving
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Qin-Wen Luo et al - Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning.md`
+- Raw capture note: [[2026-06-04 Qin-Wen Luo et al - Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning]]
 - Local PDF: [2026-06-04 Qin-Wen Luo et al - Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning.pdf](../../raw/sources/2026-06-04%20Qin-Wen%20Luo%20et%20al%20-%20Compress%20the%20Easy,%20Explore%20the%20Hard%20-%20Difficulty-Aware%20Entropy%20Regularization%20for%20Efficient%20LLM%20Reasoning.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Qin-Wen Luo et al - Compress the Easy, Explore the Hard - Difficulty-Aware Entropy Regularization for Efficient LLM Reasoning]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-agent-runaway-cost
 source_title: "AI Agent Runaway Cost: Why Your Bill Is Wrong (2026)"
 source_author: AI Builder Club
@@ -51,6 +51,10 @@ This source makes cost observability part of [[AI Agents in Production]] rather 
 
 - Raw capture: [[2026-08-05 AI Builder Club - AI Agent Runaway Cost - Why Your Bill Is Wrong (2026)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/ai-agent-runaway-cost](https://www.aibuilderclub.com/blog/ai-agent-runaway-cost)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - AI Agent Runaway Cost - Why Your Bill Is Wrong (2026)]]
 
 ## Related pages
 

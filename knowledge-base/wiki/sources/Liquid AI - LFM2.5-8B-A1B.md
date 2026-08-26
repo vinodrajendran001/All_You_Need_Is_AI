@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-08-26
 source_id: src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
 source_title: "LFM2.5-8B-A1B: An Even Better On-Device Mixture of Experts"
 source_author: Liquid AI
@@ -55,8 +55,9 @@ This source deepens the vault's efficiency-and-agents branch by making sparse in
 - [[AI Knowledge Base Overview]]
 
 ## Citations
+## Raw capture
 
-- Raw capture: `knowledge-base/raw/sources/LFM2.5-8B-A1B An Even Better On-Device Mixture of Experts.md`
+- [[LFM2.5-8B-A1B An Even Better On-Device Mixture of Experts]]
 
 ## Related pages
 

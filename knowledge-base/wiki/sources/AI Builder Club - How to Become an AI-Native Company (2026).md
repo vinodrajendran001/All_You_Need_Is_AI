@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-how-to-become-an-ai-native-company
 source_title: "How to Become an AI-Native Company (2026)"
 source_author: AI Builder Club
@@ -52,6 +52,10 @@ This is the batch's broadest production account. It connects memory, evaluation,
 
 - Raw capture: [[2026-08-05 AI Builder Club - How to Become an AI-Native Company (2026)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/how-to-become-an-ai-native-company](https://www.aibuilderclub.com/blog/how-to-become-an-ai-native-company)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - How to Become an AI-Native Company (2026)]]
 
 ## Related pages
 

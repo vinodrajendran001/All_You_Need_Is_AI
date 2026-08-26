@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-24-openai-builders-guide-gpt-5-6
 source_title: The Builder's Guide to GPT-5.6
 source_author: OpenAI
@@ -44,7 +44,9 @@ The guide supplies [[Model Routing]] with an explicit two-dimensional policy: se
 
 ## Citations
 
-- Raw capture: [[2026-08-24 OpenAI - The Builder's Guide to GPT-5.6]]
+## Raw capture
+
+- [[2026-08-24 OpenAI - The Builder's Guide to GPT-5.6]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-mcp-101-build-mcp-servers
 source_title: "MCP 101: Build Your First MCP Server (Step-by-Step)"
 source_author: AI Builder Club
@@ -51,6 +51,10 @@ The guide provides an accessible implementation bridge between [[Tool Use and Fu
 
 - Raw capture: [[2026-08-05 AI Builder Club - MCP 101 - Build Your First MCP Server (Step-by-Step)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/mcp-101-build-mcp-servers](https://www.aibuilderclub.com/blog/mcp-101-build-mcp-servers)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - MCP 101 - Build Your First MCP Server (Step-by-Step)]]
 
 ## Related pages
 

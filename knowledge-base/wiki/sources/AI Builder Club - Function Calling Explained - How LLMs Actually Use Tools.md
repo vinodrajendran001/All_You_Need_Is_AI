@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-function-calling-how-llms-use-tools
 source_title: 'Function Calling Explained: How LLMs Actually Use Tools'
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ Function calling is the interface beneath agent loops, MCP integrations, and cod
 
 - Raw capture: [[2026-08-05 AI Builder Club - Function Calling Explained - How LLMs Actually Use Tools]]
 - Canonical URL: https://www.aibuilderclub.com/blog/function-calling-how-llms-use-tools
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Function Calling Explained - How LLMs Actually Use Tools]]
 
 ## Related pages
 

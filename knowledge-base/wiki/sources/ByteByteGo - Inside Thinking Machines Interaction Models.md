@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-26
 source_id: src-2026-07-03-bytebytego-thinking-machines-interaction
 source_title: "Inside Thinking Machines' Interaction Models"
 source_author: ByteByteGo
@@ -54,10 +54,12 @@ This is the model-architecture half of the new [[Real-Time Voice AI]] concept, c
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Inside Thinking Machines’ Interaction Models.md`
 - Source URL: [https://blog.bytebytego.com/p/inside-thinking-machines-interaction](https://blog.bytebytego.com/p/inside-thinking-machines-interaction)
 - Primary source: [Interaction Models: A Scalable Approach to Human-AI Collaboration](https://thinkingmachines.ai/blog/interaction-models/)
+
+## Raw capture
+
+- [[Inside Thinking Machines’ Interaction Models]]
 
 ## Related pages
 

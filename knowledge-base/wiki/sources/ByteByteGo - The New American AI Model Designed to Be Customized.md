@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-19-bytebytego-inkling
 source_title: The New American AI Model Designed to Be Customized
 source_author: ByteByteGo
@@ -44,6 +44,10 @@ The source expands [[Mixture of Experts]] from sparse computation into a customi
 ## Citations
 
 - Raw capture: [[2026-08-19 ByteByteGo - The New American AI Model Designed to Be Customized]]
+
+## Raw capture
+
+- [[2026-08-19 ByteByteGo - The New American AI Model Designed to Be Customized]]
 
 ## Related pages
 

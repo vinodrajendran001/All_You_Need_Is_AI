@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-graph-engineering-vs-loop-engineering
 source_title: Graph Engineering vs Loop Engineering
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ The source clarifies the boundary between [[Agentic Loop]] and multi-agent orche
 
 - Raw capture: [[2026-08-05 AI Builder Club - Graph Engineering vs Loop Engineering]]
 - Canonical URL: https://www.aibuilderclub.com/blog/graph-engineering-vs-loop-engineering
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Graph Engineering vs Loop Engineering]]
 
 ## Related pages
 

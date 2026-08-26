@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-07-21-bytebytego-roblox-world-models
 source_title: "Inside Roblox's Bet on World Models"
 source_author: ByteByteGo
@@ -24,7 +24,7 @@ Roblox's described approach is an engine-authoritative hybrid: deterministic gam
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/Inside Roblox’s Bet on World Models.md`
+- [[Inside Roblox’s Bet on World Models]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
 source_title: "Why Tabular Foundation Models Are a Huge Unlock for Enterprise AI"
 source_author: Alpha Signal
@@ -25,7 +25,7 @@ The article argues that tabular foundation models apply in-context prediction to
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/Why tabular foundation models are a huge unlock for enterprise AI.md`
+- [[Why tabular foundation models are a huge unlock for enterprise AI]]
 
 ## Related pages
 

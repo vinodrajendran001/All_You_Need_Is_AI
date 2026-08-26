@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-08-26
 source_id: src-2026-06-18-alyona-vert-recursive-self-improvement
 source_title: "AI 101: What is Recursive Self-Improvement?"
 source_author: Alyona Vert
@@ -56,9 +56,11 @@ This source strengthens [[Automated AI Research]] by naming the recursive-improv
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/AI 101 What is Recursive Self-Improvement.md`
 - Source URL: [https://www.turingpost.com/p/what-is-recursive-self-improvement](https://www.turingpost.com/p/what-is-recursive-self-improvement)
+
+## Raw capture
+
+- [[AI 101 What is Recursive Self-Improvement]]
 
 ## Related pages
 

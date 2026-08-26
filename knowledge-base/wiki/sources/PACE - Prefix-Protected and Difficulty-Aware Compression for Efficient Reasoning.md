@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-08-26
 source_id: src-2026-06-04-pace-efficient-reasoning
 source_title: "PACE: Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning"
 source_author: Ren Feng et al.
@@ -10,7 +10,7 @@ tags:
   - source/summary
   - reasoning
   - compression
-  - rl
+  - reinforcement-learning
 source_ids:
   - src-2026-06-04-pace-efficient-reasoning
 status: active
@@ -49,8 +49,12 @@ PACE strengthens the view that efficient reasoning is not simply "make it shorte
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-04 Ren Feng et al - PACE - Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning.md`
+- Raw capture note: [[2026-06-04 Ren Feng et al - PACE - Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning]]
 - Local PDF: [2026-06-04 Ren Feng et al - PACE - Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning.pdf](../../raw/sources/2026-06-04%20Ren%20Feng%20et%20al%20-%20PACE%20-%20Prefix-Protected%20and%20Difficulty-Aware%20Compression%20for%20Efficient%20Reasoning.pdf)
+
+## Raw capture
+
+- [[2026-06-04 Ren Feng et al - PACE - Prefix-Protected and Difficulty-Aware Compression for Efficient Reasoning]]
 
 ## Related pages
 

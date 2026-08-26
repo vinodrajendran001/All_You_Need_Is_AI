@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-13-himank-sehgal-amazon-ai-interview
 source_title: Amazon Applied Scientist Interview Guide
 source_author: Himank Sehgal
@@ -40,6 +40,10 @@ The guide adds company-specific evidence to [[ML Research Interview Preparation]
 ## Citations
 
 - Raw capture: [[2026-08-13 Himank Sehgal - Amazon Applied Scientist Interview Guide]]
+
+## Raw capture
+
+- [[2026-08-13 Himank Sehgal - Amazon Applied Scientist Interview Guide]]
 
 ## Related pages
 

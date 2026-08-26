@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-context-engineering-guide
 source_title: "Context Engineering: The Complete Guide (2026)"
 source_author: AI Builder Club
@@ -54,6 +54,10 @@ This source provides a broad framework for [[Context Engineering]] and links it 
 
 - Raw capture: [[2026-08-05 AI Builder Club - Context Engineering - The Complete Guide (2026)]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/context-engineering-guide](https://www.aibuilderclub.com/blog/context-engineering-guide)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Context Engineering - The Complete Guide (2026)]]
 
 ## Related pages
 

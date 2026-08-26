@@ -3,7 +3,7 @@ type: entity
 entity_kind: organisation
 created: 2026-05-13
 updated: 2026-05-18
-tags: [search, ai, ai-agents, llm]
+tags: [entity, search, ai, ai-agents, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
 status: active

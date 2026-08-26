@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-08-26
 source_id: src-2026-07-17-netflix-in-house-llm-serving
 source_title: "In-House LLM Serving at Netflix"
 source_author: Netflix Technology Blog
@@ -30,8 +30,9 @@ Netflix describes an internal LLM-serving platform built around vLLM and Triton,
 - [[KV Cache]]
 
 ## Citations
+## Raw capture
 
-- Raw capture: `knowledge-base/raw/sources/In-House LLM Serving at Netflix.md`
+- [[In-House LLM Serving at Netflix]]
 
 ## Related pages
 

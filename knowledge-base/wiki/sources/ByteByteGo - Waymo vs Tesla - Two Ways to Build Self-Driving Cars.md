@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-18-bytebytego-waymo-vs-tesla
 source_title: Waymo vs Tesla - Two Ways to Build Self-Driving Cars
 source_author: ByteByteGo
@@ -44,6 +44,10 @@ The comparison gives [[Autonomous Driving Systems]] a reusable architecture axis
 ## Citations
 
 - Raw capture: [[2026-08-18 ByteByteGo - Waymo vs Tesla - Two Ways to Build Self-Driving Cars]]
+
+## Raw capture
+
+- [[2026-08-18 ByteByteGo - Waymo vs Tesla - Two Ways to Build Self-Driving Cars]]
 
 ## Related pages
 

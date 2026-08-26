@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-open-source-ai-company-multi-agent
 source_title: "Someone Open-Sourced an Entire AI Company: What It Means"
 source_author: AI Builder Club
@@ -50,6 +50,10 @@ The source connects organizational metaphors to concrete agent architecture whil
 
 - Raw capture: [[2026-08-05 AI Builder Club - Someone Open-Sourced an Entire AI Company - What It Means]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/open-source-ai-company-multi-agent](https://www.aibuilderclub.com/blog/open-source-ai-company-multi-agent)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Someone Open-Sourced an Entire AI Company - What It Means]]
 
 ## Related pages
 

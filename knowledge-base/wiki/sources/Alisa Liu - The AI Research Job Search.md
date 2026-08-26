@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-08-26
 source_id: src-2026-06-30-alisa-liu-ai-research-job-search
 source_title: Reflections on the AI research job search
 source_author: Alisa Liu
@@ -54,9 +54,11 @@ This seeds [[ML Research Interview Preparation]] as a durable hub and gives the 
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/2026-06-30 Alisa Liu - The AI Research Job Search.md`
 - Source URL: [https://alisawuffles.github.io/blog/job-search/](https://alisawuffles.github.io/blog/job-search/)
+
+## Raw capture
+
+- [[2026-06-30 Alisa Liu - The AI Research Job Search]]
 
 ## Related pages
 

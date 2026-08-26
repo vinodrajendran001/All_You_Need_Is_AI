@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-08-26
 source_id: src-2026-06-02-dwarkesh-reiner-pope-flashcards
 source_title: Reiner Pope Flashcards
 source_author: Dwarkesh Patel
@@ -54,6 +54,10 @@ This source strengthens the vault's compute-economics and distributed-systems br
 
 - Raw capture note: [[2026-06-02 Dwarkesh Patel - Reiner Pope Flashcards]]
 - Readable flashcards: [markdown capture](../../raw/assets/2026-06-02%20Dwarkesh%20Patel%20-%20Reiner%20Pope%20Flashcards.md)
+
+## Raw capture
+
+- [[2026-06-02 Dwarkesh Patel - Reiner Pope Flashcards]]
 
 ## Related pages
 

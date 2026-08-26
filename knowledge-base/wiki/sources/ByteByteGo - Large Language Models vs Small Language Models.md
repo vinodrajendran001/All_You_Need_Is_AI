@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-26
-updated: 2026-06-26
+updated: 2026-08-26
 source_id: src-2026-06-24-bytebytego-llm-vs-slm
 source_title: Large Language Models vs Small Language Models
 source_author: ByteByteGo
@@ -71,9 +71,11 @@ The most durable idea is that production AI stacks should not choose "small or l
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Large Language Models vs Small Language Models.md`
 - Source URL: [https://blog.bytebytego.com/p/large-language-models-vs-small-language](https://blog.bytebytego.com/p/large-language-models-vs-small-language)
+
+## Raw capture
+
+- [[Large Language Models vs Small Language Models]]
 
 ## Related pages
 

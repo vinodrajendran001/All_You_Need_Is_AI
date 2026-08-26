@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-05-08
-updated: 2026-05-18
+updated: 2026-08-26
 source_id: src-2026-05-08-murphy-reinforcement-learning-overview
 source_title: "Reinforcement Learning: An Overview"
 source_author: Kevin Murphy
@@ -44,8 +44,12 @@ This is the first domain-specific paper ingested into the knowledge base, so it 
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview.md`
+- Raw capture note: [[2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview]]
 - Local PDF: [2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview.pdf](../../raw/sources/2026-05-08%20Kevin%20Murphy%20-%20Reinforcement%20Learning%20-%20An%20Overview.pdf)
+
+## Raw capture
+
+- [[2026-05-08 Kevin Murphy - Reinforcement Learning - An Overview]]
 
 ## Related pages
 

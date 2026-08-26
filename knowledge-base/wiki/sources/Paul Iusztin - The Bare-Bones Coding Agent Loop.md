@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-26
 source_id: src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
 source_title: The Bare-Bones Coding Agent Loop
 source_author: Paul Iusztin
@@ -57,6 +57,10 @@ The source gives [[Coding Agent Harness]] a concrete reference architecture and 
 
 - Raw capture: [[2026-08-07 Paul Iusztin - The Bare-Bones Coding Agent Loop]]
 - Canonical URL: https://www.decodingai.com/p/the-coding-agent-loop
+
+## Raw capture
+
+- [[2026-08-07 Paul Iusztin - The Bare-Bones Coding Agent Loop]]
 
 ## Related pages
 

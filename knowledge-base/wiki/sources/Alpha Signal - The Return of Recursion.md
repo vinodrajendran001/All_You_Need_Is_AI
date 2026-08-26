@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-08-26
 tags:
   - source/summary
   - reasoning
@@ -48,7 +48,7 @@ The article frames these systems as specialized reasoning engines rather than ge
 
 ## Raw capture
 
-`knowledge-base/raw/sources/The return of recursion - How AI is rethinking complex reasoning.md`
+[[The return of recursion - How AI is rethinking complex reasoning]]
 
 ## Related pages
 

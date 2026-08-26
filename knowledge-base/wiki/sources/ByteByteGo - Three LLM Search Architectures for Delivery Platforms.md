@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-07-28-bytebytego-delivery-llm-search
 source_title: "Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways"
 source_author: ByteByteGo
@@ -23,7 +23,7 @@ The durable pattern is **LLM augmentation under product constraints**, not gener
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways.md`
+- [[Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways]]
 
 ## Related pages
 

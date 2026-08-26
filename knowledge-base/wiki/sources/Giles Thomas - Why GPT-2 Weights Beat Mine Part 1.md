@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-07-29-giles-thomas-gpt2-weights-part-1
 source_title: "Why do OpenAI's GPT-2 weights beat mine?"
 source_author: Giles Thomas
@@ -19,7 +19,7 @@ The first post begins a reproduction investigation: independently trained GPT-2-
 
 ## Raw capture
 
-- `knowledge-base/raw/sources/Why do OpenAI's GPT-2 weights beat mine.md`
+- [[Why do OpenAI's GPT-2 weights beat mine]]
 
 ## Related pages
 

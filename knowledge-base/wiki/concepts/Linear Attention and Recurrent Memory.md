@@ -2,7 +2,7 @@
 type: concept
 created: 2026-08-03
 updated: 2026-08-03
-tags: [concept, transformer, attention, memory]
+tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
   - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3

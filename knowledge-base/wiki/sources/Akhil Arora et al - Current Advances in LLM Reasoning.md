@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-26
 source_id: src-2026-07-02-arora-llm-reasoning-advances
 source_title: "Current Advances in LLM Reasoning"
 source_author: Akhil Arora, Vishrav Chaudhary, Julia Kreutzer, Nearchos Potamitis, Lars Klein, Nouha Dziri, Niket Tandon
@@ -87,11 +87,13 @@ This deck is the natural **hub** for the vault's scattered reasoning material an
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/2026-07-02 Akhil Arora et al - Current Advances in LLM Reasoning.md`
 - Source URL: [Google Slides](https://docs.google.com/presentation/d/1GoSHhf6BwHwXA6vF_zhSxgsl8ty-8Zav9dGbP6qZsMg/edit?usp=sharing)
 - Tutorial site: [https://llmreasoning.github.io/](https://llmreasoning.github.io/)
 - Key framing sources cited in the deck: ReasonBench (arXiv:2512.07795), GSM-Symbolic (arXiv:2410.05229), DeepSeek-R1 Thoughtology (Marjanović 2025), "Reasoning Models Don't Always Say What They Think" (Chen 2025, arXiv:2505.05410).
+
+## Raw capture
+
+- [[2026-07-02 Akhil Arora et al - Current Advances in LLM Reasoning]]
 
 ## Related pages
 

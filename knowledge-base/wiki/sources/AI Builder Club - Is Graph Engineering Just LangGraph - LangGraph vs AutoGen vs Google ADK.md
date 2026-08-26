@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-is-graph-engineering-just-langgraph
 source_title: "Is Graph Engineering Just LangGraph? LangGraph vs AutoGen vs Google ADK"
 source_author: AI Builder Club
@@ -56,6 +56,10 @@ The source helps [[Coding Agent Harness]] distinguish architecture from vendor i
 
 - Raw capture: [[2026-08-05 AI Builder Club - Is Graph Engineering Just LangGraph - LangGraph vs AutoGen vs Google ADK]]
 - Canonical URL: https://www.aibuilderclub.com/blog/is-graph-engineering-just-langgraph
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Is Graph Engineering Just LangGraph - LangGraph vs AutoGen vs Google ADK]]
 
 ## Related pages
 

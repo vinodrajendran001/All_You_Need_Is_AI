@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 source_title: 'Why MLA and MTP Fight Each Other: Attention Through Arithmetic Intensity'
 source_author: Changyi Yang
@@ -59,6 +59,10 @@ This is the vault's clearest demonstration that attention-variant design is **da
 - Prompted by Su Jianlin, https://kexue.fm/archives/11848
 - Converging independent result: Zyphra, *Compressed Convolutional Attention*, arXiv:2510.04476
 - Implementation evidence: sglang `dsa_backend.py` dispatch thresholds
+
+## Raw capture
+
+- [[2026-08-14 Changyi Yang - Why MLA and MTP Fight Each Other]]
 
 ## Related pages
 

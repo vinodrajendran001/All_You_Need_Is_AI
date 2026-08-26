@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-26
 source_id: src-2026-08-13-himank-sehgal-navi-ai-interview
 source_title: Navi AI Scientist Interview Guide
 source_author: Himank Sehgal
@@ -40,6 +40,10 @@ The guide complements [[ML Research Interview Preparation]] with a product-orien
 ## Citations
 
 - Raw capture: [[2026-08-13 Himank Sehgal - Navi AI Scientist Interview Guide]]
+
+## Raw capture
+
+- [[2026-08-13 Himank Sehgal - Navi AI Scientist Interview Guide]]
 
 ## Related pages
 

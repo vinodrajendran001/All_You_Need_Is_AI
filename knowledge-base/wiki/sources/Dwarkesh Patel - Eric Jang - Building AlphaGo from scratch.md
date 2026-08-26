@@ -1,14 +1,14 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-08-26
 source_id: src-2026-06-02-dwarkesh-eric-jang-alphago
 source_title: Eric Jang - Building AlphaGo from scratch
 source_author: Dwarkesh Patel
 source_url: https://www.dwarkesh.com/p/eric-jang
 tags:
   - source/summary
-  - interview
+  - interviews
   - alphago
   - mcts
   - research-automation
@@ -53,6 +53,10 @@ This source connects several branches of the vault at once. It strengthens the R
 
 - Raw capture note: [[2026-06-02 Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
 - Readable transcript: [transcript markdown](../../raw/assets/2026-06-02%20Dwarkesh%20Patel%20-%20Eric%20Jang%20-%20Building%20AlphaGo%20from%20scratch%20transcript.md)
+
+## Raw capture
+
+- [[2026-06-02 Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
 
 ## Related pages
 

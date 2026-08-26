@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-08-26
 source_id: src-2026-06-05-pguso-agents-from-scratch
 source_title: AI Agents from Scratch
 source_author: pguso (GitHub)
@@ -69,8 +69,12 @@ This source is the most detailed ground-up treatment of the **Agentic Loop** in 
 
 ## Citations
 
-- Raw capture note: `knowledge-base/raw/sources/2026-06-05 pguso - Agents From Scratch.md`
+- Raw capture note: [[2026-06-05 pguso - Agents From Scratch]]
 - Source URL: [https://github.com/pguso/agents-from-scratch](https://github.com/pguso/agents-from-scratch)
+
+## Raw capture
+
+- [[2026-06-05 pguso - Agents From Scratch]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-26
 source_id: src-2026-07-03-fergus-finn-cuda-kernel
 source_title: "What happens when you run a CUDA kernel"
 source_author: Fergus Finn
@@ -54,9 +54,11 @@ This is the vault's first bottom-up account of the **GPU execution model** and s
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/What happens when you run a CUDA kernel.md`
 - Source URL: [https://fergusfinn.com/blog/what-happens-when-you-run-a-gpu-kernel/](https://fergusfinn.com/blog/what-happens-when-you-run-a-gpu-kernel/)
+
+## Raw capture
+
+- [[What happens when you run a CUDA kernel]]
 
 ## Related pages
 

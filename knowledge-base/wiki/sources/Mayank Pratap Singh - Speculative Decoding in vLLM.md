@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-06
-updated: 2026-07-06
+updated: 2026-08-26
 source_id: src-2026-07-06-mayank-pratap-singh-speculative-decoding
 source_title: "Speculative Decoding: Theory and Implementation in vLLM"
 source_author: Mayank Pratap Singh
@@ -58,11 +58,13 @@ This is the vault's most complete treatment of a single decode-latency technique
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Speculative Decoding Theory and Implementation in vLLM.md`
 - Source URL: [vizuara.substack.com](https://vizuara.substack.com/p/speculative-decoding-theory-and-implementation)
 - Code: [LLM-Inference-Playbook](https://github.com/Mayankpratapsingh022/LLM-Inference-Playbook)
 - Foundational: Leviathan et al. 2023 (arXiv:2211.17192); Chen et al. 2023 (arXiv:2302.01318).
+
+## Raw capture
+
+- [[Speculative Decoding Theory and Implementation in vLLM]]
 
 ## Related pages
 

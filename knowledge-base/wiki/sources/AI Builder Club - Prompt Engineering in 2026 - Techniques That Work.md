@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-prompt-engineering-guide-2026
 source_title: "Prompt Engineering in 2026: Techniques That Work"
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The guide establishes the innermost layer of [[Context Engineering]] and the sta
 
 - Raw capture: [[2026-08-05 AI Builder Club - Prompt Engineering in 2026 - Techniques That Work]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/prompt-engineering-guide-2026](https://www.aibuilderclub.com/blog/prompt-engineering-guide-2026)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Prompt Engineering in 2026 - Techniques That Work]]
 
 ## Related pages
 

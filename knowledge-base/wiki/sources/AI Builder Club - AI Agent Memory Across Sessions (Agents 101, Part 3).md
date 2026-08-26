@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-ai-agents-101-part-3
 source_title: AI Agent Memory Across Sessions (Agents 101, Part 3)
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The source offers an incremental architecture that avoids starting with unnecess
 
 - Raw capture: [[2026-08-05 AI Builder Club - AI Agent Memory Across Sessions (Agents 101, Part 3)]]
 - Canonical URL: https://www.aibuilderclub.com/blog/ai-agents-101-part-3
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - AI Agent Memory Across Sessions (Agents 101, Part 3)]]
 
 ## Related pages
 

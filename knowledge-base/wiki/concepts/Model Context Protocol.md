@@ -2,7 +2,7 @@
 type: concept
 created: 2026-05-13
 updated: 2026-08-25
-tags: [mcp, protocol, tool-use, ai-agents, anthropic]
+tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-21-bytebytego-batch

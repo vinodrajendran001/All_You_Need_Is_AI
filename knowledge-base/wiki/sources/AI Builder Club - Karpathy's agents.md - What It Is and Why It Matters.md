@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-karpathy-agents-md-framework
 source_title: 'Karpathy''s agents.md: What It Is and Why It Matters'
 source_author: AI Builder Club
@@ -53,6 +53,10 @@ The piece identifies instruction files as part of the agent harness rather than 
 
 - Raw capture: [[2026-08-05 AI Builder Club - Karpathy's agents.md - What It Is and Why It Matters]]
 - Canonical URL: https://www.aibuilderclub.com/blog/karpathy-agents-md-framework
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - Karpathy's agents.md - What It Is and Why It Matters]]
 
 ## Related pages
 

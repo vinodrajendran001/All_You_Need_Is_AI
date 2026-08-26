@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 source_id: src-2026-08-21-hume-ai-asr-benchmark-optimization
 source_title: Measuring Benchmark Optimization in Speech Recognition
 source_author: Theo Lebryk, Eric Bezzam, Alice, David Ayllon, Jakub Piotr Clapa, Jens Madsen, Panagiotis Tzirakis
@@ -55,6 +55,10 @@ Most contamination discussion in the vault is about text benchmarks and is argue
 - Canonical URL: https://huggingface.co/blog/asr-benchmark-optimization
 - Full report: https://huggingface.co/papers/2608.19936
 - Artefacts: Open ASR Leaderboard "Benchmark fitting" tab; `huggingface/open_asr_leaderboard/benchmark_fitting` scripts; un-normalised model outputs bucket.
+
+## Raw capture
+
+- [[2026-08-21 Hume AI - Measuring Benchmark Optimization in Speech Recognition]]
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-08-26
 source_id: src-2026-08-07-dean-ghemawat-performance-hints
 source_title: Performance Hints
 source_author: Jeff Dean and Sanjay Ghemawat
@@ -58,6 +58,10 @@ The source seeds [[Software Performance Engineering]] as a bridge between algori
 
 - Raw capture: [[2026-08-07 Jeff Dean and Sanjay Ghemawat - Performance Hints]]
 - Canonical URL: https://abseil.io/fast/hints.html
+
+## Raw capture
+
+- [[2026-08-07 Jeff Dean and Sanjay Ghemawat - Performance Hints]]
 
 ## Related pages
 

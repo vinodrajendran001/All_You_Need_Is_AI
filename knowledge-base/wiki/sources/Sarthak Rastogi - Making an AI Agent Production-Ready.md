@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-06
-updated: 2026-07-06
+updated: 2026-08-26
 source_id: src-2026-07-06-sarthak-rastogi-production-agent
 source_title: "Making an AI Agent Production-Ready [Tutorial With Code]"
 source_author: Sarthak Rastogi
@@ -58,9 +58,11 @@ This is the vault's most concrete end-to-end **production agent architecture**, 
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Making an AI Agent Production-Ready Tutorial With Code.md`
 - Source URL: [sarthakai.substack.com](https://sarthakai.substack.com/p/making-an-ai-agent-production-ready)
+
+## Raw capture
+
+- [[Making an AI Agent Production-Ready Tutorial With Code]]
 
 ## Related pages
 

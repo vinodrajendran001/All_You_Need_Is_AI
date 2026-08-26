@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-08-26
 source_id: src-2026-06-02-alphasignal-look-past-rag-pipeline
 source_title: As AI agents evolve, we need to look past the RAG pipeline
 source_author: Alpha Signal
@@ -56,8 +56,11 @@ This source strengthens the vault's retrieval-and-agents branch by shifting the 
 
 ## Citations
 
-- Raw capture: `knowledge-base/raw/sources/As AI agents evolve, we need to look past the RAG pipeline.md`
 - Capture note: the local raw file is a pasted article body with inline remote image links; the original publication URL was not preserved in the capture.
+
+## Raw capture
+
+- [[As AI agents evolve, we need to look past the RAG pipeline]]
 
 ## Related pages
 

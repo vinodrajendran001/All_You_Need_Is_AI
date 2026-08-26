@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 source_id: src-2026-08-12-alyona-vert-agent-frameworks-sdks
 source_title: 13 Frameworks and SDKs for Building AI Agents
 source_author: Alyona Vert
@@ -59,6 +59,10 @@ The source seeds [[Agent Frameworks]] and places the abstract [[Coding Agent Har
 
 - Raw capture: [[2026-08-12 Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
 - Canonical URL: https://www.turingpost.com/p/frameworks-sdks
+
+## Raw capture
+
+- [[2026-08-12 Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
 
 ## Related pages
 

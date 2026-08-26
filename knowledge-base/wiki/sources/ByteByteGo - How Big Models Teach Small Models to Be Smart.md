@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 source_id: src-2026-08-12-bytebytego-knowledge-distillation
 source_title: How Big Models Teach Small Models to Be Smart
 source_author: ByteByteGo
@@ -57,6 +57,10 @@ This source seeds [[Knowledge Distillation]] and explains one path from expensiv
 
 - Raw capture: [[2026-08-12 ByteByteGo - How Big Models Teach Small Models to Be Smart]]
 - Canonical URL: https://blog.bytebytego.com/p/how-big-models-teach-small-models
+
+## Raw capture
+
+- [[2026-08-12 ByteByteGo - How Big Models Teach Small Models to Be Smart]]
 
 ## Related pages
 

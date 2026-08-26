@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-26
 source_id: src-2026-08-05-aibuilderclub-five-layers-ai-engineering
 source_title: "The 5 Layers of AI Engineering"
 source_author: AI Builder Club
@@ -50,6 +50,10 @@ The taxonomy connects several vault concepts into one troubleshooting model. It 
 
 - Raw capture: [[2026-08-05 AI Builder Club - The 5 Layers of AI Engineering]]
 - Canonical URL: [https://www.aibuilderclub.com/blog/five-layers-ai-engineering](https://www.aibuilderclub.com/blog/five-layers-ai-engineering)
+
+## Raw capture
+
+- [[2026-08-05 AI Builder Club - The 5 Layers of AI Engineering]]
 
 ## Related pages
 

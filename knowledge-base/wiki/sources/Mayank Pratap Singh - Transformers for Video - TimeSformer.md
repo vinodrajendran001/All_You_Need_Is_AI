@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-08-26
 source_id: src-2026-06-28-mayank-pratap-singh-timesformer
 source_title: "Transformers for Video: TimeSformer"
 source_author: Mayank Pratap Singh
@@ -55,9 +55,11 @@ This source seeds [[Video Transformers]] as a new concept and extends [[Transfor
 - [[AI Knowledge Base Overview]]
 
 ## Citations
-
-- Raw capture: `knowledge-base/raw/sources/Transformers for Video TimeSformer.md`
 - Source URL: [https://vizuara.substack.com/p/transformers-for-video-timesformer](https://vizuara.substack.com/p/transformers-for-video-timesformer)
+
+## Raw capture
+
+- [[Transformers for Video TimeSformer]]
 
 ## Related pages
 

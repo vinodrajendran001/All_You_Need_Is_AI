@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-08-12
+updated: 2026-08-26
 tags:
   - concept
   - model-training
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

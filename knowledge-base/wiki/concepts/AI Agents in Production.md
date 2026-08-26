@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - concept
   - ai-agents
@@ -36,6 +36,7 @@ source_ids:
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
   - src-2026-08-22-grok-bot-systems-engineering-working-note
   - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-08-07
+updated: 2026-08-26
 tags:
   - concept
   - context-engineering
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-rag-vs-long-context-vs-fine-tuning
   - src-2026-08-05-aibuilderclub-prompt-context-harness-evolution
   - src-2026-08-07-avi-chawla-claude-code-cost
+  - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

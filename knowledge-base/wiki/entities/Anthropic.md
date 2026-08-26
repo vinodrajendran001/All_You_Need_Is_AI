@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 entity_kind: organization
 tags:
   - entity
@@ -11,6 +11,7 @@ tags:
   - coding-agents
 source_ids:
   - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

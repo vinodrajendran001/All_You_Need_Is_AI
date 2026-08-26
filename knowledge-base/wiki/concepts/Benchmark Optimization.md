@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - concept
   - evaluation
@@ -11,6 +11,8 @@ tags:
 source_ids:
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-08-23-wafer-ai-perf-contributing-source-policy
 status: active
 ---
 

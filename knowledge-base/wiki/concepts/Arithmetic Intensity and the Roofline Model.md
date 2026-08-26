@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - concept
   - arithmetic-intensity
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-06-26-nithin-llm-inference
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
 

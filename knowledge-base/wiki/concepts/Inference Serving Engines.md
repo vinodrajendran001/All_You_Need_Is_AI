@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-06-26-nithin-llm-inference
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
 

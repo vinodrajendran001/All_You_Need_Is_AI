@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-07
+updated: 2026-08-26
 tags:
   - concept
   - recursive-self-improvement
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-10-itsreallyvivek-frontier-ai-labs
   - src-2026-07-06-alphasignal-self-improving-harnesses
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
 

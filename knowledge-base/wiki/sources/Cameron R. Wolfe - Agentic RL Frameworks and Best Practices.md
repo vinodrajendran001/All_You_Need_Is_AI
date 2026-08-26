@@ -87,6 +87,7 @@ This source materially expands the vault's RL branch from "LLM post-training on 
 
 ## Related pages
 
+- [[Cameron R. Wolfe]]
 - [[Agentic Reinforcement Learning]]
 - [[Reinforcement Learning]]
 - [[Reward Design for RL]]

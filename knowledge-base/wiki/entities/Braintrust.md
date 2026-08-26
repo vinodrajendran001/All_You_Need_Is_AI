@@ -1,8 +1,10 @@
 ---
 type: entity
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-08-26
 entity_kind: organization
+aliases:
+  - Braintrust Team
 tags:
   - entity
   - organization

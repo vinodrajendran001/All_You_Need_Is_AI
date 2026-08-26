@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-08-24
+updated: 2026-08-26
 entity_kind: organization
 tags:
   - entity
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-08-24-openai-builders-guide-gpt-5-6
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

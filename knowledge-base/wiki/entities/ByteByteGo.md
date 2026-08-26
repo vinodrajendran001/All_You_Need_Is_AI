@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-08-24
+updated: 2026-08-26
 tags: [newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-19-bytebytego-inkling
   - src-2026-08-20-bytebytego-graphrag
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

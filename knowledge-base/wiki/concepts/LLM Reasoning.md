@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-07-03
+updated: 2026-08-26
 tags:
   - concept
   - reasoning
@@ -10,6 +10,7 @@ tags:
   - post-training
 source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

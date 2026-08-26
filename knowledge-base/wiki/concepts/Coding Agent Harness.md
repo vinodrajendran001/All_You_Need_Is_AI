@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-25
+updated: 2026-08-26
 tags:
   - concept
   - coding-agents
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-07-avi-chawla-claude-code-cost
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
   - src-2026-08-21-anthropic-ai-native-sdlc
+  - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
 status: active
 ---
 

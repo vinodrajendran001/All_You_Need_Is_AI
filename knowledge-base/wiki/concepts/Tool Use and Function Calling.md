@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-06-05-pguso-agents-from-scratch
+  - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
 status: active
 ---
 

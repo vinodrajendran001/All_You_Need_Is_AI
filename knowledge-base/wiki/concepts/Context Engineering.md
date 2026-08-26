@@ -111,6 +111,12 @@ The collection adds a cache-level implication: stable prefixes and append-only h
 
 [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]] reports a vendor-associated team analysis in which visible user prompts accounted for only 14% of input tokens. The larger categories were system and skill instructions, MCP schemas, tool results, and prior assistant context. The exact percentages need independent replication, but the mechanism is durable: caching discounts repeated prefixes without removing their volume, and every retained tool result raises the cost of later turns.
 
+## Two additions: code as context economy, and traces as leaked context
+
+[[Programmatic Tool Calling]] ([[Alex L. Zhang - Speculative Programmatic Tool Calling]]) offers a structural answer to a problem this page usually attacks with summarization and retrieval. When the agent's action is a program, a large intermediate result can be processed *in the interpreter* and only its conclusion returned. Under a JSON tool-call contract that result must pass through the context window to be acted on at all. Filtering, aggregation, and fan-out become interpreter work rather than context work.
+
+From the opposite direction, [[ByteByteGo - How to Steal an AI Model's Private Thoughts]] shows that context management has a disclosure surface. Encrypted reasoning blocks are context the client carries but cannot read — and because they cannot be read, they cannot be sanitised. A scan of 6,708 published agent trajectories recovered API keys, passwords, and private keys from blocks whose visible text had been scrubbed clean. See [[Reasoning Trace Privacy]]. The operational rule is that opaque context artifacts must be **removed** rather than cleaned, and that compaction, forking, and history editing all rest on the same portability that makes the leak possible.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -143,3 +149,8 @@ The collection adds a cache-level implication: stable prefixes and append-only h
 - [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]
 - [[Graph Engineering]]
 - [[Agent Security and Governance]]
+- [[Programmatic Tool Calling]]
+- [[Reasoning Trace Privacy]]
+- [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
+- [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
+- [[Speculative Tool Execution]]

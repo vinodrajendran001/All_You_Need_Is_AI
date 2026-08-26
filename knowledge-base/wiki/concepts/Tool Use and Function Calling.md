@@ -54,6 +54,14 @@ This separation provides:
 
 The repo makes one further observation: **structured output is the prerequisite for reliable tool use**. Free-text "I think I should call the calculator" is unparseable. A JSON schema with validation + retries turns probabilistic output into a reliable function-call contract.
 
+## The alternative contract: code instead of schemas
+
+Everything above describes a JSON-schema contract — one named tool, validated arguments, one result, back to the model. [[Programmatic Tool Calling]] ([[Alex L. Zhang - Speculative Programmatic Tool Calling]]) proposes the opposite: make executable code the action space and expose every tool as a function inside it. The strong form of the claim is that a code REPL is the only tool a system needs.
+
+The trade is legible. Schemas buy **bounded, inspectable, approvable actions** — the properties this page's request/execute separation depends on. Code buys **composition, context economy, and an optimization surface**: control flow and fan-out happen in the interpreter instead of costing one model turn each, large intermediate results never traverse the context window, and the runtime can analyse a program in ways it can never analyse a JSON object — see [[Speculative Tool Execution]].
+
+The two are not mutually exclusive, and the useful open question is where the line falls: irreversible or approval-gated actions arguably still want a schema, precisely because a program is an unbounded request.
+
 ## Historical context
 
 - **ChatGPT Plugins** (early 2023) — an earlier attempt at third-party tool integration. Deprecated by April 2024 due to discoverability issues, inconsistent quality, and security concerns.
@@ -72,3 +80,7 @@ The repo makes one further observation: **structured output is the prerequisite 
 - [[Coding Agent Harness]]
 - [[Test-Time Scaling]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
+- [[Programmatic Tool Calling]]
+- [[Speculative Tool Execution]]
+- [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
+- [[Alex L. Zhang]]

@@ -88,6 +88,12 @@ The collection's source reads and extension guides reinforce a security tradeoff
 
 The consequence for harness selection: token efficiency and permission model are no longer the only differentiators. **Whether a harness can express policy as executable, version-controlled configuration** becomes decisive at organizational scale. See [[AI-Native Software Development Lifecycle]].
 
+## The action space is an optimization surface
+
+[[Alex L. Zhang - Speculative Programmatic Tool Calling]] adds a dimension this page has treated as fixed: what the harness *does with the tokens while they are still arriving*. Most harnesses wait for a complete generation before executing anything — a habit inherited from JSON tool calling, where the wait cost little. When the action space is code ([[Programmatic Tool Calling]]), a harness can parse tool calls out of the partial program and pre-launch them, so the calls have already run by the time the finished program reaches them.
+
+The reported gains are modest, roughly 1–1.2×, and the author is candid that they depend entirely on tool latency and trajectory. The more durable point is architectural: **a harness that treats a generation as an opaque blob until it completes is leaving a compiler's worth of optimization on the table.** [[Speculative Tool Execution]] covers the mechanism, including the shadow-REPL design that keeps partial execution from mutating real state, and the governance gap it leaves open — purity is analysed, authority is not.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -125,3 +131,6 @@ The consequence for harness selection: token efficiency and permission model are
 - [[Avi Chawla - 86 Percent of Your Claude Code Bill Has Nothing to Do With Your Prompts]]
 - [[Agent Frameworks]]
 - [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
+- [[Programmatic Tool Calling]]
+- [[Speculative Tool Execution]]
+- [[Alex L. Zhang - Speculative Programmatic Tool Calling]]

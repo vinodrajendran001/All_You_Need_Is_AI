@@ -59,6 +59,35 @@ GPU kernel generation is the closest thing to a laboratory for this page's claim
 
 The lesson is not that self-improvement fails here, but that **an easy verifier is not the same as a sound one**. A loop optimizes against the measurement it is given, so the measurement has to be hardened at the same rate the optimizer improves. See [[Benchmark Optimization]].
 
+## Parameters and scaffold are two separate update surfaces
+
+[[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]] supplies a decomposition this page
+benefits from. It defines a foundation-model agent as **model parameters plus a scaffold** — prompts,
+memory, tools, and control logic — and defines self-improvement as a **durable, execution-derived
+update to either component**.
+
+Two boundaries in that definition do real work.
+
+**Durable excludes the transient.** Anything living only in the context window or the KV cache is not
+self-improvement, however adaptive it looks within a session. This draws a clean line between an
+agent that behaves well because of what is in its prompt right now and one that has actually changed.
+It also means the interesting engineering question is what gets *written back* and where.
+
+**Two surfaces, very different economics.** Parameter updates can come from generated demonstrations,
+intrinsic evaluation, or grounded experience — the [[Agentic Reinforcement Learning]] path, expensive
+and centralized. Scaffold updates modify prompts, memory, tools, workflows, and control logic, and
+are cheap, fast, and available to anyone deploying an agent without training access. Most systems
+described in this vault improve themselves through the scaffold; the survey's contribution is naming
+that as a legitimate self-improvement mechanism rather than mere configuration.
+
+The survey's own governance recommendation follows directly: because scaffold updates are cheap and
+unconstrained, they should be **versioned, validated, and reversible**. That is the same reversibility
+requirement [[Agent Security and Governance]] applies to agent actions, turned on the agent's own
+definition.
+
+**Caveat:** the captured text ends partway through section 6.2.1, so it does not support claims about
+the survey's later evaluation and safety material.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -68,6 +97,7 @@ The lesson is not that self-improvement fails here, but that **an easy verifier 
 
 ## Related pages
 
+- [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Automated AI Research]]
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[Agentic Loop]]

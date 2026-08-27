@@ -101,6 +101,23 @@ Its authoring loop — observe failures, write, evaluate, version, deploy — su
 
 [[Anthropic - The AI-Native SDLC Playbook]] shows the same object doing governance work in an enterprise setting: a `.claude/skills/secure-api-review/SKILL.md` encodes a compliance procedure as a versioned repository artifact, which makes the review reproducible and auditable rather than dependent on who happened to run it. Both sources converge on the same claim — **a skill's value is that it survives the run that produced it**.
 
+## Skills as serialized self-improvement
+
+[[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]] gives a definition of a skill that
+generalizes past any one vendor's format: a **serialized, reusable update** to the agent's scaffold.
+
+Read that way, a skill is the persistence layer for agent learning. An agent that solves a problem
+and writes down how has converted a transient in-context result into a durable artifact, which is
+what the survey calls self-improvement — as opposed to the same agent solving the same problem again
+next session because nothing was written back.
+
+The survey also names **meta-level skills: skills that modify the system executing future tasks**
+rather than performing a task themselves. That is a meaningful escalation, and it is where the
+governance requirement bites. A skill that edits a workflow, adds a tool, or rewrites control logic
+changes what all subsequent skills run inside. The survey's prescription — scaffold updates should
+be versioned, validated, and reversible — is at its most necessary here, and connects to
+[[Recursive Self-Improvement]] and [[Agent Security and Governance]].
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -112,6 +129,7 @@ Its authoring loop — observe failures, write, evaluate, version, deploy — su
 
 ## Related pages
 
+- [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Grok Bot Systems Engineering Working Note]]
 - [[Anthropic - The AI-Native SDLC Playbook]]
 - [[Agent Workflow Maturity]]

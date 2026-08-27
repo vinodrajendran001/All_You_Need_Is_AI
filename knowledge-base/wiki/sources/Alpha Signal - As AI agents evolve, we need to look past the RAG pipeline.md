@@ -59,7 +59,7 @@ This source strengthens the vault's retrieval-and-agents branch by shifting the 
 
 ## Raw capture
 
-- [[As AI agents evolve, we need to look past the RAG pipeline]]
+- [[2026-06-02 Alpha Signal - As AI agents evolve, we need to look past the RAG pipeline|As AI agents evolve, we need to look past the RAG pipeline]]
 
 ## Related pages
 

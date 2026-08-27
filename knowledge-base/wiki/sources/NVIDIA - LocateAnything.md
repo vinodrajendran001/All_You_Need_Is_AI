@@ -53,7 +53,7 @@ This source opens a new multimodal branch in the vault around **vision-language 
 ## Citations
 ## Raw capture
 
-- [[LocateAnything]]
+- [[2026-06-03 NVIDIA Research - LocateAnything|LocateAnything]]
 
 ## Related pages
 

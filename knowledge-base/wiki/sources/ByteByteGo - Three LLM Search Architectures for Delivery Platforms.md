@@ -23,7 +23,7 @@ The durable pattern is **LLM augmentation under product constraints**, not gener
 
 ## Raw capture
 
-- [[Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways]]
+- [[2026-07-29 ByteByteGo - Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways|Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways]]
 
 ## Affected pages
 

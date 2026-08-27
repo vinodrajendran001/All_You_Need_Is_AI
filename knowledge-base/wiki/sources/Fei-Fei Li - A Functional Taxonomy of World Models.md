@@ -55,7 +55,7 @@ This source deepens the vault's `World Models` concept page with a clear functio
 
 ## Raw capture
 
-- [[A Functional Taxonomy of World Models]]
+- [[2026-06-05 Fei-Fei Li - A Functional Taxonomy of World Models|A Functional Taxonomy of World Models]]
 
 ## Related pages
 

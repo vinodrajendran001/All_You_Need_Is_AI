@@ -24,7 +24,7 @@ Roblox's described approach is an engine-authoritative hybrid: deterministic gam
 
 ## Raw capture
 
-- [[Inside Roblox’s Bet on World Models]]
+- [[2026-07-22 ByteByteGo - Inside Roblox’s Bet on World Models|Inside Roblox’s Bet on World Models]]
 
 ## Affected pages
 

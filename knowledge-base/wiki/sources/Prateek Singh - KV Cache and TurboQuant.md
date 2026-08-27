@@ -71,7 +71,7 @@ This source justifies splitting [[KV Cache]] into its own concept page. KV cache
 
 ## Raw capture
 
-- [[KV Cache & TurboQuant — Prateek Singh PhD]]
+- [[2026-06-16 Prateek Singh - KV Cache & TurboQuant — Prateek Singh PhD|KV Cache & TurboQuant — Prateek Singh PhD]]
 
 ## Related pages
 

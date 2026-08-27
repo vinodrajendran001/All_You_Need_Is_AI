@@ -52,7 +52,7 @@ This source materially deepens [[Transformer Architecture]] by turning several i
 
 ## Raw capture
 
-- [[How LLMs Actually Work]]
+- [[2026-06-09 0xkato - How LLMs Actually Work|How LLMs Actually Work]]
 
 ## Related pages
 

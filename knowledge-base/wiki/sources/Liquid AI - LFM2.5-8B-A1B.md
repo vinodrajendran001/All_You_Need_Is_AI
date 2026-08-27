@@ -58,7 +58,7 @@ This source deepens the vault's efficiency-and-agents branch by making sparse in
 ## Citations
 ## Raw capture
 
-- [[LFM2.5-8B-A1B An Even Better On-Device Mixture of Experts]]
+- [[2026-06-03 Liquid AI - LFM2.5-8B-A1B An Even Better On-Device Mixture of Experts|LFM2.5-8B-A1B An Even Better On-Device Mixture of Experts]]
 
 ## Related pages
 

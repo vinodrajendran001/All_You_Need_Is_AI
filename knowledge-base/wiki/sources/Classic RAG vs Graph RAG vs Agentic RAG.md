@@ -79,7 +79,7 @@ That taxonomy links naturally to [[Search-Augmented Language Models]], [[Agentic
 
 ## Raw capture
 
-[[Classic RAG vs Graph RAG vs Agentic RAG]]
+[[2026-05-18 Unknown (LinkedIn post) - Classic RAG vs Graph RAG vs Agentic RAG|Classic RAG vs Graph RAG vs Agentic RAG]]
 
 ## Related pages
 

@@ -57,7 +57,7 @@ This is the vault's clearest **production real-time-systems** case study and the
 
 ## Raw capture
 
-- [[How OpenAI Delivers Low-Latency Voice AI for 900M Users]]
+- [[2026-07-03 ByteByteGo - How OpenAI Delivers Low-Latency Voice AI for 900M Users|How OpenAI Delivers Low-Latency Voice AI for 900M Users]]
 
 ## Related pages
 

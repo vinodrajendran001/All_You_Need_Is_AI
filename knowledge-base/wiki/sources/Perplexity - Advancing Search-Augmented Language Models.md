@@ -59,7 +59,7 @@ A Perplexity Research article (published 2026-04-22) describing their post-train
 
 ## Raw capture
 
-[[Advancing Search-Augmented Language Models]]
+[[2026-05-13 Perplexity Research - Advancing Search-Augmented Language Models|Advancing Search-Augmented Language Models]]
 
 ## Related pages
 

@@ -61,7 +61,7 @@ This is the vault's first source that lays out the **full parallelism taxonomy**
 
 ## Raw capture
 
-- [[The Simple Maths Behind Parallel Traning]]
+- [[2026-07-01 Anastasiia Alekseeva - The Simple Maths Behind Parallel Traning|The Simple Maths Behind Parallel Traning]]
 
 ## Related pages
 

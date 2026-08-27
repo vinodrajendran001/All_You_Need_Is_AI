@@ -68,7 +68,7 @@ This source seeds [[Diffusion Models]] as a first-class concept page in the vaul
 
 ## Raw capture
 
-- [[Diffusion Model Visual Breakdown]]
+- [[2026-06-23 Mayank Pratap Singh - Diffusion Model Visual Breakdown|Diffusion Model Visual Breakdown]]
 
 ## Related pages
 

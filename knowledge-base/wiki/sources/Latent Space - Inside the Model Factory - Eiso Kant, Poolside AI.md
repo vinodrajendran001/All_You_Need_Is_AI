@@ -30,7 +30,7 @@ This interview frames Poolside's advantage as a model factory: reproducible data
 ## Citations
 ## Raw capture
 
-- [[Inside the Model Factory — Eiso Kant, Poolside AI]]
+- [[2026-07-27 Latent.Space - Inside the Model Factory — Eiso Kant, Poolside AI|Inside the Model Factory — Eiso Kant, Poolside AI]]
 
 ## Related pages
 

@@ -31,7 +31,7 @@ The article decomposes agent efficiency into harness, API, and inference layers.
 ## Citations
 ## Raw capture
 
-- [[How ChatGPT Optimizes its Agent Loop Harness, API, and Inference]]
+- [[2026-07-30 ByteByteGo - How ChatGPT Optimizes its Agent Loop Harness, API, and Inference|How ChatGPT Optimizes its Agent Loop Harness, API, and Inference]]
 
 ## Related pages
 

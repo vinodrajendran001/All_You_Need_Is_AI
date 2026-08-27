@@ -1,7 +1,7 @@
 ---
 type: raw-source
 source_id: src-2026-05-08-murphy-reinforcement-learning-overview
-title: Reinforcement Learning: An Overview
+title: "Reinforcement Learning: An Overview"
 author: Kevin Murphy
 url: https://arxiv.org/abs/2412.05265
 pdf_url: https://arxiv.org/pdf/2412.05265.pdf

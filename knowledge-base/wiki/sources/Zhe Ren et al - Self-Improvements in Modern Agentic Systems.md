@@ -29,7 +29,7 @@ The captured text ends during section 6.2.1, so it does not support claims about
 
 ## Raw capture
 
-- [[Self-Improvements in Modern Agentic Systems A Survey]]
+- [[2026-07-24 Zhe Ren et al. - Self-Improvements in Modern Agentic Systems A Survey|Self-Improvements in Modern Agentic Systems A Survey]]
 
 ## Affected pages
 

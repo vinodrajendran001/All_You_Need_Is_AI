@@ -23,7 +23,7 @@ The series supports a narrow but durable lesson: lower held-out language-model l
 
 ## Raw capture
 
-- [[Why do OpenAI's GPT-2 weights beat mine  Part three testing overtraining]]
+- [[2026-07-31 Giles Thomas - Why do OpenAI's GPT-2 weights beat mine  Part three testing overtraining|Why do OpenAI's GPT-2 weights beat mine  Part three testing overtraining]]
 
 ## Affected pages
 

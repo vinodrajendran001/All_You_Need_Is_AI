@@ -62,7 +62,7 @@ This survey lets the vault absorb a batch of named 2026 techniques without a pag
 
 ## Raw capture
 
-- [[AI Concepts and Techniques in 2026 Memory, Inference, Fine-Tuning & Tokens]]
+- [[2026-07-02 Alyona Vert - AI Concepts and Techniques in 2026 Memory, Inference, Fine-Tuning & Tokens|AI Concepts and Techniques in 2026 Memory, Inference, Fine-Tuning & Tokens]]
 
 ## Related pages
 

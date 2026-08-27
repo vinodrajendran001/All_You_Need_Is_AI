@@ -175,14 +175,14 @@ DoorDash’s orchestrator, Grab’s classifier-plus-specialists pattern, Figma�
 
 ## Raw captures
 
-- [[How Netflix is Using Multimodal AI to Power Video Search]]
-- [[How Snapchat Serves a Billion Predictions Per Second]]
-- [[How Grab is Using AI Agents to Boost Team Productivity]]
-- [[Figma Design to Code, Code to Design Clearly Explained]]
-- [[How Amazon Uses LLMs to Recommend Products]]
-- [[How Instacart Built a Search for Billions of Products]]
-- [[EP210 Monolithic vs Microservices vs Serverless]]
-- [[How DoorDash Launches a New Country in One Week]]
+- [[2026-05-21 ByteByteGo - How Netflix is Using Multimodal AI to Power Video Search|How Netflix is Using Multimodal AI to Power Video Search]]
+- [[2026-05-21 ByteByteGo - How Snapchat Serves a Billion Predictions Per Second|How Snapchat Serves a Billion Predictions Per Second]]
+- [[2026-05-21 ByteByteGo - How Grab is Using AI Agents to Boost Team Productivity|How Grab is Using AI Agents to Boost Team Productivity]]
+- [[2026-05-21 ByteByteGo - Figma Design to Code, Code to Design Clearly Explained|Figma Design to Code, Code to Design Clearly Explained]]
+- [[2026-05-21 ByteByteGo - How Amazon Uses LLMs to Recommend Products|How Amazon Uses LLMs to Recommend Products]]
+- [[2026-05-21 ByteByteGo - How Instacart Built a Search for Billions of Products|How Instacart Built a Search for Billions of Products]]
+- [[2026-05-21 Alex Xu - EP210 Monolithic vs Microservices vs Serverless|EP210 Monolithic vs Microservices vs Serverless]]
+- [[2026-05-21 ByteByteGo - How DoorDash Launches a New Country in One Week|How DoorDash Launches a New Country in One Week]]
 
 ## Related pages
 

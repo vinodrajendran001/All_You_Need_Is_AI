@@ -66,7 +66,7 @@ This source materially updates the vault's [[LLM Training Pipeline]] page: the p
 
 ## Raw capture
 
-- [[Frontier post-training recipe review with Finbarr Timbers]]
+- [[2026-06-17 Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers|Frontier post-training recipe review with Finbarr Timbers]]
 
 ## Related pages
 

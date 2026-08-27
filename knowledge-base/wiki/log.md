@@ -313,7 +313,7 @@ Append-only operational history for the wiki.
 ## [2026-05-18] ingest | Classic RAG vs Graph RAG vs Agentic RAG
 
 - Added frontmatter to raw source `Classic RAG vs Graph RAG vs Agentic RAG.md`.
-- Created [[Classic RAG vs Graph RAG vs Agentic RAG]] source summary page.
+- Created [[2026-05-18 Unknown (LinkedIn post) - Classic RAG vs Graph RAG vs Agentic RAG|Classic RAG vs Graph RAG vs Agentic RAG]] source summary page.
 - Created [[Retrieval-Augmented Generation]] concept page synthesizing across Classic, Graph, and Agentic RAG tiers.
 - Updated [[Search-Augmented Language Models]], [[Agentic Loop]], and [[Tool Use and Function Calling]] with RAG cross-links.
 - Updated index and overview.
@@ -911,5 +911,10 @@ Append-only operational history for the wiki.
 - **Added a gloss to `templates/source-summary.md`** defining `## Affected pages` as pages the ingest actually changed, requiring reciprocal citation, excluding the control pages, and sending merely-relevant links to `## Related pages`.
 - **Found 4 source summaries that existed locally but had never been staged into git**, all with `?` or `@` in their filenames. They are linked from the index, so a fresh clone would have shown four broken links. Now staged.
 - **Recorded two known non-defects** so future passes stop re-flagging them: the 8 constituent IDs of [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]] are declared on that composite summary rather than in the registry, and 66 raw captures lack the dated filename prefix while 69 lack the `source/raw` tag. The raw-store drift is carried forward as a user decision, since raw captures are immutable and renaming would break links.
+- **Normalized the raw store, on explicit user authorization** (raw captures are otherwise immutable). Confirmed lossless first: every component of the corrected filename already existed as data in the vault. Renamed **66 captures** to `YYYY-MM-DD Author - Title.md`, taking date and author from each file's own frontmatter and preserving the existing title verbatim. **5 had no frontmatter at all** — Alpha Signal captures stored as bare article text — so their date and author were recovered from the `source_id` and `source_author` of the summary linking to them, and full frontmatter was written.
+- **Rewrote 70 inbound wikilinks across 62 files as `[[New Name|Old Display Text]]`**, so no rendered page reads differently than before. Verified afterwards: 0 broken links, and no old filename survives as a link target anywhere.
+- **Added the `source/raw` marker to 64 captures and `type: raw-source` to 49**, keeping every existing tag — including the `clippings` tag that records Obsidian Web Clipper provenance, which was added alongside rather than replaced. The raw store is now 100% conformant: 0 undated filenames, 0 missing markers.
+- **Fixed a pre-existing YAML syntax error** in the Kevin Murphy capture, where `title: Reinforcement Learning: An Overview` was an unquoted scalar containing a colon and would fail any frontmatter parse. All 560 raw and wiki frontmatter blocks now parse.
+- **Caught two extraction bugs before writing anything**: a `^author:\s*(.*)$` regex whose `\s*` swallowed the newline after an empty `author:` and captured the next field instead, and a summary-lookup fallback that matched on title text and so attributed a Perplexity Research article to `Unknown (LinkedIn post)`. Both produced plausible-looking wrong names; fixed by parsing the YAML block properly and by requiring an exact wikilink match.
 - Index, overview, and log remain in agreement at 200 unique source IDs.
 

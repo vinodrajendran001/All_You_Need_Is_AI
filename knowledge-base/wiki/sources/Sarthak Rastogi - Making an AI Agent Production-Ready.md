@@ -61,7 +61,7 @@ This is the vault's most concrete end-to-end **production agent architecture**, 
 
 ## Raw capture
 
-- [[Making an AI Agent Production-Ready Tutorial With Code]]
+- [[2026-07-06 Sarthak Rastogi - Making an AI Agent Production-Ready Tutorial With Code|Making an AI Agent Production-Ready Tutorial With Code]]
 
 ## Related pages
 

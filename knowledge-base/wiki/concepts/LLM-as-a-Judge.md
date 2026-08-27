@@ -62,8 +62,28 @@ Beyond product evaluation, the same "calibrated LLM evaluator" idea is the **ver
 
 LLM judges still need human calibration, especially on edge cases where domain experts may reasonably disagree. They can inherit rubric mistakes, miss missing-context problems, and drift away from product reality if the evaluation prompt does not reflect what users actually see. In practice, the safest pattern is human-designed criteria, human adjudication on a golden set, and continuous re-calibration rather than fully autonomous judging.
 
+## The judge's noise floor bounds what an experiment can detect
+
+[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] shows a failure mode that
+belongs on this page as much as on any training page. The experiment deliberately overtrained a
+GPT-2-scale model, improved held-out next-token loss, and found **no instruction-following gain
+outside the observed noise of the LLM-judge evaluation**.
+
+The result is genuinely ambiguous, and that ambiguity is the point. Either overtraining does not
+improve instruction following, or it improves it by less than the judge can resolve. The experiment
+cannot distinguish these, because the measuring instrument's variance was never characterized
+against the size of the effect being sought.
+
+This makes judge noise a **design parameter rather than a reporting detail**. Before running a
+comparison, an LLM-judge setup needs its own repeatability established — the same outputs scored
+repeatedly, to establish the smallest difference the judge can reliably detect. A judge whose noise
+floor exceeds the expected effect size cannot produce a negative result, only an uninformative one.
+See [[Benchmark Optimization]] for the related problem of a metric that moves without the underlying
+capability moving.
+
 ## Related pages
 
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
 - [[Braintrust - How to evaluate multi-turn conversations]]

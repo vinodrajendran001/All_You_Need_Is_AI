@@ -74,8 +74,32 @@ proxy for whether headroom exists. Whether a *given request* will draft well dep
 structured output drafts well, open-ended prose does not — and no engine described in this vault
 inspects that. Engines currently tune the supply side of speculation and ignore the demand side.
 
+## Running an engine in-house is mostly not about the engine
+
+[[Netflix - In-House LLM Serving]] describes a production platform built on vLLM and Triton, exposing
+both OpenAI-compatible and gRPC interfaces. What makes it useful here is how little of the reported
+work concerns engine selection, which is what this page otherwise spends its attention on.
+
+The load-bearing problems were:
+
+- **Version-pinned deployments and explicit compatibility boundaries**, so a model or API change
+  cannot silently break clients. Once an engine serves many internal teams, the model is a versioned
+  dependency and needs the release discipline of one.
+- **An FSx-backed model cache**, removing repeated model-download cost at worker startup. Cold-start
+  weight transfer is a real operational cost that benchmark comparisons of engines never surface.
+- **A curated operational metric surface** distilled from vLLM's much larger metric set — the
+  observability question is which handful of numbers an on-call engineer should act on, not how many
+  the engine can emit.
+- **Batched C++ constrained decoding** for structured output, treating schema conformance as a
+  serving-layer capability rather than something to retry in application code.
+
+The pattern worth carrying is that the engine-selection question this page answers is the *first*
+decision and not the expensive one. Artifact management, schema evolution, and observability dominate
+the ongoing cost, and none of them appear in a throughput comparison.
+
 ## Related pages
 
+- [[Netflix - In-House LLM Serving]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Speculative Decoding]]
 - [[LLM Inference]]

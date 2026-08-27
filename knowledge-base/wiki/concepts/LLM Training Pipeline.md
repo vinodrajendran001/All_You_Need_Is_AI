@@ -127,6 +127,35 @@ architecture table lists a sequence length of 131,072 and the long-context resul
 128K. The likely reading is that 512K was reached in training while the released configuration is
 capped at 128K, but the source does not say so.
 
+## Held-out loss does not rank task capability
+
+A three-part reproduction study — [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]],
+[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]], and
+[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] — is the vault's cleanest
+demonstration that the objective this pipeline optimizes is not the thing practitioners care about.
+
+Independently trained GPT-2-small-style weights reached **competitive next-token loss** against
+OpenAI's original GPT-2 while performing **worse on a targeted instruction-following task**. Part 3
+then tested the obvious hypothesis by deliberately overtraining: held-out loss improved, and
+instruction-following did not move outside evaluation noise. Lower loss bought nothing on the
+behavior under investigation.
+
+Two practical lessons come out of the series:
+
+- **Loss is a training signal, not a ranking function.** Two checkpoints with the same held-out loss
+  can differ materially on a downstream capability, so a pipeline tuned to minimize loss is not
+  thereby tuned to maximize usefulness. This is the training-side counterpart to the proxy-metric
+  problem on [[Benchmark Optimization]].
+- **Checkpoint immutability is a correctness requirement.** Part 2 traced part of the anomaly to a
+  plain engineering bug: checkpoint state was not deep-copied, so the saved "best model" reference
+  could be mutated by subsequent training. A partial validation check was also replaced with
+  full-set evaluation. Before attributing a capability gap to architecture or data, rule out the
+  possibility that the artifact being measured is not the artifact that was saved.
+
+The second point deserves weight disproportionate to its mundanity. The investigation initially
+looked like a research question about data mixtures and training scale; a meaningful part of it was
+a shallow-copy bug.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -136,6 +165,7 @@ capped at 128K, but the source does not say so.
 
 ## Related pages
 
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]
 - [[The Pocket - PocketFlow Tutorial Docs]]

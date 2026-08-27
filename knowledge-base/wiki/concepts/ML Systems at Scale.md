@@ -130,8 +130,26 @@ These examples show that “ML at scale” is really a systems-discipline questi
 
 The case study index is most valuable as a **reference map** rather than a source of new conceptual claims. When a concrete architecture is needed for any of the 60+ companies listed, the index points to the relevant newsletter article.
 
+## The model as a versioned dependency
+
+[[Netflix - In-House LLM Serving]] frames internal model serving as an artifact-management and
+API-evolution problem rather than a modelling one. Version-pinned deployments and explicit
+compatibility boundaries exist so that changing a model or its API cannot silently break downstream
+consumers; an FSx-based model cache removes repeated download overhead at worker startup.
+
+This is the familiar shape of a shared internal platform. Once many teams depend on one serving
+layer, the model acquires the obligations of any versioned dependency — a compatibility contract, a
+deprecation path, and a rollback story — and those obligations, rather than inference performance,
+set the pace at which the platform can change.
+
+Netflix also curates a **deliberately small operational metric surface** out of vLLM's large one,
+which is the same discipline applied to observability: the constraint is what an on-call engineer can
+act on, not what the system can emit. See [[Inference Serving Engines]] and
+[[Serving Benchmarks and Goodput]].
+
 ## Related pages
 
+- [[Netflix - In-House LLM Serving]]
 - [[systemdesign42 - System Design Academy]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]

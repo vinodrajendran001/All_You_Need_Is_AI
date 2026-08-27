@@ -71,6 +71,23 @@ If any item is missing, the number is omitted rather than reported. Two of the f
 
 It is the same disease as the transcript-matching failure above, occurring in a domain that was supposed to be immune to it because its ground truth is arithmetic. That it recurs there is the strongest available argument that the problem is structural rather than domain-specific: **whatever is measured becomes the target, so the measurement itself has to be engineered against the optimizer pointed at it.**
 
+## The inverse failure: a real metric gain that means nothing
+
+This page mostly concerns metrics that improve while the underlying capability does not. The GPT-2
+reproduction series shows the same gap from the other side.
+
+[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] reports a **genuine, honestly
+obtained improvement in held-out next-token loss** that produced no measurable gain in
+instruction-following. Nothing was gamed and no test set was contaminated; the metric simply was not
+measuring the capability in question. Earlier in the series, weights matching OpenAI's GPT-2 on loss
+still lost to it on the task.
+
+That is worth recording because the usual framing treats benchmark optimization as a
+governance-and-incentives problem — teams overfitting to leaderboards. This case has no bad actor.
+It shows the divergence between proxy and capability is **structural**, present even in careful
+solo work with no incentive to inflate anything. Any metric standing in for a capability can move
+independently of it, in either direction.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -81,6 +98,7 @@ It is the same disease as the transcript-matching failure above, occurring in a 
 
 ## Related pages
 
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]]
 - [[Multi-Turn Evaluation]]
 - [[LLM-as-a-Judge]]

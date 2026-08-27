@@ -48,6 +48,20 @@ Two consequences follow that the vault should apply generally:
 - **Vendor peak numbers are not measurements.** Peak FLOPs describe a ceiling under conditions no real workload meets; the source pairs every architecture brief with an ISA or tuning guide for this reason.
 - **A speed result without a correctness method is not a result.** This is the same boundary [[Benchmark Optimization]] draws from the opposite direction: there, systems scored well by reproducing flawed reference transcripts; here, a kernel or engine can score well by computing something subtly wrong. Both failures are invisible to the headline number.
 
+## Operational metrics are a curated subset, not the full emission
+
+[[Netflix - In-House LLM Serving]] adds a practitioner counterweight to this page. vLLM emits a large
+metric set; Netflix runs production off a **deliberately curated subset**.
+
+The distinction matters because benchmarking and operating pull in opposite directions. A benchmark
+wants every number it can get, to characterize behavior across regimes. An on-call rotation wants the
+smallest set that reliably indicates whether the service is healthy and what to do about it — a
+metric nobody acts on is a page nobody should receive.
+
+So the instruments described above are the right toolkit for *choosing* and *tuning* a deployment,
+but they are not the dashboard. Selecting which of them become alerting signals, and which stay
+diagnostic, is a separate decision this page should not conflate with measurement.
+
 ## Open questions
 
 - Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
@@ -81,6 +95,7 @@ determines the verdict.
 
 ## Related pages
 
+- [[Netflix - In-House LLM Serving]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Wafer - AI Performance Engineering Resources]]
 - [[Benchmark Optimization]]

@@ -87,8 +87,27 @@ Production engines must serve many concurrent requests:
 - As context windows grow, does decode become so memory-bound that KV-cache compression matters more than weight quantization?
 - Should serving stacks measure a workload's arithmetic intensity at runtime and gate batching, speculation, and attention-kernel dispatch on it, rather than configuring each independently?
 
+## What the bandwidth wall looks like in utilization terms
+
+[[ByteByteGo - How to Make LLMs 3X Faster]] puts a number on the asymmetry this page is built
+around. A 70B model at 16-bit precision means moving roughly **140 GB of weights out of VRAM for
+every single token**, a transfer taking tens of milliseconds on a datacenter GPU, while the
+arithmetic applied to those weights is one narrow vector per matrix.
+
+The resulting utilization split is the cleanest statement of prefill-versus-decode in this vault:
+**90–95% compute utilization during prompt processing, falling to 20–40% during token generation**.
+The cause is how much work each weight read supports — prefill applies the weights to thousands of
+positions simultaneously, decode applies the same weights to exactly one.
+
+Two consequences follow. First, a GPU with more memory bandwidth improves generation speed more than
+one with more raw compute, which is the purchasing rule behind the hardware discussion on
+[[AI Accelerator Architecture]]. Second, the 60–80% of idle math units during decode is the entire
+budget that [[Speculative Decoding]], continuous batching, and multi-token prediction compete to
+spend — and they are drawing on one pool, not stacking.
+
 ## Related pages
 
+- [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[KV Cache]]
 - [[Model Quantization and Efficiency]]
 - [[Nithin - What Actually Happens During LLM Inference]]

@@ -48,8 +48,53 @@ The broader pattern is that group-relative learning survives in agentic RL, but 
 
 The PocketFlow tutorials on policy gradients and RLHF make the surrounding optimization ladder explicit: REINFORCE leads to baselines and actor-critic methods, which in turn lead to PPO-style constrained policy optimization. That broader framing helps place GRPO as one member of a larger family of LLM post-training objectives rather than as an isolated search-agent trick. See [[LLM Training Pipeline]] and [[The Pocket - PocketFlow Tutorial Docs]].
 
+## A production configuration, in full
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] is the first source in this vault to give a
+complete GRPO configuration for a shipped model family rather than a description of the method. Three
+details are worth carrying.
+
+**The baseline is leave-one-out.** Each response is scored against the mean reward of the *other*
+samples drawn for the same prompt, not against the group mean including itself. This keeps the
+critic-free property that made GRPO attractive while removing the sample's own contribution to its
+own baseline.
+
+**The batch shape is large and shallow.** Granite's RLVR stage pairs **256 prompts with 16 responses
+each — a 4,096-example batch consumed in a single optimizer step**. Later stages trade prompt count
+for depth as rollouts get longer: the terminal-agent stage drops to 8 prompts × 32 generations
+because each rollout spans up to 64 environment turns. Group size stays in the 16–32 range
+throughout, which is a useful reference point for how wide a "group" needs to be in practice.
+
+**Asynchrony is embraced, then bounded.** Generation workers sample continuously into a shared buffer
+while the trainer pulls batches and streams updated parameters back without pausing them. A refresh
+can land mid-rollout, leaving a single trajectory stitched together from two adjacent policy
+versions. IBM permits this deliberately — the alternative is rebuilding the KV cache after every
+refresh — and controls it with one guardrail: workers may not drift more than **a single update**
+behind the trainer. Residual mismatch is absorbed by **truncated importance sampling**, clamping the
+train-versus-generation log-probability ratio to a fixed ceiling so a handful of stale tokens cannot
+dominate an update. Ratio clip is 0.2 / 0.28.
+
+This is the same staleness problem [[rLLM]] and [[RadixArk - Miles v0.1 Production-Level Post-Training]]
+address, converging on the same tool. What Granite adds is the explicit statement that the trade is
+made *to keep the KV cache warm* — the cost of preventing staleness is paid in cache rebuilds, which
+is a systems reason for an algorithmic compromise.
+
+## The KL coefficient should track the reward type
+
+Granite's stage table shows KL varying from 0 to 0.05 across a single pipeline, and not arbitrarily:
+**KL = 0 where the reward is verifiable** (RLVR, and the long-horizon SWE stage), **KL = 0.05 where
+it is preference, safety, or a narrow skill graft** (RLHF, the code booster). The logic is that a
+verifiable reward cannot be satisfied by drifting — if the tests pass, the behavior is good — while
+a preference or safety reward makes drift and reward hacking indistinguishable.
+
+This turns KL from a knob tuned by feel into something derivable from the objective. See
+[[Staged Reinforcement Learning Curriculum]] for the full ladder.
+
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[Staged Reinforcement Learning Curriculum]]
+- [[LLM Training Pipeline]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[Agentic Reinforcement Learning]]
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]

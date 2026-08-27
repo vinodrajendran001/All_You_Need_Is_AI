@@ -49,8 +49,24 @@ Alongside the system-design material, ByteByteGo also walks through security res
 
 The usual caveat applies with more force here than on architecture posts: the publication carries its own disclaimer that its content is assembled from publicly shared details and invites correction. Specific figures — leak counts, accuracy deltas, extraction costs — should be attributed to the underlying paper (arXiv:2608.09867) rather than to this explainer.
 
+## Inference-efficiency explainers
+
+[[ByteByteGo - How to Make LLMs 3X Faster]] covers speculative decoding. It is a useful illustration
+of what this publisher is and is not good for. The mechanism walk-through — bandwidth wall, parallel
+verification, the accept/reject rule — duplicates material the vault already held from primary
+implementation write-ups. What it added was **collected reporting**: DeepSeek's production acceptance
+rates for DeepSeek-V3, QuantSpec's self-drafting numbers, batch-size scaling from an unnamed
+evaluation, and how vLLM's draft-length control actually behaves.
+
+That is the characteristic contribution pattern for this source in the vault. ByteByteGo aggregates
+figures scattered across papers, model reports, and serving-engine documentation into one place,
+which is genuinely valuable, but the figures are second-hand and often uncited — the batch-scaling
+result arrives with no study named, no hardware, and no draft configuration. Its headline "3X" is
+also unsupported by anything in its own body, where the reported range is 1.21×–2×.
+
 ## Related pages
 
+- [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]

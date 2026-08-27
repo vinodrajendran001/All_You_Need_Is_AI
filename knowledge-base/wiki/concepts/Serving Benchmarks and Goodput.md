@@ -55,8 +55,32 @@ Two consequences follow that the vault should apply generally:
 - How should benchmarks account for prefix cache hit rates, which can dominate real performance but depend entirely on traffic locality?
 - Can a benchmark meaningfully score a disaggregated system end to end, when its cost structure depends on interconnect properties the benchmark does not control?
 
+## A speedup number without a batch size is not a measurement
+
+[[ByteByteGo - How to Make LLMs 3X Faster]] supplies the sharpest illustration of this page's
+evidence standard. One systematic evaluation of speculative decoding on a 70B model reported **up to
+1.96× at batch size 1, declining to 1.21× at batch size 128**, and falling **below baseline**
+entirely under higher concurrency.
+
+The same technique, the same model, the same hardware, spanning "nearly 2× faster" to "actively
+harmful" — with only the concurrency changing. Any speculative-decoding speedup quoted without its
+batch size is therefore uninterpretable, and the marketing convention of reporting the batch-size-1
+figure systematically describes the least representative operating point for a loaded server.
+
+This generalizes past speculation to every optimization that spends idle compute. Such techniques are
+measured at exactly the load where idle compute is most abundant, and their benefit decays toward
+zero — or past it — as the server fills up. A benchmark that does not sweep concurrency cannot
+distinguish an optimization that helps production from one that only helps benchmarks, which is the
+same failure this page records under [[Benchmark Optimization]].
+
+Note also that speculative decoding does not move **time to first token** at all, since it applies to
+generation rather than prefill. A goodput definition keyed to TTFT will score it as no improvement
+whatsoever, while one keyed to inter-token latency will score it as a large win. The metric choice
+determines the verdict.
+
 ## Related pages
 
+- [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Wafer - AI Performance Engineering Resources]]
 - [[Benchmark Optimization]]
 - [[Inference Serving Engines]]

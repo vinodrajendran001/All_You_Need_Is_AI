@@ -97,8 +97,34 @@ The formats are governance rather than technique: the OCP **FP8** and **Microsca
 - When should the vault split deployment efficiency from fine-tuning efficiency into separate pages?
 - When does a small model plus retrieval/routing beat a larger model on end-to-end cost and quality?
 
+## Granite 4.2's shipped recipe, and quantization as a drafting device
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] publishes the quantization recipes for a
+released open-weight family, which is useful because it shows which method each format actually
+needs in practice:
+
+- **FP8** uses dynamic per-channel weights and per-token activations with **no calibration at all**.
+- **NVFP4 and MXFP4** use GPTQ calibrated on 2K samples drawn from the model's own SFT dataset, with
+  max context 2K during calibration.
+- **GGUF** conversion runs through llama.cpp across the Q2–Q8 range for reduced-memory deployment.
+
+The pattern is that calibration cost tracks bit-width. FP8 has enough range to survive a purely
+dynamic scheme, while 4-bit formats need a calibration set — and Granite draws it from the SFT
+mixture rather than a generic corpus, so the calibration distribution matches the deployed one.
+
+A separate and less obvious use appears in [[ByteByteGo - How to Make LLMs 3X Faster]]:
+**quantization can be a drafting mechanism rather than a deployment format**. QuantSpec runs the same
+model at 4-bit weights and a 4-bit KV cache to generate draft tokens while verification runs at
+higher precision, reporting above 1.78× with acceptance above 90%. Quantization error that would be
+unacceptable in a served model is fine here, because a full-precision verifier corrects it and
+[[Speculative Decoding|the accept/reject rule]] preserves the target distribution exactly. The usual
+quality-versus-size tradeoff on this page does not apply when the compressed model is only a
+guesser.
+
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]

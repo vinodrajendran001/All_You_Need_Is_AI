@@ -91,12 +91,6 @@ The methods are post-training and mostly about *where the error goes*: **GPTQ** 
 
 The formats are governance rather than technique: the OCP **FP8** and **Microscaling (MX)** specifications define shared low-precision number formats so that a quantized model means the same thing across vendors. Formats decide what hardware can accelerate; methods decide what accuracy survives. The vault's earlier coverage described the methods well and the format layer not at all.
 
-## Open questions
-
-- Which efficiency methods remain stable as context windows and model sizes continue to grow?
-- When should the vault split deployment efficiency from fine-tuning efficiency into separate pages?
-- When does a small model plus retrieval/routing beat a larger model on end-to-end cost and quality?
-
 ## Granite 4.2's shipped recipe, and quantization as a drafting device
 
 [[IBM Granite Team - Granite 4.2 LLMs How They're Built]] publishes the quantization recipes for a
@@ -120,6 +114,12 @@ unacceptable in a served model is fine here, because a full-precision verifier c
 [[Speculative Decoding|the accept/reject rule]] preserves the target distribution exactly. The usual
 quality-versus-size tradeoff on this page does not apply when the compressed model is only a
 guesser.
+
+## Open questions
+
+- Which efficiency methods remain stable as context windows and model sizes continue to grow?
+- When should the vault split deployment efficiency from fine-tuning efficiency into separate pages?
+- When does a small model plus retrieval/routing beat a larger model on end-to-end cost and quality?
 
 ## Related pages
 

@@ -47,13 +47,6 @@ Both sources illustrate the same principle from different layers: **adding a cap
 
 [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] adds LiveKit Agents as a concrete framework option for this branch: programmable real-time participants, WebRTC, turn detection, telephony, tool use, and either composed STT→LLM→TTS or direct real-time models. This is an ecosystem example rather than a comparative performance result.
 
-## Open questions
-
-- Do interaction models make the harness obsolete, or will the two layers co-evolve (in-model interactivity riding on relay-style transport)?
-- How are long multi-hour audio/video sessions kept tractable as context accumulates every 200 ms?
-- How does the 1:1 transport assumption interact with future multiparty or human-handoff interaction models?
-- If ASR components inside a voice stack are benchmark-optimised, how much of a measured end-to-end quality gain is real?
-
 ## The measurement problem underneath
 
 Both branches above optimise a stack whose accuracy is reported by public speech benchmarks — and [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]] shows those numbers cannot be taken at face value. Testing 11 open ASR models on VoxPopuli and LibriSpeech, it finds that models reproduce erroneous benchmark reference transcripts 18–30% of the time, recover deliberately silenced numbers in 30–40% of LibriSpeech cases, and select the spelling convention a given benchmark expects at rates reaching ~90% where 50% would be chance.
@@ -61,6 +54,13 @@ Both branches above optimise a stack whose accuracy is reported by public speech
 The mechanism is specific to this page's domain and unsettling for it: **the cue is acoustic**. A model that reproduces a benchmark's wrong transcript on the original recording produces the audio-faithful transcript for a clone of a speaker recorded after its training cutoff, and appending ordinary conversational audio or trimming benchmark context restores fidelity — while appending benchmark audio degrades it. Models can transcribe the literal words correctly and are using surrounding audio to decide **whether to follow the signal or a benchmark-specific policy**.
 
 Worst of all for model selection, the inverse correlation: the models with the *lowest* word error rate were the most likely to reproduce reference errors. Anyone choosing an STT component for the composed STT→LLM→TTS pipeline described above should use fully held-out sets (Real World VoiceEQ, the Open ASR Leaderboard's private data, the Far-field ASR Leaderboard) rather than a single public WER number. See [[Benchmark Optimization]].
+
+## Open questions
+
+- Do interaction models make the harness obsolete, or will the two layers co-evolve (in-model interactivity riding on relay-style transport)?
+- How are long multi-hour audio/video sessions kept tractable as context accumulates every 200 ms?
+- How does the 1:1 transport assumption interact with future multiparty or human-handoff interaction models?
+- If ASR components inside a voice stack are benchmark-optimised, how much of a measured end-to-end quality gain is real?
 
 ## Related pages
 

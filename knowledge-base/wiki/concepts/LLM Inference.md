@@ -80,13 +80,6 @@ Production engines must serve many concurrent requests:
 
 - **Agent harnesses can hide inference latency behind their own tool calls.** [[Speculative Tool Execution]] ([[Alex L. Zhang - Speculative Programmatic Tool Calling]]) overlaps tool execution with the generation that requests it, by parsing calls out of a partially streamed program. When the tools are themselves sub-LLM calls, this turns two serial waits — generate, then execute — into one, and on a locally served model it spends decode compute that was otherwise idle. Measured gains are modest (1–1.2×) and highly workload-dependent, but the framing matters for this page: **for agent workloads, the latency that users feel is the harness's, not the engine's**, and the two are optimizable independently.
 
-## Open questions
-
-- Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
-- Which weight + KV compression combinations give the best end-to-end tokens/sec without unacceptable quality loss?
-- As context windows grow, does decode become so memory-bound that KV-cache compression matters more than weight quantization?
-- Should serving stacks measure a workload's arithmetic intensity at runtime and gate batching, speculation, and attention-kernel dispatch on it, rather than configuring each independently?
-
 ## What the bandwidth wall looks like in utilization terms
 
 [[ByteByteGo - How to Make LLMs 3X Faster]] puts a number on the asymmetry this page is built
@@ -104,6 +97,13 @@ one with more raw compute, which is the purchasing rule behind the hardware disc
 [[AI Accelerator Architecture]]. Second, the 60–80% of idle math units during decode is the entire
 budget that [[Speculative Decoding]], continuous batching, and multi-token prediction compete to
 spend — and they are drawing on one pool, not stacking.
+
+## Open questions
+
+- Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
+- Which weight + KV compression combinations give the best end-to-end tokens/sec without unacceptable quality loss?
+- As context windows grow, does decode become so memory-bound that KV-cache compression matters more than weight quantization?
+- Should serving stacks measure a workload's arithmetic intensity at runtime and gate batching, speculation, and attention-kernel dispatch on it, rather than configuring each independently?
 
 ## Related pages
 

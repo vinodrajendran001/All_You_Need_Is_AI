@@ -41,8 +41,10 @@ Extra-CoT pushes the vault's efficient-reasoning branch toward **extreme compres
 
 ## Affected pages
 
-- [[Reasoning Compression]]
 - [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 - [[Reward Design for RL]]
 
 ## Citations

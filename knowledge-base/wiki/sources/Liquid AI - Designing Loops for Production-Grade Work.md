@@ -37,10 +37,8 @@ This is a concrete case study for [[Loop Engineering]]: the verifier and product
 
 ## Affected pages
 
+- [[Liquid AI]]
 - [[Loop Engineering]]
-- [[Coding Agent Harness]]
-- [[Multi-Turn Evaluation]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -55,4 +53,7 @@ This is a concrete case study for [[Loop Engineering]]: the verifier and product
 - [[Liquid AI]]
 - [[Agentic Loop]]
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
+- [[AI Agents in Production]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
 

@@ -40,11 +40,7 @@ The source is a useful example of model routing as a production decision spannin
 
 ## Affected pages
 
-- [[Model Routing]]
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
-- [[Context Engineering]]
-- [[Agentic Loop]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -60,4 +56,9 @@ The source is a useful example of model routing as a production decision spannin
 - [[Model Context Protocol]]
 - [[Tool Use and Function Calling]]
 - [[Multi-Turn Evaluation]]
+- [[AI Agents in Production]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Model Routing]]
 

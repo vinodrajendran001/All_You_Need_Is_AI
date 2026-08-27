@@ -50,12 +50,11 @@ This is the vault's most concrete end-to-end **production agent architecture**, 
 
 - [[AI Agents in Production]]
 - [[Agentic Loop]]
-- [[Retrieval-Augmented Generation]]
-- [[LLM-as-a-Judge]]
-- [[Multi-Turn Evaluation]]
 - [[Context Engineering]]
+- [[LLM-as-a-Judge]]
 - [[Model Routing]]
-- [[AI Knowledge Base Overview]]
+- [[Multi-Turn Evaluation]]
+- [[Retrieval-Augmented Generation]]
 
 ## Citations
 - Source URL: [sarthakai.substack.com](https://sarthakai.substack.com/p/making-an-ai-agent-production-ready)

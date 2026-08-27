@@ -50,14 +50,12 @@ Nested Learning opens a memory-as-structure branch that the vault's existing pag
 
 ## Affected pages
 
-- [[Nested Learning]]
 - [[Agent Memory]]
-- [[Retrieval-Augmented Generation]]
+- [[Nested Learning]]
 - [[Recursive Architectures]]
-- [[On-Device Reasoning]]
+- [[Retrieval-Augmented Generation]]
 - [[Siddhant Rai]]
 - [[Vizuara]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://vizuara.substack.com/p/nested-learning-the-illusion-of-deep](https://vizuara.substack.com/p/nested-learning-the-illusion-of-deep)

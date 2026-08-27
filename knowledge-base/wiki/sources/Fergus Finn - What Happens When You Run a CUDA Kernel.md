@@ -48,10 +48,12 @@ This is the vault's first bottom-up account of the **GPU execution model** and s
 
 ## Affected pages
 
-- [[GPU Execution Model]]
 - [[AI Accelerator Architecture]]
+- [[Arithmetic Intensity and the Roofline Model]]
+- [[GPU Execution Model]]
+- [[GPU Kernel Optimization]]
 - [[LLM Inference]]
-- [[AI Knowledge Base Overview]]
+- [[NVIDIA]]
 
 ## Citations
 - Source URL: [https://fergusfinn.com/blog/what-happens-when-you-run-a-gpu-kernel/](https://fergusfinn.com/blog/what-happens-when-you-run-a-gpu-kernel/)

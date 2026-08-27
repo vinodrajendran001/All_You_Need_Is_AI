@@ -47,11 +47,11 @@ This source seeds [[Knowledge Distillation]] and explains one path from expensiv
 
 ## Affected pages
 
+- [[ByteByteGo]]
 - [[Knowledge Distillation]]
-- [[Small Language Models]]
-- [[Model Quantization and Efficiency]]
 - [[LLM Training Pipeline]]
-- [[Recursive Self-Improvement]]
+- [[Model Quantization and Efficiency]]
+- [[Small Language Models]]
 
 ## Citations
 
@@ -67,4 +67,5 @@ This source seeds [[Knowledge Distillation]] and explains one path from expensiv
 - [[ByteByteGo]]
 - [[Multi-Teacher On-Policy Distillation]]
 - [[Direct Preference Optimization]]
+- [[Recursive Self-Improvement]]
 

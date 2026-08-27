@@ -47,11 +47,10 @@ This source deepens the vault's evaluation branch by moving from search relevanc
 
 ## Affected pages
 
-- [[Multi-Turn Evaluation]]
+- [[DoorDash]]
 - [[LLM-as-a-Judge]]
 - [[ML Systems at Scale]]
-- [[DoorDash]]
-- [[AI Knowledge Base Overview]]
+- [[Multi-Turn Evaluation]]
 
 ## Citations
 ## Raw capture

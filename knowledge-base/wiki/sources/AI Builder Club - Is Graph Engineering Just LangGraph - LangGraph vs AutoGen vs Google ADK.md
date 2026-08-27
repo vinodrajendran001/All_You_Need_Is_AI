@@ -45,12 +45,8 @@ The source helps [[Coding Agent Harness]] distinguish architecture from vendor i
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
-- [[Agentic Loop]]
-- [[Agent Planning]]
-- [[Agent Memory]]
-- [[Tool Use and Function Calling]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -67,3 +63,10 @@ The source helps [[Coding Agent Harness]] distinguish architecture from vendor i
 - [[Context Engineering]]
 - [[Multi-Turn Evaluation]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Tool Use and Function Calling]]
+

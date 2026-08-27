@@ -60,11 +60,10 @@ This source seeds [[Model Routing]] as a distinct concept and materially deepens
 
 ## Affected pages
 
-- [[Model Routing]]
-- [[Context Engineering]]
 - [[AI Agents in Production]]
 - [[ByteByteGo]]
-- [[AI Knowledge Base Overview]]
+- [[Context Engineering]]
+- [[Model Routing]]
 
 ## Raw capture
 

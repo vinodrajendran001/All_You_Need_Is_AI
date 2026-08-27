@@ -464,7 +464,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Andrej Karpathy - LLM Wiki]] - Summary of the original `LLM Wiki` gist and its implications for this vault.
 - [[Kevin Murphy - Reinforcement Learning - An Overview]] - Survey source that seeds the vault's RL area.
 - [[ByteByteGo - Connecting LLMs to the Real World]] - Tool use, function calling, and MCP evolution from isolated LLMs to real-world agents.
-- [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]] - Eight articles on production ML systems, AI agents, and architecture patterns.
+- [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]] - Eight articles on production ML systems, AI agents, and architecture patterns; a composite summary whose eight constituent capture IDs are declared on the summary page rather than in this registry.
 - [[ByteByteGo - How Airtable Built the Search Layer]] - Vector search architecture with HNSW, hot/cold tiering, and hierarchical partitioning.
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]] - Facet-based LLM evaluation replacing noisy human annotation for NL search.
 - [[Perplexity - Advancing Search-Augmented Language Models]] - Two-stage SFT→RL pipeline for training web search agents with gated rewards.
@@ -600,6 +600,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-08-13 Lint Pass]] - Twenty-fifth comprehensive lint pass; synchronized 153 source IDs across index, overview, and log and found no remaining structural defects.
 - [[2026-08-24 Lint Pass]] - Twenty-sixth comprehensive lint pass; returned one misplaced raw clipping to the inbox and found no remaining structural defects across 314 wiki pages.
 - [[2026-08-25 Lint Pass]] - Twenty-seventh comprehensive lint pass; made the 63-lesson synthesis traversable, unified the forked tag vocabulary, and closed the raw-to-wiki source-ID gap across 326 wiki pages.
+- [[2026-08-27 Lint Pass]] - Twenty-ninth comprehensive lint pass; discovered that the undefined `## Affected pages` heading had let its meaning fork between "pages this ingest changed" and "pages this source relates to", producing 394 false claims across 107 summaries, corrected all of them, integrated the last 5 orphaned sources, and glossed the template so the fork cannot recur.
 - [[2026-08-26 Lint Pass]] - Twenty-eighth comprehensive lint pass; found four sources that had been summarized but never cited by any concept page, gave all 180 source summaries a working `## Raw capture` pointer, and canonicalized five forked tags that an earlier parser had missed.
 
 ## Control files

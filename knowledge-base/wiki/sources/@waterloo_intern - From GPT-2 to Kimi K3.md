@@ -25,6 +25,10 @@ Its Kimi architecture and performance numbers are frontier claims from a seconda
 
 - [[22580 From GPT2 to Kimi3, Explained]]
 
+## Affected pages
+
+- [[Linear Attention and Recurrent Memory]]
+
 ## Related pages
 
 - [[Linear Attention and Recurrent Memory]]

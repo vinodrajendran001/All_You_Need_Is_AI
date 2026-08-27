@@ -49,10 +49,9 @@ The source seeds [[Software Performance Engineering]] as a bridge between algori
 
 ## Affected pages
 
-- [[Software Performance Engineering]]
+- [[Abseil]]
 - [[SIMD]]
-- [[GPU Execution Model]]
-- [[ML Systems at Scale]]
+- [[Software Performance Engineering]]
 
 ## Citations
 
@@ -68,4 +67,6 @@ The source seeds [[Software Performance Engineering]] as a bridge between algori
 - [[Abseil]]
 - [[AI Accelerator Architecture]]
 - [[LLM Inference]]
+- [[GPU Execution Model]]
+- [[ML Systems at Scale]]
 

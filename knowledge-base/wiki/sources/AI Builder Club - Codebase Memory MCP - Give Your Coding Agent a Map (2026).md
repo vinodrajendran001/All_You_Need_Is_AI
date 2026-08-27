@@ -43,11 +43,8 @@ This source connects [[Coding Agent Harness]], [[Context Engineering]], [[Model 
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
-- [[Context Engineering]]
+- [[AI Builder Club - Build AI Agents]]
 - [[Agent Memory]]
-- [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
 
 ## Citations
 
@@ -66,4 +63,5 @@ This source connects [[Coding Agent Harness]], [[Context Engineering]], [[Model 
 - [[Model Context Protocol]]
 - [[AI Builder Club - Fix AI Agent Memory Loss in 30 Seconds (agentmemory)]]
 - [[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]]
+- [[Tool Use and Function Calling]]
 

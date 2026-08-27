@@ -43,11 +43,8 @@ The source materially develops [[Agent Skill]] as a context-engineering and work
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agent Skill]]
-- [[Context Engineering]]
-- [[Coding Agent Harness]]
-- [[Agent Memory]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -66,3 +63,5 @@ The source materially develops [[Agent Skill]] as a context-engineering and work
 - [[Agent Memory]]
 - [[AI Builder Club - google - skills - Google's Official Agent Skills Library]]
 - [[AI Builder Club - last30days-skill - Real-Time Research for AI Agents]]
+- [[AI Agents in Production]]
+

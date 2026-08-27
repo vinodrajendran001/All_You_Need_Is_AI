@@ -42,11 +42,7 @@ The tutorial makes agent behavior inspectable. Its sample implementation exposes
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
-- [[Agent Memory]]
-- [[Agent Planning]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -62,4 +58,9 @@ The tutorial makes agent behavior inspectable. Its sample implementation exposes
 - [[AI Agents in Production]]
 - [[Context Engineering]]
 - [[Multi-Turn Evaluation]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Tool Use and Function Calling]]
 

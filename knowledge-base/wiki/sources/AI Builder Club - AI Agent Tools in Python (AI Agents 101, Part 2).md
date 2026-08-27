@@ -43,11 +43,7 @@ The article moves from toy tool calling toward a practical harness. It shows tha
 
 ## Affected pages
 
-- [[Tool Use and Function Calling]]
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
-- [[Agentic Loop]]
-- [[Model Context Protocol]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The article moves from toy tool calling toward a practical harness. It shows tha
 - [[Context Engineering]]
 - [[Multi-Turn Evaluation]]
 - [[Agent Skill]]
+- [[AI Agents in Production]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Model Context Protocol]]
+- [[Tool Use and Function Calling]]
 

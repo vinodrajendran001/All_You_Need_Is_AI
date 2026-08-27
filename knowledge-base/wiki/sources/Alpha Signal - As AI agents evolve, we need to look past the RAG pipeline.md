@@ -47,12 +47,11 @@ This source strengthens the vault's retrieval-and-agents branch by shifting the 
 
 ## Affected pages
 
+- [[AI Agents in Production]]
+- [[Alpha Signal]]
 - [[Direct Corpus Interaction]]
 - [[Retrieval-Augmented Generation]]
 - [[Tool Use and Function Calling]]
-- [[AI Agents in Production]]
-- [[Alpha Signal]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 

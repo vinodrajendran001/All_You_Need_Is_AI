@@ -34,13 +34,10 @@ This source describes how DoorDash operationalized LLM-as-a-judge for natural-la
 
 ## Affected pages
 
-- [[LLM-as-a-Judge]]
 - [[DoorDash]]
-- [[Search-Augmented Language Models]]
+- [[LLM-as-a-Judge]]
 - [[ML Systems at Scale]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
-- [[log|Knowledge Base Log]]
+- [[Search-Augmented Language Models]]
 
 ## Raw capture
 
@@ -54,3 +51,6 @@ This source describes how DoorDash operationalized LLM-as-a-judge for natural-la
 - [[ML Systems at Scale]]
 - [[Retrieval-Augmented Generation]]
 - [[AI Knowledge Base Overview]]
+- [[index]]
+- [[log]]
+

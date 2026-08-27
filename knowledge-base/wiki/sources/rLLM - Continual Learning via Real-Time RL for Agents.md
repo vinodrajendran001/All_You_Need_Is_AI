@@ -47,11 +47,10 @@ This is the vault's first concrete method for [[Continual Learning for Agents]].
 
 ## Affected pages
 
-- [[Continual Learning for Agents]]
-- [[Agentic Reinforcement Learning]]
-- [[Reward Design for RL]]
 - [[AI Agents in Production]]
-- [[Multi-Turn Evaluation]]
+- [[Agentic Reinforcement Learning]]
+- [[Continual Learning for Agents]]
+- [[rLLM]]
 
 ## Citations
 
@@ -68,4 +67,6 @@ This is the vault's first concrete method for [[Continual Learning for Agents]].
 - [[Recursive Self-Improvement]]
 - [[Context Engineering]]
 - [[rLLM]]
+- [[Multi-Turn Evaluation]]
+- [[Reward Design for RL]]
 

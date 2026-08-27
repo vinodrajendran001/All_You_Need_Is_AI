@@ -47,11 +47,10 @@ This seeds [[ML Research Interview Preparation]] as a durable hub and gives the 
 
 ## Affected pages
 
-- [[ML Research Interview Preparation]]
 - [[Algorithm Templates for Interviews]]
-- [[Automated AI Research]]
 - [[Alisa Liu]]
-- [[AI Knowledge Base Overview]]
+- [[Automated AI Research]]
+- [[ML Research Interview Preparation]]
 
 ## Citations
 - Source URL: [https://alisawuffles.github.io/blog/job-search/](https://alisawuffles.github.io/blog/job-search/)

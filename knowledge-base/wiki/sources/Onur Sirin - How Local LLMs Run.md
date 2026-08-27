@@ -53,13 +53,12 @@ This source turns the vault's existing prefill/decode and KV-cache ideas into a 
 
 ## Affected pages
 
-- [[LLM Inference]]
 - [[AI Accelerator Architecture]]
+- [[LLM Inference]]
 - [[Model Quantization and Efficiency]]
 - [[On-Device Reasoning]]
-- [[Small Language Models]]
 - [[Onur Sirin]]
-- [[AI Knowledge Base Overview]]
+- [[Small Language Models]]
 
 ## Citations
 - Source URL: [https://silicontales.com/local-llm-complete-guide/](https://silicontales.com/local-llm-complete-guide/?trk=feed_main-feed-card_feed-article-content)

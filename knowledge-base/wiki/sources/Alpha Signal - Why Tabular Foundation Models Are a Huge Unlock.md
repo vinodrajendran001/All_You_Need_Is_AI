@@ -27,6 +27,10 @@ The article argues that tabular foundation models apply in-context prediction to
 
 - [[Why tabular foundation models are a huge unlock for enterprise AI]]
 
+## Affected pages
+
+- [[Tabular Foundation Models]]
+
 ## Related pages
 
 - [[Tabular Foundation Models]]

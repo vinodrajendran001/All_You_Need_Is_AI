@@ -43,9 +43,11 @@ PACE strengthens the view that efficient reasoning is not simply "make it shorte
 
 ## Affected pages
 
+- [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
 - [[Reasoning Compression]]
 - [[Reward Design for RL]]
-- [[LLM Training Pipeline]]
 
 ## Citations
 

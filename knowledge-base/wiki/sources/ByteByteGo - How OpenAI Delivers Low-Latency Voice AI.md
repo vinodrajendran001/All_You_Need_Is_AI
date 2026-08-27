@@ -48,10 +48,9 @@ This is the vault's clearest **production real-time-systems** case study and the
 
 ## Affected pages
 
-- [[Real-Time Voice AI]]
 - [[ML Systems at Scale]]
 - [[OpenAI]]
-- [[AI Knowledge Base Overview]]
+- [[Real-Time Voice AI]]
 
 ## Citations
 - Source URL: [https://blog.bytebytego.com/p/how-openai-delivers-low-latency-voice](https://blog.bytebytego.com/p/how-openai-delivers-low-latency-voice)

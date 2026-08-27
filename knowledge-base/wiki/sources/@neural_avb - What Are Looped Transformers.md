@@ -25,6 +25,10 @@ The source is a social-media explainer; its architectural framing is useful, but
 
 - [[What are Looped Transformers Explained clearly]]
 
+## Affected pages
+
+- [[Linear Attention and Recurrent Memory]]
+
 ## Related pages
 
 - [[Linear Attention and Recurrent Memory]]

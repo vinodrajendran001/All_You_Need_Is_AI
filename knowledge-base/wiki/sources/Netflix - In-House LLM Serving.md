@@ -25,9 +25,9 @@ Netflix describes an internal LLM-serving platform built around vLLM and Triton,
 
 ## Affected pages
 
-- [[LLM Inference]]
+- [[Inference Serving Engines]]
 - [[ML Systems at Scale]]
-- [[KV Cache]]
+- [[Serving Benchmarks and Goodput]]
 
 ## Citations
 ## Raw capture

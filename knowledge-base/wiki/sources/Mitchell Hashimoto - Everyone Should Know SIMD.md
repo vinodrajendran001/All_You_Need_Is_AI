@@ -26,8 +26,7 @@ This implementation-oriented guide explains CPU vectorization through a practica
 ## Affected pages
 
 - [[SIMD]]
-- [[GPU Execution Model]]
-- [[AI Accelerator Architecture]]
+- [[Software Performance Engineering]]
 
 ## Citations
 

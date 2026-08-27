@@ -43,10 +43,11 @@ This source broadens the vault's efficient-reasoning branch by showing that comp
 
 ## Affected pages
 
-- [[Reasoning Compression]]
 - [[LLM Training Pipeline]]
 - [[Latent-Space Reasoning]]
+- [[Model Quantization and Efficiency]]
 - [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 
 ## Citations
 

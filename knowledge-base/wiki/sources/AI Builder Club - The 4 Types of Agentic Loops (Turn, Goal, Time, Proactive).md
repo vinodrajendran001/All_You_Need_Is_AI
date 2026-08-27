@@ -45,11 +45,9 @@ The taxonomy turns abstract autonomy into explicit handoffs and gives [[Agentic 
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agentic Loop]]
-- [[Agent Planning]]
-- [[Multi-Turn Evaluation]]
-- [[AI Agents in Production]]
-- [[Coding Agent Harness]]
+- [[Loop Engineering]]
 
 ## Citations
 
@@ -66,3 +64,8 @@ The taxonomy turns abstract autonomy into explicit handoffs and gives [[Agentic 
 - [[Agent Memory]]
 - [[Context Engineering]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
+

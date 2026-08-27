@@ -43,12 +43,13 @@ This is the most concrete vendor description in the vault of what happens to an 
 
 ## Affected pages
 
-- [[AI-Native Software Development Lifecycle]]
-- [[Coding Agent Harness]]
-- [[Agent Skill]]
-- [[Agent Security and Governance]]
 - [[AI Agents in Production]]
+- [[AI-Native Software Development Lifecycle]]
+- [[Agent Security and Governance]]
+- [[Agent Skill]]
+- [[Agent Workflow Maturity]]
 - [[Anthropic]]
+- [[Coding Agent Harness]]
 
 ## Citations
 

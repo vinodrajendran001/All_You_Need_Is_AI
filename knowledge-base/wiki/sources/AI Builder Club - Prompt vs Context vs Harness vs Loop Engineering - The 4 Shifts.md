@@ -43,12 +43,8 @@ The article provides a synthesis connecting [[Context Engineering]], [[Coding Ag
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Context Engineering]]
-- [[Coding Agent Harness]]
-- [[Agentic Loop]]
-- [[Agent Memory]]
-- [[Agent Planning]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -68,3 +64,5 @@ The article provides a synthesis connecting [[Context Engineering]], [[Coding Ag
 - [[Agent Planning]]
 - [[AI Builder Club - Context Engineering - The Complete Guide (2026)]]
 - [[AI Builder Club - Plan vs Default vs Auto Mode - Coding Agent Trust Levels]]
+- [[AI Agents in Production]]
+

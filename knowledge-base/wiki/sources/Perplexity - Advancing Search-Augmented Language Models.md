@@ -49,12 +49,13 @@ A Perplexity Research article (published 2026-04-22) describing their post-train
 
 ## Affected pages
 
-- [[Search-Augmented Language Models]] — new concept page
-- [[Reward Design for RL]] — new concept page
+- [[Agentic Reinforcement Learning]]
+- [[Group Relative Policy Optimization]]
 - [[Perplexity]] — new entity page
 - [[Reinforcement Learning]] — updated with search-agent RL connections
-- [[Tool Use and Function Calling]] — cross-linked with efficiency-aware tool use
-- [[Agentic Loop]] — cross-linked
+- [[Retrieval-Augmented Generation]]
+- [[Reward Design for RL]] — new concept page
+- [[Search-Augmented Language Models]] — new concept page
 
 ## Raw capture
 

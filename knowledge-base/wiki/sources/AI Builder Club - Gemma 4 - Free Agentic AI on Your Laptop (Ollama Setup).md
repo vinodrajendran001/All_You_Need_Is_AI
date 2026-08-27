@@ -43,11 +43,7 @@ If the reported capabilities and licensing hold, the source points toward agent 
 
 ## Affected pages
 
-- [[Small Language Models]]
-- [[On-Device Reasoning]]
-- [[Tool Use and Function Calling]]
-- [[Agentic Loop]]
-- [[Model Quantization and Efficiency]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ If the reported capabilities and licensing hold, the source points toward agent 
 - [[AI Agents in Production]]
 - [[Coding Agent Harness]]
 - [[Context Engineering]]
+- [[Agentic Loop]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
+- [[Small Language Models]]
+- [[Tool Use and Function Calling]]
 

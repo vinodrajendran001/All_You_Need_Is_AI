@@ -48,11 +48,10 @@ This source seeds [[Video Transformers]] as a new concept and extends [[Transfor
 
 ## Affected pages
 
-- [[Video Transformers]]
-- [[Transformer Architecture]]
 - [[Mayank Pratap Singh]]
+- [[Transformer Architecture]]
+- [[Video Transformers]]
 - [[Vizuara]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://vizuara.substack.com/p/transformers-for-video-timesformer](https://vizuara.substack.com/p/transformers-for-video-timesformer)

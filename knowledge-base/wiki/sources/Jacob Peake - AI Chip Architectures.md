@@ -46,13 +46,17 @@ This is the vault's most complete single treatment of [[AI Accelerator Architect
 ## Affected pages
 
 - [[AI Accelerator Architecture]]
+- [[Anthropic]]
 - [[Arithmetic Intensity and the Roofline Model]]
-- [[GPU Execution Model]]
-- [[LLM Inference]]
 - [[Cerebras]]
+- [[GPU Execution Model]]
 - [[Groq]]
-- [[NVIDIA]]
+- [[Inference Serving Engines]]
 - [[Jacob Peake]]
+- [[LLM Inference]]
+- [[NVIDIA]]
+- [[Prefill-Decode Disaggregation]]
+- [[Speculative Decoding]]
 
 ## Citations
 

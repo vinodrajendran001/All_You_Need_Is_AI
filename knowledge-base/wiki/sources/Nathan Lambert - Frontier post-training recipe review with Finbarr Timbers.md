@@ -55,14 +55,14 @@ This source materially updates the vault's [[LLM Training Pipeline]] page: the p
 
 ## Affected pages
 
-- [[Multi-Teacher On-Policy Distillation]]
-- [[LLM Training Pipeline]]
-- [[Direct Preference Optimization]]
-- [[Reward Design for RL]]
 - [[Automated AI Research]]
-- [[Nathan Lambert]]
+- [[Direct Preference Optimization]]
 - [[Finbarr Timbers]]
-- [[AI Knowledge Base Overview]]
+- [[Knowledge Distillation]]
+- [[LLM Training Pipeline]]
+- [[Multi-Teacher On-Policy Distillation]]
+- [[Nathan Lambert]]
+- [[Reward Design for RL]]
 
 ## Raw capture
 

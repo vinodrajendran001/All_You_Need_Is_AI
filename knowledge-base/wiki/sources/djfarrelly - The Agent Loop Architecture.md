@@ -56,12 +56,11 @@ The durable takeaway is that agent reliability depends on an **execution substra
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Agent Skill]]
-- [[Agent Planning]]
 - [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agent Skill]]
+- [[Agentic Loop]]
 - [[Inngest]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://x.com/djfarrelly/status/2067677007140278630](https://x.com/djfarrelly/status/2067677007140278630)

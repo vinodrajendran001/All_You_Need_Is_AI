@@ -50,6 +50,12 @@ The article frames these systems as specialized reasoning engines rather than ge
 
 [[The return of recursion - How AI is rethinking complex reasoning]]
 
+## Affected pages
+
+- [[Alpha Signal]]
+- [[Latent-Space Reasoning]]
+- [[Recursive Architectures]]
+
 ## Related pages
 
 - [[Latent-Space Reasoning]]

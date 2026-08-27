@@ -25,6 +25,10 @@ The result is a concrete reproducibility warning: checkpoint immutability and co
 
 - [[Why do OpenAI's GPT-2 weights beat mine  Part two the bugfix]]
 
+## Affected pages
+
+- [[LLM Training Pipeline]]
+
 ## Related pages
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]

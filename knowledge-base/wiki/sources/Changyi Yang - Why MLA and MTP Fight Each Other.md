@@ -45,10 +45,16 @@ This is the vault's clearest demonstration that attention-variant design is **da
 
 ## Affected pages
 
+- [[AI Accelerator Architecture]]
 - [[Arithmetic Intensity and the Roofline Model]]
+- [[GPU Execution Model]]
+- [[Hugging Face]]
+- [[Inference Serving Engines]]
+- [[Jacob Peake]]
 - [[KV Cache]]
-- [[Speculative Decoding]]
 - [[LLM Inference]]
+- [[NVIDIA]]
+- [[Speculative Decoding]]
 - [[Transformer Architecture]]
 
 ## Citations

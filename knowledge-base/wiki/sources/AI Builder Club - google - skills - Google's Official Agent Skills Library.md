@@ -42,11 +42,8 @@ The source adds an ecosystem and governance dimension to [[Agent Skill]]. Offici
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agent Skill]]
-- [[Context Engineering]]
-- [[Coding Agent Harness]]
-- [[Tool Use and Function Calling]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -64,4 +61,6 @@ The source adds an ecosystem and governance dimension to [[Agent Skill]]. Offici
 - [[Coding Agent Harness]]
 - [[AI Builder Club - Anthropic's 300+ Claude Code Skills - Lessons Learned]]
 - [[AI Builder Club - last30days-skill - Real-Time Research for AI Agents]]
+- [[AI Agents in Production]]
+- [[Tool Use and Function Calling]]
 

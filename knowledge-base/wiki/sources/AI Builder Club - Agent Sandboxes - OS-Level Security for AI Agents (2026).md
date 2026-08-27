@@ -43,11 +43,8 @@ The source adds a concrete security substrate to [[Coding Agent Harness]] and [[
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
-- [[Tool Use and Function Calling]]
-- [[Model Context Protocol]]
-- [[Context Engineering]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Security and Governance]]
 
 ## Citations
 
@@ -65,4 +62,6 @@ The source adds a concrete security substrate to [[Coding Agent Harness]] and [[
 - [[Model Context Protocol]]
 - [[AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
 - [[AI Builder Club - Plan vs Default vs Auto Mode - Coding Agent Trust Levels]]
+- [[Context Engineering]]
+- [[Tool Use and Function Calling]]
 

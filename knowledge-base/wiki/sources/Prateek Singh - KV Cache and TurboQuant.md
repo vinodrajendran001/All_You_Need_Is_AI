@@ -65,9 +65,9 @@ This source justifies splitting [[KV Cache]] into its own concept page. KV cache
 
 - [[KV Cache]]
 - [[Model Quantization and Efficiency]]
-- [[Transformer Architecture]]
 - [[On-Device Reasoning]]
-- [[AI Knowledge Base Overview]]
+- [[Transformer Architecture]]
+- [[Vizuara]]
 
 ## Raw capture
 

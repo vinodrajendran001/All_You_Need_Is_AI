@@ -43,11 +43,7 @@ The article connects document preprocessing to [[Retrieval-Augmented Generation]
 
 ## Affected pages
 
-- [[Retrieval-Augmented Generation]]
-- [[Context Engineering]]
-- [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -65,3 +61,6 @@ The article connects document preprocessing to [[Retrieval-Augmented Generation]
 - [[Model Context Protocol]]
 - [[AI Builder Club - RAG vs Long Context vs Fine-Tuning - When Each Wins]]
 - [[AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
+- [[AI Agents in Production]]
+- [[Tool Use and Function Calling]]
+

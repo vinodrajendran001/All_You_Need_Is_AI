@@ -47,11 +47,11 @@ The argument unifies [[Agentic Reinforcement Learning]], [[Multi-Turn Evaluation
 
 ## Affected pages
 
+- [[Agent Skill]]
 - [[Agentic Reinforcement Learning]]
+- [[Continual Learning for Agents]]
 - [[Multi-Turn Evaluation]]
 - [[Recursive Self-Improvement]]
-- [[Coding Agent Harness]]
-- [[Agent Skill]]
 
 ## Citations
 
@@ -68,4 +68,5 @@ The argument unifies [[Agentic Reinforcement Learning]], [[Multi-Turn Evaluation
 - [[AI Agents in Production]]
 - [[Loop Engineering]]
 - [[Automated AI Research]]
+- [[Coding Agent Harness]]
 

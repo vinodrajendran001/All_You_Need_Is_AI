@@ -39,7 +39,6 @@ This is the first domain-specific paper ingested into the knowledge base, so it 
 
 ## Affected pages
 
-- [[AI Knowledge Base Overview]]
 - [[Reinforcement Learning]]
 
 ## Citations

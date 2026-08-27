@@ -26,6 +26,10 @@ Roblox's described approach is an engine-authoritative hybrid: deterministic gam
 
 - [[Inside Roblox’s Bet on World Models]]
 
+## Affected pages
+
+- [[World Models]]
+
 ## Related pages
 
 - [[World Models]]

@@ -25,9 +25,8 @@ FlashKDA is a fused GPU kernel implementation of Kimi Delta Attention. The repor
 
 ## Affected pages
 
+- [[GPU Kernel Optimization]]
 - [[Linear Attention and Recurrent Memory]]
-- [[GPU Execution Model]]
-- [[AI Accelerator Architecture]]
 
 ## Citations
 ## Raw capture

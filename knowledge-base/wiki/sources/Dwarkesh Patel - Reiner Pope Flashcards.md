@@ -45,9 +45,12 @@ This source strengthens the vault's compute-economics and distributed-systems br
 ## Affected pages
 
 - [[AI Accelerator Architecture]]
-- [[Model Quantization and Efficiency]]
-- [[ML Systems at Scale]]
+- [[Distributed Training Parallelism]]
+- [[LLM Inference]]
 - [[LLM Training Pipeline]]
+- [[ML Systems at Scale]]
+- [[Mixture of Experts]]
+- [[Model Quantization and Efficiency]]
 - [[Reiner Pope]]
 
 ## Citations

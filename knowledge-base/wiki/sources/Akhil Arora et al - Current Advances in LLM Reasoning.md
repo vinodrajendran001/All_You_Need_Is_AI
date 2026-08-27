@@ -67,24 +67,22 @@ This deck is the natural **hub** for the vault's scattered reasoning material an
 
 ## Affected pages
 
+- [[Agentic Reinforcement Learning]]
+- [[Direct Preference Optimization]]
+- [[Group Relative Policy Optimization]]
+- [[LLM Inference]]
 - [[LLM Reasoning]]
-- [[Test-Time Scaling]]
+- [[LLM Training Pipeline]]
+- [[LLM-as-a-Judge]]
+- [[Latent-Space Reasoning]]
+- [[Monte Carlo Tree Search]]
+- [[Multi-Teacher On-Policy Distillation]]
+- [[Nested Learning]]
 - [[Reasoning Compression]]
 - [[Reinforcement Learning]]
-- [[Group Relative Policy Optimization]]
-- [[Direct Preference Optimization]]
-- [[Reward Design for RL]]
-- [[LLM-as-a-Judge]]
-- [[Monte Carlo Tree Search]]
-- [[LLM Training Pipeline]]
-- [[Multi-Teacher On-Policy Distillation]]
-- [[LLM Inference]]
-- [[Latent-Space Reasoning]]
-- [[Recursive Architectures]]
 - [[Retrieval-Augmented Generation]]
-- [[Agentic Reinforcement Learning]]
-- [[Nested Learning]]
-- [[AI Knowledge Base Overview]]
+- [[Reward Design for RL]]
+- [[Test-Time Scaling]]
 
 ## Citations
 - Source URL: [Google Slides](https://docs.google.com/presentation/d/1GoSHhf6BwHwXA6vF_zhSxgsl8ty-8Zav9dGbP6qZsMg/edit?usp=sharing)
@@ -110,3 +108,5 @@ This deck is the natural **hub** for the vault's scattered reasoning material an
 - [[Multi-Teacher On-Policy Distillation]]
 - [[LLM Inference]]
 - [[AI Knowledge Base Overview]]
+- [[Recursive Architectures]]
+

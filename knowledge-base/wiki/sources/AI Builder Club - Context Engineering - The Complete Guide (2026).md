@@ -43,12 +43,8 @@ This source provides a broad framework for [[Context Engineering]] and links it 
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Context Engineering]]
-- [[Agent Memory]]
-- [[Agent Skill]]
-- [[Agentic Loop]]
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -67,4 +63,6 @@ This source provides a broad framework for [[Context Engineering]] and links it 
 - [[Coding Agent Harness]]
 - [[AI Builder Club - RAG vs Long Context vs Fine-Tuning - When Each Wins]]
 - [[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]]
+- [[AI Agents in Production]]
+- [[Agentic Loop]]
 

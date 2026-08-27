@@ -68,9 +68,8 @@ This source gives the vault a **DSA interview-prep layer** that complements the 
 ## Affected pages
 
 - [[Algorithm Templates for Interviews]]
+- [[ML Research Interview Preparation]]
 - [[Neural Network Fundamentals]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
 
 ## Citations
 

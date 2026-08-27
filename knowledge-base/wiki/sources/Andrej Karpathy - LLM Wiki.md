@@ -41,13 +41,12 @@ This pattern fits the workspace well because the vault already contains AI notes
 
 ## Affected pages
 
-- [[AI Knowledge Base Overview]]
+- [[Andrej Karpathy]]
+- [[Index and Log]]
+- [[Ingest Query Lint Loop]]
+- [[Obsidian]]
 - [[Persistent Wiki]]
 - [[Schema-Driven Knowledge Base]]
-- [[Ingest Query Lint Loop]]
-- [[Index and Log]]
-- [[Andrej Karpathy]]
-- [[Obsidian]]
 
 ## Citations
 

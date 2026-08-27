@@ -74,6 +74,13 @@ Amazon Dynamo, Google Spanner, Meta XFaaS — classic distributed systems papers
 
 [[2026-06-05 systemdesign42 - System Design Academy]]
 
+## Affected pages
+
+- [[AI Agents in Production]]
+- [[Agent Frameworks]]
+- [[Context Engineering]]
+- [[ML Systems at Scale]]
+
 ## Related pages
 
 - [[Context Engineering]]

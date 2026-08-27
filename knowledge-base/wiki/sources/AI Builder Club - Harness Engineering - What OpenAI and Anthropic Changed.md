@@ -46,13 +46,8 @@ This source integrates [[Context Engineering]], [[Agent Planning]], [[Agent Memo
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Coding Agent Harness]]
-- [[AI Agents in Production]]
-- [[Context Engineering]]
-- [[Agent Planning]]
-- [[Agent Memory]]
-- [[Multi-Turn Evaluation]]
-- [[LLM-as-a-Judge]]
 
 ## Citations
 
@@ -69,3 +64,10 @@ This source integrates [[Context Engineering]], [[Agent Planning]], [[Agent Memo
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Context Engineering]]
+- [[LLM-as-a-Judge]]
+- [[Multi-Turn Evaluation]]
+

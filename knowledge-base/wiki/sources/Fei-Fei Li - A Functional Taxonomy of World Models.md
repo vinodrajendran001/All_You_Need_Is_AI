@@ -46,13 +46,9 @@ This source deepens the vault's `World Models` concept page with a clear functio
 
 ## Affected pages
 
-- [[World Models]]
-- [[Latent-Space Reasoning]]
-- [[Reinforcement Learning]]
-- [[AI Agents in Production]]
-- [[World Labs]]
 - [[Fei-Fei Li]]
-- [[AI Knowledge Base Overview]]
+- [[World Labs]]
+- [[World Models]]
 
 ## Citations
 - Source URL: [https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models](https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models)

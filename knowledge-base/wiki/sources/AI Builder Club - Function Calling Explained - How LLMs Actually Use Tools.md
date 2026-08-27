@@ -43,11 +43,7 @@ Function calling is the interface beneath agent loops, MCP integrations, and cod
 
 ## Affected pages
 
-- [[Tool Use and Function Calling]]
-- [[Agentic Loop]]
-- [[Model Context Protocol]]
-- [[Coding Agent Harness]]
-- [[Context Engineering]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ Function calling is the interface beneath agent loops, MCP integrations, and cod
 - [[AI Agents in Production]]
 - [[Multi-Turn Evaluation]]
 - [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Model Context Protocol]]
+- [[Tool Use and Function Calling]]
 

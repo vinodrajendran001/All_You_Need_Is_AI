@@ -45,12 +45,8 @@ The source provides a compact bridge between [[Agentic Loop]], [[Context Enginee
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Context Engineering]]
-- [[Tool Use and Function Calling]]
-- [[Multi-Turn Evaluation]]
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
 
 ## Citations
 
@@ -67,3 +63,10 @@ The source provides a compact bridge between [[Agentic Loop]], [[Context Enginee
 - [[Agent Memory]]
 - [[LLM-as-a-Judge]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
+- [[Tool Use and Function Calling]]
+

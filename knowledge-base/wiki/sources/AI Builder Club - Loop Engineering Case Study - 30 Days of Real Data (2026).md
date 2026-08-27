@@ -46,12 +46,8 @@ The source gives [[Agentic Loop]] an unusually concrete operational case with bo
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Persistent Wiki]]
-- [[Agent Memory]]
-- [[Context Engineering]]
-- [[Multi-Turn Evaluation]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
 
 ## Citations
 
@@ -68,3 +64,10 @@ The source gives [[Agentic Loop]] an unusually concrete operational case with bo
 - [[Ingest Query Lint Loop]]
 - [[Coding Agent Harness]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agentic Loop]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
+- [[Persistent Wiki]]
+

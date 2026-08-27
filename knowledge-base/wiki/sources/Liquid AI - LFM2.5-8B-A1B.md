@@ -47,12 +47,13 @@ This source deepens the vault's efficiency-and-agents branch by making sparse in
 
 ## Affected pages
 
-- [[Mixture of Experts]]
-- [[Model Quantization and Efficiency]]
 - [[AI Accelerator Architecture]]
 - [[AI Agents in Production]]
 - [[Liquid AI]]
-- [[AI Knowledge Base Overview]]
+- [[Mixture of Experts]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
+- [[Small Language Models]]
 
 ## Citations
 ## Raw capture

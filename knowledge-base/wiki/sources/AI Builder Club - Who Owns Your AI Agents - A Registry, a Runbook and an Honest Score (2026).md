@@ -42,10 +42,9 @@ This source adds governance and lifecycle management to [[AI Agents in Productio
 ## Affected pages
 
 - [[AI Agents in Production]]
-- [[Agent Memory]]
-- [[Coding Agent Harness]]
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
+- [[AI Builder Club]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Security and Governance]]
 
 ## Citations
 
@@ -61,4 +60,8 @@ This source adds governance and lifecycle management to [[AI Agents in Productio
 - [[Agent Planning]]
 - [[Multi-Turn Evaluation]]
 - [[Context Engineering]]
+- [[Agent Memory]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Tool Use and Function Calling]]
 

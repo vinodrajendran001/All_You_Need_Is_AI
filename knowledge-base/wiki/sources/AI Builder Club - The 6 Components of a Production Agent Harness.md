@@ -44,13 +44,10 @@ The six-part model gives [[Coding Agent Harness]] and [[AI Agents in Production]
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
 - [[AI Agents in Production]]
-- [[Context Engineering]]
-- [[Tool Use and Function Calling]]
-- [[Agent Planning]]
-- [[Agent Memory]]
-- [[Multi-Turn Evaluation]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Workflow Maturity]]
+- [[Coding Agent Harness]]
 
 ## Citations
 
@@ -67,3 +64,9 @@ The six-part model gives [[Coding Agent Harness]] and [[AI Agents in Production]
 - [[Agent Skill]]
 - [[LLM-as-a-Judge]]
 - [[AI Knowledge Base Overview]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
+- [[Tool Use and Function Calling]]
+

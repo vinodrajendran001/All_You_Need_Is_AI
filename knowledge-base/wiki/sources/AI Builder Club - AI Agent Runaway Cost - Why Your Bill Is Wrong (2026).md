@@ -42,10 +42,8 @@ This source makes cost observability part of [[AI Agents in Production]] rather 
 ## Affected pages
 
 - [[AI Agents in Production]]
-- [[Coding Agent Harness]]
-- [[Agentic Loop]]
-- [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Security and Governance]]
 
 ## Citations
 
@@ -62,4 +60,8 @@ This source makes cost observability part of [[AI Agents in Production]] rather 
 - [[Context Engineering]]
 - [[Agent Planning]]
 - [[Agent Memory]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Model Context Protocol]]
+- [[Tool Use and Function Calling]]
 

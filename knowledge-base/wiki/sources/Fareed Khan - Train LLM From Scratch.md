@@ -52,11 +52,10 @@ This source strengthens the vault's code-first LLM branch. It is particularly us
 
 ## Affected pages
 
-- [[Transformer Architecture]]
+- [[Fareed Khan]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
-- [[Fareed Khan]]
-- [[AI Knowledge Base Overview]]
+- [[Transformer Architecture]]
 
 ## Citations
 

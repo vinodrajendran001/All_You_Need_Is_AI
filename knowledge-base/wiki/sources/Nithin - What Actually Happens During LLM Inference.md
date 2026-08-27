@@ -47,11 +47,12 @@ This article gives the vault its clearest single statement of the **prefill/deco
 
 ## Affected pages
 
-- [[LLM Inference]]
+- [[Arithmetic Intensity and the Roofline Model]]
+- [[Inference Serving Engines]]
 - [[KV Cache]]
+- [[LLM Inference]]
 - [[Model Quantization and Efficiency]]
-- [[ML Systems at Scale]]
-- [[AI Knowledge Base Overview]]
+- [[Prefill-Decode Disaggregation]]
 
 ## Citations
 - Source URL: [https://medium.com/@nithinellanki/what-actually-happens-during-llm-inference-e9e756715fc8](https://medium.com/@nithinellanki/what-actually-happens-during-llm-inference-e9e756715fc8)
@@ -69,3 +70,5 @@ This article gives the vault its clearest single statement of the **prefill/deco
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
 - [[Small Language Models]]
 - [[AI Knowledge Base Overview]]
+- [[ML Systems at Scale]]
+

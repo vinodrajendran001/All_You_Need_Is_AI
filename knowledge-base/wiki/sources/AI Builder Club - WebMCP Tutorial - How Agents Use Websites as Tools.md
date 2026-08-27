@@ -42,11 +42,8 @@ WebMCP extends [[Tool Use and Function Calling]] and [[Model Context Protocol]] 
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
-- [[Context Engineering]]
-- [[Agentic Loop]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -64,4 +61,6 @@ WebMCP extends [[Tool Use and Function Calling]] and [[Model Context Protocol]] 
 - [[Agentic Loop]]
 - [[AI Builder Club - MCP Internals - STDIO, SSE, and JSON-RPC Explained]]
 - [[AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
+- [[AI Agents in Production]]
+- [[Context Engineering]]
 

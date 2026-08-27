@@ -52,16 +52,15 @@ The deeper point for agent design is that **the action space determines the opti
 
 ## Affected pages
 
-- [[Programmatic Tool Calling]] - new
-- [[Speculative Tool Execution]] - new
-- [[Alex L. Zhang]] - new
-- [[Tool Use and Function Calling]]
-- [[Coding Agent Harness]]
-- [[Speculative Decoding]]
-- [[LLM Inference]]
 - [[Agent Security and Governance]]
-- [[Arithmetic Intensity and the Roofline Model]]
+- [[Alex L. Zhang]] - new
+- [[Coding Agent Harness]]
 - [[Context Engineering]]
+- [[LLM Inference]]
+- [[Programmatic Tool Calling]] - new
+- [[Speculative Decoding]]
+- [[Speculative Tool Execution]] - new
+- [[Tool Use and Function Calling]]
 
 ## Raw capture
 
@@ -87,3 +86,5 @@ The deeper point for agent design is that **the action space determines the opti
 - [[Speculative Decoding]]
 - [[LLM Inference]]
 - [[AI Knowledge Base Overview]]
+- [[Arithmetic Intensity and the Roofline Model]]
+

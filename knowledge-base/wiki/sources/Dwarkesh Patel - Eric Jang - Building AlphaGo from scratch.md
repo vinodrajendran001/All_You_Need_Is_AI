@@ -43,11 +43,12 @@ This source connects several branches of the vault at once. It strengthens the R
 
 ## Affected pages
 
-- [[Monte Carlo Tree Search]]
-- [[Reinforcement Learning]]
-- [[Automated AI Research]]
 - [[Agentic Loop]]
+- [[Automated AI Research]]
 - [[Eric Jang]]
+- [[Monte Carlo Tree Search]]
+- [[Recursive Self-Improvement]]
+- [[Reinforcement Learning]]
 
 ## Citations
 

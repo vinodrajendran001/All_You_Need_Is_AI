@@ -52,11 +52,12 @@ A ByteByteGo article (published 2026-05-04) tracing the evolution from LLMs as i
 
 ## Affected pages
 
-- [[Tool Use and Function Calling]] — new concept page
-- [[Model Context Protocol]] — new concept page
 - [[Agentic Loop]] — new concept page
 - [[ByteByteGo]] — new entity page
-- [[AI Knowledge Base Overview]] — updated with new domain area
+- [[Model Context Protocol]] — new concept page
+- [[Retrieval-Augmented Generation]]
+- [[Search-Augmented Language Models]]
+- [[Tool Use and Function Calling]] — new concept page
 
 ## Raw capture
 

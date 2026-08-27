@@ -46,12 +46,8 @@ The source directly connects [[Agent Skill]], [[Model Context Protocol]], [[Agen
 
 ## Affected pages
 
-- [[Agent Skill]]
-- [[Model Context Protocol]]
-- [[Agent Memory]]
-- [[Agentic Loop]]
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
 
 ## Citations
 
@@ -68,3 +64,10 @@ The source directly connects [[Agent Skill]], [[Model Context Protocol]], [[Agen
 - [[Multi-Turn Evaluation]]
 - [[Tool Use and Function Calling]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Skill]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Model Context Protocol]]
+

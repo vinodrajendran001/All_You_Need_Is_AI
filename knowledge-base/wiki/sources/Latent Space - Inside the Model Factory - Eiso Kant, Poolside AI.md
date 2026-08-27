@@ -26,8 +26,6 @@ This interview frames Poolside's advantage as a model factory: reproducible data
 ## Affected pages
 
 - [[Model Factory]]
-- [[Automated AI Research]]
-- [[LLM Training Pipeline]]
 
 ## Citations
 ## Raw capture

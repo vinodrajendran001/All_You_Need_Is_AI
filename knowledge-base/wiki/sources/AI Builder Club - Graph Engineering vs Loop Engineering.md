@@ -45,12 +45,8 @@ The source clarifies the boundary between [[Agentic Loop]] and multi-agent orche
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Agent Planning]]
-- [[Context Engineering]]
-- [[Agent Memory]]
-- [[Multi-Turn Evaluation]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -67,3 +63,10 @@ The source clarifies the boundary between [[Agentic Loop]] and multi-agent orche
 - [[Tool Use and Function Calling]]
 - [[LLM-as-a-Judge]]
 - [[AI Knowledge Base Overview]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
+

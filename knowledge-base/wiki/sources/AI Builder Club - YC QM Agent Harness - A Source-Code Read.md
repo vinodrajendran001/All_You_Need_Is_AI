@@ -45,12 +45,8 @@ QM expands [[AI Agents in Production]] beyond single-user agent quality into org
 
 ## Affected pages
 
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
 - [[Coding Agent Harness]]
-- [[Agent Memory]]
-- [[Context Engineering]]
-- [[Tool Use and Function Calling]]
-- [[Y Combinator]]
 
 ## Citations
 
@@ -67,3 +63,9 @@ QM expands [[AI Agents in Production]] beyond single-user agent quality into org
 - [[Agent Planning]]
 - [[Model Context Protocol]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Context Engineering]]
+- [[Tool Use and Function Calling]]
+- [[Y Combinator]]
+

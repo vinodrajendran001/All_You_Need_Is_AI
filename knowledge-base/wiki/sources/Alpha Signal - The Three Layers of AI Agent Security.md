@@ -37,9 +37,7 @@ The source gives [[Agent Security and Governance]] a concrete three-plane archit
 ## Affected pages
 
 - [[Agent Security and Governance]]
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
-- [[Agentic Loop]]
+- [[Alpha Signal]]
 
 ## Citations
 
@@ -54,4 +52,7 @@ The source gives [[Agent Security and Governance]] a concrete three-plane archit
 - [[AI Builder Club - Agent Sandboxes - OS-Level Security for AI Agents (2026)]]
 - [[AI Builder Club - Agent Tool Permissions - Test That Your Deny Rules Hold (2026)]]
 - [[Alpha Signal]]
+- [[AI Agents in Production]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
 

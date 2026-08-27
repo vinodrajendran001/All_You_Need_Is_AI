@@ -45,11 +45,8 @@ The source gives [[Agentic Loop]] a useful human-factors framing: autonomy is co
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Multi-Turn Evaluation]]
-- [[Agent Planning]]
-- [[Coding Agent Harness]]
-- [[Andrej Karpathy]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
 
 ## Citations
 
@@ -66,3 +63,9 @@ The source gives [[Agentic Loop]] a useful human-factors framing: autonomy is co
 - [[AI Agents in Production]]
 - [[Context Engineering]]
 - [[AI Knowledge Base Overview]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Andrej Karpathy]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
+

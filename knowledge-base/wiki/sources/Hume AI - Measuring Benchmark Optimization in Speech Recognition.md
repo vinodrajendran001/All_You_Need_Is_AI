@@ -44,10 +44,11 @@ Most contamination discussion in the vault is about text benchmarks and is argue
 ## Affected pages
 
 - [[Benchmark Optimization]]
-- [[Real-Time Voice AI]]
-- [[Multi-Turn Evaluation]]
-- [[Hume AI]]
 - [[Hugging Face]]
+- [[Hume AI]]
+- [[Multi-Turn Evaluation]]
+- [[Real-Time Voice AI]]
+- [[Serving Benchmarks and Goodput]]
 
 ## Citations
 

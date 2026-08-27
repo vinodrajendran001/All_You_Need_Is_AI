@@ -49,11 +49,10 @@ This is the second, deeper TurboQuant source in the vault. [[Prateek Singh - KV 
 ## Affected pages
 
 - [[KV Cache]]
-- [[Model Quantization and Efficiency]]
 - [[LLM Inference]]
+- [[Model Quantization and Efficiency]]
 - [[Siddhant Rai]]
 - [[Vizuara]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://vizuara.substack.com/p/turboquant-online-vector-quantization](https://vizuara.substack.com/p/turboquant-online-vector-quantization)

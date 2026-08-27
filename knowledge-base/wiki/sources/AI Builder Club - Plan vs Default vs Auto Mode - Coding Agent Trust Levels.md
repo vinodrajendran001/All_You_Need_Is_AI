@@ -43,11 +43,7 @@ The source develops human-control policy within the [[Coding Agent Harness]]. It
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
-- [[Agent Planning]]
-- [[Agentic Loop]]
-- [[AI Agents in Production]]
-- [[Tool Use and Function Calling]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -66,4 +62,5 @@ The source develops human-control policy within the [[Coding Agent Harness]]. It
 - [[AI Agents in Production]]
 - [[AI Builder Club - Agent Sandboxes - OS-Level Security for AI Agents (2026)]]
 - [[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]]
+- [[Tool Use and Function Calling]]
 

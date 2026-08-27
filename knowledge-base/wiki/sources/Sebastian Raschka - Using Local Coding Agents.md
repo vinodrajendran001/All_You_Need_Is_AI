@@ -48,13 +48,13 @@ This is the vault's most concrete treatment of running agents on open-weight mod
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
-- [[Small Language Models]]
-- [[On-Device Reasoning]]
 - [[Agentic Loop]]
+- [[Coding Agent Harness]]
 - [[Model Routing]]
+- [[NVIDIA]]
+- [[On-Device Reasoning]]
 - [[Sebastian Raschka]]
-- [[AI Knowledge Base Overview]]
+- [[Small Language Models]]
 
 ## Citations
 - Source URL: [https://magazine.sebastianraschka.com/p/using-local-coding-agents](https://magazine.sebastianraschka.com/p/using-local-coding-agents)

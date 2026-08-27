@@ -41,9 +41,11 @@ This source expands the vault's efficient-reasoning branch beyond token shorteni
 
 ## Affected pages
 
-- [[Reasoning Compression]]
-- [[Latent-Space Reasoning]]
 - [[LLM Training Pipeline]]
+- [[Latent-Space Reasoning]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 
 ## Citations
 

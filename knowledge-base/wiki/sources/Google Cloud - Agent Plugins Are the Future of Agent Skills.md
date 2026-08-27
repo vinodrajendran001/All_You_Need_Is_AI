@@ -39,9 +39,7 @@ The proposal extends [[Agent Skill]] from reusable instructions into a distribut
 
 - [[Agent Plugin Architecture]]
 - [[Agent Skill]]
-- [[Model Context Protocol]]
-- [[Agent Frameworks]]
-- [[Agent Security and Governance]]
+- [[LLM-Native Extensible Software]]
 
 ## Citations
 
@@ -57,4 +55,7 @@ The proposal extends [[Agent Skill]] from reusable instructions into a distribut
 - [[Tool Use and Function Calling]]
 - [[Coding Agent Harness]]
 - [[Google Cloud - Agent Plugins Are the Future of Agent Skills]]
+- [[Agent Frameworks]]
+- [[Agent Security and Governance]]
+- [[Model Context Protocol]]
 

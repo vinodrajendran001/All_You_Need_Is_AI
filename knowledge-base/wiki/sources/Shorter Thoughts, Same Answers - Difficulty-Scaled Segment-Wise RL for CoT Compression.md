@@ -41,10 +41,12 @@ This source adds a more fine-grained view of efficient reasoning: the object bei
 
 ## Affected pages
 
-- [[Reasoning Compression]]
-- [[Reward Design for RL]]
 - [[Group Relative Policy Optimization]]
 - [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
+- [[Reasoning Compression]]
+- [[Reward Design for RL]]
 
 ## Citations
 

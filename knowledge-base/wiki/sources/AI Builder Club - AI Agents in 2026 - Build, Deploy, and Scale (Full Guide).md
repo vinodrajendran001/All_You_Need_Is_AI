@@ -43,13 +43,12 @@ The guide supplies a compact map of the engineering stack and resists treating e
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
-- [[Agent Memory]]
-- [[Agent Planning]]
 - [[AI Agents in Production]]
-- [[Model Context Protocol]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Memory]]
+- [[Agent Security and Governance]]
+- [[Agentic Loop]]
 
 ## Citations
 
@@ -65,4 +64,8 @@ The guide supplies a compact map of the engineering stack and resists treating e
 - [[Context Engineering]]
 - [[Multi-Turn Evaluation]]
 - [[Agent Skill]]
+- [[Agent Planning]]
+- [[Coding Agent Harness]]
+- [[Model Context Protocol]]
+- [[Tool Use and Function Calling]]
 

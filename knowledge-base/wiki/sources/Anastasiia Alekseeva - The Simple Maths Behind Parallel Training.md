@@ -48,14 +48,13 @@ This is the vault's first source that lays out the **full parallelism taxonomy**
 
 ## Affected pages
 
+- [[AI Accelerator Architecture]]
 - [[Distributed Training Parallelism]]
 - [[LLM Training Pipeline]]
 - [[Mixture of Experts]]
-- [[AI Accelerator Architecture]]
-- [[Transformer Architecture]]
-- [[Neural Network Fundamentals]]
 - [[NVIDIA]]
-- [[AI Knowledge Base Overview]]
+- [[Neural Network Fundamentals]]
+- [[Transformer Architecture]]
 
 ## Citations
 - Source URL: [https://www.linkedin.com/pulse/simple-maths-behind-parallel-traning-anastasiia-alekseeva-oqhye/](https://www.linkedin.com/pulse/simple-maths-behind-parallel-traning-anastasiia-alekseeva-oqhye/)

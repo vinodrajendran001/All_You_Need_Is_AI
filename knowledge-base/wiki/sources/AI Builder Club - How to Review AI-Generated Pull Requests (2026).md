@@ -41,11 +41,9 @@ The source gives [[Coding Agent Harness]] a concrete human-accountability bounda
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[AI-Native Software Development Lifecycle]]
 - [[Multi-Turn Evaluation]]
-- [[LLM-as-a-Judge]]
-- [[Tool Use and Function Calling]]
 
 ## Citations
 
@@ -61,4 +59,8 @@ The source gives [[Coding Agent Harness]] a concrete human-accountability bounda
 - [[Agentic Loop]]
 - [[Agent Planning]]
 - [[Context Engineering]]
+- [[AI Agents in Production]]
+- [[Coding Agent Harness]]
+- [[LLM-as-a-Judge]]
+- [[Tool Use and Function Calling]]
 

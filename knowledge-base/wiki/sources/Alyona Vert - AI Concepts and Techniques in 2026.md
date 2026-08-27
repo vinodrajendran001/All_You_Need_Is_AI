@@ -48,14 +48,14 @@ This survey lets the vault absorb a batch of named 2026 techniques without a pag
 
 ## Affected pages
 
-- [[Multi-Teacher On-Policy Distillation]]
-- [[LLM Training Pipeline]]
 - [[AI Accelerator Architecture]]
-- [[Model Routing]]
-- [[Transformer Architecture]]
 - [[Agent Memory]]
-- [[Nested Learning]]
-- [[AI Knowledge Base Overview]]
+- [[Alyona Vert]]
+- [[LLM Training Pipeline]]
+- [[Model Routing]]
+- [[Multi-Teacher On-Policy Distillation]]
+- [[NVIDIA]]
+- [[Transformer Architecture]]
 
 ## Citations
 - Source URL: [https://www.turingpost.com/p/ai-concepts-and-techniques-in-2026-memory-inference-fine-tuning-tokens](https://www.turingpost.com/p/ai-concepts-and-techniques-in-2026-memory-inference-fine-tuning-tokens)

@@ -46,13 +46,10 @@ The guide provides a broad operating model for [[Agentic Loop]] and connects it 
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agentic Loop]]
-- [[Agent Planning]]
+- [[Loop Engineering]]
 - [[Multi-Turn Evaluation]]
-- [[Coding Agent Harness]]
-- [[Context Engineering]]
-- [[Agent Memory]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -69,3 +66,9 @@ The guide provides a broad operating model for [[Agentic Loop]] and connects it 
 - [[Agent Skill]]
 - [[Tool Use and Function Calling]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+

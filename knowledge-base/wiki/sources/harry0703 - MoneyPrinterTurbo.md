@@ -36,9 +36,7 @@ The repository is a concrete reference implementation of an end-to-end multimoda
 
 ## Affected pages
 
-- [[AI Agents in Production]]
 - [[Agent Frameworks]]
-- [[Tool Use and Function Calling]]
 
 ## Citations
 
@@ -53,4 +51,6 @@ The repository is a concrete reference implementation of an end-to-end multimoda
 - [[Agentic Loop]]
 - [[Model Routing]]
 - [[Real-Time Voice AI]]
+- [[AI Agents in Production]]
+- [[Tool Use and Function Calling]]
 

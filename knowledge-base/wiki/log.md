@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-08-26
+updated: 2026-08-27
 tags:
   - log
 source_ids:
@@ -203,6 +203,8 @@ source_ids:
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
 status: active
 ---
 

@@ -55,6 +55,23 @@ It is one of the two levers for improving reasoning (the other being post-traini
 
 [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] adds the systems-level stopping problem. Returns can plateau or turn negative while token cost continues rising with the transcript. A controller therefore needs more than a fixed sample budget: it should observe progress, detect unreachable targets, meter evaluator cost, and stop when expected improvement no longer justifies another iteration.
 
+## A third rung between thinking and not thinking
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] ships every Granite 4.2 model with a
+thinking / non-thinking switch **plus a low-effort mode that spends a short reasoning budget on easy
+questions**.
+
+The three-way split is a small but meaningful change to how test-time compute gets allocated. A
+binary switch forces a routing decision with only bad options for the middle of the difficulty
+distribution: questions that benefit from some deliberation but do not justify a full reasoning trace
+either get overspent or get nothing. A short-budget mode makes the allocation continuous enough to
+match the actual shape of incoming traffic.
+
+It also relocates the decision. With a binary switch, a router upstream of the model picks the mode
+(see [[Model Routing]]); with a budget parameter, the amount of test-time compute becomes a dial the
+caller sets per request. Granite does not report how the low-effort budget is enforced or what it
+costs in accuracy, so whether this beats routing between two modes is untested.
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -63,6 +80,7 @@ It is one of the two levers for improving reasoning (the other being post-traini
 
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[LLM Reasoning]]
 - [[Reasoning Compression]]

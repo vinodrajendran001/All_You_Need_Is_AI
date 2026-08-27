@@ -82,6 +82,48 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]] provides a reproducible open-model post-training recipe for specialized behavior: start with a 26B MoE with 3B active parameters, apply GRPO through LoRA adapters, and train against two verifiable environments rather than a generic chat preference signal. The 21-run program held the model, optimizer, topology, and held-out protocol fixed while varying one bounded hypothesis at a time; the selected run improved held-out Drug Tool from 70.8% to 81.2% and reached 0.863 on BioReason's composite metric. This is a practical example of the pipeline moving from generic capability to domain-specific, auditable tool use.
 - [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] separates three distillation surfaces inside the pipeline: teacher outputs, teacher features, and teacher-generated synthetic data. Distillation creates a new student model; later quantization or pruning is a separate deployment step. See [[Knowledge Distillation]].
 
+## A complete published pipeline, end to end
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] is the only source in this vault that walks
+one model family's entire pipeline with its hyperparameters attached, which makes it a useful spine
+for this page.
+
+**Pre-training** runs ~15T tokens across five phases, each with a distinct data mixture and
+learning-rate schedule: phases 1–2 foundational, 3–4 mid-training with progressively higher-quality
+data annealing, phase 5 long-context extension. The shape is a gradual shift from broad web-scale
+data toward curated sources rather than a single fixed blend.
+
+**SFT** is where the pipeline's character shows. Granite's mixture is ~7.2M samples, roughly 100B
+tokens of which only ~65B are trainable, split **31.6% agentic / 68.4% non-agentic**. The quality
+control is worth recording as a template:
+
+1. Normalize every source into one format (OpenAI Chat) so conversation structure and tool
+   interactions are uniform across datasets and harnesses.
+2. Score with LLM judges — GPT-OSS-120B and Gemma 4 — and drop low-scoring samples, hallucinated
+   content, and invalid tool interactions.
+3. Apply targeted per-dataset heuristics for known noise.
+4. Deduplicate locally and globally on SHA-256 hashes over the combined `tools` and `messages`
+   fields.
+
+Step 1 is the one most easily underestimated: normalizing to a single chat format is what makes the
+later steps expressible at all, since a judge or a dedup hash needs a canonical representation to
+operate on.
+
+**A second SFT phase** is applied to the 30B model only, specializing on agentic coding by upsampling
+agentic/SWE/coding data while retaining ~16% replay from the original mixture, for ~1 epoch at a
+lower learning rate. The replay fraction is the guard against catastrophic forgetting, and 16% is a
+concrete reference point for how much is enough.
+
+**Post-training** is not one RL pass but a chain of stages, each an independent GRPO run
+warm-starting from the previous checkpoint. That structure is developed on
+[[Staged Reinforcement Learning Curriculum]], and the optimizer configuration on
+[[Group Relative Policy Optimization]].
+
+One inconsistency to carry: the post says phase 5 extends context to 512K tokens, but the
+architecture table lists a sequence length of 131,072 and the long-context results stop at RULER
+128K. The likely reading is that 512K was reached in training while the released configuration is
+capped at 128K, but the source does not say so.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -91,6 +133,8 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[Staged Reinforcement Learning Curriculum]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]

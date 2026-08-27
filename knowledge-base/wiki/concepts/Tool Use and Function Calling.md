@@ -69,8 +69,33 @@ The two are not mutually exclusive, and the useful open question is where the li
 - **Function calling API** (mid-2023) — OpenAI's controlled replacement. Developers explicitly define which tools the model can access.
 - **MCP** (late 2024) — [[Anthropic]]'s open standard that decouples tool definitions from provider-specific formats, solving the N×M problem.
 
+## Training data quality is a schema-validation problem
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] describes a filter worth recording
+precisely: Granite's SFT pipeline removes samples containing **tool calls to functions that are not
+defined in the corresponding tool list**.
+
+That failure mode is the training-data mirror of the runtime failure this page describes. A model
+that hallucinates a function name at inference is often a model that was shown trajectories where
+exactly that happened and nothing went wrong. Filtering on schema consistency — does every call in
+this trajectory resolve against the tools this sample actually declared? — is a cheap, mechanical
+check that a large fraction of scraped or synthesized agentic data will fail.
+
+The pipeline's first step matters as much: every source is **normalized into OpenAI Chat format**
+before anything else, making conversation structure and tool interactions uniform across a dozen
+different harnesses. Only then can judges score samples or SHA-256 hashes over the combined `tools`
+and `messages` fields deduplicate them. A canonical tool-call representation is the precondition for
+doing any quality control on agentic data at all.
+
+Granite also trains single-step tool calling as a **verifiable RLVR task** with its own checker,
+before any agentic stage — treating well-formed tool use as something with a ground-truth answer
+rather than as behavior that emerges from end-to-end task rewards. At serving time the models emit
+tool calls in OpenAI function-calling format through an OpenAI-compatible endpoint, so the training
+representation and the wire format match.
+
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Model Context Protocol]]
 - [[Agentic Loop]]
 - [[Agent Planning]]

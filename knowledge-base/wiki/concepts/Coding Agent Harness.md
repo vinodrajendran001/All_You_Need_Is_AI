@@ -95,6 +95,29 @@ The consequence for harness selection: token efficiency and permission model are
 
 The reported gains are modest, roughly 1–1.2×, and the author is candid that they depend entirely on tool latency and trajectory. The more durable point is architectural: **a harness that treats a generation as an opaque blob until it completes is leaving a compiler's worth of optimization on the table.** [[Speculative Tool Execution]] covers the mechanism, including the shadow-REPL design that keeps partial execution from mutating real state, and the governance gap it leaves open — purity is analysed, authority is not.
 
+## Harnesses as training infrastructure
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] shows coding harnesses being used for
+something this page has not covered: **generating and executing training data**, not just serving
+users at inference time.
+
+Granite's agentic SFT trajectories were deliberately produced across a wide spread of harnesses —
+OpenHands, OpenCode, Terminus-2, SWE-agent, OpenResearcher, MiniSWE, OpenSeeker, EnvScaler, Gemini
+CLI, Hermes, Codex, and Goose — rather than standardizing on one. Harness diversity is treated as a
+form of data augmentation: a model trained on trajectories from a dozen scaffolds should be less
+overfit to any single one's prompt conventions, tool schemas, and turn structure.
+
+The agentic RL stages then run *inside* harnesses too. The SWE stage drives OpenHands over real
+repositories in per-repo container images, rewarded on hidden tests; the terminal stage runs Harbor /
+Terminus-2 over a live shell with rollouts spanning up to 64 environment turns.
+
+This inverts the usual relationship. This page has treated the harness as the layer that adapts a
+fixed model to a task; here the harness is the environment the model is *shaped by*. It also raises a
+coupling question the source does not address: a model post-trained through OpenHands has been
+optimized against that harness's specific action space and observation format, so harness-diverse
+training data may be less about robustness than about avoiding a dependency that would otherwise be
+baked in at RL time.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -104,6 +127,8 @@ The reported gains are modest, roughly 1–1.2×, and the author is candid that 
 
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[Agentic Reinforcement Learning]]
 - [[Sebastian Raschka - Using Local Coding Agents]]
 - [[Anthropic - The AI-Native SDLC Playbook]]
 - [[AI-Native Software Development Lifecycle]]

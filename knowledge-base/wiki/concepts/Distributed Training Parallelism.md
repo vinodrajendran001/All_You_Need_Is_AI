@@ -60,6 +60,29 @@ Real frontier runs combine several axes (often called 3D or 4D parallelism): dat
 
 Below that sits the fabric itself: **NVLink/NVSwitch** inside a scale-up domain, and the emerging **UALink** and **Ultra Ethernet** specifications for scale-up and scale-out respectively. These are open standards being written now, and they decide whether the next generation's parallelism strategies are portable across vendors or locked to one. See [[NVIDIA]] on rack-scale NVLink domains and [[AI Accelerator Architecture]] on the competing stacks.
 
+## A published parallelism configuration, and a second axis of splitting
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] gives concrete settings for a 15T-token
+family trained on an NVIDIA GB200 NVL72 cluster hosted by CoreWeave — a 72-GPU NVLink domain for
+intra-rack traffic over a non-blocking Fat-Tree NDR 400 Gb/s InfiniBand fabric between racks.
+
+The notable part is how *modest* the parallelism degrees are. SFT ran on 32–128 nodes of 4×
+Grace/GB200 with **TP=2, PP=1, and CP=4 or 2** — no pipeline parallelism at all, and context
+parallelism carrying the load instead, because sequences are packed to 131,072 tokens. The RL stages
+use tensor-parallel 2–4 with neither pipeline nor context parallelism. For 3B–30B dense models on
+GB200-class hardware, a 72-GPU NVLink domain is wide enough that the elaborate 3D/4D schemes this
+page describes are simply unnecessary; the interesting split is **context**, driven by sequence
+length rather than by model size.
+
+RL post-training then introduces a partitioning axis that has nothing to do with the model at all.
+Generation and policy updates run on **separate GPU pools**, so the generation fleet — including live
+agentic environments, container sandboxes, and browsers — stays busy instead of idling through
+optimizer steps. Weights move between them via Megatron-Bridge, converting between Megatron and
+Hugging Face formats. This is parallelism organized around *pipeline stages of the training
+algorithm* rather than around tensors, layers, or sequence positions, and it is the arrangement that
+makes asynchronous RL physically possible. See [[Agentic Reinforcement Learning]] and
+[[Staged Reinforcement Learning Curriculum]].
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
@@ -68,6 +91,7 @@ Below that sits the fabric itself: **NVLink/NVSwitch** inside a scale-up domain,
 
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
 - [[LLM Training Pipeline]]
 - [[Mixture of Experts]]

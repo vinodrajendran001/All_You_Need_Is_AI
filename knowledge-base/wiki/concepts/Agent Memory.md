@@ -101,6 +101,24 @@ The sources above treat memory as **explicit stored data** loaded into context �
 - The tension with the storage view is real and intentional: storage memory is auditable but external and inert; structural memory is integrated and adaptive but harder to inspect and carries stability/safety risk. This vault keeps both framings rather than collapsing them.
 - [[Alyona Vert - AI Concepts and Techniques in 2026]] adds a third framing to track: **conditional (selective) memory**, illustrated by DeepSeek's Engram, where a model *retrieves* memory through sparse lookups instead of storing everything in parameters or an ever-growing context. Its "U-shaped allocation law" — the best systems balance memory capacity against computation rather than maximising either — is a frontier signal that memory is becoming something a model decides *what to keep and when to fetch*, sitting between the storage and structural poles above.
 
+## Memory as one of several scaffold update surfaces
+
+[[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]] places memory inside a wider frame
+that is useful for this page. It treats memory as one component of an agent's **scaffold** — alongside
+prompts, tools, and control logic — and treats a write to any of them as the same kind of event: a
+durable, execution-derived update.
+
+The clarifying consequence is the survey's boundary between durable and transient. Context-window
+contents and KV state are explicitly *not* memory in this sense, no matter how much an agent appears
+to remember within a session. Only what survives the session and is retrievable afterwards counts.
+That gives this page a sharper test than "does the agent recall it" — namely, does anything get
+written back, and can a later run retrieve it.
+
+It also suggests memory should be governed like the other scaffold surfaces: **versioned, validated,
+and reversible**. Memory writes are usually treated as append-only bookkeeping, but under this framing
+a bad memory write is the same class of event as a bad tool registration — a durable change to future
+behavior that ought to be inspectable and undoable. See [[Recursive Self-Improvement]].
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -110,6 +128,7 @@ The sources above treat memory as **explicit stored data** loaded into context �
 
 ## Related pages
 
+- [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Agentic Loop]]
 - [[Agent Planning]]
 - [[AI Agents in Production]]

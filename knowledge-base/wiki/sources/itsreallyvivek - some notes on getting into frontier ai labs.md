@@ -53,7 +53,7 @@ This source deepens [[Automated AI Research]] by giving a sharper language for t
 
 ## Raw capture
 
-- [[some notes on getting into frontier ai labs]]
+- [[2026-06-09 @itsreallyvivek - some notes on getting into frontier ai labs|some notes on getting into frontier ai labs]]
 
 ## Related pages
 

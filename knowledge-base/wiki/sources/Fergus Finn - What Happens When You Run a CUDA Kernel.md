@@ -60,7 +60,7 @@ This is the vault's first bottom-up account of the **GPU execution model** and s
 
 ## Raw capture
 
-- [[What happens when you run a CUDA kernel]]
+- [[2026-07-03 Fergus Finn - What happens when you run a CUDA kernel|What happens when you run a CUDA kernel]]
 
 ## Related pages
 

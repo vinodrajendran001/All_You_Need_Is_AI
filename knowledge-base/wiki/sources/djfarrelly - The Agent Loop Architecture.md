@@ -67,7 +67,7 @@ The durable takeaway is that agent reliability depends on an **execution substra
 
 ## Raw capture
 
-- [[The Agent Loop Architecture]]
+- [[2026-06-22 @djfarrelly - The Agent Loop Architecture|The Agent Loop Architecture]]
 
 ## Related pages
 

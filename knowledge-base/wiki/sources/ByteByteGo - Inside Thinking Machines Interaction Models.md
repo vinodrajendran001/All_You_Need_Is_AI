@@ -58,7 +58,7 @@ This is the model-architecture half of the new [[Real-Time Voice AI]] concept, c
 
 ## Raw capture
 
-- [[Inside Thinking Machines’ Interaction Models]]
+- [[2026-07-03 ByteByteGo - Inside Thinking Machines’ Interaction Models|Inside Thinking Machines’ Interaction Models]]
 
 ## Related pages
 

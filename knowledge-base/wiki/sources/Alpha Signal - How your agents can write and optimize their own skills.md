@@ -66,7 +66,7 @@ It complements [[djfarrelly - The Agent Loop Architecture]] by describing the te
 
 ## Raw capture
 
-- [[How your agents can write and optimize their own skills]]
+- [[2026-06-22 Alpha Signal - How your agents can write and optimize their own skills|How your agents can write and optimize their own skills]]
 
 ## Related pages
 

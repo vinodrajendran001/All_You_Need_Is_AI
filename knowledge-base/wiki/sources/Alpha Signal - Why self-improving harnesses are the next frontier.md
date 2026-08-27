@@ -61,7 +61,7 @@ This source extends two vault pages at once. It gives [[Agent Skill]] two concre
 
 ## Raw capture
 
-- [[Why self-improving harnesses are the next frontier for AI developers]]
+- [[2026-07-06 Alpha Signal - Why self-improving harnesses are the next frontier for AI developers|Why self-improving harnesses are the next frontier for AI developers]]
 
 ## Related pages
 

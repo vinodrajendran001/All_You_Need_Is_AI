@@ -75,7 +75,7 @@ This source gives the vault a **DSA interview-prep layer** that complements the 
 
 ## Raw capture
 
-- [[Universal LeetCode Templates — The Complete Arsenal]]
+- [[2026-05-21 Unknown (community-compiled) - Universal LeetCode Templates — The Complete Arsenal|Universal LeetCode Templates — The Complete Arsenal]]
 
 ## Related pages
 

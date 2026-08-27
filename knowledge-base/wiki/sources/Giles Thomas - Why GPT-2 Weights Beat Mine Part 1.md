@@ -19,7 +19,7 @@ The first post begins a reproduction investigation: independently trained GPT-2-
 
 ## Raw capture
 
-- [[Why do OpenAI's GPT-2 weights beat mine]]
+- [[2026-07-31 Giles Thomas - Why do OpenAI's GPT-2 weights beat mine|Why do OpenAI's GPT-2 weights beat mine]]
 
 ## Affected pages
 

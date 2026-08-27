@@ -58,7 +58,7 @@ This source is the most thorough standalone explanation of quantization mechanic
 
 ## Raw capture
 
-- [[A Visual Guide to Quantization]]
+- [[2026-06-29 Maarten Grootendorst - A Visual Guide to Quantization|A Visual Guide to Quantization]]
 
 ## Related pages
 

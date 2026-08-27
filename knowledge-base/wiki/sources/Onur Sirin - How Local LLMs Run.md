@@ -65,7 +65,7 @@ This source turns the vault's existing prefill/decode and KV-cache ideas into a 
 
 ## Raw capture
 
-- [[How Local LLMs Run - Memory and Hardware]]
+- [[2026-07-04 Onur Sirin - How Local LLMs Run - Memory and Hardware|How Local LLMs Run - Memory and Hardware]]
 
 ## Related pages
 

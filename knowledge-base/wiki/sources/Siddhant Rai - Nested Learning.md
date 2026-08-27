@@ -63,7 +63,7 @@ Nested Learning opens a memory-as-structure branch that the vault's existing pag
 
 ## Raw capture
 
-- [[Nested Learning The Illusion of Deep Learning Architecture]]
+- [[2026-06-29 Siddhant Rai - Nested Learning The Illusion of Deep Learning Architecture|Nested Learning The Illusion of Deep Learning Architecture]]
 
 ## Related pages
 

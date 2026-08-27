@@ -53,7 +53,7 @@ This is the first source in the vault that treats DPO outside of chat/preference
 
 ## Raw capture
 
-- [[Direct Preference Optimization Beyond Chatbots]]
+- [[2026-06-05 Erick Lachmann - Direct Preference Optimization Beyond Chatbots|Direct Preference Optimization Beyond Chatbots]]
 
 ## Related pages
 

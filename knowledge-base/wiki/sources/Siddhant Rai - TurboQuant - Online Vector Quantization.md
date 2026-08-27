@@ -59,7 +59,7 @@ This is the second, deeper TurboQuant source in the vault. [[Prateek Singh - KV 
 
 ## Raw capture
 
-- [[TurboQuant - Online Vector Quantization with Near-optimal Distortion Rate]]
+- [[2026-06-29 Siddhant Rai - TurboQuant - Online Vector Quantization with Near-optimal Distortion Rate|TurboQuant - Online Vector Quantization with Near-optimal Distortion Rate]]
 
 ## Related pages
 

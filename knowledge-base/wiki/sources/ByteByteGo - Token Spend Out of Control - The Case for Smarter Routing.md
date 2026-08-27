@@ -67,7 +67,7 @@ This source seeds [[Model Routing]] as a distinct concept and materially deepens
 
 ## Raw capture
 
-- [[Token Spend Out of Control The Case for Smarter Routing]]
+- [[2026-06-09 ByteByteGo - Token Spend Out of Control The Case for Smarter Routing|Token Spend Out of Control The Case for Smarter Routing]]
 
 ## Related pages
 

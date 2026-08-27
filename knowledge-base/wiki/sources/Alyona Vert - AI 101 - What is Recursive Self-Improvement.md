@@ -60,7 +60,7 @@ This source strengthens [[Automated AI Research]] by naming the recursive-improv
 
 ## Raw capture
 
-- [[AI 101 What is Recursive Self-Improvement]]
+- [[2026-06-18 Alyona Vert - AI 101 What is Recursive Self-Improvement|AI 101 What is Recursive Self-Improvement]]
 
 ## Related pages
 

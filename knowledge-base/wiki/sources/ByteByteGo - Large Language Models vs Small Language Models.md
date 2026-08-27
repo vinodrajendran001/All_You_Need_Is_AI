@@ -74,7 +74,7 @@ The most durable idea is that production AI stacks should not choose "small or l
 
 ## Raw capture
 
-- [[Large Language Models vs Small Language Models]]
+- [[2026-06-26 ByteByteGo - Large Language Models vs Small Language Models|Large Language Models vs Small Language Models]]
 
 ## Related pages
 

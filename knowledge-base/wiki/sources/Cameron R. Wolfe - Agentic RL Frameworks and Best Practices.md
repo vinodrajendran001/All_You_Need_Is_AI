@@ -83,7 +83,7 @@ This source materially expands the vault's RL branch from "LLM post-training on 
 
 ## Raw capture
 
-- [[Agentic RL Frameworks and Best Practices]]
+- [[2026-06-23 Cameron R. Wolfe - Agentic RL Frameworks and Best Practices|Agentic RL Frameworks and Best Practices]]
 
 ## Related pages
 

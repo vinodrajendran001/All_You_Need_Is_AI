@@ -13,6 +13,8 @@ tags:
   - mathematics
   - tutorials
   - education
+  - "source/raw"
+
 ---
 
 > Composite raw-source manifest for the PocketFlow tutorial docs. The canonical raw content remains the 39 individual markdown files stored under `knowledge-base/raw/sources/pocketflow-tutorial-docs/`.

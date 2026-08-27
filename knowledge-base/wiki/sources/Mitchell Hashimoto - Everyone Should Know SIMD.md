@@ -32,7 +32,7 @@ This implementation-oriented guide explains CPU vectorization through a practica
 
 ## Raw capture
 
-- [[Everyone Should Know SIMD]]
+- [[2026-07-27 Mitchell Hashimoto - Everyone Should Know SIMD|Everyone Should Know SIMD]]
 
 ## Related pages
 

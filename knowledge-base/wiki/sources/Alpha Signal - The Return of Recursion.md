@@ -48,7 +48,7 @@ The article frames these systems as specialized reasoning engines rather than ge
 
 ## Raw capture
 
-[[The return of recursion - How AI is rethinking complex reasoning]]
+[[2026-05-18 Alpha Signal - The return of recursion - How AI is rethinking complex reasoning|The return of recursion - How AI is rethinking complex reasoning]]
 
 ## Affected pages
 

@@ -25,7 +25,7 @@ The article argues that tabular foundation models apply in-context prediction to
 
 ## Raw capture
 
-- [[Why tabular foundation models are a huge unlock for enterprise AI]]
+- [[2026-08-03 Alpha Signal - Why tabular foundation models are a huge unlock for enterprise AI|Why tabular foundation models are a huge unlock for enterprise AI]]
 
 ## Affected pages
 

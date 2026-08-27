@@ -39,7 +39,7 @@ This source distills Airtable's public account of the semantic search layer behi
 
 ## Raw capture
 
-- [[How Airtable Built the Search Layer Behind Their AI Features]]
+- [[2026-05-28 ByteByteGo - How Airtable Built the Search Layer Behind Their AI Features|How Airtable Built the Search Layer Behind Their AI Features]]
 
 ## Related pages
 

@@ -32,7 +32,7 @@ Netflix describes an internal LLM-serving platform built around vLLM and Triton,
 ## Citations
 ## Raw capture
 
-- [[In-House LLM Serving at Netflix]]
+- [[2026-07-21 Netflix Technology Blog - In-House LLM Serving at Netflix|In-House LLM Serving at Netflix]]
 
 ## Related pages
 

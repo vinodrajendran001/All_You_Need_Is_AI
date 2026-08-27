@@ -54,7 +54,7 @@ The source is a concrete bridge between [[Agentic Reinforcement Learning]], [[Re
 
 ## Raw capture
 
-- [[Teaching an Open Model to Do Science]]
+- [[2026-08-03 Bojan Jakimovski - Teaching an Open Model to Do Science|Teaching an Open Model to Do Science]]
 
 ## Related pages
 

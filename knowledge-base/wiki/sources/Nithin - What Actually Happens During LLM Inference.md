@@ -59,7 +59,7 @@ This article gives the vault its clearest single statement of the **prefill/deco
 
 ## Raw capture
 
-- [[What Actually Happens During LLM Inference]]
+- [[2026-06-26 Nithin - What Actually Happens During LLM Inference|What Actually Happens During LLM Inference]]
 
 ## Related pages
 

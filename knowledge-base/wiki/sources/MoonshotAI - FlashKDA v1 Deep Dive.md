@@ -31,7 +31,7 @@ FlashKDA is a fused GPU kernel implementation of Kimi Delta Attention. The repor
 ## Citations
 ## Raw capture
 
-- [[FlashKDAdocs20260420-flashkda-v1-deep-dive.md at master]]
+- [[2026-07-31 MoonshotAI - FlashKDAdocs20260420-flashkda-v1-deep-dive.md at master|FlashKDAdocs20260420-flashkda-v1-deep-dive.md at master]]
 
 ## Related pages
 

@@ -23,7 +23,7 @@ Its Kimi architecture and performance numbers are frontier claims from a seconda
 
 ## Raw capture
 
-- [[22580 From GPT2 to Kimi3, Explained]]
+- [[2026-07-29 @waterloo_intern - 22580 From GPT2 to Kimi3, Explained|22580 From GPT2 to Kimi3, Explained]]
 
 ## Affected pages
 

@@ -23,7 +23,7 @@ The source is a social-media explainer; its architectural framing is useful, but
 
 ## Raw capture
 
-- [[What are Looped Transformers Explained clearly]]
+- [[2026-07-29 @neural_avb - What are Looped Transformers Explained clearly|What are Looped Transformers Explained clearly]]
 
 ## Affected pages
 

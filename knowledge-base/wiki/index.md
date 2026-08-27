@@ -473,7 +473,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] - Support-chatbot simulation and evaluation flywheel with transcript-derived scenarios and LLM judges.
 - [[Braintrust - How to evaluate multi-turn conversations]] - Operational recipe for turn-level and trace-level evaluation over grouped conversation traces.
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
-- [[Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
+- [[2026-05-18 Unknown (LinkedIn post) - Classic RAG vs Graph RAG vs Agentic RAG|Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.
 - [[Universal LeetCode Templates]] - 20 battle-tested algorithm templates with pattern recognition and complexity analysis.
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] - Frontier-research discussion session spanning inference, diffusion control, world models, generalization, and pretraining scaling.

@@ -23,7 +23,7 @@ The result is a concrete reproducibility warning: checkpoint immutability and co
 
 ## Raw capture
 
-- [[Why do OpenAI's GPT-2 weights beat mine  Part two the bugfix]]
+- [[2026-07-31 Giles Thomas - Why do OpenAI's GPT-2 weights beat mine  Part two the bugfix|Why do OpenAI's GPT-2 weights beat mine  Part two the bugfix]]
 
 ## Affected pages
 

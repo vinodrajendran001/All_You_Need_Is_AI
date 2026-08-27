@@ -61,7 +61,7 @@ This is the vault's most complete treatment of a single decode-latency technique
 
 ## Raw capture
 
-- [[Speculative Decoding Theory and Implementation in vLLM]]
+- [[2026-07-06 Mayank Pratap Singh - Speculative Decoding Theory and Implementation in vLLM|Speculative Decoding Theory and Implementation in vLLM]]
 
 ## Related pages
 

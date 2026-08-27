@@ -61,7 +61,7 @@ This is the vault's most concrete treatment of running agents on open-weight mod
 
 ## Raw capture
 
-- [[Using Local Coding Agents]]
+- [[2026-07-03 Sebastian Raschka - Using Local Coding Agents|Using Local Coding Agents]]
 
 ## Related pages
 

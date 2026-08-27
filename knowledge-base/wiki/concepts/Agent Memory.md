@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-08-05
+updated: 2026-08-27
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-agent-memory-systems-guide
   - src-2026-08-05-aibuilderclub-ai-coding-agent-memory-agentmemory
   - src-2026-08-05-aibuilderclub-codebase-memory-mcp-guide
+  - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
 status: active
 ---
 

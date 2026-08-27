@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-07-17-netflix-in-house-llm-serving
 status: active
 ---
 

@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-07-17-netflix-in-house-llm-serving
 status: active
 ---
 

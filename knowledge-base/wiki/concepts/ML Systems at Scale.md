@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-08-12
+updated: 2026-08-27
 tags:
   - concept
   - machine-learning
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-06-05-systemdesign42-system-design-academy
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
+  - src-2026-07-17-netflix-in-house-llm-serving
 status: active
 ---
 

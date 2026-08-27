@@ -32,6 +32,9 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-30-teaching-open-model-science
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-07-29-giles-thomas-gpt2-weights-part-1
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
 status: active
 ---
 

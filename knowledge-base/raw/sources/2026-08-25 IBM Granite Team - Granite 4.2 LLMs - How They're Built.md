@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-08-25-ibm-granite-4-2-how-they-are-built
+captured: 2026-08-27
 title: "Granite 4.2 LLMs: How They're Built"
 source: "https://huggingface.co/blog/ibm-granite/granite-4-2?utm_source=tldrai"
 author:
@@ -11,6 +14,7 @@ created: 2026-08-27
 description: "A Blog post by IBM Granite on Hugging Face"
 tags:
   - "clippings"
+  - "source/raw"
 ---
 *A technical walkthrough of how we built the Granite 4.2 reasoning model family.*
 

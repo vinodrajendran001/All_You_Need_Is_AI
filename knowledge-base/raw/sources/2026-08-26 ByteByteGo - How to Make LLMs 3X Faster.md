@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+captured: 2026-08-27
 title: "How to Make LLMs 3X Faster"
 source: "https://blog.bytebytego.com/p/how-to-make-llms-3x-faster?utm_source=post-email-title&publication_id=817132&post_id=212180385&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,7 @@ created: 2026-08-27
 description: "In this article, we will look at how speculative decoding works."
 tags:
   - "clippings"
+  - "source/raw"
 ---
 ## What is loop engineering? (Sponsored)
 

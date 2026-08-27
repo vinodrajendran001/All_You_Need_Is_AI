@@ -37,8 +37,27 @@ That combination — hosting the models, hosting the benchmarks, and publishing 
 - [[Hugging Face - State of Open Models Summer 2026]] is the vault's ecosystem-survey source; its rankings inherit whatever measurement error [[Benchmark Optimization]] describes.
 - Relevant properties: the Open ASR Leaderboard, the Far-field ASR Leaderboard, and the hosting of Real World VoiceEQ.
 
+## The checkpoint format as an inter-stage interface
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] shows a role for the Hugging Face format
+beyond distribution. In Granite's staged RL pipeline, each stage **exports its policy to Hugging Face
+format when it finishes**, and that export becomes the base model for the next stage — with
+Megatron-Bridge converting between Megatron and HF representations at every boundary.
+
+The HF format is functioning here as an internal interchange standard inside a training pipeline, not
+just as the way a finished model reaches the public. That is a quieter form of infrastructural
+influence than the Hub: a serialization format that has become neutral enough that a team will
+round-trip through it repeatedly during training, accepting conversion cost in exchange for clean,
+inspectable, resumable stage boundaries.
+
+The Granite 4.2 build report was itself published as a Hugging Face blog post rather than an arXiv
+paper or a corporate release, which is the pattern several open-weight releases in this vault
+follow.
+
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[IBM]]
 - [[Hugging Face - State of Open Models Summer 2026]]
 - [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]]
 - [[Benchmark Optimization]]

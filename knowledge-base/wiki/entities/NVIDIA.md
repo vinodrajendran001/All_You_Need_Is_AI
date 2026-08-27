@@ -55,8 +55,31 @@ The survey also supplies the efficiency comparison that frames NVIDIA's trade-of
 
 The asymmetry is self-reinforcing: engineers learn performance work on the stack that documents itself, and the resulting expertise is stack-specific. The same list keeps **Rubin** on a dated frontier watchlist rather than the core path, on the principle that an announced architecture does not qualify until a specification, a shipped implementation, and a reproducible measurement all exist. See [[Wafer]].
 
+## NeMo-RL and NeMo-Gym as the RL training stack
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] documents an NVIDIA software stack this
+vault had not recorded, used end to end for a third party's model family.
+
+**NeMo-RL** drives the training side: Megatron-Core as the training backend, vLLM for rollout
+generation, and **Megatron-Bridge** converting weights between Megatron and Hugging Face formats so
+each RL stage can export a clean checkpoint for the next one. **NeMo-Gym** handles rollouts, exposing
+every environment — verifiers, tools, sandboxes, reward models — as pluggable **Resources** behind
+one uniform interface.
+
+This is worth noting for what it says about NVIDIA's position. The company's leverage in this vault
+is usually described through silicon and CUDA. Here it also supplies the orchestration layer for
+agentic RL, on hardware it designed (GB200 NVL72), with generation running on vLLM. Granite 4.2 was
+trained on NVIDIA hardware, with NVIDIA training software, using NVIDIA's environment abstraction —
+a full-stack dependency, and the same kind of vertical position that makes NVIDIA hard to displace.
+
+See [[Staged Reinforcement Learning Curriculum]] for why the Resource abstraction is the load-bearing
+piece.
+
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[Staged Reinforcement Learning Curriculum]]
+- [[IBM]]
 - [[Jacob Peake - AI Chip Architectures]]
 - [[NVIDIA - LocateAnything]]
 - [[Vision-Language Grounding]]

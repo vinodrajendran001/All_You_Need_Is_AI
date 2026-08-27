@@ -103,6 +103,29 @@ This makes [[Model Routing]] the operational complement to SLMs. The routing lay
 
 [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] deepens the training path through [[Knowledge Distillation]]. A student can learn teacher output distributions, internal features, or synthetic examples, then be quantized separately for deployment. Distilled students can look unusually strong on narrow tasks because their limited capacity is concentrated there; this does not erase their broader generalization and knowledge ceilings.
 
+## A scale threshold for agentic training
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] provides the first datapoint in this vault
+on where the small-model boundary falls for *agentic* capability specifically.
+
+Granite 4.2 trains 3B, 8B, and 30B models with identical architecture, identical infrastructure, and
+the same post-training method. The 8B and 30B models go through an agentic RL block — learning to
+edit code, drive a terminal, and search the web inside real sandboxed environments. **The 3B model
+does not.** It takes only foundational RL and alignment, and is correspondingly absent from the
+SWE-Bench and Terminal-Bench results entirely.
+
+Read carefully, this is a **scope decision rather than a measured limit**. The source never claims a
+3B model cannot learn agentic behavior; it simply reports that the stages were not run. But the
+decision itself is informative: a team with the infrastructure already built, for whom the marginal
+cost of running the 3B model up the same ladder was small, chose not to. That implies an internal
+expectation that agentic RL does not pay below some scale.
+
+It also sharpens what small models are being positioned for. Granite's 3B remains a strong reasoner —
+78.33 on AIME25, 67.84 on MMLU-Pro — so the gap being conceded is not reasoning but **acting**:
+sustaining a coherent multi-step trajectory through a real environment where errors compound across
+64 or 128 turns. That is a different capability from answering well, and it is the one this family
+declines to pursue at 3B.
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -113,6 +136,8 @@ This makes [[Model Routing]] the operational complement to SLMs. The routing lay
 
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[Staged Reinforcement Learning Curriculum]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[Model Routing]]
 - [[Model Quantization and Efficiency]]

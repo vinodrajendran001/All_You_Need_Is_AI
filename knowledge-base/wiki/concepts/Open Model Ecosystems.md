@@ -29,6 +29,28 @@ Three recurring forces shape adoption:
 
 [[ByteByteGo - The New American AI Model Designed to Be Customized]] represents the large customizable end of this spectrum, while the Hub data suggests small models remain the practical layer by volume. [[Mark Russinovich - Fool's Gold]] adds the security cost of releasing weights: some controls cannot be enforced after distribution, motivating research into post-release attack economics.
 
+## Openness of method, not just of weights
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] releases three dense reasoning models —
+3B, 8B, 30B — under Apache 2.0, which places [[IBM]] in the same permissive tier as the other
+families tracked here. What distinguishes it is *what else* was released.
+
+Most open-weight launches documented in this vault ship weights, a benchmark table, and a prose
+description of method. Granite ships the **recipe with its hyperparameters**: the full post-training
+ladder, prompts and generations per step, KL coefficients, learning rates, rollout turns, sequence
+lengths, the SFT data-quality procedure, the quantization calibration settings, and the cluster it
+all ran on.
+
+This is a distinct axis of openness worth naming, because the two do not correlate. A model can be
+Apache 2.0 with an opaque method, or heavily documented under a restrictive licence. For a vault
+concerned with how systems are built, method disclosure is the more valuable of the two — Granite's
+benchmark numbers are self-reported, unaudited, and offered without cross-family comparison, so the
+capability claims are weak evidence while the methodology is directly reusable.
+
+The release also illustrates a **capability ladder within one family**: identical method and
+infrastructure across all three sizes, with the smallest model simply stopping earlier in the
+training chain. See [[Staged Reinforcement Learning Curriculum]] and [[Small Language Models]].
+
 ## Open questions
 
 - Which metrics distinguish genuine deployment from automated download noise?
@@ -37,6 +59,8 @@ Three recurring forces shape adoption:
 
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[IBM]]
 - [[Small Language Models]]
 - [[Model Quantization and Efficiency]]
 - [[LLM Inference]]

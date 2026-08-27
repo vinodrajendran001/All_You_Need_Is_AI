@@ -21,6 +21,11 @@ The first post begins a reproduction investigation: independently trained GPT-2-
 
 - [[Why do OpenAI's GPT-2 weights beat mine]]
 
+## Affected pages
+
+- [[LLM Training Pipeline]]
+- [[LLM-as-a-Judge]]
+
 ## Related pages
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]

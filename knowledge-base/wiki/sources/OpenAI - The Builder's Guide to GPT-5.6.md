@@ -38,9 +38,8 @@ The guide supplies [[Model Routing]] with an explicit two-dimensional policy: se
 ## Affected pages
 
 - [[Model Routing]]
-- [[Test-Time Scaling]]
-- [[Tool Use and Function Calling]]
-- [[AI Agents in Production]]
+- [[OpenAI]]
+- [[Programmatic Tool Calling]]
 
 ## Citations
 
@@ -53,3 +52,7 @@ The guide supplies [[Model Routing]] with an explicit two-dimensional policy: se
 - [[OpenAI]]
 - [[Agent Frameworks]]
 - [[Context Engineering]]
+- [[AI Agents in Production]]
+- [[Test-Time Scaling]]
+- [[Tool Use and Function Calling]]
+

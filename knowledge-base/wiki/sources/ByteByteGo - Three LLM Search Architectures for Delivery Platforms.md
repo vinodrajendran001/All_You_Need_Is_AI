@@ -25,6 +25,10 @@ The durable pattern is **LLM augmentation under product constraints**, not gener
 
 - [[Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways]]
 
+## Affected pages
+
+- [[Semantic Recommendation Systems]]
+
 ## Related pages
 
 - [[Retrieval-Augmented Generation]]

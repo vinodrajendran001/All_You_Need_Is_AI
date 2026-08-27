@@ -25,10 +25,7 @@ The article decomposes agent efficiency into harness, API, and inference layers.
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
 - [[Agentic Loop]]
-- [[Context Engineering]]
-- [[LLM Inference]]
 - [[KV Cache]]
 
 ## Citations

@@ -31,6 +31,12 @@ The captured text ends during section 6.2.1, so it does not support claims about
 
 - [[Self-Improvements in Modern Agentic Systems A Survey]]
 
+## Affected pages
+
+- [[Agent Memory]]
+- [[Agent Skill]]
+- [[Recursive Self-Improvement]]
+
 ## Related pages
 
 - [[Recursive Self-Improvement]]

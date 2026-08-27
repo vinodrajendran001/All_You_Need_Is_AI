@@ -41,11 +41,8 @@ The source gives [[Model Context Protocol]] a wire-level explanation and directl
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
-- [[Agentic Loop]]
-- [[Context Engineering]]
-- [[Coding Agent Harness]]
 
 ## Citations
 
@@ -63,4 +60,6 @@ The source gives [[Model Context Protocol]] a wire-level explanation and directl
 - [[Context Engineering]]
 - [[AI Builder Club - MCP 101 - Build Your First MCP Server (Step-by-Step)]]
 - [[AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
+- [[Coding Agent Harness]]
+- [[Tool Use and Function Calling]]
 

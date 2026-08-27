@@ -41,11 +41,9 @@ The source turns agent permissions from static configuration into a falsifiable 
 
 ## Affected pages
 
-- [[Tool Use and Function Calling]]
-- [[Coding Agent Harness]]
 - [[AI Agents in Production]]
-- [[Agentic Loop]]
-- [[Model Context Protocol]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Security and Governance]]
 
 ## Citations
 
@@ -61,4 +59,8 @@ The source turns agent permissions from static configuration into a falsifiable 
 - [[Agent Planning]]
 - [[Agent Memory]]
 - [[Multi-Turn Evaluation]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Model Context Protocol]]
+- [[Tool Use and Function Calling]]
 

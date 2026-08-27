@@ -71,12 +71,11 @@ That taxonomy links naturally to [[Search-Augmented Language Models]], [[Agentic
 
 ## Affected pages
 
+- [[AI Agents in Production]]
+- [[Agentic Loop]]
 - [[Retrieval-Augmented Generation]]
 - [[Search-Augmented Language Models]]
-- [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
 
 ## Raw capture
 
@@ -89,3 +88,6 @@ That taxonomy links naturally to [[Search-Augmented Language Models]], [[Agentic
 - [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
 - [[Perplexity - Advancing Search-Augmented Language Models]]
+- [[AI Knowledge Base Overview]]
+- [[index]]
+

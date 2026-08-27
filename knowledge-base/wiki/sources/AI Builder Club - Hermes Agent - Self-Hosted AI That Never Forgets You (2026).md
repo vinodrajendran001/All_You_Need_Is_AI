@@ -43,11 +43,7 @@ The profile illustrates a shift from session-bound assistants toward continuousl
 
 ## Affected pages
 
-- [[Agent Memory]]
-- [[Agent Skill]]
-- [[AI Agents in Production]]
-- [[Coding Agent Harness]]
-- [[Agent Planning]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The profile illustrates a shift from session-bound assistants toward continuousl
 - [[Agentic Loop]]
 - [[Context Engineering]]
 - [[Tool Use and Function Calling]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agent Skill]]
+- [[Coding Agent Harness]]
 

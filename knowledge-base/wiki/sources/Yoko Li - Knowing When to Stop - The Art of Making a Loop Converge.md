@@ -48,11 +48,12 @@ The article substantially deepens [[Loop Engineering]] by making convergence—n
 
 ## Affected pages
 
+- [[AI Agents in Production]]
+- [[Agent Workflow Maturity]]
 - [[Loop Engineering]]
 - [[Multi-Turn Evaluation]]
 - [[Test-Time Scaling]]
-- [[Context Engineering]]
-- [[AI Agents in Production]]
+- [[Yoko Li]]
 
 ## Citations
 
@@ -69,4 +70,5 @@ The article substantially deepens [[Loop Engineering]] by making convergence—n
 - [[Agentic Loop]]
 - [[Reward Design for RL]]
 - [[Continual Learning for Agents]]
+- [[Context Engineering]]
 

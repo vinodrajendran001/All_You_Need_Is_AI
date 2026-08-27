@@ -162,16 +162,16 @@ DoorDash’s orchestrator, Grab’s classifier-plus-specialists pattern, Figma�
 
 ## Affected pages
 
-- [[ByteByteGo]]
-- [[ML Systems at Scale]]
 - [[AI Agents in Production]]
+- [[Agent Memory]]
 - [[Agentic Loop]]
+- [[ByteByteGo]]
+- [[DoorDash]]
+- [[ML Systems at Scale]]
 - [[Model Context Protocol]]
-- [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
-- [[log|Knowledge Base Log]]
+- [[Search-Augmented Language Models]]
+- [[Semantic Recommendation Systems]]
 
 ## Raw captures
 
@@ -194,3 +194,6 @@ DoorDash’s orchestrator, Grab’s classifier-plus-specialists pattern, Figma�
 - [[Search-Augmented Language Models]]
 - [[Retrieval-Augmented Generation]]
 - [[AI Knowledge Base Overview]]
+- [[index]]
+- [[log]]
+

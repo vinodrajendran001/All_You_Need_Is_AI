@@ -41,12 +41,7 @@ This is the batch's broadest production account. It connects memory, evaluation,
 
 ## Affected pages
 
-- [[AI Agents in Production]]
-- [[Agentic Loop]]
-- [[Agent Memory]]
-- [[Coding Agent Harness]]
-- [[Agent Planning]]
-- [[Multi-Turn Evaluation]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +58,10 @@ This is the batch's broadest production account. It connects memory, evaluation,
 - [[Tool Use and Function Calling]]
 - [[Agent Skill]]
 - [[Model Routing]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
 

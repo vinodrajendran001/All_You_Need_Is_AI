@@ -25,6 +25,12 @@ The series supports a narrow but durable lesson: lower held-out language-model l
 
 - [[Why do OpenAI's GPT-2 weights beat mine  Part three testing overtraining]]
 
+## Affected pages
+
+- [[Benchmark Optimization]]
+- [[LLM Training Pipeline]]
+- [[LLM-as-a-Judge]]
+
 ## Related pages
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]

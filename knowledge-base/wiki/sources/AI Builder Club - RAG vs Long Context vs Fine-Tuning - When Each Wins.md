@@ -43,11 +43,8 @@ The source clarifies where [[Retrieval-Augmented Generation]] fits within [[Cont
 
 ## Affected pages
 
-- [[Retrieval-Augmented Generation]]
+- [[AI Builder Club - Build AI Agents]]
 - [[Context Engineering]]
-- [[Search-Augmented Language Models]]
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
 
 ## Citations
 
@@ -66,3 +63,5 @@ The source clarifies where [[Retrieval-Augmented Generation]] fits within [[Cont
 - [[Agentic Loop]]
 - [[AI Builder Club - MarkItDown - PDF to Markdown for RAG Pipelines (2026 Guide)]]
 - [[AI Builder Club - Context Engineering - The Complete Guide (2026)]]
+- [[Tool Use and Function Calling]]
+

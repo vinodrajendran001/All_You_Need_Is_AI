@@ -49,11 +49,11 @@ This source strengthens [[Automated AI Research]] by naming the recursive-improv
 
 ## Affected pages
 
-- [[Recursive Self-Improvement]]
-- [[Automated AI Research]]
 - [[Agent Skill]]
+- [[Alyona Vert]]
+- [[Automated AI Research]]
 - [[Recursive Architectures]]
-- [[AI Knowledge Base Overview]]
+- [[Recursive Self-Improvement]]
 
 ## Citations
 - Source URL: [https://www.turingpost.com/p/what-is-recursive-self-improvement](https://www.turingpost.com/p/what-is-recursive-self-improvement)

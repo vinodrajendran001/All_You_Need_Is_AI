@@ -43,11 +43,7 @@ The source demonstrates that multi-agent systems can be ordinary, testable appli
 
 ## Affected pages
 
-- [[Agent Planning]]
-- [[Agentic Loop]]
-- [[Multi-Turn Evaluation]]
-- [[AI Agents in Production]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The source demonstrates that multi-agent systems can be ordinary, testable appli
 - [[Tool Use and Function Calling]]
 - [[Agent Memory]]
 - [[Context Engineering]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
 

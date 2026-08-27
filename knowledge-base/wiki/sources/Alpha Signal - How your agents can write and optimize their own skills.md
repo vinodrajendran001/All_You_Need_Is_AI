@@ -54,12 +54,11 @@ It complements [[djfarrelly - The Agent Loop Architecture]] by describing the te
 
 ## Affected pages
 
-- [[Agent Skill]]
-- [[Context Engineering]]
-- [[Agentic Loop]]
 - [[AI Agents in Production]]
+- [[Agent Skill]]
+- [[Agentic Loop]]
 - [[Alpha Signal]]
-- [[AI Knowledge Base Overview]]
+- [[Context Engineering]]
 
 ## Citations
 

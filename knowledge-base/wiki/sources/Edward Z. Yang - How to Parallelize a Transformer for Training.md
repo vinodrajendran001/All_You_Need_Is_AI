@@ -39,9 +39,6 @@ The article upgrades [[Distributed Training Parallelism]] from a glossary into a
 ## Affected pages
 
 - [[Distributed Training Parallelism]]
-- [[ML Systems at Scale]]
-- [[Mixture of Experts]]
-- [[Software Performance Engineering]]
 
 ## Citations
 
@@ -53,4 +50,7 @@ The article upgrades [[Distributed Training Parallelism]] from a glossary into a
 
 - [[Agentic Reinforcement Learning]]
 - [[Model Quantization and Efficiency]]
+- [[ML Systems at Scale]]
+- [[Mixture of Experts]]
+- [[Software Performance Engineering]]
 

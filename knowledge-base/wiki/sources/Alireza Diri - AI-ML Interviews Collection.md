@@ -57,9 +57,6 @@ The collection supplies [[ML Research Interview Preparation]] with a broad curri
 ## Affected pages
 
 - [[ML Research Interview Preparation]]
-- [[ML Systems at Scale]]
-- [[Agent Frameworks]]
-- [[Agent Security and Governance]]
 
 ## Citations
 
@@ -94,3 +91,7 @@ Composite page over 18 module captures:
 - [[Himank Sehgal - Microsoft Applied Scientist Interview Guide]]
 - [[Himank Sehgal - Navi AI Scientist Interview Guide]]
 - [[Multi-Turn Evaluation]]
+- [[Agent Frameworks]]
+- [[Agent Security and Governance]]
+- [[ML Systems at Scale]]
+

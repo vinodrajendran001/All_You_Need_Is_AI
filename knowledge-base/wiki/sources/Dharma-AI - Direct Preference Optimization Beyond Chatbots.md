@@ -44,11 +44,8 @@ This is the first source in the vault that treats DPO outside of chat/preference
 
 ## Affected pages
 
-- [[LLM Training Pipeline]]
 - [[Direct Preference Optimization]]
-- [[Reward Design for RL]]
-- [[AI Agents in Production]]
-- [[AI Knowledge Base Overview]]
+- [[LLM Training Pipeline]]
 
 ## Citations
 - Source URL: [https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots](https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots)

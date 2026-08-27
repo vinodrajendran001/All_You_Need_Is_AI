@@ -43,11 +43,7 @@ The piece identifies instruction files as part of the agent harness rather than 
 
 ## Affected pages
 
-- [[Andrej Karpathy]]
-- [[Coding Agent Harness]]
-- [[Agent Memory]]
-- [[AI Agents in Production]]
-- [[Agent Skill]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The piece identifies instruction files as part of the agent harness rather than 
 - [[Context Engineering]]
 - [[Tool Use and Function Calling]]
 - [[Multi-Turn Evaluation]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Skill]]
+- [[Andrej Karpathy]]
+- [[Coding Agent Harness]]
 

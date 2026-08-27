@@ -43,11 +43,7 @@ The guide establishes the innermost layer of [[Context Engineering]] and the sta
 
 ## Affected pages
 
-- [[Context Engineering]]
-- [[Coding Agent Harness]]
-- [[LLM Reasoning]]
-- [[Tool Use and Function Calling]]
-- [[Multi-Turn Evaluation]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -66,4 +62,5 @@ The guide establishes the innermost layer of [[Context Engineering]] and the sta
 - [[Coding Agent Harness]]
 - [[AI Builder Club - Context Engineering - The Complete Guide (2026)]]
 - [[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]]
+- [[Tool Use and Function Calling]]
 

@@ -41,11 +41,10 @@ This source strengthens the connection between [[Multi-Turn Evaluation]], [[LLM-
 
 ## Affected pages
 
-- [[Multi-Turn Evaluation]]
-- [[LLM-as-a-Judge]]
-- [[Agentic Loop]]
 - [[AI Agents in Production]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Multi-Turn Evaluation]]
 
 ## Citations
 
@@ -61,4 +60,7 @@ This source strengthens the connection between [[Multi-Turn Evaluation]], [[LLM-
 - [[Agent Planning]]
 - [[Context Engineering]]
 - [[Tool Use and Function Calling]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[LLM-as-a-Judge]]
 

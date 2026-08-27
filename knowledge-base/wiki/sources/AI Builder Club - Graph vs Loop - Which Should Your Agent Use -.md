@@ -45,12 +45,8 @@ The source supplies a right-sizing test for [[Agent Planning]], [[Agentic Loop]]
 
 ## Affected pages
 
-- [[Agent Planning]]
-- [[Agentic Loop]]
-- [[AI Agents in Production]]
-- [[Coding Agent Harness]]
-- [[Multi-Turn Evaluation]]
-- [[Context Engineering]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -67,3 +63,10 @@ The source supplies a right-sizing test for [[Agent Planning]], [[Agentic Loop]]
 - [[Tool Use and Function Calling]]
 - [[LLM-as-a-Judge]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
+

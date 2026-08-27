@@ -40,11 +40,8 @@ This gives [[Coding Agent Harness]] a concrete implementation of multi-agent orc
 
 ## Affected pages
 
-- [[Coding Agent Harness]]
-- [[Agentic Loop]]
-- [[Agent Planning]]
-- [[Tool Use and Function Calling]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -61,4 +58,9 @@ This gives [[Coding Agent Harness]] a concrete implementation of multi-agent orc
 - [[Context Engineering]]
 - [[Agent Skill]]
 - [[Multi-Turn Evaluation]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Tool Use and Function Calling]]
 

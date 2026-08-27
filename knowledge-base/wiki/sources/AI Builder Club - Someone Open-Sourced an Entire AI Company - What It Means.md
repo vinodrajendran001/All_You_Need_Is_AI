@@ -40,11 +40,7 @@ The source connects organizational metaphors to concrete agent architecture whil
 
 ## Affected pages
 
-- [[AI Agents in Production]]
-- [[Agent Memory]]
-- [[Agentic Loop]]
-- [[Agent Planning]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -60,4 +56,9 @@ The source connects organizational metaphors to concrete agent architecture whil
 - [[Tool Use and Function Calling]]
 - [[Context Engineering]]
 - [[Multi-Turn Evaluation]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
 

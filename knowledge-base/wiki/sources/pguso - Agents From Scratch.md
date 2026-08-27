@@ -59,13 +59,13 @@ This source is the most detailed ground-up treatment of the **Agentic Loop** in 
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
 - [[AI Agents in Production]]
-- [[Agent Planning]]
 - [[Agent Memory]]
-- [[Multi-Turn Evaluation]]
-- [[AI Knowledge Base Overview]]
+- [[Agent Planning]]
+- [[Agent Skill]]
+- [[Agentic Loop]]
+- [[Agentic Reinforcement Learning]]
+- [[Tool Use and Function Calling]]
 
 ## Citations
 

@@ -38,10 +38,8 @@ The source helps the vault separate architectural history from social-media nami
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Agent Planning]]
-- [[Coding Agent Harness]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -57,4 +55,8 @@ The source helps the vault separate architectural history from social-media nami
 - [[Tool Use and Function Calling]]
 - [[Agent Memory]]
 - [[Context Engineering]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
 

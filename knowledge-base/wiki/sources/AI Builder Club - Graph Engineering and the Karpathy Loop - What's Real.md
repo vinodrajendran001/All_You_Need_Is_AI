@@ -40,11 +40,8 @@ The source links [[Automated AI Research]] to production agent design: robust lo
 
 ## Affected pages
 
-- [[Automated AI Research]]
-- [[Agentic Loop]]
-- [[Coding Agent Harness]]
-- [[Agent Planning]]
-- [[Agent Memory]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -60,4 +57,9 @@ The source links [[Automated AI Research]] to production agent design: robust lo
 - [[AI Agents in Production]]
 - [[Multi-Turn Evaluation]]
 - [[Tool Use and Function Calling]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Automated AI Research]]
+- [[Coding Agent Harness]]
 

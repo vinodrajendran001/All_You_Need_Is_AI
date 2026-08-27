@@ -43,11 +43,8 @@ The article shifts attention from “having a vector database” to managing a m
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agent Memory]]
-- [[Context Engineering]]
-- [[Retrieval-Augmented Generation]]
-- [[Agent Skill]]
-- [[Persistent Wiki]]
 
 ## Citations
 
@@ -63,4 +60,8 @@ The article shifts attention from “having a vector database” to managing a m
 - [[Coding Agent Harness]]
 - [[Multi-Turn Evaluation]]
 - [[Agentic Loop]]
+- [[Agent Skill]]
+- [[Context Engineering]]
+- [[Persistent Wiki]]
+- [[Retrieval-Augmented Generation]]
 

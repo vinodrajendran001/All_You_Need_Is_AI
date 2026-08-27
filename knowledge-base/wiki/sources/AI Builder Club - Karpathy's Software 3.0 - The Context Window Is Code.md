@@ -43,11 +43,7 @@ The framing unifies context engineering, tool design, and agent-native infrastru
 
 ## Affected pages
 
-- [[Andrej Karpathy]]
-- [[Context Engineering]]
-- [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The framing unifies context engineering, tool design, and agent-native infrastru
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
 - [[Persistent Wiki]]
+- [[Andrej Karpathy]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Model Context Protocol]]
+- [[Tool Use and Function Calling]]
 

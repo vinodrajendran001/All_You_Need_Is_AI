@@ -47,11 +47,10 @@ The source connects [[Context Engineering]], [[Coding Agent Harness]], [[Model C
 
 ## Affected pages
 
-- [[Context Engineering]]
-- [[Coding Agent Harness]]
-- [[Model Context Protocol]]
-- [[Model Routing]]
 - [[AI Agents in Production]]
+- [[AI-Native Software Development Lifecycle]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
 
 ## Citations
 
@@ -67,4 +66,6 @@ The source connects [[Context Engineering]], [[Coding Agent Harness]], [[Model C
 - [[Agent Security and Governance]]
 - [[Multi-Turn Evaluation]]
 - [[Agent Memory]]
+- [[Model Context Protocol]]
+- [[Model Routing]]
 

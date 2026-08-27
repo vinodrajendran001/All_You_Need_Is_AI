@@ -36,10 +36,9 @@ The comparison provides [[LLM Inference]] with a workload-oriented taxonomy and 
 
 ## Affected pages
 
+- [[ByteByteGo]]
 - [[Inference Serving Engines]]
 - [[LLM Inference]]
-- [[AI Agents in Production]]
-- [[Model Quantization and Efficiency]]
 
 ## Citations
 
@@ -51,4 +50,6 @@ The comparison provides [[LLM Inference]] with a workload-oriented taxonomy and 
 
 - [[ByteByteGo]]
 - [[Agentic Reinforcement Learning]]
+- [[AI Agents in Production]]
+- [[Model Quantization and Efficiency]]
 

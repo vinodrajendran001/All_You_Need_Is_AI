@@ -44,10 +44,8 @@ The article makes clear that an agent demo becomes a service only when operators
 ## Affected pages
 
 - [[AI Agents in Production]]
-- [[Coding Agent Harness]]
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
-- [[Multi-Turn Evaluation]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Security and Governance]]
 
 ## Citations
 
@@ -63,4 +61,8 @@ The article makes clear that an agent demo becomes a service only when operators
 - [[Context Engineering]]
 - [[Agent Memory]]
 - [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
+- [[Tool Use and Function Calling]]
 

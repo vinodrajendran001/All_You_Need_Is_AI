@@ -50,11 +50,11 @@ This is the vault's most systematic statement of *operations* for multi-agent sy
 
 ## Affected pages
 
-- [[Agent Workflow Maturity]]
 - [[AI Agents in Production]]
+- [[AI-Native Software Development Lifecycle]]
 - [[Agent Security and Governance]]
 - [[Agent Skill]]
-- [[Agent Planning]]
+- [[Agent Workflow Maturity]]
 - [[Grok Bot]]
 
 ## Citations
@@ -74,3 +74,5 @@ This is the vault's most systematic statement of *operations* for multi-agent sy
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
 - [[Anthropic - The AI-Native SDLC Playbook]]
+- [[Agent Planning]]
+

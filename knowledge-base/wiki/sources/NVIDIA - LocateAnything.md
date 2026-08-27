@@ -46,10 +46,9 @@ This source opens a new multimodal branch in the vault around **vision-language 
 
 ## Affected pages
 
-- [[Vision-Language Grounding]]
 - [[AI Agents in Production]]
 - [[NVIDIA]]
-- [[AI Knowledge Base Overview]]
+- [[Vision-Language Grounding]]
 
 ## Citations
 ## Raw capture

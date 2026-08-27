@@ -47,15 +47,15 @@ This source deepens the vault's local/private deployment branch by showing how r
 
 ## Affected pages
 
-- [[On-Device Reasoning]]
-- [[Reasoning Compression]]
-- [[Model Quantization and Efficiency]]
-- [[LLM Training Pipeline]]
-- [[Reward Design for RL]]
-- [[Group Relative Policy Optimization]]
 - [[AI Agents in Production]]
+- [[Group Relative Policy Optimization]]
+- [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
 - [[Qualcomm AI Research]]
-- [[AI Knowledge Base Overview]]
+- [[Reasoning Compression]]
+- [[Reward Design for RL]]
+- [[Small Language Models]]
 
 ## Citations
 

@@ -37,10 +37,8 @@ The proposal defines [[LLM-Native Extensible Software]] as a distinct architectu
 
 ## Affected pages
 
-- [[LLM-Native Extensible Software]]
 - [[Agent Plugin Architecture]]
-- [[Agent Security and Governance]]
-- [[Tool Use and Function Calling]]
+- [[LLM-Native Extensible Software]]
 
 ## Citations
 
@@ -52,4 +50,6 @@ The proposal defines [[LLM-Native Extensible Software]] as a distinct architectu
 
 - [[Coding Agent Harness]]
 - [[AI Agents in Production]]
+- [[Agent Security and Governance]]
+- [[Tool Use and Function Calling]]
 

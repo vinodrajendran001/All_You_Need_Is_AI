@@ -54,12 +54,13 @@ This source strengthens the vault's practical PyTorch layer. [[The Pocket - Pock
 
 ## Affected pages
 
+- [[Algorithm Templates for Interviews]]
+- [[Han Fang]]
+- [[LLM Training Pipeline]]
+- [[ML Research Interview Preparation]]
+- [[Model Quantization and Efficiency]]
 - [[Neural Network Fundamentals]]
 - [[Transformer Architecture]]
-- [[Model Quantization and Efficiency]]
-- [[LLM Training Pipeline]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
 
 ## Citations
 
@@ -79,3 +80,5 @@ This source strengthens the vault's practical PyTorch layer. [[The Pocket - Pock
 - [[Model Quantization and Efficiency]]
 - [[LLM Training Pipeline]]
 - [[AI Knowledge Base Overview]]
+- [[index]]
+

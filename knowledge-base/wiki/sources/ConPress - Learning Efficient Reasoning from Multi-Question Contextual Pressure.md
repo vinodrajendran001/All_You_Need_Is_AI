@@ -41,8 +41,10 @@ ConPress adds a distinct family to the vault's compression branch: efficient rea
 
 ## Affected pages
 
-- [[Reasoning Compression]]
 - [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[On-Device Reasoning]]
+- [[Reasoning Compression]]
 
 ## Citations
 

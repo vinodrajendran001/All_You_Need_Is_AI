@@ -45,12 +45,8 @@ The source contributes both loop-design guidance and an example of disciplined u
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Agent Memory]]
-- [[Multi-Turn Evaluation]]
-- [[Coding Agent Harness]]
-- [[Andrej Karpathy]]
-- [[Context Engineering]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
 
 ## Citations
 
@@ -67,3 +63,10 @@ The source contributes both loop-design guidance and an example of disciplined u
 - [[LLM-as-a-Judge]]
 - [[AI Agents in Production]]
 - [[AI Knowledge Base Overview]]
+- [[Agent Memory]]
+- [[Agentic Loop]]
+- [[Andrej Karpathy]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
+

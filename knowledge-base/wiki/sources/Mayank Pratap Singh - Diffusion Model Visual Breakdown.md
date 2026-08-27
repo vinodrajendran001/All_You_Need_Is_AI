@@ -57,10 +57,11 @@ This source seeds [[Diffusion Models]] as a first-class concept page in the vaul
 ## Affected pages
 
 - [[Diffusion Models]]
-- [[World Models]]
 - [[LLM Training Pipeline]]
+- [[Mayank Pratap Singh]]
 - [[Neural Network Fundamentals]]
-- [[AI Knowledge Base Overview]]
+- [[Vizuara]]
+- [[World Models]]
 
 ## Citations
 - Source URL: [https://vizuara.substack.com/p/diffusion-model-visual-breakdown](https://vizuara.substack.com/p/diffusion-model-visual-breakdown)

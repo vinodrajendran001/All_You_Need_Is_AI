@@ -43,11 +43,7 @@ The code exposes the minimum control structure beneath richer agent platforms. T
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
-- [[Coding Agent Harness]]
-- [[Agent Planning]]
-- [[Context Engineering]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The code exposes the minimum control structure beneath richer agent platforms. T
 - [[Agent Memory]]
 - [[AI Agents in Production]]
 - [[Multi-Turn Evaluation]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Tool Use and Function Calling]]
 

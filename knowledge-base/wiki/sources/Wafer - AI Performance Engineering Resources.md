@@ -60,13 +60,25 @@ Finally, its `CONTRIBUTING.md` is a reusable **evidence standard**. The five req
 
 ## Affected pages
 
-- [[Arithmetic Intensity and the Roofline Model]] - primary citation for the roofline model and transformer inference arithmetic
-- [[GPU Kernel Optimization]] - new concept seeded by this source
-- [[Prefill-Decode Disaggregation]] - new concept seeded by this source
-- [[Serving Benchmarks and Goodput]] - new concept seeded by this source
+- [[AI Accelerator Architecture]]
 - [[AI-Generated Kernels]] - new concept seeded by this source
-- [[Wafer]] - new entity
+- [[Arithmetic Intensity and the Roofline Model]] - primary citation for the roofline model and transformer inference arithmetic
+- [[Benchmark Optimization]]
+- [[Distributed Training Parallelism]]
+- [[GPU Execution Model]]
+- [[GPU Kernel Optimization]] - new concept seeded by this source
+- [[Inference Serving Engines]]
+- [[KV Cache]]
 - [[LLM Inference]], [[Inference Serving Engines]], [[KV Cache]], [[Speculative Decoding]], [[Model Quantization and Efficiency]], [[Distributed Training Parallelism]], [[Mixture of Experts]], [[Transformer Architecture]], [[GPU Execution Model]], [[AI Accelerator Architecture]], [[Benchmark Optimization]], [[NVIDIA]]
+- [[Mixture of Experts]]
+- [[Model Quantization and Efficiency]]
+- [[NVIDIA]]
+- [[Prefill-Decode Disaggregation]] - new concept seeded by this source
+- [[Recursive Self-Improvement]]
+- [[Serving Benchmarks and Goodput]] - new concept seeded by this source
+- [[Speculative Decoding]]
+- [[Transformer Architecture]]
+- [[Wafer]] - new entity
 
 ## Raw capture
 

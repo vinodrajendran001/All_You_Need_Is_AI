@@ -47,11 +47,8 @@ This source materially deepens [[Transformer Architecture]] by turning several i
 
 ## Affected pages
 
+- [[KV Cache]]
 - [[Transformer Architecture]]
-- [[Neural Network Fundamentals]]
-- [[Mixture of Experts]]
-- [[Model Quantization and Efficiency]]
-- [[AI Knowledge Base Overview]]
 
 ## Raw capture
 

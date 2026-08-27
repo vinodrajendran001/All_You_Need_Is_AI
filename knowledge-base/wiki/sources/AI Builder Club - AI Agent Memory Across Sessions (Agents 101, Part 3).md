@@ -43,11 +43,8 @@ The source offers an incremental architecture that avoids starting with unnecess
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agent Memory]]
-- [[Context Engineering]]
-- [[Retrieval-Augmented Generation]]
-- [[Coding Agent Harness]]
-- [[Agentic Loop]]
 
 ## Citations
 
@@ -63,4 +60,8 @@ The source offers an incremental architecture that avoids starting with unnecess
 - [[Persistent Wiki]]
 - [[Agent Skill]]
 - [[Multi-Turn Evaluation]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Retrieval-Augmented Generation]]
 

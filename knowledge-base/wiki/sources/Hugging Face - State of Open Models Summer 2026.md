@@ -37,10 +37,9 @@ The article motivates [[Open Model Ecosystems]] as a systems concept spanning li
 
 ## Affected pages
 
+- [[Benchmark Optimization]]
+- [[Hugging Face]]
 - [[Open Model Ecosystems]]
-- [[Small Language Models]]
-- [[Model Quantization and Efficiency]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -56,4 +55,7 @@ The article motivates [[Open Model Ecosystems]] as a systems concept spanning li
 - [[Mixture of Experts]]
 - [[LLM Inference]]
 - [[Coding Agent Harness]]
+- [[AI Agents in Production]]
+- [[Model Quantization and Efficiency]]
+- [[Small Language Models]]
 

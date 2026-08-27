@@ -46,13 +46,9 @@ The source extends [[Agentic Loop]] and [[Agent Planning]] into multi-node orche
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agentic Loop]]
-- [[Agent Planning]]
-- [[Coding Agent Harness]]
-- [[Context Engineering]]
-- [[Agent Memory]]
-- [[Multi-Turn Evaluation]]
-- [[AI Agents in Production]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -69,3 +65,10 @@ The source extends [[Agentic Loop]] and [[Agent Planning]] into multi-node orche
 - [[Model Context Protocol]]
 - [[LLM-as-a-Judge]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
+

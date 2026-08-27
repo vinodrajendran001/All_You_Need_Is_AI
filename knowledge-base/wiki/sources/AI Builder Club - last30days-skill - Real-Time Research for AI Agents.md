@@ -42,11 +42,8 @@ The profile illustrates [[Agent Skill]] as an orchestration artifact layered ove
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agent Skill]]
-- [[Search-Augmented Language Models]]
-- [[Tool Use and Function Calling]]
-- [[Agentic Loop]]
-- [[Context Engineering]]
 
 ## Citations
 
@@ -65,3 +62,5 @@ The profile illustrates [[Agent Skill]] as an orchestration artifact layered ove
 - [[Context Engineering]]
 - [[AI Builder Club - Anthropic's 300+ Claude Code Skills - Lessons Learned]]
 - [[AI Builder Club - google - skills - Google's Official Agent Skills Library]]
+- [[Tool Use and Function Calling]]
+

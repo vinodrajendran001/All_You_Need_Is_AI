@@ -49,12 +49,11 @@ It strengthens the vault's core technical spine as a consolidated, interview-ori
 
 ## Affected pages
 
+- [[Alisa Liu]]
+- [[LLM Inference]]
 - [[ML Research Interview Preparation]]
 - [[Neural Network Fundamentals]]
 - [[Transformer Architecture]]
-- [[LLM Inference]]
-- [[Alisa Liu]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://alisawuffles.notion.site/alisa-s-book-of-llms](https://alisawuffles.notion.site/alisa-s-book-of-llms)

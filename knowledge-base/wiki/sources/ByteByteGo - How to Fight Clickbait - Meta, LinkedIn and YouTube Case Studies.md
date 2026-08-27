@@ -47,10 +47,9 @@ The comparison seeds [[Semantic Recommendation Systems]] and extends [[ML System
 
 ## Affected pages
 
-- [[Semantic Recommendation Systems]]
+- [[ByteByteGo]]
 - [[ML Systems at Scale]]
-- [[Model Routing]]
-- [[Small Language Models]]
+- [[Semantic Recommendation Systems]]
 
 ## Citations
 
@@ -66,4 +65,6 @@ The comparison seeds [[Semantic Recommendation Systems]] and extends [[ML System
 - [[ByteByteGo]]
 - [[Retrieval-Augmented Generation]]
 - [[Model Factory]]
+- [[Model Routing]]
+- [[Small Language Models]]
 

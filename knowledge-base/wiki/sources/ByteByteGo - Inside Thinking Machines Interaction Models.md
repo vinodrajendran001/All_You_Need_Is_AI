@@ -47,11 +47,10 @@ This is the model-architecture half of the new [[Real-Time Voice AI]] concept, c
 
 ## Affected pages
 
-- [[Real-Time Voice AI]]
 - [[LLM Inference]]
 - [[Mixture of Experts]]
+- [[Real-Time Voice AI]]
 - [[Thinking Machines]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://blog.bytebytego.com/p/inside-thinking-machines-interaction](https://blog.bytebytego.com/p/inside-thinking-machines-interaction)

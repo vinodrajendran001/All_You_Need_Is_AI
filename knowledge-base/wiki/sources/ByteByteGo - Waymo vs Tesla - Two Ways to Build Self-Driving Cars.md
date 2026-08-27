@@ -37,9 +37,7 @@ The comparison gives [[Autonomous Driving Systems]] a reusable architecture axis
 ## Affected pages
 
 - [[Autonomous Driving Systems]]
-- [[World Models]]
-- [[Vision-Language Grounding]]
-- [[ML Systems at Scale]]
+- [[ByteByteGo]]
 
 ## Citations
 
@@ -53,4 +51,7 @@ The comparison gives [[Autonomous Driving Systems]] a reusable architecture axis
 
 - [[ByteByteGo]]
 - [[AI Agents in Production]]
+- [[ML Systems at Scale]]
+- [[Vision-Language Grounding]]
+- [[World Models]]
 

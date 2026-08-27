@@ -46,11 +46,10 @@ This source gives the vault a concrete implementation pattern for conversation-l
 
 ## Affected pages
 
-- [[Multi-Turn Evaluation]]
-- [[LLM-as-a-Judge]]
 - [[Braintrust]]
+- [[LLM-as-a-Judge]]
 - [[ML Systems at Scale]]
-- [[AI Knowledge Base Overview]]
+- [[Multi-Turn Evaluation]]
 
 ## Citations
 ## Raw capture

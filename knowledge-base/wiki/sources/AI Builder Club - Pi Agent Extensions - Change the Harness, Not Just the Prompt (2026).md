@@ -45,12 +45,8 @@ The source sharpens [[Coding Agent Harness]] by distinguishing configuration, li
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Coding Agent Harness]]
-- [[Context Engineering]]
-- [[Tool Use and Function Calling]]
-- [[Agent Skill]]
-- [[Model Context Protocol]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -67,3 +63,9 @@ The source sharpens [[Coding Agent Harness]] by distinguishing configuration, li
 - [[Agent Memory]]
 - [[Agent Planning]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Skill]]
+- [[Context Engineering]]
+- [[Model Context Protocol]]
+- [[Tool Use and Function Calling]]
+

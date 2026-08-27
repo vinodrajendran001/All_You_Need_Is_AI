@@ -49,12 +49,9 @@ This source is the most thorough standalone explanation of quantization mechanic
 
 ## Affected pages
 
-- [[Model Quantization and Efficiency]]
-- [[KV Cache]]
 - [[LLM Inference]]
-- [[Small Language Models]]
 - [[Maarten Grootendorst]]
-- [[AI Knowledge Base Overview]]
+- [[Model Quantization and Efficiency]]
 
 ## Citations
 - Source URL: [https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization)

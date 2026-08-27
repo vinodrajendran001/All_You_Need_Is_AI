@@ -43,11 +43,7 @@ The pattern treats synthesis itself as a reusable artifact. It combines provenan
 
 ## Affected pages
 
-- [[Andrej Karpathy]]
-- [[Persistent Wiki]]
-- [[Schema-Driven Knowledge Base]]
-- [[Ingest Query Lint Loop]]
-- [[Direct Corpus Interaction]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The pattern treats synthesis itself as a reusable artifact. It combines provenan
 - [[Retrieval-Augmented Generation]]
 - [[Agent Memory]]
 - [[Context Engineering]]
+- [[Andrej Karpathy]]
+- [[Direct Corpus Interaction]]
+- [[Ingest Query Lint Loop]]
+- [[Persistent Wiki]]
+- [[Schema-Driven Knowledge Base]]
 

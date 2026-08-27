@@ -41,11 +41,8 @@ The guide provides an accessible implementation bridge between [[Tool Use and Fu
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
-- [[Agentic Loop]]
-- [[AI Agents in Production]]
-- [[Coding Agent Harness]]
 
 ## Citations
 
@@ -64,4 +61,5 @@ The guide provides an accessible implementation bridge between [[Tool Use and Fu
 - [[Coding Agent Harness]]
 - [[AI Builder Club - MCP Internals - STDIO, SSE, and JSON-RPC Explained]]
 - [[AI Builder Club - MCP Security - 6 Attack Vectors and a 5-Step Audit]]
+- [[AI Agents in Production]]
 

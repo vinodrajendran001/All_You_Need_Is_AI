@@ -44,11 +44,8 @@ The profile makes [[Agent Memory]] concrete for [[Coding Agent Harness]] workflo
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
 - [[Agent Memory]]
-- [[Context Engineering]]
-- [[Coding Agent Harness]]
-- [[Model Context Protocol]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -67,3 +64,5 @@ The profile makes [[Agent Memory]] concrete for [[Coding Agent Harness]] workflo
 - [[Model Context Protocol]]
 - [[AI Builder Club - Codebase Memory MCP - Give Your Coding Agent a Map (2026)]]
 - [[AI Builder Club - Context Engineering - The Complete Guide (2026)]]
+- [[AI Agents in Production]]
+

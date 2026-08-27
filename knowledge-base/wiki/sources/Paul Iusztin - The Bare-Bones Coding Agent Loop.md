@@ -48,10 +48,6 @@ The source gives [[Coding Agent Harness]] a concrete reference architecture and 
 ## Affected pages
 
 - [[Coding Agent Harness]]
-- [[Agentic Loop]]
-- [[Context Engineering]]
-- [[Agent Security and Governance]]
-- [[AI Agents in Production]]
 
 ## Citations
 
@@ -68,4 +64,8 @@ The source gives [[Coding Agent Harness]] a concrete reference architecture and 
 - [[Agent Memory]]
 - [[Multi-Turn Evaluation]]
 - [[Loop Engineering]]
+- [[AI Agents in Production]]
+- [[Agent Security and Governance]]
+- [[Agentic Loop]]
+- [[Context Engineering]]
 

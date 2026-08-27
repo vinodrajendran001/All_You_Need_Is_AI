@@ -60,15 +60,14 @@ The most durable idea is that production AI stacks should not choose "small or l
 
 ## Affected pages
 
-- [[Small Language Models]]
-- [[Model Routing]]
-- [[Model Quantization and Efficiency]]
-- [[On-Device Reasoning]]
-- [[KV Cache]]
-- [[LLM Training Pipeline]]
 - [[AI Agents in Production]]
 - [[ByteByteGo]]
-- [[AI Knowledge Base Overview]]
+- [[KV Cache]]
+- [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[Model Routing]]
+- [[On-Device Reasoning]]
+- [[Small Language Models]]
 
 ## Citations
 - Source URL: [https://blog.bytebytego.com/p/large-language-models-vs-small-language](https://blog.bytebytego.com/p/large-language-models-vs-small-language)

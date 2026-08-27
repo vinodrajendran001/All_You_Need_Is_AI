@@ -46,9 +46,10 @@ This source deepens [[Automated AI Research]] by giving a sharper language for t
 
 ## Affected pages
 
+- [[Alisa Liu]]
 - [[Automated AI Research]]
-- [[AI Agents in Production]]
-- [[AI Knowledge Base Overview]]
+- [[ML Research Interview Preparation]]
+- [[Recursive Self-Improvement]]
 
 ## Raw capture
 

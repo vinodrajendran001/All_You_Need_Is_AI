@@ -48,14 +48,11 @@ This is the vault's most complete treatment of a single decode-latency technique
 
 ## Affected pages
 
-- [[Speculative Decoding]]
-- [[LLM Inference]]
+- [[Arithmetic Intensity and the Roofline Model]]
 - [[KV Cache]]
-- [[Model Quantization and Efficiency]]
-- [[GPU Execution Model]]
-- [[Test-Time Scaling]]
+- [[LLM Inference]]
 - [[Mayank Pratap Singh]]
-- [[AI Knowledge Base Overview]]
+- [[Speculative Decoding]]
 
 ## Citations
 - Source URL: [vizuara.substack.com](https://vizuara.substack.com/p/speculative-decoding-theory-and-implementation)

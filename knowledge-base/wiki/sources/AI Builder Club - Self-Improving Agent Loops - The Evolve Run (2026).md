@@ -45,12 +45,8 @@ The source extends [[Agentic Loop]], [[Agent Memory]], and [[Coding Agent Harnes
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Agent Memory]]
-- [[Coding Agent Harness]]
-- [[Agent Skill]]
-- [[AI Agents in Production]]
-- [[Multi-Turn Evaluation]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Loop Engineering]]
 
 ## Citations
 
@@ -67,3 +63,10 @@ The source extends [[Agentic Loop]], [[Agent Memory]], and [[Coding Agent Harnes
 - [[Context Engineering]]
 - [[Agent Planning]]
 - [[AI Knowledge Base Overview]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Skill]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
+

@@ -50,11 +50,10 @@ This source extends two vault pages at once. It gives [[Agent Skill]] two concre
 ## Affected pages
 
 - [[Agent Skill]]
+- [[Agentic Loop]]
 - [[Coding Agent Harness]]
 - [[Recursive Self-Improvement]]
 - [[Reward Design for RL]]
-- [[Agentic Loop]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 

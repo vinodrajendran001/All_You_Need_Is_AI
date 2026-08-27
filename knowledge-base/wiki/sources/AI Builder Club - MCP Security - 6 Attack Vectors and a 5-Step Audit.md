@@ -42,11 +42,9 @@ The article extends [[Model Context Protocol]] from an interoperability story in
 
 ## Affected pages
 
+- [[AI Builder Club - Build AI Agents]]
+- [[Agent Security and Governance]]
 - [[Model Context Protocol]]
-- [[Tool Use and Function Calling]]
-- [[Context Engineering]]
-- [[AI Agents in Production]]
-- [[Coding Agent Harness]]
 
 ## Citations
 
@@ -64,4 +62,6 @@ The article extends [[Model Context Protocol]] from an interoperability story in
 - [[AI Agents in Production]]
 - [[AI Builder Club - Agent Sandboxes - OS-Level Security for AI Agents (2026)]]
 - [[AI Builder Club - MCP Internals - STDIO, SSE, and JSON-RPC Explained]]
+- [[Coding Agent Harness]]
+- [[Tool Use and Function Calling]]
 

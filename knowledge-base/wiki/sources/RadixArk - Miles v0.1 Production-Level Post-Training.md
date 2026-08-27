@@ -38,9 +38,8 @@ The source turns [[Agentic Reinforcement Learning]] from an algorithm diagram in
 ## Affected pages
 
 - [[Agentic Reinforcement Learning]]
-- [[Continual Learning for Agents]]
-- [[Distributed Training Parallelism]]
-- [[LLM Inference]]
+- [[Group Relative Policy Optimization]]
+- [[Inference Serving Engines]]
 
 ## Citations
 
@@ -56,4 +55,7 @@ The source turns [[Agentic Reinforcement Learning]] from an algorithm diagram in
 - [[rLLM - Continual Learning via Real-Time RL for Agents]]
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Multi-Turn Evaluation]]
+- [[Continual Learning for Agents]]
+- [[Distributed Training Parallelism]]
+- [[LLM Inference]]
 

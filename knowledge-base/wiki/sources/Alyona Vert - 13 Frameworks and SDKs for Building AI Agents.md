@@ -49,10 +49,11 @@ The source seeds [[Agent Frameworks]] and places the abstract [[Coding Agent Har
 
 ## Affected pages
 
+- [[AI Agents in Production]]
 - [[Agent Frameworks]]
+- [[Alyona Vert]]
 - [[Coding Agent Harness]]
 - [[Graph Engineering]]
-- [[AI Agents in Production]]
 - [[Real-Time Voice AI]]
 
 ## Citations

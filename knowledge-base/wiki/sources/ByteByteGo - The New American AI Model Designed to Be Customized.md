@@ -36,10 +36,10 @@ The source expands [[Mixture of Experts]] from sparse computation into a customi
 
 ## Affected pages
 
-- [[Mixture of Experts]]
-- [[Test-Time Scaling]]
+- [[ByteByteGo]]
 - [[Model Routing]]
 - [[Open Model Ecosystems]]
+- [[Thinking Machines]]
 
 ## Citations
 
@@ -54,4 +54,6 @@ The source expands [[Mixture of Experts]] from sparse computation into a customi
 - [[Thinking Machines]]
 - [[ByteByteGo]]
 - [[Model Quantization and Efficiency]]
+- [[Mixture of Experts]]
+- [[Test-Time Scaling]]
 

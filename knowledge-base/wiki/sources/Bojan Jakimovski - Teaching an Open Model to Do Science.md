@@ -43,13 +43,11 @@ The source is a concrete bridge between [[Agentic Reinforcement Learning]], [[Re
 
 ## Affected pages
 
-- [[Agentic Reinforcement Learning]]
-- [[Reward Design for RL]]
-- [[LLM Training Pipeline]]
-- [[Automated AI Research]]
 - [[AI Agents in Production]]
-- [[Group Relative Policy Optimization]]
-- [[Bojan Jakimovski - Teaching an Open Model to Do Science]]
+- [[Agentic Reinforcement Learning]]
+- [[Automated AI Research]]
+- [[LLM Training Pipeline]]
+- [[Reward Design for RL]]
 
 ## Citations
 - Source URL: [arcee.ai](https://www.arcee.ai/blog/teaching-an-open-model-to-do-science)

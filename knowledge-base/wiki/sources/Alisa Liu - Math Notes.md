@@ -49,10 +49,10 @@ It supplies the **math/probability** dimension that the vault's interview-prep b
 
 ## Affected pages
 
+- [[Algorithm Templates for Interviews]]
+- [[Alisa Liu]]
 - [[ML Research Interview Preparation]]
 - [[Neural Network Fundamentals]]
-- [[Alisa Liu]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://alisawuffles.notion.site/math-notes](https://alisawuffles.notion.site/math-notes)

@@ -41,11 +41,7 @@ The source is a detailed example of verifier design. It shows how an external me
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[AI Agents in Production]]
-- [[Agent Memory]]
-- [[Agent Planning]]
-- [[Multi-Turn Evaluation]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -62,4 +58,9 @@ The source is a detailed example of verifier design. It shows how an external me
 - [[Context Engineering]]
 - [[LLM-as-a-Judge]]
 - [[Tool Use and Function Calling]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Multi-Turn Evaluation]]
 

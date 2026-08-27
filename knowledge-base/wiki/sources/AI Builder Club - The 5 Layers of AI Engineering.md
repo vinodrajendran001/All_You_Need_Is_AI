@@ -40,11 +40,9 @@ The taxonomy connects several vault concepts into one troubleshooting model. It 
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Context Engineering]]
-- [[Coding Agent Harness]]
-- [[Agent Planning]]
-- [[AI Agents in Production]]
+- [[AI Builder Club]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -61,4 +59,9 @@ The taxonomy connects several vault concepts into one troubleshooting model. It 
 - [[Agent Memory]]
 - [[Model Context Protocol]]
 - [[Multi-Turn Evaluation]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
 

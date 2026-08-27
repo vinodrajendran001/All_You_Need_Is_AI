@@ -219,21 +219,22 @@ optimizer, adding a stage costs almost nothing.
 
 ## Affected pages
 
-- [[Staged Reinforcement Learning Curriculum]]
-- [[IBM]]
 - [[Agentic Reinforcement Learning]]
-- [[Group Relative Policy Optimization]]
-- [[LLM Training Pipeline]]
-- [[Reward Design for RL]]
-- [[Reasoning Compression]]
-- [[Model Quantization and Efficiency]]
-- [[Open Model Ecosystems]]
-- [[Small Language Models]]
 - [[Coding Agent Harness]]
-- [[Tool Use and Function Calling]]
 - [[Distributed Training Parallelism]]
-- [[Test-Time Scaling]]
+- [[Group Relative Policy Optimization]]
+- [[Hugging Face]]
+- [[IBM]]
+- [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
 - [[NVIDIA]]
+- [[Open Model Ecosystems]]
+- [[Reasoning Compression]]
+- [[Reward Design for RL]]
+- [[Small Language Models]]
+- [[Staged Reinforcement Learning Curriculum]]
+- [[Test-Time Scaling]]
+- [[Tool Use and Function Calling]]
 
 ## Raw capture
 

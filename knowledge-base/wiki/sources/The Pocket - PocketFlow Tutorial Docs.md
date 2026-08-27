@@ -85,16 +85,18 @@ It is also an unusually good fit for an Obsidian-style wiki because the material
 
 ## Affected pages
 
-- [[Reinforcement Learning]]
-- [[Transformer Architecture]]
-- [[LLM Training Pipeline]]
-- [[Neural Network Fundamentals]]
-- [[Model Quantization and Efficiency]]
+- [[Diffusion Models]]
+- [[Direct Preference Optimization]]
 - [[Group Relative Policy Optimization]]
+- [[KV Cache]]
+- [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[Neural Network Fundamentals]]
+- [[Reinforcement Learning]]
 - [[Reward Design for RL]]
 - [[Search-Augmented Language Models]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
+- [[The Pocket]]
+- [[Transformer Architecture]]
 
 ## Citations
 
@@ -116,3 +118,6 @@ It is also an unusually good fit for an Obsidian-style wiki because the material
 - [[Group Relative Policy Optimization]]
 - [[Reward Design for RL]]
 - [[Search-Augmented Language Models]]
+- [[AI Knowledge Base Overview]]
+- [[index]]
+

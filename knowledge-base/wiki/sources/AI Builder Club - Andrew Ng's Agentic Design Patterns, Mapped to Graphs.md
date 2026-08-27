@@ -39,10 +39,8 @@ The source protects attribution while giving [[Agent Planning]] and [[Agentic Lo
 
 ## Affected pages
 
-- [[Agent Planning]]
-- [[Agentic Loop]]
-- [[Tool Use and Function Calling]]
-- [[AI Agents in Production]]
+- [[AI Builder Club - Build AI Agents]]
+- [[Graph Engineering]]
 
 ## Citations
 
@@ -58,4 +56,8 @@ The source protects attribution while giving [[Agent Planning]] and [[Agentic Lo
 - [[Coding Agent Harness]]
 - [[Agent Memory]]
 - [[Multi-Turn Evaluation]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Tool Use and Function Calling]]
 

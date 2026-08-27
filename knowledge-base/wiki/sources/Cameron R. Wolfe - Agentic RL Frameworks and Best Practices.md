@@ -67,16 +67,16 @@ This source materially expands the vault's RL branch from "LLM post-training on 
 
 ## Affected pages
 
+- [[AI Agents in Production]]
+- [[Agentic Loop]]
 - [[Agentic Reinforcement Learning]]
+- [[Cameron R. Wolfe]]
+- [[Context Engineering]]
+- [[Group Relative Policy Optimization]]
+- [[LLM Training Pipeline]]
 - [[Reinforcement Learning]]
 - [[Reward Design for RL]]
-- [[Group Relative Policy Optimization]]
-- [[Agentic Loop]]
-- [[AI Agents in Production]]
-- [[Context Engineering]]
-- [[LLM Training Pipeline]]
 - [[Search-Augmented Language Models]]
-- [[AI Knowledge Base Overview]]
 
 ## Citations
 - Source URL: [https://cameronrwolfe.substack.com/p/agentic-rl](https://cameronrwolfe.substack.com/p/agentic-rl)

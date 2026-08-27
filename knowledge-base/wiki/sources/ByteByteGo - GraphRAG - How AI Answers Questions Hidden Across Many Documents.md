@@ -37,10 +37,8 @@ The source deepens the Graph RAG tier within [[Retrieval-Augmented Generation]] 
 
 ## Affected pages
 
+- [[ByteByteGo]]
 - [[Retrieval-Augmented Generation]]
-- [[Direct Corpus Interaction]]
-- [[ML Systems at Scale]]
-- [[Context Engineering]]
 
 ## Citations
 
@@ -55,4 +53,7 @@ The source deepens the Graph RAG tier within [[Retrieval-Augmented Generation]] 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
 - [[ByteByteGo]]
 - [[Search-Augmented Language Models]]
+- [[Context Engineering]]
+- [[Direct Corpus Interaction]]
+- [[ML Systems at Scale]]
 

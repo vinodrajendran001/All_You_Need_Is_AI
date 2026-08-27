@@ -43,11 +43,7 @@ The framing recasts coding-agent use as an engineering management and verificati
 
 ## Affected pages
 
-- [[Andrej Karpathy]]
-- [[Coding Agent Harness]]
-- [[Multi-Turn Evaluation]]
-- [[AI Agents in Production]]
-- [[Agent Planning]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The framing recasts coding-agent use as an engineering management and verificati
 - [[Agentic Loop]]
 - [[Context Engineering]]
 - [[Agent Skill]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Andrej Karpathy]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
 

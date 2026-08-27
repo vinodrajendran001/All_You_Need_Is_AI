@@ -43,11 +43,7 @@ The patterns provide a vocabulary for deciding whether a task needs specializati
 
 ## Affected pages
 
-- [[Agent Planning]]
-- [[Agentic Loop]]
-- [[AI Agents in Production]]
-- [[Context Engineering]]
-- [[Multi-Turn Evaluation]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -63,4 +59,9 @@ The patterns provide a vocabulary for deciding whether a task needs specializati
 - [[Coding Agent Harness]]
 - [[Tool Use and Function Calling]]
 - [[Agent Memory]]
+- [[AI Agents in Production]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Context Engineering]]
+- [[Multi-Turn Evaluation]]
 

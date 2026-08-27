@@ -43,10 +43,10 @@ This source broadens the vault from static articles and papers into live researc
 
 ## Affected pages
 
-- [[AI Knowledge Base Overview]]
-- [[World Models]]
-- [[Model Quantization and Efficiency]]
+- [[Diffusion Models]]
 - [[LLM Training Pipeline]]
+- [[Model Quantization and Efficiency]]
+- [[World Models]]
 - [[Y Combinator]]
 
 ## Citations

@@ -33,13 +33,9 @@ This source distills Airtable's public account of the semantic search layer behi
 
 ## Affected pages
 
+- [[ByteByteGo]]
 - [[ML Systems at Scale]]
 - [[Retrieval-Augmented Generation]]
-- [[Search-Augmented Language Models]]
-- [[ByteByteGo]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
-- [[log|Knowledge Base Log]]
 
 ## Raw capture
 
@@ -53,3 +49,6 @@ This source distills Airtable's public account of the semantic search layer behi
 - [[Search-Augmented Language Models]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[AI Knowledge Base Overview]]
+- [[index]]
+- [[log]]
+

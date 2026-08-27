@@ -41,11 +41,7 @@ The source provides a concrete concurrency case for [[Agent Memory]] and [[Agent
 
 ## Affected pages
 
-- [[Agentic Loop]]
-- [[Agent Memory]]
-- [[AI Agents in Production]]
-- [[Agent Planning]]
-- [[Coding Agent Harness]]
+- [[AI Builder Club - Build AI Agents]]
 
 ## Citations
 
@@ -61,4 +57,9 @@ The source provides a concrete concurrency case for [[Agent Memory]] and [[Agent
 - [[Multi-Turn Evaluation]]
 - [[Context Engineering]]
 - [[Tool Use and Function Calling]]
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Planning]]
+- [[Agentic Loop]]
+- [[Coding Agent Harness]]
 

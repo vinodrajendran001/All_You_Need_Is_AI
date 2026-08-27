@@ -47,11 +47,10 @@ This is a concrete form of the "operate the artifact" rule in [[Multi-Turn Evalu
 
 ## Affected pages
 
-- [[Multi-Turn Evaluation]]
-- [[Coding Agent Harness]]
-- [[Agent Skill]]
-- [[Loop Engineering]]
 - [[AI Agents in Production]]
+- [[Agent Skill]]
+- [[Coding Agent Harness]]
+- [[Multi-Turn Evaluation]]
 
 ## Citations
 
@@ -67,4 +66,5 @@ This is a concrete form of the "operate the artifact" rule in [[Multi-Turn Evalu
 - [[Agentic Loop]]
 - [[Graph Engineering]]
 - [[Agent Security and Governance]]
+- [[Loop Engineering]]
 

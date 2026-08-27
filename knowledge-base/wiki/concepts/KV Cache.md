@@ -105,13 +105,6 @@ The last family is the one that changes the shape of a deployment rather than it
 
 The practical rule is to treat the prefix as a stable interface — append rather than rewrite, and keep anything volatile at the end of the context. This is what makes prefix reuse the dominant win for agent and chat traffic noted in [[Inference Serving Engines]], and why [[Agentic Loop]] treats cache-awareness as a constraint on how a loop is built.
 
-## Open questions
-
-- Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
-- Can aggressive KV quantization become a standard serving-kernel feature, or will implementation complexity keep it research-stage?
-- How should agent systems decide when to summarize, evict, quantize, or route around expensive long-context state?
-- If cache-sharing architectures spend the decode compute headroom that speculation also needs, how should a serving stack choose between them per workload rather than per model?
-
 ## The cache budget is what speculation spends
 
 [[ByteByteGo - How to Make LLMs 3X Faster]] makes the competition explicit. A separate draft model
@@ -125,6 +118,13 @@ weights** while verification runs at higher precision, reporting above 1.78× wi
 cheap drafts: the degraded cache *is* the draft model. That is a use of KV-cache quantization this
 page's optimization families did not anticipate, where the quality loss from compression is
 acceptable precisely because a full-precision verifier corrects it.
+
+## Open questions
+
+- Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
+- Can aggressive KV quantization become a standard serving-kernel feature, or will implementation complexity keep it research-stage?
+- How should agent systems decide when to summarize, evict, quantize, or route around expensive long-context state?
+- If cache-sharing architectures spend the decode compute headroom that speculation also needs, how should a serving stack choose between them per workload rather than per model?
 
 ## Related pages
 

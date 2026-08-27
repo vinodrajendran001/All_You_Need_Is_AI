@@ -124,8 +124,56 @@ The shared lesson is that agentic reward design must balance correctness, explor
 
 The durable pattern is **trajectory evidence plus outcome verification**: a fluent synthesis after failed retrieval should not receive the same reward as a concise answer grounded in successful calls. The case also shows why promotion should include trace review and application testing, since aggregate verifier scores cannot fully establish that scientific evidence seeking was purposeful or that uncertainty was acknowledged.
 
+## Three reward types, and an ordering rule
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] offers the cleanest taxonomy of reward
+signals in this vault, drawn from one pipeline that uses all three:
+
+| Reward type | What it measures | Where Granite uses it |
+| --- | --- | --- |
+| **Verifiable** | Exact match, unit tests, format and rule checkers against ground truth | RLVR, boosters, SWE |
+| **Reward model / LLM judge** | Open-ended quality, preference, safety, answer correctness | RLVR, Search, RLHF |
+| **Agentic outcome** | Did the model actually solve the task in a real environment? | SWE, Terminal, Search |
+
+The ordering principle is that **verifiable rewards come first because they are hard to game**. A
+pipeline front-loads them to build capability against signals that cannot be corrupted, then applies
+judge- and preference-based rewards later for qualities no checker can express. Agentic-outcome
+rewards are the sparsest of all — often a single bit at the end of a long tool-use trajectory — which
+is why they sit late, depending on skills the earlier stages installed.
+
+Granite grounds verifiability per example rather than per stage: each RLVR task type carries its own
+verifier, so math is checked by boxed-answer matching or Lean proof, competitive coding by hidden
+tests in a sandbox, instruction following by structured-output checkers. Reward validity is a
+property of the sample, not the dataset.
+
+The stage list also includes **abstention** — training the model to know when to refuse — as a
+verifiable RLVR task type alongside math and code. Treating refusal as something with a ground-truth
+answer, rather than only as a safety behavior shaped at RLHF, is a framing this page had not
+recorded.
+
+## KL as a reward-type-dependent parameter
+
+The most transferable rule Granite supplies belongs on this page as much as on the optimizer's.
+**The KL coefficient should follow what the stage is rewarding**: KL = 0 where the reward is
+verifiable, letting the policy roam because passing tests is sufficient evidence of good behavior;
+KL = 0.05 where the reward is preference, safety, or a narrow skill graft, because there drift and
+reward hacking are indistinguishable and the reference policy's general competence is what needs
+protecting.
+
+## Rewards that clean up after other rewards
+
+Granite's final RLHF stage applies a **reasoning-length penalty to discourage the verbosity acquired
+during earlier stages**. This is worth recording as its own category: a reward whose purpose is not
+to install a capability but to remove a side effect that a *previous* reward induced.
+
+It is direct evidence that capability-focused RL stages leave behavioral residue, and that
+multi-stage pipelines need corrective rewards as well as constructive ones. See
+[[Reasoning Compression]] and [[Staged Reinforcement Learning Curriculum]].
+
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[Staged Reinforcement Learning Curriculum]]
 - [[Search-Augmented Language Models]]
 - [[Agentic Reinforcement Learning]]
 - [[Group Relative Policy Optimization]]

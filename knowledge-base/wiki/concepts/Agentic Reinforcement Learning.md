@@ -143,6 +143,42 @@ Two details are especially durable:
 
 RadixAttention and session routing reuse multi-turn prefixes, while shared, dedicated, or external evaluators trade resource isolation against throughput. The same architecture intensifies the stale-policy question: higher utilization is not free if trajectories drift too far from current weights.
 
+### A shipped pipeline, with the numbers
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] is the first source on this page that
+describes agentic RL as executed for a released model family rather than as a framework survey. It
+confirms several patterns above and sharpens three of them.
+
+**Environment interfaces converge again.** NeMo-Gym exposes verifiers, tools, sandboxes, and reward
+models as interchangeable **Resources** behind one interface — the fourth independent arrival at this
+design after AgentGym-RL's HTTP services, Agent-R1's Tool/ToolEnv abstractions, and AgentRL's
+function-call API. Granite states the payoff most directly: a booster's rule-based checker and a full
+containerized SWE sandbox present the same interface to GRPO, which is what makes adding a training
+stage a configuration change rather than a project. See
+[[Staged Reinforcement Learning Curriculum]].
+
+**Real environments, sparse rewards, in three flavors.** The agentic block runs SWE → Terminal →
+Search. Each SWE task is a real repository in its own container image, driven by the OpenHands
+harness, rewarded on whether hidden tests pass. The terminal agent runs a live shell through Harbor /
+Terminus-2 with rollouts spanning **up to 64 environment turns**, and is the one stage driving its
+multi-turn loop at the GRPO level. The search agent answers multi-hop questions with live web search,
+judged by an LLM because correctness is open-ended. This is the concrete form of the
+"environment bottlenecks" and isolation requirements described above: thousands of per-repo container
+images, live browsers, real shells.
+
+**Agentic RL has a scale floor — or at least a scale policy.** Granite's 3B model skips the agentic
+block entirely, taking only foundational RL and alignment, while 8B and 30B run the full ladder. The
+method and infrastructure are identical; only the number of rungs differs. Whether 3B *could* have
+learned agentic behavior is not tested, so this is a scope decision rather than a capability finding
+— but it is the first evidence in this vault that teams treat agentic RL as something to spend on
+larger models only.
+
+The training data mirrors this. Granite's SFT mixture is **31.6% agentic**, and within that,
+software engineering dominates at 69%, followed by tool calling at 12.1% and terminal use at 8.0%.
+Trajectories were deliberately generated across many harnesses — OpenHands, OpenCode, Terminus-2,
+SWE-agent, MiniSWE, Gemini CLI, Codex, Goose and others — rather than standardizing on one, which
+treats harness diversity itself as a form of data augmentation.
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -153,6 +189,9 @@ RadixAttention and session routing reuse multi-turn prefixes, while shared, dedi
 
 ## Related pages
 
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[Staged Reinforcement Learning Curriculum]]
+- [[IBM]]
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]]
 - [[Reinforcement Learning]]
 - [[Reward Design for RL]]

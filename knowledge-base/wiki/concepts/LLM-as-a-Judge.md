@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-07-06
+updated: 2026-08-27
 tags:
   - concept
   - llm-evaluation
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-05-29-braintrust-multi-turn-scoring
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-06-sarthak-rastogi-production-agent
+  - src-2026-07-29-giles-thomas-gpt2-weights-part-1
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
 status: active
 ---
 

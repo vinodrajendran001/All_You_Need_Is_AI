@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-08-27
 tags:
   - concept
   - evaluation
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
+  - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
 status: active
 ---
 

@@ -112,8 +112,23 @@ The practical rule is to treat the prefix as a stable interface — append rathe
 - How should agent systems decide when to summarize, evict, quantize, or route around expensive long-context state?
 - If cache-sharing architectures spend the decode compute headroom that speculation also needs, how should a serving stack choose between them per workload rather than per model?
 
+## The cache budget is what speculation spends
+
+[[ByteByteGo - How to Make LLMs 3X Faster]] makes the competition explicit. A separate draft model
+costs VRAM, and that VRAM **comes out of the KV-cache budget**, directly reducing how many concurrent
+requests the server can hold. Speculative decoding is therefore not a free latency win layered on top
+of the cache; it trades cache capacity — and hence batch size and throughput — for per-request speed.
+
+The same source describes the inverse move. QuantSpec drafts using **a 4-bit KV cache alongside 4-bit
+weights** while verification runs at higher precision, reporting above 1.78× with acceptance above
+90%. Here cache compression is not a memory optimization at all but the mechanism that generates
+cheap drafts: the degraded cache *is* the draft model. That is a use of KV-cache quantization this
+page's optimization families did not anticipate, where the quality loss from compression is
+acceptable precisely because a full-precision verifier corrects it.
+
 ## Related pages
 
+- [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
 - [[Nithin - What Actually Happens During LLM Inference]]

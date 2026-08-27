@@ -56,8 +56,27 @@ Two implications for engine selection. First, an engine's real differentiator is
 
 Knowing which mechanism an engine implements is more durable knowledge than knowing which engine is currently fastest: benchmark leadership rotates, the mechanisms do not. Whether a given engine's advantage is real is a question for [[Serving Benchmarks and Goodput]], which supplies the evidence standard a serving comparison has to meet.
 
+## Speculation is a runtime control surface, not a deploy-time flag
+
+[[ByteByteGo - How to Make LLMs 3X Faster]] documents how vLLM actually operates speculative
+decoding, and it is more dynamic than an on/off setting. The engine exposes a flag that disables
+speculation above a configurable batch size, and supports **dynamic adjustment in which draft length
+shrinks as concurrency rises and reaches zero under heavy load**.
+
+This is worth recording as an engine capability rather than a speculative-decoding detail, because it
+shows the class of control a serving engine is expected to provide: continuously re-deciding how much
+spare capacity exists and re-shaping the workload to match, per step, without operator intervention.
+The source frames it as routine operational tuning.
+
+The design also reveals what engines can and cannot observe. Batch size is a cheap, directly measured
+proxy for whether headroom exists. Whether a *given request* will draft well depends on its content —
+structured output drafts well, open-ended prose does not — and no engine described in this vault
+inspects that. Engines currently tune the supply side of speculation and ignore the demand side.
+
 ## Related pages
 
+- [[ByteByteGo - How to Make LLMs 3X Faster]]
+- [[Speculative Decoding]]
 - [[LLM Inference]]
 - [[KV Cache]]
 - [[Changyi Yang - Why MLA and MTP Fight Each Other]]

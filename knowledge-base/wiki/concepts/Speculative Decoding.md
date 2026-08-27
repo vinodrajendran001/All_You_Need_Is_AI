@@ -138,7 +138,30 @@ the same direction: multi-token prediction *slightly reduces* throughput while s
 improving end-to-end generation latency. Speculation buys perceived responsiveness, and pays for it
 in aggregate capacity.
 
+## Partial answer to the auto-tuning question
 
+This page has stood with an open question about whether serving stacks could predict α online well
+enough to auto-tune K and the on/off switch per request. Shipped code gives a partial answer, and it
+works by **sidestepping prediction entirely**.
+
+vLLM exposes a flag that disables speculation above a configurable batch size, and supports dynamic
+adjustment in which **draft length shrinks as concurrency rises and reaches zero under heavy load**.
+Rather than estimating acceptance, it keys draft length to *observed concurrency* — a directly
+measurable proxy for whether spare compute exists at all. [[ByteByteGo - How to Make LLMs 3X Faster]]
+frames this as routine operational tuning rather than an edge case.
+
+That resolves half the question. Concurrency tells you whether there is headroom to spend; it says
+nothing about whether *this particular request* will draft well. The workload-dependence of α above
+means a code-completion request and a creative-writing request at the same batch size deserve
+different K, and no serving stack described in this vault distinguishes them. The measured shape of
+the headroom half is stark: one systematic evaluation reported **up to 1.96× on a 70B model at batch
+size 1, declining to 1.21× at batch size 128**, and falling below baseline under higher concurrency.
+
+## Open questions
+
+- Can a serving stack estimate per-request draftability — from prompt features, task type, or
+  temperature — rather than only inferring global headroom from batch size, which is all vLLM's
+  dynamic draft length currently does?
 - Can cross-tokenizer or tokenizer-free speculation relax the same-family constraint?
 - Where is the model-size/batch crossover at which speculation reliably pays, and how does it shift with EAGLE-style feature drafting?
 - Should a serving stack disable speculation automatically for high-arithmetic-intensity attention architectures, and can the balance point be probed at runtime rather than assumed from the datasheet?
@@ -161,3 +184,5 @@ in aggregate capacity.
 - [[Speculative Tool Execution]]
 - [[Programmatic Tool Calling]]
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
+- [[ByteByteGo - How to Make LLMs 3X Faster]]
+- [[Serving Benchmarks and Goodput]]

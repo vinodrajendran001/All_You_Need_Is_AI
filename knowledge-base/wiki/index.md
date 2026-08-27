@@ -303,6 +303,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Programmatic Tool Calling]] - Executable code as the agent's action space, with tools as functions inside it.
 - [[Speculative Tool Execution]] - Pre-launching tool calls parsed from a partially generated program to overlap them with generation.
 - [[Reasoning Trace Privacy]] - Why encrypted reasoning blocks do not keep hidden chains of thought private.
+- [[Staged Reinforcement Learning Curriculum]] - Post-training as a chain of independent RL runs, each with its own reward, warm-starting from the last.
 
 ## Entities
 
@@ -344,6 +345,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Yoko Li]] - AI Builder Club writer whose convergence framework connects editability, verification, stopping rules, and loop economics.
 - [[Alyona Vert]] - Turing Post writer whose sources map recursive self-improvement, emerging AI techniques, and agent frameworks.
 - [[Anthropic]] - Model developer and Claude Code publisher; source of the AI-native SDLC playbook.
+- [[IBM]] - Publisher of the Granite family; a methodology source first, since it releases the training recipe with its hyperparameters rather than only weights and benchmarks.
 - [[Hugging Face]] - Model hub and open-source library maintainer; source of the open-model state report.
 - [[Hume AI]] - Speech and voice-AI company; source of the ASR benchmark-optimization study.
 - [[Cerebras]] - Wafer-scale accelerator maker trading yield and model size for extreme memory bandwidth per FLOP.
@@ -553,6 +555,11 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Wafer - AI Performance Engineering Resources]] - Curated GPU performance-engineering learning path with an explicit primary-source and reportable-number evidence policy.
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]] - Overlapping tool execution with token generation when the agent's action space is code in a REPL.
 - [[ByteByteGo - How to Steal an AI Model's Private Thoughts]] - Encrypted reasoning blocks replayed into cheaper sibling models, exposing hidden traces, secrets, and an injection carrier.
+
+### August 27, 2026 batch
+
+- [[IBM Granite Team - Granite 4.2 LLMs How They're Built]] - A complete published post-training recipe with hyperparameters: a chain of GRPO stages ending in agentic RL inside real sandboxed environments.
+- [[ByteByteGo - How to Make LLMs 3X Faster]] - Speculative decoding explainer; adds a fourth draft-source family, DeepSeek production acceptance rates, and how vLLM actually controls draft length.
 
 ## Syntheses
 

@@ -376,6 +376,41 @@ Two further sources arrive the same day on the agent branch. [[Alex L. Zhang - S
 
 [[ByteByteGo - How to Steal an AI Model's Private Thoughts]] seeds [[Reasoning Trace Privacy]] with a security finding whose lesson is a systems one. Encrypted reasoning blocks authenticate the model but not the account or conversation, so a block from a flagship can be replayed into a cheaper sibling that transcribes it — meaning **a model family is only as secure as its least protected member**. Two consequences reach this vault's own practice: published agent traces carry secrets that plaintext sanitisation cannot touch (a scan of 6,708 public trajectories recovered API keys, passwords, and private keys), and a planted block is a prompt-injection carrier no one in the chain can inspect. A separate finding lands on [[LLM Reasoning]]: the displayed "thinking" summary is a distinct artifact from the trace and can diverge from it, so it is not evidence of process.
 
+## August 27 additions
+
+Two sources, one of which changes what this vault can say about post-training.
+
+[[IBM Granite Team - Granite 4.2 LLMs How They're Built]] is the first source here to publish a
+**complete post-training recipe with its hyperparameters** for a shipped open-weight family. The
+vault's agentic-RL coverage came from surveys and framework write-ups describing what teams could
+do; Granite states what one team did, stage by stage. That gave the vault a new concept page,
+[[Staged Reinforcement Learning Curriculum]] — treating post-training as a chain of independent GRPO
+runs, each with one objective and one reward, warm-starting from the previous checkpoint — plus the
+[[IBM]] entity.
+
+The most transferable rule it supplies is that **the KL coefficient should follow the reward type**:
+run at KL 0 where the reward is verifiable, because passing tests is sufficient evidence of good
+behavior, and at the pipeline's highest KL where the reward is preference, safety, or a narrow skill
+graft, because there drift and reward hacking are indistinguishable. That is now recorded on
+[[Reward Design for RL]] and [[Group Relative Policy Optimization]] alongside Granite's leave-one-out
+baseline and its bounded-staleness asynchronous loop. Two further findings landed elsewhere: agentic
+RL appears to have a **scale policy** — Granite's 3B model is deliberately never given the agentic
+stages, on [[Small Language Models]] — and Granite's RLHF stage applies a reasoning-length penalty
+purely to undo verbosity that *earlier stages induced*, which reframes reasoning bloat on
+[[Reasoning Compression]] as iatrogenic rather than intrinsic.
+
+[[ByteByteGo - How to Make LLMs 3X Faster]] is a secondary explainer over ground
+[[Speculative Decoding]] already held, but it earned its place three ways. It adds a **fourth
+draft-source family** — a degraded copy of the target model itself, as in QuantSpec's 4-bit weights
+and 4-bit KV cache — which makes quantization a drafting device rather than a deployment format on
+[[Model Quantization and Efficiency]]. It supplies the page's first **production** acceptance figure,
+DeepSeek's 80–90% for the second predicted token when serving DeepSeek-V3. And it **partially
+resolves a standing open question**: vLLM auto-tunes draft length not by predicting acceptance but by
+keying it to observed concurrency, which answers the "is there headroom" half and leaves the "will
+this request draft well" half open. The batch-size sensitivity it reports — 1.96× at batch 1 falling
+to 1.21× at batch 128, and below baseline beyond — is now the worked example of this vault's evidence
+standard on [[Serving Benchmarks and Goodput]].
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]

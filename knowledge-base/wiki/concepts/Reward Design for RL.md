@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-03
+updated: 2026-08-27
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-30-teaching-open-model-science
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

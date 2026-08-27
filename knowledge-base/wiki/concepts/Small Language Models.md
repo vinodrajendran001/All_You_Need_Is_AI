@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-08-12
+updated: 2026-08-27
 tags:
   - concept
   - llm
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
   - src-2026-08-12-bytebytego-knowledge-distillation
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

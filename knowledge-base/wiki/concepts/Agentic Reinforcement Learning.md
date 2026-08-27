@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-08-24
+updated: 2026-08-27
 tags:
   - concept
   - reinforcement-learning
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-07-rllm-realtime-rl-agents
   - src-2026-08-20-radixark-miles-v0-1
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-12
+updated: 2026-08-27
 tags:
   - concept
   - llm
@@ -31,6 +31,7 @@ source_ids:
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-07-30-teaching-open-model-science
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

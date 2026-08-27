@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-08-26
+updated: 2026-08-27
 tags:
   - concept
   - inference
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
+  - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
 status: active
 ---
 
@@ -90,9 +91,54 @@ The structural analogy is close — cheap speculative work overlapped with an ex
 
 Both techniques exploit the same underlying slack, though, which is worth noting: on a locally served model the engine is memory-bound decoding the main context, so speculative sub-calls consume compute that would otherwise sit idle — the argument on [[Arithmetic Intensity and the Roofline Model]], applied to agent harnesses.
 
-## Open questions
+## A fourth draft family, and what production actually reports
 
-- How can serving stacks predict α online well enough to auto-tune K and the on/off switch per request?
+[[ByteByteGo - How to Make LLMs 3X Faster]] adds a draft source the taxonomy above does not cover:
+**a degraded copy of the target model itself**. The draft runs the same weights under a reduced
+compute budget — quantization, layer skipping, or a compressed KV cache — while verification runs
+at full precision. QuantSpec drafts with 4-bit weights and a 4-bit KV cache and reports above
+**1.78× with acceptance above 90%**.
+
+This sits between the two families already described. Like Medusa and EAGLE it needs no second
+checkpoint to serve, version, and keep aligned; unlike them it needs no training access, since it
+reuses weights you already have. The cost moves to implementation complexity, because draft and
+target now share hardware and cache structures. It also makes [[Model Quantization and Efficiency|quantization]]
+do double duty: the same 4-bit machinery that cuts bytes per weight becomes the mechanism for
+generating cheap drafts.
+
+The same source supplies the first **production** acceptance figure on this page. DeepSeek reported
+**80–90% acceptance for the second predicted token when serving DeepSeek-V3**, worth roughly 1.8×
+generation throughput. Everything else here comes from benchmarks or single-GPU experiments, so a
+sustained production number is a different class of evidence — and it lands near the top of the α
+range the economics section models, which is what makes self-drafting MTP heads attractive despite
+their training cost.
+
+## Acceptance is a property of the workload, not the configuration
+
+The α discussion above treats acceptance as something you measure and tune around. The sharper
+framing is that **α is mostly determined by what your users are asking**, not by what you deployed.
+
+Structured, repetitive output drafts well — code generation, summarization, extraction, and
+retrieval-augmented answers all reuse large amounts of text already in the context, which makes the
+next token easy for a small model to guess. Open-ended output drafts badly, because creative writing
+and open conversation generate genuine variety that a small model diverges from quickly. Sampling
+temperature compounds this: higher temperature flattens the distribution and pushes acceptance down.
+
+The operational consequence is uncomfortable. Two teams can deploy the identical configuration on
+identical hardware and get different results, because their traffic differs. Speculative decoding is
+therefore not a setting that can be validated once and shipped as a default; it has to be measured
+against the actual request distribution, and re-measured when that distribution shifts.
+
+## Prefill is untouched
+
+Speculation applies to generation, not prompt processing, so **time to first token is unchanged**.
+Workloads with long prompts and short outputs — classification, extraction over large documents,
+routing — have almost nothing to gain no matter how well they draft. DeepSeek stated the tradeoff in
+the same direction: multi-token prediction *slightly reduces* throughput while significantly
+improving end-to-end generation latency. Speculation buys perceived responsiveness, and pays for it
+in aggregate capacity.
+
+
 - Can cross-tokenizer or tokenizer-free speculation relax the same-family constraint?
 - Where is the model-size/batch crossover at which speculation reliably pays, and how does it shift with EAGLE-style feature drafting?
 - Should a serving stack disable speculation automatically for high-arithmetic-intensity attention architectures, and can the balance point be probed at runtime rather than assumed from the datasheet?

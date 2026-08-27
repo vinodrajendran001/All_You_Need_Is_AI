@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-27
 tags: [concept, open-models, ecosystems, inference]
 source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
   - src-2026-08-19-bytebytego-inkling
   - src-2026-08-20-mark-russinovich-fools-gold
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

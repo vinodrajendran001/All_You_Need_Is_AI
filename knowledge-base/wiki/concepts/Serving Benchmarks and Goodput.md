@@ -62,14 +62,6 @@ So the instruments described above are the right toolkit for *choosing* and *tun
 but they are not the dashboard. Selecting which of them become alerting signals, and which stay
 diagnostic, is a separate decision this page should not conflate with measurement.
 
-## Open questions
-
-- Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
-- Public traces such as BurstGPT age as usage patterns shift, particularly as agent traffic replaces chat traffic. What keeps workload generators current?
-- Agentic workloads have very different shapes — long tool-augmented sessions, bursty parallel sub-agent calls, heavy prefix reuse. The source lists session-aware and agentic scheduling as an unsettled frontier rather than a solved measurement problem.
-- How should benchmarks account for prefix cache hit rates, which can dominate real performance but depend entirely on traffic locality?
-- Can a benchmark meaningfully score a disaggregated system end to end, when its cost structure depends on interconnect properties the benchmark does not control?
-
 ## A speedup number without a batch size is not a measurement
 
 [[ByteByteGo - How to Make LLMs 3X Faster]] supplies the sharpest illustration of this page's
@@ -92,6 +84,14 @@ Note also that speculative decoding does not move **time to first token** at all
 generation rather than prefill. A goodput definition keyed to TTFT will score it as no improvement
 whatsoever, while one keyed to inter-token latency will score it as a large win. The metric choice
 determines the verdict.
+
+## Open questions
+
+- Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
+- Public traces such as BurstGPT age as usage patterns shift, particularly as agent traffic replaces chat traffic. What keeps workload generators current?
+- Agentic workloads have very different shapes — long tool-augmented sessions, bursty parallel sub-agent calls, heavy prefix reuse. The source lists session-aware and agentic scheduling as an unsettled frontier rather than a solved measurement problem.
+- How should benchmarks account for prefix cache hit rates, which can dominate real performance but depend entirely on traffic locality?
+- Can a benchmark meaningfully score a disaggregated system end to end, when its cost structure depends on interconnect properties the benchmark does not control?
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [concept, tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

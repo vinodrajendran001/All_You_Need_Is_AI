@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-07-03
+updated: 2026-08-27
 tags:
   - concept
   - reasoning
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-06-04-conpress
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

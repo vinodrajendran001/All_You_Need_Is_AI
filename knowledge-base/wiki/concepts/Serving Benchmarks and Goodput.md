@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-08-27
 tags:
   - concept
   - benchmarks
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
+  - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
 status: active
 ---
 

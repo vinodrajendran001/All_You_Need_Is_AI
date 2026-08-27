@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-26
+updated: 2026-08-27
 tags:
   - concept
   - llm
@@ -30,6 +30,8 @@ source_ids:
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
   - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
 status: active
 ---
 

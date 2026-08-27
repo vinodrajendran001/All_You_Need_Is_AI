@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-26
+updated: 2026-08-27
 tags:
   - concept
   - coding-agents
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
   - src-2026-08-21-anthropic-ai-native-sdlc
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-12
+updated: 2026-08-27
 tags:
   - concept
   - reasoning
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-08-25-ibm-granite-4-2-how-they-are-built
 status: active
 ---
 

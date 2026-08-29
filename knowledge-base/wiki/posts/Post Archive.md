@@ -25,13 +25,21 @@ materially different angle, and that post must say what is new.
 
 | Date | Post | Window covered | Spine page | Status |
 |------|------|----------------|------------|--------|
-| 2026-08-29 | [[2026-08-29 KL Should Follow the Reward]] | 2026-08-26 → 2026-08-27 | [[Reward Design for RL]] | draft |
+| 2026-08-29 | [[2026-08-29 KL Should Follow the Reward]] | 2026-08-26 → 2026-08-29 | [[Reward Design for RL]] | ready |
 
 ## Topics covered
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
 - 2026-08-29 - reward design, KL divergence, verifiable vs preference rewards, post-training recipes
+
+## Unposted candidates worth revisiting
+
+<!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
+
+- The "3X faster" speculative-decoding claim that the article's own numbers cap at 1.21×–2× - [[Speculative Decoding]], [[Serving Benchmarks and Goodput]]
+- Reasoning traces as an unsanitisable secrets surface: 328 of 6,708 scanned trajectories leaking - [[Reasoning Trace Privacy]], [[Context Engineering]]
+- Speculative tool execution gates on purity but not authority - [[Agent Security and Governance]], [[Speculative Tool Execution]]
 
 ## Spine pages in cooldown
 

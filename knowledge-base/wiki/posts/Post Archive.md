@@ -9,8 +9,9 @@ status: active
 
 # Post Archive
 
-Ledger of LinkedIn posts drafted from this vault. The **Post** workflow in the root `CLAUDE.md` reads this
-page first, then the newest post's `covers_through` date, to work out which ingest window it should cover next.
+Ledger of LinkedIn and X posts drafted from this vault. Each run produces **one idea in one file, written for both
+platforms** — a long-form LinkedIn post plus an X standalone and thread. The **Post** workflow in the root `CLAUDE.md`
+reads this page first, then the newest post's `covers_through` date, to work out which ingest window it should cover next.
 
 Posts are derived output, not evidence. Concept, entity, and synthesis pages must never cite a post.
 Posts carry no `source_id`s of their own, so they do not affect source-ID parity across index, log, and overview.
@@ -23,9 +24,9 @@ materially different angle, and that post must say what is new.
 
 ## Posts
 
-| Date | Post | Window covered | Spine page | Status |
-|------|------|----------------|------------|--------|
-| 2026-08-29 | [[2026-08-29 KL Should Follow the Reward]] | 2026-08-26 → 2026-08-29 | [[Reward Design for RL]] | ready |
+| Date | Post | Window covered | Spine page | Platforms | Status |
+|------|------|----------------|------------|-----------|--------|
+| 2026-08-29 | [[2026-08-29 KL Should Follow the Reward]] | 2026-08-26 → 2026-08-29 | [[Reward Design for RL]] | LinkedIn, X | ready |
 
 ## Topics covered
 

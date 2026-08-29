@@ -4,7 +4,6 @@ created:
 updated:
 tags:
   - post
-source_ids: []
 pages_used: []
 topics: []
 covers_from:
@@ -19,7 +18,8 @@ status: draft
      run reads `covers_through` from the newest post to find its own window start.
      `pages_used` lists every wiki page the post's claims are traceable to — it is both the
      fact-check basis and the anti-repeat record. The first entry is the spine page, which enters
-     a 6-week cooldown. `source_ids` lists the underlying sources so attribution stays honest.
+     a 6-week cooldown. Posts deliberately declare no `source_ids`: attribution lives in
+     `pages_used` and `## Attribution`, so posts never enter source-ID parity or traceability checks.
      `topics` is 2-4 short lowercase phrases used for dedupe against the archive.
      `status`: draft -> ready -> published. -->
 

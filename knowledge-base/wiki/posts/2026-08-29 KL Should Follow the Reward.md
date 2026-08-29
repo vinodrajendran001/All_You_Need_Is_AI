@@ -1,9 +1,12 @@
 ---
-type: linkedin-post
+type: social-post
 created: 2026-08-29
 updated: 2026-08-29
 tags:
   - post
+platforms:
+  - linkedin
+  - x
 pages_used:
   - "[[Reward Design for RL]]"
   - "[[IBM Granite Team - Granite 4.2 LLMs How They're Built]]"
@@ -21,7 +24,7 @@ status: ready
 
 # 2026-08-29 KL Should Follow the Reward
 
-## Post
+## LinkedIn post
 
 Most teams tune the KL penalty in RLHF by feel. IBM's Granite 4.2 build report suggests it shouldn't be tuned at all. It should be looked up.
 
@@ -43,13 +46,77 @@ Where else are we tuning by feel, because we can't measure the outcome?
 
 #ReinforcementLearning #LLMTraining #RewardDesign #GRPO #OpenModels
 
+## X post
+
+<!-- URLs count as 23 characters on X regardless of length; counts below include that. -->
+
+**A) Standalone** (274 chars):
+
+```
+IBM published the KL coefficient for every RL stage of Granite 4.2.
+
+It tracks one thing: how verifiable the reward is.
+
+Verifiable → 0
+Agentic → 0.01
+Preference/safety → 0.05
+
+A leash isn't safety. It's admitting you can't check where the dog went.
+
+https://huggingface.co/blog/ibm-granite/granite-4-2
+```
+
+**B) Thread:**
+
+1. (186 chars)
+```
+IBM published the per-stage RL hyperparameters for Granite 4.2.
+
+The KL coefficient doesn't track stage difficulty or model size. It tracks one thing: whether the reward can be verified.
+```
+
+2. (160 chars)
+```
+Verifiable reward — math with a checkable answer, code that has to pass hidden tests?
+
+KL = 0. No leash. Passing the test is sufficient proof the model behaved.
+```
+
+3. (237 chars)
+```
+Preference tuning and safety? KL = 0.05, the highest in the pipeline.
+
+When you can't verify the outcome, you can't separate real improvement from reward hacking. So you stop trusting the destination and constrain the distance travelled.
+```
+
+4. (200 chars)
+```
+Not perfectly binary: the agentic stages (SWE, terminal, search) sit at 0.01.
+
+And this is a first-party report — self-reported benchmarks, zero ablations. Nothing proves the schedule is load-bearing.
+```
+
+5. (184 chars)
+```
+Still the rare hyperparameter with an actual reason behind it: when you can't measure the outcome, constrain the process.
+
+Granite 4.2 recipe, IBM Granite Team: https://huggingface.co/blog/ibm-granite/granite-4-2
+```
+
+**Ship: B.** The thread carries the mechanism *and* the no-ablations caveat, which is what makes the claim
+survive a technical audience. A is the drop-in fallback for a no-thread week: it is shorter but not softer —
+it prints the full 0 / 0.01 / 0.05 ladder rather than the tidy two-tier version, so nothing it says is
+made false by the exception. No hashtags on either; on X they read as noise.
+
 ## Hook variants
 
 1. **The number.** "IBM published the KL coefficient for every training stage of Granite 4.2. The interesting part isn't the value — it's that it drops to zero, and you can predict exactly when."
 2. **The analogy.** "A leash isn't a safety feature. It's an admission that you can't check where the dog went. That's also, it turns out, how you should set your KL penalty."
 3. **The myth-correction.** "Most teams tune the KL penalty in RLHF by feel. IBM's Granite 4.2 build report suggests it shouldn't be tuned at all — it should be looked up."
 
-**Recommended:** 3. It names a habit the reader recognizes in themselves and immediately contradicts it, which earns the click-through on a truncated feed. Variant 2 is stronger writing but spends the analogy before the reader knows what it's for, and the post needs that line at the end. Variant 1 is the most honest framing but assumes the reader already cares about KL coefficients.
+**Recommended:** 3 for LinkedIn. It names a habit the reader recognizes in themselves and immediately contradicts it, which earns the click-through on a truncated feed. Variant 2 is stronger writing but spends the analogy before the reader knows what it's for, and the post needs that line at the end. Variant 1 is the most honest framing but assumes the reader already cares about KL coefficients.
+
+**On X, lead with variant 1.** That audience already cares about KL coefficients, so the assumption variant 1 makes is safe there, and the myth-correction opener that works on LinkedIn reads as a lecture on X. Both shipped X forms therefore open on the published-numbers fact, not on "most teams tune by feel".
 
 ## Why this topic
 
@@ -94,16 +161,33 @@ is untouched by this post's cooldown.
 - "Every verifiable stage runs at KL 0" was cut and replaced with the explicit 0.01 exception, since SWE 1, Terminal,
   and Search are outcome-rewarded yet non-zero.
 
+**Compression check (X variant):**
+
+- The 280-character standalone cannot carry the no-ablations caveat, so it was rewritten to make no claim that needs
+  one: it reports only that IBM *published* these coefficients and what they track. No capability or causal claim
+  survives into it.
+- The first standalone draft used the tidy two-tier version ("verifiable → 0, preference → 0.05"), which the 0.01
+  agentic stages make false. Replaced with the full 0 / 0.01 / 0.05 ladder, which is both honest and more
+  informative — and, at 274 characters, still fits.
+- Thread post 4 carries both qualifiers (the 0.01 exception and the self-reported/no-ablation status) in the
+  second-to-last position, per the template's rule that the caveat is never the thing cut for length.
+- Attribution survives compression in both forms: the standalone names Granite 4.2 and links the source; thread
+  post 5 names the IBM Granite Team and links it.
+- Character counts were computed, not estimated, with URLs counted as X's fixed 23 characters. All are under 280.
+
 ## Attribution
 
 - **IBM Granite Team**, *Granite 4.2 LLMs: How They're Built* — https://huggingface.co/blog/ibm-granite/granite-4-2
-- Credited inline in the post body, not only here.
+- Credited inline in both post bodies, not only here: named in the LinkedIn body, and carried into the X standalone
+  and the final thread post along with the link.
 
 ## Hashtags
 
-`#ReinforcementLearning #LLMTraining #RewardDesign #GRPO #OpenModels`
+**LinkedIn:** `#ReinforcementLearning #LLMTraining #RewardDesign #GRPO #OpenModels`
 
 Deliberately avoided `#AI`, `#MachineLearning`, and `#Innovation` — too broad to reach the people this lands for.
+
+**X:** none. Hashtags read as noise there, and the terms that would matter (KL, GRPO, Granite) are already in the text.
 
 ## Related pages
 

@@ -27,7 +27,7 @@ Treat it as an LLM-maintained wiki for AI, LLMs, agents, and adjacent topics.
 - `knowledge-base/wiki/entities/` - people, orgs, tools, models, datasets, and other named things
 - `knowledge-base/wiki/syntheses/` - multi-source theses, comparisons, and durable analyses
 - `knowledge-base/wiki/queries/` - filed answers worth keeping beyond chat
-- `knowledge-base/wiki/posts/` - LinkedIn post drafts derived from the vault, plus the post archive
+- `knowledge-base/wiki/posts/` - LinkedIn and X post drafts derived from the vault, plus the post archive
 - `knowledge-base/wiki/lint/` - wiki health-check reports
 - `knowledge-base/templates/` - templates for all recurring page types
 
@@ -60,7 +60,7 @@ Type-specific expectations:
 - `source-summary`: `source_id`, `source_title`, `source_author`, `source_url`
 - `entity`: `entity_kind`
 - `query`: `question`
-- `linkedin-post`: `pages_used`, `topics`, `covers_from`, `covers_through`; `status` runs `draft` -> `ready` -> `published`
+- `social-post`: `platforms`, `pages_used`, `topics`, `covers_from`, `covers_through`; `status` runs `draft` -> `ready` -> `published`
 - `lint-report`: `scope`
 
 ## Workflows
@@ -85,9 +85,9 @@ Type-specific expectations:
 
 ### Post
 
-Weekly LinkedIn post drafted from the most recent ingests. Output is a paste-ready draft; nothing is published
-automatically. The vault changes often, so every run recomputes its own window and its own anti-repeat state —
-never assume a fixed cadence or a hardcoded date.
+Weekly LinkedIn and X posts drafted from the most recent ingests. One idea per run, written for both platforms in
+the **same file**. Output is paste-ready; nothing is published automatically. The vault changes often, so every run
+recomputes its own window and its own anti-repeat state — never assume a fixed cadence or a hardcoded date.
 
 1. **Orient.** Read `knowledge-base/wiki/posts/Post Archive.md` first: the posts table, the topics covered, and
    the spine pages still in cooldown.
@@ -102,12 +102,18 @@ never assume a fixed cadence or a hardcoded date.
    **reach** (does it land for practitioners and for interested non-specialists), and **freshness** (not already in
    the archive's topics, spine page not in cooldown). Prefer angles the vault *derived* across sources over facts a
    single source stated; "Company X released model Y" is not a post.
-5. **Draft** from `knowledge-base/templates/linkedin-post.md` into `knowledge-base/wiki/posts/`, following the
-   anatomy and voice rules in that template. Record the shortlist and scores under `## Why this topic`.
-6. **Fact-check before marking `ready`.** Trace every factual sentence to a page in `pages_used`, match every number
-   to the vault verbatim, match every attribution to the source summary's `source_author`, and hedge in the post body
-   anything the vault records as uncertain, self-reported, unablated, or contradicted. Cut unverifiable claims rather
-   than softening them, and record what was cut.
+5. **Draft both variants** from `knowledge-base/templates/social-post.md` into `knowledge-base/wiki/posts/`, following
+   the anatomy and voice rules in that template. The LinkedIn variant is the long form; the X variant is the same
+   idea re-argued for a faster, more skeptical room — a standalone post of 280 characters or fewer *and* a 4-6 post
+   thread, each with a counted (not estimated) character count, with one marked to ship. The X version is never a
+   truncation of the LinkedIn version, and if a claim must be dropped to fit, drop the claim rather than the caveat
+   that keeps a surviving claim honest. Record the shortlist and scores under `## Why this topic`.
+6. **Fact-check both variants before marking `ready`.** Trace every factual sentence to a page in `pages_used`, match
+   every number to the vault verbatim, match every attribution to the source summary's `source_author`, and hedge in
+   the post bodies anything the vault records as uncertain, self-reported, unablated, or contradicted. Run the
+   compression check explicitly: confirm the X variant dropped no qualifier that changes a claim's truth value, since
+   shortening is where honest claims quietly become false ones. Cut unverifiable claims rather than softening them,
+   and record what was cut.
 7. **File.** Update the archive's posts table, topics covered, and cooldown list, then append a log entry using the
    heading format `## [YYYY-MM-DD] post | Title`.
 

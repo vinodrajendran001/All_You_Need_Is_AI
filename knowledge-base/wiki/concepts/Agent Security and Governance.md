@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-26
+updated: 2026-08-30
 tags:
   - concept
   - ai-agents
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-22-grok-bot-systems-engineering-working-note
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-08-28-google-cloud-agent-delegation
 status: active
 ---
 
@@ -100,6 +101,33 @@ See [[Reasoning Trace Privacy]] for the mechanism and the proposed fixes.
 
 Under the reversibility-keyed approval policy above, the missing rule is straightforward and not yet stated anywhere in the literature: **anything requiring approval must never be speculated**, because approval is precisely a judgement about a completed intention. [[Programmatic Tool Calling]] widens this further — when the action is a program rather than a schema-bounded call, sandboxing carries load that argument validation used to.
 
+## Compliance is not agreement: the zone of indifference
+
+[[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]], distilling Google DeepMind's
+*Intelligent AI Delegation* (arXiv 2602.11865), imports Chester Barnard's 1938 concept and gives this
+page a name for a risk it had only described obliquely. An agent **complies with any instruction that
+does not trigger a hard violation** — it sits inside a zone where it simply does not push back.
+
+The governance consequence is that guardrails tuned to catch hard violations are blind to everything
+inside that zone. As delegation chains lengthen, small intent mismatches propagate unchallenged and
+each agent becomes **"an unthinking router rather than a responsible actor."** No individual agent
+does anything wrong; the chain still drifts arbitrarily far from what was wanted. The proposed remedy,
+**dynamic cognitive friction**, deliberately inserts points where an agent must stop and check intent
+rather than forward the request — named in the source but not specified.
+
+## Least privilege that is enforced rather than asserted
+
+The same source offers the first cryptographic proposal in this vault's governance material:
+**zero-knowledge proofs** that let a sub-agent prove it computed a result correctly **without
+revealing the underlying data**. This matters because least privilege for agents is normally a policy
+statement — an intention that a permission boundary will be respected — rather than a guarantee that
+it cannot be crossed.
+
+Its companion principle, **contract-first decomposition**, is equally governance-relevant: decompose
+only as far as each sub-task can be stated as a verifiable contract, because a sub-task whose
+completion cannot be checked is authority handed to something you cannot audit. See
+[[Agent Delegation]].
+
 ## Open questions
 
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
@@ -129,3 +157,6 @@ Under the reversibility-keyed approval policy above, the missing rule is straigh
 - [[Speculative Tool Execution]]
 - [[Programmatic Tool Calling]]
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
+- [[Agent Delegation]]
+- [[Google DeepMind]]
+- [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]]

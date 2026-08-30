@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-08-24
+updated: 2026-08-30
 tags:
   - concept
   - routing
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-08-19-bytebytego-inkling
   - src-2026-08-24-openai-builders-guide-gpt-5-6
+  - src-2026-08-28-google-cloud-agent-delegation
 status: active
 ---
 
@@ -60,6 +61,19 @@ Long-running agents turn model choice into infrastructure. When a system repeate
 - [[OpenAI - The Builder's Guide to GPT-5.6]] adds a second routing axis: after selecting a model tier, choose **reasoning effort** based on task risk and complexity. The same guide recommends stronger orchestration with cheaper specialized workers and tool search rather than exposing a large tool schema on every turn.
 - [[ByteByteGo - The New American AI Model Designed to Be Customized]] shows the analogous control inside one sparse model. Inkling activates a small subset of experts per layer and exposes an effort parameter, so deployment can route both computation inside the model and reasoning budget across requests.
 
+## Routing is safe in proportion to verifiability
+
+[[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]] frames **cost-aware routing** as one
+of four delegation principles: match sub-tasks to model tiers by difficulty rather than sending
+everything to the strongest model.
+
+What the source adds beyond the usual cost argument is the **safety margin that makes routing
+defensible**. Its companion principle — decompose only as far as each sub-task can be stated as a
+verifiable contract — means that by construction, a correctly decomposed sub-task has a check attached.
+Where output is cheaply verifiable, routing to a weaker model is a bounded risk: the failure is caught,
+not absorbed. Where no contract exists, downgrading the model is an unhedged bet, and the routing
+decision should be made conservatively. See [[Agent Delegation]].
+
 ## Open questions
 
 - How accurate can learned difficulty routers become as model landscapes change month to month?
@@ -85,3 +99,6 @@ Long-running agents turn model choice into infrastructure. When a system repeate
 - [[AI Knowledge Base Overview]]
 - [[OpenAI - The Builder's Guide to GPT-5.6]]
 - [[ByteByteGo - The New American AI Model Designed to Be Customized]]
+- [[Agent Delegation]]
+- [[Agent Planning]]
+- [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]]

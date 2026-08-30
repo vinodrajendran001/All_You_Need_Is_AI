@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-25
+updated: 2026-08-30
 tags:
   - concept
   - voice-ai
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
+  - src-2026-08-30-halo-research-sopro-v2
 status: active
 ---
 
@@ -55,6 +56,30 @@ The mechanism is specific to this page's domain and unsettling for it: **the cue
 
 Worst of all for model selection, the inverse correlation: the models with the *lowest* word error rate were the most likely to reproduce reference errors. Anyone choosing an STT component for the composed STT→LLM→TTS pipeline described above should use fully held-out sets (Real World VoiceEQ, the Open ASR Leaderboard's private data, the Far-field ASR Leaderboard) rather than a single public WER number. See [[Benchmark Optimization]].
 
+## The synthesis side: small, local, and fast enough
+
+[[Halo Research - Sopro V2 On-Device Text-to-Speech]] documents a **120M-parameter open voice-cloning
+TTS** model that runs locally: **0.24 real-time factor on an M3 CPU** offline, **~300 ms
+time-to-first-audio** streaming, **0.07 RTF on an H100**. Streaming latency comes from a Vocos vocoder
+variant with **causal 3-frame lookahead**, which bounds how far ahead the model must see before
+emitting audio.
+
+That changes the shape of this page's latency argument. Where the vault's hosted voice-agent sources
+treat network round-trips as a fixed cost to be engineered around, an on-device synthesizer removes
+that leg entirely — and with it the privacy exposure of shipping voice to a server. See
+[[Neural Text-to-Speech]] for the architecture and training recipe.
+
+The measurement problem this page already records reappears from the synthesis side. Sopro V2 **beats
+ground-truth WER** on Seed-TTS test-en — synthesized speech transcribed more accurately than the
+original human recordings. That is a real result and also a trap: it reflects clarity *and* the
+noisiness of the reference audio, while saying nothing about naturalness or speaker fidelity, which
+WER cannot measure.
+
+One governance note belongs here too. Sopro V2 ships **no watermark, deliberately** — the authors
+argue that in an open pipeline a watermark is trivially removable and so provides false safety. Voice
+cloning that runs offline on a laptop has no provenance mechanism at all, which is the unresolved cost
+of moving this capability to the edge.
+
 ## Open questions
 
 - Do interaction models make the harness obsolete, or will the two layers co-evolve (in-model interactivity riding on relay-style transport)?
@@ -78,3 +103,7 @@ Worst of all for model selection, the inverse correlation: the models with the *
 - [[AI Knowledge Base Overview]]
 - [[Agent Frameworks]]
 - [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
+- [[Neural Text-to-Speech]]
+- [[On-Device Reasoning]]
+- [[Small Language Models]]
+- [[Halo Research - Sopro V2 On-Device Text-to-Speech]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-06-22
+updated: 2026-08-30
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-22-djfarrelly-agent-loop-architecture
+  - src-2026-08-28-google-cloud-agent-delegation
 status: active
 ---
 
@@ -99,6 +100,22 @@ The practical bridge is:
 
 This distinction matters because a correct plan can still be operationally unsafe if a crash causes already-completed side effects to repeat. Planning makes intent inspectable; orchestration makes execution resumable.
 
+## A stopping criterion for decomposition
+
+Decomposition depth is usually left to judgement. [[Nenad Tomasev and Reshu Yadav - How Agents Can
+Delegate Better]] proposes a rule: **decompose only as far as each sub-task can be stated as a
+verifiable contract.** If a sub-task's completion cannot be checked, the decomposition has gone too
+far — the planner has created work it cannot evaluate.
+
+The rule is attractive because it makes decomposition depth a function of the verification available
+rather than of task-shaped intuition, and because it composes with routing: where output is cheaply
+verifiable, a weaker and cheaper model becomes a bounded risk rather than a gamble
+([[Model Routing]]).
+
+It is also demanding in a way the source does not resolve. Many genuinely useful sub-tasks —
+summarize this, judge whether the tone is right — have no cheap contract, which on a strict reading
+would forbid delegating exactly the work agents are most often used for. See [[Agent Delegation]].
+
 ## Open questions
 
 - How should an agent revise its plan mid-execution when early steps fail or return unexpected results?
@@ -116,3 +133,6 @@ This distinction matters because a correct plan can still be operationally unsaf
 - [[djfarrelly - The Agent Loop Architecture]]
 - [[Direct Corpus Interaction]]
 - [[AI Knowledge Base Overview]]
+- [[Agent Delegation]]
+- [[Model Routing]]
+- [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - llm
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-08-30-halo-research-sopro-v2
 status: active
 ---
 
@@ -126,6 +127,24 @@ sustaining a coherent multi-step trajectory through a real environment where err
 64 or 128 turns. That is a different capability from answering well, and it is the one this family
 declines to pursue at 3B.
 
+## Where a small model's parameters actually go
+
+[[Halo Research - Sopro V2 On-Device Text-to-Speech]] contributes the most concrete parameter-budget
+finding in this vault. In the first version of a small TTS model, the inherited **Llama 128k
+vocabulary consumed roughly 49M parameters — about 40% of the total budget** — on text embeddings the
+task did not need. Replacing it with an 8,192-token SentencePiece vocabulary freed that budget for the
+model's actual work.
+
+The general lesson is that small models often inherit components sized for a different problem, and
+the tokenizer is the usual offender. Shrinking a large architecture is not the same as designing for
+the size: the second requires auditing which components are load-bearing for *this* task.
+
+Two training results from the same source generalize beyond speech. **Distillation from a 0.5B teacher
+to a 120M student produced a student more stable than its teacher**, cutting against the assumption
+that distillation only loses. And **reflowing a flow-matching solver from 32 steps to 2 gave a 16x
+speedup with no measurable quality loss** — a large inference saving obtained entirely during
+training. See [[Neural Text-to-Speech]].
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -157,3 +176,5 @@ declines to pursue at 3B.
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Efficient Reasoning on the Edge]]
 - [[AI Knowledge Base Overview]]
+- [[Neural Text-to-Speech]]
+- [[Halo Research - Sopro V2 On-Device Text-to-Speech]]

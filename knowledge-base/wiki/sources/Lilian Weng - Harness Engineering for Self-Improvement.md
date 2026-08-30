@@ -122,13 +122,13 @@ access to the scoreboard.
 - [[Context Engineering]]
 - [[Automated AI Research]]
 - [[Benchmark Optimization]]
+- [[Loop Engineering]]
 - [[Lilian Weng]]
 
 ## Related pages
 
 - [[Agent Skill]]
 - [[Agent Memory]]
-- [[Loop Engineering]]
 - [[Agent Security and Governance]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]

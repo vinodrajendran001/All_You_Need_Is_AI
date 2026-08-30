@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-08-30
 entity_kind: organization
 tags:
   - entity
@@ -12,6 +12,7 @@ tags:
 source_ids:
   - src-2026-08-21-anthropic-ai-native-sdlc
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-08-28-anthropic-chive-counterfactual-explanations
 status: active
 ---
 
@@ -40,6 +41,23 @@ Anthropic also appears indirectly on the hardware side. [[Jacob Peake - AI Chip 
 
 The mechanism is not a Claude-specific weakness so much as a design shared across providers — the envelope authenticates the model but not the account or conversation. It does, however, mean that anti-distillation training on Claude Opus 4.8 is undercut by Claude Haiku 4.5 accepting the same blocks and transcribing them. See [[Reasoning Trace Privacy]].
 
+## Publishing a negative result on its own tools
+
+[[Anthropic - Would This Change Your Answer (CHIVE)]] is an Anthropic Fellows paper (Adam Karvonen,
+Euan Ong, Subhash Kantamneni, Samuel Marks) reporting that **activation-reading interpretability tools
+give no uplift over a transcript-only baseline** at predicting counterfactual model behaviour — a
+finding that undercuts a research direction the lab itself is prominently associated with.
+
+The methodological contribution matters more than the headline: the **transcript-only baseline** is a
+reference condition most published interpretability work has not run. See
+[[Interpretability Evaluation]].
+
+Anthropic appears in this vault on the other side of this argument too. Its finding that human raters
+and reward models usually prefer confident agreeable answers over correct ones anchors the sycophancy
+material in [[Reward Design for RL]], and its removal of **more than 80% of Claude Code's system
+prompt with no measurable eval loss** is the strongest single data point in
+[[Context Engineering]]'s case against instruction bloat.
+
 ## Related pages
 
 - [[Anthropic - The AI-Native SDLC Playbook]]
@@ -51,3 +69,7 @@ The mechanism is not a Claude-specific weakness so much as a design shared acros
 - [[AI Knowledge Base Overview]]
 - [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
 - [[Reasoning Trace Privacy]]
+- [[Interpretability Evaluation]]
+- [[Reward Design for RL]]
+- [[Context Engineering]]
+- [[Anthropic - Would This Change Your Answer (CHIVE)]]

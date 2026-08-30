@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - llm
@@ -35,6 +35,7 @@ source_ids:
   - src-2026-07-29-giles-thomas-gpt2-weights-part-1
   - src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
   - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
+  - src-2026-07-16-bytebytego-rlhf-vs-dpo
 status: active
 ---
 
@@ -156,6 +157,26 @@ The second point deserves weight disproportionate to its mundanity. The investig
 looked like a research question about data mixtures and training scale; a meaningful part of it was
 a shallow-copy bug.
 
+## Why the pipeline needs an alignment stage at all
+
+[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] gives the crisp argument for the third
+stage. **Imitation cannot teach a trade-off.** When two candidate answers are both fluent, correct,
+and on-topic, supervised fine-tuning has no way to express that one is better — its loss only rewards
+reproducing a single reference. Preference learning replaces the reference with a **comparison**, and
+comparison is the only signal that can rank two good answers.
+
+The two routes differ in machinery, not objective. RLHF trains a separate reward model on human
+comparisons and optimizes the policy with PPO against it, holding a frozen reference model for the KL
+penalty and a value model for advantage estimation — **four models in play**. DPO folds the reward
+into the policy itself, so the reward is **implicit, not absent**.
+
+The stage earns its place empirically: InstructGPT raters preferred a **1.3B aligned model over 175B
+GPT-3**, and Zephyr-7B trained with DPO beat Llama 2 Chat 70B on the evaluated comparisons. The
+selection rule the source lands on is **"the method follows the signal"** — where a program can check
+the answer, verifiable rewards apply; where it cannot, a learned reward model is still required.
+DeepSeek's split is the worked example: RLVR drove reasoning while reward models were retained for
+helpfulness and safety.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -203,3 +224,4 @@ a shallow-copy bug.
 - [[Test-Time Scaling]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]]
+- [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]

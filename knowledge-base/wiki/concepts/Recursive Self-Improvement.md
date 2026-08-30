@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - recursive-self-improvement
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
 status: active
 ---
 
@@ -88,6 +90,83 @@ definition.
 **Caveat:** the captured text ends partway through section 6.2.1, so it does not support claims about
 the survey's later evaluation and safety material.
 
+## Three loops, separated by what persists
+
+[[Philipp Schmid - Recursive Self-Improvement]] supplies the operational test this page needed. His
+definition: *a loop in which a system makes a persistent change that improves its future performance
+**and its ability to produce subsequent improvements***. The taxonomy that follows separates loops by
+**which layer survives the run** — and above all by whether the verifier moves.
+
+| Loop | Output | System | Verifier |
+| --- | --- | --- | --- |
+| **Iteration** — edit code, rerun the test | changes | fixed | fixed |
+| **Self-improvement** — add a tool, record a skill | changes | changes | fixed |
+| **Recursive self-improvement** — raise the bar itself | changes | changes | **rises** |
+
+Everything shipping today is the middle row. This sharpens the distinction already drawn above between
+self-improving agents and RSI: a rising task score proves self-improvement, while **recursion is a
+claim about a second curve — did the next round face a harder bar the system still could not cheat?**
+Nobody is measuring that curve.
+
+Schmid also removes a common assumption: **RSI does not require a better model.** A frozen model with
+an honest verifier and a writable environment can climb on its own. The easiest target is the harness,
+which is why [[Harness Optimization]] is the mechanical core of this page.
+
+### What the bounded loop has actually delivered
+
+- Karpathy's **autoresearch** ran ~700 experiments on a single GPU against nanochat, kept ~20 changes
+  that transferred, and cut time-to-GPT-2-quality from **2.02 to 1.80 hours**. Prime Intellect scaled
+  the same keep-or-revert loop to ~10,000 trials and beat the human baseline.
+- **AlphaEvolve** found a 48-multiplication algorithm for 4x4 complex matrix multiplication (one fewer
+  than Strassen's 49) and sped up a kernel used to train Gemini by 23%.
+- **Cline** hill-climbed Opus 4.5 from 47% to 57% on Terminal Bench by hand, then had an agent run the
+  same method for 17 hours and about $50 of compute, moving Kimi K3 from 69 to 79 of 89 tasks.
+
+Every one of these is bounded: in each, the fitness function sat outside the editable region.
+
+### The negative results are as informative as the wins
+
+**HarnessOpt-Bench** separates the editing agent from the tester and scores candidate harnesses on
+hidden tasks; across 111 runs, 5 optimizer models, and 4 tasks, results **varied sharply by model and
+task**. **PAST-Bench** asks whether stored experience helps later episodes and finds that in many
+scenarios turning memory on **does not help** — an uncomfortable result for the
+file-system-as-memory pattern this vault otherwise endorses. A Princeton-led study found agents can
+execute much of the *engineering* of AI research while still struggling to choose original and useful
+directions.
+
+### Model-harness co-evolution is the near-term shape
+
+SIA updates both a task agent's harness and its weights; Recursive Harness Self-Improvement edits a
+harness partly to produce **better traces for training future models**. This is the least speculative
+description of where the field is going, and it is the one the evidence supports.
+
+### Why the verifier has to stay out of reach
+
+Schmid's formulation is blunt: **"If it can edit evaluation, it can jailbreak itself. Reward hacking
+is the default behavior of a system asked to raise a number."** The agent may change prompts, skills,
+tools, memory, and harness code; a separate entity must own the evaluation. That constraint is exactly
+what keeps current systems at self-improvement rather than recursion — and it is why
+[[Lilian Weng - Harness Engineering for Self-Improvement]] reports that the working rung-4 systems
+(AHE, Self-Harness) make the verifier, tracer, runs directory, and model configuration **read-only**.
+
+Schmid's closing point is the one that does not have an engineering fix: **taste lives outside the
+loop.** Agents will raise any number they are given. Deciding what counts as a win — and that reward
+hacking does not — is still a human job.
+
+## Recursive structure is not itself the gain
+
+Weng's survey supplies the cleanest refutation of the idea that recursion is doing the work. **STOP
+improved when driven by GPT-4 but degraded with GPT-3.5 and Mixtral.** Applying a self-improvement
+loop to a weak proposer makes it worse, because the loop amplifies whatever candidate quality the base
+model can generate.
+
+The scaling picture is stranger still. Weng cites Lin et al. finding that **harness-updating capability
+is roughly flat** from ~9B parameters to frontier models — small models write skill files procedurally
+similar to those from much larger ones — while **harness-benefit is non-monotonic**, peaking for
+mid-tier models. Weak models cannot exploit a good scaffold; the strongest already know most of what
+it would say. Self-improvement returns are therefore highest in the middle of the capability range,
+not at the frontier.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -113,3 +192,8 @@ the survey's later evaluation and safety material.
 - AI-Generated Kernels
 - Wafer - AI Performance Engineering Resources
 - Benchmark Optimization
+- [[Harness Optimization]]
+- [[Philipp Schmid]]
+- [[Lilian Weng]]
+- [[Lilian Weng - Harness Engineering for Self-Improvement]]
+- [[Philipp Schmid - Recursive Self-Improvement]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - coding-agents
@@ -22,6 +22,9 @@ source_ids:
   - src-2026-08-21-anthropic-ai-native-sdlc
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-08-30-addy-osmani-audit-agent-files
 status: active
 ---
 
@@ -118,6 +121,55 @@ optimized against that harness's specific action space and observation format, s
 training data may be less about robustness than about avoiding a dependency that would otherwise be
 baked in at RL time.
 
+## The harness as an optimization ladder
+
+[[Lilian Weng - Harness Engineering for Self-Improvement]] recasts the harness as a search space with
+five rungs, ordered by how much of the system an optimizer may rewrite: **prompts, structured context,
+workflow, harness code, optimizer code**. Each rung subsumes the ones below and enlarges the space,
+so higher rungs promise more headroom while making evaluation and safety harder. Her operating-system
+analogy is the compact version: the model is the CPU, the harness is the OS deciding what the CPU sees
+and what it is allowed to do. [[Harness Optimization]] develops the ladder in full.
+
+Three recurring design patterns fall out of it: **workflow automation** (turning a repeated manual
+sequence into a durable procedure), **the file system as persistent memory** (writing state to disk
+rather than holding it in context), and **sub-agents or backend jobs** (isolating work so it does not
+contaminate the parent context).
+
+## How much of itself should a harness let an agent rewrite?
+
+[[Philipp Schmid - Recursive Self-Improvement]] ranks current harnesses by rewritable surface, and the
+ranking doubles as a risk ladder:
+
+| Posture | Systems | What the agent may change |
+| --- | --- | --- |
+| **Conservative** | Claude Code, Codex, Cursor | Skills, hooks, and plugins extend a fixed core |
+| **Minimal core** | Pi | Four built-in tools (`read`, `write`, `edit`, `bash`) and a system prompt under 1,000 tokens; everything else is a TypeScript extension auto-discovered from `.pi/extensions/`, writable and reloadable mid-session |
+| **Plugin kernel** | DeepSeek Harness (Cordis) | Models, tools, sessions, sandboxes, and the control loop itself are swappable; plugin side effects unwind on unload so the runtime can replace parts of itself without dying |
+
+Schmid's shorthand for the DeepSeek position is `Agent = Model + Harness`. The trade is explicit: more
+rewritable surface means capability the developers did not predict, and more ways to break
+compatibility or quietly weaken a permission boundary. It also makes failures persistent — a bad edit
+survives the session that made it. See [[Agent Plugin Architecture]].
+
+A second, quieter benefit of code-extensible harnesses: code can run a sequence of operations
+**without filling the context window with every intermediate result**, which is the same argument
+[[Programmatic Tool Calling]] makes from the tool side.
+
+## The instructions in the harness may not be doing much
+
+[[Addy Osmani - Audit your Agent files]] is the strongest counter-evidence in this vault to the
+assumption that a richer harness configuration is a better one. A study of **288 runs across 17
+tasks** found that the presence of `AGENTS.md` / `CLAUDE.md` made **no clear difference to
+correctness** — it changed *how* agents worked (more targeted tests) without moving the outcome.
+Anthropic removed **more than 80%** of Claude Code's system prompt with **no measurable eval loss**.
+A survey of 100 repositories found lint leakage in 62%, context bloat in 42%, and skill leakage in 35%.
+
+Osmani's framing is that agent configuration **has a half-life**: rules written for a model that
+needed them survive into a model that does not, consuming context and constraining behaviour without
+anyone re-testing them. The operational consequence for harness design is that instruction files need
+the same regression discipline as harness code — justify against an eval, and delete what cannot be
+justified.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -160,3 +212,10 @@ baked in at RL time.
 - [[Programmatic Tool Calling]]
 - [[Speculative Tool Execution]]
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
+- [[Harness Optimization]]
+- [[Lilian Weng]]
+- [[Philipp Schmid]]
+- [[Addy Osmani]]
+- [[Lilian Weng - Harness Engineering for Self-Improvement]]
+- [[Philipp Schmid - Recursive Self-Improvement]]
+- [[Addy Osmani - Audit your Agent files]]

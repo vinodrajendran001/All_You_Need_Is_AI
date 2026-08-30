@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - ai-agents
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-08-21-anthropic-ai-native-sdlc
   - src-2026-08-22-grok-bot-systems-engineering-working-note
   - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
+  - src-2026-08-30-addy-osmani-audit-agent-files
 status: active
 ---
 
@@ -118,6 +119,25 @@ changes what all subsequent skills run inside. The survey's prescription — sca
 be versioned, validated, and reversible — is at its most necessary here, and connects to
 [[Recursive Self-Improvement]] and [[Agent Security and Governance]].
 
+## Do skills earn their context budget?
+
+[[Addy Osmani - Audit your Agent files]] applies audit discipline to skills and reports results that
+complicate the case for them. Across 100 repositories, **35% showed skill leakage** — skill content
+bleeding into places it did not belong. More pointedly, **personalized skills performed roughly on par
+with borrowed ones**, and a **generic skill built from many developers' practice was more useful than
+a personalized one**. Osmani flags the caveat himself: the study used an LLM-based developer simulator
+rather than real developers, so it may measure simulated preference rather than real benefit.
+
+The budgeting detail matters for how many skills to keep. **Skill listings are budgeted at roughly 1%
+of the context window by default, and only the body of an invoked skill loads.** A long skill body is
+therefore cheap until called — but a proliferation of skill *names* is not free, because every name
+sits in the always-loaded listing. The cost of a skill library is dominated by its breadth, not its
+depth.
+
+Combined with the finding that agent configuration **has a half-life**, the practical rule is that a
+skill should be retired unless it can be justified against an eval — the same discipline
+[[Harness Optimization]] applies to every other rung of the scaffolding ladder.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -155,3 +175,6 @@ be versioned, validated, and reversible — is at its most necessary here, and c
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
 - [[Google Cloud - Agent Plugins Are the Future of Agent Skills]]
 - [[Agent Plugin Architecture]]
+- [[Addy Osmani]]
+- [[Harness Optimization]]
+- [[Addy Osmani - Audit your Agent files]]

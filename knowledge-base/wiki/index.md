@@ -238,6 +238,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
 - [[LLM Reasoning]] - Hub for how models reason (deduction/abduction/induction), the frozen-θ view, evaluation/robustness, and how to make reasoning better.
 - [[Test-Time Scaling]] - Spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based.
+- [[Reasoning Effort Control]] - How low/medium/high effort selectors are trained into models, and why effort substitutes for parameters.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
@@ -266,6 +267,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]] - Open-model GRPO post-training for biomedical tool use, biological reasoning, and auditable scientific workflows.
 - [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems.
+- [[Harness Optimization]] - Automated search over the scaffolding around a frozen model: the five-rung optimization ladder and why the evaluator must stay unwritable.
 - [[Nested Learning]] - Continuous inference-time learning and memory-as-structure: Titans, Continuum Memory System, and the Hope architecture.
 - [[LLM Inference]] - Prefill (compute-bound) vs decode (memory-bound) phases and the serving stack built around them.
 - [[Speculative Decoding]] - Lossless decode acceleration: a small draft model guesses, the target verifies in parallel; a conditional low-load latency bet.
@@ -274,7 +276,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Distributed Training Parallelism]] - Data/tensor/sequence/context/expert/pipeline parallelism and FSDP/ZeRO as partitions of the same GEMM.
 - [[GPU Execution Model]] - From a CUDA kernel through PTX/SASS to warp scheduling, and why kernels are memory- or compute-bound.
 - [[Real-Time Voice AI]] - Low-latency conversational AI across the WebRTC transport layer and the interaction-model architecture layer.
+- [[Neural Text-to-Speech]] - The modern small TTS stack, component by component, and why a 120M model runs offline on a laptop.
 - [[Coding Agent Harness]] - The harness/engine split for running local open-weight coding agents; serving, permissions, and token economics.
+- [[Agent Delegation]] - What authority and intent travel with a handed-off sub-task; contract-first decomposition and the zone of indifference.
 - [[Loop Engineering]] - Designing repeated agent work around objectives, verifiers, state, budgets, stop conditions, and escalation.
 - [[Graph Engineering]] - Coordinating specialized agent or deterministic nodes through explicit routing and shared state.
 - [[Agent Security and Governance]] - Runtime permissions, sandboxing, credentials, ownership, logs, revocation, and autonomy controls.
@@ -294,6 +298,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Autonomous Driving Systems]] - Sensing, representation, prediction, planning, validation, and training tradeoffs in self-driving stacks.
 - [[Arithmetic Intensity and the Roofline Model]] - FLOP-per-byte accounting that decides whether an inference optimization actually helps.
 - [[Benchmark Optimization]] - How leaderboard-fitted systems learn the reference text instead of the underlying task.
+- [[Interpretability Evaluation]] - Whether an explanation tool beats the trivial baseline of reading the transcript; the counterfactual test.
 - [[AI-Native Software Development Lifecycle]] - Artifact-triggered development stages with act-time governance and versioned institutional knowledge.
 - [[Agent Workflow Maturity]] - Six-level ladder from single bot to verified team, with invariants, handoffs, and an evidence ladder.
 - [[GPU Kernel Optimization]] - The ladder of transformations from a naive kernel to one that saturates the hardware's real limit.
@@ -307,6 +312,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Entities
 
+- [[Lilian Weng]] - Researcher whose harness survey supplies this vault's optimization-ladder vocabulary.
+- [[Philipp Schmid]] - Practitioner-writer who supplies the vault's falsifiable test for recursive self-improvement.
+- [[Addy Osmani]] - Google engineering leader; the vault's principal source of counter-evidence on agent context files.
+- [[Google DeepMind]] - Research organization behind the delegation principles and AlphaEvolve program search.
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
 - [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
 - [[Braintrust]] - Evaluation platform whose material in this vault focuses on multi-turn traces and online scoring.
@@ -560,6 +569,17 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]] - A complete published post-training recipe with hyperparameters: a chain of GRPO stages ending in agentic RL inside real sandboxed environments.
 - [[ByteByteGo - How to Make LLMs 3X Faster]] - Speculative decoding explainer; adds a fourth draft-source family, DeepSeek production acceptance rates, and how vLLM actually controls draft length.
+
+### August 30, 2026 batch
+
+- [[Lilian Weng - Harness Engineering for Self-Improvement]] - The five-rung optimization ladder (prompts, context, workflow, harness code, optimizer code), and why recursive structure alone is not the gain.
+- [[Philipp Schmid - Recursive Self-Improvement]] - A falsifiable three-tier taxonomy separating iteration, self-improvement, and recursion by whether the verifier moves.
+- [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] - How six models install low/medium/high effort; `<think>` tags are cosmetic and effort is a trained behaviour.
+- [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] - Why imitation cannot teach a trade-off, and why DPO inherits RLHF's biases because the trouble follows the data.
+- [[Addy Osmani - Audit your Agent files]] - Agent configuration has a half-life; 288 runs found context files made no clear difference to correctness.
+- [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]] - Contract-first decomposition, cost-aware routing, zero-knowledge least privilege, and the zone of indifference.
+- [[Anthropic - Would This Change Your Answer (CHIVE)]] - Activation-reading interpretability tools give no uplift over a transcript-only baseline at predicting counterfactual behaviour.
+- [[Halo Research - Sopro V2 On-Device Text-to-Speech]] - A 120M open voice-cloning TTS model at 0.24 RTF on an M3 CPU, and what was replaced to get there.
 
 ## Syntheses
 

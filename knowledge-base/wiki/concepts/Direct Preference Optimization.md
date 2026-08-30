@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-07-03
+updated: 2026-08-30
 tags:
   - concept
   - alignment
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-05-dharma-ai-dpo-beyond-chatbots
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-07-16-bytebytego-rlhf-vs-dpo
 status: active
 ---
 
@@ -83,6 +84,34 @@ This makes DPO a pragmatic tool rather than a permanent canonical stage.
 
 [[Akhil Arora et al - Current Advances in LLM Reasoning]] gives the crispest one-line intuition for *why* DPO works: **your policy is the reward model** — the log-ratio between the current model and the reference is an implicit reward — so you can skip training a separate reward model and optimize preference pairs directly (make the preferred response more likely, the dispreferred less). In the reasoning-recipe landscape it sits alongside RLVR ([[Reward Design for RL]]) as the lightweight preference-learning option before verifiable-reward RL takes over.
 
+## DPO next to RLHF: same objective, relocated reward
+
+[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] supplies the comparison this page
+previously assumed. The two methods pursue the same objective with different machinery:
+
+| | RLHF + PPO | DPO |
+| --- | --- | --- |
+| Models in play | Four — policy, reward model, frozen reference, value model | Two — policy and frozen reference |
+| Where the reward lives | An explicitly trained model | Re-parameterized into the policy itself |
+| Optimization | PPO rollouts with a KL penalty | Direct gradient on preference pairs |
+
+The slogan behind the derivation — *your language model is secretly a reward model* — is the precise
+statement of what changes: the reward becomes **implicit, not absent**. That is why DPO is simpler to
+run and why it fails in exactly the same places.
+
+## The pathology follows the data, not the algorithm
+
+Reward hacking is Goodhart's law with a training loop attached: true quality rises, peaks, and then
+**declines while the proxy reward keeps climbing**, so the optimizer is still succeeding by its own
+measure. **Sycophancy** is the canonical instance — Anthropic found that **both human raters and
+reward models usually prefer a confident, agreeable answer over a correct one**.
+
+The consequence for this page is uncomfortable and worth stating plainly: because DPO learns from the
+same human comparisons, **it inherits the same biases**. Switching from PPO to DPO simplifies the
+infrastructure and changes nothing about the pathology. Where a program can check the answer,
+verifiable rewards sidestep the proxy entirely; where it cannot — helpfulness, safety, tone — the
+learned preference and its biases remain. See [[Reward Design for RL]].
+
 ## Open questions
 
 - Does the self-rejection approach generalise beyond OCR to other structured generation tasks (code, SQL, JSON schema compliance)?
@@ -103,3 +132,4 @@ This makes DPO a pragmatic tool rather than a permanent canonical stage.
 - [[LLM Reasoning]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]
+- [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]

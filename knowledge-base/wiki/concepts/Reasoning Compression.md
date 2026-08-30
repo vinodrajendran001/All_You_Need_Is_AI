@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - reasoning
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-06-04-dss-grpo-cot-compression
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-07-20-raschka-reasoning-effort
 status: active
 ---
 
@@ -74,6 +75,25 @@ Granite also ships **three inference-time settings rather than two**: thinking, 
 interesting one, since the usual binary forces a routing decision between "cheap and shallow" and
 "expensive and deep." See [[Test-Time Scaling]] and [[Model Routing]].
 
+## Effort levels are trained, not configured
+
+[[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] locates this page's mechanisms in the
+training pipeline. **`<think>` tags are cosmetic** — they confer no reasoning ability, only delimit a
+trace so it can be displayed, budgeted, or stripped, and models learn to emit them via a format reward
+added to the RL objective (`R_total = R_accuracy + R_format`). Compression therefore happens by
+shaping *what the policy learns to produce*, not by trimming output afterwards.
+
+The strongest efficiency result is Kimi K2.5's **"Toggle"**: alternating budgeted and unconstrained RL
+phases, where the budget is derived from a percentile of correct-rollout lengths and activates only
+once accuracy passes a threshold. It yields a **25-30% token reduction with little performance
+change**, entirely in training — there is no inference-time selector at all. Nemotron 3 Ultra reaches
+a related place with random-budget truncation on ~2.5% of RLVR prompts, masking `</think>` from the
+loss so truncation does not teach the model to stop early.
+
+That so much of a trace can be removed with no accuracy cost is the open puzzle: this vault has no
+account of which trace segments are load-bearing. See [[Reasoning Effort Control]] for the full
+per-model comparison.
+
 ## Open questions
 
 - What is the right balance between interpretability and efficiency once compressed traces become very short or entirely internal?
@@ -100,3 +120,5 @@ interesting one, since the usual binary forces a routing decision between "cheap
 - [[Test-Time Scaling]]
 - [[LLM Reasoning]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
+- [[Reasoning Effort Control]]
+- [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]

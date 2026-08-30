@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - reasoning
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-07-20-raschka-reasoning-effort
 status: active
 ---
 
@@ -72,6 +73,22 @@ It also relocates the decision. With a binary switch, a router upstream of the m
 caller sets per request. Granite does not report how the low-effort budget is enforced or what it
 costs in accuracy, so whether this beats routing between two modes is untested.
 
+## Effort and parameters are substitutes
+
+[[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] makes the connection this page needs to
+the economics of serving: training scaling and inference scaling are **two knobs whose curves
+overlap**, so **a smaller model at high effort can match a larger model at low effort**.
+
+The practical consequence is that comparing models at their default settings compares two arbitrary
+points on two curves. The meaningful comparison is **cost at matched quality**, with effort level
+treated as a deployment variable rather than a model property.
+
+The user-facing effort selectors that make this possible are trained behaviours, not inference
+plumbing — installed either by conditioning the RLVR run on an effort level with an effort-dependent
+length penalty, or by a post-RLVR supervised stage on effort-labelled targets. Qwen3's soft switch
+(`/think` flag) and hard switch (`enable_thinking=False`, which prefills an empty `<think></think>`
+block) are the two ends of how firmly that setting binds. See [[Reasoning Effort Control]].
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -98,3 +115,5 @@ costs in accuracy, so whether this beats routing between two modes is untested.
 - [[AI Knowledge Base Overview]]
 - [[Loop Engineering]]
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
+- [[Reasoning Effort Control]]
+- [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]

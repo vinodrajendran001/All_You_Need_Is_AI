@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-07-04
+updated: 2026-08-30
 tags:
   - concept
   - llm
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-06-24-bytebytego-llm-vs-slm
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
+  - src-2026-08-30-halo-research-sopro-v2
 status: active
 ---
 
@@ -57,6 +58,23 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Sebastian Raschka - Using Local Coding Agents]] extends on-device deployment from phones to the developer workstation: an open-weight model served locally by Ollama/LM Studio/vLLM (an OpenAI-compatible endpoint) on a Mac Mini or DGX Spark, driving a [[Coding Agent Harness]]. Its constraints echo this page — sustained tokens/sec and bounded memory over *long* agentic contexts (~30 GB for 50k tokens) — and its privacy motivation (keeping data off third-party APIs) is the same one that pushes reasoning onto local hardware.
 - [[Onur Sirin - How Local LLMs Run]] makes the local-deployment tradeoff concrete: Q4 weights may make a model *fit*, but local reasoning only feels usable if the active weights and KV cache sit in a sufficiently fast memory tier. The source's local-hardware comparison (5090, Mac Studio, GB300) is a practical checklist for on-device reasoning: capacity, bandwidth, topology (flat vs tiered), active-parameter count for MoE, and whether overflow drops to a slow tier.
 
+## An on-device speech model, in numbers
+
+[[Halo Research - Sopro V2 On-Device Text-to-Speech]] gives this page a concrete non-text data point.
+A **120M-parameter open voice-cloning TTS** model reaches **0.24 real-time factor on an M3 CPU**
+offline and **~300 ms time-to-first-audio** when streaming — comfortably interactive without a server.
+
+The design moves that made it fit are the ones this page keeps encountering: strip inherited
+components sized for a different task (an 8,192-token SentencePiece vocabulary replacing a Llama 128k
+one that had consumed ~40% of the parameter budget), distil from a larger teacher, and move cost from
+inference into training (reflowing the solver from 32 steps to 2 for a 16x speedup with no measurable
+quality loss).
+
+The motivation is also instructive about *why* on-device matters beyond latency: the author built it
+because European Portuguese is poorly served by hosted TTS. Local execution is what makes a
+long-tail language economically viable at all, since no vendor has to justify the market. Privacy
+follows for free — no audio leaves the device. See [[Neural Text-to-Speech]].
+
 ## Open questions
 
 - When will latent/internal reasoning become more edge-friendly than explicit chain-of-thought?
@@ -83,3 +101,5 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 - [[Mixture of Experts]]
 - [[Qualcomm AI Research]]
 - [[AI Knowledge Base Overview]]
+- [[Neural Text-to-Speech]]
+- [[Halo Research - Sopro V2 On-Device Text-to-Speech]]

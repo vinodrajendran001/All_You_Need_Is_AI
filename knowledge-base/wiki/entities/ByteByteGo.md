@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-08-27
+updated: 2026-08-30
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-07-16-bytebytego-rlhf-vs-dpo
 status: active
 ---
 
@@ -64,6 +65,17 @@ which is genuinely valuable, but the figures are second-hand and often uncited �
 result arrives with no study named, no hardware, and no draft configuration. Its headline "3X" is
 also unsupported by anything in its own body, where the reported range is 1.21×–2×.
 
+## The alignment stage, explained by what SFT cannot do
+
+[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] is the outlet's clearest contribution to
+this vault's post-training material. Its organizing argument — **imitation cannot teach a trade-off**,
+because SFT's loss only rewards reproducing a single reference and therefore cannot rank two answers
+that are both good — is the missing justification behind [[Direct Preference Optimization]].
+
+The piece also carries the vault's sharpest statement of reward hacking as a *data* problem rather
+than an algorithm problem, including the finding that both human raters and reward models usually
+prefer a confident agreeable answer over a correct one. See [[Reward Design for RL]].
+
 ## Related pages
 
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
@@ -90,3 +102,7 @@ also unsupported by anything in its own body, where the reported range is 1.21×
 - [[ByteByteGo - Ollama vs vLLM vs SGLang]]
 - [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
 - [[Reasoning Trace Privacy]]
+- [[Direct Preference Optimization]]
+- [[Reward Design for RL]]
+- [[LLM Training Pipeline]]
+- [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]

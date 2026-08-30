@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-24
+updated: 2026-08-30
 tags:
   - concept
   - ai-agents
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-loop-engineering-case-study
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-20-liquid-ai-production-loops
+  - src-2026-07-16-lilian-weng-harness-engineering
 status: active
 ---
 
@@ -74,6 +75,22 @@ The resulting pattern is:
 
 The case study does not prove universal autonomy, but it demonstrates that iteration can convert production failures into missing requirements that a one-shot prompt never contained.
 
+## Where the loop sits on the optimization ladder
+
+[[Lilian Weng - Harness Engineering for Self-Improvement]] places workflow design on a five-rung ladder
+— prompts, structured context, **workflow**, harness code, optimizer code — and shows that the
+workflow rung is now a target for automated search rather than hand design. **AFlow** runs Monte Carlo
+tree search over workflow graphs; **ADAS** searches over agent designs directly.
+
+Weng's three recurring harness patterns are the hand-designed vocabulary that search operates over:
+**workflow automation** (turning a repeated manual sequence into a durable procedure), **the file
+system as persistent memory**, and **sub-agents or backend jobs** that isolate work so it does not
+contaminate the parent context.
+
+The caution attached is the one that governs the whole ladder: automated workflow search only helps if
+the base model can propose good candidates. STOP improved with GPT-4 and **degraded** with GPT-3.5 and
+Mixtral. See [[Harness Optimization]].
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -93,3 +110,6 @@ The case study does not prove universal autonomy, but it demonstrates that itera
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
 - [[Test-Time Scaling]]
 - [[Liquid AI - Designing Loops for Production-Grade Work]]
+- [[Harness Optimization]]
+- [[Lilian Weng]]
+- [[Lilian Weng - Harness Engineering for Self-Improvement]]

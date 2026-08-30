@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-26
+updated: 2026-08-30
 tags:
   - concept
   - reasoning
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-07-20-raschka-reasoning-effort
 status: active
 ---
 
@@ -63,6 +64,21 @@ On an AIME 2025 problem the summary described methodical work through the geomet
 
 Two consequences. **Displayed reasoning is not evidence of process**, so it cannot be used to audit how an answer was reached — the same caution [[Latent-Space Reasoning]] raises from the other direction. And recovered traces were frequently telegraphic and ungrammatical rather than fluent English, which matters because trace-based safety monitoring assumes traces are legible. See [[Reasoning Trace Privacy]].
 
+## The visible trace is presentation, not mechanism
+
+[[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] corrects a misreading that this page
+should record explicitly: **`<think>` tags are cosmetic**. They confer no reasoning ability and only
+delimit a trace so it can be displayed, budgeted, or stripped. Models acquire them from a *format*
+reward added alongside the accuracy reward (`R_total = R_accuracy + R_format`) — the accuracy term
+teaches reasoning, the format term teaches where to put it.
+
+Two consequences follow. "Turning off thinking" is not disabling a capability but suppressing a
+delimiter and its contents — which is why Qwen3's hard switch has to **prefill** an empty
+`<think></think>` block to make the suppression structural rather than advisory. And the visible
+reasoning trace should not be read as a faithful record of the computation: Kimi K2.5's 25-30% token
+reduction with little accuracy loss implies a large share of a trace was never load-bearing. See
+[[Reasoning Effort Control]].
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -89,3 +105,5 @@ Two consequences. **Displayed reasoning is not evidence of process**, so it cann
 - [[AI Knowledge Base Overview]]
 - [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
 - [[Reasoning Trace Privacy]]
+- [[Reasoning Effort Control]]
+- [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]

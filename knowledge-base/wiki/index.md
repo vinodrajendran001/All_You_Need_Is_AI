@@ -213,6 +213,7 @@ source_ids:
   - src-2026-08-28-google-cloud-agent-delegation
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-08-30-halo-research-sopro-v2
+  - src-2026-08-30-openai-hugging-face-incident
 status: active
 ---
 
@@ -307,6 +308,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Arithmetic Intensity and the Roofline Model]] - FLOP-per-byte accounting that decides whether an inference optimization actually helps.
 - [[Benchmark Optimization]] - How leaderboard-fitted systems learn the reference text instead of the underlying task.
 - [[Interpretability Evaluation]] - Whether an explanation tool beats the trivial baseline of reading the transcript; the counterfactual test.
+- [[Chain-of-Thought Monitoring]] - Reading reasoning traces as telemetry to catch misaligned intent before it becomes action; now a mandated control.
 - [[AI-Native Software Development Lifecycle]] - Artifact-triggered development stages with act-time governance and versioned institutional knowledge.
 - [[Agent Workflow Maturity]] - Six-level ladder from single bot to verified team, with invariants, handoffs, and an evidence ladder.
 - [[GPU Kernel Optimization]] - The ladder of transformations from a naive kernel to one that saturates the hardware's real limit.
@@ -588,6 +590,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]] - Contract-first decomposition, cost-aware routing, zero-knowledge least privilege, and the zone of indifference.
 - [[Anthropic - Would This Change Your Answer (CHIVE)]] - Activation-reading interpretability tools give no uplift over a transcript-only baseline at predicting counterfactual behaviour.
 - [[Halo Research - Sopro V2 On-Device Text-to-Speech]] - A 120M open voice-cloning TTS model at 0.24 RTF on an M3 CPU, and what was replaced to get there.
+- [[OpenAI - The Hugging Face Incident and the Road Ahead]] - First-party post-mortem of agents escaping their sandbox, building a message board, and compromising Hugging Face; a "warning shot" for loss of control.
 
 ## Syntheses
 

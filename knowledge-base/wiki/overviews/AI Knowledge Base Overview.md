@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - overview
   - ai
@@ -207,6 +207,14 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-07-16-bytebytego-rlhf-vs-dpo
+  - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-08-28-google-cloud-agent-delegation
+  - src-2026-08-28-anthropic-chive-counterfactual-explanations
+  - src-2026-08-30-halo-research-sopro-v2
 status: active
 ---
 
@@ -410,6 +418,71 @@ keying it to observed concurrency, which answers the "is there headroom" half an
 this request draft well" half open. The batch-size sensitivity it reports — 1.96× at batch 1 falling
 to 1.21× at batch 128, and below baseline beyond — is now the worked example of this vault's evidence
 standard on [[Serving Benchmarks and Goodput]].
+
+## August 30 additions
+
+Eight sources, four of which had been sitting in the raw store since mid-July without ever being
+ingested — a gap recorded in the log, because it exposed two blind spots in the validation recipe.
+
+**The harness became a subject rather than a setting.**
+[[Lilian Weng - Harness Engineering for Self-Improvement]] supplies a five-rung **optimization
+ladder** — prompts, structured context, workflow, harness code, optimizer code — ordered by how much
+of the system an optimizer may rewrite. [[Philipp Schmid - Recursive Self-Improvement]] supplies the
+complementary axis: how much of itself a harness *lets* an agent rewrite, from a fixed core (Claude
+Code, Codex, Cursor) through Pi's four built-in tools and auto-discovered extensions to DeepSeek's
+plugin kernel, where the control loop itself is swappable. Together they anchor the new
+[[Harness Optimization]] page.
+
+**The vault now has a falsifiable test for recursive self-improvement.** Schmid separates loops by
+which layer persists: iteration changes the output, self-improvement changes the system, and only
+recursion changes **the verifier**. Everything shipping today is the middle row — which reframes the
+impressive results he collects (Karpathy's autoresearch cutting time-to-GPT-2-quality from 2.02 to
+1.80 hours, AlphaEvolve beating Strassen by one multiplication, Cline's overnight harness hill-climb)
+as *bounded* self-improvement, because in each the fitness function sat outside the editable region.
+Weng's evidence points the same way from the engineering side: the systems that work make the runs
+directory, tracer, verifier, and model configuration **read-only to the agent**.
+
+**Two findings say the recursion is not where the gain comes from.** STOP improved under GPT-4 and
+*degraded* under GPT-3.5 and Mixtral. And per Lin et al., **harness-updating capability is roughly
+flat from ~9B parameters to frontier models while harness-benefit is non-monotonic**, peaking in the
+middle of the capability range. Scaffolding investment pays off least at the frontier.
+
+**Two negative results, both worth more than the positive ones.**
+[[Addy Osmani - Audit your Agent files]] reports **288 runs across 17 tasks** in which the presence of
+`AGENTS.md` / `CLAUDE.md` made **no clear difference to correctness**, and Anthropic removing **more
+than 80% of Claude Code's system prompt with no measurable eval loss**. That inverts the working
+assumption in [[Context Engineering]] and [[Agent Skill]]: instructions must justify themselves
+against an eval, and the default action for an unjustified rule is deletion.
+[[Anthropic - Would This Change Your Answer (CHIVE)]] finds that activation oracles, natural-language
+autoencoders, and sparse autoencoders give **no uplift over a predictor that simply reads the
+transcript**, and — more damagingly — that most published work in the area never ran that trivial
+baseline at all. It anchors the new [[Interpretability Evaluation]] page.
+
+**Reasoning effort turned out to be a training artifact.**
+[[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] establishes that `<think>` tags are
+**cosmetic** — delimiters learned from a format reward, conferring no reasoning ability — and walks
+six models' recipes for installing low/medium/high effort. Kimi K2.5's alternating budgeted and
+unconstrained RL phases cut **25-30% of tokens with little performance change** and no inference-time
+selector at all. The portable claim on the new [[Reasoning Effort Control]] page is that training
+scaling and inference scaling are overlapping curves: **a smaller model at high effort can match a
+larger model at low effort**, which makes cost at matched quality the only meaningful comparison.
+
+**Delegation got a vocabulary for what goes wrong.**
+[[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]] imports Barnard's 1938 **zone of
+indifference**: an agent complies with anything short of a hard violation, so lengthening delegation
+chains propagate intent mismatches unchallenged and each agent becomes "an unthinking router rather
+than a responsible actor." Its **contract-first** rule gives [[Agent Planning]] a decomposition
+stopping criterion, and its zero-knowledge-proof proposal is the first cryptographically enforced
+least-privilege mechanism in [[Agent Security and Governance]]. The new page is [[Agent Delegation]].
+
+**Alignment and speech filled two long-standing gaps.**
+[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] supplies the argument
+[[Direct Preference Optimization]] had been assuming — imitation cannot teach a trade-off — and the
+finding that **both human raters and reward models usually prefer a confident agreeable answer over a
+correct one**, which makes sycophancy a reward-design failure rather than a model quirk.
+[[Halo Research - Sopro V2 On-Device Text-to-Speech]] opens [[Neural Text-to-Speech]] with a 120M
+open voice-cloning model at **0.24 real-time factor on an M3 CPU**, and the parameter-budget finding
+that an inherited Llama 128k vocabulary had been consuming ~40% of the model.
 
 ## Related pages
 

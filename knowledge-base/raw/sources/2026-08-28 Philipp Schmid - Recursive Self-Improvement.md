@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-08-28-philipp-schmid-recursive-self-improvement
 title: "Recursive Self-Improvement"
 source: "https://www.philschmid.de/recursive-self-improvement?utm_source=substack&utm_medium=email"
 author:
@@ -7,6 +9,7 @@ published: 2026-08-21
 created: 2026-08-28
 description: "Agents can already edit their tools, skills, and harness. Recursive self-improvement still needs a system that can raise the verifier without capturing it."
 tags:
+  - "source/raw"
   - "clippings"
 ---
 Earlier this week I [tweeted](https://x.com/_philschmid/status/2089987145020608740):

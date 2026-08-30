@@ -1,5 +1,6 @@
 ---
 type: raw-source
+source_id: src-2026-07-16-lilian-weng-harness-engineering
 title: "Harness Engineering for Self-Improvement"
 source: "https://lilianweng.github.io/posts/2026-07-04-harness/?utm_source=tldrai"
 author:
@@ -10,7 +11,6 @@ description: "The concept of recursive self-improvement (RSI) dates back to I. J
 tags:
   - "clippings"
   - "source/raw"
-
 ---
 The concept of **recursive self-improvement (RSI)** dates back to [I. J. Good (1965)](https://philpapers.org/rec/GOOSCT), where he defined an “ultraintelligent machine” as a system that can surpass humans in all intellectual activities and design better machines to improve itself. [Yudkowsky (2008)](https://www.lesswrong.com/posts/JBadX7rwdcRFzGuju/recursive-self-improvement) used the phrase “recursive self-improvement” for a specific feedback loop: an AI uses its current intelligence to improve the cognitive machinery that produces its intelligence.
 

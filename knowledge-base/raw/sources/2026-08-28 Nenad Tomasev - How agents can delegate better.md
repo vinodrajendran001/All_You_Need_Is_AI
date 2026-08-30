@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-08-28-google-cloud-agent-delegation
 title: "How agents can delegate better | Google Cloud Blog"
 source: "https://cloud.google.com/blog/products/ai-machine-learning/how-agents-can-delegate-better"
 author:
@@ -8,6 +10,7 @@ published: 2026-08-21
 created: 2026-08-28
 description: "New research shows how delegation involves intelligence: adaptive negotiations, aligning on strict rules, contracts, and security guardrails. We’ll share four principles that emerged from our work, and how you might apply them to your own workflows."
 tags:
+  - "source/raw"
   - "clippings"
 ---
 ##### Nenad Tomasev

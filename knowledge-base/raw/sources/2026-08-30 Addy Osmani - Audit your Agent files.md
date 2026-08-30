@@ -1,4 +1,6 @@
 ---
+type: raw-source
+source_id: src-2026-08-30-addy-osmani-audit-agent-files
 title: "Audit your Agent files"
 source: "https://addyo.substack.com/p/audit-your-agent-files?utm_source=tldrnewsletter"
 author:
@@ -7,6 +9,7 @@ published: 2026-08-27
 created: 2026-08-30
 description: "A practical guide to auditing what your coding agent still needs."
 tags:
+  - "source/raw"
   - "clippings"
 ---
 **TL;DR: Your coding agent’s configuration has a half-life. Models improve, harnesses add capabilities, codebases change, and the instructions we wrote for an older version stay behind. Recent research finds inconsistent value from personalized skills. I now run Claude’s /doctor every few weeks, review memory separately, and ask each instruction to earn its place again.**

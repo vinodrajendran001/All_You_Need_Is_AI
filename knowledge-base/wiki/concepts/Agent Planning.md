@@ -102,8 +102,7 @@ This distinction matters because a correct plan can still be operationally unsaf
 
 ## A stopping criterion for decomposition
 
-Decomposition depth is usually left to judgement. [[Nenad Tomasev and Reshu Yadav - How Agents Can
-Delegate Better]] proposes a rule: **decompose only as far as each sub-task can be stated as a
+Decomposition depth is usually left to judgement. [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]] proposes a rule: **decompose only as far as each sub-task can be stated as a
 verifiable contract.** If a sub-task's completion cannot be checked, the decomposition has gone too
 far — the planner has created work it cannot evaluate.
 

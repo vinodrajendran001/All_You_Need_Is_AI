@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - index
 source_ids:
@@ -205,6 +205,14 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-07-16-bytebytego-rlhf-vs-dpo
+  - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-08-28-google-cloud-agent-delegation
+  - src-2026-08-28-anthropic-chive-counterfactual-explanations
+  - src-2026-08-30-halo-research-sopro-v2
 status: active
 ---
 

@@ -173,6 +173,15 @@ not at the frontier.
 - Which parts of the AI development loop should remain human-controlled even if automation becomes possible?
 - How do teams measure whether an AI research agent is genuinely improving research direction rather than only increasing experiment volume?
 - When does workflow-level self-improvement become model-building-level recursive self-improvement?
+- How would a system strengthen its own verifier *without capturing it*, and how would that claim be
+  checked without appealing to an outer verifier? Schmid's definition requires this step; nobody has
+  demonstrated it, and the regress has no stated termination.
+- If harness-benefit peaks for mid-tier models while harness-updating capability is flat, does
+  self-improvement research have a shrinking window as base models improve?
+- PAST-Bench finds stored experience often fails to help later episodes. Is that a failure of memory as
+  a mechanism, or of retrieval policy? The vault's file-system-as-memory pattern assumes the latter.
+- Plugin-kernel harnesses maximize the rewritable surface at exactly the moment the argument says the
+  verifier must stay unreachable. Which of the two trends gives way?
 
 ## Related pages
 

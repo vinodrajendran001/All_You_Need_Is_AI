@@ -1,0 +1,158 @@
+---
+type: concept
+created: 2026-08-30
+updated: 2026-08-30
+tags:
+  - concept
+  - agents
+  - self-improvement
+  - optimization
+source_ids:
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
+status: active
+---
+
+# Harness Optimization
+
+## Definition
+
+Harness optimization is the automated search for a better *harness* — the code, prompts, context
+files, tools, workflows, and control logic surrounding a model — with the model's weights held fixed.
+It treats the scaffolding as a search space rather than as configuration, and it asks a machine to
+explore that space against a scored objective.
+
+## Why it matters
+
+If the model is frozen, everything left that determines agent behaviour lives in the harness. That
+makes the harness the only surface most teams can actually optimize: it needs no training access, no
+GPUs, and no model provider cooperation. It is also the surface an agent can modify *about itself*,
+which is why this page is the mechanical core of [[Recursive Self-Improvement]].
+
+## Current synthesis
+
+### The optimization ladder
+
+[[Lilian Weng - Harness Engineering for Self-Improvement]] supplies the organizing structure this
+vault previously lacked: five rungs, ordered by how much of the system the optimizer may rewrite.
+
+| Rung | What is optimized | Representative systems |
+| --- | --- | --- |
+| 1 | **Prompts** — instructions, few-shot examples | classic prompt optimization |
+| 2 | **Structured context** — playbooks, memory, skills | ACE, MCE |
+| 3 | **Workflow** — the graph of steps and roles | AFlow (MCTS over workflow graphs), ADAS |
+| 4 | **Harness code** — the executable scaffolding | STOP, Self-Harness, AHE, Darwin Godel Machine |
+| 5 | **Optimizer code** — the search procedure itself | Meta-Harness |
+
+Each rung subsumes the ones below and enlarges the search space. Higher rungs promise more headroom
+while making evaluation, credit attribution, and safety harder — a trade this page keeps returning to.
+
+### Context optimization has to be itemized, not rewritten
+
+ACE (Agentic Context Engineering) splits the work across a *generator*, a *reflector*, and a
+*curator*, and stores the evolving playbook as **itemized bullets** that are added, edited, or retired
+one at a time. The reason is a specific failure mode Weng names **context collapse**: when a whole
+context document is regenerated each round by a model with a brevity bias, accumulated detail erodes
+round after round until the playbook is shorter and worse than where it started. Itemization makes
+each update local, attributable, and reversible. See [[Context Engineering]].
+
+### The search only works if the base model is strong enough
+
+This is the most important negative result on the page. **STOP improved when driven by GPT-4 but
+degraded with GPT-3.5 and Mixtral.** The recursive structure contributes nothing on its own; the gain
+comes from the proposer's ability to generate good candidates. Recursive scaffolding applied to a
+weak model makes it worse.
+
+### Harness-writing ability and harness-benefit scale differently
+
+Weng cites Lin et al. for a finding that reshapes where harness investment pays off:
+
+- **Harness-updating capability is roughly flat** from around 9B parameters to frontier models. Small
+  models write skill files that are procedurally similar to those written by much larger ones.
+- **Harness-benefit is non-monotonic**, peaking for mid-tier models. Weak models cannot exploit a good
+  harness; the strongest models already know most of what the harness would tell them.
+
+The practical reading: elaborate scaffolding is worth the most in the middle of the capability range,
+and its marginal value declines as base models improve. This is consistent with Weng's own forecast
+that harness techniques get absorbed into model behaviour the way prompt-engineering tricks were — but,
+she notes, the need to specify goals, constraints, context, and evaluation does not disappear.
+
+### Make the scoreboard unwritable
+
+Every system on rung 4 that works does the same defensive thing: it puts the evaluator outside the
+agent's reach. AHE (Automated Harness Engineering) is the clearest instance — it makes the **runs
+directory, the tracer, the verifier, and the LLM configuration read-only to the agent**. That single
+constraint removes the three cheapest reward hacks: disabling the verifier, swapping in a stronger
+model, and raising the reasoning budget. Self-Harness reaches the same place differently, by mining
+weaknesses from failure traces, bounding each proposal, and validating on held-in *and* held-out
+splits.
+
+[[Philipp Schmid - Recursive Self-Improvement]] states the principle in one line: **"If it can edit
+evaluation, it can jailbreak itself. Reward hacking is the default behavior of a system asked to raise
+a number."** See [[Benchmark Optimization]].
+
+### Does an optimized harness transfer, or does it overfit?
+
+One encouraging data point: AHE's evolved harness, **frozen**, still transfers to SWE-bench Verified,
+suggesting it encoded engineering practice rather than benchmark-specific tricks. One discouraging
+one: HarnessOpt-Bench, which separates the editing agent from the tester and scores candidates on
+hidden tasks, found results **varying sharply by model and by task** across 111 runs, 5 optimizer
+models, and 4 tasks. Transfer is possible, not reliable.
+
+### Keep the archive, not just the winner
+
+Greedy selection is the wrong search policy here. Schmid's illustration makes the case concretely: a
+generation-1 variant scoring 58 — worse than its 62-scoring parent — is the one that goes on to parent
+the best agent at 84. Greedy selection would have pruned it. Archive-based evolutionary search
+(AlphaEvolve, ShinkaEvolve, the Darwin Godel Machine) keeps the losers because they carry structure
+the winners lack. Weng lists **diversity collapse** among the field's open challenges for exactly this
+reason.
+
+### How much of the harness should be rewritable?
+
+Schmid ranks three postures, and the ordering doubles as a risk ladder:
+
+- **Conservative** (Claude Code, Codex, Cursor) — skills, hooks, and plugins extend a fixed core.
+- **Pi** — four built-in tools (`read`, `write`, `edit`, `bash`) and a system prompt under 1,000
+  tokens; everything else is a TypeScript extension auto-discovered from `.pi/extensions/`, which an
+  agent can write and reload mid-session.
+- **DeepSeek Harness** — built on the Cordis plugin kernel, where models, tools, sessions, sandboxes,
+  and the control loop itself are swappable, and plugin side effects unwind on unload so the runtime
+  can replace parts of itself without dying. Shorthand: `Agent = Model + Harness`.
+
+More rewritable surface means more capability the developers did not anticipate — and more ways to
+break compatibility or quietly weaken a permission boundary. See [[Agent Plugin Architecture]].
+
+### The counter-evidence nobody should skip
+
+[[Addy Osmani - Audit your Agent files]] is the sceptical companion to this page. Optimizing rung 1
+and rung 2 artifacts assumes those artifacts matter; a study of 288 runs across 17 tasks found that
+the presence of `AGENTS.md` / `CLAUDE.md` made **no clear difference to correctness**, and Anthropic
+removed more than 80% of Claude Code's system prompt with no measurable eval loss. Before searching a
+space, confirm the space has gradient in it.
+
+## Open questions
+
+- Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
+  one cannot? Every rung-4 and rung-5 result cited here is gated on base-model strength.
+- If harness-benefit peaks for mid-tier models, harness research has a moving target. How should a
+  technique be validated so it survives the next model generation?
+- How do you keep an evaluator both unreachable *and* improving? Read-only evaluators cap the system
+  at self-improvement rather than recursion.
+- What is the right unit of credit assignment when an optimizer changes several rungs at once?
+- Weng lists the failure to record **negative results** as an open challenge. No system described here
+  keeps a durable record of what was tried and rejected.
+
+## Related pages
+
+- [[Recursive Self-Improvement]]
+- [[Coding Agent Harness]]
+- [[Context Engineering]]
+- [[Automated AI Research]]
+- [[Benchmark Optimization]]
+- [[Agent Plugin Architecture]]
+- [[Agent Skill]]
+- [[Loop Engineering]]
+- [[Lilian Weng - Harness Engineering for Self-Improvement]]
+- [[Philipp Schmid - Recursive Self-Improvement]]
+- [[Addy Osmani - Audit your Agent files]]

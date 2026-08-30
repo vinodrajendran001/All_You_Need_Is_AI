@@ -1,5 +1,6 @@
 ---
 type: raw-source
+source_id: src-2026-07-16-bytebytego-rlhf-vs-dpo
 title: "How LLMs Learn to Be Helpful (RLHF vs DPO)"
 source: "https://blog.bytebytego.com/p/how-llms-learn-to-be-helpful-rlhf?utm_source=post-email-title&publication_id=817132&post_id=206407480&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -10,7 +11,6 @@ description: "In this article, we will look at how that learning actually happen
 tags:
   - "clippings"
   - "source/raw"
-
 ---
 ## AWS Guide to Cloud Architecture Diagrams (Sponsored)
 

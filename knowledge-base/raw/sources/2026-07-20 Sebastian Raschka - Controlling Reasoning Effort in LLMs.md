@@ -1,5 +1,6 @@
 ---
 type: raw-source
+source_id: src-2026-07-20-raschka-reasoning-effort
 title: "Controlling Reasoning Effort in LLMs"
 source: "https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms"
 author:
@@ -11,7 +12,6 @@ description: "How LLMs Learn Low-, Medium-, and High-Effort Reasoning Modes"
 tags:
   - "clippings"
   - "source/raw"
-
 ---
 It has been almost two years since OpenAI released o1, a model that popularized the idea of LLM-based reasoning models. DeepSeek-R1 followed about four months later, together with details of a reinforcement learning with verifiable rewards (RLVR) recipe to train such reasoning models.
 

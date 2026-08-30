@@ -1,11 +1,15 @@
 ---
+type: raw-source
+source_id: src-2026-08-28-anthropic-chive-counterfactual-explanations
 title: "Would This Change Your Answer? Evaluating Explanations of LLM Behavior in the Wild with Counterfactual Experiments"
 source: "https://alignment.anthropic.com/2026/chive/?utm_source=substack&utm_medium=email"
 author:
+  - "[[Anthropic]]"
 published:
 created: 2026-08-28
 description:
 tags:
+  - "source/raw"
   - "clippings"
 ---
 Adam Karvonen <sup>1</sup>, Euan Ong <sup>2</sup>, Subhash Kantamneni <sup>2</sup>, Samuel Marks <sup>2</sup>

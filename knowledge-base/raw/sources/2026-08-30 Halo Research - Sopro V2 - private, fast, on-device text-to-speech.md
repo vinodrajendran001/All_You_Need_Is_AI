@@ -1,11 +1,15 @@
 ---
+type: raw-source
+source_id: src-2026-08-30-halo-research-sopro-v2
 title: "Sopro V2: private, fast, on-device text-to-speech"
 source: "https://research.haloneuro.ai/posts/sopro-v2?utm_source=tldrai"
 author:
+  - "[[Halo Research]]"
 published:
 created: 2026-08-30
 description: "A new family of state-of-the-art (SOTA) voice-cloning TTS models, and sopro-v2-turbo: a 120M-parameter open multilingual model that streams, runs on-device, and natively supports European Portuguese."
 tags:
+  - "source/raw"
   - "clippings"
 ---
 ## Sopro V2 Turbo

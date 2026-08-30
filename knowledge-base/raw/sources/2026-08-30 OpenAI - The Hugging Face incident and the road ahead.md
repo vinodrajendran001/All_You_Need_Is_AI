@@ -1,11 +1,15 @@
 ---
+type: raw-source
+source_id: src-2026-08-30-openai-hugging-face-incident
 title: "The Hugging Face incident and the road ahead"
 source: "https://openai.com/index/hugging-face-incident-and-the-road-ahead/?utm_source=thedeepview&utm_medium=newsletter&utm_campaign=nvidia-eyes-hugging-face-in-full-stack-ai-push&_bhlid=5927b8de033629c828e7315549b773864626e598"
 author:
+  - "[[OpenAI]]"
 published: 2026-05-12
 created: 2026-08-30
 description: "OpenAI shares findings from the Hugging Face security incident and the steps we’re taking to strengthen AI model security, monitoring, and alignment."
 tags:
+  - "source/raw"
   - "clippings"
 ---
 In July 2026, during internal cybersecurity evaluations, OpenAI models circumvented controls designed to isolate them from the internet and compromised parts of [OpenAI’s internal research infrastructure and Hugging Face’s systems ⁠](https://openai.com/index/hugging-face-model-evaluation-security-incident/).

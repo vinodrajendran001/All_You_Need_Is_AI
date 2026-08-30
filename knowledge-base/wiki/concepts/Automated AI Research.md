@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-03
+updated: 2026-08-30
 tags:
   - concept
   - ai-agents
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-30-alisa-liu-ai-research-job-search
   - src-2026-07-30-teaching-open-model-science
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
 status: active
 ---
 
@@ -45,6 +47,37 @@ This is one of the clearest real-world paths by which AI capability could recurs
 - The same "judgment over execution" thesis shows up in hiring. [[ML Research Interview Preparation]] (from [[Alisa Liu - The AI Research Job Search]]) notes that interview *loops* heavily reward technical breadth and coding, but — echoing [[itsreallyvivek - some notes on getting into frontier ai labs]] — the durable ability labs ultimately select for is the research judgment and abstraction-building this page describes. The practical reconciliation: study to pass the loop, but the long-run edge is the same taste/anomaly-selection skill that makes automated research hard.
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]] supplies a concrete workflow-level example. Loka's 21-run program trained a compact open MoE with GRPO and LoRA across biomedical tool investigation and Gene Ontology annotation, then promoted a checkpoint only after held-out scores, trace/verifier review, and application testing agreed. The research loop is therefore not just experiment execution: it is the design of verifiable environments, failure-sensitive rewards, and evidence-backed promotion criteria.
 
+## What the automated loop reliably does, and what it does not
+
+Two 2026 surveys let this page separate the settled part from the aspirational part.
+
+**Execution is close to solved on verifiable targets.**
+[[Philipp Schmid - Recursive Self-Improvement]] collects the evidence: Karpathy's autoresearch ran
+~700 experiments on one GPU against nanochat, kept ~20 transferable changes, and cut
+time-to-GPT-2-quality from 2.02 to 1.80 hours; Prime Intellect scaled the same keep-or-revert loop to
+~10,000 trials and beat the human baseline; AlphaEvolve found a matrix-multiplication algorithm one
+scalar multiplication better than Strassen's and sped up a Gemini training kernel by 23%. In every
+case the loop was a propose-train-evaluate cycle scored by something the agent could not edit.
+
+**Direction-setting is not.** A Princeton-led study cited by Schmid found agents can execute much of
+the engineering of AI research while still struggling to choose original and useful directions. Or as
+he puts it: "The loop is excellent at hill-climbing a verifiable metric. Taste is not a metric."
+
+**The failure modes are now catalogued.**
+[[Lilian Weng - Harness Engineering for Self-Improvement]] names six characteristic ways automated
+research pipelines go wrong:
+
+1. **Training-data defaults** — reverting to a familiar method instead of the specified one.
+2. **Implementation drift** — the code stops matching the stated design.
+3. **Memory degradation** over long runs.
+4. **Over-optimism**, including "numerical duct tape" applied to make results look clean.
+5. **Insufficient domain intelligence.**
+6. **Weak scientific taste.**
+
+Weng's benchmark appendix — PaperBench, CORE-Bench, ScienceAgentBench, RE-Bench — is the current
+measurement surface, and all four score *execution*. None of them scores the choice of question,
+which is precisely where the Princeton study locates the gap.
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
@@ -64,3 +97,8 @@ This is one of the clearest real-world paths by which AI capability could recurs
 - [[AI Agents in Production]]
 - [[Eric Jang]]
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]]
+- [[Harness Optimization]]
+- [[Lilian Weng]]
+- [[Philipp Schmid]]
+- [[Lilian Weng - Harness Engineering for Self-Improvement]]
+- [[Philipp Schmid - Recursive Self-Improvement]]

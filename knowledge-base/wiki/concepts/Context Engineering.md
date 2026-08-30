@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-08-26
+updated: 2026-08-30
 tags:
   - concept
   - context-engineering
@@ -19,6 +19,8 @@ source_ids:
   - src-2026-08-07-avi-chawla-claude-code-cost
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-30-addy-osmani-audit-agent-files
 status: active
 ---
 
@@ -117,6 +119,46 @@ The collection adds a cache-level implication: stable prefixes and append-only h
 
 From the opposite direction, [[ByteByteGo - How to Steal an AI Model's Private Thoughts]] shows that context management has a disclosure surface. Encrypted reasoning blocks are context the client carries but cannot read — and because they cannot be read, they cannot be sanitised. A scan of 6,708 published agent trajectories recovered API keys, passwords, and private keys from blocks whose visible text had been scrubbed clean. See [[Reasoning Trace Privacy]]. The operational rule is that opaque context artifacts must be **removed** rather than cleaned, and that compaction, forking, and history editing all rest on the same portability that makes the leak possible.
 
+## Context collapse, and why playbooks must be itemized
+
+[[Lilian Weng - Harness Engineering for Self-Improvement]] names a failure mode that any
+self-maintaining context file eventually hits. **Context collapse** occurs when a whole context
+document is regenerated each round by a model with a brevity bias: accumulated detail erodes round
+after round until the playbook is shorter and worse than where it started. The problem is not the
+model's judgement about any single item — it is that wholesale rewriting gives every item a fresh
+chance to be dropped.
+
+ACE (Agentic Context Engineering) is the structural fix. It splits the work across a **generator**, a
+**reflector**, and a **curator**, and stores the evolving playbook as **itemized bullets** added,
+edited, or retired one at a time. Updates become local, attributable, and reversible. MCE extends this
+to a bi-level loop — meta skill evolution above base context optimization — and Meta-Harness goes a
+rung higher by optimizing the optimizer's own code. See [[Harness Optimization]] for the full ladder.
+
+## The null result this page has to answer
+
+[[Addy Osmani - Audit your Agent files]] supplies the sceptical case, with numbers larger than most of
+the positive evidence in this area:
+
+- **288 runs across 17 tasks**: the presence of `AGENTS.md` / `CLAUDE.md` made **no clear difference to
+  correctness**. It did change behaviour — agents wrote more targeted tests — but the outcome measure
+  did not move.
+- Anthropic removed **more than 80%** of Claude Code's system prompt with **no measurable eval loss**.
+- Across 100 repositories: **lint leakage 62%, context bloat 42%, skill leakage 35%**.
+- **Personalized skills performed roughly on par with borrowed ones**, and a generic skill built from
+  many developers' practice was **more useful** than a personalized one. (Caveat, flagged by Osmani
+  himself: the study used an LLM-based developer simulator.)
+- Agents answering behavioural questions from **prose summaries** scored **4/45**; from **source code**,
+  **27/45**.
+
+The last finding constrains how context should be written for agents: a summary of behaviour is a poor
+substitute for a pointer to the code that implements it. The others invert the default — context
+**must justify itself against an eval, and the default action for an unjustified rule is deletion**.
+Osmani's mechanics are worth keeping straight: `/doctor` (in-session) audits active configuration
+while `claude doctor` (CLI) only runs install diagnostics; `/memory` is a separate review pass; and
+skill *listings* are budgeted at roughly **1% of the context window**, with only the invoked skill's
+body loading — so a long skill body is cheap until called, but a proliferation of skill names is not
+free.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -154,3 +196,8 @@ From the opposite direction, [[ByteByteGo - How to Steal an AI Model's Private T
 - [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
 - [[Speculative Tool Execution]]
+- [[Harness Optimization]]
+- [[Lilian Weng]]
+- [[Addy Osmani]]
+- [[Lilian Weng - Harness Engineering for Self-Improvement]]
+- [[Addy Osmani - Audit your Agent files]]

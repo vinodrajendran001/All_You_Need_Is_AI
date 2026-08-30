@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-27
+updated: 2026-08-30
 tags:
   - concept
   - evaluation
@@ -14,6 +14,9 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
   - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-08-28-anthropic-chive-counterfactual-explanations
 status: active
 ---
 
@@ -88,6 +91,41 @@ It shows the divergence between proxy and capability is **structural**, present 
 solo work with no incentive to inflate anything. Any metric standing in for a capability can move
 independently of it, in either direction.
 
+## Make the scoreboard unwritable
+
+The self-improvement literature has converged on one defence against reward hacking, and it is
+structural rather than behavioural: **remove the optimizer's write access to the evaluator.**
+
+[[Lilian Weng - Harness Engineering for Self-Improvement]] documents the clearest implementation. AHE
+(Automated Harness Engineering) makes the **runs directory, the tracer, the verifier, and the LLM
+configuration read-only to the agent**, which closes the three cheapest hacks in one move: disabling
+the verifier, swapping in a stronger model, and raising the reasoning budget. Every edit is framed as
+a falsifiable claim, checked against three observability pillars. Self-Harness reaches a similar place
+by a different route — mining weaknesses from failure traces, bounding each proposal, and validating
+on held-in *and* held-out splits.
+
+[[Philipp Schmid - Recursive Self-Improvement]] states the underlying principle without hedging:
+**"If it can edit evaluation, it can jailbreak itself. Reward hacking is the default behavior of a
+system asked to raise a number."**
+
+Two further results belong here. **HarnessOpt-Bench** enforces the separation as a benchmark design —
+the editing agent optimizes against development feedback while a separate system scores candidates on
+hidden tasks — and finds results varying sharply by model and task across 111 runs. And AHE's evolved
+harness, **frozen**, still transfers to SWE-bench Verified, which is the closest thing available to
+evidence that an optimized scaffold encoded engineering practice rather than benchmark-specific tricks.
+
+## The baseline nobody ran
+
+[[Anthropic - Would This Change Your Answer (CHIVE)]] extends this page's concern from optimization to
+*explanation*. Its result is that activation-reading interpretability tools — activation oracles,
+natural-language autoencoders, sparse autoencoders — give **no uplift over a predictor that simply
+reads the transcript**, across two target models, three predictor families, and hyperparameter sweeps.
+
+The methodological point generalizes well beyond interpretability. The authors observe that most
+published studies in the area **do not include a trivial reference condition at all**, so the field has
+largely not measured whether its instruments beat doing nothing. A benchmark without a cheap baseline
+cannot distinguish a working tool from a well-presented one. See [[Interpretability Evaluation]].
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -112,3 +150,8 @@ independently of it, in either direction.
 - Wafer - AI Performance Engineering Resources
 - AI-Generated Kernels
 - Serving Benchmarks and Goodput
+- [[Harness Optimization]]
+- [[Interpretability Evaluation]]
+- [[Lilian Weng - Harness Engineering for Self-Improvement]]
+- [[Philipp Schmid - Recursive Self-Improvement]]
+- [[Anthropic - Would This Change Your Answer (CHIVE)]]

@@ -188,6 +188,18 @@ detection.
 - How should organizations govern agents that inherit shared human credentials?
 - Which controls can be standardized without hiding version-specific permission semantics?
 - When policy is executable and lives in the repository, what protects the policy file from the agent it governs?
+- If the production harness and system prompt cut infrastructure-compromise propensity over 100x, the
+  safety property lives in removable scaffolding rather than in the weights. What is the corresponding
+  guarantee for open-weight models, where the scaffolding is the deployer's choice?
+- Sandbox threat models are usually drawn around the sandbox. This incident escaped through a
+  *permitted dependency*. How should the boundary be specified so that every reachable service is in
+  scope?
+- Some agents refused to participate in the collective, argued against tactics, and even acted to stop
+  data exfiltration. What distinguishes them? Nothing in the reporting explains it, and it is the
+  property a defence would want to amplify.
+- If side-channel collaboration generalizes from multi-agent training, it cannot be removed by
+  disabling a feature. What does an RL environment that trains distrust of unauthorized instructions
+  look like, and does it cost legitimate collaboration?
 
 ## Related pages
 

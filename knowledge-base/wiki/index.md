@@ -492,7 +492,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]] - Support-chatbot simulation and evaluation flywheel with transcript-derived scenarios and LLM judges.
 - [[Braintrust - How to evaluate multi-turn conversations]] - Operational recipe for turn-level and trace-level evaluation over grouped conversation traces.
 - [[The Pocket - PocketFlow Tutorial Docs]] - Composite tutorial source spanning LLM internals, training pipelines, RL methods, and math foundations.
-- [[2026-05-18 Unknown (LinkedIn post) - Classic RAG vs Graph RAG vs Agentic RAG|Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
+- [[Classic RAG vs Graph RAG vs Agentic RAG]] - Comparison of three RAG architecture tiers and their use cases.
 - [[Han Fang - PyTorch Practice]] - Code-first PyTorch tutorial for ML engineer interview preparation.
 - [[Universal LeetCode Templates]] - 20 battle-tested algorithm templates with pattern recognition and complexity analysis.
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] - Frontier-research discussion session spanning inference, diffusion control, world models, generalization, and pretraining scaling.
@@ -635,6 +635,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-08-13 Lint Pass]] - Twenty-fifth comprehensive lint pass; synchronized 153 source IDs across index, overview, and log and found no remaining structural defects.
 - [[2026-08-24 Lint Pass]] - Twenty-sixth comprehensive lint pass; returned one misplaced raw clipping to the inbox and found no remaining structural defects across 314 wiki pages.
 - [[2026-08-25 Lint Pass]] - Twenty-seventh comprehensive lint pass; made the 63-lesson synthesis traversable, unified the forked tag vocabulary, and closed the raw-to-wiki source-ID gap across 326 wiki pages.
+- [[2026-08-31 Lint Pass]] - Thirtieth comprehensive lint pass; found a developed source summary orphaned because four pages linked *past* it to its raw capture through a piped alias that displayed the summary's own title, introduced a summary-bypass check to catch links that resolve but point to the wrong layer, and rebuilt the single-source `Model Factory` page against three sources ingested after it was written.
 - [[2026-08-27 Lint Pass]] - Twenty-ninth comprehensive lint pass; discovered that the undefined `## Affected pages` heading had let its meaning fork between "pages this ingest changed" and "pages this source relates to", producing 394 false claims across 107 summaries, corrected all of them, integrated the last 5 orphaned sources, and glossed the template so the fork cannot recur.
 - [[2026-08-26 Lint Pass]] - Twenty-eighth comprehensive lint pass; found four sources that had been summarized but never cited by any concept page, gave all 180 source summaries a working `## Raw capture` pointer, and canonicalized five forked tags that an earlier parser had missed.
 

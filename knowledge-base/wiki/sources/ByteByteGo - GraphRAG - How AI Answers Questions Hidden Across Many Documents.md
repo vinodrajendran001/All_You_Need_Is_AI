@@ -50,7 +50,7 @@ The source deepens the Graph RAG tier within [[Retrieval-Augmented Generation]] 
 
 ## Related pages
 
-- [[2026-05-18 Unknown (LinkedIn post) - Classic RAG vs Graph RAG vs Agentic RAG|Classic RAG vs Graph RAG vs Agentic RAG]]
+- [[Classic RAG vs Graph RAG vs Agentic RAG]]
 - [[ByteByteGo]]
 - [[Search-Augmented Language Models]]
 - [[Context Engineering]]

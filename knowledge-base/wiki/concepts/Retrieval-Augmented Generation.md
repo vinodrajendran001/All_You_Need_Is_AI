@@ -136,7 +136,7 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 
 ## Related pages
 
-- [[2026-05-18 Unknown (LinkedIn post) - Classic RAG vs Graph RAG vs Agentic RAG|Classic RAG vs Graph RAG vs Agentic RAG]]
+- [[Classic RAG vs Graph RAG vs Agentic RAG]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[ByteByteGo - How Airtable Built the Search Layer]]
 - [[ML Systems at Scale]]

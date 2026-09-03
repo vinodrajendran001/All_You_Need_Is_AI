@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - reasoning
@@ -9,6 +9,7 @@ tags:
   - inference
 source_ids:
   - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active
 ---
 
@@ -86,6 +87,27 @@ Kimi's 25-30% token reduction with little performance loss, obtained purely by s
 curriculum, implies a substantial fraction of a reasoning trace was never load-bearing. The vault has
 no account of *which* parts those are — see the open questions.
 
+## Two shipped policies, and a disagreement about the floor
+
+[[adlrocha - Base Models Stopped Being the Bottleneck]] documents two contemporaneous open-weight releases
+that made opposite choices about whether reasoning can be switched off.
+
+**Qwen3.8-27B** exposes `reasoning_effort` with three settings — `xhigh`, `medium`, `low` — defaulting to
+`xhigh`, and permits thinking to be **disabled entirely**. **GLM-5.3 does not allow thinking to be disabled**
+at all.
+
+The disagreement is about whether zero is a legitimate point on the dial. A model that cannot stop thinking
+has a cost floor its operator cannot lower, which matters most in the agent loops where the same instruction
+block is reprocessed hundreds of times; see [[Inference Efficiency Frontier]], where reasoning level is named
+as one of the exchange axes alongside latency and throughput.
+
+[[Qwen]] adds a second, less familiar control on the same surface: **`preserve_thinking`, on by default**,
+which retains the thinking blocks of every historical message so that RL could teach the model to treat past
+reasoning as **working memory**. The three stated motivations are decision consistency, avoiding re-reasoning,
+and KV-cache reuse. Effort control and thinking retention are separate knobs that interact — a high effort
+setting with retention on compounds context growth turn over turn. No ablation separating the three
+motivations is offered.
+
 ## Open questions
 
 - What were the removed 25-30% of tokens doing? Without a theory of which trace segments carry the
@@ -108,3 +130,7 @@ no account of *which* parts those are — see the open questions.
 - [[Knowledge Distillation]]
 - [[LLM Training Pipeline]]
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
+- [[Qwen]]
+- [[Z.ai]]
+- [[Inference Efficiency Frontier]]
+- [[adlrocha - Base Models Stopped Being the Bottleneck]]

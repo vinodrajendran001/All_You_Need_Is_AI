@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-27
+updated: 2026-09-03
 tags:
   - concept
   - llm
@@ -32,6 +32,8 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-09-01-bytebytego-shrink-language-model
+  - src-2026-09-02-baseten-efficient-frontier-inference
 status: active
 ---
 
@@ -115,6 +117,46 @@ unacceptable in a served model is fine here, because a full-precision verifier c
 quality-versus-size tradeoff on this page does not apply when the compressed model is only a
 guesser.
 
+## The arithmetic underneath the format names
+
+[[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]] supplies the mechanism this page
+describes at the level of format standards.
+
+**Why BF16 displaced FP16.** Going FP32 → BF16 keeps **all exponent bits** and cuts the mantissa to **7**. The
+dynamic range survives and only precision is spent, which is the trade training and inference tolerate.
+Below that, int8 (**−128..127**) and int4 (**−8..7**) have **no exponent at all**, which is why they cannot
+work without external scale metadata.
+
+**Why quantized weights are not portable.** The three-step recipe is: map the range **per small block** rather
+than globally, round each weight to the nearest step, and store a **per-block scale factor**. The worked
+example uses eight weights with a step of **0.070 / 7 = 0.010**. Block size, scale placement and scale format
+are all scheme choices — which is the concrete reason a quantized checkpoint is bound to the runtime that
+understands its layout. [[Baseten - Agentic Kernels in Production]] shows the operational cost of this from
+the other side: FP8 paths were **repeatedly repacking constant weight scales into DeepGEMM's format** through
+sequences of small kernel launches, and pre-packing them at load time recovered **7.3%** end-to-end latency
+with bit-identical outputs.
+
+**Damage is non-linear and selective.** 32 → 8 bits produces almost no observable change; 4-bit and below
+"can be large". The reported profile is that **pruning damages multi-step logic** first while fluency
+survives, and that **distilled students mimic style but fail novel puzzles** — the same asymmetry twice, and
+a matching failure profile for [[Knowledge Distillation]].
+
+**Pruning's speed trap.** Setting weights to zero is minimal damage but **no speedup** — the matrix keeps its
+shape. Structural removal of neurons, heads or layers gives genuinely smaller matrices at the cost of a much
+coarser cut. Magnitude is a weak importance signal; activation-aware scoring estimated from **a few hundred
+sample texts** ranks better. Pruning 20% of a 70B model removes **14B weights**.
+
+## Quantization occupies two frontiers at once
+
+[[Philip Kiely - The Efficient Frontier of LLM Inference]] makes a classification point worth recording here:
+quantization improves latency **and** throughput together, so it pushes out the *serving* frontier rather than
+trading along it — while introducing a **second, quality-versus-efficiency frontier**. That second frontier is
+described as *particularly* jagged, with large serving gains available at little or no quality cost,
+especially using the microscaling formats **MXFP4** and **NVFP4**.
+
+The practical consequence is that "how much quantization" is not answerable analytically. The cutoffs are
+unintuitive and must be found by sweeps. See [[Inference Efficiency Frontier]].
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -157,3 +199,7 @@ guesser.
 - [[AI Knowledge Base Overview]]
 - Wafer - AI Performance Engineering Resources
 - GPU Kernel Optimization
+- [[Inference Efficiency Frontier]]
+- [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
+- [[Philip Kiely - The Efficient Frontier of LLM Inference]]
+- [[Baseten - Agentic Kernels in Production]]

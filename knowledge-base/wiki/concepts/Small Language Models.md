@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - llm
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-30-halo-research-sopro-v2
+  - src-2026-09-01-bytebytego-shrink-language-model
 status: active
 ---
 
@@ -145,6 +146,21 @@ that distillation only loses. And **reflowing a flow-matching solver from 32 ste
 speedup with no measurable quality loss** — a large inference saving obtained entirely during
 training. See [[Neural Text-to-Speech]].
 
+## The gap that makes shrinking mandatory
+
+[[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]] quantifies the pressure behind this
+page: a 70B model at 2 bytes per parameter needs **140GB** for weights alone, against **24–48GB** on consumer
+cards. The trend is worse than the snapshot — **models have grown roughly 100× in a few years while consumer
+VRAM has roughly doubled**.
+
+Three techniques stack against that gap: quantization, pruning, and distillation. But the source's damage
+profile matters for how a small model should be *chosen*: compression reliably preserves fluency and
+preferentially damages **multi-step logic** and novel problem-solving. A shrunken large model and a natively
+trained small model are therefore not interchangeable even at equal size — they fail differently, and the
+compressed one fails in the direction that is hardest to notice from sample outputs.
+
+See [[Model Quantization and Efficiency]], [[Knowledge Distillation]] and [[On-Device Reasoning]].
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -178,3 +194,4 @@ training. See [[Neural Text-to-Speech]].
 - [[AI Knowledge Base Overview]]
 - [[Neural Text-to-Speech]]
 - [[Halo Research - Sopro V2 On-Device Text-to-Speech]]
+- [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]

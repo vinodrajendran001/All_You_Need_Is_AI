@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - llm
@@ -36,6 +36,7 @@ source_ids:
   - src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
   - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
+  - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active
 ---
 
@@ -177,6 +178,24 @@ the answer, verifiable rewards apply; where it cannot, a learned reward model is
 DeepSeek's split is the worked example: RLVR drove reasoning while reward models were retained for
 helpfulness and safety.
 
+## Two releases that separate the pipeline's stages cleanly
+
+[[adlrocha - Base Models Stopped Being the Bottleneck]] pairs two releases that happen to isolate different
+stages of this pipeline, which makes them useful as a natural comparison.
+
+**GLM-5.3 changed only post-training.** Same base model, same size as GLM-5.2, one month apart, and a
+top placement on CyberGym and GDPval — *"Scaling post-training is all we did."* This is the strongest
+evidence in the vault that the post-training segment of the pipeline now carries much of the capability
+delta, and it relocates the hard problem to environment construction: see [[RL Environment Design]].
+
+**Qwen3.8-27B did retrain**, on a Qwen3.5 foundation — the config still declares `model_type: qwen3_5` — with
+64 layers arranged as 16 repeats of three Gated DeltaNet blocks plus one Gated Attention block, and
+multi-token prediction.
+
+An honest caveat travels with both: the source is explicit that **the distillation question is unsettled**.
+Whether Qwen3.8's gains come from architecture or from training on stronger models' outputs is not resolved by
+anything in the release, which is a general problem for reading any pipeline claim from a model card.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -225,3 +244,7 @@ helpfulness and safety.
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]]
 - [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]
+- [[RL Environment Design]]
+- [[adlrocha - Base Models Stopped Being the Bottleneck]]
+- [[Qwen]]
+- [[Z.ai]]

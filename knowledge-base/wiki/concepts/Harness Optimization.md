@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - agents
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active
 ---
 
@@ -131,6 +132,21 @@ the presence of `AGENTS.md` / `CLAUDE.md` made **no clear difference to correctn
 removed more than 80% of Claude Code's system prompt with no measurable eval loss. Before searching a
 space, confirm the space has gradient in it.
 
+## Post-training inside the harness you will deploy into
+
+[[adlrocha - Base Models Stopped Being the Bottleneck]] records a release-time practice that makes the harness
+effect explicit rather than incidental. Under a heading reading "Downstream Compatibility: broader support for
+popular harnesses", **all of Qwen3.8's coding benchmarks were run through the Claude Code harness**.
+
+The reading offered is *"if you want a model to work inside a real agent loop, you post-train it inside a real
+agent loop."*
+
+Two things follow. The benchmark numbers describe a **model-plus-harness pair**, not the weights — so
+cross-family comparison requires the harness to be held fixed, and it usually is not reported at all. And the
+harness has moved upstream of evaluation into training itself, which means harness choice is now a
+post-training decision with the same standing as environment choice; see [[RL Environment Design]] and
+[[Coding Agent Harness]].
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -156,3 +172,6 @@ space, confirm the space has gradient in it.
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
 - [[Addy Osmani - Audit your Agent files]]
+- [[adlrocha - Base Models Stopped Being the Bottleneck]]
+- [[Qwen]]
+- [[RL Environment Design]]

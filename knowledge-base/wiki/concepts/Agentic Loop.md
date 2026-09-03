@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-26
+updated: 2026-09-03
 tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-types-of-agentic-loops
   - src-2026-08-05-aibuilderclub-graph-engineering-guide-2026
   - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
+  - src-2026-08-31-derelict5432-adaptive-agentic-worms
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active
 ---
 
@@ -113,6 +115,23 @@ The consequence that most changes how a loop should be written is prefix stabili
 
 This makes cache-awareness a *design constraint on loop structure*, not a serving-side optimization someone else handles: append rather than rewrite, keep volatile content at the end, and treat the prefix as an interface. See [[KV Cache]] and [[Context Engineering]]. The article's TTFT and CPU-utilization figures across hardware generations are reported as one operator's observation rather than a general law.
 
+## What the loop costs, and what it can become
+
+Two sources in this batch bound the loop from opposite ends.
+
+**The economic end.** [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+shows what a tool call actually costs: the model is stateless, so each tool result **re-runs the entire
+pipeline**. Twenty tool calls means the earliest messages are paid for twenty times, and a 2,000-token
+instruction block across 200 calls becomes **400,000 input tokens before any work is done**. The loop is not
+a control-flow construct with negligible overhead; iteration count is the dominant term in the bill. This makes
+instruction-block size an architectural decision rather than a prompt-writing one — see
+[[Context Engineering]] and [[Inference Efficiency Frontier]].
+
+**The capability end.** [[derelict5432 - Adaptive Agentic Worms Are Here]] describes the same loop given
+**self-replication as its top-level goal**, running unsupervised for seven days across a 33-host network and
+reaching up to **seven generations** of copies. Nothing about the loop's structure changed; only the objective
+at the top of it did. See [[Self-Replicating Agents]].
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -146,3 +165,7 @@ This makes cache-awareness a *design constraint on loop structure*, not a servin
 - [[KV Cache]]
 - [[Context Engineering]]
 - [[LLM Inference]]
+- [[Self-Replicating Agents]]
+- [[Inference Efficiency Frontier]]
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[derelict5432 - Adaptive Agentic Worms Are Here]]

@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-08-27
+updated: 2026-09-03
 tags: [concept, open-models, ecosystems, inference]
 source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
   - src-2026-08-19-bytebytego-inkling
   - src-2026-08-20-mark-russinovich-fools-gold
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active
 ---
 
@@ -51,6 +52,28 @@ The release also illustrates a **capability ladder within one family**: identica
 infrastructure across all three sizes, with the smallest model simply stopping earlier in the
 training chain. See [[Staged Reinforcement Learning Curriculum]] and [[Small Language Models]].
 
+## Openness of the post-training story
+
+[[adlrocha - Base Models Stopped Being the Bottleneck]] adds two families to this page and a third axis of
+disclosure. [[Z.ai]]'s GLM-5.3 and [[Qwen]]'s Qwen3.8-27B both ship openly, both are positioned to run on a
+**sub-$10K home machine** (REAP expert pruning is noted as the route), and both disclose something about
+method — but what they disclose differs in kind.
+
+GLM-5.3 describes its **environment factory**: research agents building long-horizon RL environments, a judge
+agent that must solve each task before it counts, a solver agent that closes shortcuts. Qwen3.8 discloses
+**inference-time defaults** — `preserve_thinking` on, `reasoning_effort` at `xhigh`, thinking disableable —
+and that its coding benchmarks ran through the Claude Code harness.
+
+This extends the distinction this page already draws between openness of weights and openness of method. A
+third thing can be open or closed: **what the model was trained to do**. GLM-5.3's disclosure that
+vulnerability-discovery data was mixed in, and that *"cyber capability developed faster than we expected"*,
+is the most consequential fact in either release, and nothing in current release practice requires it to be
+stated. See [[RL Environment Design]] and [[Self-Replicating Agents]].
+
+The accompanying vulnerability ledger — **2,436 findings across 269 open-source projects**, **53 disclosed**
+and **2,383 embargoed** — also shows an open-weights lab taking on a coordinated-disclosure role, a governance
+position the ecosystem has no established norms for.
+
 ## Open questions
 
 - Which metrics distinguish genuine deployment from automated download noise?
@@ -66,4 +89,8 @@ training chain. See [[Staged Reinforcement Learning Curriculum]] and [[Small Lan
 - [[LLM Inference]]
 - [[Mixture of Experts]]
 - [[Defensive Deception for Open Models]]
-
+- [[adlrocha - Base Models Stopped Being the Bottleneck]]
+- [[Z.ai]]
+- [[Qwen]]
+- [[RL Environment Design]]
+- [[Self-Replicating Agents]]

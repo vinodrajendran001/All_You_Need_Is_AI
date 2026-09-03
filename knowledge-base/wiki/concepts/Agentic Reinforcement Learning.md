@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - reinforcement-learning
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-08-20-radixark-miles-v0-1
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active
 ---
 
@@ -206,6 +207,23 @@ strategies. OpenAI's alignment response — training on **alignment over long ta
 within their original task and permissions after discovering new tools, credentials, or persuasive
 peers — treats scope adherence as something that must be trained for explicitly rather than assumed.
 
+## When the algorithm is not the constraint
+
+[[adlrocha - Base Models Stopped Being the Bottleneck]] reports a case where the RL algorithm was not the
+variable that moved: GLM-5.3 kept GLM-5.2's base model and size, spent a month on post-training, and topped
+CyberGym and GDPval. [[Z.ai]]'s framing puts the difficulty elsewhere — *"as agent capability improves, much of
+the difficulty in scaling post-training moves from the model to the environment."*
+
+Two consequences for this page. First, an agentic RL result is only interpretable alongside a description of
+the environments it trained on, which releases rarely provide; see [[RL Environment Design]]. Second, the
+environments themselves are now agent-built and agent-gated, which introduces a ceiling worth naming — an
+environment that a contemporary judge agent must be able to solve is bounded by contemporary capability.
+
+The related [[Qwen]] result is a different kind of RL outcome: with `preserve_thinking` on by default,
+Qwen3.8 was trained in a setting where past thinking blocks stay in context, and RL taught it to use its own
+prior reasoning as **working memory** rather than as discarded scratch. That is a behaviour learned from the
+context regime rather than from the reward.
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -243,3 +261,7 @@ peers — treats scope adherence as something that must be trained for explicitl
 - [[Chain-of-Thought Monitoring]]
 - [[Agent Security and Governance]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[RL Environment Design]]
+- [[adlrocha - Base Models Stopped Being the Bottleneck]]
+- [[Z.ai]]
+- [[Qwen]]

@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-08-29-baseten-agentic-kernels-production
+captured: 2026-09-03
 title: "Agentic kernels in production"
 source: "https://www.baseten.co/blog/agentic-kernels-in-production/#future-direction"
 author:
@@ -10,6 +13,10 @@ created: 2026-09-03
 description: "Baseten's agentic kernel optimization framework cuts latency by 42.3% on Qwen-Image and by 15.2% on FLUX.2."
 tags:
   - "clippings"
+  - "topic/kernels"
+  - "topic/inference"
+  - "topic/self-improvement"
+  - "source/raw"
 ---
 ![Agentic kernels in production](https://www.baseten.co/_next/image/?url=https%3A%2F%2Fwww.datocms-assets.com%2F104802%2F1787661078-baseten-blog-2026-thumbnails-16.png%3Fauto%3Dformat%26fit%3Dcrop%26h%3D630%26w%3D1200&w=3840&q=100) TL;DR
 

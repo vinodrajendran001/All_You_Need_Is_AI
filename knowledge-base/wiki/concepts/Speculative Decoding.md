@@ -160,8 +160,7 @@ size 1, declining to 1.21× at batch size 128**, and falling below baseline unde
 
 ## Has speculation changed category?
 
-This page frames speculation as spending headroom that could be spent elsewhere — a tradeoff. [[Philip Kiely -
-The Efficient Frontier of LLM Inference]] argues the category boundary has moved, and the disagreement is
+This page frames speculation as spending headroom that could be spent elsewhere — a tradeoff. [[Philip Kiely - The Efficient Frontier of LLM Inference]] argues the category boundary has moved, and the disagreement is
 worth keeping visible rather than resolving.
 
 The historical framing is granted: speculation *was* a tradeoff technique, because it was expensive, sequences

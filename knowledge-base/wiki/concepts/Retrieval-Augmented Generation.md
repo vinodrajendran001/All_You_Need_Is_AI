@@ -137,8 +137,7 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 
 ## The layer beneath all three tiers
 
-The tiers above are architectural choices. [[ByteByteGo - Why Your RAG System Is Only as Good as Its
-Translator Model]] describes the layer they all sit on: the **embedding model**, which converts documents and
+The tiers above are architectural choices. [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]] describes the layer they all sit on: the **embedding model**, which converts documents and
 queries into vectors and therefore decides what the generator ever sees. Its formulation —
 **"A better language model cannot repair bad retrieval"** — extends to the tiers themselves. Agentic RAG can
 reformulate and re-query, but it cannot find a passage that no phrasing brings close in a space where the

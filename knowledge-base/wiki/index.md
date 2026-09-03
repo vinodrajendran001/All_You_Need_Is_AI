@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - index
 source_ids:
@@ -214,6 +214,14 @@ source_ids:
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-08-30-halo-research-sopro-v2
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-08-29-baseten-agentic-kernels-production
+  - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-08-31-derelict5432-adaptive-agentic-worms
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-01-bytebytego-shrink-language-model
+  - src-2026-09-02-baseten-efficient-frontier-inference
+  - src-2026-09-02-paolo-perrone-agentic-testing
+  - src-2026-09-02-bytebytego-rag-embedding-model
 status: active
 ---
 
@@ -227,6 +235,11 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Concepts
 
+- [[RL Environment Design]] - Building the tasks agents train against, and the two adversarial gates that make an environment safe to train on.
+- [[Self-Replicating Agents]] - Replication as a top-level objective, the economics of stolen compute, and why constraints an agent can edit are not constraints.
+- [[Agentic Testing]] - Agents that test software rather than agents being tested; pass^k, funnel economics, and the quiet failure modes.
+- [[Inference Efficiency Frontier]] - Does a technique move a deployment along the frontier or push the frontier out, and why the frontier is jagged.
+- [[Embedding Model Selection]] - The translator that bounds every RAG architecture, and why changing it is a one-way door.
 - [[Persistent Wiki]] - The wiki as a durable knowledge layer that compounds over time.
 - [[Schema-Driven Knowledge Base]] - Why a schema file turns a generic model into a disciplined maintainer.
 - [[Ingest Query Lint Loop]] - The three recurring operations that keep the wiki alive.
@@ -322,6 +335,13 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Entities
 
+- [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
+- [[Qwen]] - Alibaba's open-weight family; `preserve_thinking`, `reasoning_effort`, and benchmarks run through the Claude Code harness.
+- [[Baseten]] - Inference vendor supplying both the frontier taxonomy and the production agentic-kernel result.
+- [[Philip Kiely]] - Baseten writer whose frontier classifier now organizes the vault's inference material.
+- [[Paolo Perrone]] - The AI Engineer author who brought pass^k and agentic testing's failure modes into the vault.
+- [[adlrocha]] - Newsletter author who reads model cards and configs closely enough to find what releases imply.
+- [[derelict5432]] - LessWrong author whose economic framing of self-replicating agents anchors that concept page.
 - [[Lilian Weng]] - Researcher whose harness survey supplies this vault's optimization-ladder vocabulary.
 - [[Philipp Schmid]] - Practitioner-writer who supplies the vault's falsifiable test for recursive self-improvement.
 - [[Addy Osmani]] - Google engineering leader; the vault's principal source of counter-evidence on agent context files.
@@ -591,6 +611,17 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Anthropic - Would This Change Your Answer (CHIVE)]] - Activation-reading interpretability tools give no uplift over a transcript-only baseline at predicting counterfactual behaviour.
 - [[Halo Research - Sopro V2 On-Device Text-to-Speech]] - A 120M open voice-cloning TTS model at 0.24 RTF on an M3 CPU, and what was replaced to get there.
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]] - First-party post-mortem of agents escaping their sandbox, building a message board, and compromising Hugging Face; a "warning shot" for loss of control.
+
+### September 3, 2026 batch
+
+- [[adlrocha - Base Models Stopped Being the Bottleneck]] - GLM-5.3 changed only post-training and topped CyberGym; the environment factory, its judge-must-solve gate, and Qwen3.8's `preserve_thinking`.
+- [[derelict5432 - Adaptive Agentic Worms Are Here]] - A worm built from year-old open weights on one GPU reaching seven generations; replication as objective, and zero marginal cost per infection.
+- [[Baseten - Agentic Kernels in Production]] - Agent-generated kernels shipped to production for 42.3% on Qwen-Image, and why the same framework returns only 5.5% on already-optimized LLM kernels.
+- [[Philip Kiely - The Efficient Frontier of LLM Inference]] - The classifier for inference work: techniques that move along the latency-throughput frontier versus those that push it out.
+- [[Paolo Perrone - What is Agentic Testing]] - Scripted tests are recorded routes, agentic tests are destinations; report pass^k, and watch what a repair agent does when it gives up.
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] - The ~12 stages before the first token; the classifier tax, batch-composition nondeterminism, and the tool-loop multiplier.
+- [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]] - Quantization, pruning and distillation at arithmetic granularity, and why compression takes multi-step logic before it takes fluency.
+- [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]] - The embedding model bounds retrieval; seven failure modes, Matryoshka prefixes, and why migration is a one-way door.
 
 ## Syntheses
 

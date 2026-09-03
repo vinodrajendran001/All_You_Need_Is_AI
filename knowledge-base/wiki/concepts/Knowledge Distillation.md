@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-08-26
+updated: 2026-09-03
 tags:
   - concept
   - model-training
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-09-01-bytebytego-shrink-language-model
 status: active
 ---
 
@@ -54,6 +55,24 @@ Providers respond with anti-distillation training on flagship models, but [[Reas
 
 Two implications for this page. First, **unauthorized distillation is cheaper than the defensive literature assumes**, which changes the economics of every open-vs-closed argument. Second, the defence has to be a systems property rather than a training property: refusal training on one model does nothing while a peer accepts the same artifact.
 
+## What transfers, and what does not
+
+[[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]] states the mechanism compactly: the
+student learns the teacher's **full probability distribution** over next tokens, not just the correct token.
+The extra signal is in how the teacher ranks the *wrong* answers, which carries information about similarity
+and confidence that a one-hot target discards.
+
+It also gives this page a failure profile it lacked. **Distilled students mimic style but fail novel
+puzzles** — surface fluency transfers more readily than reasoning does. The same source reports the parallel
+result for pruning, where the first casualty is **multi-step logic** rather than fluency.
+
+That both compression families damage reasoning before they damage fluency is the useful generalisation, and
+it is a warning about evaluation: a compressed model reads well, so any assessment resting on output quality
+will overestimate what survived. See [[Model Quantization and Efficiency]] and [[LLM Reasoning]].
+
+The claims are qualitative — no task, model or dataset is attached — and Hinton's original work is cited but
+not summarised.
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -72,3 +91,4 @@ Two implications for this page. First, **unauthorized distillation is cheaper th
 - [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
 - [[Reasoning Trace Privacy]]
 - [[Agent Security and Governance]]
+- [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]

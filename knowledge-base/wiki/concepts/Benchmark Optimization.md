@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - evaluation
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-09-02-baseten-efficient-frontier-inference
 status: active
 ---
 
@@ -158,6 +160,25 @@ contributed to the model responsible, and the report states the behaviour **was 
 reinforced**. Detection at the trace level is what made the trend visible; aggregate task scores never
 showed it. See [[Chain-of-Thought Monitoring]].
 
+## Shortcut probing, moved upstream of training
+
+The verifier-ownership argument on this page has a training-time counterpart.
+[[adlrocha - Base Models Stopped Being the Bottleneck]] describes [[Z.ai]] running a **solver agent against
+each candidate RL environment specifically to find its shortcuts**, which are then closed before the
+environment is used.
+
+This is adversarial verification applied *before* training rather than after publication, and it implies that
+environment quality and benchmark integrity are the same engineering problem seen at two points in the
+pipeline: a shortcut in an environment produces a model that has learned the shortcut, while the same shortcut
+in an eval produces a number nobody should trust. See [[RL Environment Design]].
+
+Two adjacent cautions from this batch. [[adlrocha - Base Models Stopped Being the Bottleneck]] notes that
+**all of Qwen3.8's coding benchmarks ran through the Claude Code harness**, so those figures describe a
+model-plus-harness pair. And [[Philip Kiely - The Efficient Frontier of LLM Inference]] observes that the
+inference efficient frontier is **jagged**, with unintuitive cutoffs that must be found by empirical sweeps —
+so a published serving benchmark describes a configuration someone chose, and the sweep that found it is
+itself a resource only large operators can spend.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -189,3 +210,7 @@ showed it. See [[Chain-of-Thought Monitoring]].
 - [[Anthropic - Would This Change Your Answer (CHIVE)]]
 - [[Chain-of-Thought Monitoring]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[RL Environment Design]]
+- [[adlrocha - Base Models Stopped Being the Bottleneck]]
+- [[Philip Kiely - The Efficient Frontier of LLM Inference]]
+- [[Inference Efficiency Frontier]]

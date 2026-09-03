@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-08-31
+updated: 2026-09-03
 tags: [concept, training, research, reproducibility]
 source_ids:
   - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active
 ---
 
@@ -57,6 +58,22 @@ kind of unjustified weight. The reproducibility machinery is what makes deletion
 versioned and runs are rerunnable, removing a component is a measurable experiment rather than a
 gamble.
 
+## The environment factory is the model factory's newest floor
+
+[[adlrocha - Base Models Stopped Being the Bottleneck]] documents a factory stage this page did not previously
+have: [[Z.ai]] built a pipeline in which **research agents convert real work into long-horizon RL
+environments**, gated by a judge agent that must itself solve each task and a solver agent that probes for
+shortcuts.
+
+What makes this a factory addition rather than a training detail is the quoted claim that **GLM-5.3 changed
+nothing but post-training** — same base model, same size, one month later — and reached the top of CyberGym
+and GDPval. If capability can be manufactured without touching the base model, then the factory's output is
+determined by the environments it can build, and the accompanying formulation follows: *"as agent capability
+improves, much of the difficulty in scaling post-training moves from the model to the environment."*
+
+The machinery is now recursive in a specific way. Agents build the environments that train the agents, and
+agents gate them. See [[RL Environment Design]] for the full treatment and its failure modes.
+
 ## Open questions
 
 - Where should the boundary sit between factory-owned and harness-owned improvement, given that the
@@ -78,3 +95,6 @@ gamble.
 - [[Philipp Schmid - Recursive Self-Improvement]]
 - [[Addy Osmani - Audit your Agent files]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[RL Environment Design]]
+- [[adlrocha - Base Models Stopped Being the Bottleneck]]
+- [[Z.ai]]

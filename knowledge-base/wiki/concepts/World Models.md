@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-26
+updated: 2026-09-03
 tags:
   - concept
   - world-models
@@ -60,12 +60,6 @@ For world models, the useful distinction is:
 
 Diffusion can implement renderer-like world-model components and can be adapted to video, trajectory, or control settings, as the YC Paper Club source notes. But visual plausibility is not the same as physical simulation. A diffusion renderer can make believable pixels while still violating geometry, causality, or physics unless the broader system grounds it in state and dynamics.
 
-### Open questions
-
-- What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
-- Can world models generalize robustly enough for open-ended real-world environments, or will they remain strongest in constrained domains?
-- The unified world model thesis faces a data imbalance problem the essay itself identifies: video data for renderers vastly outweighs 3D+physics data for simulators. Can this gap be closed synthetically?
-
 ## Engine-authoritative hybrids
 
 [[ByteByteGo - Inside Roblox's Bet on World Models]] describes a deployment shape that sidesteps most of this page's hard problems by refusing the strong version of the goal. Deterministic game state, rules, and physics stay in the engine as the authoritative shared-world substrate; a learned model acts as a **video upsampler** conditioned on that state. The generated image is *presentation*, never the authoritative multiplayer state.
@@ -73,6 +67,12 @@ Diffusion can implement renderer-like world-model components and can be adapted 
 The move is worth generalizing. Conditioning generation on engine state constrains the model with geometry and rules instead of asking it to learn a whole consistent world — which converts the two failure modes this page worries about most, long-horizon drift and multi-agent consistency, into problems the engine already solves. What remains for the model is a perceptual task with a ground truth available every frame.
 
 The caveat travels with it: 2K/60fps delivery, long-context visual consistency, and multiplayer scale are stated as **targets and open work**, not shipped capability.
+
+## Open questions
+
+- What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
+- Can world models generalize robustly enough for open-ended real-world environments, or will they remain strongest in constrained domains?
+- The unified world model thesis faces a data imbalance problem the essay itself identifies: video data for renderers vastly outweighs 3D+physics data for simulators. Can this gap be closed synthetically?
 
 ## Related pages
 

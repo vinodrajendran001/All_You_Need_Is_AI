@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-08-27
+updated: 2026-09-03
 tags:
   - concept
   - llm
@@ -24,6 +24,8 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-09-02-baseten-efficient-frontier-inference
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active
 ---
 
@@ -98,6 +100,45 @@ one with more raw compute, which is the purchasing rule behind the hardware disc
 budget that [[Speculative Decoding]], continuous batching, and multi-token prediction compete to
 spend — and they are drawing on one pool, not stacking.
 
+## A classifier for the techniques on this page
+
+[[Philip Kiely - The Efficient Frontier of LLM Inference]] proposes one question that sorts every optimization
+here: does it move a deployment **along** the latency-throughput frontier, or **push the frontier out**?
+
+Tradeoff techniques — batch sizing, parallelism strategy — are allocation decisions requiring you to know what
+the traffic values. Frontier-moving techniques — kernel optimization, disaggregation, and now speculative
+decoding — are investments, and they **compound multiplicatively**. The frontier is also **jagged**: cutoff
+points are unintuitive and must be found by empirical sweeps rather than derived. See
+[[Inference Efficiency Frontier]] for the full treatment.
+
+## The request path, end to end
+
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] walks the roughly twelve
+stages between Enter and the first token, and fixes several numbers this page previously carried only
+qualitatively.
+
+**Prefill and decode are different machines.** Prefill is parallel and **compute-bound** — it is the pause.
+Decode is sequential and **memory-bound** — it is the typing. Latency splits into **TTFT** and **TPOT**, with
+total ≈ TTFT + TPOT × length, which is why a single latency number describes neither.
+
+**Continuous batching is worth up to 23× throughput** over naive fixed batching.
+
+**Temperature 0 is not deterministic.** Because numerics depend on batch composition, **1,000 identical
+prompts produced roughly 80 distinct completions**. Reproducibility is a property of the serving
+configuration, not of the sampling parameter — with direct consequences for evaluation; see
+[[Multi-Turn Evaluation]] and the pass^k discussion on [[Agentic Testing]].
+
+**Safety classification has a price on both axes.** An earlier production generation of input classifier cost
+about **24% extra compute** and **+0.38 percentage points of false refusals**; the cascade design that
+replaced it brings this to roughly **1%** and **0.05pp**.
+
+**Tokenization is not neutral.** Roughly ¾ of a word per token on average, but token counts for the same
+meaning differ by **up to 15×** across translations — so speakers of some languages get materially less usable
+context and pay more for it.
+
+These figures come from an explainer that attributes none of them to a specific paper or vendor; treat them as
+illustrative of well-established effects rather than as citable measurements.
+
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
@@ -140,3 +181,7 @@ spend — and they are drawing on one pool, not stacking.
 - [[Wafer - AI Performance Engineering Resources]]
 - [[Speculative Tool Execution]]
 - [[Programmatic Tool Calling]]
+- [[Inference Efficiency Frontier]]
+- [[Philip Kiely - The Efficient Frontier of LLM Inference]]
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[Agentic Testing]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-25
+updated: 2026-09-03
 tags:
   - concept
   - llm-evaluation
@@ -19,6 +19,8 @@ source_ids:
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
+  - src-2026-09-02-paolo-perrone-agentic-testing
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active
 ---
 
@@ -57,6 +59,27 @@ Everything above assumes the evaluation set measures what it claims to. [[Hume A
 
 The finding that should change reading habits: on two widely used ASR benchmarks the models with the **lowest** error rate were the most likely to reproduce erroneous references, so leaderboard rank order was partly anti-correlated with the capability being measured. This is the evaluation-side twin of the reward hacking discussed in [[Reward Design for RL]], and it strengthens this page's core argument — a static, public, i.i.d. test set is exactly the artifact an optimiser learns to recognise. The recommended remedies are structural: fully held-out sets, and temporal, speaker, or metadata-based splits rather than random ones. See [[Benchmark Optimization]].
 
+## pass@k measures the wrong thing
+
+[[Paolo Perrone - What is Agentic Testing]] draws a distinction that applies to most capability numbers this
+vault holds. **pass@k** asks whether a system succeeded **at least once** in k attempts; **pass^k** asks
+whether it succeeded **every** time. The worked example — five checks over three runs — gives **pass@3 = 0.6**
+against **pass^3 = 0.4**. The instruction is unhedged: *"Report pass^k."*
+
+For multi-turn work the gap is wider than that example suggests, because a multi-turn task compounds
+per-turn reliability: an agent that clears each of ten turns 90% of the time completes the whole conversation
+about a third of the time. pass@k hides exactly this, and it is the failure users experience.
+
+**A second variance source sits below the model.**
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] reports that temperature 0
+does **not** produce deterministic output, because numerics depend on batch composition — **1,000 identical
+prompts yielded roughly 80 distinct completions**. So a single-run score is partly a measurement of the
+serving stack, and re-running an eval on a differently loaded cluster is not a re-run of the same experiment.
+
+Together these argue that any evaluation reported as a single number, from a single run, at temperature 0,
+is under-specified. The minimum honest report is k runs and a pass^k. Note the ~80-completions figure is given
+without attribution in an explainer and should be treated as indicative.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -84,3 +107,6 @@ The finding that should change reading habits: on two widely used ASR benchmarks
 - [[Zach Lloyd - The computer use verification skill that every agent needs]]
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
+- [[Agentic Testing]]
+- [[Paolo Perrone - What is Agentic Testing]]
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]

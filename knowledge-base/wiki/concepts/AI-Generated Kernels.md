@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-09-03
 tags:
   - concept
   - kernels
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
+  - src-2026-08-29-baseten-agentic-kernels-production
 status: active
 ---
 
@@ -46,6 +47,44 @@ This is the vault's cleanest concrete instance of a pattern argued abstractly el
 
 For agent design the implication is direct: an evaluation harness is part of the attack surface of a self-improving loop, not a neutral observer of it. See [[Agent Workflow Maturity]] on separating producer from verifier.
 
+## What the benchmark correction actually consists of
+
+[[Baseten - Agentic Kernels in Production]] takes the correction recorded above and specifies it. Four reasons
+a KernelBench win does not become a production win:
+
+1. **The best configuration depends on the workload.** Tile shapes, warp-specialization strategy and CTA
+   configuration respond differently to tensor shape, batch size and sequence length — most visibly for MoE
+   and attention kernels. A kernel that wins on a general benchmark can lose on a specific deployment.
+2. **A faster microbenchmark is not a faster model.** CUDA graph capture and multi-stream execution can erase
+   a kernel-level gain or turn it into a regression.
+3. **Per-kernel optimization misses the larger win.** End-to-end traces usually show only a small subset of
+   kernels have headroom; the cheaper gains come from restructuring around them — fusing, eliminating
+   redundant work, removing pipeline bubbles.
+4. **Integration is nontrivial.** A serving engine has interconnected execution paths; a kernel must be wired
+   into the right one, replace existing computation cleanly, and stay compatible with the runtime.
+
+Three of the four are about **integration and workload specificity rather than about writing better CUDA**,
+which is the substance of the benchmark gap.
+
+## A production result, and the variable that predicts its size
+
+The same framework — a model-level layer that profiles and restructures, plus a per-kernel layer exploring
+implementations in parallel — reports **42.3% end-to-end latency reduction on Qwen-Image** (median per-step
+denoising **245.6 ms → 141.8 ms**), **15.2% on FLUX.2**, and about **5.5% more tok/s on MiniMax M3**. The
+optimizations were, per the authors, identified, proposed and implemented entirely by the framework.
+
+The gap between those numbers is the finding. Applied to LLMs the same system yields ~5.5% because LLM
+*"kernel implementations are considerably more mature and leave less headroom for improvement."* **Agentic
+optimization pays inversely to how much human optimization a domain has already absorbed** — a far better
+predictor of where to point these systems than any benchmark score, and a caution that a large percentage win
+is mostly a fact about the baseline. Note also that several wins read as recovered waste rather than novel
+optimization: a Python contiguity guard silently forcing a slow path, and constant FP8 weight scales being
+repacked every step.
+
+The loop also retains a knowledge base of **both successes and failures, with root causes and dead ends
+recorded** — see [[Recursive Self-Improvement]]. All figures are vendor self-reported against an
+uncharacterised prior baseline.
+
 ## Open questions
 
 - Do generated kernels climb the full optimization ladder in [[GPU Kernel Optimization]], or do they mostly capture its first rungs — where the transformations are well documented and the search space is small?
@@ -64,3 +103,6 @@ For agent design the implication is direct: an evaluation harness is part of the
 - [[Loop Engineering]]
 - [[Agent Workflow Maturity]]
 - [[GPU Execution Model]]
+- [[Baseten - Agentic Kernels in Production]]
+- [[Baseten]]
+- [[Inference Efficiency Frontier]]

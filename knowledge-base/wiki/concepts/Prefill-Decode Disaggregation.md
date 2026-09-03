@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-09-03
 tags:
   - concept
   - inference
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-06-26-nithin-llm-inference
   - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-09-02-baseten-efficient-frontier-inference
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active
 ---
 
@@ -54,6 +56,20 @@ Disaggregation does not remove the bottleneck; it relocates it. Once prefill and
 
 This is the same headroom trade recorded elsewhere in the vault: an optimization that looks free in isolation is competing for a shared resource, here the interconnect rather than idle decode compute.
 
+## Why the two phases separate at all
+
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] states the underlying
+asymmetry in the plainest available terms: prefill is parallel and **compute-bound** — it is the pause before
+the first word — while decode is sequential and **memory-bound** — it is the typing. Two phases with opposite
+bottlenecks sharing one worker means one of them is always mis-provisioned.
+
+[[Philip Kiely - The Efficient Frontier of LLM Inference]] classifies disaggregation as a **frontier-moving**
+technique rather than a tradeoff: separating the phases lets each worker be tuned for its own characteristics,
+and lets the **ratio between prefill and decode workers** be matched to actual input/output sequence lengths
+and cache hit rates. Its observed effect in practice is *"increasing throughput while keeping latencies the
+same or slightly better"* — which is what distinguishes it from a technique that merely buys one with the
+other. See [[Inference Efficiency Frontier]].
+
 ## Open questions
 
 - What is the crossover point at which KV transfer cost exceeds the interference cost it avoids, and how does it move with model size, context length, and attention variant?
@@ -73,3 +89,6 @@ This is the same headroom trade recorded elsewhere in the vault: an optimization
 - [[Distributed Training Parallelism]]
 - [[Mixture of Experts]]
 - [[AI Accelerator Architecture]]
+- [[Inference Efficiency Frontier]]
+- [[Philip Kiely - The Efficient Frontier of LLM Inference]]
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]

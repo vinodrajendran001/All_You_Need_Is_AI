@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-02-bytebytego-rag-embedding-model
+captured: 2026-09-03
 title: "Why Your RAG System Is Only as Good as Its Translator Model"
 source: "https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without?utm_source=post-email-title&publication_id=817132&post_id=212751164&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-03
 description: "In this article, we’re going to look at how this embedding model works in an RAG setup and what makes it such a critical part of the system."
 tags:
   - "clippings"
+  - "topic/rag"
+  - "topic/retrieval"
+  - "source/raw"
 ---
 ## A CIO on the data foundation AI agents need (Sponsored)
 

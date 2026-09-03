@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-08-27
+updated: 2026-09-03
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-07-17-netflix-in-house-llm-serving
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active
 ---
 
@@ -97,6 +98,19 @@ The pattern worth carrying is that the engine-selection question this page answe
 decision and not the expensive one. Artifact management, schema evolution, and observability dominate
 the ongoing cost, and none of them appear in a throughput comparison.
 
+## What the engine is actually doing
+
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] gives the serving layer's
+contribution in numbers: **continuous batching is worth up to 23× throughput** over naive fixed batching, and
+**paged KV-cache blocks cut memory waste from 60–80% to under 4%**, yielding **2–4× throughput**. These are
+the two mechanisms that separate a production engine from a loop calling `model.generate()`.
+
+The consequential side effect is that **the engine's scheduling decisions reach the output**. Because numerics
+depend on batch composition, **1,000 identical prompts at temperature 0 produced roughly 80 distinct
+completions**. Determinism is not a sampling setting; it is a property of how the engine batched the request
+that day. Anyone using an engine as a reproducible evaluation substrate is measuring the engine too — see
+[[Multi-Turn Evaluation]] and [[Agentic Testing]].
+
 ## Related pages
 
 - [[Netflix - In-House LLM Serving]]
@@ -117,3 +131,6 @@ the ongoing cost, and none of them appear in a throughput comparison.
 - Prefill-Decode Disaggregation
 - Serving Benchmarks and Goodput
 - GPU Kernel Optimization
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[Agentic Testing]]
+- [[Inference Efficiency Frontier]]

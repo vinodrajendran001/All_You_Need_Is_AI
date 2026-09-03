@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-09-03
 tags:
   - concept
   - gpu
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-04-20-moonshotai-flashkda-v1
+  - src-2026-08-29-baseten-agentic-kernels-production
 status: active
 ---
 
@@ -67,6 +68,36 @@ The recurring shape across all of them is *tiles as the unit of reasoning*, whic
 
 The source treats profiling and correctness as inseparable from optimization rather than as a following step: Nsight Systems for system and CPU-GPU timelines, Nsight Compute for kernel metrics and roofline analysis, Compute Sanitizer for memory, race, initialization, and synchronization errors, and documented GEMM measurement methodology for reproducible benchmarking. A faster kernel that is not verified correct is not a result — the same standard [[Benchmark Optimization]] argues for at the model level.
 
+## Where the wins came from in one production sweep
+
+[[Baseten - Agentic Kernels in Production]] is useful to this page less for its headline numbers than for the
+**kind** of optimization that produced them. Almost none of it is clever inner-loop work; it is the removal of
+avoidable data movement and redundant launches.
+
+- **Pre-packed FP8 scales.** Constant weight scales were being repacked into DeepGEMM's required format every
+  step through sequences of small kernel launches. Emitting packed scales directly and moving weight-scale
+  packing to load time gave **7.3% (Qwen-Image) / 6.1% (FLUX.2)** end-to-end, with **bit-identical** outputs.
+- **Fused QKV projection with a Triton epilogue.** Q, K and V shared an input but ran as three GEMMs with
+  repeated activation quantization and setup. Merging them and fusing bias, QK normalization, RoPE and the
+  attention-buffer writes into one epilogue removed the repetition. NVFP4 keeps separate GEMMs because each
+  projection uses a different scale.
+- **Normalization fused with quantization**, eliminating a large BF16 intermediate written and immediately
+  read back (**4.3% / 0.7%**).
+- **Bias absorption.** Two standalone bias additions were found to account for roughly **11% of Qwen's FP8
+  step time**; folding each into the next fused operation gave **5.2%**.
+- **A CFG modulation cache** exploiting that classifier-free guidance's modulation branches depend only on the
+  timestep, not the prompt, so both passes can share them (**2.1% FP8 / 3.1% NVFP4**).
+- **Fused QK-normalization + RoPE** on FLUX.2 gave a **2× kernel speedup** and eliminated **48 of 60 cache
+  concatenations per step** — the slow path had been forced by a **Python contiguity guard** rejecting merged
+  GEMM views.
+
+The recurring themes — kill the intermediate round trip, fuse the epilogue, hoist invariant work out of the
+loop, and check what a guard clause is silently disabling — are the durable content. The last is a reminder
+that a meaningful share of available performance is not missing optimization but **a fast path that is not
+being taken**.
+
+All figures are self-reported by the vendor against its own prior baseline. See [[AI-Generated Kernels]].
+
 ## Open questions
 
 - How much of the kernel ladder survives as compilers absorb it? Triton and CUDA Tile exist precisely to make step 3 unnecessary, yet the fastest kernels are still hand-written.
@@ -87,3 +118,5 @@ The source treats profiling and correctness as inseparable from optimization rat
 - [[MoonshotAI - FlashKDA v1 Deep Dive]]
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
 - [[Inference Serving Engines]]
+- [[Baseten - Agentic Kernels in Production]]
+- [[Inference Efficiency Frontier]]

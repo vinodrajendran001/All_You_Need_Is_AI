@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - recursive-self-improvement
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-08-29-baseten-agentic-kernels-production
 status: active
 ---
 
@@ -167,6 +168,29 @@ mid-tier models. Weak models cannot exploit a good scaffold; the strongest alrea
 it would say. Self-improvement returns are therefore highest in the middle of the capability range,
 not at the frontier.
 
+## A shipped loop whose memory is the artifact
+
+[[Baseten - Agentic Kernels in Production]] is a production instance of the loop this page separates out as
+the one where **the scaffold's memory**, not the weights, is what persists.
+
+Its optimization framework retains kernels that pass correctness and end-to-end checks as reusable candidates,
+and — the part worth recording — adds lessons from **both successful and failed attempts** to an evolving
+knowledge base, alongside workload constraints and integration findings. Successes are captured as reusable
+patterns, **failures as caveats and root causes**, with dead ends explicitly recorded. Each iteration starts
+from accumulated experience.
+
+Two observations. **Recording failures is the substantive design choice.** A store of successful patches is a
+cache; a store that also explains why a class of attempt does not work prunes the search space on every
+subsequent run, which is what makes the loop converge rather than merely repeat. This is structurally the same
+argument this vault makes for itself in [[Persistent Wiki]] — the durable asset is the record of what was
+tried and what it cost.
+
+**And the gains are bounded by the domain, not by the loop.** The same framework returns **42.3%** on
+diffusion models but about **5.5%** on LLMs, because LLM kernels are already heavily human-optimized. Self
+improvement converges on the headroom that exists; where prior effort has removed it, the loop has little to
+find. This is a concrete case of the caution already on this page that recursive structure is not itself the
+gain. See [[AI-Generated Kernels]].
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -206,3 +230,6 @@ not at the frontier.
 - [[Lilian Weng]]
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
+- [[Baseten - Agentic Kernels in Production]]
+- [[AI-Generated Kernels]]
+- [[Inference Efficiency Frontier]]

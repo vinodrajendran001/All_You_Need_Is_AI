@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-08-30
+updated: 2026-09-03
 tags:
   - concept
   - context-engineering
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active
 ---
 
@@ -159,6 +160,30 @@ skill *listings* are budgeted at roughly **1% of the context window**, with only
 body loading — so a long skill body is cheap until called, but a proliferation of skill names is not
 free.
 
+## Context engineering as a serving fact
+
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] restates this page's
+subject from the infrastructure side: what reaches the model is an **assembled document** — system prompt,
+tool definitions, memory, retrieved documents, conversation history, new message — which is why **two products
+on the same model give different answers**.
+
+Because the model is **stateless**, the whole document is re-sent every turn. The worked progression is
+**1,100 → 1,300 → 1,500 tokens**, reaching roughly **4,900 by turn 20**, and input dominates the bill.
+
+**The multiplier is in the tool loop.** Each tool result re-runs the entire pipeline. Twenty tool calls means
+the earliest messages are paid for **twenty times**, and a **2,000-token instruction block across 200 calls
+becomes 400,000 input tokens before any work is done**.
+
+This changes what a bloated instruction block *is*. Once, it is negligible; two hundred times, it is the
+dominant cost of the run. Instruction-block size is therefore an agent-architecture decision rather than a
+prompt-writing one — and it gives the itemized-playbook argument above a second, purely economic
+justification. Layout matters too: cached prefixes bill at roughly **1/10 of the input rate**, so stable
+content belongs at the top and changing content at the bottom. See [[KV Cache]], [[Agentic Loop]] and
+[[Inference Efficiency Frontier]].
+
+A related constraint the vault had not recorded: token counts for the same meaning differ by **up to 15×**
+across languages, so an identical context budget is not an identical amount of usable context.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -201,3 +226,5 @@ free.
 - [[Addy Osmani]]
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]
 - [[Addy Osmani - Audit your Agent files]]
+- [[Inference Efficiency Frontier]]
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]

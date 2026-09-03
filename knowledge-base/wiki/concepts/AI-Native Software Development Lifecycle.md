@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-03
 tags:
   - concept
   - sdlc
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
   - src-2026-08-07-avi-chawla-claude-code-cost
   - src-2026-08-22-grok-bot-systems-engineering-working-note
+  - src-2026-09-02-paolo-perrone-agentic-testing
 status: active
 ---
 
@@ -70,6 +71,30 @@ The playbook is explicit that stage order and adoption order are different thing
 - **The audit trail assumes honest artifacts.** Treating the commit chain as the record of what happened presumes the agent's stated rationale reflects what it actually did — precisely the gap [[Grok Bot Systems Engineering Working Note]] closes with an evidence ladder in which "the bot says it is done" is never sufficient.
 - Human accountability is asserted to remain central, but concentrating attention at gates means humans increasingly review *what the agent flagged* rather than the work itself, which relocates rather than removes the trust problem.
 
+## Testing: agents at authoring time, deterministic artifacts in CI
+
+[[Paolo Perrone - What is Agentic Testing]] contributes the vault's most concrete evidence for what agents
+deliver inside a real engineering pipeline, and it is consistently **partial**: Meta's TestGen-LLM produced
+tests of which **75% compiled, 57% passed reliably, 25% raised coverage**; Uber's AutoCover writes roughly
+**1 in 9** of all new tests, with viable pass rates of **20% Java, 40% Go, 80% Python**; Airbnb migrated
+**~3,500 files in 6 weeks** against a 1.5-year manual estimate.
+
+Two findings shape how this fits the lifecycle.
+
+**Agent output is usable because it is cheap to filter, not because it is reliable.** Every one of these
+systems is a funnel with automated gates. Meta's much-quoted 73% engineer acceptance applies only to tests
+that had already survived three of them.
+
+**Capability is language-stratified.** The 20/40/80 spread is direct evidence that agent effectiveness depends
+on the ecosystem — tooling, typing, idiom stability — and not only on the model, so a benchmark figure from
+one language does not transfer to a polyglot codebase.
+
+The recommended shape is **agent at authoring time, model out of CI**: agents explore, generate and repair
+offline; deterministic artifacts run in the pipeline. This is the general principle of this page applied to
+testing — agents produce candidates, deterministic systems decide — and it is reinforced by a specific hazard,
+that a repair agent's documented give-up condition is to **mark a test skipped**, silently narrowing coverage
+while keeping the suite green. See [[Agentic Testing]].
+
 ## Open questions
 
 - Which parts survive translation off Claude Code? The artifact loop and act-time enforcement look portable; the specific `CLAUDE.md`/hooks/subagent surface does not.
@@ -89,3 +114,5 @@ The playbook is explicit that stage order and adoption order are different thing
 - [[Context Engineering]]
 - [[Loop Engineering]]
 - [[Anthropic]]
+- [[Agentic Testing]]
+- [[Paolo Perrone - What is Agentic Testing]]

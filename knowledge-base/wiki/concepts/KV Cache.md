@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-08-27
+updated: 2026-09-03
 tags:
   - concept
   - kv-cache
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active
 ---
 
@@ -119,6 +120,28 @@ cheap drafts: the degraded cache *is* the draft model. That is a use of KV-cache
 page's optimization families did not anticipate, where the quality loss from compression is
 acceptable precisely because a full-precision verifier corrects it.
 
+## The memory numbers, and what paging recovered
+
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] puts figures on the
+scaling this page describes. A **70B model with an 8k conversation needs a few GB of cache per request** —
+per request, concurrent with every other request, which is what makes the cache and not the weights the
+binding constraint on concurrency.
+
+Naive **contiguous reservation wasted 60–80%** of that memory, because a request's allocation must cover the
+length it might reach rather than the length it does reach. **Paged block allocation cut waste below 4%** and
+delivered **2–4× throughput** — a throughput gain obtained purely by not wasting memory.
+
+## Prefix caching prices the layout
+
+The same source gives the cache an economic surface. Cached prefixes are billed at roughly **1/10 of the input
+rate** and expire after minutes, which turns "**stable content at the top, changing content at the bottom**"
+from a style preference into a billing decision.
+
+The effect compounds in agent loops, where each tool result re-runs the pipeline: 20 tool calls means the
+earliest messages are processed 20 times, so whether they hit the cache determines most of the cost. See
+[[Context Engineering]], [[Agentic Loop]] and [[Inference Efficiency Frontier]]. Note that expiry "after
+minutes" is a per-provider policy rather than a property of the technique.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -152,3 +175,5 @@ acceptable precisely because a full-precision verifier corrects it.
 - Serving Benchmarks and Goodput
 - [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]]
 - [[Agentic Loop]]
+- [[Inference Efficiency Frontier]]
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]

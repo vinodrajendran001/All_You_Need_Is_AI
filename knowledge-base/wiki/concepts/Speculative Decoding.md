@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-08-27
+updated: 2026-09-03
 tags:
   - concept
   - inference
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-09-02-baseten-efficient-frontier-inference
 status: active
 ---
 
@@ -157,6 +158,26 @@ different K, and no serving stack described in this vault distinguishes them. Th
 the headroom half is stark: one systematic evaluation reported **up to 1.96× on a 70B model at batch
 size 1, declining to 1.21× at batch size 128**, and falling below baseline under higher concurrency.
 
+## Has speculation changed category?
+
+This page frames speculation as spending headroom that could be spent elsewhere — a tradeoff. [[Philip Kiely -
+The Efficient Frontier of LLM Inference]] argues the category boundary has moved, and the disagreement is
+worth keeping visible rather than resolving.
+
+The historical framing is granted: speculation *was* a tradeoff technique, because it was expensive, sequences
+were short, acceptance rates were low, and it was viable only at small batch sizes. The claim is that
+**EAGLE-3, DSpark and DFlash** changed this, because their strength yields efficiency from **skipped forward
+passes** in addition to raw latency reduction — a genuine reduction in work rather than a reallocation of it.
+That would make speculation **frontier-moving**: gains that can be allocated to latency or throughput at will.
+
+The qualification is retained in the same source: these methods still **compete with the main model loop for
+resources**, and so still cap maximum batch size. Code generation benefits most, because output sequences are
+relatively predictable — which is also why it is the case most likely to overstate the general result.
+
+Whether skipped forward passes count as *new* efficiency or as *better-spent* headroom depends on whether the
+drafting cost is counted against the budget, so the two readings are not fully reconcilable. See
+[[Inference Efficiency Frontier]].
+
 ## Open questions
 
 - Can a serving stack estimate per-request draftability — from prompt features, task type, or
@@ -186,3 +207,5 @@ size 1, declining to 1.21× at batch size 128**, and falling below baseline unde
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Serving Benchmarks and Goodput]]
+- [[Inference Efficiency Frontier]]
+- [[Philip Kiely - The Efficient Frontier of LLM Inference]]

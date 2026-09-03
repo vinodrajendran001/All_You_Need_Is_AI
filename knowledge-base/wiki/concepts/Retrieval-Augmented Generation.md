@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-24
+updated: 2026-09-03
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-20-bytebytego-graphrag
+  - src-2026-09-02-bytebytego-rag-embedding-model
 status: active
 ---
 
@@ -134,6 +135,25 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 
 [[Akhil Arora et al - Current Advances in LLM Reasoning]] recasts retrieval as one of the *external* levers of reasoning: a verifier-based [[Test-Time Scaling|test-time]] tool the model can call to anchor intermediate claims to ground truth (search-engine/RAG verification), sitting beside code execution and process reward models. It also names the open frontier — **retrieval vs memory**: when should a reasoner look something up versus rely on parametric knowledge (Search-R1, MCTS-RAG, Sleep-time Compute, Mem0)? — and the failure mode of **tool-induced hallucination** and **retrieving even when unnecessary**. This connects RAG to [[LLM Reasoning]] and, in high-stakes settings, to retrieval calibration (MedReason, CARE).
 
+## The layer beneath all three tiers
+
+The tiers above are architectural choices. [[ByteByteGo - Why Your RAG System Is Only as Good as Its
+Translator Model]] describes the layer they all sit on: the **embedding model**, which converts documents and
+queries into vectors and therefore decides what the generator ever sees. Its formulation —
+**"A better language model cannot repair bad retrieval"** — extends to the tiers themselves. Agentic RAG can
+reformulate and re-query, but it cannot find a passage that no phrasing brings close in a space where the
+distinction it needs is not encoded.
+
+Two of the seven documented failure modes deserve emphasis here because of *how* they fail. In **negation**
+("you can delete" versus "you cannot delete") and **numerical identifiers** (a 30-day versus a 60-day policy),
+retrieval returns a document that is topically perfect and factually inverted, so the generator produces a
+confident, fluent, wrong answer rather than an obviously empty one. These are precisely the cases lexical
+matching catches, which strengthens the hybrid-retrieval argument above.
+
+The operational consequence is that the embedding model is a **schema decision, not a component choice**: each
+model defines its own vector space, so changing one requires re-embedding the entire corpus. See
+[[Embedding Model Selection]].
+
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
@@ -155,3 +175,5 @@ The three-tier framing prevents a common failure mode: diagnosing every weak ret
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Knowledge Base Overview]]
 - [[ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]]
+- [[Embedding Model Selection]]
+- [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]]

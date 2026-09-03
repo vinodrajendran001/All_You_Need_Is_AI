@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-02-baseten-efficient-frontier-inference
+captured: 2026-09-03
 title: "The efficient frontier of LLM inference"
 source: "https://www.baseten.co/blog/the-efficient-frontier-of-llm-inference/#parallelism-strategy"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-03
 description: "Inference techniques either move a deployment along the latency–throughput frontier or push the entire frontier out, creating more efficiency to allocate."
 tags:
   - "clippings"
+  - "topic/inference"
+  - "topic/serving"
+  - "source/raw"
 ---
 ![The efficient frontier of LLM inference](https://www.baseten.co/_next/image/?url=https%3A%2F%2Fwww.datocms-assets.com%2F104802%2F1788306398-efficientfrontierblogheader.png%3Fauto%3Dformat%26fit%3Dcrop%26h%3D630%26w%3D1200&w=3840&q=100)
 

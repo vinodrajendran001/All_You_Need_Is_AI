@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-08-31-bytebytego-chatbot-request-lifecycle
+captured: 2026-09-01
 title: "What Happens Inside an AI Chatbot Between Enter and the First Word?"
 source: "https://blog.bytebytego.com/p/what-happens-inside-an-ai-chatbot?utm_source=post-email-title&publication_id=817132&post_id=213193896&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-01
 description: "In this article, we are going to look at this entire journey in detail."
 tags:
   - "clippings"
+  - "topic/inference"
+  - "topic/context-engineering"
+  - "source/raw"
 ---
 ## \[Webinar\] How to stop babysitting your agents (Sponsored)
 

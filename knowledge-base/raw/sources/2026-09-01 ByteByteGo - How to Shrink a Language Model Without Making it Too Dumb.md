@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-01-bytebytego-shrink-language-model
+captured: 2026-09-02
 title: "How to Shrink a Language Model Without Making it Too Dumb"
 source: "https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without-295?utm_source=post-email-title&publication_id=817132&post_id=213591996&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-02
 description: "Models have grown roughly 100-fold in a few years, while consumer graphics memory has roughly doubled. It’s not just a matter of tightening things up to make them fit."
 tags:
   - "clippings"
+  - "topic/quantization"
+  - "topic/efficiency"
+  - "source/raw"
 ---
 ## Catch AI cost spikes in real time (not months later) (Sponsored)
 

@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-08-31-derelict5432-adaptive-agentic-worms
+captured: 2026-09-01
 title: "Adaptive Agentic Worms Are Here"
 source: "https://www.lesswrong.com/posts/fpLDjKg3ej49beqTC/adaptive-agentic-worms-are-here?utm_source=tldrai"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-01
 description: "I’ve read and listened to pretty much everything I can get my hands on related to the Hugging Face attack. …"
 tags:
   - "clippings"
+  - "topic/agent-security"
+  - "topic/safety"
+  - "source/raw"
 ---
 I’ve read and listened to pretty much everything I can get my hands on related to the [Hugging Face attack](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/).
 

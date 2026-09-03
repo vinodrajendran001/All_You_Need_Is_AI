@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-08-30-adlrocha-base-models-bottleneck
+captured: 2026-09-01
 title: "@adlrocha - Base Models Stopped Being the Bottleneck"
 source: "https://adlrocha.substack.com/p/adlrocha-base-models-stopped-being?utm_source=tldrai"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-01
 description: "GLM5.3 and Qwen3.8-27B performance improvements previous generation is explained through post-training"
 tags:
   - "clippings"
+  - "topic/post-training"
+  - "topic/open-models"
+  - "source/raw"
 ---
 ![](https://substackcdn.com/image/fetch/$s_!hRwk!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c7bede0-33d2-4e90-8e90-f4dd646b0e07_1168x784.webp)
 

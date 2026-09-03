@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-02-paolo-perrone-agentic-testing
+captured: 2026-09-03
 title: "What is Agentic Testing?"
 source: "https://theaiengineer.substack.com/p/what-is-agentic-testing-fa2?utm_source=tldrnewsletter"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-03
 description: "You Give the Goal, It Finds the Way."
 tags:
   - "clippings"
+  - "topic/evaluation"
+  - "topic/agents"
+  - "source/raw"
 ---
 Agentic testing hands an agent the goal instead of the steps, and lets it work out how to get there against whatever interface your system exposes. It finds its own way, invents cases nobody wrote, and survives the renames that break your suite. Let it also judge the answers, and a model decides what ships.
 

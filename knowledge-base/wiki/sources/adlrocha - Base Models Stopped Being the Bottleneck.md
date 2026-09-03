@@ -109,6 +109,7 @@ harness, the numbers are a property of the model-plus-harness pair, not of the w
 - [[Harness Optimization]]
 - [[Open Model Ecosystems]]
 - [[Benchmark Optimization]]
+- [[Linear Attention and Recurrent Memory]]
 - [[Z.ai]]
 - [[Qwen]]
 - [[adlrocha]]

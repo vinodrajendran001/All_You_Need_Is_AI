@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-08-30
+updated: 2026-09-03
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -19,6 +19,9 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
+  - src-2026-09-01-bytebytego-shrink-language-model
+  - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-02-bytebytego-rag-embedding-model
 status: active
 ---
 
@@ -76,6 +79,34 @@ The piece also carries the vault's sharpest statement of reward hacking as a *da
 than an algorithm problem, including the finding that both human raters and reward models usually
 prefer a confident agreeable answer over a correct one. See [[Reward Design for RL]].
 
+## The September 2026 explainer run
+
+Three consecutive posts extended ByteByteGo's coverage across compression, serving and retrieval, and are
+worth reading as one arc: each takes a component practitioners treat as a black box and shows what choosing it
+badly costs.
+
+[[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]] works quantization, pruning and
+distillation at arithmetic granularity — the exponent/mantissa split that explains BF16's dominance, and the
+**per-block scale factor** that explains why quantized checkpoints are not portable across runtimes. Its
+durable contribution is a damage profile: compression preferentially destroys **multi-step logic** while
+fluency survives, which is the direction hardest to detect from sample outputs.
+
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] traces the ~12 stages
+between Enter and the first token, and is the most number-dense of the three: an input safety classifier
+costing **24% compute and +0.38pp false refusals** before a cascade brought it to ~1% and 0.05pp;
+**continuous batching worth up to 23×**; **paged KV blocks cutting waste from 60–80% to under 4%**; and the
+finding that **temperature 0 is not deterministic** because numerics depend on batch composition, with ~80
+distinct completions from 1,000 identical prompts.
+
+[[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]] argues the embedding model, not
+the generator, bounds RAG quality — **"A better language model cannot repair bad retrieval"** — and gives
+seven failure modes plus the migration cost that makes the choice a one-way door. It anchors
+[[Embedding Model Selection]].
+
+The standing caveat applies to all three. These are explainers written "based on publicly shared details",
+with no benchmarks and, in the chatbot post, several striking figures presented **without attribution to a
+specific paper or vendor**. They are strongest as mechanism and weakest as citation.
+
 ## Related pages
 
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
@@ -106,3 +137,10 @@ prefer a confident agreeable answer over a correct one. See [[Reward Design for 
 - [[Reward Design for RL]]
 - [[LLM Training Pipeline]]
 - [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]
+- [[Embedding Model Selection]]
+- [[Inference Efficiency Frontier]]
+- [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
+- [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]]
+- [[Model Quantization and Efficiency]]
+- [[KV Cache]]

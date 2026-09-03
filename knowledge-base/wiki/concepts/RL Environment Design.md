@@ -97,8 +97,7 @@ upstream of every safety control that operates on the finished model.
 ## Relation to the harness
 
 Environments and harnesses are separable surfaces that are easy to conflate. The environment is the task and
-its world; the harness is the loop the agent runs inside. [[adlrocha - Base Models Stopped Being the
-Bottleneck]] notes that **all of Qwen3.8's coding benchmarks were run through the Claude Code harness**, with
+its world; the harness is the loop the agent runs inside. [[adlrocha - Base Models Stopped Being the Bottleneck]] notes that **all of Qwen3.8's coding benchmarks were run through the Claude Code harness**, with
 the reading that *"if you want a model to work inside a real agent loop, you post-train it inside a real agent
 loop."*
 

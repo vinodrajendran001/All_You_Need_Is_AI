@@ -200,8 +200,7 @@ where the summary is written for a fresh session rather than for continuation. T
 **truncation must be opt-out, not opt-in** — an opt-in flag guarantees uneven coverage, and he found truncation
 layers stacking N+1 deep inside a single evaluation path.
 
-**Token savings must be measured on the loop, not the component.** [[GitHub - How We Make AI Coding More Cost
-Efficient]] shipped an aggressive output compressor that reduced per-response tokens and raised total cost,
+**Token savings must be measured on the loop, not the component.** [[GitHub - How We Make AI Coding More Cost Efficient]] shipped an aggressive output compressor that reduced per-response tokens and raised total cost,
 because agents re-read what had been removed. The compressor that shipped is deliberately conservative: preserve
 source-like output (`cat`, `git diff`, `git show`), reorganise search results losslessly, and compress repetitive
 build and install noise only when the savings are substantial. The framing is worth keeping: it is

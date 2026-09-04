@@ -31,9 +31,14 @@ measured the cost side and found it larger and stranger than expected.
 
 | Configuration | Median wall clock |
 |---|---|
-| 5 essential tools | **36.6s** |
-| Pi (full roster) | 37.0s |
-| Codex (full roster) | 42.2s |
+| omp, 5 essential tools | **36.6s** |
+| Pi, default roster | 37.0s |
+| Codex, default roster | 42.2s |
+
+The experiment began as a complaint that omp was slower than Codex on wall clock, which the author expected to be
+a "nothing-burger" and found to be true — **almost two times** slower. Cutting omp's roster to five tools is what
+produced 36.6s. **The before/after on omp is the controlled result; the Pi and Codex figures are external
+reference points at their own default rosters, not a roster sweep.**
 
 The mechanism named for this is **constrained decoding**: every tool schema becomes part of the grammar the
 sampler must satisfy, so the roster taxes generation itself, not merely the prompt. Description tokens are the

@@ -189,9 +189,9 @@ force one authoritative session, a trusted control plane, bounded work, explicit
 are projections rather than state.
 
 The measured cost of getting the state model wrong is in [[Harness State Authority]]: of **78 official Pi
-extension examples, 60 were stateless, and of the 17 with state only two were correct**. The measured cost of an
-unbounded tool roster is in [[Tool Roster Economics]]: **36.6s for five essential tools against 42.2s** for a
-full-roster harness on the same task.
+extension examples, 60 were stateless, and of the 17 with state only two were correct**. The measured cost of an unbounded
+tool roster is in [[Tool Roster Economics]]: omp's own full roster made it **almost twice as slow as Codex** on
+wall clock, and cutting it to **five essential tools gave 36.6s**, ahead of Codex's 42.2s and Pi's 37.0s.
 
 [[GitHub - How We Make AI Coding More Cost Efficient]] supplies the empirical counterweight from a shipped
 product, and its most transferable result is a warning about generalising harness findings at all: a file-tool

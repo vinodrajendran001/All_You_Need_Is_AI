@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - llm
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-30-halo-research-sopro-v2
   - src-2026-09-01-bytebytego-shrink-language-model
+  - src-2026-09-02-can-boluk-harness-playbook
 status: active
 ---
 
@@ -161,6 +162,19 @@ compressed one fails in the direction that is hardest to notice from sample outp
 
 See [[Model Quantization and Efficiency]], [[Knowledge Distillation]] and [[On-Device Reasoning]].
 
+## Small models as harness infrastructure
+
+[[Can Bölük - The Harness Playbook]] describes a deployment role for small models that is neither on-device
+assistance nor cost-reduced chat: **small local models as harness plumbing.** Session titles, message
+classification, and text-to-speech are jobs a harness performs constantly, none require frontier capability, and
+each currently costs a provider roundtrip. Running them on a small local model (LiquidAI's are named) removes
+latency and cost from paths the user never thinks of as inference.
+
+The framing matters because it decouples the small-model case from capability arguments entirely. The question is
+not whether a small model can do the task as well as a large one — it is whether the task ever needed a large
+model, and whether a roundtrip is an acceptable price for something that decorates a UI. See
+[[Tool Roster Economics]] for the same logic applied to tools rather than models.
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -195,3 +209,7 @@ See [[Model Quantization and Efficiency]], [[Knowledge Distillation]] and [[On-D
 - [[Neural Text-to-Speech]]
 - [[Halo Research - Sopro V2 On-Device Text-to-Speech]]
 - [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
+- [[Tool Roster Economics]]
+- [[Harness State Authority]]
+- [[Can Bölük - The Harness Playbook]]
+- [[Can Bölük]]

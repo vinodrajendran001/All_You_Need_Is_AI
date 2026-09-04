@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - ai-agents
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-08-31-derelict5432-adaptive-agentic-worms
   - src-2026-09-02-paolo-perrone-agentic-testing
+  - src-2026-09-02-can-boluk-harness-playbook
 status: active
 ---
 
@@ -221,6 +222,30 @@ A related governance gap appears in the same source. Guardrails diverged by vend
 Claude declined to engage with the worm paper while Gemini assisted in generating replication code. A refusal
 policy that holds at one provider and not another is a market outcome, not a safety property.
 
+## The sandbox should be an obedient stub
+
+[[Can Bölük - The Harness Playbook]] takes a firm position on where the boundary belongs: **the sandbox executes
+and nothing else.** State, inference, policy, routing, approval, limits, and journaling all stay on the host. A
+sandbox that holds session state, or that decides what is permitted, becomes a second authority — and a second
+authority is both a correctness bug and an attack surface, because compromising the sandbox now compromises the
+record of what happened. Stated as a rule, the sandbox is *an obedient stub*.
+
+This gives the page's least-privilege material a specific structural failure mode to look for: not "did we
+restrict the agent?" but "does the restricted component hold anything the restriction was supposed to protect?"
+
+Two concrete gaps follow. **Git worktrees isolate tracked files only** — caches, build outputs, virtual
+environments, and untracked scratch state remain shared between supposedly isolated agents, so worktree-based
+isolation is not a security boundary. And **cooperative cancellation is not enforcement**: `AbortSignal` and
+`context.Context` are *"useful protocols, but not enforced ones"*, so a runaway or malicious job needs a real
+kill boundary rather than a flag it can ignore.
+
+The source also documents an injection path in a place nobody audits. A community terminal renderer slices
+strings by codepoint, ignores terminal width, and **does not sanitize fetched content**, so text an agent
+retrieves from the web can carry ANSI escape sequences straight into the user's terminal. The underlying design
+error is stated generally: *"An already-rendered string is being used as layout tree, style tree, content,
+transport, and terminal program at once."* Where a rendered string is simultaneously data and a program, output
+handling is a security boundary, not a display detail.
+
 ## Open questions
 
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
@@ -272,3 +297,7 @@ policy that holds at one provider and not another is a market outcome, not a saf
 - [[derelict5432 - Adaptive Agentic Worms Are Here]]
 - [[Agentic Testing]]
 - [[Paolo Perrone - What is Agentic Testing]]
+- [[Harness State Authority]]
+- [[Tool Roster Economics]]
+- [[Can Bölük - The Harness Playbook]]
+- [[Can Bölük]]

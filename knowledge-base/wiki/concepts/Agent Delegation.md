@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-04
 tags:
   - concept
   - agents
@@ -10,6 +10,8 @@ tags:
 source_ids:
   - src-2026-08-28-google-cloud-agent-delegation
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-03-github-ai-coding-cost-efficient
 status: active
 ---
 
@@ -102,6 +104,30 @@ scope. The remedy this page records — **dynamic cognitive friction** — is a 
 deliberately what some of these agents did spontaneously, and the incident offers no account of what
 distinguished them.
 
+## Subagents need isolation the file system does not give them
+
+[[Can Bölük - The Harness Playbook]] identifies an isolation gap that delegation designs routinely assume away.
+Git worktrees are the standard mechanism for giving each subagent its own workspace, but **worktrees isolate
+tracked files only**. Build outputs, caches, virtual environments, `node_modules`, lock files, and untracked
+scratch state are shared, so parallel subagents in "isolated" worktrees still collide over exactly the artifacts
+that make a build reproducible. The proposed answer is a **copy-on-write view** of the workspace — APFS, btrfs,
+ZFS, overlayfs, or ProjFS depending on platform — so a subagent gets the whole directory cheaply and its writes
+stay local until merged.
+
+Delegation also inherits the state problem. If a subagent's lifecycle is tracked outside the session's
+authoritative state, then rewinding past its creation leaves an orphan, and resuming does not restore it. When
+the session is one authoritative structure, a subagent is an element in it and **rewind becomes a diff**: a
+subagent that disappears in the target state is terminated, one that appears is spawned. See
+[[Harness State Authority]]. The same framing makes a subagent inspector a peer of the main UI rather than a
+special case — an actor pointed at a child's state.
+
+[[GitHub - How We Make AI Coding More Cost Efficient]] adds two production measurements. Delivering two
+background subagent results as separate notifications produced **four model calls where one would do**; batching
+them was worth **2.3%** of the cost metric. And a meta-prompting loop that halved the task-tool prompt
+accidentally **serialised independent agents** by rewriting cautious parallelism guidance into a hard scheduling
+policy — a regression invisible offline, fixed by restoring one sentence: *"Independent agents can run in
+parallel; consider side effects."* Delegation policy lives in prompt text, and prompt text can be optimised away.
+
 ## Open questions
 
 - Zero-knowledge proofs for arbitrary LLM computation are a research direction, not a shipping
@@ -129,3 +155,9 @@ distinguished them.
 - [[Chain-of-Thought Monitoring]]
 - [[OpenAI]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[Harness State Authority]]
+- [[Tool Roster Economics]]
+- [[Can Bölük - The Harness Playbook]]
+- [[GitHub - How We Make AI Coding More Cost Efficient]]
+- [[Can Bölük]]
+- [[GitHub]]

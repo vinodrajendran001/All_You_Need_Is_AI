@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - evaluation
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-02-baseten-efficient-frontier-inference
+  - src-2026-09-03-github-ai-coding-cost-efficient
 status: active
 ---
 
@@ -179,6 +180,26 @@ inference efficient frontier is **jagged**, with unintuitive cutoffs that must b
 so a published serving benchmark describes a configuration someone chose, and the sweep that found it is
 itself a resource only large operators can spend.
 
+## When the metric is cost, the local-versus-global gap is measurable
+
+This page's recurring theme — that a number can improve while the thing it stands for does not — has its cleanest
+non-capability instance in [[GitHub - How We Make AI Coding More Cost Efficient]]. An output compressor optimised
+the per-response token count, the metric it was built to move, and **total cost went up**, because agents
+reopened files and re-ran commands to recover what had been compressed away: *"We saved tokens locally and spent
+more globally."*
+
+This is the same failure as benchmark overfitting with the incentive inverted. Nobody was gaming anything; the
+metric was simply local to a component while the cost was global to the loop. The correction was not a better
+compressor but a **narrower mandate** — preserve source-like output, reorganise search results losslessly, and
+compress only repetitive build noise — arrived at because *"that is what the evaluations supported"* rather than
+because conservatism was the goal.
+
+Two further disciplines from the same source belong on this page's list of what makes a number reportable. The
+four shipped wins (**3.1%, 5.5%, 2.9%, 2.3%** on an AI-credit metric) are published with an explicit statement
+that **they are not additive**, which is the caveat most likely to be dropped when a result is quoted. And the
+same change measured on two products gave **opposite signs** — a file-tool migration cut code-review cost by
+about 20% and raised CLI cost — establishing that the workload is part of the result, not context for it.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -214,3 +235,6 @@ itself a resource only large operators can spend.
 - [[adlrocha - Base Models Stopped Being the Bottleneck]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
 - [[Inference Efficiency Frontier]]
+- [[Tool Roster Economics]]
+- [[GitHub - How We Make AI Coding More Cost Efficient]]
+- [[GitHub]]

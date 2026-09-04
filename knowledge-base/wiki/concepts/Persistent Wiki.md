@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-09-04
 tags:
   - concept
   - wiki
   - llm
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -28,6 +29,29 @@ It changes the value of the system from "good retrieval at query time" to "conti
 - Good query answers can become durable pages, which means exploration compounds too.
 - Maintenance cost stays low because the LLM can update many related files in one pass.
 
+## What belongs in the wiki, and what stays in retrieval
+
+This page has assumed the wiki is the right home for synthesis without saying what should *not* live there.
+[[Meta - An Organizational Second Brain]] supplies a criterion from a production deployment: **split wiki from
+retrieval by information density and expected usage frequency.** Dense material that is needed often becomes a
+curated file the agent reads directly; sparse or rarely needed material stays in a retrieval corpus. That is a
+resource-allocation rule rather than an architectural preference, and it makes the boundary decidable per topic
+instead of per system.
+
+The same source gives the wiki-as-context approach its first reported magnitude. Routing an agent through gateway
+files and indexes rather than loading a fixed context — **progressive disclosure** — cut tokens per turn by
+roughly **80%**. A curated wiki is not only better organised than a corpus; at that ratio it is materially
+cheaper to consult.
+
+It also shifts who the wiki is for. In that deployment the primary reader is an agent, and the file structure is
+shaped by what an agent needs to traverse: gateway files that orient before descending, taxonomy files that fix
+vocabulary, position files that each answer one question. This vault's pages are still shaped for a human reader
+who happens to be assisted by a model. Whether those two audiences want the same page granularity is now an open
+question with evidence on one side.
+
+The convergence is worth noting for what it is: an independent team, a different domain, no shared code, and the
+same shape. See [[Institutional Knowledge Agents]].
+
 ## Open questions
 
 - When should a new idea extend an existing concept page versus creating a fresh one?
@@ -41,3 +65,8 @@ It changes the value of the system from "good retrieval at query time" to "conti
 - [[Ingest Query Lint Loop]]
 - [[Index and Log]]
 - [[Obsidian]]
+- [[Institutional Knowledge Agents]]
+- [[Meta - An Organizational Second Brain]]
+- [[Meta]]
+- [[Retrieval-Augmented Generation]]
+- [[Context Engineering]]

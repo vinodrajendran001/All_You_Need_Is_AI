@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-03
+updated: 2026-09-04
 tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
   - src-2026-08-31-derelict5432-adaptive-agentic-worms
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-02-can-boluk-harness-playbook
 status: active
 ---
 
@@ -132,6 +133,28 @@ instruction-block size an architectural decision rather than a prompt-writing on
 reaching up to **seven generations** of copies. Nothing about the loop's structure changed; only the objective
 at the top of it did. See [[Self-Replicating Agents]].
 
+## The loop needs an owner, and nobody has named it
+
+[[Can Bölük - The Harness Playbook]] identifies a structural gap this page has not previously named: **there is
+no primitive for a behaviour that owns the loop.** The evidence is a collision — installing the two most popular
+plan-and-goal extensions for the same harness produces "Another workflow is active", even though the harness
+exposes **no workflow API**. Both extensions independently ship a private mutex, and both come from the same
+author, so the coordination works only inside one suite.
+
+The proposed primitive is a **Director stack**: an ordered set of behaviours that own the decision about what
+happens when the model stops producing tool calls, each returning one of a small set of verdicts — Pass,
+Continue, Yield, Push, Done, Fail. A plan mode, a goal loop, an approval gate, and a test-until-green loop then
+compose instead of colliding, because precedence is explicit rather than first-come. Crucially the stack lives
+in the session's authoritative state, so rewind removes Directors, resume restores them, and an inspector can
+see which behaviour currently owns the loop — see [[Harness State Authority]].
+
+The same source collapses several loop-adjacent constructs into **one job primitive** with stdin, stdout, an
+exit code, and signals: a backgrounded shell command, a subagent, a daemon, a remote function call, and a call
+that overruns its turn are all the same object with different bodies. The practical warning attached is that a
+loop blocking without bound is not merely slow — it can outlast the provider's KV cache, so the resumed turn
+pays full prefill. And `AbortSignal` or `context.Context` do not solve it: they are *"useful protocols, but not
+enforced ones"*, so a loop needs a real kill boundary rather than cooperative cancellation.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -169,3 +192,7 @@ at the top of it did. See [[Self-Replicating Agents]].
 - [[Inference Efficiency Frontier]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
 - [[derelict5432 - Adaptive Agentic Worms Are Here]]
+- [[Harness State Authority]]
+- [[Tool Roster Economics]]
+- [[Can Bölük - The Harness Playbook]]
+- [[Can Bölük]]

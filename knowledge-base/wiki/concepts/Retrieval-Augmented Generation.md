@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-03
+updated: 2026-09-04
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-20-bytebytego-graphrag
   - src-2026-09-02-bytebytego-rag-embedding-model
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -153,6 +154,29 @@ The operational consequence is that the embedding model is a **schema decision, 
 model defines its own vector space, so changing one requires re-embedding the entire corpus. See
 [[Embedding Model Selection]].
 
+## A criterion for what should not be retrieved
+
+[[Meta - An Organizational Second Brain]] supplies something this page has lacked: **a rule for deciding what
+belongs in a retrieval corpus at all.** In that deployment the split between a curated knowledge wiki and a RAG
+corpus is made by **information density and expected usage frequency** — dense, frequently needed material is
+promoted into curated files the agent reads directly; sparse or rarely consulted material stays in retrieval.
+That reframes RAG as the tier for the long tail rather than as the default substrate for everything.
+
+The routing layer is the more pointed departure. Navigation from a question's shape to the relevant files uses
+**deterministic routing indexes, explicitly not embedding similarity**. The justification is verifiability: a
+declared route can be checked mechanically for dangling references, file-size violations, identifier collisions,
+and dependency cycles, and a nearest-neighbour result cannot be checked at all. Where correctness must be
+auditable — the deployment is a compliance agent — similarity search is not merely less precise, it is
+untestable.
+
+Reported effect of the promoted tier plus progressive disclosure: roughly **80% fewer tokens per turn**. The
+figure is unattributed across several simultaneous changes, so treat it as a direction rather than a coefficient.
+
+This connects to the storage-versus-structure limit already recorded on this page. Retrieval can hold arbitrary
+volume; what it cannot hold is a stance. A position file that states an organisation's decision on a question is
+not a chunk to be found by similarity, because there is nothing similar to it — it is the answer. See
+[[Institutional Knowledge Agents]].
+
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
@@ -176,3 +200,8 @@ model defines its own vector space, so changing one requires re-embedding the en
 - [[ByteByteGo - GraphRAG - How AI Answers Questions Hidden Across Many Documents]]
 - [[Embedding Model Selection]]
 - [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]]
+- [[Institutional Knowledge Agents]]
+- [[Meta - An Organizational Second Brain]]
+- [[Meta]]
+- [[Schema-Driven Knowledge Base]]
+- [[Persistent Wiki]]

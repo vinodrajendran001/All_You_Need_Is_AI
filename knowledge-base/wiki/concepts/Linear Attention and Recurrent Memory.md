@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-09-03
+updated: 2026-09-04
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
   - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
   - src-2026-04-20-moonshotai-flashkda-v1
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-09-02-raschka-astra-looped-transformers
 status: active
 ---
 
@@ -70,6 +71,21 @@ The general lesson generalises past Qwen: **architectural context savings and ap
 policies are separate budgets**, and a model's effective context cost is set by their interaction rather than
 by either alone. See [[Context Engineering]] and [[Reasoning Effort Control]].
 
+## A second shipped ratio, and the same missing curve
+
+[[Sebastian Raschka - OpenAI Astra and Looped Transformers]] adds a parallel data point to the hybrid ratio
+recorded above. Where Qwen3.8 fixes a 3:1 ratio of Gated DeltaNet to Gated Attention blocks, **Nanbeige4.2-3B
+reuses a 22-layer stack twice** — a different lever on the same trade, buying capacity without buying parameters.
+Its published operating point is more informative than Qwen's, because it comes with a cost: **two passes
+retained roughly 75% of the token efficiency** of a standard architecture, and additional passes *"gave barely any
+gains but made the training much slower and much more expensive."*
+
+The shared feature of both results is what this vault should record most carefully: **neither is accompanied by
+an ablation curve.** Qwen's 3:1 and Nanbeige's ×2 are each one lab's chosen point, reported as a conclusion
+rather than as a measurement, on architectural axes where the interesting question is the shape of the trade
+rather than any single setting. Two independent labs converging on "a small integer works, more does not help"
+is suggestive, but it is not the curve.
+
 ## Open questions
 
 - What determines the right full-attention ratio in a hybrid, and does it depend on task, sequence length, or
@@ -98,3 +114,5 @@ by either alone. See [[Context Engineering]] and [[Reasoning Effort Control]].
 - [[Context Engineering]]
 - [[Reasoning Effort Control]]
 - [[Test-Time Scaling]]
+- [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
+- [[Sebastian Raschka]]

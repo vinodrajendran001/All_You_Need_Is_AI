@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-08-27
+updated: 2026-09-04
 tags:
   - concept
   - llm-evaluation
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-07-29-giles-thomas-gpt2-weights-part-1
   - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -81,6 +82,29 @@ floor exceeds the expected effect size cannot produce a negative result, only an
 See [[Benchmark Optimization]] for the related problem of a metric that moves without the underlying
 capability moving.
 
+## Blind on both sides, and a second judge that argues against
+
+[[Meta - An Organizational Second Brain]] contributes two protocol details that sharpen how a judge is deployed
+inside a maintenance loop, rather than how a judge is built.
+
+**Targeted replay is blind on both sides.** When a knowledge change is validated, the agent under test does not
+know it is being tested, and the judge does not know what changed. Both halves are load-bearing. An agent aware
+of evaluation is a different agent; a judge told what changed will look for its effect and find it. This is a
+stricter protocol than the production judging arrangements already on this page, most of which score outputs
+whose provenance the judge can see.
+
+**A second agent judges the diff adversarially.** Independent review is performed by an agent given **only the
+diffs and no knowledge of the rationale**, with the explicit task of arguing against the change. Withholding the
+motivating story is the design: a reviewer who knows why a change was made tends to reconstruct its
+justification. This is a judge used as an opponent rather than as a scorer, and it is a role this page has not
+previously recorded.
+
+Sitting underneath both is a division of labour worth preserving: the **deterministic linter runs first** —
+dangling cross-references, file-size budgets, identifier collisions, dependency cycles, *"not probabilistic, it
+passes or fails"* — and only what it cannot decide reaches a model judge. Given this page's finding that a
+judge's noise floor bounds what an experiment can detect, moving every mechanically checkable property out of the
+judge's remit is the cheapest available precision gain.
+
 ## Related pages
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
@@ -99,3 +123,8 @@ capability moving.
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Knowledge Base Overview]]
+- [[Institutional Knowledge Agents]]
+- [[Meta - An Organizational Second Brain]]
+- [[Meta]]
+- [[Recursive Self-Improvement]]
+- [[Agentic Testing]]

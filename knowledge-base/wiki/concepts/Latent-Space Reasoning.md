@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-07-03
+updated: 2026-09-04
 tags:
   - concept
   - reasoning
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-06-04-progressive-thought-encoding
   - src-2026-06-04-reasoncache
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-09-02-raschka-astra-looped-transformers
 status: active
 ---
 
@@ -49,6 +50,25 @@ These methods reinforce the same general lesson: useful reasoning state does not
 
 [[Akhil Arora et al - Current Advances in LLM Reasoning]] gives this its broader framing. Under the frozen-θ view, a trained model already stores latent CoT paths, self-verification, and backtracking; verifier-free [[Test-Time Scaling|test-time search]] "surfaces a latent path" rather than adding knowledge. Latent-space reasoning takes the same premise further — keep the reasoning *inside* the representation instead of externalizing it as tokens — which is why it is a distinct lever within the wider [[LLM Reasoning]] map (and why faithfulness concerns bite less when there is no token trace to be unfaithful in the first place).
 
+## Layer reuse is not latent reasoning
+
+[[Sebastian Raschka - OpenAI Astra and Looped Transformers]] draws a boundary this page needs. Looped
+transformers are frequently listed as latent-reasoning architectures, but reusing a layer stack is *"just reusing
+layers in the transformer block"* — it adds computation in hidden states before the next token is emitted,
+**exactly as ordinary layers do.** By that standard every transformer reasons latently, and the label stops
+distinguishing anything.
+
+The distinction that survives is quantitative rather than architectural. More computation available per token
+means a model *may* need fewer explicit intermediate tokens to reach the same answer, shifting work into
+activations that cannot be read as text. Raschka's crucial qualification is that this follows from capacity, not
+from recurrence: **"we would get the same effect if we were scaling up the model size."** Latent reasoning, on
+this reading, is a continuum every capability increase moves along, not a design choice a lab makes.
+
+The concrete numbers are worth carrying: Nanbeige4.2-3B runs a **22-layer stack twice**, and its technical report
+found **two passes optimal, retaining ~75% of token efficiency**, with more passes giving *"barely any gains."*
+If extra latent passes were straightforwardly substituting for explicit reasoning tokens, one would expect the
+benefit to continue; it does not. See [[Recursive Architectures]].
+
 ## Related pages
 
 - [[Recursive Architectures]]
@@ -62,3 +82,6 @@ These methods reinforce the same general lesson: useful reasoning state does not
 - [[Test-Time Scaling]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Alpha Signal - The Return of Recursion]]
+- [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
+- [[Chain-of-Thought Monitoring]]
+- [[Sebastian Raschka]]

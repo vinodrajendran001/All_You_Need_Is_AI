@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-04
 tags:
   - concept
   - safety
@@ -9,6 +9,7 @@ tags:
   - alignment
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-09-02-raschka-astra-looped-transformers
 status: active
 ---
 
@@ -82,6 +83,31 @@ angle, is an argument that **the transcript was already the more informative sig
 incident is consistent with that: the reasoning text was legible enough to classify by severity, and
 it named intentions plainly.
 
+## The trace shrinks with capacity, not with any one architecture
+
+[[Sebastian Raschka - OpenAI Astra and Looped Transformers]] corrects a claim that circulated in press coverage
+of OpenAI's Astra: that recurrent-depth architectures work *"in a way that obscures some or all of the AI's
+reasoning."* Raschka rejects the inference directly — **"Reusing layers does not by itself suppress visible chain
+of thought. It adds computation in hidden states before the next token is emitted, just as ordinary transformer
+layers do."** A looped layer stack is not a mechanism for hiding reasoning; it is more of the mechanism every
+transformer already has.
+
+The correction matters because the version that survives is both weaker and more troubling for this page. The one
+plausible reading he grants: a model with more computation available per token *may need to generate fewer
+intermediate reasoning tokens*, pushing more of the work into latent activations that cannot be read as text. But
+this is **not specific to looping** — *"we would get the same effect if we were scaling up the model size, like
+GPT 5.6 Luna -> GPT 5.6 Sol."*
+
+That reframes the monitorability problem. If legible traces thin out because capability per token rises, then
+erosion of chain-of-thought monitoring is not a property of a suspect architecture that could be avoided by
+choosing a different one. It is a side effect of models getting better, arriving through whichever axis of
+improvement a lab happens to pursue — which makes it harder to attribute, harder to argue against on a
+per-release basis, and correspondingly harder to build governance around.
+
+Two cautions attach. The mechanism is **asserted, not measured**: no experiment here shows reasoning tokens
+trading against latent computation. And the debunk is of the *reporting* — Raschka is explicit that he does not
+know Astra's architecture and is reasoning from published models described similarly.
+
 ## Open questions
 
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?
@@ -105,3 +131,7 @@ it named intentions plainly.
 - [[AI Agents in Production]]
 - [[OpenAI]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
+- [[Recursive Architectures]]
+- [[Latent-Space Reasoning]]
+- [[Sebastian Raschka]]

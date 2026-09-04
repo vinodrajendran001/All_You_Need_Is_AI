@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - index
 source_ids:
@@ -222,6 +222,11 @@ source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-02-paolo-perrone-agentic-testing
   - src-2026-09-02-bytebytego-rag-embedding-model
+  - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-02-raschka-astra-looped-transformers
+  - src-2026-08-31-docmilanfar-lagrangian-flow-matching
 status: active
 ---
 
@@ -333,6 +338,11 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Reasoning Trace Privacy]] - Why encrypted reasoning blocks do not keep hidden chains of thought private.
 - [[Staged Reinforcement Learning Curriculum]] - Post-training as a chain of independent RL runs, each with its own reward, warm-starting from the last.
 
+- [[Harness State Authority]] - Where the truth about a session lives, and why 15 of 17 stateful reference extensions were wrong.
+- [[Tool Roster Economics]] - What a harness pays per tool in latency, tokens, and constrained decoding, and when to use a code surface instead.
+- [[Institutional Knowledge Agents]] - Encoding an organization's judgement in reviewable text and improving it by compilation rather than retraining.
+- [[Flow Matching]] - Straight-line trajectories as the solution to an advection PDE, the Jacobian Penalty, and why crossing paths still cost steps.
+
 ## Entities
 
 - [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
@@ -393,6 +403,11 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Grok Bot]] - Agent platform whose public workshop material grounds the vault's workflow-maturity ladder.
 - [[Wafer]] - AI performance-engineering company; curator of the vault's GPU learning path and its evidence policy.
 - [[Alex L. Zhang]] - Harness researcher arguing that a code REPL is the only tool an agent system needs.
+
+- [[Can Bölük]] - Systems engineer treating the coding-agent harness as a game engine, with audits and timings to back it.
+- [[Meta]] - Operator of an internal domain-expert agent built on 200+ reviewable text files rather than fine-tuning.
+- [[GitHub]] - Copilot agent operator supplying the vault's A/B-measured harness cost reductions and its two most useful negative results.
+- [[@docmilanfar]] - Researcher deriving flow matching's straight paths from the governing PDE rather than from empirical results.
 
 ## Sources
 
@@ -622,6 +637,14 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] - The ~12 stages before the first token; the classifier tax, batch-composition nondeterminism, and the tool-loop multiplier.
 - [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]] - Quantization, pruning and distillation at arithmetic granularity, and why compression takes multi-step logic before it takes fluency.
 - [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]] - The embedding model bounds retrieval; seven failure modes, Matryoshka prefixes, and why migration is a one-way door.
+
+### September 4, 2026 batch
+
+- [[Can Bölük - The Harness Playbook]] - The harness as a game engine: 2 of 17 stateful reference extensions were correct, one authoritative session, and the tool roster measured in wall clock.
+- [[GitHub - How We Make AI Coding More Cost Efficient]] - Four A/B cost reductions that are explicitly not additive, the local metric trap, and a shortened prompt that silently serialized agents.
+- [[Meta - An Organizational Second Brain]] - A domain-expert agent over 200+ text files that improves by compiling expert feedback under regression tests, with no model retraining.
+- [[Sebastian Raschka - OpenAI Astra and Looped Transformers]] - Looping is layer reuse: 22 layers twice, ~75% token efficiency at two passes, and why thinner reasoning traces follow from capacity rather than recurrence.
+- [[@docmilanfar - A Lagrangian View of Flow Matching]] - Why diffusion needs many steps: the target keeps moving, the Jacobian Penalty, and reflow as uncertainty elimination.
 
 ## Syntheses
 

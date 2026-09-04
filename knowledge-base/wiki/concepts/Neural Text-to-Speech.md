@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-04
 tags:
   - concept
   - speech
@@ -9,6 +9,7 @@ tags:
   - open-models
 source_ids:
   - src-2026-08-30-halo-research-sopro-v2
+  - src-2026-08-31-docmilanfar-lagrangian-flow-matching
 status: active
 ---
 
@@ -80,6 +81,23 @@ trivially removable, so shipping one provides **false safety** rather than real 
 honest position and worth recording as such — but it leaves voice-cloning misuse entirely
 unaddressed, and the source offers no alternative mitigation.
 
+## Why flow-matching vocoders can take few steps
+
+This page records flow-matching vocoders reaching acceptable quality in very few solver steps, which is what makes
+streaming synthesis viable at all. [[@docmilanfar - A Lagrangian View of Flow Matching]] explains the mechanism.
+
+In standard diffusion the sampling path curves, so the denoiser's estimate of the clean output shifts every step
+and the solver must take tiny ones. Flow matching forces **straight trajectories**, which makes the target static
+and lets the solver take large strides — and the straightness is not a convenience but the solution of the
+governing advection PDE, so the speedup is structural rather than incidental.
+
+It also explains why baseline flow matching alone is not enough for the lowest step counts. Independently drawn
+straight paths **cross** in high dimensions, and a crossing forces the model to average conflicting targets,
+bending the flow and restoring the need for tens of steps. Reflow removes the crossings, driving the posterior
+covariance toward zero — which is why the fastest vocoders are typically reflowed or distilled rather than plain
+flow-matching models. For real-time speech, where sequential solver steps are latency that cannot be batched
+away, that is the difference between shipping and not. See [[Flow Matching]].
+
 ## Open questions
 
 - What metric should replace WER for TTS quality? Naturalness and speaker fidelity are the properties
@@ -103,3 +121,6 @@ unaddressed, and the source offers no alternative mitigation.
 - [[Model Quantization and Efficiency]]
 - [[Open Model Ecosystems]]
 - [[Halo Research - Sopro V2 On-Device Text-to-Speech]]
+- [[Flow Matching]]
+- [[@docmilanfar - A Lagrangian View of Flow Matching]]
+- [[@docmilanfar]]

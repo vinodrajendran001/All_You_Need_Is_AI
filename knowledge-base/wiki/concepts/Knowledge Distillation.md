@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - model-training
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-09-01-bytebytego-shrink-language-model
+  - src-2026-08-31-docmilanfar-lagrangian-flow-matching
 status: active
 ---
 
@@ -73,6 +74,29 @@ will overestimate what survived. See [[Model Quantization and Efficiency]] and [
 The claims are qualitative — no task, model or dataset is attached — and Hinton's original work is cited but
 not summarised.
 
+## Reflow distills uncertainty away, not parameters
+
+Few-step distillation of diffusion and flow models is usually described in this page's terms — compress a teacher
+into a student that produces comparable output with less work.
+[[@docmilanfar - A Lagrangian View of Flow Matching]] argues the mechanism is something else entirely, and the
+distinction changes what one would tune.
+
+Trained flow-matching models draw straight trajectories between **randomly paired** noise and data samples. In
+high dimensions those lines intersect, and at an intersection the governing PDE demands two different target
+values from a deterministic function. The model averages the conflicting velocities, its posterior covariance
+`Σ_post` spikes, the flow bends, and the solver is forced back to small steps — *"which is exactly why baseline
+Flow Matching models still need 10s of solver steps."*
+
+Reflow retrains on **simulated non-intersecting trajectories**, and the effect is described as removing ambiguity
+rather than compressing capacity: *"Without conflicting targets, the model's posterior uncertainty drops to zero
+(`Σ_post → 0`), completely starving the mechanism that generates target drift."*
+
+The practical difference matters. On the compression reading, few-step quality is bounded by student capacity and
+by how faithfully the teacher's behaviour transfers. On this reading it is bounded by **the geometry of the
+training pairing** — a property of the data construction, not of either network. That is a distinct lever from
+the trace-versus-answer distinction this page records for language models, where what transfers is supervision
+content; here what transfers is the *absence of contradiction* in the targets. See [[Flow Matching]].
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -92,3 +116,7 @@ not summarised.
 - [[Reasoning Trace Privacy]]
 - [[Agent Security and Governance]]
 - [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
+- [[Flow Matching]]
+- [[@docmilanfar - A Lagrangian View of Flow Matching]]
+- [[@docmilanfar]]
+- [[Diffusion Models]]

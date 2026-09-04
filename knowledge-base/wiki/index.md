@@ -694,6 +694,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-08-27 Lint Pass]] - Twenty-ninth comprehensive lint pass; discovered that the undefined `## Affected pages` heading had let its meaning fork between "pages this ingest changed" and "pages this source relates to", producing 394 false claims across 107 summaries, corrected all of them, integrated the last 5 orphaned sources, and glossed the template so the fork cannot recur.
 - [[2026-08-26 Lint Pass]] - Twenty-eighth comprehensive lint pass; found four sources that had been summarized but never cited by any concept page, gave all 180 source summaries a working `## Raw capture` pointer, and canonicalized five forked tags that an earlier parser had missed.
 
+- [[2026-09-04 Lint Pass]] - Thirty-second pass: a benchmark claim that got stronger as it travelled from its source summary to six derived pages, and the strong result the compression dropped.
+
 ## Control files
 
 - [[log|Knowledge Base Log]] - Chronological record of scaffolding, ingests, queries, and lint passes.

@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-08-31-docmilanfar-lagrangian-flow-matching
+captured: 2026-09-04
 title: "A Lagrangian View of Flow Matching"
 source: "https://x.com/docmilanfar/status/2094283194187301003"
 author:
@@ -8,6 +11,10 @@ created: 2026-09-04
 description: "This is a pedagogical post meant to offer an intuitive, bottom-up perspective on Flow Matching. If you have ever wondered why some models re..."
 tags:
   - "clippings"
+  - "topic/generative-models"
+  - "topic/diffusion"
+  - "topic/theory"
+  - "source/raw"
 ---
 ![Image](https://pbs.twimg.com/media/HRBgWowaIAEEFSr?format=jpg&name=large)
 

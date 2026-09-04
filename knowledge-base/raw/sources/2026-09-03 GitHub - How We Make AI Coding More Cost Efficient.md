@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-03-github-ai-coding-cost-efficient
+captured: 2026-09-04
 title: "How we make AI coding more cost efficient without sacrificing task quality"
 source: "https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/?utm_source=tldrnewsletter"
 author:
@@ -9,6 +12,10 @@ created: 2026-09-04
 description: "Why shorter outputs can cost more, and how GitHub Copilot reduces wasted work across the complete coding task."
 tags:
   - "clippings"
+  - "topic/agents"
+  - "topic/harness"
+  - "topic/evaluation"
+  - "source/raw"
 ---
 Output quality is important when working with AI coding agents, but true efficiency comes from getting work done quickly, efficiently, and with the right context.
 

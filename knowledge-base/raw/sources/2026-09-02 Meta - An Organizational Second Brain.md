@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-02-meta-organizational-second-brain
+captured: 2026-09-04
 title: "An Organizational Second Brain: Building an AI That Learns From Experts"
 source: "https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/?utm_source=tldrai"
 author:
@@ -7,6 +10,10 @@ created: 2026-09-04
 description: "We’ve built an AI agent that acts as a secondary expert for a given domain, making deep specialist knowledge readily available and preserved for anyone in an organization to access, share, and buil…"
 tags:
   - "clippings"
+  - "topic/knowledge-systems"
+  - "topic/agents"
+  - "topic/evaluation"
+  - "source/raw"
 ---
 - We’ve built an AI agent that acts as a secondary expert for a given domain, making deep specialist knowledge readily available and preserved for anyone in an organization to access, share, and build upon.
 - This is not a typical domain-specific agent. Its novelty comes from integrating two layers:

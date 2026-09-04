@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - recursive-self-improvement
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-29-baseten-agentic-kernels-production
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -191,6 +192,32 @@ improvement converges on the headroom that exists; where prior effort has remove
 find. This is a concrete case of the caution already on this page that recursive structure is not itself the
 gain. See [[AI-Generated Kernels]].
 
+## A self-improvement loop with the model held fixed
+
+[[Meta - An Organizational Second Brain]] is a useful boundary case for this page: a genuine improvement loop in
+which **the model never changes.** Over three two-week sprints, the only thing that improved was a body of 200+
+text files, compiled from expert feedback under regression tests. It supports this page's existing position that
+parameters and scaffold are separate update surfaces, by showing the scaffold surface moving alone.
+
+What makes it more than an anecdote is that the loop is defended at every stage, and each defence targets a
+failure mode this page has recorded elsewhere:
+
+- **Against misattributed fixes:** diagnosis asks *"could the agent have reached the correct conclusion from its
+  source materials?"* — separating a broken procedure from missing knowledge from an organisational position
+  nobody has actually decided.
+- **Against self-serving justification:** an **independent adversarial reviewer** sees only the diffs, with no
+  knowledge of the rationale, and argues against them. Withholding the story is the mechanism.
+- **Against silent capability trades:** every fix becomes a permanent regression test, and validation replay is
+  **blind on both sides** — the agent does not know it is being tested, the judge does not know what changed.
+- **Against unverifiable structure:** a deterministic linter that passes or fails on dangling references,
+  file-size budgets, identifier collisions, and dependency cycles.
+
+The honest reading of the results is that they do not yet demonstrate much. "Useful almost all the time," "days
+to minutes," and **"zero regressions"** are qualitative, without baselines, task counts, or comparison against
+fine-tuning on the same workload — and the zero-regression claim is measured by a suite the loop itself wrote. As
+evidence of a *design* for constrained self-improvement it is valuable; as evidence of *effectiveness* it is not
+yet decisive. See [[Institutional Knowledge Agents]].
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -233,3 +260,7 @@ gain. See [[AI-Generated Kernels]].
 - [[Baseten - Agentic Kernels in Production]]
 - [[AI-Generated Kernels]]
 - [[Inference Efficiency Frontier]]
+- [[Institutional Knowledge Agents]]
+- [[Meta - An Organizational Second Brain]]
+- [[Meta]]
+- [[LLM-as-a-Judge]]

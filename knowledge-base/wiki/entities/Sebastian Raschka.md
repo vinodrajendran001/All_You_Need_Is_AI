@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-08-30
+updated: 2026-09-04
 entity_kind: person
 tags:
   - entity
@@ -12,6 +12,7 @@ tags:
 source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-09-02-raschka-astra-looped-transformers
 status: active
 ---
 
@@ -42,6 +43,25 @@ Characteristically, he marks the boundary of his own evidence: GPT-5.6's interna
 his proposed diagram is labelled "a possible implementation, not a confirmed description." That
 labelling discipline is why his posts are usable as reference material in this vault.
 
+## Debunking as a contribution
+
+[[Sebastian Raschka - OpenAI Astra and Looped Transformers]] is a different kind of post from his usual
+implementation-first explainers, and useful to this vault for that reason: it is a **short corrective written
+against press coverage.** The claim under repair was that OpenAI's Astra uses a "recurrent depth" technique that
+obscures the model's chain of thought. His reply separates two things the coverage had merged — that looping is
+*"just reusing layers,"* and that reducing legible reasoning is a consequence of capacity rather than of
+recurrence, since *"we would get the same effect if we were scaling up the model size."*
+
+The characteristic discipline is intact. He states what he is reasoning from (published models described
+similarly, not Astra itself), relays Nanbeige's **~75% token-efficiency retention at two passes** as the
+publisher's figure rather than as verified, allows that the journalist may have meant a different technique, and
+labels the latent-computation account as *"the only plausible interpretation"* rather than as fact. His verdict
+is proportionate rather than dismissive: *"Astra may be a really good model, but this shouldn't be about this
+'looped transformer aspect,' which is just a tiny architectural tweak."*
+
+He anchors [[Recursive Architectures]] with this vault's first shipped configuration for layer reuse, and
+supplies the correction that reframes [[Chain-of-Thought Monitoring]].
+
 ## Related pages
 
 - [[Sebastian Raschka - Using Local Coding Agents]]
@@ -53,3 +73,7 @@ labelling discipline is why his posts are usable as reference material in this v
 - [[Reasoning Compression]]
 - [[Test-Time Scaling]]
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
+- [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
+- [[Recursive Architectures]]
+- [[Chain-of-Thought Monitoring]]
+- [[Latent-Space Reasoning]]

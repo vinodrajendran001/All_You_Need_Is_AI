@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-08-07
+updated: 2026-09-04
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-07-rllm-realtime-rl-agents
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -48,6 +49,30 @@ Real-time learning must not mean immediately serving every gradient update. A sa
 
 [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] adds a complementary requirement: maintain replayable environments and held-out tasks so model, prompt, or harness updates can be compared under stable criteria.
 
+## Learning with the weights frozen
+
+Every mechanism on this page so far updates parameters. [[Meta - An Organizational Second Brain]] reports a
+deployed agent that improved over three two-week sprints **with no model retraining at all** — the update surface
+is 200+ text files, and learning means compiling expert feedback into them under regression tests.
+
+The trade is explicit and worth stating as such. Weight updates can absorb signal no one can articulate; text
+updates cannot. In exchange, text updates are **diffable, attributable, revertible, and reviewable by the domain
+expert whose judgement is being encoded** — none of which a gradient step offers. For a compliance domain, where
+the value being captured is precisely a set of articulable positions, that trade is favourable. For domains whose
+expertise is tacit, it may not be.
+
+The loop also answers the question this page leaves open about *which part of an agent should learn*. Meta's
+answer is a typed one: procedures are learned as recipes, facts as knowledge files, and the diagnosis step routes
+each failure to one or the other by asking **"could the agent have reached the correct conclusion from its source
+materials?"** A yes means the procedure is wrong; a no means knowledge is missing; expert disagreement means the
+position itself is undecided. That is a more precise localisation than a gradient update, which distributes the
+correction everywhere.
+
+The safety architecture this page describes has a direct counterpart: deterministic linting, blind regression
+replay where neither agent nor judge knows what changed, and independent adversarial review of the diffs. The
+reported "zero regressions" should be read against the fact that the suite is written by the same loop it
+validates. See [[Institutional Knowledge Agents]].
+
 ## Open questions
 
 - How should rewards be normalized across tasks with different difficulty and value?
@@ -64,4 +89,8 @@ Real-time learning must not mean immediately serving every gradient update. A sa
 - [[Recursive Self-Improvement]]
 - [[AI Agents in Production]]
 - [[rLLM]]
-
+- [[Institutional Knowledge Agents]]
+- [[Meta - An Organizational Second Brain]]
+- [[Meta]]
+- [[Agent Memory]]
+- [[LLM-as-a-Judge]]

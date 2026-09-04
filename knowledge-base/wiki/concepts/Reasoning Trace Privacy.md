@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-09-04
 tags:
   - concept
   - security
@@ -10,6 +10,7 @@ tags:
   - model-distillation
 source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-09-02-raschka-astra-looped-transformers
 status: active
 ---
 
@@ -73,6 +74,26 @@ A separate finding, with implications beyond security: the visible "thinking" bl
 
 This matters to [[LLM Reasoning]] and to anyone treating displayed reasoning as evidence of process. It is the same caution [[Latent-Space Reasoning]] raises from the other direction: what is shown is not necessarily what happened. Recovered traces were also often telegraphic and ungrammatical rather than fluent English — which undercuts trace-based safety monitoring, since that depends on traces being legible.
 
+## The trace may thin out on its own
+
+This page treats the reasoning trace as something providers deliberately withhold, encrypt, or summarize.
+[[Sebastian Raschka - OpenAI Astra and Looped Transformers]] raises a different route to the same end state:
+**the trace may simply get shorter as models get more capable.** More computation available per token can mean
+fewer intermediate reasoning tokens are needed, with the work moving into latent activations that no envelope,
+policy, or extraction technique can recover — because they were never emitted.
+
+He is careful about what this is not. Layer reuse does not itself suppress visible reasoning; recurrence *"adds
+computation in hidden states before the next token is emitted, just as ordinary transformer layers do."* And the
+effect is not architecture-specific: **"we would get the same effect if we were scaling up the model size, like
+GPT 5.6 Luna -> GPT 5.6 Sol."**
+
+For this page the implication is that trace access has two independent failure modes. One is a **policy**
+boundary — encryption, summarization, opaque blobs — which is contestable, negotiable, and, as this page
+documents, sometimes circumventable. The other is a **capability** boundary, where there is progressively less
+trace to access at all. Techniques that defeat the first do nothing about the second. The mechanism is asserted
+rather than measured, but it is the version of the concern that survives Raschka's correction of the press
+coverage.
+
 ## Open questions
 
 - The scheme was **inferred from behaviour**, not documented. No provider has published its envelope design, so "a single global key per ecosystem" is a well-evidenced inference rather than a confirmed fact.
@@ -93,3 +114,7 @@ This matters to [[LLM Reasoning]] and to anyone treating displayed reasoning as 
 - [[Defensive Deception for Open Models]]
 - [[Anthropic]]
 - [[OpenAI]]
+- [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
+- [[Chain-of-Thought Monitoring]]
+- [[Recursive Architectures]]
+- [[Sebastian Raschka]]

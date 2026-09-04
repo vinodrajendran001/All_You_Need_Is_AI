@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-08-27
+updated: 2026-09-04
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-ai-coding-agent-memory-agentmemory
   - src-2026-08-05-aibuilderclub-codebase-memory-mcp-guide
   - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -119,6 +120,32 @@ and reversible**. Memory writes are usually treated as append-only bookkeeping, 
 a bad memory write is the same class of event as a bad tool registration — a durable change to future
 behavior that ought to be inspectable and undoable. See [[Recursive Self-Improvement]].
 
+## Memory as a compiled, reviewable artifact
+
+[[Meta - An Organizational Second Brain]] describes a memory system whose defining property is that **every
+update is a text diff a domain expert can review in 30 seconds.** The agent's durable knowledge is 200+ structured
+files — position files, taxonomies, routing indexes, gateway files — and improvement happens by compiling expert
+feedback into those files rather than by writing embeddings, appending to a scratchpad, or retraining.
+
+Two design rules distinguish it from the memory architectures already on this page.
+
+**Memory is typed, and the types are enforced.** *Recipes* hold procedures and no domain facts; *knowledge files*
+hold declarative positions and no procedures. The purpose is failure attribution: when the agent is wrong, the
+type tells you whether the procedure or the knowledge is at fault. Undifferentiated memory stores cannot make
+that distinction, which is why their failures are hard to fix rather than merely hard to detect.
+
+**Memory declares its own dependency graph.** Each file names `depends_on` and `referenced_by` in frontmatter, so
+the consequences of an edit are a lookup rather than an investigation — and so a deterministic linter can reject
+dangling references and dependency cycles before anything is served.
+
+The retrieval boundary is drawn by **information density and expected usage frequency**: dense, frequently needed
+material is promoted into curated memory; the rest stays in a retrieval corpus. Loading that memory by
+progressive disclosure rather than in full is reported to cut **tokens per turn by about 80%**.
+
+The costs are the usual ones for curated memory, and the source does not hide them: the compile-validate-review
+loop is ongoing human and machine expense, and the reported outcomes after three sprints are qualitative with no
+denominators. See [[Institutional Knowledge Agents]].
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -143,3 +170,7 @@ behavior that ought to be inspectable and undoable. See [[Recursive Self-Improve
 - [[AI Builder Club - Build AI Agents]]
 - [[Context Engineering]]
 - [[Agent Security and Governance]]
+- [[Institutional Knowledge Agents]]
+- [[Meta - An Organizational Second Brain]]
+- [[Meta]]
+- [[Schema-Driven Knowledge Base]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-30
+updated: 2026-09-04
 tags:
   - concept
   - coding-agents
@@ -25,6 +25,8 @@ source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-03-github-ai-coding-cost-efficient
 status: active
 ---
 
@@ -170,6 +172,33 @@ anyone re-testing them. The operational consequence for harness design is that i
 the same regression discipline as harness code — justify against an eval, and delete what cannot be
 justified.
 
+## The harness as a game engine, and what that exposes
+
+[[Can Bölük - The Harness Playbook]] argues the closest existing analogue to a coding agent harness is not an
+IDE or a chat application but a **game engine**: a long-lived simulation with an authoritative state, a tick
+loop, entities that come and go, clients that watch, and a scripting layer that third parties extend. The
+argument is not aesthetic. It says that durability, replication, spectating, configuration, and hot-reload are
+solved problems in that lineage, and harnesses are currently re-deriving them one feature at a time.
+
+The design method offered with it is a **design envelope**: rather than enumerate features, state four
+architecture tests the system must satisfy, and let the requirements fall out. A multiplexed workspace (many
+agents, one repository). A remote driver (drive a session from a machine that is not the one running it). A
+spectator (watch a session, including a subagent, without perturbing it). And a Factorio test — could the harness
+host a long-running simulation with entities, saves, and mods. Each is a plausible product feature; jointly they
+force one authoritative session, a trusted control plane, bounded work, explicit compatibility, and views that
+are projections rather than state.
+
+The measured cost of getting the state model wrong is in [[Harness State Authority]]: of **78 official Pi
+extension examples, 60 were stateless, and of the 17 with state only two were correct**. The measured cost of an
+unbounded tool roster is in [[Tool Roster Economics]]: **36.6s for five essential tools against 42.2s** for a
+full-roster harness on the same task.
+
+[[GitHub - How We Make AI Coding More Cost Efficient]] supplies the empirical counterweight from a shipped
+product, and its most transferable result is a warning about generalising harness findings at all: a file-tool
+change that reduced cost in the code-review agent **increased** cost in the CLI agent. The same tools, the same
+change, opposite signs. Harness design evidence is local to the workload, which is why this page's accumulated
+prescriptions should be read as hypotheses to re-measure rather than as settings to copy.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -219,3 +248,9 @@ justified.
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
 - [[Addy Osmani - Audit your Agent files]]
+- [[Harness State Authority]]
+- [[Tool Roster Economics]]
+- [[Can Bölük - The Harness Playbook]]
+- [[GitHub - How We Make AI Coding More Cost Efficient]]
+- [[Can Bölük]]
+- [[GitHub]]

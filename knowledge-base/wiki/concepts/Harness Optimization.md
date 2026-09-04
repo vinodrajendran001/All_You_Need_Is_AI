@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - agents
@@ -11,6 +11,8 @@ source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-03-github-ai-coding-cost-efficient
 status: active
 ---
 
@@ -147,6 +149,43 @@ harness has moved upstream of evaluation into training itself, which means harne
 post-training decision with the same standing as environment choice; see [[RL Environment Design]] and
 [[Coding Agent Harness]].
 
+## Four measured reductions, and the trap underneath them
+
+[[GitHub - How We Make AI Coding More Cost Efficient]] is this page's first source reporting **A/B results from
+production rather than design reasoning**. Four changes, each measured against an internal AI-credit cost metric:
+removing `view` line-number prefixes (**3.1%**), selective output compaction (**5.5%**), a shortened task-tool
+prompt (**2.9%**), and batching notification roundtrips (**2.3%**). The source states plainly that these are
+**not additive** — a caveat that tends to be lost the moment the numbers travel.
+
+Three findings matter more than the percentages.
+
+**The local metric trap.** An aggressive output compressor reduced per-response tokens and increased total cost,
+because agents reopened files and re-ran commands to recover what was removed: *"We saved tokens locally and
+spent more globally."* Optimising a component metric is not the same as optimising the loop. The useful
+corollary is that **the recovery path doubles as an evaluation signal** — if the agent re-reads what you
+compressed, the compression was wrong, and no human judgement is needed to see it.
+
+**Shortening a prompt can silently delete a behaviour.** A meta-prompting loop halved a task-tool prompt and, in
+the process, rewrote cautious parallelism guidance into a hard scheduling policy that serialised independent
+agents. Offline evaluation did not catch it; production did. The fix was one restored sentence. The stated
+lesson: *"Prompt behavior needs tests. If a behavior is not tested, a shorter prompt can remove it without anyone
+noticing."*
+
+**Some overhead is archaeology.** The `view` line-number prefixes existed to serve an edit tool that had stopped
+needing them. Nobody had removed them. Worth ~5% offline and ~3% online per user.
+
+[[Can Bölük - The Harness Playbook]] adds two optimisation results from the other end of the stack. A terminal
+render path measured at **267 seconds was reduced to 90ms**, with **98.7s of the original spent in `wrapAnsi`**
+alone — and the profile contained an internal contradiction the author flags himself, since an image-line
+`.includes` check accounted for 13% of one panel and 20% of prose rendering in a session that contained **zero
+images**. And **compaction should be scheduled, not triggered**: firing at the context limit blocks the user at
+the least convenient moment, so fire roughly 10% early, branch, and splice, rather than treating compaction as an
+exception handler. His remark that *"even the frontier lab ships the naive design"* is a reminder that
+prevalence is not validation.
+
+The overall boundary of this practice is best stated by GitHub: *"None of these changes made the model smarter.
+They removed work the model never needed to do."*
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -175,3 +214,9 @@ post-training decision with the same standing as environment choice; see [[RL En
 - [[adlrocha - Base Models Stopped Being the Bottleneck]]
 - [[Qwen]]
 - [[RL Environment Design]]
+- [[Tool Roster Economics]]
+- [[Harness State Authority]]
+- [[GitHub - How We Make AI Coding More Cost Efficient]]
+- [[Can Bölük - The Harness Playbook]]
+- [[GitHub]]
+- [[Can Bölük]]

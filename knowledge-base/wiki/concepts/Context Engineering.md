@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - context-engineering
@@ -22,6 +22,9 @@ source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -184,6 +187,35 @@ content belongs at the top and changing content at the bottom. See [[KV Cache]],
 A related constraint the vault had not recorded: token counts for the same meaning differ by **up to 15×**
 across languages, so an identical context budget is not an identical amount of usable context.
 
+## Three 2026 results: scheduling, measurement, and disclosure
+
+Three sources ingested together sharpen this page in different directions.
+
+**Compaction is a scheduling problem, not an exception handler.** [[Can Bölük - The Harness Playbook]] argues
+that firing compaction when the context window fills guarantees it fires at the worst moment — mid-task, with the
+user waiting. The alternative is to schedule it roughly 10% before the limit, branch the session, and splice the
+compacted result in. Related designs he catalogues: **remote compaction**, where a provider compacts server-side
+with access to decrypted thinking that the client can never see (and returns an opaque blob), and **handoff**,
+where the summary is written for a fresh session rather than for continuation. The same source warns that
+**truncation must be opt-out, not opt-in** — an opt-in flag guarantees uneven coverage, and he found truncation
+layers stacking N+1 deep inside a single evaluation path.
+
+**Token savings must be measured on the loop, not the component.** [[GitHub - How We Make AI Coding More Cost
+Efficient]] shipped an aggressive output compressor that reduced per-response tokens and raised total cost,
+because agents re-read what had been removed. The compressor that shipped is deliberately conservative: preserve
+source-like output (`cat`, `git diff`, `git show`), reorganise search results losslessly, and compress repetitive
+build and install noise only when the savings are substantial. The framing is worth keeping: it is
+*"conservative not because the goal was to build a conservative compressor, but because that is what the
+evaluations supported."*
+
+**Progressive disclosure has a reported magnitude.** [[Meta - An Organizational Second Brain]] reports roughly
+**80% fewer tokens per turn** from routing an agent through gateway files and deterministic routing indexes
+rather than loading a fixed context — the largest context reduction figure in this vault, though unattributed
+across several simultaneous changes.
+
+Together these push the page's centre of gravity from *what to put in the window* toward *when to change it, and
+how to know the change helped*.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -228,3 +260,9 @@ across languages, so an identical context budget is not an identical amount of u
 - [[Addy Osmani - Audit your Agent files]]
 - [[Inference Efficiency Frontier]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[Tool Roster Economics]]
+- [[Harness State Authority]]
+- [[Institutional Knowledge Agents]]
+- [[Can Bölük - The Harness Playbook]]
+- [[GitHub - How We Make AI Coding More Cost Efficient]]
+- [[Meta - An Organizational Second Brain]]

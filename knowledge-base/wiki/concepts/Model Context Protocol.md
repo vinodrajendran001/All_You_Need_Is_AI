@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-25
+updated: 2026-09-04
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-mcp-internals-client-server
   - src-2026-08-05-aibuilderclub-mcp-security-attack-vectors
   - src-2026-08-05-aibuilderclub-webmcp-complete-guide
+  - src-2026-09-02-can-boluk-harness-playbook
 status: active
 ---
 
@@ -67,6 +68,22 @@ The AI Builder Club MCP cluster adds protocol-level detail around JSON-RPC over 
 
 Practical controls include source review, exact-version pinning or vendoring, least-privilege credentials and paths, network and filesystem sandboxing, and re-audit after tool changes. Static review remains incomplete when dependencies, remote configuration, or later updates can alter behavior.
 
+## Residency, not the protocol, is the cost
+
+[[Can Bölük - The Harness Playbook]] supplies the missing cost side of MCP adoption. Every connected server's
+tools land in the model's roster, and roster size is measurable in wall clock: **36.6s for five essential tools
+against 42.2s** for a full-roster harness on the same task, with constrained decoding — not just description
+tokens — named as the mechanism.
+
+The design response is not to abandon the protocol but to change what stays resident. The rule offered is
+**"bounded operation set: schema; open-ended operation set: code surface"**, with the concrete proposal being a
+single discoverable CLI behind the Bash tool (a `dyn` command) so an integration exposes **zero** additional
+tools and its surface is discovered on demand. MCP's value as a shared integration standard is untouched by
+this; what is being questioned is the default of mounting every capability as a permanently visible tool.
+
+See [[Tool Roster Economics]] for the full argument and the counter-consideration — that a discoverable CLI
+still costs turns to discover, which nobody has measured.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -79,3 +96,6 @@ Practical controls include source review, exact-version pinning or vendoring, le
 - [[AI Knowledge Base Overview]]
 - [[Agent Security and Governance]]
 - [[AI Builder Club - Build AI Agents]]
+- [[Tool Roster Economics]]
+- [[Can Bölük - The Harness Playbook]]
+- [[Can Bölük]]

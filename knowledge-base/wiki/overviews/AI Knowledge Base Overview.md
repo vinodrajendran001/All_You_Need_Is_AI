@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - overview
   - ai
@@ -224,6 +224,11 @@ source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-02-paolo-perrone-agentic-testing
   - src-2026-09-02-bytebytego-rag-embedding-model
+  - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-02-raschka-astra-looped-transformers
+  - src-2026-08-31-docmilanfar-lagrangian-flow-matching
 status: active
 ---
 
@@ -543,6 +548,56 @@ because agentic optimization pays inversely to how much human optimization a dom
 [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]'s finding that
 **temperature 0 is not deterministic**, since numerics depend on batch composition. New pages:
 [[Inference Efficiency Frontier]], [[Agentic Testing]], [[Embedding Model Selection]].
+
+## September 4 additions
+
+Five sources: three on how agent systems are built, two correcting architecture claims.
+
+**The harness's real problem is its state model, not its feature list.**
+[[Can Bölük - The Harness Playbook]] argues the closest analogue to a coding agent harness is a **game
+engine**, and backs the argument with an audit rather than an analogy: of **78 official Pi extension examples,
+60 are stateless, and of the 17 carrying state only two are correct**. Every failure is state stored where
+rewind, fork, and resume cannot see it, which makes it a contract defect rather than a documentation one —
+*"the engine needs one place where state can exist."* The property that buys extension authors is exact:
+**adding a stateful feature never adds a call site to rewind, fork, resume, or replication.** The same source
+prices the tool roster in wall clock — **36.6s for five essential tools against 42.2s** for a full roster, via
+constrained decoding rather than prompt length — and supplies the rule **"bounded operation set: schema;
+open-ended operation set: code surface."** New pages: [[Harness State Authority]], [[Tool Roster Economics]].
+See also [[Can Bölük]].
+
+**Cost work is measurable, and its failures are instructive.**
+[[GitHub - How We Make AI Coding More Cost Efficient]] reports four A/B reductions on a production credit
+metric (3.1%, 5.5%, 2.9%, 2.3%) with the explicit statement that **they are not additive**. The two negative
+results matter more. An aggressive output compressor cut per-response tokens and **raised total cost**, because
+agents re-read what was removed — *"We saved tokens locally and spent more globally"* — which also yields a
+free evaluation signal, since the recovery path is the test. And a meta-prompting loop that halved a prompt
+**silently serialized independent agents**, caught only in production: *"Prompt behavior needs tests. If a
+behavior is not tested, a shorter prompt can remove it without anyone noticing."* The same product found a
+file-tool change that cut code-review cost and *increased* CLI cost, establishing that harness evidence does
+not transfer. See [[GitHub]].
+
+**An organisation's judgement can live in text and still improve.**
+[[Meta - An Organizational Second Brain]] describes a compliance agent over **200+ files** that improves by
+compiling expert feedback under regression tests **with no model retraining**, reporting roughly **80% fewer
+tokens per turn** from progressive disclosure. It is an independent instance of this vault's own architecture,
+with three rules this vault lacks: declared bidirectional dependencies, a hard split between *recipes* and
+*knowledge files* so failures attribute cleanly, and a deterministic linter that *"passes or fails."* Its
+diagnosis test is the reusable part — **"Could the agent have reached the correct conclusion from its source
+materials?"** Recorded with its limits: the results are qualitative, with no denominators, and the
+zero-regression claim is measured by a suite the loop itself wrote. New page:
+[[Institutional Knowledge Agents]]. See also [[Meta]].
+
+**Two architecture corrections.**
+[[Sebastian Raschka - OpenAI Astra and Looped Transformers]] gives looped transformers their first shipped
+numbers — **Nanbeige4.2-3B reuses a 22-layer stack twice**, with **two passes optimal at ~75% token
+efficiency** and more passes giving *"barely any gains"* — and rejects the claim that recurrence obscures
+chain of thought. What survives is harder to govern: thinner reasoning traces follow from **capacity per
+token**, so *"we would get the same effect if we were scaling up the model size."* Separately,
+[[@docmilanfar - A Lagrangian View of Flow Matching]] finally explains a speed difference
+[[Diffusion Models]] had asserted for months. Curved paths make the denoiser's target drift; the spatial
+Jacobian is proportional to the posterior covariance, whose eigenvalues explode near the data manifold; and
+solving the resulting PDE shows the only valid characteristics are **straight lines**. Reflow is reframed as
+**uncertainty elimination** rather than compression. New page: [[Flow Matching]].
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-27
+updated: 2026-09-04
 tags: [concept, tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-09-02-can-boluk-harness-playbook
 status: active
 ---
 
@@ -93,6 +94,26 @@ rather than as behavior that emerges from end-to-end task rewards. At serving ti
 tool calls in OpenAI function-calling format through an OpenAI-compatible endpoint, so the training
 representation and the wire format match.
 
+## Schemas are model-facing protocols, and the roster is not free
+
+[[Can Bölük - The Harness Playbook]] treats a tool schema as **a protocol spoken to a model**, not as a contract
+the model can be expected to honour. Different families deviate in family-specific, reproducible ways: one emits
+a `Grep` tool that does not exist in the roster at all; another sends an array parameter as a delimited string.
+Rejecting these costs a turn, so the position taken is that a harness should **validate and correct** recoverable
+deviations rather than fail them.
+
+**Forcing a tool call is a three-tier decision.** Always add the soft prompt, because inference servers apply
+hard grammar constraints that the caller never opted into and may not know about. Set the provider's native
+forcing flag only when it is free — one major provider's implementation causes a conversation-wide cache miss.
+And escalate when the model does not comply, on the principle that *"correctness wins over the cache once
+persuasion has failed."*
+
+**The roster itself has a price.** Measured wall clock on one task, median of six fresh sessions: **36.6s with
+five essential tools, 37.0s and 42.2s for two full-roster harnesses.** The mechanism named is constrained
+decoding — every schema joins the grammar the sampler must satisfy — so the cost is not only description tokens
+in the prompt. That gives this page's schema-versus-code contrast a decision rule: **bounded operation set,
+schema; open-ended operation set, code surface.** See [[Tool Roster Economics]].
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -110,3 +131,7 @@ representation and the wire format match.
 - [[Speculative Tool Execution]]
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
 - [[Alex L. Zhang]]
+- [[Tool Roster Economics]]
+- [[Harness State Authority]]
+- [[Can Bölük - The Harness Playbook]]
+- [[Can Bölük]]

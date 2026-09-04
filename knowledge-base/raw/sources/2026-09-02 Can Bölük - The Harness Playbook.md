@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-02-can-boluk-harness-playbook
+captured: 2026-09-04
 title: "The Harness Playbook"
 source: "https://stencil.so/blog/harness-playbook?utm_source=tldrai"
 author:
@@ -8,6 +11,10 @@ created: 2026-09-04
 description: "Model the agentic harness like a game engine and most of its hard problems — durable state, tools, configuration, the TUI, inference — collapse into ones other people already solved."
 tags:
   - "clippings"
+  - "topic/agents"
+  - "topic/harness"
+  - "topic/systems"
+  - "source/raw"
 ---
 *Before anything else: a thank you. Hundreds of thousands of you have used omp, reported what broke, suggested what was missing, and shaped what it became. This post and omp² itself exist because of you.*
 

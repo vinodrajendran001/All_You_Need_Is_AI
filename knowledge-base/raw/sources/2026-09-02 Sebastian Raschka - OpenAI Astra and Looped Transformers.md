@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-02-raschka-astra-looped-transformers
+captured: 2026-09-04
 title: "OpenAI Astra and Looped Transformers"
 source: "https://sebastianraschka.com/blog/2026/openai-astra-looped-transformers.html?utm_source=tldrai"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-04
 description: "A short note on OpenAI Astra, recurrent depth, looped transformers, Nanbeige 4.2, and the Mixture-of-Recursions paper."
 tags:
   - "clippings"
+  - "topic/architecture"
+  - "topic/reasoning"
+  - "source/raw"
 ---
 A lot of hype around OpenAI’s Astra model being a “recurrent depth or looped transformer”. Let’s debunk this a bit.
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-09-04
 tags:
   - concept
   - evaluation
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-02-bytebytego-doordash-testing-system
   - src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-03-github-ai-coding-cost-efficient
 status: active
 ---
 
@@ -110,6 +111,28 @@ retaining its throughput — and it is the same conclusion the vault reaches for
 [[AI-Native Software Development Lifecycle]] generally: agents produce candidates, deterministic systems
 decide.
 
+## Prompt behaviour is untested surface
+
+[[GitHub - How We Make AI Coding More Cost Efficient]] contributes a category of test this page did not cover:
+**tests over prompt-induced behaviour.** A meta-prompting loop halved a task-tool prompt and, without anyone
+noticing, converted cautious parallelism guidance into a hard scheduling policy that **serialised independent
+agents**. Offline evaluation passed. The regression appeared only in production, and the fix was to restore a
+single sentence.
+
+The lesson is stated as a rule and deserves to be treated as one: *"Prompt behavior needs tests. If a behavior is
+not tested, a shorter prompt can remove it without anyone noticing."* Every prompt sentence is an untested
+assertion about behaviour until something exercises it, which makes prompt compression a refactor without a
+safety net — and prompt compression is now routinely done by models.
+
+A second contribution is a cheap evaluation signal for output-shaping changes: **the recovery path is the test.**
+When an aggressive output compressor removed detail, agents reopened files and re-ran commands to recover it. No
+human judgement was needed to detect the regression — the agent's own recovery behaviour was the measurement.
+Where a change removes information, instrument whether the agent goes and fetches it again.
+
+The same source is a caution about test-suite portability: a file-tool change that reduced cost in a code-review
+agent **increased** it in a CLI agent. A behavioural suite validated on one product does not license the change
+on another.
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -135,3 +158,6 @@ decide.
 - [[Context Engineering]]
 - [[Agentic Loop]]
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
+- [[Tool Roster Economics]]
+- [[GitHub - How We Make AI Coding More Cost Efficient]]
+- [[GitHub]]

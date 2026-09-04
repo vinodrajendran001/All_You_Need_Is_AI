@@ -1,13 +1,14 @@
 ---
 type: entity
 created: 2026-05-08
-updated: 2026-06-02
+updated: 2026-09-04
 entity_kind: person
 tags:
   - entity
   - author
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
+  - src-2026-09-02-meta-organizational-second-brain
 status: active
 ---
 
@@ -29,6 +30,19 @@ His gist defines the operating pattern used here: immutable raw sources, an LLM-
 - The vault's `knowledge-base/` layout, root `CLAUDE.md`, and emphasis on `index.md` plus `log.md` all descend directly from this operating model.
 - His framing is important not because every implementation detail must match the gist, but because it defines the maintenance mindset: update the knowledge artifact itself, not just the current answer.
 
+## The LLM Wiki idea, built at industrial scale
+
+[[Meta - An Organizational Second Brain]] explicitly cites Karpathy's **LLM Wiki** proposal as prior art,
+alongside Google's Open Knowledge Format, for a production deployment of 200+ structured knowledge files backing
+a compliance-domain expert agent. This vault is itself an instance of the same proposal, so the citation is the
+first outside evidence that the idea generalises past a personal knowledge base into an organisational one.
+
+What the industrial version adds to Karpathy's sketch is the maintenance machinery: bidirectional
+`depends_on`/`referenced_by` declarations, deterministic routing indexes rather than embedding similarity, a
+pass/fail linter, and blind regression replay — plus the claim that the whole thing improves **without model
+retraining**, which is the strongest form of Karpathy's original argument that the knowledge belongs in text
+rather than in weights. See [[Institutional Knowledge Agents]].
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]
@@ -38,3 +52,6 @@ His gist defines the operating pattern used here: immutable raw sources, an LLM-
 - [[Ingest Query Lint Loop]]
 - [[AI Knowledge Base Overview]]
 - [[Obsidian]]
+- [[Institutional Knowledge Agents]]
+- [[Meta - An Organizational Second Brain]]
+- [[Meta]]

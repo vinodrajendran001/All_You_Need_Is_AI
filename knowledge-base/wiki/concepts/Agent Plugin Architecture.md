@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-08-30
+updated: 2026-09-04
 tags: [concept, ai-agents, plugins, interoperability]
 source_ids:
   - src-2026-08-17-google-cloud-agent-plugins
   - src-2026-08-20-jeremy-morrell-extensible-software
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-09-02-can-boluk-harness-playbook
 status: active
 ---
 
@@ -58,6 +59,29 @@ capabilities its developers did not predict — and can break compatibility or w
 boundary, with effects that persist past the session that introduced them. This is the same tension
 [[Harness Optimization]] records between search-space size and safety.
 
+## The state contract is where extension APIs fail
+
+[[Can Bölük - The Harness Playbook]] provides the sharpest available evidence that extension APIs fail at the
+**state contract** rather than at the capability surface. An audit of **78 official Pi extension examples** found
+60 stateless, and among the 17 that carried state, **only two were correct**. These are maintainer-written
+reference examples — the material other authors copy.
+
+The failures are all one failure: state stored where the harness's durable operations cannot see it. A git
+checkpoint in a transient map, cleared before `/fork` can use it. A turn counter in a closure that reports 4
+after rewinding to turn 1 and 0 after resume. A dynamically registered tool that survives rewind but disappears
+after resume. A "last message" bookmark that means last *in file order*, so it can point at an abandoned branch.
+
+The conclusion drawn is that this distribution of bugs is not a documentation problem:
+*"documentation would not repair this distribution of bugs. The engine needs one place where state can exist."*
+That is the argument of [[Harness State Authority]], and the property it buys extension authors is precise —
+**adding a stateful feature never adds a call site to rewind, fork, resume, or replication.**
+
+A second failure appears one level up. Two popular workflow extensions for the same harness collide with
+"Another workflow is active" — despite the harness having **no workflow API**. Both ship a private mutex, and
+both were written by the same author, so the coordination only holds inside one author's suite. The
+generalisable point: **a missing abstraction becomes visible the moment independently written extensions meet**,
+and until then each author reinvents it privately and incompatibly.
+
 ## Related pages
 
 - [[Agent Skill]]
@@ -69,3 +93,7 @@ boundary, with effects that persist past the session that introduced them. This 
 - [[Coding Agent Harness]]
 - [[Philipp Schmid]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
+- [[Harness State Authority]]
+- [[Tool Roster Economics]]
+- [[Can Bölük - The Harness Playbook]]
+- [[Can Bölük]]

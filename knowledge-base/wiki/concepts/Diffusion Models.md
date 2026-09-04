@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-09-04
 tags:
   - concept
   - diffusion
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-18-pocketflow-tutorial-docs
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-08-31-docmilanfar-lagrangian-flow-matching
 status: active
 ---
 
@@ -93,6 +94,35 @@ The guidance scale `s` is a steering knob. Higher values can strengthen prompt a
 
 [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]] and [[World Models]] connect diffusion to control and embodied intelligence. Diffusion can serve as a renderer or trajectory generator, and video diffusion ideas can be pulled into model predictive control. The key distinction: diffusion is a generative-path mechanism; a world model is a predictive model of environment dynamics. Diffusion can implement parts of a world-model system, but the concepts are not identical.
 
+## Why the step count is high: the target keeps moving
+
+This page has recorded that flow matching and rectified flow sample in far fewer steps without explaining why.
+[[@docmilanfar - A Lagrangian View of Flow Matching]] supplies the mechanism, and it is a geometric fact rather
+than an engineering trick.
+
+Take the **Lagrangian** view — follow one particle of noise through the flow — instead of the Eulerian framings
+of optimal transport and continuity equations. From inside the trajectory, the diagnosis is one sentence:
+**the target keeps moving.** Non-linear noise schedules warp the intermediate distributions, so the path curves,
+so the denoiser's estimate of the clean image shifts at every step. *"The solver constantly overshoots,
+recalculates, and corrects."* Small steps are the price of chasing a shifting destination.
+
+Formalised, the ideal denoiser is a static inverse flow map — `d/dt f(x(t), t) = 0` along the path — and
+expanding that by the chain rule gives a quasi-linear advection PDE, `∂f/∂t + J_f·v = 0`. Under additive Gaussian
+noise the spatial Jacobian `J_f` is **proportional to the posterior covariance `Σ_post`**, whose eigenvalues
+explode as the trajectory approaches the sharp data manifold. The author names this the **Jacobian Penalty**:
+*"The target actively resists the direction of travel, drifting exactly along the principal axes of the model's
+internal uncertainty."*
+
+The consequence worth carrying off this page: **step count is a readout of the model's own uncertainty, not an
+independent hyperparameter.** Solving the PDE by the Method of Characteristics shows the only valid
+characteristics are straight lines from data to noise — which is the geometric derivation of flow matching, and
+the reason it can take large strides. It also predicts where few-step sampling fails, since independently drawn
+straight paths cross in high dimensions and a crossing forces the model to average conflicting targets. See
+[[Flow Matching]].
+
+Caveats: this is a pedagogical thread with no experiments, the derivation is explicitly labelled "idealized," and
+the Jacobian Penalty is a **name for a known difficulty rather than a new finding**.
+
 ## Open questions
 
 - How far can fast samplers, distillation, consistency models, flow matching, or rectified flow reduce sampling cost without losing quality?
@@ -111,3 +141,7 @@ The guidance scale `s` is a steering knob. Higher values can strengthen prompt a
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[AI Knowledge Base Overview]]
+- [[Flow Matching]]
+- [[@docmilanfar - A Lagrangian View of Flow Matching]]
+- [[@docmilanfar]]
+- [[Knowledge Distillation]]

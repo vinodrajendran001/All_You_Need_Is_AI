@@ -126,8 +126,7 @@ seconds. Every change is version-controlled, diffable, and reversible."
 
 ## Why it matters
 
-This is the closest thing to an industrial control group for this vault's own design. [[Schema-Driven Knowledge
-Base]], [[Persistent Wiki]], and [[Ingest Query Lint Loop]] have each rested on a single source — Karpathy's LLM
+This is the closest thing to an industrial control group for this vault's own design. [[Schema-Driven Knowledge Base]], [[Persistent Wiki]], and [[Ingest Query Lint Loop]] have each rested on a single source — Karpathy's LLM
 Wiki — which made them the vault's least externally corroborated pages despite describing the vault itself. Meta
 independently arrived at file-based structured knowledge, YAML dependency declarations, deterministic routing over
 pure embedding similarity, progressive disclosure, and a linter that "passes or fails," and cites the same

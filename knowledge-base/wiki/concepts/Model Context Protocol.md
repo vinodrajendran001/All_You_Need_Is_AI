@@ -70,10 +70,10 @@ Practical controls include source review, exact-version pinning or vendoring, le
 
 ## Residency, not the protocol, is the cost
 
-[[Can Bölük - The Harness Playbook]] supplies the missing cost side of MCP adoption. Every connected server's
-tools land in the model's roster, and roster size is measurable in wall clock: **36.6s for five essential tools
-against 42.2s** for a full-roster harness on the same task, with constrained decoding — not just description
-tokens — named as the mechanism.
+[[Can Bölük - The Harness Playbook]] supplies the missing cost side of MCP adoption. Every connected server's tools land in the model's roster, and roster size is measurable in wall clock: a harness
+carrying its full roster ran **almost twice as slow as Codex**, and cutting it to **five essential tools gave
+36.6s**, ahead of Codex's 42.2s and Pi's 37.0s. Constrained decoding — not just description tokens — is named as
+the mechanism.
 
 The design response is not to abandon the protocol but to change what stays resident. The rule offered is
 **"bounded operation set: schema; open-ended operation set: code surface"**, with the concrete proposal being a

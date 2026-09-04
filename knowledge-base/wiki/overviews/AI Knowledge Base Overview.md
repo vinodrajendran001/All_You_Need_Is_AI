@@ -560,8 +560,9 @@ engine**, and backs the argument with an audit rather than an analogy: of **78 o
 rewind, fork, and resume cannot see it, which makes it a contract defect rather than a documentation one —
 *"the engine needs one place where state can exist."* The property that buys extension authors is exact:
 **adding a stateful feature never adds a call site to rewind, fork, resume, or replication.** The same source
-prices the tool roster in wall clock — **36.6s for five essential tools against 42.2s** for a full roster, via
-constrained decoding rather than prompt length — and supplies the rule **"bounded operation set: schema;
+prices the tool roster in wall clock — a harness that ran **almost twice as slow as Codex** on its full roster
+dropped to **36.6s on five essential tools**, ahead of Codex's 42.2s and Pi's 37.0s, via constrained decoding
+rather than prompt length — and supplies the rule **"bounded operation set: schema;
 open-ended operation set: code surface."** New pages: [[Harness State Authority]], [[Tool Roster Economics]].
 See also [[Can Bölük]].
 

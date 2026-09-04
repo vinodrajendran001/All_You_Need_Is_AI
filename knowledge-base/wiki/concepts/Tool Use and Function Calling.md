@@ -108,8 +108,10 @@ forcing flag only when it is free — one major provider's implementation causes
 And escalate when the model does not comply, on the principle that *"correctness wins over the cache once
 persuasion has failed."*
 
-**The roster itself has a price.** Measured wall clock on one task, median of six fresh sessions: **36.6s with
-five essential tools, 37.0s and 42.2s for two full-roster harnesses.** The mechanism named is constrained
+**The roster itself has a price.** Measured wall clock on task `sol`, median of six fresh sessions: a harness
+whose full roster made it **almost twice as slow as Codex** dropped to **36.6s once limited to five essential
+tools**, ahead of Codex's 42.2s and Pi's 37.0s. The before/after on that one harness is the roster evidence; the
+other two figures are reference points at their own default rosters, not a roster sweep. The mechanism named is constrained
 decoding — every schema joins the grammar the sampler must satisfy — so the cost is not only description tokens
 in the prompt. That gives this page's schema-versus-code contrast a decision rule: **bounded operation set,
 schema; open-ended operation set, code surface.** See [[Tool Roster Economics]].

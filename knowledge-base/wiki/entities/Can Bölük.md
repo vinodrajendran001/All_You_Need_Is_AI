@@ -30,8 +30,9 @@ problems game engines solved decades ago, and the argument is that harnesses are
 anchors [[Harness State Authority]] and supplies most of the evidence in [[Tool Roster Economics]].
 
 What makes the source usable as reference material is that the criticism is measured rather than asserted. He
-audits **78 official Pi extension examples** and reports that of the 17 with state, only two are correct; he
-times harnesses on a fixed task and reports a **36.6s / 37.0s / 42.2s** spread by tool roster; he profiles a
+audits **78 official Pi extension examples** and reports that of the 17 with state, only two are correct; he times harnesses on a fixed task and reports
+**36.6s / 37.0s / 42.2s**, having first confirmed the complaint that his own harness ran almost twice as slow as
+Codex; he profiles a
 render path and finds **267s reduced to 90ms**, with 98.7s of the original in one string-wrapping function. Where
 a claim rests on judgement rather than measurement, he generally says so.
 

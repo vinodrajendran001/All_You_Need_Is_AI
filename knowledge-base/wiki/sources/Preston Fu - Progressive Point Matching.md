@@ -8,8 +8,8 @@ source_author: Preston Fu
 source_url: https://www.prestonfu.com/notes/ppm/
 tags:
   - source/summary
-  - topic/reinforcement-learning
-  - topic/reasoning
+  - reinforcement-learning
+  - reasoning
 source_ids:
   - src-2026-09-10-fu-progressive-point-matching
 status: active

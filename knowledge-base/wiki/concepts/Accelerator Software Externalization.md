@@ -4,8 +4,8 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/hardware
-  - topic/inference
+  - hardware
+  - inference
 source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
 status: active

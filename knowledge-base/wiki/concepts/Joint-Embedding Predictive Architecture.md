@@ -4,9 +4,9 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/self-supervised-learning
-  - topic/architecture
-  - topic/theory
+  - self-supervised-learning
+  - architecture
+  - theory
 source_ids:
   - src-2026-09-07-rai-lejepa
 status: active

@@ -8,9 +8,9 @@ source_author: "OpenAI"
 source_url: "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
 tags:
   - source/summary
-  - topic/safety
-  - topic/agent-security
-  - topic/alignment
+  - safety
+  - agent-security
+  - alignment
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
 status: active

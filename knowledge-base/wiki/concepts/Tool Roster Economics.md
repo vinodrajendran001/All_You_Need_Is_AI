@@ -4,8 +4,8 @@ created: 2026-09-04
 updated: 2026-09-04
 tags:
   - concept
-  - agents
-  - tools
+  - ai-agents
+  - tool-use
   - cost
 source_ids:
   - src-2026-09-02-can-boluk-harness-playbook

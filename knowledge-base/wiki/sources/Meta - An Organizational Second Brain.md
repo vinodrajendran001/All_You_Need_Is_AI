@@ -8,9 +8,9 @@ source_author: Meta Engineering
 source_url: https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/
 tags:
   - source/summary
-  - topic/knowledge-systems
-  - topic/agents
-  - topic/evaluation
+  - knowledge-systems
+  - ai-agents
+  - evaluation
 source_ids:
   - src-2026-09-02-meta-organizational-second-brain
 status: active

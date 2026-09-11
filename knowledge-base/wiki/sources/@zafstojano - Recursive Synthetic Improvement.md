@@ -8,9 +8,9 @@ source_author: "@zafstojano"
 source_url: https://x.com/zafstojano/status/2097689256961466486
 tags:
   - source/summary
-  - topic/training
-  - topic/synthetic-data
-  - topic/reinforcement-learning
+  - training
+  - synthetic-data
+  - reinforcement-learning
 source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active

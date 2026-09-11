@@ -5,8 +5,8 @@ updated: 2026-09-11
 entity_kind: person
 tags:
   - entity
-  - topic/agents
-  - topic/context-engineering
+  - ai-agents
+  - context-engineering
 source_ids:
   - src-2026-09-01-iusztin-scoped-subagents
 status: active

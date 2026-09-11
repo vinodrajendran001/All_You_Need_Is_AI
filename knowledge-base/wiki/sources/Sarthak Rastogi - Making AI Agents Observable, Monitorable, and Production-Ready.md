@@ -8,9 +8,9 @@ source_author: Sarthak Rastogi
 source_url: https://sarthakai.substack.com/p/making-ai-agents-observable-monitorable
 tags:
   - source/summary
-  - topic/agents
-  - topic/production
-  - topic/observability
+  - ai-agents
+  - production
+  - observability
 source_ids:
   - src-2026-09-06-rastogi-agent-observability
 status: active

@@ -8,8 +8,8 @@ source_author: Paolo Perrone
 source_url: https://theaiengineer.substack.com/p/what-is-agentic-testing-fa2
 tags:
   - source/summary
-  - topic/evaluation
-  - topic/agents
+  - evaluation
+  - ai-agents
 source_ids:
   - src-2026-09-02-paolo-perrone-agentic-testing
 status: active

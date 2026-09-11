@@ -4,7 +4,7 @@ created: 2026-09-04
 updated: 2026-09-04
 tags:
   - concept
-  - agents
+  - ai-agents
   - knowledge-management
   - evaluation
 source_ids:

@@ -8,9 +8,9 @@ source_author: "Addy Osmani"
 source_url: "https://addyo.substack.com/p/audit-your-agent-files"
 tags:
   - source/summary
-  - topic/agents
-  - topic/context-engineering
-  - topic/developer-tooling
+  - ai-agents
+  - context-engineering
+  - developer-tooling
 source_ids:
   - src-2026-08-30-addy-osmani-audit-agent-files
 status: active

@@ -8,9 +8,9 @@ source_author: Amine Raji
 source_url: https://aminrj.com/posts/cosine-similarity-is-not-a-safety-property/
 tags:
   - source/summary
-  - topic/security
-  - topic/rag
-  - topic/embeddings
+  - security
+  - rag
+  - embeddings
 source_ids:
   - src-2026-09-08-raji-cosine-similarity-safety
 status: active

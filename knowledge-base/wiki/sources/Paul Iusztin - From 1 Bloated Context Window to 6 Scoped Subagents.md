@@ -8,8 +8,8 @@ source_author: Paul Iusztin
 source_url: https://www.decodingai.com/p/subagents-are-context-engineering
 tags:
   - source/summary
-  - topic/agents
-  - topic/context-engineering
+  - ai-agents
+  - context-engineering
 source_ids:
   - src-2026-09-01-iusztin-scoped-subagents
 status: active

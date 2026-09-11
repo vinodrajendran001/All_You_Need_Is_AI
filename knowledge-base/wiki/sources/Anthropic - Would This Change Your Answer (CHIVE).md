@@ -8,9 +8,9 @@ source_author: "Adam Karvonen, Euan Ong, Subhash Kantamneni, Samuel Marks (Anthr
 source_url: "https://alignment.anthropic.com/2026/chive/"
 tags:
   - source/summary
-  - topic/interpretability
-  - topic/evaluation
-  - topic/alignment
+  - interpretability
+  - evaluation
+  - alignment
 source_ids:
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
 status: active

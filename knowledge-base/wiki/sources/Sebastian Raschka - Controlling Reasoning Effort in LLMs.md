@@ -8,9 +8,9 @@ source_author: "Sebastian Raschka"
 source_url: "https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms"
 tags:
   - source/summary
-  - topic/reasoning
-  - topic/post-training
-  - topic/inference
+  - reasoning
+  - post-training
+  - inference
 source_ids:
   - src-2026-07-20-raschka-reasoning-effort
 status: active

@@ -4,8 +4,8 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/training
-  - topic/synthetic-data
+  - training
+  - synthetic-data
 source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active

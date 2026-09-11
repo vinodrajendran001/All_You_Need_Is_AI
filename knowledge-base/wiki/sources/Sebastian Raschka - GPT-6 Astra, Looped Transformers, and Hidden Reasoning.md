@@ -8,9 +8,9 @@ source_author: Sebastian Raschka
 source_url: https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and
 tags:
   - source/summary
-  - topic/architecture
-  - topic/reasoning
-  - topic/agents
+  - architecture
+  - reasoning
+  - ai-agents
 source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active

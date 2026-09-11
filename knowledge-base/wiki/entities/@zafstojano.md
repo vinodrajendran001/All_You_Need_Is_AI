@@ -5,9 +5,9 @@ updated: 2026-09-11
 entity_kind: person
 tags:
   - entity
-  - topic/training
-  - topic/synthetic-data
-  - topic/reinforcement-learning
+  - training
+  - synthetic-data
+  - reinforcement-learning
 source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active

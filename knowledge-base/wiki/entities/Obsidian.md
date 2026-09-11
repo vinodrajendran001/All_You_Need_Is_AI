@@ -5,7 +5,7 @@ updated: 2026-06-02
 entity_kind: tool
 tags:
   - entity
-  - tool
+  - tool-use
   - obsidian
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki

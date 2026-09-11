@@ -6,7 +6,7 @@ tags:
   - concept
   - evaluation
   - testing
-  - agents
+  - ai-agents
   - software-engineering
 source_ids:
   - src-2026-09-02-paolo-perrone-agentic-testing

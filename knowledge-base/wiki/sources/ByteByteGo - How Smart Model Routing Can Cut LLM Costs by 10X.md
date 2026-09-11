@@ -8,9 +8,9 @@ source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-smart-model-routing-can-cut-llm
 tags:
   - source/summary
-  - topic/inference
-  - topic/cost
-  - topic/routing
+  - inference
+  - cost
+  - routing
 source_ids:
   - src-2026-09-09-bytebytego-model-routing
 status: active

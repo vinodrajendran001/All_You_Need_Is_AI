@@ -4,8 +4,8 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/reinforcement-learning
-  - topic/reasoning
+  - reinforcement-learning
+  - reasoning
 source_ids:
   - src-2026-09-10-fu-progressive-point-matching
 status: active

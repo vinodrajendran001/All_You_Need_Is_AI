@@ -8,8 +8,8 @@ source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/what-happens-inside-an-ai-chatbot
 tags:
   - source/summary
-  - topic/inference
-  - topic/context-engineering
+  - inference
+  - context-engineering
 source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
 status: active

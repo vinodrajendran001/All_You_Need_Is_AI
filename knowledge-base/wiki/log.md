@@ -205,6 +205,15 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
+  - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-07-16-bytebytego-rlhf-vs-dpo
+  - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-08-28-google-cloud-agent-delegation
+  - src-2026-08-28-anthropic-chive-counterfactual-explanations
+  - src-2026-08-30-halo-research-sopro-v2
+  - src-2026-08-30-openai-hugging-face-incident
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-08-31-derelict5432-adaptive-agentic-worms
@@ -1081,3 +1090,60 @@ Thirty-second comprehensive lint pass, run one day after the five-source Septemb
 - **Credit assignment over GUI trajectories.** [[Preston Fu - Progressive Point Matching]] scores progress points along a long computer-use trajectory rather than the endpoint, addressing the case where the decisive action happened thousands of steps before the reward. New pages [[Long-Horizon Credit Assignment]] and [[Computer Use Agents]].
 - **Applied the 2026-09-04 lint pass's finding as an editorial rule.** That pass found that facts propagate through the vault but their qualifiers do not. Every summary and concept section in this batch carries the qualifier next to the number rather than on the owner page only: Raji's "a lab reading, not a base rate"; SemiAnalysis's datapoint-specific disclaimer; Cohere's GDN v3 figures marked **kernel-level only**; LeJEPA's missing matched-compute comparison; Raschka's unattributed regression; @zafstojano's disclosure artifact.
 - Post-ingest validation: frontmatter parses on all pages, **0 broken wikilinks**, 0 reciprocity violations, 0 section-order violations, 0 orphans, and index, log and overview aligned at **233 source IDs**.
+
+## [2026-09-11] lint | A check that has never failed is not evidence of health
+
+Thirty-third comprehensive lint pass, run the same day as the eleven-source September 11 ingest. Filed as
+[[2026-09-11 Lint Pass]].
+
+- **Three unrelated-looking defects turned out to share one cause: in each case a check existed, passed, and was
+  measuring something adjacent to the property that mattered.** Tag unification was checked by *spelling*, so a
+  *namespace* fork went unseen. Control-page agreement was checked by "every raw `source_id` appears somewhere in
+  the wiki" — which stays true even when the three control pages disagree. Capture counts were taken from a
+  recursive walk that silently absorbed 40 non-captures. All three passed every prior pass.
+- **The tag vocabulary had re-forked along a namespace axis, and ingests did it.** 50 pages carried `topic/*` tags
+  and **43 of 48 distinct `topic/*` tags had an exact flat twin** (`topic/agents` 15 beside `agents` 11;
+  `topic/inference` 11 beside `inference` 36). The [[2026-08-25 Lint Pass]] had already unified this vocabulary —
+  the decision was made, applied, and silently reversed. The fork begins 2026-08-30 and runs *through the middle of
+  individual batches*: that day, 9 pages in one ingest got `topic/*` and 10 got flat tags. The September 11 batch
+  was 100% `topic/*`, 28 of 28 — self-inflicted, the same day. Three lint passes ran during the fork and missed it.
+- **`log.md` was 9 source IDs short of `index.md` and the overview for 12 days, while its body was correct the
+  whole time.** All 9 came from the single 2026-08-30 nine-source ingest and sat contiguously at positions 200–208
+  of the index. The log's narrative entry named all 9 sources and all 9 IDs correctly; only frontmatter was
+  skipped. A half-applied ingest step 5 is invisible to a reader — and the [[2026-08-31 Lint Pass]] ran the next
+  day and passed, as did 09-03, 09-04, and the September 11 ingest's own closing validation, which reported "exact
+  parity" and was itself wrong.
+- **A summary had discarded its source's entire substance while keeping the caveat about it.**
+  [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]] was 143 words against a 1,097-word capture: three models named
+  with no vendor, no architecture and no figures, closing with the note that its "scale and speed claims are
+  source-reported." The qualifier survived; the claims it qualified did not. Dropped entirely were **TabFM (Google
+  Research)** and its BigQuery integration, **KumoRFM's vendor** (NVIDIA, which acquired Kumo in June 2026),
+  **TabICL's only hard numbers** (500,000 samples / 500 features, 10× faster than TabPFNv2), the mechanism by which
+  serialising a table into an LLM fails, and the dual-stack roadmap. This is the **exact inverse** of the
+  [[2026-09-04 Lint Pass]] finding — that pass found facts travelling without their qualifiers; here a page kept
+  the qualifier and dropped the fact, which is more corrosive because the page still reads as careful.
+- **The qualifier rule held under its first real test, and no fix was needed.** The September 11 batch put two
+  different "1.41×" figures into adjacent page neighbourhoods — SemiAnalysis's GDN v3 **kernel-level decode**
+  speedup and Cohere's **end-to-end AIME 2025** result. All five carrying pages name their model and scope, and the
+  kernel-level figure is explicitly marked as having no end-to-end number. A 21-pair number/qualifier audit across
+  the batch also came back clean. First positive evidence that the rule introduced after 2026-09-04 works.
+- **Fixed:** 81 pages retagged across two passes (`topic/X` → `X`, then synonym merges `agents` → `ai-agents`,
+  `research-automation` → `automated-research`, `tools`/`tool` → `tool-use`), taking 348 → 301 distinct tags with
+  0 namespace and 0 case forks; `source/summary` deliberately retained as the sole namespaced tag because it is a
+  *type* tag with no flat twin. Backfilled the 9 missing IDs into `log.md`, restoring **exact 233 / 233 / 233**
+  parity. Rebuilt the Alpha Signal summary 143 → 1,053 words and [[Tabular Foundation Models]] 176 → 829 words with
+  its three missing canonical sections. Added `## Related pages` to [[2026-06-04 Lint Pass]], which had been the
+  vault's only page missing it while its own table reported `Missing ## Related pages | 0`. Made the wikilink
+  checker code-fence aware — its 14 "broken links" and 1 "wrapped link" were all Python inside fenced blocks.
+- **A fourth instance, and the sharpest: the privacy check broke the invariant it was certifying.** The
+  [[2026-09-04 Lint Pass]] recorded that 1 query page is local-only, named it, and asserted "it is referenced from
+  no tracked page. **PASS**". Lint reports are tracked and committed — so naming the page in order to document that
+  nothing named it **created the reference being certified absent**, and then committed it. The assertion was false
+  at the moment it was written, and false *because* it was written. The title is now redacted from that report with
+  a note recording why; this pass refers to the page only as "the local-only query page".
+- **Reported, not fixed:** 46 of 240 raw captures carry no `source_id` (19%, all 2026-05 to 2026-08), immutable
+  absent a user decision. The invariant that matters holds — 240 of 240 captures are link-reachable and 215 of 215
+  summaries link their capture.
+- **Follow-up that matters more than the fixes:** carry the *corrected* checks forward — namespace-aware tag
+  comparison, direct three-way control-page parity, and top-level-only capture enumeration — and run parity in its
+  three-way form at the close of every ingest, not the reachability form.

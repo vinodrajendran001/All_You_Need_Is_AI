@@ -7,7 +7,7 @@ tags:
   - entity
   - person
   - developer-tooling
-  - agents
+  - ai-agents
   - context-engineering
 source_ids:
   - src-2026-08-30-addy-osmani-audit-agent-files

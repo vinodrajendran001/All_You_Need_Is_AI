@@ -8,9 +8,9 @@ source_author: "Philipp Schmid"
 source_url: "https://www.philschmid.de/recursive-self-improvement"
 tags:
   - source/summary
-  - topic/agents
-  - topic/self-improvement
-  - topic/evaluation
+  - ai-agents
+  - self-improvement
+  - evaluation
 source_ids:
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
 status: active

@@ -8,7 +8,7 @@ source_author: Andrej Karpathy
 source_url: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 tags:
   - source/summary
-  - llm/wiki
+  - wiki
   - obsidian
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki

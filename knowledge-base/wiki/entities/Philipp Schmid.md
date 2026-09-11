@@ -6,7 +6,7 @@ entity_kind: person
 tags:
   - entity
   - person
-  - agents
+  - ai-agents
   - self-improvement
   - open-models
 source_ids:

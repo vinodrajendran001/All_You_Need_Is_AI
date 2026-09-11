@@ -8,8 +8,8 @@ source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures
 tags:
   - source/summary
-  - topic/production
-  - topic/reliability
+  - production
+  - reliability
 source_ids:
   - src-2026-09-07-bytebytego-llm-error-handling
 status: active

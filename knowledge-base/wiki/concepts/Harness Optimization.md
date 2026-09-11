@@ -4,7 +4,7 @@ created: 2026-08-30
 updated: 2026-09-11
 tags:
   - concept
-  - agents
+  - ai-agents
   - self-improvement
   - optimization
 source_ids:

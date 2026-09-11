@@ -8,9 +8,9 @@ source_author: "ByteByteGo"
 source_url: "https://blog.bytebytego.com/p/how-llms-learn-to-be-helpful-rlhf"
 tags:
   - source/summary
-  - topic/post-training
-  - topic/alignment
-  - topic/rlhf
+  - post-training
+  - alignment
+  - rlhf
 source_ids:
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
 status: active

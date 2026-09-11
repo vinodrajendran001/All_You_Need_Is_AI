@@ -4,9 +4,9 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/gpu
-  - topic/inference
-  - topic/serving
+  - gpu
+  - inference
+  - serving
 source_ids:
   - src-2026-09-08-cohere-megakernel-serving
 status: active

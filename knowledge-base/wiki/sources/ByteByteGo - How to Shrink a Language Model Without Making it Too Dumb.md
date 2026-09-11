@@ -8,8 +8,8 @@ source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without-295
 tags:
   - source/summary
-  - topic/quantization
-  - topic/efficiency
+  - quantization
+  - efficiency
 source_ids:
   - src-2026-09-01-bytebytego-shrink-language-model
 status: active

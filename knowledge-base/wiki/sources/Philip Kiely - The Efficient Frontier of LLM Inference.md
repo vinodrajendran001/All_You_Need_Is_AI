@@ -8,8 +8,8 @@ source_author: Philip Kiely
 source_url: https://www.baseten.co/blog/the-efficient-frontier-of-llm-inference/
 tags:
   - source/summary
-  - topic/inference
-  - topic/serving
+  - inference
+  - serving
 source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
 status: active

@@ -8,9 +8,9 @@ source_author: Erik Kristensen and Napalys Klicius (GitHub)
 source_url: https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/
 tags:
   - source/summary
-  - topic/agents
-  - topic/harness
-  - topic/evaluation
+  - ai-agents
+  - harness
+  - evaluation
 source_ids:
   - src-2026-09-03-github-ai-coding-cost-efficient
 status: active

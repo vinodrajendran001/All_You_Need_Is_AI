@@ -8,9 +8,9 @@ source_author: SemiAnalysis
 source_url: https://inferencex.semianalysis.com/blog/tpu-inferencex-full-steam
 tags:
   - source/summary
-  - topic/hardware
-  - topic/inference
-  - topic/serving
+  - hardware
+  - inference
+  - serving
 source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
 status: active

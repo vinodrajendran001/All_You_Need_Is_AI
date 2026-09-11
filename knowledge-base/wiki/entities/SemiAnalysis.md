@@ -5,9 +5,9 @@ updated: 2026-09-11
 entity_kind: organization
 tags:
   - entity
-  - topic/hardware
-  - topic/inference
-  - topic/analysis
+  - hardware
+  - inference
+  - analysis
 source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
 status: active

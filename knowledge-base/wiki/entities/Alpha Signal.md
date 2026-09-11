@@ -5,7 +5,7 @@ updated: 2026-08-24
 tags:
   - entity
   - newsletter
-  - AI
+  - ai
 entity_kind: newsletter
 source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion

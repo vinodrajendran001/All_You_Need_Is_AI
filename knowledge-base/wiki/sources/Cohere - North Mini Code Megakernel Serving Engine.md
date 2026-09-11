@@ -8,9 +8,9 @@ source_author: Cohere
 source_url: https://cohere.com/blog/megakernels
 tags:
   - source/summary
-  - topic/gpu
-  - topic/inference
-  - topic/serving
+  - gpu
+  - inference
+  - serving
 source_ids:
   - src-2026-09-08-cohere-megakernel-serving
 status: active

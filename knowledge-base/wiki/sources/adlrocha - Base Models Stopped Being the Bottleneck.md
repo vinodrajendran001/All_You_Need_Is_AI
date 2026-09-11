@@ -8,9 +8,9 @@ source_author: adlrocha
 source_url: https://adlrocha.substack.com/p/adlrocha-base-models-stopped-being
 tags:
   - source/summary
-  - topic/post-training
-  - topic/open-models
-  - topic/agentic-rl
+  - post-training
+  - open-models
+  - agentic-rl
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active

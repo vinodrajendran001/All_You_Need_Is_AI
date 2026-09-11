@@ -4,8 +4,8 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/security
-  - topic/embeddings
+  - security
+  - embeddings
 source_ids:
   - src-2026-09-08-raji-cosine-similarity-safety
 status: active

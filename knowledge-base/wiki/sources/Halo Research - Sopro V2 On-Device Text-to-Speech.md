@@ -8,9 +8,9 @@ source_author: "Halo Research (Halo NeuroAI)"
 source_url: "https://research.haloneuro.ai/posts/sopro-v2"
 tags:
   - source/summary
-  - topic/speech
-  - topic/on-device
-  - topic/open-models
+  - speech
+  - on-device
+  - open-models
 source_ids:
   - src-2026-08-30-halo-research-sopro-v2
 status: active

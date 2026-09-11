@@ -7,7 +7,7 @@ tags:
   - entity
   - organization
   - ai-lab
-  - agents
+  - ai-agents
   - knowledge-management
 source_ids:
   - src-2026-09-02-meta-organizational-second-brain

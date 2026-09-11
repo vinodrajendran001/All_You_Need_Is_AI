@@ -8,8 +8,8 @@ source_author: Sebastian Raschka
 source_url: https://sebastianraschka.com/blog/2026/openai-astra-looped-transformers.html
 tags:
   - source/summary
-  - topic/architecture
-  - topic/reasoning
+  - architecture
+  - reasoning
 source_ids:
   - src-2026-09-02-raschka-astra-looped-transformers
 status: active

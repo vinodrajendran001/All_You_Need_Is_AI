@@ -5,9 +5,9 @@ updated: 2026-09-11
 entity_kind: person
 tags:
   - entity
-  - topic/security
-  - topic/rag
-  - topic/embeddings
+  - security
+  - rag
+  - embeddings
 source_ids:
   - src-2026-09-08-raji-cosine-similarity-safety
 status: active

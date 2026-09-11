@@ -4,8 +4,8 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/agents
-  - topic/reinforcement-learning
+  - ai-agents
+  - reinforcement-learning
 source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active

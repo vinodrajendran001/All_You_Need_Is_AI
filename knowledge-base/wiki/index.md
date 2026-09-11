@@ -739,6 +739,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-08-26 Lint Pass]] - Twenty-eighth comprehensive lint pass; found four sources that had been summarized but never cited by any concept page, gave all 180 source summaries a working `## Raw capture` pointer, and canonicalized five forked tags that an earlier parser had missed.
 
 - [[2026-09-04 Lint Pass]] - Thirty-second pass: a benchmark claim that got stronger as it travelled from its source summary to six derived pages, and the strong result the compression dropped.
+- [[2026-09-11 Lint Pass]] - Thirty-third comprehensive lint pass; found three defects sharing one cause — a check that verified a proxy instead of the invariant: the tag vocabulary had re-forked along a *namespace* axis (43 of 48 `topic/*` tags had flat twins) while three passes checked only spelling, `log.md`'s frontmatter sat 9 source IDs short of `index.md` for 12 days while its body carried the entry correctly, and recursive capture counts were inflated by 40 nested non-captures. Also rebuilt a summary that had dropped every model, vendor and figure from its source while keeping the caveat about them, and confirmed the qualifier rule held against a genuine 1.41x collision.
 
 ## Control files
 

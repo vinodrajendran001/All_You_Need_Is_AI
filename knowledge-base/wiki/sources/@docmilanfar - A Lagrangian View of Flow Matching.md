@@ -8,9 +8,9 @@ source_author: "@docmilanfar"
 source_url: https://x.com/docmilanfar/status/2094283194187301003
 tags:
   - source/summary
-  - topic/generative-models
-  - topic/diffusion
-  - topic/theory
+  - generative-models
+  - diffusion
+  - theory
 source_ids:
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
 status: active

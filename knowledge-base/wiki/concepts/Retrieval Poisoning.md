@@ -4,8 +4,8 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/security
-  - topic/rag
+  - security
+  - rag
 source_ids:
   - src-2026-09-08-raji-cosine-similarity-safety
 status: active

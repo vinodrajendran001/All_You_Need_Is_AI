@@ -8,9 +8,9 @@ source_author: Can Bölük
 source_url: https://stencil.so/blog/harness-playbook
 tags:
   - source/summary
-  - topic/agents
-  - topic/harness
-  - topic/systems
+  - ai-agents
+  - harness
+  - systems
 source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
 status: active

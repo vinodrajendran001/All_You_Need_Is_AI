@@ -8,8 +8,8 @@ source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without
 tags:
   - source/summary
-  - topic/rag
-  - topic/retrieval
+  - rag
+  - retrieval
 source_ids:
   - src-2026-09-02-bytebytego-rag-embedding-model
 status: active

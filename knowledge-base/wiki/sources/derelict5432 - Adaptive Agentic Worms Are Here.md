@@ -8,8 +8,8 @@ source_author: derelict5432
 source_url: https://www.lesswrong.com/posts/fpLDjKg3ej49beqTC/adaptive-agentic-worms-are-here
 tags:
   - source/summary
-  - topic/agent-security
-  - topic/safety
+  - agent-security
+  - safety
 source_ids:
   - src-2026-08-31-derelict5432-adaptive-agentic-worms
 status: active

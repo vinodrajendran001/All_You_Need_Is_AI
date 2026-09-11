@@ -5,9 +5,9 @@ updated: 2026-09-11
 entity_kind: organization
 tags:
   - entity
-  - topic/inference
-  - topic/gpu
-  - topic/models
+  - inference
+  - gpu
+  - models
 source_ids:
   - src-2026-09-08-cohere-megakernel-serving
 status: active

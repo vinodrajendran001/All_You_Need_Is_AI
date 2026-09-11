@@ -8,9 +8,9 @@ source_author: Brian Li, Faraz Shahsavan, Pankaj Gupta (Baseten)
 source_url: https://www.baseten.co/blog/agentic-kernels-in-production/
 tags:
   - source/summary
-  - topic/kernels
-  - topic/inference
-  - topic/self-improvement
+  - kernels
+  - inference
+  - self-improvement
 source_ids:
   - src-2026-08-29-baseten-agentic-kernels-production
 status: active

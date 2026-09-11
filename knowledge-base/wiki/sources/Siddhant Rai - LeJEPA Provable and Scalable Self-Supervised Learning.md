@@ -8,9 +8,9 @@ source_author: Siddhant Rai
 source_url: https://vizuara.substack.com/p/lejepa-provable-and-scalable-self
 tags:
   - source/summary
-  - topic/self-supervised-learning
-  - topic/architecture
-  - topic/theory
+  - self-supervised-learning
+  - architecture
+  - theory
 source_ids:
   - src-2026-09-07-rai-lejepa
 status: active

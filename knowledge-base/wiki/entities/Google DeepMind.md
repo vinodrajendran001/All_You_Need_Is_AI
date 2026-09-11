@@ -7,7 +7,7 @@ tags:
   - entity
   - organization
   - research-lab
-  - agents
+  - ai-agents
   - governance
 source_ids:
   - src-2026-08-28-google-cloud-agent-delegation

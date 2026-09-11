@@ -8,9 +8,9 @@ source_author: "Lilian Weng"
 source_url: "https://lilianweng.github.io/posts/2026-07-04-harness/"
 tags:
   - source/summary
-  - topic/agents
-  - topic/self-improvement
-  - topic/research-automation
+  - ai-agents
+  - self-improvement
+  - automated-research
 source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
 status: active

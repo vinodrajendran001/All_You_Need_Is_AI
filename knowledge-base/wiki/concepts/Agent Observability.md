@@ -4,9 +4,9 @@ created: 2026-09-11
 updated: 2026-09-11
 tags:
   - concept
-  - topic/agents
-  - topic/production
-  - topic/observability
+  - ai-agents
+  - production
+  - observability
 source_ids:
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-07-bytebytego-llm-error-handling

@@ -6,7 +6,7 @@ entity_kind: person
 tags:
   - entity
   - person
-  - agents
+  - ai-agents
   - self-improvement
   - research
 source_ids:

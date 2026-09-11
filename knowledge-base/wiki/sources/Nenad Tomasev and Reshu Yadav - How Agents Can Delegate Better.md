@@ -8,9 +8,9 @@ source_author: "Nenad Tomasev and Reshu Yadav (Google Cloud / Google DeepMind)"
 source_url: "https://cloud.google.com/blog/products/ai-machine-learning/how-agents-can-delegate-better"
 tags:
   - source/summary
-  - topic/agents
-  - topic/multi-agent
-  - topic/governance
+  - ai-agents
+  - multi-agent
+  - governance
 source_ids:
   - src-2026-08-28-google-cloud-agent-delegation
 status: active

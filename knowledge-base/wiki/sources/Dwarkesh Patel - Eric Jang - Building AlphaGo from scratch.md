@@ -11,7 +11,7 @@ tags:
   - interviews
   - alphago
   - mcts
-  - research-automation
+  - automated-research
 source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-alphago
 status: active

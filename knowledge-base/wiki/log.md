@@ -1147,3 +1147,37 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - **Follow-up that matters more than the fixes:** carry the *corrected* checks forward — namespace-aware tag
   comparison, direct three-way control-page parity, and top-level-only capture enumeration — and run parity in its
   three-way form at the close of every ingest, not the reachability form.
+
+## [2026-09-11] post | The Benchmark Changed Its Mind
+
+- Third Post-workflow run, covering **2026-09-05 → 2026-09-11**. The window contained one eleven-source ingest
+  and its lint pass, taking the vault from 222 to **233 source IDs**. Filed
+  [[2026-09-11 The Benchmark Changed Its Mind]] for LinkedIn and X.
+- The first selected angle — retrieval poisoning as a case where a retriever returns an attack while working
+  correctly — was rejected by the user. The run returned to the current window rather than falling back to an
+  older archive candidate and selected its strongest non-security topic.
+- **Winner at 20/20:** one TPU benchmark supports three opposing verdicts — Ironwood is 50% better, 8% better,
+  or 30% worse than NVIDIA depending on the normalization axis. The post keeps each number beside the condition
+  that makes it true: 50.4% more tokens per dollar than B200 at 20 tok/s/user; 8% at a 20-second median response;
+  B200 winning around 30 seconds; and disaggregated GB300 NVL72 roughly 30% ahead of aggregated TPUv7 in the
+  middle of the curve.
+- The angle won over four runners-up: a weaker teacher outperforming a stronger one across 1,000+ controlled
+  experiments (19), dependency-affinity scheduling making a megakernel 1-2% slower (17), training loss measuring
+  downstream accuracy without labels (17), and silent LLM failures returning HTTP 200 (17). All four were added
+  to [[Post Archive]] rather than left to be rediscovered.
+- **The vault's contribution is the compression, not the benchmark:** *the normalization axis has to travel with
+  the number*. The post's analogy — a result without its normalization is a map with the scale cropped out —
+  preserves the distinction between an accurate scoped measurement and a misleading decontextualized quote.
+- **The fact-check cut four attractive overstatements.** "Ironwood beats NVIDIA only if you ask the right
+  question" implied strategic metric selection. "Benchmarks can prove anything" confused scoped evidence with
+  dishonesty. "Same hardware" was narrowed because the reversed comparison changes aggregated versus
+  disaggregated system shape. A claim that the TPU received more tuning was removed because the source records
+  only that equivalent effort is uncertain.
+- **Compression check:** thread posts 2-4 keep every percentage beside its latency target or system shape, and
+  post 5 carries the official-preview, single-model, and potentially unequal-tuning caveats. In particular,
+  "aggregated" versus "disaggregated" survives the 280-character cut; dropping those words would create the exact
+  misleading comparison the post criticizes.
+- Verified programmatically: LinkedIn body **226 words**; seven X blocks with every declared character count
+  matching actual, all under 280 with URLs counted as 23 characters. New post and archive introduce 0 broken
+  wikilinks, frontmatter parses, `## Related pages` is present, and index, log, and overview remain aligned at
+  **233 source IDs**. [[Serving Benchmarks and Goodput]] enters cooldown until 2026-10-23.

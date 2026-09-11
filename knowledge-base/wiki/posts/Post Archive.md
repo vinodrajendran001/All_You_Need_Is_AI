@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-09-05
+updated: 2026-09-11
 tags:
   - post
 status: active
@@ -28,11 +28,13 @@ materially different angle, and that post must say what is new.
 |------|------|----------------|------------|-----------|--------|
 | 2026-08-29 | [[2026-08-29 KL Should Follow the Reward]] | 2026-08-26 → 2026-08-29 | [[Reward Design for RL]] | LinkedIn, X | ready |
 | 2026-09-05 | [[2026-09-05 Nobody Tests the Instructions]] | 2026-08-29 → 2026-09-05 | [[Context Engineering]] | LinkedIn, X | ready |
+| 2026-09-11 | [[2026-09-11 The Benchmark Changed Its Mind]] | 2026-09-05 → 2026-09-11 | [[Serving Benchmarks and Goodput]] | LinkedIn, X | ready |
 
 ## Topics covered
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-09-11 - benchmark normalization, inference economics, latency-throughput tradeoffs, accelerator comparison
 - 2026-09-05 - agent context files, instruction bloat, negative results, evaluating prompts
 - 2026-08-29 - reward design, KL divergence, verifiable vs preference rewards, post-training recipes
 
@@ -48,6 +50,10 @@ materially different angle, and that post must say what is new.
 - The local metric trap: GitHub cut per-response tokens and raised total cost, because agents reopened what was removed - [[Benchmark Optimization]], [[Harness Optimization]]
 - Agentic kernel optimization pays inversely to prior human effort (42.3% / 15.2% / ~5.5%) - [[Inference Efficiency Frontier]]
 - Prose summaries score 4/45 on behavioural questions where source code scores 27/45 - [[Context Engineering]], [[Addy Osmani - Audit your Agent files]]
+- A weaker model is a stronger teacher: QwQ-32B beat DeepSeek-R1 across 1,000+ controlled distillation experiments - [[Knowledge Distillation]], [[Multi-Teacher On-Policy Distillation]]
+- The obvious megakernel scheduling optimization made serving 1-2% slower, with no causal explanation - [[Megakernels]]
+- Training loss measures downstream accuracy without labels: ~85% rank correlation, rising to ~99% after normalization - [[Joint-Embedding Predictive Architecture]]
+- LLM failures frequently return HTTP 200, so agent operations need attribution rather than transport-level detection - [[Agent Observability]], [[LLM Application Resilience]]
 
 ## Spine pages in cooldown
 
@@ -55,6 +61,7 @@ materially different angle, and that post must say what is new.
 
 - [[Reward Design for RL]] - posted 2026-08-29 - cooldown ends 2026-10-10
 - [[Context Engineering]] - posted 2026-09-05 - cooldown ends 2026-10-17
+- [[Serving Benchmarks and Goodput]] - posted 2026-09-11 - cooldown ends 2026-10-23
 
 ## Related pages
 

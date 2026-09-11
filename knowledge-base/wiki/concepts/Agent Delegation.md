@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - agents
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-01-iusztin-scoped-subagents
 status: active
 ---
 
@@ -128,6 +129,46 @@ accidentally **serialised independent agents** by rewriting cautious parallelism
 policy — a regression invisible offline, fixed by restoring one sentence: *"Independent agents can run in
 parallel; consider side effects."* Delegation policy lives in prompt text, and prompt text can be optimised away.
 
+## A subagent is a context primitive or a process primitive, and the choice is not stylistic
+
+[[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] reduces the decision to spawn a child to one economic test, quoting Anthropic's
+context-engineering guidance: a subagent that burns tens of thousands of tokens and returns a distilled
+**1,000–2,000-token summary** has earned its overhead. If the child's work would fit comfortably in the
+parent's window, the machinery buys nothing. Hence the slogan **"subagents are context engineering"** —
+this is not a multi-agent architecture, it is a mechanism for keeping search noise out of the parent.
+
+The durable contribution is separating two spawn mechanisms that are usually argued as taste. Keeping the
+subagent **in the harness** makes it a **context primitive**: "the cheapest subagent — a loop re-entry,
+not a process: no cold start, no serialization", the parent's window stays clean by construction, and the
+budget lives in one place. Claude Code goes further, reusing the parent's prompt cache for the summary
+fork. Spawning the CLI under `tmux` makes it a **process primitive**: "a real boundary. An OS process, not
+an allowlist", with live observability and children that outlive the parent as resumable on-disk sessions.
+These answer different questions — protect the context, or get a real security boundary — and Iusztin is
+explicit that they are "not competing versions of the same thing." Mario Zechner's objection to the
+in-harness form stands recorded: it is *"a black box within a black box."*
+
+**Budget enforcement belongs in the tool.** Decode's `agent(prompts: list[str]) -> str` is read-only and
+caps fan-out at 6 prompts per call, concurrency at `asyncio.Semaphore(4)`, each child at
+`UsageLimits(request_limit=25)`, and divides a shared 16,000-byte result budget as
+`child_max_bytes = 16_000 // len(prompts)`. Guard violations return `ModelRetry` — "the tool's way of
+sending the model a correction instead of a result" — so the model is corrected rather than crashed. The
+report contract gets one retry with a nudge, then a "no usable report" note rather than a failed fan-out.
+
+**Fan-out is a harness guarantee, not a model courtesy** — "parallelism the harness guarantees, not a
+courtesy the model may or may not extend by emitting N tool calls." And the concurrency cap exists because
+of the provider, not the model: hosted APIs impose request-per-minute limits that owning the endpoint
+removes entirely.
+
+**The child's authority is static configuration, not a caller argument.** Only the prompt is dynamic; the
+system prompt and permissions come from a persona file. This is what makes a fan-out auditable — the
+parent cannot widen a child's authority by rephrasing. Decode's `explore` persona is marked
+`subagent: true` so it can only run as a child, with an allowlist of exactly read, glob, grep and lsp: no
+`bash`, no `web_fetch`, no `ask_user` ("which would deadlock the fan-out"), and no `agent` ("to avoid
+recursion").
+
+Once trace context propagates across these handoffs, the fan-out becomes reconstructable rather than
+merely fast — see [[Agent Observability]].
+
 ## Open questions
 
 - Zero-knowledge proofs for arbitrary LLM computation are a research direction, not a shipping
@@ -161,3 +202,6 @@ parallel; consider side effects."* Delegation policy lives in prompt text, and p
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
 - [[Can Bölük]]
 - [[GitHub]]
+- [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
+- [[Paul Iusztin]]
+- [[Agent Observability]]

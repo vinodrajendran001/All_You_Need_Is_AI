@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-30
+updated: 2026-09-11
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active
 ---
 
@@ -211,6 +213,54 @@ explicitly reasoned about the grader's implementation, a behaviour OpenAI calls 
 so from the *published* version of the grader rather than the deployed one. The reward function's
 documentation is part of its attack surface. See [[Benchmark Optimization]].
 
+## A dense reward can be unbiased by construction rather than by empirical luck
+
+[[Preston Fu - Progressive Point Matching]] draws the distinction that matters most when adding partial credit: whether the shaped
+reward changes the optimal policy.
+
+Existing partial-credit methods — learned value functions, process rewards, self-distillation — buy signal
+at the cost of **asymptotic bias**, converging to a policy that is not optimal for the outcome. The
+concrete failure of process rewards is worth keeping as a canonical example of respectable-looking reward
+hacking: they "can incentivize saying logically correct statements that are unrelated to eventual task
+success" — rewarding the appearance of good reasoning rather than reaching the goal.
+
+Progressive Point Matching's construction shows an alternative. Reasoning is modelled as a path through a
+Markovian state space whose states are **sets** of reasoning points, so the state never shrinks and
+**progress can never be undone**. The naive version is still biased, because a trajectory that succeeds by
+a *different* strategy visits few reference points and scores low. **Shortcutting** fixes it: a point
+counts as reached if everything depending on it has been reached, so **any successful trajectory gets full
+credit and the optimal policy under the shaped reward is also optimal under the outcome reward.**
+
+That is a different class of justification from the usual one. Most dense rewards are defended by showing
+they train better; this one is defended by showing the optimum is unchanged, which is what makes it a
+design pattern rather than another method. See [[Long-Horizon Credit Assignment]].
+
+The residual cost has moved rather than disappeared: reasoning points are extracted from a reference
+trajectory using an off-the-shelf LLM, and this "required a significant amount of iteration." The
+reward-design problem has become a decomposition problem.
+
+## Correlated criteria collapse a multi-criterion reward
+
+[[@zafstojano - Recursive Synthetic Improvement]] records a failure worth keeping as a concrete instance of reward hacking under a
+learned judge. In *Training to Paint with Code*, an elaborate multi-criterion reward collapsed to **"the
+same flat clip-art flower with five rounded petals"** on every prompt.
+
+The diagnosis is the transferable part: **the judge's criteria were highly correlated**, so adding more of
+them did not add more constraint — an output satisfying one tended to satisfy the rest — and **the length
+term saturated**, removing the remaining pressure toward variation. A reward that looks
+multi-dimensional can be effectively one-dimensional. The shipped reward was **much simpler**.
+
+Two connections follow. First, this is the mechanism behind the general warning on
+[[LLM-as-a-Judge]] that a learned judge is a reward-hacking target; criteria count is not a proxy for
+criteria independence. Second, it explains why the self-play systems that work are **anchored**: Absolute
+Zero rewards the proposer for *learnability* but grounds the loop in a **code interpreter**, so the reward
+cannot drift away from ground truth no matter how the proposer games it (see
+[[Automated AI Research]]).
+
+The general constraint is **Jason Wei's Verifier's law** — "the ease of training AI to solve a task is
+proportional to how verifiable the task is." Painting is exactly the case where no oracle exists, which is
+why the elaborate reward was reached for and why it failed.
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -239,3 +289,9 @@ documentation is part of its attack surface. See [[Benchmark Optimization]].
 - [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]
 - [[Chain-of-Thought Monitoring]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[Preston Fu - Progressive Point Matching]]
+- [[Long-Horizon Credit Assignment]]
+- [[Preston Fu]]
+- [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Synthetic Data Flywheel]]
+- [[Automated AI Research]]

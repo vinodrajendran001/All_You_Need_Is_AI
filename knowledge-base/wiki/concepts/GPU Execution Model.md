@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-26
+updated: 2026-09-11
 tags:
   - concept
   - gpu
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-09-08-cohere-megakernel-serving
 status: active
 ---
 
@@ -62,6 +63,31 @@ That ratio generalises far beyond a vector add, and [[Arithmetic Intensity and t
 
 It pairs these with the tools that make the model observable: **Nsight Systems** for timeline-level analysis of where a workload spends wall-clock time, **Nsight Compute** for per-kernel counters, and **Compute Sanitizer** for memory and race correctness. Its position is that a performance claim about a kernel is only meaningful alongside profiler evidence — the same evidence standard [[Serving Benchmarks and Goodput]] applies one layer up. [[GPU Kernel Optimization]] covers what to do with what the profiler shows.
 
+## A persistent one-threadblock-per-SM kernel with a hand-written warp ABI
+
+[[Cohere - North Mini Code Megakernel Serving Engine]] is a concrete, fully specified example of bypassing the driver's scheduler.
+
+**The shape:** a GPU has ~100–150 SMs; the megakernel launches **exactly one threadblock per SM** and
+keeps it resident for the entire decode step. Inter-task dependencies that would normally be enforced by
+kernel boundaries become **explicit counters in global memory**.
+
+**The ABI is fixed for every operation — exactly 3 warpgroups, 12 warps.** Warpgroup 0 splits into a
+**controller** (warp 0, prefetching task descriptors into a shared-memory ring), a **producer** (warp 1), a
+**storer** (warp 2), and an idle warp 3; the other **8 warps are consumers**. Roles are compile-time tags
+resolved with `if constexpr`, and workers synchronise on a named barrier `worker_sync` that **deliberately
+excludes the controller** so it can run ahead.
+
+**A task is a 32-int32 descriptor whose field 0 is the opcode**, with 16 opcodes in four groups: dense
+GEMMs, attention, MoE routing, and MoE GEMMs.
+
+**Barriers are plain global-memory counters, and their cost does not grow with fan-in.** `atomicAdd` with
+`fence.proxy.async` and `__threadfence()`, spun on with `__nanosleep(20)` — **O(1) regardless of fan-in or
+fan-out**. That property is what makes fine-grained dependency graphs affordable at all.
+
+**Dynamic work stealing is used only where work is irregular** — attention and MoE — via `*_DRAIN` claimer
+tasks. Earlier greedy topology-aware and brute-force schedulers gave ~10% on a dense model but "did not
+transfer to MoE."
+
 ## Open questions
 
 - How do compute-bound GEMMs and tensor-core kernels — the workloads that dominate real training/inference — change the scheduling, register, and shared-memory picture drawn by a memory-bound vector add?
@@ -85,3 +111,6 @@ It pairs these with the tools that make the model observable: **Nsight Systems**
 - GPU Kernel Optimization
 - Serving Benchmarks and Goodput
 - AI-Generated Kernels
+- [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Megakernels]]
+- [[Cohere]]

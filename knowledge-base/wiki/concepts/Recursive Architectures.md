@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - architecture
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-09-02-raschka-astra-looped-transformers
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active
 ---
 
@@ -81,6 +82,45 @@ Alongside [[Linear Attention and Recurrent Memory]]'s record of Qwen3.8's 3:1 hy
 two shipped architectural operating points and **no ablation curve for either** — both are one lab's chosen point
 on a curve nobody has published.
 
+## Looping costs full unrolled compute, saves no KV cache, and only recently showed a compute win
+
+[[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] is the expanded follow-up to the short note already recorded here, and it makes the
+trade-off worse than "compute for parameters."
+
+**Nanbeige4.2-3B** applies the same **22-layer stack twice — 44 block applications** — roughly halving
+transformer-block parameters. But compute is comparable to 44 *distinct* blocks, because backpropagation
+runs through all 44. And critically, **there is no KV-cache saving: each pass needs its own entries.**
+Nanbeige tried sharing the cache across loops and halving it, and the model performed worse. The parameter
+saving is also smaller than the layer count implies, since embedding and output layers are about 25% of
+the 3B total. Training from scratch beat upcycling, and two passes remained their preferred trade-off.
+
+**The idea is eight years old.** Universal Transformers (2018) repeat a single block with adaptive halting
+via a learned halting probability and a threshold.
+
+**Deeper loops exist, but implementations lag designs.** **Ouro-Thinking 2.6B** applies a 48-block stack
+four times — 192 applications — with a learned exit gate, yet the released Hugging Face implementation
+"computes all four passes and then selects", so the advertised early exit buys no compute as shipped.
+
+**Mixture-of-Recursions reverses its own conclusion at small scale.** MoR routes per token and compares
+expert-choice against token-choice routing; it wins at larger scale and smaller compute budgets, but **the
+135M model shows the opposite conclusion** — which Raschka generalises into a methodological warning about
+"the importance of running some experiments at scale." The crossover mechanism is unexplained.
+
+**Three research results bound what looping actually buys.** Geiping et al.'s latent-reasoning model (3.5B
+on 800B tokens; 4 shared blocks sandwiched by 2 prelude and 2 coda blocks; loop count randomised in
+training; adaptive KL-divergence stopping) shows the benefit is task-dependent: **HellaSwag levels off
+after about 8 loops while GSM8K and HumanEval keep improving.** "Beyond Parameters: Virtual Logic Depth"
+(June 2025) finds looping **leaves memorization capacity nearly unchanged but improves multi-step math** —
+the cleanest available statement of the mechanism. And **SMELT** (September 2026), with compute-matched
+MoE looped transformers up to 54B non-embedding parameters, reports **6.8–18% less training compute for
+the same validation loss** — the first result making looping look like a win rather than a wash, and
+recent enough to be unreplicated. A negative result sits alongside: the full-bandwidth transformer (August
+2026) shortens MATH500 traces in a 1B base model via latent feedback, "but the effect disappears after
+instruction tuning."
+
+On the monitorability claim attached to looping in press coverage, see
+[[Chain-of-Thought Monitoring]] — the architecture is not established as the cause.
+
 ## Related pages
 
 - [[Latent-Space Reasoning]]
@@ -96,3 +136,4 @@ on a curve nobody has published.
 - [[Linear Attention and Recurrent Memory]]
 - [[Chain-of-Thought Monitoring]]
 - [[Sebastian Raschka]]
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - inference
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-07-semianalysis-tpu-inferencex
 status: active
 ---
 
@@ -70,6 +71,19 @@ and cache hit rates. Its observed effect in practice is *"increasing throughput 
 same or slightly better"* — which is what distinguishes it from a technique that merely buys one with the
 other. See [[Inference Efficiency Frontier]].
 
+## Disaggregation is a roadmap item on TPU, and comparing across it distorts benchmarks
+
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] records TPU prefill-decode disaggregation arriving as **TPU-Sync** (formerly
+TPU-raiden), a zero-copy transfer through native PJRTBuffer descriptors — still roadmap rather than
+shipped at time of writing, alongside KV cache offloading to DRAM and Mooncake Store P2P pooling.
+
+The benchmarking consequence is the durable lesson. SemiAnalysis's most favourable NVIDIA comparison is
+explicitly labelled **"apples-to-bananas": a GB300 NVL72 disaggregated configuration against an aggregated
+TPUv7 one**, and it **reverses the headline result** — GB300 comes out roughly **30% ahead on perf/$ in
+the middle of the curve**, against the up-to-50% TPU advantage claimed elsewhere in the same article.
+Whether the competitor is disaggregated is not a detail; here it is worth more than the hardware
+difference.
+
 ## Open questions
 
 - What is the crossover point at which KV transfer cost exceeds the interference cost it avoids, and how does it move with model size, context length, and attention variant?
@@ -92,3 +106,5 @@ other. See [[Inference Efficiency Frontier]].
 - [[Inference Efficiency Frontier]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- [[SemiAnalysis]]

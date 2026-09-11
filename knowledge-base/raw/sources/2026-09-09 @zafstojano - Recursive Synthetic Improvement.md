@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-09-zafstojano-recursive-synthetic-improvement
+captured: 2026-09-11
 title: "Recursive Synthetic Improvement"
 source: "https://x.com/zafstojano/status/2097689256961466486?utm_source=tldrai"
 author:
@@ -8,6 +11,10 @@ created: 2026-09-11
 description: "Over the past several years we have witnessed extraordinary progress in the development of foundation models, going from simple chat assista..."
 tags:
   - "clippings"
+  - "topic/agents"
+  - "topic/training"
+  - "topic/self-improvement"
+  - "source/raw"
 ---
 ![Image](https://pbs.twimg.com/media/HRwyfS-WoAABogh?format=jpg&name=large)
 

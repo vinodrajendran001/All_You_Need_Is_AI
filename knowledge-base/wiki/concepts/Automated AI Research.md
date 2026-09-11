@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-30
+updated: 2026-09-11
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-07-30-teaching-open-model-science
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active
 ---
 
@@ -78,6 +79,31 @@ Weng's benchmark appendix — PaperBench, CORE-Bench, ScienceAgentBench, RE-Benc
 measurement surface, and all four score *execution*. None of them scores the choice of question,
 which is precisely where the Princeton study locates the gap.
 
+## Self-play works when it is anchored to something that cannot be argued with
+
+[[@zafstojano - Recursive Synthetic Improvement]] traces the curriculum-generation lineage — Schmidhuber (2002) → AlphaGo and AlphaGo
+Zero → GANs → **STaR** → **Self-Rewarding LMs** → **SPIN** → **Absolute Zero** — and the design pattern
+that separates the working versions from the degenerate ones is the anchor.
+
+**Absolute Zero** pairs a proposer with a solver in self-play, rewards the proposer for **learnability**
+(neither trivial nor impossible), and covers abduction, deduction and induction — but crucially it is
+**anchored in a code interpreter**, so the self-play cannot drift away from ground truth. **PopuLoRA**
+takes a different route, evolving a population of student and teacher LoRAs paired by TrueSkill.
+
+**The unanchored version fails in a documented way.** In *Training to Paint with Code*, an elaborate
+multi-criterion reward collapsed to "the same flat clip-art flower with five rounded petals", because the
+judge's criteria were highly correlated and the length term saturated. The shipped reward was much
+simpler. See [[Reward Design for RL]].
+
+**Jason Wei's Verifier's law** states the constraint generally: "The ease of training AI to solve a task
+is proportional to how verifiable the task is." Automated research is therefore easiest exactly where an
+oracle exists, and the frontier of automation tracks the frontier of verification rather than the frontier
+of difficulty.
+
+That framing also supplies the limiting problem: Florian Brand is quoted that "semi-private evals and
+evals with a hold out set are basically dead." An automated research loop that cannot be independently
+measured cannot be shown to be improving. See [[Synthetic Data Flywheel]].
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
@@ -102,3 +128,7 @@ which is precisely where the Princeton study locates the gap.
 - [[Philipp Schmid]]
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
+- [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Synthetic Data Flywheel]]
+- [[RL Environment Design]]
+- [[@zafstojano]]

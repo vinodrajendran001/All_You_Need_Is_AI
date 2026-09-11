@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - safety
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-02-raschka-astra-looped-transformers
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active
 ---
 
@@ -108,6 +109,32 @@ Two cautions attach. The mechanism is **asserted, not measured**: no experiment 
 trading against latent computation. And the debunk is of the *reporting* — Raschka is explicit that he does not
 know Astra's architecture and is reasoning from published models described similarly.
 
+## Monitorability is degrading, and the architecture is not the reason
+
+[[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] separates two claims that press coverage of GPT-6 Astra merged, and the vault should
+keep both halves.
+
+**Looping is not established as a cause.** Astra's system card does report reduced monitorability and a
+regression against GPT-5.6 Sol — mostly shorter, less informative traces — but nothing in it attributes
+that to the architecture. The counterexample is decisive on the token-count argument: **GPT-5.6 Luna uses
+about 80% more tokens than Sol at similar performance**, and nobody concludes Sol is less interpretable
+than Luna. Astra uses fewer tokens than Sol only at fixed accuracy, not overall. For end users nothing
+changed at all — "OpenAI has hidden the traces since o1"; the exposure is for developers who relied on
+them.
+
+**The underlying concern is nonetheless real, on the record, and independent of architecture.** Jakub
+Pachocki, OpenAI's Chief Scientist: *"I want to prevent a race into unmonitorability kicked off by confused
+reporting. The depth of the computation graph for our present frontier models, including Astra, is within
+a factor of two of GPT-4... I do think it is fragile and unfortunately trending in a negative direction,
+for reasons not contingent on architecture changes."*
+
+Read together this is not a debunking. The mechanism proposed by the coverage is wrong; the trend it was
+worried about is confirmed by the lab itself, and attributed to something other than the architecture —
+which makes it harder to address, not easier.
+
+The mechanism that *would* displace visible reasoning is a capacity effect rather than a looping one, and
+it is task-dependent and not yet stable: see [[Latent-Space Reasoning]].
+
 ## Open questions
 
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?
@@ -135,3 +162,4 @@ know Astra's architecture and is reasoning from published models described simil
 - [[Recursive Architectures]]
 - [[Latent-Space Reasoning]]
 - [[Sebastian Raschka]]
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]

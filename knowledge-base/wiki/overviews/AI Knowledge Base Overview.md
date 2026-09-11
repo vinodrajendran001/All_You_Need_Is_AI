@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - overview
   - ai
@@ -229,6 +229,17 @@ source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
+  - src-2026-09-01-iusztin-scoped-subagents
+  - src-2026-09-06-rastogi-agent-observability
+  - src-2026-09-07-bytebytego-llm-error-handling
+  - src-2026-09-07-rai-lejepa
+  - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-09-08-raji-cosine-similarity-safety
+  - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-09-10-fu-progressive-point-matching
 status: active
 ---
 
@@ -600,6 +611,85 @@ Jacobian is proportional to the posterior covariance, whose eigenvalues explode 
 solving the resulting PDE shows the only valid characteristics are **straight lines**. Reflow is reframed as
 **uncertainty elimination** rather than compression. New page: [[Flow Matching]].
 
+## September 11 additions
+
+Eleven sources spanning ten days, falling into three clusters: how agent systems are operated, what
+accelerators and serving stacks actually cost, and what the training loop has managed to automate.
+
+**A bloated context window is a decomposition problem, and the handoff is the design.**
+[[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] replaces one overloaded agent with
+six scoped subagents, each owning a narrow slice of state, and the durable part is the **contract between
+them** rather than the count. [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]] supplies the
+operational counterpart — traces over logs, because an agent failure needs **attribution** rather than
+detection, and a log line cannot say which of nine steps went wrong.
+[[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]] adds the failure taxonomy
+and one point worth keeping above the others: **LLM failures are frequently silent**, since a confidently
+wrong answer returns HTTP 200 and no transport-level signal fires. New pages:
+[[Agent Observability]], [[LLM Application Resilience]]. See [[Paul Iusztin]], [[Sarthak Rastogi]].
+
+**Similarity was never a safety property, and the vault had been treating it as one.**
+[[Amine Raji - Cosine Similarity Is Not a Safety Property]] makes a narrow argument with wide consequences:
+retrieval ranks by similarity, similarity does not encode intent, and **a poisoned document that is
+topically relevant will rank exactly as well as a clean one**. Embeddings are also lossy rather than
+one-way, so a stored vector is closer to stored text than to a hash. The figures are explicitly filed as
+**a lab reading, not a base rate**. New pages: [[Retrieval Poisoning]], [[Embedding Inversion]]; both
+[[Embedding Model Selection]] and [[Agent Security and Governance]] gained sections. Alongside it,
+[[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]] extends [[Model Routing]] with the
+caveat that a learned router **inherits its judge's bias** — "if the evaluation method rewards fluent
+answers rather than correct ones, the router can learn the wrong lesson."
+
+**The vault's first hard data on a non-NVIDIA accelerator, and a lesson in how to read it.**
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] benchmarks TPUv7 Ironwood four ways and
+gets **50% better, 8% better, or 30% worse** from the same silicon depending on whether you normalise by
+chip-hour, by interactivity, by end-to-end response time, or against a disaggregated GB300 — a worked
+example for [[Serving Benchmarks and Goodput]]. The more consequential finding is geometric: the MXU went
+from **128×128 through v5 to 256×256 from v6e**, so **a head dimension of 128 caps attention matmuls at 50%
+MXU utilisation and 64 caps them at 25%**. Hardware is constraining model architecture rather than the
+reverse, and bring-up cost is therefore uncorrelated with model popularity. New page:
+[[Accelerator Software Externalization]]. See [[SemiAnalysis]].
+
+**The kernel became the program.**
+[[Cohere - North Mini Code Megakernel Serving Engine]] reports the first fully fledged serving system built
+around a decode megakernel: one persistent threadblock per SM, a 32-int32 task descriptor ABI, and
+global-memory counters whose cost is **O(1) regardless of fan-in**. It reaches **292 tok/s at batch 1, 62%
+of speed-of-light, against vLLM's 185 (39%)**, and **1.25×–1.41× end-to-end**. Two results are more
+instructive than the speedup: **dependency-affinity placement — the textbook locality optimisation — made
+it 1–2% slower**, with the authors stating a causal model "remains open"; and **real expert distributions
+give 1.32× against 1.14× under uniform synthetic routing**, so the conventional MoE benchmark understates
+it. New page: [[Megakernels]]. See [[Cohere]].
+
+**Recursive self-improvement, deflated into something checkable.**
+[[@zafstojano - Recursive Synthetic Improvement]] argues RSI "might as well stand for **Recursive Synthetic
+Improvement**" — not a model rewriting its weights but human artifacts being replaced by model-generated
+ones across five auditable stages: **Judge, Corpus, Teacher, Curriculum, Environment**. The near-controlled
+experiment is **GLM-5.3, identical to GLM-5.2 in base, architecture and parameter counts, differing by one
+month of scaling long-horizon environments and RL**, with gains that "are not marginal." The survey's own
+caveat is recorded with it: the apparent exponential "is mostly an artifact of just how little these labs
+disclose," and five automated stages are documented without the loop ever being shown to **compound**. New
+page: [[Synthetic Data Flywheel]]; sections added to [[Recursive Self-Improvement]],
+[[Knowledge Distillation]], [[RL Environment Design]], [[LLM Training Pipeline]], [[LLM-as-a-Judge]] and
+[[Automated AI Research]].
+
+**Two architecture sources, one careful about causation and one solving a credit problem.**
+[[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] holds two claims apart that
+the release conflated: looping is architectural, hidden reasoning is a monitorability property, and Astra's
+**monitorability regression is real but not attributed to looping** — two changes shipped together and only
+one was measured. [[Preston Fu - Progressive Point Matching]] attacks credit assignment over long GUI
+trajectories by matching progress points rather than scoring the endpoint. New pages:
+[[Long-Horizon Credit Assignment]], [[Computer Use Agents]].
+
+**An anti-collapse term derived rather than tuned.**
+[[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]] is the batch's best piece of
+method. Dimensional collapse is dangerous because it is **silent** — "nothing in your training run will
+tell you it is happening" — and moment-matching criteria like VICReg provably cannot fix it. The target
+distribution is derived from what downstream probes need (**Q = N(0, σ²I)**, from a linear-probe bias
+argument plus a Fisher-information equality that holds **iff** the distribution is Gaussian), and the
+divergence from a hypothesis test (Cramér–Wold plus Epps–Pulley, giving **SIGReg**). **50 architectures
+under 20M parameters from 8 families land between 91.5% and 95% top-1 with a single λ**, and training loss
+predicts linear-probe accuracy at **~85% Spearman, ~99% rescaled** — label-free model selection. The
+decisive experiment is missing and named as such: **no matched-compute comparison against DINOv2 or
+DINOv3**. New page: [[Joint-Embedding Predictive Architecture]]. See [[Siddhant Rai]], [[Vizuara]].
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]
@@ -757,3 +847,13 @@ solving the resulting PDE shows the only valid characteristics are **straight li
 - [[Paolo Perrone]]
 - [[adlrocha]]
 - [[derelict5432]]
+- [[Agent Observability]]
+- [[LLM Application Resilience]]
+- [[Retrieval Poisoning]]
+- [[Embedding Inversion]]
+- [[Megakernels]]
+- [[Accelerator Software Externalization]]
+- [[Synthetic Data Flywheel]]
+- [[Long-Horizon Credit Assignment]]
+- [[Computer Use Agents]]
+- [[Joint-Embedding Predictive Architecture]]

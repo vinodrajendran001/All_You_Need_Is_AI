@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-08-27
+updated: 2026-09-11
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-09-10-fu-progressive-point-matching
 status: active
 ---
 
@@ -90,6 +91,30 @@ a preference or safety reward makes drift and reward hacking indistinguishable.
 This turns KL from a knob tuned by feel into something derivable from the objective. See
 [[Staged Reinforcement Learning Curriculum]] for the full ladder.
 
+## GRPO has a horizon beyond which it does not train slowly — it does not start
+
+[[Preston Fu - Progressive Point Matching]] gives GRPO's limit a mechanism and a threshold. The mechanism: sparse outcome rewards
+"produce policy gradients that degrade **exponentially** in signal-to-noise with the task horizon." Since
+GRPO's advantage estimate is computed from the spread of outcomes within a group of rollouts, a group in
+which nothing succeeds carries no signal at all.
+
+The threshold is observed rather than theorised, and it is stark. On a near-impossible math dataset,
+**GRPO could not fill even a single training batch after 24 hours.** That is qualitatively different from
+converging slowly — there is no gradient to follow at any compute budget. Progressive Point Matching
+trained on the same dataset and beat the next-best method (POPE).
+
+On synthetic tasks composed of independent subtasks, PPM's speedup over GRPO **improves exponentially with
+the number of subtasks** — the mirror image of the signal-to-noise decay. The caveat is that independent
+subtasks are the best case for a set-valued progress measure, and the exponential claim is not shown to
+survive the dependent case.
+
+A separate finding with implications for GRPO training runs generally: **training at 4K context was
+comparable to or better than at 8K**, because the 8K policy collapses its output length and guesses early
+while the 4K policy is forced to optimise partial progress. A longer training budget can teach a policy to
+waste it.
+
+See [[Long-Horizon Credit Assignment]].
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -111,3 +136,6 @@ This turns KL from a knob tuned by feel into something derivable from the object
 - [[LLM Reasoning]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]
+- [[Preston Fu - Progressive Point Matching]]
+- [[Long-Horizon Credit Assignment]]
+- [[Preston Fu]]

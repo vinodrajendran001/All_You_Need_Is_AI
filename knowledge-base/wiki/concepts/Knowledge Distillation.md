@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - model-training
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active
 ---
 
@@ -97,6 +98,39 @@ training pairing** — a property of the data construction, not of either networ
 the trace-versus-answer distinction this page records for language models, where what transfers is supervision
 content; here what transfers is the *absence of contradiction* in the targets. See [[Flow Matching]].
 
+## A weaker teacher can be a better teacher, and the cost floor is now trivial
+
+[[@zafstojano - Recursive Synthetic Improvement]] collects the results that turned distillation from a compression technique into a
+standard stage of frontier training.
+
+**The divergence choice is the design decision.** Off-policy distillation minimises forward KL and is
+**mode-covering**; on-policy minimises reverse KL and is **mode-seeking**.
+
+**The cost floor is the striking part of the 2023 cohort.** Self-Instruct bootstrapped ~82k instances from
+**175 seed tasks**; **Alpaca** produced 52k pairs for **~$500 in API calls plus ~$100 of compute, three
+hours on 8×A100**; **Vicuna** reached "~90% of ChatGPT quality" on 70k ShareGPT conversations for **$300**;
+Orca used ~5M ChatGPT traces plus 1M from GPT-4. At the efficiency extreme, **s1 matched o1-preview from
+1,000 curated questions**.
+
+**DeepSeek R1's distills are the most-used artifacts of the trend** — six sizes from ~800k samples (~600k
+rejection-sampled reasoning, 200k non-reasoning) — with **the 1.5B and 7B distills alone downloaded over
+35M times as of September 2026**.
+
+**OpenThoughts3 (1000+ controlled experiments) produced three findings that contradict common practice**:
+sampling multiple answers per question gives ≥16× the data *and* better results; **QwQ-32B is a stronger
+teacher than DeepSeek-R1 despite being the weaker model**; and difficulty filtering helps while **answer
+filtering does not**. The middle result is the important one — it breaks the assumption that distillation
+quality is bounded by teacher capability, and whatever property makes a good teacher is not characterised.
+
+**It is now a line item in frontier pipelines.** Qwen 3's distillation pipeline cost **10% of the GPU
+compute** of the full multi-stage pipeline and performed better. Nemotron 3 Ultra trained **10+
+domain-specialised teachers** consolidated via MOPD; MAI-Thinking-1 trained three. OPSD and SDPO use the
+model as its own teacher with privileged information. See [[Multi-Teacher On-Policy Distillation]].
+
+A limit argued from the other side: RL's Razor (SFT forgets more than RL), *Retaining by Doing*, and *SFT
+Memorizes, RL Generalizes* all suggest distillation transfers behaviour more readily than capability — the
+basis for Nathan Lambert's claim that RL environments and infrastructure are not distillable.
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -120,3 +154,6 @@ content; here what transfers is the *absence of contradiction* in the targets. S
 - [[@docmilanfar - A Lagrangian View of Flow Matching]]
 - [[@docmilanfar]]
 - [[Diffusion Models]]
+- [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Synthetic Data Flywheel]]
+- [[@zafstojano]]

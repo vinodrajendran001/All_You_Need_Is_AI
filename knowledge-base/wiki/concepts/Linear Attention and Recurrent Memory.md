@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-09-04
+updated: 2026-09-11
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-04-20-moonshotai-flashkda-v1
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-02-raschka-astra-looped-transformers
+  - src-2026-09-07-semianalysis-tpu-inferencex
 status: active
 ---
 
@@ -86,6 +87,25 @@ rather than as a measurement, on architectural axes where the interesting questi
 rather than any single setting. Two independent labs converging on "a small integer works, more does not help"
 is suggestive, but it is not the curve.
 
+## Hybrid recurrent models are a memory-allocation problem on real hardware
+
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] supplies rare implementation detail on serving a **Gated DeltaNet** hybrid at scale,
+and the wins are as much about memory layout as about the operator.
+
+**Kernel-level optimisations:** algebraic rearrangement to overlap MXU and VPU work gave **+2.79% and
++4.48%**; register-spill slicing made the decode-64 kernel **~20% faster**; async state transfers added
+**+11.3%**; and **GDN v3, which fuses Conv1D and GDN, reports 1.41x decode, 1.60x prefill and 2.14x mixed
+— kernel-level figures only, with no end-to-end number given.**
+
+**The allocation wins are larger than the arithmetic ones.** Compact allocation of recurrent state
+reclaimed **~76 GiB of HBM**, growing the attention block pool **71%** and 1k8k throughput **18%**; holding
+the recurrent state in **BF16 with FP32 arithmetic in VMEM** added a further **15%**. In a hybrid model
+the recurrent state competes with the KV cache for the same HBM, so state compactness converts directly
+into serving capacity — see [[KV Cache]].
+
+The forward-looking item is that **TPUv8i triples on-chip SRAM to 384 MB**, sized to hold reasoning and
+agentic KV cache on-chip, which changes the calculus for recurrent-state placement again.
+
 ## Open questions
 
 - What determines the right full-attention ratio in a hybrid, and does it depend on task, sequence length, or
@@ -116,3 +136,5 @@ is suggestive, but it is not the curve.
 - [[Test-Time Scaling]]
 - [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
 - [[Sebastian Raschka]]
+- [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- [[SemiAnalysis]]

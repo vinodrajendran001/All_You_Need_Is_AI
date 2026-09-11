@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-08-cohere-megakernel-serving
+captured: 2026-09-11
 title: "Cohere's North Mini Code Megakernel Serving Engine"
 source: "https://cohere.com/blog/megakernels?utm_source=tldrai"
 author:
@@ -10,6 +13,10 @@ created: 2026-09-10
 description: "Cohere presents the first production-ready LLM serving system built around a decode megakernel, achieving 1.58× speedup over vLLM."
 tags:
   - "clippings"
+  - "topic/inference"
+  - "topic/gpu"
+  - "topic/systems"
+  - "source/raw"
 ---
 Today, Cohere presents a serving engine for [North Mini Code](https://cohere.com/north-mini-code) built around a decode megakernel: BF16 on a single H100, 1.25× - 1.41× faster than vLLM end-to-end. Explore the code behind the serving engine on [GitHub](https://github.com/cohere-ai/cohere-megakernel).
 

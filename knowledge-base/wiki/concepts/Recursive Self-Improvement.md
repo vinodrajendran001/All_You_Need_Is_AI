@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - recursive-self-improvement
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active
 ---
 
@@ -218,6 +219,38 @@ fine-tuning on the same workload — and the zero-regression claim is measured b
 evidence of a *design* for constrained self-improvement it is valuable; as evidence of *effectiveness* it is not
 yet decisive. See [[Institutional Knowledge Agents]].
 
+## The recursion runs through artifacts, not weights
+
+[[@zafstojano - Recursive Synthetic Improvement]] proposes a deflationary but far more checkable reading: RSI "might as well stand for
+**Recursive Synthetic Improvement**." The loop is not a model rewriting itself; it is that "a
+human-generated artifact gets replaced by a model-generated one, which trains better models, which then
+generate better artifacts", with human effort redirected to whatever is not yet automated.
+
+The value of the reframing is that it decomposes into **five stages that can each be audited separately**
+for whether the human has actually been removed: the **Judge**, the **Corpus**, the **Teacher**, the
+**Curriculum**, and the **Environment**. Each sits at a different point on that arc, and each has
+published evidence and published limits — collected under [[Synthetic Data Flywheel]].
+
+**The clearest single piece of evidence is accidental.** GLM-5.3 has the same base, the same architecture,
+and the same total and activated parameters as GLM-5.2; the difference is **one month of scaling
+long-horizon environments and RL**, and "the gains are not marginal." Jie Tang's gloss is that "the dials
+do not have to be turned together" — against Noam Shazeer's earlier framing that "FLOPs were intelligence;
+parameters were knowledge."
+
+**Two caveats belong with the claim, and the first is the author's own.** The apparent exponential "is
+mostly an artifact of just how little these labs disclose" — most of the timeline is assembled from
+technical reports written by parties with an interest in the narrative. And the survey documents five
+automated stages without ever establishing that the loop **compounds**: better judges improving corpora
+improving teachers is asserted by arrangement, not measured.
+
+The distillation dispute that usually accompanies RSI claims is left unresolved here too. Anthropic
+accused Moonshot of exfiltrating **3.4 million exchanges**, and Panfilov et al. disclosed that encrypted
+reasoning traces are interchangeable across sessions and models within a provider's ecosystem — but the
+evidence that Kimi K3 was prefilled with decoded Opus 4.8 reasoning is explicitly **inconclusive**, and
+the counter-evidence (RL's Razor, *Retaining by Doing*, *SFT Memorizes, RL Generalizes*) points the other
+way. Nathan Lambert's formulation closes it: **"One does not simply 'distill' RL environments,
+infrastructure to run them at scale, or algorithms to mix them together effectively."**
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -264,3 +297,8 @@ yet decisive. See [[Institutional Knowledge Agents]].
 - [[Meta - An Organizational Second Brain]]
 - [[Meta]]
 - [[LLM-as-a-Judge]]
+- [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Synthetic Data Flywheel]]
+- [[RL Environment Design]]
+- [[@zafstojano]]
+- [[Nathan Lambert]]

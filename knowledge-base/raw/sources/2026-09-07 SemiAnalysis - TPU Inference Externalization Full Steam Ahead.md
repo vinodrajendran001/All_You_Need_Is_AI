@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-07-semianalysis-tpu-inferencex
+captured: 2026-09-11
 title: "TPU Inference Externalization Full Steam Ahead"
 source: "https://inferencex.semianalysis.com/blog/tpu-inferencex-full-steam?utm_source=tldrai"
 author:
@@ -8,6 +11,10 @@ created: 2026-09-09
 description: "First third-party TPUv7 Ironwood inference results on the InferenceX Official Preview. Apples-to-apples FP8 comparisons against B200 and B300, the native TorchTPU PyTorch stack replacing TorchAX, the Pallas kernel and MXU optimizations behind the numbers, and what TPUv8i changes."
 tags:
   - "clippings"
+  - "topic/inference"
+  - "topic/hardware"
+  - "topic/economics"
+  - "source/raw"
 ---
 *Originally published on the [SemiAnalysis newsletter](https://newsletter.semianalysis.com/p/tpu-inferencex-full-steam) on September 7, 2026.*
 

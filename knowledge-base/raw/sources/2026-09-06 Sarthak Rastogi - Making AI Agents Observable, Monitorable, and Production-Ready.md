@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-06-rastogi-agent-observability
+captured: 2026-09-11
 title: "Making AI Agents Observable, Monitorable, and Production-Ready [Tutorial + Code]"
 source: "https://sarthakai.substack.com/p/making-ai-agents-observable-monitorable?utm_source=post-email-title&publication_id=1338283&post_id=214367075&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,10 @@ created: 2026-09-07
 description: "No sensible Ops team will agree to run your agents in prod without proper observability and monitoring. Here’s how to implement it."
 tags:
   - "clippings"
+  - "topic/agents"
+  - "topic/production"
+  - "topic/observability"
+  - "source/raw"
 ---
 It doesn’t matter how good your AI agent is. **No sensible Ops team will agree to run it in prod without proper observability and monitoring.**
 

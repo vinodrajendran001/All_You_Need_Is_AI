@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - coding-agents
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-01-iusztin-scoped-subagents
 status: active
 ---
 
@@ -199,6 +200,34 @@ change that reduced cost in the code-review agent **increased** cost in the CLI 
 change, opposite signs. Harness design evidence is local to the workload, which is why this page's accumulated
 prescriptions should be read as hypotheses to re-measure rather than as settings to copy.
 
+## The harness owns the delegation budget, and the persona file owns the child's authority
+
+[[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] opens from the position this page already holds — in LangChain's Terminal-Bench
+experiment, "changing only the harness (with the same model) moved a coding agent from ~30th place into
+the top 5" — and adds the corollary: **"Every AI application that wraps an agent is a harness."**
+
+What the source contributes is where the delegation budget lives. Spawning children is a harness
+capability, and so is bounding them: 6 prompts per call, `Semaphore(4)` on concurrency,
+`UsageLimits(request_limit=25)` per child, a 16,000-byte result budget divided across the fan-out, and
+truncation at `max_lines=2000`. Because these sit in the tool rather than in an orchestration script, the
+guarantee is structural — "parallelism the harness guarantees, not a courtesy the model may or may not
+extend by emitting N tool calls."
+
+**The Agents Catalog separates two knobs that are frequently conflated.** A persona is a Markdown file
+with YAML front matter (name, description, tools allowlist, default permission mode, optional allow/deny
+rules, subagent flag) and the system prompt in the body. The tools allowlist decides which tools appear in
+the system prompt; the permission mode decides which of those run without human approval. The dependency
+is one-way and worth stating exactly: "If a tool is not present in the system prompt, the permission mode
+has no effect, as that tool will never be called."
+
+Decode's personas make the pattern concrete: `build` carries all 15 tools at default mode; `plan` drops
+`write`, `edit` and `bash`; `code-reviewer` drops `write` and `edit` but keeps `bash` narrowed to
+`allow: ["bash(git *)"]`.
+
+A caution from an adjacent direction: harness scaffolding has a shelf life. As
+[[Computer Use Agents]] records, stale `AGENTS.md` and `SKILL.md` content written against a weaker model
+generation may now over-constrain a stronger one.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -254,3 +283,7 @@ prescriptions should be read as hypotheses to re-measure rather than as settings
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
 - [[Can Bölük]]
 - [[GitHub]]
+- [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
+- [[Paul Iusztin]]
+- [[Agent Delegation]]
+- [[Computer Use Agents]]

@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-07-bytebytego-llm-error-handling
+captured: 2026-09-11
 title: "How to Deal With Errors and Failures in LLM-Powered Applications"
 source: "https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures?utm_source=post-email-title&publication_id=817132&post_id=214198535&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-08
 description: "Apart from normal processing, the application also sends data to a large language model (LLM). It then uses the model’s response to carry out a task."
 tags:
   - "clippings"
+  - "topic/production"
+  - "topic/reliability"
+  - "source/raw"
 ---
 ## The all-in-one intelligent cloud (Sponsored)
 

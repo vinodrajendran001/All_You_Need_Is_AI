@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-07-03
+updated: 2026-09-11
 tags:
   - concept
   - reinforcement-learning
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-02-dwarkesh-eric-jang-flashcards
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-09-10-fu-progressive-point-matching
 status: active
 ---
 
@@ -42,6 +43,24 @@ RL is one of the major domains already represented in the broader vault, and thi
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]] sharpens the RL-for-reasoning branch and its central debate. **RLVR (RL with Verifiable Rewards)** replaces a neural reward model with rule-based checks (calculator for math, test suite for code, tags for format), works as well as or better than learned rewards, and creates a contrastive correct-vs-incorrect signal that transfers to unseen problems — see [[Reward Design for RL]]. The deck also gives the cleanest statement of why [[Group Relative Policy Optimization|GRPO]] made large-scale reasoning RL practical (it drops PPO's separate critic). Crucially it frames an open question: **SFT reproduces the training distribution while RL discovers novel strategies** (Logic-RL generalizes from puzzles to math), but does RL *create* reasoning or merely *amplify* latent pre-training capability (base models show "aha moments" without RL)? See [[LLM Reasoning]].
 - This page should remain a hub page until narrower RL subtopic pages are added.
 
+## The horizon, not the algorithm, is what breaks outcome-based RL
+
+[[Preston Fu - Progressive Point Matching]] states the scaling limit of outcome-supervised RL precisely: sparse outcome rewards
+"produce policy gradients that degrade **exponentially** in signal-to-noise with the task horizon." This
+is a property of the reward structure rather than of any particular optimiser, and it is why long-horizon
+agentic tasks are hard in a way that is not fixed by more compute.
+
+The regime change is observable. On a near-impossible math dataset, **GRPO could not fill even a single
+training batch after 24 hours** — no successful rollouts, no gradient, no learning at any budget. Below
+some horizon, outcome RL is merely inefficient; above it, it is inapplicable.
+
+Every partial-credit remedy is an attempt to manufacture signal earlier, and the question that separates
+them is bias: does the policy that maximises the shaped reward still maximise the outcome? Learned value
+functions, process rewards and self-distillation do not clear that bar. Progressive Point Matching does,
+by defining progress over a monotone set-valued state space and then applying **shortcutting** so that any
+successful trajectory earns full credit regardless of strategy. See
+[[Long-Horizon Credit Assignment]].
+
 ## Open questions
 
 - Which RL branches deserve their own pages first as more sources are ingested?
@@ -68,3 +87,7 @@ RL is one of the major domains already represented in the broader vault, and thi
 - [[LLM Training Pipeline]]
 - [[AI Knowledge Base Overview]]
 - [[2026-05-08 Mathematical Foundations for Reinforcement Learning]]
+- [[Preston Fu - Progressive Point Matching]]
+- [[Long-Horizon Credit Assignment]]
+- [[Group Relative Policy Optimization]]
+- [[Preston Fu]]

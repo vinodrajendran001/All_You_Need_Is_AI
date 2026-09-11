@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-08-raji-cosine-similarity-safety
+captured: 2026-09-11
 title: "Cosine Similarity Is Not a Safety Property"
 source: "https://aminrj.com/posts/cosine-similarity-is-not-a-safety-property/?utm_source=tldrai"
 author:
@@ -9,6 +12,10 @@ created: 2026-09-09
 description: "Five documents can corrupt a 2.6-million-document knowledge base through vocabulary engineering. The geometry behind RAG poisoning, why the attacker’s requirement is also their signature, and why stored vectors are not opaque."
 tags:
   - "clippings"
+  - "topic/rag"
+  - "topic/security"
+  - "topic/retrieval"
+  - "source/raw"
 ---
 The vector database returns the most *relevant* documents, defined as the ones with the highest cosine similarity to the query. This is a mathematical property with no concept of accuracy, authority or provenance. A document scoring 0.95 against a query can be entirely fabricated. A document scoring 0.60 can be the ground truth.
 

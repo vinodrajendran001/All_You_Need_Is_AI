@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-10-fu-progressive-point-matching
+captured: 2026-09-11
 title: "Progressive Point Matching"
 source: "https://www.prestonfu.com/notes/ppm/?utm_source=tldrai"
 author:
@@ -7,6 +10,9 @@ created: 2026-09-10
 description: "Assigning partial credit to improve reinforcement learning for long-horizon reasoning tasks."
 tags:
   - "clippings"
+  - "topic/reinforcement-learning"
+  - "topic/reasoning"
+  - "source/raw"
 ---
 Today’s LLMs tackle extremely long-horizon tasks that may run continuously for hours or days. Tasks that take humans days or weeks may require language model trajectories containing millions, or eventually billions, of tokens.
 

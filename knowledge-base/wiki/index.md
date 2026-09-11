@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - index
 source_ids:
@@ -227,6 +227,17 @@ source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
+  - src-2026-09-01-iusztin-scoped-subagents
+  - src-2026-09-06-rastogi-agent-observability
+  - src-2026-09-07-bytebytego-llm-error-handling
+  - src-2026-09-07-rai-lejepa
+  - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-09-08-raji-cosine-similarity-safety
+  - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-09-10-fu-progressive-point-matching
 status: active
 ---
 
@@ -343,6 +354,17 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Institutional Knowledge Agents]] - Encoding an organization's judgement in reviewable text and improving it by compilation rather than retraining.
 - [[Flow Matching]] - Straight-line trajectories as the solution to an advection PDE, the Jacobian Penalty, and why crossing paths still cost steps.
 
+- [[Agent Observability]] - Why an agent needs traces rather than logs, and the five signals that make a failure attributable.
+- [[LLM Application Resilience]] - Treating the model as an unreliable dependency, and why the dangerous LLM failures return HTTP 200.
+- [[Retrieval Poisoning]] - Attacking a RAG system through its index, and why similarity scores cannot tell you a document is hostile.
+- [[Embedding Inversion]] - Embeddings are lossy, not one-way; what can be recovered from a vector and what that means for storing them.
+- [[Megakernels]] - Collapsing a decode step into one persistent kernel, where the schedule becomes the object of optimization.
+- [[Accelerator Software Externalization]] - What it costs to make an accelerator usable by people who did not design it, per model family.
+- [[Synthetic Data Flywheel]] - Five stages of the training stack now generating their own inputs, and what each one has actually established.
+- [[Long-Horizon Credit Assignment]] - Assigning reward across a trajectory where the decisive action happened thousands of steps earlier.
+- [[Computer Use Agents]] - Agents driving a GUI rather than an API, and why the environment is the hard part.
+- [[Joint-Embedding Predictive Architecture]] - Predicting in representation space instead of pixel space, and the collapse problem that comes with it.
+
 ## Entities
 
 - [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
@@ -408,6 +430,14 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Meta]] - Operator of an internal domain-expert agent built on 200+ reviewable text files rather than fine-tuning.
 - [[GitHub]] - Copilot agent operator supplying the vault's A/B-measured harness cost reductions and its two most useful negative results.
 - [[@docmilanfar]] - Researcher deriving flow matching's straight paths from the governing PDE rather than from empirical results.
+
+- [[Paul Iusztin]] - ML engineer whose context-window decomposition supplies the vault's clearest subagent-scoping account.
+- [[Sarthak Rastogi]] - Engineer-writer who brought production observability vocabulary to the vault's agent material.
+- [[Amine Raji]] - Security engineer arguing that cosine similarity was never a safety property and never claimed to be.
+- [[Preston Fu]] - Researcher whose progressive point matching addresses long-horizon credit assignment in computer-use agents.
+- [[@zafstojano]] - Author of the recursive-synthetic-improvement survey that reframes RSI as an artifact loop.
+- [[SemiAnalysis]] - Hardware analysis outfit supplying the vault's first third-party non-NVIDIA inference benchmarks.
+- [[Cohere]] - Model lab and operator of the first fully fledged serving system built around a decode megakernel.
 
 ## Sources
 
@@ -645,6 +675,20 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Meta - An Organizational Second Brain]] - A domain-expert agent over 200+ text files that improves by compiling expert feedback under regression tests, with no model retraining.
 - [[Sebastian Raschka - OpenAI Astra and Looped Transformers]] - Looping is layer reuse: 22 layers twice, ~75% token efficiency at two passes, and why thinner reasoning traces follow from capacity rather than recurrence.
 - [[@docmilanfar - A Lagrangian View of Flow Matching]] - Why diffusion needs many steps: the target keeps moving, the Jacobian Penalty, and reflow as uncertainty elimination.
+
+### September 11, 2026 batch
+
+- [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] - Decomposing one overloaded context into six scoped subagents, and the handoff contract that makes it work.
+- [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]] - Traces over logs, the signals worth emitting, and why agent failures need attribution rather than detection.
+- [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]] - The distributed-systems playbook applied to an unreliable model, and the failures that arrive as HTTP 200.
+- [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]] - Deriving the anti-collapse term instead of tuning it: isotropic Gaussian targets, SIGReg, and label-free model selection.
+- [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] - TPUv7 Ironwood measured four ways with results from +96% to -30%, and the tile geometry that constrains model architecture.
+- [[Cohere - North Mini Code Megakernel Serving Engine]] - One persistent kernel per SM at 62% of speed-of-light, a full warp ABI, and a scheduler ablation that contradicts the obvious design.
+- [[Amine Raji - Cosine Similarity Is Not a Safety Property]] - Retrieval ranks by similarity and similarity does not encode intent; poisoned indexes, inversion, and a lab reading rather than a base rate.
+- [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]] - The routing taxonomy and its cost arithmetic, and why a learned router inherits its judge's bias.
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] - Looping and monitorability arrived together; the regression is real and is not attributed to the architecture.
+- [[@zafstojano - Recursive Synthetic Improvement]] - RSI as an artifact loop across judge, corpus, teacher, curriculum and environment, with GLM-5.3 as the near-controlled experiment.
+- [[Preston Fu - Progressive Point Matching]] - Credit assignment over long GUI trajectories by matching progress points rather than scoring the endpoint.
 
 ## Syntheses
 

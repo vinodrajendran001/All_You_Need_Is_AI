@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - llm
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-08-30-halo-research-sopro-v2
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-09-bytebytego-model-routing
 status: active
 ---
 
@@ -175,6 +176,33 @@ not whether a small model can do the task as well as a large one — it is wheth
 model, and whether a roundtrip is an acceptable price for something that decorates a UI. See
 [[Tool Roster Economics]] for the same logic applied to tools rather than models.
 
+## The small model's role is usually router or first attempt, not replacement
+
+[[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]] gives small models two production roles that are more defensible than "use a smaller
+model."
+
+**As the router.** A small model classifies the incoming request, returning `{difficulty, risk,
+recommended_model, reason}`, which "is less expensive than sending every request to a powerful model." The
+classification is advisory: production systems pair it with fixed safety rules, because risky requests —
+medical, legal, financial, security — can look simple and must escalate regardless.
+
+**As the first attempt in a cascade.** Try the small model, check the result automatically, escalate on
+failure. This "works best when the correctness of an answer can be checked automatically", as with
+structured field extraction or code that must pass unit tests, and it removes the need for an accurate
+classifier entirely. The break-even is explicit: "if most attempts made by the small model end up in
+failure, the application only ends up paying for both models."
+
+The arithmetic that sizes both roles: at a 1/20th price ratio for small and 1/5th for mid-tier, an
+85/10/5 mix costs **11%** of routing everything to a frontier model. The ceiling is set by how much of the
+workload is genuinely simple, so the honest framing is that small models capture value from a *mix*, not
+from being adequate substitutes.
+
+Two limits worth carrying. A small model's difficulty judgement is unreliable on the axis that matters
+most — risk — and semantic similarity to past easy requests does not imply comparable reasoning
+requirements, since "two requests can look similar in wording but differ in reasoning requirements." And
+provider upgrades silently change what a small model can handle, invalidating whatever routing policy was
+calibrated against it. See [[Model Routing]].
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -213,3 +241,5 @@ model, and whether a roundtrip is an acceptable price for something that decorat
 - [[Harness State Authority]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Can Bölük]]
+- [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]]
+- [[ByteByteGo]]

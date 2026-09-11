@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-08-26
+updated: 2026-09-11
 tags:
   - concept
   - ai-agents
@@ -37,6 +37,8 @@ source_ids:
   - src-2026-08-22-grok-bot-systems-engineering-working-note
   - src-2026-08-21-anthropic-ai-native-sdlc
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
+  - src-2026-09-06-rastogi-agent-observability
+  - src-2026-09-07-bytebytego-llm-error-handling
 status: active
 ---
 
@@ -226,6 +228,44 @@ Two operational rules follow, and they belong alongside the invariants above:
 
 The credential example is not hypothetical for this audience: an agent asked to remove hardcoded secrets from a repository must read those secrets, so they enter the trace before any answer exists. See [[Reasoning Trace Privacy]].
 
+## The production gate is reconstructability, and the new failure category is semantic
+
+Two September 2026 sources converge on what has to be true before an agent takes real traffic.
+
+[[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]] states the gate operationally: if nobody can answer *what did the agent do, why did
+it do that, and what did it cost* for any single run from the last 30 days, the system **"does not touch
+production traffic."** This is not evals — those judge whether the chain was good — and it is not logging,
+since "a team can have TBs of logs and still have zero observability." It is the ability to reconstruct a
+**causal chain**. Across 73 production agent incidents from January to May 2026, incidents without
+decision-trace logging averaged **4.2 hours** to resolve against **under an hour** with full tracing, and
+tool-call failures were the most common entry point, cascading into planning failures and wrong answers
+before reaching a human. See [[Agent Observability]].
+
+[[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]] supplies the failure taxonomy that explains why ordinary monitoring misses this.
+LLM applications fail in two categories: **technical failures**, where the operation cannot complete, and
+**semantic failures**, where it completes perfectly and the result is still wrong, unsafe, irrelevant or
+unusable. "A successful API request to an LLM doesn't guarantee that the response we receive is correct or
+even usable." Conventional error handling covers only the first, because no exception is raised for the
+second. See [[LLM Application Resilience]].
+
+Three findings from the pair are worth holding as production rules.
+
+**A near-zero fallback-response rate is a defect signal.** If an agent's `fallback_response_rate` is close
+to zero, "that's not a good sign, it just means your agent has never met an ambiguous situation it didn't
+confidently answer anyway."
+
+**Guardrails need their own tests.** Feeding known-bad input on a schedule — *sabotage validation* — is
+the only way to know a check still fires; one team running it found **67 checks silently no-op'ing for
+months**.
+
+**Retries multiply side effects at a computable rate.** 20,000 runs/day × 6 tool calls × 0.5% failure × 3
+attempts is roughly **1,800 retried calls daily**, each a chance to fire a refund or a write twice. Both
+sources reach the same requirement from opposite directions: tool calls need idempotency keys, and the
+trace needs `retry_count`, or a retry storm and a prompt-injection campaign are indistinguishable.
+
+A cautionary data point on buying rather than building: adoption metrics ship early because they are easy
+and sell internally, while step-level reasoning traces and cost-per-task attribution arrive late.
+
 ## Related pages
 
 - [[Grok Bot Systems Engineering Working Note]]
@@ -278,3 +318,8 @@ The credential example is not hypothetical for this audience: an agent asked to 
 - [[Agent Frameworks]]
 - [[ByteByteGo - How to Steal an AI Model's Private Thoughts]]
 - [[Reasoning Trace Privacy]]
+- [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
+- [[Agent Observability]]
+- [[LLM Application Resilience]]
+- [[Sarthak Rastogi]]

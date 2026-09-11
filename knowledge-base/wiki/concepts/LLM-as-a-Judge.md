@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - llm-evaluation
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-07-29-giles-thomas-gpt2-weights-part-1
   - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-06-rastogi-agent-observability
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active
 ---
 
@@ -105,6 +107,51 @@ passes or fails"* — and only what it cannot decide reaches a model judge. Give
 judge's noise floor bounds what an experiment can detect, moving every mechanically checkable property out of the
 judge's remit is the cheapest available precision gain.
 
+## An online evaluator is triage; a synchronous gate is a different component
+
+[[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]] draws a line that production teams routinely blur. Langfuse-style production
+evaluators run LLM-as-judge asynchronously against a sample of live observations — "after the response has
+already gone out... They are not, by themselves, a synchronous safety gate." They are monitoring and
+triage.
+
+A gate is a separate component with a different budget: a fast cheap judge sitting in the response path.
+Singapore's GovTech published this pattern for public-service chatbots, using **lightweight
+general-purpose models as low-latency security judges** that caught jailbreaks and prompt injection "with
+F1 scores competitive with much heavier specialized safety models" — evidence that the gate does not have
+to be a specialised safety model to be useful.
+
+The sampling design that feeds the offline judge also has to change for LLM traffic. Random sampling works
+for a payment API because "two requests that look similar probably behave similarly"; for an LLM call,
+"two requests with near-identical inputs can produce wildly different outputs — one correct, one
+hallucinated, one a policy refusal." A 1% random sample gives "1% of the picture with no way to know
+what's in the missing 99%." The replacement is **tail-based, outcome-aware sampling**: always capture
+errors, high latency, low grounding scores and guardrail flags, and sample routine successes at
+**5–20%**.
+
+The unresolved cost is that a 5–20% sample of routine successes is exactly the population where a slow
+quality regression would first appear. See [[Agent Observability]].
+
+## The judge crossed the inter-human agreement threshold in 2023, and then moved inside the model
+
+[[@zafstojano - Recursive Synthetic Improvement]] supplies the result that made automated judging the default. Zheng et al. (2023)
+measured **GPT-4 agreeing with human raters at roughly 80%, about equal to inter-human agreement** — past
+which paying for human preference labels became optional for most purposes.
+
+The lineage runs InstructGPT's three phases → Constitutional AI and RLAIF → LLM-as-a-judge, and the
+current move is inward: **Kimi K2 folded the judge back into the policy** as its own rubric-guided critic
+rather than maintaining a separate reward model.
+
+The residual human-preference layer became a business rather than disappearing: Chatbot Arena's commercial
+arm reached **$100M ARR eight months after commercial launch, on a $150M Series A**.
+
+Two limits worth recording alongside. A learned router or policy inherits its judge's bias — "if the
+evaluation method rewards fluent answers rather than correct ones, the router can learn the wrong lesson."
+And a judge with highly correlated criteria is a reward-hacking target: in *Training to Paint with Code*
+an elaborate multi-criterion reward collapsed to a single degenerate output because the criteria moved
+together and the length term saturated.
+
+See [[Synthetic Data Flywheel]] for the judge's place in the wider automation of the training stack.
+
 ## Related pages
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
@@ -128,3 +175,9 @@ judge's remit is the cheapest available precision gain.
 - [[Meta]]
 - [[Recursive Self-Improvement]]
 - [[Agentic Testing]]
+- [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- [[Agent Observability]]
+- [[Sarthak Rastogi]]
+- [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Synthetic Data Flywheel]]
+- [[@zafstojano]]

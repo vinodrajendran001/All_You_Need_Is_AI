@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - context-engineering
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-01-iusztin-scoped-subagents
 status: active
 ---
 
@@ -215,6 +216,27 @@ across several simultaneous changes.
 Together these push the page's centre of gravity from *what to put in the window* toward *when to change it, and
 how to know the change helped*.
 
+## Delegation is a context-engineering technique before it is an architecture
+
+[[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] argues the case in its subtitle — **"subagents are context engineering"** — and the
+motivating failure is a context failure, not a capability one: a deep-research setup that passed "up to
+200 notes, transcripts, and PDFs to a single Claude Code session", which read them "1 by 1, taking minutes
+and draining my weekly subscription." The fix was six researcher subagents running in parallel, each
+dropping its internal state and returning only final results.
+
+That reframes the question. The value of a child process is the **asymmetry between what it reads and what
+it returns** — tens of thousands of tokens consumed against a 1,000–2,000-token summary handed back. Where
+that asymmetry is absent, delegation is overhead. Where it is large, it is the cheapest available form of
+context compression, because the noise never enters the parent's window at all rather than being
+summarised out of it afterwards.
+
+The implementation detail that makes this a context decision rather than an architectural one: the result
+budget is shared and divided, `child_max_bytes = 16_000 // len(prompts)`. A wider fan-out gives each child
+*less* room to report. Context is the scarce resource being allocated, and the fan-out width is the knob.
+
+See [[Agent Delegation]] for the in-harness versus process distinction, and [[Tool Roster Economics]] for
+the complementary cost — the tool list itself.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -265,3 +287,6 @@ how to know the change helped*.
 - [[Can Bölük - The Harness Playbook]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
 - [[Meta - An Organizational Second Brain]]
+- [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
+- [[Paul Iusztin]]
+- [[Agent Delegation]]

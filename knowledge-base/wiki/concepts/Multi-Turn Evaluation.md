@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - llm-evaluation
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-09-02-paolo-perrone-agentic-testing
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-06-rastogi-agent-observability
 status: active
 ---
 
@@ -80,6 +81,33 @@ Together these argue that any evaluation reported as a single number, from a sin
 is under-specified. The minimum honest report is k runs and a pass^k. Note the ~80-completions figure is given
 without attribution in an explainer and should be treated as indicative.
 
+## Evaluation presupposes a reconstructable run, and the hardest failures are found by humans
+
+[[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]] places observability logically prior to evaluation: evals "tell you whether that
+chain was *good*", but only once the chain can be reconstructed. Without a causal trace there is nothing
+for a multi-turn evaluation to attach its judgement to.
+
+The finding that should temper confidence in test suites: in an eight-week study of 22 fully-traced
+production incidents, **roughly 70% of "fail-plausible" incidents were discovered by a human noticing
+something was off, and close to 0% were caught by unit tests** — "because the output isn't malformed, it's
+just wrong." The canonical case is a warranty tool that rate-limits during a deploy spike and returns null
+with no error field; the model, "seeing nothing that looks like a hard failure", tells the customer their
+device is covered.
+
+Two detectors partially close that gap, and neither is a test: mark degraded tool results with an explicit
+`input.anomalous=true` attribute on the span feeding the next model call, and track
+`fallback_response_rate` — where a near-zero value indicates the agent has never declined to answer rather
+than that it is performing well.
+
+**Retrieval can also succeed and still fail through context position bias**, where "a critical policy
+clause buried in the middle of five retrieved documents can be ignored even though retrieval technically
+'worked.'" The detector is a rank comparison: track the rank of the passage the model actually cites
+against the rank at which it was retrieved.
+
+Multi-agent evaluation needs trace context propagated across handoffs, so a receiving agent creates a
+child span under the same trace ID rather than an orphaned trace — formalised by the A2A Traceability
+Extension with parent/child step IDs and per-step cost accounting.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -110,3 +138,7 @@ without attribution in an explainer and should be treated as indicative.
 - [[Agentic Testing]]
 - [[Paolo Perrone - What is Agentic Testing]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- [[Agent Observability]]
+- [[Sarthak Rastogi]]
+- [[Retrieval-Augmented Generation]]

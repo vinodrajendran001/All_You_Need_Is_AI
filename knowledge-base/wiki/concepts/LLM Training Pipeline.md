@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - llm
@@ -37,6 +37,7 @@ source_ids:
   - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active
 ---
 
@@ -196,6 +197,38 @@ An honest caveat travels with both: the source is explicit that **the distillati
 Whether Qwen3.8's gains come from architecture or from training on stronger models' outputs is not resolved by
 anything in the release, which is a general problem for reading any pipeline claim from a model card.
 
+## Every stage of the data pipeline now has a model in it
+
+[[@zafstojano - Recursive Synthetic Improvement]] maps model-generated artifacts into five stages of the pipeline — Judge, Corpus,
+Teacher, Curriculum, Environment — with the corpus stage carrying the most transferable numbers.
+
+**Filtering discards nearly everything.** Common Crawl exceeds **10 PB**; DCLM keeps about **3.8T tokens
+out of 240T extracted**, of which only ~1T are unique. Model-based filtering replaced heuristics:
+FineWeb-Edu labelled ~500k documents with Llama-3-70B-Instruct, trained a classifier on those labels, and
+cut **15T tokens to 1.3T**.
+
+**Synthetic pretraining data is now standard, and collapse is avoidable.** TinyStories trained
+sub-10M-parameter models on generated children's stories; "Textbooks Are All You Need" took **phi-1 from
+29% to 51% on HumanEval**, beating baselines 10× its size. Gerstgrasser et al. (2024) showed model collapse
+occurs when real data is **replaced**, and is mitigated by **accumulating** — the finding the whole
+programme rests on.
+
+**Rephrasing is the highest-leverage technique, and its mechanism is now understood.** WRAP rephrases C4
+in four styles (Easy, Medium, Hard, Q-A) mixed 1:1 with real data for **up to 3× training speedup**;
+Nemotron-CC reaches **6.3T tokens — 4.4T real unique plus 1.9T synthetic**. **BeyondWeb converges 2.7×
+faster than Nemotron-Synth**, and its gains come from **per-token information density rather than the
+generator's knowledge**, with **rephraser size barely mattering past 3B**. FinePhrase ran **333
+train-and-evaluate experiments over 90 rephrasing configurations** to establish it.
+
+**The alternative is capped.** Muennighoff et al. (2023) put diminishing returns from repeating real
+pretraining data at about **4 epochs** — which is why rephrasing exists, and also why the
+accumulate-not-replace defence against collapse has a ceiling that nobody has located.
+
+A note on provenance that affects data governance: Aidan Gomez is quoted on the industry position that the
+promise is only not to train on exactly the data a customer supplies — "rewritten data is fair game."
+
+Fuller treatment in [[Synthetic Data Flywheel]].
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -248,3 +281,6 @@ anything in the release, which is a general problem for reading any pipeline cla
 - [[adlrocha - Base Models Stopped Being the Bottleneck]]
 - [[Qwen]]
 - [[Z.ai]]
+- [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Synthetic Data Flywheel]]
+- [[@zafstojano]]

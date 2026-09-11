@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - reasoning
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-04-reasoncache
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-09-02-raschka-astra-looped-transformers
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active
 ---
 
@@ -69,6 +70,30 @@ found **two passes optimal, retaining ~75% of token efficiency**, with more pass
 If extra latent passes were straightforwardly substituting for explicit reasoning tokens, one would expect the
 benefit to continue; it does not. See [[Recursive Architectures]].
 
+## Looped depth adds reasoning capacity specifically, and saturates where reasoning is not needed
+
+[[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] supplies a mechanism for what latent computation buys, in place of the general claim
+that more compute helps.
+
+**"Beyond Parameters: Virtual Logic Depth"** (June 2025) reports that looping **leaves memorization
+capacity nearly unchanged but improves multi-step math**. Latent depth is therefore not a substitute for
+parameters; it is a different resource, and it is spent on computation rather than on storage.
+
+**Geiping et al.** show where it saturates. Their 3.5B model, trained on 800B tokens with 4 shared blocks
+sandwiched between 2 prelude and 2 coda blocks, randomised loop counts during training and an adaptive
+KL-divergence stopping criterion at inference, exhibits a clean split: **HellaSwag levels off after about
+8 loops, while GSM8K and HumanEval keep benefiting.** Tasks that need multi-step computation use the extra
+depth; commonsense completion does not.
+
+**The token-efficiency evidence is narrower than usually reported.** Astra does not use fewer tokens than
+GPT-5.6 Sol overall, only at fixed accuracy. And the counterexample that breaks the inference from token
+count to hidden reasoning: **GPT-5.6 Luna uses about 80% more tokens than Sol at similar performance**,
+and nobody concludes that Sol is therefore less interpretable than Luna.
+
+A negative result worth keeping: the **full-bandwidth transformer** (August 2026) uses latent feedback to
+shorten MATH500 traces in a 1B base model, "but the effect disappears after instruction tuning" — latent
+computation displacing visible reasoning is not yet a stable phenomenon.
+
 ## Related pages
 
 - [[Recursive Architectures]]
@@ -85,3 +110,4 @@ benefit to continue; it does not. See [[Recursive Architectures]].
 - [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
 - [[Chain-of-Thought Monitoring]]
 - [[Sebastian Raschka]]
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]

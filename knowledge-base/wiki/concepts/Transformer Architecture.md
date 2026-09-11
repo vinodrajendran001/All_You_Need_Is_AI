@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-08-26
+updated: 2026-09-11
 tags:
   - concept
   - llm
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active
 ---
 
@@ -67,6 +68,33 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 
 This lineage matters to architecture, not only to implementation. FlashAttention did not change what attention computes — it changed what attention *costs in memory traffic*, which is what made long contexts economically viable and therefore what made the architectural choices around context length possible at all. See [[Arithmetic Intensity and the Roofline Model]] for why the win is measured in bytes moved rather than FLOPs, and [[GPU Kernel Optimization]] for the class of transformation involved.
 
+## Layer reuse is a well-explored variation with a known and unflattering cost profile
+
+[[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] collects what is currently known about reusing transformer blocks with shared
+weights — the clearest catalogue of the variation in this vault.
+
+Three open-weight models with explicit loop arithmetic: **Nanbeige4.2-3B** (22-layer stack applied twice =
+44 block applications), **Ouro-Thinking 2.6B** (48-block stack applied four times = 192 applications, with
+a learned exit gate), and **Mixture-of-Recursions** (a learned per-token router choosing how many passes
+each token receives). **Universal Transformers (2018)** established the pattern with adaptive halting.
+
+The cost profile is the part worth remembering. Parameters roughly halve for the transformer blocks —
+though embedding and output layers, about 25% of Nanbeige's 3B, do not benefit — while **compute stays
+proportional to the unrolled depth**, because backpropagation runs through every application. And there is
+**no KV-cache saving**: each pass needs its own entries, and Nanbeige's attempt to share and halve the
+cache made the model worse. See [[KV Cache]].
+
+Two results give the positive case. **SMELT** (September 2026), compute-matched MoE looped transformers up
+to 54B non-embedding parameters, needs **6.8–18% less training compute for the same validation loss**. And
+"Beyond Parameters: Virtual Logic Depth" finds the extra depth buys **multi-step reasoning rather than
+memorization**.
+
+A methodological caution attaches: MoR's comparison of expert-choice against token-choice routing
+**reverses at 135M parameters** relative to larger scales, which Raschka draws out as evidence for "the
+importance of running some experiments at scale."
+
+Fuller treatment in [[Recursive Architectures]].
+
 ## Open questions
 
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
@@ -97,3 +125,7 @@ This lineage matters to architecture, not only to implementation. FlashAttention
 - [[AI Knowledge Base Overview]]
 - Wafer - AI Performance Engineering Resources
 - GPU Kernel Optimization
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
+- [[Recursive Architectures]]
+- [[Latent-Space Reasoning]]
+- [[Sebastian Raschka]]

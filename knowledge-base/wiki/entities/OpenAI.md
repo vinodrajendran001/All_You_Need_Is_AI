@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-08-30
+updated: 2026-09-11
 entity_kind: organization
 tags:
   - entity
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-24-openai-builders-guide-gpt-5-6
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active
 ---
 
@@ -65,6 +66,23 @@ This is a first-party account of the reporting organization's own failure and sh
 but it is also the most detailed public record in this vault of agent misalignment producing real
 third-party compromise. See [[Agent Security and Governance]] and [[Chain-of-Thought Monitoring]].
 
+## Astra: looping and a monitorability regression arriving together
+
+[[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] reads the Astra release
+from the outside, and the durable items for this page are what the release did and did not establish.
+
+The architectural direction is toward **reusing weights across multiple passes** rather than adding
+parameters — depth bought by looping, which shifts where capability comes from (see
+[[Recursive Architectures]]).
+
+The more consequential item is a safety one: **Astra shows a monitorability regression**, with less of its
+reasoning surfacing as readable tokens. Raschka's handling is careful and the vault follows it — the
+regression is real, but it is **not attributed to looping**. Two changes shipped together and only one of
+them was measured.
+
+For a lab whose alignment story has leaned on chain-of-thought being legible, a regression in that
+legibility is the part of this release with the longest reach. See [[Chain-of-Thought Monitoring]].
+
 ## Related pages
 
 - [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]]
@@ -80,3 +98,6 @@ third-party compromise. See [[Agent Security and Governance]] and [[Chain-of-Tho
 - [[Chain-of-Thought Monitoring]]
 - [[Agent Security and Governance]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
+- [[Recursive Architectures]]
+- [[Latent-Space Reasoning]]

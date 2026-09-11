@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - inference
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-01-bytebytego-shrink-language-model
+  - src-2026-09-09-bytebytego-model-routing
 status: active
 ---
 
@@ -115,6 +116,29 @@ straddles both worlds — cached prefixes bill at roughly **1/10 of the input ra
 at the top, changing content at the bottom" an economic layout rule. See [[KV Cache]] and
 [[Context Engineering]].
 
+## Routing moves along the frontier rather than shifting it, and the overheads are real
+
+[[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]] is a useful counterweight to techniques that improve the frontier itself. Routing
+does not make any model cheaper or better; it reallocates requests across an existing price/capability
+curve. The saving is therefore a **weighted average of price ratios** — at 1/20th and 1/5th ratios with an
+85/10/5 mix, **11% of the frontier-only cost** — and is bounded by workload composition rather than by
+engineering effort.
+
+Three overheads are named and none is priced in the article's own cost arithmetic. A **router call**
+precedes the answer. A **cascade** pays for a full failed attempt before escalating. And the checking step
+is itself work — "if the evaluation itself requires another model call, the cost benefit shrinks." None of
+the three appears in the 10× figure, and no latency accounting is given at all, which for interactive
+workloads is the constraint that usually binds first.
+
+The frontier also moves underneath the router. Providers improve small models without changing their
+names, so "the routing logic may not reflect this change" — the efficiency gain silently stops tracking
+the actual frontier, and presents as unchanged cost rather than as a fault.
+
+Set against genuine frontier-shifting work in this vault — [[Megakernels]] raising batch-1 decode from 39%
+to 62% of hardware speed-of-light, or the per-dollar comparisons in
+[[Accelerator Software Externalization]] — routing is the cheapest intervention available and the one most
+dependent on the workload cooperating.
+
 ## Open questions
 
 - The primary source is a **vendor** post with no measurements — every claim is directional, and the 4×
@@ -144,3 +168,7 @@ at the top, changing content at the bottom" an economic layout rule. See [[KV Ca
 - [[Mixture of Experts]]
 - [[Reasoning Effort Control]]
 - [[Baseten]]
+- [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]]
+- [[Model Routing]]
+- [[Megakernels]]
+- [[Accelerator Software Externalization]]

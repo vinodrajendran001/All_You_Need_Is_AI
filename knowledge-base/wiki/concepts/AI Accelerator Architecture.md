@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-08-26
+updated: 2026-09-11
 tags:
   - concept
   - hardware
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-09-07-semianalysis-tpu-inferencex
 status: active
 ---
 
@@ -67,6 +68,42 @@ Model capability is inseparable from hardware structure. Accelerator design dete
 
 The list is candid that its coverage is NVIDIA-weighted, and equally candid about why: public architectural documentation is unevenly available, and depth of documentation is not a proxy for deployment share. The practical reading is that the *concepts* on this page — memory hierarchy, tensor units, interconnect topology, precision support — port across vendors, while tooling maturity does not. See [[Wafer]] for the curation's own disclosure of this bias, and [[Distributed Training Parallelism]] for the open interconnect standards that would make portability real.
 
+## The MXU grew to 256x256 and model architectures did not follow
+
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] documents the first third-party benchmarks of **TPUv7 Ironwood**, and the most
+consequential finding is a geometry constraint rather than a performance number.
+
+**The matrix unit was 128x128 (16,384 MACs per cycle) through v5 and is 256x256 (65,536 MACs per cycle)
+from v6e.** Model head dimensions did not scale with it. The consequence is arithmetic: **Llama 3 8B's
+head dimension of 128 caps attention matmuls at 50% MXU utilisation, and a head dimension of 64 caps them
+at 25%.** gpt-oss ships with 64; DeepSeek MLA splits 128+64=192. SemiAnalysis's summary of this is
+**"TPUs Are Picky."**
+
+This inverts the usual direction of influence. Head dimension is normally chosen for modelling reasons; on
+a 256x256 MXU it becomes a hardware-utilisation decision, and **bring-up cost becomes uncorrelated with
+model popularity** — a widely-used model with awkward dimensions is expensive to support while an obscure
+one with friendly dimensions is cheap.
+
+**Ironwood also breaks the MegaCore convention**: two separate compute dies, each an independent logical
+device, joined by a die-to-die link, with **2 TensorCores and 4 third-generation SparseCores** per chip,
+roughly **6x Trillium's HBM capacity**, and **native FP8** (the first TPU with it). There is no native FP4;
+that arrives with TPUv8i.
+
+**The interconnect is being redesigned away from the torus.** ICI went 2D torus (v2/v3) → 3D torus from
+v4/v5p — 4x4x4 = 64 chips per rack, twisted, with Optical Circuit Switches rewiring around failures in
+seconds, scaling to the **9,216-chip Ironwood superpod at 42.5 FP8 exaflops**. **TPUv8i "Boardfly"
+replaces it with a high-radix dragonfly-style fabric**, cutting network diameter **more than 50%** (~16
+hops to ~7 at 1,024-1,152 chips), doubling ICI bandwidth to **19.2 Tb/s**, and tripling on-chip SRAM to
+**384 MB** — sized specifically to hold reasoning and agentic KV cache on-chip.
+
+**Google has split its training and inference architectures for the first time** (8t versus 8i), with the
+target workload named explicitly: multi-turn, long context, high prefix reuse, and sub-agent bursts. This
+is the vault's first instance of agent workloads driving a hardware design decision rather than a
+serving-software one.
+
+Commercially, **Anthropic has committed to over one million TPUs** — about 400k purchased directly and
+600k rented via GCP — surpassing DeepMind's own usage by 2029.
+
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
@@ -100,3 +137,6 @@ The list is candid that its coverage is NVIDIA-weighted, and equally candid abou
 - Wafer - AI Performance Engineering Resources
 - Wafer
 - GPU Kernel Optimization
+- [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- [[Accelerator Software Externalization]]
+- [[SemiAnalysis]]

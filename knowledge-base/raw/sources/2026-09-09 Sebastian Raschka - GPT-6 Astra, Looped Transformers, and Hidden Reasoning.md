@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-09-raschka-astra-looped-hidden-reasoning
+captured: 2026-09-11
 title: "GPT-6 Astra, Looped Transformers, and Hidden Reasoning"
 source: "https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and?utm_source=tldrai"
 author:
@@ -9,6 +12,9 @@ created: 2026-09-11
 description: "A Look at Recurrent Depth, Hidden Chains of Thought, and Recent Research on Looping Transformer Blocks"
 tags:
   - "clippings"
+  - "topic/architecture"
+  - "topic/reasoning"
+  - "source/raw"
 ---
 ### A Look at Recurrent Depth, Hidden Chains of Thought, and Recent Research on Looping Transformer Blocks
 

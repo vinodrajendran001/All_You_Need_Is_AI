@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-09-03
+updated: 2026-09-11
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -22,6 +22,8 @@ source_ids:
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-02-bytebytego-rag-embedding-model
+  - src-2026-09-07-bytebytego-llm-error-handling
+  - src-2026-09-09-bytebytego-model-routing
 status: active
 ---
 
@@ -107,6 +109,27 @@ The standing caveat applies to all three. These are explainers written "based on
 with no benchmarks and, in the chatbot post, several striking figures presented **without attribution to a
 specific paper or vendor**. They are strongest as mechanism and weakest as citation.
 
+## Two September 2026 systems explainers: LLM error handling and model routing
+
+ByteByteGo contributed two pieces in this batch, both in its characteristic mode — taking a pattern that
+is already folklore among practitioners and giving it a named structure.
+
+[[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]] treats LLM calls as an
+unreliable dependency and applies the distributed-systems playbook: classify failures by whether a retry
+can help, use exponential backoff with jitter, circuit-break on sustained failure, and degrade to a
+smaller model or cached answer rather than to an error page. Its most transferable point is that
+**LLM failures are frequently silent** — a confidently wrong answer returns HTTP 200 — so the usual
+transport-level error signals do not cover the failure surface.
+
+[[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]] makes the case that most production
+traffic does not need the frontier model, and lays out the routing taxonomy (rule-based, classifier,
+cascade, learned) with the cost arithmetic behind the 10x claim. The caveat it supplies is the one worth
+keeping: a learned router **inherits its judge's bias**, so "if the evaluation method rewards fluent
+answers rather than correct ones, the router can learn the wrong lesson."
+
+Both are explainer-grade rather than primary sources — the numbers are illustrative of the pattern rather
+than measured from a named deployment, and the vault records them that way.
+
 ## Related pages
 
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
@@ -144,3 +167,6 @@ specific paper or vendor**. They are strongest as mechanism and weakest as citat
 - [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]]
 - [[Model Quantization and Efficiency]]
 - [[KV Cache]]
+- [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
+- [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]]
+- [[LLM Application Resilience]]

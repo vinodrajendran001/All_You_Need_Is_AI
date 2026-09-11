@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-04
+updated: 2026-09-11
 tags: [concept, tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-07-bytebytego-llm-error-handling
 status: active
 ---
 
@@ -116,6 +117,32 @@ decoding — every schema joins the grammar the sampler must satisfy — so the 
 in the prompt. That gives this page's schema-versus-code contrast a decision rule: **bounded operation set,
 schema; open-ended operation set, code surface.** See [[Tool Roster Economics]].
 
+## Partial completion is the failure mode that makes tool calls different
+
+[[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]] identifies the specific way tool-calling breaks the ordinary error-handling
+contract. The example is exact: "Suppose the LLM assistant calls a payment service. The payment succeeds,
+but the network connection breaks before the application gets the confirmation. If the application retries
+the payment blindly, we might end up charging the customer twice. This is the reason tool-based systems
+need idempotency, state tracking, and recovery mechanisms."
+
+This is the unreconciled tension inside standard resilience advice. Exponential backoff with jitter is the
+correct response to a transient failure; a transient failure on a **non-idempotent** tool call is
+precisely where retrying is unsafe. The two pieces of guidance are usually given in separate sections and
+never combined into a rule.
+
+The source also catalogues the tool-layer failures that are invisible at the model layer: the model
+selects the wrong tool, calls it with invalid arguments, or produces a result that violates a business
+rule — all at HTTP 200. These are **semantic failures**, and "no technical exception occurred", so no
+exception handler will fire.
+
+From the forensic side, [[Agent Observability]] reaches the same requirement: without an
+`idempotency_key` and a `retry_count` span attribute, a retry storm and a prompt-injection campaign look
+identical in the trace, and a sensitive tool call executing without an attached approval span is
+undetectable.
+
+The cheap prevention is worth restating: validate before spending on inference. "There is no need to call
+an LLM to find out if a mandatory email address is missing or if an uploaded file exceeds the size limit."
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -137,3 +164,7 @@ schema; open-ended operation set, code surface.** See [[Tool Roster Economics]].
 - [[Harness State Authority]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Can Bölük]]
+- [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
+- [[LLM Application Resilience]]
+- [[Agent Observability]]
+- [[ByteByteGo]]

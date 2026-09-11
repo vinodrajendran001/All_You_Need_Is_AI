@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-30
+updated: 2026-09-11
 tags:
   - concept
   - reasoning
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-09-10-fu-progressive-point-matching
 status: active
 ---
 
@@ -79,6 +80,26 @@ reasoning trace should not be read as a faithful record of the computation: Kimi
 reduction with little accuracy loss implies a large share of a trace was never load-bearing. See
 [[Reasoning Effort Control]].
 
+## A longer training budget can teach a policy to waste it
+
+[[Preston Fu - Progressive Point Matching]] reports a result that inverts a standard assumption: in training Progressive Point
+Matching, **a 4K context length was comparable to or better than 8K.**
+
+The explanation offered is behavioural rather than mechanical. The 8K policy **collapses its output length
+and guesses early**, while the 4K policy is pushed to optimise partial progress within the budget it has.
+Extra room does not automatically buy longer reasoning; under a sparse or poorly-shaped reward it can
+instead teach the policy that early guessing is the better bet.
+
+This connects the length-collapse dynamics recorded under [[Reasoning Compression]] to the credit
+assignment problem: guessing early is rational when late-trajectory signal is worthless, so output-length
+collapse is a symptom of the reward structure rather than of the model. The caveat is that the source
+offers no ablation isolating output-length collapse — it is a plausible story attached to a real
+measurement.
+
+The same note treats controlling test-time budget in deployed agents as unsolved, citing Claude Code's
+`/effort ultracode` mode as insufficient for scaling it. See [[Test-Time Scaling]] and
+[[Long-Horizon Credit Assignment]].
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -107,3 +128,6 @@ reduction with little accuracy loss implies a large share of a trace was never l
 - [[Reasoning Trace Privacy]]
 - [[Reasoning Effort Control]]
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
+- [[Preston Fu - Progressive Point Matching]]
+- [[Long-Horizon Credit Assignment]]
+- [[Preston Fu]]

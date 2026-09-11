@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-08-30
+updated: 2026-09-11
 tags:
   - concept
   - ai-agents
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-08-22-grok-bot-systems-engineering-working-note
   - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
   - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-09-01-iusztin-scoped-subagents
 status: active
 ---
 
@@ -138,6 +139,27 @@ Combined with the finding that agent configuration **has a half-life**, the prac
 skill should be retired unless it can be justified against an eval — the same discipline
 [[Harness Optimization]] applies to every other rung of the scaffolding ladder.
 
+## A persona is a skill file applied to the agent's identity rather than to a capability
+
+[[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] describes an **Agents Catalog** with exactly the shape this vault has recorded for
+skills: a Markdown file with YAML front matter — name, description, tools allowlist, default permission
+mode, optional allow/deny rules, and a subagent flag — with the system prompt in the body. The difference
+is what it configures. A skill packages a capability; a persona packages *who the agent is* for a given
+job, including what it is not allowed to do.
+
+The operative distinction is that the **tools allowlist and the permission mode are different knobs with a
+one-way dependency**: "If a tool is not present in the system prompt, the permission mode has no effect,
+as that tool will never be called." Removing a tool from the roster is therefore a stronger control than
+requiring approval for it.
+
+The subagent persona shows the pattern used for restriction rather than capability. Decode's `explore` is
+marked `subagent: true`, so "the only way it runs is as a child of the `agent` tool", with an allowlist of
+exactly read, glob, grep and lsp. Each omission has a stated reason: no `bash` or `web_fetch` for
+authority, no `ask_user` "(which would deadlock the fan-out)", and no `agent` "(to avoid recursion)".
+
+Because the persona is static configuration rather than a caller argument, a parent cannot widen a child's
+authority by rephrasing its prompt — which is what makes the fan-out in [[Agent Delegation]] auditable.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -178,3 +200,6 @@ skill should be retired unless it can be justified against an eval — the same 
 - [[Addy Osmani]]
 - [[Harness Optimization]]
 - [[Addy Osmani - Audit your Agent files]]
+- [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
+- [[Paul Iusztin]]
+- [[Agent Delegation]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - agents
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-01-iusztin-scoped-subagents
 status: active
 ---
 
@@ -186,6 +187,29 @@ prevalence is not validation.
 The overall boundary of this practice is best stated by GitHub: *"None of these changes made the model smarter.
 They removed work the model never needed to do."*
 
+## Bounding delegation is a harness optimization with knobs but no published measurements
+
+[[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] supplies a full set of delegation knobs — fan-out width (6), concurrency
+(`Semaphore(4)`), per-child request limit (25), shared result budget (16,000 bytes divided by fan-out
+width), retry policy (one nudge, then a "no usable report" note), and output truncation (2,000 lines) —
+and grounds them in the same evidence this page already carries, that a harness change alone moved a
+coding agent from ~30th to top 5 on Terminal-Bench.
+
+The honest reading is that these are **budgets, not results**. The source reports no before/after on token
+spend, latency, or answer quality for the six-subagent research setup that motivates it, so the numbers
+are a starting configuration rather than a tuned optimum. Two of them are in visible tension: dividing a
+fixed result budget across the fan-out means six children get roughly 2.7 KB each, and nothing establishes
+that a useful report fits.
+
+One structural gap is named by the author: Decode has no in-flight queue letting a parent communicate with
+a running subagent, so a fan-out is fire-and-forget and a child that misreads its prompt burns its full
+25-request budget before anyone finds out. Closing that gap is an observability problem as much as a
+harness one — see [[Agent Observability]].
+
+A related generalisation from outside the agent loop: a 100-document serial pipeline rewritten under
+`asyncio.gather()` with a `Semaphore(5)` turned an hours-long run into a bounded one. Bounded parallelism
+is the same optimization whether the work is a subagent or a document.
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -220,3 +244,7 @@ They removed work the model never needed to do."*
 - [[Can Bölük - The Harness Playbook]]
 - [[GitHub]]
 - [[Can Bölük]]
+- [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
+- [[Paul Iusztin]]
+- [[Agent Delegation]]
+- [[Agent Observability]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - world-models
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-05-fei-fei-li-taxonomy-world-models
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-07-21-bytebytego-roblox-world-models
+  - src-2026-09-07-rai-lejepa
 status: active
 ---
 
@@ -68,6 +69,27 @@ The move is worth generalizing. Conditioning generation on engine state constrai
 
 The caveat travels with it: 2K/60fps delivery, long-context visual consistency, and multiplayer scale are stated as **targets and open work**, not shipped capability.
 
+## A JEPA objective with the anti-collapse heuristics removed
+
+[[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]] matters to the JEPA line because it removes the scaffolding that made
+joint-embedding prediction hard to reason about. **Predictor, teacher–student asymmetry and register
+tokens can all be dropped** — significant because prior work found that removing predictors yields
+chance-level encoders. The tutorial's gloss is that the heuristics **"were never wrong, they were
+unnamed"**: they were doing the work of an anti-collapse term that is now written down explicitly as
+SIGReg. See [[Joint-Embedding Predictive Architecture]].
+
+**Architecture-independence is the strongest empirical claim**: **50 timm architectures under 20M
+parameters from 8 families all land between 91.5% and 95% top-1** on ImageNet-10 with a single λ, stable
+across two orders of magnitude, and still competitive at **batch size 128**.
+
+**Emergent PCA object–background separation and unsupervised video object tracking** are reported, which
+is the behaviour the world-model framing predicts.
+
+Two limits belong with this: it is **vision only**, and **no matched-compute comparison against DINOv2 or
+DINOv3 has been run** — the headline Galaxy10 result compares a from-scratch model against transferred
+features, which is a different question from whether LeJEPA is a better pretraining objective at equal
+compute.
+
 ## Open questions
 
 - What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
@@ -88,3 +110,6 @@ The caveat travels with it: 2K/60fps delivery, long-context visual consistency, 
 - [[AI Knowledge Base Overview]]
 - [[ByteByteGo - Inside Roblox's Bet on World Models]]
 - [[ML Systems at Scale]]
+- [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
+- [[Joint-Embedding Predictive Architecture]]
+- [[Siddhant Rai]]

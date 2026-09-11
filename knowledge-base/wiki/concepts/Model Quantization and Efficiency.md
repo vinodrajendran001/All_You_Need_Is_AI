@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - llm
@@ -34,6 +34,7 @@ source_ids:
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-09-02-baseten-efficient-frontier-inference
+  - src-2026-09-07-rai-lejepa
 status: active
 ---
 
@@ -157,6 +158,24 @@ especially using the microscaling formats **MXFP4** and **NVFP4**.
 The practical consequence is that "how much quantization" is not answerable analytically. The cutoffs are
 unintuitive and must be found by sweeps. See [[Inference Efficiency Frontier]].
 
+## If embeddings are isotropic by construction, is the Hadamard rotation still needed?
+
+[[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]] raises and deliberately leaves open a connection worth tracking here. Quantisation
+schemes such as **TurboQuant** apply a **Hadamard rotation** to spread outlier energy before quantising —
+a fix for anisotropic, outlier-heavy representations. **SIGReg trains the encoder so its embeddings are
+isotropic Gaussian by construction.** Whether that removes the need for the rotation is unresolved.
+
+The same question has a language-model form, and it is the source's widest-reaching open problem: **LLM
+embeddings are famously anisotropic (the cone effect)**, and that anisotropy may encode real
+token-frequency structure — **"Or the cone is dimensional collapse we have been rationalizing for years
+because we had no principled reason to object."** LeJEPA supplies, for the first time, a principled reason
+to object. If the cone is collapse, the machinery built to work around it — rotations, outlier channels,
+per-channel scales — is compensating for an avoidable training defect rather than an intrinsic property of
+language.
+
+The cost side is favourable: SIGReg is **O(N·M·(K+T))** and small in practice — about **0.47 ms**
+forward-backward on a V100 at N=M=512, and only **~0.67 ms at M=8192**.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -203,3 +222,6 @@ unintuitive and must be found by sweeps. See [[Inference Efficiency Frontier]].
 - [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
 - [[Baseten - Agentic Kernels in Production]]
+- [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
+- [[Joint-Embedding Predictive Architecture]]
+- [[Siddhant Rai]]

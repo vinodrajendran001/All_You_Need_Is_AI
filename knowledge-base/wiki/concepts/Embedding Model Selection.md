@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - rag
@@ -9,6 +9,8 @@ tags:
   - embeddings
 source_ids:
   - src-2026-09-02-bytebytego-rag-embedding-model
+  - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-08-raji-cosine-similarity-safety
 status: active
 ---
 
@@ -81,6 +83,44 @@ The limit is worth stating explicitly because the truncation trick is easy to mi
 **Matryoshka gives flexibility within one model's space only.** It does nothing for cross-model
 incompatibility, and the migration cost above is unchanged.
 
+## Embeddings determine intent reliably and difficulty unreliably
+
+[[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]] flags a limit on semantic routing worth generalising: embedding the request and
+comparing it against clusters of past requests "is helpful for determining intent. However, it is not
+always reliable for determining difficulty because two requests can look similar in wording but differ in
+reasoning requirements."
+
+That is a statement about what the embedding space encodes. Surface form and topic are captured;
+computational depth is not, because nothing in the training objective makes reasoning difficulty a
+geometric property. Selecting a better embedding model does not fix this — it is a category limit, not a
+quality one. See [[Model Routing]].
+
+## The embedding model version is a security parameter
+
+[[Amine Raji - Cosine Similarity Is Not a Safety Property]] adds a selection criterion that has nothing to do with retrieval quality. Because
+**"cosine similarity measures an angle"** with "no notion of truth, authority or provenance", the
+retriever offers no integrity guarantee, and the defences that do work are calibrated against the specific
+embedding model in use.
+
+Three consequences for model selection.
+
+**Thresholds are model properties.** The ingestion-time poisoning detectors that took attack success from
+95% to 20% — nearest-neighbour similarity above **0.85**, batch pairwise similarity above **0.90** — are
+explicitly stated to be **"properties of your embedding model, not of your data."** The prescription is to
+baseline your own corpus and set the threshold at mean + 2 standard deviations.
+
+**Pinning the version becomes a control.** An embedding model upgrade invalidates every calibrated
+threshold simultaneously, so a routine dependency bump is a security event.
+
+**Distance metric defaults are a trap.** ChromaDB's default is **squared L2, not cosine**; cosine must be
+requested with `metadata={"hnsw:space": "cosine"}`. An application built on the default is not measuring
+what its authors believe.
+
+And the stored vectors are not inert. Vec2Text recovered **92% of 32-token inputs exactly**, and ALGEN
+reduced inversion to a one-step linear map needing roughly 1,000 aligned pairs, with **no tested defence
+effective** — so the choice of embedding model also determines what a compromised store discloses. See
+[[Embedding Inversion]] and [[Retrieval Poisoning]].
+
 ## Open questions
 
 - The source is an explainer with **no benchmarks** and names no models, so none of the seven failure modes is
@@ -104,3 +144,10 @@ incompatibility, and the migration cost above is unchanged.
 - [[Context Engineering]]
 - [[Schema-Driven Knowledge Base]]
 - [[Model Quantization and Efficiency]]
+- [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]]
+- [[Model Routing]]
+- [[ByteByteGo]]
+- [[Amine Raji - Cosine Similarity Is Not a Safety Property]]
+- [[Embedding Inversion]]
+- [[Retrieval Poisoning]]
+- [[Amine Raji]]

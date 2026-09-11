@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-08-27
+updated: 2026-09-11
 tags:
   - concept
   - benchmarks
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-07-17-netflix-in-house-llm-serving
+  - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-08-cohere-megakernel-serving
 status: active
 ---
 
@@ -85,6 +87,42 @@ generation rather than prefill. A goodput definition keyed to TTFT will score it
 whatsoever, while one keyed to inter-token latency will score it as a large win. The metric choice
 determines the verdict.
 
+## One accelerator, four normalisations, results from +96% to -30%
+
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] is the vault's clearest worked example of why the normalisation axis has to travel
+with the result. Every figure below describes the **same silicon on the same model** (Qwen3.5 397B, FP8).
+
+- **Normalised by interactivity, at 100 tok/s/user:** Ironwood costs **$0.181/M tokens** against B200's
+  **$0.222** and B300's **$0.276** — 19% and 34% lower.
+- **At 20 tok/s/user** Ironwood also leads on raw throughput — **9,364 tok/s/chip** versus 8,903 (B200)
+  and 8,925 (B300) — giving **50.4% more tokens per dollar than B200 and 96.0% more than B300**.
+- **At Google's internal TCO ($1.03/chip-hour), concurrency 256:** the advantage rises to **76.7% and
+  130.2%** — but TPU mean TTFT is **5.41s against 3.75s (B200) and 2.40s (B300)**. SemiAnalysis states
+  the limit itself: the figure "applies to this datapoint specifically, rather than every latency target."
+- **Normalised by end-to-end response time the advantage compresses sharply.** At a 20-second median,
+  Ironwood is **$0.098/M against $0.106 and $0.132** — 8% and 25% lower, not 50%. **Around the 30-second
+  median point B200 wins outright.**
+- **Against a disaggregated competitor it reverses**: GB300 NVL72 disaggregated versus aggregated TPUv7
+  gives GB300 roughly **30% better perf/$ in the middle of the curve.**
+
+**50% better, 8% better, or 30% worse, from one article.** The article is careful about this; downstream
+citation of it will not be, which is the failure mode this page exists to prevent.
+
+Two provenance caveats belong with the numbers: results are from an **Official Preview** on a single
+bring-up model, and Google was presumably involved in the tuning while the NVIDIA configurations may not
+have received equivalent attention.
+
+## Synthetic uniform MoE routing understates real-traffic performance
+
+[[Cohere - North Mini Code Megakernel Serving Engine]] inverts a standard MoE benchmarking assumption. Measured with **real expert
+distributions the megakernel speedup is 1.32x at batch 8, against 1.14x under uniform synthetic routing**
+— the opposite of the usual direction, where synthetic traffic flatters a system.
+
+The mechanism is specific but the lesson is general: real requests concentrate on the same experts,
+leaving sparser MoE work and therefore **more scheduling bubbles for the megakernel to absorb**. Uniform
+routing removes exactly the load imbalance the technique is good at. Anyone benchmarking an MoE serving
+path with synthetic uniform traffic is measuring the wrong distribution.
+
 ## Open questions
 
 - Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
@@ -105,3 +143,9 @@ determines the verdict.
 - [[Multi-Turn Evaluation]]
 - [[Arithmetic Intensity and the Roofline Model]]
 - [[AI Agents in Production]]
+- [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- [[Accelerator Software Externalization]]
+- [[SemiAnalysis]]
+- [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Megakernels]]
+- [[Cohere]]

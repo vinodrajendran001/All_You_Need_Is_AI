@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-09-11
 tags:
   - concept
   - arithmetic-intensity
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-26-nithin-llm-inference
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-09-08-cohere-megakernel-serving
 status: active
 ---
 
@@ -84,6 +85,27 @@ The clean roofline story assumes attention reads *all* L cached tokens. DeepSeek
 
 The list also makes the model's practical consequence explicit: it is the tool that tells you *which* optimization to reach for. A memory-bound decode is not made faster by a better GEMM kernel, and a compute-bound prefill is not made faster by compressing the KV cache. Every entry in its optimization section is indexed by which side of the ridge point it moves. That is also where [[GPU Kernel Optimization]] begins — the ladder of transformations there is a sequence of moves along this roofline.
 
+## Reporting decode as a percentage of speed-of-light
+
+[[Cohere - North Mini Code Megakernel Serving Engine]] frames its entire result against an explicit roofline rather than against a
+baseline, which makes the remaining headroom legible.
+
+**The calculation:** at BF16 the model streams **6.6 GB of weights per decode step** plus roughly **0.5 GB
+of KV cache at 8K context**; an H100 at **3.35 TB/s** therefore caps decode at about **470 tok/s**. The
+megakernel reaches **292 tok/s = 62% of that ceiling**, against vLLM's **185 tok/s = 39%**.
+
+Stating results this way is more informative than a speedup ratio: it says both how much was gained and
+how much is left. It also identifies **four distinct sources of the gain**, only one of which is the
+expected launch-overhead saving: reduced launch and synchronisation overhead; **wave quantisation** (a
+partial wave backfilled with unrelated work); **dropping false dependencies** (with per-task counters the
+O-projection for a KV group starts as soon as *that group's* attention lands); and **weight prefetch**
+(weights are immutable, so weight tiles stream before activation dependencies resolve — visible in the
+code as `prefetch_weight_tiles` above `wait_input_bars`).
+
+**The bound weakens as batch size rises**, since arithmetic intensity increases and the memory-bandwidth
+limit that motivates the technique loosens. The reported ceiling of batch 8 means this is untested exactly
+where the roofline argument would start to change.
+
 ## Open questions
 
 - Is the MLA/MTP conflict a hard architectural limit or a coincidence of current hardware balance points?
@@ -108,3 +130,6 @@ The list also makes the model's practical consequence explicit: it is the tool t
 - Prefill-Decode Disaggregation
 - Serving Benchmarks and Goodput
 - Wafer
+- [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Megakernels]]
+- [[Cohere]]

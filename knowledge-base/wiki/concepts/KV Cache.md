@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - kv-cache
@@ -21,6 +21,8 @@ source_ids:
   - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-07-semianalysis-tpu-inferencex
 status: active
 ---
 
@@ -142,6 +144,43 @@ earliest messages are processed 20 times, so whether they hit the cache determin
 [[Context Engineering]], [[Agentic Loop]] and [[Inference Efficiency Frontier]]. Note that expiry "after
 minutes" is a per-provider policy rather than a property of the technique.
 
+## Layer reuse does not reduce the KV cache, and sharing it across loops made a model worse
+
+A clean negative result from [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]. Looped transformers reuse weights across passes, which
+naturally suggests the KV cache might be reused too. It is not: **each pass needs its own KV entries**, so
+a model applying a 22-layer stack twice carries the cache of 44 layers.
+
+Nanbeige tested the obvious optimisation directly — sharing the KV cache across loops, and halving it —
+and **the model performed worse**. The cache is not redundant across passes; each application is
+conditioning on a different intermediate representation and needs its own keys and values.
+
+This matters for the parameter-efficiency argument around [[Recursive Architectures]]: weights halve,
+compute does not, and memory at inference does not either. The technique buys parameter storage, not
+serving cost.
+
+## Cache layout is a tunable with double-digit throughput consequences
+
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] gives concrete numbers for KV-cache layout decisions on TPUv7, and they are larger
+than layout decisions usually are.
+
+**Sequence-on-lane layout doubles usable KV pages, 5,141 → 10,283**, and relaxes the head-dimension
+constraint from a multiple of 128 to a multiple of 32. It costs **~3% per-token latency at low
+concurrency** but delivers **+16.5% throughput and −95% median TTFT at concurrency 128** — a trade-off
+whose sign depends on where you operate.
+
+**A single block-size parameter was worth 49%.** Splitting RPA v3 block size into **fetch-16k and
+compute-4k** took decode from **64.9k to 96.3k tok/s** on an inverted-U curve. Notably it shipped as an
+**environment-variable override** because the tuned-parameter table could only store one block size — so
+the gain is not automatically available to other users.
+
+**In hybrid models the cache competes with recurrent state.** Compact recurrent-state allocation reclaimed
+**~76 GiB of HBM** and grew the attention block pool **71%** (see
+[[Linear Attention and Recurrent Memory]]).
+
+**And the hardware is moving toward holding it on-chip.** TPUv8i triples SRAM to **384 MB**, sized
+specifically for reasoning and agentic KV cache, while KV offload to DRAM and Mooncake Store P2P pooling
+sit on the TPU serving roadmap.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -177,3 +216,9 @@ minutes" is a per-provider policy rather than a property of the technique.
 - [[Agentic Loop]]
 - [[Inference Efficiency Frontier]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
+- [[Recursive Architectures]]
+- [[Sebastian Raschka]]
+- [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- [[Linear Attention and Recurrent Memory]]
+- [[SemiAnalysis]]

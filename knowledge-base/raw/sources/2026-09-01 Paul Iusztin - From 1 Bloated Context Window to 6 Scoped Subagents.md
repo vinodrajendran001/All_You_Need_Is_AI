@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-01-iusztin-scoped-subagents
+captured: 2026-09-11
 title: "From 1 Bloated Context Window to 6 Scoped Subagents"
 source: "https://www.decodingai.com/p/subagents-are-context-engineering?utm_source=substack&utm_medium=email"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-07
 description: "A scoped subagent burns tens of thousands of tokens exploring and hands back 1,000 to 2,000. The agent tool, an agent's catalog, and a bounded fan-out."
 tags:
   - "clippings"
+  - "topic/agents"
+  - "topic/context-engineering"
+  - "source/raw"
 ---
 ### Scope them with an agent catalog, run them in parallel, and fold the reports into 1 answer.
 

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-29
-updated: 2026-06-29
+updated: 2026-09-11
 entity_kind: organization
 tags:
   - entity
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-28-mayank-pratap-singh-timesformer
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-09-07-rai-lejepa
 status: active
 ---
 
@@ -36,6 +37,21 @@ Because the same publisher recurs across quantization, memory/architecture, and 
 - Vizuara material is pedagogical secondary coverage; durable claims should be traced back to the underlying papers (e.g., TurboQuant, Titans/Nested Learning arXiv 2512.24695, TimeSformer).
 - Authors associated here include [[Siddhant Rai]] and [[Mayank Pratap Singh]].
 
+## The LeJEPA walkthrough as an example of the house style
+
+[[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]] is a good specimen of what this
+publication is for: a research result taken apart to the level of the code and the inequality, rather than
+summarised.
+
+The walkthrough carries the derivations (Fisher information and the `J(p) ≥ tr(Σ⁻¹)` equality condition,
+Cramér–Wold, Epps–Pulley), the implementation details that make the scalability claim checkable
+(`global_step` seeding the direction generator so every device draws the same directions with no
+communication; one all-reduce of an `(M, T)` array being "the entire distributed story"), and the
+measured costs (~0.47 ms forward-backward on a V100 at N=M=512).
+
+It also keeps the open problems visible rather than closing them for narrative tidiness — the averaged
+versus maximised SIGReg statistic, the vision-only scope, and the anisotropy question for LLM embeddings.
+
 ## Related pages
 
 - [[Siddhant Rai]]
@@ -45,3 +61,5 @@ Because the same publisher recurs across quantization, memory/architecture, and 
 - [[Mayank Pratap Singh - Transformers for Video - TimeSformer]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[AI Knowledge Base Overview]]
+- [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
+- [[Joint-Embedding Predictive Architecture]]

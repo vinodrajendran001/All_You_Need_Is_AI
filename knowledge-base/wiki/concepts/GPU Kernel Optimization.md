@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - gpu
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-07-03-fergus-finn-cuda-kernel
   - src-2026-04-20-moonshotai-flashkda-v1
   - src-2026-08-29-baseten-agentic-kernels-production
+  - src-2026-09-08-cohere-megakernel-serving
 status: active
 ---
 
@@ -98,6 +99,30 @@ being taken**.
 
 All figures are self-reported by the vendor against its own prior baseline. See [[AI-Generated Kernels]].
 
+## When the kernel is the whole program, the object of optimisation becomes the schedule
+
+[[Cohere - North Mini Code Megakernel Serving Engine]] moves the unit of optimisation up a level. A decode megakernel launches **one
+persistent threadblock per SM** for the whole step, pulling work from a task list in global memory, so
+"instead of the GPU driver scheduling thousands of threadblocks across hundreds of kernels, the kernel
+itself interprets a task list." What remains to optimise is the **task graph and its schedule**, not the
+individual kernel.
+
+**The porting recipe is four steps and the authors name the hard one**: opcode definition, kernel body,
+barrier accounting, and scheduling — **"the hard part is step 3."**
+
+**The scheduler result is the most instructive part, because it contradicts the obvious design.**
+Scheduling is mostly static round-robin (`task k → SM k mod 132`) with a hand-tuned wave order
+(`qkv → router → top-k → route setup → MoE gather → attention → MoE up/down → O-proj → RMSNorm`). At
+batches 1/2/4 the tuned order gives **291/423/553 tok/s**; interleaving loses **3/4/4%**; putting attention
+first loses **19/14/8%**. And **dependency-affinity placement — co-locating dependent tasks on the same SM,
+the textbook locality optimisation — made it 1–2% slower.** The authors state that a causal model of why
+the tuned schedule wins **"remains open."** The working schedule was found by tuning, not derived.
+
+Two departures from the prior art ([[Megakernels]] covers the lineage): **heavy `wgmma` tensor-core use
+even at batch 1**, and **abandoning shared-memory paging** because "the bookkeeping was complex, buggy,
+and had high overhead" — with the authors leaving open whether that is a property of the technique or of
+this implementation.
+
 ## Open questions
 
 - How much of the kernel ladder survives as compilers absorb it? Triton and CUDA Tile exist precisely to make step 3 unnecessary, yet the fastest kernels are still hand-written.
@@ -120,3 +145,6 @@ All figures are self-reported by the vendor against its own prior baseline. See 
 - [[Inference Serving Engines]]
 - [[Baseten - Agentic Kernels in Production]]
 - [[Inference Efficiency Frontier]]
+- [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Megakernels]]
+- [[Cohere]]

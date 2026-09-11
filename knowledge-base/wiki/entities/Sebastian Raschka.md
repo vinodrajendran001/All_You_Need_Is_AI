@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-09-04
+updated: 2026-09-11
 entity_kind: person
 tags:
   - entity
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-07-20-raschka-reasoning-effort
   - src-2026-09-02-raschka-astra-looped-transformers
+  - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active
 ---
 
@@ -62,6 +63,23 @@ is proportionate rather than dismissive: *"Astra may be a really good model, but
 He anchors [[Recursive Architectures]] with this vault's first shipped configuration for layer reuse, and
 supplies the correction that reframes [[Chain-of-Thought Monitoring]].
 
+## The September 2026 Astra analysis: looped transformers and hidden reasoning
+
+[[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] is the longer Substack
+treatment that follows his shorter September 2 note, and it is characteristic of how he reads a model
+release: separate what the lab claimed from what the architecture implies, and say which parts are
+unverified.
+
+The analysis holds two things apart that the release conflated. **Looping** — reusing the same weights for
+multiple passes to buy depth without parameters — is an architectural claim with its own literature.
+**Hidden reasoning** — reasoning that does not surface as readable tokens — is a monitorability claim. The
+discipline of the piece is that it records Astra's **monitorability regression as real but not attributed
+to looping**; the two arrived together, which is not evidence that one caused the other.
+
+That restraint is why the source is useful to the vault: the monitorability result propagates to
+[[Chain-of-Thought Monitoring]] as a measured regression, while the causal story stays an open question on
+[[Recursive Architectures]] and [[Latent-Space Reasoning]].
+
 ## Related pages
 
 - [[Sebastian Raschka - Using Local Coding Agents]]
@@ -77,3 +95,4 @@ supplies the correction that reframes [[Chain-of-Thought Monitoring]].
 - [[Recursive Architectures]]
 - [[Chain-of-Thought Monitoring]]
 - [[Latent-Space Reasoning]]
+- [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]

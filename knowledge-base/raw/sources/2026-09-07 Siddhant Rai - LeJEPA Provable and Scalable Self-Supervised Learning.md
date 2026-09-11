@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-07-rai-lejepa
+captured: 2026-09-11
 title: "LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics"
 source: "https://vizuara.substack.com/p/lejepa-provable-and-scalable-self?utm_source=post-email-title&publication_id=3466476&post_id=214459483&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-07
 description: "Every anti-collapse trick in SSL was found, not derived. LeJEPA asks what distribution embeddings should follow, proves there is exactly one answer, and skips the rest of the machinery."
 tags:
   - "clippings"
+  - "topic/self-supervised-learning"
+  - "topic/training"
+  - "source/raw"
 ---
 ## Table of contents
 

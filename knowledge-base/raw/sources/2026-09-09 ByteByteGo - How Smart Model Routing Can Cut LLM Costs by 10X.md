@@ -1,4 +1,7 @@
 ---
+type: raw-source
+source_id: src-2026-09-09-bytebytego-model-routing
+captured: 2026-09-11
 title: "How Smart Model Routing Can Cut LLM Costs by 10X"
 source: "https://blog.bytebytego.com/p/how-smart-model-routing-can-cut-llm?utm_source=post-email-title&publication_id=817132&post_id=214202274&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
 author:
@@ -8,6 +11,9 @@ created: 2026-09-10
 description: "Cost reduction isn’t a given. It also depends on the types of requests the application receives, the price difference between models, and how well the routing system performs. In this article, we are going to look at various aspects"
 tags:
   - "clippings"
+  - "topic/inference"
+  - "topic/cost"
+  - "source/raw"
 ---
 ## \[Webinar\] How to stop babysitting your agents (Sponsored)
 

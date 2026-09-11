@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-07-03
+updated: 2026-09-11
 tags:
   - concept
   - post-training
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-17-nathan-lambert-frontier-post-training-recipe-review
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-09-09-zafstojano-recursive-synthetic-improvement
 status: active
 ---
 
@@ -61,6 +62,29 @@ MOPD is one of the clearest 2026 signs that frontier post-training has moved bey
 
 [[Akhil Arora et al - Current Advances in LLM Reasoning]] shows the 2026 frontier collapsing the SFT-distillation and RL stages into one. Where classic distillation transfers a teacher's traces by pure SFT (DeepSeek-R1 distills ~85–90% of capability into 1.5–70B students; s1 shows 1,000 curated traces can beat o1-preview), newer methods run **KD + RL simultaneously** — the teacher provides the *what* (correct reasoning patterns) while RL discovers the *how* (new strategies beyond the teacher). **RL-aware KD** further weights tokens by reasoning importance so critical steps get more distillation signal than filler, cutting training time ~40% versus a sequential SFT→RL pipeline. This is MOPD's on-policy-consolidation idea pushed one step further: consolidation and exploration in a single loop.
 
+## Domain-specialised teacher fleets are now standard, and the cost argument is settled
+
+[[@zafstojano - Recursive Synthetic Improvement]] places multi-teacher distillation in a wider pattern and supplies the numbers that
+justify it.
+
+**Nemotron 3 Ultra trained 10+ domain-specialised teachers**, consolidated via **MOPD**; MAI-Thinking-1
+trained three domain specialists on the same logic. The economic argument is settled by **Qwen 3**, whose
+distillation pipeline cost **only 10% of the GPU compute** of the full multi-stage pipeline and performed
+better — so a teacher fleet is not a compromise for teams that cannot afford full training, it is the
+cheaper path to a better result.
+
+**The teacher-selection assumption is wrong, though.** OpenThoughts3, across 1000+ controlled experiments,
+found **QwQ-32B to be a stronger teacher than DeepSeek-R1 despite being the weaker model**. If capability
+does not predict teaching quality, assembling a teacher fleet by picking the best available model per
+domain is not obviously the right selection rule, and no alternative rule is known.
+
+Two further findings from the same work bear on curation: sampling **multiple answers per question** gives
+≥16× the data and better results, and **difficulty filtering helps while answer filtering does not**.
+
+Related self-teaching variants: **OPSD** and **SDPO** use the model as its own teacher with privileged
+information — the teacher fleet collapsed to one model with extra context. See
+[[Synthetic Data Flywheel]].
+
 ## Related pages
 
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
@@ -73,3 +97,7 @@ MOPD is one of the clearest 2026 signs that frontier post-training has moved bey
 - [[LLM Reasoning]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]
+- [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Synthetic Data Flywheel]]
+- [[Knowledge Distillation]]
+- [[@zafstojano]]

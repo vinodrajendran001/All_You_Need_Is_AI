@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-09-03
+updated: 2026-09-11
 tags:
   - concept
   - llm
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-08-cohere-megakernel-serving
 status: active
 ---
 
@@ -139,6 +140,26 @@ context and pay more for it.
 These figures come from an explainer that attributes none of them to a specific paper or vendor; treat them as
 illustrative of well-established effects rather than as citable measurements.
 
+## Parallel transformer layers make a decode step easier to pack
+
+[[Cohere - North Mini Code Megakernel Serving Engine]] surfaces an architecture/implementation coupling that is usually invisible.
+
+**North Mini Code uses parallel transformer layers** — attention and MoE are computed from the same
+normalised input and rejoined by a fused residual add plus RMSNorm. Because the two branches are
+independent, there is **always unrelated work available to backfill a partial wave**, which is what makes
+the megakernel's wave-quantisation win large: "200 tiles on 132 SMs means two waves for 1.5 waves of
+work," and that waste is only recoverable if independent work exists to fill it.
+
+The model's structure was chosen for modelling reasons; it turns out to determine how well the serving
+path packs. That is the software-side analogue of the tile-geometry constraint in
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]], where head dimension determines MXU
+utilisation.
+
+**A second coupling runs through routing.** With **real expert distributions the megakernel speedup is
+1.32x at batch 8 versus 1.14x under uniform routing**, because real requests concentrate on the same
+experts, leaving sparser MoE work and therefore more bubbles to fill. The conclusion generalises beyond
+megakernels: **"synthetic uniform routing therefore understates megakernel speedup on real traffic."**
+
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
@@ -185,3 +206,6 @@ illustrative of well-established effects rather than as citable measurements.
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
 - [[Agentic Testing]]
+- [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Megakernels]]
+- [[Cohere]]

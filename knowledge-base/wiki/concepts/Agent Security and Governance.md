@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-09-04
+updated: 2026-09-11
 tags:
   - concept
   - ai-agents
@@ -25,6 +25,8 @@ source_ids:
   - src-2026-08-31-derelict5432-adaptive-agentic-worms
   - src-2026-09-02-paolo-perrone-agentic-testing
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-06-rastogi-agent-observability
+  - src-2026-09-08-raji-cosine-similarity-safety
 status: active
 ---
 
@@ -246,6 +248,66 @@ error is stated generally: *"An already-rendered string is being used as layout 
 transport, and terminal program at once."* Where a rendered string is simultaneously data and a program, output
 handling is a security boundary, not a display detail.
 
+## A permission gate that emits no span is not a control
+
+[[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]] makes governance a tracing requirement rather than a policy one. The rule is
+testable: "If a sensitive action ever executes without an approval span attached to it, that's a P0, and
+it's only detectable because the gate emits a span." A gate that runs but leaves no trace cannot be
+audited, and therefore cannot be shown to have run.
+
+The same source is blunt about the alternative that teams reach for first: **"Explicit instructions are
+not a safety layer — they're a suggestion the model is statistically likely to follow, which is a
+different thing."** And on remediation generally: "The fix for a misbehaving agent is never 'trust the
+model to know better.'"
+
+**Guardrails decay silently, so they need sabotage validation** — scheduled known-bad input confirming
+each check still fires. One team that implemented it "found 67 checks in their own system that had been
+silently no-op'ing for months before anyone noticed", because "an unvalidated guardrail is
+indistinguishable from a fake one."
+
+The worked incident shows why the governance layer has to sit at the tool call rather than at the model:
+247 erroneous refunds were issued through a call that *succeeded*, with the LLM layer looking healthy
+throughout. The pattern `refund_order(amount=$0.01, count=247)` was visible only at the tool layer.
+
+Retry arithmetic turns into a security question at scale. Without an `idempotency_key` and a `retry_count`
+span attribute, "you cannot tell, from the trace alone, whether that was N distinct exploit attempts or a
+much smaller number of legitimate-looking requests that a retry loop quietly multiplied. One is a
+prompt-injection problem, the other is a distributed-systems problem."
+
+Compliance has a design consequence too: OpenTelemetry's GenAI conventions keep prompt and response
+content in span **events** rather than indexed attributes specifically so it can be redacted at the
+collector without touching application code.
+
+## The retrieval layer is an attack surface with its own threat model
+
+[[Amine Raji - Cosine Similarity Is Not a Safety Property]] extends governance to the vector store, on the grounds that the retriever provides
+no integrity guarantee at all: **"Cosine similarity measures an angle. It has no notion of truth,
+authority or provenance."**
+
+Two attacks follow. **Poisoning**: crafted documents win retrieval and steer the answer — PoisonedRAG
+drove attacker-chosen answers above 90% success from five texts in a 2.6-million-document corpus, and a
+gradient-free version using vocabulary engineering reached **95% against an undefended pipeline** (twenty
+runs, one embedding model — the author calls it "a lab reading, not a base rate"). **Inversion**: stored
+embeddings leak their text, with Vec2Text recovering **92% of 32-token inputs exactly** and ALGEN reducing
+the attack to a one-step linear map needing roughly 1,000 aligned pairs. See [[Retrieval Poisoning]] and
+[[Embedding Inversion]].
+
+The governance actions are ordered by cost. The free one is a **threat-model reclassification**: vector
+store compromise is partial document disclosure, not a metadata leak, and retention, replication and
+breach-notification policy should follow from that. The structural one is **access-controlled retrieval**,
+filtering at query time on classification metadata — the only complete defence against cross-tenant
+leakage, because "it does not depend on detecting anything." Without it, twenty out of twenty
+natural-language queries returned confidential content to an unauthorised user.
+
+That control carries a warning which generalises well beyond retrieval: **"Partial implementation of this
+control is worse than none, because it manufactures confidence."** It is the same failure as the 67
+silently dead guardrails above — a control believed to be working is worse than a known gap.
+
+Detection thresholds are **properties of the embedding model, not of the data**, so pinning the embedding
+model version becomes a security control: an upgrade invalidates every calibrated threshold at once.
+
+Catalogued as OWASP **LLM08:2025 Vector and Embedding Weaknesses**.
+
 ## Open questions
 
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
@@ -301,3 +363,10 @@ handling is a security boundary, not a display detail.
 - [[Tool Roster Economics]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Can Bölük]]
+- [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- [[Agent Observability]]
+- [[Sarthak Rastogi]]
+- [[Amine Raji - Cosine Similarity Is Not a Safety Property]]
+- [[Retrieval Poisoning]]
+- [[Embedding Inversion]]
+- [[Amine Raji]]

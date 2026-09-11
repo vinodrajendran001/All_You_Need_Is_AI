@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-04
+updated: 2026-09-11
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-20-bytebytego-graphrag
   - src-2026-09-02-bytebytego-rag-embedding-model
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-08-raji-cosine-similarity-safety
 status: active
 ---
 
@@ -177,6 +178,36 @@ volume; what it cannot hold is a stance. A position file that states an organisa
 not a chunk to be found by similarity, because there is nothing similar to it — it is the answer. See
 [[Institutional Knowledge Agents]].
 
+## Retrieval quality is an integrity problem as well as an accuracy problem
+
+[[Amine Raji - Cosine Similarity Is Not a Safety Property]] establishes a threat model this page has not carried. The retriever provides no
+integrity guarantee, because **"cosine similarity measures an angle. It has no notion of truth, authority
+or provenance."** "Revenue was $8.3M" and "Revenue was $24.7M" sit at nearly identical positions, so the
+retriever cannot prefer the true one.
+
+**An attack needs two separable conditions** — the *retrieval condition* (the poison is returned) and the
+*generation condition* (the model prefers it once returned). Defences that address only one leave the
+other intact, which is why improving the retriever is not a defence.
+
+That last point is the finding that should change how this page's accuracy framing is read. The mechanism
+is **crowding, not outranking**: three mutually corroborating fakes — a CFO correction, a restatement
+notice, board minutes — push the true document out of a top-3 result, and in the author's measurements
+**"the legitimate document was often retrieved *and still lost*."**
+
+Scale and cost: PoisonedRAG (USENIX Security 2025) injected **five crafted texts into 2.6 million** and
+drove attacker-chosen answers **above 90%**; a gradient-free version using vocabulary engineering reached
+**95% against an undefended pipeline** — from twenty runs with one embedding model and one generator,
+which the author labels "a lab reading, not a base rate."
+
+**Architecture matters more than retrieval tuning**, per Korn's "Architecture Matters" (May 2026): success
+spread **nearly 58 points across four architectures, 81.9% against vanilla RAG down to 24.4% against
+recursive**, with most of the strongest variant's advantage coming from **adversarial framing rather than
+retrieval optimisation**.
+
+Defences are covered under [[Retrieval Poisoning]] — ingestion-time similarity thresholds derived from the
+attacker's own requirements, and access-controlled retrieval as the only structural control — and the
+complementary attack on the same store is [[Embedding Inversion]].
+
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
@@ -205,3 +236,7 @@ not a chunk to be found by similarity, because there is nothing similar to it �
 - [[Meta]]
 - [[Schema-Driven Knowledge Base]]
 - [[Persistent Wiki]]
+- [[Amine Raji - Cosine Similarity Is Not a Safety Property]]
+- [[Retrieval Poisoning]]
+- [[Embedding Inversion]]
+- [[Amine Raji]]

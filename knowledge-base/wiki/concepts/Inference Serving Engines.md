@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-03
+updated: 2026-09-11
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-07-17-netflix-in-house-llm-serving
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
+  - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-08-cohere-megakernel-serving
 status: active
 ---
 
@@ -111,6 +113,44 @@ completions**. Determinism is not a sampling setting; it is a property of how th
 that day. Anyone using an engine as a reproducible evaluation substrate is measuring the engine too — see
 [[Multi-Turn Evaluation]] and [[Agentic Testing]].
 
+## A second accelerator vendor means rebuilding the serving stack three times
+
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] documents vLLM's TPU backend reaching its **third** architecture:
+PyTorch/XLA lazy tensor → the `tpu-inference` backend using JAX with TorchAX → **TorchTPU**, a native
+PyTorch `PrivateUse1` device. **XLA remains the compiler** — not Inductor or Triton — and existing Pallas
+kernels carry over. It was in private beta at time of writing with open-sourcing expected around
+mid-October at the PyTorch Conference, so its portability claims are unverified.
+
+**The TPU serving roadmap is mostly catching up to GPU serving practice**: speculative decoding and MTP,
+prefill-decode disaggregation via **TPU-Sync** (formerly TPU-raiden, zero-copy through native PJRTBuffer
+descriptors), KV cache offloading to DRAM, Mooncake Store P2P pooling, and AgentX. The engine features
+that are table stakes on GPUs are roadmap items here.
+
+The wider point for this page is that engine portability is shallower than the API surface suggests. The
+optimisation catalogue needed to serve **one model** (Qwen3.5 397B in FP8) runs to dozens of kernel-level
+changes, and that work has to be re-done per model family. See
+[[Accelerator Software Externalization]].
+
+## A megakernel decode path inside a real serving system, with real limits
+
+[[Cohere - North Mini Code Megakernel Serving Engine]] reports what the authors claim is the **first fully fledged serving system built
+around a decode megakernel** — prior work being either compilers that auto-generate megakernels or
+batch-size-1 research demonstrations.
+
+**Integration is a two-thread design**: a Python control-plane thread and a native C++ decode thread that
+take turns via park/resume.
+
+**Measured against vLLM on North Mini Code** (30B total, 3.3B active): **292 tok/s at batch 1, 62% of
+speed-of-light, against vLLM's 185 tok/s (39%)** — a **1.58x speedup**. End-to-end on real benchmarks it
+is **1.25x–1.41x** (AIME 2025 1.41x, LiveCodeBench v6 1.28x, GPQA 1.25x, MMLU-Pro CS 1.33x, SciCode
+1.37x), holding to **256K context with no measurable accuracy loss** (SciCode **38.9% ± 1.6%** against
+vLLM's **38.2%** over 7 runs).
+
+**The limitations are what keep this a component rather than an engine**: **no mixed prefill/decode**, a
+**maximum batch size of 8** (called a configuration rather than architectural limit, but undemonstrated
+above it), and **decode only**. The 1.58x is also measured at batch 1, which is not vLLM's operating
+point; the narrower 1.25x–1.41x end-to-end range is the meaningful comparison.
+
 ## Related pages
 
 - [[Netflix - In-House LLM Serving]]
@@ -134,3 +174,9 @@ that day. Anyone using an engine as a reproducible evaluation substrate is measu
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
 - [[Agentic Testing]]
 - [[Inference Efficiency Frontier]]
+- [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- [[Accelerator Software Externalization]]
+- [[SemiAnalysis]]
+- [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Megakernels]]
+- [[Cohere]]

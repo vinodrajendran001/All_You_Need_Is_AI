@@ -332,8 +332,8 @@ floor settings to prevent an application from weakening the minimum. The example
 **MEDIUM_AND_ABOVE** for four harmful-content categories. This is probabilistic screening, not a
 replacement for IAM, sandboxing, or transaction authorization.
 
-Two architecture examples locate identity and mutation. [[Roushanak Rahmat - From ADK to Gemini
-Enterprise]] separates runtime service identity, end-user identity, and the employee-facing
+Two architecture examples locate identity and mutation.
+[[Roushanak Rahmat - From ADK to Gemini Enterprise]] separates runtime service identity, end-user identity, and the employee-facing
 catalogue. [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]] assigns
 all business writes to one action agent and human-gates high-value refunds. Those are useful
 boundaries only if the downstream API enforces them too.

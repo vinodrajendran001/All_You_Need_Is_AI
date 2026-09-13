@@ -740,8 +740,8 @@ IAM, sandboxing, or transaction authorization.
 length, KV-cache locality, active LoRA adapters, and Critical/Standard/Sheddable priority; it reports
 no performance benchmark and the feature was Preview. [[Mofi Rahman - Quantizing LLMs on GKE]] moves
 a 27B model's raw weights from at least **54 GB at BF16** to about **13.5 GB at 4 bits**, but explicitly
-leaves cache, activations, workspaces, and runtime overhead outside that fit calculation. [[Sumit K -
-Scaling Simplified]] supplies the generic scaling vocabulary, while its “millions” title is unsupported
+leaves cache, activations, workspaces, and runtime overhead outside that fit calculation.
+[[Sumit K - Scaling Simplified]] supplies the generic scaling vocabulary, while its “millions” title is unsupported
 by any capacity model or case study.
 
 ## Related pages

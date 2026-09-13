@@ -1,13 +1,19 @@
 ---
-title: "How to Build a Production-Grade RAG with ADK & Vertex AI RAG Engine via the Agent Starter Pack -Part 1 ( Agent Engine)"
-source: "https://medium.com/google-cloud/how-to-build-a-production-grade-rag-with-adk-vertex-ai-rag-engine-via-the-agent-starter-pack-7e39e9cfe856"
-author:
-  - "[[Arjun Prabhulal]]"
+type: raw-source
+source_id: src-2026-09-13-prabhulal-production-rag-adk
+title: "How to Build Production-Grade RAG with ADK and Vertex AI RAG Engine"
+author: Arjun Prabhulal
+url: "https://medium.com/google-cloud/how-to-build-a-production-grade-rag-with-adk-vertex-ai-rag-engine-via-the-agent-starter-pack-7e39e9cfe856"
 published: 2025-11-03
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - rag
+  - ai-agents
+  - google-cloud
+status: active
 ---
 Retrieval-Augmented Generation (RAG) has become the foundation for enterprise-grade generative AI systems powering intelligent assistants, document search engines, and private knowledge bases. However, while building a RAG prototype is straightforward, turning it into a scalable, observable, and production-ready system requires a robust infrastructure and strong architecture backbone.
 

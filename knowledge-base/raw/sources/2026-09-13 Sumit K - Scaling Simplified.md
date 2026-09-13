@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-sumit-scaling-distributed-systems
 title: "Scaling Simplified: How Distributed Systems Handle Millions"
-source: "https://medium.com/google-cloud/scaling-simplified-how-distributed-systems-handle-millions-2854aa1024c6"
-author:
-  - "[[Sumit K]]"
+author: Sumit K
+url: "https://medium.com/google-cloud/scaling-simplified-how-distributed-systems-handle-millions-2854aa1024c6"
 published: 2025-01-05
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - distributed-systems
+  - scalability
+  - system-design
+status: active
 ---
 ![](https://miro.medium.com/v2/resize:fit:1280/format:webp/0*zuvEcVCtPs_UYi6K.gif)
 

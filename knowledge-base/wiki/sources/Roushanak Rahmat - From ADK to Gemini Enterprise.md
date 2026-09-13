@@ -65,4 +65,3 @@ The durable boundary is **execution versus distribution**. A production agent ne
 
 - [[Tool Use and Function Calling]]
 - [[Agent Plugin Architecture]]
-

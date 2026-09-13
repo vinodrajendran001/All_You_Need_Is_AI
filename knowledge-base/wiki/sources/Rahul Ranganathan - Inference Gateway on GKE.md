@@ -70,4 +70,3 @@ The gateway makes inference state part of routing policy. It also shows why "lea
 - [[LLM Inference]]
 - [[Serving Benchmarks and Goodput]]
 - [[Model Routing]]
-

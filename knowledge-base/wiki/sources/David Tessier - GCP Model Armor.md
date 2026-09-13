@@ -68,4 +68,3 @@ Central floor settings turn content inspection from an application convention in
 - [[Agent Observability]]
 - [[Model Context Protocol]]
 - [[LLM Application Resilience]]
-

@@ -1,4 +1,3 @@
-
 ---
 title: "Building Multi-tenant Agentic AI systems using Gemini Enterprise Agent Platform for B2B SaaS"
 source: "https://medium.com/google-cloud/building-multi-tenant-agentic-ai-systems-using-gemini-enterprise-agent-platform-for-b2b-saas-5075a8dfd1db"

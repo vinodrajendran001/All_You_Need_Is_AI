@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-ranganathan-gke-inference-gateway
 title: "Inference Gateway: Intelligent Load Balancing for LLMs on GKE"
-source: "https://medium.com/google-cloud/inference-gateway-intelligent-load-balancing-for-llms-on-gke-6a7c1f46a59c"
-author:
-  - "[[Rahul Ranganathan]]"
+author: Rahul Ranganathan
+url: "https://medium.com/google-cloud/inference-gateway-intelligent-load-balancing-for-llms-on-gke-6a7c1f46a59c"
 published: 2025-04-26
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - inference
+  - serving
+  - google-cloud
+status: active
 ---
 The rise of Large Language Models (LLMs) has ushered in an era of intelligent applications, transforming how we interact with technology. These sophisticated models, the engines behind groundbreaking innovations, demand robust and scalable infrastructure to power their real-world deployment. For developers and organizations looking to bring these powerful creations to a wide audience, Google Kubernetes Engine (GKE) emerges as a leading platform, expertly designed to orchestrate complex containerized applications.  
 At the heart of any reliable and performant application lies effective load balancing. It’s the crucial traffic controller, ensuring requests are distributed evenly and intelligently across available resources, preventing bottlenecks and guaranteeing a seamless user experience.

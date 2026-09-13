@@ -1,13 +1,19 @@
 ---
-title: "Google Cloud’s MCP Security Framework Explained: Your AI Agent shouldn’t have more access than it needs."
-source: "https://medium.com/google-cloud/google-clouds-mcp-security-framework-explained-your-ai-agent-shouldn-t-have-more-access-than-it-900af267b7bd"
-author:
-  - "[[Virinchi T]]"
+type: raw-source
+source_id: src-2026-09-13-virinchi-google-cloud-mcp-security
+title: "Google Cloud's MCP Security Framework Explained: Your AI Agent Shouldn't Have More Access Than It Needs"
+author: Virinchi T
+url: "https://medium.com/google-cloud/google-clouds-mcp-security-framework-explained-your-ai-agent-shouldn-t-have-more-access-than-it-900af267b7bd"
 published: 2026-03-03
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - mcp
+  - security
+  - google-cloud
+status: active
 ---
 The Model Context Protocol (MCP) is quickly becoming the standard for connecting AI agents to external services. Google Cloud now offers its own remote MCP servers, giving agents direct access to Google Cloud resources — BigQuery, Cloud SQL, Compute Engine, Cloud Storage, and more.
 

@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-rahman-quantizing-llms-gke
 title: "Quantizing LLMs on GKE for Faster and Cheaper Inference"
-source: "https://medium.com/google-cloud/quantizing-llms-on-gke-for-faster-and-cheaper-inference-59bfc6b15e43"
-author:
-  - "[[Mofi Rahman]]"
+author: Mofi Rahman
+url: "https://medium.com/google-cloud/quantizing-llms-on-gke-for-faster-and-cheaper-inference-59bfc6b15e43"
 published: 2025-11-06
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - quantization
+  - inference
+  - google-cloud
+status: active
 ---
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aL0Xvixt_MugIgHZUZ1Oug.png)
 

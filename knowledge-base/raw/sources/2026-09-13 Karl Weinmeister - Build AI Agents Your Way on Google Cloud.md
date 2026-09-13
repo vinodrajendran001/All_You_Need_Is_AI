@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-weinmeister-build-ai-agents-google-cloud
 title: "Build AI Agents your way on Google Cloud"
-source: "https://medium.com/google-cloud/build-ai-agents-your-way-on-google-cloud-7e64e76550bc"
-author:
-  - "[[Karl Weinmeister]]"
+author: Karl Weinmeister
+url: "https://medium.com/google-cloud/build-ai-agents-your-way-on-google-cloud-7e64e76550bc"
 published: 2025-04-14
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - frameworks
+  - google-cloud
+status: active
 ---
 Navigating the exploding landscape of AI agents can feel overwhelming. Frameworks, models, tools, deployment options — how do you piece it all together to build them?
 

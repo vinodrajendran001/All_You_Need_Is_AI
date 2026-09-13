@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-adedeji-multi-agent-code-review
 title: "Agents That Prove, Not Guess: A Multi-Agent Code Review System"
-source: "https://medium.com/google-cloud/agents-that-prove-not-guess-a-multi-agent-code-review-system-e2c0a735e994"
-author:
-  - "[[Ayo Adedeji]]"
+author: Ayo Adedeji
+url: "https://medium.com/google-cloud/agents-that-prove-not-guess-a-multi-agent-code-review-system-e2c0a735e994"
 published: 2025-10-10
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - code-review
+  - testing
+status: active
 ---
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ZembufthhBaiIF-ZYkHCSg.png)
 

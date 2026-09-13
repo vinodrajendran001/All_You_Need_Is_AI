@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-rahmat-adk-gemini-enterprise
 title: "From ADK to Gemini Enterprise: Building Production-Grade AI Agents on Google Cloud"
-source: "https://medium.com/google-cloud/from-adk-to-gemini-enterprise-building-production-grade-ai-agents-on-google-cloud-e32f4977f05a"
-author:
-  - "[[Dr Roushanak Rahmat]]"
+author: Roushanak Rahmat
+url: "https://medium.com/google-cloud/from-adk-to-gemini-enterprise-building-production-grade-ai-agents-on-google-cloud-e32f4977f05a"
 published: 2026-06-22
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - enterprise
+  - google-cloud
+status: active
 ---
 *A Deep-Dive Architectural Guide for Scaling Autonomous Enterprise Workflows Using the Vertex AI Agent Builder Ecosystem.*
 

@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-tessier-gcp-model-armor
 title: "Leveraging GCP Model Armor for Robust LLM and Agentic AI Security"
-source: "https://medium.com/google-cloud/leveraging-gcp-model-armor-for-robust-llm-and-agentic-ai-security-777558c6cee2"
-author:
-  - "[[David Tessier]]"
+author: David Tessier
+url: "https://medium.com/google-cloud/leveraging-gcp-model-armor-for-robust-llm-and-agentic-ai-security-777558c6cee2"
 published: 2025-03-26
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - security
+  - google-cloud
+status: active
 ---
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*UOktbl6F_NCJ30MKRhCaTw.jpeg)
 

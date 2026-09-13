@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-13-nevsky-gemini-multi-agent-system
 title: "Building a Multi-Agent AI System with Gemini 3 and Google Cloud: From Single Agent to Orchestrated Intelligence"
-source: "https://medium.com/google-cloud/build-multi-agent-ai-system-with-gemini-3-1-google-cloud-single-bot-orchestrated-intelligence-dc0c111e30e7"
-author:
-  - "[[Alex Nevsky]]"
+author: Alex Nevsky
+url: "https://medium.com/google-cloud/build-multi-agent-ai-system-with-gemini-3-1-google-cloud-single-bot-orchestrated-intelligence-dc0c111e30e7"
 published: 2026-03-18
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-13
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - multi-agent
+  - google-cloud
+status: active
 ---
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*TPhovPgAkNFbL7PECX7-wg.png)
 

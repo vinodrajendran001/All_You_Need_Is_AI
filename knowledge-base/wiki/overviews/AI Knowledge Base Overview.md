@@ -17,6 +17,14 @@ source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-leetcode-templates
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-21-bytebytego-netflix-multimodal-search
+  - src-2026-05-21-bytebytego-snapchat-predictions
+  - src-2026-05-21-bytebytego-grab-ai-agents
+  - src-2026-05-21-bytebytego-figma-design-code
+  - src-2026-05-21-bytebytego-amazon-llm-recommendations
+  - src-2026-05-21-bytebytego-instacart-search
+  - src-2026-05-21-bytebytego-monolithic-microservices-serverless
+  - src-2026-05-21-bytebytego-doordash-country-launch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
   - src-2026-06-02-dwarkesh-eric-jang-alphago

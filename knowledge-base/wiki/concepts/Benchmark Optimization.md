@@ -83,7 +83,7 @@ It is the same disease as the transcript-matching failure above, occurring in a 
 This page mostly concerns metrics that improve while the underlying capability does not. The GPT-2
 reproduction series shows the same gap from the other side.
 
-[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] reports a **genuine, honestly
+[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] reports a **genuine, honestly
 obtained improvement in held-out next-token loss** that produced no measurable gain in
 instruction-following. Nothing was gamed and no test set was contaminated; the metric simply was not
 measuring the capability in question. Earlier in the series, weights matching OpenAI's GPT-2 on loss
@@ -210,7 +210,7 @@ about 20% and raised CLI cost — establishing that the workload is part of the 
 
 ## Related pages
 
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]]
 - [[Multi-Turn Evaluation]]
 - [[LLM-as-a-Judge]]

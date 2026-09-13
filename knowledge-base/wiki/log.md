@@ -15,6 +15,14 @@ source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-leetcode-templates
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-21-bytebytego-netflix-multimodal-search
+  - src-2026-05-21-bytebytego-snapchat-predictions
+  - src-2026-05-21-bytebytego-grab-ai-agents
+  - src-2026-05-21-bytebytego-figma-design-code
+  - src-2026-05-21-bytebytego-amazon-llm-recommendations
+  - src-2026-05-21-bytebytego-instacart-search
+  - src-2026-05-21-bytebytego-monolithic-microservices-serverless
+  - src-2026-05-21-bytebytego-doordash-country-launch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
   - src-2026-06-02-dwarkesh-eric-jang-alphago
@@ -1238,3 +1246,20 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - [[Sumit K - Scaling Simplified]] adds vertical/horizontal/diagonal scaling, caching, sharding, and
   asynchronous work to [[ML Systems at Scale]] and [[Software Performance Engineering]], while the
   “millions” framing is explicitly marked unsupported by any benchmark or capacity model.
+
+## [2026-09-13] lint | Compression, portability, and source ownership
+
+- Completed the thirty-fourth comprehensive lint pass across **449 wiki pages** and **250 top-level
+  raw captures**; filed [[2026-09-13 Lint Pass]].
+- Repaired three summaries that had dropped central claims or reversed a mechanism, then propagated
+  the corrected evidence into recursive-architecture, hybrid-attention, MoE, and serving concepts.
+- Rebuilt [[Defensive Deception for Open Models]] around the source's gated seven-model result and
+  strengthened [[Mark Russinovich - Fool's Gold]] with the decisive numbers and limitations.
+- Normalized four private-use-character filenames into portable paths, removed two semantic
+  self-links, and path-qualified four ambiguous flashcard links.
+- Added missing ownership metadata to eight legacy summaries and restored the eight ByteByteGo
+  component IDs omitted from the controls. Index, log, and overview now match the complete
+  source-summary ownership set at **251 source IDs**.
+- Final structural checks found no malformed frontmatter, unresolved or wrapped prose wikilinks,
+  semantic orphans, index omissions, reciprocity failures, duplicate summary IDs or URLs, unowned raw
+  IDs, invalid filenames, or namespaced tag forks.

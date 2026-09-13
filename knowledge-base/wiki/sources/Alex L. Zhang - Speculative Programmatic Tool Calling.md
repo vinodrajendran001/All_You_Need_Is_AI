@@ -5,13 +5,15 @@ source_title: "Speculative Programmatic Tool Calling"
 source_author: Alex L. Zhang
 source_url: https://alexzhang13.github.io/blog/2026/spec-ptc/
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-09-13
 tags:
   - source/summary
   - programmatic-tool-calling
   - agent-harness
   - speculative-execution
   - inference-latency
+source_ids:
+  - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
 status: active
 ---
 
@@ -87,4 +89,3 @@ The deeper point for agent design is that **the action space determines the opti
 - [[LLM Inference]]
 - [[AI Knowledge Base Overview]]
 - [[Arithmetic Intensity and the Roofline Model]]
-

@@ -3,7 +3,7 @@ type: source-summary
 created: 2026-09-13
 updated: 2026-09-13
 source_id: src-2026-09-13-virinchi-google-cloud-mcp-security
-source_title: "Google Cloud's MCP Security Framework Explained"
+source_title: "Google Cloud's MCP Security Framework Explained: Your AI Agent Shouldn't Have More Access Than It Needs"
 source_author: Virinchi T
 source_url: https://medium.com/google-cloud/google-clouds-mcp-security-framework-explained-your-ai-agent-shouldn-t-have-more-access-than-it-900af267b7bd
 tags:

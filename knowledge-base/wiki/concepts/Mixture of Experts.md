@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-08-26
+updated: 2026-09-13
 tags:
   - concept
   - llm
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-03-liquid-ai-lfm2-5-8b-a1b
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-07-03-bytebytego-thinking-machines-interaction
+  - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
   - src-2026-08-23-wafer-ai-performance-engineering-resources
 status: active
 ---
@@ -40,6 +41,7 @@ MoE matters because it changes the tradeoff between **total model capacity** and
 - MoE therefore lives at the boundary of architecture and infrastructure: it is both a model design choice and a deployment problem.
 - **Expert parallelism** is the training-side face of that boundary. [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] frames MoE as its own axis of [[Distributed Training Parallelism]]: because only a fraction of experts fire per token, capacity can grow without proportional compute — but tokens must be dispatched by an **all-to-all** collective to whichever device holds their routed expert and collected back, adding a new communication dimension on top of data and tensor parallelism, with expert load-balancing as the central concern (this is why the [[AI Accelerator Architecture|Reiner Pope flashcards]] place an MoE layer inside one NVLink rack).
 - **Interaction models are pushing sparse scale into real-time serving.** [[ByteByteGo - Inside Thinking Machines Interaction Models|Thinking Machines' TML-Interaction-Small]] is a 276B-parameter MoE with only 12B active, deliberately sized so the *active* cost stays inside a 200 ms latency budget — a concrete demonstration that MoE's total-vs-active split is what makes a large model viable for [[Real-Time Voice AI]].
+- **Headline parameter growth can conceal a different execution model.** [[@waterloo_intern - From GPT-2 to Kimi K3]] contrasts Kimi K3's 2.8T total parameters with GPT-2's roughly 124M — about 22,580x — but Kimi activates sparse experts and mixes recurrent with full-attention layers. The ratio describes stored capacity, not per-token FLOPs or memory traffic, and comes from a secondary explainer rather than a primary benchmark.
 
 ## The systems layer MoE actually runs on
 
@@ -64,6 +66,7 @@ The pattern is that sparsity converts a compute problem into a *communication an
 - [[AI Agents in Production]]
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
 - [[ByteByteGo - Inside Thinking Machines Interaction Models]]
+- [[@waterloo_intern - From GPT-2 to Kimi K3]]
 - [[Liquid AI]]
 - Wafer - AI Performance Engineering Resources
 - Prefill-Decode Disaggregation

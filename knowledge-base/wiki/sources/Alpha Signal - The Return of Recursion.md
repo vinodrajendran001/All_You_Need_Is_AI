@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-05-18
-updated: 2026-08-26
+updated: 2026-09-13
 tags:
   - source/summary
   - reasoning
@@ -11,6 +11,8 @@ source_id: src-2026-05-18-alphasignal-return-of-recursion
 source_title: "The return of recursion - How AI is rethinking complex reasoning"
 source_author: Alpha Signal
 source_url: ""
+source_ids:
+  - src-2026-05-18-alphasignal-return-of-recursion
 status: active
 ---
 

@@ -15,6 +15,14 @@ source_ids:
   - src-2026-05-18-rag-architecture-comparison
   - src-2026-05-21-leetcode-templates
   - src-2026-05-21-bytebytego-batch
+  - src-2026-05-21-bytebytego-netflix-multimodal-search
+  - src-2026-05-21-bytebytego-snapchat-predictions
+  - src-2026-05-21-bytebytego-grab-ai-agents
+  - src-2026-05-21-bytebytego-figma-design-code
+  - src-2026-05-21-bytebytego-amazon-llm-recommendations
+  - src-2026-05-21-bytebytego-instacart-search
+  - src-2026-05-21-bytebytego-monolithic-microservices-serverless
+  - src-2026-05-21-bytebytego-doordash-country-launch
   - src-2026-05-28-bytebytego-airtable-search
   - src-2026-05-28-doordash-llm-judge
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
@@ -630,10 +638,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] - Agent efficiency through state deltas, cacheable prefixes, and prefill/decode-aware serving.
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]] - Survey separating durable model/scaffold updates from transient agent state.
 - [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]] - Table-native foundation models as enterprise prediction tools.
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
-- [[@neural_avb - What Are Looped Transformers?]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 2 - Bugfix|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
+- [[@neural_avb - What Are Looped Transformers|@neural_avb - What Are Looped Transformers?]]
 - [[@waterloo_intern - From GPT-2 to Kimi K3]]
 - [[ByteByteGo - Inside Roblox's Bet on World Models]]
 - [[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]]
@@ -765,6 +773,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 - [[2026-09-04 Lint Pass]] - Thirty-second pass: a benchmark claim that got stronger as it travelled from its source summary to six derived pages, and the strong result the compression dropped.
 - [[2026-09-11 Lint Pass]] - Thirty-third comprehensive lint pass; found three defects sharing one cause — a check that verified a proxy instead of the invariant: the tag vocabulary had re-forked along a *namespace* axis (43 of 48 `topic/*` tags had flat twins) while three passes checked only spelling, `log.md`'s frontmatter sat 9 source IDs short of `index.md` for 12 days while its body carried the entry correctly, and recursive capture counts were inflated by 40 nested non-captures. Also rebuilt a summary that had dropped every model, vendor and figure from its source while keeping the caveat about them, and confirmed the qualifier rule held against a genuine 1.41x collision.
+- [[2026-09-13 Lint Pass]] - Thirty-fourth comprehensive lint pass; repaired three lossy summaries and their downstream claims, rebuilt defensive deception, made four source-summary filenames portable, and aligned all controls with the complete 251-ID ownership set.
 
 ## Control files
 

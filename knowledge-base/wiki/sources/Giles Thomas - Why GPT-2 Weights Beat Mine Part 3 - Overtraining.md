@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-09-13
 source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part three: testing overtraining"
 source_author: Giles Thomas
@@ -33,7 +33,7 @@ The series supports a narrow but durable lesson: lower held-out language-model l
 
 ## Related pages
 
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 2 - Bugfix|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]
 - [[LLM Training Pipeline]]
 - [[LLM-as-a-Judge]]

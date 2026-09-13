@@ -64,4 +64,3 @@ The source is a concrete bridge between [[Agentic Reinforcement Learning]], [[Re
 - [[Automated AI Research]]
 - [[AI Agents in Production]]
 - [[Group Relative Policy Optimization]]
-- [[Bojan Jakimovski - Teaching an Open Model to Do Science]]

@@ -70,4 +70,3 @@ The source extends MCP security from server vetting to the full consequence chai
 - [[Tool Use and Function Calling]]
 - [[Retrieval Poisoning]]
 - [[LLM Application Resilience]]
-

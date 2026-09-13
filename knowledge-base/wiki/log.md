@@ -1238,4 +1238,3 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - [[Sumit K - Scaling Simplified]] adds vertical/horizontal/diagonal scaling, caching, sharding, and
   asynchronous work to [[ML Systems at Scale]] and [[Software Performance Engineering]], while the
   “millions” framing is explicitly marked unsupported by any benchmark or capacity model.
-

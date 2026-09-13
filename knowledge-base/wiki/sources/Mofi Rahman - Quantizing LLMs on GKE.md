@@ -70,4 +70,3 @@ The arithmetic cleanly separates **weight fit** from **runtime fit**. Saying a 1
 - [[LLM Inference]]
 - [[Inference Serving Engines]]
 - [[On-Device Reasoning]]
-

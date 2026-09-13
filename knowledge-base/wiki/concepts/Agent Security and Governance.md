@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - ai-agents
@@ -27,6 +27,10 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-08-raji-cosine-similarity-safety
+  - src-2026-09-13-nevsky-gemini-multi-agent-system
+  - src-2026-09-13-rahmat-adk-gemini-enterprise
+  - src-2026-09-13-virinchi-google-cloud-mcp-security
+  - src-2026-09-13-tessier-gcp-model-armor
 status: active
 ---
 
@@ -308,6 +312,32 @@ model version becomes a security control: an upgrade invalidates every calibrate
 
 Catalogued as OWASP **LLM08:2025 Vector and Embedding Weaknesses**.
 
+## A cloud implementation of the authority hierarchy
+
+[[Virinchi T - Google Cloud MCP Security Framework]] turns this page's hierarchy into a concrete
+cloud control stack. Remote MCP tools can mutate BigQuery, Cloud SQL, Compute Engine, and Cloud
+Storage, so the recommendations start with a dedicated agent identity and least-privilege IAM,
+continue through recurring tool inventory, allowlists and deny policies, then add untrusted-data
+delimiters, tenant-separated memory, Model Armor, PII de-identification, and recovery through
+backups, time travel, or object versioning.
+
+The ordering matters. Human-in-the-Middle approval can be rubber-stamped; Agent-Only operation
+cannot borrow safety from a person who is absent. Prompt delimiters and content filters influence
+behavior but do not bound authority. Backups reduce irreversibility but do not prevent the action.
+Google Cloud's MCP servers were also **Preview**, and no measured attack-detection efficacy is given.
+
+[[David Tessier - GCP Model Armor]] adds the centrally enforced inspection layer: sanitize the
+prompt before invocation, sanitize the response before release, and use organization/folder/project
+floor settings to prevent an application from weakening the minimum. The example threshold is
+**MEDIUM_AND_ABOVE** for four harmful-content categories. This is probabilistic screening, not a
+replacement for IAM, sandboxing, or transaction authorization.
+
+Two architecture examples locate identity and mutation. [[Roushanak Rahmat - From ADK to Gemini
+Enterprise]] separates runtime service identity, end-user identity, and the employee-facing
+catalogue. [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]] assigns
+all business writes to one action agent and human-gates high-value refunds. Those are useful
+boundaries only if the downstream API enforces them too.
+
 ## Open questions
 
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
@@ -370,3 +400,8 @@ Catalogued as OWASP **LLM08:2025 Vector and Embedding Weaknesses**.
 - [[Retrieval Poisoning]]
 - [[Embedding Inversion]]
 - [[Amine Raji]]
+- [[Virinchi T - Google Cloud MCP Security Framework]]
+- [[David Tessier - GCP Model Armor]]
+- [[Roushanak Rahmat - From ADK to Gemini Enterprise]]
+- [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]]
+- [[Google Cloud]]

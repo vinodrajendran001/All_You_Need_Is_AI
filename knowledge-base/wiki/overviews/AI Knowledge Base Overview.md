@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - overview
   - ai
@@ -240,6 +240,16 @@ source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-09-13-adedeji-multi-agent-code-review
+  - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
+  - src-2026-09-13-nevsky-gemini-multi-agent-system
+  - src-2026-09-13-rahmat-adk-gemini-enterprise
+  - src-2026-09-13-prabhulal-production-rag-adk
+  - src-2026-09-13-virinchi-google-cloud-mcp-security
+  - src-2026-09-13-ranganathan-gke-inference-gateway
+  - src-2026-09-13-tessier-gcp-model-armor
+  - src-2026-09-13-rahman-quantizing-llms-gke
+  - src-2026-09-13-sumit-scaling-distributed-systems
 status: active
 ---
 
@@ -689,6 +699,50 @@ under 20M parameters from 8 families land between 91.5% and 95% top-1 with a sin
 predicts linear-probe accuracy at **~85% Spearman, ~99% rescaled** — label-free model selection. The
 decisive experiment is missing and named as such: **no matched-compute comparison against DINOv2 or
 DINOv3**. New page: [[Joint-Embedding Predictive Architecture]]. See [[Siddhant Rai]], [[Vizuara]].
+
+## September 13 additions
+
+**The batch's strongest synthesis is a boundary map, not a product recommendation.**
+Nine Google Cloud publication articles collectively separate an agent system into framework, model,
+tools and grounding, inter-agent protocol, runtime and state, identity and authority, enterprise
+distribution, evidence, and recovery. The new [[Google Cloud]] entity records that integrated stack
+while preserving the central caveat: these are vendor-authored tutorials, so mechanisms and
+configuration details are evidence; “production-grade”, “secure”, and “significant improvement” are
+not independent results.
+
+**Multi-agent decomposition became concrete enough to audit.**
+[[Ayo Adedeji - Agents That Prove, Not Guess]] splits code review across four agents but gives
+deterministic tools the evidentiary work: one generated solution failed 13 cases, the sandboxed suite
+found 19/20 passing, and bounded repair reached 20/20 after two iterations. The title overclaims —
+generated tests are not proof — but the design rule survives: models synthesize; parsers, linters, and
+execution produce inspectable evidence. [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]]
+adds typed handoffs, one action writer, refunds gated by confirmation, amounts over $500 escalated,
+and at most two QA revisions.
+
+**Deployment completeness and answer quality were pulled apart.**
+[[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]] includes infrastructure
+as code, CI/CD, identity, traces, evaluation hooks, and a managed corpus. It evaluates none of the
+properties that make retrieval good: precision, grounding, freshness, leakage, latency, or cost.
+“Deployed” and “production-ready” are different predicates. [[Roushanak Rahmat - From ADK to Gemini Enterprise]]
+supplies the adjacent separation between code in ADK, execution in Agent Engine, and employee
+discovery through Gemini Enterprise.
+
+**Remote tool security now includes recovery.**
+[[Virinchi T - Google Cloud MCP Security Framework]] treats MCP servers as mutating infrastructure
+access, not just retrieval. Dedicated identity, least privilege, recurring tool inventory, deny
+policies, state isolation, content inspection, PII masking, and backups/time travel/versioning form
+one consequence chain. [[David Tessier - GCP Model Armor]] contributes centrally enforced prompt and
+response inspection, while also making its limit visible: probabilistic filtering does not replace
+IAM, sandboxing, or transaction authorization.
+
+**Two infrastructure sources show why generic resource counts are insufficient.**
+[[Rahul Ranganathan - Inference Gateway on GKE]] makes serving placement a joint decision over queue
+length, KV-cache locality, active LoRA adapters, and Critical/Standard/Sheddable priority; it reports
+no performance benchmark and the feature was Preview. [[Mofi Rahman - Quantizing LLMs on GKE]] moves
+a 27B model's raw weights from at least **54 GB at BF16** to about **13.5 GB at 4 bits**, but explicitly
+leaves cache, activations, workspaces, and runtime overhead outside that fit calculation. [[Sumit K -
+Scaling Simplified]] supplies the generic scaling vocabulary, while its “millions” title is unsupported
+by any capacity model or case study.
 
 ## Related pages
 

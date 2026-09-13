@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-08-24
+updated: 2026-09-13
 tags:
   - concept
   - performance
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-07-dean-ghemawat-performance-hints
   - src-2026-08-21-ben-joffe-fast-day-of-week
   - src-2026-07-22-mitchell-hashimoto-simd
+  - src-2026-09-13-sumit-scaling-distributed-systems
 status: active
 ---
 
@@ -45,6 +46,19 @@ AI systems inherit ordinary software bottlenecks around parsing, scheduling, mem
 
 Performance is multi-dimensional. Lower latency can increase total CPU use; compact representations can raise decode cost; caching can increase memory; parallelism can reduce wall time while worsening contention. The right objective must include the workload, deployment hardware, service-level goal, and maintenance budget.
 
+## Fast now and scalable later are different claims
+
+[[Sumit K - Scaling Simplified]] distinguishes performance from scalability with a deliberately
+simple example: a service can respond well for **100 users** and fail at **10,000**. Vertical,
+horizontal, and diagonal scaling, caching, sharding, load balancing, and asynchronous work are
+candidate interventions, not automatic improvements.
+
+The source's title promises "millions" but supplies no benchmark, capacity model, or real case
+study. Its durable contribution is therefore diagnostic: measure whether the bottleneck is compute,
+state, data placement, synchronous coupling, or coordination before selecting a scaling pattern.
+Microservices buy independent scaling at the cost of network, consistency, deployment, and
+observability complexity; they are not a performance technique by themselves.
+
 ## Open questions
 
 - How should this CPU-oriented framework be extended to GPU kernels and distributed ML systems?
@@ -60,3 +74,4 @@ Performance is multi-dimensional. Lower latency can increase total CPU use; comp
 - [[LLM Inference]]
 - [[ML Systems at Scale]]
 - [[Abseil]]
+- [[Sumit K - Scaling Simplified]]

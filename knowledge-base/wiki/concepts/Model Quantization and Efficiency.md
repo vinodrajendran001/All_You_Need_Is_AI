@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - llm
@@ -35,6 +35,7 @@ source_ids:
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-07-rai-lejepa
+  - src-2026-09-13-rahman-quantizing-llms-gke
 status: active
 ---
 
@@ -176,6 +177,23 @@ language.
 The cost side is favourable: SIGReg is **O(N·M·(K+T))** and small in practice — about **0.47 ms**
 forward-backward on a V100 at N=M=512, and only **~0.67 ms at M=8192**.
 
+## Weight fit is not runtime fit
+
+[[Mofi Rahman - Quantizing LLMs on GKE]] gives a clean capacity example and an equally important
+qualification. Gemma 3 27B at BF16 requires at least **54 GB** for weights
+(`27 billion x 2 bytes`). An L4 has **24 GB VRAM**; the raw capacity suggests three devices, while
+the source says framework and attention-head divisibility can require **4 GPUs**. At 4 bits, the
+weight tensor is roughly **13.5 GB**.
+
+The 13.5 GB figure does **not** establish that the useful serving workload fits on one L4. It
+excludes KV cache, activations, CUDA workspace, and framework overhead. This is the sizing
+distinction worth retaining whenever a quantized checkpoint is advertised as "fits on GPU X."
+
+The source also contrasts PTQ with QAT and reports a broad **1% to 30+%** quality-loss range, while
+claiming QAT can approach original quality. Because no model/benchmark/calibration mapping is given,
+the range is a warning rather than a forecast. Lower precision is not automatically faster either;
+the hardware and serving engine need compatible kernels.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -225,3 +243,5 @@ forward-backward on a V100 at N=M=512, and only **~0.67 ms at M=8192**.
 - [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
 - [[Joint-Embedding Predictive Architecture]]
 - [[Siddhant Rai]]
+- [[Mofi Rahman - Quantizing LLMs on GKE]]
+- [[Google Cloud]]

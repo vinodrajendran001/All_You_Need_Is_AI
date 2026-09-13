@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-11
+updated: 2026-09-13
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-09-13-ranganathan-gke-inference-gateway
 status: active
 ---
 
@@ -151,6 +152,23 @@ vLLM's **38.2%** over 7 runs).
 above it), and **decode only**. The 1.58x is also measured at batch 1, which is not vLLM's operating
 point; the narrower 1.25x–1.41x end-to-end range is the meaningful comparison.
 
+## Routing is a joint decision over queue, cache, adapter, and priority
+
+[[Rahul Ranganathan - Inference Gateway on GKE]] moves model-aware scheduling one layer above the
+engine. The GKE endpoint picker considers KV-cache utilization, queue length, and active LoRA
+adapters, with backend cost metrics optionally returned through **ORCA** headers. `InferenceModel`
+also carries **Critical, Standard, or Sheddable** priority so overload policy is explicit rather
+than an accidental consequence of queue order.
+
+The point is not "always route to the cached replica." Cache affinity and load can disagree: a
+continuation may avoid prefill on one endpoint while waiting behind a long queue there. Model
+routing, adapter locality, request shedding, and cache locality are therefore one scheduling
+problem.
+
+No performance figure is supplied. The Gateway API Inference Extension was experimental/alpha and
+GKE Inference Gateway was Preview/Pre-GA, so claims of improved TTFT, throughput, utilization, and
+cost remain promotional until measured on a stated workload.
+
 ## Related pages
 
 - [[Netflix - In-House LLM Serving]]
@@ -180,3 +198,5 @@ point; the narrower 1.25x–1.41x end-to-end range is the meaningful comparison.
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
 - [[Megakernels]]
 - [[Cohere]]
+- [[Rahul Ranganathan - Inference Gateway on GKE]]
+- [[Google Cloud]]

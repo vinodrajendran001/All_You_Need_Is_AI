@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - index
 source_ids:
@@ -238,6 +238,16 @@ source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-09-13-adedeji-multi-agent-code-review
+  - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
+  - src-2026-09-13-nevsky-gemini-multi-agent-system
+  - src-2026-09-13-rahmat-adk-gemini-enterprise
+  - src-2026-09-13-prabhulal-production-rag-adk
+  - src-2026-09-13-virinchi-google-cloud-mcp-security
+  - src-2026-09-13-ranganathan-gke-inference-gateway
+  - src-2026-09-13-tessier-gcp-model-armor
+  - src-2026-09-13-rahman-quantizing-llms-gke
+  - src-2026-09-13-sumit-scaling-distributed-systems
 status: active
 ---
 
@@ -438,6 +448,8 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[@zafstojano]] - Author of the recursive-synthetic-improvement survey that reframes RSI as an artifact loop.
 - [[SemiAnalysis]] - Hardware analysis outfit supplying the vault's first third-party non-NVIDIA inference benchmarks.
 - [[Cohere]] - Model lab and operator of the first fully fledged serving system built around a decode megakernel.
+
+- [[Google Cloud]] - Integrated cloud stack spanning agent frameworks, managed runtimes, enterprise distribution, MCP, RAG, inference routing, security controls, and model serving.
 
 ## Sources
 
@@ -689,6 +701,19 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] - Looping and monitorability arrived together; the regression is real and is not attributed to the architecture.
 - [[@zafstojano - Recursive Synthetic Improvement]] - RSI as an artifact loop across judge, corpus, teacher, curriculum and environment, with GLM-5.3 as the near-controlled experiment.
 - [[Preston Fu - Progressive Point Matching]] - Credit assignment over long GUI trajectories by matching progress points rather than scoring the endpoint.
+
+### September 13, 2026 batch
+
+- [[Ayo Adedeji - Agents That Prove, Not Guess]] - Four-agent code review with deterministic AST, lint, and sandboxed-test evidence; one worked task, not a proof system.
+- [[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]] - A decision map separating framework, model, tools, grounding, interoperability, and runtime.
+- [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]] - Typed five-agent support workflow with one writer, bounded QA repair, and explicit cost/latency estimates.
+- [[Roushanak Rahmat - From ADK to Gemini Enterprise]] - Three layers separating agent code, managed execution, and enterprise discovery/access.
+- [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]] - Production scaffolding for managed RAG, with deployment evidence but no retrieval-quality evidence.
+- [[Virinchi T - Google Cloud MCP Security Framework]] - Identity, tool inventory, content inspection, tenant isolation, and recovery for mutating remote MCP tools.
+- [[Rahul Ranganathan - Inference Gateway on GKE]] - Model-aware routing across queue pressure, KV-cache locality, LoRA placement, and request priority.
+- [[David Tessier - GCP Model Armor]] - Central pre/post model inspection and policy floor settings, as one probabilistic layer rather than an authority boundary.
+- [[Mofi Rahman - Quantizing LLMs on GKE]] - The 54 GB to 13.5 GB weight-capacity example and why weight fit is not runtime fit.
+- [[Sumit K - Scaling Simplified]] - Introductory scaling taxonomy; useful vocabulary without evidence for the title's “millions.”
 
 ## Syntheses
 

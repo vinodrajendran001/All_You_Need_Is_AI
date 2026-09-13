@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-08-26
+updated: 2026-09-13
 tags:
   - concept
   - ai-agents
@@ -11,6 +11,10 @@ source_ids:
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
   - src-2026-06-05-systemdesign42-system-design-academy
   - src-2026-08-18-harry0703-moneyprinterturbo
+  - src-2026-09-13-adedeji-multi-agent-code-review
+  - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
+  - src-2026-09-13-nevsky-gemini-multi-agent-system
+  - src-2026-09-13-rahmat-adk-gemini-enterprise
 status: active
 ---
 
@@ -63,6 +67,29 @@ The pattern worth extracting: model-generated content sits in the middle of a pi
 
 The caveats are the ones any repository README invites: it reports capabilities rather than controlled quality or reliability evidence, and "one click" conceals substantial configuration, licensing, stock-media rights, provider cost, and auto-publishing policy questions.
 
+## The Google Cloud stack makes the framework boundary visible
+
+Four Google Cloud publication sources separate layers that vendor diagrams often collapse.
+[[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]] places the framework beside, not
+inside, the model, tool protocol, grounding system, inter-agent protocol, and runtime. In its map,
+ADK, CrewAI, or LangGraph structure logic; Gemini or Gemma supplies the model; MCP supplies tools;
+A2A supplies cross-system interoperability; and Agent Engine, Cloud Run, or GKE supplies execution.
+
+The implementation articles make those boundaries concrete:
+
+- [[Ayo Adedeji - Agents That Prove, Not Guess]] uses ADK to coordinate four reviewers, while
+  Python AST parsing, `pycodestyle`, and sandboxed execution remain ordinary deterministic tools.
+- [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]] uses AutoFlow
+  for transfer and Pydantic schemas for handoffs. Those contracts, not the agent labels, make the
+  topology debuggable.
+- [[Roushanak Rahmat - From ADK to Gemini Enterprise]] separates ADK logic from Agent Engine
+  execution and Gemini Enterprise discovery. A chat surface is therefore not the runtime or the
+  authorization layer.
+
+These are vendor-authored tutorials, not comparative evidence that ADK is better than another
+framework. Their durable contribution is the decomposition: **framework, runtime, and distribution
+plane are different portability boundaries.**
+
 ## Open questions
 
 - Which framework behaviors can be compared under equivalent end-to-end tasks?
@@ -80,3 +107,8 @@ The caveats are the ones any repository README invites: it reports capabilities 
 - [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
 - [[harry0703 - MoneyPrinterTurbo]]
 - [[Model Routing]]
+- [[Ayo Adedeji - Agents That Prove, Not Guess]]
+- [[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]]
+- [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]]
+- [[Roushanak Rahmat - From ADK to Gemini Enterprise]]
+- [[Google Cloud]]

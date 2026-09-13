@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - log
 source_ids:
@@ -238,6 +238,16 @@ source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-09-13-adedeji-multi-agent-code-review
+  - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
+  - src-2026-09-13-nevsky-gemini-multi-agent-system
+  - src-2026-09-13-rahmat-adk-gemini-enterprise
+  - src-2026-09-13-prabhulal-production-rag-adk
+  - src-2026-09-13-virinchi-google-cloud-mcp-security
+  - src-2026-09-13-ranganathan-gke-inference-gateway
+  - src-2026-09-13-tessier-gcp-model-armor
+  - src-2026-09-13-rahman-quantizing-llms-gke
+  - src-2026-09-13-sumit-scaling-distributed-systems
 status: active
 ---
 
@@ -1181,3 +1191,51 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   matching actual, all under 280 with URLs counted as 23 characters. New post and archive introduce 0 broken
   wikilinks, frontmatter parses, `## Related pages` is present, and index, log, and overview remain aligned at
   **233 source IDs**. [[Serving Benchmarks and Goodput]] enters cooldown until 2026-10-23.
+
+## [2026-09-13] ingest | The framework, runtime, and authority boundary are different layers
+
+- Ingested **10 sources**, taking the vault from **233 to 243 source IDs**. Nine are Google Cloud
+  publication articles covering agent frameworks, orchestration, managed RAG, MCP security, Model
+  Armor, GKE inference routing, and quantization; one is an introductory distributed-systems scaling
+  guide. Created 10 source summaries and the [[Google Cloud]] entity; integrated 14 existing concept
+  pages.
+- **The strongest synthesis is a boundary map, not a product recommendation.**
+  [[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]], [[Roushanak Rahmat - From ADK to Gemini Enterprise]],
+  and [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]] separate
+  framework, model, tools, runtime, state, identity, distribution, and interoperability. The sources
+  are vendor-authored, so product mechanisms are retained while “production-grade” and similar claims
+  remain promotional.
+- **Models synthesize; deterministic tools produce evidence.**
+  [[Ayo Adedeji - Agents That Prove, Not Guess]] reports one LeetCode task where the first solution
+  failed 13 cases, a generated sandboxed suite passed 19/20, and bounded repair reached 20/20 after
+  two iterations. The title is recorded as an overstatement: 20 generated tests are evidence for
+  those cases, not a proof of general correctness.
+- **The multi-agent contract is more important than the agent count.** Nevsky's five-agent support
+  design uses typed handoffs, one action writer, confirmation for refunds, escalation above **$500**,
+  and no more than **2 QA revision cycles**. Adedeji's review loop similarly caps repair at **3
+  attempts**. Both strengthen [[Agent Delegation]] with writer/verifier/exit contracts.
+- **Deployment completeness is not retrieval quality.**
+  [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]] scaffolds API serving,
+  infrastructure as code, CI/CD, logging, traces, evaluation hooks, identity, and a managed corpus,
+  but reports no retrieval precision, hallucination rate, freshness, leakage, latency, or cost.
+- **Remote MCP security now includes recovery.**
+  [[Virinchi T - Google Cloud MCP Security Framework]] combines dedicated identities, recurring tool
+  inventory, allowlists, deny policies, tenant-separated state, Model Armor, PII masking, and Cloud
+  SQL point-in-time recovery / BigQuery time travel / Cloud Storage versioning. Recovery changes
+  irreversibility; it does not prevent the original action.
+- **Model Armor is a centrally enforceable filter, not an authorization boundary.**
+  [[David Tessier - GCP Model Armor]] places inspection before the model and before output release,
+  with organization/folder/project floor settings. No detection efficacy is measured, and the
+  source's sample code contains a client-variable inconsistency.
+- **Inference routing became explicitly multi-objective.**
+  [[Rahul Ranganathan - Inference Gateway on GKE]] routes over queue pressure, KV-cache locality,
+  loaded LoRA adapters, and Critical/Standard/Sheddable priority. It gives no benchmark, and both the
+  Gateway API extension and GKE feature were experimental/Preview at publication.
+- **Weight fit is not runtime fit.**
+  [[Mofi Rahman - Quantizing LLMs on GKE]] calculates Gemma 3 27B weights at at least **54 GB in
+  BF16** and about **13.5 GB at 4 bits**. The one-L4 conclusion applies to weights only; KV cache,
+  activations, workspace, and runtime overhead remain outside it.
+- [[Sumit K - Scaling Simplified]] adds vertical/horizontal/diagonal scaling, caching, sharding, and
+  asynchronous work to [[ML Systems at Scale]] and [[Software Performance Engineering]], while the
+  “millions” framing is explicitly marked unsupported by any benchmark or capacity model.
+

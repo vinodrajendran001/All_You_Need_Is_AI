@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - inference
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-13-rahman-quantizing-llms-gke
 status: active
 ---
 
@@ -139,6 +140,18 @@ to 62% of hardware speed-of-light, or the per-dollar comparisons in
 [[Accelerator Software Externalization]] — routing is the cheapest intervention available and the one most
 dependent on the workload cooperating.
 
+## The one-L4 example is a frontier claim with hidden axes
+
+[[Mofi Rahman - Quantizing LLMs on GKE]] frames a concrete movement along the frontier: Gemma 3 27B
+weights move from at least **54 GB at BF16** to about **13.5 GB at 4 bits**, changing the raw
+placement from several **24 GB L4s** to one. But the apparent step function hides three axes:
+runtime memory beyond weights, kernel support for the chosen format, and task quality after
+quantization.
+
+The source reports quality losses from **1% to 30+%** without tying them to models, tasks, or
+methods. That makes the number unsuitable for prediction but useful as a reminder: a capacity win
+does not locate the quality frontier. Measure fit, throughput, latency, and task quality together.
+
 ## Open questions
 
 - The primary source is a **vendor** post with no measurements — every claim is directional, and the 4×
@@ -172,3 +185,5 @@ dependent on the workload cooperating.
 - [[Model Routing]]
 - [[Megakernels]]
 - [[Accelerator Software Externalization]]
+- [[Mofi Rahman - Quantizing LLMs on GKE]]
+- [[Google Cloud]]

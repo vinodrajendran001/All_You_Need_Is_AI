@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-04
+updated: 2026-09-13
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -11,6 +11,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-mcp-security-attack-vectors
   - src-2026-08-05-aibuilderclub-webmcp-complete-guide
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
+  - src-2026-09-13-virinchi-google-cloud-mcp-security
 status: active
 ---
 
@@ -84,6 +86,25 @@ this; what is being questioned is the default of mounting every capability as a 
 See [[Tool Roster Economics]] for the full argument and the counter-consideration — that a discoverable CLI
 still costs turns to discover, which nobody has measured.
 
+## Remote MCP makes recovery part of protocol security
+
+[[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]] places MCP in a wider agent stack:
+the protocol standardizes tool and data access, while A2A addresses agent-to-agent communication and
+the runtime remains a separate choice. Its examples include MCP Toolbox for Databases over Cloud
+SQL, Spanner, and BigQuery.
+
+[[Virinchi T - Google Cloud MCP Security Framework]] makes the consequence boundary concrete.
+Remote servers can expose mutating and destructive operations, not only retrieval. Google Cloud
+distinguishes Human-in-the-Middle from Agent-Only operation and recommends dedicated identities,
+least-privilege IAM, recurring tool inventories, allowlists, deny policies, state isolation, content
+inspection, and PII masking. Dynamic servers make a one-time approval insufficient because the tool
+surface can change later.
+
+The source adds a control this page previously underweighted: **recovery is part of MCP security**.
+Cloud SQL point-in-time recovery, BigQuery time travel, and Cloud Storage versioning do not stop a
+bad call, but they change whether the call is irreversible. These are source recommendations for
+Preview Google Cloud MCP servers, not measured evidence that the stack defeats prompt injection.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -99,3 +120,6 @@ still costs turns to discover, which nobody has measured.
 - [[Tool Roster Economics]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Can Bölük]]
+- [[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]]
+- [[Virinchi T - Google Cloud MCP Security Framework]]
+- [[Google Cloud]]

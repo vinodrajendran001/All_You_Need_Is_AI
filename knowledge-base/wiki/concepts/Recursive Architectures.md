@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - architecture
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-05-18-alphasignal-return-of-recursion
   - src-2026-06-18-alyona-vert-recursive-self-improvement
   - src-2026-06-29-siddhant-rai-nested-learning
+  - src-2026-07-27-neural-avb-looped-transformers
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
 status: active
@@ -117,6 +118,14 @@ the same validation loss** — the first result making looping look like a win r
 recent enough to be unreplicated. A negative result sits alongside: the full-bandwidth transformer (August
 2026) shortens MATH500 traces in a 1B base model via latent feedback, "but the effect disappears after
 instruction tuning."
+
+[[@neural_avb - What Are Looped Transformers|@neural_avb's looped-Transformer explainer]] supplies the
+baseline these newer results must beat. At matched compute, prior work generally found that making a
+conventional Transformer N times larger beats looping a smaller model N times; matched-parameter comparisons
+hide the loop's extra FLOPs. Recurrent depth is also sequential, so every additional pass adds latency. The
+same source identifies Loopie as a counterexample based on layer-local recurrence and MoE, consistent with
+SMELT's newer result. The right claim is therefore not that looping always loses, but that weight sharing
+needs a compute-matched result rather than a parameter-count win.
 
 On the monitorability claim attached to looping in press coverage, see
 [[Chain-of-Thought Monitoring]] — the architecture is not established as the cause.

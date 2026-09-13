@@ -120,7 +120,7 @@ passes over a 22-layer stack. Neither is accompanied by an ablation curve.
 - [[Small Language Models]]
 - [[Open Model Ecosystems]]
 - [[Mixture of Experts]]
-- [[@neural_avb - What Are Looped Transformers?]]
+- [[@neural_avb - What Are Looped Transformers|@neural_avb - What Are Looped Transformers?]]
 
 ## Citations
 

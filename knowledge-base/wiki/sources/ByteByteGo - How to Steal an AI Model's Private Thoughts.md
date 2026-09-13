@@ -5,7 +5,7 @@ source_title: "How to Steal an AI Model's Private Thoughts"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-to-steal-an-ai-models-private
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-09-13
 tags:
   - source/summary
   - reasoning-traces
@@ -13,6 +13,8 @@ tags:
   - model-distillation
   - prompt-injection
   - privacy
+source_ids:
+  - src-2026-08-25-bytebytego-stealing-reasoning-traces
 status: active
 ---
 

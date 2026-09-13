@@ -132,9 +132,9 @@ capped at 128K, but the source does not say so.
 
 ## Held-out loss does not rank task capability
 
-A three-part reproduction study — [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]],
-[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]], and
-[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] — is the vault's cleanest
+A three-part reproduction study — [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]],
+[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 2 - Bugfix|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]], and
+[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] — is the vault's cleanest
 demonstration that the objective this pipeline optimizes is not the thing practitioners care about.
 
 Independently trained GPT-2-small-style weights reached **competitive next-token loss** against
@@ -238,7 +238,7 @@ Fuller treatment in [[Synthetic Data Flywheel]].
 
 ## Related pages
 
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]
 - [[The Pocket - PocketFlow Tutorial Docs]]

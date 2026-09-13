@@ -5,13 +5,15 @@ source_title: "Classic RAG vs Graph RAG vs Agentic RAG"
 source_author: Unknown (LinkedIn post)
 source_url: ""
 created: 2026-05-18
-updated: 2026-08-26
+updated: 2026-09-13
 tags:
   - source/summary
   - rag
   - retrieval-augmented-generation
   - knowledge-graphs
   - agentic-ai
+source_ids:
+  - src-2026-05-18-rag-architecture-comparison
 status: active
 ---
 
@@ -90,4 +92,3 @@ That taxonomy links naturally to [[Search-Augmented Language Models]], [[Agentic
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[AI Knowledge Base Overview]]
 - [[index]]
-

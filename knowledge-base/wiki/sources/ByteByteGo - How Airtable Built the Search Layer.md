@@ -5,12 +5,14 @@ source_title: "How Airtable Built the Search Layer Behind Their AI Features"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com/p/how-airtable-built-the-search-layer
 created: 2026-05-29
-updated: 2026-08-26
+updated: 2026-09-13
 tags:
   - source/summary
   - vector-search
   - system-design
   - ai-infrastructure
+source_ids:
+  - src-2026-05-28-bytebytego-airtable-search
 status: active
 ---
 
@@ -51,4 +53,3 @@ This source distills Airtable's public account of the semantic search layer behi
 - [[AI Knowledge Base Overview]]
 - [[index]]
 - [[log]]
-

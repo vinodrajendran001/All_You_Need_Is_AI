@@ -91,9 +91,9 @@ The load-bearing problems were:
   dependency and needs the release discipline of one.
 - **An FSx-backed model cache**, removing repeated model-download cost at worker startup. Cold-start
   weight transfer is a real operational cost that benchmark comparisons of engines never surface.
-- **A curated operational metric surface** distilled from vLLM's much larger metric set — the
-  observability question is which handful of numbers an on-call engineer should act on, not how many
-  the engine can emit.
+- **A unified metrics proxy** built because Triton's bridge surfaced only **9 of more than 40 vLLM
+  metrics**, omitting token throughput, KV-cache utilization, and prefix-cache hits. The proxy combines
+  Triton HTTP metrics with vLLM's on-disk metrics at one endpoint so existing dashboards keep working.
 - **Batched C++ constrained decoding** for structured output, treating schema conformance as a
   serving-layer capability rather than something to retry in application code.
 

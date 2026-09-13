@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-09-11
+updated: 2026-09-13
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
@@ -35,12 +35,26 @@ architectures that ship are hybrids.
 ## Current synthesis
 
 - Looped transformers repeatedly apply shared blocks, trading depth-specific parameters for more recurrent
-  computation.
+  computation. The passes remain sequential, and a larger conventional Transformer generally wins at matched
+  compute; recurrence must earn its storage advantage rather than treating repeated FLOPs as free.
 - Delta and gated-delta updates aim to control interference as new information overwrites the state.
 - Hybrid designs periodically retain full attention, reserving token-addressable retrieval for positions where
   recurrence is insufficient.
 - Kimi Delta Attention and FlashKDA belong to the systems side of this branch: architecture choices only become
   useful at scale when the recurrent update is implemented as a numerically stable, fused kernel.
+
+## Parameter count is not active cost
+
+[[@waterloo_intern - From GPT-2 to Kimi K3]] frames seven years of architecture change through a striking
+ratio: Kimi K3's **2.8T total parameters** are about **22,580x** GPT-2's roughly **124M**. But Kimi's sparse
+MoE and hybrid attention/recurrent design make that a capacity comparison, not a compute comparison. Its 23
+four-layer macrocycles use three Kimi Delta Attention layers followed by one Multi-head Latent Attention
+layer, while all but the first feed-forward layer use latent experts. The system therefore spends only part
+of its total parameter capacity per token and only part of its depth on token-addressable attention.
+
+The source is a secondary visual explainer, so the numbers should be checked against primary technical
+reports before use as benchmark evidence. Its durable lesson is narrower: parameter growth alone cannot
+describe how the architecture's active compute or long-context state changed.
 
 ## A shipped hybrid ratio
 
@@ -121,7 +135,7 @@ agentic KV cache on-chip, which changes the calculus for recurrent-state placeme
 
 ## Related pages
 
-- [[@neural_avb - What Are Looped Transformers?]]
+- [[@neural_avb - What Are Looped Transformers|@neural_avb - What Are Looped Transformers?]]
 - [[@waterloo_intern - From GPT-2 to Kimi K3]]
 - [[MoonshotAI - FlashKDA v1 Deep Dive]]
 - [[adlrocha - Base Models Stopped Being the Bottleneck]]

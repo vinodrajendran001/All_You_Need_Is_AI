@@ -5,8 +5,9 @@ source_title: "Connecting LLMs to the Real World: Tool Use, Function Calling, an
 source_author: ByteByteGo
 source_url: "https://blog.bytebytego.com/p/connecting-llms-to-the-real-world"
 created: 2026-05-13
-updated: 2026-08-26
+updated: 2026-09-13
 tags: [source/summary, tool-use, function-calling, mcp, ai-agents, llm]
+source_ids: [src-2026-05-04-bytebytego-llm-tool-use-mcp]
 status: active
 ---
 

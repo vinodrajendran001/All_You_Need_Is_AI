@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-09-13
 source_id: src-2026-07-29-giles-thomas-gpt2-weights-part-1
 source_title: "Why do OpenAI's GPT-2 weights beat mine?"
 source_author: Giles Thomas
@@ -28,7 +28,7 @@ The first post begins a reproduction investigation: independently trained GPT-2-
 
 ## Related pages
 
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 2 - Bugfix|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[LLM Training Pipeline]]
 - [[LLM-as-a-Judge]]

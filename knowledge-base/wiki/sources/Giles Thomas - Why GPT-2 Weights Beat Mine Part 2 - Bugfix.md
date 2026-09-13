@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-09-13
 source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part two: the bugfix"
 source_author: Giles Thomas
@@ -31,7 +31,7 @@ The result is a concrete reproducibility warning: checkpoint immutability and co
 
 ## Related pages
 
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[LLM Training Pipeline]]
 - [[Automated AI Research]]

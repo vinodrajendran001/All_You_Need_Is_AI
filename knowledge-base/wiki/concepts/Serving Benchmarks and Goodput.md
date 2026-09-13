@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - benchmarks
@@ -50,19 +50,17 @@ Two consequences follow that the vault should apply generally:
 - **Vendor peak numbers are not measurements.** Peak FLOPs describe a ceiling under conditions no real workload meets; the source pairs every architecture brief with an ISA or tuning guide for this reason.
 - **A speed result without a correctness method is not a result.** This is the same boundary [[Benchmark Optimization]] draws from the opposite direction: there, systems scored well by reproducing flawed reference transcripts; here, a kernel or engine can score well by computing something subtly wrong. Both failures are invisible to the headline number.
 
-## Operational metrics are a curated subset, not the full emission
+## Integration boundaries can erase operational metrics
 
 [[Netflix - In-House LLM Serving]] adds a practitioner counterweight to this page. vLLM emits a large
-metric set; Netflix runs production off a **deliberately curated subset**.
+metric set, but Triton's built-in bridge surfaced only **9 of more than 40 metrics** and omitted token
+throughput, KV-cache utilization, and prefix-cache hits. Netflix built a proxy that combines Triton's
+HTTP metrics with vLLM's on-disk metrics into one `/metrics` endpoint.
 
-The distinction matters because benchmarking and operating pull in opposite directions. A benchmark
-wants every number it can get, to characterize behavior across regimes. An on-call rotation wants the
-smallest set that reliably indicates whether the service is healthy and what to do about it — a
-metric nobody acts on is a page nobody should receive.
-
-So the instruments described above are the right toolkit for *choosing* and *tuning* a deployment,
-but they are not the dashboard. Selecting which of them become alerting signals, and which stay
-diagnostic, is a separate decision this page should not conflate with measurement.
+The lesson is not that production needs fewer measurements. It is that wrappers and compatibility
+layers can silently discard the engine telemetry needed to interpret a benchmark or diagnose a
+regression. Metric selection for alerting remains a separate operational decision, but the raw signals
+must first survive the serving stack.
 
 ## A speedup number without a batch size is not a measurement
 

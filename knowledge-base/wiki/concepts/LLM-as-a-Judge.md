@@ -67,7 +67,7 @@ LLM judges still need human calibration, especially on edge cases where domain e
 
 ## The judge's noise floor bounds what an experiment can detect
 
-[[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] shows a failure mode that
+[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] shows a failure mode that
 belongs on this page as much as on any training page. The experiment deliberately overtrained a
 GPT-2-scale model, improved held-out next-token loss, and found **no instruction-following gain
 outside the observed noise of the LLM-judge evaluation**.
@@ -154,7 +154,7 @@ See [[Synthetic Data Flywheel]] for the judge's place in the wider automation of
 
 ## Related pages
 
-- [[Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
+- [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
 - [[Braintrust - How to evaluate multi-turn conversations]]

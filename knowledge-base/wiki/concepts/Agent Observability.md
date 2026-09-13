@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,8 @@ tags:
 source_ids:
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-07-bytebytego-llm-error-handling
+  - src-2026-09-13-adedeji-multi-agent-code-review
+  - src-2026-09-13-prabhulal-production-rag-adk
 status: active
 ---
 
@@ -107,6 +109,20 @@ they are easy and sell internally, while step-level reasoning traces and cost-pe
 late. Salesforce Agentforce Observability is cited as a fair counter-example — session-level tracing,
 subagent drill-down, OTel-compliant, exporting to Datadog or Arize.
 
+## Tracing exposes orchestration cost, not answer quality
+
+[[Ayo Adedeji - Agents That Prove, Not Guess]] reports a Cloud Trace lasting **2 min 28 sec**:
+analyzer **4.7 sec**, style checker **5.3 sec**, test runner **1 min 28 sec**, and synthesizer
+**47.89 sec**. Testing therefore consumed about **59%** of elapsed time. The useful observation is
+not the absolute latency from one tutorial run; it is that a multi-agent trace can reveal which
+stage actually owns the budget, rather than attributing the total to "the model."
+
+[[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]] shows the same
+instrumentation in a deployment template, mapping each session ID to a Cloud Trace span. But a
+trace proving that deployment and retrieval calls completed is not an evaluation of grounding
+quality. Production observability needs both operational traces and answer-level evals; neither
+substitutes for the other.
+
 ## Open questions
 
 - Tail-based sampling at 5–20% of routine successes discards most of the population in which a *slow*
@@ -131,3 +147,5 @@ subagent drill-down, OTel-compliant, exporting to Datadog or Arize.
 - [[Agent Delegation]]
 - [[Tool Use and Function Calling]]
 - [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- [[Ayo Adedeji - Agents That Prove, Not Guess]]
+- [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]]

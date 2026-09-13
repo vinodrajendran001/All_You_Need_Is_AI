@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - ai-agents
@@ -13,6 +13,9 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-01-iusztin-scoped-subagents
+  - src-2026-09-13-adedeji-multi-agent-code-review
+  - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
+  - src-2026-09-13-nevsky-gemini-multi-agent-system
 status: active
 ---
 
@@ -169,6 +172,26 @@ recursion").
 Once trace context propagates across these handoffs, the fan-out becomes reconstructable rather than
 merely fast — see [[Agent Observability]].
 
+## Topology is not a contract
+
+[[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]] provides a
+five-agent support design whose useful property is **authority partitioning**, not specialization
+alone. Pydantic schemas define handoffs, only the action agent may write to business APIs, refunds
+require confirmation, amounts **over $500** escalate, and failed QA may loop back only **2 times**
+before human review. Prompt-level rules still need API-side enforcement, but the topology at least
+states where mutation belongs.
+
+[[Ayo Adedeji - Agents That Prove, Not Guess]] supplies the testing analogue: four review agents
+communicate through named state keys, deterministic tools produce the evidence, and repair stops
+after at most **3 attempts**. Together the examples support a sharper version of contract-first
+decomposition: **define the handoff schema, the sole writer, the verifier, and the exit condition
+before adding another agent.**
+
+[[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]] also separates local delegation
+from interoperability. Agents in one ADK process can share state or call `transfer_to_agent`; A2A is
+for crossing framework or platform boundaries. A protocol can transport a handoff, but it does not
+supply the contract or authority policy.
+
 ## Open questions
 
 - Zero-knowledge proofs for arbitrary LLM computation are a research direction, not a shipping
@@ -205,3 +228,6 @@ merely fast — see [[Agent Observability]].
 - [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
 - [[Paul Iusztin]]
 - [[Agent Observability]]
+- [[Ayo Adedeji - Agents That Prove, Not Guess]]
+- [[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]]
+- [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]]

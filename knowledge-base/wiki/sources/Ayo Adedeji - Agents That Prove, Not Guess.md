@@ -55,6 +55,7 @@ The article provides a concrete boundary between probabilistic and deterministic
 - [[Agent Observability]]
 - [[Agent Frameworks]]
 - [[Agent Delegation]]
+- [[Google Cloud]]
 
 ## Citations
 
@@ -70,4 +71,3 @@ The article provides a concrete boundary between probabilistic and deterministic
 - [[Model Context Protocol]]
 - [[Coding Agent Harness]]
 - [[AI-Native Software Development Lifecycle]]
-

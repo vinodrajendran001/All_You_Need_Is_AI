@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - kv-cache
@@ -23,6 +23,8 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-13-ranganathan-gke-inference-gateway
+  - src-2026-09-13-rahman-quantizing-llms-gke
 status: active
 ---
 
@@ -181,6 +183,21 @@ the gain is not automatically available to other users.
 specifically for reasoning and agentic KV cache, while KV offload to DRAM and Mooncake Store P2P pooling
 sit on the TPU serving roadmap.
 
+## Cache location is routing state; cache precision is capacity state
+
+[[Rahul Ranganathan - Inference Gateway on GKE]] treats cache locality as a routing input. Sending
+a continuation to a replica without its prefix cache repeats prefill, raising time to first token
+and consuming accelerator work. But sending it to a cached, overloaded replica can be worse, so the
+endpoint picker balances cache utilization against queue length rather than applying sticky
+sessions blindly. The source notes that a cache may consume **several gigabytes per sequence** and
+can exceed weight memory under long context or large batch.
+
+[[Mofi Rahman - Quantizing LLMs on GKE]] supplies the complementary capacity warning. A 27B model at
+4-bit precision has roughly **13.5 GB** of weights, which fits inside an L4's **24 GB VRAM** only at
+the weight-tensor level. The remaining memory must still hold KV cache, activations, workspaces, and
+runtime overhead. Quantizing weights can therefore move the bottleneck *to* the cache; quantizing
+the cache can raise concurrency, but only with supported kernels and measured quality.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -222,3 +239,6 @@ sit on the TPU serving roadmap.
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
 - [[Linear Attention and Recurrent Memory]]
 - [[SemiAnalysis]]
+- [[Rahul Ranganathan - Inference Gateway on GKE]]
+- [[Mofi Rahman - Quantizing LLMs on GKE]]
+- [[Google Cloud]]

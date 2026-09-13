@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-08-27
+updated: 2026-09-13
 tags:
   - concept
   - machine-learning
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-07-03-bytebytego-openai-voice
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
   - src-2026-07-17-netflix-in-house-llm-serving
+  - src-2026-09-13-ranganathan-gke-inference-gateway
+  - src-2026-09-13-sumit-scaling-distributed-systems
 status: active
 ---
 
@@ -147,6 +149,23 @@ which is the same discipline applied to observability: the constraint is what an
 act on, not what the system can emit. See [[Inference Serving Engines]] and
 [[Serving Benchmarks and Goodput]].
 
+## Generic scaling primitives become workload-aware policies
+
+[[Sumit K - Scaling Simplified]] supplies the conventional vocabulary: scale up, scale out, combine
+both, then add load balancing, caching, sharding, and asynchronous work as the bottleneck demands.
+Its most useful distinction is **performance versus scalability** — a service can be fast for
+**100 users** and fail at **10,000**. The article is introductory and provides no capacity model or
+evidence for the title's "millions."
+
+[[Rahul Ranganathan - Inference Gateway on GKE]] shows what changes when the workload is LLM
+inference. Round robin and IP stickiness do not observe queue depth, prefix-cache locality, loaded
+LoRA adapters, or request criticality. The generic primitive is still a load balancer, but its
+policy becomes model-aware and may deliberately shed low-priority work.
+
+Together the sources support a systems rule: **scaling patterns are nouns; workload signals choose
+the policy.** Horizontal replicas do not produce useful scale until routing understands the scarce
+state and the service-level objective.
+
 ## Related pages
 
 - [[Netflix - In-House LLM Serving]]
@@ -168,3 +187,6 @@ act on, not what the system can emit. See [[Inference Serving Engines]] and
 - [[AI Knowledge Base Overview]]
 - [[Semantic Recommendation Systems]]
 - [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]
+- [[Sumit K - Scaling Simplified]]
+- [[Rahul Ranganathan - Inference Gateway on GKE]]
+- [[Google Cloud]]

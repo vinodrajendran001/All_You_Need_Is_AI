@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-04
+updated: 2026-09-13
 tags:
   - concept
   - evaluation
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-13-adedeji-multi-agent-code-review
 status: active
 ---
 
@@ -133,6 +134,24 @@ The same source is a caution about test-suite portability: a file-tool change th
 agent **increased** it in a CLI agent. A behavioural suite validated on one product does not license the change
 on another.
 
+## Executable evidence is stronger than synthesis, but it is not proof
+
+[[Ayo Adedeji - Agents That Prove, Not Guess]] supplies a compact worked example of the
+recommended shape on this page. Four agents separate structural analysis, style checking, test
+execution, and synthesis; the evidence-producing stages are deterministic tools (`ast.parse`,
+`pycodestyle`, and sandboxed execution), while the models interpret and communicate the result.
+
+The example is useful precisely because it is not clean. Gemini 2.5 Pro's first solution failed
+**13 cases**. The generated suite then ran **20 tests**, with **19 passing and 1 failing**, and a
+bounded repair loop reached **20/20** after **2 iterations**. That is evidence for the tested cases,
+not the article title's stronger promise to "prove": generated tests can share the generator's
+blind spots, and one LeetCode task is not a benchmark.
+
+The durable rule is narrower: **make the acceptance evidence inspectable and executable outside the
+model, then bound the repair loop.** The source caps repair at **3 attempts** and exits through an
+explicit escalation action rather than letting the model decide indefinitely that another try is
+warranted.
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -161,3 +180,4 @@ on another.
 - [[Tool Roster Economics]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
 - [[GitHub]]
+- [[Ayo Adedeji - Agents That Prove, Not Guess]]

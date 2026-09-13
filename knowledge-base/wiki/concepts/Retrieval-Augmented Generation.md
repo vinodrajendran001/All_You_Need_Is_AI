@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-11
+updated: 2026-09-13
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-02-bytebytego-rag-embedding-model
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-08-raji-cosine-similarity-safety
+  - src-2026-09-13-prabhulal-production-rag-adk
 status: active
 ---
 
@@ -208,6 +209,22 @@ Defences are covered under [[Retrieval Poisoning]] — ingestion-time similarity
 attacker's own requirements, and access-controlled retrieval as the only structural control — and the
 complementary attack on the same store is [[Embedding Inversion]].
 
+## Deployment completeness is not retrieval quality
+
+[[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]] demonstrates the
+infrastructure around a managed RAG deployment: Agent Starter Pack scaffolds API serving,
+infrastructure as code, CI/CD, logs, traces, evaluation hooks, IAM, storage connectors, and a UI;
+ADK orchestrates; Agent Engine hosts; RAG Engine stores and retrieves.
+
+The source's useful operational detail is that the managed database reportedly uses Cloud Spanner
+with **Basic = 100 processing units** and **Scaled = 1,000 processing units**, and the runtime
+service account needs the explicit `aiplatform.ragCorpora.query` permission.
+
+But the tutorial validates deployment and connectivity, not RAG quality. It accepts default
+chunking and embedding settings and reports no retrieval precision, hallucination rate, freshness,
+access-control leakage, latency, or cost. The durable distinction is:
+**production scaffolding can make a RAG system operable without making its retrieval good.**
+
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
@@ -240,3 +257,5 @@ complementary attack on the same store is [[Embedding Inversion]].
 - [[Retrieval Poisoning]]
 - [[Embedding Inversion]]
 - [[Amine Raji]]
+- [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]]
+- [[Google Cloud]]

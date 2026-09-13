@@ -56,6 +56,7 @@ This is a concrete multi-agent design where delegation is coupled to authority. 
 - [[Agent Frameworks]]
 - [[AI Agents in Production]]
 - [[Agent Security and Governance]]
+- [[Google Cloud]]
 
 ## Citations
 
@@ -70,4 +71,3 @@ This is a concrete multi-agent design where delegation is coupled to authority. 
 - [[Agent Memory]]
 - [[Agent Observability]]
 - [[Model Routing]]
-

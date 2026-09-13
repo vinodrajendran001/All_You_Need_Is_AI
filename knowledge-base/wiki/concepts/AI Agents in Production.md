@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-09-11
+updated: 2026-09-13
 tags:
   - concept
   - ai-agents
@@ -39,6 +39,12 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-07-bytebytego-llm-error-handling
+  - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
+  - src-2026-09-13-nevsky-gemini-multi-agent-system
+  - src-2026-09-13-rahmat-adk-gemini-enterprise
+  - src-2026-09-13-prabhulal-production-rag-adk
+  - src-2026-09-13-virinchi-google-cloud-mcp-security
+  - src-2026-09-13-tessier-gcp-model-armor
 status: active
 ---
 
@@ -266,6 +272,32 @@ trace needs `retry_count`, or a retry storm and a prompt-injection campaign are 
 A cautionary data point on buying rather than building: adoption metrics ship early because they are easy
 and sell internally, while step-level reasoning traces and cost-per-task attribution arrive late.
 
+## Production is a stack of control planes, not a deployment command
+
+The Google Cloud cluster maps a production agent into replaceable planes:
+
+1. **Logic and contracts** — ADK or another framework.
+2. **Models** — Gemini, Gemma, or a model reached through another API layer.
+3. **Tools and grounding** — MCP, APIs, connectors, search, vector stores, or RAG.
+4. **Runtime and state** — Agent Engine, Cloud Run, or GKE.
+5. **Identity and authority** — service identities, end-user identity, IAM, confirmation, and
+   tool-side authorization.
+6. **Distribution** — an application, A2A endpoint, or Gemini Enterprise catalogue.
+7. **Evidence and recovery** — traces, evaluations, logs, backups, time travel, and versioning.
+
+[[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]] supplies the broad map.
+[[Roushanak Rahmat - From ADK to Gemini Enterprise]] makes runtime and distribution separate.
+[[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]] makes one action
+agent the sole writer, puts confirmation on refunds and escalates amounts over **$500**.
+[[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]] adds deployment
+scaffolding and traces, but no retrieval-quality evidence — a deployed RAG agent is not thereby
+production-ready.
+
+The security sources close the loop. [[Virinchi T - Google Cloud MCP Security Framework]] adds
+dedicated identities, recurring tool inventory, deny policies, tenant-separated state, and recovery.
+[[David Tessier - GCP Model Armor]] adds centrally enforced pre- and post-model content inspection.
+Both are vendor-authored and neither makes probabilistic filtering an authorization boundary.
+
 ## Related pages
 
 - [[Grok Bot Systems Engineering Working Note]]
@@ -323,3 +355,10 @@ and sell internally, while step-level reasoning traces and cost-per-task attribu
 - [[Agent Observability]]
 - [[LLM Application Resilience]]
 - [[Sarthak Rastogi]]
+- [[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]]
+- [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]]
+- [[Roushanak Rahmat - From ADK to Gemini Enterprise]]
+- [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]]
+- [[Virinchi T - Google Cloud MCP Security Framework]]
+- [[David Tessier - GCP Model Armor]]
+- [[Google Cloud]]

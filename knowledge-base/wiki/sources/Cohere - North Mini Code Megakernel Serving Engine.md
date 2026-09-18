@@ -175,4 +175,5 @@ software-side analogue of the tile-geometry constraint documented in
 ## Citations
 
 - Raw capture: [[2026-09-08 Cohere - North Mini Code Megakernel Serving Engine]]
+- Duplicate capture: [[Cohere's North Mini Code Megakernel Serving Engine]]
 - Source: <https://cohere.com/blog/megakernels>

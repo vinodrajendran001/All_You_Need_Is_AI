@@ -21,8 +21,10 @@ reconstruction, compressed sparse long-range retrieval, and an FP4 global KV cac
 
 ## Key claims
 
-- The reported backbone has **552B total parameters**, 384 routed experts, one shared expert, and six
-  routed experts per token; an alternative 763B count includes auxiliary components.
+- The reported backbone has **552B total parameters**, 384 routed experts, and one shared expert. The
+  capture then says "six shared experts per token," which conflicts with its one-shared-expert count;
+  the per-token expert routing should be checked against the primary technical report. An alternative
+  763B count includes auxiliary components.
 - Active parameters are reported as **8B per input token** and **16B per generated token**.
 - Global cache growth falls from about **48 KB/token** in V3.2 to **3,514 bytes** in V4-Flash and
   **890 bytes** in V4.1-Flash.
@@ -38,8 +40,9 @@ the headline parameter count. Long-context efficiency is an architectural stack 
 ## Tensions and caveats
 
 The clipping has no byline and points through Alpha Signal redirects to DeepSeek's announcement. It
-reports no hardware, throughput, latency, or independent verification. The encoder/decoder activity
-description and all product figures should be checked against the primary technical report.
+reports no hardware, throughput, latency, or independent verification. Its expert-count wording is
+internally inconsistent, and the encoder/decoder activity description and all product figures should
+be checked against the primary technical report.
 
 ## Raw capture
 
@@ -57,4 +60,3 @@ description and all product figures should be checked against the primary techni
 - [[LLM Inference]]
 - [[Linear Attention and Recurrent Memory]]
 - [[Alpha Signal]]
-

@@ -1,12 +1,18 @@
 ---
-title: "Introducing System One Models & Jev - TypeSafe AI Blog"
-source: "https://typesafe.ai/blog/introducing-system-one-models-and-jev?utm_source=tldrnewsletter"
-author:
-published:
+type: raw-source
+source_id: src-2026-09-17-almeida-system-one-jev
+title: "Introducing System One Models & Jev"
+author: Diogo Almeida
+url: "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+captured: 2026-09-17
 created: 2026-09-17
-description: "TypeSafe AI is an AI lab building machine-native intelligence infrastructure for automation, designed to make decisions within software. Try our first System One Model, Jev, in early access."
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - decision-models
+  - structured-output
+  - inference
+status: active
 ---
 [∵ Back](https://typesafe.ai/)
 

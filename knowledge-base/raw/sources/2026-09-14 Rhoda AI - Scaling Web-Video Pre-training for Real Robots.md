@@ -1,12 +1,18 @@
 ---
+type: raw-source
+source_id: src-2026-09-14-rhoda-web-video-pretraining-robots
 title: "Does Scaling Web-Video Pre-training Help Real Robots Do Real Work?"
-source: "https://www.rhoda.ai/research/scaling-web-video-pretraining?utm_source=tldrai"
-author:
-published:
+author: Rhoda AI
+url: "https://www.rhoda.ai/research/scaling-web-video-pretraining"
+captured: 2026-09-14
 created: 2026-09-14
-description: "We investigate scaling model size and pre-training compute for video-based robot policies, and benchmark on a real industrial manipulation task."
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - robotics
+  - video-models
+  - scaling
+status: active
 ---
 We investigate scaling model size and pre-training compute for video-based robot policies, and benchmark on a real industrial manipulation task.
 

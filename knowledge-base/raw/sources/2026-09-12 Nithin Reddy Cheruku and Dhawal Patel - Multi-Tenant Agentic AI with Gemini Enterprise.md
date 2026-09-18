@@ -1,13 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-12-cheruku-patel-multitenant-agentic-ai
 title: "Building Multi-tenant Agentic AI systems using Gemini Enterprise Agent Platform for B2B SaaS"
-source: "https://medium.com/google-cloud/building-multi-tenant-agentic-ai-systems-using-gemini-enterprise-agent-platform-for-b2b-saas-5075a8dfd1db"
 author:
-  - "[[Nithin Reddy Cheruku]]"
+  - Nithin Reddy Cheruku
+  - Dhawal Patel
+url: "https://medium.com/google-cloud/building-multi-tenant-agentic-ai-systems-using-gemini-enterprise-agent-platform-for-b2b-saas-5075a8dfd1db"
 published: 2026-09-12
+captured: 2026-09-13
 created: 2026-09-13
-description: "More"
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - multi-tenancy
+  - ai-agents
+  - security
+status: active
 ---
 Authors: [Nithin Reddy Cheruku](https://medium.com/@meetnithin) & [Dhawal Patel](https://medium.com/@dhawalpatel_30637)
 

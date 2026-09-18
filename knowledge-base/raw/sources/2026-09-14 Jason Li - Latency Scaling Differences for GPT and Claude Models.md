@@ -1,13 +1,18 @@
 ---
+type: raw-source
+source_id: src-2026-09-14-li-long-context-latency
 title: "Latency Scaling Differences for GPT and Claude Models"
-source: "https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude?utm_source=substack&utm_medium=email"
-author:
-  - "[[Jason Li]]"
-published:
+author: Jason Li
+url: "https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude"
+captured: 2026-09-14
 created: 2026-09-14
-description: "Epoch AI measures long-context latency scaling across four frontier models. GPT-5.6 Terra and Sol show quadratic time-to-first-token growth with context length, while Claude Sonnet 5 and Opus 5 stay near-linear."
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - long-context
+  - latency
+  - inference
+status: active
 ---
 ## Introduction
 

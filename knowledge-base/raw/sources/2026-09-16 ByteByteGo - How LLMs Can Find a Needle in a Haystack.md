@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-16-bytebytego-needle-haystack-retrieval
 title: "How LLMs Can Find a Needle in a Haystack"
-source: "https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack?utm_source=post-email-title&publication_id=817132&post_id=215151603&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+author: ByteByteGo
+url: "https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack"
 published: 2026-09-16
+captured: 2026-09-17
 created: 2026-09-17
-description: "In this article, we are going to look at how LLMs can find a needle in a haystack."
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - retrieval
+  - vector-search
+  - ann
+status: active
 ---
 ## Debugging Agents in Different Environments - Live Workshop (Sponsored)
 

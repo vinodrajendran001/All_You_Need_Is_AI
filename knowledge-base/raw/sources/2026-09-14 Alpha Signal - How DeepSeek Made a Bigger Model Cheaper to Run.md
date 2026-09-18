@@ -1,3 +1,19 @@
+---
+type: raw-source
+source_id: src-2026-09-14-alphasignal-deepseek-v4-1-flash
+title: "How DeepSeek made a bigger model cheaper to run"
+author: Alpha Signal
+url: "https://www.deepseek.com/news/deepseek-v4-1-flash/"
+captured: 2026-09-14
+created: 2026-09-14
+updated: 2026-09-18
+tags:
+  - source/raw
+  - deepseek
+  - inference
+  - kv-cache
+status: active
+---
 DeepSeek released [V4.1-Flash](https://app.alphasignal.ai/c?uid=12PIFGaVBFKQnaUyy&cid=dbce367ad97e73c6&lid=1j5cVDqye4cQkzilB&mid=aed6268d-5c86-40e2-bb2f-c2bb6dd365d5 "https://app.alphasignal.ai/c?uid=12PIFGaVBFKQnaUyy&cid=dbce367ad97e73c6&lid=1j5cVDqye4cQkzilB&mid=aed6268d-5c86-40e2-bb2f-c2bb6dd365d5") on September 10 with an unusual combination of numbers. It is almost twice the size of V4-Flash but is 4x more efficient than its predecessor when it comes to KV cache storage.
 
 The model is also competitive with leading proprietary models. At maximum reasoning effort, V4.1-Flash scores 40 on the [Artificial Analysis Intelligence Index](https://app.alphasignal.ai/c?uid=12PIFGaVBFKQnaUyy&cid=dbce367ad97e73c6&lid=PXFglVJRBNeCbxw5&mid=aed6268d-5c86-40e2-bb2f-c2bb6dd365d5 "https://app.alphasignal.ai/c?uid=12PIFGaVBFKQnaUyy&cid=dbce367ad97e73c6&lid=PXFglVJRBNeCbxw5&mid=aed6268d-5c86-40e2-bb2f-c2bb6dd365d5"), just behind Gemini 3.8 Flash High at 41, while having a quarter of the cost per task.

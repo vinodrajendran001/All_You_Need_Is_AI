@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-05-lenz-nemoclaw-memory-agent
 title: "Building a Memory-Driven Agent with NVIDIA NemoClaw"
-source: "https://developer.nvidia.com/blog/building-a-memory-driven-agent-with-nvidia-nemoclaw/?utm_source=substack&utm_medium=email"
-author:
-  - "[[Tanya Lenz]]"
+author: Tanya Lenz
+url: "https://developer.nvidia.com/blog/building-a-memory-driven-agent-with-nvidia-nemoclaw/"
 published: 2026-09-05
+captured: 2026-09-14
 created: 2026-09-14
-description: "Enterprise work spans messages, decisions, projects, and obligations that change over time. An AI agent that starts without this context must reconstruct it…"
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - agent-memory
+  - governance
+  - evaluation
+status: active
 ---
 Enterprise work spans messages, decisions, projects, and obligations that change over time. An [AI agent](https://www.nvidia.com/en-us/ai/) that starts without this context must reconstruct it before contributing.
 

@@ -1,3 +1,19 @@
+---
+type: raw-source
+source_id: src-2026-09-15-turing-post-recursive-self-improvement
+title: "What Is Recursive About Recursive Self-Improvement"
+author: Turing Post
+url: "https://www.turingpost.com/p/fod-167-what-is-recursive-about-recursive-self-improvement"
+captured: 2026-09-15
+created: 2026-09-15
+updated: 2026-09-18
+tags:
+  - source/raw
+  - recursive-self-improvement
+  - evaluation
+  - automated-research
+status: active
+---
 Recursive self-improvement (RSI) had quite a week. An Anthropic researcher Jacob Coxon [resigned and warned](https://x.com/hilbertspaess/status/2097476196791709843?utm_campaign=fod-167-what-is-recursive-about-recursive-self-improvement&utm_medium=referral&utm_source=www.turingpost.com) that AI labs were racing toward self-improving superintelligence. Other researchers put surprisingly high numbers on the possibility that such systems could eventually cause catastrophic harm. Dario Amodei [argued](https://x.com/DarioAmodei/status/2098773920774074715?utm_campaign=fod-167-what-is-recursive-about-recursive-self-improvement&utm_medium=referral&utm_source=www.turingpost.com) that capability development should slow down enough to give safeguards time to catch up.
 
 The discussion quickly became a discussion about whether AI could kill us. Before going to the extremes, let’s discuss the mechanism everyone is so worried about. What exactly is recursive self-improvement, and how different is it from the AI-assisted research that is already happening?

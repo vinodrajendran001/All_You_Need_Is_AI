@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-12-zhang-recurrent-looped-transformer
 title: "Recurrent Looped Transformer"
-source: "https://yifanzhang-pro.github.io/recurrent-looped-tranformer/?utm_source=tldrai"
-author:
-  - "[[Yifan Zhang]]"
+author: Yifan Zhang
+url: "https://yifanzhang-pro.github.io/recurrent-looped-tranformer/"
 published: 2026-09-12
+captured: 2026-09-15
 created: 2026-09-15
-description: "Recurrent Looped Transformer: latent reasoning with unbounded temporal depth, model–hardware co-design, and consistent current-policy RL replay."
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - recurrent-transformers
+  - latent-reasoning
+  - reinforcement-learning
+status: active
 ---
 ## Abstract
 

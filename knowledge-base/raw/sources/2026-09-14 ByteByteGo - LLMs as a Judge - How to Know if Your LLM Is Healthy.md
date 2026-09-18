@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-14-bytebytego-llm-judge-health
 title: "LLMs as a Judge: How to Know if Your LLM is Healthy"
-source: "https://blog.bytebytego.com/p/llms-as-a-judge-how-to-know-if-your?utm_source=post-email-title&publication_id=817132&post_id=215151102&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+author: ByteByteGo
+url: "https://blog.bytebytego.com/p/llms-as-a-judge-how-to-know-if-your"
 published: 2026-09-14
+captured: 2026-09-15
 created: 2026-09-15
-description: "In this article, we are going to look at the process of LLM evaluation in detail."
+updated: 2026-09-18
 tags:
-  - "clippings"
+  - source/raw
+  - llm-evaluation
+  - llm-as-a-judge
+  - monitoring
+status: active
 ---
 ## Why you should evaluate every AI agent before shipping to production — and how (Sponsored)
 

@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-13-adedeji-multi-agent-code-review
+  - src-2026-09-14-bytebytego-llm-judge-health
 status: active
 ---
 
@@ -151,6 +152,13 @@ The durable rule is narrower: **make the acceptance evidence inspectable and exe
 model, then bound the repair loop.** The source caps repair at **3 attempts** and exits through an
 explicit escalation action rather than letting the model decide indefinitely that another try is
 warranted.
+
+## Evaluation is a loop, not one score
+
+[[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]] proposes a stack from
+deterministic validators through golden datasets, model judges, human calibration, and production
+monitoring. The durable practice is that every live failure becomes a regression case, while
+development and holdout sets remain separate so prompt tuning does not optimize the test away.
 
 ## Open questions
 

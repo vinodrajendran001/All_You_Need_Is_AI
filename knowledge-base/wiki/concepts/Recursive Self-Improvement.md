@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-09-15-turing-post-recursive-self-improvement
 status: active
 ---
 
@@ -250,6 +251,18 @@ evidence that Kimi K3 was prefilled with decoded Opus 4.8 reasoning is explicitl
 the counter-evidence (RL's Razor, *Retaining by Doing*, *SFT Memorizes, RL Generalizes*) points the other
 way. Nathan Lambert's formulation closes it: **"One does not simply 'distill' RL environments,
 infrastructure to run them at scale, or algorithms to mix them together effectively."**
+
+## Recursion begins when the improvement process enters the editable set
+
+[[Turing Post - What Is Recursive About Recursive Self-Improvement]] supplies a boundary test for the
+examples above. Repeated optimization with fixed objectives, compute, permissions, and evaluation is
+AI-assisted improvement, not necessarily recursion. The recursive claim strengthens only when the
+system can alter search strategy, experiment design, experience acquisition, environment adaptation,
+or the process that produces the next improvement.
+
+That boundary creates a governance regress. If the evaluator that certifies progress becomes editable,
+some protected test, human judgment, formal check, or external measurement must remain outside the
+loop. The source reports no self-sustaining capability growth; it is a taxonomy and control argument.
 
 ## Open questions
 

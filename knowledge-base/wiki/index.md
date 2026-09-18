@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-09-13
+updated: 2026-09-18
 tags:
   - index
 source_ids:
@@ -256,6 +256,17 @@ source_ids:
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-13-sumit-scaling-distributed-systems
+  - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
+  - src-2026-09-05-lenz-nemoclaw-memory-agent
+  - src-2026-09-15-bytebytego-llm-memory-goldfish
+  - src-2026-09-14-rhoda-web-video-pretraining-robots
+  - src-2026-09-14-alphasignal-deepseek-v4-1-flash
+  - src-2026-09-16-bytebytego-needle-haystack-retrieval
+  - src-2026-09-17-almeida-system-one-jev
+  - src-2026-09-14-li-long-context-latency
+  - src-2026-09-14-bytebytego-llm-judge-health
+  - src-2026-09-12-zhang-recurrent-looped-transformer
+  - src-2026-09-15-turing-post-recursive-self-improvement
 status: active
 ---
 
@@ -382,6 +393,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Long-Horizon Credit Assignment]] - Assigning reward across a trajectory where the decisive action happened thousands of steps earlier.
 - [[Computer Use Agents]] - Agents driving a GUI rather than an API, and why the environment is the hard part.
 - [[Joint-Embedding Predictive Architecture]] - Predicting in representation space instead of pixel space, and the collapse problem that comes with it.
+- [[Multi-Tenant Agent Architecture]] - Carrying tenant identity, scope, and authority through every dynamically selected agent hop.
+- [[Video Pre-training for Robot Policies]] - Testing whether web-video prediction quality transfers to physical task completion.
+- [[Approximate Nearest-Neighbor Search]] - IVF and HNSW retrieval, and why index recall differs from evidence relevance.
+- [[Typed Probabilistic Decision Models]] - Models that trade open-ended generation for typed choices, probabilities, and interface guarantees.
 
 ## Entities
 
@@ -458,6 +473,10 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Cohere]] - Model lab and operator of the first fully fledged serving system built around a decode megakernel.
 
 - [[Google Cloud]] - Integrated cloud stack spanning agent frameworks, managed runtimes, enterprise distribution, MCP, RAG, inference routing, security controls, and model serving.
+- [[DeepSeek]] - Model developer represented here through sparse activation, cache compression, and long-context inference architecture.
+- [[TypeSafe AI]] - Lab behind Jev and the vendor-defined System One Model category.
+- [[Epoch AI]] - Research organization measuring frontier-model behavior through external API experiments.
+- [[Yifan Zhang]] - Author of the Recurrent Looped Transformer architecture.
 
 ## Sources
 
@@ -722,6 +741,20 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[David Tessier - GCP Model Armor]] - Central pre/post model inspection and policy floor settings, as one probabilistic layer rather than an authority boundary.
 - [[Mofi Rahman - Quantizing LLMs on GKE]] - The 54 GB to 13.5 GB weight-capacity example and why weight fit is not runtime fit.
 - [[Sumit K - Scaling Simplified]] - Introductory scaling taxonomy; useful vocabulary without evidence for the title's “millions.”
+
+### September 18, 2026 batch
+
+- [[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]] - Tenant identity and pool/silo choices propagated through every agent component.
+- [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]] - Governed self-model memory with an 8.1-point overall gain and two negative category results.
+- [[ByteByteGo - Do LLMs Have the Memory of a Goldfish]] - Trained knowledge, temporary context, and application memory kept distinct.
+- [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] - Web-video scaling tested against physical industrial manipulation.
+- [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]] - Sparse activation and hierarchical cache design as the serving story behind a larger model.
+- [[ByteByteGo - How LLMs Can Find a Needle in a Haystack]] - Flat, IVF, and HNSW search separated from evidence quality.
+- [[Diogo Almeida - Introducing System One Models and Jev]] - Vendor proposal for typed probabilistic decisions instead of arbitrary text generation.
+- [[Jason Li - Latency Scaling Differences for GPT and Claude Models]] - External measurements showing GPT TTFT curvature and near-linear Claude behavior.
+- [[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]] - Layered evaluation across deterministic checks, judges, humans, and production.
+- [[Yifan Zhang - Recurrent Looped Transformer]] - Continuous recurrent state across prompt and response, specified but not benchmarked.
+- [[Turing Post - What Is Recursive About Recursive Self-Improvement]] - RSI bounded by which parts of the improvement loop remain externally auditable.
 
 ## Syntheses
 

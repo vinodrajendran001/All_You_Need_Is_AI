@@ -18,6 +18,8 @@ source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-09-14-bytebytego-llm-judge-health
+  - src-2026-09-17-almeida-system-one-jev
 status: active
 ---
 
@@ -151,6 +153,18 @@ an elaborate multi-criterion reward collapsed to a single degenerate output beca
 together and the length term saturated.
 
 See [[Synthetic Data Flywheel]] for the judge's place in the wider automation of the training stack.
+
+## A layered evaluation stack, and a false shortcut
+
+[[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]] places judges after
+deterministic checks and holdout cases, and before human calibration and production monitoring.
+Pairwise order reversal tests position bias; failures discovered in production become new regression
+cases. Its 1-5 rubric and 100-answer calibration are examples, not measured prescriptions.
+
+[[Diogo Almeida - Introducing System One Models and Jev]] illustrates the shortcut to avoid. TypeSafe
+compares Jev against averages from large models rather than independent ground truth, while the same
+team authors the workflows and product. A teacher-model consensus can be a reference, but it cannot
+establish calibration or correctness by itself.
 
 ## Related pages
 

@@ -14,6 +14,7 @@ source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-12-zhang-recurrent-looped-transformer
 status: active
 ---
 
@@ -129,6 +130,17 @@ needs a compute-matched result rather than a parameter-count win.
 
 On the monitorability claim attached to looping in press coverage, see
 [[Chain-of-Thought Monitoring]] — the architecture is not established as the cause.
+
+## Recurrence across the prefill-decode boundary
+
+[[Yifan Zhang - Recurrent Looped Transformer]] proposes a different recurrence axis from repeated
+layer stacks. A causal encoder builds global memory, while a recurrent decoder carries final hidden
+state and layerwise sliding-window KV state across every prompt and response token. With 48 decoder
+layers, temporal path length reaches `48t` after `t` tokens, although each token still executes a
+fixed 96 logical blocks.
+
+This is a design specification, not a demonstrated gain. Sequential state updates, full BPTT, and
+state invalidation after parameter changes may dominate the claimed hardware and RL co-design.
 
 ## Related pages
 

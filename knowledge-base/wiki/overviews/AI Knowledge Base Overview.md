@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-09-13
+updated: 2026-09-18
 tags:
   - overview
   - ai
@@ -258,6 +258,17 @@ source_ids:
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-13-sumit-scaling-distributed-systems
+  - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
+  - src-2026-09-05-lenz-nemoclaw-memory-agent
+  - src-2026-09-15-bytebytego-llm-memory-goldfish
+  - src-2026-09-14-rhoda-web-video-pretraining-robots
+  - src-2026-09-14-alphasignal-deepseek-v4-1-flash
+  - src-2026-09-16-bytebytego-needle-haystack-retrieval
+  - src-2026-09-17-almeida-system-one-jev
+  - src-2026-09-14-li-long-context-latency
+  - src-2026-09-14-bytebytego-llm-judge-health
+  - src-2026-09-12-zhang-recurrent-looped-transformer
+  - src-2026-09-15-turing-post-recursive-self-improvement
 status: active
 ---
 
@@ -752,6 +763,36 @@ leaves cache, activations, workspaces, and runtime overhead outside that fit cal
 [[Sumit K - Scaling Simplified]] supplies the generic scaling vocabulary, while its “millions” title is unsupported
 by any capacity model or case study.
 
+## September 18 additions
+
+**State boundaries became the common architecture.**
+The new sources span agents, memory, retrieval, inference, robotics, evaluation, and RSI, but each
+asks the same question: what state persists, who may change it, and which independent check still
+means what it did before the system acted?
+
+[[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]] applies
+that question to tenant identity across every dynamic hop. [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]]
+applies it to a self model whose knowledge can inform action without granting authority.
+[[ByteByteGo - Do LLMs Have the Memory of a Goldfish]] separates external memory from temporary
+context, while [[Jason Li - Latency Scaling Differences for GPT and Claude Models]] shows that the
+cost of retaining that context differs materially by provider.
+
+At the retrieval layer, [[ByteByteGo - How LLMs Can Find a Needle in a Haystack]] separates ANN
+recall from evidence relevance. At the model layer, [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]]
+separates total capacity from active compute and cache bytes, while
+[[Diogo Almeida - Introducing System One Models and Jev]] gives up arbitrary text for typed decisions
+but cannot turn schema validity into semantic truth.
+
+The two research-boundary sources make their negatives explicit. [[Yifan Zhang - Recurrent Looped Transformer]]
+specifies recurrent state and RL replay without demonstrating a gain.
+[[Turing Post - What Is Recursive About Recursive Self-Improvement]] says repeated optimization
+becomes meaningfully recursive only when the improvement process itself enters the editable set—and
+then an evaluator must remain outside it.
+
+[[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] is the batch's strongest physical
+result: video-prediction quality and industrial robot completion rank seven checkpoints identically,
+but only within one vendor's task, embodiment, architecture family, and post-training run.
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]
@@ -919,3 +960,7 @@ by any capacity model or case study.
 - [[Long-Horizon Credit Assignment]]
 - [[Computer Use Agents]]
 - [[Joint-Embedding Predictive Architecture]]
+- [[Multi-Tenant Agent Architecture]]
+- [[Approximate Nearest-Neighbor Search]]
+- [[Typed Probabilistic Decision Models]]
+- [[Video Pre-training for Robot Policies]]

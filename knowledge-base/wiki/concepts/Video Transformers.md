@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-09-18
 tags:
   - concept
   - transformers
@@ -10,6 +10,7 @@ tags:
   - computer-vision
 source_ids:
   - src-2026-06-28-mayank-pratap-singh-timesformer
+  - src-2026-09-14-rhoda-web-video-pretraining-robots
 status: active
 ---
 
@@ -55,6 +56,14 @@ Divided attention is a reshape: run temporal attention with F as the sequence di
 ## Vs 3D convolutional models
 
 Before video transformers, strong classifiers used **3D convolutions**, which slide a local kernel over height, width, and time and carry a built-in local motion bias but build long-range relations slowly. TimeSformer instead connects distant patches directly via attention. Reported numbers: default TimeSformer 121.4M params at 0.59 TFLOPs vs 1.97 TFLOPs for SlowFast R50; TimeSformer-L processes 96 frames for 80.7% top-1 on Kinetics-400. The tradeoff: transformers benefit from large image-pretraining and data; 3D CNNs keep stronger inductive biases in small-data regimes.
+
+## Prediction quality as a robot-policy proxy
+
+[[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] uses video prediction as pre-training
+for physical manipulation rather than recognition. Across seven checkpoints, lower DINO Frechet
+distance on held-out web video ranks models in the same order as real-robot completion. DINO distance
+embeds 400,000 predicted and 400,000 true frames but ignores temporal ordering, so the correlation is
+promising checkpoint evidence rather than proof that the metric captures control-relevant dynamics.
 
 ## Open questions
 

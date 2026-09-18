@@ -16,6 +16,7 @@ source_ids:
   - src-2026-07-17-netflix-in-house-llm-serving
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-09-14-li-long-context-latency
 status: active
 ---
 
@@ -120,6 +121,16 @@ The mechanism is specific but the lesson is general: real requests concentrate o
 leaving sparser MoE work and therefore **more scheduling bubbles for the megakernel to absorb**. Uniform
 routing removes exactly the load imbalance the technique is good at. Anyone benchmarking an MoE serving
 path with synthetic uniform traffic is measuring the wrong distribution.
+
+## Long-context latency needs a functional form
+
+[[Jason Li - Latency Scaling Differences for GPT and Claude Models]] fits the same quadratic-capable
+model to four APIs. Terra and Sol strongly favor curvature (`p=8.87e-19` and `1.48e-10`), while
+Sonnet and Opus do not. The useful benchmark lesson is methodological: a few context-length points
+cannot establish linear scaling, and a ten-million-token extrapolation is not a measurement.
+
+Because TTFT includes the entire service path, the result should be reported as provider behavior
+under the stated cache and request setup, not as an inferred attention implementation.
 
 ## Open questions
 

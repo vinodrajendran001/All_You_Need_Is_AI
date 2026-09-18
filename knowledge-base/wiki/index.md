@@ -807,6 +807,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-09-04 Lint Pass]] - Thirty-second pass: a benchmark claim that got stronger as it travelled from its source summary to six derived pages, and the strong result the compression dropped.
 - [[2026-09-11 Lint Pass]] - Thirty-third comprehensive lint pass; found three defects sharing one cause — a check that verified a proxy instead of the invariant: the tag vocabulary had re-forked along a *namespace* axis (43 of 48 `topic/*` tags had flat twins) while three passes checked only spelling, `log.md`'s frontmatter sat 9 source IDs short of `index.md` for 12 days while its body carried the entry correctly, and recursive capture counts were inflated by 40 nested non-captures. Also rebuilt a summary that had dropped every model, vendor and figure from its source while keeping the caveat about them, and confirmed the qualifier rule held against a genuine 1.41x collision.
 - [[2026-09-13 Lint Pass]] - Thirty-fourth comprehensive lint pass; repaired three lossy summaries and their downstream claims, rebuilt defensive deception, made four source-summary filenames portable, and aligned all controls with the complete 251-ID ownership set.
+- [[2026-09-18 Lint Pass]] - Thirty-fifth comprehensive lint pass; preserved an internally contradictory DeepSeek expert-routing claim instead of silently correcting it, semantically traced all 11 September 18 source chains, and confirmed exact 262-ID control parity.
 
 ## Control files
 

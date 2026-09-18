@@ -1310,3 +1310,22 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   or efficiency result. New entity: [[Yifan Zhang]].
 - [[Turing Post - What Is Recursive About Recursive Self-Improvement]] defines recursion by which
   parts of the improvement process become editable and which evaluator remains outside the loop.
+
+## [2026-09-18] lint | Uncertainty must survive compression
+
+- Completed the thirty-fifth comprehensive lint pass over **469 wiki pages**, **262 top-level raw
+  captures**, and **262 controlled source IDs**.
+- The structural graph was clean: no malformed frontmatter, unresolved or wrapped links,
+  unreachable captures, ownership or reciprocity failures, index omissions, semantic orphans,
+  summary bypasses, duplicate IDs or URLs, filename defects, tag forks, privacy leaks, or control
+  drift.
+- The semantic pass traced all 11 sources from the September 18 ingest through their summaries and
+  declared affected pages. Ten chains preserved their figures, qualifiers, provenance, negative
+  results, and evidence boundaries.
+- One summary had silently changed an internally contradictory phrase. The Alpha Signal capture says
+  DeepSeek V4.1-Flash has one shared expert and then says six shared experts are used per token; the
+  summary had converted the latter to six routed experts. [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]]
+  now records the contradiction and requires verification against the primary technical report
+  rather than guessing which word is wrong.
+- Filed [[2026-09-18 Lint Pass]]. The index, log, and overview remain aligned at **262 / 262 / 262**
+  source IDs.

@@ -1329,3 +1329,36 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   rather than guessing which word is wrong.
 - Filed [[2026-09-18 Lint Pass]]. The index, log, and overview remain aligned at **262 / 262 / 262**
   source IDs.
+
+## [2026-09-18] post | Memory Has Two Bills
+
+- Fourth Post-workflow run, covering **2026-09-11 → 2026-09-18**. The window contained two ingests
+  and two lint passes. The first ingest declared 10 new sources, while its lint pass restored eight
+  omitted component IDs and brought the controlled set to 251; the second ingest ended at
+  **262 controlled source IDs**. Filed [[2026-09-18 Memory Has Two Bills]] for LinkedIn and X.
+- **Winner at 20/20:** memory has a replay cost and a distortion cost. The first half comes from
+  [[ByteByteGo - Do LLMs Have the Memory of a Goldfish]]: ten growing 1K-token turns produce roughly
+  55K cumulative input tokens for a conversation visibly containing 10K. The second comes from
+  [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]]: external memory raised overall
+  accuracy from 82.8% to 90.9% while corpus faithfulness fell 100% → 92.3% and single-hop lookup
+  fell 86.7% → 83.3%.
+- **The synthesis belongs to the vault, not either source.** Retaining history creates a replay bill;
+  selecting which history returns creates a distortion bill. The post's analogy — memory is an editor,
+  not an attic — makes the operational point: selection saves space and can change meaning.
+- The angle beat four runners-up: weight fit not being runtime fit (19), deterministic tools producing
+  evidence rather than proof (19), tenant scope as a hop-by-hop invariant (17), and typed output
+  removing invalid shapes rather than semantic hallucinations (17). All four were added to
+  [[Post Archive]].
+- **The fact-check cut four overclaims.** "A 10K chat costs 5.5× more than it looks" wrongly generalized
+  one ten-turn illustration. "Memory makes factual recall worse" universalized two category regressions
+  from one vendor-reported evaluation. "External memory solves the replay problem" ignored the token
+  cost of retrieved memories. "The system traded truth for synthesis" asserted a causal exchange the
+  benchmark does not establish.
+- **Compression check:** the X standalone uses "may rise" and "some answers"; thread post 3 keeps
+  "NVIDIA-reported" beside the overall gain and includes the faithfulness regression in the same post;
+  post 5 retains the illustrative-number, vendor-report, independent-replication, and `n=13` caveats.
+- Verified programmatically: LinkedIn body was trimmed from 256 to exactly **250 words** without
+  removing a qualifier. Seven X blocks match their declared counts and are all at or below 280,
+  including the standalone at exactly 280. New post and archive introduce 0 unresolved prose
+  wikilinks; frontmatter parses; `## Related pages` is present; index, log, and overview remain aligned
+  at **262 source IDs**. [[Agent Memory]] enters cooldown until 2026-10-30.

@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-09-11
+updated: 2026-09-18
 tags:
   - post
 status: active
@@ -29,11 +29,13 @@ materially different angle, and that post must say what is new.
 | 2026-08-29 | [[2026-08-29 KL Should Follow the Reward]] | 2026-08-26 → 2026-08-29 | [[Reward Design for RL]] | LinkedIn, X | ready |
 | 2026-09-05 | [[2026-09-05 Nobody Tests the Instructions]] | 2026-08-29 → 2026-09-05 | [[Context Engineering]] | LinkedIn, X | ready |
 | 2026-09-11 | [[2026-09-11 The Benchmark Changed Its Mind]] | 2026-09-05 → 2026-09-11 | [[Serving Benchmarks and Goodput]] | LinkedIn, X | ready |
+| 2026-09-18 | [[2026-09-18 Memory Has Two Bills]] | 2026-09-11 → 2026-09-18 | [[Agent Memory]] | LinkedIn, X | ready |
 
 ## Topics covered
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-09-18 - agent memory, cumulative context cost, memory evaluation, selective retrieval
 - 2026-09-11 - benchmark normalization, inference economics, latency-throughput tradeoffs, accelerator comparison
 - 2026-09-05 - agent context files, instruction bloat, negative results, evaluating prompts
 - 2026-08-29 - reward design, KL divergence, verifiable vs preference rewards, post-training recipes
@@ -54,6 +56,10 @@ materially different angle, and that post must say what is new.
 - The obvious megakernel scheduling optimization made serving 1-2% slower, with no causal explanation - [[Megakernels]]
 - Training loss measures downstream accuracy without labels: ~85% rank correlation, rising to ~99% after normalization - [[Joint-Embedding Predictive Architecture]]
 - LLM failures frequently return HTTP 200, so agent operations need attribution rather than transport-level detection - [[Agent Observability]], [[LLM Application Resilience]]
+- Weight fit is not runtime fit: Gemma 3 27B drops from at least 54 GB in BF16 to about 13.5 GB at 4-bit, but that does not establish one-L4 deployment once KV cache, activations, workspace, and runtime overhead are included - [[Model Quantization and Efficiency]]
+- Models synthesize while deterministic tools produce evidence: one generated solution failed 13 cases, a sandboxed suite reached 19/20, and bounded repair reached 20/20 - [[Agentic Testing]]
+- Tenant scope must survive every hop across identity, memory, tools, data, model context, and traces - [[Multi-Tenant Agent Architecture]]
+- Typed probabilistic output removes invalid shapes, not semantic hallucinations - [[Typed Probabilistic Decision Models]]
 
 ## Spine pages in cooldown
 
@@ -62,6 +68,7 @@ materially different angle, and that post must say what is new.
 - [[Reward Design for RL]] - posted 2026-08-29 - cooldown ends 2026-10-10
 - [[Context Engineering]] - posted 2026-09-05 - cooldown ends 2026-10-17
 - [[Serving Benchmarks and Goodput]] - posted 2026-09-11 - cooldown ends 2026-10-23
+- [[Agent Memory]] - posted 2026-09-18 - cooldown ends 2026-10-30
 
 ## Related pages
 

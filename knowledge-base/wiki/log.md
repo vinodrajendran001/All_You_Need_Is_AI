@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-09-13
+updated: 2026-09-18
 tags:
   - log
 source_ids:
@@ -256,6 +256,17 @@ source_ids:
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-13-sumit-scaling-distributed-systems
+  - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
+  - src-2026-09-05-lenz-nemoclaw-memory-agent
+  - src-2026-09-15-bytebytego-llm-memory-goldfish
+  - src-2026-09-14-rhoda-web-video-pretraining-robots
+  - src-2026-09-14-alphasignal-deepseek-v4-1-flash
+  - src-2026-09-16-bytebytego-needle-haystack-retrieval
+  - src-2026-09-17-almeida-system-one-jev
+  - src-2026-09-14-li-long-context-latency
+  - src-2026-09-14-bytebytego-llm-judge-health
+  - src-2026-09-12-zhang-recurrent-looped-transformer
+  - src-2026-09-15-turing-post-recursive-self-improvement
 status: active
 ---
 
@@ -1263,3 +1274,39 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - Final structural checks found no malformed frontmatter, unresolved or wrapped prose wikilinks,
   semantic orphans, index omissions, reciprocity failures, duplicate summary IDs or URLs, unowned raw
   IDs, invalid filenames, or namespaced tag forks.
+
+## [2026-09-18] ingest | State boundaries became the common architecture
+
+- Ingested **11 unique sources** and linked one duplicate Cohere capture to its existing summary,
+  taking the control set from **251 to 262 source IDs**.
+- [[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]] makes
+  tenant scope a hop-by-hop invariant across identity, memory, tools, data, model context, and traces.
+  New page: [[Multi-Tenant Agent Architecture]].
+- [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]] reports **82.8% to 90.9%**
+  overall across 186 questions, but also regressions in corpus faithfulness and single-hop lookup.
+  The design separates evidence, derived knowledge, and authorized action.
+- [[ByteByteGo - Do LLMs Have the Memory of a Goldfish]] separates weights, context, and external
+  memory; ten growing 1K-token turns illustrate **55K cumulative input tokens** for a 10K-token
+  visible conversation.
+- [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] reports physical completion rising
+  **4%/65%/75%/85%** across model sizes and a matching checkpoint order between DINO video distance
+  and robot performance. It remains one vendor, task, embodiment, and training run per condition.
+- [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]] reports a 552B sparse backbone,
+  **8B input / 16B output active parameters**, and global cache growth reduced to **890 bytes/token**.
+  No hardware or serving benchmark is supplied. New entity: [[DeepSeek]].
+- [[ByteByteGo - How LLMs Can Find a Needle in a Haystack]] separates ANN recall from evidential
+  relevance. New page: [[Approximate Nearest-Neighbor Search]].
+- [[Diogo Almeida - Introducing System One Models and Jev]] proposes typed probabilistic decisions
+  instead of arbitrary text. Its speed, price, and "no hallucinations" claims are vendor-authored;
+  schema validity does not establish semantic correctness. New pages:
+  [[Typed Probabilistic Decision Models]] and [[TypeSafe AI]].
+- [[Jason Li - Latency Scaling Differences for GPT and Claude Models]] finds strong TTFT curvature
+  for GPT-5.6 Terra/Sol but not Claude Sonnet/Opus under the tested API setup. New entity:
+  [[Epoch AI]].
+- [[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]] organizes evaluation as
+  deterministic checks, golden datasets, calibrated judges, humans, and production monitoring.
+- [[Yifan Zhang - Recurrent Looped Transformer]] specifies continuous hidden/KV state across prompt
+  and response plus exact current-policy replay requirements, while explicitly reporting no quality
+  or efficiency result. New entity: [[Yifan Zhang]].
+- [[Turing Post - What Is Recursive About Recursive Self-Improvement]] defines recursion by which
+  parts of the improvement process become editable and which evaluator remains outside the loop.

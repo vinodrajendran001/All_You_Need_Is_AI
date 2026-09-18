@@ -14,6 +14,8 @@ source_ids:
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-09-09-bytebytego-model-routing
   - src-2026-09-13-rahman-quantizing-llms-gke
+  - src-2026-09-14-alphasignal-deepseek-v4-1-flash
+  - src-2026-09-17-almeida-system-one-jev
 status: active
 ---
 
@@ -151,6 +153,17 @@ quantization.
 The source reports quality losses from **1% to 30+%** without tying them to models, tasks, or
 methods. That makes the number unsuitable for prediction but useful as a reminder: a capacity win
 does not locate the quality frontier. Measure fit, throughput, latency, and task quality together.
+
+## Two ways to leave the general-purpose frontier
+
+[[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]] keeps broad generation but changes
+the resource shape: sparse activation, phase-specific compute, hierarchical context retrieval, and
+an FP4 global cache. [[Diogo Almeida - Introducing System One Models and Jev]] makes the more radical
+trade: abandon arbitrary string generation for typed probabilistic choices.
+
+Both are frontier claims rather than established points. DeepSeek's article gives no end-to-end
+serving measurement, while Jev's 70-500 ms and 193.6x/444.6x headlines come from a vendor-authored,
+favorable workflow evaluation without public architecture or calibration evidence.
 
 ## Open questions
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-09-04
+updated: 2026-09-18
 tags:
   - concept
   - evaluation
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-15-turing-post-recursive-self-improvement
 status: active
 ---
 
@@ -199,6 +200,16 @@ four shipped wins (**3.1%, 5.5%, 2.9%, 2.3%** on an AI-credit metric) are publis
 that **they are not additive**, which is the caveat most likely to be dropped when a result is quoted. And the
 same change measured on two products gave **opposite signs** — a file-tool migration cut code-review cost by
 about 20% and raised CLI cost — establishing that the workload is part of the result, not context for it.
+
+## An editable evaluator moves the problem up one level
+
+[[Turing Post - What Is Recursive About Recursive Self-Improvement]] identifies the strongest form of
+the benchmark problem: a system that can revise the evaluator certifying its own progress. Better
+scores then cease to be independent evidence unless protected tests, human judgment, formal
+verification, or another external check remains outside the editable region.
+
+The issue does not require assuming deceptive intent. Optimizing an editable metric is enough to
+erase the distinction between improving the system and redefining success.
 
 ## Open questions
 

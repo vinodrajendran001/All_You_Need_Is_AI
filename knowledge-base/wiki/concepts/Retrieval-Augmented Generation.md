@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-08-raji-cosine-similarity-safety
   - src-2026-09-13-prabhulal-production-rag-adk
+  - src-2026-09-16-bytebytego-needle-haystack-retrieval
 status: active
 ---
 
@@ -224,6 +225,17 @@ But the tutorial validates deployment and connectivity, not RAG quality. It acce
 chunking and embedding settings and reports no retrieval precision, hallucination rate, freshness,
 access-control leakage, latency, or cost. The durable distinction is:
 **production scaffolding can make a RAG system operable without making its retrieval good.**
+
+## ANN recall is not evidence relevance
+
+[[ByteByteGo - How LLMs Can Find a Needle in a Haystack]] separates two failure layers this page often
+compresses together. An IVF or HNSW index can miss the exact nearest vectors because search is
+approximate; even exact nearest vectors can still be obsolete, unauthorized, incomplete, or
+irrelevant to the answer. Metadata filters, active-version rules, lexical retrieval, reranking, and
+abstention address the second layer, not the first.
+
+The article's million-passage IVF example is illustrative rather than measured. See
+[[Approximate Nearest-Neighbor Search]] for the index-level controls.
 
 ## Related pages
 

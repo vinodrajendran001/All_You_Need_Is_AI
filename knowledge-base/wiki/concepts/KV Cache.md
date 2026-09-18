@@ -25,6 +25,7 @@ source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-13-ranganathan-gke-inference-gateway
   - src-2026-09-13-rahman-quantizing-llms-gke
+  - src-2026-09-14-alphasignal-deepseek-v4-1-flash
 status: active
 ---
 
@@ -197,6 +198,16 @@ can exceed weight memory under long context or large batch.
 the weight-tensor level. The remaining memory must still hold KV cache, activations, workspaces, and
 runtime overhead. Quantizing weights can therefore move the bottleneck *to* the cache; quantizing
 the cache can raise concurrency, but only with supported kernels and measured quality.
+
+## Cache compression became a hierarchy
+
+[[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]] reports DeepSeek V4.1-Flash
+reducing global cache growth from roughly 48 KB/token in V3.2 to 3,514 bytes in V4-Flash and
+**890 bytes/token** in V4.1-Flash. The reported stack combines reconstructed local state, compressed
+sparse global retrieval, and FP4 cache storage rather than relying on one precision change.
+
+These are secondary product figures with no disclosed hardware or throughput measurement. They show
+which resource is being attacked, not how much end-to-end latency or cost was independently saved.
 
 ## Open questions
 

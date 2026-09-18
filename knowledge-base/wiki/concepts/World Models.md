@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-11
+updated: 2026-09-18
 tags:
   - concept
   - world-models
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-07-21-bytebytego-roblox-world-models
   - src-2026-09-07-rai-lejepa
+  - src-2026-09-14-rhoda-web-video-pretraining-robots
 status: active
 ---
 
@@ -89,6 +90,16 @@ Two limits belong with this: it is **vision only**, and **no matched-compute com
 DINOv3 has been run** — the headline Galaxy10 result compares a from-scratch model against transferred
 features, which is a different question from whether LeJEPA is a better pretraining objective at equal
 compute.
+
+## A predictive video model crossed into physical control
+
+[[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] adapts a causal video predictor to an
+industrial bearing-unpacking policy through a fixed inverse-dynamics decoder. Completion rises from
+4% to 85% across model sizes and 58% to 75% across a fixed-model compute sweep. Seven checkpoints
+rank in the same order on DINO video-prediction distance and physical completion.
+
+The scope remains narrow: one vendor, task, embodiment, architecture family, and post-training run
+per condition. The result supports transfer within that setup, not a universal robotics scaling law.
 
 ## Open questions
 

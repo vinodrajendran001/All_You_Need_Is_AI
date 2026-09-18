@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-09-18
 tags:
   - concept
   - reinforcement-learning
   - reasoning
 source_ids:
   - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-09-12-zhang-recurrent-looped-transformer
 status: active
 ---
 
@@ -74,6 +75,16 @@ policy to *waste* it, which connects directly to the length-collapse dynamics re
 **The practical bottleneck has moved to point extraction.** Reasoning points are generated with an
 off-the-shelf LLM, and this "required a significant amount of iteration." The method converts a
 reward-design problem into a decomposition problem, and the decomposition is not yet automatic.
+
+## State replay becomes part of policy correctness
+
+[[Yifan Zhang - Recurrent Looped Transformer]] extends the credit-assignment problem into recurrent
+serving state. Exact current-policy RL replay must rebuild hidden state, decoder KV, and encoder
+memory after parameters change; reusing stale state means the replay no longer comes from the current
+policy. Behavior log probabilities must also match the sampler that actually produced the trajectory.
+
+The source specifies the contract but provides no evidence that full replay and backpropagation remain
+tractable at the long sequence lengths the architecture targets.
 
 ## Open questions
 

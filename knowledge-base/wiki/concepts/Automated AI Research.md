@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-11
+updated: 2026-09-18
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-09-15-turing-post-recursive-self-improvement
 status: active
 ---
 
@@ -103,6 +104,16 @@ of difficulty.
 That framing also supplies the limiting problem: Florian Brand is quoted that "semi-private evals and
 evals with a hold out set are basically dead." An automated research loop that cannot be independently
 measured cannot be shown to be improving. See [[Synthetic Data Flywheel]].
+
+## Automation is bounded by what it cannot edit
+
+[[Turing Post - What Is Recursive About Recursive Self-Improvement]] uses AI4AI-Bench as a bounded
+case: an agent receives several hours to modify a real training algorithm, which is then rerun from
+scratch under fixed evaluation. The system automates experiment execution without owning the
+definition of improvement.
+
+This makes editable scope a more useful measure than how many research steps use AI. A fast loop can
+remain non-recursive while objectives, budgets, permissions, and evaluation stay external.
 
 ## Open questions
 

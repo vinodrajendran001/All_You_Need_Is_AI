@@ -10,6 +10,7 @@ source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-12-zhang-recurrent-looped-transformer
 status: active
 ---
 
@@ -119,6 +120,17 @@ into serving capacity — see [[KV Cache]].
 
 The forward-looking item is that **TPUv8i triples on-chip SRAM to 384 MB**, sized to hold reasoning and
 agentic KV cache on-chip, which changes the calculus for recurrent-state placement again.
+
+## A complete recurrent state spans hidden state and cache
+
+[[Yifan Zhang - Recurrent Looped Transformer]] defines state as both the decoder's recurrent output
+and its layerwise sliding-window KV cache. The state persists continuously across prompt ingestion
+and generation; encoder memory provides long-range access while the decoder's local cache retains at
+most `W-1` historical entries per layer.
+
+The proposal makes a useful correctness claim for training: detaching recurrent output, decoder KV,
+or encoder-memory paths changes the gradient, and parameter updates invalidate cached states for
+exact current-policy replay. No empirical quality or efficiency result is yet reported.
 
 ## Open questions
 

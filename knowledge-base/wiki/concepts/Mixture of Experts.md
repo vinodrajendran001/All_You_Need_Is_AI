@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
   - src-2026-08-23-wafer-ai-performance-engineering-resources
+  - src-2026-09-14-alphasignal-deepseek-v4-1-flash
 status: active
 ---
 
@@ -48,6 +49,14 @@ MoE matters because it changes the tradeoff between **total model capacity** and
 [[Wafer - AI Performance Engineering Resources]] treats MoE primarily as a distributed-systems problem, which is where most of the difficulty lives once the routing algorithm is fixed. **DeepSeek-V3** is its reference report for a large sparse model end to end; **DeepEP** is the expert-parallel communication library that makes all-to-all dispatch and combine affordable; **EPLB** is the expert-parallel load balancer that keeps hot experts from serializing the step; **MegaScale-Infer** addresses serving disaggregation for MoE specifically.
 
 The pattern is that sparsity converts a compute problem into a *communication and balance* problem. Every token's route decides which GPU does its work, so an imbalanced router costs wall-clock time on every device that finished early — a cost entirely invisible in FLOP accounting. That is the same accounting gap [[Arithmetic Intensity and the Roofline Model]] warns about, one level up the stack.
+
+## Active capacity split by inference phase
+
+[[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]] reports a 552B DeepSeek V4.1-Flash
+backbone with 384 routed experts but only **8B active parameters per input token** and **16B per
+generated token**. The asymmetry reinforces that "active parameters" is not one model-wide number;
+prefill and decode can activate different computation. The figures remain secondary reporting until
+checked against DeepSeek's primary technical report.
 
 ## Open questions
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-09-11
+updated: 2026-09-18
 tags:
   - concept
   - llm
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-09-14-li-long-context-latency
 status: active
 ---
 
@@ -159,6 +160,17 @@ utilisation.
 1.32x at batch 8 versus 1.14x under uniform routing**, because real requests concentrate on the same
 experts, leaving sparser MoE work and therefore more bubbles to fill. The conclusion generalises beyond
 megakernels: **"synthetic uniform routing therefore understates megakernel speedup on real traffic."**
+
+## TTFT can change shape with context length
+
+[[Jason Li - Latency Scaling Differences for GPT and Claude Models]] measures API-level TTFT up to
+roughly 900K tokens. Three estimators find strong upward curvature for GPT-5.6 Terra and Sol, while
+Claude Sonnet 5 is near-linear and noisy Opus 5 remains consistent with little curvature. This is
+evidence about observed service behavior, not direct architecture: TTFT includes network, routing,
+queueing, cache lookup, prefill, generation, and return latency.
+
+The consequence is that one "milliseconds per input token" coefficient is insufficient. Long-context
+benchmarks need a curve, cache conditions, and the provider/model version.
 
 ## Open questions
 

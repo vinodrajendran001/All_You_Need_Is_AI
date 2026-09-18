@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-08-27
+updated: 2026-09-18
 entity_kind: organization
 tags:
   - entity
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-09-05-lenz-nemoclaw-memory-agent
 status: active
 ---
 
@@ -74,6 +75,13 @@ a full-stack dependency, and the same kind of vertical position that makes NVIDI
 
 See [[Staged Reinforcement Learning Curriculum]] for why the Resource abstraction is the load-bearing
 piece.
+
+## Memory agents and policy separation
+
+[[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]] adds a fourth NVIDIA role to the
+vault: an agent-memory recipe built on NemoClaw and isolated with OpenShell. The benchmark reports an
+8.1-point overall gain on 186 questions but regressions on corpus faithfulness and single-hop lookup.
+The source is NVIDIA-authored, uses invented workplace data, and performs no live external actions.
 
 ## Related pages
 

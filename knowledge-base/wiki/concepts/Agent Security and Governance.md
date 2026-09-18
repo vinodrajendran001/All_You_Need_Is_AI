@@ -31,6 +31,8 @@ source_ids:
   - src-2026-09-13-rahmat-adk-gemini-enterprise
   - src-2026-09-13-virinchi-google-cloud-mcp-security
   - src-2026-09-13-tessier-gcp-model-armor
+  - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
+  - src-2026-09-05-lenz-nemoclaw-memory-agent
 status: active
 ---
 
@@ -338,6 +340,18 @@ catalogue. [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Go
 all business writes to one action agent and human-gates high-value refunds. Those are useful
 boundaries only if the downstream API enforces them too.
 
+## Identity and memory need independent authority boundaries
+
+[[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]] treats a
+tenant boundary as a hop-by-hop invariant. Signed tenant context, downscoped delegated tokens,
+tool pruning, exact memory scopes, and database RLS are separate controls; a shared workload identity
+cannot substitute for them.
+
+[[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]] applies the same separation to
+memory-driven action. A self model may know what a user prefers, but OpenShell policy, credentials,
+tool permissions, and explicit approval still decide what the agent can do. Context is advice;
+authorization is authority.
+
 ## Open questions
 
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
@@ -405,3 +419,5 @@ boundaries only if the downstream API enforces them too.
 - [[Roushanak Rahmat - From ADK to Gemini Enterprise]]
 - [[Alex Nevsky - Building a Multi-Agent AI System with Gemini 3 and Google Cloud]]
 - [[Google Cloud]]
+- [[Multi-Tenant Agent Architecture]]
+- [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]]

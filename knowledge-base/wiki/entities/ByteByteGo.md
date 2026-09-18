@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-09-11
+updated: 2026-09-18
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -24,6 +24,9 @@ source_ids:
   - src-2026-09-02-bytebytego-rag-embedding-model
   - src-2026-09-07-bytebytego-llm-error-handling
   - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-14-bytebytego-llm-judge-health
+  - src-2026-09-15-bytebytego-llm-memory-goldfish
+  - src-2026-09-16-bytebytego-needle-haystack-retrieval
 status: active
 ---
 
@@ -129,6 +132,14 @@ answers rather than correct ones, the router can learn the wrong lesson."
 
 Both are explainer-grade rather than primary sources — the numbers are illustrative of the pattern rather
 than measured from a named deployment, and the vault records them that way.
+
+## Memory, retrieval, and evaluation as one application loop
+
+Three September explainers form a coherent application layer. [[ByteByteGo - Do LLMs Have the Memory of a Goldfish]]
+separates temporary context from externally stored memory; [[ByteByteGo - How LLMs Can Find a Needle in a Haystack]]
+separates ANN recall from evidential relevance; and [[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]]
+places deterministic checks, calibrated judges, humans, and production monitoring around the result.
+All three are conceptual tutorials whose numerical examples should not be mistaken for benchmarks.
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-11
+updated: 2026-09-18
 tags:
   - concept
   - context-engineering
@@ -26,6 +26,8 @@ source_ids:
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-01-iusztin-scoped-subagents
+  - src-2026-09-15-bytebytego-llm-memory-goldfish
+  - src-2026-09-14-li-long-context-latency
 status: active
 ---
 
@@ -236,6 +238,19 @@ budget is shared and divided, `child_max_bytes = 16_000 // len(prompts)`. A wide
 
 See [[Agent Delegation]] for the in-harness versus process distinction, and [[Tool Roster Economics]] for
 the complementary cost — the tool list itself.
+
+## Long context is a provider-specific latency decision
+
+[[ByteByteGo - Do LLMs Have the Memory of a Goldfish]] separates memory architecture from context
+capacity: replaying ten rounds that each add about 1,000 tokens processes roughly **55K cumulative
+input tokens**, even though the visible conversation ends near 10K. Caching can reduce repeated
+compute, but cannot prevent context crowding or choose which history remains relevant.
+
+[[Jason Li - Latency Scaling Differences for GPT and Claude Models]] shows why the retention policy
+cannot be model-agnostic. Across API measurements up to roughly 900K tokens, GPT-5.6 Terra and Sol
+show strong upward TTFT curvature while Claude Sonnet 5 is near-linear and Opus is noisy but
+consistent with little curvature. The result is behavioral evidence, not proof of the underlying
+attention architecture, because TTFT also includes network, routing, queueing, and cache effects.
 
 ## Open questions
 

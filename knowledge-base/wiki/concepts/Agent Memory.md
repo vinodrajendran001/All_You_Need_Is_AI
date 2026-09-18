@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-04
+updated: 2026-09-18
 tags:
   - concept
   - ai-agents
@@ -18,6 +18,9 @@ source_ids:
   - src-2026-08-05-aibuilderclub-codebase-memory-mcp-guide
   - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
+  - src-2026-09-05-lenz-nemoclaw-memory-agent
+  - src-2026-09-15-bytebytego-llm-memory-goldfish
 status: active
 ---
 
@@ -146,6 +149,24 @@ The costs are the usual ones for curated memory, and the source does not hide th
 loop is ongoing human and machine expense, and the reported outcomes after three sprints are qualitative with no
 denominators. See [[Institutional Knowledge Agents]].
 
+## Memory is selected state, not replayed history
+
+[[ByteByteGo - Do LLMs Have the Memory of a Goldfish]] reinforces the application boundary: model
+weights hold trained knowledge, the context window holds temporary working state, and cross-session
+memory is external data retrieved into a later prompt. Prompt caching reduces repeated computation
+but does not enlarge context or decide what should be remembered.
+
+[[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]] adds a governed self model:
+human-readable Markdown for people, projects, priorities, and provenance; SQLite for obligations,
+rankings, corrections, and audit events. On 186 author-reported questions it improves overall
+accuracy from **82.8% to 90.9%**, but lowers corpus faithfulness and single-hop lookup. Memory is
+therefore a selective trade, not a monotonic improvement.
+
+For multi-tenant systems, [[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]]
+makes scope part of correctness. A memory key that omits tenant identity can turn a good retriever
+into a cross-account data leak; tenant, user, session, provenance, and deletion policy must travel
+together.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -174,3 +195,6 @@ denominators. See [[Institutional Knowledge Agents]].
 - [[Meta - An Organizational Second Brain]]
 - [[Meta]]
 - [[Schema-Driven Knowledge Base]]
+- [[ByteByteGo - Do LLMs Have the Memory of a Goldfish]]
+- [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]]
+- [[Multi-Tenant Agent Architecture]]

@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-13-ranganathan-gke-inference-gateway
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-13-rahman-quantizing-llms-gke
+  - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
 status: active
 ---
 
@@ -70,6 +71,14 @@ remain promotional unless tied to a disclosed workload and measurement.
 the deployer's responsibilities: Agent Engine does not define business authorization, Model Armor does not
 replace IAM or sandboxing, RAG deployment does not establish retrieval quality, and backups must be
 configured before they can make destructive tool use recoverable.
+
+## Multi-tenant agent topology
+
+[[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]] extends the
+stack from single-deployment controls to pooled, sovereign-silo, and hybrid tenant topologies. Its
+durable contribution is a component-by-component isolation map; its limitations are equally
+important, because it is vendor architecture rather than measured proof of leakage resistance or
+operating economics, and its discussion of tenant-specific CMEK in pooled memory is internally tense.
 
 ## Open questions
 

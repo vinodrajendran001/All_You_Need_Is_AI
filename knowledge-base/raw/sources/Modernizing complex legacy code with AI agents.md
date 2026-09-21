@@ -112,13 +112,3 @@ Three lessons from this project should carry over to any large legacy migration.
 1. Build the parity harness before you write migration code—numerical agreement is the cheapest, most convincing proof that a module is done.
 2. Get the documentation in order before you lean on the agents, because you can't migrate code nobody can read.
 3. And at this scale, structured workflows with human review gates beat both full autonomy and hand-driven manual sessions.
-
----
-
-## We are hiring!
-
-Mistral's Applied AI team is a group of engineers building full-stack solutions around Mistral models and Enterprise platform. We ship high-stakes, domain-specific solution to solve some of the world’s hardest problems.
-
-If this is the kind of work you want to be involved in, [apply to join our team](https://mistral.ai/careers/).
-
-13%

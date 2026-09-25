@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-30
+updated: 2026-09-25
 tags:
   - concept
   - voice-ai
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-07-03-bytebytego-thinking-machines-interaction
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-08-30-halo-research-sopro-v2
+  - src-2026-09-22-bytebytego-openai-gpt-live
 status: active
 ---
 
@@ -79,6 +80,13 @@ One governance note belongs here too. Sopro V2 ships **no watermark, deliberatel
 argue that in an open pipeline a watermark is trivially removable and so provides false safety. Voice
 cloning that runs offline on a laptop has no provenance mechanism at all, which is the unresolved cost
 of moving this capability to the edge.
+
+## Full duplex needs two serving clocks
+
+[[ByteByteGo - How OpenAI Built GPT-Live]] describes a continuously listening and speaking model
+whose live path remains isolated from slower reasoning and tools. Warm handoff preserves session
+state across instance changes, while WARP reportedly compresses WebRTC setup from six round trips to
+one. These are secondary vendor-reported mechanisms without a public latency or reliability dataset.
 
 ## Open questions
 

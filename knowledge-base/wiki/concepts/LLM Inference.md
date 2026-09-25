@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-09-18
+updated: 2026-09-25
 tags:
   - concept
   - llm
@@ -28,6 +28,8 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-08-cohere-megakernel-serving
   - src-2026-09-14-li-long-context-latency
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -171,6 +173,13 @@ queueing, cache lookup, prefill, generation, and return latency.
 
 The consequence is that one "milliseconds per input token" coefficient is insufficient. Long-context
 benchmarks need a curve, cache conditions, and the provider/model version.
+
+## Inference optimization is workload placement
+
+[[ByteByteGo - How to Run a Big Model on Cheap Hardware]] separates weight bytes, active compute,
+memory tiers, cache, and runtime kernels. [[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]]
+adds a multimodal encoder stage whose independent placement helps image-heavy, short-output workloads
+but can regress when decode or transfer dominates.
 
 ## Open questions
 

@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-09-18
+updated: 2026-09-25
 tags:
   - overview
   - ai
@@ -269,6 +269,16 @@ source_ids:
   - src-2026-09-14-bytebytego-llm-judge-health
   - src-2026-09-12-zhang-recurrent-looped-transformer
   - src-2026-09-15-turing-post-recursive-self-improvement
+  - src-2026-09-22-lemire-summer-ai-optimization
+  - src-2026-09-22-bytebytego-openai-gpt-live
+  - src-2026-09-23-bytebytego-model-customization
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-18-nandakishor-nonautoregressive-decisions
+  - src-2026-09-18-0xmovez-jev-engineering
+  - src-2026-09-22-canham-jev-explained
+  - src-2026-09-21-liu-just-in-time-agentic-ocr
+  - src-2026-09-09-mistral-legacy-code-modernization
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -793,6 +803,34 @@ then an evaluator must remain outside it.
 result: video-prediction quality and industrial robot completion rank seven checkpoints identically,
 but only within one vendor's task, embodiment, architecture family, and post-training run.
 
+## September 25 additions
+
+**Move the expensive stage behind evidence.**
+[[Jerry Liu - Just-in-Time Agentic OCR]] runs visual parsing only after a cheap pass locates candidate
+pages. [[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] separates vision encoding
+only when recovered contention exceeds transfer overhead. [[ByteByteGo - How OpenAI Built GPT-Live]]
+keeps the millisecond voice loop separate from slower tools. Across retrieval, serving, and interaction,
+the architectural move is the same: isolate latency classes and escalate selectively.
+
+**Efficiency figures need the resource they measure.**
+[[ByteByteGo - How to Run a Big Model on Cheap Hardware]] separates raw weight bytes, total resident
+capacity, active compute, KV cache, and memory tiers. [[Daniel Lemire - A Summer of AI Optimization]]
+adds a process result: AI may lower the cost of searching for optimizations, while causal attribution
+and generalization remain weaker than the benchmarked commit.
+
+**Typed decisions are now a multi-source pattern rather than a vendor category.**
+[[Nandakishor M - Non-Autoregressive Decision Models and Laya]], [[0xMovez - Jev Engineering]], and
+[[Matthew Canham - Jev Explained]] add a competing open model, deployment patterns, and an accessible
+interface description. Their latency and cost ranges have incompatible scopes, so the durable
+synthesis remains state, typed questions, probabilities, calibration, and escalation—not a universal
+speedup.
+
+**Behavioral invariants come before adaptation.**
+[[ByteByteGo - How to Customize a Model to Learn New Tricks]] distinguishes changing context,
+knowledge, and weights. [[Mistral - Modernizing Complex Legacy Code with AI Agents]] makes the same
+discipline concrete for software: characterize the legacy executable with a parity harness before
+agents translate or refactor it.
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]
@@ -964,3 +1002,6 @@ but only within one vendor's task, embodiment, architecture family, and post-tra
 - [[Approximate Nearest-Neighbor Search]]
 - [[Typed Probabilistic Decision Models]]
 - [[Video Pre-training for Robot Policies]]
+- [[Parameter-Efficient Fine-Tuning]]
+- [[Just-in-Time Agentic OCR]]
+- [[Legacy Code Modernization with AI Agents]]

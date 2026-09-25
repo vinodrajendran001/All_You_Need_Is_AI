@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - llm
@@ -36,6 +36,9 @@ source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-07-rai-lejepa
   - src-2026-09-13-rahman-quantizing-llms-gke
+  - src-2026-09-23-bytebytego-model-customization
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -193,6 +196,19 @@ The source also contrasts PTQ with QAT and reports a broad **1% to 30+%** qualit
 claiming QAT can approach original quality. Because no model/benchmark/calibration mapping is given,
 the range is a warning rather than a forecast. Lower precision is not automatically faster either;
 the hardware and serving engine need compatible kernels.
+
+## Quantization moves bottlenecks rather than deleting them
+
+[[ByteByteGo - How to Run a Big Model on Cheap Hardware]] uses the theoretical reduction of an 8B
+model from 16 GB at 16 bits to 4 GB at 4 bits to separate raw weights from cache, metadata,
+activations, and workspaces. [[ByteByteGo - How to Customize a Model to Learn New Tricks]] adds the
+training-side distinction: QLoRA can quantize frozen base storage while adapters and optimizer state
+still use higher precision.
+
+[[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] shows a system-level consequence.
+NVFP4 made the still-BF16 vision encoder a larger fraction of runtime, increasing the value of
+separating it. Quantization changed the useful serving topology rather than producing an isolated,
+multiplicative speedup.
 
 ## Open questions
 

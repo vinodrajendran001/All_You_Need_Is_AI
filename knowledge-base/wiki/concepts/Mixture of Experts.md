@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - llm
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
 status: active
 ---
 
@@ -57,6 +58,12 @@ backbone with 384 routed experts but only **8B active parameters per input token
 generated token**. The asymmetry reinforces that "active parameters" is not one model-wide number;
 prefill and decode can activate different computation. The figures remain secondary reporting until
 checked against DeepSeek's primary technical report.
+
+## Sparse execution still needs dense storage accounting
+
+[[ByteByteGo - How to Run a Big Model on Cheap Hardware]] uses a hypothetical 40B MoE at 4 bits to
+show that low active parameters do not remove roughly 20 GB of resident raw weights. Sparse routing
+reduces token compute; offloading, sharding, or memory capacity must still solve total storage.
 
 ## Open questions
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-09-11
+updated: 2026-09-25
 tags:
   - concept
   - llm-evaluation
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-14-bytebytego-llm-judge-health
   - src-2026-09-17-almeida-system-one-jev
+  - src-2026-09-18-nandakishor-nonautoregressive-decisions
 status: active
 ---
 
@@ -165,6 +166,13 @@ cases. Its 1-5 rubric and 100-answer calibration are examples, not measured pres
 compares Jev against averages from large models rather than independent ground truth, while the same
 team authors the workflows and product. A teacher-model consensus can be a reference, but it cannot
 establish calibration or correctness by itself.
+
+## Calibration enables abstention, not ground truth
+
+[[Nandakishor M - Non-Autoregressive Decision Models and Laya]] reports expected calibration error
+and selective accuracy for a typed decision model, including an explicit Act/Escalate threshold.
+Those metrics are useful only against trustworthy labels. A calibrated classifier can route uncertain
+cases without becoming an independent judge of semantic quality.
 
 ## Related pages
 

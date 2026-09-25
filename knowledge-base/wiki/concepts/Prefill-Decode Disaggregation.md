@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-11
+updated: 2026-09-25
 tags:
   - concept
   - inference
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -83,6 +84,13 @@ TPUv7 one**, and it **reverses the headline result** — GB300 comes out roughly
 the middle of the curve**, against the up-to-50% TPU advantage claimed elsewhere in the same article.
 Whether the competitor is disaggregated is not a detail; here it is worth more than the hardware
 difference.
+
+## Multimodal serving adds an encoder placement decision
+
+[[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] separates vision encoding from
+prefill/decode. In one NVIDIA setup, heterogeneous EPD served 70% more traffic at an ITL-under-100-ms
+SLO, but colocated E2E gain fell from +11.8% to -2.5% as output length rose. Disaggregation helps
+only while recovered encoder contention exceeds embedding-transfer and coordination overhead.
 
 ## Open questions
 

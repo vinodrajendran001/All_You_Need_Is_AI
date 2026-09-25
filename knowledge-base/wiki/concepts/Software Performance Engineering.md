@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - performance
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-21-ben-joffe-fast-day-of-week
   - src-2026-07-22-mitchell-hashimoto-simd
   - src-2026-09-13-sumit-scaling-distributed-systems
+  - src-2026-09-22-lemire-summer-ai-optimization
 status: active
 ---
 
@@ -58,6 +59,14 @@ study. Its durable contribution is therefore diagnostic: measure whether the bot
 state, data placement, synchronous coupling, or coordination before selecting a scaling pattern.
 Microservices buy independent scaling at the cost of network, consistency, deployment, and
 observability complexity; they are not a performance technique by themselves.
+
+## AI changes the cost of searching for optimizations
+
+[[Daniel Lemire - A Summer of AI Optimization]] reports large gains across six mature libraries after
+AI made more benchmarked experiments affordable. The techniques were known, and the results remain
+specific to one CPU and named datasets. The transferable claim is process-level: lower experiment
+cost can reopen optimization work that was previously uneconomic, but every accepted change still
+needs a workload-specific benchmark.
 
 ## Open questions
 

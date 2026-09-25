@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-09-18
+updated: 2026-09-25
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -27,6 +27,9 @@ source_ids:
   - src-2026-09-14-bytebytego-llm-judge-health
   - src-2026-09-15-bytebytego-llm-memory-goldfish
   - src-2026-09-16-bytebytego-needle-haystack-retrieval
+  - src-2026-09-22-bytebytego-openai-gpt-live
+  - src-2026-09-23-bytebytego-model-customization
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
 status: active
 ---
 
@@ -140,6 +143,14 @@ separates temporary context from externally stored memory; [[ByteByteGo - How LL
 separates ANN recall from evidential relevance; and [[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]]
 places deterministic checks, calibrated judges, humans, and production monitoring around the result.
 All three are conceptual tutorials whose numerical examples should not be mistaken for benchmarks.
+
+## September 2026 systems explainers
+
+[[ByteByteGo - How OpenAI Built GPT-Live]] covers full-duplex voice serving;
+[[ByteByteGo - How to Customize a Model to Learn New Tricks]] separates prompt, retrieval, and
+fine-tuning interventions; and [[ByteByteGo - How to Run a Big Model on Cheap Hardware]] organizes
+local inference around memory, compute, and tiering. All three are explanatory secondary sources,
+so illustrative numbers remain distinct from measured benchmarks.
 
 ## Related pages
 

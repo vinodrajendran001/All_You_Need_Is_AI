@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-09-25
 tags:
   - concept
   - multimodal
@@ -10,6 +10,7 @@ tags:
   - detection
 source_ids:
   - src-2026-06-03-nvidia-locateanything
+  - src-2026-09-21-liu-just-in-time-agentic-ocr
 status: active
 ---
 
@@ -31,6 +32,12 @@ Many multimodal systems do not just need to describe images; they need to **poin
 - Hybrid inference is a practical compromise. Fast parallel decoding handles the common case, while fallback autoregressive decoding handles malformed or ambiguous cases.
 - The training-data story matters almost as much as the decoder. LocateAnything-Data broadens supervision across many grounding modalities, which is likely part of why the model generalizes well across benchmarks.
 - This makes grounding analogous to tool use in language agents: the quality of the system depends heavily on the fidelity of the interface between the model and the world it needs to act on.
+
+## Visual grounding as an escalation tier
+
+[[Jerry Liu - Just-in-Time Agentic OCR]] applies visual parsing only after retrieval identifies a
+candidate page. The design reduces visual inference cost but makes first-pass extraction a recall
+bottleneck; layout complexity is useful routing evidence, not a substitute for task relevance.
 
 ## Open questions
 

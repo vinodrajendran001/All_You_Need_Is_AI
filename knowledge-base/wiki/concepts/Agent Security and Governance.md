@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - ai-agents
@@ -33,6 +33,7 @@ source_ids:
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
   - src-2026-09-05-lenz-nemoclaw-memory-agent
+  - src-2026-09-18-0xmovez-jev-engineering
 status: active
 ---
 
@@ -351,6 +352,13 @@ cannot substitute for them.
 memory-driven action. A self model may know what a user prefers, but OpenShell policy, credentials,
 tool permissions, and explicit approval still decide what the agent can do. Context is advice;
 authorization is authority.
+
+## Decision gates are policy inputs, not authorization
+
+[[0xMovez - Jev Engineering]] demonstrates typed checks before tool execution. A fast probability can
+help route or escalate an action, but it cannot replace deterministic permission checks, identity,
+transaction limits, or confirmation. Semantic mistakes remain possible even when the output schema
+is valid.
 
 ## Open questions
 

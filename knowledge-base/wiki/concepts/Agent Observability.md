@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - ai-agents
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-09-07-bytebytego-llm-error-handling
   - src-2026-09-13-adedeji-multi-agent-code-review
   - src-2026-09-13-prabhulal-production-rag-adk
+  - src-2026-09-18-0xmovez-jev-engineering
 status: active
 ---
 
@@ -122,6 +123,12 @@ instrumentation in a deployment template, mapping each session ID to a Cloud Tra
 trace proving that deployment and retrieval calls completed is not an evaluation of grounding
 quality. Production observability needs both operational traces and answer-level evals; neither
 substitutes for the other.
+
+## Decision-plane savings need end-to-end accounting
+
+[[0xMovez - Jev Engineering]] reports large reductions in protocol calls, latency, and token cost, but
+some examples exclude browser work and fresh verification. Observability must attribute the complete
+task path—gate, action, fallback, and verification—rather than price only the classifier call.
 
 ## Open questions
 

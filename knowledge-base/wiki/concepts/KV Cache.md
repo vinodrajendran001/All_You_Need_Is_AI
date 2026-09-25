@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - kv-cache
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-09-13-ranganathan-gke-inference-gateway
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
 status: active
 ---
 
@@ -208,6 +209,13 @@ sparse global retrieval, and FP4 cache storage rather than relying on one precis
 
 These are secondary product figures with no disclosed hardware or throughput measurement. They show
 which resource is being attacked, not how much end-to-end latency or cost was independently saved.
+
+## Fitting weights does not fit the conversation
+
+[[ByteByteGo - How to Run a Big Model on Cheap Hardware]] emphasizes that a quantized model can fit
+while its KV cache still grows with sequence length and concurrent conversations. Shorter retrieved
+context, cache quantization, CPU offload, and paged allocation trade capacity against latency and
+quality; none follows directly from the raw weight-byte calculation.
 
 ## Open questions
 

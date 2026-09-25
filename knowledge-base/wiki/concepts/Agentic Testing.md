@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - evaluation
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-13-adedeji-multi-agent-code-review
   - src-2026-09-14-bytebytego-llm-judge-health
+  - src-2026-09-09-mistral-legacy-code-modernization
 status: active
 ---
 
@@ -159,6 +160,12 @@ warranted.
 deterministic validators through golden datasets, model judges, human calibration, and production
 monitoring. The durable practice is that every live failure becomes a regression case, while
 development and holdout sets remain separate so prompt tuning does not optimize the test away.
+
+## Characterization before migration
+
+[[Mistral - Modernizing Complex Legacy Code with AI Agents]] builds tests from intermediate legacy
+state rather than from translated code. This reduces shared-error risk: generated C++ must match
+observable Fortran behavior before refactoring or cleanup changes the structure.
 
 ## Open questions
 

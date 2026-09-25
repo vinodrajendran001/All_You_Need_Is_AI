@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-11
+updated: 2026-09-25
 tags:
   - concept
   - llm
@@ -38,6 +38,7 @@ source_ids:
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-09-23-bytebytego-model-customization
 status: active
 ---
 
@@ -228,6 +229,13 @@ A note on provenance that affects data governance: Aidan Gomez is quoted on the 
 promise is only not to train on exactly the data a customer supplies — "rewritten data is fair game."
 
 Fuller treatment in [[Synthetic Data Flywheel]].
+
+## Persistent behavior is a different intervention
+
+[[ByteByteGo - How to Customize a Model to Learn New Tricks]] separates prompting, retrieval, and
+fine-tuning by what must change: instructions, external knowledge, or recurring behavior. LoRA and
+QLoRA reduce trainable parameters and frozen-weight storage, but they do not remove the need for
+held-out task evaluation and retained-capability regression tests.
 
 ## Open questions
 

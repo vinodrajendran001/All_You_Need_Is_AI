@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - inference
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-09-17-almeida-system-one-jev
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-18-nandakishor-nonautoregressive-decisions
 status: active
 ---
 
@@ -164,6 +166,13 @@ trade: abandon arbitrary string generation for typed probabilistic choices.
 Both are frontier claims rather than established points. DeepSeek's article gives no end-to-end
 serving measurement, while Jev's 70-500 ms and 193.6x/444.6x headlines come from a vendor-authored,
 favorable workflow evaluation without public architecture or calibration evidence.
+
+## The task boundary can be an efficiency lever
+
+[[ByteByteGo - How to Run a Big Model on Cheap Hardware]] shows that quantization, offload, sparsity,
+cache management, and speculative decoding have coupled break-even points. A different route is to
+narrow the task: [[Nandakishor M - Non-Autoregressive Decision Models and Laya]] reports a 421M typed
+decision model at 33-38 ms, but both performance and Jev comparisons remain self-reported.
 
 ## Open questions
 

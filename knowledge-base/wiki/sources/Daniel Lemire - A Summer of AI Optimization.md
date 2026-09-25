@@ -47,7 +47,6 @@ each gain. He also discloses advising perfloop, which contributed to one library
 ## Affected pages
 
 - [[Software Performance Engineering]]
-- [[GPU Kernel Optimization]]
 
 ## Related pages
 

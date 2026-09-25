@@ -1,13 +1,18 @@
 ---
+type: raw-source
+source_id: src-2026-09-22-lemire-summer-ai-optimization
 title: "A summer of AI optimization"
-source: "https://lemire.me/blog/2026/09/22/a-summer-of-ai-optimization/?utm_source=tldrnewsletter"
-author:
-  - "[[View all posts by Daniel Lemire]]"
+author: Daniel Lemire
+url: https://lemire.me/blog/2026/09/22/a-summer-of-ai-optimization/
 published: 2026-09-22
+captured: 2026-09-23
 created: 2026-09-23
-description: "I maintain and comaintain several open-source libraries. Some of them are widely used: ada parses URLs in Node.js, fast_float parses numbers in GCC's standard library and in Chromium, simdjson parses JSON in Node.js, simdutf validates and transcodes Unicode in Node.js, and the Roaring bitmap libraries sit inside many database engines. These libraries are mature. They … Continue reading A summer of AI optimization"
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - performance-engineering
+  - ai-assisted-development
+status: active
 ---
 I maintain and comaintain several open-source libraries. Some of them are widely used: ada parses URLs in Node.js, fast\_float parses numbers in GCC’s standard library and in Chromium, simdjson parses JSON in Node.js, simdutf validates and transcodes Unicode in Node.js, and the Roaring bitmap libraries sit inside many database engines.
 

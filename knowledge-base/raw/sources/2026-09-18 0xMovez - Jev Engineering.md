@@ -1,13 +1,19 @@
 ---
-title: "Jev Engineering: how to build the fastest AI Agent Brain in 10 Steps (Full-Setup)"
-source: "https://x.com/0xMovez/status/2101007482919227841?utm_source=www.theaivalley.com&utm_medium=newsletter&utm_campaign=the-anti-chatgpt-model&_bhlid=1926bf31d28861513a01664d62d8e10c15c33266"
-author:
-  - "[[@0xMovez]]"
+type: raw-source
+source_id: src-2026-09-18-0xmovez-jev-engineering
+title: "Jev Engineering: how to build the fastest AI Agent Brain in 10 Steps"
+author: "@0xMovez"
+url: https://x.com/0xMovez/status/2101007482919227841
 published: 2026-09-18
+captured: 2026-09-22
 created: 2026-09-22
-description: "Every agent you've built has the same problem. An LLM that costs $0.03 per call sits in a loop answering yes-or-no questions, picking the ne..."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - decision-models
+  - ai-agents
+  - model-routing
+status: active
 ---
 ![Image](https://pbs.twimg.com/media/HShGxV4XgAA2JRK?format=jpg&name=large)
 

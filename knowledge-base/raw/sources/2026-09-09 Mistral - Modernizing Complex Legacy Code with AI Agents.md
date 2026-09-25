@@ -1,13 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-09-mistral-legacy-code-modernization
 title: "Modernizing complex legacy code with AI agents"
-source: "https://mistral.ai/news/legacy-code-modernization/?utm_source=substack&utm_medium=email"
 author:
-  - "[[By Carlo Antonio Patti & Rasul Alakbarli]]"
+  - Carlo Antonio Patti
+  - Rasul Alakbarli
+url: https://mistral.ai/news/legacy-code-modernization/
 published: 2026-09-09
+captured: 2026-09-21
 created: 2026-09-21
-description: "Mistral helped a European energy operator migrate 40,000 lines of Fortran 77 to C++.  Learn how it was done, and the lessons to carry forward."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - coding-agents
+  - testing
+  - software-engineering
+status: active
 ---
 Legacy code modernization is challenging, especially when migrating complex Fortran 77 systems to modern C++. Mistral successfully migrated 40,000 lines of a physics-intensive reservoir simulator by building a parity harness for numerical verification, documenting the codebase with AI agents, and using structured workflows with human oversight to ensure high-quality, maintainable code. Key lessons include prioritizing numerical agreement, organizing documentation before migration, and balancing agent autonomy with human review.
 

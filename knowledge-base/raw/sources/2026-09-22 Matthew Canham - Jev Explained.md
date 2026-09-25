@@ -1,13 +1,18 @@
 ---
+type: raw-source
+source_id: src-2026-09-22-canham-jev-explained
 title: "Jev Explained for Normies"
-source: "https://x.com/matthewcanham/status/2102077098756280413?utm_source=www.theaivalley.com&utm_medium=newsletter&utm_campaign=ai-is-now-building-the-next-ai&_bhlid=a29e6d0c7e83402529064bfbc071198a4b5ac89c"
-author:
-  - "[[@matthewcanham]]"
+author: Matthew Canham
+url: https://x.com/matthewcanham/status/2102077098756280413
 published: 2026-09-22
+captured: 2026-09-23
 created: 2026-09-23
-description: "If you’ve been hanging out on the internet the past few days, you’ve probably come across Jev, a new AI model that’s taken the AI community ..."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - decision-models
+  - structured-output
+status: active
 ---
 ![Image](https://pbs.twimg.com/media/HSwSyiyb0AIiVi9?format=jpg&name=large)
 

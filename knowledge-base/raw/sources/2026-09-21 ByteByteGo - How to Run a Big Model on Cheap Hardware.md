@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-21-bytebytego-big-model-cheap-hardware
 title: "How to Run a Big Model on Cheap Hardware?"
-source: "https://blog.bytebytego.com/p/how-to-run-a-big-model-on-cheap-hardware?utm_source=post-email-title&publication_id=817132&post_id=216197621&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+author: ByteByteGo
+url: https://blog.bytebytego.com/p/how-to-run-a-big-model-on-cheap-hardware
 published: 2026-09-21
+captured: 2026-09-22
 created: 2026-09-22
-description: "A large AI model can run on modest hardware only by reducing the memory it occupies, reducing the calculations it performs, or moving some work to slower hardware."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - inference
+  - quantization
+  - local-llm
+status: active
 ---
 ## Test Your Auth Flow Without Production (Sponsored)
 

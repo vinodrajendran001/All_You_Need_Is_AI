@@ -15,9 +15,10 @@ status: active
 
 ## Summary
 
-Nandakishor M presents Laya, an open 421M-parameter typed decision model, and argues that his earlier
-work predates TypeSafe AI's Jev. The technical contribution combines a bidirectional encoder, typed
-questions, reinforcement learning for calibration, and an explicit act-versus-escalate policy.
+Nandakishor M presents Laya as an open, approximately 421M-parameter typed decision model and argues
+that his earlier work predates TypeSafe AI's Jev. He claims it combines a bidirectional encoder,
+typed questions, reinforcement learning intended to improve calibration, and an explicit
+act-versus-escalate policy.
 
 ## Key claims
 
@@ -32,7 +33,8 @@ questions, reinforcement learning for calibration, and an explicit act-versus-es
 ## Why it matters
 
 Typed probabilistic decisions are a broader design pattern than one vendor product. Laya also makes
-selective automation explicit: a calibrated system needs an escalation action, not only a label.
+selective automation explicit: a system intended to automate selectively can use an escalation
+action in addition to a label.
 
 ## Tensions and caveats
 

@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-09-18
+updated: 2026-09-25
 tags:
   - log
 source_ids:
@@ -267,6 +267,16 @@ source_ids:
   - src-2026-09-14-bytebytego-llm-judge-health
   - src-2026-09-12-zhang-recurrent-looped-transformer
   - src-2026-09-15-turing-post-recursive-self-improvement
+  - src-2026-09-22-lemire-summer-ai-optimization
+  - src-2026-09-22-bytebytego-openai-gpt-live
+  - src-2026-09-23-bytebytego-model-customization
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-18-nandakishor-nonautoregressive-decisions
+  - src-2026-09-18-0xmovez-jev-engineering
+  - src-2026-09-22-canham-jev-explained
+  - src-2026-09-21-liu-just-in-time-agentic-ocr
+  - src-2026-09-09-mistral-legacy-code-modernization
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -1329,6 +1339,29 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   rather than guessing which word is wrong.
 - Filed [[2026-09-18 Lint Pass]]. The index, log, and overview remain aligned at **262 / 262 / 262**
   source IDs.
+
+## [2026-09-25] ingest | Move the expensive stage behind evidence
+
+- Ingested **10 sources**, taking the controlled source set from **262 to 272 IDs**.
+- Three sources make selective computation the common design. [[Jerry Liu - Just-in-Time Agentic OCR]]
+  retrieves before visual parsing; [[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]]
+  separates multimodal encoding only when it is the bottleneck; and
+  [[ByteByteGo - How to Run a Big Model on Cheap Hardware]] distinguishes stored capacity from active
+  compute, cache, and tiering.
+- [[ByteByteGo - How OpenAI Built GPT-Live]] applies the same separation to time: a continuously
+  scheduled live voice path remains isolated from asynchronous reasoning and tools.
+- [[ByteByteGo - How to Customize a Model to Learn New Tricks]] separates request-time context from
+  persistent behavior and seeds [[Parameter-Efficient Fine-Tuning]].
+- Three Jev-related sources deepen [[Typed Probabilistic Decision Models]] without promoting the
+  vendor category to neutral terminology. [[Nandakishor M - Non-Autoregressive Decision Models and Laya]]
+  adds an open competing implementation; [[0xMovez - Jev Engineering]] adds integration patterns;
+  [[Matthew Canham - Jev Explained]] adds an accessible interface model. Their performance claims are
+  attributed and not treated as comparable independent benchmarks.
+- [[Mistral - Modernizing Complex Legacy Code with AI Agents]] seeds
+  [[Legacy Code Modernization with AI Agents]] around parity-first migration.
+- [[Daniel Lemire - A Summer of AI Optimization]] reports large project-specific gains while making
+  the careful causal claim: AI lowered experimentation cost, but the techniques were known and each
+  accepted result still rests on a benchmarked commit.
 
 ## [2026-09-18] post | Memory Has Two Bills
 

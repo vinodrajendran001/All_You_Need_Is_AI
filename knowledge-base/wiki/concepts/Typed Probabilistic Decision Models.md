@@ -1,10 +1,13 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-25
 tags: [concept, decision-models, structured-output, inference]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
+  - src-2026-09-18-nandakishor-nonautoregressive-decisions
+  - src-2026-09-18-0xmovez-jev-engineering
+  - src-2026-09-22-canham-jev-explained
 status: active
 ---
 
@@ -40,6 +43,17 @@ Two validity layers must stay separate:
 Constrained construction can guarantee the first. It cannot guarantee the second, so "cannot
 hallucinate" is too broad.
 
+## A pattern, not one product category
+
+[[Nandakishor M - Non-Autoregressive Decision Models and Laya]] supplies an open competing
+implementation: a 421M bidirectional model with typed questions, calibration-oriented RL, and an
+explicit escalation action. Its benchmark and priority claims remain self-reported.
+
+[[0xMovez - Jev Engineering]] contributes the deployment pattern—dynamic option menus, parallel
+questions, confidence gates, and bounded middleware—while [[Matthew Canham - Jev Explained]] reduces
+the interface to state, question, options, and probabilities. Their speed and cost ranges are
+secondary claims with incompatible scopes, not independent replications of the vendor benchmark.
+
 ## Open questions
 
 - How is confidence calibrated under distribution shift?
@@ -54,4 +68,3 @@ hallucinate" is too broad.
 - [[Tool Use and Function Calling]]
 - [[LLM-as-a-Judge]]
 - [[Inference Efficiency Frontier]]
-

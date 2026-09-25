@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-08-30
+updated: 2026-09-25
 tags:
   - concept
   - ai-agents
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-06-05-pguso-agents-from-scratch
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-08-28-google-cloud-agent-delegation
+  - src-2026-09-09-mistral-legacy-code-modernization
 status: active
 ---
 
@@ -114,6 +115,12 @@ verifiable, a weaker and cheaper model becomes a bounded risk rather than a gamb
 It is also demanding in a way the source does not resolve. Many genuinely useful sub-tasks —
 summarize this, judge whether the tone is right — have no cheap contract, which on a strict reading
 would forbid delegating exactly the work agents are most often used for. See [[Agent Delegation]].
+
+## Dependency structure bounds the plan
+
+[[Mistral - Modernizing Complex Legacy Code with AI Agents]] parses the caller-callee tree and assigns
+agents bounded subtrees rather than asking for a whole-system migration. Planning follows dependency
+cuts and parity checkpoints, with human approval between stages.
 
 ## Open questions
 

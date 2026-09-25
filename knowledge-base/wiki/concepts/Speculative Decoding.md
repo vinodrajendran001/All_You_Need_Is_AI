@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-09-03
+updated: 2026-09-25
 tags:
   - concept
   - inference
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-09-02-baseten-efficient-frontier-inference
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
 status: active
 ---
 
@@ -176,6 +177,12 @@ relatively predictable — which is also why it is the case most likely to overs
 Whether skipped forward passes count as *new* efficiency or as *better-spent* headroom depends on whether the
 drafting cost is counted against the budget, so the two readings are not fully reconcilable. See
 [[Inference Efficiency Frontier]].
+
+## Cheap hardware changes the break-even point
+
+[[ByteByteGo - How to Run a Big Model on Cheap Hardware]] frames speculative decoding as a three-way
+trade: draft agreement, target verification cost, and extra draft-model memory. A smaller machine can
+lose the latency benefit when the draft model or verification competes for scarce fast memory.
 
 ## Open questions
 

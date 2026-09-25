@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-13
+updated: 2026-09-25
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-08-raji-cosine-similarity-safety
   - src-2026-09-13-prabhulal-production-rag-adk
   - src-2026-09-16-bytebytego-needle-haystack-retrieval
+  - src-2026-09-21-liu-just-in-time-agentic-ocr
 status: active
 ---
 
@@ -236,6 +237,12 @@ abstention address the second layer, not the first.
 
 The article's million-passage IVF example is illustrative rather than measured. See
 [[Approximate Nearest-Neighbor Search]] for the index-level controls.
+
+## Retrieval can route document understanding
+
+[[Jerry Liu - Just-in-Time Agentic OCR]] uses cheap text/layout extraction to retrieve candidate
+pages before invoking visual OCR. This saves work only when the first pass retains enough recall:
+a relevant page corrupted by extraction may never reach the stronger parser.
 
 ## Related pages
 

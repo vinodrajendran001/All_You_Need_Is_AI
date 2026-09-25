@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-13
+updated: 2026-09-25
 tags:
   - concept
   - benchmarks
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-08-cohere-megakernel-serving
   - src-2026-09-14-li-long-context-latency
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -131,6 +132,13 @@ cannot establish linear scaling, and a ten-million-token extrapolation is not a 
 
 Because TTFT includes the entire service path, the result should be reported as provider behavior
 under the stated cache and request setup, not as an inferred attention implementation.
+
+## Topology comparisons need a shared SLO
+
+[[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] compares aggregated, colocated, and
+heterogeneous EPD at an ITL-under-100-ms goodput SLO. The detailed results show crossover behavior:
+TTFT can improve while end-to-end latency regresses as decode grows. Reporting only the vendor's
+5x/7x maxima would erase the workload surface that determines the winner.
 
 ## Open questions
 

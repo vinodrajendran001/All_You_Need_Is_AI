@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-09-11
+updated: 2026-09-25
 entity_kind: organization
 tags:
   - entity
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-22-bytebytego-openai-gpt-live
 status: active
 ---
 
@@ -82,6 +83,13 @@ them was measured.
 
 For a lab whose alignment story has leaned on chain-of-thought being legible, a regression in that
 legibility is the part of this release with the longest reach. See [[Chain-of-Thought Monitoring]].
+
+## GPT-Live
+
+[[ByteByteGo - How OpenAI Built GPT-Live]] presents OpenAI's voice stack as full-duplex continuous
+inference with separate live and asynchronous paths, learned interruption behavior, warm session
+handoff, and p999-oriented operations. The account is secondary and supplies no public production
+dataset.
 
 ## Related pages
 

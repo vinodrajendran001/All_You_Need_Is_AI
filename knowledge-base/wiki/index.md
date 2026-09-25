@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-09-18
+updated: 2026-09-25
 tags:
   - index
 source_ids:
@@ -267,6 +267,16 @@ source_ids:
   - src-2026-09-14-bytebytego-llm-judge-health
   - src-2026-09-12-zhang-recurrent-looped-transformer
   - src-2026-09-15-turing-post-recursive-self-improvement
+  - src-2026-09-22-lemire-summer-ai-optimization
+  - src-2026-09-22-bytebytego-openai-gpt-live
+  - src-2026-09-23-bytebytego-model-customization
+  - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-18-nandakishor-nonautoregressive-decisions
+  - src-2026-09-18-0xmovez-jev-engineering
+  - src-2026-09-22-canham-jev-explained
+  - src-2026-09-21-liu-just-in-time-agentic-ocr
+  - src-2026-09-09-mistral-legacy-code-modernization
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -397,6 +407,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Video Pre-training for Robot Policies]] - Testing whether web-video prediction quality transfers to physical task completion.
 - [[Approximate Nearest-Neighbor Search]] - IVF and HNSW retrieval, and why index recall differs from evidence relevance.
 - [[Typed Probabilistic Decision Models]] - Models that trade open-ended generation for typed choices, probabilities, and interface guarantees.
+- [[Parameter-Efficient Fine-Tuning]] - LoRA, QLoRA, adapter deployment, and the boundary between context, knowledge, and behavior changes.
+- [[Just-in-Time Agentic OCR]] - Cheap corpus-wide extraction followed by query-directed visual parsing.
+- [[Legacy Code Modernization with AI Agents]] - Parity-first migration through characterization, decomposition, bounded agents, and human review.
 
 ## Entities
 
@@ -755,6 +768,19 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]] - Layered evaluation across deterministic checks, judges, humans, and production.
 - [[Yifan Zhang - Recurrent Looped Transformer]] - Continuous recurrent state across prompt and response, specified but not benchmarked.
 - [[Turing Post - What Is Recursive About Recursive Self-Improvement]] - RSI bounded by which parts of the improvement loop remain externally auditable.
+
+### September 25, 2026 batch
+
+- [[Daniel Lemire - A Summer of AI Optimization]] - AI lowered the cost of benchmarked experiments across six mature libraries without inventing new optimization techniques.
+- [[ByteByteGo - How OpenAI Built GPT-Live]] - Full-duplex voice serving with isolated live and asynchronous paths.
+- [[ByteByteGo - How to Customize a Model to Learn New Tricks]] - Prompting, retrieval, full fine-tuning, LoRA, and QLoRA separated by what must change.
+- [[ByteByteGo - How to Run a Big Model on Cheap Hardware]] - Weight memory, active compute, tiering, cache, kernels, and speculative decoding as coupled constraints.
+- [[Nandakishor M - Non-Autoregressive Decision Models and Laya]] - Open typed-decision model with calibration-oriented RL and self-reported benchmarks.
+- [[0xMovez - Jev Engineering]] - Jev integration patterns and demonstrations with incomplete end-to-end accounting.
+- [[Matthew Canham - Jev Explained]] - Accessible state-question-options-probability interface for typed decisions.
+- [[Jerry Liu - Just-in-Time Agentic OCR]] - Query-time escalation from cheap extraction to visual document parsing.
+- [[Mistral - Modernizing Complex Legacy Code with AI Agents]] - Fortran-to-C++ migration organized around a numerical parity harness.
+- [[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] - Multimodal encoder placement and the workload-dependent crossover for disaggregation.
 
 ## Syntheses
 

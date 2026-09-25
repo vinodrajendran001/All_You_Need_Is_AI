@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-13
+updated: 2026-09-25
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-08-cohere-megakernel-serving
   - src-2026-09-13-ranganathan-gke-inference-gateway
+  - src-2026-09-10-lenz-epd-multimodal-serving
 status: active
 ---
 
@@ -168,6 +169,12 @@ problem.
 No performance figure is supplied. The Gateway API Inference Extension was experimental/alpha and
 GKE Inference Gateway was Preview/Pre-GA, so claims of improved TTFT, throughput, utilization, and
 cost remain promotional until measured on a stated workload.
+
+## Dynamo encode-prefill-decode placement
+
+[[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] uses NVIDIA Dynamo and NIXL to place
+vision encoders beside or apart from prefill/decode workers. The useful topology depends on image
+load, model size, precision, output length, network, and latency SLO; it is not one default engine mode.
 
 ## Related pages
 

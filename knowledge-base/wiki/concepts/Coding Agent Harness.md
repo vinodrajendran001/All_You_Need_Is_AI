@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-09-11
+updated: 2026-09-25
 tags:
   - concept
   - coding-agents
@@ -28,6 +28,7 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-01-iusztin-scoped-subagents
+  - src-2026-09-09-mistral-legacy-code-modernization
 status: active
 ---
 
@@ -227,6 +228,13 @@ Decode's personas make the pattern concrete: `build` carries all 15 tools at def
 A caution from an adjacent direction: harness scaffolding has a shelf life. As
 [[Computer Use Agents]] records, stale `AGENTS.md` and `SKILL.md` content written against a weaker model
 generation may now over-constrain a stronger one.
+
+## Migration harnesses begin with behavioral parity
+
+[[Mistral - Modernizing Complex Legacy Code with AI Agents]] instruments the legacy Fortran program
+to export checkpoints consumed by C++ tests before agents translate modules. The harness makes the
+old executable an oracle and bounds planner, coder, tester, and reviewer roles around one numerical
+equivalence contract.
 
 ## Open questions
 

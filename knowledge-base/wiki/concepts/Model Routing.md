@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-09-11
+updated: 2026-09-25
 tags:
   - concept
   - routing
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-24-openai-builders-guide-gpt-5-6
   - src-2026-08-28-google-cloud-agent-delegation
   - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-18-0xmovez-jev-engineering
 status: active
 ---
 
@@ -119,6 +120,12 @@ last is the hardest to notice, because it presents as unchanged cost rather than
 Routing and fallback answer different questions about the same choice — routing picks the cheapest
 adequate model up front, fallback picks any available model under failure — and share one constraint: the
 substitute must still satisfy the requirement. See [[LLM Application Resilience]].
+
+## Typed routers narrow the output contract
+
+[[0xMovez - Jev Engineering]] uses typed Choice and Score questions to select models and tools without
+generating prose. Dynamic menus keep the option set aligned with current availability, but confidence
+thresholds still require calibration and production verification rather than vendor latency claims.
 
 ## Open questions
 

@@ -1381,6 +1381,24 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - Filed [[2026-09-25 Lint Pass]]. The index, log, and overview remain aligned at
   **272 / 272 / 272** source IDs.
 
+## [2026-09-25] post | Keep the Expensive Model On Call
+
+- Fifth Post-workflow run, covering **2026-09-18 → 2026-09-25**. The window contained one ten-source
+  ingest and its lint pass, taking the controlled source set from 262 to 272 IDs.
+- The winning angle scored **20/20**: document OCR, multimodal serving, and live voice independently
+  move expensive work behind a cheaper routing or latency-isolation stage.
+- The concrete anchor is [[Jerry Liu - Just-in-Time Agentic OCR]]: 12,013 pages parsed in 32 seconds,
+  with only 2 sent to visual OCR for one FinanceBench question. The post keeps the failure mode beside
+  the efficiency claim—a first-pass miss prevents specialist processing.
+- [[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] supplies the crossover: 70% more
+  traffic at the same ITL-under-100-ms SLO in one heterogeneous setup, but colocated end-to-end gain
+  moved from +11.8% to -2.5% as output length increased.
+- [[ByteByteGo - How OpenAI Built GPT-Live]] adds the third architecture: isolate the continuously
+  scheduled voice loop from asynchronous reasoning and tools.
+- Filed [[2026-09-25 Keep the Expensive Model On Call]] as `ready` for LinkedIn and X. All factual
+  claims were traced, all X counts were computed, and the compression check retains vendor
+  attribution, the shared SLO, the negative EPD condition, and the OCR recall caveat.
+
 ## [2026-09-18] post | Memory Has Two Bills
 
 - Fourth Post-workflow run, covering **2026-09-11 → 2026-09-18**. The window contained two ingests

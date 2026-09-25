@@ -1363,6 +1363,24 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   the careful causal claim: AI lowered experimentation cost, but the techniques were known and each
   accepted result still rests on a benchmarked commit.
 
+## [2026-09-25] lint | Calibration is not an escalation policy
+
+- Completed the thirty-sixth comprehensive lint pass over **484 wiki pages**, **272 top-level raw
+  captures**, and **272 controlled source IDs**.
+- The structural graph was clean: no malformed metadata, unresolved or wrapped links, unreachable
+  captures, ownership or reciprocity failures, index omissions, semantic orphans, duplicate IDs or
+  URLs, filename defects, tag forks, privacy leaks, or control drift.
+- Semantic tracing found one source chain whose caveat had not fully governed its prose.
+  [[Nandakishor M - Non-Autoregressive Decision Models and Laya]] now attributes the architecture and
+  training method as the author's claims rather than narrator-established facts.
+- The same repair separates two concepts that had been compressed together: calibration describes
+  probability quality; escalation is a selective-automation policy that may consume those
+  probabilities.
+- [[Typed Probabilistic Decision Models]] now distinguishes Laya's reported **421M total
+  architecture** from its **395M bidirectional encoder**.
+- Filed [[2026-09-25 Lint Pass]]. The index, log, and overview remain aligned at
+  **272 / 272 / 272** source IDs.
+
 ## [2026-09-18] post | Memory Has Two Bills
 
 - Fourth Post-workflow run, covering **2026-09-11 → 2026-09-18**. The window contained two ingests

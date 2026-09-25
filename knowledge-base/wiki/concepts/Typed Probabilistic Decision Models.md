@@ -46,8 +46,9 @@ hallucinate" is too broad.
 ## A pattern, not one product category
 
 [[Nandakishor M - Non-Autoregressive Decision Models and Laya]] supplies an open competing
-implementation: a 421M bidirectional model with typed questions, calibration-oriented RL, and an
-explicit escalation action. Its benchmark and priority claims remain self-reported.
+implementation with a reported 421M-parameter total architecture, including a 395M bidirectional
+ModernBERT-large encoder, typed questions, calibration-oriented RL, and an explicit escalation
+action. Its benchmark and priority claims remain self-reported.
 
 [[0xMovez - Jev Engineering]] contributes the deployment pattern—dynamic option menus, parallel
 questions, confidence gates, and bounded middleware—while [[Matthew Canham - Jev Explained]] reduces

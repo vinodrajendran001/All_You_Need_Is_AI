@@ -1,13 +1,18 @@
 ---
+type: raw-source
+source_id: src-2026-09-21-liu-just-in-time-agentic-ocr
 title: "Just-in-Time Agentic OCR"
-source: "https://www.llamaindex.ai/blog/just-in-time-agentic-ocr?utm_source=substack&utm_medium=email"
-author:
-  - "[[Jerry Liu]]"
-published:
+author: Jerry Liu
+url: https://www.llamaindex.ai/blog/just-in-time-agentic-ocr
+captured: 2026-09-21
 created: 2026-09-21
-description: "Why agents should OCR documents just-in-time: a cheap layout-aware first pass with LiteParse, then a targeted VLM pass with LlamaParse on only the pages that need it."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - retrieval
+  - vision-language
+  - document-processing
+status: active
 ---
 The latest RAG trend I'm seeing in the current agent harnesses (Claude Cowork, Codex) is to do two passes of document processing in order to solve a knowledge work task over a data room of documents:
 

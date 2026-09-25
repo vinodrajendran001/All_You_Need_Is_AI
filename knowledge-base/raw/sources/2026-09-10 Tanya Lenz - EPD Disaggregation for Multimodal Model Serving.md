@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-10-lenz-epd-multimodal-serving
 title: "When to Use Encode-Prefill-Decode Disaggregation to Accelerate Multimodal Model Serving"
-source: "https://developer.nvidia.com/blog/when-to-use-encode-prefill-decode-disaggregation-to-accelerate-multimodal-model-serving/?utm_source=substack&utm_medium=email"
-author:
-  - "[[Tanya Lenz]]"
+author: Tanya Lenz
+url: https://developer.nvidia.com/blog/when-to-use-encode-prefill-decode-disaggregation-to-accelerate-multimodal-model-serving/
 published: 2026-09-10
+captured: 2026-09-21
 created: 2026-09-21
-description: "Encode-prefill-decode (EPD) disaggregation is an inference optimization technique for multimodal models that separates the vision encoder stage from the prefill…"
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - inference
+  - multimodal
+  - serving
+status: active
 ---
 Encode-prefill-decode (EPD) disaggregation is an inference optimization technique for multimodal models that separates the vision encoder stage from the prefill and decode stages. It is most effective for image-heavy prompts, short-to-medium outputs, and quantized [mixture-of-experts (MoE)](https://www.nvidia.com/en-us/glossary/mixture-of-experts/) models.
 

@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-22-bytebytego-openai-gpt-live
 title: "How OpenAI Built GPT-Live"
-source: "https://blog.bytebytego.com/p/how-openai-built-gpt-live?utm_source=post-email-title&publication_id=817132&post_id=216343930&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+author: ByteByteGo
+url: https://blog.bytebytego.com/p/how-openai-built-gpt-live
 published: 2026-09-22
+captured: 2026-09-23
 created: 2026-09-23
-description: "To understand how it all works end to end, we met with engineers on the GPT Voice team, Zahan Malkani and Justin Uberti (who created WebRTC)."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - voice-ai
+  - real-time
+  - inference
+status: active
 ---
 ## Free tickets to P99 CONF — 60+ technical talks, fully virtual (Sponsored)
 

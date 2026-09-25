@@ -1,13 +1,19 @@
 ---
-title: "I Built Non-Autoregressive Decision Models a Year Ago. Then a Frontier Lab Called It a \"Breakthrough\"."
-source: "https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me"
-author:
-  - "[[Nandakishor M]]"
+type: raw-source
+source_id: src-2026-09-18-nandakishor-nonautoregressive-decisions
+title: "I Built Non-Autoregressive Decision Models a Year Ago. Then a Frontier Lab Called It a Breakthrough"
+author: Nandakishor M
+url: https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me
 published: 2026-09-18
+captured: 2026-09-22
 created: 2026-09-22
-description: "From our March 2025 arXiv paper on RL conversion trajectories to building a sub-40ms..."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - decision-models
+  - reinforcement-learning
+  - calibration
+status: active
 ---
 ### From our March 2025 arXiv paper on RL conversion trajectories to building a sub-40ms open-weight System 1 decision engine with RLCD.
 

@@ -1,13 +1,19 @@
 ---
+type: raw-source
+source_id: src-2026-09-23-bytebytego-model-customization
 title: "How to Customize a Model to Learn New Tricks"
-source: "https://blog.bytebytego.com/p/how-to-customize-a-model-to-learn?utm_source=post-email-title&publication_id=817132&post_id=216199552&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+author: ByteByteGo
+url: https://blog.bytebytego.com/p/how-to-customize-a-model-to-learn
 published: 2026-09-23
+captured: 2026-09-24
 created: 2026-09-24
-description: "In this article, we are going to look at the various strategies to customize and fine-tune a model."
+updated: 2026-09-25
 tags:
-  - "clippings"
+  - source/raw
+  - fine-tuning
+  - model-training
+  - quantization
+status: active
 ---
 ## Just Announced: The Agentic Data Summit, Dec 9 (Sponsored)
 

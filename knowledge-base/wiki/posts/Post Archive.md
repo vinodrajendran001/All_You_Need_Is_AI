@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-09-25
+updated: 2026-09-26
 tags:
   - post
 status: active
@@ -36,7 +36,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
-- 2026-09-25 - selective computation, agentic OCR, multimodal serving, full-duplex voice
+- 2026-09-25 - selective computation, agentic OCR, multimodal serving, routing gates
 - 2026-09-18 - agent memory, cumulative context cost, memory evaluation, selective retrieval
 - 2026-09-11 - benchmark normalization, inference economics, latency-throughput tradeoffs, accelerator comparison
 - 2026-09-05 - agent context files, instruction bloat, negative results, evaluating prompts

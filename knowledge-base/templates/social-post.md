@@ -28,31 +28,45 @@ status: draft
      `platforms` records which variants this file carries; both are drafted in the same run.
      `status`: draft -> ready -> published.
 
-     Both variants must survive the same `## Fact check`. The X version is not a truncation of the
-     LinkedIn version — it is the same idea re-argued for a faster, more skeptical, more technical
-     room. If a claim has to be dropped to fit, drop the claim; never drop the caveat that makes a
-     remaining claim honest. -->
+     Both variants must survive the same `## Reader check` and `## Fact check`. The X version is
+     not a truncation of the LinkedIn version — it is the same complete idea re-argued for a faster
+     room. If a claim has to be dropped to fit, drop the claim; never drop the context or caveat
+     that makes a remaining claim understandable and honest. -->
 
 ## LinkedIn post
 
 <!-- Paste-ready text. Nothing above or below it should need editing before it goes live.
 
+     Reader promise: a smart reader outside the topic must understand the post without opening a
+     link, reading the source notes, or already knowing the products and acronyms.
+
      Anatomy:
-     1. Hook          - 1-2 lines, no throat-clearing. Chosen from the variants below.
-     2. The turn      - the surprising thing, stated plainly.
-     3. The mechanism - why it is true, anchored to one number or one named technique.
-                        This is the "reader learns something" payload; it is not optional.
-     4. The analogy   - exactly one, load-bearing, not decorative. This is where the fun lives.
-     5. The caveat    - what the vault records as uncertain, self-reported, or contradicted.
-                        Credibility feature, not a hedge. Never skip it to make a cleaner story.
-     6. Takeaway      - one line a reader could act on.
-     7. Question      - one genuine question for the comments. Not "thoughts?".
+     1. Situation     - name the real-world problem in plain language. Give the reader somewhere
+                        concrete to stand before presenting the surprising result.
+     2. Core idea     - state the one claim the post will explain. One post, one claim.
+     3. Worked example- use one primary example with enough setup to understand what was measured.
+                        A second supporting example is optional; never stack three systems.
+     4. Mechanism     - explain why the result happened. Use "because", not just a sequence of facts.
+     5. Limitation    - state where the idea can fail or what the evidence does not prove.
+     6. Practical use - tell the reader what to do, measure, or reconsider.
+     7. Close         - finish the argument before asking one genuine question.
 
-     Voice: technical but accessible. Lead with the analogy or the surprise, then go deep enough
-     that a practitioner learns something too. Write like a smart person explaining to a smart
-     friend from another specialty.
+     Clarity rules:
+     - Plain-language explanation comes before the technical name.
+     - Expand every acronym on first use and explain what it does; if used only once, omit it.
+     - Translate specialist metrics into reader meaning ("delay between generated tokens under
+       100 ms"), rather than dropping labels such as ITL or SLO into the prose.
+     - Every number travels with what was measured, under which condition, and why it matters.
+     - Use explicit transitions: problem -> example -> reason -> limitation -> action.
+     - Prefer one fully explained example over three impressive but disconnected examples.
+     - The title and first paragraph must be understandable without domain vocabulary.
 
-     Length: 150-250 words. Short paragraphs, mostly 1-3 lines. Line breaks are the formatting.
+     Voice: clear first, interesting second, technical third. Write like a patient expert explaining
+     one useful idea to an intelligent colleague from another field. Fun should come from a precise
+     analogy or observation, not cleverness that replaces explanation.
+
+     Length: normally 300-450 words. Shorter is allowed only if the `## Reader check` is fully
+     satisfied. Never cut context, mechanism, or conclusion merely to hit a word target.
 
      Banned: emoji spam, "game changer", "mind-blowing", "the future is here", "let that sink in",
      "I'm excited to share", rhetorical-question openers, hustle-bait, invented personal anecdotes,
@@ -66,20 +80,21 @@ status: draft
 <!-- Same idea, different room. Give BOTH forms below and mark which one to ship.
 
      A) Standalone post - one self-contained post, <= 280 characters including the link.
-        It must still teach something: a number or a named mechanism, not just the punchline.
+        It must contain the situation, the core idea, and the practical meaning — not merely tease
+        the thread. Use one number only when its condition also fits.
         Print the character count next to it. Count it, do not estimate.
 
-     B) Thread - 4 to 6 posts, each <= 280 characters, numbered, each with its own count.
+     B) Thread - 5 to 7 posts, each <= 280 characters, numbered, each with its own count.
         Post 1 is the hook and must stand alone, because most readers see only that one.
-        Middle posts carry the mechanism and the concrete numbers, one idea each.
+        Post 2 supplies the missing context. Middle posts carry the worked example and mechanism,
+        one idea each. Posts must connect logically rather than read as independent fact cards.
         The second-to-last post carries the caveat. The caveat never gets cut for length.
-        The last post carries the takeaway plus attribution and link.
+        The last post completes the argument with the practical takeaway, attribution, and link.
 
-     Voice differences from LinkedIn: shorter sentences, no windup, technical vocabulary used
-     without apology (KL, GRPO, RLVR need no gloss here), and the reader assumed to be skeptical
-     rather than impressed. Lowercase openings are fine. Hashtags: 0-1, or none at all - on X they
-     read as noise. No "a thread 🧵" preamble, no "1/n" if the platform already numbers them,
-     no engagement-bait ("bookmark this", "follow for more").
+     Voice differences from LinkedIn: shorter sentences and no windup, but not less explanation.
+     Put the plain-language meaning before specialist vocabulary. Do not assume acronyms such as
+     GRPO, EPD, ITL, SLO, or TTFT are known. Hashtags: 0-1, or none at all. No "a thread" preamble,
+     no "1/n" if the platform already numbers posts, and no engagement bait.
 
      Same hard rules as LinkedIn: no claim outside `pages_used`, numbers verbatim, attribution
      present, and anything the vault flags as uncertain or self-reported stays hedged. -->
@@ -110,8 +125,30 @@ status: draft
 ## Why this topic
 
 <!-- Why this angle beat the other candidates in the window. Record the shortlist and the scores
-     on surprise / concreteness / reach / freshness, so later runs can see what was passed over
-     and why. Prefer angles the vault derived across sources over facts a single source stated. -->
+     on clarity / completeness / surprise / concreteness / reach / freshness. Clarity and
+     completeness are hard gates: each must score at least 4/5, regardless of total. Prefer angles
+     the vault derived across sources, but publish one primary example and at most one supporting
+     example so the synthesis remains understandable. -->
+
+## Reader check
+
+<!-- Blocking. Read ONLY the LinkedIn and X bodies, not these notes or the source pages.
+
+     A reader unfamiliar with the topic must be able to answer, in one sentence each:
+     1. What problem or situation is this about?
+     2. What is the post's single main claim?
+     3. What example supports it?
+     4. Why did the result happen?
+     5. What does the evidence not prove, or when can the idea fail?
+     6. What should the reader do or think differently?
+
+     Also verify:
+     - No unexplained acronym, product name, benchmark name, or specialist metric remains.
+     - Every paragraph connects to the one before it; no fact appears merely because it is striking.
+     - The final paragraph completes the argument before the engagement question.
+     - A cold reader can retell the post accurately without opening a source.
+
+     If any answer is missing, rewrite the public post. Do not merely document the gap here. -->
 
 ## Fact check
 
@@ -123,6 +160,8 @@ status: draft
        in the post itself, not just noted here.
      - Compression check: confirm the X variant did not drop a qualifier that changes a claim's
        truth value. Shortening is where honest claims quietly become false ones.
+     - Comprehension check: confirm shortening did not remove the setup, mechanism, or conclusion
+       that lets a reader understand why the remaining fact matters.
      - Unverifiable claims are cut, not softened. Record what was cut and why. -->
 
 ## Attribution

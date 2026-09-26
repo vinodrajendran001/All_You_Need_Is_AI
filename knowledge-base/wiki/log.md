@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-09-25
+updated: 2026-09-26
 tags:
   - log
 source_ids:
@@ -1431,3 +1431,39 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   including the standalone at exactly 280. New post and archive introduce 0 unresolved prose
   wikilinks; frontmatter parses; `## Related pages` is present; index, log, and overview remain aligned
   at **262 source IDs**. [[Agent Memory]] enters cooldown until 2026-10-30.
+
+## [2026-09-26] post | Reader-first clarity and completeness revision
+
+- Ran the Post workflow from the latest archive checkpoint. There was **no new ingest after
+  2026-09-25**, so the run did not manufacture a duplicate topic; it revised the newest draft and
+  the workflow itself in response to reader feedback that posts were hard to understand and felt
+  incomplete.
+- **Root cause:** the workflow rewarded surprise and density, capped LinkedIn at 250 words, allowed
+  technical vocabulary without explanation on X, and allowed three separate systems to be stacked
+  into one public post. Its fact-check protected truth but did not test whether a cold reader could
+  reconstruct the argument.
+- Rewrote `templates/social-post.md` around a reader promise: the post must be understandable without
+  opening a link or knowing the products. LinkedIn now normally runs **300-450 words** and follows a
+  complete sequence: situation, one claim, one primary worked example, mechanism, optional supporting
+  example, limitation, practical use, and a completed conclusion. Plain-language meaning precedes
+  technical names; acronyms are expanded or removed; specialist metrics are translated.
+- Added **clarity and completeness as hard scoring gates** in the root `CLAUDE.md`. An angle scoring
+  below 4/5 on either is rejected regardless of its total. Cross-source synthesis remains preferred,
+  but the public body is limited to one primary example and at most one supporting example.
+- Added a blocking `## Reader check`. Reading only the public bodies, a person unfamiliar with the
+  sources must be able to state the problem, claim, example, mechanism, limitation, and action.
+  Notes cannot excuse unclear prose. The X thread changed from disconnected fact cards to a connected
+  5-7 post explanation, and its comprehension check now protects setup and conclusion as well as
+  factual qualifiers.
+- Rewrote [[2026-09-25 Keep the Expensive Model On Call]] as the proof. The LinkedIn body grew from
+  250 to **327 words**, opens with the 12,013-page problem, explains the two-stage system before naming
+  it, states why routing saves work, uses NVIDIA as one supporting example, then supplies the failure
+  mode and a complete four-part design. GPT-Live was removed because a third architecture added
+  density without improving the lesson.
+- Removed unexplained `EPD`, `ITL`, `SLO`, `prefill`, and `decode` from the public prose. The serving
+  result is now expressed as image processing versus text generation, with delay between generated
+  tokens below 100 milliseconds. The post ends with an actionable design — cheap pass, confidence
+  rule, fallback, and end-to-end measurement — before asking its question.
+- Rebuilt the X thread in the same order and made its standalone a complete miniature rather than a
+  teaser. Verified programmatically: LinkedIn 327 words; standalone 277 characters; six thread posts
+  at 217 / 228 / 215 / 251 / 232 / 238 characters. All counts match and all are within 280.

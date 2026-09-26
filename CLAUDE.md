@@ -97,24 +97,30 @@ recomputes its own window and its own anti-repeat state — never assume a fixed
 3. **Collect what changed.** Take every `## [YYYY-MM-DD] ingest | Title` heading in `wiki/log.md` inside the window,
    then cross-check with `git log --since=<covers_from> --name-only -- knowledge-base/wiki` for pages that changed
    without a log entry. The log entries are the primary signal because they already record why each source mattered.
-4. **Shortlist 3-5 angles and score each 1-5** on **surprise** (does it overturn something a competent reader
-   believes — weigh this highest), **concreteness** (is there a number, benchmark, or named mechanism to anchor it),
-   **reach** (does it land for practitioners and for interested non-specialists), and **freshness** (not already in
-   the archive's topics, spine page not in cooldown). Prefer angles the vault *derived* across sources over facts a
-   single source stated; "Company X released model Y" is not a post.
+4. **Shortlist 3-5 angles and score each 1-5** on **clarity**, **completeness**, **surprise**,
+   **concreteness**, **reach**, and **freshness**. Clarity and completeness are hard gates: reject any angle scoring
+   below 4 on either, even if it has the highest total. Prefer angles the vault derived across sources, but choose
+   one that can be taught through one primary example and at most one supporting example. A dense synthesis that
+   requires three product explanations is not a post; "Company X released model Y" is not one either.
 5. **Draft both variants** from `knowledge-base/templates/social-post.md` into `knowledge-base/wiki/posts/`, following
-   the anatomy and voice rules in that template. The LinkedIn variant is the long form; the X variant is the same
-   idea re-argued for a faster, more skeptical room — a standalone post of 280 characters or fewer *and* a 4-6 post
-   thread, each with a counted (not estimated) character count, with one marked to ship. The X version is never a
-   truncation of the LinkedIn version, and if a claim must be dropped to fit, drop the claim rather than the caveat
-   that keeps a surviving claim honest. Record the shortlist and scores under `## Why this topic`.
-6. **Fact-check both variants before marking `ready`.** Trace every factual sentence to a page in `pages_used`, match
+   the anatomy and voice rules in that template. Optimize for a cold reader, not for density: establish the
+   real-world situation, state one claim, explain one worked example, show the mechanism, state the limitation,
+   and complete the practical takeaway. LinkedIn normally runs 300-450 words; never remove context merely to meet
+   a target. The X variant contains a complete standalone post and a connected 5-7 post thread. Plain-language
+   meaning comes before technical names, every acronym is expanded or removed, and every specialist metric is
+   translated. Record the shortlist and scores under `## Why this topic`.
+6. **Run the reader check.** Read only the public LinkedIn and X bodies. A reader unfamiliar with the sources must
+   be able to state: the problem, the single claim, the supporting example, why it happened, where it can fail,
+   and what to do differently. Check that every paragraph follows logically, no unexplained term remains, and the
+   conclusion completes the argument before the engagement question. If any answer is missing, rewrite the post;
+   notes do not compensate for unclear public prose.
+7. **Fact-check both variants before marking `ready`.** Trace every factual sentence to a page in `pages_used`, match
    every number to the vault verbatim, match every attribution to the source summary's `source_author`, and hedge in
    the post bodies anything the vault records as uncertain, self-reported, unablated, or contradicted. Run the
-   compression check explicitly: confirm the X variant dropped no qualifier that changes a claim's truth value, since
-   shortening is where honest claims quietly become false ones. Cut unverifiable claims rather than softening them,
-   and record what was cut.
-7. **File.** Update the archive's posts table, topics covered, and cooldown list, then append a log entry using the
+   compression and comprehension checks explicitly: confirm the X variant dropped neither a qualifier that changes
+   truth nor the setup, mechanism, or conclusion that makes the fact meaningful. Cut unverifiable claims rather
+   than softening them, and record what was cut.
+8. **File.** Update the archive's posts table, topics covered, and cooldown list, then append a log entry using the
    heading format `## [YYYY-MM-DD] post | Title`.
 
 Posts are derived output, not evidence: they declare no `source_id`s, they are never cited by concept, entity, or

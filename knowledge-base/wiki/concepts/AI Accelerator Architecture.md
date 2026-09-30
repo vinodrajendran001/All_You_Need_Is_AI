@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - hardware
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
 status: active
 ---
 
@@ -104,12 +105,47 @@ serving-software one.
 Commercially, **Anthropic has committed to over one million TPUs** — about 400k purchased directly and
 600k rented via GCP — surpassing DeepMind's own usage by 2029.
 
+## Behind on peak FLOPS and on HBM bandwidth, and still ahead at batch-one decode
+
+[[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] is a useful stress test of the spec
+tables this page keeps, because it reports a win by the chip that loses on both headline numbers.
+Inferact's own comparison: **TPU v7 at 2.31 PFLOPS BF16 / 4.61 PFLOPS FP8, 206 GB of HBM at
+7,380 GB/s, 1,200 GB/s ICI**, against **GB200 at 2.5 PFLOPS BF16 / 5 PFLOPS FP8, 186 GB of HBM at
+8,000 GB/s, 1,800 GB/s NVLink 5**. The TPU trails on arithmetic throughput, on memory bandwidth and
+on interconnect, and leads only on HBM capacity.
+
+The claimed explanation sits one level above HBM, on the memory surface this page's cache-versus-
+scratchpad section is about. Inferact reports **64 MiB of VMEM per TensorCore and 128 MiB per chip,
+addressed as two pools**, against **GB200's ~111 MiB of SRAM split 152 ways** — 256 KB of Tensor
+Memory and 228 KB of shared memory per SM across 152 SMs, roughly 38 MiB of Tensor Memory per GPU.
+Nearly equal totals, radically different granularity. A single persistent program that wants to hold
+a decoder's working set and prefetch the next layer's weights while computing the current one can use
+the first shape and not the second, which is the [[Megakernels]] argument in hardware terms.
+
+The reported result, with its conditions: on **Kimi K3, 92 MoE layers across 16 TPU v7 chips in a
+2x2x4 topology (TP4 x EP8 for routed experts, attention across 32 ranks)**, decode **without
+speculation** runs at **249 vs 127 tokens/s at batch 1 (1.96x)** and **865 vs 636 at batch 8
+(1.36x)**. The advantage is therefore a small-batch, memory-bandwidth-bound phenomenon that erodes as
+vector arithmetic and inter-device traffic take over — narrow enough that it does not generalise to
+the throughput regime the rest of this page compares.
+
+Two tensions with existing material on this page should stay open rather than be resolved. First, the
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] section above shows the same
+silicon family yielding results from +96% to −30% depending on the normalisation axis, and describes
+TPU serving software as largely catching up to GPU practice; Inferact's figure is one more point on
+that spread, not a verdict. Second, the comparison is asymmetric in a way the hardware numbers hide:
+a **hand-written TPU megakernel against a published vLLM GB200 recipe**, vendor-reported, with no
+independent reproduction and no energy or cost-per-token accounting. It is evidence about what a
+memory system permits a specialist to build, and only indirectly about the chips.
+
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
 - How much of future accelerator progress will come from arithmetic innovation versus memory and interconnect innovation?
 - When do software-managed locality strategies become too hard to use effectively, even if they are theoretically more efficient?
 - As bytes-per-FLOP ratios diverge by three orders of magnitude across deployed architectures, does a single comparison frame remain meaningful, or does each architecture now need its own?
+- Should comparison tables carry on-chip memory *per independent scheduling unit* alongside totals? 128 MiB in two pools and ~111 MiB split 152 ways are nearly the same number and support completely different programs.
+- TPUv8i triples on-chip SRAM to 384 MB, sized for agentic KV cache. Does that capacity widen the single-program megakernel advantage, or does the cache claim it first?
 
 ## Related pages
 
@@ -140,3 +176,5 @@ Commercially, **Anthropic has committed to over one million TPUs** — about 400
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
 - [[Accelerator Software Externalization]]
 - [[SemiAnalysis]]
+- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
+- [[Megakernels]]

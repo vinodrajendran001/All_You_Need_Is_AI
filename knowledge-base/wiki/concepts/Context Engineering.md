@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-18
+updated: 2026-09-30
 tags:
   - concept
   - context-engineering
@@ -28,6 +28,7 @@ source_ids:
   - src-2026-09-01-iusztin-scoped-subagents
   - src-2026-09-15-bytebytego-llm-memory-goldfish
   - src-2026-09-14-li-long-context-latency
+  - src-2026-09-29-yoon-multiplayer-ai
 status: active
 ---
 
@@ -251,6 +252,39 @@ cannot be model-agnostic. Across API measurements up to roughly 900K tokens, GPT
 show strong upward TTFT curvature while Claude Sonnet 5 is near-linear and Opus is noisy but
 consistent with little curvature. The result is behavioral evidence, not proof of the underlying
 attention architecture, because TTFT also includes network, routing, queueing, and cache effects.
+
+## Hand-maintained context files lose to context extracted from work that shipped
+
+Almost every context artifact on this page - `AGENTS.md`, skill files, itemized playbooks, curated
+memory - assumes someone maintains it. [[Jina Yoon - We're Building Multiplayer AI]] puts a count
+against that assumption: over **90 days**, **64 users** started a shared `CONTEXT.md` and only **14**
+ever edited it. This is internal product observation from PostHog, not a study - there is no
+denominator of eligible users, no selection method, and no comparison group - but it is a measurement
+of a premise this page has largely taken on faith.
+
+PostHog's replacement inverts who writes. The context layer starts nearly empty and a nightly
+**"dreaming" task** records what happened that day into a version-controlled Markdown wiki, extracting
+from work objects such as PRs, docs, and dashboards. The selection rule is the design: record what was
+**actually shipped, merged, or decided in a day**, not meeting notes or brainstorming documents, so
+the agent does not treat proposals as company state. That is a context-selection criterion this page
+has not carried before. Relevance, recency, density, and token budget all ask *how much* to include;
+this one asks whether anything in the organisation ever committed to the claim.
+
+It sits beside Osmani's null result rather than overturning it. His **288 runs across 17 tasks** found
+that the presence of `AGENTS.md` / `CLAUDE.md` made **no clear difference to correctness**, and his
+rule is that context must justify itself against an eval, with deletion the default for anything that
+cannot. Yoon's finding is upstream of that argument: for most teams the file was never written in the
+first place. The two do not combine into a conclusion, because PostHog reports **no measured
+hallucination reduction, token savings, latency change, or task-quality lift** from the derived layer,
+and it had been dogfooded for only **a few weeks**. One source says curated context has not shown its
+value; the other says curation does not happen by default. Neither licenses the other's remedy.
+
+There is also an unresolved conflict with the context-collapse material above. A nightly writer that
+re-reads the day and regenerates a wiki is structurally the wholesale-rewrite pattern ACE was built to
+avoid, with a brevity-biased model given a fresh chance to drop items each round. Two things differ -
+the source of truth is external work objects rather than the document's own prior text, and the store
+is version-controlled so a drop is recoverable - but version control is the only defence stated, and
+nothing reported measures whether detail survives across nights.
 
 ## Open questions
 

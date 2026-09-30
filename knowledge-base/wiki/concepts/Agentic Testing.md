@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - concept
   - evaluation
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-09-13-adedeji-multi-agent-code-review
   - src-2026-09-14-bytebytego-llm-judge-health
   - src-2026-09-09-mistral-legacy-code-modernization
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-09-29-bytebytego-why-do-llms-lie
 status: active
 ---
 
@@ -167,6 +169,44 @@ development and holdout sets remain separate so prompt tuning does not optimize 
 state rather than from translated code. This reduces shared-error risk: generated C++ must match
 observable Fortran behavior before refactoring or cleanup changes the structure.
 
+## The grader and the answer space are untested surface too
+
+This page already argues that prompt behaviour is untested surface. Two new sources extend the same
+argument to the measuring apparatus itself.
+[[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] makes grader noise a first-class
+diagnostic: before any improvement work begins, the baseline run executes **the grader twice on the same
+output**, alongside checks for timeouts, API errors, and truncated responses, and reports a confidence
+interval plus one full transcript per case. A suite that cannot separate its own run-to-run variance from
+the system's cannot attribute anything — the same complaint this page makes about pass@k, aimed at a
+different target.
+
+The four properties Martin requires of a usable evaluation read as a construction checklist: a
+production-like task distribution, scores that rise with stronger models and more effort, frontier
+performance with **headroom below 100%**, and low run-to-run variance. The third has a rule attached — the
+diagnostic **warns when the baseline is about 95% or higher**, on the grounds that quality hillclimbing is
+then uninformative and cost or latency should become the objective. Cases are sampled in a fixed order of
+preference: production transcripts, then bug reports and support tickets, then **five to ten**
+hand-written cases, then cases synthesized from the codebase — real traffic first, synthesis last. All of
+this is Anthropic-reported on an Anthropic workflow, with no independent reproduction and no released
+evaluation data; see [[Anthropic]].
+
+[[ByteByteGo - Why Do LLMs Lie]] supplies the other half, and it is the sharper contribution: an
+evaluation should measure **correctness, support, appropriate abstention, and unnecessary refusal** as
+four separate things. Right/wrong scoring cannot distinguish a system that learned to say "I don't know"
+from one that learned to refuse, because both register as non-answers. That has a direct reading on this
+page's most uncomfortable finding. The repair agent's give-up condition — mark the test skipped — is
+precisely an abstention that a two-valued scoreboard records as a green suite, and no amount of pass^k
+reporting separates a justified skip from an evaded one.
+
+Both sources also pull against this page's recommended shape. "Agent at authoring time, model out of CI"
+keeps model variance out of the release gate; Martin's loop keeps a judge in the measurement path
+throughout and concedes that a misconfigured judge still requires a human to read scored transcripts, and
+ByteByteGo's verification stage is itself a model that can be wrong. Neither retires the
+deterministic-artifacts recommendation — both say the artifact deciding *what counts as passing* is harder
+to make deterministic than the artifact that runs in CI. ByteByteGo is a secondary explainer with
+sponsored sections and reports no hallucination rates or controlled comparisons, so its four-way
+scoreboard is a design proposal rather than a measured improvement.
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -178,6 +218,10 @@ observable Fortran behavior before refactoring or cleanup changes the structure.
   baseline is an **estimate**. How much of the speedup is the agent and how much is the forcing function of a
   migration project?
 - Should a repair agent ever be permitted to skip a test, or should give-up always escalate to a human?
+- Does a skipped test count as appropriate abstention or as unnecessary refusal? ByteByteGo names the
+  distinction but nothing says how a suite would classify its own repair agent's give-up events.
+- Martin's roughly-95% warning assumes a high baseline means a saturated system. How would a team tell
+  that apart from a task distribution that was sampled too easy in the first place?
 
 ## Related pages
 
@@ -196,3 +240,8 @@ observable Fortran behavior before refactoring or cleanup changes the structure.
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
 - [[GitHub]]
 - [[Ayo Adedeji - Agents That Prove, Not Guess]]
+- [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
+- [[ByteByteGo - Why Do LLMs Lie]]
+- [[ByteByteGo]]
+- [[Anthropic]]
+- [[Harness Optimization]]

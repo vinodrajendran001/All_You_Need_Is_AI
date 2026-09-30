@@ -116,6 +116,48 @@ same tools, opposite signs — so roster decisions do not transfer between produ
 **None of this makes the model smarter.** The closing framing is worth preserving as the boundary of the whole
 practice: *"None of these changes made the model smarter. They removed work the model never needed to do."*
 
+## At fleet scale the execution surface is about a tenth of the bill; deliberation is the rest
+
+Everything above measures a roster inside one turn - description tokens, decoding constraints,
+roundtrips, compression that backfires. [[FD - Agent Muse Compute Demand]] supplies the other end of
+the same ledger, and it reorders which of those savings matter. The caveat has to travel with every
+figure: this is a **bottom-up scenario estimate** built on assumptions, not a measurement of anyone's
+infrastructure, and the **100M DAU** premise is hypothetical.
+
+Under those assumptions, the environment the tools run in is the small term. A concurrency chain of
+100M DAU x **two active hours per day** / 24, x a **2.5x peak-to-average ratio**, plus **~20%
+headroom** yields **~25M provisioned live VMs**. At a base case of **0.5 physical cores per live VM**
+(a deliberately *less* efficient assumption than the **~0.23** implied by DeepSeek's DSec paper) that
+is **12.5M physical cores**, or **~50K CPUs** at 256 cores each, estimated at **~$800M**; memory,
+extrapolated from a single observed instance using **~3 GB** of an exposed 8 GB, gives **75 PB** at
+**~$2B**. Those totals exclude networking, storage, orchestration, redundancy, facilities, cooling,
+depreciation, and operations - and they still come to an estimated **~0.1 GW** for the entire
+sandbox/VM layer against **~1-2 GW** of total average power.
+
+The dominant term is the model calls the roster exists to trigger. FD derives energy per event from a
+Microsoft study's median of **~0.31 Wh per normal query**, notes a long reasoning query at roughly
+**15x the token count** using about **13x the energy** (**~4 Wh**), and widens that to an assumed
+**5-10 Wh** per heavy reasoning-equivalent event. At **50 reasoning-equivalent events per DAU per
+day** and 5 Wh each, that is **25 GWh/day**, or **~1.0 GW**. The quoted **3-4 GW** is a sensitivity
+conclusion under higher reasoning demand, not a forecast.
+
+The consequence for roster economics is a sorting rule, not a correction. This page's four A/B results
+are measured and remain so; but under FD's assumed structure, demand tracks **reasoning-equivalent
+events per user, not user count** - an agent that deliberates more per task raises compute demand
+without acquiring a single new user. That splits the page's wins into two classes. Changes that remove
+a *turn* - batching two notifications that produced **four model calls where one would do**, worth
+**2.3%** - remove units of the dominant term. Changes that shorten what travels inside a turn, like
+the **3.1%** from dropping `view` line-number prefixes, move tokens within an event that still
+happens. Both are real; only the first compounds against the term FD estimates at roughly ten times
+the sandbox layer.
+
+Read that way, the local metric trap gets a second, structural reading. The Rust Token Killer saved
+tokens per response and cost more overall because agents reopened files and re-ran commands - which is
+to say it converted a cheap intra-turn saving into *additional reasoning-equivalent events*, the exact
+currency FD's chain says dominates. None of this is measured end to end: no source here connects a
+harness-level token saving to a watt-hour, and FD's per-event energy band is itself an assumption
+stretched from one study.
+
 ## Open questions
 
 - **How much of the 36.6s vs 42.2s gap is roster size versus other harness differences?** The comparison is
@@ -128,11 +170,18 @@ practice: *"None of these changes made the model smarter. They removed work the 
   sources give no re-measurement after model upgrades.
 - **How do you test prompt behaviour cheaply?** The requirement is stated forcefully but no methodology,
   harness, or cost for behavioural prompt tests is described.
+- **Does removing a turn actually remove a reasoning-equivalent event?** Batching cut four model calls
+  to one in one measured case, but nothing here tracks whether the deliberation reappears later in the
+  loop rather than disappearing.
+- **What is the exchange rate between a token saved in the harness and a watt-hour?** FD's **5-10 Wh**
+  band is an assumption widened from one study's **~0.31 Wh** median, so the two ends of this ledger
+  are not yet in the same units.
 
 ## Related pages
 
 - [[Can Bölük - The Harness Playbook]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
+- [[FD - Agent Muse Compute Demand]]
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
 - [[Coding Agent Harness]]
@@ -144,3 +193,7 @@ practice: *"None of these changes made the model smarter. They removed work the 
 - [[Agent Delegation]]
 - [[Benchmark Optimization]]
 - [[Agentic Loop]]
+- [[Test-Time Scaling]]
+- [[Multi-Tenant Agent Architecture]]
+- [[Meta]]
+- [[DeepSeek]]

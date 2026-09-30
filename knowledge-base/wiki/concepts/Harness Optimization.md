@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - ai-agents
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-01-iusztin-scoped-subagents
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
 status: active
 ---
 

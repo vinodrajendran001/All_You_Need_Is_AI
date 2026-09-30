@@ -49,8 +49,7 @@ examples report quality and cost improving together, but every number is Anthrop
   prompt work took Sonnet 5 to **98.9%** at about the same cost. On the **14 held-out tickets** — a
   different split, which is why the original baseline reads differently there — the final configuration
   scored **90.5%** against the original setup's **78.6%**, at roughly **one fifth of the cost**. Opus
-  5.5 is stated to price input and output tokens **20% less**
-  than Opus 4.8 and cache reads **60% less**.
+  5.5 is stated to price input and output tokens **20% less** than Opus 4.8 and cache reads **60% less**.
 - Capability example: the Claude API skill began at **66%**, reached **74%** after covering eight
   features and **77%** after fixing C# and Java type tables, ending near **88%** once stale API priors
   and grader/task inconsistencies were fixed. The figure caption reports **66.1%** baseline and

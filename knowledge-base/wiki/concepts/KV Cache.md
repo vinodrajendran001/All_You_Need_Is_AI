@@ -246,8 +246,8 @@ reuse and radix indexing for prefix sharing remain future work** in Quail, and M
 prefix advice was written for.
 
 The performance figures carry the usual conditions. **Over a billion tokens processed per minute per
-H100** and
-**more than 10x vLLM** describe **one multi-join query**; the cross-workload figure from the same
+H100** and **more than 10x vLLM** describe **one multi-join query**; the cross-workload figure from
+the same
 release is **1.84x, geometrically averaged**. All of it is vendor-reported, on a workload Modal itself
 calls unusually favourable — known structure, shared prefixes, no decode, structured outputs with an
 **8-option output vocabulary**, and low latency sensitivity.

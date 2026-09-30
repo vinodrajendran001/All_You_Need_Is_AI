@@ -195,10 +195,13 @@ object rather than to a user, a session, or an agent. Memory keyed to *the thing
 fourth scoping dimension alongside the tenant, user, and session keys the multi-tenant material
 requires.
 
-What is not resolved is who may read any of it, and PostHog says so: governance and permissions are
-its **biggest blind spot**. Across roughly **~200 employees** dogfooding, users **overwhelmingly
-preferred starting tasks privately** despite the team expecting shared-Space defaults, and
-collaboration happened more in GitHub than in the product. A memory layer whose inputs are shared work
+What is not resolved is who may read any of it, and PostHog says so: it calls governance and
+permissions **one of its biggest blind spots**, and says it is interviewing users to learn more.
+Without a stated population, its early data says users **overwhelmingly preferred starting tasks
+privately** despite the team expecting shared-Space defaults, and collaboration happened more in
+GitHub than in the product; the **~200 employees** figure the post gives is scoped to three recurring
+Space-**setup** patterns, not to these findings, and the 64/14 counts above are **user** counts that
+are not a fraction of it. A memory layer whose inputs are shared work
 objects, serving users who default to private work, has a key-design problem before it has a retrieval
 problem. And the layer reports **no measured hallucination reduction, token savings, latency change,
 or task-quality lift** after **a few weeks** of dogfooding, so it belongs on this page as a design

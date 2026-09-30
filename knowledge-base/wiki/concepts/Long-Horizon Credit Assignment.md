@@ -93,8 +93,8 @@ tractable at the long sequence lengths the architecture targets.
 than for where it stops. The derivation runs from the sequence probability through the log-derivative
 trick to `grad J = E[R(y) grad log p_theta(y)]`, and on to the zero-mean score identity `E_p[s_yt] = 0`,
 which licenses subtracting any baseline that does not depend on the sampled token — and it treats
-terminal sequence rewards throughout. It does not
-address token-level credit assignment, KL regularization, clipping, importance ratios, or PPO's value
+terminal sequence rewards throughout. It does not address token-level credit assignment, KL
+regularization, clipping, importance ratios, or PPO's value
 estimation. That boundary is the contribution to this page: it marks exactly where a result with a proof
 ends and where the heuristics catalogued above begin.
 

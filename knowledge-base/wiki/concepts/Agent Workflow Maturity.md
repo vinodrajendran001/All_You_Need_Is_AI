@@ -113,11 +113,12 @@ When a bot fails, do not add a longer conversational reminder. Ask where the fai
 
 This page's ladder is entirely prescriptive - its anchor source reports no deployment outcome - so the
 first thing [[Jina Yoon - We're Building Multiplayer AI]] contributes is observation from a team
-running the thing. Across roughly **~200 PostHog employees** dogfooding shared human-and-agent
-workspaces, coding turned out to be **mostly solo**, collaboration happened more in **GitHub than in
-the product's own UI**, and users **overwhelmingly preferred starting tasks privately** despite the
-team expecting them to default to shared Spaces. These are internal product observations rather than
-a study, and "mostly solo" and "overwhelmingly" are unquantified.
+running the thing. Dogfooding shared human-and-agent workspaces, its early data says coding turned out
+to be **mostly solo**, collaboration happened more in **GitHub than in the product's own UI**, and
+users **overwhelmingly preferred starting tasks privately** despite the team expecting them to default
+to shared Spaces. These are internal product observations rather than a study, no population is stated
+for any of those findings - the **~200 PostHog employees** figure is scoped to three recurring
+Space-**setup** patterns - and "mostly solo" and "overwhelmingly" are unquantified.
 
 The mechanism PostHog built maps onto the typed handoff almost exactly. **Artifacts** are portable
 session-state snapshots: a session produces an artifact, and that artifact becomes the context for the
@@ -135,8 +136,9 @@ invariants - but it suggests the rung transition is a **publishing** step rather
 default, and that a product which defaults to shared Spaces is optimising the moment users least want
 shared.
 
-The upper rung fares worse. PostHog names **governance and permissions its biggest blind spot**, which
-is precisely this page's level 5 (evidence, limits, recovery). So the one system here with real
+The upper rung fares worse. PostHog calls **governance and permissions one of its biggest blind spots**
+and says it is interviewing users to learn more, which is precisely this page's level 5 (evidence,
+limits, recovery). So the one system here with real
 telemetry has not built the rung the ladder treats as the destination, and its findings may depend on
 PostHog's low-hierarchy culture - an organisation with strict role-based access control may find the
 private-by-default preference reversed or irrelevant. Nothing reported measures whether any of this
@@ -152,7 +154,8 @@ improved delivery.
   right exit test for level 4, or is the test whether the artifact published at the boundary is
   consumable without its author present?
 - What does the governed rung look like in a low-hierarchy organisation that has never needed
-  role-based access control? The one team with telemetry calls that rung its biggest blind spot.
+  role-based access control? The one team with telemetry calls that rung one of its biggest blind
+  spots, and says it is interviewing users to learn more.
 
 ## Related pages
 

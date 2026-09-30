@@ -178,8 +178,7 @@ Its correctness method is a numerical-regression check (**0.944 on GPQA-Diamond,
 under greedy decoding at maximum reasoning effort), which clears the "a speed result needs a
 correctness method" bar only in its weakest form. Modal describes its **own cost model as crude and
 based on peak hardware rates**, noting that it "errs on the side of over-estimating peak performance"
-— this page's rule that vendor peak numbers are
-not measurements, applied by a vendor to itself.
+— this page's rule that vendor peak numbers are not measurements, applied by a vendor to itself.
 
 ## Open questions
 

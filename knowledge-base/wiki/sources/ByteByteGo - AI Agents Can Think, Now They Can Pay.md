@@ -67,9 +67,8 @@ key control, not customer identity, so reputation and abuse prevention remain un
 out of scope. MPP defines **no refund flow at all**: unclaimed session reserve returns by itself, which
 covers money never spent but not money already claimed, and refunding a one-off charge means the seller
 sending funds back to the paying key, with whether that works depending on the card network or
-blockchain provider. The millisecond and
-settlement-cost claims are conditional on that rail and the implementation. This is a secondary
-explainer, not a protocol audit or a production measurement.
+blockchain provider. The millisecond and settlement-cost claims are conditional on the payment rail and
+the implementation. This is a secondary explainer, not a protocol audit or a production measurement.
 
 ## Raw capture
 

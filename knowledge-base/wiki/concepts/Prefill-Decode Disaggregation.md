@@ -112,8 +112,8 @@ compute-bound phase.
 The useful generalisation is narrow and should stay narrow. Nothing here argues against
 disaggregating chat or agent serving; Modal in fact reports Quail **falling behind vLLM on an
 agent-trace benchmark**, and its headline of **over a billion tokens processed per minute per H100
-with more
-than 10x vLLM** belongs to **one multi-join query**, against **1.84x geometrically averaged** across
+with more than 10x vLLM** belongs to **one multi-join query**, against **1.84x geometrically
+averaged** across
 the released benchmark. What the case complicates is the habit of treating the prefill/decode split
 as an invariant of LLM serving. Classification, filtering, reranking and judging are prefill-dominant
 workloads, and [[Philip Kiely - The Efficient Frontier of LLM Inference]]'s point above — that the

@@ -16,9 +16,11 @@ status: active
 ## Summary
 
 Sarthak Rastogi writes an adoption guide for placing a typed decision model at the bounded choice
-points of an agent while leaving reasoning and prose to an LLM. Six patterns are given: intent
-routing, model routing, malicious-intent screening, tool-call gating, confidence-based escalation, and
-UI-action selection. The more durable content is the surrounding discipline - narrow context, explicit
+points of an agent while leaving reasoning and prose to an LLM. Rastogi names six decision points -
+intent routing, model routing, input screening, tool-call gating, output verification, and picking
+the next UI action - and works five through in detail: intent routing, model routing,
+malicious-intent screening on input *and* output, tool-call gating, and confidence-gated escalation.
+The more durable content is the surrounding discipline - narrow context, explicit
 schemas, arithmetic in code rather than in the model, shadow-mode rollout, and thresholds chosen after
 labelling rather than before. The performance figures are repeated vendor claims, not new evidence.
 
@@ -42,17 +44,20 @@ labelling rather than before. The performance figures are repeated vendor claims
   anything below **0.6 confidence** to a person, and Rastogi is explicit that the threshold should be
   chosen after measurement.
 - Calibration is stated plainly: if Jev says **0.9**, it should be right about **90% of the time**.
-- Claimed weaknesses: arithmetic, counting, date logic, images, audio, and video; text only. Named
-  open-source alternatives: Kev, openjev, NanoJev, and Laya.
+- Weaknesses named in TypeSafe's own jaggedness notes for **`jev-1.13`**, not measured by Rastogi:
+  arithmetic, counting, date logic, images, audio, and video; text only. Named open-source
+  alternatives: Kev, openjev, NanoJev, and Laya.
 
 ## Why it matters
 
 This is the first source in the vault's typed-decision thread written as an operations guide rather
 than an announcement or an explanation, and its sequencing is the contribution: shadow first, label
 second, automate third, with thresholds derived from the labels. It also draws the boundary the
-category tends to blur - a typed screening model is a filter, not a security boundary, because it does
-not treat its input as hostile and adversarial state can move the answer. Least-privilege controls
-remain necessary behind it.
+category tends to blur: Rastogi draws the operational conclusion from TypeSafe's own jaggedness
+notes for **`jev-1.13`**, which state that adversarial content in the state can move the answer -
+the screen is a filter, not a security boundary, and least-privilege tool access stays underneath.
+Note the cookbook results he cites were run on **`jev-1.12`**, a different version from the
+jaggedness notes.
 
 ## Tensions and caveats
 

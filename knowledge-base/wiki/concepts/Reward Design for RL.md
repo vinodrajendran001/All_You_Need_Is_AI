@@ -270,8 +270,8 @@ that this page's catalogue of reward shapes does not. Under a verifier returning
 the update entirely. What survives is the sum of `grad log p_theta(y_i)` over the correct completions,
 still divided by the full rollout count — so the update is the correct-completion log-likelihood
 gradient scaled by the pass rate. In Romero's phrasing, this is "literally SFT on the correct
-completions." Failures are never directly
-pushed down; they are simply absent. This is a claim about the gradient at binary reward and not a claim
+completions." Failures are never directly pushed down; they are simply absent. This is a claim about the
+gradient at binary reward and not a claim
 that RL and supervised fine-tuning share training dynamics, and the piece is a pedagogical derivation
 rather than an empirical result.
 

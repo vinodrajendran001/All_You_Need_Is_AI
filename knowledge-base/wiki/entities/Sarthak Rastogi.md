@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-09-30
 entity_kind: person
 tags:
   - entity
@@ -9,7 +9,9 @@ tags:
   - production
   - observability
 source_ids:
+  - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-09-06-rastogi-agent-observability
+  - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
 status: active
 ---
 
@@ -38,6 +40,17 @@ He also makes the case that random sampling is structurally wrong for LLM traffi
 near-identical inputs can produce a correct answer, a hallucination and a refusal; the replacement is
 tail-based, outcome-aware sampling with routine successes at 5–20%.
 
+His Jev material sits at a different evidence grade from the rest, and the distinction should travel with
+any citation of it. [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] is a
+**secondary explainer restating [[TypeSafe AI]]'s vendor figures** — about **100 milliseconds**, **$0.042
+per million input tokens** with output tokens free, **40x to 200x faster** and **up to 400x cheaper** —
+not independent measurement. It carries **no benchmark and no controlled comparison**, and the guardrail
+results it cites are TypeSafe's own cookbook, run on **`jev-1.12`** and described only as having worked
+"pretty well". What is his is the operational discipline around the product: shadow mode first, **100 to
+200 labelled cases**, thresholds set after labelling rather than before, and the conclusion he draws from
+TypeSafe's **`jev-1.13`** jaggedness notes that a typed screen is a filter and not a security boundary.
+Read the figures as attributed vendor claims and the sequencing as practitioner advice.
+
 ## Notes
 
 - Cites a Sherlocks AI analysis of 73 production agent incidents (January–May 2026): 4.2 hours average
@@ -59,3 +72,7 @@ tail-based, outcome-aware sampling with routine successes at 5–20%.
 - [[Multi-Turn Evaluation]]
 - [[LLM-as-a-Judge]]
 - [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
+- [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]]
+- [[Typed Probabilistic Decision Models]]
+- [[TypeSafe AI]]

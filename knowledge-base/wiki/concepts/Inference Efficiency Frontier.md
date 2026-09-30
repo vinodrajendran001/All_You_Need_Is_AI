@@ -229,8 +229,7 @@ discovered empirically and that sweeps advantage whoever can afford them. The au
 themselves: the energy is a **proxy, not an exact predictor**, and on Llama-3.1-8B at 16 of 32 blocks
 removed the **17th excited state** beats the ground state after light retraining. The ranking narrows the
 search; it does not replace evaluation. This is a Multiverse Computing blog summarizing the authors'
-own paper, with
-the derivation, ablations, and full tables deferred.
+own paper, with the derivation, ablations, and full tables deferred.
 
 The other axis is what a frontier gain is worth once a fleet sits behind it.
 [[FD - Agent Muse Compute Demand]] is a **scenario estimate on a hypothetical 100M DAU premise, not a

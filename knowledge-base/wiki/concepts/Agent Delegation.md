@@ -199,9 +199,11 @@ supply the contract or authority policy.
 Contract-first decomposition is stated above as demanding, because many real sub-tasks have no cheap
 verifier. [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] identifies the
 class where the contract comes for free: a decision over a **predeclared option set**. The answer is
-checkable against a schema by construction and labellable by a human in bulk, which is why all six
-of his patterns — intent routing, model routing, malicious-intent screening, tool-call gating,
-confidence-based escalation, and UI-action selection — are *choices*, and none of them is open-ended
+checkable against a schema by construction and labellable by a human in bulk. Rastogi names six
+decision points — intent routing, model routing, input screening, tool-call gating, output
+verification, and picking the next UI action — and works five through in detail: intent routing,
+model routing, malicious-intent screening on input *and* output, tool-call gating, and
+confidence-gated escalation. Every one of them is a *choice*, and none of them is open-ended
 work. Delegating a bounded choice to a typed model that **generates no text** is the narrowest
 delegation this page records, and the only one where the stopping criterion is satisfied trivially.
 
@@ -219,8 +221,9 @@ automate only the measured paths. This page's existing material describes how to
 delegation — handoff schema, sole writer, verifier, exit condition — but not how a delegation earns
 the right to run unattended. Shadow-then-label supplies that, and its exclusion is as informative as
 its procedure: Rastogi advises against the pattern for **low-volume, high-consequence decisions**,
-because there is never enough traffic to establish the threshold, which is the same reversibility
-reasoning that governs approval policy in [[Agent Security and Governance]].
+recommending a reasoning model and a person instead. (This page's reading of why: low volume never
+produces the traffic needed to place a threshold.) That is the same reversibility reasoning that
+governs approval policy in [[Agent Security and Governance]].
 
 Two limits should travel with the pattern. The tool-call gating case is deliberately
 **reasoning-blind — it sees the task and the pending action but not tool outputs** — so the delegate
@@ -245,8 +248,8 @@ and reputation, abuse prevention, refunds, and disputes are explicitly out of sc
 refund flow at all**, and while unclaimed session reserve returns by itself, money already claimed does
 not, and refunding a one-off charge means the seller sending funds back to the paying key, with success
 depending on the card network or blockchain provider. Expiry and revocation are therefore the only recall
-mechanisms, and both act forward in time. Stated in this page's terms, the cap bounds how much a delegate inside its zone
-of indifference can lose, not whether the purchase matched intent: a compliant, unchallenging delegate
+mechanisms, and both act forward in time. Stated in this page's terms, the cap bounds how much a delegate
+inside its zone of indifference can lose, not whether the purchase matched intent: a compliant, unchallenging delegate
 spending its budget on the wrong service is exactly the drift this page predicts, now with a settled
 transaction at the end of it.
 

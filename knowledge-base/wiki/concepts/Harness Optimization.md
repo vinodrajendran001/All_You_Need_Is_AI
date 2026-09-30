@@ -239,8 +239,8 @@ effort scored **74.4% decision accuracy at 4.6 cents per ticket**; Opus 5.5 at l
 cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work took Sonnet 5 to **98.9%** at about the
 same cost. On the **14 held-out tickets** — a different split, which is why the original baseline reads
 differently there — the final configuration scored **90.5%** against the original setup's **78.6%**, at
-roughly **one fifth of the cost**. That
-before-and-after is **not a clean measurement of hillclimbing**: it bundles a model change, an effort
+roughly **one fifth of the cost**. That before-and-after is **not a clean measurement of hillclimbing**:
+it bundles a model change, an effort
 change, a prompt change, and a pricing change, since Opus 5.5 is stated to price input and output **20%
 less** than Opus 4.8 and cache reads **60% less**. This is the same attribution discipline the page
 already applies to GitHub's four measured reductions, and here it bites harder — part of the cost win is

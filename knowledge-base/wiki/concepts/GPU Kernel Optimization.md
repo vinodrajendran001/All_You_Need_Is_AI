@@ -157,8 +157,8 @@ never more than two-way), and there is **no sampling, no CUDA Graph capture and 
 decoding** at all.
 
 The numbers need their conditions. Modal reports **over a billion tokens processed per minute per
-H100 and more
-than 10x vLLM on one multi-join query**, but the cross-workload figure from the same post is **1.84x
+H100 and more than 10x vLLM on one multi-join query**, but the cross-workload figure from the same
+post is **1.84x
 faster than vLLM, geometrically averaged** across its released benchmark, and Modal states Quail
 *falls behind* vLLM on an agent-trace benchmark. Inferact's decode comparison is **249 vs 127
 tokens/s at batch 1 without speculation (1.96x)**, narrowing to **1.36x at batch 8**, measured as a

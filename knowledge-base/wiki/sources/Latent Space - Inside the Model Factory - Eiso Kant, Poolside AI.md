@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
 source_title: "Inside the Model Factory - Eiso Kant, Poolside AI"
 source_author: Latent Space
@@ -28,6 +28,10 @@ This interview frames Poolside's advantage as a model factory: reproducible data
 - [[Model Factory]]
 
 ## Citations
+
+- Raw capture: [[2026-07-27 Latent.Space - Inside the Model Factory — Eiso Kant, Poolside AI|Inside the Model Factory — Eiso Kant, Poolside AI]]
+- Canonical URL: https://www.latent.space/p/poolside
+
 ## Raw capture
 
 - [[2026-07-27 Latent.Space - Inside the Model Factory — Eiso Kant, Poolside AI|Inside the Model Factory — Eiso Kant, Poolside AI]]

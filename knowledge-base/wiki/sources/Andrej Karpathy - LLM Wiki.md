@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-05-08
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-05-08-karpathy-llm-wiki
 source_title: LLM Wiki
 source_author: Andrej Karpathy
@@ -49,6 +49,10 @@ This pattern fits the workspace well because the vault already contains AI notes
 - [[Schema-Driven Knowledge Base]]
 
 ## Citations
+
+
+- Raw capture: [[2026-05-08 Andrej Karpathy - LLM Wiki]]
+- Canonical URL: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 
 ## Raw capture
 

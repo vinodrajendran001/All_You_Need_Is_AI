@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-06-02-bytebytego-doordash-testing-system
 source_title: How DoorDash Built a Testing System to Evaluate LLMs
 source_author: ByteByteGo
@@ -53,6 +53,10 @@ This source deepens the vault's evaluation branch by moving from search relevanc
 - [[Multi-Turn Evaluation]]
 
 ## Citations
+
+- Raw capture: [[2026-06-02 ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs|How DoorDash Built a Testing System to Evaluate LLMs]]
+- Canonical URL: https://blog.bytebytego.com/p/how-doordash-built-a-testing-system
+
 ## Raw capture
 
 - [[2026-06-02 ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs|How DoorDash Built a Testing System to Evaluate LLMs]]

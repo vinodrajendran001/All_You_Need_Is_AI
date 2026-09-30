@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-07-22-mitchell-hashimoto-simd
 source_title: "Everyone Should Know SIMD"
 source_author: Mitchell Hashimoto
@@ -29,6 +29,10 @@ This implementation-oriented guide explains CPU vectorization through a practica
 - [[Software Performance Engineering]]
 
 ## Citations
+
+
+- Raw capture: [[2026-07-27 Mitchell Hashimoto - Everyone Should Know SIMD|Everyone Should Know SIMD]]
+- Canonical URL: https://mitchellh.com/writing/everyone-should-know-simd
 
 ## Raw capture
 

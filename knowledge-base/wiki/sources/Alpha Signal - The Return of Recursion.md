@@ -26,7 +26,7 @@ The main example is the **Hierarchical Reasoning Model (HRM)**, which uses a slo
 
 The article frames these systems as specialized reasoning engines rather than general-purpose LLM replacements. HRM and TRM are well-suited to deterministic, latency-sensitive, or data-scarce tasks, while language-heavy work still favors LLMs. It extends the same idea to multi-agent systems through RecursiveMAS, where agents exchange latent representations instead of text tokens. That design reportedly reduces token usage, speeds inference, and improves accuracy. The durable thesis is that latent-space recursion offers a scalable, lower-cost path for reasoning systems, especially when paired with LLMs rather than used in isolation.
 
-## Key Claims
+## Key claims
 
 - Standard autoregressive LLMs have a fixed computation depth per forward pass, which limits performance on tasks that need more reasoning steps than the architecture natively provides.
 - Chain-of-thought improves reasoning by externalizing intermediate steps as tokens, but token-space reasoning is slow and memory-intensive.
@@ -39,24 +39,15 @@ The article frames these systems as specialized reasoning engines rather than ge
 - Recursive models are positioned as complements to LLMs: strong on structured reasoning, weak on open-ended language tasks.
 - RecursiveMAS extends latent-space recursion to multi-agent systems, reporting 2.4× speedup, 75.6% token reduction, and 8.3% average accuracy gains.
 
-## Affected Pages
-
-- [[Latent-Space Reasoning]]
-- [[Recursive Architectures]]
-- [[Alpha Signal]]
-- [[AI Knowledge Base Overview]]
-- [[index|Knowledge Base Index]]
-- [[log|Knowledge Base Log]]
-
-## Raw capture
-
-[[2026-05-18 Alpha Signal - The return of recursion - How AI is rethinking complex reasoning|The return of recursion - How AI is rethinking complex reasoning]]
-
 ## Affected pages
 
 - [[Alpha Signal]]
 - [[Latent-Space Reasoning]]
 - [[Recursive Architectures]]
+
+## Raw capture
+
+[[2026-05-18 Alpha Signal - The return of recursion - How AI is rethinking complex reasoning|The return of recursion - How AI is rethinking complex reasoning]]
 
 ## Related pages
 

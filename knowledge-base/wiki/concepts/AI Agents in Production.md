@@ -46,6 +46,7 @@ source_ids:
   - src-2026-09-13-virinchi-google-cloud-mcp-security
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-27-fd-agent-muse-compute-demand
+  - src-2026-09-28-bytebytego-agents-can-pay
 status: active
 ---
 
@@ -346,6 +347,40 @@ storage, orchestration, redundancy, facilities, cooling, depreciation, and opera
 as a template to instrument, not a result to cite. See [[Multi-Tenant Agent Architecture]] for the
 isolation side of the same estimate and [[Tool Roster Economics]] for the per-turn side.
 
+## Buying at runtime makes settlement a production dependency
+
+The capacity chain above prices the compute an agent consumes. [[ByteByteGo - AI Agents Can Think, Now
+They Can Pay]] covers the other bill — what the agent buys from third parties mid-loop. Machine Payments
+Protocol, launched **18th March 2026** and co-authored by Stripe and Tempo, keeps this on ordinary HTTP:
+an unpaid request returns **402** with a challenge (ID, amount, currency, recipient, payment method,
+validity window), the agent authorizes and retries with a credential, and the server returns the resource
+plus a **receipt**. The receipt matters operationally more than the protocol does — it is a per-request
+cost record for external purchases, which the cost-governance material above has only ever had for
+tokens.
+
+Session mode is where production constraints bite. A single web search may be worth **just a cent** while
+per-transaction fees exceed the payment itself, so the agent reserves funds and signs an **IOU per
+request** — the article's example is **a tenth of a cent** — verified in **the few milliseconds a
+signature check takes** and settled in one batched transaction. That is the amortization pattern this
+page already records for batching and caching, applied to trust, and it adds two runtime dependencies an
+agent loop did not previously have: a funded reserve, without which the loop stalls, and a settlement
+path whose failure is invisible at request time because every individual request already succeeded.
+
+The failure taxonomy is usable directly. A failed verification returns **another 402, not a 401**, with a
+fresh challenge and a structured reason — `payment-insufficient`, `payment-expired`,
+`verification-failed`, `invalid-challenge` — which lets the loop separate "top up and retry" from "not
+permitted", the retriable-versus-terminal distinction that [[LLM Application Resilience]] treats as the
+core error question. Two invariants belong in the runbook beside it: **unpaid requests must not cause
+side effects**, so a payment failure is safe to retry, and **payment proofs are single-use**.
+
+What it does not give a production owner is recourse. Payment proves **control of a key, not customer
+identity**; reputation, abuse prevention, refunds, and disputes are explicitly out of scope; and there is
+**no defined refund flow for one-off charges**. A spending cap therefore delivers a bounded loss, not a
+correct purchase, and an operator who wants dispute handling has to build it outside the protocol. The
+piece is a secondary explainer rather than a production measurement, and the Cloudflare figure it cites —
+roughly **57.5% of HTTP requests to web content** — covers **all automated systems, not AI agents
+specifically**. See [[Agent Payment Protocols]].
+
 ## Related pages
 
 - [[Grok Bot Systems Engineering Working Note]]
@@ -416,3 +451,5 @@ isolation side of the same estimate and [[Tool Roster Economics]] for the per-tu
 - [[Test-Time Scaling]]
 - [[Meta]]
 - [[DeepSeek]]
+- [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
+- [[Agent Payment Protocols]]

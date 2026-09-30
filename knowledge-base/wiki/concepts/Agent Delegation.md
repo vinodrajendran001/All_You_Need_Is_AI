@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
   - src-2026-09-13-nevsky-gemini-multi-agent-system
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-28-bytebytego-agents-can-pay
 status: active
 ---
 
@@ -229,8 +230,39 @@ necessary behind it. And the source offers **no benchmark and no controlled comp
 and cost figures restate vendor claims that do not reconcile with the other ranges the vault records
 for the same product. See [[Typed Probabilistic Decision Models]].
 
+## A signing key is delegated authority with no principal behind it
+
+[[ByteByteGo - AI Agents Can Think, Now They Can Pay]] supplies a delegation primitive this page has not
+recorded: authority bounded by *resource* rather than by task. A delegated signing key under Machine
+Payments Protocol carries a **spending cap per period, an expiry, permitted recipients, a scope, one key
+per deployment, and individual revocation**. Those attributes are fixed at issuance, which makes the key
+the monetary form of the rule recorded above from Iusztin — **the child's authority is static
+configuration, not a caller argument** — and, unlike a harness permission, it is enforced by whoever
+accepts the payment rather than by the parent that issued it.
+
+What the key does not carry is a principal. Payment proves **control of a key, not customer identity**,
+and reputation, abuse prevention, refunds, and disputes are explicitly out of scope, with **no defined
+refund flow for one-off charges**. Expiry and revocation are therefore the only recall mechanisms, and
+both act forward in time. Stated in this page's terms, the cap bounds how much a delegate inside its zone
+of indifference can lose, not whether the purchase matched intent: a compliant, unchallenging delegate
+spending its budget on the wrong service is exactly the drift this page predicts, now with a settled
+transaction at the end of it.
+
+The economics force a pattern worth generalizing past payment. A web search worth **a cent** can cost
+more than that in per-transaction fees, so in session mode the agent reserves funds and signs an **IOU
+per request** — the article's example is **a tenth of a cent** — which the server verifies in **the few
+milliseconds a signature check takes**, with accumulated IOUs settled in one transaction. Verification
+runs per handoff while reconciliation runs periodically, which is the affordable shape for contract-first
+delegation generally: a cheap check at every boundary, accounting in batches. The figures come from a
+secondary explainer and are conditional on the payment rail and the implementation, not measured. See
+[[Agent Payment Protocols]].
+
 ## Open questions
 
+- One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
+  rather than multiply. Who mints the narrower key at each hop, and who audits the arithmetic?
+- A permitted-recipient list bounds who a delegate may pay. What supplies that list when services are
+  discovered at runtime, and does the discovery step then inherit the spending authority?
 - Does a confidence threshold count as **dynamic cognitive friction**, or does it only intercept
   uncertainty while leaving confidently-wrong compliance exactly as unchecked as before?
 - Shadow-then-label measures one decision point. How does the procedure compose along a chain where

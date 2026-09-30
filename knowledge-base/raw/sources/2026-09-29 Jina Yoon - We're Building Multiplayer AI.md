@@ -1,13 +1,22 @@
 ---
+type: raw-source
+source_id: src-2026-09-29-yoon-multiplayer-ai
 title: "We're building multiplayer AI. Here's what we've learned so far"
-source: "https://newsletter.posthog.com/p/were-building-multiplayer-ai-heres?utm_source=tldrnewsletter"
-author:
-  - "[[Jina Yoon]]"
+author: Jina Yoon
+url: https://newsletter.posthog.com/p/were-building-multiplayer-ai-heres
 published: 2026-09-29
+captured: 2026-09-30
 created: 2026-09-30
-description: "Non-obvious lessons for multi-human agent systems"
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - context-engineering
+  - memory
+  - multi-agent
+  - production
+  - coding-agents
+status: active
 ---
 [
 

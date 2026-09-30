@@ -1,12 +1,22 @@
 ---
+type: raw-source
+source_id: src-2026-09-24-modal-quail-billion-tokens-per-minute
 title: "Hitting a billion tokens per minute on one GPU by combining a query planner and an inference engine"
-source: "https://modal.com/blog/quail-billion-tpm?utm_source=tldrai"
-author:
+author: Modal
+url: https://modal.com/blog/quail-billion-tpm
 published: 2026-09-24
+captured: 2026-09-29
 created: 2026-09-29
-description: "Maximizing perf on AI-SQL queries with the KV-optimal left-deep join"
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - serving
+  - inference
+  - kv-cache
+  - kernels
+  - performance-engineering
+  - benchmarks
+status: active
 ---
 Runtime is almost here: join TypeSafe AI, Cognition, DoorDash and more in SF. Limited seats left. [Register now](https://modal.com/runtime?utm_source=announcement_bar)
 

@@ -1,13 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-27-fd-agent-muse-compute-demand
 title: "Agent (Muse) Compute Demand"
-source: "https://robonomics.substack.com/p/agent-muse-compute-demand?utm_source=tldrai"
-author:
-  - "[[FD]]"
+author: FD
+url: https://robonomics.substack.com/p/agent-muse-compute-demand
 published: 2026-09-27
+captured: 2026-09-29
 created: 2026-09-29
-description: "An attempt to estimate the infrastructure required to serve 100M DAU"
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - cost
+  - inference
+  - hardware
+  - production
+status: active
 ---
 There are obviously a lot of moving assumptions: how long agents stay active, how aggressively CPUs and memory can be oversubscribed, how many model calls an agent generates, and how efficiently those models are served.
 

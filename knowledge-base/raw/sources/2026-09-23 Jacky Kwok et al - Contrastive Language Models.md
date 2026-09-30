@@ -1,12 +1,22 @@
 ---
-title: "Contrastive Language Models"
-source: "https://contrastive-lm.notion.site/"
-author:
-published:
+type: raw-source
+source_id: src-2026-09-23-kwok-contrastive-language-models
+title: "Contrastive Language Models: A System One Model for Fast and Generalizable Decision-Making"
+author: Jacky Kwok, Hangoo Kang, Tarun Suresh, Jon Saad-Falcon, Marco Pavone, Christopher Ré, Azalia Mirhoseini
+url: https://contrastive-lm.notion.site/
+published: 2026-09-23
+captured: 2026-09-28
 created: 2026-09-28
-description: "LLM-as-a-Verifier: A General-Purpose Verification Framework"
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - decision-models
+  - embeddings
+  - inference
+  - training
+  - benchmarks
+  - paper
+status: active
 ---
 ![Page icon](https://contrastive-lm.notion.site/image/attachment%3Af7afed14-3798-4c83-9d93-883a6d93a05e%3A3de31e69-04cd-46f6-ac9f-d448fc2ae48c.png?id=3e466c3c-12a8-801f-9279-f8c0ba3c98f3&table=block&spaceId=59b4b732-2399-4ed0-b86b-b5dd420bb513&width=250&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
 

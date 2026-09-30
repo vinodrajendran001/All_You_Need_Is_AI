@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-08-24-bytebytego-ollama-vllm-sglang
 source_title: Ollama vs vLLM vs SGLang
 source_author: ByteByteGo
@@ -41,6 +41,10 @@ The comparison provides [[LLM Inference]] with a workload-oriented taxonomy and 
 - [[LLM Inference]]
 
 ## Citations
+
+
+- Raw capture: [[2026-08-24 ByteByteGo - Ollama vs vLLM vs SGLang]]
+- Canonical URL: https://blog.bytebytego.com/p/ollama-vs-vllm-vs-sglang
 
 ## Raw capture
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-03
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-06-03-nvidia-locateanything
 source_title: LocateAnything
 source_author: NVIDIA Research
@@ -51,6 +51,10 @@ This source opens a new multimodal branch in the vault around **vision-language 
 - [[Vision-Language Grounding]]
 
 ## Citations
+
+- Raw capture: [[2026-06-03 NVIDIA Research - LocateAnything|LocateAnything]]
+- Canonical URL: https://research.nvidia.com/labs/lpr/locate-anything/
+
 ## Raw capture
 
 - [[2026-06-03 NVIDIA Research - LocateAnything|LocateAnything]]

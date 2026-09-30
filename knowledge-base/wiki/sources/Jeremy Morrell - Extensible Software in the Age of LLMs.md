@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-08-20-jeremy-morrell-extensible-software
 source_title: Extensible Software in the Age of LLMs
 source_author: Jeremy Morrell
@@ -41,6 +41,10 @@ The proposal defines [[LLM-Native Extensible Software]] as a distinct architectu
 - [[LLM-Native Extensible Software]]
 
 ## Citations
+
+
+- Raw capture: [[2026-08-20 Jeremy Morrell - Extensible Software in the Age of LLMs]]
+- Canonical URL: https://www.jeremymorrell.dev/blog/extensible-software
 
 ## Raw capture
 

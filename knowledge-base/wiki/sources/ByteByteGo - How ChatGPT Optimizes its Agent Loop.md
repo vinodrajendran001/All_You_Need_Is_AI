@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
 source_title: "How ChatGPT Optimizes its Agent Loop: Harness, API, and Inference"
 source_author: ByteByteGo
@@ -29,6 +29,10 @@ The article decomposes agent efficiency into harness, API, and inference layers.
 - [[KV Cache]]
 
 ## Citations
+
+- Raw capture: [[2026-07-30 ByteByteGo - How ChatGPT Optimizes its Agent Loop Harness, API, and Inference|How ChatGPT Optimizes its Agent Loop Harness, API, and Inference]]
+- Canonical URL: https://blog.bytebytego.com/p/how-chatgpt-optimizes-its-agent-loop
+
 ## Raw capture
 
 - [[2026-07-30 ByteByteGo - How ChatGPT Optimizes its Agent Loop Harness, API, and Inference|How ChatGPT Optimizes its Agent Loop Harness, API, and Inference]]

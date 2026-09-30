@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-08-26
+updated: 2026-09-30
 source_id: src-2026-05-29-braintrust-multi-turn-scoring
 source_title: How to evaluate multi-turn conversations
 source_author: Braintrust Team
@@ -52,6 +52,10 @@ This source gives the vault a concrete implementation pattern for conversation-l
 - [[Multi-Turn Evaluation]]
 
 ## Citations
+
+- Raw capture: [[2026-05-29 Braintrust Team - How to evaluate multi-turn conversations - Blog|How to evaluate multi-turn conversations - Blog]]
+- Canonical URL: https://www.braintrust.dev/blog/multi-turn-scoring
+
 ## Raw capture
 
 - [[2026-05-29 Braintrust Team - How to evaluate multi-turn conversations - Blog|How to evaluate multi-turn conversations - Blog]]

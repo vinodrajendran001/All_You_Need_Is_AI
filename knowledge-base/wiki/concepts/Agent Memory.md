@@ -201,11 +201,11 @@ Without a stated population, its early data says users **overwhelmingly preferre
 privately** despite the team expecting shared-Space defaults, and collaboration happened more in
 GitHub than in the product; the **~200 employees** figure the post gives is scoped to three recurring
 Space-**setup** patterns, not to these findings, and the 64/14 counts above are **user** counts that
-are not a fraction of it. A memory layer whose inputs are shared work
-objects, serving users who default to private work, has a key-design problem before it has a retrieval
-problem. And the layer reports **no measured hallucination reduction, token savings, latency change,
-or task-quality lift** after **a few weeks** of dogfooding, so it belongs on this page as a design
-with an argument, not as evidence that derived memory works.
+are not a fraction of it. A memory layer whose inputs are shared work objects, serving users who
+default to private work, has a key-design problem before it has a retrieval problem. And the layer
+reports **no measured hallucination reduction, token savings, latency change, or task-quality lift**
+after **a few weeks** of dogfooding, so it belongs on this page as a design with an argument, not as
+evidence that derived memory works.
 
 ## Open questions
 

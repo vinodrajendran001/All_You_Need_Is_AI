@@ -129,8 +129,8 @@ favourable. PostHog calls **governance and permissions one of its biggest blind 
 interviewing users to learn more, observes that users **overwhelmingly preferred starting tasks
 privately** despite an expectation of shared defaults, and warns that its findings may depend on a
 low-hierarchy culture without strict role-based access control. Automatically derived institutional
-memory inherits whatever access boundaries its source
-work objects carry, which the curated method resolves by putting a human at the gate. That is a real
+memory inherits whatever access boundaries its source work objects carry, which the curated method
+resolves by putting a human at the gate. That is a real
 cost of removing the writer, not an implementation detail.
 
 ## Open questions

@@ -30,8 +30,11 @@ specialized to one model, one topology, and small-batch decode.
   against GB200's **~111 MiB of SRAM, split 152 ways** (**256 KB Tensor Memory** and **228 KB shared
   memory per SM** across **152 SMs**, **~38 MiB** Tensor Memory per GPU).
 - Headline hardware figures: TPU v7 at **2.31 PFLOPS BF16 / 4.61 PFLOPS FP8 / 206 GB HBM /
-  7,380 GB/s HBM / 1,200 GB/s ICI** versus GB200 at **2.5 PFLOPS BF16 / 5 PFLOPS FP8 / 186 GB HBM /
-  8,000 GB/s HBM / 1,800 GB/s NVLink 5**. TPU is behind on both peak FLOPS and HBM bandwidth.
+  7,380 GB/s HBM / 1,200 GB/s ICI** versus GB200, **per GPU**, at **2.5 PFLOPS BF16 / 5 PFLOPS FP8 /
+  186 GB HBM / 8,000 GB/s HBM / 1,800 GB/s NVLink 5**. TPU is behind on both peak FLOPS and HBM
+  bandwidth. Inferact's table column is labelled per GPU, and its baseline is **16 GB200 GPUs, not
+  16 superchips** — a GB200 superchip pairs two Blackwell GPUs with a Grace CPU, so the unqualified
+  figures halve the named part.
 - Kimi K3 has **92 MoE layers**; the kernel uses **16 TPU v7 chips / 32 TensorCores** in a **2x2x4**
   topology, attention split across **32 ranks**, routed experts at **TP4 x EP8**.
 - Without speculation, TPU versus GB200 tokens/s: batch 1 **249 vs 127 (1.96x)**, batch 2
@@ -64,7 +67,11 @@ cost-per-token figure, and no full methodology. The headline "over 700 tokens/s"
 decoding at a favorable acceptance length, not ordinary decode. The "nearly 2x" claim is the
 batch-one no-speculation case only. The accuracy numbers are sanity checks against numerical
 regression, not evidence of parity across broad evaluation. The collectives are topology-specific, so
-other chip arrangements need new code.
+any other chip *topology* — including a different arrangement of the same 16 chips — needs new
+collectives.
+
+- The lede's "roughly 1.4 to 2×" range is contradicted by the post's own chart, which reports 1.38× at
+  batch 4 and 1.36× at batch 8. This page uses the chart figures.
 
 ## Raw capture
 

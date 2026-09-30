@@ -31,4 +31,14 @@ status: active
 
 ## Related pages
 
+## Raw capture
+
+<!-- Wikilink to the immutable capture in `knowledge-base/raw/sources/`. Required: every source page must
+     point back to its raw capture. Older pages may carry this link as a `- Raw capture:` bullet under
+     `## Citations` instead; both satisfy the rule, but new pages should use this section. -->
+
 ## Citations
+
+<!-- `- Raw capture: [[...]]` and `- Canonical URL: <url>`. When no citable permalink exists (newsletter
+     tracking redirects, expiring CDN links, unattributed notes), say so explicitly rather than leaving
+     `source_url` silently empty. -->

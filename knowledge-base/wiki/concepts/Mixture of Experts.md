@@ -76,7 +76,8 @@ reading them together complicates the total-versus-active framing above.
 K3's 92 MoE layers** onto **16 TPU v7 chips / 32 TensorCores in a 2x2x4 topology**, with attention
 split across **32 ranks** and routed experts at **TP4 x EP8**, all inside one megakernel. This is the
 page's all-to-all claim in its most literal form: the collectives are written against that specific
-chip arrangement, so a different device count needs new code. The reported decode advantage over a
+chip arrangement, so any other chip *topology* — including a different arrangement of the same 16
+chips — needs new collectives. The reported decode advantage over a
 published vLLM GB200 recipe is **249 vs 127 tokens/s at batch 1 without speculation (1.96x)**,
 shrinking monotonically to **865 vs 636 (1.36x) at batch 8** — vendor-reported, and consistent with
 this page's claim that sparsity converts a compute problem into a communication problem, since
@@ -94,12 +95,14 @@ means "how much MoE can go" is not answerable one layer at a time.
 That sits awkwardly beside this page's usual account, and the tension is worth keeping rather than
 smoothing. The total-versus-active split treats the expert layers as where capacity is stored and
 routing as the mechanism that rations it per token. If whole MoE layers can be removed without
-retraining at no measured cost on two benchmarks, then part of that capacity is redundant at the
-*layer* level, not merely unused per token — a different kind of slack than sparse routing is
+retraining and still beat a block-influence baseline on two benchmarks — the blog publishes no
+unpruned scores, so the absolute cost is unknown — then part of that capacity *may* be redundant at
+the *layer* level, not merely unused per token — a different kind of slack than sparse routing is
 designed to exploit.
 
 Both readings need their caveats. Inferact's numbers are batch-1-to-8 decode on one model, one
-topology, against an asymmetric baseline. Tiene et al. is a company blog summarizing the authors' own
+topology, against an asymmetric baseline. Tiene et al. is a Multiverse Computing blog summarizing the
+authors' own
 paper, with ablations, solver comparisons and complete tables deferred; "removes 2-3 MoE layers"
 describes what the optimizer selected on one hybrid model, not a general redundancy rate for MoE.
 
@@ -108,7 +111,7 @@ describes what the optimizer selected on one hybrid model, not a general redunda
 - When does the routing overhead outweigh the compute saved by sparsity?
 - Which applications benefit most from MoE: long-context assistants, agentic tool use, multilingual models, or something else?
 - How much of future sparse-model progress will depend on better runtimes rather than better expert architectures?
-- If whole MoE layers can be removed without retraining, where does the redundancy live — in the experts, in the router, or in the residual stream that routes around them?
+- If whole MoE layers can be removed without retraining at a cost the source does not quantify, where does the redundancy live — in the experts, in the router, or in the residual stream that routes around them?
 - Does deleting MoE layers improve the all-to-all picture by removing dispatch rounds, or only shrink stored weights while leaving the per-token communication pattern intact?
 - Expert-parallel layouts are written against a fixed topology (Inferact's TP4 x EP8 on 2x2x4). Is there a portable way to express MoE collectives, or is per-deployment kernel work the standing cost of sparsity?
 

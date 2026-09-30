@@ -803,7 +803,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[FD - Agent Muse Compute Demand]] - Scenario estimate where the agent sandbox is a tenth of the bill and inference is the rest.
 - [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] - The identity behind REINFORCE, baselines, and GRPO's group-centered advantage.
 - [[ByteByteGo - AI Agents Can Think, Now They Can Pay]] - HTTP 402 as negotiation, and IOUs that make per-request verification affordable.
-- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] - Megakernels on software-managed TPU VMEM, winning small-batch decode despite lower peak specs.
+- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] - Megakernels on software-managed TPU VMEM, winning small-batch decode against a published vLLM recipe on per-GPU GB200 specs.
 - [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] - Held-out splits, revert rules, a noise floor, and a saturation ceiling for evaluations.
 - [[ByteByteGo - Why Do LLMs Lie]] - Factuality versus faithfulness, and scoring abstention separately from refusal.
 - [[Jina Yoon - We're Building Multiplayer AI]] - 64 users started a shared context file and 14 edited it; derive context from shipped work instead.

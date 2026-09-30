@@ -249,7 +249,8 @@ proxy rather than a predictor: on **Llama-3.1-8B-Instruct at 16 of 32 blocks rem
 excited state** is the first configuration to propose removing a block near the beginning of the
 network, and **after light retraining** it outperforms the ground state across several benchmarks —
 a **different condition** from the without-retraining Llama-3.3 table, and the two must not be
-conflated. Second, this is a company blog summarizing the authors' own paper, with the derivation,
+conflated. Second, this is a Multiverse Computing blog summarizing the authors' own paper, with the
+derivation,
 ablations, solver comparisons, calibration sensitivity and complete tables deferred. The claim that
 depth pruning **composes with quantization, low-rank/SVD compression, width pruning and
 distillation-based healing** is asserted rather than measured here. It also sits unresolved against

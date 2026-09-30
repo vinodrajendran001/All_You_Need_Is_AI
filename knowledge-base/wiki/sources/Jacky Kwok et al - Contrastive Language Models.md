@@ -4,7 +4,7 @@ created: 2026-09-30
 updated: 2026-09-30
 source_id: src-2026-09-23-kwok-contrastive-language-models
 source_title: "Contrastive Language Models: A System One Model for Fast and Generalizable Decision-Making"
-source_author: Jacky Kwok, Hangoo Kang, Tarun Suresh, Jon Saad-Falcon, Marco Pavone, Christopher Re, Azalia Mirhoseini
+source_author: Jacky Kwok, Hangoo Kang, Tarun Suresh, Jon Saad-Falcon, Marco Pavone, Christopher Ré, Azalia Mirhoseini
 source_url: https://contrastive-lm.notion.site/
 tags: [source/summary, decision-models, embeddings, inference, training, benchmarks]
 source_ids: [src-2026-09-23-kwok-contrastive-language-models]
@@ -39,9 +39,11 @@ than the vendor whose product it benchmarks against.
   negatives from scratch peak at **62.4%** before overfitting - evaluated on **~100K held-out
   questions**, each with one gold answer and **10 hard negatives**.
 - Replay mixing of **40%** Nemotron DQA with **60%** agentic trajectories costs almost nothing on
-  hard-negative top-1 (**69% to 68.5%**), whereas agentic-only training collapses it to **56.2%**.
-- Reward-model results: **81.6% on DeepSWE** and **87.6% on Terminal-Bench 2.1**, on **38** and **30**
-  held-out tasks respectively, with latency measured on an **H100 GPU**.
+  hard-negative top-1 (**69% to 68.5%**), whereas training on agentic data alone **for the same
+  number of agentic steps** collapses it to **56.2%**.
+- Reward-model results: **81.6% on DeepSWE** and **87.6% on Terminal-Bench 2.1**, selecting from
+  candidate solutions sampled with **Opus 5** and **Fable 5** respectively, over **38** and **30**
+  held-out tasks, latency on an **H100 GPU**.
 - Scaling: `L(X) ~ (X_c/X)^alpha_X` over compute, dataset size, projection-head size, and encoder
   size, with encoder size reported as producing the strongest gains; optimal head size scales as
   `N* ~ D^1.02`, about **310 tokens per parameter**.
@@ -58,9 +60,10 @@ structural move the vault records in retrieval and in cached prefixes, applied t
 ## Tensions and caveats
 
 Every figure is first-party and self-reported; "SOTA" is the authors' own characterization, the venue
-is a Notion page rather than a peer-reviewed paper, and the frontmatter of the capture carries no
-author at all - the author list is recovered from the body and its BibTeX entry. The speed claims are
-condition-dependent and must not be merged: the page states **up to 9x lower latency** overall,
+is a Notion page rather than a peer-reviewed paper, and the capture arrived with no author in its
+frontmatter - the seven-author list was recovered from the body and its BibTeX entry at ingest. The
+speed claims are condition-dependent and must not be merged: the page states **up to 9x lower
+latency** overall,
 **4-6x faster inference than Jev** in the benchmark section, and **13x** at roughly 1k candidates.
 The DeepSWE and Terminal-Bench percentages rest on **38** and **30** tasks. The method presumes a
 defined candidate action set and is not open-ended generation. Synthetic hard negatives inherit

@@ -232,7 +232,7 @@ The cache also moves upstream into planning. Quail's plan search is **KV-aware**
 chosen with Pareto pruning over token count, attention pairs and **cached tokens**, so cache reuse is
 an objective of query planning rather than a consequence of arrival order. On the write side the
 workload removes work outright — **suffix KV is never written to cache**, because the workload is
-prefill-only with zero decode and no joins beyond (N>2)-way joins — and attention for shared join
+prefill-only with zero decode and joins are never more than two-way — and attention for shared join
 anchors uses a recursive combination-of-partials kernel. Modal also notes that because this workload
 tolerates latency, a **multi-tier KV cache becomes practical**, a design the latency-sensitive
 serving on the rest of this page cannot afford.
@@ -245,7 +245,8 @@ reuse and radix indexing for prefix sharing remain future work** in Quail, and M
 **falling behind vLLM on an agent-trace benchmark**, which is exactly the traffic the byte-identical-
 prefix advice was written for.
 
-The performance figures carry the usual conditions. **Over a billion tokens per minute per H100** and
+The performance figures carry the usual conditions. **Over a billion tokens processed per minute per
+H100** and
 **more than 10x vLLM** describe **one multi-join query**; the cross-workload figure from the same
 release is **1.84x, geometrically averaged**. All of it is vendor-reported, on a workload Modal itself
 calls unusually favourable — known structure, shared prefixes, no decode, structured outputs with an

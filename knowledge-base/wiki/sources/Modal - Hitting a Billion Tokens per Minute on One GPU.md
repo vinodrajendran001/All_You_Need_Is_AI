@@ -34,13 +34,13 @@ geometric-mean advantage over vLLM across its released benchmark.
   queries were deliberately designed to expose future weaknesses.
 - Planner mechanisms: predicate pushdown, selectivity-based filter ordering, dynamic-programming join
   ordering, KV-aware plan search, and Pareto pruning over token count, attention pairs, and cached
-  tokens, costed by a roofline speed-of-light model with `min_latency = 0`.
+  tokens, costed by a roofline speed-of-light model.
 - Because Boolean filters need only one output token, Quail implements **no separate prefill/decode
   phases, no prefill-decode disaggregation, no sampling, no CUDA Graph capture, and no speculative
   decoding**.
 - The output vocabulary is reduced to **8 options** for truthy/falsy filtering, shrinking the final
   unembedding from vocabulary-size x latent-size to **8 x latent-size**. Suffix KV is never written to
-  cache because there is zero decode and no joins beyond **(N>2)-way joins**.
+  cache because there is zero decode and joins are never more than two-way.
 - Kernels: fused add-RMSNorm with FP8 quantization, fused per-head query/key RMSNorm with rotary
   embeddings, and recursive combination-of-partials attention for shared join anchors, on DeepGEMM
   and FlashAttention 3. Stack is `sqlglot`, a custom planner, a vLLM-derived forward pass, PyArrow

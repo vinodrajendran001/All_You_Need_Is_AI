@@ -48,8 +48,9 @@ new empirical work.
 
 The vault carries a lot of applied RL evidence - reward hacking, group-relative baselines, credit
 assignment over long horizons - largely as practice. This source supplies the identity those practices
-rest on, and in doing so explains two recurring behaviors precisely: why binary-reward RL degenerates
-toward supervised fine-tuning on successes, and why homogeneous rollout groups silently waste compute.
+rest on, and in doing so explains two structural consequences precisely: why a binary verifier reward
+yields a gradient supported only on the correct completions, and why homogeneous rollout groups
+contribute no gradient.
 
 ## Tensions and caveats
 

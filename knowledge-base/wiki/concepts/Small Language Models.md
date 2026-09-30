@@ -234,7 +234,8 @@ a coherent trajectory across 64 or 128 turns — not answering. MMLU is a knowle
 multiple-choice benchmark and measures neither. A 76.9 at half depth is therefore not evidence that a
 depth-pruned 70B can be used where an 8B agent is used today.
 
-Two further caveats travel with the source. It is a company blog summarizing the authors' own paper,
+Two further caveats travel with the source. It is a Multiverse Computing blog summarizing the
+authors' own paper,
 with ablations and full tables deferred. And the authors' own objective is a proxy rather than a
 predictor: on **Llama-3.1-8B-Instruct at 16 of 32 blocks removed**, the **17th excited state** beats
 the lowest-energy configuration across several benchmarks — but **after light retraining**, a

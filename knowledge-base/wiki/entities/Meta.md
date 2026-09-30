@@ -58,9 +58,10 @@ described in [[Schema-Driven Knowledge Base]], [[Persistent Wiki]], [[Index and 
 Meta enters this vault a second time through an outside analysis of its **Muse** agent, and the
 provenance shift is the first thing to record: [[FD - Agent Muse Compute Demand]] is a **bottom-up
 scenario estimate built on assumptions**, not a measurement of Meta's infrastructure. Its **100M DAU**
-premise is hypothetical and the post does not establish Meta's actual deployment scale. What it treats
-as *observed* is narrow - the sandbox exposes **2 vCPUs, ~8 GB of RAM, and ~100 GB of persistent
-logical storage** per user, and **one** observed instance used about **~3 GB**.
+premise is hypothetical and the post does not establish Meta's actual deployment scale. What the post
+cites as *observed* is narrow, and is a **third-party write-up of the VM configuration, not a Meta
+specification** - **2 vCPUs, ~8 GB of RAM, and ~100 GB of persistent logical storage** per user, with
+**one** observed instance using about **~3 GB**.
 
 Everything else is a chain of ratios. 100M DAU x **two active hours per day** / 24 = **~8M average
 simultaneous VMs**, x **2.5** peak-to-average = **~20M peak**, plus **~20% headroom** = **~25M

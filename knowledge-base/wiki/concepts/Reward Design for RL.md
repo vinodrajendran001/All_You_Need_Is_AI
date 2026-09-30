@@ -267,8 +267,10 @@ why the elaborate reward was reached for and why it failed.
 [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] states a consequence of binary rewards
 that this page's catalogue of reward shapes does not. Under a verifier returning `R = 1` for correct and
 `R = 0` for incorrect, every incorrect completion multiplies its gradient term by zero and drops out of
-the update entirely. What survives is an average of `grad log p_theta(y_i)` over the correct completions
-only — in Romero's phrasing, "literally SFT on the correct completions." Failures are never directly
+the update entirely. What survives is the sum of `grad log p_theta(y_i)` over the correct completions,
+still divided by the full rollout count — so the update is the correct-completion log-likelihood
+gradient scaled by the pass rate. In Romero's phrasing, this is "literally SFT on the correct
+completions." Failures are never directly
 pushed down; they are simply absent. This is a claim about the gradient at binary reward and not a claim
 that RL and supervised fine-tuning share training dynamics, and the piece is a pedagogical derivation
 rather than an empirical result.

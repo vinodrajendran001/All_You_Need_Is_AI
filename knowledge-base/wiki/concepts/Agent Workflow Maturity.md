@@ -138,11 +138,10 @@ shared.
 
 The upper rung fares worse. PostHog calls **governance and permissions one of its biggest blind spots**
 and says it is interviewing users to learn more, which is precisely this page's level 5 (evidence,
-limits, recovery). So the one system here with real
-telemetry has not built the rung the ladder treats as the destination, and its findings may depend on
-PostHog's low-hierarchy culture - an organisation with strict role-based access control may find the
-private-by-default preference reversed or irrelevant. Nothing reported measures whether any of this
-improved delivery.
+limits, recovery). So the one system here with real telemetry has not built the rung the ladder treats
+as the destination, and its findings may depend on PostHog's low-hierarchy culture - an organisation
+with strict role-based access control may find the private-by-default preference reversed or
+irrelevant. Nothing reported measures whether any of this improved delivery.
 
 ## Open questions
 

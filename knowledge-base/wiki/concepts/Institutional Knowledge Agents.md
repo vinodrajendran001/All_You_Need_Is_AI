@@ -117,8 +117,9 @@ loop is deliberately expensive and human-gated - adversarial review of diffs wit
 blind targeted replay, expert sign-off, a deterministic linter over a declared dependency graph - and
 this page already asks what that costs as the file count grows past 200. PostHog's loop removes the
 human writer entirely and pays in evidence: it reports **no measured hallucination reduction, token
-savings, latency change, or task-quality lift**, and the layer had been dogfooded for only **a few
-weeks** across roughly **~200 employees**. The vault therefore now holds one curated-and-reviewed
+savings, latency change, or task-quality lift**, and the context layer had been dogfooded for only
+**a few weeks** at publication, inside an organisation of roughly **~200 employees** trying the
+product. The vault therefore now holds one curated-and-reviewed
 institutional memory with qualitative results and one derived-and-unreviewed institutional memory with
 no results. Neither is validated.
 

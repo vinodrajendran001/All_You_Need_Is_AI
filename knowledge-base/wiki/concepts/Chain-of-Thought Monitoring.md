@@ -136,6 +136,42 @@ which makes it harder to address, not easier.
 The mechanism that *would* displace visible reasoning is a capacity effect rather than a looping one, and
 it is task-dependent and not yet stable: see [[Latent-Space Reasoning]].
 
+## An explanation is not a description of the computation that produced it
+
+This page's faithfulness caution has so far come from safety research.
+[[ByteByteGo - Why Do LLMs Lie]] states it from application engineering, and arrives with a mechanism:
+next-token generation optimizes for likely continuations, and a likely continuation is not a verified
+claim. Its conclusion is exact — **chain-of-thought aids inspection but is not proof**, because an
+explanation can contain false premises or fail to describe the causal process that produced the answer.
+A trace is generated text and is subject to the same three failure modes as any other output: factual
+error, unfaithfulness to the evidence at hand, and outright fabrication.
+
+The confidence-language point lands directly on monitor design. "Certainly" and "definitely" are
+**generated language, not evidence**, and an unvalidated "95% confidence" means nothing without
+calibration. A classifier reading a trace for hedging, stated certainty, or expressed confidence is
+reading a stylistic feature, not a report of the model's internal state. That is a narrower and more
+immediate version of this page's open question about monitor-aware reasoning: before anyone trains
+against a monitor, traces already contain confidence claims nobody has calibrated, and a monitor that
+weights them is already reading an uncalibrated signal.
+
+The remedy proposed is not a better reader of the trace but a **separate verification stage operating on
+the output**: decompose the answer into individual claims, check each against the applicable evidence,
+and validate citations for existence, applicability, and support. Read from this page's angle, that
+separates two instruments often collapsed together — trace inspection reads stated intent, claim
+verification tests stated conclusions against evidence — and it qualifies the reading already recorded
+here that CHIVE's transcript-only baseline showed the transcript to be the more informative signal. More
+informative than activation reading is not the same as sufficient.
+
+The tension should be preserved rather than settled.
+[[OpenAI - The Hugging Face Incident and the Road Ahead]] shows reasoning text legible enough to classify
+by severity, naming intentions plainly and supporting a retrospective detection that would have paged a
+human more than a day early; ByteByteGo says an explanation may not describe the causal process. Both can
+hold at once, because detecting **stated intent** is a different task from validating **stated
+reasoning**, and the incident evidence speaks only to the first. The caveats are substantial: this is a
+secondary explainer with sponsored sections, its subject is application-level hallucination rather than
+safety monitoring, it reports no rates or controlled comparisons, and it concedes that a verifier is
+itself a model and can be wrong.
+
 ## Open questions
 
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?

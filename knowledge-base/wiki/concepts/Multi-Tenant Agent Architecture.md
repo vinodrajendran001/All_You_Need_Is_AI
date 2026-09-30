@@ -85,8 +85,8 @@ agents, and work objects in one container, and artifacts act as portable session
 session's artifact becomes the next session's context. Across roughly **~200 employees** dogfooding,
 coding was mostly solo, collaboration happened more in GitHub than in the PostHog UI, and users
 **overwhelmingly preferred starting tasks privately** despite the team expecting shared-Space
-defaults. "Mostly solo" and "overwhelmingly" are unquantified, the dogfooding ran only a few weeks,
-and the findings may depend on PostHog's low-hierarchy culture.
+defaults. "Mostly solo" and "overwhelmingly" are unquantified, the context layer had been dogfooded
+for only a few weeks at publication, and the findings may depend on PostHog's low-hierarchy culture.
 
 That complicates this page's framing rather than extending it. The tenant boundary here has been drawn
 between customers; the boundary users reached for was per-person, *inside* a tenant, which multiplies

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - reinforcement-learning
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-06-22-cameron-wolfe-agentic-rl-frameworks
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-09-27-romero-policy-gradient-llms
 status: active
 ---
 
@@ -61,11 +62,47 @@ by defining progress over a monotone set-valued state space and then applying **
 successful trajectory earns full credit regardless of strategy. See
 [[Long-Horizon Credit Assignment]].
 
+## The policy-gradient estimator is the only tractable handle on an un-enumerable objective
+
+[[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] supplies the identity that most of this
+page's applied evidence quietly assumes. A completion is `p_theta(y|x) = prod_t p_theta(y_t | x, y_<t)`
+and the training objective is the expected reward over prompts and sampled completions. Optimising that
+by enumeration is hopeless, a point the source makes with an illustrative count: at a vocabulary of about
+150,000 tokens, a 100-token completion has more than 10^500 possibilities. The log-derivative trick
+converts the gradient of an expectation into an expectation of a gradient,
+`grad J = E[R(y) grad log p_theta(y)]`, and REINFORCE is nothing more than its Monte Carlo estimate,
+`(1/N) sum_i R(y_i) grad log p_theta(y_i)` over sampled completions. This is a pedagogical derivation
+rather than new empirical work, and its numbers are illustrations rather than measurements.
+
+Two consequences sharpen claims already on this page. First, the sequence score decomposes into a sum of
+per-token terms, and the softmax logit gradient is `1 - p_v` for the sampled token and `-p_u` for every
+other token — so reinforcing a completion raises the tokens that were actually sampled and lowers each
+alternative in proportion to its current probability. A single terminal scalar multiplies that whole sum
+uniformly, which is the estimator-level statement of why the Eric Jang sources describe token-level
+policy gradients as facing an uglier credit-assignment problem than AlphaGo's per-state MCTS targets: the
+identity itself offers no way to prefer one token in a rewarded completion over another. Second, the
+exponential signal-to-noise decay recorded above from [[Preston Fu - Progressive Point Matching]] is a
+property of this estimator's variance rather than of any optimiser's design, which is consistent with
+that source's framing of the limit as belonging to the reward structure.
+
+The identity's guarantees are also conditional in a way production stacks violate. Everything above holds
+under on-policy sampling from `p_theta`. Romero warns that inference engines such as vLLM or SGLang may
+run at different numerical precision or with stale weights, so the completions a trainer scores were
+often drawn from a slightly different distribution and the practical estimator is only approximately the
+thing that was derived. The vault records mitigations — truncated importance sampling and bounded worker
+staleness, both on [[Group Relative Policy Optimization]] — but the derivation is what explains why those
+mitigations are load-bearing rather than cosmetic. See [[Inference Serving Engines]].
+
 ## Open questions
 
 - Which RL branches deserve their own pages first as more sources are ingested?
 - How should the vault distinguish classic RL background from modern RL-for-LLMs workflows?
 - Which agentic RL subtopics deserve their own pages first: rollout infrastructure, synthetic environments, or stability failures such as echo traps?
+- How large is the gap between the derived on-policy estimator and the off-policy one production stacks
+  actually run? The vault records mitigations for serving-engine precision drift and stale weights but no
+  measurement of the residual bias they leave behind.
+- Which applied RL results on this page depend on the on-policy identity holding tightly, and which would
+  survive a substantially off-policy estimator? The distinction has never been drawn here.
 
 ## Related pages
 
@@ -91,3 +128,5 @@ successful trajectory earns full credit regardless of strategy. See
 - [[Long-Horizon Credit Assignment]]
 - [[Group Relative Policy Optimization]]
 - [[Preston Fu]]
+- [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]
+- [[Inference Serving Engines]]

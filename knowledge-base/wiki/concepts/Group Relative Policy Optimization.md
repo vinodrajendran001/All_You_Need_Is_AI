@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-11
+updated: 2026-09-30
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-09-27-romero-policy-gradient-llms
 status: active
 ---
 

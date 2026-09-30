@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - index
 source_ids:
@@ -277,6 +277,17 @@ source_ids:
   - src-2026-09-21-liu-just-in-time-agentic-ocr
   - src-2026-09-09-mistral-legacy-code-modernization
   - src-2026-09-10-lenz-epd-multimodal-serving
+  - src-2026-09-21-tiene-pruning-llms-ising
+  - src-2026-09-23-kwok-contrastive-language-models
+  - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-27-fd-agent-muse-compute-demand
+  - src-2026-09-27-romero-policy-gradient-llms
+  - src-2026-09-28-bytebytego-agents-can-pay
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-09-29-yoon-multiplayer-ai
 status: active
 ---
 
@@ -359,6 +370,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Loop Engineering]] - Designing repeated agent work around objectives, verifiers, state, budgets, stop conditions, and escalation.
 - [[Graph Engineering]] - Coordinating specialized agent or deterministic nodes through explicit routing and shared state.
 - [[Agent Security and Governance]] - Runtime permissions, sandboxing, credentials, ownership, logs, revocation, and autonomy controls.
+- [[Agent Payment Protocols]] - Inline HTTP-native payment for autonomous buyers, and what a spending cap cannot bound.
 - [[SIMD]] - CPU vectorization as a practical performance primitive.
 - [[Software Performance Engineering]] - Estimation, profiling, algorithms, memory layout, batching, code size, and concurrency as one optimization discipline.
 - [[Model Factory]] - Reproducible infrastructure for training experiments, data mixtures, evaluation, and release.
@@ -781,6 +793,20 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Jerry Liu - Just-in-Time Agentic OCR]] - Query-time escalation from cheap extraction to visual document parsing.
 - [[Mistral - Modernizing Complex Legacy Code with AI Agents]] - Fortran-to-C++ migration organized around a numerical parity harness.
 - [[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] - Multimodal encoder placement and the workload-dependent crossover for disaggregation.
+
+### September 30, 2026 batch
+
+- [[Antonio Tiene et al - Pruning LLMs Like a Physicist]] - Block removal as constrained binary optimization, because removals interact.
+- [[Jacky Kwok et al - Contrastive Language Models]] - Dual-encoder action scoring whose speed comes from caching the candidate side.
+- [[Modal - Hitting a Billion Tokens per Minute on One GPU]] - Serving co-designed with a query planner that already knows the future request order.
+- [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] - Shadow-then-label-then-automate rollout, and why a typed filter is not a security boundary.
+- [[FD - Agent Muse Compute Demand]] - Scenario estimate where the agent sandbox is a tenth of the bill and inference is the rest.
+- [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] - The identity behind REINFORCE, baselines, and GRPO's group-centered advantage.
+- [[ByteByteGo - AI Agents Can Think, Now They Can Pay]] - HTTP 402 as negotiation, and IOUs that make per-request verification affordable.
+- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] - Megakernels on software-managed TPU VMEM, winning small-batch decode despite lower peak specs.
+- [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] - Held-out splits, revert rules, a noise floor, and a saturation ceiling for evaluations.
+- [[ByteByteGo - Why Do LLMs Lie]] - Factuality versus faithfulness, and scoring abstention separately from refusal.
+- [[Jina Yoon - We're Building Multiplayer AI]] - 64 users started a shared context file and 14 edited it; derive context from shipped work instead.
 
 ## Syntheses
 

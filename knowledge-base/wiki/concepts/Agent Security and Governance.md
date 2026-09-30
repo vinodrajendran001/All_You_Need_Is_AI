@@ -376,7 +376,7 @@ task and the pending action but not tool outputs**, which Rastogi likens to Clau
 deliberately reasoning-blind classifier. Withholding the outputs is the point rather than a
 limitation: tool results are precisely the channel an attacker controls, so a gate that reads them
 is a gate that can be addressed directly — the same argument as the blind-judge protocols recorded
-in [[LLM-as-a-Judge]] . Placed under the reversibility-keyed approval policy above, a typed gate is
+in [[LLM-as-a-Judge]]. Placed under the reversibility-keyed approval policy above, a typed gate is
 a cheap pre-filter *in front of* the approval decision, never a substitute for it, and it inherits
 the rule that anything requiring approval must not be acted on before the intention is complete.
 
@@ -389,7 +389,7 @@ better-targeted stops. It does not license replacing the stop with a model.
 
 The screening evidence itself is thin enough to matter. The guardrail pattern — one request per
 message carrying `Noul` questions for jailbreak, harmful request, medical advice, and self-harm,
-plus a `Score` , on ** `jev-1.12` ** — comes from the vendor's own cookbook and is described only as
+plus a `Score`, on **`jev-1.12`** — comes from the vendor's own cookbook and is described only as
 having worked **"pretty well"**, with no dataset, no denominator, and no confusion matrix. For a
 safety control, that is an anecdote. Rastogi's own rollout discipline is the corrective and belongs
 with any adoption of this pattern: shadow mode first, **100 to 200 labelled cases**, thresholds set

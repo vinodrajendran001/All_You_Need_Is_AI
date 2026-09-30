@@ -141,7 +141,7 @@ generative model rather than making it a better one.
 The replacement he proposes is a typed decision: intent routing and model routing expressed as
 `Choice` questions returning probabilities with **no generated text**, alongside `Noul` for binary
 questions and `Score` for scalars. One semantics is load-bearing for anyone building a confidence
-gate on top: a ** `Noul` of 0.5 means the model cannot tell, not "medium"**. A router that reads 0.5
+gate on top: a **`Noul` of 0.5 means the model cannot tell, not "medium"**. A router that reads 0.5
 as a mid-confidence answer will escalate exactly the wrong population. The pattern also sequences
 intent routing before model routing, which is this page's own *route on the strongest signal you
 already have* rule — classify what the request is for, then choose a tier — rather than inferring

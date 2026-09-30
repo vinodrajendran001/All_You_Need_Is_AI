@@ -55,7 +55,7 @@ This source strengthens the vault's compute-economics and distributed-systems br
 
 ## Citations
 
-- Raw capture note: [[knowledge-base/raw/sources/2026-06-02 Dwarkesh Patel - Reiner Pope Flashcards|2026-06-02 Dwarkesh Patel - Reiner Pope Flashcards]]
+- Raw capture note: [[2026-06-02 Dwarkesh Patel - Reiner Pope Flashcards]]
 - Readable flashcards: [markdown capture](../../raw/assets/2026-06-02%20Dwarkesh%20Patel%20-%20Reiner%20Pope%20Flashcards.md)
 
 ## Raw capture

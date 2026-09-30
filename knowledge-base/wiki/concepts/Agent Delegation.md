@@ -206,7 +206,7 @@ delegation this page records, and the only one where the stopping criterion is s
 
 The escalation contract is where it touches the zone of indifference. Instead of a recipient that
 complies with anything short of a hard violation, a typed step can decline: the primitives are
-`Choice` , `Noul` , and `Score` , and a ** `Noul` of 0.5 means the model cannot tell**, not
+`Choice`, `Noul`, and `Score`, and a **`Noul` of 0.5 means the model cannot tell**, not
 "medium". The distinction is load-bearing for delegation specifically, because a hand-back policy
 keyed on "medium confidence" would return the wrong population to the delegator. The intent-routing
 example sends anything below **0.6** confidence to a person, and Rastogi is explicit that the number
@@ -219,7 +219,7 @@ delegation — handoff schema, sole writer, verifier, exit condition — but not
 the right to run unattended. Shadow-then-label supplies that, and its exclusion is as informative as
 its procedure: Rastogi advises against the pattern for **low-volume, high-consequence decisions**,
 because there is never enough traffic to establish the threshold, which is the same reversibility
-reasoning that governs approval policy in [[Agent Security and Governance]] .
+reasoning that governs approval policy in [[Agent Security and Governance]].
 
 Two limits should travel with the pattern. The tool-call gating case is deliberately
 **reasoning-blind — it sees the task and the pending action but not tool outputs** — so the delegate
@@ -227,7 +227,7 @@ is judging an intention, not its consequences, and the typed step is a *filter r
 security boundary*: adversarial state can move the answer, and least-privilege controls stay
 necessary behind it. And the source offers **no benchmark and no controlled comparison**; its speed
 and cost figures restate vendor claims that do not reconcile with the other ranges the vault records
-for the same product. See [[Typed Probabilistic Decision Models]] .
+for the same product. See [[Typed Probabilistic Decision Models]].
 
 ## Open questions
 

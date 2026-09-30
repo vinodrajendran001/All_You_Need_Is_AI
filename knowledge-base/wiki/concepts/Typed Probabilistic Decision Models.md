@@ -81,7 +81,7 @@ candidates**. Only the last matches the stated mechanism, because the cached sid
 scales with candidate count.
 
 [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] approaches the category from
-the opposite end, as an operations guide. It names three primitives — `Choice` , `Noul` , and
+the opposite end, as an operations guide. It names three primitives — `Choice`, `Noul`, and
 `Score` — and fixes a semantics worth carrying explicitly: a `Noul` of **0.5** means the model
 **cannot tell**, not "medium". Read as a midpoint, it would silently corrupt every confidence gate
 built on it. The durable contribution is the rollout sequence: **week 0** pick one simple decision,

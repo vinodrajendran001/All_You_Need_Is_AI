@@ -175,7 +175,7 @@ cache management, and speculative decoding have coupled break-even points. A dif
 narrow the task: [[Nandakishor M - Non-Autoregressive Decision Models and Laya]] reports a 421M typed
 decision model at 33-38 ms, but both performance and Jev comparisons remain self-reported.
 
-## Caching the expensive side of a decision is frontier-moving; a smaller model is not what happened
+## Caching the expensive side of a decision is frontier-moving, not a smaller model
 
 [[Jacky Kwok et al - Contrastive Language Models]] is the cleanest example this page has of work
 removed rather than reallocated, in a domain other than token generation. A Stanford and NVIDIA
@@ -206,7 +206,7 @@ action set**, so it buys nothing for open-ended generation — it is the *narrow
 already recorded here via Laya, but with the saving located precisely instead of attributed to model
 size. And it does not adjudicate the vendor claims it is benchmarked against: CLM is an outside
 architecture publishing Jev as its baseline, not an independent measurement of Jev's own **70-500
-ms** and **193.6x/444.6x** headlines. See [[Typed Probabilistic Decision Models]] .
+ms** and **193.6x/444.6x** headlines. See [[Typed Probabilistic Decision Models]].
 
 ## Open questions
 

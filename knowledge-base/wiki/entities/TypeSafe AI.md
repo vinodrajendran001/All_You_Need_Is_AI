@@ -64,17 +64,17 @@ million input tokens** with **output tokens free**, and **40x to 200x faster** a
 cheaper** than frontier LLMs on decision-shaped work. Those figures **join rather than reconcile**
 the incompatible ranges this page already carries — **70-500 ms**, **20-200x**, **200x/400x**,
 **444.6x cheaper** — because not one of them travels with a workload definition. The company's own
-guardrail cookbook, cited for `Noul` screening questions on ** `jev-1.12` **, is described only as
+guardrail cookbook, cited for `Noul` screening questions on **`jev-1.12`**, is described only as
 having worked **"pretty well"**, with no dataset, denominator, or confusion matrix.
 
 The durable product detail from the same source: Jev returns typed answers with probabilities and
-**generates no text**; the three primitives are `Choice` , `Noul` , and `Score` ; a ** `Noul` of 0.5
+**generates no text**; the three primitives are `Choice`, `Noul`, and `Score`; a **`Noul` of 0.5
 means the model cannot tell, not "medium"**; claimed weaknesses are arithmetic, counting, date
 logic, images, audio, and video, with text only; and the named open-source alternatives are Kev,
 openjev, NanoJev, and Laya. Rastogi also draws the line the vendor's framing blurs — a typed
 screening model is a **filter, not a security boundary**, because it does not treat its input as
 hostile — and states the calibration property the company would need to demonstrate: if the model
-says **0.9**, it should be right about **90%** of the time. See [[Agent Security and Governance]] .
+says **0.9**, it should be right about **90%** of the time. See [[Agent Security and Governance]].
 
 ## Related pages
 

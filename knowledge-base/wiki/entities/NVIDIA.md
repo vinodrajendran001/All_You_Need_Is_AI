@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-05-lenz-nemoclaw-memory-agent
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-23-kwok-contrastive-language-models
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
 status: active
 ---
 
@@ -115,7 +116,39 @@ the capture's frontmatter carried **no author at all** — the author list was r
 and its BibTeX entry. The three speed claims describe three different conditions and must not be
 merged into one: **up to 9x lower latency** overall, **4-6x faster inference than Jev** in the
 benchmark section, and **13x** at roughly **1k candidates**. See
-[[Typed Probabilistic Decision Models]] .
+[[Typed Probabilistic Decision Models]].
+
+## GB200's SRAM is split 152 ways, and a competitor built its case on exactly that
+
+[[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] is the vault's first third-party
+argument *against* NVIDIA at a named operating point, and it is notable because the argument is not
+about peak numbers — which GB200 largely wins. By Inferact's own comparison, **GB200 leads on
+2.5 PFLOPS BF16 / 5 PFLOPS FP8, 8,000 GB/s of HBM bandwidth, and 1,800 GB/s of NVLink 5**, against
+TPU v7's **2.31 / 4.61 PFLOPS, 7,380 GB/s HBM and 1,200 GB/s ICI**; GB200 trails only on HBM capacity
+(**186 GB against 206 GB**).
+
+The claimed weakness is granularity of on-chip memory. Inferact puts **GB200's ~111 MiB of SRAM split
+152 ways** — **256 KB of Tensor Memory and 228 KB of shared memory per SM across 152 SMs**, roughly
+**38 MiB** of Tensor Memory per GPU — against TPU v7's **64 MiB of VMEM per TensorCore and 128 MiB per
+chip addressed as two pools**. Nearly equal totals, very different shapes, and the shape is what a
+single persistent decoder program needs. The reported consequence, with conditions: on **Kimi K3
+(92 MoE layers, 16 TPU v7 chips, 2x2x4 topology, TP4 x EP8)**, decode **without speculation** runs
+**249 vs 127 tokens/s at batch 1 (1.96x)**, narrowing monotonically to **865 vs 636 (1.36x) at batch
+8**; with **speculative decoding at acceptance length 6**, **709 vs 452 (1.57x)**; and on **Qwen 3.8
+27B at acceptance length 6, 1,515 tokens/s on 4x TPU v7 against 695 on 4x GB200 (2.18x)**.
+
+The asymmetry matters more on an entity page than the ratios do. Inferact compares its **own
+hand-written TPU megakernel against a published vLLM GB200 recipe**, so this is a software-effort
+comparison as much as a hardware one — and it points in the opposite direction from the moat this
+page records above. Both readings can hold at once: NVIDIA's documentation and tooling depth make
+competent GPU performance broadly reachable, while a specialist willing to hand-write a single-kernel
+decoder on another vendor's chip can beat the published recipe at one narrow operating point. The
+claim is also scoped away from where [[Jacob Peake - AI Chip Architectures]] locates NVIDIA's
+structural advantage: rack-scale coherent memory for large MoE serving is a throughput-regime
+argument, and Inferact's margin is largest at batch 1 and fading by batch 8.
+
+Everything here is vendor-reported by a party selling TPU inference work: no independent reproduction,
+no confidence intervals, and no energy or cost-per-token figures.
 
 ## Related pages
 
@@ -137,6 +170,8 @@ benchmark section, and **13x** at roughly **1k candidates**. See
 - Wafer - AI Performance Engineering Resources
 - Wafer
 - GPU Kernel Optimization
+- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
+- [[Megakernels]]
 - [[Jacky Kwok et al - Contrastive Language Models]]
 - [[Typed Probabilistic Decision Models]]
 - [[Embedding Model Selection]]

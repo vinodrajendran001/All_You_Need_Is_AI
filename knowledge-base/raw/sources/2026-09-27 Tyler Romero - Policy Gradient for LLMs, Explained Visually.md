@@ -1,13 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-27-romero-policy-gradient-llms
 title: "Policy Gradient for LLMs, Explained Visually"
-source: "https://www.tylerromero.com/posts/2026-09-policy-gradient/?utm_source=tldrai"
-author:
-  - "[[Tyler Romero]]"
+author: Tyler Romero
+url: https://www.tylerromero.com/posts/2026-09-policy-gradient/
 published: 2026-09-27
+captured: 2026-09-29
 created: 2026-09-29
-description: "A from-scratch derivation of REINFORCE for language models"
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - reinforcement-learning
+  - post-training
+  - mathematics
+  - education
+  - llm
+status: active
 ---
 Most RL algorithms used to train language models, from PPO to GRPO, are elaborations of one idea: the policy gradient. This post derives it from scratch for an LLM solving a problem with a checkable answer. It follows one prompt, “What is 17 × 24?”, from next-token probabilities to the gradient that makes correct answers more likely.
 

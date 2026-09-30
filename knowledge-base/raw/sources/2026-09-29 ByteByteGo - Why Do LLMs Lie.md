@@ -1,13 +1,22 @@
 ---
+type: raw-source
+source_id: src-2026-09-29-bytebytego-why-do-llms-lie
 title: "Why Do LLMs Lie?"
-source: "https://blog.bytebytego.com/p/why-do-llms-lie?utm_source=post-email-title&publication_id=817132&post_id=217162303&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+author: ByteByteGo
+url: https://blog.bytebytego.com/p/why-do-llms-lie
 published: 2026-09-29
+captured: 2026-09-30
 created: 2026-09-30
-description: "In this article, we will look at why this problem of hallucinations happens with LLMs and the techniques that can help make LLMs more dependable for answering."
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - quality
+  - rag
+  - evaluation
+  - tool-use
+  - reasoning
+  - production
+status: active
 ---
 ## Debugging Agents in Different Environments - Live Workshop (Sponsored)
 

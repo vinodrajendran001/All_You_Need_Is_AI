@@ -1,16 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-21-tiene-pruning-llms-ising
 title: "Pruning LLMs Like a Physicist: Block Removal as an Ising Optimization Problem"
-source: "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an?utm_source=substack&utm_medium=email"
-author:
-  - "[[Antonio Tiene]]"
-  - "[[Ali Hashemi]]"
-  - "[[David Jansen]]"
-  - "[[Roman Rausch]]"
+author: Antonio Tiene, Ali Hashemi, David Jansen, Roman Rausch
+url: https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an
 published: 2026-09-21
+captured: 2026-09-28
 created: 2026-09-28
-description: "A Blog post by Multiverse Computing on Hugging Face"
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - compression
+  - efficiency
+  - optimization
+  - inference
+  - open-models
+status: active
 ---
 One of the cheapest ways to make a large language model faster is also one of the bluntest: delete whole transformer blocks. Because the model literally gets shorter, [block removal](https://huggingface.co/papers/2602.00161) (also called depth pruning) buys predictable inference speedups on top of the memory savings, and it stacks cleanly with quantization, low-rank compression, and other techniques. The hard part is deciding *which* blocks to cut. Remove the wrong ones and the model collapses; and the effect of removing any one block depends on which others you remove alongside it, so the choices interact. That makes it a combinatorial problem, not a ranking problem, and combinatorial problems with interacting binary variables are exactly what the physics of spin systems was built to describe.
 

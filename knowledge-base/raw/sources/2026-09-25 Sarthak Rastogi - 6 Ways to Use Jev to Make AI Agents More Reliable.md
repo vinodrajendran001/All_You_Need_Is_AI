@@ -1,13 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-25-rastogi-6-ways-jev-agents-reliable
 title: "6 Ways to Use Jev to Make AI Agents More Reliable"
-source: "https://sarthakai.substack.com/p/6-ways-to-use-jev-to-make-ai-agents?utm_source=post-email-title&publication_id=1338283&post_id=217209579&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[Sarthak Rastogi]]"
+author: Sarthak Rastogi
+url: https://sarthakai.substack.com/p/6-ways-to-use-jev-to-make-ai-agents
 published: 2026-09-25
+captured: 2026-09-28
 created: 2026-09-28
-description: "Jev is exactly the cheap & fast decision layer agents need"
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - decision-models
+  - ai-agents
+  - routing
+  - governance
+  - structured-output
+status: active
 ---
 Open the trace of your AI agent and count the steps that **write something.** Then count the steps that **decide something.**
 

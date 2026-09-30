@@ -1,12 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-28-inferact-tpu-megakernels-kimi-k3
 title: "700 TPS on Kimi K3: A Case for TPU Megakernels"
-source: "https://inferact.ai/blog/tpu-megakernels?utm_source=tldrai"
-author:
-published:
+author: Inferact
+url: https://inferact.ai/blog/tpu-megakernels
+captured: 2026-09-28
 created: 2026-09-28
-description: "How our Kimi K3 megakernel on TPU v7 reaches over 700 tokens/s with speculative decoding and nearly 2× GB200's batch-one decode throughput."
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - kernels
+  - tpu
+  - accelerators
+  - inference
+  - speculative-decoding
+  - performance-engineering
+status: active
 ---
 Today we released [inferact/tpu-megakernels](https://github.com/Inferact/tpu-megakernels), a collection of megakernels for TPU v7. Our Kimi K3 implementation delivers over 700 tokens/s with speculative decoding, compared with 452 tokens/s on GB200. Without speculative decoding, our megakernels for K3 and Qwen 3.8 27B deliver roughly 1.4 to 2× the decode throughput of the GB200 baseline at batch sizes 1 through 8.
 

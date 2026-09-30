@@ -1,13 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-28-bytebytego-agents-can-pay
 title: "AI Agents Can Think. Now They Can Pay."
-source: "https://blog.bytebytego.com/p/ai-agents-can-think-now-they-can?utm_source=post-email-title&publication_id=817132&post_id=217161816&utm_campaign=email-post-title&isFreemail=true&r=6dm571&triedRedirect=true&utm_medium=email"
-author:
-  - "[[ByteByteGo]]"
+author: ByteByteGo
+url: https://blog.bytebytego.com/p/ai-agents-can-think-now-they-can
 published: 2026-09-28
+captured: 2026-09-29
 created: 2026-09-29
-description: "I attended a MPP event at Stripe HQ, where I spoke with Emily Sands and Matt Schulman from Stripe, along with Brendan Ryan from Tempo."
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - ai-agents
+  - security
+  - system-design
+  - tool-use
+  - governance
+status: active
 ---
 ## AI SREs are here. Here's how to prepare your stack. (Sponsored)
 

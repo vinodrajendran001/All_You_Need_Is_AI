@@ -1,13 +1,21 @@
 ---
+type: raw-source
+source_id: src-2026-09-28-martin-automating-eval-design-hillclimbing
 title: "Automating eval design and hillclimbing with Claude"
-source: "https://claude.dev/blog/automating-eval-design-and-hillclimbing/?utm_source=tldrai"
-author:
-  - "[[Lance Martin]]"
+author: Lance Martin
+url: https://claude.dev/blog/automating-eval-design-and-hillclimbing/
 published: 2026-09-28
+captured: 2026-09-30
 created: 2026-09-30
-description: "Principles for designing evals and hillclimbing against them without fooling yourself, and how the claude-api skill's build-eval and hillclimb commands put them to work."
+updated: 2026-09-30
 tags:
-  - "clippings"
+  - source/raw
+  - evaluation
+  - llm-evaluation
+  - harness
+  - benchmarks
+  - coding-agents
+status: active
 ---
 Principles for designing evals and hillclimbing against them without fooling yourself, and how the claude-api skill's build-eval and hillclimb commands put them to work.
 

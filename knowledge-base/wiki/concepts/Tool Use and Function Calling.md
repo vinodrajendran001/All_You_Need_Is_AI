@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-11
+updated: 2026-09-30
 tags: [concept, tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-07-bytebytego-llm-error-handling
+  - src-2026-09-29-bytebytego-why-do-llms-lie
 status: active
 ---
 
@@ -143,6 +144,41 @@ undetectable.
 The cheap prevention is worth restating: validate before spending on inference. "There is no need to call
 an LLM to find out if a mandatory email address is missing or if an uploaded file exceeds the size limit."
 
+## A generated claim that a tool ran is not evidence the tool ran
+
+[[ByteByteGo - Why Do LLMs Lie]] states the division of labour this page's request/execute separation
+implies but never quite specifies: **general conditions come from a policy document, customer-specific
+facts come from a tool call**. A refund policy is retrievable; whether *this* account qualifies is not,
+because no document contains it. That converts tool use from a capability into a sourcing rule — it says
+which facts a system is allowed to ground in retrieved text and which it must obtain by executing
+something.
+
+The failure that follows is the mirror image of the partial-completion problem already recorded here, and
+this page has not named it. Partial completion is a tool that **ran** without the application learning
+the result; this is the application learning a result for a tool that **never ran**. In the source's
+words, a generated claim that an account was checked is not evidence the lookup occurred. Both are
+invisible at HTTP 200, both leave the model's narration as the only account of what happened, and in both
+cases only the execution layer's own record settles it. [[Agent Observability]] reaches the same
+requirement from the forensic side: the span is the evidence, not the sentence.
+
+A second confusion is about scope rather than occurrence: **confirming eligibility does not establish
+that a refund was issued**. A tool that verified a precondition has answered a narrower question than the
+sentence built on top of it, and a model that has read a successful eligibility result can narrate the
+consequent action as done. This is a claim-to-evidence mismatch even when every tool in the trace
+genuinely executed, which makes it invisible to idempotency keys and retry counters alike.
+
+Nothing in the JSON-schema contract catches either case, and it is worth being exact about why: per the
+same source, **structured output buys parseability, not semantic correctness**. A schema-valid tool
+result and a schema-valid invented confirmation number are indistinguishable to a validator, and lowering
+temperature only makes the outcome reproducible. The proposed remedies are architectural — route
+deterministic conditions to ordinary application code rather than asking the model to apply them, run
+**verification as a separate stage** that decomposes the answer into claims and validates citations for
+existence, applicability, and support, and allow a third response state such as **"needs review"** rather
+than forcing a binary answer the evidence cannot support. The source is a secondary explainer with
+sponsored sections and reports no rates or controlled comparisons, so these are design positions, and it
+leaves unanswered how a verifier distinguishes a claimed tool result from a real one without re-executing
+the call.
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -168,3 +204,4 @@ an LLM to find out if a mandatory email address is missing or if an uploaded fil
 - [[LLM Application Resilience]]
 - [[Agent Observability]]
 - [[ByteByteGo]]
+- [[ByteByteGo - Why Do LLMs Lie]]

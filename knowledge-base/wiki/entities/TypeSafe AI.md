@@ -76,4 +76,18 @@ a **filter, not a security boundary**, because it does not treat its input as ho
 calibration property the company would need to demonstrate: if the model says **0.9**, it should be
 right about **90%** of the time. See [[Agent Security and Governance]].
 
+## Related pages
+
+- [[Diogo Almeida - Introducing System One Models and Jev]]
+- [[Typed Probabilistic Decision Models]]
+- [[Inference Efficiency Frontier]]
+- [[LLM-as-a-Judge]]
+- [[Jacky Kwok et al - Contrastive Language Models]]
+- [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]]
+- [[Sarthak Rastogi]]
+- [[Embedding Model Selection]]
+- [[Model Routing]]
+- [[Agent Delegation]]
+- [[Agent Security and Governance]]
+- [[NVIDIA]]
 

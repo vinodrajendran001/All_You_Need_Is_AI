@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - concept
   - llm
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-09-21-tiene-pruning-llms-ising
 status: active
 ---
 
@@ -65,11 +67,50 @@ checked against DeepSeek's primary technical report.
 show that low active parameters do not remove roughly 20 GB of resident raw weights. Sparse routing
 reduces token compute; offloading, sharding, or memory capacity must still solve total storage.
 
+## An expert layer is a partitioning unit at serving time and a removable unit at compression time
+
+Two September 2026 sources treat MoE layers as objects to be placed and objects to be deleted, and
+reading them together complicates the total-versus-active framing above.
+
+**Placement.** [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] reports fitting **Kimi
+K3's 92 MoE layers** onto **16 TPU v7 chips / 32 TensorCores in a 2x2x4 topology**, with attention
+split across **32 ranks** and routed experts at **TP4 x EP8**, all inside one megakernel. This is the
+page's all-to-all claim in its most literal form: the collectives are written against that specific
+chip arrangement, so a different device count needs new code. The reported decode advantage over a
+published vLLM GB200 recipe is **249 vs 127 tokens/s at batch 1 without speculation (1.96x)**,
+shrinking monotonically to **865 vs 636 (1.36x) at batch 8** — vendor-reported, and consistent with
+this page's claim that sparsity converts a compute problem into a communication problem, since
+Inferact attributes the decay to vector arithmetic and inter-device traffic taking over as batch
+grows.
+
+**Removal.** [[Antonio Tiene et al - Pruning LLMs Like a Physicist]] approaches an MoE layer from the
+other side, as a block that can be dropped. On **NVIDIA-Nemotron-3-Nano-30B-A3B-FP8**, a hybrid that
+interleaves Mamba2, attention and MoE layers, the authors' constrained binary optimization selects
+**2-3 MoE layers or 2 attention layers** for removal and is reported to beat a block-influence
+baseline on AIME25 and GPQA **without retraining**. The method's central claim is that removals
+interact, so the best set of M blocks is generally not the M best blocks — which for a hybrid model
+means "how much MoE can go" is not answerable one layer at a time.
+
+That sits awkwardly beside this page's usual account, and the tension is worth keeping rather than
+smoothing. The total-versus-active split treats the expert layers as where capacity is stored and
+routing as the mechanism that rations it per token. If whole MoE layers can be removed without
+retraining at no measured cost on two benchmarks, then part of that capacity is redundant at the
+*layer* level, not merely unused per token — a different kind of slack than sparse routing is
+designed to exploit.
+
+Both readings need their caveats. Inferact's numbers are batch-1-to-8 decode on one model, one
+topology, against an asymmetric baseline. Tiene et al. is a company blog summarizing the authors' own
+paper, with ablations, solver comparisons and complete tables deferred; "removes 2-3 MoE layers"
+describes what the optimizer selected on one hybrid model, not a general redundancy rate for MoE.
+
 ## Open questions
 
 - When does the routing overhead outweigh the compute saved by sparsity?
 - Which applications benefit most from MoE: long-context assistants, agentic tool use, multilingual models, or something else?
 - How much of future sparse-model progress will depend on better runtimes rather than better expert architectures?
+- If whole MoE layers can be removed without retraining, where does the redundancy live — in the experts, in the router, or in the residual stream that routes around them?
+- Does deleting MoE layers improve the all-to-all picture by removing dispatch rounds, or only shrink stored weights while leaving the per-token communication pattern intact?
+- Expert-parallel layouts are written against a fixed topology (Inferact's TP4 x EP8 on 2x2x4). Is there a portable way to express MoE collectives, or is per-deployment kernel work the standing cost of sparsity?
 
 ## Related pages
 
@@ -84,5 +125,8 @@ reduces token compute; offloading, sharding, or memory capacity must still solve
 - [[ByteByteGo - Inside Thinking Machines Interaction Models]]
 - [[@waterloo_intern - From GPT-2 to Kimi K3]]
 - [[Liquid AI]]
+- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
+- [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]
+- [[Megakernels]]
 - Wafer - AI Performance Engineering Resources
 - Prefill-Decode Disaggregation

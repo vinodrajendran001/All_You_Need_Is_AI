@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - production
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-09-07-bytebytego-llm-error-handling
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-29-bytebytego-why-do-llms-lie
 status: active
 ---
 
@@ -96,6 +97,45 @@ precisely where retrying is unsafe.
 cheapest adequate model up front; fallback chooses any available model under failure. Both are governed
 by the same constraint — the substitute must still satisfy the requirement.
 
+## Semantic failure needs a third response state and a verification stage of its own
+
+This page's list of semantic failures contains a single entry for "hallucinated a fact, product or
+policy". [[ByteByteGo - Why Do LLMs Lie]] splits it into three modes that need different defenses.
+**Factual** hallucination contradicts reality; **faithfulness** hallucination contradicts the evidence
+actually supplied; **fabrication** invents policies, confirmation numbers, or papers. The split is
+operationally load-bearing because a model can faithfully summarize an **outdated document and still be
+wrong about the current policy** — a grounded system passing every faithfulness check while returning an
+answer no one should act on. The definition offered is deliberately narrow: hallucination is information
+that is factually incorrect, invented, or inconsistent with the material the model is supposed to use,
+and none of it establishes an intention to deceive. The article's own title is rhetorical and it
+withdraws the implication.
+
+The design change that follows is to stop forcing a binary. The recommended response space includes a
+third state such as **"needs review"**, so that insufficient evidence has a representable answer rather
+than being resolved into eligible or ineligible. Read against this page's fallback ladder, the human
+handoff rung stops being an outage-only measure and becomes the correct output for a question the
+evidence cannot decide. The incentive argument explains why the third state has to be *scored* and not
+merely permitted: if a correct answer earns one point while an incorrect answer and an expression of
+uncertainty score the same, guessing carries positive expected upside and abstention carries zero.
+
+Detection is handled as a **separate stage**, not as an instruction in the generating prompt: decompose
+the answer into individual claims, check each against the applicable evidence, and validate citations for
+existence, applicability, and support. That is a partial answer to this page's first open question, which
+names semantic-failure detection precisely and then hands the hard part back. It stays partial, because a
+verifier is itself a model and can be wrong, so claim checking reduces error rather than removing it.
+
+The more useful contribution may be what the source rules *out*, since both items are routinely mistaken
+for reliability engineering. **Lowering temperature buys consistency, not accuracy** — a system that
+returns the same wrong answer every time has become reproducible, not correct. **Structured output buys
+parseability, not semantic correctness**, which directly qualifies this page's existing position that
+schema validation is one of the few available detectors: a schema-valid object can carry an invented
+confirmation number, and no validator will object. Fluent confidence is not a signal either — "certainly"
+and "definitely" are generated language, and an unvalidated "95% confidence" means nothing without
+calibration, so a model-reported confidence score cannot be used as an admission-control or
+circuit-breaking input. This is a secondary explainer with sponsored sections that reports no
+hallucination rates or controlled comparisons and gives no method for calibrating confidence or choosing
+retrieval thresholds, so it is a set of design positions rather than a sized result.
+
 ## Open questions
 
 - No detection mechanism exists for semantic failure beyond schema validation, trusted-source
@@ -106,6 +146,14 @@ by the same constraint — the substitute must still satisfy the requirement.
   covering transient failures on non-idempotent tools.
 - Provider separation is recommended for redundancy without pricing its cost: two prompt formats, two
   failure vocabularies, two behaviours to evaluate, and two sets of semantic quirks.
+- If structured output guarantees only parseability, what remains of schema validation as a
+  semantic-failure detector? Nothing here distinguishes a schema-valid real confirmation number from a
+  schema-valid fabricated one without performing the lookup a second time.
+- A "needs review" state converts a semantic failure into queued human work, which is a capacity
+  commitment. What admission control governs that queue, and what happens when the abstention rate rises
+  during the same incident that is degrading the tools?
+- Faithfulness checks pass against stale evidence by construction. What owns document currency — the
+  retrieval layer, the tool layer, or the verifier — and which of them fails closed?
 
 ## Related pages
 
@@ -117,3 +165,9 @@ by the same constraint — the substitute must still satisfy the requirement.
 - [[Context Engineering]]
 - [[Small Language Models]]
 - [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
+- [[ByteByteGo - Why Do LLMs Lie]]
+- [[ByteByteGo]]
+- [[Retrieval-Augmented Generation]]
+- [[Multi-Turn Evaluation]]
+- [[LLM-as-a-Judge]]
+- [[Chain-of-Thought Monitoring]]

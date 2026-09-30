@@ -211,6 +211,49 @@ A related generalisation from outside the agent loop: a 100-document serial pipe
 `asyncio.gather()` with a `Semaphore(5)` turned an hours-long run into a bounded one. Bounded parallelism
 is the same optimization whether the work is a subagent or a document.
 
+## One patch per round is what makes a harness edit attributable
+
+This page's fourth open question asks what the unit of credit assignment should be when an optimizer
+changes several rungs at once.
+[[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] answers by refusing the premise.
+Candidate changes may target prompts, skills, tool descriptions, model choice, effort, API parameters,
+or harness code — rungs 1 through 4 of the ladder above — but the loop proposes **one patch per round**.
+The evaluation is split into a search set and a held-out test set; a patch is kept only when **train and
+test both improve**, and reverted when only train improves or when either regresses. Attribution is
+bought by narrowing the step rather than by analysing a wide one after the fact.
+
+Two stopping rules bound the loop, and the second is a discipline this page's other sources lack. If
+progress stalls for **two or three rounds**, remaining failures are bucketed by cause rather than
+attacked individually. If an expected gain falls **below evaluation noise**, the response is to add
+repetitions or cases — to improve the instrument — rather than make an edit nobody can measure. The
+noise floor is established up front by running **the grader twice on the same output**, and results carry
+a confidence interval with one full transcript per case. There is also an input-side version of this
+page's unwritable-scoreboard rule: failures are never pasted into prompts, so evaluation answers stay
+structurally inaccessible to the thing being optimized.
+
+The reported numbers need every condition carried with them. On an internal benchmark of **44 tickets**
+(**30** for search, **14** held out), the baseline Opus 4.8 at high effort scored **74.4% decision
+accuracy at 4.6 cents per ticket**; Opus 5.5 at low effort **87.8% at 1.9 cents**; Sonnet 5 at low effort
+**88.9% at 1 cent**; prompt work took Sonnet 5 to **98.9%** at about the same cost. Held out, the final
+configuration scored **90.5%** against **78.6%** originally at roughly **one fifth of the cost**. That
+before-and-after is **not a clean measurement of hillclimbing**: it bundles a model change, an effort
+change, a prompt change, and a pricing change, since Opus 5.5 is stated to price input and output **20%
+less** than Opus 4.8 and cache reads **60% less**. This is the same attribution discipline the page
+already applies to GitHub's four measured reductions, and here it bites harder — part of the cost win is
+a price list. Everything is Anthropic-reported on an Anthropic workflow with no independent reproduction
+and no released evaluation data; see [[Anthropic]].
+
+The capability example is the more interesting one for this page because it is a rung-2 artifact under
+optimization: the Claude API skill began at **66%**, reached **74%** after eight features were covered
+and **77%** after C# and Java type tables were fixed, ending near **88%**, with the figure caption
+reporting **66.1%** baseline and **87.9% at round 24**. Martin's own limits complicate this page's
+rung-4 optimism rather than overturning it. He concedes that leakage and overfitting persist, **including
+harness additions that solve benchmark quirks rather than production problems**, and that the method
+suits cheap, attributable surfaces such as prompts and skills better than open-ended harness rewrites
+where a single patch is hard to isolate. AHE's frozen harness transferring to SWE-bench Verified remains
+the page's evidence that rung-4 search can encode practice; this is a first-hand report that it can also
+encode the benchmark, from a practitioner who was looking for it.
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -222,6 +265,11 @@ is the same optimization whether the work is a subagent or a document.
 - What is the right unit of credit assignment when an optimizer changes several rungs at once?
 - Weng lists the failure to record **negative results** as an open challenge. No system described here
   keeps a durable record of what was tried and rejected.
+- One patch per round with an immediate revert *is* greedy selection, which this page argues against
+  elsewhere: Schmid's generation-1 variant scoring 58 went on to parent the best agent at 84. Does the
+  attributability gained justify pruning exactly the candidates archive-based search keeps?
+- Does a two-or-three-round stall indicate exhausted headroom, or only exhausted proposals from one
+  proposer? STOP's base-model dependence suggests the second reading is available and untested.
 
 ## Related pages
 
@@ -249,3 +297,7 @@ is the same optimization whether the work is a subagent or a document.
 - [[Paul Iusztin]]
 - [[Agent Delegation]]
 - [[Agent Observability]]
+- [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
+- [[Anthropic]]
+- [[Agentic Testing]]
+- [[Multi-Turn Evaluation]]

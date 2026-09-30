@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-18
+updated: 2026-09-30
 tags:
   - concept
   - ai-agents
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
   - src-2026-09-05-lenz-nemoclaw-memory-agent
   - src-2026-09-15-bytebytego-llm-memory-goldfish
+  - src-2026-09-29-yoon-multiplayer-ai
 status: active
 ---
 
@@ -167,12 +168,53 @@ makes scope part of correctness. A memory key that omits tenant identity can tur
 into a cross-account data leak; tenant, user, session, provenance, and deletion policy must travel
 together.
 
+## The weak point is the writer: 64 users started a context file and 14 edited it
+
+Every curated-memory design on this page - explicit `save_to_memory` returns, typed knowledge files,
+governed Markdown self-models - assumes a writer who keeps writing.
+[[Jina Yoon - We're Building Multiplayer AI]] reports a count against that assumption: over
+**90 days**, **64 users** started a shared `CONTEXT.md` and only **14** ever edited it. These are
+internal product observations from PostHog rather than a study, with no denominator of eligible users,
+no selection method, and no comparison group. Held
+loosely, it is still the only number this page has about whether curated memory gets maintained, and
+it lands directly on the premise the Meta second-brain material rests on and does not test.
+
+PostHog's answer converts memory maintenance into a pipeline. A nightly **"dreaming" task** records
+what happened that day into a version-controlled Markdown wiki, extracting from work objects such as
+PRs, docs, and dashboards. The write criterion is what was **actually shipped, merged, or decided**,
+excluding meeting notes and brainstorming documents so that a proposal never becomes a remembered
+fact. Read against this page's taxonomy, that is an episodic-to-semantic consolidation rule with a
+provenance test folded into it: the artifact carrying an organisational commitment is also the
+evidence for the memory, so the store inherits an audit trail without anyone writing one.
+
+The **artifact** mechanism adds a layer this page's three tiers do not cleanly hold. Artifacts are
+portable session-state snapshots - a session produces one, and that artifact becomes context for the
+next session. By the Ren et al. test this page adopts (does anything get written back, and can a later
+run retrieve it) that is durable memory rather than transient context, yet it is scoped to a work
+object rather than to a user, a session, or an agent. Memory keyed to *the thing being worked on* is a
+fourth scoping dimension alongside the tenant, user, and session keys the multi-tenant material
+requires.
+
+What is not resolved is who may read any of it, and PostHog says so: governance and permissions are
+its **biggest blind spot**. Across roughly **~200 employees** dogfooding, users **overwhelmingly
+preferred starting tasks privately** despite the team expecting shared-Space defaults, and
+collaboration happened more in GitHub than in the product. A memory layer whose inputs are shared work
+objects, serving users who default to private work, has a key-design problem before it has a retrieval
+problem. And the layer reports **no measured hallucination reduction, token savings, latency change,
+or task-quality lift** after **a few weeks** of dogfooding, so it belongs on this page as a design
+with an argument, not as evidence that derived memory works.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
 - How should conflicting facts be handled — does a newer memory overwrite an older one, or do both persist?
 - How should memory be scoped when multiple users share an agent system?
 - When is **storage memory** (auditable, external) the right tool versus **structural/inference-time memory** (integrated, adaptive but opaque)? See [[Nested Learning]].
+- If memory is derived only from artifacts that carry a commitment, what happens to knowledge that
+  never becomes a PR, doc, or dashboard - and does the rule bias the store toward whatever a
+  work-tracking system can see?
+- When users work privately by default, whose memory does an automatic extractor write into, and what
+  makes a later private session eligible to read it?
 
 ## Related pages
 
@@ -198,3 +240,6 @@ together.
 - [[ByteByteGo - Do LLMs Have the Memory of a Goldfish]]
 - [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]]
 - [[Multi-Tenant Agent Architecture]]
+- [[Jina Yoon - We're Building Multiplayer AI]]
+- [[Agent Workflow Maturity]]
+- [[Continual Learning for Agents]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-30
 tags:
   - concept
   - ai-agents
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-21-anthropic-ai-native-sdlc
   - src-2026-08-05-aibuilderclub-harness-six-components
   - src-2026-08-12-yoko-li-loop-convergence
+  - src-2026-09-29-yoon-multiplayer-ai
 status: active
 ---
 
@@ -108,16 +109,55 @@ Health checks are concrete: no task owned by two specialists, every waiting stat
 
 When a bot fails, do not add a longer conversational reminder. Ask where the failure belongs — the skill, the environment, the verifier, or a hard policy — and patch that. The result is an accumulating operating system rather than a growing pile of prompt history. This is the operational statement of what [[Agent Skill]] and [[Loop Engineering]] describe as durable method capture.
 
+## Collaboration lives before and after execution, and people start private by default
+
+This page's ladder is entirely prescriptive - its anchor source reports no deployment outcome - so the
+first thing [[Jina Yoon - We're Building Multiplayer AI]] contributes is observation from a team
+running the thing. Across roughly **~200 PostHog employees** dogfooding shared human-and-agent
+workspaces, coding turned out to be **mostly solo**, collaboration happened more in **GitHub than in
+the product's own UI**, and users **overwhelmingly preferred starting tasks privately** despite the
+team expecting them to default to shared Spaces. These are internal product observations rather than
+a study, and "mostly solo" and "overwhelmingly" are unquantified.
+
+The mechanism PostHog built maps onto the typed handoff almost exactly. **Artifacts** are portable
+session-state snapshots: a session produces an artifact, and that artifact becomes the context for the
+next session. That is "pass artifacts, not transcripts" arrived at from product telemetry rather than
+from a design argument - a third independent route to the same conclusion as the Grok Bot working note
+and [[Anthropic - The AI-Native SDLC Playbook]]'s committed `intent.md` / `spec.md` / `plan.md`.
+Convergence from a different method is the strongest thing on offer here.
+
+Where it complicates the ladder is the shape of level 4. "Team - manager routes specialists - parallel
+delivery" assumes that the collaborative surface is the workspace during execution. What PostHog
+observed is collaboration clustering *around* execution: planning, artifacts, transcripts, and review,
+with the work itself done alone and published to a surface that already carries commitment. That is
+not a refutation - a private execution scope with a typed handoff at each end satisfies the
+invariants - but it suggests the rung transition is a **publishing** step rather than a workspace
+default, and that a product which defaults to shared Spaces is optimising the moment users least want
+shared.
+
+The upper rung fares worse. PostHog names **governance and permissions its biggest blind spot**, which
+is precisely this page's level 5 (evidence, limits, recovery). So the one system here with real
+telemetry has not built the rung the ladder treats as the destination, and its findings may depend on
+PostHog's low-hierarchy culture - an organisation with strict role-based access control may find the
+private-by-default preference reversed or irrelevant. Nothing reported measures whether any of this
+improved delivery.
+
 ## Open questions
 
 - **None of this is measured.** The anchor source is entirely prescriptive: no evaluation, no baseline, no reported deployment outcome. The machinery is heavy for a workflow whose value has not been demonstrated, and the candidate scorecard is the only offered guard against over-engineering.
 - The top rung assumes a *genuinely* independent verifier, but in practice the verifier is usually the same model family with the same blind spots.
 - How much generalises beyond the cloud-agent product shape (dedicated computers, computer use, scheduled routines) that the source describes?
 - Where is the crossover at which ledger and handoff overhead exceeds the coordination cost it removes?
+- If people execute privately and collaborate only at planning and review, is "parallel delivery" the
+  right exit test for level 4, or is the test whether the artifact published at the boundary is
+  consumable without its author present?
+- What does the governed rung look like in a low-hierarchy organisation that has never needed
+  role-based access control? The one team with telemetry calls that rung its biggest blind spot.
 
 ## Related pages
 
 - [[Grok Bot Systems Engineering Working Note]]
+- [[Jina Yoon - We're Building Multiplayer AI]]
 - [[AI Agents in Production]]
 - [[Agent Skill]]
 - [[Agent Planning]]
@@ -128,3 +168,6 @@ When a bot fails, do not add a longer conversational reminder. Ask where the fai
 - [[Multi-Turn Evaluation]]
 - [[Tool Use and Function Calling]]
 - [[Grok Bot]]
+- [[Agent Memory]]
+- [[Context Engineering]]
+- [[Institutional Knowledge Agents]]

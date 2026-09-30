@@ -161,10 +161,11 @@ speed and price figures — about **100 milliseconds**, **$0.042 per million inp
 tokens free, **40x to 200x faster** and **up to 400x cheaper** — restate vendor claims and **do not
 reconcile** with the **70-500 ms**, **20-200x**, **200x/400x** and **444.6x cheaper** ranges the vault
 already records for the same product, because none of them travels with a workload definition. The
-calibration property a typed router depends on — if it says **0.9** it should be right about **90%** of
-the time — is asserted, not demonstrated. And swapping the router's implementation changes none of the
-four failure modes above: **prompt injection of routing instructions**, under-routing, over-routing,
-and providers silently improving the models the routing logic was tuned against all survive intact.
+calibration property a typed router depends on — if it says **0.9** it should be right about **90%**
+of the time — is asserted, not demonstrated. And swapping the router's implementation changes none of
+the four failure modes above: **prompt injection of routing instructions**, under-routing,
+over-routing, and providers silently improving the models the routing logic was tuned against all
+survive intact.
 
 ## Open questions
 

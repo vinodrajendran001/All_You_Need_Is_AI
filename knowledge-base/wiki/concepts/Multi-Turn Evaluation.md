@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - llm-evaluation
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-02-paolo-perrone-agentic-testing
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-06-rastogi-agent-observability
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
 status: active
 ---
 
@@ -108,12 +109,51 @@ Multi-agent evaluation needs trace context propagated across handoffs, so a rece
 child span under the same trace ID rather than an orphaned trace — formalised by the A2A Traceability
 Extension with parent/child step IDs and per-step cost accounting.
 
+## Build the eval from real traffic first, and synthesize only when nothing real is left
+
+This page has argued for simulation without ranking it against the alternatives.
+[[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] supplies the ordering. Cases are
+sampled in a **fixed order of preference**: production transcripts first, then bug reports and support
+tickets, then **five to ten cases written by hand**, then cases synthesized from the codebase. Synthesis
+is the last resort rather than a parallel option, which sharpens the DoorDash flywheel already recorded
+here — that simulator is transcript-grounded, and the ordering explains why that grounding is the load-
+bearing part rather than a convenience.
+
+The four properties Martin requires of a usable evaluation include **low run-to-run variance**, which is
+this page's pass^k concern restated as a construction requirement: a suite with high variance cannot
+support the multi-run reporting this page demands, because the variance being reported is partly the
+suite's own. The diagnostic operationalizes it — run **the grader twice on the same output** to separate
+grader noise from system noise, check for timeouts, API errors, and truncated responses, and report a
+confidence interval with one full transcript per case. The other three properties are a production-like
+task distribution, scores that rise with stronger models and more effort, and frontier performance with
+**headroom below 100%**, with a warning fired when the baseline is about **95% or higher**.
+
+Grader choice follows output shape: programmatic checks for constrained outputs, LLM-as-a-judge for
+open-ended ones, and judges that **check specific claims rather than emit a 1-to-5 scale**. That agrees
+with this page's existing position that narrow, explicit judging calibrates better than holistic scoring,
+and it comes with the concession that keeps it honest — a misconfigured judge still requires a human to
+read scored transcripts, which is why one full transcript per case is an output of every run rather than
+an optional artifact. See [[LLM-as-a-Judge]].
+
+What the source does not contribute is anything about the turn-versus-trace distinction this page is
+built on. Its worked examples score a single per-ticket decision on a **44-case** internal benchmark
+(**30** for search, **14** held out), which is outcome scoring on isolated cases, not conversation-level
+measurement. So it strengthens the construction and noise-control side of this page while leaving the
+aggregation side untouched, and every figure in it is Anthropic-reported on an Anthropic workflow with no
+independent reproduction and no released evaluation data; see [[Anthropic]].
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
 - How much simulation fidelity is enough before offline metrics become misleading?
 - What is the right balance between always-on online scoring and cheaper sampled evaluation?
 - Do agent and coding benchmarks carry a text-side analogue of the acoustic "which test am I taking" cue, and how would a team detect it in their own regression suite?
+- Production transcripts rank first as a source of cases, but a system with no production traffic can
+  only reach the third rung — five to ten hand-written cases. What does the ordering say about the first
+  evaluation a team builds, which is exactly the one that decides whether anything ships?
+- Low run-to-run variance is listed as a property of the evaluation, yet part of the variance lives in
+  the serving stack rather than in the suite. Can a suite be constructed to a variance target it does not
+  control?
 
 ## Related pages
 
@@ -142,3 +182,6 @@ Extension with parent/child step IDs and per-step cost accounting.
 - [[Agent Observability]]
 - [[Sarthak Rastogi]]
 - [[Retrieval-Augmented Generation]]
+- [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
+- [[Anthropic]]
+- [[Harness Optimization]]

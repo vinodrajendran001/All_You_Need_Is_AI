@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - safety
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-29-bytebytego-why-do-llms-lie
 status: active
 ---
 

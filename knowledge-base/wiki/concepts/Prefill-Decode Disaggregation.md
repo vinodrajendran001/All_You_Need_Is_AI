@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - concept
   - inference
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-10-lenz-epd-multimodal-serving
+  - src-2026-09-24-modal-quail-billion-tokens-per-minute
 status: active
 ---
 
@@ -92,6 +93,37 @@ prefill/decode. In one NVIDIA setup, heterogeneous EPD served 70% more traffic a
 SLO, but colocated E2E gain fell from +11.8% to -2.5% as output length rose. Disaggregation helps
 only while recovered encoder contention exceeds embedding-transfer and coordination overhead.
 
+## Delete one phase and the whole design space has nothing left to arbitrate
+
+Every system on this page assumes two phases with opposite roofline positions competing for one
+worker. [[Modal - Hitting a Billion Tokens per Minute on One GPU]] is the vault's cleanest boundary
+case, because its workload has only one. Quail serves AI-SQL — prompts built from database rows,
+returning a relation — and the queries are Boolean filters and classifications that need **a single
+output token**. Modal is explicit about what follows: **no separate prefill and decode phases, no
+prefill-decode disaggregation, no sampling, no CUDA Graph capture and no speculative decoding**.
+
+This inverts the page's cost analysis rather than contradicting it. Here the KV cache is not the unit
+of transfer between phases; **suffix KV is never written at all**, and what caching exists serves
+cross-request reuse of shared join anchors within a known query plan. With no decode to protect,
+chunked prefill has nothing to interleave, DistServe-style worker separation has nothing to separate,
+and the interconnect bet described above is never placed. The whole device can be provisioned for the
+compute-bound phase.
+
+The useful generalisation is narrow and should stay narrow. Nothing here argues against
+disaggregating chat or agent serving; Modal in fact reports Quail **falling behind vLLM on an
+agent-trace benchmark**, and its headline of **over a billion tokens per minute per H100 with more
+than 10x vLLM** belongs to **one multi-join query**, against **1.84x geometrically averaged** across
+the released benchmark. What the case complicates is the habit of treating the prefill/decode split
+as an invariant of LLM serving. Classification, filtering, reranking and judging are prefill-dominant
+workloads, and [[Philip Kiely - The Efficient Frontier of LLM Inference]]'s point above — that the
+**ratio** of prefill to decode workers should match actual input/output lengths — already implies
+that ratio can run to its limit. At the limit, the technique's premise disappears.
+
+Caveats belong with it: the workload is unusually favourable by Modal's own description (known
+structure, shared prefixes, zero decode, structured outputs reduced to an **8-option output
+vocabulary**, low latency sensitivity), full SQL execution support was not yet implemented, and all
+figures are vendor-reported.
+
 ## Open questions
 
 - What is the crossover point at which KV transfer cost exceeds the interference cost it avoids, and how does it move with model size, context length, and attention variant?
@@ -99,6 +131,8 @@ only while recovered encoder contention exceeds embedding-transfer and coordinat
 - How should prefix caching and cache reuse work when the cache lives on a different machine from the decoder that needs it?
 - Chunked prefill and full disaggregation solve overlapping problems; when is the simpler single-worker mitigation sufficient?
 - How does disaggregation interact with expert parallelism in [[Mixture of Experts]] serving, where routing already imposes its own communication pattern?
+- What share of production LLM calls emit only a handful of tokens — classification, filtering, judging, routing — and does the disaggregation literature's benchmark mix represent them at all?
+- When a fleet mixes prefill-only classification with long-decode chat, is the right answer disaggregated workers or two separate pools running different engines?
 
 ## Related pages
 
@@ -116,3 +150,4 @@ only while recovered encoder contention exceeds embedding-transfer and coordinat
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
 - [[SemiAnalysis]]
+- [[Modal - Hitting a Billion Tokens per Minute on One GPU]]

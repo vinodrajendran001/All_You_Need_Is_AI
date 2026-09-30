@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-25
+updated: 2026-09-30
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-09-13-prabhulal-production-rag-adk
   - src-2026-09-16-bytebytego-needle-haystack-retrieval
   - src-2026-09-21-liu-just-in-time-agentic-ocr
+  - src-2026-09-29-bytebytego-why-do-llms-lie
 status: active
 ---
 
@@ -244,6 +245,45 @@ The article's million-passage IVF example is illustrative rather than measured. 
 pages before invoking visual OCR. This saves work only when the first pass retains enough recall:
 a relevant page corrupted by extraction may never reach the stronger parser.
 
+## Grounding fails in six named ways, and faithfulness to a stale document is one of them
+
+[[ByteByteGo - Why Do LLMs Lie]] enumerates RAG's failure modes at the level of the passage rather than
+the index, which is the layer this page has treated least systematically. Six are named: a **retired
+policy** retrieved, the **wrong product's policy** selected, an **exception missed**, the **correct
+passage misread**, an **unsupported promise added**, and **related conditions split across passages** so
+retrieval returns only part of the rule. They do not share a fix. The first three are retrieval selecting
+the wrong evidence, the middle two are generation mishandling evidence that was correct on arrival, and
+the last is a chunking decision that neither a better retriever nor a reranker repairs.
+
+The retired-policy case is the one that resists the defenses this page already carries, and the reason is
+the source's split between **factual** and **faithfulness** hallucination. A system can be perfectly
+faithful to the evidence it was handed and still be wrong about the world, so faithfulness scoring — the
+standard grounded-generation metric — will certify it. Only a freshness or active-version rule catches
+it. That extends the layering
+[[ByteByteGo - How LLMs Can Find a Needle in a Haystack]] contributes to this page by one step: ANN recall
+is not evidence relevance, and evidence relevance is not evidence **currency**.
+
+The split-conditions failure deserves separate attention because nothing in this page's hybrid-retrieval,
+reranking, or embedding-quality material addresses it. When a rule's general condition and its exception
+live in different passages, a top-k result can be individually accurate and collectively a fragment, and
+the returned passage carries no signal that the rest of the rule exists. This is the strongest argument
+on the page for treating chunk boundaries as a **schema decision** in the same sense the embedding model
+already is — the corpus is being cut along lines that decide which rules can survive retrieval intact —
+and no threshold or rerank score distinguishes a complete rule from half of one.
+
+The recommended architecture routes deterministic conditions to ordinary application code, grounds the
+rest in retrieval and tool lookups, and then runs **verification as a separate stage**: decompose the
+answer into claims, check each against the applicable evidence, and validate citations for **existence,
+applicability, and support**. Applicability is the term doing the work — a citation can point at a real
+passage that does not govern the question. The evaluation advice is the more portable part: measure
+**correctness, support, appropriate abstention, and unnecessary refusal**, with a response space that
+includes a third state such as **"needs review"**. That is a stronger target than retrieval precision,
+because it scores what the system does when retrieval fails rather than only how often it does. All of
+this comes from a secondary explainer with sponsored sections, reporting no hallucination rates and no
+controlled comparisons, and offering no guidance on retrieval thresholds or on adjudicating conflicting
+documents — so it is a checklist of failure modes rather than a sizing of them, and it leaves open what
+retrieval-time signal would indicate an incomplete rather than a sufficient result set.
+
 ## Related pages
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
@@ -278,3 +318,8 @@ a relevant page corrupted by extraction may never reach the stronger parser.
 - [[Amine Raji]]
 - [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]]
 - [[Google Cloud]]
+- [[ByteByteGo - Why Do LLMs Lie]]
+- [[ByteByteGo - How LLMs Can Find a Needle in a Haystack]]
+- [[ByteByteGo]]
+- [[LLM Application Resilience]]
+- [[Approximate Nearest-Neighbor Search]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - concept
   - kv-cache
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-24-modal-quail-billion-tokens-per-minute
 status: active
 ---
 
@@ -217,12 +218,47 @@ while its KV cache still grows with sequence length and concurrent conversations
 context, cache quantization, CPU offload, and paged allocation trade capacity against latency and
 quality; none follows directly from the raw weight-byte calculation.
 
+## Every optimization family above is solving uncertainty that some workloads do not have
+
+The families listed on this page share a hidden premise: the engine does not know what is coming.
+Token eviction (H2O, StreamingLLM) guesses which tokens stop mattering, predictive skipping (SnapKV,
+PyramidKV) infers it from early-layer signals, and paged allocation removes fragmentation without
+knowing how long a sequence will grow. [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
+describes a workload where the premise is false. Because a SQL query planner generates the requests
+rather than users, the engine sees the whole future request order before execution — so **eviction
+becomes exact and prefetching deliberate** instead of heuristic.
+
+The cache also moves upstream into planning. Quail's plan search is **KV-aware**: join ordering is
+chosen with Pareto pruning over token count, attention pairs and **cached tokens**, so cache reuse is
+an objective of query planning rather than a consequence of arrival order. On the write side the
+workload removes work outright — **suffix KV is never written to cache**, because the workload is
+prefill-only with zero decode and no joins beyond (N>2)-way joins — and attention for shared join
+anchors uses a recursive combination-of-partials kernel. Modal also notes that because this workload
+tolerates latency, a **multi-tier KV cache becomes practical**, a design the latency-sensitive
+serving on the rest of this page cannot afford.
+
+This complicates, rather than replaces, the prefix-stability section above. That section's rule is
+that the *caller* decides whether a hit happens, by keeping the prompt prefix byte-identical. Quail
+goes one step further — the caller also decides the **order** — which moves cache policy out of the
+engine almost entirely. But the extension only holds for planner-generated traffic: **cross-query KV
+reuse and radix indexing for prefix sharing remain future work** in Quail, and Modal reports it
+**falling behind vLLM on an agent-trace benchmark**, which is exactly the traffic the byte-identical-
+prefix advice was written for.
+
+The performance figures carry the usual conditions. **Over a billion tokens per minute per H100** and
+**more than 10x vLLM** describe **one multi-join query**; the cross-workload figure from the same
+release is **1.84x, geometrically averaged**. All of it is vendor-reported, on a workload Modal itself
+calls unusually favourable — known structure, shared prefixes, no decode, structured outputs with an
+**8-option output vocabulary**, and low latency sensitivity.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
 - Can aggressive KV quantization become a standard serving-kernel feature, or will implementation complexity keep it research-stage?
 - How should agent systems decide when to summarize, evict, quantize, or route around expensive long-context state?
 - If cache-sharing architectures spend the decode compute headroom that speculation also needs, how should a serving stack choose between them per workload rather than per model?
+- What share of real serving traffic has a knowable future request order, and how much of this page's research is therefore solving an uncertainty that a growing class of workloads does not have?
+- Can a *partial* plan — an agent's declared tool sequence, a batch job's manifest, a fixed evaluation suite — buy a proportional share of exact eviction, or does the benefit require the complete order?
 
 ## Related pages
 
@@ -261,3 +297,4 @@ quality; none follows directly from the raw weight-byte calculation.
 - [[Rahul Ranganathan - Inference Gateway on GKE]]
 - [[Mofi Rahman - Quantizing LLMs on GKE]]
 - [[Google Cloud]]
+- [[Modal - Hitting a Billion Tokens per Minute on One GPU]]

@@ -82,8 +82,8 @@ matches the stated mechanism, because the cached side is the side that scales wi
 the opposite end, as an operations guide. It names three primitives — `Choice`, `Noul`, and `Score` —
 and fixes a semantics worth carrying explicitly: a `Noul` of **0.5** means the model **cannot tell**,
 not "medium". Read as a midpoint, it would silently corrupt every confidence gate built on it. The
-durable contribution is the rollout sequence: **week 0** pick one simple decision, **week 1** run it in
-shadow mode, **week 2** label **100 to 200 cases**, **week 3** automate only the measured paths.
+durable contribution is the rollout sequence: **week 0** pick one simple decision, **week 1** run it
+in shadow mode, **week 2** label **100 to 200 cases**, **week 3** automate only the measured paths.
 Thresholds are chosen *after* labelling — the **0.6** escalation cut in the intent-routing example is
 illustrative, not a recommended value. That is the first procedure in this thread for deciding when a
 typed model has earned automation, as opposed to asserting that it has.

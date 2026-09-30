@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - llm
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-09-bytebytego-model-routing
+  - src-2026-09-21-tiene-pruning-llms-ising
 status: active
 ---
 
@@ -203,6 +204,42 @@ requirements, since "two requests can look similar in wording but differ in reas
 provider upgrades silently change what a small model can handle, invalidating whatever routing policy was
 calibrated against it. See [[Model Routing]].
 
+## Deleting half a model's depth is a third route to "small", with its own failure surface
+
+This page already holds that a shrunken large model and a natively trained small model are not
+interchangeable at equal size. [[Antonio Tiene et al - Pruning LLMs Like a Physicist]] sharpens what
+the shrinking can mean and how far it goes: whole transformer blocks removed, with the set chosen by
+constrained binary optimization over an approximate Hessian — off-diagonal terms included, so
+interactions between removals are scored — rather than by ranking blocks independently.
+
+The reported numbers, with their conditions. On **Llama-3.3-70B-Instruct, without retraining**, MMLU
+starts at **82.2**. At **32 of 80 blocks removed** the method scores **76.6** against a block-influence
+baseline's **59.3**; at **40 of 80** — half the depth gone, still with no retraining — it scores
+**76.9** against **54.0**. The authors' method loses **5.3 MMLU points** from the original where the
+ranking baseline loses **28.2**. On **Qwen3-14B at 12 of 40 removed**, the lead is about **10 MMLU
+points**. Gains are described as concentrating at aggressive compression ratios and being comparable
+at lighter ones, which is exactly the regime this page cares about.
+
+What depth pruning gives a small-model deployment is a model whose architecture is a **subset** of the
+original — same tokenizer, same vocabulary, same serving kernels, fewer layers. That is also its
+limit. Compare the Sopro V2 finding above, where an inherited **Llama 128k vocabulary consumed roughly
+49M parameters, about 40% of the model's budget**: block removal cannot reach that, because
+embeddings are not blocks. Designing for the size and cutting down to the size still buy different
+things.
+
+The tension with this page's damage profile should stay open. The ByteByteGo material records that
+compression reliably preserves fluency and preferentially damages **multi-step logic** and novel
+problem-solving, and the Granite section argues the real small-model boundary is **acting** — holding
+a coherent trajectory across 64 or 128 turns — not answering. MMLU is a knowledge-and-reasoning
+multiple-choice benchmark and measures neither. A 76.9 at half depth is therefore not evidence that a
+depth-pruned 70B can be used where an 8B agent is used today.
+
+Two further caveats travel with the source. It is a company blog summarizing the authors' own paper,
+with ablations and full tables deferred. And the authors' own objective is a proxy rather than a
+predictor: on **Llama-3.1-8B-Instruct at 16 of 32 blocks removed**, the **17th excited state** beats
+the lowest-energy configuration across several benchmarks — but **after light retraining**, a
+different condition from the without-retraining results above.
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -210,6 +247,8 @@ calibrated against it. See [[Model Routing]].
 - When does external retrieval compensate for small-model knowledge limits, and when does it create more context risk?
 - How should privacy-sensitive systems choose between on-device SLMs, private edge models, and cloud frontier models?
 - Which SLM use cases need reasoning compression or verifier-guided test-time scaling to be reliable enough?
+- Does a depth-pruned model keep the multi-turn trajectory capability this page identifies as the real small-model boundary, or only benchmark accuracy on single-shot questions?
+- Given that block removal cannot touch embeddings, at what compression ratio does an inherited vocabulary become the dominant remaining cost — and does that set a floor on how small depth pruning can go?
 
 ## Related pages
 
@@ -243,3 +282,4 @@ calibrated against it. See [[Model Routing]].
 - [[Can Bölük]]
 - [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]]
 - [[ByteByteGo]]
+- [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]

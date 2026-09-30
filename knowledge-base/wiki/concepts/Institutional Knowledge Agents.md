@@ -1,14 +1,16 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-30
 tags:
   - concept
   - ai-agents
   - knowledge-management
   - evaluation
+  - memory
 source_ids:
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-09-29-yoon-multiplayer-ai
 status: active
 ---
 
@@ -90,6 +92,45 @@ leaves implicit.
 Google's Open Knowledge Format, positioning itself as a production instance of an idea already circulating rather
 than a novel invention.
 
+## A second route to the same store: extract from what shipped instead of asking experts to write
+
+Until now this page had one source and one method - compile expert feedback into reviewable text under
+regression tests. [[Jina Yoon - We're Building Multiplayer AI]] describes a second organisation
+reaching a structurally similar store by a different route, and it arrives carrying a number that
+bears directly on the first method's main cost. PostHog's earlier attempt was the expert-writes shape
+in miniature: over **90 days**, **64 users** started a shared `CONTEXT.md` and only **14** ever edited
+it. This is internal product observation, not a study - no denominator of eligible users, no selection
+method, no comparison group - and PostHog is a software company rather than a compliance
+organisation, so it is a caution rather than a refutation of the curated method.
+
+Its replacement keeps the artifact and drops the author. A nightly **"dreaming" task** writes a
+version-controlled Markdown wiki from work objects that already exist - PRs, docs, dashboards - and
+the selection rule carries the design: record what was **actually shipped, merged, or decided in a
+day**, not meeting notes or brainstorming documents, so the agent does not treat proposals as company
+state. That is the same worry the recipe/knowledge split addresses from the other side. Meta types
+content so a wrong answer can be attributed to a procedure or a position; PostHog filters by
+*commitment* so the store never records something the organisation did not decide. One makes failure
+diagnosable, the other makes ingestion selective, and neither substitutes for the other.
+
+The disagreement is worth keeping unresolved, because the two methods fail in opposite ways. Meta's
+loop is deliberately expensive and human-gated - adversarial review of diffs without the rationale,
+blind targeted replay, expert sign-off, a deterministic linter over a declared dependency graph - and
+this page already asks what that costs as the file count grows past 200. PostHog's loop removes the
+human writer entirely and pays in evidence: it reports **no measured hallucination reduction, token
+savings, latency change, or task-quality lift**, and the layer had been dogfooded for only **a few
+weeks** across roughly **~200 employees**. The vault therefore now holds one curated-and-reviewed
+institutional memory with qualitative results and one derived-and-unreviewed institutional memory with
+no results. Neither is validated.
+
+Governance separates them further. Meta's setting is compliance, where positions are written down,
+experts exist, and a review culture is already in place - the conditions this page flags as unusually
+favourable. PostHog names **governance and permissions its biggest blind spot**, observes that users
+**overwhelmingly preferred starting tasks privately** despite an expectation of shared defaults, and
+warns that its findings may depend on a low-hierarchy culture without strict role-based access
+control. Automatically derived institutional memory inherits whatever access boundaries its source
+work objects carry, which the curated method resolves by putting a human at the gate. That is a real
+cost of removing the writer, not an implementation detail.
+
 ## Open questions
 
 - **The results have no denominators.** "Useful almost all the time," "days to minutes," and "zero regressions"
@@ -105,10 +146,17 @@ than a novel invention.
   expenses. Nothing is reported about how they scale as the file count grows past 200.
 - **Does it generalise beyond compliance?** Compliance is unusually well suited: positions are written down,
   experts exist, and correctness is arguable. Domains with tacit or contested knowledge may not compile.
+- **Does a derived store need a review gate at all**, or does a commitment filter - shipped, merged, or
+  decided - substitute for one?
+- **What is the lint equivalent for a derived wiki?** Meta's deterministic linter checks a declared
+  dependency graph; a nightly extraction from work objects has no declared graph to check.
+- **How does either method record a reversal?** A shipped decision that is later undone is a commitment
+  by the ingestion rule and a stale position by the knowledge rule.
 
 ## Related pages
 
 - [[Meta - An Organizational Second Brain]]
+- [[Jina Yoon - We're Building Multiplayer AI]]
 - [[Schema-Driven Knowledge Base]]
 - [[Persistent Wiki]]
 - [[Index and Log]]
@@ -122,3 +170,6 @@ than a novel invention.
 - [[Agent Skill]]
 - [[Andrej Karpathy]]
 - [[Meta]]
+- [[Agent Workflow Maturity]]
+- [[Multi-Tenant Agent Architecture]]
+- [[AI Agents in Production]]

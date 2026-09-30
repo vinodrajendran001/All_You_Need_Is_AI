@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-08-30
+updated: 2026-09-30
 entity_kind: organization
 tags:
   - entity
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-21-anthropic-ai-native-sdlc
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
 status: active
 ---
 
@@ -58,6 +59,37 @@ material in [[Reward Design for RL]], and its removal of **more than 80% of Clau
 prompt with no measurable eval loss** is the strongest single data point in
 [[Context Engineering]]'s case against instruction bloat.
 
+## The evaluation method is published; the evaluation data is not
+
+[[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] extends Anthropic's presence in
+this vault from harnesses and skills into evaluation methodology. The artifacts are skill commands: one
+builds an evaluation for an application, the other improves the application against it one attributable
+change at a time. The durable part is the set of controls — a held-out split, one patch per round, a
+revert when only the training split improves, a noise floor measured by running the grader twice on the
+same output, and a ceiling at roughly **95%** above which quality hillclimbing is abandoned in favour of
+cost or latency. Those controls are legible enough to reuse without Anthropic's tooling; see
+[[Benchmark Optimization]] and [[Harness Optimization]].
+
+The results are a different matter, and they need reading with the conditions attached. On an internal
+benchmark of **44 tickets** (**30** for search, **14** held out), the baseline Opus 4.8 at high effort
+scored **74.4% decision accuracy at 4.6 cents per ticket**; Opus 5.5 at low effort **87.8% at 1.9
+cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work took Sonnet 5 to **98.9%** at about the
+same cost, and the held-out split moved from **78.6%** to **90.5%** at roughly **one fifth of the cost**.
+Every figure is Anthropic-reported, on an Anthropic workflow, evaluating Anthropic models, with no
+independent reproduction and no released evaluation data. The cost claim in particular is not a clean
+measurement of the method, because the before-and-after bundles a model change, an effort change, a
+prompt change, **and a pricing change** — Opus 5.5 is stated to price input and output **20% less** than
+Opus 4.8 and cache reads **60% less**. Part of the reported saving is the vendor's own price list.
+
+This complicates rather than contradicts the pattern recorded above, where Anthropic has published
+findings that cut against its own positions — CHIVE's negative result on interpretability tooling, and
+the removal of more than 80% of Claude Code's system prompt with no measurable eval loss. Martin's piece
+does concede against interest: evaluation leakage and overfitting persist, **including harness additions
+that solve benchmark quirks rather than production problems**, and a misconfigured judge still requires a
+human to read scored transcripts. But a concession stated inside results nobody outside can check is a
+weaker instrument than a published negative result on a released benchmark. Both belong on this page, and
+they should not be collapsed into a single claim about the lab's transparency.
+
 ## Related pages
 
 - [[Anthropic - The AI-Native SDLC Playbook]]
@@ -73,3 +105,9 @@ prompt with no measurable eval loss** is the strongest single data point in
 - [[Reward Design for RL]]
 - [[Context Engineering]]
 - [[Anthropic - Would This Change Your Answer (CHIVE)]]
+- [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
+- [[Benchmark Optimization]]
+- [[Harness Optimization]]
+- [[Multi-Turn Evaluation]]
+- [[Agentic Testing]]
+- [[LLM-as-a-Judge]]

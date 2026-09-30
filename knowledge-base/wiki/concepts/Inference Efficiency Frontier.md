@@ -180,33 +180,33 @@ decision model at 33-38 ms, but both performance and Jev comparisons remain self
 [[Jacky Kwok et al - Contrastive Language Models]] is the cleanest example this page has of work
 removed rather than reallocated, in a domain other than token generation. A Stanford and NVIDIA
 Research group scores a decision as the cosine similarity between a state embedding and a candidate
-action embedding. Because **action embeddings are state-independent**, the candidate side is computed
-once and reused across every subsequent decision: in the Super Mario example **4 action embeddings**
-are precomputed and the per-step cost drops **from 5 forward passes to just 1**. In this page's
-vocabulary that is **frontier-moving**, and it is the same structural move as prefix caching — stable
-content computed once, changing content computed per request — relocated from the prompt to the action
-space.
+action embedding. Because **action embeddings are state-independent**, the candidate side is
+computed once and reused across every subsequent decision: in the Super Mario example **4 action
+embeddings** are precomputed and the per-step cost drops **from 5 forward passes to just 1**. In
+this page's vocabulary that is **frontier-moving**, and it is the same structural move as prefix
+caching — stable content computed once, changing content computed per request — relocated from the
+prompt to the action space.
 
 The investment cost is unusually low for a frontier-moving technique. Only a **20M-parameter
-projection head** is trained over frozen LLM backbones, and a full pre-training run on Nemotron DQA is
-reported at **about an hour on a single RTX 4090**, which sits well below the empirical sweeps this
-page says are needed merely to *locate* an operating point on an existing frontier.
+projection head** is trained over frozen LLM backbones, and a full pre-training run on Nemotron DQA
+is reported at **about an hour on a single RTX 4090**, which sits well below the empirical sweeps
+this page says are needed merely to *locate* an operating point on an existing frontier.
 
 Three speed claims appear, under three different conditions, and merging them would misstate the
 mechanism: **up to 9x lower latency** overall, **4-6x faster inference than Jev** in the benchmark
 section, and **13x** at around **1k candidates**. The last is the one that follows from the
-architecture — the cached side is the side that grows with the candidate count, so the advantage is a
-function of how many options the decision has, not a constant. Reward-model latency (**81.6% on
+architecture — the cached side is the side that grows with the candidate count, so the advantage is
+a function of how many options the decision has, not a constant. Reward-model latency (**81.6% on
 DeepSWE** over **38** held-out tasks, **87.6% on Terminal-Bench 2.1** over **30**) is measured on an
-**H100 GPU**. Every figure is first-party and self-reported, published on a Notion page rather than at
-a peer-reviewed venue.
+**H100 GPU**. Every figure is first-party and self-reported, published on a Notion page rather than
+at a peer-reviewed venue.
 
-Two boundaries keep this from being a general result. The method **presumes a defined candidate action
-set**, so it buys nothing for open-ended generation — it is the *narrow the task* lever already
-recorded here via Laya, but with the saving located precisely instead of attributed to model size. And
-it does not adjudicate the vendor claims it is benchmarked against: CLM is an outside architecture
-publishing Jev as its baseline, not an independent measurement of Jev's own **70-500 ms** and
-**193.6x/444.6x** headlines. See [[Typed Probabilistic Decision Models]].
+Two boundaries keep this from being a general result. The method **presumes a defined candidate
+action set**, so it buys nothing for open-ended generation — it is the *narrow the task* lever
+already recorded here via Laya, but with the saving located precisely instead of attributed to model
+size. And it does not adjudicate the vendor claims it is benchmarked against: CLM is an outside
+architecture publishing Jev as its baseline, not an independent measurement of Jev's own **70-500
+ms** and **193.6x/444.6x** headlines. See [[Typed Probabilistic Decision Models]] .
 
 ## Open questions
 

@@ -59,44 +59,46 @@ secondary claims with incompatible scopes, not independent replications of the v
 
 ## An outside architecture and a rollout discipline arrive before the numbers reconcile
 
-[[Jacky Kwok et al - Contrastive Language Models]] is the first source in this thread written neither
-by the vendor nor by a commentator on it. A Stanford and NVIDIA Research group proposes Contrastive
-Language Models: a state encoder and an action encoder over **frozen LLM backbones**, scored by cosine
-similarity, with only a **20M-parameter projection head** trained. A full pre-training run on Nemotron
-DQA is reported at **about an hour on a single RTX 4090**. Jev is its baseline, which is the first
-outside pressure this page has recorded on the category's numbers — but a competing architecture
-benchmarking against its own baseline is not an independent replication of Jev's claims, and every CLM
-figure is first-party too, published on a Notion page rather than at a peer-reviewed venue.
+[[Jacky Kwok et al - Contrastive Language Models]] is the first source in this thread written
+neither by the vendor nor by a commentator on it. A Stanford and NVIDIA Research group proposes
+Contrastive Language Models: a state encoder and an action encoder over **frozen LLM backbones**,
+scored by cosine similarity, with only a **20M-parameter projection head** trained. A full
+pre-training run on Nemotron DQA is reported at **about an hour on a single RTX 4090**. Jev is its
+baseline, which is the first outside pressure this page has recorded on the category's numbers — but
+a competing architecture benchmarking against its own baseline is not an independent replication of
+Jev's claims, and every CLM figure is first-party too, published on a Notion page rather than at a
+peer-reviewed venue.
 
-What CLM isolates is *why* a typed decision system can be fast, and the answer is not "smaller model".
-Candidate action embeddings are **state-independent**, so they are computed once and reused: in the
-Super Mario example **4 action embeddings** are precomputed and the per-step cost falls **from 5
-forward passes to just 1**. That reframes the schema on this page as a precomputation boundary rather
-than only an output contract — and it inherits the same limit, since the method presumes a defined
-candidate action set and is not open-ended generation. The speed claims travel with different
-conditions and must not be merged into one number: **up to 9x lower latency** overall, **4-6x faster
-inference than Jev** in the benchmark section, and **13x** at around **1k candidates**. Only the last
-matches the stated mechanism, because the cached side is the side that scales with candidate count.
+What CLM isolates is *why* a typed decision system can be fast, and the answer is not "smaller
+model". Candidate action embeddings are **state-independent**, so they are computed once and reused:
+in the Super Mario example **4 action embeddings** are precomputed and the per-step cost falls
+**from 5 forward passes to just 1**. That reframes the schema on this page as a precomputation
+boundary rather than only an output contract — and it inherits the same limit, since the method
+presumes a defined candidate action set and is not open-ended generation. The speed claims travel
+with different conditions and must not be merged into one number: **up to 9x lower latency**
+overall, **4-6x faster inference than Jev** in the benchmark section, and **13x** at around **1k
+candidates**. Only the last matches the stated mechanism, because the cached side is the side that
+scales with candidate count.
 
 [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] approaches the category from
-the opposite end, as an operations guide. It names three primitives — `Choice`, `Noul`, and `Score` —
-and fixes a semantics worth carrying explicitly: a `Noul` of **0.5** means the model **cannot tell**,
-not "medium". Read as a midpoint, it would silently corrupt every confidence gate built on it. The
-durable contribution is the rollout sequence: **week 0** pick one simple decision, **week 1** run it
-in shadow mode, **week 2** label **100 to 200 cases**, **week 3** automate only the measured paths.
-Thresholds are chosen *after* labelling — the **0.6** escalation cut in the intent-routing example is
-illustrative, not a recommended value. That is the first procedure in this thread for deciding when a
-typed model has earned automation, as opposed to asserting that it has.
+the opposite end, as an operations guide. It names three primitives — `Choice` , `Noul` , and
+`Score` — and fixes a semantics worth carrying explicitly: a `Noul` of **0.5** means the model
+**cannot tell**, not "medium". Read as a midpoint, it would silently corrupt every confidence gate
+built on it. The durable contribution is the rollout sequence: **week 0** pick one simple decision,
+**week 1** run it in shadow mode, **week 2** label **100 to 200 cases**, **week 3** automate only
+the measured paths. Thresholds are chosen *after* labelling — the **0.6** escalation cut in the
+intent-routing example is illustrative, not a recommended value. That is the first procedure in this
+thread for deciding when a typed model has earned automation, as opposed to asserting that it has.
 
 Neither source reconciles the performance claims. Rastogi restates about **100 milliseconds**,
 **$0.042 per million input tokens** with output tokens free, and **40x to 200x faster** and **up to
 400x cheaper** than frontier LLMs. Those sit alongside, and not in place of, the **70-500 ms**,
-**20-200x**, **200x/400x**, and **444.6x cheaper** figures already recorded here; none of them travels
-with a workload definition, so the set remains a pile of attributed vendor claims rather than a
-converging estimate. His calibration statement — if the model says **0.9** it should be right about
-**90%** of the time — is the right claim to make and is demonstrated nowhere in the source, and the
-vendor cookbook results he cites are described only as having worked "pretty well", with no dataset or
-confusion matrix. The "cannot hallucinate" framing still fails the schema-validity versus
+**20-200x**, **200x/400x**, and **444.6x cheaper** figures already recorded here; none of them
+travels with a workload definition, so the set remains a pile of attributed vendor claims rather
+than a converging estimate. His calibration statement — if the model says **0.9** it should be right
+about **90%** of the time — is the right claim to make and is demonstrated nowhere in the source,
+and the vendor cookbook results he cites are described only as having worked "pretty well", with no
+dataset or confusion matrix. The "cannot hallucinate" framing still fails the schema-validity versus
 semantic-validity split above: a schema-valid `Choice` can be the wrong one.
 
 ## Open questions

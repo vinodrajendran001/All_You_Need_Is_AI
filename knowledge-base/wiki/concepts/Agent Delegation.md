@@ -196,21 +196,21 @@ supply the contract or authority policy.
 ## A bounded choice is the sub-task whose contract is already attached
 
 Contract-first decomposition is stated above as demanding, because many real sub-tasks have no cheap
-verifier. [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] identifies the class
-where the contract comes for free: a decision over a **predeclared option set**. The answer is
-checkable against a schema by construction and labellable by a human in bulk, which is why all six of
-his patterns — intent routing, model routing, malicious-intent screening, tool-call gating,
+verifier. [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] identifies the
+class where the contract comes for free: a decision over a **predeclared option set**. The answer is
+checkable against a schema by construction and labellable by a human in bulk, which is why all six
+of his patterns — intent routing, model routing, malicious-intent screening, tool-call gating,
 confidence-based escalation, and UI-action selection — are *choices*, and none of them is open-ended
 work. Delegating a bounded choice to a typed model that **generates no text** is the narrowest
 delegation this page records, and the only one where the stopping criterion is satisfied trivially.
 
 The escalation contract is where it touches the zone of indifference. Instead of a recipient that
 complies with anything short of a hard violation, a typed step can decline: the primitives are
-`Choice`, `Noul`, and `Score`, and a **`Noul` of 0.5 means the model cannot tell**, not "medium". The
-distinction is load-bearing for delegation specifically, because a hand-back policy keyed on
-"medium confidence" would return the wrong population to the delegator. The intent-routing example
-sends anything below **0.6** confidence to a person, and Rastogi is explicit that the number is
-illustrative and the threshold should be chosen after measurement.
+`Choice` , `Noul` , and `Score` , and a ** `Noul` of 0.5 means the model cannot tell**, not
+"medium". The distinction is load-bearing for delegation specifically, because a hand-back policy
+keyed on "medium confidence" would return the wrong population to the delegator. The intent-routing
+example sends anything below **0.6** confidence to a person, and Rastogi is explicit that the number
+is illustrative and the threshold should be chosen after measurement.
 
 The measurement is the second contribution. Authority is acquired in stages — **week 0** pick one
 simple decision, **week 1** run it in shadow mode, **week 2** label **100 to 200 cases**, **week 3**
@@ -219,15 +219,15 @@ delegation — handoff schema, sole writer, verifier, exit condition — but not
 the right to run unattended. Shadow-then-label supplies that, and its exclusion is as informative as
 its procedure: Rastogi advises against the pattern for **low-volume, high-consequence decisions**,
 because there is never enough traffic to establish the threshold, which is the same reversibility
-reasoning that governs approval policy in [[Agent Security and Governance]].
+reasoning that governs approval policy in [[Agent Security and Governance]] .
 
-Two limits should travel with the pattern. The tool-call gating case is deliberately **reasoning-blind
-— it sees the task and the pending action but not tool outputs** — so the delegate is judging an
-intention, not its consequences, and the typed step is a *filter rather than a security boundary*:
-adversarial state can move the answer, and least-privilege controls stay necessary behind it. And the
-source offers **no benchmark and no controlled comparison**; its speed and cost figures restate vendor
-claims that do not reconcile with the other ranges the vault records for the same product. See
-[[Typed Probabilistic Decision Models]].
+Two limits should travel with the pattern. The tool-call gating case is deliberately
+**reasoning-blind — it sees the task and the pending action but not tool outputs** — so the delegate
+is judging an intention, not its consequences, and the typed step is a *filter rather than a
+security boundary*: adversarial state can move the answer, and least-privilege controls stay
+necessary behind it. And the source offers **no benchmark and no controlled comparison**; its speed
+and cost figures restate vendor claims that do not reconcile with the other ranges the vault records
+for the same product. See [[Typed Probabilistic Decision Models]] .
 
 ## Open questions
 

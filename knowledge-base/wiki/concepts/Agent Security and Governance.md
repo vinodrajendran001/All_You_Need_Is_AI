@@ -364,38 +364,38 @@ is valid.
 ## A screening model is a filter, and a filter does not treat its input as hostile
 
 [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] states outright the boundary
-the section above asserts, and supplies the reason. A typed screening model **does not treat its input
-as hostile**: adversarial state can move the answer, so the model reduces the volume of bad requests
-reaching a control without becoming the control. **Least-privilege enforcement is still required
-behind it.** The vendor-adjacent claim that such a model "cannot hallucinate" collapses on the same
-distinction this page keeps elsewhere — schema validity is not semantic correctness, a valid `Choice`
-can be the wrong one, and an attacker only needs it to be wrong once.
+the section above asserts, and supplies the reason. A typed screening model **does not treat its
+input as hostile**: adversarial state can move the answer, so the model reduces the volume of bad
+requests reaching a control without becoming the control. **Least-privilege enforcement is still
+required behind it.** The vendor-adjacent claim that such a model "cannot hallucinate" collapses on
+the same distinction this page keeps elsewhere — schema validity is not semantic correctness, a
+valid `Choice` can be the wrong one, and an attacker only needs it to be wrong once.
 
 The tool-call gate is worth recording as a design, separate from its evidence. The gate sees **the
-task and the pending action but not tool outputs**, which Rastogi likens to Claude Code's deliberately
-reasoning-blind classifier. Withholding the outputs is the point rather than a limitation: tool
-results are precisely the channel an attacker controls, so a gate that reads them is a gate that can
-be addressed directly — the same argument as the blind-judge protocols recorded in
-[[LLM-as-a-Judge]]. Placed under the reversibility-keyed approval policy above, a typed gate is a
-cheap pre-filter *in front of* the approval decision, never a substitute for it, and it inherits the
-rule that anything requiring approval must not be acted on before the intention is complete.
+task and the pending action but not tool outputs**, which Rastogi likens to Claude Code's
+deliberately reasoning-blind classifier. Withholding the outputs is the point rather than a
+limitation: tool results are precisely the channel an attacker controls, so a gate that reads them
+is a gate that can be addressed directly — the same argument as the blind-judge protocols recorded
+in [[LLM-as-a-Judge]] . Placed under the reversibility-keyed approval policy above, a typed gate is
+a cheap pre-filter *in front of* the approval decision, never a substitute for it, and it inherits
+the rule that anything requiring approval must not be acted on before the intention is complete.
 
 The operational case for gating rather than prompting rests on one statistic: Shipyard is cited as
 reporting that users approve about **93% of permission prompts**. Read carefully, that is a claim
 about prompt fatigue, not about safety. A control approved 93% of the time is doing very little
-discriminating work, and the figure supports two opposite readings — most prompts were unnecessary, or
-users have stopped reading them — which happen to recommend the same fix of fewer, better-targeted
-stops. It does not license replacing the stop with a model.
+discriminating work, and the figure supports two opposite readings — most prompts were unnecessary,
+or users have stopped reading them — which happen to recommend the same fix of fewer,
+better-targeted stops. It does not license replacing the stop with a model.
 
 The screening evidence itself is thin enough to matter. The guardrail pattern — one request per
-message carrying `Noul` questions for jailbreak, harmful request, medical advice, and self-harm, plus
-a `Score`, on **`jev-1.12`** — comes from the vendor's own cookbook and is described only as having
-worked **"pretty well"**, with no dataset, no denominator, and no confusion matrix. For a safety
-control, that is an anecdote. Rastogi's own rollout discipline is the corrective and belongs with any
-adoption of this pattern: shadow mode first, **100 to 200 labelled cases**, thresholds set after
-labelling rather than before, and automation only of the paths that were measured — with the explicit
-warning that the pattern is wrong for **low-volume, high-consequence decisions**, which is the same
-reversibility logic as the approval table above.
+message carrying `Noul` questions for jailbreak, harmful request, medical advice, and self-harm,
+plus a `Score` , on ** `jev-1.12` ** — comes from the vendor's own cookbook and is described only as
+having worked **"pretty well"**, with no dataset, no denominator, and no confusion matrix. For a
+safety control, that is an anecdote. Rastogi's own rollout discipline is the corrective and belongs
+with any adoption of this pattern: shadow mode first, **100 to 200 labelled cases**, thresholds set
+after labelling rather than before, and automation only of the paths that were measured — with the
+explicit warning that the pattern is wrong for **low-volume, high-consequence decisions**, which is
+the same reversibility logic as the approval table above.
 
 ## Open questions
 

@@ -130,42 +130,42 @@ thresholds still require calibration and production verification rather than ven
 
 ## The router's latency is the argument, and the threshold has to be earned
 
-[[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] supplies the number this page
-noted was missing. The 10× cost arithmetic above prices no router call and gives no latency accounting
-at all; Rastogi reports that **LLM-as-judge routers add 1 to 5 seconds per request**, set against
-**LiteLLM's reported 43% savings** and **RouteLLM's claimed up to 85%**. For an interactive workload
-that is not a rounding error — a router that thinks for seconds can cost more wall-clock time than the
-tier downgrade saves, which is the actual case for moving the routing decision off a generative model
-rather than making it a better one.
+[[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] supplies the number this
+page noted was missing. The 10× cost arithmetic above prices no router call and gives no latency
+accounting at all; Rastogi reports that **LLM-as-judge routers add 1 to 5 seconds per request**, set
+against **LiteLLM's reported 43% savings** and **RouteLLM's claimed up to 85%**. For an interactive
+workload that is not a rounding error — a router that thinks for seconds can cost more wall-clock
+time than the tier downgrade saves, which is the actual case for moving the routing decision off a
+generative model rather than making it a better one.
 
 The replacement he proposes is a typed decision: intent routing and model routing expressed as
 `Choice` questions returning probabilities with **no generated text**, alongside `Noul` for binary
 questions and `Score` for scalars. One semantics is load-bearing for anyone building a confidence
-gate on top: a **`Noul` of 0.5 means the model cannot tell, not "medium"**. A router that reads 0.5 as
-a mid-confidence answer will escalate exactly the wrong population. The pattern also sequences intent
-routing before model routing, which is this page's own *route on the strongest signal you already
-have* rule — classify what the request is for, then choose a tier — rather than inferring difficulty
-from raw text, a limit that remains as stated in *embeddings determine intent reliably and difficulty
-unreliably*.
+gate on top: a ** `Noul` of 0.5 means the model cannot tell, not "medium"**. A router that reads 0.5
+as a mid-confidence answer will escalate exactly the wrong population. The pattern also sequences
+intent routing before model routing, which is this page's own *route on the strongest signal you
+already have* rule — classify what the request is for, then choose a tier — rather than inferring
+difficulty from raw text, a limit that remains as stated in *embeddings determine intent reliably
+and difficulty unreliably*.
 
-What is genuinely new is how the threshold is set. The rollout is staged — **week 0** pick one simple
-decision, **week 1** run it in shadow mode, **week 2** label **100 to 200 cases**, **week 3** automate
-only the measured paths — and the **0.6** escalation cut in the intent-routing example is explicitly
-illustrative, to be chosen after labelling rather than before. That is a partial answer to this page's
-open question about which confidence signal is reliable enough to let a small model escalate: the
-signal is not trusted on the vendor's word, it is measured against labels on the team's own traffic
-first.
+What is genuinely new is how the threshold is set. The rollout is staged — **week 0** pick one
+simple decision, **week 1** run it in shadow mode, **week 2** label **100 to 200 cases**, **week 3**
+automate only the measured paths — and the **0.6** escalation cut in the intent-routing example is
+explicitly illustrative, to be chosen after labelling rather than before. That is a partial answer
+to this page's open question about which confidence signal is reliable enough to let a small model
+escalate: the signal is not trusted on the vendor's word, it is measured against labels on the
+team's own traffic first.
 
 The caveats are not small. The source contains **no benchmark and no controlled comparison**; its
-speed and price figures — about **100 milliseconds**, **$0.042 per million input tokens** with output
-tokens free, **40x to 200x faster** and **up to 400x cheaper** — restate vendor claims and **do not
-reconcile** with the **70-500 ms**, **20-200x**, **200x/400x** and **444.6x cheaper** ranges the vault
-already records for the same product, because none of them travels with a workload definition. The
-calibration property a typed router depends on — if it says **0.9** it should be right about **90%**
-of the time — is asserted, not demonstrated. And swapping the router's implementation changes none of
-the four failure modes above: **prompt injection of routing instructions**, under-routing,
-over-routing, and providers silently improving the models the routing logic was tuned against all
-survive intact.
+speed and price figures — about **100 milliseconds**, **$0.042 per million input tokens** with
+output tokens free, **40x to 200x faster** and **up to 400x cheaper** — restate vendor claims and
+**do not reconcile** with the **70-500 ms**, **20-200x**, **200x/400x** and **444.6x cheaper**
+ranges the vault already records for the same product, because none of them travels with a workload
+definition. The calibration property a typed router depends on — if it says **0.9** it should be
+right about **90%** of the time — is asserted, not demonstrated. And swapping the router's
+implementation changes none of the four failure modes above: **prompt injection of routing
+instructions**, under-routing, over-routing, and providers silently improving the models the routing
+logic was tuned against all survive intact.
 
 ## Open questions
 

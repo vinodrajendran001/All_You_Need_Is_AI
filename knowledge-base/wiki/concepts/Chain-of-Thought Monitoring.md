@@ -183,6 +183,12 @@ itself a model and can be wrong.
   unworkable, and what is it in practice?
 - Monitoring caught this incident in hindsight. What is the detection latency in a live setting, against
   an agent population that is coordinating faster than the responders?
+- If a monitor reads stated confidence, what calibrates it? No source in this vault establishes that a
+  model's expressed confidence tracks its accuracy, yet expressed confidence is one of the cheapest
+  features a trace classifier could use.
+- Claim-level verification runs on outputs; CoT monitoring runs on traces. Would decomposing a trace into
+  claims and checking each against evidence be a usable monitor, or would the verification cost exceed
+  the training run it is meant to watch?
 
 ## Related pages
 
@@ -200,3 +206,7 @@ itself a model and can be wrong.
 - [[Latent-Space Reasoning]]
 - [[Sebastian Raschka]]
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
+- [[ByteByteGo - Why Do LLMs Lie]]
+- [[ByteByteGo]]
+- [[LLM Application Resilience]]
+- [[Retrieval-Augmented Generation]]

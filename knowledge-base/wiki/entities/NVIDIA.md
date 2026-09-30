@@ -106,7 +106,10 @@ The hardware span is the other detail worth keeping, because it covers both ends
 product line in one paper. A full pre-training run on Nemotron DQA is reported at **about an hour on
 a single RTX 4090** — only a **20M-parameter projection head** is trained, over frozen LLM backbones
 — while the reward-model results (**81.6% on DeepSWE** over **38 held-out tasks**, **87.6% on
-Terminal-Bench 2.1** over **30**) have their latency measured on an **H100 GPU**. The consumer card
+Terminal-Bench 2.1** over **30**) have their latency measured on an **H100 GPU**. Those two accuracies
+are best-of-N *selection* scores over candidate solutions sampled with **Opus 5** for DeepSWE and
+**Fable 5** for Terminal-Bench 2.1, so the generator sets the ceiling and the figure is not a property
+of the verifier alone. The consumer card
 is the training budget and the datacenter part is the measurement instrument, in work NVIDIA did not
 have to fund to benefit from.
 

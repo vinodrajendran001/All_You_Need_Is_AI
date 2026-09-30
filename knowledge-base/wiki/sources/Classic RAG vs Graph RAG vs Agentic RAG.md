@@ -5,7 +5,7 @@ source_title: "Classic RAG vs Graph RAG vs Agentic RAG"
 source_author: Unknown (LinkedIn post)
 source_url: ""
 created: 2026-05-18
-updated: 2026-09-13
+updated: 2026-09-30
 tags:
   - source/summary
   - rag
@@ -92,3 +92,10 @@ That taxonomy links naturally to [[Search-Augmented Language Models]], [[Agentic
 - [[Perplexity - Advancing Search-Augmented Language Models]]
 - [[AI Knowledge Base Overview]]
 - [[index]]
+
+## Citations
+
+- Raw capture: [[2026-05-18 Unknown (LinkedIn post) - Classic RAG vs Graph RAG vs Agentic RAG]]
+- Canonical URL: none recorded. The capture is an unattributed LinkedIn post; only an expiring
+  `media.licdn.com` image URL survived, so no citable permalink exists. Treat the claims as an
+  uncorroborated practitioner diagram rather than a sourced reference.

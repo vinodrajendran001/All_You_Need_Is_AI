@@ -5,7 +5,7 @@ source_title: "Universal LeetCode Templates — The Complete Arsenal"
 source_author: Unknown (community-compiled)
 source_url: ""
 created: 2026-05-21
-updated: 2026-08-26
+updated: 2026-09-30
 tags:
   - source/summary
   - algorithms
@@ -72,6 +72,10 @@ This source gives the vault a **DSA interview-prep layer** that complements the 
 - [[Neural Network Fundamentals]]
 
 ## Citations
+
+- Raw capture: [[2026-05-21 Unknown (community-compiled) - Universal LeetCode Templates — The Complete Arsenal]]
+- Canonical URL: none recorded. The capture is a community-compiled template collection with no named
+  author or publication URL, so its claims cannot be traced upstream.
 
 ## Raw capture
 

@@ -349,14 +349,14 @@ isolation side of the same estimate and [[Tool Roster Economics]] for the per-tu
 
 ## Buying at runtime makes settlement a production dependency
 
-The capacity chain above prices the compute an agent consumes. [[ByteByteGo - AI Agents Can Think, Now
-They Can Pay]] covers the other bill — what the agent buys from third parties mid-loop. Machine Payments
-Protocol, launched **18th March 2026** and co-authored by Stripe and Tempo, keeps this on ordinary HTTP:
-an unpaid request returns **402** with a challenge (ID, amount, currency, recipient, payment method,
-validity window), the agent authorizes and retries with a credential, and the server returns the resource
-plus a **receipt**. The receipt matters operationally more than the protocol does — it is a per-request
-cost record for external purchases, which the cost-governance material above has only ever had for
-tokens.
+The capacity chain above prices the compute an agent consumes; the other bill is what the agent buys
+from third parties mid-loop. [[ByteByteGo - AI Agents Can Think, Now They Can Pay]] describes Machine
+Payments Protocol, launched **18th March 2026** and co-authored by Stripe and Tempo, which keeps that
+purchase on ordinary HTTP: an unpaid request returns **402** with a challenge (ID, amount, currency,
+recipient, payment method, validity window), the agent authorizes and retries with a credential, and the
+server returns the resource plus a **receipt**. The receipt matters operationally more than the protocol
+does — it is a per-request cost record for external purchases, which the cost-governance material above
+has only ever had for tokens.
 
 Session mode is where production constraints bite. A single web search may be worth **just a cent** while
 per-transaction fees exceed the payment itself, so the agent reserves funds and signs an **IOU per

@@ -131,9 +131,9 @@ The independence condition is worth stating carefully, because this page already
 tightens it. The identity requires a baseline that does not depend on the sampled completion, and a plain
 group mean includes the sample's own reward — precisely what Granite's leave-one-out baseline removes by
 scoring each response against the mean of the *others*. The derivation does not adjudicate between them,
-but it identifies leave-one-out as the variant that satisfies the condition literally rather than only in
-the large-group limit, which is a sharper justification than the critic-free-property argument recorded
-above.
+but it identifies leave-one-out as the variant that satisfies the condition literally rather than only
+approximately, since the sample's own weight in a plain group mean shrinks but never vanishes as the
+group grows. That is a sharper justification than the critic-free-property argument recorded above.
 
 The same arithmetic explains the silent-group failure this page attributes to horizon effects, and adds
 its mirror image. With four rollouts at a group mean reward of 0.5, advantages are +0.5 and -0.5; a group
@@ -141,9 +141,9 @@ in which every completion fails and a group in which every completion succeeds b
 contribute no gradient at all. The all-fail case is already recorded here as the mechanism behind GRPO's
 inability to fill a batch on near-impossible data. The all-succeed case is the same zero reached from the
 other side, and it is pure compute loss on problems the policy has already solved — a cost this page had
-not recorded. Romero situates GRPO in a line running from REINFORCE through PPO to DAPO without
-characterising the later refinements, and the numbers above illustrate the arithmetic rather than
-reporting measurements.
+not recorded. Romero names REINFORCE, PPO, GRPO, and DAPO as the ladder of refinements this derivation
+leads into, without characterising the later ones, and the numbers above illustrate the arithmetic rather
+than reporting measurements.
 
 One caveat carries into every deployment described on this page: the zero-mean identity holds under
 on-policy sampling. Inference engines such as vLLM or SGLang may run at different numerical precision or

@@ -291,6 +291,11 @@ nothing reported measures whether detail survives across nights.
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
 - How do very long context windows (1M+ tokens) change the engineering priorities vs. practical retrieval-based approaches?
 - Can context engineering be learned and automated (the model manages its own context), or does it require explicit engineering?
+- Does deriving context from shipped work avoid context collapse or relocate it? A nightly
+  regeneration has the same brevity-bias exposure ACE describes, with git history as the only stated
+  recovery path.
+- What eval would show that derived context beats no context? PostHog reports none, and Osmani's null
+  result is the only controlled comparison this page has for context files at all.
 
 ## Related pages
 
@@ -339,3 +344,5 @@ nothing reported measures whether detail survives across nights.
 - [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
 - [[Paul Iusztin]]
 - [[Agent Delegation]]
+- [[Jina Yoon - We're Building Multiplayer AI]]
+- [[Agent Workflow Maturity]]

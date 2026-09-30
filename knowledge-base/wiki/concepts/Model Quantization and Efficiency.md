@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - concept
   - llm
   - quantization
+  - pruning
   - inference
   - efficiency
 source_ids:
@@ -39,6 +40,7 @@ source_ids:
   - src-2026-09-23-bytebytego-model-customization
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-09-10-lenz-epd-multimodal-serving
+  - src-2026-09-21-tiene-pruning-llms-ising
 status: active
 ---
 
@@ -210,11 +212,59 @@ NVFP4 made the still-BF16 vision encoder a larger fraction of runtime, increasin
 separating it. Quantization changed the useful serving topology rather than producing an isolated,
 multiplicative speedup.
 
+## The best M blocks to remove are generally not the M best blocks
+
+This page treats pruning as a ranking problem — magnitude is a weak importance signal,
+activation-aware scoring from a few hundred sample texts ranks better. [[Antonio Tiene et al -
+Pruning LLMs Like a Physicist]] names the assumption underneath all such scoring and argues it is
+wrong: **removals interact**, so scoring blocks independently and deleting the worst M cannot be
+optimal in general.
+
+The mechanism is a second-order Taylor expansion yielding an approximate Hessian whose **diagonal
+encodes individual block importance** and whose **off-diagonal terms encode interactions between
+removals** — precisely what per-block scoring discards. Each block gets a binary variable
+(**0 = keep, 1 = remove**), and the objective minimizes `x^T H^0 x` subject to removing exactly
+**M of N** blocks, which is an Ising glass at fixed magnetization; the equivalent QUBO folds the
+constraint into a penalty. "Ising glass" here is an optimization formulation, not a claim of quantum
+advantage.
+
+What makes it affordable is that the **Hessian is computed once** from forward and backward passes
+on a small calibration dataset and is **reusable across compression targets M**, because the
+couplings do not depend on M. Search then costs one cheap energy evaluation per candidate rather than
+one model evaluation: a few million configurations take **seconds**. For scale, removing **8 of
+Llama-3.3-70B's 80 blocks** spans about **29 billion configurations** and took roughly **two days on
+one GPU** by brute force, while an open-source tabu solver reached the lowest-energy states in
+**seconds** on the hardest cases that brute force verified.
+
+The reported gains, with their conditions attached. On **Llama-3.3-70B-Instruct without retraining**,
+MMLU starts at **82.2**; at **32 of 80 blocks removed** the method scores **76.6 against block
+influence's 59.3**, and at **40 of 80** it scores **76.9 against 54.0** — a **22.9-point** gap, which
+the blog's headline rounds up to "almost 23 percentage points." On **Qwen3-14B at 12 of 40 removed**
+the MMLU lead is about **10 points**. Gains are concentrated at aggressive ratios and described as
+comparable at lighter ones, so this is a technique for deep cuts rather than a general replacement
+for importance ranking.
+
+Two qualifications matter more than the headline. First, the authors show their own objective is a
+proxy rather than a predictor: on **Llama-3.1-8B-Instruct at 16 of 32 blocks removed**, the **17th
+excited state** is the first configuration to propose removing a block near the beginning of the
+network, and **after light retraining** it outperforms the ground state across several benchmarks —
+a **different condition** from the without-retraining Llama-3.3 table, and the two must not be
+conflated. Second, this is a company blog summarizing the authors' own paper, with the derivation,
+ablations, solver comparisons, calibration sensitivity and complete tables deferred. The claim that
+depth pruning **composes with quantization, low-rank/SVD compression, width pruning and
+distillation-based healing** is asserted rather than measured here. It also sits unresolved against
+the damage profile recorded above, where compression preferentially damages **multi-step logic**
+while fluency survives: MMLU retention at half depth speaks to knowledge recall, not to the failure
+mode this page says to watch.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
 - When should the vault split deployment efficiency from fine-tuning efficiency into separate pages?
 - When does a small model plus retrieval/routing beat a larger model on end-to-end cost and quality?
+- Does a Hessian computed once survive composition? If quantization or width pruning runs first, are the block couplings still valid, or does each combination need recalibration?
+- The 22.9-point advantage at 40/80 blocks is an MMLU number without retraining. Does it survive on the multi-step-logic tasks this page records as compression's first casualty?
+- How sensitive are the couplings to the calibration dataset, given the whole method's economy comes from computing them once on a small sample?
 
 ## Related pages
 
@@ -261,3 +311,4 @@ multiplicative speedup.
 - [[Siddhant Rai]]
 - [[Mofi Rahman - Quantizing LLMs on GKE]]
 - [[Google Cloud]]
+- [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]

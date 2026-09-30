@@ -134,7 +134,8 @@ All of this is vendor-reported, and the baseline is asymmetric in a way that mat
 reproduction, no confidence intervals, and no energy or cost-per-token figure. The accuracy checks
 (**0.944 on GPQA-Diamond** and **0.972 on GSM8K** under greedy decoding at maximum reasoning effort)
 are numerical-regression sanity checks, not evidence of parity across broad evaluation. The
-collectives are written for the 2x2x4 arrangement specifically, so other chip counts need new code.
+collectives are written for the 2x2x4 arrangement specifically, so any other chip *topology* —
+including a different arrangement of the same 16 chips — needs new collectives.
 
 ## Open questions
 

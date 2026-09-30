@@ -1490,15 +1490,16 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - **The through-line across the batch is precomputation.** [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
   gives the serving engine a query plan so eviction becomes a schedule rather than a guess, and
   [[Jacky Kwok et al - Contrastive Language Models]] caches state-independent action embeddings so a
-  five-forward-pass decision costs one. Neither is a faster model; both restructure the request so the
-  expensive side can be computed once.
+  decision over four cached candidate actions costs one forward pass instead of five. Neither is a
+  faster model; both restructure the request so the expensive side can be computed once.
 - **Two sources attack per-item ranking.** [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]
   formulates block removal as constrained binary optimization, keeping MMLU at 76.9 versus 54.0 for
   block-influence ranking at 40 of 80 blocks removed on Llama-3.3-70B without retraining — and then
   undercuts its own objective by reporting that the 17th excited state beats the ground state after
   light retraining. [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] wins small-batch
-  decode despite lower peak FLOPS and HBM bandwidth than its GB200 baseline, with the margin falling
-  from 1.96x at batch 1 to 1.36x at batch 8.
+  decode despite lower peak FLOPS and HBM bandwidth than its GB200 baseline, quoted per GPU, with the
+  margin falling from 1.96x at batch 1 to 1.36x at batch 8 — a hand-written kernel against a published
+  vLLM recipe, so kernel effort is not controlled.
 - **First outside pressure on the typed-decision thread.** [[Jacky Kwok et al - Contrastive Language Models]]
   is the first source here from an academic group rather than the vendor, and it publishes Jev as its
   baseline. Its three speed claims — up to 9x lower latency, 4-6x in the benchmark section, 13x at

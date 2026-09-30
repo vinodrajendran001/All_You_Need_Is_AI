@@ -110,8 +110,9 @@ Commercially, **Anthropic has committed to over one million TPUs** — about 400
 [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] is a useful stress test of the spec
 tables this page keeps, because it reports a win by the chip that loses on both headline numbers.
 Inferact's own comparison: **TPU v7 at 2.31 PFLOPS BF16 / 4.61 PFLOPS FP8, 206 GB of HBM at
-7,380 GB/s, 1,200 GB/s ICI**, against **GB200 at 2.5 PFLOPS BF16 / 5 PFLOPS FP8, 186 GB of HBM at
-8,000 GB/s, 1,800 GB/s NVLink 5**. The TPU trails on arithmetic throughput, on memory bandwidth and
+7,380 GB/s, 1,200 GB/s ICI**, against **GB200, per GPU, at 2.5 PFLOPS BF16 / 5 PFLOPS FP8, 186 GB of
+HBM at 8,000 GB/s, 1,800 GB/s NVLink 5** — Inferact's table is per-GPU, and its baseline is 16 GB200
+GPUs, not 16 superchips. The TPU trails on arithmetic throughput, on memory bandwidth and
 on interconnect, and leads only on HBM capacity.
 
 The claimed explanation sits one level above HBM, on the memory surface this page's cache-versus-

@@ -39,12 +39,17 @@ authorizes and retries with a credential; the server returns the resource plus a
 verification returns another 402 with a fresh challenge and a structured reason, not a 401, which
 keeps the failure inside the payment conversation instead of escalating it to authentication.
 
-Two invariants do the safety work. Unpaid requests must not cause side effects, so a request that
-fails to pay cannot have already changed state. Payment proofs are single-use, so a captured
-credential cannot be replayed.
+Everything here is as described by a **secondary explainer**, not a protocol audit or production
+measurement. The article reports as specification properties that unpaid requests must not cause side
+effects, so a request that fails to pay cannot have already changed state, and that **a credential
+sent a second time is rejected**. Credentials remain **bearer instruments authorizing real money**,
+which is why the specification tells servers and intermediaries never to log them or echo them into
+error messages.
 
-The cost structure forces a second design. A single web search may be worth a cent while
-per-transaction fees exceed that, so charge-per-request does not survive its own overhead. Session
+The cost structure forces a second design. In the article's hypothetical, a web search worth a cent
+**can** cost more than that to settle, because per-transaction fees do not shrink with the payment -
+**below a threshold**, settlement costs more than the payment, so charge-per-request does not survive
+its own overhead. Session
 intents let the agent reserve funds and then sign an IOU per request - the cited example is a tenth
 of a cent - which the server verifies in the few milliseconds a signature check takes, settling the
 accumulated IOUs in one transaction. Verification is made cheap enough to run every time while
@@ -59,8 +64,14 @@ wrong service.
 
 What the protocol deliberately excludes is as important as what it defines. Payment proves control of
 a key, not the identity of a customer, so reputation, abuse prevention, refunds, and disputes are
-left to other layers. MPP reportedly has no defined refund flow for one-off charges; unclaimed session
-funds return automatically, but one-off reversals depend on the underlying payment rail.
+left to other layers. MPP defines **no refund flow at all**. Unclaimed session reserve returns by
+itself, which covers money never spent but not money already claimed; refunding a one-off charge means
+the seller sending funds back to the paying key, and whether that works depends on the card network or
+blockchain provider.
+
+Adoption is small: the source reports MPP in production since March 2026 with **about 30,000 MPP
+transactions as of August 2026**, a volume it itself calls "relatively small" while comparing the
+trajectory to the early App Store.
 
 ## Open questions
 
@@ -72,6 +83,17 @@ funds return automatically, but one-off reversals depend on the underlying payme
   wrong?
 - Does the demand actually exist? The cited Cloudflare figure of around 57.5% of HTTP requests to web
   content covers all automated systems, not AI agents specifically.
+
+## Tensions and limits
+
+- The sole source is a **secondary explainer**, not a protocol audit or an independent measurement, so
+  every mechanism on this page is reported specification rather than observed behaviour.
+- Adoption is small: **about 30,000 MPP transactions as of August 2026**, against a launch in March
+  2026.
+- MPP defines **no refund flow at all** - unclaimed session reserve returns by itself, but money
+  already claimed, and any one-off charge, has no defined path back.
+- Payment proves **control of a key, not customer identity**, so reputation, abuse prevention, and
+  disputes are out of scope by construction rather than by omission.
 
 ## Related pages
 

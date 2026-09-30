@@ -75,16 +75,17 @@ isolation is **~0.1 GW** against **~1-2 GW** of total average power, because inf
 (**50 reasoning-equivalent events per DAU per day** x **5 Wh** = **25 GWh/day**, or **~1.0 GW**). If
 that structure holds, the marginal compute cost of a stronger isolation topology is small next to the
 model calls either topology makes. The same arithmetic cuts the other way for the isolation argument
-itself: at 0.5 physical cores per live VM, tenants are demonstrably *sharing* cores, so the advertised
-2 vCPU allocation is an accounting unit rather than a boundary. Component-by-component tiering has to
-say explicitly which of the two the compute tier is.
+itself: *if* the assumed 0.5 physical cores per live VM is anywhere near right, tenants would be
+*sharing* cores, and the advertised 2 vCPU allocation would be an accounting unit rather than a
+boundary. Component-by-component tiering has to say explicitly which of the two the compute tier is.
 
 [[Jina Yoon - We're Building Multiplayer AI]] comes at tenancy from inside a single organisation, and
 its observations are internal product reporting rather than a study. PostHog's Spaces hold people,
 agents, and work objects in one container, and artifacts act as portable session-state snapshots - one
-session's artifact becomes the next session's context. Across roughly **~200 employees** dogfooding,
-coding was mostly solo, collaboration happened more in GitHub than in the PostHog UI, and users
-**overwhelmingly preferred starting tasks privately** despite the team expecting shared-Space
+session's artifact becomes the next session's context. PostHog reports three recurring Space-**setup**
+patterns *"even among just ~200 employees"*; separately, and without a stated population, its early
+data says coding was mostly solo, collaboration happened more in GitHub than in the PostHog UI, and
+users **overwhelmingly preferred starting tasks privately** despite the team expecting shared-Space
 defaults. "Mostly solo" and "overwhelmingly" are unquantified, the context layer had been dogfooded
 for only a few weeks at publication, and the findings may depend on PostHog's low-hierarchy culture.
 
@@ -93,9 +94,9 @@ between customers; the boundary users reached for was per-person, *inside* a ten
 scopes without changing the enforcement story - a memory key that carries tenant and user still has to
 carry Space and visibility. And the artifact mechanism is exactly the cross-scope hop the page warns
 about: a snapshot of one session's state becoming another session's context is a place where the
-tenant claim must be re-derived rather than inherited. PostHog names **governance and permissions its
-biggest blind spot**, which is this page's entire subject, so the finding is a problem statement rather
-than a design.
+tenant claim must be re-derived rather than inherited. PostHog calls governance and permissions **one
+of its biggest blind spots**, and says it is interviewing users to learn more - which is this page's
+entire subject, so the finding is a problem statement rather than a design.
 
 ## Open questions
 

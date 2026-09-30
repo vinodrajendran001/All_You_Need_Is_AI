@@ -848,8 +848,9 @@ agents translate or refactor it.
 [[Modal - Hitting a Billion Tokens per Minute on One GPU]] hands the serving engine a SQL query plan,
 which turns cache eviction from a heuristic into a schedule and makes prefetching exact.
 [[Jacky Kwok et al - Contrastive Language Models]] reaches the same place from the model side: because
-candidate action embeddings do not depend on the state, they can be computed once and reused, cutting
-a five-forward-pass decision to one. Neither result is about a better model. Both are about a request
+candidate action embeddings do not depend on the state, they can be computed once and reused, so a
+decision over four cached candidate actions costs one forward pass instead of five in the paper's
+Super Mario example. Neither result is about a better model. Both are about a request
 structure that lets the expensive half be computed ahead of time — the same move
 [[Jerry Liu - Just-in-Time Agentic OCR]] makes in retrieval, now visible in serving and in decisions.
 
@@ -859,9 +860,11 @@ to delete is generally not the M individually least-important blocks: on Llama-3
 retraining, removing 40 of 80 blocks holds MMLU at 76.9 under constrained binary optimization versus
 54.0 under per-block influence ranking. [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
 carries the same lesson into scheduling, where collapsing the decoder into one kernel wins small-batch
-decode on hardware with lower peak FLOPS and lower HBM bandwidth than the GB200 it is compared against.
-Both are vendor-reported, and both degrade in the regimes their authors name — larger batches for the
-megakernel, lighter compression ratios for the pruner.
+decode on hardware with lower peak FLOPS and lower HBM bandwidth than the GB200, measured per GPU,
+that it is compared against. Both are vendor-reported, and both degrade in the regimes their authors
+name — larger batches for the megakernel, lighter compression ratios for the pruner. The megakernel
+comparison also runs a hand-written kernel against a published vLLM GB200 recipe, so kernel effort is
+not controlled and the win cannot be attributed to the technique alone.
 
 **Compute demand tracks deliberation per user, not users.**
 [[FD - Agent Muse Compute Demand]] estimates that at a hypothetical 100M daily active users, the entire
@@ -893,8 +896,11 @@ screening model is a filter rather than a security boundary because it does not 
 hostile. In both cases the new mechanism narrows blast radius without establishing intent or identity,
 so least-privilege controls remain underneath.
 [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] supplies the identity beneath the
-vault's applied RL evidence, including why binary-reward training degenerates toward supervised
-fine-tuning on successes and why homogeneous rollout groups contribute no gradient at all.
+vault's applied RL evidence: at binary verifier reward the gradient reduces to a log-likelihood on the
+correct completions only, so failures are never pushed down directly, and a group whose completions
+all succeed or all fail centres to zero and contributes no gradient. This is a pedagogical derivation,
+not a measurement, and the SFT equivalence is a property of the gradient rather than a claim that RL
+and SFT share training dynamics.
 
 ## Related pages
 

@@ -189,7 +189,7 @@ deliberate rather than speculative.
 
 The planner and the engine are co-optimized: predicate pushdown, selectivity-based filter ordering,
 dynamic-programming join ordering, **KV-aware plan search**, and Pareto pruning over token count,
-attention pairs and cached tokens, costed by a roofline speed-of-light model with `min_latency = 0`.
+attention pairs and cached tokens, costed by a roofline speed-of-light model.
 Join order is therefore chosen partly for cache reuse, which makes [[KV Cache]] behaviour an input to
 planning instead of an outcome of scheduling.
 
@@ -198,13 +198,14 @@ Boolean filter needs only one output token, there are **no separate prefill/deco
 [[Prefill-Decode Disaggregation]], no sampling, no CUDA Graph capture and no speculative decoding**.
 The **output vocabulary is reduced to 8 options** for truthy/falsy filtering, shrinking the final
 unembedding from vocabulary-size x latent-size to **8 x latent-size**, and **suffix KV is never
-written to cache** because there is zero decode and no joins beyond (N>2)-way joins. Continuous
+written to cache** because there is zero decode and joins are never more than two-way. Continuous
 batching, paged allocation and prefix reuse are all answers to uncertainty about what arrives next;
 remove the uncertainty and a different engine shape wins. The stack is not a clean-room build either
 — `sqlglot`, a custom planner, a **vLLM-derived forward pass**, PyArrow columnar storage and Triton
 kernels.
 
-The reported figures and their limits: **over a billion tokens per minute per H100** and **more than
+The reported figures and their limits: **over a billion tokens processed per minute per H100** and
+**more than
 10x vLLM** on **one multi-join query**, at under 6 cents per billion tokens on Modal's own service,
 against **1.84x faster than vLLM, geometrically averaged** across the released benchmark. Modal also
 reports Quail **falling behind vLLM on an agent-trace benchmark** — which lands directly on this

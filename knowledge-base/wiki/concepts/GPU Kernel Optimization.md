@@ -152,11 +152,12 @@ DeepGEMM, FlashAttention 3 and Triton. Those are the Baseten-style moves: fuse t
 intermediate round trip. The larger savings come from deletions the SQL query plan licenses. Because
 the workload is Boolean and classification filtering that needs a single output token, the
 **output vocabulary is reduced to 8 options, shrinking the final unembedding from vocabulary-size x
-latent-size to 8 x latent-size**, **suffix KV is never written to cache** (zero decode, and no joins
-beyond (N>2)-way joins), and there is **no sampling, no CUDA Graph capture and no speculative
+latent-size to 8 x latent-size**, **suffix KV is never written to cache** (zero decode, and joins are
+never more than two-way), and there is **no sampling, no CUDA Graph capture and no speculative
 decoding** at all.
 
-The numbers need their conditions. Modal reports **over a billion tokens per minute per H100 and more
+The numbers need their conditions. Modal reports **over a billion tokens processed per minute per
+H100 and more
 than 10x vLLM on one multi-join query**, but the cross-workload figure from the same post is **1.84x
 faster than vLLM, geometrically averaged** across its released benchmark, and Modal states Quail
 *falls behind* vLLM on an agent-trace benchmark. Inferact's decode comparison is **249 vs 127

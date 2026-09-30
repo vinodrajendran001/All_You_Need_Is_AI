@@ -127,13 +127,13 @@ and not its expectation. Baseline choice is therefore a variance decision rather
 decision, and `A_i = R_i - (1/G) sum_j R_j` is simply the cheapest estimate of expected reward obtainable
 from a group that has already been sampled. This is a pedagogical derivation, not new empirical work.
 
-The independence condition is worth stating carefully, because this page already records a variant that
-tightens it. The identity requires a baseline that does not depend on the sampled completion, and a plain
-group mean includes the sample's own reward — precisely what Granite's leave-one-out baseline removes by
-scoring each response against the mean of the *others*. The derivation does not adjudicate between them,
-but it identifies leave-one-out as the variant that satisfies the condition literally rather than only
-approximately, since the sample's own weight in a plain group mean shrinks but never vanishes as the
-group grows. That is a sharper justification than the critic-free-property argument recorded above.
+The independence condition is worth stating carefully. Romero states it as a baseline that does not
+depend on the sampled *token*, then presents the plain group mean as a legal baseline without noting
+that it contains the sample's own reward. Reading the condition strictly at the completion level is this
+vault's inference, not Romero's, and on that reading Granite's leave-one-out baseline satisfies it
+literally while a plain group mean satisfies it only approximately, since the sample's own weight
+shrinks but never vanishes as the group grows. Romero does not raise the point, so the tension between
+his stated condition and his endorsed estimator is left standing rather than settled here.
 
 The same arithmetic explains the silent-group failure this page attributes to horizon effects, and adds
 its mirror image. With four rollouts at a group mean reward of 0.5, advantages are +0.5 and -0.5; a group
@@ -142,8 +142,8 @@ contribute no gradient at all. The all-fail case is already recorded here as the
 inability to fill a batch on near-impossible data. The all-succeed case is the same zero reached from the
 other side, and it is pure compute loss on problems the policy has already solved — a cost this page had
 not recorded. Romero names REINFORCE, PPO, GRPO, and DAPO as the ladder of refinements this derivation
-leads into, without characterising the later ones, and the numbers above illustrate the arithmetic rather
-than reporting measurements.
+leads into, characterising the later ones only as additions of clipping, masking, or reweighting on top
+of this loss, and the numbers above illustrate the arithmetic rather than reporting measurements.
 
 One caveat carries into every deployment described on this page: the zero-mean identity holds under
 on-policy sampling. Inference engines such as vLLM or SGLang may run at different numerical precision or

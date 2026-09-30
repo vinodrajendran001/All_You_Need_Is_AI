@@ -122,10 +122,11 @@ benchmark section, and **13x** at roughly **1k candidates**. See
 
 [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] is the vault's first third-party
 argument *against* NVIDIA at a named operating point, and it is notable because the argument is not
-about peak numbers — which GB200 largely wins. By Inferact's own comparison, **GB200 leads on
-2.5 PFLOPS BF16 / 5 PFLOPS FP8, 8,000 GB/s of HBM bandwidth, and 1,800 GB/s of NVLink 5**, against
+about peak numbers — which GB200 largely wins. By Inferact's own comparison, **GB200, per GPU, leads
+on 2.5 PFLOPS BF16 / 5 PFLOPS FP8, 8,000 GB/s of HBM bandwidth, and 1,800 GB/s of NVLink 5**, against
 TPU v7's **2.31 / 4.61 PFLOPS, 7,380 GB/s HBM and 1,200 GB/s ICI**; GB200 trails only on HBM capacity
-(**186 GB against 206 GB**).
+(**186 GB against 206 GB**). Inferact's table is per-GPU, and its baseline is 16 GB200 GPUs, not 16
+superchips.
 
 The claimed weakness is granularity of on-chip memory. Inferact puts **GB200's ~111 MiB of SRAM split
 152 ways** — **256 KB of Tensor Memory and 228 KB of shared memory per SM across 152 SMs**, roughly

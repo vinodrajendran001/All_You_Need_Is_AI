@@ -1523,3 +1523,47 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   the 64-started / 14-edited context-file measurement. [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]
   supplies the derivation beneath the vault's applied RL pages.
 - Integrated across **42 pages**; updated index, log, and overview to 283 IDs.
+
+## [2026-09-30] lint | Erosion, not fabrication
+
+- Thirty-seventh comprehensive pass over **498 wiki pages**, **283 raw captures**, and **257 source
+  summaries**, run immediately after the eleven-source September 30 ingest. Filed
+  [[2026-09-30 Lint Pass]] and linked it from the index.
+- **The structural graph was clean; the evidence chains were not.** Zero orphans, zero thin pages,
+  zero broken wikilinks, zero missing `## Related pages`, and exact three-way control parity at 283.
+  Tracing all **eleven new chains** from raw capture to citing page nevertheless surfaced **39
+  semantic defects**, 10 of them high severity — every one sitting in prose that was well-formed,
+  well-linked, and wrong.
+- **Four claims had been promoted from assumption to fact.** `Mixture of Experts` read a win over a
+  block-influence baseline as removal "at no measured cost", though the source publishes no unpruned
+  scores at all; `Multi-Tenant Agent Architecture` called an *assumed* 0.5 cores-per-VM figure
+  "demonstrably" observed; the new [[Agent Payment Protocols]] page stated protocol spec text as
+  established fact with no Tensions section; and the overview described a property of the *gradient*
+  as empirical training dynamics. All four were demoted to what their sources support.
+- **Four statements were simply false**, each replicated across pages: `min_latency = 0` (a
+  pseudocode accumulator initializer, read on one page as a vendor self-indictment), a **reversed
+  negation** that licensed the joins its source says it never does, a claim that Romero declines to
+  characterise algorithms he explicitly characterises, and a provenance note invalidated by this
+  vault's own normalization of the capture it describes.
+- **Conditions and hedges had eroded.** The headline 81.6% / 87.6% figures are best-of-N *selection*
+  scores whose candidate generators were named nowhere; four Martin accuracies are train-split
+  results carrying no split; GB200 specs lost "per GPU", halving the named hardware; a categorical
+  "no refund flow at all" was narrowed to one-off charges on five pages; "one of our biggest blind
+  spots" became "its biggest blind spot" on six; and a "~200 employees" figure scoped to a single
+  observation was attached to two others, inviting a denominator its source never supplies.
+- **Two contradictions were preserved rather than arbitrated**, per the vault's rule: the Inferact
+  lede's "1.4 to 2×" against its own 1.36–1.38× chart, and Romero's stated baseline condition against
+  his own endorsed estimator — with the leave-one-out reading now marked as this vault's inference.
+- **Evidence the vault held but suppressed** was restored: the MPP source's own **~30,000
+  transactions as of August 2026**, absent while the concept page asked "Does the demand actually
+  exist?" with the answer withheld.
+- Structurally, merged a duplicate `## Affected Pages` heading fork, populated **14** empty
+  `## Citations` sections, and documented the **6** summaries whose canonical URL is genuinely
+  unrecoverable — the Alpha Signal captures preserve only per-subscriber tracking redirects, which
+  were deliberately not recorded. **Updated the `source-summary` template** to document
+  `## Raw capture`, closing a drift where the schema and 224 of 257 pages disagreed.
+- Confirmed as by-design, so future passes stop re-flagging them: the five post drafts reachable via
+  [[Post Archive]], and the single non-date-prefixed raw capture, which is a labelled duplicate whose
+  body is byte-identical to the primary.
+- **Process finding:** every semantic defect was introduced by the ingest that created the page, and
+  none was visible to structural checking. Chain tracing belongs in ingest, not only in lint.

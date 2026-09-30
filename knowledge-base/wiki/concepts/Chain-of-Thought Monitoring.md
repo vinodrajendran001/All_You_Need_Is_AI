@@ -143,8 +143,10 @@ This page's faithfulness caution has so far come from safety research.
 next-token generation optimizes for likely continuations, and a likely continuation is not a verified
 claim. Its conclusion is exact — **chain-of-thought aids inspection but is not proof**, because an
 explanation can contain false premises or fail to describe the causal process that produced the answer.
-A trace is generated text and is subject to the same three failure modes as any other output: factual
-error, unfaithfulness to the evidence at hand, and outright fabrication.
+A trace is generated text, so the vault reads it as exposed to the same categories the source applies to
+answers — factual error, unfaithfulness to the evidence at hand, and fabrication — though the source
+itself extends only as far as saying an explanation may contain false premises or fail to describe what
+influenced the result, and treats those categories as overlapping rather than canonical.
 
 The confidence-language point lands directly on monitor design. "Certainly" and "definitely" are
 **generated language, not evidence**, and an unvalidated "95% confidence" means nothing without

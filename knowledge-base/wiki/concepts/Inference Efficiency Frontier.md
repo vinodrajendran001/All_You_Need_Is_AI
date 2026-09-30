@@ -199,8 +199,9 @@ mechanism: **up to 9x lower latency** overall, **4-6x faster inference than Jev*
 section, and **13x** at around **1k candidates**. The last is the one that follows from the
 architecture — the cached side is the side that grows with the candidate count, so the advantage is
 a function of how many options the decision has, not a constant. Reward-model latency (**81.6% on
-DeepSWE** over **38** held-out tasks, **87.6% on Terminal-Bench 2.1** over **30**) is measured on an
-**H100 GPU**. Every figure is first-party and self-reported, published on a Notion page rather than
+DeepSWE** over **38** held-out tasks, **87.6% on Terminal-Bench 2.1** over **30**, selecting from
+candidate solutions sampled with **Opus 5** and **Fable 5** respectively) is measured on an **H100
+GPU**. Every figure is first-party and self-reported, published on a Notion page rather than
 at a peer-reviewed venue.
 
 Two boundaries keep this from being a general result. The method **presumes a defined candidate
@@ -227,7 +228,8 @@ evaluation per candidate, which speaks directly to this page's complaint that op
 discovered empirically and that sweeps advantage whoever can afford them. The authors state the limit
 themselves: the energy is a **proxy, not an exact predictor**, and on Llama-3.1-8B at 16 of 32 blocks
 removed the **17th excited state** beats the ground state after light retraining. The ranking narrows the
-search; it does not replace evaluation. This is a company blog summarizing the authors' own paper, with
+search; it does not replace evaluation. This is a Multiverse Computing blog summarizing the authors'
+own paper, with
 the derivation, ablations, and full tables deferred.
 
 The other axis is what a frontier gain is worth once a fleet sits behind it.

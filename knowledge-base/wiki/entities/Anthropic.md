@@ -65,16 +65,20 @@ prompt with no measurable eval loss** is the strongest single data point in
 this vault from harnesses and skills into evaluation methodology. The artifacts are skill commands: one
 builds an evaluation for an application, the other improves the application against it one attributable
 change at a time. The durable part is the set of controls — a held-out split, one patch per round, a
-revert when only the training split improves, a noise floor measured by running the grader twice on the
-same output, and a ceiling at roughly **95%** above which quality hillclimbing is abandoned in favour of
-cost or latency. Those controls are legible enough to reuse without Anthropic's tooling; see
+revert when only the training split improves, a grader-determinism check that runs the grader twice on
+the same output, a pre-round check that the eval's noise is below the smallest actionable improvement,
+and a warning fired when the baseline is about **95%** or higher, recommending that the hillclimb target
+cost or latency rather than quality. Those controls are legible enough to reuse without Anthropic's
+tooling; see
 [[Benchmark Optimization]] and [[Harness Optimization]].
 
 The results are a different matter, and they need reading with the conditions attached. On an internal
-benchmark of **44 tickets** (**30** for search, **14** held out), the baseline Opus 4.8 at high effort
-scored **74.4% decision accuracy at 4.6 cents per ticket**; Opus 5.5 at low effort **87.8% at 1.9
-cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work took Sonnet 5 to **98.9%** at about the
-same cost, and the held-out split moved from **78.6%** to **90.5%** at roughly **one fifth of the cost**.
+benchmark of **44 tickets** (**30** for search, **14** held out), on the **30 search (train) tickets**
+the baseline Opus 4.8 at high effort scored **74.4% decision accuracy at 4.6 cents per ticket**; Opus
+5.5 at low effort **87.8% at 1.9 cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work took
+Sonnet 5 to **98.9%** at about the same cost. On the **14 held-out tickets** — a different split, which
+is why the original baseline reads differently there — the final configuration scored **90.5%** against
+the original setup's **78.6%**, at roughly **one fifth of the cost**.
 Every figure is Anthropic-reported, on an Anthropic workflow, evaluating Anthropic models, with no
 independent reproduction and no released evaluation data. The cost claim in particular is not a clean
 measurement of the method, because the before-and-after bundles a model change, an effort change, a

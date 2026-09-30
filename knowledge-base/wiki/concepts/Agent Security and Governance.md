@@ -410,8 +410,11 @@ returns the resource plus a receipt. Two of its invariants are governance proper
 above keys on, and **payment proofs are single-use**, which is replay protection.
 
 The gap is what payment proves. It establishes **control of a key, not customer identity**, and
-reputation, abuse prevention, refunds, and disputes are explicitly out of scope; the article reports **no
-defined refund flow for one-off charges**. A delegated signing key can carry a spending cap per period, an
+reputation, abuse prevention, refunds, and disputes are explicitly out of scope; the article reports that
+MPP defines **no refund flow at all** — unclaimed session reserve returns by itself, which covers money
+never spent but not money already claimed, while refunding a one-off charge means the seller sending funds
+back to the paying key, and whether that works depends on the card network or blockchain provider.
+A delegated signing key can carry a spending cap per period, an
 expiry, permitted recipients, a scope, one key per deployment, and individual revocation — but a cap
 prevents *overspending*, not *valid spending on the wrong service*. An agent that stays inside its budget
 while paying an attacker-supplied endpoint has violated no control the protocol defines, which is a
@@ -435,8 +438,9 @@ for the protocol mechanics.
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
   decide that a payee is legitimate, and on what evidence when the service was discovered at runtime?
-- Revocation and expiry only act forward in time. With no defined refund flow for one-off charges, what is
-  the recovery path for money an agent has already spent correctly on the wrong thing?
+- Revocation and expiry only act forward in time. With **no defined refund flow at all** — unclaimed
+  session reserve returns by itself, but money already claimed does not — what is the recovery path for
+  money an agent has already spent correctly on the wrong thing?
 - If a typed screening model is a filter and not a boundary, what residual risk is being accepted, and
   how would anyone size it when the vendor cookbook publishes no confusion matrix?
 - A reasoning-blind gate cannot see tool outputs by design. Which class of attack is visible only in

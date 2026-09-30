@@ -150,7 +150,7 @@ ingredients: on **~100K held-out questions**, each with one gold answer and **10
 pre-training alone reaches **52.1%** top-1 and pre-training plus mid-training reaches **69.2%**,
 while training on hard negatives from scratch peaks at **62.4%** before overfitting. Replaying
 **40%** Nemotron DQA against **60%** agentic data costs almost nothing (**69% to 68.5%**), whereas
-agentic-only training collapses it to **56.2%**.
+training on agentic data alone **for the same number of agentic steps** collapses it to **56.2%**.
 
 Two cautions belong with that result. The hard negatives are only as adversarial as the generator
 that wrote them, so **Gemini 2.5 Flash-Lite's blind spots become the residual failure modes of the

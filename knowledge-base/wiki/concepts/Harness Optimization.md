@@ -225,17 +225,21 @@ bought by narrowing the step rather than by analysing a wide one after the fact.
 Two stopping rules bound the loop, and the second is a discipline this page's other sources lack. If
 progress stalls for **two or three rounds**, remaining failures are bucketed by cause rather than
 attacked individually. If an expected gain falls **below evaluation noise**, the response is to add
-repetitions or cases — to improve the instrument — rather than make an edit nobody can measure. The
-noise floor is established up front by running **the grader twice on the same output**, and results carry
-a confidence interval with one full transcript per case. There is also an input-side version of this
+repetitions or cases — to improve the instrument — rather than make an edit nobody can measure.
+Grader determinism is checked up front by running **the grader twice on the same output** and reporting
+whether the verdict changed; separately, before the first round the eval's own noise — how far the score
+can move by chance alone — is checked against the smallest improvement worth acting on. Results carry a
+confidence interval with one full transcript per case. There is also an input-side version of this
 page's unwritable-scoreboard rule: failures are never pasted into prompts, so evaluation answers stay
 structurally inaccessible to the thing being optimized.
 
 The reported numbers need every condition carried with them. On an internal benchmark of **44 tickets**
-(**30** for search, **14** held out), the baseline Opus 4.8 at high effort scored **74.4% decision
-accuracy at 4.6 cents per ticket**; Opus 5.5 at low effort **87.8% at 1.9 cents**; Sonnet 5 at low effort
-**88.9% at 1 cent**; prompt work took Sonnet 5 to **98.9%** at about the same cost. Held out, the final
-configuration scored **90.5%** against **78.6%** originally at roughly **one fifth of the cost**. That
+(**30** for search, **14** held out), on the **30 search (train) tickets** the baseline Opus 4.8 at high
+effort scored **74.4% decision accuracy at 4.6 cents per ticket**; Opus 5.5 at low effort **87.8% at 1.9
+cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work took Sonnet 5 to **98.9%** at about the
+same cost. On the **14 held-out tickets** — a different split, which is why the original baseline reads
+differently there — the final configuration scored **90.5%** against the original setup's **78.6%**, at
+roughly **one fifth of the cost**. That
 before-and-after is **not a clean measurement of hillclimbing**: it bundles a model change, an effort
 change, a prompt change, and a pricing change, since Opus 5.5 is stated to price input and output **20%
 less** than Opus 4.8 and cache reads **60% less**. This is the same attribution discipline the page

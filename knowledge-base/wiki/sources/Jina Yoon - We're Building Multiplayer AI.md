@@ -19,8 +19,8 @@ Jina Yoon reports PostHog's early experience building shared human-and-agent wor
 finding is that hand-maintained context files do not survive contact with real teams, so PostHog
 replaced them with a layer that extracts context from work that actually shipped. Its other finding is
 about where collaboration lives: coding stays mostly solo, and the collaborative surfaces are the ones
-before and after coding - planning, artifacts, transcripts, and review. Governance is named as the
-team's biggest unsolved problem.
+before and after coding - planning, artifacts, transcripts, and review. PostHog calls governance and
+permissions one of its biggest blind spots, and says it is interviewing users to learn more.
 
 ## Key claims
 
@@ -34,10 +34,11 @@ team's biggest unsolved problem.
   state.
 - Spaces hold people, agents, and work objects in one container. Artifacts act as portable session-state
   snapshots: a session produces an artifact, and that artifact becomes context for the next session.
-- Across roughly **~200 PostHog employees** dogfooding the product, early data says coding is mostly
-  solo and collaboration happens more in GitHub than in the PostHog UI. Users created Spaces around
-  teams, product areas, incidents, and task types, and overwhelmingly preferred starting tasks
-  privately despite the team's expectation that they would default to shared Spaces.
+- PostHog reports three recurring Space-**setup** patterns *"even among just ~200 PostHog employees"*:
+  users created Spaces around teams, product areas, incidents, and task types. Separately, and without
+  a stated population, its early data says coding is mostly solo, collaboration happens more in GitHub
+  than in the PostHog UI, and users overwhelmingly preferred starting tasks privately despite the
+  team's expectation that they would default to shared Spaces.
 - Proposed Space setup asks for goals, targets, measurement intervals, and deadlines so that
   permissions, experiments, and dashboards can be defaulted from them.
 
@@ -52,11 +53,13 @@ work even when a shared surface was available and encouraged.
 
 ## Tensions and caveats
 
-These are internal product observations, not a study. The 64-and-14 counts arrive without a
-denominator of eligible users, a selection method, or a comparison group, and "mostly solo" and
-"overwhelmingly" are unquantified. The context layer had been dogfooded for only **a few weeks** at
-publication, and PostHog reports no measured hallucination reduction, token savings, latency change,
-or task-quality lift from it. PostHog calls governance and permissions its **biggest blind spot**.
+These are internal product observations, not a study. The 64-and-14 counts are **user** counts arriving
+without a denominator of eligible users, a selection method, or a comparison group - they are not a
+fraction of the ~200 employees, and the article distinguishes employees from external users. "Mostly
+solo" and "overwhelmingly" are unquantified. The context layer had been dogfooded for only **a few
+weeks** at publication, and PostHog reports no measured hallucination reduction, token savings, latency
+change, or task-quality lift from it. PostHog calls governance and permissions **one of its biggest
+blind spots**, and says it is interviewing users to learn more.
 Findings may depend heavily on PostHog's low-hierarchy culture and need not transfer to organizations
 with strict role-based access control.
 

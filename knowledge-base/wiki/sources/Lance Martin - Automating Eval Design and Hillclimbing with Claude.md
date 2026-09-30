@@ -43,11 +43,13 @@ examples report quality and cost improving together, but every number is Anthrop
   cause; if the expected gain is below evaluation noise, add repetitions or cases rather than make an
   unmeasurable edit. Failures are never pasted into prompts, so evaluation answers stay structurally
   inaccessible.
-- Cost example on **44 tickets** (**30** for search, **14** held out): baseline Opus 4.8 at high
-  effort scored **74.4% decision accuracy at 4.6 cents per ticket**; Opus 5.5 at low effort **87.8% at
-  1.9 cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work took Sonnet 5 to **98.9%** at
-  about the same cost. Held out, the final configuration scored **90.5%** versus **78.6%** originally,
-  at roughly **one fifth of the cost**. Opus 5.5 is stated to price input and output tokens **20% less**
+- Cost example on **44 tickets** (**30** for search, **14** held out): on the **30 search (train)
+  tickets**, baseline Opus 4.8 at high effort scored **74.4% decision accuracy at 4.6 cents per
+  ticket**; Opus 5.5 at low effort **87.8% at 1.9 cents**; Sonnet 5 at low effort **88.9% at 1 cent**;
+  prompt work took Sonnet 5 to **98.9%** at about the same cost. On the **14 held-out tickets** — a
+  different split, which is why the original baseline reads differently there — the final configuration
+  scored **90.5%** against the original setup's **78.6%**, at roughly **one fifth of the cost**. Opus
+  5.5 is stated to price input and output tokens **20% less**
   than Opus 4.8 and cache reads **60% less**.
 - Capability example: the Claude API skill began at **66%**, reached **74%** after covering eight
   features and **77%** after fixing C# and Java type tables, ending near **88%** once stale API priors

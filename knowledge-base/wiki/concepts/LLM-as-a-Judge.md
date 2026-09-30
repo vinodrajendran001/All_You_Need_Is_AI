@@ -187,9 +187,10 @@ backbones. That is cheap enough to belong in the response path rather than in an
 which is the synchronous **gate** component distinguished above from asynchronous triage — and it
 forfeits, by construction, any ability to say something the candidate set does not already contain.
 
-The reported numbers are **81.6% on DeepSWE** and **87.6% on Terminal-Bench 2.1**, and the
-denominators matter more than the percentages: **38** and **30 held-out tasks** respectively, with
-latency measured on an **H100 GPU**. On 38 tasks one task is worth about 2.6 points, which is this
+The reported numbers are **81.6% on DeepSWE** and **87.6% on Terminal-Bench 2.1**, selecting from
+candidate solutions sampled with **Opus 5** and **Fable 5** respectively, and the denominators
+matter more than the percentages: **38** and **30 held-out tasks**, latency on an **H100 GPU**. On
+38 tasks one task is worth about 2.6 points, which is this
 page's own noise-floor argument pointed at a reward model rather than at a judge. A percentage
 computed over a few dozen tasks cannot resolve differences smaller than a couple of tasks, so it
 supports a claim of rough parity and not a ranking. The CLM latency advantages are likewise
@@ -199,8 +200,9 @@ candidates**.
 
 The provenance caveats are stronger here than for the production case studies above. Every figure is
 first-party, "SOTA" is the authors' own characterization, the venue is a Notion page rather than a
-peer-reviewed paper, and the capture's frontmatter carries no author at all — the author list had to
-be recovered from the body and its BibTeX entry. The verifier's supervision also comes from **~1M
+peer-reviewed paper, and the capture arrived with no author in its frontmatter — the seven-author
+list was recovered from the body and its BibTeX entry at ingest. The verifier's supervision also
+comes from **~1M
 ADP agent trajectories**, which is agent behaviour rather than adjudicated ground truth, so the
 warning recorded above against [[Diogo Almeida - Introducing System One Models and Jev]] transfers
 with the sign changed: teacher-model consensus and successful-trajectory mining are both references,

@@ -20,7 +20,8 @@ SQL query plan before execution and co-optimizes join ordering, KV-cache reuse, 
 kernels against it. The workload is AI-SQL, which builds prompts from database rows and returns
 relational results; it is prefill-only Boolean and classification inference with no decode. Because
 the future request order is known, Quail can evict exactly and prefetch deliberately rather than
-guess. Modal reports over a billion tokens per minute per H100 on one multi-join query and a 1.84x
+guess. Modal reports over a billion tokens processed per minute per H100 on one multi-join query and
+a 1.84x
 geometric-mean advantage over vLLM across its released benchmark.
 
 ## Key claims

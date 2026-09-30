@@ -58,7 +58,8 @@ remain necessary behind it.
 
 The article adds no benchmark or controlled comparison; its performance numbers restate vendor claims
 and are not comparable with the other figures the vault records for the same product - **70-500 ms**,
-**20-200x**, **200x/400x**, and **444.6x cheaper** - because none of them travel with a workload
+**20-200x**, **200x/400x**, **193.6x faster**, and **444.6x cheaper** - because none of them travel
+with a workload
 definition. The TypeSafe cookbook results are vendor-provided and described only as having worked
 "pretty well", with no dataset, denominator, confusion matrix, or replication. The recommended
 thresholds are advice, not demonstrated calibration. Claims that such a model "cannot hallucinate" do

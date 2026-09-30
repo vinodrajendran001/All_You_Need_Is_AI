@@ -49,7 +49,7 @@ This is a high-signal retention companion to the interview. It makes the AlphaGo
 
 ## Citations
 
-- Raw capture note: [[knowledge-base/raw/sources/2026-06-02 Dwarkesh Patel - Eric Jang Flashcards|2026-06-02 Dwarkesh Patel - Eric Jang Flashcards]]
+- Raw capture note: [[2026-06-02 Dwarkesh Patel - Eric Jang Flashcards]]
 - Readable flashcards: [markdown capture](../../raw/assets/2026-06-02%20Dwarkesh%20Patel%20-%20Eric%20Jang%20Flashcards.md)
 
 ## Raw capture

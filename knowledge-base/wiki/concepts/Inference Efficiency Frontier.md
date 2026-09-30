@@ -19,6 +19,8 @@ source_ids:
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-09-18-nandakishor-nonautoregressive-decisions
   - src-2026-09-23-kwok-contrastive-language-models
+  - src-2026-09-21-tiene-pruning-llms-ising
+  - src-2026-09-27-fd-agent-muse-compute-demand
 status: active
 ---
 
@@ -208,8 +210,50 @@ size. And it does not adjudicate the vendor claims it is benchmarked against: CL
 architecture publishing Jev as its baseline, not an independent measurement of Jev's own **70-500
 ms** and **193.6x/444.6x** headlines. See [[Typed Probabilistic Decision Models]].
 
+## Deleting blocks moves the frontier; deliberation per task decides what the move is worth
+
+[[Antonio Tiene et al - Pruning LLMs Like a Physicist]] gives this page its depth-pruning entry. Removing
+whole transformer blocks cuts depth, memory, and inference compute together, so it is **frontier-moving**
+in this page's vocabulary rather than an allocation, and it composes with quantization, low-rank/SVD
+compression, width pruning, and distillation-based healing instead of competing with them. Quality is
+where it becomes a tradeoff, and the size of that tradeoff turns out to depend on the search rather than
+on the technique: on Llama-3.3-70B **without retraining**, MMLU is **82.2** originally, and at **40 of 80
+blocks removed** constrained binary optimization holds **76.9** while block-influence ranking falls to
+**54.0** — same model, same ratio, no retraining in either arm.
+
+Two properties make this frontier unusually cheap to explore. The Hessian is computed **once** and is
+**reusable across compression targets**, so sweeping across ratios does not pay for a fresh model
+evaluation per candidate, which speaks directly to this page's complaint that operating points must be
+discovered empirically and that sweeps advantage whoever can afford them. The authors state the limit
+themselves: the energy is a **proxy, not an exact predictor**, and on Llama-3.1-8B at 16 of 32 blocks
+removed the **17th excited state** beats the ground state after light retraining. The ranking narrows the
+search; it does not replace evaluation. This is a company blog summarizing the authors' own paper, with
+the derivation, ablations, and full tables deferred.
+
+The other axis is what a frontier gain is worth once a fleet sits behind it.
+[[FD - Agent Muse Compute Demand]] is a **scenario estimate on a hypothetical 100M DAU premise, not a
+measurement of Meta's infrastructure**, and on that premise the entire agent sandbox and VM layer draws
+about **0.1 GW** against a **~1-2 GW** total, with inference carrying the rest: **50 reasoning-equivalent
+events per DAU per day** at **5 Wh** each is **25 GWh/day**, or roughly **1.0 GW** average power. The
+per-event energy is itself derived — a Microsoft study's median of **~0.31 Wh per normal query**, a long
+reasoning query at about **15x the token count** using about **13x the energy** (**~4 Wh**), widened to
+an assumed **5-10 Wh**.
+
+The structural claim survives the uncertainty even where the totals do not: **demand tracks
+reasoning-equivalent events per user, not user count**. That is the deflationary reading of everything on
+this page. Block removal, quantization, cached action embeddings and skipped forward passes all reduce
+the cost of one event, while the number of events per task is set by product and harness decisions
+elsewhere — so a per-token efficiency gain can be entirely consumed by more deliberation per task and
+present as flat cost rather than as a win. See [[Test-Time Scaling]] for the demand side and
+[[AI Agents in Production]] for the capacity chain that FD's estimate feeds.
+
 ## Open questions
 
+- Depth-pruning gains are reported at aggressive ratios without retraining. Where does the gap between
+  constrained optimization and per-block ranking sit once healing is budgeted, and does the healing cost
+  belong on the frontier or beside it?
+- If demand tracks reasoning-equivalent events rather than users, what measurement would show whether a
+  serving-side frontier gain was banked or spent on extra deliberation per task?
 - Does the cached-action advantage survive candidate sets that change per state, where "compute the
   expensive side once" stops holding and cache invalidation becomes the cost?
 - The scaling section gives functional forms without fitted exponents. What operating point does
@@ -252,3 +296,8 @@ ms** and **193.6x/444.6x** headlines. See [[Typed Probabilistic Decision Models]
 - [[Embedding Model Selection]]
 - [[TypeSafe AI]]
 - [[NVIDIA]]
+- [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]
+- [[FD - Agent Muse Compute Demand]]
+- [[Knowledge Distillation]]
+- [[Test-Time Scaling]]
+- [[AI Agents in Production]]

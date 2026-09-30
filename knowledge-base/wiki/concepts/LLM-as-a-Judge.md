@@ -22,6 +22,8 @@ source_ids:
   - src-2026-09-17-almeida-system-one-jev
   - src-2026-09-18-nandakishor-nonautoregressive-decisions
   - src-2026-09-23-kwok-contrastive-language-models
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-09-29-bytebytego-why-do-llms-lie
 status: active
 ---
 
@@ -205,6 +207,43 @@ with the sign changed: teacher-model consensus and successful-trajectory mining 
 not independent truth. The source concedes the load-bearing point itself — improvements in
 contrastive test loss do not by themselves establish verification reliability.
 
+## Run the grader twice before trusting it, then ask it for claims rather than a score
+
+[[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] turns this page's noise-floor
+argument into a procedure: the baseline diagnostic **runs the grader twice on the same output** to expose
+grader noise, and results carry a confidence interval and one full transcript per case. It also names the
+opposite boundary, which this page has not recorded — the procedure **warns when the baseline is about
+95% or higher**, at which point quality hillclimbing is uninformative and cost or latency should become
+the objective. A judge can fail by being noisier than the effect being sought, and it can fail by having
+nothing left to resolve. Every figure here is Anthropic-reported on an Anthropic workflow, with no
+independent reproduction and no released evaluation data.
+
+On what to ask the judge, both new sources point the same way. Martin's rule is that judges should
+**check specific claims rather than emit a 1-to-5 scale**, which agrees with this page's preference for
+binary checks and sits against the 1-5 rubric recorded above from
+[[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]] — a rubric that source itself
+offered as an example rather than a prescription. [[ByteByteGo - Why Do LLMs Lie]] supplies the
+mechanics: verification belongs in a **separate stage from drafting**, where the answer is decomposed
+into individual claims, each claim is checked against applicable evidence, and citations are validated
+for **existence, applicability, and support**.
+
+Its measurement proposal is the more durable contribution. Scoring should cover **correctness, support,
+appropriate abstention, and unnecessary refusal**, because right-or-wrong scoring cannot distinguish a
+system that has learned to say "I don't know" from one that has learned to refuse — a distinction the
+calibration material above needs and cannot get from accuracy alone. The **factuality-versus-faithfulness**
+split cuts the same way: a judge grading faithfulness to a stale document will pass an answer that is
+wrong about the current policy, so a grounding judge certifies agreement with the evidence it was handed
+and says nothing about whether that evidence is current.
+
+Neither source claims the judge is thereby fixed. **A verifier is itself a model and can be wrong**, so
+claim checking reduces rather than removes error, and the ByteByteGo piece is a secondary explainer with
+no hallucination rates, controlled comparisons, or ablations to size the reduction. Martin concedes the
+human stays in the loop for a different reason: **a misconfigured judge still requires a human to read
+scored transcripts**. His own worked example shows why — grader and task inconsistencies were among the
+defects fixed while the Claude API skill rose from **66%** toward about **88%** (the figure caption
+reports **66.1%** baseline and **87.9% at round 24**), so the automated loop surfaced its own measurement
+bugs only because someone was reading transcripts, and those numbers are Anthropic-reported too.
+
 ## Related pages
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
@@ -238,3 +277,7 @@ contrastive test loss do not by themselves establish verification reliability.
 - [[Typed Probabilistic Decision Models]]
 - [[Benchmark Optimization]]
 - [[NVIDIA]]
+- [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
+- [[ByteByteGo - Why Do LLMs Lie]]
+- [[Anthropic]]
+- [[LLM Application Resilience]]

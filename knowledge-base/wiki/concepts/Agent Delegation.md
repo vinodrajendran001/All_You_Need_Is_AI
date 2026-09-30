@@ -308,3 +308,5 @@ secondary explainer and are conditional on the payment rail and the implementati
 - [[Sarthak Rastogi]]
 - [[Typed Probabilistic Decision Models]]
 - [[TypeSafe AI]]
+- [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
+- [[Agent Payment Protocols]]

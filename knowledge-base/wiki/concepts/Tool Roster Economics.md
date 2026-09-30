@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-30
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
+  - src-2026-09-27-fd-agent-muse-compute-demand
 status: active
 ---
 

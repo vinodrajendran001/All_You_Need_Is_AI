@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - concept
   - llm-evaluation
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-14-bytebytego-llm-judge-health
   - src-2026-09-17-almeida-system-one-jev
   - src-2026-09-18-nandakishor-nonautoregressive-decisions
+  - src-2026-09-23-kwok-contrastive-language-models
 status: active
 ---
 
@@ -174,6 +175,35 @@ and selective accuracy for a typed decision model, including an explicit Act/Esc
 Those metrics are useful only against trustworthy labels. A calibrated classifier can route uncertain
 cases without becoming an independent judge of semantic quality.
 
+## A verifier that ranks instead of writing, scored on 38 and 30 tasks
+
+[[Jacky Kwok et al - Contrastive Language Models]] supplies the extreme case of this page's
+generator-verifier gap. Its reward model produces no critique and no score text at all: the verdict is
+a cosine similarity between a state embedding and an action embedding, over a **predeclared candidate
+set**, with only a **20M-parameter projection head** trained on top of frozen LLM backbones. That is
+cheap enough to belong in the response path rather than in an offline sweep, which is the synchronous
+**gate** component distinguished above from asynchronous triage — and it forfeits, by construction,
+any ability to say something the candidate set does not already contain.
+
+The reported numbers are **81.6% on DeepSWE** and **87.6% on Terminal-Bench 2.1**, and the
+denominators matter more than the percentages: **38** and **30 held-out tasks** respectively, with
+latency measured on an **H100 GPU**. On 38 tasks one task is worth about 2.6 points, which is this
+page's own noise-floor argument pointed at a reward model rather than at a judge. A percentage
+computed over a few dozen tasks cannot resolve differences smaller than a couple of tasks, so it
+supports a claim of rough parity and not a ranking. The CLM latency advantages are likewise
+condition-specific and must not be collapsed into a single figure: **up to 9x lower latency** overall,
+**4-6x faster inference than Jev** in the benchmark section, and **13x** at roughly **1k candidates**.
+
+The provenance caveats are stronger here than for the production case studies above. Every figure is
+first-party, "SOTA" is the authors' own characterization, the venue is a Notion page rather than a
+peer-reviewed paper, and the capture's frontmatter carries no author at all — the author list had to
+be recovered from the body and its BibTeX entry. The verifier's supervision also comes from **~1M ADP
+agent trajectories**, which is agent behaviour rather than adjudicated ground truth, so the warning
+recorded above against [[Diogo Almeida - Introducing System One Models and Jev]] transfers with the
+sign changed: teacher-model consensus and successful-trajectory mining are both references, not
+independent truth. The source concedes the load-bearing point itself — improvements in contrastive
+test loss do not by themselves establish verification reliability.
+
 ## Related pages
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
@@ -203,3 +233,7 @@ cases without becoming an independent judge of semantic quality.
 - [[@zafstojano - Recursive Synthetic Improvement]]
 - [[Synthetic Data Flywheel]]
 - [[@zafstojano]]
+- [[Jacky Kwok et al - Contrastive Language Models]]
+- [[Typed Probabilistic Decision Models]]
+- [[Benchmark Optimization]]
+- [[NVIDIA]]

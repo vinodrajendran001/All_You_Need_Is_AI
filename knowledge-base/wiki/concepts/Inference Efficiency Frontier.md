@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - concept
   - inference
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-17-almeida-system-one-jev
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-09-18-nandakishor-nonautoregressive-decisions
+  - src-2026-09-23-kwok-contrastive-language-models
 status: active
 ---
 

@@ -1,14 +1,16 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - gpu
+  - tpu
   - inference
   - serving
 source_ids:
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
 status: active
 ---
 
@@ -92,6 +94,48 @@ because real requests concentrate on the same experts, leaving sparser MoE work 
 bubbles to fill. **Synthetic uniform routing understates megakernel speedup on real traffic** — a
 warning that belongs with the normalisation caveats in [[Serving Benchmarks and Goodput]].
 
+## On TPU the prefetch schedule is the programming model, not a hand-written workaround
+
+[[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] moves the technique off the GPU and
+argues the fit is better there. The Kimi K3 megakernel is a single **grid-less Pallas program** with
+explicit VMEM lifetimes managed through `run_scoped`, and weights are prefetched by **program-issued
+asynchronous HBM-to-VMEM DMA that overlaps computation, including across layer boundaries**. That is
+the same weight-prefetch win listed as reason 4 above, except the programmer is not working against
+the hardware to get it: on TPU the software-managed scratchpad *is* the programming model, so the
+prefetch schedule a GPU implementation must hand-write is the native way to express the program.
+
+The memory argument is the concrete part. Inferact reports **TPU v7 at 64 MiB of VMEM per TensorCore
+and 128 MiB per chip, addressed as two pools**, against **GB200's ~111 MiB of SRAM split 152 ways**
+(256 KB of Tensor Memory plus 228 KB of shared memory per SM across 152 SMs, ~38 MiB of Tensor Memory
+per GPU). The totals are within roughly 15% of each other; the usable granularity is not. This
+complicates rather than settles the page's open question about shared-memory paging. Cohere abandoned
+paging on GPU because the bookkeeping was complex, buggy and high-overhead, and a memory system that
+hands one persistent program 64 MiB in a single pool is a plausible reason that bookkeeping never
+arises on the other side — but Inferact does not test the counterfactual, so this remains an argument
+rather than a result.
+
+The reported numbers narrow exactly the way this page's existing caveats predict, and each needs its
+conditions attached. On **Kimi K3 (92 MoE layers) across 16 TPU v7 chips / 32 TensorCores in a 2x2x4
+topology, attention split across 32 ranks and routed experts at TP4 x EP8**, Inferact reports TPU
+versus GB200 decode **without speculation** at **249 vs 127 tokens/s (1.96x) at batch 1**, decaying
+monotonically to **865 vs 636 (1.36x) at batch 8**. The headline "over 700 tokens/s" is a different
+configuration: the megakernel acting as a **speculative-decoding verifier** at batch 8, evaluating
+**1 anchor and 7 proposed continuations per launch** with a **~8.5 ms decode step** and a draft model
+typically yielding 3 to 6 accepted tokens, reaching **709 vs 452 tokens/s (1.57x) at acceptance length
+6** and **350 vs 229 (1.53x) at acceptance length 3**. See [[Speculative Decoding]].
+
+One non-throughput figure deserves separating out: the **entire megakernel compiles in under 90
+seconds**, against the **30+ minutes** Inferact says is regular for a large XLA model. For a technique
+whose schedule is found by tuning rather than derived — the unresolved point in this page's Cohere
+material — compile latency is a direct bound on how much tuning is affordable.
+
+All of this is vendor-reported, and the baseline is asymmetric in a way that matters here: Inferact's
+**hand-written TPU kernel is compared against a published vLLM GB200 recipe**, with no independent
+reproduction, no confidence intervals, and no energy or cost-per-token figure. The accuracy checks
+(**0.944 on GPQA-Diamond** and **0.972 on GSM8K** under greedy decoding at maximum reasoning effort)
+are numerical-regression sanity checks, not evidence of parity across broad evaluation. The
+collectives are written for the 2x2x4 arrangement specifically, so other chip counts need new code.
+
 ## Open questions
 
 - Reported maximum batch size is 8, described as a configuration rather than architectural limit.
@@ -107,6 +151,14 @@ warning that belongs with the normalisation caveats in [[Serving Benchmarks and 
   is left open.
 - The 1.58× headline is against vLLM at batch 1, which is not vLLM's operating point; the end-to-end
   1.25×–1.41× band is the more meaningful and notably narrower comparison.
+- Both megakernel sources in this vault stop reporting at batch 8 — Cohere by configuration, Inferact
+  by choice of sweep — which is exactly where production serving begins. Inferact's TPU-versus-GB200
+  margin decays monotonically from 1.96x to 1.36x across that range with no datapoint beyond it.
+- Is sub-90-second compilation a property of megakernels, or only of bypassing whole-graph XLA
+  compilation? The claim as stated does not separate the two.
+- Inferact's collectives are written for one 2x2x4 chip arrangement, so the technique carries a
+  topology-portability cost the single-GPU work never had to state. How much of a megakernel survives
+  a change of device count?
 
 ## Related pages
 
@@ -121,3 +173,6 @@ warning that belongs with the normalisation caveats in [[Serving Benchmarks and 
 - [[Serving Benchmarks and Goodput]]
 - [[Accelerator Software Externalization]]
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
+- [[AI Accelerator Architecture]]
+- [[Speculative Decoding]]

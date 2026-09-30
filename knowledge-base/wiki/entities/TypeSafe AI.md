@@ -63,7 +63,7 @@ line: launched **September 15, 2026**, about **100 milliseconds** response time,
 million input tokens** with **output tokens free**, and **40x to 200x faster** and **up to 400x
 cheaper** than frontier LLMs on decision-shaped work. Those figures **join rather than reconcile**
 the incompatible ranges this page already carries — **70-500 ms**, **20-200x**, **200x/400x**,
-**444.6x cheaper** — because not one of them travels with a workload definition. The company's own
+**193.6x faster**, **444.6x cheaper** — because not one of them travels with a workload definition. The company's own
 guardrail cookbook, cited for `Noul` screening questions on **`jev-1.12`**, is described only as
 having worked **"pretty well"**, with no dataset, denominator, or confusion matrix.
 

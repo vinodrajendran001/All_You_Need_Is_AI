@@ -100,9 +100,12 @@ by the same constraint — the substitute must still satisfy the requirement.
 ## Semantic failure needs a third response state and a verification stage of its own
 
 This page's list of semantic failures contains a single entry for "hallucinated a fact, product or
-policy". [[ByteByteGo - Why Do LLMs Lie]] splits it into three modes that need different defenses.
-**Factual** hallucination contradicts reality; **faithfulness** hallucination contradicts the evidence
-actually supplied; **fabrication** invents policies, confirmation numbers, or papers. The split is
+policy". [[ByteByteGo - Why Do LLMs Lie]] splits it into three overlapping categories. **Factual**
+hallucination contradicts reality; **faithfulness** hallucination contradicts the evidence actually
+supplied; **fabrication** invents policies, confirmation numbers, or papers. The source itself collapses
+these to two broader categories with fabrication under factuality — a reasonable choice rather than a
+standard one — and the distinction it treats as load-bearing is checking agreement with reality versus
+checking agreement with the provided evidence. The split is
 operationally load-bearing because a model can faithfully summarize an **outdated document and still be
 wrong about the current policy** — a grounded system passing every faithfulness check while returning an
 answer no one should act on. The definition offered is deliberately narrow: hallucination is information

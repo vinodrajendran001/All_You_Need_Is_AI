@@ -93,8 +93,9 @@ thread for deciding when a typed model has earned automation, as opposed to asse
 Neither source reconciles the performance claims. Rastogi restates about **100 milliseconds**,
 **$0.042 per million input tokens** with output tokens free, and **40x to 200x faster** and **up to
 400x cheaper** than frontier LLMs. Those sit alongside, and not in place of, the **70-500 ms**,
-**20-200x**, **200x/400x**, and **444.6x cheaper** figures already recorded here; none of them
-travels with a workload definition, so the set remains a pile of attributed vendor claims rather
+**20-200x**, **200x/400x**, **193.6x faster**, and **444.6x cheaper** figures already recorded here;
+none of them travels with a workload definition, so the set remains a pile of attributed vendor
+claims rather
 than a converging estimate. His calibration statement — if the model says **0.9** it should be right
 about **90%** of the time — is the right claim to make and is demonstrated nowhere in the source,
 and the vendor cookbook results he cites are described only as having worked "pretty well", with no

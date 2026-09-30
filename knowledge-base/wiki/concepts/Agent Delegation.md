@@ -241,9 +241,11 @@ configuration, not a caller argument** — and, unlike a harness permission, it 
 accepts the payment rather than by the parent that issued it.
 
 What the key does not carry is a principal. Payment proves **control of a key, not customer identity**,
-and reputation, abuse prevention, refunds, and disputes are explicitly out of scope, with **no defined
-refund flow for one-off charges**. Expiry and revocation are therefore the only recall mechanisms, and
-both act forward in time. Stated in this page's terms, the cap bounds how much a delegate inside its zone
+and reputation, abuse prevention, refunds, and disputes are explicitly out of scope: MPP defines **no
+refund flow at all**, and while unclaimed session reserve returns by itself, money already claimed does
+not, and refunding a one-off charge means the seller sending funds back to the paying key, with success
+depending on the card network or blockchain provider. Expiry and revocation are therefore the only recall
+mechanisms, and both act forward in time. Stated in this page's terms, the cap bounds how much a delegate inside its zone
 of indifference can lose, not whether the purchase matched intent: a compliant, unchallenging delegate
 spending its budget on the wrong service is exactly the drift this page predicts, now with a settled
 transaction at the end of it.

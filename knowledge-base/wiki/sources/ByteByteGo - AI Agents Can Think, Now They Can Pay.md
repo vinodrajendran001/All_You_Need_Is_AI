@@ -44,8 +44,12 @@ refunds, and disputes.
   fees can exceed the payment itself. In session mode the agent reserves funds, signs an IOU per
   request - the example is **another tenth of a cent** - and the server verifies in **the few
   milliseconds it takes to perform a simple signature check**, settling accumulated IOUs in one
-  transaction. A Drip/Tempo example pays for a single article at **just a single cent**, with the
-  writer receiving a receipt **within a few milliseconds**.
+  transaction. Michael Blau demonstrated single-article purchase via Drip, with agents paying per use
+  from an attached Tempo wallet; the source claims the writer **can receive the money within a few
+  milliseconds**, even for amounts as small as a cent.
+- MPP has been **in production since March 2026**, with **about 30,000 MPP transactions as of August
+  2026** - a volume the article itself calls "relatively small" while comparing the trajectory to the
+  early Apple App Store.
 
 ## Why it matters
 
@@ -60,8 +64,10 @@ the same amortization pattern the vault records in caching and in batched infere
 The **57.5%** figure is an attributed external statistic covering all automated systems, not AI agents
 specifically, and the article does not give the report version or denominator detail. Payment proves
 key control, not customer identity, so reputation and abuse prevention remain unsolved and explicitly
-out of scope. MPP reportedly has **no defined refund flow for one-off charges**; unclaimed session
-funds return automatically, but one-off refunds depend on the payment rail. The millisecond and
+out of scope. MPP defines **no refund flow at all**: unclaimed session reserve returns by itself, which
+covers money never spent but not money already claimed, and refunding a one-off charge means the seller
+sending funds back to the paying key, with whether that works depending on the card network or
+blockchain provider. The millisecond and
 settlement-cost claims are conditional on that rail and the implementation. This is a secondary
 explainer, not a protocol audit or a production measurement.
 

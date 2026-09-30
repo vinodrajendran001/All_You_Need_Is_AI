@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-09-25
+updated: 2026-09-30
 tags:
   - overview
   - ai
@@ -279,6 +279,17 @@ source_ids:
   - src-2026-09-21-liu-just-in-time-agentic-ocr
   - src-2026-09-09-mistral-legacy-code-modernization
   - src-2026-09-10-lenz-epd-multimodal-serving
+  - src-2026-09-21-tiene-pruning-llms-ising
+  - src-2026-09-23-kwok-contrastive-language-models
+  - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-27-fd-agent-muse-compute-demand
+  - src-2026-09-27-romero-policy-gradient-llms
+  - src-2026-09-28-bytebytego-agents-can-pay
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-09-29-yoon-multiplayer-ai
 status: active
 ---
 
@@ -831,6 +842,60 @@ knowledge, and weights. [[Mistral - Modernizing Complex Legacy Code with AI Agen
 discipline concrete for software: characterize the legacy executable with a parity harness before
 agents translate or refactor it.
 
+## September 30 additions
+
+**Knowing the future request is worth more than making the model faster.**
+[[Modal - Hitting a Billion Tokens per Minute on One GPU]] hands the serving engine a SQL query plan,
+which turns cache eviction from a heuristic into a schedule and makes prefetching exact.
+[[Jacky Kwok et al - Contrastive Language Models]] reaches the same place from the model side: because
+candidate action embeddings do not depend on the state, they can be computed once and reused, cutting
+a five-forward-pass decision to one. Neither result is about a better model. Both are about a request
+structure that lets the expensive half be computed ahead of time — the same move
+[[Jerry Liu - Just-in-Time Agentic OCR]] makes in retrieval, now visible in serving and in decisions.
+
+**Interaction is the term the ranking heuristics throw away.**
+[[Antonio Tiene et al - Pruning LLMs Like a Physicist]] shows that the best set of M transformer blocks
+to delete is generally not the M individually least-important blocks: on Llama-3.3-70B without
+retraining, removing 40 of 80 blocks holds MMLU at 76.9 under constrained binary optimization versus
+54.0 under per-block influence ranking. [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
+carries the same lesson into scheduling, where collapsing the decoder into one kernel wins small-batch
+decode on hardware with lower peak FLOPS and lower HBM bandwidth than the GB200 it is compared against.
+Both are vendor-reported, and both degrade in the regimes their authors name — larger batches for the
+megakernel, lighter compression ratios for the pruner.
+
+**Compute demand tracks deliberation per user, not users.**
+[[FD - Agent Muse Compute Demand]] estimates that at a hypothetical 100M daily active users, the entire
+agent sandbox layer would draw roughly 0.1 GW against a 1-2 GW total, with inference carrying the rest.
+Every input is an assumption rather than a measurement, but the structural claim survives the
+uncertainty: an agent that reasons more per task raises compute demand without acquiring a single new
+user. That is the cost side of the same test-time-scaling trade the vault records on the quality side.
+
+**Evaluation has to score the refusals.**
+[[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] supplies controls for
+benchmark overfitting — a held-out split, one attributable patch per round, a revert rule, a noise
+floor below which edits are not attempted, and a warning at roughly 95% that the metric is saturated
+and the objective should change. [[ByteByteGo - Why Do LLMs Lie]] adds what the metric should contain:
+correctness, support, appropriate abstention, and unnecessary refusal, because right-or-wrong scoring
+cannot tell a system that learned to say "I don't know" from one that learned to stop answering.
+
+**Context that nobody maintains is not context.**
+[[Jina Yoon - We're Building Multiplayer AI]] reports that over 90 days, 64 users started a shared
+context file and 14 ever edited it. PostHog's replacement derives context from work that already
+carries a commitment — what shipped, merged, or was decided — rather than asking people to curate it.
+It is an internal observation without a denominator, but it tests an assumption the vault's
+context-engineering pages have largely taken on faith.
+
+**Two new surfaces arrive with the same gap.**
+[[ByteByteGo - AI Agents Can Think, Now They Can Pay]] describes inline HTTP-native payment where a
+spending cap bounds how much an agent can lose but not what it buys, and
+[[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] is explicit that a typed
+screening model is a filter rather than a security boundary because it does not treat its input as
+hostile. In both cases the new mechanism narrows blast radius without establishing intent or identity,
+so least-privilege controls remain underneath.
+[[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] supplies the identity beneath the
+vault's applied RL evidence, including why binary-reward training degenerates toward supervised
+fine-tuning on successes and why homogeneous rollout groups contribute no gradient at all.
+
 ## Related pages
 
 - [[Andrej Karpathy - LLM Wiki]]
@@ -1005,3 +1070,4 @@ agents translate or refactor it.
 - [[Parameter-Efficient Fine-Tuning]]
 - [[Just-in-Time Agentic OCR]]
 - [[Legacy Code Modernization with AI Agents]]
+- [[Agent Payment Protocols]]

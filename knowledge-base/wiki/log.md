@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-09-26
+updated: 2026-09-30
 tags:
   - log
 source_ids:
@@ -277,6 +277,17 @@ source_ids:
   - src-2026-09-21-liu-just-in-time-agentic-ocr
   - src-2026-09-09-mistral-legacy-code-modernization
   - src-2026-09-10-lenz-epd-multimodal-serving
+  - src-2026-09-21-tiene-pruning-llms-ising
+  - src-2026-09-23-kwok-contrastive-language-models
+  - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-27-fd-agent-muse-compute-demand
+  - src-2026-09-27-romero-policy-gradient-llms
+  - src-2026-09-28-bytebytego-agents-can-pay
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-09-29-yoon-multiplayer-ai
 status: active
 ---
 
@@ -1467,3 +1478,47 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - Rebuilt the X thread in the same order and made its standalone a complete miniature rather than a
   teaser. Verified programmatically: LinkedIn 327 words; standalone 277 characters; six thread posts
   at 217 / 228 / 215 / 251 / 232 / 238 characters. All counts match and all are within 280.
+
+## [2026-09-30] ingest | Precompute the expensive half
+
+- Ingested **11 sources** captured 2026-09-21 through 2026-09-29, taking the vault from 272 to
+  **283 source IDs**. All eleven arrived as un-normalized clipper captures; each was given canonical
+  `raw-source` frontmatter and a portable `YYYY-MM-DD Author - Title.md` filename.
+- Three captures had **no author in frontmatter**. `Contrastive Language Models` was attributed to
+  Jacky Kwok and six co-authors recovered from the body and its BibTeX entry; the TPU megakernel post
+  and the Quail post resolve only to **Inferact** and **Modal** respectively, and are recorded that way.
+- **The through-line across the batch is precomputation.** [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
+  gives the serving engine a query plan so eviction becomes a schedule rather than a guess, and
+  [[Jacky Kwok et al - Contrastive Language Models]] caches state-independent action embeddings so a
+  five-forward-pass decision costs one. Neither is a faster model; both restructure the request so the
+  expensive side can be computed once.
+- **Two sources attack per-item ranking.** [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]
+  formulates block removal as constrained binary optimization, keeping MMLU at 76.9 versus 54.0 for
+  block-influence ranking at 40 of 80 blocks removed on Llama-3.3-70B without retraining — and then
+  undercuts its own objective by reporting that the 17th excited state beats the ground state after
+  light retraining. [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] wins small-batch
+  decode despite lower peak FLOPS and HBM bandwidth than its GB200 baseline, with the margin falling
+  from 1.96x at batch 1 to 1.36x at batch 8.
+- **First outside pressure on the typed-decision thread.** [[Jacky Kwok et al - Contrastive Language Models]]
+  is the first source here from an academic group rather than the vendor, and it publishes Jev as its
+  baseline. Its three speed claims — up to 9x lower latency, 4-6x in the benchmark section, 13x at
+  roughly 1k candidates — are different conditions and were recorded separately, not merged.
+  [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] adds no benchmark but
+  contributes the rollout sequence (shadow, label 100-200 cases, then automate) and the boundary that
+  a typed filter is not a security boundary.
+- **Evaluation gained both controls and coverage.** [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
+  supplies held-out splits, one attributable patch per round, a revert rule, a noise floor, and a ~95%
+  saturation warning; its cost story was recorded as *not* a clean hillclimbing measurement because a
+  model change, effort change, prompt change, and price change are bundled together.
+  [[ByteByteGo - Why Do LLMs Lie]] contributes the four-way metric — correctness, support, appropriate
+  abstention, unnecessary refusal — and the factuality-versus-faithfulness split.
+- **One new concept page:** [[Agent Payment Protocols]], from
+  [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]. The page is named for the durable category
+  rather than for Stripe and Tempo's Machine Payments Protocol, following the vault's practice of not
+  adopting vendor category names.
+- [[FD - Agent Muse Compute Demand]] was ingested with heavy hedging: every input is an assumption, so
+  the durable claim recorded is structural — the sandbox is about a tenth of the bill and deliberation
+  per user, not user count, drives demand. [[Jina Yoon - We're Building Multiplayer AI]] contributes
+  the 64-started / 14-edited context-file measurement. [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]
+  supplies the derivation beneath the vault's applied RL pages.
+- Integrated across **42 pages**; updated index, log, and overview to 283 IDs.

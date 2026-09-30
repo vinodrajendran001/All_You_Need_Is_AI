@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-11
+updated: 2026-09-30
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-09-27-romero-policy-gradient-llms
 status: active
 ---
 
@@ -261,6 +262,40 @@ The general constraint is **Jason Wei's Verifier's law** — "the ease of traini
 proportional to how verifiable the task is." Painting is exactly the case where no oracle exists, which is
 why the elaborate reward was reached for and why it failed.
 
+## A 0/1 verifier reward makes the gradient imitate successes rather than contrast them
+
+[[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] states a consequence of binary rewards
+that this page's catalogue of reward shapes does not. Under a verifier returning `R = 1` for correct and
+`R = 0` for incorrect, every incorrect completion multiplies its gradient term by zero and drops out of
+the update entirely. What survives is an average of `grad log p_theta(y_i)` over the correct completions
+only — in Romero's phrasing, "literally SFT on the correct completions." Failures are never directly
+pushed down; they are simply absent. This is a claim about the gradient at binary reward and not a claim
+that RL and supervised fine-tuning share training dynamics, and the piece is a pedagogical derivation
+rather than an empirical result.
+
+That complicates rather than replaces the RLVR claim recorded above from
+[[Akhil Arora et al - Current Advances in LLM Reasoning]], that verifiable rewards create "a contrastive
+correct-vs-incorrect signal that transfers to unseen problems." The contrast is real in practice, but the
+derivation locates it somewhere other than the reward function: a 0/1 verifier supplies no negative term
+on its own, and the negative advantage that suppresses failures is manufactured by the baseline. Under
+[[Group Relative Policy Optimization|GRPO]], a group mean of 0.5 turns the same verifier into advantages
+of +0.5 and -0.5, at which point wrong completions finally acquire a downward gradient. Contrastiveness
+on this reading is a property of the advantage estimator, and the verifier only decides which rollouts
+land on which side of the mean. The only suppression a raw binary gradient provides is indirect, through
+the softmax: reinforcing a sampled token lowers every alternative in proportion to its current
+probability, so a wrong answer is discouraged only where it competes for mass at positions a correct
+completion also visited.
+
+The design consequence runs through several recipes already on this page. Any reward that gates to zero
+on failure inherits the same structure — Perplexity's `r_base` hard gate and the multiplicative
+`R_accuracy × R_budget` objective from [[Efficient Reasoning on the Edge]] both send failed rollouts to
+zero, so absent a baseline those rollouts contribute nothing at all rather than contributing a penalty.
+Gating is usually defended as preventing style credit from compensating for wrong answers, which it does;
+the derivation adds that gating also removes those rollouts from the gradient, which makes baseline
+choice part of reward design rather than a separate optimiser concern. How much of the transfer credited
+to RLVR is owed to the verifier and how much to group-relative centring is not something a derivation can
+settle, and no source in this vault has separated them.
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -295,3 +330,4 @@ why the elaborate reward was reached for and why it failed.
 - [[@zafstojano - Recursive Synthetic Improvement]]
 - [[Synthetic Data Flywheel]]
 - [[Automated AI Research]]
+- [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]

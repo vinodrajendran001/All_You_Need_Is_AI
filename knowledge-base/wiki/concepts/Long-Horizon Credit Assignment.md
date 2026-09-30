@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-18
+updated: 2026-09-30
 tags:
   - concept
   - reinforcement-learning
@@ -9,6 +9,7 @@ tags:
 source_ids:
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-12-zhang-recurrent-looped-transformer
+  - src-2026-09-27-romero-policy-gradient-llms
 status: active
 ---
 
@@ -86,6 +87,41 @@ policy. Behavior log probabilities must also match the sampler that actually pro
 The source specifies the contract but provides no evidence that full replay and backpropagation remain
 tractable at the long sequence lengths the architecture targets.
 
+## The clean identity covers terminal rewards only, and everything on this page lives past that line
+
+[[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] is useful here less for what it derives
+than for where it stops. The derivation runs from the sequence probability through the log-derivative
+trick to `grad J = E[R(y) grad log p_theta(y)]`, and on to the zero-mean score identity `E_p[s_yt] = 0`
+that licenses subtracting a baseline — and it treats terminal sequence rewards throughout. It does not
+address token-level credit assignment, KL regularization, clipping, importance ratios, or PPO's value
+estimation. That boundary is the contribution to this page: it marks exactly where a result with a proof
+ends and where the heuristics catalogued above begin.
+
+The per-token decomposition shows why the boundary falls there. The sequence score is a sum of per-token
+terms, and a terminal scalar reward multiplies that entire sum uniformly, so within a rewarded completion
+the identity assigns identical credit to every token; the softmax gradient (`1 - p_v` for the sampled
+token, `-p_u` otherwise) separates tokens by their current probability, not by their contribution to the
+outcome. Long-horizon credit assignment is therefore not a gap the policy-gradient estimator failed to
+close — it is a question the estimator never poses. Every method on this page that discriminates across a
+trajectory is adding structure the identity does not supply, which is why each of them has to argue about
+bias separately and from scratch.
+
+This reframes the unbiasedness argument recorded above for Progressive Point Matching without weakening
+it. PPM's guarantee — that shortcutting makes the policy optimal under the shaped reward also optimal
+under the outcome reward — is a statement about which terminal-style reward to feed the same identity,
+not an extension of the identity to per-step credit. It is strong precisely because it stays inside the
+regime where the estimator is understood. Process rewards and learned value functions instead attach
+signal to intermediate steps, where no comparable zero-mean result exists to say what the expected
+gradient is, which is a more specific account of their bias than "they converge to a policy that is not
+optimal for the outcome."
+
+One caveat compounds with the state-replay problem recorded above. The baseline identity holds only under
+on-policy sampling, and Romero warns that inference engines such as vLLM or SGLang may use different
+numerical precision or stale weights, so the practical estimator is already approximate before recurrent
+hidden state enters the picture. The requirement that behaviour log-probabilities match the sampler that
+produced the trajectory is the same requirement arriving from a different direction. The source is a
+pedagogical derivation and its worked numbers are explicitly illustrative rather than measured.
+
 ## Open questions
 
 - The method needs a reference trajectory to extract points from. On genuinely novel tasks — the regime
@@ -100,6 +136,12 @@ tractable at the long sequence lengths the architecture targets.
 - Whether an unbiased dense reward can be constructed for tasks with **no** verifiable outcome at all —
   where even the terminal signal is a judge — is untouched. Verifier's law (see
   [[Synthetic Data Flywheel]]) suggests that is where the frontier actually binds.
+- Is there an analogue of the zero-mean score identity for token-level or step-level advantages, or is
+  per-step credit assignment necessarily heuristic? Every method on this page assumes the latter without
+  arguing for it.
+- PPM's unbiasedness is established for a shaped terminal reward under on-policy sampling. Whether it
+  survives the off-policy estimator that production stacks actually run — different serving precision,
+  stale weights, truncated importance ratios — has not been tested by any source here.
 
 ## Related pages
 
@@ -113,3 +155,5 @@ tractable at the long sequence lengths the architecture targets.
 - [[Staged Reinforcement Learning Curriculum]]
 - [[Monte Carlo Tree Search]]
 - [[Preston Fu - Progressive Point Matching]]
+- [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]
+- [[Inference Serving Engines]]

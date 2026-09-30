@@ -116,6 +116,43 @@ waste it.
 
 See [[Long-Horizon Credit Assignment]].
 
+## The group mean is the cheapest legal baseline, and "legal" has a precise condition
+
+This page has described the group-relative advantage as a memory-saving substitute for PPO's critic,
+which is true but leaves open why replacing a learned baseline with an arithmetic mean is permitted at
+all. [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]] supplies the missing step. The score
+has zero mean on-policy, `E_p[s_yt] = 0`, so for any baseline `b` that does not depend on the sampled
+token, `E_p[(R - b) s_yt] = E_p[R s_yt]`. Subtracting a baseline changes the variance of the estimator
+and not its expectation. Baseline choice is therefore a variance decision rather than a correctness
+decision, and `A_i = R_i - (1/G) sum_j R_j` is simply the cheapest estimate of expected reward obtainable
+from a group that has already been sampled. This is a pedagogical derivation, not new empirical work.
+
+The independence condition is worth stating carefully, because this page already records a variant that
+tightens it. The identity requires a baseline that does not depend on the sampled completion, and a plain
+group mean includes the sample's own reward — precisely what Granite's leave-one-out baseline removes by
+scoring each response against the mean of the *others*. The derivation does not adjudicate between them,
+but it identifies leave-one-out as the variant that satisfies the condition literally rather than only in
+the large-group limit, which is a sharper justification than the critic-free-property argument recorded
+above.
+
+The same arithmetic explains the silent-group failure this page attributes to horizon effects, and adds
+its mirror image. With four rollouts at a group mean reward of 0.5, advantages are +0.5 and -0.5; a group
+in which every completion fails and a group in which every completion succeeds both centre to zero and
+contribute no gradient at all. The all-fail case is already recorded here as the mechanism behind GRPO's
+inability to fill a batch on near-impossible data. The all-succeed case is the same zero reached from the
+other side, and it is pure compute loss on problems the policy has already solved — a cost this page had
+not recorded. Romero situates GRPO in a line running from REINFORCE through PPO to DAPO without
+characterising the later refinements, and the numbers above illustrate the arithmetic rather than
+reporting measurements.
+
+One caveat carries into every deployment described on this page: the zero-mean identity holds under
+on-policy sampling. Inference engines such as vLLM or SGLang may run at different numerical precision or
+with stale weights, so the rollouts a GRPO trainer centres and scores are frequently not drawn from the
+policy being updated. That is the same mismatch the truncated importance sampling and single-update
+staleness bound above are built to absorb, but read as a derivation it says something the systems framing
+does not: what degrades under staleness is the unbiasedness of the group-relative advantage itself, and
+clipping bounds the damage rather than restoring the identity. See [[Inference Serving Engines]].
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -140,3 +177,5 @@ See [[Long-Horizon Credit Assignment]].
 - [[Preston Fu - Progressive Point Matching]]
 - [[Long-Horizon Credit Assignment]]
 - [[Preston Fu]]
+- [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]
+- [[Inference Serving Engines]]

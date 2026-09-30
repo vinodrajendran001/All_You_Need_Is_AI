@@ -35,6 +35,7 @@ source_ids:
   - src-2026-09-05-lenz-nemoclaw-memory-agent
   - src-2026-09-18-0xmovez-jev-engineering
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-28-bytebytego-agents-can-pay
 status: active
 ---
 
@@ -397,8 +398,45 @@ after labelling rather than before, and automation only of the paths that were m
 explicit warning that the pattern is wrong for **low-volume, high-consequence decisions**, which is
 the same reversibility logic as the approval table above.
 
+## A spending cap bounds the loss, not the purchase
+
+The hierarchy above bounds what an agent may *do*. [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
+adds a surface none of those layers covers: what it may *buy*. Machine Payments Protocol, launched on
+**18th March 2026** and co-authored by Stripe and Tempo, reuses **HTTP 402** as a live negotiation step
+rather than an error — an unpaid request returns a challenge carrying an ID, amount, currency, recipient,
+payment method, and validity window; the agent authorizes and retries with a credential; the server
+returns the resource plus a receipt. Two of its invariants are governance properties in disguise:
+**unpaid requests must not cause side effects**, which is the reversibility guarantee the approval policy
+above keys on, and **payment proofs are single-use**, which is replay protection.
+
+The gap is what payment proves. It establishes **control of a key, not customer identity**, and
+reputation, abuse prevention, refunds, and disputes are explicitly out of scope; the article reports **no
+defined refund flow for one-off charges**. A delegated signing key can carry a spending cap per period, an
+expiry, permitted recipients, a scope, one key per deployment, and individual revocation — but a cap
+prevents *overspending*, not *valid spending on the wrong service*. An agent that stays inside its budget
+while paying an attacker-supplied endpoint has violated no control the protocol defines, which is a
+failure class the permission layers on this page cannot see: they ask whether a call is allowed, never
+whether a payee deserves paying.
+
+Failure signalling is better here than in most of the controls recorded above. A failed verification
+returns **another 402, not a 401**, with a fresh challenge and a structured reason —
+`payment-insufficient`, `payment-expired`, `verification-failed`, `invalid-challenge` — so an unfunded
+request stays distinguishable from an unauthorized one in the audit trail, and the receipt is per-request
+evidence of delivery rather than an inferred outcome. This page's standing complaint is that denials are
+inferred rather than recorded; the payment layer emits its denials with reasons attached.
+
+The evidence is thin in the usual way. This is a secondary explainer rather than a protocol audit or a
+production measurement, its millisecond and settlement-cost claims are conditional on the payment rail
+and the implementation, and the attributed Cloudflare figure of roughly **57.5% of HTTP requests to web
+content** covers **all automated systems, not AI agents specifically**. See [[Agent Payment Protocols]]
+for the protocol mechanics.
+
 ## Open questions
 
+- If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
+  decide that a payee is legitimate, and on what evidence when the service was discovered at runtime?
+- Revocation and expiry only act forward in time. With no defined refund flow for one-off charges, what is
+  the recovery path for money an agent has already spent correctly on the wrong thing?
 - If a typed screening model is a filter and not a boundary, what residual risk is being accepted, and
   how would anyone size it when the vendor cookbook publishes no confusion matrix?
 - A reasoning-blind gate cannot see tool outputs by design. Which class of attack is visible only in
@@ -477,3 +515,5 @@ the same reversibility logic as the approval table above.
 - [[Google Cloud]]
 - [[Multi-Tenant Agent Architecture]]
 - [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]]
+- [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
+- [[Agent Payment Protocols]]

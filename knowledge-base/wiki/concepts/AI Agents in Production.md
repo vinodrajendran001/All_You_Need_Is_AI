@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-09-13
+updated: 2026-09-30
 tags:
   - concept
   - ai-agents
@@ -45,6 +45,7 @@ source_ids:
   - src-2026-09-13-prabhulal-production-rag-adk
   - src-2026-09-13-virinchi-google-cloud-mcp-security
   - src-2026-09-13-tessier-gcp-model-armor
+  - src-2026-09-27-fd-agent-muse-compute-demand
 status: active
 ---
 
@@ -298,6 +299,53 @@ dedicated identities, recurring tool inventory, deny policies, tenant-separated 
 [[David Tessier - GCP Model Armor]] adds centrally enforced pre- and post-model content inspection.
 Both are vendor-authored and neither makes probabilistic filtering an authorization boundary.
 
+## Capacity planning is a chain of ratios, and every architecture choice on this page moves it
+
+This page answers how to build and run an agent; it has never costed one at scale.
+[[FD - Agent Muse Compute Demand]] supplies that layer for a hypothetical consumer deployment, and the
+framing matters more than the totals: it is a **bottom-up scenario estimate built on assumptions**,
+not a measurement of Meta's infrastructure, and the **100M DAU** premise is hypothetical - the post
+does not establish Meta's actual deployment scale.
+
+The useful artifact is the chain, because each link is an assumption a team can replace with its own
+measurement. **100M DAU** x **two active hours per day** / 24 = **~8M average simultaneous active
+VMs**; a **2.5x peak-to-average ratio** gives **~20M peak**; **~20% capacity headroom** gives **~25M
+provisioned live VMs**, or roughly **25% of DAU live at once**. The separation that makes the chain
+work is *logical versus physical*: the observed per-user sandbox advertises **2 vCPUs, ~8 GB of RAM,
+and ~100 GB of persistent logical storage**, but none of that is a physical reservation.
+Oversubscription is anchored on DeepSeek's DSec paper - **~30,000 physical cores**, **250 TB of
+DRAM**, **~160 nodes**, peak concurrency above **380,000 sandboxes**, about **800 microVMs per node**
+on roughly **188 physical cores**, or **~0.23 physical cores per live VM**. Muse is assumed *less*
+efficient at **0.3-0.75**, base case **0.5**, giving **12.5M physical cores** (**~50K CPUs** at 256
+cores, **~$800M**); memory extrapolated from a **single** observed instance at **~3 GB** gives **75
+PB** (range **~75-100 PB**, **~$2B**).
+
+The structural finding is the one worth carrying into design reviews. The entire sandbox/VM layer -
+all the isolation, all the environments, all the tool execution surface - comes to an estimated
+**~0.1 GW**, while total average power lands at **~1-2 GW**. Inference is the rest: **50
+reasoning-equivalent events per DAU per day** at **5 Wh** each is **25 GWh/day**, or **~1.0 GW**. The
+per-event energy is itself derived - a Microsoft study's median of **~0.31 Wh per normal query**, a
+long reasoning query at roughly **15x the tokens** using about **13x the energy** (**~4 Wh**), widened
+to an assumed **5-10 Wh**. The **3-4 GW** figure that travels with this analysis is a *sensitivity
+conclusion under higher reasoning demand, not a forecast*.
+
+That reframes most of the controls recommended above as capacity decisions. Reflection passes,
+independent verifier runs, faithfulness and completeness checks in parallel, retries with backoff,
+sabotage validation, orchestrator-worker fan-out - each adds reasoning-equivalent events per task, and
+FD's scaling asymmetry is that **demand tracks reasoning-equivalent events per user, not user count**.
+An agent that deliberates more raises compute demand with zero new users. Nothing here argues against
+those controls; it argues that a production plan which counts users, requests, or sandboxes is
+counting the wrong thing, and that the evidence ladder and the capacity model should be filled in
+together.
+
+The caveats are load-bearing. Active hours, peak ratio, headroom, oversubscription, memory residency,
+events per user, energy per event, and hardware prices are all assumed rather than measured; the
+**~3 GB** observation is a single instance and cannot establish fleet working-set behaviour; DSec's
+sandbox workload may differ materially from Muse's; and the dollar figures exclude networking,
+storage, orchestration, redundancy, facilities, cooling, depreciation, and operations. Treat the chain
+as a template to instrument, not a result to cite. See [[Multi-Tenant Agent Architecture]] for the
+isolation side of the same estimate and [[Tool Roster Economics]] for the per-turn side.
+
 ## Related pages
 
 - [[Grok Bot Systems Engineering Working Note]]
@@ -362,3 +410,9 @@ Both are vendor-authored and neither makes probabilistic filtering an authorizat
 - [[Virinchi T - Google Cloud MCP Security Framework]]
 - [[David Tessier - GCP Model Armor]]
 - [[Google Cloud]]
+- [[FD - Agent Muse Compute Demand]]
+- [[Multi-Tenant Agent Architecture]]
+- [[Tool Roster Economics]]
+- [[Test-Time Scaling]]
+- [[Meta]]
+- [[DeepSeek]]

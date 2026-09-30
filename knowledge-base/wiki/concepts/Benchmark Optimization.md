@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-09-18
+updated: 2026-09-30
 tags:
   - concept
   - evaluation
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-15-turing-post-recursive-self-improvement
+  - src-2026-09-28-martin-automating-eval-design-hillclimbing
 status: active
 ---
 
@@ -211,6 +212,48 @@ verification, or another external check remains outside the editable region.
 The issue does not require assuming deceptive intent. Optimizing an editable metric is enough to
 erase the distinction between improving the system and redefining success.
 
+## A saturated eval should change the objective, not the effort
+
+Every other section on this page concerns a number inflated above the capability it stands for.
+[[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] contributes the opposite
+pathology and a rule for it: a number so high that nothing further can be learned from moving it. The
+evaluation Martin's tooling builds must satisfy four properties — a production-like task distribution,
+scores that rise with stronger models and more effort, frontier performance with **headroom below
+100%**, and low run-to-run variance — and the baseline diagnostic **warns when the baseline is about
+95% or higher**, on the explicit grounds that quality hillclimbing is then uninformative and cost or
+latency should become the objective. Deliberate headroom is treated as a design requirement of the
+benchmark, not as an accident of task difficulty.
+
+The same diagnostic supplies a second reportability criterion to sit beside this page's five attributes
+of a reportable number: **a measured noise floor**. It runs **the grader twice on the same output** to
+expose grader variance, checks for timeouts, API errors, and truncated responses, and reports a
+confidence interval with one full transcript per case. The floor is then load-bearing rather than
+decorative — one of the two stopping rules is that when an expected gain falls **below evaluation
+noise**, the correct move is to add repetitions or cases rather than make an edit nobody can measure.
+
+The anti-overfitting controls are the part this page has been missing as mechanism rather than
+exhortation. The evaluation is split into a training and a held-out test set; **one patch per round** is
+proposed; the patch is kept only when **train and test both improve** and reverted when only train
+improves or either regresses. Failures are never pasted into prompts, which keeps evaluation answers
+structurally inaccessible — the input-side counterpart of making the scoreboard unwritable. Martin
+nevertheless concedes that leakage and overfitting persist, including harness additions that solve
+benchmark quirks rather than production problems, which is this page's central hazard reported from
+inside a method designed to prevent it.
+
+The worked numbers need their conditions attached, because the headline reads as a hillclimbing result
+and is not one. On an internal benchmark of **44 tickets** (**30** for search, **14** held out), the
+baseline Opus 4.8 at high effort scored **74.4% decision accuracy at 4.6 cents per ticket**; Opus 5.5 at
+low effort **87.8% at 1.9 cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work then took
+Sonnet 5 to **98.9%** at about the same cost. Held out, the final configuration scored **90.5%** against
+**78.6%** originally, at roughly **one fifth of the cost**. That before-and-after bundles a model change,
+an effort change, a prompt change, **and a pricing change** — Opus 5.5 is stated to price input and
+output **20% less** than Opus 4.8, and cache reads **60% less** — so it is not a clean measurement of
+hillclimbing, and part of the cost win is a price list rather than an engineering result. Every figure
+here is Anthropic-reported on an Anthropic workflow with no independent reproduction and no released
+evaluation data. The capability example carries the same caveat: the Claude API skill moved **66%** to
+**74%** after eight features were covered, to **77%** after C# and Java type tables were fixed, ending
+near **88%**, with the figure caption reporting **66.1%** baseline and **87.9% at round 24**.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -218,6 +261,12 @@ erase the distinction between improving the system and redefining success.
 - Held-out sets and temporal splits raise cost and reduce the reproducibility that made public benchmarks valuable. Where is the equilibrium?
 - Only open-source models can be probed this way at scale; closed frontier systems are largely absent from the evidence.
 - Does an analogous acoustic-cue mechanism exist for text — stylistic or formatting cues that let a model recognise a text benchmark and switch answer policy?
+- A held-out split of 14 cases is the entire independent evidence behind a 90.5%-versus-78.6% claim. What
+  confidence interval does a split that small actually support, and at what point does a held-out set
+  become too small to function as a revert signal?
+- The roughly-95% ceiling and the noise floor are both properties of the evaluation rather than of the
+  system. Who re-derives them when the task distribution drifts, and what happens to a revert rule
+  calibrated against a stale floor?
 
 ## Related pages
 
@@ -249,3 +298,6 @@ erase the distinction between improving the system and redefining success.
 - [[Tool Roster Economics]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
 - [[GitHub]]
+- [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
+- [[Anthropic]]
+- [[Agentic Testing]]

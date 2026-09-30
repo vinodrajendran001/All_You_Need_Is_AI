@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-11
+updated: 2026-09-30
 tags:
   - concept
   - gpu
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-04-20-moonshotai-flashkda-v1
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-09-24-modal-quail-billion-tokens-per-minute
 status: active
 ---
 
@@ -123,6 +125,46 @@ even at batch 1**, and **abandoning shared-memory paging** because "the bookkeep
 and had high overhead" — with the authors leaving open whether that is a property of the technique or of
 this implementation.
 
+## The biggest remaining wins come from changing what the kernel is allowed to assume
+
+The ladder above optimises the execution of a fixed computation. Two 2026 vendor reports get their
+largest numbers a different way — by changing the assumptions the kernel gets to start from — and
+neither move is reachable by climbing rungs.
+
+**Change the memory model.** Pallas appears on this page's programming-models list as "the JAX kernel
+model, targeting both GPU and TPU backends," and
+[[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] is the vault's first worked TPU-side
+use of it. The Kimi K3 decoder is a **single grid-less Pallas program** with explicit VMEM lifetimes
+managed through `run_scoped`, and weights arrive by **program-issued asynchronous HBM-to-VMEM DMA
+that overlaps computation across layer boundaries**. Rung 5 of the ladder — asynchrony and
+producer-consumer pipelines — is here not an optimisation applied to a kernel but the only way to
+write one, because VMEM is software-managed: **64 MiB per TensorCore and 128 MiB per chip in two
+pools**, against **GB200's ~111 MiB of SRAM split 152 ways**. A second figure is easy to overlook and
+matters for how kernel work is actually done: the whole megakernel **compiles in under 90 seconds**
+against the **30+ minutes** Inferact reports as regular for a large XLA model, which sets how many
+tuning iterations a day are possible.
+
+**Change the workload contract.** Modal's Quail, described in
+[[Modal - Hitting a Billion Tokens per Minute on One GPU]], contains exactly the kernel work this page
+catalogues — **fused add-RMSNorm with FP8 quantization, fused per-head query/key RMSNorm with rotary
+embeddings, and a recursive combination-of-partials attention for shared join anchors**, built on
+DeepGEMM, FlashAttention 3 and Triton. Those are the Baseten-style moves: fuse the epilogue, kill the
+intermediate round trip. The larger savings come from deletions the SQL query plan licenses. Because
+the workload is Boolean and classification filtering that needs a single output token, the
+**output vocabulary is reduced to 8 options, shrinking the final unembedding from vocabulary-size x
+latent-size to 8 x latent-size**, **suffix KV is never written to cache** (zero decode, and no joins
+beyond (N>2)-way joins), and there is **no sampling, no CUDA Graph capture and no speculative
+decoding** at all.
+
+The numbers need their conditions. Modal reports **over a billion tokens per minute per H100 and more
+than 10x vLLM on one multi-join query**, but the cross-workload figure from the same post is **1.84x
+faster than vLLM, geometrically averaged** across its released benchmark, and Modal states Quail
+*falls behind* vLLM on an agent-trace benchmark. Inferact's decode comparison is **249 vs 127
+tokens/s at batch 1 without speculation (1.96x)**, narrowing to **1.36x at batch 8**, measured as a
+hand-written TPU kernel against a published vLLM GB200 recipe. Both are vendor-reported, and neither
+ablates kernel work against assumption removal — so how much of either result is *kernel*
+optimisation in this page's sense is unresolved.
+
 ## Open questions
 
 - How much of the kernel ladder survives as compilers absorb it? Triton and CUDA Tile exist precisely to make step 3 unnecessary, yet the fastest kernels are still hand-written.
@@ -130,6 +172,8 @@ this implementation.
 - FP8 and MX formats are specified openly, but scaling strategy is where accuracy is won or lost — how much of that is transferable between models?
 - When does a kernel stop being worth hand-optimizing because the workload has moved to a different bottleneck, such as collectives or scheduling?
 - Can [[AI-Generated Kernels]] climb this ladder, or only its first rungs?
+- Pallas targets both GPU and TPU, but Inferact's advantage comes from a memory model only one of them has. What is a portable kernel language worth when the winning strategy does not port?
+- Quail's kernels and its workload assumptions are reported together with no ablation between them. How much of a 1.84x geometric-mean advantage is kernel engineering and how much is a narrower contract?
 
 ## Related pages
 
@@ -148,3 +192,6 @@ this implementation.
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
 - [[Megakernels]]
 - [[Cohere]]
+- [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
+- [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
+- [[Serving Benchmarks and Goodput]]

@@ -119,9 +119,8 @@ this page already asks what that costs as the file count grows past 200. PostHog
 human writer entirely and pays in evidence: it reports **no measured hallucination reduction, token
 savings, latency change, or task-quality lift**, and the context layer had been dogfooded for only
 **a few weeks** at publication, inside an organisation of roughly **~200 employees** trying the
-product. The vault therefore now holds one curated-and-reviewed
-institutional memory with qualitative results and one derived-and-unreviewed institutional memory with
-no results. Neither is validated.
+product. The vault therefore now holds one curated-and-reviewed institutional memory with qualitative
+results and one derived-and-unreviewed institutional memory with no results. Neither is validated.
 
 Governance separates them further. Meta's setting is compliance, where positions are written down,
 experts exist, and a review culture is already in place - the conditions this page flags as unusually

@@ -175,9 +175,9 @@ governed Markdown self-models - assumes a writer who keeps writing.
 [[Jina Yoon - We're Building Multiplayer AI]] reports a count against that assumption: over
 **90 days**, **64 users** started a shared `CONTEXT.md` and only **14** ever edited it. These are
 internal product observations from PostHog rather than a study, with no denominator of eligible users,
-no selection method, and no comparison group. Held
-loosely, it is still the only number this page has about whether curated memory gets maintained, and
-it lands directly on the premise the Meta second-brain material rests on and does not test.
+no selection method, and no comparison group. Held loosely, it is still the only number this page has
+about whether curated memory gets maintained, and it lands directly on the premise the Meta
+second-brain material rests on and does not test.
 
 PostHog's answer converts memory maintenance into a pipeline. A nightly **"dreaming" task** records
 what happened that day into a version-controlled Markdown wiki, extracting from work objects such as

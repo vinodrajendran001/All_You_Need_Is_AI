@@ -215,10 +215,10 @@ multiplicative speedup.
 ## The best M blocks to remove are generally not the M best blocks
 
 This page treats pruning as a ranking problem — magnitude is a weak importance signal,
-activation-aware scoring from a few hundred sample texts ranks better. [[Antonio Tiene et al -
-Pruning LLMs Like a Physicist]] names the assumption underneath all such scoring and argues it is
-wrong: **removals interact**, so scoring blocks independently and deleting the worst M cannot be
-optimal in general.
+activation-aware scoring from a few hundred sample texts ranks better.
+[[Antonio Tiene et al - Pruning LLMs Like a Physicist]] names the assumption underneath all such
+scoring and argues it is wrong: **removals interact**, so scoring blocks independently and deleting
+the worst M cannot be optimal in general.
 
 The mechanism is a second-order Taylor expansion yielding an approximate Hessian whose **diagonal
 encodes individual block importance** and whose **off-diagonal terms encode interactions between

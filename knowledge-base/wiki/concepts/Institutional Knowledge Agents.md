@@ -118,16 +118,18 @@ blind targeted replay, expert sign-off, a deterministic linter over a declared d
 this page already asks what that costs as the file count grows past 200. PostHog's loop removes the
 human writer entirely and pays in evidence: it reports **no measured hallucination reduction, token
 savings, latency change, or task-quality lift**, and the context layer had been dogfooded for only
-**a few weeks** at publication, inside an organisation of roughly **~200 employees** trying the
-product. The vault therefore now holds one curated-and-reviewed institutional memory with qualitative
-results and one derived-and-unreviewed institutional memory with no results. Neither is validated.
+**a few weeks** at publication, with no stated population for that trial - the **~200 employees**
+figure the post gives is scoped to three recurring Space-**setup** patterns. The vault therefore now
+holds one curated-and-reviewed institutional memory with qualitative results and one
+derived-and-unreviewed institutional memory with no results. Neither is validated.
 
 Governance separates them further. Meta's setting is compliance, where positions are written down,
 experts exist, and a review culture is already in place - the conditions this page flags as unusually
-favourable. PostHog names **governance and permissions its biggest blind spot**, observes that users
-**overwhelmingly preferred starting tasks privately** despite an expectation of shared defaults, and
-warns that its findings may depend on a low-hierarchy culture without strict role-based access
-control. Automatically derived institutional memory inherits whatever access boundaries its source
+favourable. PostHog calls **governance and permissions one of its biggest blind spots** and says it is
+interviewing users to learn more, observes that users **overwhelmingly preferred starting tasks
+privately** despite an expectation of shared defaults, and warns that its findings may depend on a
+low-hierarchy culture without strict role-based access control. Automatically derived institutional
+memory inherits whatever access boundaries its source
 work objects carry, which the curated method resolves by putting a human at the gate. That is a real
 cost of removing the writer, not an implementation detail.
 

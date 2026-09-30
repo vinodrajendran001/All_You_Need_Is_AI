@@ -49,12 +49,11 @@ error messages.
 The cost structure forces a second design. In the article's hypothetical, a web search worth a cent
 **can** cost more than that to settle, because per-transaction fees do not shrink with the payment -
 **below a threshold**, settlement costs more than the payment, so charge-per-request does not survive
-its own overhead. Session
-intents let the agent reserve funds and then sign an IOU per request - the cited example is a tenth
-of a cent - which the server verifies in the few milliseconds a signature check takes, settling the
-accumulated IOUs in one transaction. Verification is made cheap enough to run every time while
-settlement is batched. This is the same amortization the vault records in [[KV Cache]] reuse and in
-batched inference, applied to trust rather than to computation.
+its own overhead. Session intents let the agent reserve funds and then sign an IOU per request - the
+cited example is a tenth of a cent - which the server verifies in the few milliseconds a signature
+check takes, settling the accumulated IOUs in one transaction. Verification is made cheap enough to
+run every time while settlement is batched. This is the same amortization the vault records in
+[[KV Cache]] reuse and in batched inference, applied to trust rather than to computation.
 
 Delegation is expressed through signing keys rather than through accounts. A key can carry a spending
 cap per period, an expiry, a list of permitted recipients, a scope, one key per deployment, and

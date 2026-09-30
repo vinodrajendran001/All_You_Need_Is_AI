@@ -77,9 +77,9 @@ K3's 92 MoE layers** onto **16 TPU v7 chips / 32 TensorCores in a 2x2x4 topology
 split across **32 ranks** and routed experts at **TP4 x EP8**, all inside one megakernel. This is the
 page's all-to-all claim in its most literal form: the collectives are written against that specific
 chip arrangement, so any other chip *topology* — including a different arrangement of the same 16
-chips — needs new collectives. The reported decode advantage over a
-published vLLM GB200 recipe is **249 vs 127 tokens/s at batch 1 without speculation (1.96x)**,
-shrinking monotonically to **865 vs 636 (1.36x) at batch 8** — vendor-reported, and consistent with
+chips — needs new collectives. The reported decode advantage over a published vLLM GB200 recipe is
+**249 vs 127 tokens/s at batch 1 without speculation (1.96x)**, shrinking monotonically to **865 vs
+636 (1.36x) at batch 8** — vendor-reported, and consistent with
 this page's claim that sparsity converts a compute problem into a communication problem, since
 Inferact attributes the decay to vector arithmetic and inter-device traffic taking over as batch
 grows.
@@ -102,9 +102,9 @@ designed to exploit.
 
 Both readings need their caveats. Inferact's numbers are batch-1-to-8 decode on one model, one
 topology, against an asymmetric baseline. Tiene et al. is a Multiverse Computing blog summarizing the
-authors' own
-paper, with ablations, solver comparisons and complete tables deferred; "removes 2-3 MoE layers"
-describes what the optimizer selected on one hybrid model, not a general redundancy rate for MoE.
+authors' own paper, with ablations, solver comparisons and complete tables deferred; "removes 2-3 MoE
+layers" describes what the optimizer selected on one hybrid model, not a general redundancy rate for
+MoE.
 
 ## Open questions
 

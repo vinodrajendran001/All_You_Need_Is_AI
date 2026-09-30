@@ -69,8 +69,7 @@ revert when only the training split improves, a grader-determinism check that ru
 the same output, a pre-round check that the eval's noise is below the smallest actionable improvement,
 and a warning fired when the baseline is about **95%** or higher, recommending that the hillclimb target
 cost or latency rather than quality. Those controls are legible enough to reuse without Anthropic's
-tooling; see
-[[Benchmark Optimization]] and [[Harness Optimization]].
+tooling; see [[Benchmark Optimization]] and [[Harness Optimization]].
 
 The results are a different matter, and they need reading with the conditions attached. On an internal
 benchmark of **44 tickets** (**30** for search, **14** held out), on the **30 search (train) tickets**
@@ -78,8 +77,8 @@ the baseline Opus 4.8 at high effort scored **74.4% decision accuracy at 4.6 cen
 5.5 at low effort **87.8% at 1.9 cents**; Sonnet 5 at low effort **88.9% at 1 cent**; prompt work took
 Sonnet 5 to **98.9%** at about the same cost. On the **14 held-out tickets** — a different split, which
 is why the original baseline reads differently there — the final configuration scored **90.5%** against
-the original setup's **78.6%**, at roughly **one fifth of the cost**.
-Every figure is Anthropic-reported, on an Anthropic workflow, evaluating Anthropic models, with no
+the original setup's **78.6%**, at roughly **one fifth of the cost**. Every figure is
+Anthropic-reported, on an Anthropic workflow, evaluating Anthropic models, with no
 independent reproduction and no released evaluation data. The cost claim in particular is not a clean
 measurement of the method, because the before-and-after bundles a model change, an effort change, a
 prompt change, **and a pricing change** — Opus 5.5 is stated to price input and output **20% less** than

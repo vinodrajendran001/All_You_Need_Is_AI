@@ -364,13 +364,14 @@ is valid.
 
 ## A screening model is a filter, and a filter does not treat its input as hostile
 
-[[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] states outright the boundary
-the section above asserts, and supplies the reason. A typed screening model **does not treat its
-input as hostile**: adversarial state can move the answer, so the model reduces the volume of bad
-requests reaching a control without becoming the control. **Least-privilege enforcement is still
-required behind it.** The vendor-adjacent claim that such a model "cannot hallucinate" collapses on
-the same distinction this page keeps elsewhere — schema validity is not semantic correctness, a
-valid `Choice` can be the wrong one, and an attacker only needs it to be wrong once.
+[[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] draws the operational
+conclusion from **TypeSafe's own jaggedness notes for `jev-1.13`**, which state that adversarial
+content in the state can move the answer: the screen is a **filter, not a security boundary**, and
+**least-privilege tool access stays underneath**. The vendor documents the fragility and the
+practitioner draws the boundary, so the model reduces the volume of bad requests reaching a control
+without becoming the control. The vendor-adjacent claim that such a model "cannot hallucinate"
+collapses on the same distinction this page keeps elsewhere — schema validity is not semantic
+correctness, a valid `Choice` can be the wrong one, and an attacker only needs it to be wrong once.
 
 The tool-call gate is worth recording as a design, separate from its evidence. The gate sees **the
 task and the pending action but not tool outputs**, which Rastogi likens to Claude Code's
@@ -392,8 +393,10 @@ The screening evidence itself is thin enough to matter. The guardrail pattern �
 message carrying `Noul` questions for jailbreak, harmful request, medical advice, and self-harm,
 plus a `Score`, on **`jev-1.12`** — comes from the vendor's own cookbook and is described only as
 having worked **"pretty well"**, with no dataset, no denominator, and no confusion matrix. For a
-safety control, that is an anecdote. Rastogi's own rollout discipline is the corrective and belongs
-with any adoption of this pattern: shadow mode first, **100 to 200 labelled cases**, thresholds set
+safety control, that is an anecdote — and it was run on a different model version from the
+adversarial-fragility warning above, which comes from the jaggedness notes for **`jev-1.13`**.
+Rastogi's own rollout discipline is the corrective and belongs with any adoption of this pattern:
+shadow mode first, **100 to 200 labelled cases**, thresholds set
 after labelling rather than before, and automation only of the paths that were measured — with the
 explicit warning that the pattern is wrong for **low-volume, high-consequence decisions**, which is
 the same reversibility logic as the approval table above.
@@ -413,8 +416,8 @@ The gap is what payment proves. It establishes **control of a key, not customer 
 reputation, abuse prevention, refunds, and disputes are explicitly out of scope; the article reports that
 MPP defines **no refund flow at all** — unclaimed session reserve returns by itself, which covers money
 never spent but not money already claimed, while refunding a one-off charge means the seller sending funds
-back to the paying key, and whether that works depends on the card network or blockchain provider.
-A delegated signing key can carry a spending cap per period, an
+back to the paying key, and whether that works depends on the card network or blockchain provider. A
+delegated signing key can carry a spending cap per period, an
 expiry, permitted recipients, a scope, one key per deployment, and individual revocation — but a cap
 prevents *overspending*, not *valid spending on the wrong service*. An agent that stays inside its budget
 while paying an attacker-supplied endpoint has violated no control the protocol defines, which is a

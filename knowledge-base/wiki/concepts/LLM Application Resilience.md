@@ -105,9 +105,9 @@ hallucination contradicts reality; **faithfulness** hallucination contradicts th
 supplied; **fabrication** invents policies, confirmation numbers, or papers. The source itself collapses
 these to two broader categories with fabrication under factuality — a reasonable choice rather than a
 standard one — and the distinction it treats as load-bearing is checking agreement with reality versus
-checking agreement with the provided evidence. The split is
-operationally load-bearing because a model can faithfully summarize an **outdated document and still be
-wrong about the current policy** — a grounded system passing every faithfulness check while returning an
+checking agreement with the provided evidence. The split is operationally load-bearing because a model
+can faithfully summarize an **outdated document and still be wrong about the current policy** — a
+grounded system passing every faithfulness check while returning an
 answer no one should act on. The definition offered is deliberately narrow: hallucination is information
 that is factually incorrect, invented, or inconsistent with the material the model is supposed to use,
 and none of it establishes an intention to deceive. The article's own title is rhetorical and it

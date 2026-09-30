@@ -205,8 +205,8 @@ remove the uncertainty and a different engine shape wins. The stack is not a cle
 kernels.
 
 The reported figures and their limits: **over a billion tokens processed per minute per H100** and
-**more than
-10x vLLM** on **one multi-join query**, at under 6 cents per billion tokens on Modal's own service,
+**more than 10x vLLM** on **one multi-join query**, at under 6 cents per billion tokens on Modal's
+own service,
 against **1.84x faster than vLLM, geometrically averaged** across the released benchmark. Modal also
 reports Quail **falling behind vLLM on an agent-trace benchmark** — which lands directly on this
 page's dominant workload, since agent and chat traffic is what the SGLang/RadixAttention prefix-reuse

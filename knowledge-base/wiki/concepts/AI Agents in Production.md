@@ -362,10 +362,11 @@ Session mode is where production constraints bite. In the article's hypothetical
 cent **can** cost more than that to settle, because per-transaction fees do not shrink with the payment —
 **below a threshold**, settlement costs more than the payment. The agent therefore reserves funds and
 signs an **IOU per request** — the article's example is **a tenth of a cent** — verified in **the few
-milliseconds a signature check takes** and settled in one batched transaction. That is the amortization pattern this
-page already records for batching and caching, applied to trust, and it adds two runtime dependencies an
-agent loop did not previously have: a funded reserve, without which the loop stalls, and a settlement
-path whose failure is invisible at request time because every individual request already succeeded.
+milliseconds a signature check takes** and settled in one batched transaction. That is the amortization
+pattern this page already records for batching and caching, applied to trust, and it adds two runtime
+dependencies an agent loop did not previously have: a funded reserve, without which the loop stalls, and
+a settlement path whose failure is invisible at request time because every individual request already
+succeeded.
 
 The failure taxonomy is usable directly. A failed verification returns **another 402, not a 401**, with a
 fresh challenge and a structured reason — `payment-insufficient`, `payment-expired`,
@@ -379,9 +380,9 @@ identity**; reputation, abuse prevention, refunds, and disputes are explicitly o
 defines **no refund flow at all** — unclaimed session reserve returns by itself, which covers money never
 spent but not money already claimed, while refunding a one-off charge means the seller sending funds back
 to the paying key, and whether that works depends on the card network or blockchain provider. A spending
-cap therefore delivers a bounded loss, not a
-correct purchase, and an operator who wants dispute handling has to build it outside the protocol. The
-piece is a secondary explainer rather than a production measurement, and the Cloudflare figure it cites —
+cap therefore delivers a bounded loss, not a correct purchase, and an operator who wants dispute handling
+has to build it outside the protocol. The piece is a secondary explainer rather than a production
+measurement, and the Cloudflare figure it cites —
 roughly **57.5% of HTTP requests to web content** — covers **all automated systems, not AI agents
 specifically**. See [[Agent Payment Protocols]].
 

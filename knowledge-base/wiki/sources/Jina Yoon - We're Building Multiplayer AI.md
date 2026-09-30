@@ -59,9 +59,9 @@ fraction of the ~200 employees, and the article distinguishes employees from ext
 solo" and "overwhelmingly" are unquantified. The context layer had been dogfooded for only **a few
 weeks** at publication, and PostHog reports no measured hallucination reduction, token savings, latency
 change, or task-quality lift from it. PostHog calls governance and permissions **one of its biggest
-blind spots**, and says it is interviewing users to learn more.
-Findings may depend heavily on PostHog's low-hierarchy culture and need not transfer to organizations
-with strict role-based access control.
+blind spots**, and says it is interviewing users to learn more. Findings may depend heavily on
+PostHog's low-hierarchy culture and need not transfer to organizations with strict role-based access
+control.
 
 ## Raw capture
 

@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-09-26
+updated: 2026-10-03
 tags:
   - post
 status: active
@@ -31,11 +31,13 @@ materially different angle, and that post must say what is new.
 | 2026-09-11 | [[2026-09-11 The Benchmark Changed Its Mind]] | 2026-09-05 → 2026-09-11 | [[Serving Benchmarks and Goodput]] | LinkedIn, X | ready |
 | 2026-09-18 | [[2026-09-18 Memory Has Two Bills]] | 2026-09-11 → 2026-09-18 | [[Agent Memory]] | LinkedIn, X | ready |
 | 2026-09-25 | [[2026-09-25 Keep the Expensive Model On Call]] | 2026-09-18 → 2026-09-25 | [[Just-in-Time Agentic OCR]] | LinkedIn, X | ready |
+| 2026-10-03 | [[2026-10-03 The Weakest Layers Aren't the Ones to Remove]] | 2026-09-25 → 2026-10-03 | [[Model Quantization and Efficiency]] | LinkedIn, X | ready |
 
 ## Topics covered
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-10-03 - model pruning, component interactions, system optimization, model compression
 - 2026-09-25 - selective computation, agentic OCR, multimodal serving, routing gates
 - 2026-09-18 - agent memory, cumulative context cost, memory evaluation, selective retrieval
 - 2026-09-11 - benchmark normalization, inference economics, latency-throughput tradeoffs, accelerator comparison
@@ -65,6 +67,9 @@ materially different angle, and that post must say what is new.
 - Quantization can make encoder disaggregation more valuable by moving the bottleneck - [[Model Quantization and Efficiency]], [[Prefill-Decode Disaggregation]]
 - Build the parity harness before asking agents to translate legacy code - [[Legacy Code Modernization with AI Agents]]
 - AI changed optimization search cost, not the optimization techniques - [[Software Performance Engineering]]
+- Precompute fixed choices: four cached candidate actions reduce each decision from five model passes to one, with the method reported 13x faster around 1,000 candidates - [[Typed Probabilistic Decision Models]], [[Inference Efficiency Frontier]]
+- Improve an AI application one tested change at a time: held-out cases, a revert rule, a noise floor, and a warning to change objectives when the evaluation is ~95% saturated - [[Agentic Testing]], [[Harness Optimization]]
+- Agents can pay through ordinary web requests, but payment proof does not solve identity, reputation, abuse, refunds, or disputes - [[Agent Payment Protocols]], [[Agent Security and Governance]]
 
 ## Spine pages in cooldown
 
@@ -75,6 +80,7 @@ materially different angle, and that post must say what is new.
 - [[Serving Benchmarks and Goodput]] - posted 2026-09-11 - cooldown ends 2026-10-23
 - [[Agent Memory]] - posted 2026-09-18 - cooldown ends 2026-10-30
 - [[Just-in-Time Agentic OCR]] - posted 2026-09-25 - cooldown ends 2026-11-06
+- [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
 
 ## Related pages
 

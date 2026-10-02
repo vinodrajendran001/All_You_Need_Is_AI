@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-09-30
+updated: 2026-10-03
 tags:
   - log
 source_ids:
@@ -1567,3 +1567,41 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   body is byte-identical to the primary.
 - **Process finding:** every semantic defect was introduced by the ingest that created the page, and
   none was visible to structural checking. Chain tracing belongs in ingest, not only in lint.
+
+## [2026-10-03] post | The Weakest Layers Aren't the Ones to Remove
+
+- Sixth Post-workflow run, covering **2026-09-25 → 2026-10-03**. The window contained the
+  September 30 eleven-source ingest and its semantic lint pass, taking the controlled source set
+  from 272 to **283 IDs**. Filed
+  [[2026-10-03 The Weakest Layers Aren't the Ones to Remove]] for LinkedIn and X.
+- This was the first new-topic run under the reader-first clarity revision. All candidates were
+  scored on clarity and completeness as hard gates before surprise or novelty. The winning angle
+  scored 30/30: when model components interact, the weakest individual components are not
+  necessarily the best set to remove.
+- The post uses one primary worked example. On Llama-3.3-70B, removing 40 of 80 processing blocks
+  without retraining produced **54.0** on a broad benchmark when blocks were ranked independently,
+  versus **76.9** when the removal set was chosen with interactions included; the original scored
+  **82.2**. The public prose translates that into losses of 28.2 versus 5.3 points under the same
+  ratio and condition.
+- The mechanism is explained without implementation jargon: two layers can each look replaceable
+  alone while being jointly essential. The football-lineup analogy follows the evidence rather than
+  replacing it. Ising, QUBO, Hessian, ground-state, and excited-state terminology remains in the
+  source notes, not in the public post.
+- The angle beat three other clarity-qualified candidates: precomputing fixed action choices so four
+  options need one model pass instead of five (29), improving an AI application one tested patch at
+  a time with held-out cases and a revert rule (28), and machine-native payments whose payment proof
+  does not solve identity or refunds (28). All three were added to [[Post Archive]].
+- **Fact and reader checks removed four tempting claims.** "Kept almost all its intelligence" was
+  broader than the benchmark. "Found the optimal 40 layers" contradicted the source's proxy
+  limitation. "Removing half made it twice as fast" was not measured. The accurate 29-billion-search
+  figure was omitted because it introduced a second numerical storyline without improving the
+  reader's understanding of the main claim.
+- The evidence boundary remains in the public body: this is the authors' company blog, complete
+  ablations are deferred, the benchmark does not test long agent workflows, and a different
+  candidate later beat the proxy's top choice after light retraining. The conclusion therefore says
+  the method narrows search rather than replacing direct evaluation.
+- Verified programmatically: LinkedIn public prose **322 words**; standalone **276 characters**; six
+  thread posts at **209 / 196 / 228 / 228 / 252 / 244** characters. All declared counts match and
+  all are within 280. New post and archive introduce no unresolved prose links; frontmatter parses;
+  the reader check and `## Related pages` are present; index, log, and overview remain aligned at
+  **283 source IDs**. [[Model Quantization and Efficiency]] enters cooldown until 2026-11-14.

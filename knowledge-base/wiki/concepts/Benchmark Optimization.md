@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - evaluation
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
   - src-2026-07-31-giles-thomas-gpt2-weights-part-3-overtraining
+  - src-2026-07-29-giles-thomas-gpt2-weights-part-1
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
@@ -80,22 +81,22 @@ If any item is missing, the number is omitted rather than reported. Two of the f
 
 It is the same disease as the transcript-matching failure above, occurring in a domain that was supposed to be immune to it because its ground truth is arithmetic. That it recurs there is the strongest available argument that the problem is structural rather than domain-specific: **whatever is measured becomes the target, so the measurement itself has to be engineered against the optimizer pointed at it.**
 
-## The inverse failure: a real metric gain that means nothing
+## A metric gain without an established downstream gain
 
-This page mostly concerns metrics that improve while the underlying capability does not. The GPT-2
-reproduction series shows the same gap from the other side.
+[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1]] compares next-token loss with a different
+target: GPT 5.5 grading of answers **after Alpaca instruction fine-tuning**. The rankings differ,
+with model size and training recipe also varying.
 
-[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] reports a **genuine, honestly
-obtained improvement in held-out next-token loss** that produced no measurable gain in
-instruction-following. Nothing was gamed and no test set was contaminated; the metric simply was not
-measuring the capability in question. Earlier in the series, weights matching OpenAI's GPT-2 on loss
-still lost to it on the task.
+[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] then reports lower test loss and small
+judge-score increases after additional pretraining. Two judging runs do not resolve whether the
+increase is meaningful under the author's one-to-two-point heuristic. A null effect is not
+established.
 
-That is worth recording because the usual framing treats benchmark optimization as a
-governance-and-incentives problem — teams overfitting to leaderboards. This case has no bad actor.
-It shows the divergence between proxy and capability is **structural**, present even in careful
-solo work with no incentive to inflate anything. Any metric standing in for a capability can move
-independently of it, in either direction.
+This case is a reproduction investigation rather than a reported gaming attack. It is not an
+independent contamination audit, and the author also uses the reported test loss to choose among
+checkpoints. The lesson is narrower than the earlier "gain that means nothing" framing: optimizing
+one metric does not by itself establish a gain on another, and an imprecise comparison cannot
+prove that no such gain exists.
 
 ## Make the scoreboard unwritable
 

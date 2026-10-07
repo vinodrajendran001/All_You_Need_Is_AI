@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 source_id: src-2026-09-02-paolo-perrone-agentic-testing
 source_title: "What is Agentic Testing"
 source_author: Paolo Perrone
@@ -97,6 +97,11 @@ and type system, not only of the model.
 - [[AI-Native Software Development Lifecycle]]
 - [[Paolo Perrone]]
 
+## Citations
+
+- Raw capture: [[2026-09-02 Paolo Perrone - What is Agentic Testing]]
+- Source: <https://theaiengineer.substack.com/p/what-is-agentic-testing-fa2>
+
 ## Related pages
 
 - [[Benchmark Optimization]]
@@ -106,8 +111,3 @@ and type system, not only of the model.
 - [[Agentic Loop]]
 - [[Context Engineering]]
 - [[derelict5432 - Adaptive Agentic Worms Are Here]]
-
-## Citations
-
-- Raw capture: [[2026-09-02 Paolo Perrone - What is Agentic Testing]]
-- Source: <https://theaiengineer.substack.com/p/what-is-agentic-testing-fa2>

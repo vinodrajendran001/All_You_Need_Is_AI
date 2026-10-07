@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-07-semianalysis-tpu-inferencex
 source_title: "TPU Inference Externalization Full Steam Ahead"
 source_author: SemiAnalysis
@@ -173,6 +173,11 @@ agent workloads driving a hardware design decision rather than a serving-softwar
 - [[KV Cache]]
 - [[SemiAnalysis]]
 
+## Citations
+
+- Raw capture: [[2026-09-07 SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- Source: <https://inferencex.semianalysis.com/blog/tpu-inferencex-full-steam>
+
 ## Related pages
 
 - [[GPU Kernel Optimization]]
@@ -183,8 +188,3 @@ agent workloads driving a hardware design decision rather than a serving-softwar
 - [[Inference Efficiency Frontier]]
 - [[NVIDIA]]
 - [[Megakernels]]
-
-## Citations
-
-- Raw capture: [[2026-09-07 SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
-- Source: <https://inferencex.semianalysis.com/blog/tpu-inferencex-full-steam>

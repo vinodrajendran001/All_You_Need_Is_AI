@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 source_id: src-2026-09-02-bytebytego-rag-embedding-model
 source_title: "Why Your RAG System Is Only as Good as Its Translator Model"
 source_author: ByteByteGo
@@ -98,6 +98,11 @@ swappable component, and treating it as swappable is how teams end up unable to 
 - [[Retrieval-Augmented Generation]]
 - [[ByteByteGo]]
 
+## Citations
+
+- Raw capture: [[2026-09-02 ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]]
+- Source: <https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without> (slug appears incorrect — see Tensions)
+
 ## Related pages
 
 - [[Search-Augmented Language Models]]
@@ -107,8 +112,3 @@ swappable component, and treating it as swappable is how teams end up unable to 
 - [[Context Engineering]]
 - [[Agent Memory]]
 - [[Model Quantization and Efficiency]]
-
-## Citations
-
-- Raw capture: [[2026-09-02 ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]]
-- Source: <https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without> (slug appears incorrect — see Tensions)

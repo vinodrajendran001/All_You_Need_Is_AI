@@ -190,9 +190,10 @@ time to first token: selected Kimi K3 configurations meeting 50, 100, and 200 TP
 P90 first-token delays of **39.8, 12.4, and 4.6 seconds**, respectively. Different deployment
 configurations prevent reading that sequence as a one-variable scaling law.
 
-The workload denominator matters just as much. Epoch combines **3,390 session/model groups from
-3,382 sessions**; an AgentX root includes its subagent tree, while TraceLab may not capture the full
-tree. Adjusted active time excludes identified human waits, caps other gaps at five minutes, and
+The workload denominator matters just as much. Epoch's TraceLab analysis contains **3,390
+session/model groups from 3,382 sessions**. An AgentX root includes its subagent tree, while
+TraceLab may not capture the full tree. Adjusted active time excludes identified human waits,
+caps other gaps at five minutes, and
 retains tool waits. These are not counts of unique users or independent workers.
 
 Retained-cache, frozen-price estimates are not observed bills, and capable output per second is
@@ -213,7 +214,6 @@ sessions/GPU directly into productive people/GPU.
 
 - [[Jason Li - How Many AI Agents Could We Run]]
 - [[Epoch AI]]
-- [[AI Agents in Production]]
 - [[Netflix - In-House LLM Serving]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Wafer - AI Performance Engineering Resources]]

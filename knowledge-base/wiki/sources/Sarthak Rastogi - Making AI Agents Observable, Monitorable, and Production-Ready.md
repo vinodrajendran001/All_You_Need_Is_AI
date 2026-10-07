@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-06-rastogi-agent-observability
 source_title: "Making AI Agents Observable, Monitorable, and Production-Ready [Tutorial + Code]"
 source_author: Sarthak Rastogi
@@ -171,6 +171,11 @@ idempotency key.
 - [[Multi-Turn Evaluation]]
 - [[Sarthak Rastogi]]
 
+## Citations
+
+- Raw capture: [[2026-09-06 Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- Source: <https://sarthakai.substack.com/p/making-ai-agents-observable-monitorable>
+
 ## Related pages
 
 - [[Agentic Testing]]
@@ -178,8 +183,3 @@ idempotency key.
 - [[Agent Delegation]]
 - [[LLM Application Resilience]]
 - [[Retrieval-Augmented Generation]]
-
-## Citations
-
-- Raw capture: [[2026-09-06 Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
-- Source: <https://sarthakai.substack.com/p/making-ai-agents-observable-monitorable>

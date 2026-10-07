@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 source_id: src-2026-09-01-bytebytego-shrink-language-model
 source_title: "How to Shrink a Language Model Without Making it Too Dumb"
 source_author: ByteByteGo
@@ -86,6 +86,11 @@ not.
 - [[Small Language Models]]
 - [[ByteByteGo]]
 
+## Citations
+
+- Raw capture: [[2026-09-01 ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
+- Source: <https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without-295>
+
 ## Related pages
 
 - [[Speculative Decoding]]
@@ -93,8 +98,3 @@ not.
 - [[LLM Inference]]
 - [[Inference Efficiency Frontier]]
 - [[Open Model Ecosystems]]
-
-## Citations
-
-- Raw capture: [[2026-09-01 ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
-- Source: <https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without-295>

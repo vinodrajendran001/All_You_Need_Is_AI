@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 source_id: src-2026-08-30-adlrocha-base-models-bottleneck
 source_title: "Base models stopped being the bottleneck"
 source_author: adlrocha
@@ -114,6 +114,11 @@ harness, the numbers are a property of the model-plus-harness pair, not of the w
 - [[Qwen]]
 - [[adlrocha]]
 
+## Citations
+
+- Raw capture: [[2026-08-30 @adlrocha - Base Models Stopped Being the Bottleneck]]
+- Source: <https://adlrocha.substack.com/p/adlrocha-base-models-stopped-being>
+
 ## Related pages
 
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
@@ -122,8 +127,3 @@ harness, the numbers are a property of the model-plus-harness pair, not of the w
 - [[Linear Attention and Recurrent Memory]]
 - [[KV Cache]]
 - [[Test-Time Scaling]]
-
-## Citations
-
-- Raw capture: [[2026-08-30 @adlrocha - Base Models Stopped Being the Bottleneck]]
-- Source: <https://adlrocha.substack.com/p/adlrocha-base-models-stopped-being>

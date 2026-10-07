@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-08-30-addy-osmani-audit-agent-files
 source_title: "Audit your Agent files"
 source_author: "Addy Osmani"
@@ -88,6 +88,11 @@ of behaviour are near-useless compared with pointers to the code that implements
 - [[Coding Agent Harness]]
 - [[Addy Osmani]]
 
+## Citations
+
+- Raw capture: [[2026-08-30 Addy Osmani - Audit your Agent files]]
+- Original: <https://addyo.substack.com/p/audit-your-agent-files> (published 2026-08-27)
+
 ## Related pages
 
 - [[Agent Memory]]
@@ -95,8 +100,3 @@ of behaviour are near-useless compared with pointers to the code that implements
 - [[Model Context Protocol]]
 - [[AI-Native Software Development Lifecycle]]
 - [[Harness Optimization]]
-
-## Citations
-
-- Raw capture: [[2026-08-30 Addy Osmani - Audit your Agent files]]
-- Original: <https://addyo.substack.com/p/audit-your-agent-files> (published 2026-08-27)

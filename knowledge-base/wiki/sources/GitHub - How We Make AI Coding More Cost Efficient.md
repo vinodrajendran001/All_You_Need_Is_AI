@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-10-07
 source_id: src-2026-09-03-github-ai-coding-cost-efficient
 source_title: "How we make AI coding more cost efficient without sacrificing task quality"
 source_author: Erik Kristensen and Napalys Klicius (GitHub)
@@ -156,6 +156,11 @@ with a recovery path**, rather than in each tool.
 - [[Agentic Testing]]
 - [[GitHub]]
 
+## Citations
+
+- Raw capture: [[2026-09-03 GitHub - How We Make AI Coding More Cost Efficient]]
+- Source: <https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/>
+
 ## Related pages
 
 - [[Harness State Authority]]
@@ -165,8 +170,3 @@ with a recovery path**, rather than in each tool.
 - [[Inference Efficiency Frontier]]
 - [[AI Agents in Production]]
 - [[Can Bölük - The Harness Playbook]]
-
-## Citations
-
-- Raw capture: [[2026-09-03 GitHub - How We Make AI Coding More Cost Efficient]]
-- Source: <https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/>

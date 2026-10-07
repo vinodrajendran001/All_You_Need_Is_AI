@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-05-18
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - source/summary
   - reasoning
@@ -49,6 +49,13 @@ The article frames these systems as specialized reasoning engines rather than ge
 
 [[2026-05-18 Alpha Signal - The return of recursion - How AI is rethinking complex reasoning|The return of recursion - How AI is rethinking complex reasoning]]
 
+## Citations
+
+- Raw capture: [[2026-05-18 Alpha Signal - The return of recursion - How AI is rethinking complex reasoning]]
+- Canonical URL: none recorded. The capture is a pasted Alpha Signal newsletter body; the only links it
+  preserves are per-subscriber `app.alphasignal.ai/c?uid=...` tracking redirects, which are not citable
+  canonical URLs and are deliberately not stored here.
+
 ## Related pages
 
 - [[Latent-Space Reasoning]]
@@ -57,10 +64,3 @@ The article frames these systems as specialized reasoning engines rather than ge
 - [[Agentic Loop]]
 - [[Alpha Signal]]
 - [[AI Knowledge Base Overview]]
-
-## Citations
-
-- Raw capture: [[2026-05-18 Alpha Signal - The return of recursion - How AI is rethinking complex reasoning]]
-- Canonical URL: none recorded. The capture is a pasted Alpha Signal newsletter body; the only links it
-  preserves are per-subscriber `app.alphasignal.ai/c?uid=...` tracking redirects, which are not citable
-  canonical URLs and are deliberately not stored here.

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-10-07
 source_id: src-2026-09-02-meta-organizational-second-brain
 source_title: "An Organizational Second Brain: Building an AI That Learns From Experts"
 source_author: Meta Engineering
@@ -184,6 +184,11 @@ it applies to any system where retrieval and reasoning are separable layers — 
 - [[Andrej Karpathy]]
 - [[Meta]]
 
+## Citations
+
+- Raw capture: [[2026-09-02 Meta - An Organizational Second Brain]]
+- Source: <https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/>
+
 ## Related pages
 
 - [[Agentic Testing]]
@@ -194,8 +199,3 @@ it applies to any system where retrieval and reasoning are separable layers — 
 - [[Graph Engineering]]
 - [[Benchmark Optimization]]
 - [[Agent Security and Governance]]
-
-## Citations
-
-- Raw capture: [[2026-09-02 Meta - An Organizational Second Brain]]
-- Source: <https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/>

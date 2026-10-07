@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 source_id: src-2026-08-31-bytebytego-chatbot-request-lifecycle
 source_title: "What Happens Inside an AI Chatbot Between Enter and the First Word"
 source_author: ByteByteGo
@@ -99,6 +99,11 @@ times, which makes instruction-block size an agent-architecture decision rather 
 - [[Inference Serving Engines]]
 - [[ByteByteGo]]
 
+## Citations
+
+- Raw capture: [[2026-08-31 ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- Source: <https://blog.bytebytego.com/p/what-happens-inside-an-ai-chatbot>
+
 ## Related pages
 
 - [[Prefill-Decode Disaggregation]]
@@ -108,8 +113,3 @@ times, which makes instruction-block size an agent-architecture decision rather 
 - [[Agentic Loop]]
 - [[Serving Benchmarks and Goodput]]
 - [[Multi-Turn Evaluation]]
-
-## Citations
-
-- Raw capture: [[2026-08-31 ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
-- Source: <https://blog.bytebytego.com/p/what-happens-inside-an-ai-chatbot>

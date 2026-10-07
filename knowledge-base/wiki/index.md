@@ -368,7 +368,6 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Vision-Language Grounding]] - Text-conditioned spatial localization for objects, GUIs, documents, and scenes.
 - [[Monte Carlo Tree Search]] - Search-time planning procedure that guides AlphaGo-style RL and clarifies dense supervision.
 - [[Automated AI Research]] - Agentic research loops that automate experiments more readily than question selection.
-- [[Bojan Jakimovski - Teaching an Open Model to Do Science]] - Open-model GRPO post-training for biomedical tool use, biological reasoning, and auditable scientific workflows.
 - [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems.
 - [[Harness Optimization]] - Automated search over the scaffolding around a frozen model: the five-rung optimization ladder and why the evaluator must stay unwritable.
 - [[Nested Learning]] - Continuous inference-time learning and memory-as-structure: Titans, Continuum Memory System, and the Hope architecture.
@@ -418,7 +417,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Harness State Authority]] - Where the truth about a session lives, and why 15 of 17 stateful reference extensions were wrong.
 - [[Tool Roster Economics]] - What a harness pays per tool in latency, tokens, and constrained decoding, and when to use a code surface instead.
 - [[Institutional Knowledge Agents]] - Encoding an organization's judgement in reviewable text and improving it by compilation rather than retraining.
-- [[Flow Matching]] - Straight-line trajectories as the solution to an advection PDE, the Jacobian Penalty, and why crossing paths still cost steps.
+- [[Flow Matching]] - Generative transport, straight conditional paths versus learned trajectories, and limits of the source's geometric explanation.
 
 - [[Agent Observability]] - Why an agent needs traces rather than logs, and the five signals that make a failure attributable.
 - [[LLM Application Resilience]] - Treating the model as an unreliable dependency, and why the dangerous LLM failures return HTTP 200.

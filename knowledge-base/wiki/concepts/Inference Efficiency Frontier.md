@@ -280,8 +280,9 @@ not just a valid typed response.
 ## Global supply scenarios inherit the serving contract
 
 [[Jason Li - How Many AI Agents Could We Run]] contrasts closed-model economic assumptions with
-an open-model throughput calculation. Its central full-allocation through-2027 hardware can
-support a modeled **50-101 million closed-model sessions** under **2x per-GB HBM4/4E uplift**,
+an open-model throughput calculation. Once deployed and fully allocated, its central hardware
+supply associated with **2025-2027 shipments** can support a modeled **50-101 million closed-model
+sessions** under **2x per-GB HBM4/4E uplift**,
 **$30 per active agent-hour**, **$5 per GB300 GPU-hour**, and a **5-10x API-revenue/reference-cost
 ratio**. An alternative allocation yields roughly **1.9 billion DeepSeek V4 Pro sessions** at
 P90 **50 output TPS/user**.

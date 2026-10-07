@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 source_id: src-2026-08-31-derelict5432-adaptive-agentic-worms
 source_title: "Adaptive Agentic Worms Are Here"
 source_author: derelict5432
@@ -96,6 +96,12 @@ as a **byproduct** in both directions.
 - [[Agentic Loop]]
 - [[derelict5432]]
 
+## Citations
+
+- Raw capture: [[2026-08-31 derelict5432 - Adaptive Agentic Worms Are Here]]
+- Source: <https://www.lesswrong.com/posts/fpLDjKg3ej49beqTC/adaptive-agentic-worms-are-here>
+- Underlying preprint: arXiv 2606.03811v1, "AI Agents Enable Adaptive Computer Worms" (not read directly)
+
 ## Related pages
 
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
@@ -104,9 +110,3 @@ as a **byproduct** in both directions.
 - [[Defensive Deception for Open Models]]
 - [[Reward Design for RL]]
 - [[AI Agents in Production]]
-
-## Citations
-
-- Raw capture: [[2026-08-31 derelict5432 - Adaptive Agentic Worms Are Here]]
-- Source: <https://www.lesswrong.com/posts/fpLDjKg3ej49beqTC/adaptive-agentic-worms-are-here>
-- Underlying preprint: arXiv 2606.03811v1, "AI Agents Enable Adaptive Computer Worms" (not read directly)

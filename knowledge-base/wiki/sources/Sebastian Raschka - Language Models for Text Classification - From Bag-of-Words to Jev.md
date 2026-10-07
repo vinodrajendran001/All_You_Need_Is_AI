@@ -84,6 +84,7 @@ reconstructions and the availability of open alternatives.
 - [[Typed Probabilistic Decision Models]]
 - [[TypeSafe AI]]
 - [[Sebastian Raschka]]
+- [[Siddhant Rai]]
 - [[Model Routing]]
 - [[Agent Delegation]]
 - [[Inference Efficiency Frontier]]

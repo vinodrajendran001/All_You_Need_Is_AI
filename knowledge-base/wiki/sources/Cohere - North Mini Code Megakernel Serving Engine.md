@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-08-cohere-megakernel-serving
 source_title: "Cohere's North Mini Code Megakernel Serving Engine"
 source_author: Cohere
@@ -164,6 +164,12 @@ software-side analogue of the tile-geometry constraint documented in
 - [[Serving Benchmarks and Goodput]]
 - [[Cohere]]
 
+## Citations
+
+- Raw capture: [[2026-09-08 Cohere - North Mini Code Megakernel Serving Engine]]
+- Duplicate capture: [[Cohere's North Mini Code Megakernel Serving Engine]]
+- Source: <https://cohere.com/blog/megakernels>
+
 ## Related pages
 
 - [[Mixture of Experts]]
@@ -171,9 +177,3 @@ software-side analogue of the tile-geometry constraint documented in
 - [[AI-Generated Kernels]]
 - [[Software Performance Engineering]]
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
-
-## Citations
-
-- Raw capture: [[2026-09-08 Cohere - North Mini Code Megakernel Serving Engine]]
-- Duplicate capture: [[Cohere's North Mini Code Megakernel Serving Engine]]
-- Source: <https://cohere.com/blog/megakernels>

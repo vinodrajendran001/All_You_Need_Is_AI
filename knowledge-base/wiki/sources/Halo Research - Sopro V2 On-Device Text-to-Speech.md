@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-08-30-halo-research-sopro-v2
 source_title: "Sopro V2: private, fast, on-device text-to-speech"
 source_author: "Halo Research (Halo NeuroAI)"
@@ -88,6 +88,11 @@ for not misleading downstream users about provenance guarantees.
 - [[Small Language Models]]
 - [[On-Device Reasoning]]
 
+## Citations
+
+- Raw capture: [[2026-08-30 Halo Research - Sopro V2 - private, fast, on-device text-to-speech]]
+- Original: <https://research.haloneuro.ai/posts/sopro-v2>
+
 ## Related pages
 
 - [[Knowledge Distillation]]
@@ -96,8 +101,3 @@ for not misleading downstream users about provenance guarantees.
 - [[Model Quantization and Efficiency]]
 - [[Open Model Ecosystems]]
 - [[Group Relative Policy Optimization]]
-
-## Citations
-
-- Raw capture: [[2026-08-30 Halo Research - Sopro V2 - private, fast, on-device text-to-speech]]
-- Original: <https://research.haloneuro.ai/posts/sopro-v2>

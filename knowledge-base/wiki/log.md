@@ -1624,7 +1624,7 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 ## [2026-10-07] ingest | Fifteen sources on agent control, decision models, and measured reliability
 
 - Ingested **15 new captures already present in `raw/sources/`**, without moving, renaming, or
-  changing their bytes or clipper metadata. Created 15 source summaries, two concepts
+  rewriting their content or clipper metadata. Created 15 source summaries, two concepts
   ([[Sycophancy]] and [[Emergent Misalignment]]), and three entities ([[Replit]], [[E2B]], and
   [[Neuralink]]). Updated the materially affected concept/entity pages, the overview, and index.
   The controlled ownership set grows **283 to 298 source IDs**; composite ownership makes this
@@ -1672,3 +1672,8 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   recipes. Linked studies and captured tutorial/deployment code were not independently reproduced.
   A pre-existing unregistered clipping in `wiki/sources/` remains outside this raw-input ingest;
   posts, their archive, and local-only queries are unchanged.
+- A CRLF-to-LF change appeared during the run in
+  `raw/sources/Self-Modeling Interventions Modulate Emergent Misalignment.md`. No raw-content
+  edit was made by this ingest. Restoring CRLF in memory reproduces the original captured hash,
+  and the current text matches the pre-ingest Git version. The observed formatting change was
+  recorded rather than overwritten; it is a byte-level exception, not a source-content revision.

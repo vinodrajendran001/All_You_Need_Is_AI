@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-07-20-raschka-reasoning-effort
 source_title: "Controlling Reasoning Effort in LLMs"
 source_author: "Sebastian Raschka"
@@ -89,6 +89,11 @@ than benchmark score at default settings.
 - [[LLM Reasoning]]
 - [[Sebastian Raschka]]
 
+## Citations
+
+- Raw capture: [[2026-07-20 Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
+- Original: <https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms> (published 2026-07-18)
+
 ## Related pages
 
 - [[Staged Reinforcement Learning Curriculum]]
@@ -96,8 +101,3 @@ than benchmark score at default settings.
 - [[Knowledge Distillation]]
 - [[Group Relative Policy Optimization]]
 - [[LLM Training Pipeline]]
-
-## Citations
-
-- Raw capture: [[2026-07-20 Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
-- Original: <https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms> (published 2026-07-18)

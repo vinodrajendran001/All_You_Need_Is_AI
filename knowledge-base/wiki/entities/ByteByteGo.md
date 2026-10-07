@@ -174,7 +174,6 @@ more than promoting a simplified attention or RLHF origin story into a universal
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
 - [[Sycophancy]]
-- [[Model Context Protocol]]
 
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

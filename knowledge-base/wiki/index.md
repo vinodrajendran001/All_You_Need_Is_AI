@@ -899,6 +899,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-09-18 Lint Pass]] - Thirty-fifth comprehensive lint pass; preserved an internally contradictory DeepSeek expert-routing claim instead of silently correcting it, semantically traced all 11 September 18 source chains, and confirmed exact 262-ID control parity.
 - [[2026-09-25 Lint Pass]] - Thirty-sixth comprehensive lint pass; corrected self-reported Laya architecture wording, separated calibration from escalation policy, and confirmed exact 272-ID control parity.
 - [[2026-09-30 Lint Pass]] - Thirty-seventh comprehensive lint pass; traced all 11 new evidence chains and repaired 39 semantic defects, including four assumptions promoted to fact, a reversed join condition, a suppressed adoption figure, and an invented denominator, at exact 283-ID control parity.
+- [[2026-10-07 Lint Pass]] - Thirty-eighth pass: corrected section-order drift in 35 summaries, disambiguated capture links, quarantined one clipping, and repaired flow-matching, speech, GPT-2, alignment, and Kueue claims at exact 298-ID parity.
 
 ## Control files
 

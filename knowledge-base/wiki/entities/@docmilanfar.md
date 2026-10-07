@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-10-07
 entity_kind: person
 tags:
   - entity
@@ -23,28 +23,23 @@ Researcher writing on imaging, signal processing, and generative-model theory, a
 
 ## Why it matters here
 
-This is the vault's first source that explains a generative-model design choice from its governing equations
-rather than from empirical results. The thread derives flow matching's straight-line trajectories as the
-**solution to an advection PDE** via the Method of Characteristics, rather than presenting them as a modelling
-convenience that happens to work. He anchors [[Flow Matching]] and supplies [[Diffusion Models]] with the
-mechanism behind a speed difference the page had been asserting without explanation.
+The thread supplies a **Lagrangian**, particle-centric intuition for [[Flow Matching]]: follow
+how a denoiser's predicted destination changes along a trajectory. The author calls the proposed
+covariance/Jacobian difficulty the **Jacobian Penalty** and interprets reflow as uncertainty
+elimination.
 
-The distinctive move is choosing a **Lagrangian** frame over the Eulerian one the literature defaults to —
-following one particle through the flow instead of tracking probability mass — and showing that the frame change
-alone makes the step-count question tractable. His summary of the method is also his summary of why it works:
-*"You don't always need measure theory to understand why a generative model is slow. In this case, you just need
-to realize you're trying to hit a moving target."*
-
-He names the central difficulty the **Jacobian Penalty** — the posterior covariance's eigenvalues exploding near
-the data manifold, dragging the denoiser's target along the axes of the model's own uncertainty. The coinage is
-his; the phenomenon is not new.
+The October 7 review corrects this page's earlier endorsement of that account as a derivation.
+The stated advection identity does not force straight paths, and additive Gaussian noise alone
+does not imply exploding posterior covariance. The source summary gives explicit counterexamples.
+The contribution is a pedagogical framing to investigate, not a demonstrated universal mechanism
+for [[Diffusion Models]] or few-step generation.
 
 ## Notes
 
 - Posts as pedagogy, not as research output: no experiments, no benchmarks, no code. He labels his own clean
   derivation as "idealized" and then spends the second half explaining why trained models depart from it.
-- The most reusable idea he supplies is a **reframing of an existing technique**: reflow and few-step
-  distillation as *uncertainty elimination* (`Σ_post → 0`) rather than teacher-to-student compression.
+- Reflow as uncertainty elimination is the author's interpretation; zero uncertainty and
+  capacity-independent quality are not established by the post.
 - He derives a by-product diagnostic, `|d/dt f(x(t), t)|`, for measuring target drift — proposed rather than
   validated.
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-09-11
+updated: 2026-10-07
 tags:
   - concept
   - model-training
@@ -75,28 +75,19 @@ will overestimate what survived. See [[Model Quantization and Efficiency]] and [
 The claims are qualitative — no task, model or dataset is attached — and Hinton's original work is cited but
 not summarised.
 
-## Reflow distills uncertainty away, not parameters
+## Reflow changes the training coupling, not the existence of capacity limits
 
-Few-step distillation of diffusion and flow models is usually described in this page's terms — compress a teacher
-into a student that produces comparable output with less work.
-[[@docmilanfar - A Lagrangian View of Flow Matching]] argues the mechanism is something else entirely, and the
-distinction changes what one would tune.
+[[@docmilanfar - A Lagrangian View of Flow Matching]] interprets reflow as reducing ambiguity in
+training pairings rather than merely shrinking a network. That is a useful additional design
+axis, but the source does not establish its stronger claims of inevitable path intersections,
+zero posterior uncertainty, or capacity-independent few-step quality.
 
-Trained flow-matching models draw straight trajectories between **randomly paired** noise and data samples. In
-high dimensions those lines intersect, and at an intersection the governing PDE demands two different target
-values from a deterministic function. The model averages the conflicting velocities, its posterior covariance
-`Σ_post` spikes, the flow bends, and the solver is forced back to small steps — *"which is exactly why baseline
-Flow Matching models still need 10s of solver steps."*
-
-Reflow retrains on **simulated non-intersecting trajectories**, and the effect is described as removing ambiguity
-rather than compressing capacity: *"Without conflicting targets, the model's posterior uncertainty drops to zero
-(`Σ_post → 0`), completely starving the mechanism that generates target drift."*
-
-The practical difference matters. On the compression reading, few-step quality is bounded by student capacity and
-by how faithfully the teacher's behaviour transfers. On this reading it is bounded by **the geometry of the
-training pairing** — a property of the data construction, not of either network. That is a distinct lever from
-the trace-versus-answer distinction this page records for language models, where what transfers is supervision
-content; here what transfers is the *absence of contradiction* in the targets. See [[Flow Matching]].
+The October 7 mathematical check also shows that the source's advection identity alone permits
+curved trajectories. The earlier version of this page therefore overstated a proposed geometric
+explanation as a general mechanism. Changed coupling, teacher supervision, student capacity,
+approximation error, and solver choice can all matter; none is eliminated by renaming reflow
+"uncertainty elimination." See [[Flow Matching]] for the counterexample and the separately
+reported acoustic-head engineering case.
 
 ## A weaker teacher can be a better teacher, and the cost floor is now trivial
 

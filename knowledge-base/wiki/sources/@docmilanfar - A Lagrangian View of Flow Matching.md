@@ -20,95 +20,72 @@ status: active
 
 ## Summary
 
-A pedagogical thread answering one question: why do standard diffusion models need hundreds of sequential solver
-steps to generate an image while flow matching and rectified flow need a handful, or one? The literature usually
-answers in **Eulerian** terms — optimal transport, continuity equations, the macroscopic transport of probability
-mass. This source takes the **Lagrangian**, particle-centric view instead: sit inside a single particle of noise
-riding the flow, and the step-count difference reduces to a geometric fact.
+A pedagogical thread proposes a particle-centric explanation of sampling cost: a denoiser's
+predicted destination can change as a solver follows a trajectory. The author uses inverse flow
+maps, an advection identity, posterior covariance, and reflow to develop that intuition.
 
-The answer in one line: **the target keeps moving.** Everything else in the piece is an account of why it moves,
-what forces it to move, and what removes the motion.
+The October 7 lint corrects this summary's earlier treatment of the explanation as a general
+derivation. The source contains no experiments, and several of its mathematical implications
+do not follow from the stated assumptions.
 
 ## Key claims
 
-**The denoiser's estimate drifts because the path curves.** For a trajectory `x(t)` flowing from pure noise at
-t = 1 to clean data at t = 0, a discrete ODE solver applies a denoiser `f(x,t)` at each step to predict the final
-clean image `x₀`. In standard diffusion, "noise schedules non-linearly warp the intermediate distributions.
-Because the underlying path curves, the denoiser's estimate of the clean image shifts with every step. The solver
-constantly overshoots, recalculates, and corrects." Chasing a shifting destination is what forces "extremely
-small, conservative step sizes."
+The following are the author's claims, not independent results:
 
-**The ideal is a target that never moves.** The perfect denoiser acts as an inverse flow map,
-`f(x,t) = φ⁻¹_t(x) = x₀`, "statically locked onto the origin to avoid temporal drift." Stated as a condition, the
-total rate of change of the denoiser's output along the path must be exactly zero: **`d/dt f(x(t), t) = 0`**.
+- Changing denoiser predictions can make numerical integration harder; the proposed ideal is
+  `d/dt f(x(t), t) = 0`.
+- The chain rule then gives `partial_t f + J_f v = 0`. This is a valid transport identity for a
+  quantity constant along a chosen flow.
+- The author further claims that this identity forces straight characteristics, that posterior
+  covariance eigenvalues explode near clean data, and that reflow eliminates the ambiguity
+  causing curved trajectories. Those stronger conclusions need assumptions or evidence not
+  supplied by the post.
+- The name **Jacobian Penalty** and the interpretation of reflow as uncertainty elimination
+  are the author's framing. The proposed diagnostic `|d/dt f(x(t), t)|` is not validated against
+  measured sampling requirements.
 
-**Expanding that condition gives a governing PDE.** By the chain rule the invariance condition becomes a
-quasi-linear advection PDE: **`∂f/∂t(x, t) + J_f(x, t)·v(x, t) = 0`**, which isolates the spatial Jacobian `J_f`.
-When a trajectory curves the target shifts (`∂f/∂t ≠ 0`), and to track it the solver "must constantly navigate the
-local geometry of the denoiser, interacting with `J_f`."
+## Mathematical checks added October 7
 
-**The Jacobian Penalty.** Under additive Gaussian noise the spatial Jacobian is directly proportional to the
-model's posterior covariance `Σ_post`. As the trajectory approaches the sharp data manifold (t → 0), "the
-eigenvalues of this covariance matrix explode." The author names this the **Jacobian Penalty** and characterises
-it vividly: "The target actively resists the direction of travel, drifting exactly along the principal axes of the
-model's internal uncertainty."
+**Zero total derivative does not imply straight paths or zero partial derivative.** Let `R(t)`
+be a two-dimensional rotation, `J` its generator, `v(x,t) = Jx`, and `f(x,t) = R(-t)x`.
+Along `x(t) = R(t)x0`, the value of `f` is always `x0`, so the stated advection identity holds.
+The trajectory is circular and `partial_t f` is generally nonzero: the transport term cancels
+it. This is a counterexample to the claimed implication, not a proposed generative model.
 
-**Straight lines are the solution to the PDE, not a modelling convenience.** Rather than tracking the drift, one
-can construct a generative model by solving the advection PDE directly, via the Method of Characteristics. "The
-result is simple: the only valid characteristic curves that solve the equation are **straight lines** radiating
-from the data to the noise." This is presented as the geometric derivation of flow matching: forcing trajectories
-to be straight makes the target static, neutralises the Jacobian Penalty, and lets the solver "traverse the space
-in massive strides."
+**Covariance and its noise-scaled Jacobian are different quantities.** For independent
+`X, epsilon ~ N(0,1)` and observation `Y = X + sigma*epsilon`, the posterior-mean denoiser is
+`f(y) = y/(1+sigma^2)`. Its posterior variance is `sigma^2/(1+sigma^2)`, while its derivative is
+`1/(1+sigma^2) = Var(X|Y)/sigma^2`. As noise vanishes, the variance goes to zero and the
+derivative stays bounded. Additive Gaussian noise alone therefore does not establish the
+post's blanket covariance-explosion claim. This does not rule out large derivatives or
+numerical stiffness for other distributions.
 
-**Trained flow matching still curves, because straight paths cross.** The idealisation breaks under empirical
-training. Networks "draw straight characteristic lines independently between random noise and data pairs. In
-high-dimensional space, these paths inevitably cross." At an intersection the PDE demands two different target
-values, "which is mathematically impossible for a deterministic function," so the model averages conflicting
-velocities. Statistically this is a point of extreme ambiguity: `Σ_post` spikes, the Jacobian reactivates, the
-flow bends — and this "is exactly why baseline Flow Matching models still need 10s of solver steps."
+An inverse flow map and a posterior-mean denoiser also need not be the same function. The post
+does not supply the additional relationship among denoiser, velocity, and noise schedule that
+would make its stronger straight-path argument follow.
 
-**Reflow is an uncertainty-elimination protocol.** This reframes distillation. "By simulating valid,
-non-intersecting trajectories and retraining, we untangle the crossing paths. Without conflicting targets, the
-model's posterior uncertainty drops to zero (`Σ_post → 0`), completely starving the mechanism that generates
-target drift." Reflow is not primarily about compressing a teacher into a student; it is about removing the
-ambiguity that curves the paths.
-
-**A practical by-product: a mechanical diagnostic.** The quantity `|d/dt f(x(t), t)|` measures target drift
-directly, so slowness has an observable signature rather than needing to be inferred. "You don't always need
-measure theory to understand why a generative model is slow. In this case, you just need to realize you're trying
-to hit a moving target."
+**Pairwise training paths are not automatically the learned flow.** Straight conditional
+noise/data paths can produce a curved learned velocity field. The source's literal,
+inevitable-intersection story in high dimensions is not demonstrated, and reflow does not
+generally guarantee zero uncertainty, capacity-independent quality, or a fixed number of
+solver steps.
 
 ## Why it matters
 
-[[Diffusion Models]] has mentioned flow matching and rectified flow as faster alternatives without explaining the
-mechanism, which left the vault's most-cited generative-model page asserting a speed difference it could not
-account for. This source supplies the causal chain — curvature → target drift → exploding posterior covariance →
-tiny steps — and it does so in a form that predicts rather than merely describes: it says *when* few-step sampling
-should fail (wherever trajectories cross) and *what* fixes it (removing the crossings).
-
-The reframing of **reflow as uncertainty elimination rather than compression** is the most useful transfer. It
-means few-step sampling quality is governed by the geometry of the training pairing, not by student capacity,
-which is a different lever than the one [[Knowledge Distillation]] describes for language models. The
-[[Neural Text-to-Speech]] page already records flow-matching vocoders benefiting from reflow; this explains why.
-
-The `Σ_post` connection is also the piece that links sampling speed to model uncertainty. Step count is not an
-independent hyperparameter to be tuned down — it is a readout of how ambiguous the model's own belief is along
-the path.
+The useful question is how path geometry, target variation, and training coupling affect numerical
+cost. That is a complement to model-size and distillation arguments, not a replacement for them.
+[[Flow Matching]] now separates this intuition from the mathematical checks and from actual
+engineering evidence. [[Neural Text-to-Speech]] records a flow-matching acoustic head followed
+by a separate vocoder; it is not evidence for the post's proposed universal mechanism.
 
 ## Tensions / open questions
 
-- **This is a pedagogical thread, not a paper.** There are no experiments, no datasets, and no measured step
-  counts. The author explicitly calls the clean derivation "idealized."
-- **The framing is a reinterpretation, not a new result.** Straight-line trajectories, rectified flow, and reflow
-  are established; the contribution is the Lagrangian account of *why* they work. The vault should not record the
-  Jacobian Penalty as a discovered phenomenon — it is a named framing for a known difficulty.
-- **The proportionality `J_f ∝ Σ_post` is stated for additive Gaussian noise.** How far the account carries to
-  other corruption processes is not addressed.
-- **The diagnostic `|d/dt f(x(t), t)|` is proposed, not validated.** No evidence is offered that it predicts step
-  requirements in practice or is cheap enough to compute during sampling.
-- **Path crossing is asserted as inevitable in high dimensions** without a quantitative claim about how often it
-  occurs or how it scales with dimension and dataset size, which is what would determine how much reflow is
-  needed.
+- The author labels the account idealized, but that does not make the unsupported implications
+  valid. The raw source retains the original claims; this summary records the disagreement.
+- A sampling comparison needs the model, probability path, solver, tolerance, quality target,
+  and hardware. The source reports none of these as a controlled experiment.
+- Whether the drift diagnostic predicts useful solver budgets remains open. Fewer evaluations,
+  lower latency, and preserved generation quality are distinct outcomes.
 
 ## Affected pages
 

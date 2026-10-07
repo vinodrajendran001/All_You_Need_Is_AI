@@ -670,11 +670,11 @@ numbers — **Nanbeige4.2-3B reuses a 22-layer stack twice**, with **two passes 
 efficiency** and more passes giving *"barely any gains"* — and rejects the claim that recurrence obscures
 chain of thought. What survives is harder to govern: thinner reasoning traces follow from **capacity per
 token**, so *"we would get the same effect if we were scaling up the model size."* Separately,
-[[@docmilanfar - A Lagrangian View of Flow Matching]] finally explains a speed difference
-[[Diffusion Models]] had asserted for months. Curved paths make the denoiser's target drift; the spatial
-Jacobian is proportional to the posterior covariance, whose eigenvalues explode near the data manifold; and
-solving the resulting PDE shows the only valid characteristics are **straight lines**. Reflow is reframed as
-**uncertainty elimination** rather than compression. New page: [[Flow Matching]].
+[[@docmilanfar - A Lagrangian View of Flow Matching]] offers a particle-centric explanation of
+target drift. The October 7 lint corrects the earlier endorsement here: the stated advection
+identity does not force straight paths, and additive Gaussian noise does not imply exploding
+posterior covariance. [[Flow Matching]] now separates the author's geometric intuition from
+explicit mathematical counterexamples and the bounded engineering evidence for reflow.
 
 ## September 11 additions
 

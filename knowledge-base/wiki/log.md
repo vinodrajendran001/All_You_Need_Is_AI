@@ -1677,3 +1677,38 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   edit was made by this ingest. Restoring CRLF in memory reproduces the original captured hash,
   and the current text matches the pre-ingest Git version. The observed formatting change was
   recorded rather than overwritten; it is a byte-level exception, not a source-content revision.
+
+## [2026-10-07] lint | Full wiki lint pass
+
+- Filed [[2026-10-07 Lint Pass]], the thirty-eighth comprehensive pass. Audited the full wiki
+  and the 15 recent source chains, with targeted older evidence reviews. The final inventory is
+  **520 typed wiki pages**, **272 source summaries**, and **298 owned source IDs**, with exact
+  index/log/overview/ownership parity.
+- Fixed the source-summary template's conflict with the terminal Related pages rule and moved
+  **35 complete Related pages sections** without changing their contents. Resolved **two
+  ambiguous flashcard links**, converted **five internal attachment links** to qualified
+  wikilinks, reclassified **three unsupported Affected pages entries**, and removed one
+  duplicated source entry from the index's Concepts category.
+- Moved the unregistered newsletter clipping from `wiki/sources/` to
+  `raw/inbox/How AI agents are learning to optimize their own stack.md`, preserving its bytes.
+  It remains pending ingest; no source ID or source summary was invented during lint.
+- Corrected the [[Flow Matching]] evidence chain. A constant transported label does not force
+  straight characteristics, and additive Gaussian noise does not imply exploding covariance.
+  Recorded rotation and Gaussian-denoiser counterexamples without altering the captured source.
+  Reflow's supposed universal uncertainty elimination is now an attributed interpretation,
+  not an established theorem.
+- Restored Sopro's **16x acoustic-head**, rather than end-to-end TTS, speedup scope; separated
+  its flow-matching head from the Vocos vocoder; restored single-stream PyTorch/default/no-batch
+  latency conditions; and removed an inferred V1 parameter-budget percentage. The published
+  base/Turbo comparisons are not matched reflow-only ablations.
+- Rebuilt the three Giles Thomas summaries with the two-stage instruction evaluation, corrected
+  checkpoint baseline, model-size differences, and actual judge comparisons. Removed the
+  stronger downstream claims of zero benefit and an independently clean test: the reported
+  small gains remain inconclusive, and test loss was also used for checkpoint selection.
+- Corrected AI21's TAS chronology and reconciled older ByteByteGo/overview alignment wording
+  with the newer [[Sycophancy]] evidence. Standard SFT's lack of a pairwise preference term is
+  not a proof that demonstrations cannot encode preferences.
+- Final structural checks found no unresolved/ambiguous links, orphan pages, empty substantive
+  sections, or summaries without raw pointers. The **367 pre-existing raw files**, posts,
+  archive, and local-only queries were left unchanged. Preserved the prior log body and its
+  legitimate repeated headings for distinct historical lint passes.

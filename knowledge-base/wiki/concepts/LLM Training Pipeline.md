@@ -150,7 +150,7 @@ Two practical lessons come out of the series:
 - **Loss ranks the measured prediction task, not every downstream use.** The FineWeb-loss
   ordering does not match the post-fine-tuning judge ordering in this case. Data, parameter
   counts, and weight tying also differ; the experiment does not isolate one cause.
-- **Checkpoint immutability is a correctness requirement.** Part 2 traced part of the anomaly to a
+- **Checkpoint immutability is a correctness requirement.** Part 2 found a
   plain engineering bug: checkpoint state was not deep-copied, so the saved "best model" reference
   could be mutated by subsequent training. A partial validation check was also replaced with
   full-set evaluation. Before attributing a capability gap to architecture or data, rule out the

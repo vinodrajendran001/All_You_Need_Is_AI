@@ -20,12 +20,10 @@ status: active
 
 ## Summary
 
-An explainer on the alignment stage of the training pipeline, built around one question: why does
-supervised fine-tuning stop working, and what replaces it? The answer is that **imitation cannot
-teach a trade-off**. When two candidate answers are both fluent, correct, and on-topic, SFT has no
-way to express that one is better — its loss only rewards reproducing a single reference. Preference
-learning replaces the reference with a *comparison*, which is the only signal that can rank two good
-answers.
+An explainer on post-training that contrasts reference-answer imitation with explicit preference
+comparisons. Standard SFT has no pairwise preference term, while RLHF and DPO use comparisons
+between candidate answers. The article's motivating argument should not be read as a proof that
+SFT cannot learn trade-offs encoded in curated demonstrations.
 
 ## Key claims
 
@@ -40,12 +38,13 @@ not absent**.
 
 **Reward hacking is Goodhart's law with a training loop.** True quality rises, peaks, and then
 declines while the proxy reward keeps climbing — the optimizer is still succeeding by its own
-measure. Sycophancy is the canonical instance: Anthropic found that **both human raters and reward
-models usually prefer a confident, agreeable answer over a correct one**.
+measure. The explainer illustrates the risk with Anthropic findings in which human raters and reward
+models favored agreeable answers over correct ones. This is a reported failure mode, not a universal
+ordering of truth and agreement across every rater, model, and task.
 
 **The trouble follows the data, not the algorithm.** Because DPO learns from the same human
-comparisons, it inherits the same biases. Switching from PPO to DPO simplifies the infrastructure and
-changes nothing about the pathology.
+comparisons, it can inherit their biases. Switching from PPO to DPO does not by itself repair a
+biased signal; that does not imply identical outcomes under every optimizer and dataset.
 
 **Verifiable rewards sidestep the proxy only where a program can check the answer.** DeepSeek's
 approach is instructive: RLVR drove reasoning, while reward models were retained for helpfulness and
@@ -57,11 +56,11 @@ choose the alignment machinery to match what kind of feedback is actually availa
 This is the vault's clearest statement of *why* preference learning exists, which the existing
 [[Direct Preference Optimization]] page assumed rather than argued. It also supplies the missing
 comparison axis: DPO is not "RLHF without the reward" but "RLHF with the reward re-parameterized into
-the policy," which explains both its simplicity and why it fails in the same places.
+the policy," which explains its simpler machinery and its continued exposure to biased preferences.
 
-The sycophancy finding is the most consequential: if the annotators and the reward models trained on
-them both prefer agreeable wrong answers, no amount of algorithmic refinement on top of that data
-fixes it.
+The durable warning is that efficiency and a simpler optimizer are not evidence of a better
+preference signal. Data construction, objectives, and evaluation still need to distinguish useful
+agreement from unsupported endorsement.
 
 ## Tensions / open questions
 
@@ -88,6 +87,8 @@ fixes it.
 
 ## Related pages
 
+- [[Sycophancy]]
+- [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
 - [[Reinforcement Learning]]
 - [[Group Relative Policy Optimization]]
 - [[Agentic Reinforcement Learning]]

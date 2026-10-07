@@ -566,13 +566,15 @@ stopping criterion, and its zero-knowledge-proof proposal is the first cryptogra
 least-privilege mechanism in [[Agent Security and Governance]]. The new page is [[Agent Delegation]].
 
 **Alignment and speech filled two long-standing gaps.**
-[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] supplies the argument
-[[Direct Preference Optimization]] had been assuming — imitation cannot teach a trade-off — and the
-finding that **both human raters and reward models usually prefer a confident agreeable answer over a
-correct one**, which makes sycophancy a reward-design failure rather than a model quirk.
-[[Halo Research - Sopro V2 On-Device Text-to-Speech]] opens [[Neural Text-to-Speech]] with a 120M
-open voice-cloning model at **0.24 real-time factor on an M3 CPU**, and the parameter-budget finding
-that an inherited Llama 128k vocabulary had been consuming ~40% of the model.
+[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] contrasts reference-answer training
+with explicit preference comparisons and warns that biased comparisons can survive an optimizer
+change. The October 7 update qualifies the earlier origin story:
+[[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] records sycophancy before RL
+and mixed optimization effects, not a universal preference for agreement over truth.
+[[Halo Research - Sopro V2 On-Device Text-to-Speech]] opens [[Neural Text-to-Speech]] with
+120M Sopro V2 Turbo at a reported **0.24 offline real-time factor on an M3 CPU**, measured with
+single-stream PyTorch, defaults, and no batching. Its earlier V1 embedding table consumed
+about **49M parameters**; the later Turbo total is not a V1 percentage denominator.
 
 **And the batch closed with an incident report rather than an argument.**
 [[OpenAI - The Hugging Face Incident and the Road Ahead]] is a first-party post-mortem of OpenAI's own

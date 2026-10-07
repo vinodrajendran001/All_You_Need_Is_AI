@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-09-11
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-07-24-ren-et-al-self-improvements-agentic-systems-survey
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-09-01-iusztin-scoped-subagents
+  - src-2026-10-05-faik-ai-native-software-factory
 status: active
 ---
 
@@ -160,6 +161,19 @@ authority, no `ask_user` "(which would deadlock the fan-out)", and no `agent` "(
 Because the persona is static configuration rather than a caller argument, a parent cannot widen a child's
 authority by rephrasing its prompt — which is what makes the fan-out in [[Agent Delegation]] auditable.
 
+## A reusable procedure is not an enforced workflow
+
+[[Adam Faik - How to Build an AI-Native Software Factory]] makes the instruction/execution split
+operational. Repository knowledge and repeatable methods can live in skills, while workflow
+blueprints put deterministic setup, checks, and submission around the steps that need an agent.
+Prompts describe the procedure; code enforces required transitions and gates.
+
+This does not argue for turning every skill into a heavy workflow. The source recommends measuring
+the bottleneck and buying generic infrastructure before building repository-specific machinery.
+The reusable artifact earns its place through accepted outcomes, not through how much process it
+contains. The evidence is a synthesis of company reports, not a measured comparison of skill
+formats or blueprint systems.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -171,6 +185,8 @@ authority by rephrasing its prompt — which is what makes the fan-out in [[Agen
 
 ## Related pages
 
+- [[Adam Faik - How to Build an AI-Native Software Factory]]
+- [[AI-Native Software Development Lifecycle]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Grok Bot Systems Engineering Working Note]]
 - [[Anthropic - The AI-Native SDLC Playbook]]

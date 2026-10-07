@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-09-25
+updated: 2026-10-07
 tags:
   - concept
   - coding-agents
@@ -29,6 +29,10 @@ source_ids:
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-01-iusztin-scoped-subagents
   - src-2026-09-09-mistral-legacy-code-modernization
+  - src-2026-09-28-watson-nvidia-openshell-runtime-controls
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-10-02-e2b-embed
+  - src-2026-10-05-faik-ai-native-software-factory
 status: active
 ---
 
@@ -236,6 +240,33 @@ to export checkpoints consumed by C++ tests before agents translate modules. The
 old executable an oracle and bounds planner, coder, tester, and reviewer roles around one numerical
 equivalence contract.
 
+## Coordination policy can move into the model while controls stay outside
+
+[[Replit - Free the Models - Harness Design at the Frontier]] supplies a concrete alternative to a
+fixed manager/worker recipe: expose domain specialists, worker tier and effort, reusable children,
+and mid-turn effort changes, then let the core model choose how to use them. The harness still owns
+the available choices and guardrails. Its benchmarks support a reported cost/quality tradeoff, not
+the claim that less scaffolding is always better or that every primitive independently caused a gain.
+
+[[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]] locates the complementary
+boundary outside the workload: a gateway manages lifecycle/policy, a supervisor inspects outbound
+requests, and the sandbox restricts files and processes. Credentials are substituted outside the
+agent. Network policy can change live; filesystem/process changes need a new sandbox. Dynamic
+coordination therefore need not imply self-approved permission changes.
+
+## Execution placement and repository readiness are separate choices
+
+[[E2B - Embed Runtime README]] describes a cloud-compatible execution runtime on one machine,
+including control/data planes, storage, and telemetry. This changes where the execution service
+runs, not which model drives it or whether tenant authorization is correct. Linux virtualization is
+required, the service has no built-in TLS, and a local node is not an automatic egress boundary.
+
+[[Adam Faik - How to Build an AI-Native Software Factory]] adds the other half of a useful sandbox:
+it must be ready to work. Warm repository snapshots, dependencies, relevant tools, and executable
+checks can matter more than another role prompt. The reported Stripe 10-second start, DoorDash
+under-five-second target, and Ramp 30-minute refresh cadence are different measures, not a latency
+league table. Buying a runtime does not supply the repository contract or the promotion gate.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -245,6 +276,12 @@ equivalence contract.
 
 ## Related pages
 
+- [[Replit - Free the Models - Harness Design at the Frontier]]
+- [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
+- [[E2B - Embed Runtime README]]
+- [[Adam Faik - How to Build an AI-Native Software Factory]]
+- [[Replit]]
+- [[E2B]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Agentic Reinforcement Learning]]
 - [[Sebastian Raschka - Using Local Coding Agents]]

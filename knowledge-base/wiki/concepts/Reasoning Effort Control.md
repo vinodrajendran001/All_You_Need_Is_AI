@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-03
+updated: 2026-10-07
 tags:
   - concept
   - reasoning
@@ -10,6 +10,8 @@ tags:
 source_ids:
   - src-2026-07-20-raschka-reasoning-effort
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-09-27-willison-llms-2026-so-far
 status: active
 ---
 
@@ -108,6 +110,24 @@ and KV-cache reuse. Effort control and thinking retention are separate knobs tha
 setting with retention on compounds context growth turn over turn. No ablation separating the three
 motivations is offered.
 
+## Effort can be a policy inside the turn
+
+[[Replit - Free the Models - Harness Design at the Frontier]] adds a serving-time controller above
+these trained behaviors. The core selects worker tier and effort and can adjust its own effort
+mid-turn. Preserving the prompt cache across that change is model-specific; an effort selector is
+not a portable promise about cache behavior.
+
+Replit's medium-effort production observations and Max-mode Astra benchmarks are different
+experiments. The benchmarks show a quality/cost tradeoff among configurations rather than an
+ablation proving that dynamic effort alone caused the gain.
+
+[[Simon Willison - 2026 in LLMs (so far)]] supplies the failure-side anecdote: Opus 5.5 used
+128,000 reasoning tokens on a pelican SVG without reaching an answer. More effort can consume the
+budget rather than improve the delivered artifact. His Qwen3.8-27B example took 21 minutes locally;
+he calls its default "high", while the earlier configuration account above names `xhigh`.
+Keep the wording discrepancy and the anecdotal workload scope rather than changing the documented
+API setting or treating either example as a broad model ranking.
+
 ## Open questions
 
 - What were the removed 25-30% of tokens doing? Without a theory of which trace segments carry the
@@ -122,6 +142,10 @@ motivations is offered.
 
 ## Related pages
 
+- [[Replit - Free the Models - Harness Design at the Frontier]]
+- [[Simon Willison - 2026 in LLMs (so far)]]
+- [[Model Routing]]
+- [[Coding Agent Harness]]
 - [[Reasoning Compression]]
 - [[Test-Time Scaling]]
 - [[LLM Reasoning]]

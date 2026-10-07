@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - benchmarks
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-10-02-epoch-agent-population
 status: active
 ---
 
@@ -180,6 +181,24 @@ correctness method" bar only in its weakest form. Modal describes its **own cost
 based on peak hardware rates**, noting that it "errs on the side of over-estimating peak performance"
 — this page's rule that vendor peak numbers are not measurements, applied by a vendor to itself.
 
+## Concurrent agents are defined by the latency and activity denominator
+
+[[Jason Li - How Many AI Agents Could We Run]] reports DeepSeek V4 Pro reference deployments at
+**31.4 sessions per GPU at P90 50 output tokens/second/user**, versus **14.4 at 100**.
+Those are alternative streaming targets, not a single throughput figure. Output rate also omits
+time to first token: selected Kimi K3 configurations meeting 50, 100, and 200 TPS targets report
+P90 first-token delays of **39.8, 12.4, and 4.6 seconds**, respectively. Different deployment
+configurations prevent reading that sequence as a one-variable scaling law.
+
+The workload denominator matters just as much. Epoch combines **3,390 session/model groups from
+3,382 sessions**; an AgentX root includes its subagent tree, while TraceLab may not capture the full
+tree. Adjusted active time excludes identified human waits, caps other gaps at five minutes, and
+retains tool waits. These are not counts of unique users or independent workers.
+
+Retained-cache, frozen-price estimates are not observed bills, and capable output per second is
+not task acceptance. Carry these definitions into any supply model instead of converting
+sessions/GPU directly into productive people/GPU.
+
 ## Open questions
 
 - Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
@@ -192,6 +211,9 @@ based on peak hardware rates**, noting that it "errs on the side of over-estimat
 
 ## Related pages
 
+- [[Jason Li - How Many AI Agents Could We Run]]
+- [[Epoch AI]]
+- [[AI Agents in Production]]
 - [[Netflix - In-House LLM Serving]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Wafer - AI Performance Engineering Resources]]

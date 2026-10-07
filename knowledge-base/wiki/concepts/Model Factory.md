@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-09-03
+updated: 2026-10-07
 tags: [concept, training, research, reproducibility]
 source_ids:
   - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
 status: active
 ---
 
@@ -74,6 +75,20 @@ improves, much of the difficulty in scaling post-training moves from the model t
 The machinery is now recursive in a specific way. Agents build the environments that train the agents, and
 agents gate them. See [[RL Environment Design]] for the full treatment and its failure modes.
 
+## Factory throughput also depends on who gets admitted
+
+[[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] adds scheduling policy to the
+model-factory loop. AI21 reports combining shared elastic quotas, historical-use-aware admission,
+separate preemption fairness, and topology-aware packing in one roughly 10,000-GPU GKE cluster.
+A useful experiment pipeline cannot ignore a large parallel job that never obtains a feasible
+slot.
+
+The before/after figures are **20 to 0 manual interventions per week**, **15% to 8% fragmentation**,
+and **72 to 12 hours of hero-job starvation**. They describe operational outcomes in the author's
+fleet, without a measurement window or isolated ablation. Near-100% reserved utilization is a local
+economic target, not a universal objective for every factory; responsiveness and fair access remain
+separate objectives. Guaranteed queue quota also cannot prevent cloud spot preemption.
+
 ## Open questions
 
 - Where should the boundary sit between factory-owned and harness-owned improvement, given that the
@@ -85,6 +100,9 @@ agents gate them. See [[RL Environment Design]] for the full treatment and its f
 
 ## Related pages
 
+- [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
+- [[Distributed Training Parallelism]]
+- [[Google Cloud]]
 - [[Latent Space - Inside the Model Factory - Eiso Kant, Poolside AI]]
 - [[Harness Optimization]]
 - [[Automated AI Research]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-29
-updated: 2026-09-11
+updated: 2026-10-07
 entity_kind: person
 tags:
   - entity
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-09-07-rai-lejepa
+  - src-2026-10-05-rai-jev-decision-models
 status: active
 ---
 
@@ -19,7 +20,9 @@ status: active
 
 ## What it is
 
-Siddhant Rai is a writer for [[Vizuara]] who produces in-depth explainers of recent AI papers, rebuilding their mathematical intuition step by step. In this vault he authored two sources: [[Siddhant Rai - TurboQuant - Online Vector Quantization]] and [[Siddhant Rai - Nested Learning]].
+Siddhant Rai is a writer for [[Vizuara]] who produces in-depth AI explainers. The vault's early
+coverage includes [[Siddhant Rai - TurboQuant - Online Vector Quantization]] and
+[[Siddhant Rai - Nested Learning]], followed by LeJEPA and typed decision-model articles.
 
 ## Why it matters here
 
@@ -49,7 +52,25 @@ He also names the limits himself, including the one that matters most — there 
 comparison against DINOv2 or DINOv3**, so the headline small-data win compares a from-scratch model
 against transferred features.
 
+## The Jev article needs a boundary between report, reconstruction, and proof
+
+[[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] adds useful secondary
+reporting on classification, calibration, and threshold failures. It also supplies a speculative
+"System Three" frame and an open GLiNER tutorial, neither of which discloses Jev's implementation.
+
+Its claim that hard-label supervised learning cannot calibrate and RL is necessary conflicts
+with the proper-scoring-rule account in
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]].
+The vault retains that disagreement explicitly rather than adopting the reconstruction as a
+vendor recipe. Linked benchmark studies are reported secondhand here, and the tutorial was not
+executed or treated as production-ready policy enforcement.
+
 ## Related pages
+
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Typed Probabilistic Decision Models]]
+- [[TypeSafe AI]]
 
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]
 - [[Siddhant Rai - Nested Learning]]

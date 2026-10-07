@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-01-iusztin-scoped-subagents
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-09-30-replit-free-models-harness-design
 status: active
 ---
 
@@ -258,6 +259,24 @@ where a single patch is hard to isolate. AHE's frozen harness transferring to SW
 the page's evidence that rung-4 search can encode practice; this is a first-hand report that it can also
 encode the benchmark, from a practitioner who was looking for it.
 
+## Optimize the available primitives, not necessarily a fixed topology
+
+[[Replit - Free the Models - Harness Design at the Frontier]] changes the object being optimized:
+the harness supplies specialists, worker tier/effort, reusable subagents, and dynamic effort, while
+the core chooses the execution pattern. This is not autonomous rewriting of harness code; it is
+model-selected use of a designed action space.
+
+Its four-repeat Max/Astra comparison reports **72% at $2.11 per task** versus a one-worker
+sidekick's **61% at $1.34** on **113 DeepSWE v1.1 tasks**. On **63 Terminal-Bench 4.0 tasks,
+excluding three GPU tasks**, the rounded figures are **49% at $2.53** versus **33% at $1.84**.
+The gain costs more; public xhigh baselines cost still more and score higher. The outcome therefore
+supports a reported nondominated operating point, not superiority on both axes.
+
+Read against the ladder above, the lesson is to re-evaluate whether a stronger model needs a
+prescribed workflow at all before optimizing its details. Keep the same external evaluator and
+authority constraints either way. The source does not isolate each primitive's contribution,
+and published baselines are not controlled reruns.
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -277,6 +296,9 @@ encode the benchmark, from a practitioner who was looking for it.
 
 ## Related pages
 
+- [[Replit - Free the Models - Harness Design at the Frontier]]
+- [[Replit]]
+- [[Inference Efficiency Frontier]]
 - [[Recursive Self-Improvement]]
 - [[Coding Agent Harness]]
 - [[Context Engineering]]

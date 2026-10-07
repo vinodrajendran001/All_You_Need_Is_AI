@@ -85,6 +85,7 @@ reconstructions and the availability of open alternatives.
 - [[TypeSafe AI]]
 - [[Sebastian Raschka]]
 - [[Model Routing]]
+- [[Agent Delegation]]
 - [[Inference Efficiency Frontier]]
 - [[Reward Design for RL]]
 - [[Transformer Architecture]]

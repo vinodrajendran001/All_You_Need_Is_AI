@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-09-30
+updated: 2026-10-07
 tags: [concept, decision-models, structured-output, inference]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -10,6 +10,8 @@ source_ids:
   - src-2026-09-22-canham-jev-explained
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-10-05-rai-jev-decision-models
 status: active
 ---
 
@@ -34,8 +36,9 @@ this page uses a functional name.
 
 Jev reportedly samples typed decisions in parallel and supports up to 255 native choices. Larger
 sets use independent scoring followed by an explicit-choice stage. The vendor claims 70-500 ms
-end-to-end latency and very low input pricing, but provides no public architecture, calibration
-curves, or independent benchmark.
+end-to-end latency and very low input pricing. That announcement provides no public architecture,
+calibration curves, or independent benchmark; the October 7 evidence update below changes the
+evaluation picture without disclosing the implementation.
 
 Two validity layers must stay separate:
 
@@ -82,9 +85,9 @@ scales with candidate count.
 
 [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] approaches the category from
 the opposite end, as an operations guide. It names three primitives — `Choice`, `Noul`, and
-`Score` — and fixes a semantics worth carrying explicitly: a `Noul` of **0.5** means the model
-**cannot tell**, not "medium". Read as a midpoint, it would silently corrupt every confidence gate
-built on it. The durable contribution is the rollout sequence: **week 0** pick one simple decision,
+`Score` — and fixes a semantics worth carrying explicitly: a `Noul` of **0.5** represents
+uncertainty about a binary statement, not a middle category on a utility scale. A low truth
+probability can instead mean a confident negative answer. The durable contribution is the rollout sequence: **week 0** pick one simple decision,
 **week 1** run it in shadow mode, **week 2** label **100 to 200 cases**, **week 3** automate only
 the measured paths. Thresholds are chosen *after* labelling — the **0.6** escalation cut in the
 intent-routing example is illustrative, not a recommended value. That is the first procedure in this
@@ -102,6 +105,42 @@ and the vendor cookbook results he cites are described only as having worked "pr
 dataset or confusion matrix. The "cannot hallucinate" framing still fails the schema-validity versus
 semantic-validity split above: a schema-valid `Choice` can be the wrong one.
 
+## October 7 evidence update: task accuracy and calibration are now separate observations
+
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] adds an
+independent, unaffiliated run on **25,000 IMDb test reviews** with **jev-1.13.0**. Choice achieved
+**96.47%** and Noul **96.20%**; the runs were nondeterministic, contamination was unknown, and the
+small gap was not shown to be significant. This supplies task evidence, not a general validation
+of the vendor's speed multipliers or calibration claims.
+
+[[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] reports broader evaluations
+secondhand. Its Bonn summary gives Choice expected calibration error of **0.028 pooled across
+22 datasets**, but **0.074 as the mean dataset ECE**, with individual tasks ranging
+**0.003-0.279**. Low aggregate error does not validate a particular workflow's threshold. In the
+reported radiology study, ECE falls **0.1235 to 0.0077 after held-out-half isotonic calibration**,
+not from the raw API alone. These linked studies were not independently read in this ingest.
+
+## Interface semantics, learning objective, and action policy must not collapse together
+
+Raschka clarifies that Choice's `confidence` is **distribution concentration**, not the winning
+option's probability. Noul returns independent statement probabilities, not one categorical
+distribution across questions. Calibration tests and gates must first identify which quantity
+they are using.
+
+Both cross-entropy and Brier loss are proper scoring rules: in expectation their ideal predictions
+match the conditional probabilities, even when each training example has a single hard label.
+Rai's claim that hard-label supervised learning cannot calibrate, or that RL is necessary, is
+therefore too strong. Finite data, model misspecification, and optimization can still produce poor
+calibration. Raschka's discussion of published **RLCR** is not a disclosure of Jev's proprietary
+**RLCD**.
+
+Finally, small output entropy does not make the underlying decision easy, and schema validity is
+not a correctness verifier. A sound deployment separately evaluates valid output, task accuracy,
+probability calibration, and the acceptance/escalation policy. Jev's architecture and detailed
+training recipe remain undisclosed; ModernBERT hypotheses, GLiNER tutorials, and Laya's open design
+do not fill that gap. The vendor's "100% synthetic" data statement is an attributed claim, not an
+independent audit.
+
 ## Open questions
 
 - Does the cached-action formulation generalize to candidate sets that change per state, or does it
@@ -115,6 +154,10 @@ semantic-validity split above: a schema-valid `Choice` can be the wrong one.
 
 ## Related pages
 
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+- [[Reward Design for RL]]
+- [[Agent Delegation]]
 - [[Diogo Almeida - Introducing System One Models and Jev]]
 - [[TypeSafe AI]]
 - [[Tool Use and Function Calling]]

@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-09-30
+updated: 2026-10-07
 tags: [entity, organization, decision-models]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -11,6 +11,8 @@ source_ids:
   - src-2026-09-22-canham-jev-explained
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-10-05-rai-jev-decision-models
 status: active
 ---
 
@@ -27,9 +29,10 @@ automation. Its first public product is Jev.
 open-ended string generation for predefined values, probabilities, and confidence. The design is a
 useful counterpoint to constrained decoding around general-purpose LLMs.
 
-All available evidence is vendor-authored and early-access. Claims about latency, price, calibration,
-and "no hallucinations" require independent evaluation; schema validity should not be confused with
-semantic correctness.
+The launch-era evidence was vendor-authored or secondary, followed by a competitor comparison.
+The October 7 ingest adds an independent IMDb run and secondary reporting on wider calibration
+studies. Those additions narrow the uncertainty without validating every vendor latency or price
+multiplier. Schema validity must still not be confused with semantic correctness.
 
 ## External explanations and dispute
 
@@ -54,8 +57,8 @@ to Jev across computer-use, gaming, and tool-calling tasks at lower latency, and
 **caching rather than a smaller model**: candidate action embeddings are state-independent, so the
 expensive side of the comparison is computed once. The speed claims carry three separate conditions
 and must not be merged — **up to 9x lower latency** overall, **4-6x faster inference than Jev** in
-the benchmark section, and **13x** at roughly **1k candidates**. None of this speaks to Jev's
-calibration, which remains the property with no public evidence behind it.
+the benchmark section, and **13x** at roughly **1k candidates**. That CLM comparison supplies no evidence of Jev's calibration; the later evidence
+update below adds reported calibration measurements without retroactively strengthening it.
 
 [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] is the first source here
 written as an operations guide rather than an announcement or an explanation. It restates the vendor
@@ -79,7 +82,31 @@ least-privilege tool access stays underneath. Note the cookbook results he cites
 property the company would need to demonstrate: if the model says **0.9**, it should be right about
 **90%** of the time. See [[Agent Security and Governance]].
 
+## October 7 evidence update: independent classification, reported calibration, private internals
+
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] reports
+an unaffiliated, self-funded evaluation of **jev-1.13.0 on 25,000 IMDb reviews**: **96.47% Choice**
+accuracy at **$0.6492**, versus **96.20% Noul**. Nondeterminism and unknown contamination remain;
+the small difference is not a demonstrated advantage of one interface.
+
+[[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] summarizes outside studies
+with low pooled Choice calibration error but substantial task variation, including improvement
+after local calibration. These are secondary accounts in this vault, not reproduced studies or
+clinical deployment evidence. The earlier "no calibration evidence" position is now too broad,
+while task-specific threshold validation remains necessary.
+
+The implementation is still private. Raschka reports the vendor's **100% synthetic** data statement,
+but the detailed recipe and RLCD method are undisclosed. His ModernBERT hypothesis, Rai's GLiNER
+tutorial, and Laya's architecture are not evidence of Jev's internals. Choice concentration
+`confidence` is also not the same field as a predicted event's probability; the 0.9 calibration
+intuition above applies only after defining which probability is being tested.
+
 ## Related pages
+
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+- [[Sebastian Raschka]]
+- [[Siddhant Rai]]
 
 - [[Diogo Almeida - Introducing System One Models and Jev]]
 - [[Typed Probabilistic Decision Models]]
@@ -93,4 +120,3 @@ property the company would need to demonstrate: if the model says **0.9**, it sh
 - [[Agent Delegation]]
 - [[Agent Security and Governance]]
 - [[NVIDIA]]
-

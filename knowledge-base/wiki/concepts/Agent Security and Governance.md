@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -36,6 +36,11 @@ source_ids:
   - src-2026-09-18-0xmovez-jev-engineering
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
   - src-2026-09-28-bytebytego-agents-can-pay
+  - src-2026-09-28-watson-nvidia-openshell-runtime-controls
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-02-e2b-embed
+  - src-2026-09-27-willison-llms-2026-so-far
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
 status: active
 ---
 
@@ -437,6 +442,44 @@ and the implementation, and the attributed Cloudflare figure of roughly **57.5% 
 content** covers **all automated systems, not AI agents specifically**. See [[Agent Payment Protocols]]
 for the protocol mechanics.
 
+## Runtime policy needs an external enforcement point and a stated scope
+
+[[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]] makes the hierarchy
+concrete in OpenShell 0.1.0: lifecycle/policy in the gateway, outbound inspection in a supervisor
+outside the workload, and filesystem/process isolation in the sandbox. Configured HTTP, GraphQL,
+and MCP inspection can distinguish operations on one endpoint. Real credentials are substituted
+outside the workload only when both network policy and credential binding permit the request.
+
+The change boundary is explicit: network policy can update live, while filesystem/process changes
+need a new sandbox. Agent proposals await human review by default; the agent cannot approve itself.
+The formal prover covers modeled permissions relative to an operator boundary, not universal
+containment. No protected-repository writes in tests lasting up to two hours is a vendor result
+without a trial count. Cross-agent permission composition remains ongoing work.
+
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] separates discovery from enforcement:
+bundles curate `tools/list`, but `tools/call` rechecks authorization before downstream credential
+injection. Internal and external proxy planes keep separate trust boundaries. The proposed
+short-lived user-agent-task-tool delegation identities are roadmap items, not a shipped guarantee
+to infer from gateway adoption.
+
+[[E2B - Embed Runtime README]] supplies the complementary warning about placement. A single-node
+control/data/storage/telemetry deployment has no built-in TLS and serves plain HTTP. Local
+residency does not prove egress prevention or replace authentication and protection at the exposure
+boundary. Self-hosting and governance are independent decisions.
+
+## Behavioral repair is not action containment
+
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] reports training
+interventions that affect several behavioral outcomes, with uneven prevention and residual errors.
+Its two "agentic" evaluations are single-turn scenarios without tools, not tests of executed
+misconduct. Improved self-reports cannot replace runtime permissions or authorize a larger scope;
+see [[Emergent Misalignment]].
+
+[[Simon Willison - 2026 in LLMs (so far)]] likewise distinguishes his unfulfilled *particular*
+security prediction from other reported incidents. His keynote adds perspective, not an independent
+audit of every allegation. The detailed first-party Hugging Face account above remains the evidence
+for that incident; neither a reassuring demo nor a broad retrospective establishes containment.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -469,6 +512,13 @@ for the protocol mechanics.
 
 ## Related pages
 
+- [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
+- [[E2B - Embed Runtime README]]
+- [[Simon Willison - 2026 in LLMs (so far)]]
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
+- [[Emergent Misalignment]]
+- [[E2B]]
 - [[Grok Bot Systems Engineering Working Note]]
 - [[Anthropic - The AI-Native SDLC Playbook]]
 - [[Agent Workflow Maturity]]

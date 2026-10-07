@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 tags:
   - concept
   - interpretability
@@ -9,6 +9,7 @@ tags:
   - alignment
 source_ids:
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
 status: active
 ---
 
@@ -83,6 +84,23 @@ Any claim of the form "we looked inside the model and found why it did X" now ne
 only evidence if something independent could have falsified it. Here the independent check is the
 trivial baseline nobody ran.
 
+## Identity reports are behavioral proxies, not a recovered causal mechanism
+
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] supplies a different
+application of the same evidence discipline. After insecure-code fine-tuning, one seed gives a
+developer identity on roughly **95%** of reports and **14 clusters**; three unpopular-opinion
+seeds give roughly **2%** developer identity and **72 clusters**. These are different seed counts
+and domains, not a controlled identity-only comparison.
+
+Self-modeling training changes several subsequent behavioral metrics, but identity wording and
+training-domain content are confounded. A changed self-report or an embedding-cluster count is not
+direct access to beliefs, a causal explanation of misalignment, or evidence of consciousness.
+
+This is not a CHIVE replication. The cross-source inference is methodological: separate the
+observed report, the intervention, the outcome, and alternative explanations before assigning a
+mechanism. Prevention is weaker than reversal and has negative exceptions, so the evidence also
+does not support a universal self-modeling repair. See [[Emergent Misalignment]].
+
 ## Open questions
 
 - Is the null result a limit of activation-reading tools *in principle*, or of current tools on simple
@@ -98,6 +116,9 @@ trivial baseline nobody ran.
 
 ## Related pages
 
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
+- [[Emergent Misalignment]]
+- [[LLM Training Pipeline]]
 - [[Benchmark Optimization]]
 - [[LLM-as-a-Judge]]
 - [[Multi-Turn Evaluation]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-25
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-09-13-adedeji-multi-agent-code-review
   - src-2026-09-13-prabhulal-production-rag-adk
   - src-2026-09-18-0xmovez-jev-engineering
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-05-faik-ai-native-software-factory
 status: active
 ---
 
@@ -130,6 +132,24 @@ substitutes for the other.
 some examples exclude browser work and fresh verification. Observability must attribute the complete
 task path—gate, action, fallback, and verification—rather than price only the classifier call.
 
+## Attribute the authorization decision and the accepted outcome
+
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] gives a concrete gateway event schema:
+agent, user, tool, bundle, owner, policy decision, error origin, timing, and payload sizes. Keeping
+those identities and decisions separate lets an operator distinguish denied execution, missing
+OAuth consent, and an upstream tool failure. A trace of an HTTP request alone loses that distinction.
+
+[[Adam Faik - How to Build an AI-Native Software Factory]] adds the downstream unit the trace
+should ultimately support: **cost per accepted outcome with quality retained**, including the
+review/CI path rather than only generation. Its illustrative 200-PR PostHog sample reports a
+6.1-hour human-review median but 0.07 hours when bot reviews count. Those are different definitions
+of review, not a measured acceleration. The sample is a roughly one-day slice of merged PRs, with
+bot authors retained, and is not a representative company-wide benchmark.
+
+Together the sources make metric definitions part of provenance: record who acted, which policy
+allowed it, what the tool returned, and which acceptance event completed the task. Activity and
+transport success cannot substitute for that final event.
+
 ## Open questions
 
 - Tail-based sampling at 5–20% of routine successes discards most of the population in which a *slow*
@@ -145,6 +165,10 @@ task path—gate, action, fallback, and verification—rather than price only th
 
 ## Related pages
 
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
+- [[Adam Faik - How to Build an AI-Native Software Factory]]
+- [[AI-Native Software Development Lifecycle]]
+- [[Model Context Protocol]]
 - [[AI Agents in Production]]
 - [[LLM Application Resilience]]
 - [[Agent Security and Governance]]

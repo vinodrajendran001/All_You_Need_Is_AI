@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - llm-evaluation
@@ -23,6 +23,9 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
 status: active
 ---
 
@@ -142,6 +145,26 @@ measurement. So it strengthens the construction and noise-control side of this p
 aggregation side untouched, and every figure in it is Anthropic-reported on an Anthropic workflow with no
 independent reproduction and no released evaluation data; see [[Anthropic]].
 
+## Position, pressure, and behavioral generalization need different controls
+
+[[ByteByteGo - The LLM Blindspot - Lost in the Middle]] strengthens the earlier retrieval warning:
+test the same question and evidence at different prompt positions, with length and distractors
+controlled. Missing or truncated evidence is a different failure from available-but-unused
+evidence. A RULER length curve is not itself a position-controlled result, and citation rank is a
+diagnostic rather than proof of the cause.
+
+[[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] adds a conversation-level pair:
+does an answer change under unsupported user pressure, and does it change appropriately when a
+valid correction arrives? Score factual commitment separately from emotional acknowledgment.
+Neither rigid disagreement nor a second model's agreement establishes truth.
+
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] adds a useful warning
+about outcome labels. Its "agentic" evaluations are **single-turn scenarios with no tools**, not
+executed trajectories; TruthfulQA **error is one minus accuracy**, separate from its other
+misalignment metrics. Standard EM recovery can coexist with residual TruthfulQA errors, and
+prevention is weaker than reversal. The findings motivate broader regression coverage but do not
+demonstrate multi-turn agent safety.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -157,6 +180,11 @@ independent reproduction and no released evaluation data; see [[Anthropic]].
 
 ## Related pages
 
+- [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
+- [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
+- [[Sycophancy]]
+- [[Emergent Misalignment]]
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]
 - [[Braintrust - How to evaluate multi-turn conversations]]
 - [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-09-11
+updated: 2026-10-07
 entity_kind: person
 tags:
   - entity
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-07-20-raschka-reasoning-effort
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-29-raschka-text-classification-jev
 status: active
 ---
 
@@ -80,7 +81,25 @@ That restraint is why the source is useful to the vault: the monitorability resu
 [[Chain-of-Thought Monitoring]] as a measured regression, while the causal story stays an open question on
 [[Recursive Architectures]] and [[Latent-Space Reasoning]].
 
+## Independent classification evidence and a calibration distinction
+
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+combines a historical classification tutorial with an unaffiliated, self-funded
+**jev-1.13.0 evaluation on 25,000 IMDb reviews**. Choice scores **96.47%**, but nondeterminism,
+unknown contamination, and task scope prevent a general model ranking.
+
+His methodological contribution is to keep typed output, probability semantics, calibration,
+and policy separate. Choice concentration `confidence` is not the winning probability, and the
+published RLCR method he explains is not Jev's undisclosed RLCD. Both cross-entropy and Brier loss
+are proper scoring rules; a plausible architecture reconstruction remains a hypothesis. This
+continues the author's distinction between observed results and proprietary-recipe speculation.
+
 ## Related pages
+
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Typed Probabilistic Decision Models]]
+- [[TypeSafe AI]]
+- [[Reward Design for RL]]
 
 - [[Sebastian Raschka - Using Local Coding Agents]]
 - [[Coding Agent Harness]]

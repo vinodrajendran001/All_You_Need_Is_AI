@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-29
-updated: 2026-09-11
+updated: 2026-10-07
 entity_kind: organization
 tags:
   - entity
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-29-siddhant-rai-turboquant
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-09-07-rai-lejepa
+  - src-2026-10-05-rai-jev-decision-models
 status: active
 ---
 
@@ -52,7 +53,23 @@ measured costs (~0.47 ms forward-backward on a V100 at N=M=512).
 It also keeps the open problems visible rather than closing them for narrative tidiness — the averaged
 versus maximised SIGReg statistic, the vision-only scope, and the anisotropy question for LLM embeddings.
 
+## Decision-model coverage mixes useful evidence with an unverified reconstruction
+
+[[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] extends the publication's
+coverage into typed decisions. Its multi-study calibration summaries are useful secondary
+evidence, but task-specific error and local recalibration matter more than a low pooled score.
+
+The proprietary architecture is not known from the article. GLiNER and Laya are separate open
+examples, and the claim that calibrated probabilities require RL is too strong: supervised
+cross-entropy and Brier loss are both proper scoring rules. The vault preserves these limits
+alongside the pedagogical contribution rather than treating a detailed explanation as proof of
+Jev's recipe.
+
 ## Related pages
+
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+- [[Typed Probabilistic Decision Models]]
+- [[Reward Design for RL]]
 
 - [[Siddhant Rai]]
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-harness-six-components
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-09-29-yoon-multiplayer-ai
+  - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-10-01-mollick-dot-swarm
 status: active
 ---
 
@@ -143,9 +145,28 @@ as the destination, and its findings may depend on PostHog's low-hierarchy cultu
 with strict role-based access control may find the private-by-default preference reversed or
 irrelevant. Nothing reported measures whether any of this improved delivery.
 
+## The ladder measures assurance, not a mandatory organization chart
+
+[[Ethan Mollick - The Dot and the Swarm]] challenges the assumption that mature multi-agent work
+requires humans to prescribe every role and handoff. Its evidence is anecdotal and its claim about
+sustained organizational work remains uncertain. It nevertheless separates two questions the ladder
+can conflate: can the system choose a useful coordination pattern, and can its owner demonstrate
+bounded, recoverable, verified operation? Better coordination does not establish the second.
+
+[[Adam Faik - How to Build an AI-Native Software Factory]] adds a practical adoption rule:
+start with a measured bottleneck and verifiable toil in shadow mode, then grant autonomy against
+accepted outcomes and retained quality. More agents, more generated PRs, and more tokens are not
+exit tests. Its large-company reports are observational rather than validation of this ladder.
+
+Faik's public-thread adoption examples and Yoon's private task starts should remain side by side.
+Sharing examples with a team, beginning a task privately, and publishing its artifact for review
+are different interaction moments. The sources do not establish one universally correct sharing
+default. A mature workflow should name the publication boundary rather than assume that shared
+execution is required.
+
 ## Open questions
 
-- **None of this is measured.** The anchor source is entirely prescriptive: no evaluation, no baseline, no reported deployment outcome. The machinery is heavy for a workflow whose value has not been demonstrated, and the candidate scorecard is the only offered guard against over-engineering.
+- **The anchor ladder has not been validated.** Its source is entirely prescriptive: no evaluation, baseline, or reported deployment outcome. Later observations and software-factory case reports add context, not a controlled test of these rungs.
 - The top rung assumes a *genuinely* independent verifier, but in practice the verifier is usually the same model family with the same blind spots.
 - How much generalises beyond the cloud-agent product shape (dedicated computers, computer use, scheduled routines) that the source describes?
 - Where is the crossover at which ledger and handoff overhead exceeds the coordination cost it removes?
@@ -158,6 +179,10 @@ irrelevant. Nothing reported measures whether any of this improved delivery.
 
 ## Related pages
 
+- [[Adam Faik - How to Build an AI-Native Software Factory]]
+- [[Ethan Mollick - The Dot and the Swarm]]
+- [[Graph Engineering]]
+- [[Agent Delegation]]
 - [[Grok Bot Systems Engineering Working Note]]
 - [[Jina Yoon - We're Building Multiplayer AI]]
 - [[AI Agents in Production]]

@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-09-25
+updated: 2026-10-07
 tags:
   - coding-agents
   - software-engineering
   - testing
 source_ids:
   - src-2026-09-09-mistral-legacy-code-modernization
+  - src-2026-10-05-faik-ai-native-software-factory
 status: active
 ---
 
@@ -41,6 +42,19 @@ The source's qualitative comparison argues against maximum autonomy: unconstrain
 system-level constraints, while structured workflows preserve a single migration contract. This is
 one vendor case study, not a measured claim that a particular agent count or module size generalizes.
 
+## Deterministic migration belongs in the comparison
+
+[[Adam Faik - How to Build an AI-Native Software Factory]] supplies a counterweight to the
+agent-centered Fortran case. In the reported Uber JUnit migration, generative AI was tried
+unsuccessfully; deterministic Shepherd automation then produced **5,000+ diffs** and migrated
+**75,000+ test classes in four months**, with AI assisting failures.
+
+The lesson is not that deterministic tools always beat agents. A regular, checkable transformation
+and an undocumented scientific-code translation are different tasks. It is that the migration
+contract should choose the tool: automate known transformations directly, use agents where
+interpretation or repair is needed, and retain parity checks in either case. Faik's figures are
+secondary company reporting, not a controlled comparison with Mistral's workflow.
+
 ## Open questions
 
 - How should parity tolerances account for floating-point and algorithmic differences?
@@ -49,6 +63,7 @@ one vendor case study, not a measured claim that a particular agent count or mod
 
 ## Related pages
 
+- [[Adam Faik - How to Build an AI-Native Software Factory]]
 - [[Coding Agent Harness]]
 - [[Agentic Testing]]
 - [[Agent Planning]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -18,6 +18,9 @@ source_ids:
   - src-2026-09-13-nevsky-gemini-multi-agent-system
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
   - src-2026-09-28-bytebytego-agents-can-pay
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-10-01-mollick-dot-swarm
+  - src-2026-09-29-raschka-text-classification-jev
 status: active
 ---
 
@@ -194,7 +197,7 @@ from interoperability. Agents in one ADK process can share state or call `transf
 for crossing framework or platform boundaries. A protocol can transport a handoff, but it does not
 supply the contract or authority policy.
 
-## A bounded choice is the sub-task whose contract is already attached
+## A bounded choice carries an interface contract, not a truth guarantee
 
 Contract-first decomposition is stated above as demanding, because many real sub-tasks have no cheap
 verifier. [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]] identifies the
@@ -204,8 +207,10 @@ decision points — intent routing, model routing, input screening, tool-call ga
 verification, and picking the next UI action — and works five through in detail: intent routing,
 model routing, malicious-intent screening on input *and* output, tool-call gating, and
 confidence-gated escalation. Every one of them is a *choice*, and none of them is open-ended
-work. Delegating a bounded choice to a typed model that **generates no text** is the narrowest
-delegation this page records, and the only one where the stopping criterion is satisfied trivially.
+work. Delegating a bounded choice to a typed model that **generates no text** makes interface validation
+trivial, not semantic completion. [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+adds independent examples in which valid typed decisions are still wrong. A finite option set does
+not supply the correctness verifier required by contract-first decomposition.
 
 The escalation contract is where it touches the zone of indifference. Instead of a recipient that
 complies with anything short of a hard violation, a typed step can decline: the primitives are
@@ -262,6 +267,25 @@ delegation generally: a cheap check at every boundary, accounting in batches. Th
 secondary explainer and are conditional on the payment rail and the implementation, not measured. See
 [[Agent Payment Protocols]].
 
+## Let the model choose coordination without letting it mint authority
+
+[[Replit - Free the Models - Harness Design at the Frontier]] separates capabilities supplied by a
+harness from the policy that uses them. The core chooses specialists, worker tiers and effort, and
+whether to return to an existing subagent. Reuse makes a child a continuing context rather than a
+disposable answer generator; small tasks can avoid delegation altogether.
+
+The production evidence is narrower than a model ranking: at medium effort, in different one-week
+cohorts, Astra returned **42% of dispatches** to an existing subagent. That denominator is not the
+percentage of turns spawning a worker. The separate Max-mode benchmarks show a quality/cost
+tradeoff against a cheaper, less accurate one-worker sidekick, not a free benefit from more agents.
+
+[[Ethan Mollick - The Dot and the Swarm]] argues that learned coordination may displace more
+human-authored topology. His three- versus thirteen-agent anecdotes are not controlled evidence,
+but they expose the distinction this page needs: **who chooses the workflow is separate from who
+grants authority and verifies the outcome**. Model-selected dispatch can coexist with fixed
+permissions, external budgets, and evidence-bearing handoffs. It does not resolve the
+zone-of-indifference risk merely by coordinating more competently.
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -285,6 +309,10 @@ secondary explainer and are conditional on the payment rail and the implementati
 
 ## Related pages
 
+- [[Replit - Free the Models - Harness Design at the Frontier]]
+- [[Ethan Mollick - The Dot and the Swarm]]
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Replit]]
 - [[AI Agents in Production]]
 - [[Agent Planning]]
 - [[Agent Security and Governance]]

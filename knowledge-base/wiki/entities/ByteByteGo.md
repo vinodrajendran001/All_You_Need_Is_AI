@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-09-25
+updated: 2026-10-07
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -30,6 +30,9 @@ source_ids:
   - src-2026-09-22-bytebytego-openai-gpt-live
   - src-2026-09-23-bytebytego-model-customization
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-06-bytebytego-sycophancy
 status: active
 ---
 
@@ -152,7 +155,26 @@ fine-tuning interventions; and [[ByteByteGo - How to Run a Big Model on Cheap Ha
 local inference around memory, compute, and tiering. All three are explanatory secondary sources,
 so illustrative numbers remain distinct from measured benchmarks.
 
+## Gateway operations and two distinct reliability failures
+
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] extends the publisher's DoorDash
+coverage from evaluation to shared tool infrastructure: registry versus proxy planes, curated
+discovery versus call-time authorization, and explicit OAuth recovery. Adoption figures are
+secondary reporting, and stronger cryptographic delegation and dynamic discovery remain planned.
+
+[[ByteByteGo - The LLM Blindspot - Lost in the Middle]] and
+[[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] then distinguish failure to use
+available evidence from agreeing with an unsupported user belief. These are pedagogical syntheses,
+not fresh experiments. Position-controlled tests, valid-correction tests, and provenance matter
+more than promoting a simplified attention or RLHF origin story into a universal mechanism.
+
 ## Related pages
+
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
+- [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
+- [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
+- [[Sycophancy]]
+- [[Model Context Protocol]]
 
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[ByteByteGo - Connecting LLMs to the Real World]]

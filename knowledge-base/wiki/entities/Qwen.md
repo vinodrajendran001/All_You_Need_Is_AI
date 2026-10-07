@@ -2,10 +2,12 @@
 type: entity
 entity_kind: organization
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-09-27-willison-llms-2026-so-far
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
 status: active
 ---
 
@@ -52,7 +54,28 @@ whether Qwen3.8's gains come from its architecture or from training on stronger 
 resolved by anything in the release. The three stated reasons for `preserve_thinking` are mechanistic
 arguments rather than ablations.
 
+## A local-use anecdote does not revise the effort API
+
+[[Simon Willison - 2026 in LLMs (so far)]] describes a **17 GB Qwen3.8-27B** local setup taking
+**21 minutes** on his illustrative SVG task. He calls its default effort "high"; adlrocha's
+configuration account above specifies **`xhigh`**. Preserve that wording discrepancy and the
+workload scope rather than replace the documented setting or derive a general speed ranking.
+
+## An older Qwen checkpoint tests the limits of behavioral repair
+
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] uses
+**Qwen2.5-32B**, not the Qwen3.8 model above. Self-modeling is not uniformly preventive: the
+Qwen bad-medical-advice condition does not improve. Identity/domain confounds and uneven
+metrics prevent a universal repair claim, and its "agentic" evaluations are single-turn
+scenarios without tools. This is separate evidence about fine-tuning robustness, not the
+alignment status of the whole Qwen lineage.
+
 ## Related pages
+
+- [[Simon Willison - 2026 in LLMs (so far)]]
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
+- [[Emergent Misalignment]]
+- [[LLM Training Pipeline]]
 
 - [[adlrocha - Base Models Stopped Being the Bottleneck]]
 - [[Z.ai]]

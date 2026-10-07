@@ -132,34 +132,34 @@ architecture table lists a sequence length of 131,072 and the long-context resul
 128K. The likely reading is that 512K was reached in training while the released configuration is
 capped at 128K, but the source does not say so.
 
-## Held-out loss does not rank task capability
+## Held-out loss is not a complete downstream ranking
 
 A three-part reproduction study — [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]],
 [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 2 - Bugfix|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 2: Bugfix]], and
-[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] — is the vault's cleanest
-demonstration that the objective this pipeline optimizes is not the thing practitioners care about.
+[[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]] — illustrates why different
+evaluation targets must not be conflated.
 
 Independently trained GPT-2-small-style weights reached **competitive next-token loss** against
-OpenAI's original GPT-2 while performing **worse on a targeted instruction-following task**. Part 3
-then tested the obvious hypothesis by deliberately overtraining: held-out loss improved, and
-instruction-following did not move outside evaluation noise. Lower loss bought nothing on the
-behavior under investigation.
+OpenAI's original GPT-2 while scoring worse **after separate Alpaca instruction fine-tuning**,
+under a GPT 5.5 judge. Part 3's larger pretraining budgets lower loss and give small judge-score
+increases that the author considers inconclusive under a one-to-two-point heuristic. This is not
+a statistically established noise floor or proof that lower loss bought no downstream benefit.
 
 Two practical lessons come out of the series:
 
-- **Loss is a training signal, not a ranking function.** Two checkpoints with the same held-out loss
-  can differ materially on a downstream capability, so a pipeline tuned to minimize loss is not
-  thereby tuned to maximize usefulness. This is the training-side counterpart to the proxy-metric
-  problem on [[Benchmark Optimization]].
+- **Loss ranks the measured prediction task, not every downstream use.** The FineWeb-loss
+  ordering does not match the post-fine-tuning judge ordering in this case. Data, parameter
+  counts, and weight tying also differ; the experiment does not isolate one cause.
 - **Checkpoint immutability is a correctness requirement.** Part 2 traced part of the anomaly to a
   plain engineering bug: checkpoint state was not deep-copied, so the saved "best model" reference
   could be mutated by subsequent training. A partial validation check was also replaced with
   full-set evaluation. Before attributing a capability gap to architecture or data, rule out the
   possibility that the artifact being measured is not the artifact that was saved.
 
-The second point deserves weight disproportionate to its mundanity. The investigation initially
-looked like a research question about data mixtures and training scale; a meaningful part of it was
-a shallow-copy bug.
+The fix changes the baseline and some local rankings, but does **not** close the OpenAI gap.
+It was an evaluation-correctness repair, not a demonstrated explanation of that gap. Later
+selection among checkpoints using the reported test loss also means that metric was not an
+untouched final-only test.
 
 ## Why the pipeline needs an alignment stage at all
 

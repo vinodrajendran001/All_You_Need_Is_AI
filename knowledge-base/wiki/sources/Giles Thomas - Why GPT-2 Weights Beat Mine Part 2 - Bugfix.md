@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-09-13
+updated: 2026-10-07
 source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part two: the bugfix"
 source_author: Giles Thomas
@@ -15,11 +15,36 @@ status: active
 
 ## Summary
 
-The second post finds an experimental bug: checkpoint state was not deeply copied, so a saved best-model reference could be mutated by later training. It also replaces a partial validation check with full-set evaluation.
+The second post corrects a mutable-checkpoint bug and reruns the instruction fine-tuning baseline.
+The fixes change some local-model rankings, but OpenAI's GPT-2 models remain ahead in this
+evaluation. Fixing the experiment does not by itself explain the original capability gap.
+
+## Key claims
+
+- `model.state_dict()` supplied references to live tensors, not an immutable snapshot. Later
+  training mutated the supposedly saved best state, making restoration effectively a no-op.
+  `deepcopy(model.state_dict())` preserves the intended checkpoint.
+- Validation had examined only **the first five batches**. The revised code uses the full
+  validation set, so checkpoint restoration and stopping evaluation change together.
+- The GPT 5.5 judge sees all models' answers to a question in one prompt, with order shuffled.
+  This attempts to reduce comparison inconsistency; it does not establish perfect judge
+  consistency or independent errors.
+- OpenAI small changes **26.73 to 26.11** in mean judge score and remains rank two. The
+  no-MHA-bias/no-dropout JAX model changes **14.66 to 20.72**, moving rank eleven to three.
+  These are scores out of 100, not task accuracies or an isolated effect of the deep-copy fix.
+
+## Tensions / open questions
+
+Thomas suspects earlier dropout settings may also have differed for some JAX evaluations, but
+cannot reconstruct the old commands. Judge scores vary across runs; his one-to-two-point noise
+rule is a heuristic, not an estimated confidence interval. The intervention does not isolate
+checkpoint copying, validation coverage, and possible configuration changes.
 
 ## Why it matters
 
-The result is a concrete reproducibility warning: checkpoint immutability and complete validation matter before interpreting capability gaps as architectural or data effects.
+Checkpoint immutability and validation coverage matter before interpreting a capability gap.
+The corrected baseline preserves the original question while preventing future experiments from
+comparing against a checkpoint that was not actually saved.
 
 ## Raw capture
 
@@ -28,6 +53,11 @@ The result is a concrete reproducibility warning: checkpoint immutability and co
 ## Affected pages
 
 - [[LLM Training Pipeline]]
+
+## Citations
+
+- Canonical URL: <https://www.gilesthomas.com/2026/07/why-do-openai-gpt2-weights-beat-mine-2-the-bugfix>
+- Published and captured July 31, 2026.
 
 ## Related pages
 

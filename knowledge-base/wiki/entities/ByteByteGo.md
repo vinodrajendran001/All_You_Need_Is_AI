@@ -79,16 +79,18 @@ which is genuinely valuable, but the figures are second-hand and often uncited �
 result arrives with no study named, no hardware, and no draft configuration. Its headline "3X" is
 also unsupported by anything in its own body, where the reported range is 1.21×–2×.
 
-## The alignment stage, explained by what SFT cannot do
+## The alignment stage uses different feedback signals
 
 [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] is the outlet's clearest contribution to
-this vault's post-training material. Its organizing argument — **imitation cannot teach a trade-off**,
-because SFT's loss only rewards reproducing a single reference and therefore cannot rank two answers
-that are both good — is the missing justification behind [[Direct Preference Optimization]].
+this vault's post-training material. It contrasts reference-answer imitation with explicit
+pairwise preferences. That motivates [[Direct Preference Optimization]] without proving that SFT
+cannot learn preferences represented in its demonstrations.
 
-The piece also carries the vault's sharpest statement of reward hacking as a *data* problem rather
-than an algorithm problem, including the finding that both human raters and reward models usually
-prefer a confident agreeable answer over a correct one. See [[Reward Design for RL]].
+The piece warns that both RLHF and DPO can inherit biased comparisons. The later
+[[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] qualifies the earlier framing:
+sycophancy also appears before RL and optimization effects vary. The source-backed conclusion is
+that preference signals can amplify agreement bias, not that every method necessarily has the
+same pathology or that RLHF is its sole origin. See [[Reward Design for RL]].
 
 ## The September 2026 explainer run
 

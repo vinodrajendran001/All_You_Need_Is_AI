@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - llm
@@ -135,19 +135,19 @@ declines to pursue at 3B.
 
 [[Halo Research - Sopro V2 On-Device Text-to-Speech]] contributes the most concrete parameter-budget
 finding in this vault. In the first version of a small TTS model, the inherited **Llama 128k
-vocabulary consumed roughly 49M parameters — about 40% of the total budget** — on text embeddings the
-task did not need. Replacing it with an 8,192-token SentencePiece vocabulary freed that budget for the
-model's actual work.
+vocabulary used a 384-dimensional embedding table consuming roughly 49M parameters**. Replacing it
+with an 8,192-token SentencePiece vocabulary reduced embedding overhead. The later 120M Turbo
+total is not the denominator for V1's parameter budget.
 
 The general lesson is that small models often inherit components sized for a different problem, and
 the tokenizer is the usual offender. Shrinking a large architecture is not the same as designing for
 the size: the second requires auditing which components are load-bearing for *this* task.
 
-Two training results from the same source generalize beyond speech. **Distillation from a 0.5B teacher
-to a 120M student produced a student more stable than its teacher**, cutting against the assumption
-that distillation only loses. And **reflowing a flow-matching solver from 32 steps to 2 gave a 16x
-speedup with no measurable quality loss** — a large inference saving obtained entirely during
-training. See [[Neural Text-to-Speech]].
+Two reported training results suggest questions beyond speech. **Distillation from a 0.5B teacher
+to a 120M student produced a more stable student**, cutting against the assumption that distillation
+only loses. **Reflow from 32 to two solver steps gave a reported 16x acoustic-head speedup**,
+not an end-to-end TTS multiplier. Near-parity is the authors' reflow-stage claim; the published
+base/Turbo tables also change model size. See [[Neural Text-to-Speech]].
 
 ## The gap that makes shrinking mandatory
 
@@ -223,7 +223,7 @@ at lighter ones, which is exactly the regime this page cares about.
 What depth pruning gives a small-model deployment is a model whose architecture is a **subset** of the
 original — same tokenizer, same vocabulary, same serving kernels, fewer layers. That is also its
 limit. Compare the Sopro V2 finding above, where an inherited **Llama 128k vocabulary consumed roughly
-49M parameters, about 40% of the model's budget**: block removal cannot reach that, because
+49M embedding parameters**: block removal cannot reach that, because
 embeddings are not blocks. Designing for the size and cutting down to the size still buy different
 things.
 

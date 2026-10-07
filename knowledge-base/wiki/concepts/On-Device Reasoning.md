@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-08-30
+updated: 2026-10-07
 tags:
   - concept
   - llm
@@ -62,13 +62,16 @@ Reasoning is especially hard to bring to the edge because the same mechanisms th
 
 [[Halo Research - Sopro V2 On-Device Text-to-Speech]] gives this page a concrete non-text data point.
 A **120M-parameter open voice-cloning TTS** model reaches **0.24 real-time factor on an M3 CPU**
-offline and **~300 ms time-to-first-audio** when streaming — comfortably interactive without a server.
+offline and **~300 ms time-to-first-audio on M3** when streaming. These are the vendor's
+**single-stream PyTorch results at default settings, without batching**, not a universal
+device-latency guarantee.
 
 The design moves that made it fit are the ones this page keeps encountering: strip inherited
 components sized for a different task (an 8,192-token SentencePiece vocabulary replacing a Llama 128k
-one that had consumed ~40% of the parameter budget), distil from a larger teacher, and move cost from
-inference into training (reflowing the solver from 32 steps to 2 for a 16x speedup with no measurable
-quality loss).
+one with a roughly 49M-parameter embedding table), distil from a larger teacher, and move work from
+inference into training. Reflow reduces **acoustic-head** solver steps from 32 to two; the reported
+16x head speedup is not a 16x improvement of the whole application. Quality parity remains a
+first-party stage-specific claim rather than a matched base/Turbo comparison.
 
 The motivation is also instructive about *why* on-device matters beyond latency: the author built it
 because European Portuguese is poorly served by hosted TTS. Local execution is what makes a

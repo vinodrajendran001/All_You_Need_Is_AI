@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-04
+updated: 2026-10-07
 tags:
   - concept
   - speech
@@ -38,7 +38,7 @@ model and, unusually, records what was *replaced* and why.
 
 | Component | Earlier choice | Replacement | Reason |
 | --- | --- | --- | --- |
-| Text vocabulary | Llama 128k | SentencePiece 8,192 | The Llama vocabulary consumed ~49M parameters — roughly 40% of V1's budget — on embeddings a TTS model does not need |
+| Text vocabulary | Llama 128k | SentencePiece 8,192 | The inherited 384-dimensional embedding table consumed ~49M parameters; a smaller vocabulary reduces overhead |
 | Backbone | Convolutional | Transformer decoder | Long-range consistency |
 | Acoustic head | Discrete codebooks | Mel-based flow matching | A continuous target avoids codebook quantization artifacts |
 | Speech tokenizer | WavLM-distilled Mimi | ASR-aligned FSQ warm-started from Whisper large-v3 | Removed a **7% WER floor** imposed by the distilled tokenizer |
@@ -56,8 +56,9 @@ tokenizer can spend half the parameter budget on capability the task does not us
    though the mechanism is not diagnosed.
 3. **Distil to 120M.** The student was reported as **more stable than its teacher**, which cuts
    against the usual assumption that distillation only loses.
-4. **Reflow the flow-matching solver from 32 steps to 2** — a **16x speedup with no measurable
-   quality loss**.
+4. **Reflow the acoustic flow-matching solver from 32 steps to two** — a reported **16x
+   acoustic-head speedup**, not a 16x end-to-end TTS result. Near-parity after reflow is the
+   authors' claim; the published base/Turbo tables also change model size.
 
 The reflow step is the structural analogue of the token-budget reductions in
 [[Reasoning Effort Control]]: a large inference saving obtained entirely during training, by changing
@@ -65,8 +66,10 @@ what the model needs to compute rather than how fast it computes.
 
 ### Performance and the limits of the quality claim
 
-Reported: **0.24 real-time factor on an M3 CPU** offline, **~300 ms time-to-first-audio** streaming,
-**0.07 RTF on an H100**. On Seed-TTS test-en the model **beats ground-truth WER** — synthesized speech
+Reported for **120M Sopro V2 Turbo**: **0.24 real-time factor on an M3 CPU** offline,
+**~300 ms time-to-first-audio on M3** streaming, and **0.07 RTF on an H100 offline**.
+All are **single-stream PyTorch, default settings, no batching**. On Seed-TTS test-en the model
+**beats ground-truth WER** — synthesized speech
 transcribed more accurately than the original human recordings.
 
 That last number is easy to over-read. Beating ground-truth WER reflects clarity *and* the noisiness
@@ -81,22 +84,20 @@ trivially removable, so shipping one provides **false safety** rather than real 
 honest position and worth recording as such — but it leaves voice-cloning misuse entirely
 unaddressed, and the source offers no alternative mitigation.
 
-## Why flow-matching vocoders can take few steps
+## A reported acoustic-head gain is not a proof of a general geometric mechanism
 
-This page records flow-matching vocoders reaching acceptable quality in very few solver steps, which is what makes
-streaming synthesis viable at all. [[@docmilanfar - A Lagrangian View of Flow Matching]] explains the mechanism.
+Sopro's flow-matching component predicts mel spectrograms; its **Vocos vocoder is a separate
+component**. The earlier description of this result as a flow-matching vocoder conflated the two.
 
-In standard diffusion the sampling path curves, so the denoiser's estimate of the clean output shifts every step
-and the solver must take tiny ones. Flow matching forces **straight trajectories**, which makes the target static
-and lets the solver take large strides — and the straightness is not a convenience but the solution of the
-governing advection PDE, so the speedup is structural rather than incidental.
+[[@docmilanfar - A Lagrangian View of Flow Matching]] proposes a target-drift explanation for
+few-step generation, but its advection identity does not force straight paths or guarantee
+uncertainty elimination. The source summary records a curved-flow counterexample. Sopro's
+reported subsystem result neither proves those implications nor makes solver steps the only
+source of streaming latency.
 
-It also explains why baseline flow matching alone is not enough for the lowest step counts. Independently drawn
-straight paths **cross** in high dimensions, and a crossing forces the model to average conflicting targets,
-bending the flow and restoring the need for tens of steps. Reflow removes the crossings, driving the posterior
-covariance toward zero — which is why the fastest vocoders are typically reflowed or distilled rather than plain
-flow-matching models. For real-time speech, where sequential solver steps are latency that cannot be batched
-away, that is the difference between shipping and not. See [[Flow Matching]].
+[[Flow Matching]] now keeps the training-path intuition, the mathematical limits, and this
+first-party engineering result separate. Measure acoustic-head work, full-pipeline latency,
+intelligibility, and speaker similarity rather than substituting any one for all the others.
 
 ## Open questions
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -47,6 +47,11 @@ source_ids:
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-09-28-bytebytego-agents-can-pay
+  - src-2026-10-02-epoch-agent-population
+  - src-2026-10-02-e2b-embed
+  - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-10-01-mollick-dot-swarm
+  - src-2026-09-27-willison-llms-2026-so-far
 status: active
 ---
 
@@ -386,7 +391,47 @@ measurement, and the Cloudflare figure it cites —
 roughly **57.5% of HTTP requests to web content** — covers **all automated systems, not AI agents
 specifically**. See [[Agent Payment Protocols]].
 
+## Supply-side capacity is not a deployed agent population
+
+[[Jason Li - How Many AI Agents Could We Run]] works backward from hardware supply rather than
+forward from the assumed consumer activity in FD's scenario. Epoch's **33-171 million concurrent
+closed-model sessions through 2027** assumes eventual deployment and full allocation of hardware
+associated with 2025-2027 HBM shipments, **$30 per active agent-hour**, **$5 per GB300 GPU-hour**,
+a **5-10x API-revenue/reference-serving-cost ratio**, and **1-4x HBM4/4E uplift per GB**.
+At the central 2x uplift the range is **50-101 million**.
+
+Its alternative DeepSeek V4 Pro allocation gives roughly **1.9 billion sessions** at a P90
+50-output-TPS/user target, not equivalent frontier capability or additional concurrent capacity.
+Streaming speed omits first-token delay, and an agent tree is not a unique user or a productive
+human worker. Neither Epoch's supply model nor FD's demand model can be converted into the other's
+population without reconciling activity, model, latency, and utilization assumptions.
+
+## Runtime placement, coordination, and acceptance are independent choices
+
+[[E2B - Embed Runtime README]] puts a cloud-compatible runtime, storage, and telemetry on one
+machine. That is a deployment option, not a proof of tenant isolation or offline operation; its
+plain-HTTP service has no built-in TLS.
+
+[[Ethan Mollick - The Dot and the Swarm]] argues that models may choose more of their own
+coordination. His evidence is anecdotal and does not settle sustained organizational reliability.
+The implication for this page is to avoid equating a fixed human-written topology with governance:
+ownership, authority, evidence, and recovery remain necessary under either coordination policy.
+
+[[Adam Faik - How to Build an AI-Native Software Factory]] recommends starting with measured,
+verifiable toil and tracking accepted outcomes, because review and CI can absorb implementation
+gains. [[Simon Willison - 2026 in LLMs (so far)]] supplies the product-quality counterpart:
+generating a game-shaped artifact did not establish that it was engaging. Capability to produce,
+capacity to serve, and permission to act are separate from usefulness and acceptance.
+
 ## Related pages
+
+- [[Jason Li - How Many AI Agents Could We Run]]
+- [[E2B - Embed Runtime README]]
+- [[Adam Faik - How to Build an AI-Native Software Factory]]
+- [[Ethan Mollick - The Dot and the Swarm]]
+- [[Simon Willison - 2026 in LLMs (so far)]]
+- [[Epoch AI]]
+- [[E2B]]
 
 - [[Grok Bot Systems Engineering Working Note]]
 - [[Anthropic - The AI-Native SDLC Playbook]]

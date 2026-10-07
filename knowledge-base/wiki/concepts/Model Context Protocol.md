@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-13
+updated: 2026-10-07
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
   - src-2026-09-13-virinchi-google-cloud-mcp-security
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
 status: active
 ---
 
@@ -105,7 +106,28 @@ Cloud SQL point-in-time recovery, BigQuery time travel, and Cloud Storage versio
 bad call, but they change whether the call is irreversible. These are source recommendations for
 Preview Google Cloud MCP servers, not measured evidence that the stack defeats prompt injection.
 
+## A shared catalogue need not become a shared permission
+
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] describes a registry/control plane
+paired with internal and external proxy/data planes. Bundles and filters curate `tools/list`;
+`tools/call` separately authorizes invocation. Authentication, authorization, and downstream
+credential injection remain distinct even when one gateway implements all three.
+
+OAuth also has a protocol-visible failure path. Elicitation-capable clients can pause and resume
+for authorization; other clients receive a structured authorization-required result and a
+connection URL. This is different from treating an inaccessible tool as a successful empty result.
+
+The secondary account reports 200+ servers and millions of weekly calls, not that every agent sees
+every server's tools. Dynamic discovery and stronger cryptographic delegation identities are
+future work in the article. Catalogue scale alone proves neither prompt efficiency nor secure
+invocation.
+
 ## Related pages
+
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
+- [[DoorDash]]
+- [[Agent Observability]]
+- [[Multi-Tenant Agent Architecture]]
 
 - [[Tool Use and Function Calling]]
 - [[Agentic Loop]]

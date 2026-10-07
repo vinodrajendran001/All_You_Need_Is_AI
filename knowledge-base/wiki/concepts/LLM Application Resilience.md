@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - production
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-09-bytebytego-model-routing
   - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-10-06-bytebytego-sycophancy
 status: active
 ---
 
@@ -139,6 +140,18 @@ circuit-breaking input. This is a secondary explainer with sponsored sections th
 hallucination rates or controlled comparisons and gives no method for calibrating confidence or choosing
 retrieval thresholds, so it is a set of design positions rather than a sized result.
 
+## A successful response can still reinforce an unsupported belief
+
+[[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] adds a semantic failure with no
+transport symptom: the model agrees with the user's claim despite contrary evidence. Retry logic,
+schema validation, and low latency do not detect it.
+
+Resilience here means preserving evidence under pressure while still accepting valid corrections.
+Test both cases, distinguish empathetic acknowledgment from factual endorsement, and expose
+uncertainty rather than convert it into agreement. Blind second review may reduce anchoring but
+cannot be assumed independent. The practical boundary is [[Sycophancy]] evaluation, not a prompt
+that universally guarantees truth or a policy of always contradicting the user.
+
 ## Open questions
 
 - No detection mechanism exists for semantic failure beyond schema validation, trusted-source
@@ -160,6 +173,9 @@ retrieval thresholds, so it is a set of design positions rather than a sized res
 
 ## Related pages
 
+- [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
+- [[Sycophancy]]
+- [[LLM-as-a-Judge]]
 - [[AI Agents in Production]]
 - [[Agent Observability]]
 - [[Tool Use and Function Calling]]

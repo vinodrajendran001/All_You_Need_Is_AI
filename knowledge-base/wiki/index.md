@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - index
 source_ids:
@@ -288,6 +288,21 @@ source_ids:
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-09-29-yoon-multiplayer-ai
+  - src-2026-09-27-willison-llms-2026-so-far
+  - src-2026-09-28-watson-nvidia-openshell-runtime-controls
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-01-mollick-dot-swarm
+  - src-2026-10-01-neuralink-unlabeled-brain-pretraining
+  - src-2026-10-02-e2b-embed
+  - src-2026-10-02-epoch-agent-population
+  - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
+  - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-06-bytebytego-sycophancy
 status: active
 ---
 
@@ -313,7 +328,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Reinforcement Learning]] - Hub page for sequential decision making and RL method families.
 - [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments.
 - [[Continual Learning for Agents]] - Controlled post-deployment learning from one-off, asynchronous agent trajectories.
-- [[Transformer Architecture]] - Decoder-only Transformer synthesis spanning attention, RoPE, and KV-cache inference.
+- [[Transformer Architecture]] - Decoder and encoder patterns, attention, positional information, and why permitted attention does not guarantee evidence use.
 - [[Diffusion Models]] - Generative models that learn to reverse noising processes for images and other data.
 - [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
@@ -326,9 +341,9 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
 - [[LLM Reasoning]] - Hub for how models reason (deduction/abduction/induction), the frozen-θ view, evaluation/robustness, and how to make reasoning better.
 - [[Test-Time Scaling]] - Spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based.
-- [[Reasoning Effort Control]] - How low/medium/high effort selectors are trained into models, and why effort substitutes for parameters.
+- [[Reasoning Effort Control]] - Trained effort selectors and runtime effort policies, with model-specific cache behavior and budget limits.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
-- [[Model Context Protocol]] - Open standard (Anthropic) that solves the N×M tool-integration problem.
+- [[Model Context Protocol]] - Tool-integration protocol, with discovery, invocation, authorization, and credential handling as distinct boundaries.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
 - [[Agent Planning]] - Planning as data structures, atomic actions, and AoT dependency graphs for safe multi-step execution.
 - [[Agent Skill]] - Reusable agent capability artifacts spanning markdown procedures, durable workflows, and optimization loops.
@@ -368,7 +383,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Coding Agent Harness]] - The harness/engine split for running local open-weight coding agents; serving, permissions, and token economics.
 - [[Agent Delegation]] - What authority and intent travel with a handed-off sub-task; contract-first decomposition and the zone of indifference.
 - [[Loop Engineering]] - Designing repeated agent work around objectives, verifiers, state, budgets, stop conditions, and escalation.
-- [[Graph Engineering]] - Coordinating specialized agent or deterministic nodes through explicit routing and shared state.
+- [[Graph Engineering]] - Prescribed or model-selected coordination, with explicit contracts and authority under either topology.
 - [[Agent Security and Governance]] - Runtime permissions, sandboxing, credentials, ownership, logs, revocation, and autonomy controls.
 - [[Agent Payment Protocols]] - Inline HTTP-native payment for autonomous buyers, and what a spending cap cannot bound.
 - [[SIMD]] - CPU vectorization as a practical performance primitive.
@@ -422,9 +437,14 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Parameter-Efficient Fine-Tuning]] - LoRA, QLoRA, adapter deployment, and the boundary between context, knowledge, and behavior changes.
 - [[Just-in-Time Agentic OCR]] - Cheap corpus-wide extraction followed by query-directed visual parsing.
 - [[Legacy Code Modernization with AI Agents]] - Parity-first migration through characterization, decomposition, bounded agents, and human review.
+- [[Sycophancy]] - Unsupported agreement, preference-learning amplification, and tests that distinguish pressure from valid correction.
+- [[Emergent Misalignment]] - Behavioral spillover from narrow fine-tuning, bounded self-modeling interventions, and limits of causal interpretation.
 
 ## Entities
 
+- [[Replit]] - Coding-agent platform whose harness exposes model-selected specialists, reusable workers, and effort controls.
+- [[E2B]] - Sandbox infrastructure; Embed brings the runtime to one machine without making placement an authorization boundary.
+- [[Neuralink]] - Neural decoding through participant-specific causal representations, with pooled data and universal transfer kept distinct.
 - [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
 - [[Qwen]] - Alibaba's open-weight family; `preserve_thinking`, `reasoning_effort`, and benchmarks run through the Claude Code harness.
 - [[Baseten]] - Inference vendor supplying both the frontier taxonomy and the production agentic-kernel result.
@@ -437,14 +457,14 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Addy Osmani]] - Google engineering leader; the vault's principal source of counter-evidence on agent context files.
 - [[Google DeepMind]] - Research organization behind the delegation principles and AlphaEvolve program search.
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
-- [[ByteByteGo]] - Engineering newsletter; source for the tool-use and MCP article.
+- [[ByteByteGo]] - Engineering explainers spanning agent infrastructure, model systems, evaluation, and reliability failures.
 - [[Braintrust]] - Evaluation platform whose material in this vault focuses on multi-turn traces and online scoring.
 - [[Cameron R. Wolfe]] - Deep Learning Focus author whose agentic-RL survey reframed eight concept pages; the vault's clearest case of a secondary source doing structural work.
-- [[DoorDash]] - Delivery platform; source for LLM-as-a-Judge search evaluation and country-launch architecture.
+- [[DoorDash]] - Search evaluation, agent testing, shared MCP gateway operations, and country-launch architecture.
 - [[Fareed Khan]] - Repository author whose code-first LLM project ties Pile preprocessing, Transformer implementation, and training into one workflow.
 - [[Han Fang]] - Author of the PyTorch Practice interview tutorial.
 - [[Liquid AI]] - Model company focused here on sparse on-device assistants and local tool calling.
-- [[NVIDIA]] - Research organization whose current source opens the multimodal grounding branch.
+- [[NVIDIA]] - Accelerators, training and serving systems, multimodal grounding, and OpenShell runtime controls.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Qualcomm AI Research]] - Mobile/edge deployment group focused here on efficient on-device reasoning.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
@@ -461,7 +481,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[World Labs]] - AI company focused on spatial intelligence, world models, and unified Renderer/Simulator/Planner foundation models.
 - [[Maarten Grootendorst]] - AI educator and *Hands-On LLMs* co-author; source of the vault's visual quantization guide.
 - [[Vizuara]] - AI-education publisher behind recurring quantization, memory, and vision explainers in this vault.
-- [[Siddhant Rai]] - Vizuara writer behind the vault's TurboQuant and Nested Learning explainers.
+- [[Siddhant Rai]] - Vizuara writer on quantization, learning, and typed decisions, with reported evidence separated from recipe reconstruction.
 - [[Mayank Pratap Singh]] - Vizuara writer behind the vault's diffusion and TimeSformer/video-transformer explainers.
 - [[Alisa Liu]] - NLP PhD (UW, tokenization); author of the vault's interview-prep cluster (job-search post, Book of LLMs, Math Notes).
 - [[OpenAI]] - AI lab whose WebRTC voice infrastructure is the vault's real-time transport case study.
@@ -807,6 +827,24 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] - Held-out splits, revert rules, a noise floor, and a saturation ceiling for evaluations.
 - [[ByteByteGo - Why Do LLMs Lie]] - Factuality versus faithfulness, and scoring abstention separately from refusal.
 - [[Jina Yoon - We're Building Multiplayer AI]] - 64 users started a shared context file and 14 edited it; derive context from shipped work instead.
+
+### October 7, 2026 batch
+
+- [[Simon Willison - 2026 in LLMs (so far)]] - A practitioner's coding-agent retrospective; generating artifacts does not settle usefulness or assurance.
+- [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]] - External policy enforcement and credential substitution, with formal and adversarial-test scope kept explicit.
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] - Independent IMDb measurements, probability semantics, and calibration objectives without a disclosed Jev recipe.
+- [[Replit - Free the Models - Harness Design at the Frontier]] - Model-selected coordination primitives and reported quality/cost tradeoffs, not blanket dominance.
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] - Shared tool catalogue, call-time authorization, credential modes, and planned delegation controls.
+- [[Ethan Mollick - The Dot and the Swarm]] - Learned coordination as a hypothesis, with organizational reliability still unresolved.
+- [[Neuralink - Pretraining on 50,000 Hours of Unlabeled Brain Data]] - Participant-specific causal pretraining, cursor-control results, and limits of pooled transfer.
+- [[E2B - Embed Runtime README]] - Single-machine execution infrastructure, virtualization requirements, plain HTTP, and an unfinished multi-node roadmap.
+- [[Jason Li - How Many AI Agents Could We Run]] - HBM and serving assumptions translated into conditional concurrent-session capacity, not a deployment forecast.
+- [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] - Admission fairness and topology-aware GPU placement; shorter queue waits are not faster training.
+- [[Adam Faik - How to Build an AI-Native Software Factory]] - Bottleneck-first adoption, accepted-outcome accounting, and deterministic automation as a baseline.
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] - Secondary calibration studies, task-level exceptions, and corrections to an overstrong learning-method argument.
+- [[ByteByteGo - The LLM Blindspot - Lost in the Middle]] - Available-but-unused evidence, position-controlled tests, and qualified context mitigations.
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] - Uneven behavioral interventions with identity/domain confounds and single-turn, tool-free evaluations.
+- [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] - Sycophancy before and after preference learning, and evidence-sensitive rather than reflexive disagreement.
 
 ## Syntheses
 

@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-10-07
 tags:
   - entity
   - organization
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-09-13-tessier-gcp-model-armor
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
+  - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
 status: active
 ---
 
@@ -80,6 +81,18 @@ durable contribution is a component-by-component isolation map; its limitations 
 important, because it is vendor architecture rather than measured proof of leakage resistance or
 operating economics, and its discussion of tenant-specific CMEK in pooled memory is internally tense.
 
+## GKE as a shared GPU admission plane
+
+[[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] describes one shared GKE cluster
+of roughly **10,000 GPUs**, not all AI21 infrastructure. Kueue combines quota/admission policy,
+separate preemption fairness, and topology-aware placement so large parallel jobs can obtain
+usable slots rather than merely observe idle devices.
+
+The author reports **72 to 12 hours** of hero-job starvation and **15% to 8%** fragmentation.
+These are first-party before/after operating figures, without a measurement window or controlled
+attribution. Queue guarantees cannot eliminate cloud spot preemption, and a near-100% reserved
+utilization target is specific to this fleet rather than a universal GKE objective.
+
 ## Open questions
 
 - Which state, trace, tool, and policy formats remain portable across Agent Engine, Cloud Run, and GKE?
@@ -90,6 +103,10 @@ operating economics, and its discussion of tenant-specific CMEK in pooled memory
 
 ## Related pages
 
+- [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
+- [[Distributed Training Parallelism]]
+- [[Model Factory]]
+- [[ML Systems at Scale]]
 - [[AI Agents in Production]]
 - [[Agent Frameworks]]
 - [[Agent Security and Governance]]

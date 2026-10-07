@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-03
+updated: 2026-10-07
 tags:
   - log
 source_ids:
@@ -288,6 +288,21 @@ source_ids:
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-09-29-yoon-multiplayer-ai
+  - src-2026-09-27-willison-llms-2026-so-far
+  - src-2026-09-28-watson-nvidia-openshell-runtime-controls
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-01-mollick-dot-swarm
+  - src-2026-10-01-neuralink-unlabeled-brain-pretraining
+  - src-2026-10-02-e2b-embed
+  - src-2026-10-02-epoch-agent-population
+  - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
+  - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-06-bytebytego-sycophancy
 status: active
 ---
 
@@ -1605,3 +1620,55 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   all are within 280. New post and archive introduce no unresolved prose links; frontmatter parses;
   the reader check and `## Related pages` are present; index, log, and overview remain aligned at
   **283 source IDs**. [[Model Quantization and Efficiency]] enters cooldown until 2026-11-14.
+
+## [2026-10-07] ingest | Fifteen sources on agent control, decision models, and measured reliability
+
+- Ingested **15 new captures already present in `raw/sources/`**, without moving, renaming, or
+  changing their bytes or clipper metadata. Created 15 source summaries, two concepts
+  ([[Sycophancy]] and [[Emergent Misalignment]]), and three entities ([[Replit]], [[E2B]], and
+  [[Neuralink]]). Updated the materially affected concept/entity pages, the overview, and index.
+  The controlled ownership set grows **283 to 298 source IDs**; composite ownership makes this
+  **272 valid source-summary pages**, not 298 separate summaries.
+- **Coordination and acceptance:** [[Replit - Free the Models - Harness Design at the Frontier]]
+  and [[Ethan Mollick - The Dot and the Swarm]] distinguish model-selected workflow from external
+  authority and verification. Replit's medium-effort production cohorts and Max-mode benchmarks
+  retain their different denominators and conditions; nondominated does not mean better on both
+  quality and cost. [[Adam Faik - How to Build an AI-Native Software Factory]] adds bottleneck-first
+  adoption and deterministic migration counterevidence, while
+  [[Simon Willison - 2026 in LLMs (so far)]] keeps generated artifacts separate from useful
+  products and bounded no-review experiments separate from general assurance.
+- **Runtime and tool access:** [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]],
+  [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]], and
+  [[E2B - Embed Runtime README]] strengthen governance, harness, tenant, MCP, roster, and
+  observability pages. External enforcement, curated discovery, authorization, credential
+  substitution, and local placement are distinct. Formal/test scope, absent built-in TLS, and
+  planned rather than shipped controls remain explicit.
+- **Capacity accounting:** [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] adds
+  GPU admission fairness and topology-aware placement, without converting reduced queue wait
+  into training acceleration. [[Jason Li - How Many AI Agents Could We Run]] adds conditional
+  HBM-to-session capacity, active-time and latency definitions, and an API-equivalent spending
+  scenario. These are not observed deployments, forecasts, provider margins, or worker equivalents.
+- **Decision evidence and a corrected methodological claim:**
+  [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+  adds independent IMDb measurements, and
+  [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] adds secondary calibration
+  studies with task-level exceptions. Updated earlier all-vendor/no-calibration-evidence wording
+  without retroactively strengthening old sources. Cross-entropy and Brier loss are both proper;
+  RL is not necessary in principle for calibration. Choice concentration, event probabilities,
+  thresholds, published RLCR, private RLCD, and unknown Jev internals remain separate.
+- **Behavior and evidence use:**
+  [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] retains
+  identity/domain confounds, uneven prevention, residual errors, and tool-free single-turn
+  "agentic" evaluations. [[ByteByteGo - The LLM Blindspot - Lost in the Middle]] replaces
+  unconditional context "solutions" with controlled tests and qualified mitigations.
+  [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] qualifies the older
+  RLHF-only origin story and distinguishes valid correction from unsupported agreement.
+- **Non-language recurrent learning:**
+  [[Neuralink - Pretraining on 50,000 Hours of Unlabeled Brain Data]] adds causal neural
+  representations and participant-specific online decoding. Pooled available hours, cursor-task
+  results, calibration savings, and incomplete cross-participant transfer remain distinct.
+- Preserved unresolved source discrepancies, including Willison's "high" versus the earlier
+  Qwen `xhigh` configuration account, Rai's release-timing conflict, and undisclosed proprietary
+  recipes. Linked studies and captured tutorial/deployment code were not independently reproduced.
+  A pre-existing unregistered clipping in `wiki/sources/` remains outside this raw-input ingest;
+  posts, their archive, and local-only queries are unchanged.

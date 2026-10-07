@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-27-fd-agent-muse-compute-demand
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
 status: active
 ---
 
@@ -158,6 +159,19 @@ currency FD's chain says dominates. None of this is measured end to end: no sour
 harness-level token saving to a watt-hour, and FD's per-event energy band is itself an assumption
 stretched from one study.
 
+## Catalogue size and resident roster size need not grow together
+
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] describes a shared gateway with
+200+ servers while task-specific bundles and filters curate `tools/list`. That separates
+organizational integration coverage from the tools resident in one agent's context, without
+abandoning MCP.
+
+The optimization has a distinct security boundary: hiding a tool from discovery is not proof that
+it cannot be invoked. `tools/call` still rechecks authorization and applies the appropriate
+downstream credential. Discovery overhead and task quality need measurement too; the source reports
+adoption, not a controlled latency or token-saving result from bundle curation, and its more
+dynamic discovery design remains planned work.
+
 ## Open questions
 
 - **How much of the 36.6s vs 42.2s gap is roster size versus other harness differences?** The comparison is
@@ -179,6 +193,9 @@ stretched from one study.
 
 ## Related pages
 
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
+- [[DoorDash]]
+- [[Agent Security and Governance]]
 - [[Can Bölük - The Harness Playbook]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
 - [[FD - Agent Muse Compute Demand]]

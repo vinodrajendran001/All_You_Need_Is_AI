@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - inference
@@ -21,6 +21,10 @@ source_ids:
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-09-21-tiene-pruning-llms-ising
   - src-2026-09-27-fd-agent-muse-compute-demand
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-10-02-epoch-agent-population
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-10-05-rai-jev-decision-models
 status: active
 ---
 
@@ -248,6 +252,44 @@ elsewhere — so a per-token efficiency gain can be entirely consumed by more de
 present as flat cost rather than as a win. See [[Test-Time Scaling]] for the demand side and
 [[AI Agents in Production]] for the capacity chain that FD's estimate feeds.
 
+## Harness operating points are not wins on both axes
+
+[[Replit - Free the Models - Harness Design at the Frontier]] reports four-repeat Max/Astra
+results of **72% at $2.11 per task on 113 DeepSWE v1.1 tasks** and **49% at $2.53 on 63
+Terminal-Bench 4.0 tasks after excluding three GPU tasks**. Its cheaper one-worker sidekick scores
+less well; the reported public Astra xhigh configurations score higher and cost more. Calling the
+Max configuration Pareto-efficient means **nondominated among the compared points**, not better
+on both quality and cost. Public baselines are not controlled reruns, and the four harness
+primitives are not separately ablated.
+
+## Independent task costs narrow the decision-model claims
+
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] adds
+an independent **25,000-review IMDb** run with **jev-1.13.0**: Choice achieved **96.47%** for
+**$0.6492 in 22m24s**. That is a measured workload, unlike a generic vendor speed multiplier;
+it remains nondeterministic with unknown contamination and does not establish general superiority.
+His ModernBERT comparison's **23 minutes of fine-tuning plus seven minutes of evaluation** must
+not be relabeled 30 minutes of inference.
+
+[[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] adds secondary multi-dataset
+reports and task-level calibration failures. Output-token-free billing is not zero output compute,
+small decision spaces do not imply easy reasoning, and neither a GLiNER tutorial nor Laya's
+architecture reveals Jev's internals. Efficiency still needs a task-quality and decision-risk axis,
+not just a valid typed response.
+
+## Global supply scenarios inherit the serving contract
+
+[[Jason Li - How Many AI Agents Could We Run]] contrasts closed-model economic assumptions with
+an open-model throughput calculation. Its central full-allocation through-2027 hardware can
+support a modeled **50-101 million closed-model sessions** under **2x per-GB HBM4/4E uplift**,
+**$30 per active agent-hour**, **$5 per GB300 GPU-hour**, and a **5-10x API-revenue/reference-cost
+ratio**. An alternative allocation yields roughly **1.9 billion DeepSeek V4 Pro sessions** at
+P90 **50 output TPS/user**.
+
+The latter is not extra capacity or equal task capability; the streaming target excludes first-token
+delay. These are capacity scenarios rather than forecasts or provider margins. They complement,
+but do not numerically validate, FD's demand-side workload scenario above.
+
 ## Open questions
 
 - Depth-pruning gains are reported at aggressive ratios without retraining. Where does the gap between
@@ -271,6 +313,12 @@ present as flat cost rather than as a win. See [[Test-Time Scaling]] for the dem
 
 ## Related pages
 
+- [[Replit - Free the Models - Harness Design at the Frontier]]
+- [[Jason Li - How Many AI Agents Could We Run]]
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+- [[Replit]]
+- [[Epoch AI]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
 - [[Baseten - Agentic Kernels in Production]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]

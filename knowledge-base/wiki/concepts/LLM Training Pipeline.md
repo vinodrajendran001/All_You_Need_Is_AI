@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-25
+updated: 2026-10-07
 tags:
   - concept
   - llm
@@ -39,6 +39,7 @@ source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-23-bytebytego-model-customization
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
 status: active
 ---
 
@@ -237,6 +238,23 @@ fine-tuning by what must change: instructions, external knowledge, or recurring 
 QLoRA reduce trainable parameters and frozen-weight storage, but they do not remove the need for
 held-out task evaluation and retained-capability regression tests.
 
+## Narrow fine-tuning needs broad behavioral regression coverage
+
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] reports that a narrow
+training change can alter behavior outside its apparent domain. The study examines self-modeling
+interventions on GPT-4.1 and open-model settings, with stronger reversal than prevention and
+task/model-specific failures.
+
+Training-budget accounting matters: interleaving self-modeling as **one third of the final
+dataset** adds **50% more examples** relative to the original task data, not 33% more and not a
+cost-matched comparison. Self-identity language and domain content are also confounded, so the
+study does not isolate a uniquely identity-driven mechanism.
+
+Standard emergent-misalignment recovery can leave TruthfulQA errors, and some self-reports can
+transfer misalignment instead of repairing it. Its "agentic" evaluations are single-turn scenarios
+without tools. Retained capability, truthfulness, out-of-domain behavior, and executed-agent safety
+therefore remain distinct evaluation surfaces rather than one post-training score.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -246,6 +264,9 @@ held-out task evaluation and retained-capability regression tests.
 
 ## Related pages
 
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
+- [[Emergent Misalignment]]
+- [[Interpretability Evaluation]]
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 1|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 1]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]

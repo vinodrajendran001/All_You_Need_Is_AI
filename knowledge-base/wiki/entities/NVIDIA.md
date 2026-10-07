@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-09-30
+updated: 2026-10-07
 entity_kind: organization
 tags:
   - entity
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-09-28-watson-nvidia-openshell-runtime-controls
 status: active
 ---
 
@@ -154,7 +155,25 @@ argument, and Inferact's margin is largest at batch 1 and fading by batch 8.
 Everything here is vendor-reported by a party selling TPU inference work: no independent reproduction,
 no confidence intervals, and no energy or cost-per-token figures.
 
+## OpenShell places enforcement outside the agent workload
+
+[[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]] adds a runtime-governance
+component to NVIDIA's training and serving stack. OpenShell 0.1.0 separates gateway policy and
+lifecycle, an external outbound supervisor, and sandbox filesystem/process controls. Configured
+request inspection distinguishes operations on the same endpoint, while real credentials are
+substituted outside the workload.
+
+The boundaries matter as much as the feature list: agent policy proposals require human review by
+default; network changes can be live but filesystem/process changes need a new sandbox. Formal
+permission checks concern an operator-defined model, vendor adversarial tests omit a trial count,
+and cross-agent permission composition remains ongoing work. This is not a proof of universal
+containment.
+
 ## Related pages
+
+- [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
+- [[Agent Security and Governance]]
+- [[Coding Agent Harness]]
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]

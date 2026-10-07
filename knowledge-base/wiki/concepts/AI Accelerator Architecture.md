@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - hardware
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-10-02-epoch-agent-population
 status: active
 ---
 
@@ -139,6 +140,20 @@ a **hand-written TPU megakernel against a published vLLM GB200 recipe**, vendor-
 independent reproduction and no energy or cost-per-token accounting. It is evidence about what a
 memory system permits a specialist to build, and only indirectly about the chips.
 
+## HBM supply can anchor a capacity scenario, not count running agents
+
+[[Jason Li - How Many AI Agents Could We Run]] normalizes HBM shipments into GB300 equivalents
+using **288 GB per GPU**, not per superchip. It assumes **1-4x effective capacity uplift per GB**
+for HBM4/4E relative to HBM3E, with 2x central. The resulting central effective supply is
+**24.03 million GB300 equivalents through 2026** and **60.36 million through 2027**.
+These are nested horizons for eventual deployment of hardware associated with 2025 onward
+shipments, not two additive supplies or an observed installed fleet.
+
+Mapping that hardware to agent sessions still requires a model, service target, allocation,
+utilization, and economic assumptions; see [[Serving Benchmarks and Goodput]]. Memory supply is a
+useful bottleneck proxy, not a complete performance model or evidence that every session performs
+human-equivalent work.
+
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
@@ -150,6 +165,8 @@ memory system permits a specialist to build, and only indirectly about the chips
 
 ## Related pages
 
+- [[Jason Li - How Many AI Agents Could We Run]]
+- [[Epoch AI]]
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]
 - [[Liquid AI - LFM2.5-8B-A1B]]

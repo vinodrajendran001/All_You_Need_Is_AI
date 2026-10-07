@@ -1,10 +1,11 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-13
+updated: 2026-10-07
 tags: [concept, model-safety, adversarial-robustness, open-models]
 source_ids:
   - src-2026-08-20-mark-russinovich-fools-gold
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
 status: active
 ---
 
@@ -76,6 +77,19 @@ checkpoint contains deception behavior, a defensive control becomes a supply-cha
 withholds decoy corpora, attacked checkpoints, attack specifications beyond public recipes, and defended
 checkpoints, while publishing the measurement/training pipeline and a harmless synthetic demonstration.
 
+## Preventing behavioral spillover is a different objective
+
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] studies whether
+self-modeling training can prevent or reverse broad behavioral changes after narrow fine-tuning.
+Unlike Fool's Gold, it is not designed to make an attacked checkpoint intentionally unreliable.
+The two methods should not share a single "safety improvement" score: desired truthfulness and the
+relevant weight-state threat models differ.
+
+The self-modeling study reports uneven prevention, stronger reversal, and residual errors on
+other metrics. Neither its results nor Fool's Gold's attacked-state efficacy establishes universal
+fine-tuning robustness. Both require an explicit target behavior, a specified intervention, and
+separate checks for unintended transfer; runtime containment remains another boundary entirely.
+
 ## Open questions
 
 - Does the behavior survive adaptive attacks designed specifically to avoid the simulated ablation state?
@@ -89,6 +103,9 @@ checkpoints, while publishing the measurement/training pipeline and a harmless s
 
 ## Related pages
 
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
+- [[Emergent Misalignment]]
+- [[LLM Training Pipeline]]
 - [[Agent Security and Governance]]
 - [[Open Model Ecosystems]]
 - [[Reward Design for RL]]

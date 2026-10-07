@@ -1,12 +1,15 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-09-30
+updated: 2026-10-07
 tags: [concept, ai-agents, multi-tenancy, security, cost]
 source_ids:
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-09-29-yoon-multiplayer-ai
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-09-28-watson-nvidia-openshell-runtime-controls
+  - src-2026-10-02-e2b-embed
 status: active
 ---
 
@@ -98,6 +101,26 @@ tenant claim must be re-derived rather than inherited. PostHog calls governance 
 of its biggest blind spots**, and says it is interviewing users to learn more - which is this page's
 entire subject, so the finding is a problem statement rather than a design.
 
+## Tool visibility, credentials, and runtime residence are different scopes
+
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] supplies a gateway-level version of
+hop-by-hop authority. Authentication identifies the caller, `tools/list` bundles select the visible
+surface, `tools/call` authorizes execution, and credential injection selects the downstream identity.
+A shared gateway must not turn curated discovery into permission or substitute a service principal
+for a user's authorization. Short-lived user-agent-task-tool-scoped cryptographic identities are
+planned improvements in this account, not existing guarantees.
+
+[[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]] puts the enforcement
+plane outside the sandbox workload. Its modeled permission checks and credential substitution are
+useful building blocks, but cross-agent composed-permission analysis remains ongoing. A protected
+individual sandbox does not prove that every chain of cooperating agents preserves tenant scope.
+
+[[E2B - Embed Runtime README]] describes single-node placement of runtime, storage, and telemetry.
+It is an execution-residency choice, not evidence of per-tenant identity, memory, or authorization
+isolation. Plain HTTP without built-in TLS also leaves transport protection to the deployment.
+These cases strengthen component-by-component tiering: state explicitly which boundary each
+component actually enforces.
+
 ## Open questions
 
 - Which tenant claims can be verified independently at every agent and tool boundary?
@@ -112,6 +135,11 @@ entire subject, so the finding is a problem statement rather than a design.
 
 ## Related pages
 
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
+- [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
+- [[E2B - Embed Runtime README]]
+- [[E2B]]
+- [[Model Context Protocol]]
 - [[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]]
 - [[FD - Agent Muse Compute Demand]]
 - [[Jina Yoon - We're Building Multiplayer AI]]
@@ -124,4 +152,3 @@ entire subject, so the finding is a problem statement rather than a design.
 - [[Inference Efficiency Frontier]]
 - [[AI Agents in Production]]
 - [[Institutional Knowledge Agents]]
-

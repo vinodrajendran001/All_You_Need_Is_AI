@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - context-engineering
@@ -29,6 +29,7 @@ source_ids:
   - src-2026-09-15-bytebytego-llm-memory-goldfish
   - src-2026-09-14-li-long-context-latency
   - src-2026-09-29-yoon-multiplayer-ai
+  - src-2026-10-05-bytebytego-lost-middle
 status: active
 ---
 
@@ -72,7 +73,7 @@ Agent-R1-style frameworks store the full step-level trajectory, then apply an en
 
 ### What context engineering manages
 
-1. **System prompt** — role definition, capability boundaries, output format rules, tool schemas. Should be stable, concise, and written to survive position bias (models attend less to middle-of-context content).
+1. **System prompt** — role definition, capability boundaries, output format rules, tool schemas. Should be stable and concise, with use of important instructions tested across context positions rather than assumed from placement.
 2. **Conversation history** — which prior turns to include. Naive approaches include all history; engineering approaches apply sliding windows, summarization of older turns, or importance-weighted retention.
 3. **Retrieved content (RAG)** — what documents to include and how many. The quality of retrieval is a context engineering problem, not just a retrieval problem: wrong documents in the window cost tokens and actively mislead the model.
 4. **Tool and function call results** — output from tool executions can be large. Truncating, summarizing, or filtering tool results before including them in the context is context engineering.
@@ -81,7 +82,10 @@ Agent-R1-style frameworks store the full step-level trajectory, then apply an en
 
 ### Context window as information architecture
 
-The clearest framing: the context window is a **fixed-size database** that the model reads entirely at each inference step. Context engineering is database engineering for that fixed-size store: schema design (system prompt structure), query selection (what to retrieve), cache management (history truncation), and cost optimization (fewer tokens = lower latency and cost).
+One useful analogy is a **bounded working store**: schema design becomes prompt structure, query
+selection becomes retrieval, and cache management becomes history retention. It is not a reliable
+database read: evidence present in the window can still go unused, and fewer tokens do not by
+themselves establish lower end-to-end latency or better answers.
 
 ### Relationship to agent memory
 
@@ -105,11 +109,11 @@ Kilo's production numbers are useful here because they show the limit of "just c
 
 ### Production failure modes that context engineering addresses
 
-- **Lost-in-the-middle**: models attend poorly to content in the middle of long contexts. Solution: place critical information at start or end.
-- **Context overload**: too many retrieved documents degrade generation quality even if each individually is relevant. Solution: rank and select rather than include all.
-- **History drift**: long conversations accumulate stale context that conflicts with current state. Solution: progressive summarization of older turns.
-- **Tool result bloat**: tool calls return verbose JSON that fills the window with low-density information. Solution: structured summarization of tool outputs before reinsertion.
-- **Token exhaustion**: the context fills before the model can generate a response. Solution: explicit token budget partitioning with headroom reserved for generation.
+- **Lost-in-the-middle**: a model can use middle-position evidence less reliably. Mitigation to test: move or compact critical evidence without losing exceptions; start/end placement is not a guarantee.
+- **Context overload**: additional retrieved documents can degrade generation. Mitigation to test: rank and select while retaining needed coverage.
+- **History drift**: older context can conflict with current state. Mitigation to test: summarize with provenance and explicit supersession rather than silently erasing constraints.
+- **Tool result bloat**: verbose outputs consume space with low-density material. Mitigation to test: structured extraction that preserves evidence and error states.
+- **Token exhaustion**: input can leave insufficient generation room. Reserve and enforce an explicit token budget; that prevents a size failure, not a reasoning failure.
 
 ### AI Builder Club's four operating strategies
 
@@ -286,6 +290,23 @@ the source of truth is external work objects rather than the document's own prio
 is version-controlled so a drop is recoverable - but version control is the only defence stated, and
 nothing reported measures whether detail survives across nights.
 
+## Available context and usable context are different measurements
+
+[[ByteByteGo - The LLM Blindspot - Lost in the Middle]] separates four failures: evidence never
+supplied, evidence truncated, retrieval that misses it, and evidence present but not used. Only the
+last can establish a position effect when the question, evidence, length, and distractors are
+controlled.
+
+The causal mask does not bar the answer from earlier middle tokens. Its permission is not a
+guarantee of effective evidence use. Likewise, the explainer's RULER comparison across 17 models
+measures length-dependent degradation, not a pure position experiment or a universal 20K-token
+cliff.
+
+The operating consequence is to test *effective* context on the task: move the same evidence,
+retain qualifications and citations when compressing it, and measure the answer. Tags, repetition,
+query-focused retrieval, and start/end placement are candidate mitigations, not universal fixes
+or security boundaries.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -299,6 +320,8 @@ nothing reported measures whether detail survives across nights.
 
 ## Related pages
 
+- [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
+- [[Transformer Architecture]]
 - [[Agent Memory]]
 - [[Agent Skill]]
 - [[Agentic Reinforcement Learning]]

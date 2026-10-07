@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-09-03
+updated: 2026-10-07
 tags:
   - concept
   - sdlc
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-08-07-avi-chawla-claude-code-cost
   - src-2026-08-22-grok-bot-systems-engineering-working-note
   - src-2026-09-02-paolo-perrone-agentic-testing
+  - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-09-27-willison-llms-2026-so-far
 status: active
 ---
 
@@ -21,7 +23,10 @@ status: active
 
 ## Definition
 
-The AI-native SDLC is a rebuilt software development process in which the six familiar stages — plan, design, build, test, deploy, maintain — become a **loop of committed artifacts** rather than a linear chain of documents and sign-offs, with AI embedded at every point and controls enforced as the agent acts rather than at review time.
+The AI-native SDLC redesigns software development around agent-produced artifacts, feedback, and
+runtime controls. The vault's anchor Anthropic playbook turns plan, design, build, test, deploy, and
+maintain into a **loop of committed artifacts** rather than a linear chain of documents and sign-offs.
+That is one concrete operating model, not the definition of every AI-assisted software factory.
 
 ## Why it matters
 
@@ -66,7 +71,7 @@ The playbook is explicit that stage order and adoption order are different thing
 
 ## Tensions
 
-- **The evidence is vendor-supplied and unmeasured.** Every play is expressed in Claude Code primitives, and while each names "how you measure whether it worked," no baselines, control groups, or before/after numbers are reported for any customer.
+- **The anchor playbook's evidence is vendor-supplied and unmeasured.** Every play is expressed in Claude Code primitives, and while each names "how you measure whether it worked," no baselines, control groups, or before/after numbers are reported for any customer.
 - **Guardrails need governance too.** Moving policy into hooks means policy now lives in shell scripts inside the repository. Who reviews the guardrails, and what stops an agent from editing them, is unaddressed.
 - **The audit trail assumes honest artifacts.** Treating the commit chain as the record of what happened presumes the agent's stated rationale reflects what it actually did — precisely the gap [[Grok Bot Systems Engineering Working Note]] closes with an evidence ladder in which "the bot says it is done" is never sufficient.
 - Human accountability is asserted to remain central, but concentrating attention at gates means humans increasingly review *what the agent flagged* rather than the work itself, which relocates rather than removes the trust problem.
@@ -95,6 +100,31 @@ testing — agents produce candidates, deterministic systems decide — and it i
 that a repair agent's documented give-up condition is to **mark a test skipped**, silently narrowing coverage
 while keeping the suite green. See [[Agentic Testing]].
 
+## Measure the constrained stage before building a factory
+
+[[Adam Faik - How to Build an AI-Native Software Factory]] adds operational reporting to the
+playbook's prescriptions. Its proposal is to measure the bottleneck, run a bought agent on
+verifiable toil in shadow mode, and build only the repository context, warm environments, workflow
+blueprints, and gates needed by that workload. Review and CI can absorb all of a code-generation
+gain. Cost per accepted outcome with quality retained is therefore more useful than token volume.
+
+The strongest counterexample to indiscriminate agent use is an Uber JUnit migration: generative AI
+did not work well, while deterministic Shepherd automation produced **5,000+ diffs** and moved
+**75,000+ test classes in four months**, with AI helping failures. This is secondary company
+reporting, not a controlled comparison, but it keeps deterministic transformation in the baseline
+set rather than making "agentic" the success criterion.
+
+[[Simon Willison - 2026 in LLMs (so far)]] reaches a compatible limit through personal experiments:
+generating a game-shaped artifact did not supply a compelling game. He presents StrongDM's
+no-human-writing/no-human-code-review rules as an experienced team's alternative assurance
+experiment, not a universal removal of review. Specification, product judgment, and verification
+remain work even when implementation gets cheaper.
+
+Faik's survey is mostly large-company self-reports and explicitly lacks a demonstrated
+300-engineer laptop-to-factory rollout. Its illustrative 200-PR PostHog sample also changes
+dramatically when bot reviews count. Neither it nor Willison's keynote establishes a general
+productivity multiplier or a universally appropriate autonomy level.
+
 ## Open questions
 
 - Which parts survive translation off Claude Code? The artifact loop and act-time enforcement look portable; the specific `CLAUDE.md`/hooks/subagent surface does not.
@@ -104,6 +134,10 @@ while keeping the suite green. See [[Agentic Testing]].
 
 ## Related pages
 
+- [[Adam Faik - How to Build an AI-Native Software Factory]]
+- [[Simon Willison - 2026 in LLMs (so far)]]
+- [[Legacy Code Modernization with AI Agents]]
+- [[Agent Observability]]
 - [[Anthropic - The AI-Native SDLC Playbook]]
 - [[Coding Agent Harness]]
 - [[Agent Skill]]

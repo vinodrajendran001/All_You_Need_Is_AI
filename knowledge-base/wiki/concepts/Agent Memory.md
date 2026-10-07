@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-05-lenz-nemoclaw-memory-agent
   - src-2026-09-15-bytebytego-llm-memory-goldfish
   - src-2026-09-29-yoon-multiplayer-ai
+  - src-2026-10-05-bytebytego-lost-middle
 status: active
 ---
 
@@ -207,6 +208,19 @@ reports **no measured hallucination reduction, token savings, latency change, or
 after **a few weeks** of dogfooding, so it belongs on this page as a design with an argument, not as
 evidence that derived memory works.
 
+## Persisting and retrieving a fact does not ensure that the next answer uses it
+
+[[ByteByteGo - The LLM Blindspot - Lost in the Middle]] adds a final stage to the memory lifecycle:
+evidence use after promotion into context. Stored, retrieved, present, and actually used are four
+different states. A durable memory can survive perfectly on disk and still fail its immediate task
+when buried among distractors.
+
+Test the promoted fact at different positions with the same question and controlled context, then
+inspect the answer rather than treating retrieval or citation as completion. Compaction should keep
+the original reference and material exceptions so relevance optimization does not become fact
+rewriting. This strengthens the writer-maintenance argument above while rejecting an unlimited
+context window as a substitute for maintenance.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -221,6 +235,8 @@ evidence that derived memory works.
 
 ## Related pages
 
+- [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
+- [[Multi-Turn Evaluation]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Agentic Loop]]
 - [[Agent Planning]]

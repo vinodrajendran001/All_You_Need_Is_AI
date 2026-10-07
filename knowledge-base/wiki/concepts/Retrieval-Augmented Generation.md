@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-30
+updated: 2026-10-07
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-16-bytebytego-needle-haystack-retrieval
   - src-2026-09-21-liu-just-in-time-agentic-ocr
   - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-10-05-bytebytego-lost-middle
 status: active
 ---
 
@@ -284,7 +285,24 @@ controlled comparisons, and offering no guidance on retrieval thresholds or on a
 documents — so it is a checklist of failure modes rather than a sizing of them, and it leaves open what
 retrieval-time signal would indicate an incomplete rather than a sufficient result set.
 
+## Retrieval success is not evidence-use success
+
+[[ByteByteGo - The LLM Blindspot - Lost in the Middle]] sharpens the boundary between a search
+failure and a generation failure. A relevant passage can be retrieved, fit inside the actual
+prompt, and still fail to affect the answer. More retrieved context can therefore improve recall
+while worsening use of the decisive clause.
+
+A position-controlled evaluation keeps question and evidence fixed while moving that passage and
+controlling length and distractors. Separately record retrieval recall, truncation, citation, and
+answer correctness; a citation alone does not establish faithful use. Query-focused extraction
+and ordering may help, but compression must preserve exceptions and the route back to the
+original source. RAG is a mitigation to evaluate, not a guarantee against lost-in-the-middle
+behavior.
+
 ## Related pages
+
+- [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
+- [[Multi-Turn Evaluation]]
 
 - [[Classic RAG vs Graph RAG vs Agentic RAG]]
 - [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]

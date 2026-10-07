@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - routing
@@ -19,6 +19,9 @@ source_ids:
   - src-2026-09-09-bytebytego-model-routing
   - src-2026-09-18-0xmovez-jev-engineering
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-10-05-rai-jev-decision-models
 status: active
 ---
 
@@ -168,6 +171,34 @@ implementation changes none of the four failure modes above: **prompt injection 
 instructions**, under-routing, over-routing, and providers silently improving the models the routing
 logic was tuned against all survive intact.
 
+## The core can route from evolving task state
+
+[[Replit - Free the Models - Harness Design at the Frontier]] moves some routing decisions from an
+upfront classifier into the core agent: it chooses domain specialists, worker tiers, effort, and
+reuse as the task develops. This uses information gained during execution rather than only the
+initial request. It does not prove the authors' broader claim that every external router is
+inherently inferior; the harness still chooses the menu and includes an effort controller.
+
+The evidence is a tradeoff, not dominance. Replit's Max/Astra configuration is more accurate and
+more expensive than its single-worker sidekick, and less accurate and cheaper than the reported
+public Astra xhigh baselines. Model-directed routing should be evaluated on whole-task cost and
+quality, including failed delegates and context transfers.
+
+## A probability field needs a meaning before it gets a threshold
+
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] clarifies
+that Jev Choice's `confidence` measures distribution concentration, not the winning option's
+probability. Noul values are independent statement probabilities; a low probability of a statement
+being true is not automatically low confidence in the decision. These fields cannot share an
+unexamined "below 0.6, escalate" policy.
+
+[[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] adds secondary reports of
+good pooled calibration alongside much weaker task-specific calibration. Its reported Choice ECE
+is **0.028 pooled**, but **0.279 on Emotion**. Neither figure validates a production router's
+threshold. Measure on its own traffic, keep calibration fitting separate from policy evaluation,
+and test asymmetric under-routing costs. A "System Three" dispatcher is Rai's speculative label,
+not a new independently validated routing method.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -182,6 +213,10 @@ logic was tuned against all survive intact.
 
 ## Related pages
 
+- [[Replit - Free the Models - Harness Design at the Frontier]]
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+- [[Reasoning Effort Control]]
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[Small Language Models]]

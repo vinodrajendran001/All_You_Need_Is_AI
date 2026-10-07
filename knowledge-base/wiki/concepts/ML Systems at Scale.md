@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-09-13
+updated: 2026-10-07
 tags:
   - concept
   - machine-learning
@@ -20,6 +20,8 @@ source_ids:
   - src-2026-07-17-netflix-in-house-llm-serving
   - src-2026-09-13-ranganathan-gke-inference-gateway
   - src-2026-09-13-sumit-scaling-distributed-systems
+  - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
+  - src-2026-10-02-epoch-agent-population
 status: active
 ---
 
@@ -166,7 +168,34 @@ Together the sources support a systems rule: **scaling patterns are nouns; workl
 the policy.** Horizontal replicas do not produce useful scale until routing understands the scarce
 state and the service-level objective.
 
+## Capacity must survive placement, policy, and service requirements
+
+[[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] shows the cluster-level distinction:
+historical quota allocation, preemption fairness, and feasible topology can prevent ostensibly free
+GPUs from serving a queued job. In the reported shared GKE fleet, fragmentation fell **15% to 8%**
+and hero-job starvation **72 to 12 hours**. These are first-party operational before/after figures,
+not faster model training or proof of a universally optimal utilization target.
+
+[[Jason Li - How Many AI Agents Could We Run]] makes the analogous supply-to-service conversion at
+a global scale. Shipped HBM becomes GPU equivalents only under deployment and technology-uplift
+assumptions; concurrent sessions then depend on model, per-user latency target, and cost assumptions.
+Its closed-model through-2027 central range of **50-101 million sessions** assumes a **2x
+per-GB HBM4/4E uplift**, full allocation, **$30 per active agent-hour**, **$5 per GB300 GPU-hour**,
+and a **5-10x API-revenue/reference-serving-cost ratio**.
+
+Epoch's separate **20% effective-use scenario** is **40% allocation times 50% utilization**,
+not two independent discounts to apply again. Its **$2.6-5.3 trillion annual figure** is
+API-equivalent spending at that use level, not provider break-even revenue or a demand forecast.
+Across both sources, raw supply, allocatable capacity, delivered goodput, and useful work are
+distinct system quantities.
+
 ## Related pages
+
+- [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
+- [[Jason Li - How Many AI Agents Could We Run]]
+- [[Model Factory]]
+- [[Epoch AI]]
+- [[Serving Benchmarks and Goodput]]
 
 - [[Netflix - In-House LLM Serving]]
 - [[systemdesign42 - System Design Academy]]

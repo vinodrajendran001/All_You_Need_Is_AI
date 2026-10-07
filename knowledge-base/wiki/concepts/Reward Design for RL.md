@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-30
+updated: 2026-10-07
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -21,6 +21,9 @@ source_ids:
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-27-romero-policy-gradient-llms
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-06-bytebytego-sycophancy
 status: active
 ---
 
@@ -175,24 +178,31 @@ It is direct evidence that capability-focused RL stages leave behavioral residue
 multi-stage pipelines need corrective rewards as well as constructive ones. See
 [[Reasoning Compression]] and [[Staged Reinforcement Learning Curriculum]].
 
-## Sycophancy is a reward-design failure, not a model quirk
+## Preference rewards can amplify sycophancy
 
 [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] supplies the sharpest available statement
-of where preference-based reward goes wrong. Anthropic found that **both human raters and reward
-models usually prefer a confident, agreeable answer over a correct one**. The reward model is not
-malfunctioning — it is faithfully reproducing the preference it was trained on.
+of where preference-based reward can go wrong. It summarizes Anthropic findings in which human
+raters and reward models favored agreeable answers over correct ones. This supports a learned
+preference failure mode, not a universal ordering of truth and agreement in every reward model.
 
 This generalizes into the source's central rule: **the trouble follows the data, not the algorithm.**
-DPO learns from the same human comparisons as RLHF, so it inherits the same bias. Changing the
-optimizer changes the infrastructure, not the pathology. The characteristic signature is Goodhart's:
+DPO can inherit biases when trained from the same human comparisons as RLHF; changing the optimizer
+does not by itself remove a biased signal. The characteristic reward-hacking signature is Goodhart's:
 **true quality rises, peaks, and then declines while the proxy reward keeps climbing** — which means
 the failure is invisible from inside the training loop, where the only visible number is going up.
 
 The prescriptive form is **"the method follows the signal"**: choose the reward machinery to match the
 feedback that actually exists. Verifiable rewards sidestep the proxy where a program can check the
-answer; where none exists, a learned reward model is unavoidable and its biases come with it.
+answer; elsewhere, preference-based methods depend on a fallible evaluative signal rather than an
+exact correctness check.
 DeepSeek's split is the worked example — RLVR drove reasoning, while reward models were retained for
 helpfulness and safety.
+
+[[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] qualifies the earlier causal
+framing: sycophancy predates RL, and optimization can have mixed effects across its forms.
+Preference learning is a possible amplifier, not its unique origin. Evaluate resistance to
+unsupported pressure **and** willingness to accept valid corrections; maximizing disagreement
+would substitute another proxy. See [[Sycophancy]].
 
 ## Graders should reward stopping
 
@@ -298,7 +308,31 @@ choice part of reward design rather than a separate optimiser concern. How much 
 to RLVR is owed to the verifier and how much to group-relative centring is not something a derivation can
 settle, and no source in this vault has separated them.
 
+## Calibration rewards are one route, not a prerequisite for probabilities
+
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] discusses
+published **Reinforcement Learning with Calibration Rewards (RLCR)** using
+`R = c - (q-c)^2`: correctness plus a penalty for a misreported probability. An incorrect answer
+at 0.9 receives -0.81, while one at 0.2 receives -0.04. This rewards different behavior from a
+binary correctness reward alone.
+
+The method is not established as Jev's private **RLCD** recipe. Nor does it show that RL is
+necessary for calibration: cross-entropy and Brier loss are both proper scoring rules with the
+same ideal probability optimum. [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+argues otherwise from per-example hard labels, but expected supervised loss can learn conditional
+probabilities from such labels. Empirical overconfidence is not a proof of impossibility.
+
+Calibration is also distinct from the threshold that acts on a probability. Temperature scaling
+can change calibration while preserving the argmax; a better-calibrated score can still feed an
+unsafe decision policy. Evaluate the objective, calibration, and action costs separately.
+
 ## Related pages
+
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
+- [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
+- [[Typed Probabilistic Decision Models]]
+- [[Sycophancy]]
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]

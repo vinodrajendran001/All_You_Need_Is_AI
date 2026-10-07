@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - overview
   - ai
@@ -290,6 +290,21 @@ source_ids:
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-09-29-yoon-multiplayer-ai
+  - src-2026-09-27-willison-llms-2026-so-far
+  - src-2026-09-28-watson-nvidia-openshell-runtime-controls
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-01-mollick-dot-swarm
+  - src-2026-10-01-neuralink-unlabeled-brain-pretraining
+  - src-2026-10-02-e2b-embed
+  - src-2026-10-02-epoch-agent-population
+  - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
+  - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-06-bytebytego-sycophancy
 status: active
 ---
 
@@ -902,7 +917,71 @@ all succeed or all fail centres to zero and contributes no gradient. This is a p
 not a measurement, and the SFT equivalence is a property of the gradient rather than a claim that RL
 and SFT share training dynamics.
 
+## October 7 additions
+
+**Coordination policy can move into the model without moving authority with it.**
+[[Replit - Free the Models - Harness Design at the Frontier]] lets a core model select specialists,
+worker tiers, reusable subagents, and effort within harness-provided choices. Its reported
+nondominated benchmark points are cost/quality tradeoffs, not wins on both axes.
+[[Ethan Mollick - The Dot and the Swarm]] makes the broader case for learned coordination, but his
+anecdotes do not establish sustained organizational reliability. [[Graph Engineering]] and
+[[Agent Delegation]] now distinguish choosing a workflow from granting permission or accepting
+its result.
+
+**Placement, discovery, and enforcement solve different problems.**
+[[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]] puts policy and
+credential substitution outside the workload; its formal model and vendor tests have bounded scope.
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] separates curated tool discovery from
+call-time authorization, while stronger delegation identities remain planned.
+[[E2B - Embed Runtime README]] puts a runtime on one machine but supplies no built-in TLS or
+automatic egress guarantee. Self-hosting does not make these other boundaries disappear.
+
+**Supply is not delivered goodput, and delivered work is not accepted value.**
+[[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] shows how fairness and feasible
+topology mediate access to available GPUs. Its shorter queue waits are not a training speedup.
+[[Jason Li - How Many AI Agents Could We Run]] extends that accounting to global HBM supply,
+conditional serving capacity, and active-session definitions. These are scenarios, not forecasts,
+provider margins, or human-worker equivalents.
+[[Adam Faik - How to Build an AI-Native Software Factory]] measures the next boundary: review and
+CI can consume generation gains, and deterministic migrations may beat an agentic approach.
+[[Simon Willison - 2026 in LLMs (so far)]] supplies the product-quality limit: a generated artifact
+can resemble a game without being a compelling one.
+
+**Typed output, calibration, and action policy need separate evidence.**
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] adds
+independent IMDb evidence where launch-era notes mostly had vendor claims.
+[[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]] reports wider calibration
+studies secondhand, including large task variation and local recalibration. That updates the
+earlier absence-of-evidence position on [[TypeSafe AI]], but not into universal calibration.
+Rai's argument that hard-label supervised learning cannot calibrate is too strong: cross-entropy
+and Brier loss are both proper scoring rules. Published RLCR, private RLCD, and speculative Jev
+architecture reconstructions remain distinct.
+
+**A plausible proxy does not establish the behavior it names.**
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] changes behavioral
+outcomes without isolating identity from domain content; its "agentic" evaluations have one turn
+and no tools. [[Emergent Misalignment]] therefore separates observations, causal hypotheses,
+and runtime containment.
+[[ByteByteGo - The LLM Blindspot - Lost in the Middle]] distinguishes evidence that is present
+from evidence actually used, while [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
+distinguishes valid correction from unsupported agreement. [[Context Engineering]] and
+[[Sycophancy]] carry testable mitigations rather than universal attention or RLHF origin stories.
+
+**A pooled corpus is not a universal decoder.**
+[[Neuralink - Pretraining on 50,000 Hours of Unlabeled Brain Data]] extends
+[[Linear Attention and Recurrent Memory]] beyond language through causal neural-signal
+representations. The headline hours describe pooled available data; live encoders remain
+participant-specific, and pooled models have not improved online performance. Cursor-task
+information transfer is not general mind-reading bandwidth, and zero-shot universal decoding
+remains unsolved.
+
 ## Related pages
+
+- [[Sycophancy]]
+- [[Emergent Misalignment]]
+- [[Replit]]
+- [[E2B]]
+- [[Neuralink]]
 
 - [[Andrej Karpathy - LLM Wiki]]
 - [[Persistent Wiki]]

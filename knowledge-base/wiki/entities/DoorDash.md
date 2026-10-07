@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-05-29
-updated: 2026-06-02
+updated: 2026-10-07
 tags:
   - entity
   - organization
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-05-28-doordash-llm-judge
   - src-2026-05-21-bytebytego-batch
   - src-2026-06-02-bytebytego-doordash-testing-system
+  - src-2026-09-30-bytebytego-doordash-agent-gateway
 status: active
 ---
 
@@ -26,7 +27,29 @@ In [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]], DoorDash app
 
 Together these sources make DoorDash relevant here not only as a marketplace company, but as a recurring source of practical engineering patterns for workflow modularity, search relevance, chatbot testing, and ML evaluation. Its engineering writing is therefore worth treating as a substantive source of production architecture and evaluation ideas.
 
+## Shared tool access complements the evaluation flywheel
+
+[[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] reports a registry/control plane and
+separate internal/external proxy planes serving **200+ MCP servers**, **30+ agents or services**,
+and **millions of weekly tool calls**. These are attributed adoption figures, not independent
+performance or security measurements.
+
+The reusable design is the separation of tool discovery, call authorization, and downstream
+credentials. Task bundles curate `tools/list`; invocation still requires authorization. OAuth
+can pause/resume on capable clients or return a structured authorization-required result.
+Per-call trace attribution connects this access layer to the existing testing story.
+
+Cryptographic delegation identities, dynamic discovery, and stronger redaction/evaluation are
+roadmap items in the source. Do not infer that every proposed control is already deployed merely
+because the gateway has broad adoption.
+
 ## Related pages
+
+- [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
+- [[Model Context Protocol]]
+- [[Tool Roster Economics]]
+- [[Agent Observability]]
+- [[Agent Security and Governance]]
 
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]
 - [[ByteByteGo - How DoorDash Built a Testing System to Evaluate LLMs]]

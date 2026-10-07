@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-09-25
+updated: 2026-10-07
 entity_kind: organization
 tags:
   - entity
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-22-bytebytego-openai-gpt-live
+  - src-2026-10-06-arush-self-modeling-emergent-misalignment
 status: active
 ---
 
@@ -91,7 +92,25 @@ inference with separate live and asynchronous paths, learned interruption behavi
 handoff, and p999-oriented operations. The account is secondary and supplies no public production
 dataset.
 
+## GPT-4.1 in an external study of behavioral spillover
+
+[[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] studies
+**GPT-4.1, snapshot 2025-04-14**, with one-epoch fine-tuning and automatic hyperparameters.
+It reports that self-modeling interventions can change out-of-domain behavior, with stronger
+reversal than prevention and residual errors on separate metrics.
+
+This is external research, not an OpenAI product assurance. Its "agentic" evaluations are
+single-turn scenarios without tools, and self-identity reports do not isolate a causal mechanism.
+Nor does this study establish that narrow-fine-tuning emergent misalignment caused the
+Hugging Face incident described above. The common lesson is to evaluate behavioral transfer
+without collapsing distinct mechanisms and runtime failures into one label.
+
 ## Related pages
+
+- [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
+- [[Emergent Misalignment]]
+- [[Interpretability Evaluation]]
+- [[LLM Training Pipeline]]
 
 - [[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]]
 - [[Real-Time Voice AI]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-27
+updated: 2026-10-07
 tags:
   - concept
   - training
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-24-edward-yang-parallelize-transformer
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
 status: active
 ---
 
@@ -83,6 +84,19 @@ algorithm* rather than around tensors, layers, or sequence positions, and it is 
 makes asynchronous RL physically possible. See [[Agentic Reinforcement Learning]] and
 [[Staged Reinforcement Learning Curriculum]].
 
+## Parallel jobs still need coordinated admission
+
+[[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] adds the cluster boundary above
+within-job parallelism. In AI21's reported shared GKE cluster of roughly 10,000 GPUs, a job needing
+eight GPUs on one node cannot use eight idle GPUs fragmented as **1 + 1 + 4 + 2** across nodes.
+Free device count is not the same as a feasible parallel placement.
+
+Kueue's topology-aware scheduling and packing address placement; historical allocated chip-hours
+inform admission fairness, while preemption fairness is a separate mechanism. None chooses tensor,
+pipeline, or data parallelism for the model. The reported hero-job wait fell **72 to 12 hours**,
+an **83% time-to-start reduction**, not an 83% improvement in training throughput. Measurement
+windows and a controlled attribution are not supplied.
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
@@ -91,6 +105,9 @@ makes asynchronous RL physically possible. See [[Agentic Reinforcement Learning]
 
 ## Related pages
 
+- [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
+- [[Model Factory]]
+- [[Google Cloud]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]]
 - [[LLM Training Pipeline]]

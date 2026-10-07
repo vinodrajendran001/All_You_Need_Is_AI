@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-09-13
+updated: 2026-10-07
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-12-zhang-recurrent-looped-transformer
+  - src-2026-10-01-neuralink-unlabeled-brain-pretraining
 status: active
 ---
 
@@ -132,6 +133,24 @@ The proposal makes a useful correctness claim for training: detaching recurrent 
 or encoder-memory paths changes the gradient, and parameter updates invalidate cached states for
 exact current-policy replay. No empirical quality or efficiency result is yet reported.
 
+## Causal recurrent representations also operate outside language
+
+[[Neuralink - Pretraining on 50,000 Hours of Unlabeled Brain Data]] describes a spike/channel
+embedding and Perceiver front end followed by a **Mamba** temporal model, trained with a
+spatially masked auto-Poisson objective. Full temporal causality supports online decoding without
+future neural signals. This is recurrent representation learning over neural activity, not
+ordinary next-token text generation or evidence of a JEPA implementation.
+
+The headline **50,000+ hours** is the pooled available corpus, not a universal decoder's training
+set. All live encoders are participant-specific, and pooled models have not improved online
+performance. In one shown comparison, 30 seconds of labeled embeddings match about 3.5 minutes
+of raw-spike labels; this is not an all-participant reduction factor.
+
+The link to this page is causal state and label-efficient representations, not a measured
+Transformer-versus-Mamba speed advantage. Cursor-control information transfer and calibration
+burden remain task-specific outcomes, while universal and zero-shot decoding remain unsolved.
+See [[Neuralink]].
+
 ## Open questions
 
 - What determines the right full-attention ratio in a hybrid, and does it depend on task, sequence length, or
@@ -147,6 +166,8 @@ exact current-policy replay. No empirical quality or efficiency result is yet re
 
 ## Related pages
 
+- [[Neuralink - Pretraining on 50,000 Hours of Unlabeled Brain Data]]
+- [[Neuralink]]
 - [[@neural_avb - What Are Looped Transformers|@neural_avb - What Are Looped Transformers?]]
 - [[@waterloo_intern - From GPT-2 to Kimi K3]]
 - [[MoonshotAI - FlashKDA v1 Deep Dive]]

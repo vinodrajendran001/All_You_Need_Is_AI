@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-12
+updated: 2026-10-07
 tags:
   - concept
   - ai-agents
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-andrew-ng-loop-to-graph-engineering
   - src-2026-08-05-aibuilderclub-graph-engineering-karpathy-loop
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
+  - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-10-01-mollick-dot-swarm
 status: active
 ---
 
@@ -50,6 +52,20 @@ The architecture overlaps state machines, DAG schedulers, workflow engines, acto
 
 [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]] shows how this lens appears in current runtimes: LangGraph, Google ADK, and Microsoft Agent Framework expose explicit graph/state primitives, while other frameworks favor role-based crews, event workflows, or minimal loops. Framework choice does not determine whether a graph is warranted.
 
+## A graph can emerge within a designed boundary
+
+[[Replit - Free the Models - Harness Design at the Frontier]] distinguishes exposing coordination
+primitives from hard-coding a topology. The core chooses when to spawn or revisit a worker and
+which specialist, tier, and effort to use; a simple task can stay one loop. Its first-party
+benchmarks support a quality/cost tradeoff against a cheaper one-worker design, not a rule that
+larger graphs always win.
+
+[[Ethan Mollick - The Dot and the Swarm]] supplies the broader hypothesis that models will absorb
+more of the coordination humans once scripted. His examples are anecdotes, and he leaves sustained
+organizational work unresolved. Together the sources qualify rather than erase this page's advice:
+**design the contracts, permissions, evidence, and stopping boundaries; measure whether topology
+also needs to be prescribed**. Learned dispatch and deterministic business gates can coexist.
+
 ## Open questions
 
 - What benchmarks reveal the point where specialization exceeds coordination overhead?
@@ -58,6 +74,10 @@ The architecture overlaps state machines, DAG schedulers, workflow engines, acto
 
 ## Related pages
 
+- [[Replit - Free the Models - Harness Design at the Frontier]]
+- [[Ethan Mollick - The Dot and the Swarm]]
+- [[Agent Delegation]]
+- [[Agent Workflow Maturity]]
 - [[Loop Engineering]]
 - [[Agentic Loop]]
 - [[Agent Planning]]

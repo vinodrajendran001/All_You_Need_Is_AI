@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-11
+updated: 2026-10-07
 tags:
   - concept
   - llm
@@ -21,6 +21,8 @@ source_ids:
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-10-05-bytebytego-lost-middle
 status: active
 ---
 
@@ -28,7 +30,11 @@ status: active
 
 ## Definition
 
-A Transformer architecture is the attention-centered neural-network design behind modern LLMs: tokens are embedded into vectors, enriched with positional information, passed through repeated blocks of masked self-attention and MLP computation, and finally projected into next-token logits.
+A Transformer is an attention-centered neural-network architecture that combines contextual
+representations with per-position transformations. In the decoder-only language-model pattern
+emphasized by the vault, token embeddings pass through position-aware, causally masked attention
+and MLP blocks before projection to next-token logits. Encoder and classification variants need
+not use that mask or generate text.
 
 ## Why it matters
 
@@ -95,6 +101,27 @@ importance of running some experiments at scale."
 
 Fuller treatment in [[Recursive Architectures]].
 
+## Classification does not require an autoregressive output loop
+
+[[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] traces
+text classification from bag-of-words through recurrent, convolutional, and Transformer models.
+ModernBERT is a bidirectional-encoder example; a scoring head over text, task, and candidate can
+support a changing label set without free-form generation. That describes a design pattern, not
+a disclosure of Jev's private architecture. A small output space also does not bound the reasoning
+needed to choose correctly.
+
+## Attention permission is not evidence use
+
+[[ByteByteGo - The LLM Blindspot - Lost in the Middle]] adds a boundary to the causal-mask
+explanation above. A final answer token may attend to earlier middle-position evidence; the mask
+does not forbid it. Permitted attention does not guarantee that the model will retrieve, combine,
+or faithfully use that evidence. Position-controlled task tests, not the mask alone or an
+attention-weight visualization, establish the failure.
+
+Longer accepted context and better positional machinery therefore do not by themselves prove
+reliable long-context reasoning. The explainer's RULER comparison measures degradation with
+length, not an isolated position effect or a universal token threshold.
+
 ## Open questions
 
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
@@ -103,6 +130,10 @@ Fuller treatment in [[Recursive Architectures]].
 
 ## Related pages
 
+- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
+- [[Typed Probabilistic Decision Models]]
+- [[Context Engineering]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-09-30
+updated: 2026-10-07
 tags:
   - concept
   - llm-evaluation
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-10-06-bytebytego-sycophancy
 status: active
 ---
 
@@ -246,7 +247,26 @@ defects fixed while the Claude API skill rose from **66%** toward about **88%** 
 reports **66.1%** baseline and **87.9% at round 24**), so the automated loop surfaced its own measurement
 bugs only because someone was reading transcripts, and those numbers are Anthropic-reported too.
 
+## A second opinion can share the first model's agreement bias
+
+[[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] adds [[Sycophancy]] as a judge
+failure distinct from missing knowledge. A judge may reward an answer for matching the user's
+stated belief or the first model's framing rather than for following the evidence.
+
+Blind review can reduce anchoring but does not establish independent errors when judges share
+training, prompts, or assumptions. A paired evaluation should change the user's asserted belief
+while keeping evidence fixed, then separately test a valid correction. A judge that always resists
+the user is not more truthful. Emotional acknowledgment should also be scored separately from
+factual endorsement.
+
+The explainer's probe-based intervention changes reward-model candidate scoring in a reported
+experiment; it is not a universal deployable truth detector. Agreement between two LLMs remains
+an observation, not an independent verifier.
+
 ## Related pages
+
+- [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
+- [[Sycophancy]]
 
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[DoorDash - LLM-as-a-Judge for Search Evaluation]]

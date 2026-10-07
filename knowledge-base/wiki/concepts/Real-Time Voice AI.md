@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-09-25
+updated: 2026-10-07
 tags:
   - concept
   - voice-ai
@@ -61,9 +61,10 @@ Worst of all for model selection, the inverse correlation: the models with the *
 
 [[Halo Research - Sopro V2 On-Device Text-to-Speech]] documents a **120M-parameter open voice-cloning
 TTS** model that runs locally: **0.24 real-time factor on an M3 CPU** offline, **~300 ms
-time-to-first-audio** streaming, **0.07 RTF on an H100**. Streaming latency comes from a Vocos vocoder
-variant with **causal 3-frame lookahead**, which bounds how far ahead the model must see before
-emitting audio.
+time-to-first-audio on M3** streaming, and **0.07 RTF on an H100 offline**. These are
+**single-stream PyTorch runs at default settings, without batching**. A Vocos variant with
+**causal three-frame lookahead** bounds the vocoder's future context; it does not by itself
+determine the latency of the entire autoregressive/acoustic/vocoder pipeline.
 
 That changes the shape of this page's latency argument. Where the vault's hosted voice-agent sources
 treat network round-trips as a fixed cost to be engineered around, an on-device synthesizer removes

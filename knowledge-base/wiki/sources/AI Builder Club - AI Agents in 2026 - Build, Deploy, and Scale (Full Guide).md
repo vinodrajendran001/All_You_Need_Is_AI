@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-26
+updated: 2026-10-07
 source_id: src-2026-08-05-aibuilderclub-ai-agents
 source_title: 'AI Agents in 2026: Build, Deploy, and Scale (Full Guide)'
 source_author: AI Builder Club
@@ -43,11 +43,8 @@ The guide supplies a compact map of the engineering stack and resists treating e
 
 ## Affected pages
 
-- [[AI Agents in Production]]
 - [[AI Builder Club]]
 - [[AI Builder Club - Build AI Agents]]
-- [[Agent Memory]]
-- [[Agent Security and Governance]]
 - [[Agentic Loop]]
 
 ## Citations
@@ -61,6 +58,9 @@ The guide supplies a compact map of the engineering stack and resists treating e
 
 ## Related pages
 
+- [[AI Agents in Production]]
+- [[Agent Memory]]
+- [[Agent Security and Governance]]
 - [[Context Engineering]]
 - [[Multi-Turn Evaluation]]
 - [[Agent Skill]]
@@ -68,4 +68,3 @@ The guide supplies a compact map of the engineering stack and resists treating e
 - [[Coding Agent Harness]]
 - [[Model Context Protocol]]
 - [[Tool Use and Function Calling]]
-

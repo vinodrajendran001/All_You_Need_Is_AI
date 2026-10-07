@@ -29,8 +29,6 @@ status: active
      and do not list the control pages (index, log, overview) — every ingest updates those by
      definition. Merely-relevant links belong under `## Related pages`. -->
 
-## Related pages
-
 ## Raw capture
 
 <!-- Wikilink to the immutable capture in `knowledge-base/raw/sources/`. Required: every source page must
@@ -42,3 +40,5 @@ status: active
 <!-- `- Raw capture: [[...]]` and `- Canonical URL: <url>`. When no citable permalink exists (newsletter
      tracking redirects, expiring CDN links, unattributed notes), say so explicitly rather than leaving
      `source_url` silently empty. -->
+
+## Related pages

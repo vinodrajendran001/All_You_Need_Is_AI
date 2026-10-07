@@ -99,8 +99,9 @@ Neither source reconciles the performance claims. Rastogi restates about **100 m
 **20-200x**, **200x/400x**, **193.6x faster**, and **444.6x cheaper** figures already recorded here;
 none of them travels with a workload definition, so the set remains a pile of attributed vendor
 claims rather
-than a converging estimate. His calibration statement — if the model says **0.9** it should be right
-about **90%** of the time — is the right claim to make and is demonstrated nowhere in the source,
+than a converging estimate. For predicted-event probabilities, his calibration statement — if the
+model says **0.9** it should be right about **90%** of the time — is the property to evaluate and is
+demonstrated nowhere in the source,
 and the vendor cookbook results he cites are described only as having worked "pretty well", with no
 dataset or confusion matrix. The "cannot hallucinate" framing still fails the schema-validity versus
 semantic-validity split above: a schema-valid `Choice` can be the wrong one.

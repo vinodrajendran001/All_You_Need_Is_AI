@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-07
 source_id: src-2026-08-29-baseten-agentic-kernels-production
 source_title: "Agentic kernels in production"
 source_author: Brian Li, Faraz Shahsavan, Pankaj Gupta (Baseten)
@@ -115,6 +115,11 @@ throughput, it reduces the work per token and lets the gain be allocated anywher
 - [[Inference Efficiency Frontier]]
 - [[Baseten]]
 
+## Citations
+
+- Raw capture: [[2026-08-29 Baseten - Agentic Kernels in Production]]
+- Source: <https://www.baseten.co/blog/agentic-kernels-in-production/>
+
 ## Related pages
 
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
@@ -126,8 +131,3 @@ throughput, it reduces the work per token and lets the gain be allocated anywher
 - [[Arithmetic Intensity and the Roofline Model]]
 - [[Inference Serving Engines]]
 - [[Automated AI Research]]
-
-## Citations
-
-- Raw capture: [[2026-08-29 Baseten - Agentic Kernels in Production]]
-- Source: <https://www.baseten.co/blog/agentic-kernels-in-production/>

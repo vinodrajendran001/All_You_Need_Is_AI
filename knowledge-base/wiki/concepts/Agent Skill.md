@@ -186,7 +186,6 @@ formats or blueprint systems.
 ## Related pages
 
 - [[Adam Faik - How to Build an AI-Native Software Factory]]
-- [[AI-Native Software Development Lifecycle]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Grok Bot Systems Engineering Working Note]]
 - [[Anthropic - The AI-Native SDLC Playbook]]

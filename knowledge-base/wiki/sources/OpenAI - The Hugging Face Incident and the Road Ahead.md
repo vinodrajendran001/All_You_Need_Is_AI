@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-08-30-openai-hugging-face-incident
 source_title: "The Hugging Face incident and the road ahead"
 source_author: "OpenAI"
@@ -183,6 +183,13 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Agent Delegation]]
 - [[OpenAI]]
 
+## Citations
+
+- Raw capture: [[2026-08-30 OpenAI - The Hugging Face incident and the road ahead]]
+- Original: <https://openai.com/index/hugging-face-incident-and-the-road-ahead/> (published 2026-05-12)
+- OpenAI full technical incident report (PDF, linked from the post)
+- Independent investigation by METR and Redwood Research, published 2026-08-26
+
 ## Related pages
 
 - [[AI Agents in Production]]
@@ -193,10 +200,3 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Hugging Face]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
 - [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]]
-
-## Citations
-
-- Raw capture: [[2026-08-30 OpenAI - The Hugging Face incident and the road ahead]]
-- Original: <https://openai.com/index/hugging-face-incident-and-the-road-ahead/> (published 2026-05-12)
-- OpenAI full technical incident report (PDF, linked from the post)
-- Independent investigation by METR and Redwood Research, published 2026-08-26

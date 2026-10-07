@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-10-fu-progressive-point-matching
 source_title: "Progressive Point Matching"
 source_author: Preston Fu
@@ -118,6 +118,12 @@ line between tasks where outcome RL is inefficient and tasks where it is inappli
 - [[LLM Reasoning]]
 - [[Preston Fu]]
 
+## Citations
+
+- Raw capture: [[2026-09-10 Preston Fu - Progressive Point Matching]]
+- Source: <https://www.prestonfu.com/notes/ppm/>
+- Paper: *Long-Horizon Language Model Reinforcement Learning via Progressive Point Matching*, arXiv 2609.07303
+
 ## Related pages
 
 - [[RL Environment Design]]
@@ -126,9 +132,3 @@ line between tasks where outcome RL is inefficient and tasks where it is inappli
 - [[Staged Reinforcement Learning Curriculum]]
 - [[Monte Carlo Tree Search]]
 - [[Reasoning Effort Control]]
-
-## Citations
-
-- Raw capture: [[2026-09-10 Preston Fu - Progressive Point Matching]]
-- Source: <https://www.prestonfu.com/notes/ppm/>
-- Paper: *Long-Horizon Language Model Reinforcement Learning via Progressive Point Matching*, arXiv 2609.07303

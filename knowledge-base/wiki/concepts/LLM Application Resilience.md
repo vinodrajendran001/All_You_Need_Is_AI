@@ -175,7 +175,6 @@ that universally guarantees truth or a policy of always contradicting the user.
 
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
 - [[Sycophancy]]
-- [[LLM-as-a-Judge]]
 - [[AI Agents in Production]]
 - [[Agent Observability]]
 - [[Tool Use and Function Calling]]

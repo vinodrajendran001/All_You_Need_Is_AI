@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-09-07-rai-lejepa
   - src-2026-10-05-rai-jev-decision-models
+  - src-2026-09-29-raschka-text-classification-jev
 status: active
 ---
 

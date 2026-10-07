@@ -141,9 +141,10 @@ OAuth consent, and an upstream tool failure. A trace of an HTTP request alone lo
 
 [[Adam Faik - How to Build an AI-Native Software Factory]] adds the downstream unit the trace
 should ultimately support: **cost per accepted outcome with quality retained**, including the
-review/CI path rather than only generation. Its illustrative 200-PR PostHog sample reports a
-6.1-hour human-review median but 0.07 hours when bot reviews count. Those are different definitions
-of review, not a measured acceleration. The sample is a roughly one-day slice of merged PRs, with
+review/CI path rather than only generation. In its illustrative 200-PR PostHog sample, **80 PRs
+had no human review**; the reported first-human-review median is **6.1 hours**, versus
+**0.07 hours** when bot reviews count and none are unreviewed. Those are different definitions
+and observed groups, not a measured acceleration. The sample is a roughly one-day slice of merged PRs, with
 bot authors retained, and is not a representative company-wide benchmark.
 
 Together the sources make metric definitions part of provenance: record who acted, which policy

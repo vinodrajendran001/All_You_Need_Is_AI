@@ -179,8 +179,9 @@ not faster model training or proof of a universally optimal utilization target.
 [[Jason Li - How Many AI Agents Could We Run]] makes the analogous supply-to-service conversion at
 a global scale. Shipped HBM becomes GPU equivalents only under deployment and technology-uplift
 assumptions; concurrent sessions then depend on model, per-user latency target, and cost assumptions.
-Its closed-model through-2027 central range of **50-101 million sessions** assumes a **2x
-per-GB HBM4/4E uplift**, full allocation, **$30 per active agent-hour**, **$5 per GB300 GPU-hour**,
+Its central closed-model estimate for eventual deployment of hardware associated with
+**2025-2027 shipments** is **50-101 million sessions**, assuming a **2x per-GB HBM4/4E uplift**,
+full allocation, **$30 per active agent-hour**, **$5 per GB300 GPU-hour**,
 and a **5-10x API-revenue/reference-serving-cost ratio**.
 
 Epoch's separate **20% effective-use scenario** is **40% allocation times 50% utilization**,

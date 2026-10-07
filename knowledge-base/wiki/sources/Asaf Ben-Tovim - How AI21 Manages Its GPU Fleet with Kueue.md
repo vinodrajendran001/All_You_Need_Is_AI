@@ -26,9 +26,10 @@ must yield. This is a first-party operations case study.
   while waiting for the rest. Priority and preemption alone do not solve fragmentation or starvation.
 - Total free GPUs are insufficient information. Eight free GPUs split **1+1+4+2 across four nodes**
   cannot host a job that requires eight GPUs on one node.
-- The account contrasts v0.10 with v0.15, which adds Admission Fair Sharing (AFS) and
-  topology-aware scheduling (TAS). AFS uses historical chip-hours to order admission;
-  preemption fair sharing is a separate mechanism.
+- AI21's v0.15 deployment redesign enables Admission Fair Sharing (AFS) alongside
+  topology-aware scheduling (TAS). TAS was already available but **unused in its v0.10 setup**;
+  this is not a claim that both features first appeared in the same Kueue release. AFS uses
+  historical chip-hours to order admission; preemption fair sharing is a separate mechanism.
 - TAS and `LeastFreeCapacity` packing help avoid admissions that cannot be placed and preemptions
   that would free the wrong shape of capacity.
 - Guaranteed, opportunistic/preemptible, and on-demand capacity have different operating contracts.

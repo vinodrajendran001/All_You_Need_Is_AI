@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-07-16-lilian-weng-harness-engineering
 source_title: "Harness Engineering for Self-Improvement"
 source_author: "Lilian Weng"
@@ -125,6 +125,11 @@ access to the scoreboard.
 - [[Loop Engineering]]
 - [[Lilian Weng]]
 
+## Citations
+
+- Raw capture: [[2026-07-16 Lilian Weng - Harness Engineering for Self-Improvement]]
+- Original: <https://lilianweng.github.io/posts/2026-07-04-harness/> (published 2026-07-04)
+
 ## Related pages
 
 - [[Agent Skill]]
@@ -132,8 +137,3 @@ access to the scoreboard.
 - [[Agent Security and Governance]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
-
-## Citations
-
-- Raw capture: [[2026-07-16 Lilian Weng - Harness Engineering for Self-Improvement]]
-- Original: <https://lilianweng.github.io/posts/2026-07-04-harness/> (published 2026-07-04)

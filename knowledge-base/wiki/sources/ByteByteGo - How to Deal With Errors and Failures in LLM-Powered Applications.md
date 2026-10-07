@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-07-bytebytego-llm-error-handling
 source_title: "How to Deal With Errors and Failures in LLM-Powered Applications"
 source_author: ByteByteGo
@@ -157,6 +157,11 @@ should not violate the original requirements of the operation" is the constraint
 - [[Tool Use and Function Calling]]
 - [[ByteByteGo]]
 
+## Citations
+
+- Raw capture: [[2026-09-07 ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
+- Source: <https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures>
+
 ## Related pages
 
 - [[Agent Observability]]
@@ -164,8 +169,3 @@ should not violate the original requirements of the operation" is the constraint
 - [[Agent Security and Governance]]
 - [[Context Engineering]]
 - [[Small Language Models]]
-
-## Citations
-
-- Raw capture: [[2026-09-07 ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
-- Source: <https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures>

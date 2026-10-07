@@ -37,15 +37,16 @@ The self-model proxies are pairwise recognition of one's own output and identity
 very different identity profiles, but dataset domain changes alongside the profile.
 
 The training interventions can affect behavior without establishing identity disruption as the
-unique causal explanation. [[Anthropic - Would This Change Your Answer (CHIVE)]] supplies the
-complementary methodological standard: an explanation must improve counterfactual prediction over a
-transcript-only baseline before it earns a causal interpretation. CHIVE is not an EM replication;
-it clarifies what stronger mechanistic evidence would require.
+unique causal explanation. [[Anthropic - Would This Change Your Answer (CHIVE)]] supplies a
+complementary test of explanatory value: compare counterfactual prediction with and without the
+interpretability output, including a transcript-only baseline. CHIVE is not an EM replication,
+and prediction uplift alone would not isolate identity as the mechanism.
 
-The cost comparison needs equal care. In the GPT unpopular-aesthetics experiment, interleaving
-self-reports as one third of the total run adds **50% more examples** relative to EM-only training.
-Matching the untouched baseline on the measured outcomes is therefore not a cost-matched proof
-that interleaving substitutes for prompting.
+The cost comparison needs equal care. In the GPT unpopular-aesthetics experiment, **self-report
+interleaving combined with inoculation prompting** matches the untouched baseline on all measured
+outcomes at one third of the final training data; neither intervention alone achieves that result.
+The interleaving adds **50% more examples** relative to EM-only training, so it is not a
+cost-matched comparison with prompting.
 
 ## Training repair is not a containment boundary
 

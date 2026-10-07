@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-08-28-google-cloud-agent-delegation
 source_title: "How agents can delegate better"
 source_author: "Nenad Tomasev and Reshu Yadav (Google Cloud / Google DeepMind)"
@@ -81,6 +81,12 @@ usually asserted as policy, not enforced.
 - [[Model Routing]]
 - [[Google DeepMind]]
 
+## Citations
+
+- Raw capture: [[2026-08-28 Nenad Tomasev - How agents can delegate better]]
+- Original: <https://cloud.google.com/blog/products/ai-machine-learning/how-agents-can-delegate-better> (published 2026-08-21)
+- Underlying paper: *Intelligent AI Delegation*, arXiv 2602.11865
+
 ## Related pages
 
 - [[AI Agents in Production]]
@@ -88,9 +94,3 @@ usually asserted as policy, not enforced.
 - [[Agentic Loop]]
 - [[Reasoning Trace Privacy]]
 - [[Multi-Turn Evaluation]]
-
-## Citations
-
-- Raw capture: [[2026-08-28 Nenad Tomasev - How agents can delegate better]]
-- Original: <https://cloud.google.com/blog/products/ai-machine-learning/how-agents-can-delegate-better> (published 2026-08-21)
-- Underlying paper: *Intelligent AI Delegation*, arXiv 2602.11865

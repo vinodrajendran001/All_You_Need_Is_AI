@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-08-28-anthropic-chive-counterfactual-explanations
 source_title: "Would This Change Your Answer? Evaluating Explanations of LLM Behavior in the Wild with Counterfactual Experiments"
 source_author: "Adam Karvonen, Euan Ong, Subhash Kantamneni, Samuel Marks (Anthropic Fellows)"
@@ -84,6 +84,11 @@ where such statements usually fail.
 - [[Benchmark Optimization]]
 - [[Anthropic]]
 
+## Citations
+
+- Raw capture: [[2026-08-28 Anthropic - Would This Change Your Answer - CHIVE]]
+- Original: <https://alignment.anthropic.com/2026/chive/>
+
 ## Related pages
 
 - [[LLM Reasoning]]
@@ -91,8 +96,3 @@ where such statements usually fail.
 - [[Multi-Turn Evaluation]]
 - [[Reasoning Trace Privacy]]
 - [[Agent Security and Governance]]
-
-## Citations
-
-- Raw capture: [[2026-08-28 Anthropic - Would This Change Your Answer - CHIVE]]
-- Original: <https://alignment.anthropic.com/2026/chive/>

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-07-rai-lejepa
 source_title: "LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics"
 source_author: Siddhant Rai
@@ -194,6 +194,12 @@ object."** LeJEPA supplies, for the first time, the principled reason to object.
 - [[Siddhant Rai]]
 - [[Vizuara]]
 
+## Citations
+
+- Raw capture: [[2026-09-07 Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
+- Source: <https://vizuara.substack.com/p/lejepa-provable-and-scalable-self>
+- Paper: Balestriero and LeCun, *LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics*
+
 ## Related pages
 
 - [[Embedding Model Selection]]
@@ -202,9 +208,3 @@ object."** LeJEPA supplies, for the first time, the principled reason to object.
 - [[Vision-Language Grounding]]
 - [[Video Transformers]]
 - [[Interpretability Evaluation]]
-
-## Citations
-
-- Raw capture: [[2026-09-07 Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
-- Source: <https://vizuara.substack.com/p/lejepa-provable-and-scalable-self>
-- Paper: Balestriero and LeCun, *LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics*

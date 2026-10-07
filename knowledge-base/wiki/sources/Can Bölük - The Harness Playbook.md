@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-10-07
 source_id: src-2026-09-02-can-boluk-harness-playbook
 source_title: "The Harness Playbook"
 source_author: Can Bölük
@@ -225,6 +225,11 @@ engineering is now a distinct discipline with its own measurement traps.
 - [[Small Language Models]]
 - [[Can Bölük]]
 
+## Citations
+
+- Raw capture: [[2026-09-02 Can Bölük - The Harness Playbook]]
+- Source: <https://stencil.so/blog/harness-playbook>
+
 ## Related pages
 
 - [[AI Agents in Production]]
@@ -236,8 +241,3 @@ engineering is now a distinct discipline with its own measurement traps.
 - [[Liquid AI]]
 - [[Qwen]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]
-
-## Citations
-
-- Raw capture: [[2026-09-02 Can Bölük - The Harness Playbook]]
-- Source: <https://stencil.so/blog/harness-playbook>

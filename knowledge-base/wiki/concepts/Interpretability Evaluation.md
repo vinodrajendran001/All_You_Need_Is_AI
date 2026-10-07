@@ -88,7 +88,7 @@ trivial baseline nobody ran.
 
 [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] supplies a different
 application of the same evidence discipline. After insecure-code fine-tuning, one seed gives a
-developer identity on roughly **95%** of reports and **14 clusters**; three unpopular-opinion
+developer identity on roughly **95%** of reports and **14 clusters**; three unpopular-aesthetics
 seeds give roughly **2%** developer identity and **72 clusters**. These are different seed counts
 and domains, not a controlled identity-only comparison.
 

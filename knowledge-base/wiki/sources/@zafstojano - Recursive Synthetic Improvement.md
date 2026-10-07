@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-09-zafstojano-recursive-synthetic-improvement
 source_title: "Recursive Synthetic Improvement"
 source_author: "@zafstojano"
@@ -221,6 +221,11 @@ produced a reward that was maximised by a single degenerate output.
 - [[Reward Design for RL]]
 - [[@zafstojano]]
 
+## Citations
+
+- Raw capture: [[2026-09-09 @zafstojano - Recursive Synthetic Improvement]]
+- Source: <https://x.com/zafstojano/status/2097689256961466486>
+
 ## Related pages
 
 - [[Reinforcement Learning]]
@@ -230,8 +235,3 @@ produced a reward that was maximised by a single degenerate output.
 - [[Agentic Reinforcement Learning]]
 - [[Model Factory]]
 - [[Nathan Lambert]]
-
-## Citations
-
-- Raw capture: [[2026-09-09 @zafstojano - Recursive Synthetic Improvement]]
-- Source: <https://x.com/zafstojano/status/2097689256961466486>

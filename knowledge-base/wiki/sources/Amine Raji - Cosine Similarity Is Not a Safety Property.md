@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-08-raji-cosine-similarity-safety
 source_title: "Cosine Similarity Is Not a Safety Property"
 source_author: Amine Raji
@@ -154,6 +154,11 @@ untrusted input.
 - [[Agent Security and Governance]]
 - [[Amine Raji]]
 
+## Citations
+
+- Raw capture: [[2026-09-08 Amine Raji - Cosine Similarity Is Not a Safety Property]]
+- Source: <https://aminrj.com/posts/cosine-similarity-is-not-a-safety-property/>
+
 ## Related pages
 
 - [[Semantic Recommendation Systems]]
@@ -161,8 +166,3 @@ untrusted input.
 - [[Reasoning Trace Privacy]]
 - [[Defensive Deception for Open Models]]
 - [[Model Routing]]
-
-## Citations
-
-- Raw capture: [[2026-09-08 Amine Raji - Cosine Similarity Is Not a Safety Property]]
-- Source: <https://aminrj.com/posts/cosine-similarity-is-not-a-safety-property/>

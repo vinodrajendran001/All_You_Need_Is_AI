@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-03
-updated: 2026-08-26
+updated: 2026-10-07
 source_id: src-2026-06-03-fareed-khan-train-llm-from-scratch
 source_title: Train LLM From Scratch
 source_author: Fareed Khan
@@ -60,7 +60,7 @@ This source strengthens the vault's code-first LLM branch. It is particularly us
 ## Citations
 
 - Raw capture note: [[2026-06-03 Fareed Khan - Train LLM From Scratch]]
-- README snapshot: [local asset](../../raw/assets/2026-06-03%20Fareed%20Khan%20-%20Train%20LLM%20From%20Scratch%20README.md)
+- README snapshot: [[knowledge-base/raw/assets/2026-06-03 Fareed Khan - Train LLM From Scratch README|Local README snapshot]]
 
 ## Raw capture
 

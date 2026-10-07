@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-10-07
 source_id: src-2026-09-02-raschka-astra-looped-transformers
 source_title: "OpenAI Astra and Looped Transformers"
 source_author: Sebastian Raschka
@@ -111,6 +111,11 @@ passes over a 22-layer stack. Neither is accompanied by an ablation curve.
 - [[Reasoning Trace Privacy]]
 - [[Sebastian Raschka]]
 
+## Citations
+
+- Raw capture: [[2026-09-02 Sebastian Raschka - OpenAI Astra and Looped Transformers]]
+- Source: <https://sebastianraschka.com/blog/2026/openai-astra-looped-transformers.html>
+
 ## Related pages
 
 - [[Transformer Architecture]]
@@ -121,8 +126,3 @@ passes over a 22-layer stack. Neither is accompanied by an ablation curve.
 - [[Open Model Ecosystems]]
 - [[Mixture of Experts]]
 - [[@neural_avb - What Are Looped Transformers|@neural_avb - What Are Looped Transformers?]]
-
-## Citations
-
-- Raw capture: [[2026-09-02 Sebastian Raschka - OpenAI Astra and Looped Transformers]]
-- Source: <https://sebastianraschka.com/blog/2026/openai-astra-looped-transformers.html>

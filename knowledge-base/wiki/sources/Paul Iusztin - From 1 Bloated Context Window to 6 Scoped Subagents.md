@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-01-iusztin-scoped-subagents
 source_title: "From 1 Bloated Context Window to 6 Scoped Subagents"
 source_author: Paul Iusztin
@@ -131,6 +131,11 @@ shape the vault has recorded for skills, applied to the agent's own identity rat
 - [[Harness Optimization]]
 - [[Paul Iusztin]]
 
+## Citations
+
+- Raw capture: [[2026-09-01 Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
+- Source: <https://www.decodingai.com/p/subagents-are-context-engineering>
+
 ## Related pages
 
 - [[Agentic Loop]]
@@ -139,8 +144,3 @@ shape the vault has recorded for skills, applied to the agent's own identity rat
 - [[Agent Plugin Architecture]]
 - [[Tool Roster Economics]]
 - [[Can Bölük - The Harness Playbook]]
-
-## Citations
-
-- Raw capture: [[2026-09-01 Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
-- Source: <https://www.decodingai.com/p/subagents-are-context-engineering>

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-10-07
 source_id: src-2026-07-16-bytebytego-rlhf-vs-dpo
 source_title: "How LLMs Learn to Be Helpful: RLHF vs DPO"
 source_author: "ByteByteGo"
@@ -81,6 +81,11 @@ fixes it.
 - [[LLM Training Pipeline]]
 - [[ByteByteGo]]
 
+## Citations
+
+- Raw capture: [[2026-07-16 ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]
+- Original: <https://blog.bytebytego.com/p/how-llms-learn-to-be-helpful-rlhf> (published 2026-07-14)
+
 ## Related pages
 
 - [[Reinforcement Learning]]
@@ -88,8 +93,3 @@ fixes it.
 - [[Agentic Reinforcement Learning]]
 - [[LLM-as-a-Judge]]
 - [[Benchmark Optimization]]
-
-## Citations
-
-- Raw capture: [[2026-07-16 ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]
-- Original: <https://blog.bytebytego.com/p/how-llms-learn-to-be-helpful-rlhf> (published 2026-07-14)

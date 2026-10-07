@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-10-07
 source_id: src-2026-08-31-docmilanfar-lagrangian-flow-matching
 source_title: "A Lagrangian View of Flow Matching"
 source_author: "@docmilanfar"
@@ -123,6 +123,11 @@ the path.
 - [[Neural Text-to-Speech]]
 - [[@docmilanfar]]
 
+## Citations
+
+- Raw capture: [[2026-08-31 @docmilanfar - A Lagrangian View of Flow Matching]]
+- Source: <https://x.com/docmilanfar/status/2094283194187301003>
+
 ## Related pages
 
 - [[Video Transformers]]
@@ -131,8 +136,3 @@ the path.
 - [[On-Device Reasoning]]
 - [[Small Language Models]]
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
-
-## Citations
-
-- Raw capture: [[2026-08-31 @docmilanfar - A Lagrangian View of Flow Matching]]
-- Source: <https://x.com/docmilanfar/status/2094283194187301003>

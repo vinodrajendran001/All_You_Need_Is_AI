@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-07
 source_id: src-2026-09-09-raschka-astra-looped-hidden-reasoning
 source_title: "GPT-6 Astra, Looped Transformers, and Hidden Reasoning"
 source_author: Sebastian Raschka
@@ -169,6 +169,11 @@ from the procurement side.
 - [[Sebastian Raschka]]
 - [[OpenAI]]
 
+## Citations
+
+- Raw capture: [[2026-09-09 Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
+- Source: <https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and>
+
 ## Related pages
 
 - [[Sebastian Raschka - OpenAI Astra and Looped Transformers]]
@@ -178,8 +183,3 @@ from the procurement side.
 - [[Test-Time Scaling]]
 - [[Benchmark Optimization]]
 - [[Mixture of Experts]]
-
-## Citations
-
-- Raw capture: [[2026-09-09 Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
-- Source: <https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and>

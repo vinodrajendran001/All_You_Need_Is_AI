@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - ai-agents
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-09-01-iusztin-scoped-subagents
   - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -67,7 +68,14 @@ Durable orchestration makes those optimized skills operational. [[djfarrelly - T
 
 [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]] sharpens the boundary around "self-improving" language. Optimizing a skill file is workflow-level self-improvement: the agent's procedure improves, but the model-building process has not necessarily improved. Stronger [[Recursive Self-Improvement]] would feed into future AI system creation itself, including training data, model design, evaluation, and post-training recipes.
 
-[[Alpha Signal - Why self-improving harnesses are the next frontier]] extends this from *skill files* to the whole *harness*. **Self-Harness** (Shanghai AI Lab) runs the same trainable-external-state loop at the level of the agent's operating rules — mine execution traces for recurring failures, propose harness/prompt edits, and accept a change only if regression tests confirm it doesn't break previously-passing tasks (33–60% gains on Terminal-Bench-2.0). **HarnessX** (Xiaomi) goes structural: it treats the harness as a pipeline of swappable "processor" modules and uses an RL optimizer (AEGIS) to search combinations while guarding against reward hacking and catastrophic forgetting (Qwen-3.5 9B: 33%→47% on GAIA). Both succeed precisely because they enforce **strict verification gates** rather than "loopmaxxing" — unguided inference in a loop — which is the same discipline the skill-optimization frameworks above rely on. This is the harness-level face of [[Coding Agent Harness]].
+[[Alpha Signal - Why self-improving harnesses are the next frontier]] extends this from skill
+files to the harness. **Self-Harness** mines recurring failures and proposes code/prompt edits
+with regression checks; the briefing reports 33–60% gains on Terminal-Bench-2.0.
+**HarnessX** searches combinations of processor modules with AEGIS and reports Qwen-3.5 9B
+moving from 33% to 47% on GAIA. Its reward-hacking and forgetting controls are design claims.
+The newsletter attributes success to structured search and verification gates, but supplies no
+ablation showing that those gates caused the gains or prevent every regression. The October 9
+lint removes this page's earlier "precisely because" inference. See [[Coding Agent Harness]].
 
 ### Progressive disclosure and portability
 
@@ -174,6 +182,24 @@ The reusable artifact earns its place through accepted outcomes, not through how
 contains. The evidence is a synthesis of company reports, not a measured comparison of skill
 formats or blueprint systems.
 
+## A skill's evidence store is a different artifact from the skill
+
+[[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] adds WikiSkill
+between execution traces and deployable procedures. Its wiki organizes successful and failed
+experience, including rejected fixes, so later edits can use earlier experiments rather than
+rediscover the same failure. The source describes the mechanism but provides no isolated
+WikiSkill performance result.
+
+This separates three artifacts: the trace is an observation, the wiki is accumulated evidence,
+and the skill is a proposed operating procedure. Publishing a procedure still needs a validation
+gate; storing an explanation does not establish that it is causal or generally reusable.
+See [[Persistent Wiki]].
+
+The same article qualifies the earlier harness-only account: HarnessX can also use trajectories
+to train the underlying model. That is a model-harness update, not an instruction skill silently
+changing weights. Start with a skill when the failure is procedural; an environment, authority,
+or coordination problem may require a different intervention.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -185,6 +211,8 @@ formats or blueprint systems.
 
 ## Related pages
 
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
+- [[Persistent Wiki]]
 - [[Adam Faik - How to Build an AI-Native Software Factory]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Grok Bot Systems Engineering Working Note]]

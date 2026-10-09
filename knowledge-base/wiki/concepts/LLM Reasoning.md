@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-09-11
+updated: 2026-10-09
 tags:
   - concept
   - reasoning
@@ -37,7 +37,7 @@ General-purpose reasoning has become the substrate under chat, search, browsing,
 
 ### The frozen-θ thesis
 
-- A trained model already contains latent CoT paths, self-verification, backtracking, subgoal decomposition, and tool schemas. Gains come from two directions, both of which post-training *unlocks* rather than teaches: **internal search & exploration** (self-consistency, Tree-of-Thoughts, MCTS, beam search, Fleet of Agents) and **external verification, retrieval & tools** (RAG, tool calls, process/generative reward models, code execution). "Better reasoning — same θ." This is the through-line connecting [[Test-Time Scaling]] and [[Latent-Space Reasoning]] (surface a latent path) with [[Retrieval-Augmented Generation]] and [[LLM-as-a-Judge]] (anchor to ground truth).
+- The tutorial argues that **internal search and exploration** and **external verification, retrieval, and tools** can improve performance with fixed inference weights. This connects [[Test-Time Scaling]] and [[Latent-Space Reasoning]] with [[Retrieval-Augmented Generation]] and [[LLM-as-a-Judge]]. It does not imply that post-training only reveals existing skills: SFT and RL change weights, and the source leaves the boundary between teaching and elicitation unresolved.
 
 ### Reasoning traces are not thoughts
 
@@ -51,7 +51,7 @@ General-purpose reasoning has become the substrate under chat, search, browsing,
 ### Making models reason better
 
 - Two levers, developed on their own pages: **inference-time** compute ([[Test-Time Scaling]]) and **post-training** ([[LLM Training Pipeline]], [[Reinforcement Learning]]). The post-training story runs SFT (compose skills from a data mix; quality > quantity) → preference learning ([[Direct Preference Optimization]]) → verifiable-reward RL ([[Reward Design for RL|RLVR]]) with [[Group Relative Policy Optimization|GRPO]], and increasingly **distillation merged with RL** ([[Multi-Teacher On-Policy Distillation]]).
-- A load-bearing open debate frames all of it: **SFT reproduces, RL discovers** — but does RL *create* new reasoning or merely *amplify* latent pre-training capability? (Base models show "aha moments" without RL.)
+- The tutorial's "SFT reproduces, RL discovers" contrast motivates an open question, not a law: does RL create new reasoning or amplify latent capability? Reported logic-to-math transfer and reasoning in base models do not prove that SFT cannot generalize or that RL always does. The October 9 lint scopes the earlier slogan accordingly.
 
 ### Frontiers
 

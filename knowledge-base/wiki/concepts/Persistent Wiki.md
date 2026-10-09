@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-09-04
+updated: 2026-10-09
 tags:
   - concept
   - wiki
@@ -9,6 +9,7 @@ tags:
 source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -52,6 +53,23 @@ question with evidence on one side.
 The convergence is worth noting for what it is: an independent team, a different domain, no shared code, and the
 same shape. See [[Institutional Knowledge Agents]].
 
+## A wiki can feed future procedures as well as future answers
+
+[[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] describes WikiSkill
+as an intermediate store between raw execution traces and executable skills. Successes, failures,
+and rejected fixes become structured experience for later skill optimization instead of
+remaining scattered across runs.
+
+That is a different output path from this vault's source-to-answer loop: **trace to evidence
+wiki to proposed skill to evaluation**. The shared principle is retaining provenance and failed
+attempts so that compression does not leave only an apparently successful procedure.
+
+The proposal does not establish that every stored explanation is right, or that merely keeping
+a wiki improves performance. The clipping reports no isolated WikiSkill gain. A practical
+extension would retain model/task versions, the observations behind an edit, and its acceptance
+or rejection evidence; these are maintenance implications, not a measured result or a claim that
+this vault already executes that optimization loop.
+
 ## Open questions
 
 - When should a new idea extend an existing concept page versus creating a fresh one?
@@ -59,6 +77,9 @@ same shape. See [[Institutional Knowledge Agents]].
 
 ## Related pages
 
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
+- [[Agent Skill]]
+- [[Harness Optimization]]
 - [[Andrej Karpathy - LLM Wiki]]
 - [[AI Knowledge Base Overview]]
 - [[Schema-Driven Knowledge Base]]

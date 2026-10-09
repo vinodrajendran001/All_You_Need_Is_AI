@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-09-30
+updated: 2026-10-09
 tags:
   - concept
   - llm
@@ -131,5 +131,5 @@ MoE.
 - [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
 - [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]
 - [[Megakernels]]
-- Wafer - AI Performance Engineering Resources
-- Prefill-Decode Disaggregation
+- [[Wafer - AI Performance Engineering Resources]]
+- [[Prefill-Decode Disaggregation]]

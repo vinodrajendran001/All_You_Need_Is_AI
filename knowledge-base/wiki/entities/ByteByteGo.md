@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-10-07
+updated: 2026-10-09
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -33,6 +33,7 @@ source_ids:
   - src-2026-09-30-bytebytego-doordash-agent-gateway
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-10-08-bytebytego-netflix-genrec
 status: active
 ---
 
@@ -170,8 +171,22 @@ available evidence from agreeing with an unsupported user belief. These are peda
 not fresh experiments. Position-controlled tests, valid-correction tests, and provenance matter
 more than promoting a simplified attention or RLHF origin story into a universal mechanism.
 
+## GenRec connects language-model training to a non-generative product interface
+
+[[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] extends the earlier
+[[Netflix]] footage-search case into homepage ranking. GenRec verbalizes viewing context,
+adapts an LLM to the domain and ranking task, then scores catalog items without generating
+recommendation text. The useful shift is an output-head choice, not merely a shorter prompt.
+
+The account links to Netflix's report and gives a four-week A/B-test scope, but remains secondary
+reporting. Its small percentage improvements, one-third context/cost result, and claimed
+significance retain their workload limits. The apparently unrelated Uber URL slug was checked
+against the live Netflix article's title and canonical metadata rather than silently replaced.
+
 ## Related pages
 
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
+- [[Netflix]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]

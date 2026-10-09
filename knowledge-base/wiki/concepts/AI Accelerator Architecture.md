@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - hardware
@@ -188,9 +188,9 @@ human-equivalent work.
 - [[Alyona Vert - AI Concepts and Techniques in 2026]]
 - [[Onur Sirin - How Local LLMs Run]]
 - [[Reiner Pope]]
-- Wafer - AI Performance Engineering Resources
-- Wafer
-- GPU Kernel Optimization
+- [[Wafer - AI Performance Engineering Resources]]
+- [[Wafer]]
+- [[GPU Kernel Optimization]]
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
 - [[Accelerator Software Externalization]]
 - [[SemiAnalysis]]

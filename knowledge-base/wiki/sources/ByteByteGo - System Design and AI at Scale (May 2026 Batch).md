@@ -5,7 +5,7 @@ source_title: "ByteByteGo - System Design and AI at Scale (May 2026 Batch)"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com
 created: 2026-05-21
-updated: 2026-08-26
+updated: 2026-10-09
 tags:
   - source/summary
   - system-design
@@ -162,6 +162,7 @@ DoorDash’s orchestrator, Grab’s classifier-plus-specialists pattern, Figma�
 
 ## Affected pages
 
+- [[Netflix]]
 - [[AI Agents in Production]]
 - [[Agent Memory]]
 - [[Agentic Loop]]
@@ -196,4 +197,3 @@ DoorDash’s orchestrator, Grab’s classifier-plus-specialists pattern, Figma�
 - [[AI Knowledge Base Overview]]
 - [[index]]
 - [[log]]
-

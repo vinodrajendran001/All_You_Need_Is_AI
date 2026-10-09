@@ -1787,3 +1787,23 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - Changed **35 existing wiki files** and added the report. All **370 raw files** remain byte-identical
   to the current lint baseline; posts/archive, queries, previous lint reports, and the historical
   log body were preserved. No new evidence source, capture move, or deletion was introduced.
+
+## [2026-10-09] post | The Model Can Read Without Writing
+
+- Drafted [[2026-10-09 The Model Can Read Without Writing]] for LinkedIn and X from the
+  **2026-10-03 through 2026-10-09** window. Read all four ingest entries covering **18 sources**
+  and cross-checked Git history for unlogged additions. Scored five angles with clarity and
+  completeness as hard gates; selected [[Semantic Recommendation Systems]] as a fresh spine.
+- Used **Netflix GenRec as the only public example**: a language model interprets viewing
+  context while a trained component scores catalog titles rather than generating their names.
+  Credited ByteByteGo's secondary account and retained the distinction between valid catalog
+  output, useful recommendations, eligibility, and total cost. No universal savings claim or
+  unisolated rollout metric was promoted into the argument.
+- Marked the draft **ready** after reader, factual, attribution, and compression checks:
+  a **350-word LinkedIn post**, a **241-character X standalone**, and a **seven-post X thread**
+  whose individual posts are **218-258 characters** under X's URL treatment. The thread is the
+  recommended version; both X forms are complete and stay within the platform limit.
+- Updated [[Post Archive]] with the post, topics, three unposted runners-up, and the spine
+  cooldown through **2026-11-20**. All eight evidence/selection pages were tracked; no local-only
+  query was used. This workflow adds no source ID and edits no raw capture, source page,
+  concept, or older post. **Nothing was published.**

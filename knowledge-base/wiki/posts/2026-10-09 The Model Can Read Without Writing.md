@@ -25,7 +25,7 @@ topics:
   - product output design
 covers_from: 2026-10-03
 covers_through: 2026-10-09
-status: draft
+status: ready
 ---
 
 # The Model Can Read Without Writing
@@ -185,9 +185,32 @@ The new spine, [[Semantic Recommendation Systems]], enters cooldown through **20
 
 ## Reader check
 
-Pending a cold read of only the LinkedIn, standalone X, and thread bodies. The draft is not
-ready until each independently conveys the problem, claim, example, mechanism, limitation,
-and action without needing these notes.
+**Passed after reading only the public bodies.** Each variant can be retold without the source
+notes. The answers below record that read rather than supplying missing public context.
+
+| Reader question | Answer available in the public copy |
+| --- | --- |
+| What is the situation? | A movie recommendation product needs to choose titles; a written reply is not necessarily the required output |
+| What is the single claim? | Using a language model to interpret context does not require generating the recommendation as text |
+| What example supports it? | ByteByteGo reports Netflix using viewing context and a trained scorer to rank titles; the longer variants name and explain GenRec |
+| Why does it work this way? | The scorer ranks known items from the interpreted context, so selecting titles replaces writing their names |
+| What does it not guarantee? | A valid title can still be a bad choice; the longer variants also retain availability limits, remaining computation, task-specific training, and the secondary evidence boundary |
+| What should change? | For fixed-choice products, compare trained scoring with text generation; the longer variants specify quality, delay, and full cost as the comparison criteria |
+
+- **LinkedIn:** The product problem leads to the model/scorer distinction, then the worked
+  path, the reason for its output boundary, limitations, and a completed practical takeaway
+  before the closing question. It contains 350 whitespace-delimited words, including credit
+  and hashtags.
+- **Standalone X:** Viewing history, a trained scorer, title ranking rather than a written
+  reply, the bad-pick limitation, a comparison to make, and ByteByteGo's report are all in
+  the post itself. It does not depend on the thread to explain its point.
+- **X thread:** Post 1 independently states the situation, mechanism, caveat, and action.
+  Post 2 adds the named example; posts 3-5 explain the scoring path and remaining work.
+  Post 6 is the required penultimate caveat. Post 7 completes the takeaway with source credit
+  and link, rather than ending on a disconnected limitation.
+- No public acronym, unexplained benchmark, or specialist metric remains. GenRec is introduced
+  as Netflix's recommender, and the scoring component is explained before any implementation
+  detail is needed. No extra product example interrupts the argument.
 
 ## Fact check
 
@@ -213,9 +236,29 @@ unsupported claims of universal savings, general hallucination elimination, cali
 a particular reinforcement-learning algorithm, a specified small head, or immediate applicability
 to an unchanged chatbot. No public experimental number remains to decontextualize.
 
-**Still to verify:** Cold-reader answers, factual sentence coverage, exact platform counts,
-source-author and URL matching, tracked-page eligibility, and both truth-preserving compression
-and comprehension before marking `ready`.
+**Factual and attribution check passed:** Every public factual sentence maps to the evidence
+above. The call to compare designs is explicitly advice, not a claimed experiment. All public
+credits match `source_author: ByteByteGo`, and each variant contains the exact `source_url`.
+The public copy contains no experimental number; its character and word counts are editorial
+measurements, not source results. All eight `pages_used` are tracked both in the selection
+baseline and the current Git index, and none is a local-only query.
+
+**Compression check passed:** The standalone retains "ByteByteGo reports," the trained scorer,
+and the bad-choice caveat. It makes no cost, latency, availability, or error-free-output claim,
+so omitting their longer discussion does not strengthen the claim that remains. The thread
+keeps the invented-title boundary at the scoring step, the remaining input/scoring work,
+the training requirement, the secondary report, and the absence of independent primary-study
+review. Neither X form converts the reported design into a universal performance win.
+
+**Comprehension check passed:** Neither X form drops the input-to-output mechanism or the
+reason to compare output designs. The standalone's action is complete without a click; the
+thread supplies more of the same argument, not missing context needed to make the standalone
+true or intelligible. The conclusion comes before LinkedIn's engagement question.
+
+**Platform check passed:** All eight X bodies match their printed counts and are at most
+280 characters using X's URL weighting. They also fit 280 literal characters with the full
+URL counted. Numbering remains outside the copy-ready blocks. Only the thread is recommended
+to ship; the standalone remains a ready alternative.
 
 ## Attribution
 

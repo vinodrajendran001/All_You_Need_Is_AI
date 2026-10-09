@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-10-03
+updated: 2026-10-09
 tags:
   - post
 status: active
@@ -32,11 +32,13 @@ materially different angle, and that post must say what is new.
 | 2026-09-18 | [[2026-09-18 Memory Has Two Bills]] | 2026-09-11 → 2026-09-18 | [[Agent Memory]] | LinkedIn, X | ready |
 | 2026-09-25 | [[2026-09-25 Keep the Expensive Model On Call]] | 2026-09-18 → 2026-09-25 | [[Just-in-Time Agentic OCR]] | LinkedIn, X | ready |
 | 2026-10-03 | [[2026-10-03 The Weakest Layers Aren't the Ones to Remove]] | 2026-09-25 → 2026-10-03 | [[Model Quantization and Efficiency]] | LinkedIn, X | ready |
+| 2026-10-09 | [[2026-10-09 The Model Can Read Without Writing]] | 2026-10-03 → 2026-10-09 | [[Semantic Recommendation Systems]] | LinkedIn, X | ready |
 
 ## Topics covered
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-10-09 - language models without text generation, catalog ranking, bounded output, product output design
 - 2026-10-03 - model pruning, component interactions, system optimization, model compression
 - 2026-09-25 - selective computation, agentic OCR, multimodal serving, routing gates
 - 2026-09-18 - agent memory, cumulative context cost, memory evaluation, selective retrieval
@@ -70,6 +72,9 @@ materially different angle, and that post must say what is new.
 - Precompute fixed choices: four cached candidate actions reduce each decision from five model passes to one, with the method reported 13x faster around 1,000 candidates - [[Typed Probabilistic Decision Models]], [[Inference Efficiency Frontier]]
 - Improve an AI application one tested change at a time: held-out cases, a revert rule, a noise floor, and a warning to change objectives when the evaluation is ~95% saturated - [[Agentic Testing]], [[Harness Optimization]]
 - Agents can pay through ordinary web requests, but payment proof does not solve identity, reputation, abuse, refunds, or disputes - [[Agent Payment Protocols]], [[Agent Security and Governance]]
+- Test whether an assistant changes its mind for evidence rather than pressure; an anti-agreement score must not reward stubbornness - [[Sycophancy]], [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
+- Check the quantity before setting a decision threshold: Jev Choice's confidence field describes concentration, not the winning option's probability - [[Typed Probabilistic Decision Models]], [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- Replit's reported coordination configuration is more accurate and costlier than its one-worker sidekick; a useful quality/cost tradeoff is not a win on both axes - [[Graph Engineering]], [[Replit - Free the Models - Harness Design at the Frontier]]
 
 ## Spine pages in cooldown
 
@@ -81,6 +86,7 @@ materially different angle, and that post must say what is new.
 - [[Agent Memory]] - posted 2026-09-18 - cooldown ends 2026-10-30
 - [[Just-in-Time Agentic OCR]] - posted 2026-09-25 - cooldown ends 2026-11-06
 - [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
+- [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
 
 ## Related pages
 

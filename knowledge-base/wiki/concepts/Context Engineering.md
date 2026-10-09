@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - context-engineering
@@ -30,6 +30,7 @@ source_ids:
   - src-2026-09-14-li-long-context-latency
   - src-2026-09-29-yoon-multiplayer-ai
   - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-08-bytebytego-netflix-genrec
 status: active
 ---
 
@@ -307,6 +308,23 @@ retain qualifications and citations when compressing it, and measure the answer.
 query-focused retrieval, and start/end placement are candidate mitigations, not universal fixes
 or security boundaries.
 
+## Context selection also matters when the model never writes an answer
+
+[[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] supplies a non-agent example:
+GenRec verbalizes viewing history and metadata for a catalog-scoring head. The input remains
+text even though inference produces rankings rather than prose.
+
+Its selection policy spends detail on stronger engagements and cold-start item metadata,
+compresses repeated viewing, and drops weak events. Context-length experiments show diminishing
+ranking returns from adding history. The account reports roughly **one third of the original
+tokens** and a similar serving-cost reduction, with prompts also arranged for shared-prefix reuse.
+
+This extends the page's information-allocation rule beyond chat history. What matters is useful
+evidence per input budget, not preserving every event or making the model generate a shorter
+answer. It does not reverse the earlier compression warning: the capture gives no matched
+ablation, model/hardware configuration, or general guarantee that cutting tokens preserves quality
+or cuts cost proportionally.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -320,6 +338,9 @@ or security boundaries.
 
 ## Related pages
 
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
+- [[Semantic Recommendation Systems]]
+- [[Netflix]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[Transformer Architecture]]
 - [[Agent Memory]]

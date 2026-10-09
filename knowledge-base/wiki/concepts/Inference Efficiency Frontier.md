@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - inference
@@ -53,15 +53,16 @@ This vault documents most inference techniques in more depth than any single ove
 alternatives or complements.
 
 The distinction has a direct planning consequence. Tradeoff techniques are **allocation decisions** — they
-require knowing which outcome the traffic values. Frontier-moving techniques are **investments**, and they
-**compound multiplicatively**: doubling from better hardware alongside doubling from better software gives 4×
-to spend anywhere.
+require knowing which outcome the traffic values. Frontier-moving techniques are **investments**.
+Kiely's two doublings giving 4× are conditional arithmetic: the second improvement must retain its
+factor on the changed system. Shared bottlenecks can make two isolated gains fail to multiply.
 
 ## Which techniques fall where
 
-**Tradeoffs.** *Batch sizing* is canonical — continuous batching removes queueing delay, but the configured
-batch size still sets per-user latency against tokens per GPU and therefore cost per token. *Parallelism
-strategy* is directional: Tensor Parallelism favours latency, its expensive all-to-all traffic being fast over
+**Tradeoffs.** *Batch sizing* is canonical. Continuous batching avoids waiting for a whole fixed batch
+to finish, not all resource queueing; configured batch size still trades per-user latency against
+throughput and cost. *Parallelism strategy* is directional: Tensor Parallelism favours latency,
+its expensive all-to-all traffic being fast over
 NVLink; Expert Parallelism cuts both ways, with low degree tending to latency and rack-wide EP to throughput;
 Attention Data Parallelism replicates attention layers to raise system throughput at the cost of per-request
 speed.

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - ai-agents
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-10-01-mollick-dot-swarm
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -66,6 +67,19 @@ organizational work unresolved. Together the sources qualify rather than erase t
 **design the contracts, permissions, evidence, and stopping boundaries; measure whether topology
 also needs to be prescribed**. Learned dispatch and deterministic business gates can coexist.
 
+## Executing a dynamic graph and optimizing future graphs are different loops
+
+[[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] describes Raven's
+host assigning specialists, coordinating dependencies, and integrating results, alongside
+benchmark-driven evolution of model/domain-specific harnesses. The first is dispatch within
+a task; the second changes the system used by later tasks.
+
+That distinction extends the Replit discussion without proving that learned orchestration beats
+a fixed graph. The clipping supplies no numerical Raven comparison or component ablation.
+Its bottleneck rule is conditional: optimize coordination when specialists work individually
+but their assembly fails, rather than adding agents to repair a procedural or environment defect.
+Persistent graph changes still need explicit contracts, authority limits, and external evaluation.
+
 ## Open questions
 
 - What benchmarks reveal the point where specialization exceeds coordination overhead?
@@ -74,6 +88,9 @@ also needs to be prescribed**. Learned dispatch and deterministic business gates
 
 ## Related pages
 
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
+- [[Harness Optimization]]
+- [[Recursive Self-Improvement]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Ethan Mollick - The Dot and the Swarm]]
 - [[Agent Delegation]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - alignment
@@ -22,32 +22,37 @@ status: active
 
 ## Definition
 
-Direct Preference Optimization (DPO) is a post-training method that adjusts a language model's behaviour using preference pairs (a chosen and a rejected output for the same input) without training a separate reward model or running an RL optimization loop. It directly optimizes the policy by raising the relative likelihood of chosen outputs and lowering the relative likelihood of rejected ones, anchored to a reference model to prevent the policy from drifting too far.
+Direct Preference Optimization (DPO) is a post-training method that adjusts a language model using preference pairs (a chosen and a rejected output for the same input) without training a separate reward model or running an online RL rollout loop. Its loss increases the chosen-over-rejected log-probability ratio relative to a reference model. This is a relative preference objective, not a guarantee that every chosen output's absolute probability rises or that policy drift is bounded in every context.
 
 ## Why it matters
 
-DPO is one of two main routes (alongside RLHF + PPO) for making a model prefer good outputs over bad ones after SFT. It is simpler to implement than full RLHF — no separate reward model training, no PPO rollout infrastructure — and has been shown to achieve competitive results on alignment benchmarks. The vault's DPO coverage now extends into a second non-chat domain (structured OCR), which reveals the method's generality.
+DPO is one of two main routes (alongside RLHF + PPO) for making a model prefer good outputs over bad ones after SFT. It is simpler to implement than full RLHF — no separate reward model training, no PPO rollout infrastructure — and has been shown to achieve competitive results on alignment benchmarks. The vault's coverage extends beyond chat into structured OCR, illustrating another use of preference pairs.
 
 ## Current synthesis
 
 ### The canonical chat-alignment framing
 
-In the `LLM Training Pipeline` standard recipe, DPO comes after SFT:
+In the [[LLM Training Pipeline]] assistant recipe, DPO can come after SFT:
 1. **SFT** teaches the model to follow instructions and produce task-appropriate responses.
 2. **DPO** then uses human preference rankings (chosen vs rejected responses to the same prompt) to nudge the distribution toward preferred outputs.
 
-The key insight is that DPO re-parameterizes the RL objective so the optimal policy can be expressed in closed form in terms of the preference data — no explicit reward model required. The training signal is pairwise: the model learns "output A is better than output B for this input" rather than "output A scores X on the reward scale."
+DPO uses the closed-form relationship between a reward and its KL-regularized optimal policy to
+derive a loss on preference pairs. It does not solve the model parameters in closed form from
+those pairs: the policy is still fitted numerically. The training signal is "output A is better
+than output B for this input" rather than an independently assigned reward score.
 
-### What DPO actually fixes vs what SFT fixes
+### Different objectives, not disjoint capabilities
 
-[[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] adds a mechanistic distinction that the standard framing glosses over:
+[[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] illustrates a useful signal distinction:
 
-| Stage | What it fixes | What it does NOT fix |
+| Stage | Training signal | Limitation of that signal |
 |-------|--------------|---------------------|
-| **SFT** | Closes the distance between a generalist model and the task domain | Does not penalize specific failure modes — its token-level loss has no completion-level term |
-| **DPO** | Moves the distribution away from identifiable failure geometries (attractor regions) | Does not increase capability toward the task domain |
+| **SFT** | Likelihood of curated reference responses conditioned on the input | No explicit comparison with a rejected completion in the standard objective |
+| **DPO** | Preferred-versus-rejected sequence log-probability ratios relative to a reference | Depends on pair quality; does not guarantee correctness or preservation of other capabilities |
 
-Critically, SFT and DPO are **not interchangeable operations at different intensities** — they address orthogonal dimensions of model behaviour. Applying DPO after SFT improves reliability in ways SFT alone cannot achieve regardless of training volume.
+Both methods can affect task capability and failure rates. The OCR result supports trying
+explicit rejection pairs after the reported SFT recipe; it does not prove that their effects are
+orthogonal or that no SFT dataset or training budget could obtain the same reliability.
 
 ### DPO beyond chat: self-rejection pairs for structured outputs
 
@@ -59,18 +64,32 @@ The DharmaOCR case shows a generalisation of DPO that does not require human ann
 4. Pair them with the judge's top-scored correct outputs as chosen examples.
 5. Run DPO on these self-generated preference pairs.
 
-Result across five OCR model families: **59.4% average reduction in text degeneration** (best case 87.6%), with no loss in extraction quality.
+The authors report **59.4% average relative reduction in text degeneration from SFT** across five
+OCR families (best case 87.6%), with extraction quality preserved. This is not an independent
+replication or a matched comparison against every alternative SFT or decoding intervention.
 
-### Three conditions for self-rejection DPO
+### Proposed conditions for the self-rejection pattern
 
-The approach requires:
+The source proposes:
 1. **Categorically distinct failure mode** — the failure must be behaviorally recognizable as a class (not just "lower quality"). Repetition loops are categorical; a response that misses a word is not.
 2. **Automated scoring without human annotation** — an LLM judge or rule-based mechanism must reliably separate chosen from rejected at the completion level.
 3. **Sufficient inference volume** — enough samples to build a preference dataset with meaningful quality variance.
 
-### Why completion-level training matters
+These are transfer criteria for this failure-mining recipe, not prerequisites for DPO in general.
+A graded difference between two otherwise acceptable outputs can also supply a preference pair.
 
-Text degeneration is a self-reinforcing attractor: once a token dominates its own conditional distribution, every sampling step deepens the loop. SFT's token-level loss cannot target this — it penalizes each token in isolation and has no concept of a "degenerate completion." DPO's completion-level signal can explicitly point the distribution away from these attractors.
+### Why an explicit rejected completion matters
+
+Under teacher forcing, SFT fits tokens conditioned on the input and the reference prefix:
+`log p(y|x) = sum_t log p(y_t|x,y_<t)`. This is sequence likelihood, not independent token
+classification. Curated demonstrations can encode preferences and can reduce repetition; the
+DharmaOCR source itself reports lower degeneration after SFT in four of five families.
+
+What standard SFT does not directly supply is a contrast with a sampled bad completion and its
+generated prefixes. Self-rejection DPO adds that information. The source's attractor/loss-granularity
+story is a proposed explanation, and its own post-hoc-analysis caveat does not establish it as
+the sole cause. The October 9 lint replaces this page's earlier impossibility claim with that
+narrower objective distinction.
 
 ### DPO's changing frontier role
 
@@ -83,7 +102,7 @@ The useful distinction:
 
 This makes DPO a pragmatic tool rather than a permanent canonical stage.
 
-[[Akhil Arora et al - Current Advances in LLM Reasoning]] gives the crispest one-line intuition for *why* DPO works: **your policy is the reward model** — the log-ratio between the current model and the reference is an implicit reward — so you can skip training a separate reward model and optimize preference pairs directly (make the preferred response more likely, the dispreferred less). In the reasoning-recipe landscape it sits alongside RLVR ([[Reward Design for RL]]) as the lightweight preference-learning option before verifiable-reward RL takes over.
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] gives the intuition **your policy is the reward model**: the log-ratio between policy and reference represents an implicit reward. Preference pairs then train the chosen-versus-rejected ratio without a separate reward model. In the surveyed reasoning recipes, DPO sits alongside RLVR ([[Reward Design for RL]]) as a different feedback route, not a mandatory stage before RL.
 
 ## DPO next to RLHF: same objective, relocated reward
 

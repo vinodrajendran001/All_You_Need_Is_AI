@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - llm
@@ -40,6 +40,7 @@ source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-23-bytebytego-model-customization
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-08-bytebytego-netflix-genrec
 status: active
 ---
 
@@ -47,7 +48,10 @@ status: active
 
 ## Definition
 
-The LLM training pipeline is the staged process by which a base next-token predictor becomes a usable assistant: large-scale pretraining builds general language competence, supervised fine-tuning shapes instruction-following behavior, and preference-driven post-training further aligns outputs to human judgments or reward signals.
+LLM training pipelines combine general pretraining with task-specific adaptation. An assistant
+pipeline typically adds supervised instruction tuning and preference optimization; a domain
+ranker can instead learn a task head and item embeddings. The objective and deployed output
+interface, not a universal sequence of training acronyms, determine the needed stages.
 
 ## Why it matters
 
@@ -60,12 +64,12 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - The Reiner Pope flashcards add a deployment-economics perspective to the same stage: once you count **pretraining + RL + inference** together, it can become rational to pretrain far beyond Chinchilla-optimal data scales if heavy downstream RL and long-lived inference dominate lifetime cost.
 - Pretraining creates a capable but misaligned model: the collection repeatedly describes it as a powerful **text-completion engine** or "statistical parrot." It knows language, but it does not inherently know how to behave like an assistant.
 - **Supervised Fine-Tuning (SFT)** is the first post-training correction. The `sft` tutorial shows the crucial engineering trick: convert prompt/response examples into a single chat-formatted sequence, then **mask the loss on user-side tokens** so the model is only penalized on the assistant response.
-- SFT produces instruction following, but it still treats quality as if there were exactly one correct answer per prompt. That makes it strong at imitation, weaker at learning nuanced preference orderings.
+- Standard SFT fits reference responses, potentially more than one per prompt, without an explicit chosen-versus-rejected comparison. Curating or weighting demonstrations can still encode preferences; absence of a pairwise term is not an inability to learn trade-offs.
 - From here the pipeline splits into two main preference-learning branches:
   - **RLHF + PPO**: collect human rankings, train a reward model with a Bradley-Terry / logistic objective, then optimize the policy against that learned reward while constraining drift from the SFT/reference model.
   - **DPO**: use the same style of preference data, but skip the explicit reward-model-then-RL loop and directly adjust the policy through relative likelihoods of chosen versus rejected responses against a reference model. See [[Direct Preference Optimization]] for a full treatment.
 - The collection's most durable alignment insight is economic as much as algorithmic: **judging is easier than creating**. Preference data scales better than expert-written ideal responses, which is why reward-modeling, PPO-style RL, and DPO all become attractive after SFT.
-- [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] sharpens what SFT and DPO actually fix at a mechanistic level: SFT closes the *distance* between a generalist model and the task domain; DPO explicitly moves the distribution *away* from identifiable failure geometries (attractor regions). These are orthogonal operations — more SFT data cannot substitute for DPO's completion-level signal. The DharmaOCR system demonstrated this by using the model's own degenerate outputs (repetition loops) as self-generated rejection pairs, achieving 59.4% average degeneration reduction across five model families with no human annotation. This is a practically important generalisation: DPO is not only a chat-alignment tool but a reliability improvement mechanism wherever failure modes are categorically identifiable and automatically scoreable.
+- [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] adds an explicit failure-contrast recipe: use the SFT model's degenerate OCR outputs as rejected completions, paired with outputs selected by an LLM judge. The authors report 59.4% average relative degeneration reduction from SFT across five model families without new human preference annotation. SFT already reduced degeneration in four families; the added DPO result does not prove orthogonal capabilities or a universal ceiling on SFT. The source's loss-granularity explanation is conjectural and internally qualified. See [[Direct Preference Optimization]] for the difference between reference-sequence likelihood and explicit rejection pairs.
 - **LoRA** belongs in this pipeline as an efficiency layer rather than a separate learning objective. It changes *how* post-training updates are parameterized by freezing the large base weights and learning a low-rank update, making SFT or preference tuning feasible on smaller hardware budgets.
 - [[Efficient Reasoning on the Edge]] adds a deployment-aware post-training recipe for small reasoning models: SFT on high-quality reasoning traces first unlocks explicit reasoning, then GRPO-based RL applies a budget-aware reward to compress those traces, and separate switcher / verifier heads shape how the model behaves at inference time. This is a useful reminder that post-training objectives may target **shorter reasoning and hardware viability**, not only generic helpfulness or preference alignment.
 - The same paper also weakens the clean separation between "training" and "deployment." Its Quantization-Aware Modular Reasoning setup trains reasoning adapters directly on top of a quantized base model, suggesting that quantization can be part of the post-training recipe itself rather than only a final export step.
@@ -86,7 +90,7 @@ This is one of the most overloaded topic clusters in modern AI discourse. The Po
 - [[ByteByteGo - Large Language Models vs Small Language Models]] adds the small-model training recipe. [[Small Language Models]] often compensate for lower parameter count through curated/synthetic data, knowledge distillation from larger teachers, and deliberate overtraining relative to compute-optimal token ratios. This reframes training cost as a lifecycle trade: spend more upfront to reduce inference cost across many requests.
 - [[Anastasiia Alekseeva - The Simple Maths Behind Parallel Training]] supplies the missing *scaling substrate* under every stage above: pretraining and post-training on trillions of tokens only happen because the training step is spread across many accelerators. See [[Distributed Training Parallelism]] for the full taxonomy (data / tensor / sequence / context / expert / pipeline parallelism, plus FSDP/ZeRO memory sharding) — the reason a >1 TB-of-state model can be trained at all, and why the optimiser state (12 of Adam's 16 bytes/param) is the memory villain the whole pipeline is engineered around.
 - [[Alyona Vert - AI Concepts and Techniques in 2026]] signals that the *post-training* half of this map is fragmenting into a modular "beyond-RL" fine-tuning stack: generated adapters (Doc-to-LoRA, Text-to-LoRA), compressed/structured LoRA (LoRA-Squeeze, Kron-LoRA, Mixture of Adapters), gradient-free Evolution Strategies, and on-policy self-distillation (OPSD/SDFT/SDPO). The durable point is *modularity* — capabilities optimised separately and composed — not that RL is going away (see [[Multi-Teacher On-Policy Distillation]]).
-- [[Akhil Arora et al - Current Advances in LLM Reasoning]] supplies the reasoning-focused view of this same pipeline and its central tension: **SFT reproduces the training distribution (and fails out-of-distribution) while RL discovers novel strategies** — with the open question of whether RL *creates* reasoning or *amplifies* latent pre-training capability. It also anchors the reward side in [[Reward Design for RL|RLVR]] (verifiable rewards, no neural reward model) and shows the 2026 frontier **merging distillation with RL** (KDRL, RL-aware KD that up-weights critical reasoning tokens; ~40% faster than sequential SFT→RL), a natural extension of the teacher-consolidation pattern above. See [[LLM Reasoning]].
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]] contrasts imitation of demonstrations with reward-guided exploration and reports Logic-RL transfer from logic puzzles to math. Its slogan "SFT reproduces, RL discovers" is not a generalization theorem: whether RL creates new reasoning or amplifies latent capability remains open, and neither objective guarantees out-of-distribution success. It also covers [[Reward Design for RL|RLVR]] and reports work merging distillation with RL, including KDRL and reasoning-token-weighted distillation, with a roughly 40% training-time reduction claimed against a sequential SFT-to-RL pipeline. These are surveyed results, not a reproduced comparison. See [[LLM Reasoning]].
 - [[Bojan Jakimovski - Teaching an Open Model to Do Science]] provides a reproducible open-model post-training recipe for specialized behavior: start with a 26B MoE with 3B active parameters, apply GRPO through LoRA adapters, and train against two verifiable environments rather than a generic chat preference signal. The 21-run program held the model, optimizer, topology, and held-out protocol fixed while varying one bounded hypothesis at a time; the selected run improved held-out Drug Tool from 70.8% to 81.2% and reached 0.863 on BioReason's composite metric. This is a practical example of the pipeline moving from generic capability to domain-specific, auditable tool use.
 - [[ByteByteGo - How Big Models Teach Small Models to Be Smart]] separates three distillation surfaces inside the pipeline: teacher outputs, teacher features, and teacher-generated synthetic data. Distillation creates a new student model; later quantization or pruning is a separate deployment step. See [[Knowledge Distillation]].
 
@@ -161,13 +165,13 @@ It was an evaluation-correctness repair, not a demonstrated explanation of that 
 selection among checkpoints using the reported test loss also means that metric was not an
 untouched final-only test.
 
-## Why the pipeline needs an alignment stage at all
+## Why assistant pipelines add explicit preference learning
 
-[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] gives the crisp argument for the third
-stage. **Imitation cannot teach a trade-off.** When two candidate answers are both fluent, correct,
-and on-topic, supervised fine-tuning has no way to express that one is better — its loss only rewards
-reproducing a single reference. Preference learning replaces the reference with a **comparison**, and
-comparison is the only signal that can rank two good answers.
+[[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] motivates an explicit comparison
+when two candidate answers are both fluent, correct, and on-topic. Standard SFT lacks that
+pairwise term, but its demonstrations can still encode a preference. The October 9 lint removes
+this page's earlier claim that imitation cannot teach trade-offs: preference learning supplies
+a different, direct signal rather than the only possible route to preferred behavior.
 
 The two routes differ in machinery, not objective. RLHF trains a separate reward model on human
 comparisons and optimizes the policy with PPO against it, holding a frozen reference model for the KL
@@ -176,10 +180,10 @@ into the policy itself, so the reward is **implicit, not absent**.
 
 The stage earns its place empirically: InstructGPT raters preferred a **1.3B aligned model over 175B
 GPT-3**, and Zephyr-7B trained with DPO beat Llama 2 Chat 70B on the evaluated comparisons. The
-selection rule the source lands on is **"the method follows the signal"** — where a program can check
-the answer, verifiable rewards apply; where it cannot, a learned reward model is still required.
-DeepSeek's split is the worked example: RLVR drove reasoning while reward models were retained for
-helpfulness and safety.
+selection rule the source lands on is **"the method follows the signal"**: use verifiable rewards
+where a program can check the target property, and preference-based feedback for other judgments.
+The latter need not require a separate reward model, as DPO illustrates. In the source's DeepSeek
+example, RLVR drove reasoning while reward models were retained for helpfulness and safety.
 
 ## Two releases that separate the pipeline's stages cleanly
 
@@ -255,6 +259,23 @@ transfer misalignment instead of repairing it. Its "agentic" evaluations are sin
 without tools. Retained capability, truthfulness, out-of-domain behavior, and executed-agent safety
 therefore remain distinct evaluation surfaces rather than one post-training score.
 
+## Domain post-training can end in a ranking head rather than an assistant
+
+[[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] describes two GenRec cadences:
+adapt an open foundation LLM to Netflix data, then refresh recommendation-specific post-training
+more frequently. Training conversations encode histories and subsequent engagements, not an
+interactive chat product or necessarily human-ranked response pairs.
+
+The task stage combines a catalog-ranking objective, retained language modeling, and
+reward-weighted examples; the LLM, ranking head, and item embeddings are trained together.
+A reward model supplying example weights does not by itself establish PPO-style reinforcement
+learning. The capture does not disclose a specific policy optimizer.
+
+The serving consequence is as important as the training distinction: the deployed head scores
+catalog items after one prompt-processing pass without decoding recommendation text. A language
+objective in training therefore does not require a language-output interface at inference.
+See [[Semantic Recommendation Systems]] and [[LLM Inference]].
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -264,6 +285,9 @@ therefore remain distinct evaluation surfaces rather than one post-training scor
 
 ## Related pages
 
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
+- [[Semantic Recommendation Systems]]
+- [[Netflix]]
 - [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
 - [[Emergent Misalignment]]
 - [[Interpretability Evaluation]]

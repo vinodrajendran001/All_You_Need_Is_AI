@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-30
+updated: 2026-10-09
 tags:
   - concept
   - inference
@@ -24,13 +24,21 @@ status: active
 
 ## Definition
 
-**Prefill-decode disaggregation** is the practice of running the two phases of autoregressive inference on separate workers — or separate machines — instead of interleaving them on the same GPU. Prefill processes the whole prompt in one compute-bound pass; decode emits one token at a time and is memory-bandwidth-bound. Disaggregation treats them as two different workloads that happen to share a model, and moves the [[KV Cache]] between them.
+**Prefill-decode disaggregation** runs prompt processing and autoregressive generation on separate
+workers, potentially on separate machines, and transfers [[KV Cache|KV state]] between them.
+Prefill and decode often have different compute, memory, and scheduling requirements, but their
+bottlenecks depend on the model, batching, context, and hardware.
 
 ## Why it matters
 
-This concept answers a question the vault had previously only *posed*. [[LLM Inference]] listed "how should schedulers exploit the prefill↔decode crossover" as an open question; disaggregation is the architectural answer that production systems converged on.
+This is one architectural response to the scheduling question on [[LLM Inference]], not a
+replacement for workload-specific comparison with co-location and chunked prefill.
 
-The motivation follows directly from [[Arithmetic Intensity and the Roofline Model]]. Prefill sits far above the roofline ridge and wants maximum FLOPs; decode sits far below it and wants maximum memory bandwidth and batch size. Colocating them means one phase always runs on hardware tuned for the other, and — worse — a long prefill blocks decode steps for every other request sharing the GPU, inflating tail latency. That interference is the specific pain the technique removes.
+[[Arithmetic Intensity and the Roofline Model]] explains a common motivation: long-prompt prefill
+can emphasize compute while low-batch dense decode emphasizes bandwidth. Long prefills can also
+delay active decodes on a shared worker. Separate pools permit independent provisioning and reduce
+that interference, but the benefit must exceed transfer and coordination cost. The October 9 lint
+removes the earlier claim that co-location always mis-provisions one phase.
 
 ## The lineage
 
@@ -61,10 +69,10 @@ This is the same headroom trade recorded elsewhere in the vault: an optimization
 
 ## Why the two phases separate at all
 
-[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] states the underlying
-asymmetry in the plainest available terms: prefill is parallel and **compute-bound** — it is the pause before
-the first word — while decode is sequential and **memory-bound** — it is the typing. Two phases with opposite
-bottlenecks sharing one worker means one of them is always mis-provisioned.
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] uses a
+pause-versus-typing metaphor for prefill and decode. It is pedagogical, not a bottleneck test:
+time to first token includes other request-path work, and batching or attention design can change
+decode's compute/memory balance.
 
 [[Philip Kiely - The Efficient Frontier of LLM Inference]] classifies disaggregation as a **frontier-moving**
 technique rather than a tradeoff: separating the phases lets each worker be tuned for its own characteristics,
@@ -95,8 +103,7 @@ only while recovered encoder contention exceeds embedding-transfer and coordinat
 
 ## Delete one phase and the whole design space has nothing left to arbitrate
 
-Every system on this page assumes two phases with opposite roofline positions competing for one
-worker. [[Modal - Hitting a Billion Tokens per Minute on One GPU]] is the vault's cleanest boundary
+Disaggregation presupposes two phases worth separating. [[Modal - Hitting a Billion Tokens per Minute on One GPU]] is a boundary
 case, because its workload has only one. Quail serves AI-SQL — prompts built from database rows,
 returning a relation — and the queries are Boolean filters and classifications that need **a single
 output token**. Modal is explicit about what follows: **no separate prefill and decode phases, no
@@ -106,8 +113,8 @@ This inverts the page's cost analysis rather than contradicting it. Here the KV 
 of transfer between phases; **suffix KV is never written at all**, and what caching exists serves
 cross-request reuse of shared join anchors within a known query plan. With no decode to protect,
 chunked prefill has nothing to interleave, DistServe-style worker separation has nothing to separate,
-and the interconnect bet described above is never placed. The whole device can be provisioned for the
-compute-bound phase.
+and the interconnect bet described above is never placed. The device can instead be provisioned
+for the remaining scoring workload.
 
 The useful generalisation is narrow and should stay narrow. Nothing here argues against
 disaggregating chat or agent serving; Modal in fact reports Quail **falling behind vLLM on an

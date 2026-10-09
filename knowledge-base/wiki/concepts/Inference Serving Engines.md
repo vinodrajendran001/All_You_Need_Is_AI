@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-30
+updated: 2026-10-09
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-13-ranganathan-gke-inference-gateway
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-10-08-bytebytego-netflix-genrec
 status: active
 ---
 
@@ -25,7 +26,8 @@ status: active
 
 ## Definition
 
-Inference serving engines load model weights, manage request scheduling and KV-cache memory, execute prefill and decode, and expose models to local applications or concurrent services.
+Inference serving engines load model weights, manage request scheduling and memory, execute
+prefill and, when needed, decode, and expose models to local applications or concurrent services.
 
 ## Workload-oriented selection
 
@@ -102,6 +104,19 @@ The load-bearing problems were:
 The pattern worth carrying is that the engine-selection question this page answers is the *first*
 decision and not the expensive one. Artifact management, schema evolution, and observability dominate
 the ongoing cost, and none of them appear in a throughput comparison.
+
+## The same engine can serve a model without a decode loop
+
+[[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] describes GenRec on vLLM with
+**prefill-only catalog scoring**. A task head consumes the LLM's contextual representation;
+recommendations are not generated token by token. Smaller or distilled models, shorter verbalized
+contexts, and reusable prefixes address the remaining serving cost.
+
+This is a different workload from the older Netflix platform's constrained text decoding.
+Their common use of vLLM does not establish identical deployment components or configurations.
+Engine comparisons should report the output interface and candidate-set size along with input
+length, concurrency, hardware, quality, and latency; a text-generation throughput benchmark
+cannot stand in for a ranking-service benchmark.
 
 ## What the engine is actually doing
 
@@ -221,6 +236,9 @@ next to model and hardware, and this page had only the first two.
 
 ## Related pages
 
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
+- [[Netflix]]
+- [[Semantic Recommendation Systems]]
 - [[Netflix - In-House LLM Serving]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Speculative Decoding]]
@@ -229,16 +247,15 @@ next to model and hardware, and this page had only the first two.
 - [[Changyi Yang - Why MLA and MTP Fight Each Other]]
 - [[Jacob Peake - AI Chip Architectures]]
 - [[Arithmetic Intensity and the Roofline Model]]
-- [[Speculative Decoding]]
 - [[Cerebras]]
 - [[Groq]]
 - [[Agentic Reinforcement Learning]]
 - [[AI Agents in Production]]
 - [[Software Performance Engineering]]
-- Wafer - AI Performance Engineering Resources
-- Prefill-Decode Disaggregation
-- Serving Benchmarks and Goodput
-- GPU Kernel Optimization
+- [[Wafer - AI Performance Engineering Resources]]
+- [[Prefill-Decode Disaggregation]]
+- [[Serving Benchmarks and Goodput]]
+- [[GPU Kernel Optimization]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
 - [[Agentic Testing]]
 - [[Inference Efficiency Frontier]]

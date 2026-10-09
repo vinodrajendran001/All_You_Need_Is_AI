@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - machine-learning
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-13-sumit-scaling-distributed-systems
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-02-epoch-agent-population
+  - src-2026-10-08-bytebytego-netflix-genrec
 status: active
 ---
 
@@ -146,10 +147,11 @@ layer, the model acquires the obligations of any versioned dependency — a comp
 deprecation path, and a rollback story — and those obligations, rather than inference performance,
 set the pace at which the platform can change.
 
-Netflix also curates a **deliberately small operational metric surface** out of vLLM's large one,
-which is the same discipline applied to observability: the constraint is what an on-call engineer can
-act on, not what the system can emit. See [[Inference Serving Engines]] and
-[[Serving Benchmarks and Goodput]].
+Netflix also restores a metric surface lost at an integration boundary: Triton's bridge exposed
+only **9 of more than 40 vLLM metrics**, so a proxy combines the two systems' telemetry.
+The October 9 integration corrects this page's earlier interpretation as deliberate metric
+curation; the source describes restoring visibility, not choosing fewer signals.
+See [[Inference Serving Engines]] and [[Serving Benchmarks and Goodput]].
 
 ## Generic scaling primitives become workload-aware policies
 
@@ -190,8 +192,24 @@ API-equivalent spending at that use level, not provider break-even revenue or a 
 Across both sources, raw supply, allocatable capacity, delivered goodput, and useful work are
 distinct system quantities.
 
+## Catalog ranking can share an LLM foundation without sharing a chat interface
+
+[[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] adds GenRec alongside the
+earlier footage-search and serving-platform cases. A relatively stable domain-adapted foundation
+supports more frequent ranking post-training. A verbalizer selects member context, and a learned
+head scores the catalog or supplied candidates after one LLM pass, with no autoregressive list.
+
+This qualifies the common retrieval-then-ranking shape above: an explicitly bounded catalog can
+be scored directly, while input selection and catalog maintenance remain systems work.
+The account reports an approximately 10%-traffic, four-week A/B test with **0.115%** improvement
+in a short-term homepage metric and **0.006%** in a long-term core metric, both called significant
+by Netflix. Unnamed metric definitions and absent confidence intervals limit what those figures
+establish; they are not general retention estimates or an ablation of the architecture.
+
 ## Related pages
 
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
+- [[Netflix]]
 - [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
 - [[Jason Li - How Many AI Agents Could We Run]]
 - [[Model Factory]]

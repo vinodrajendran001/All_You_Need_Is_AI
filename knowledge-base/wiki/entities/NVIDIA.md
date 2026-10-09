@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-10-07
+updated: 2026-10-09
 entity_kind: organization
 tags:
   - entity
@@ -190,9 +190,9 @@ containment.
 - [[Fergus Finn - What Happens When You Run a CUDA Kernel]]
 - [[AI Agents in Production]]
 - [[AI Knowledge Base Overview]]
-- Wafer - AI Performance Engineering Resources
-- Wafer
-- GPU Kernel Optimization
+- [[Wafer - AI Performance Engineering Resources]]
+- [[Wafer]]
+- [[GPU Kernel Optimization]]
 - [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
 - [[Megakernels]]
 - [[Jacky Kwok et al - Contrastive Language Models]]

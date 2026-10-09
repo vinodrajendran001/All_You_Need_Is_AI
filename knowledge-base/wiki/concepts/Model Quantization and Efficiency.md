@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-30
+updated: 2026-10-09
 tags:
   - concept
   - llm
@@ -82,7 +82,7 @@ Capability alone is not enough. A model that is too large, too slow, or too expe
 - **TurboQuant** is the most specific new technique from that source: rotate KV vectors to smooth outliers, quantize to 3-4 bit centroids, then use QJL sign sketches to correct attention-score bias. The important distinction is that TurboQuant compresses runtime KV cache, not model weights; it should be paired with weight compression when the model weights are also the bottleneck.
 - [[Maarten Grootendorst - A Visual Guide to Quantization]] is the vault's most thorough treatment of the **numerical mechanics** behind weight quantization. It grounds the rest of this page: floating-point layout (sign/exponent/mantissa; BF16 keeps FP32's range, FP16 keeps more precision), the affine map `x_q = round(x/scale + zero_point)`, **symmetric vs asymmetric** mapping, **calibration** (static weights are easy; dynamic activations are hard), the **PTQ vs QAT** decision, and the 4-bit ecosystem — **GPTQ** (layer-wise, Hessian-guided, GPU-oriented, weight-only) vs **GGUF** (super-block/sub-block scales for CPU/Apple-Silicon and split offload). It also covers the **BitNet** 1-bit / 1.58-bit (ternary) frontier, where the "0" state lets a weight ignore a feature.
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]] supplies the mathematical core behind that KV technique and reframes the whole problem. Its key durable distinction is **weight space (static, offline, roughly Gaussian, well-understood) vs token/activation space (dynamic, online, distribution shifts per input)**. Because KV vectors are dynamic, fixed codebooks (INT4 uniform, NF4 Gaussian) are misaligned; the right objective is **rate-distortion preserving the attention inner product `qᵀk`**, not blind MSE. TurboQuant's answer is *transform-then-quantize* (rotate into a known Gaussian space + Lloyd-Max optimal codebook) plus a 1-bit **QJL** (Johnson-Lindenstrauss) residual, reaching near-optimal distortion online.
-- [[Nithin - What Actually Happens During LLM Inference]] anchors *why* compression pays off, via the **prefill vs decode** split now collected on [[LLM Inference]]: decode is **memory-bandwidth-bound** (it re-reads the whole model + KV cache per token), so shrinking bytes-moved (weight + KV compression) directly raises tokens/sec. The same source lists the deployment-format landscape — AWQ/EXL2 (4-bit GPU), FP8 (Hopper) and NVFP4 (Blackwell) as native low-precision compute formats, and GGUF for consumer/split running.
+- [[Nithin - What Actually Happens During LLM Inference]] motivates compression through the low-batch dense-decode case: shrinking weight/KV traffic can help while memory bandwidth is limiting. Batching, architecture, kernel support, and conversion overhead determine the actual tokens/sec gain; fewer stored bytes do not guarantee a proportional speedup. The same source lists AWQ/EXL2, FP8, NVFP4, and GGUF as deployment options. See [[LLM Inference]].
 - [[Onur Sirin - How Local LLMs Run]] adds a practical memory-sizing shortcut for local deployment: weight size is approximately `parameters × bytes_per_parameter` (FP16 ≈ 2 bytes/parameter, Q8 ≈ 1, Q4 ≈ 0.5–0.55), and total runtime need is roughly **weights + KV cache + activations + overhead** (about `weights × 1.2` at medium context, but KV must be counted separately at long context). The source also sharpens the warning that **fitting** a Q4 model in memory is not the same as running it at full speed; memory bandwidth and tier placement determine decode speed.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] adds a model-size systems view. [[Small Language Models]] are not merely scaled-down LLMs; their architecture, training, and deployment are shaped by tight inference constraints. The source highlights grouped-query attention, sliding-window attention, cache sharing, quantization, hardware mapping, data curation, distillation, and overtraining as mutually reinforcing levers for making small models useful in production.
 - A useful synthesis is that efficiency begins before deployment:
@@ -301,8 +301,8 @@ mode this page says to watch.
 - [[Distributed Training Parallelism]]
 - [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]
-- Wafer - AI Performance Engineering Resources
-- GPU Kernel Optimization
+- [[Wafer - AI Performance Engineering Resources]]
+- [[GPU Kernel Optimization]]
 - [[Inference Efficiency Frontier]]
 - [[ByteByteGo - How to Shrink a Language Model Without Making it Too Dumb]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]

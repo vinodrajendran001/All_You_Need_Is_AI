@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-09-11
+updated: 2026-10-09
 tags:
   - concept
   - gpu
@@ -107,10 +107,10 @@ transfer to MoE."
 - [[Distributed Training Parallelism]]
 - [[Speculative Decoding]]
 - [[AI Knowledge Base Overview]]
-- Wafer - AI Performance Engineering Resources
-- GPU Kernel Optimization
-- Serving Benchmarks and Goodput
-- AI-Generated Kernels
+- [[Wafer - AI Performance Engineering Resources]]
+- [[GPU Kernel Optimization]]
+- [[Serving Benchmarks and Goodput]]
+- [[AI-Generated Kernels]]
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
 - [[Megakernels]]
 - [[Cohere]]

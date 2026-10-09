@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-09-30
+updated: 2026-10-09
 tags:
   - concept
   - reinforcement-learning
@@ -41,7 +41,7 @@ RL is one of the major domains already represented in the broader vault, and thi
 - Those same sources sharpen the contrast with RL for LLMs: token-level policy gradients face a much uglier credit-assignment problem, and MCTS does not transfer cleanly because language has unbounded branching and weak partial-trajectory value models.
 - [[Cameron R. Wolfe - Agentic RL Frameworks and Best Practices]] adds the next RL-for-LLMs branch: [[Agentic Reinforcement Learning]]. Instead of optimizing one prompt-response completion, the policy is trained over multi-turn trajectories with tool calls, observations, environment state, outcome/process rewards, action masks, and asynchronous rollout infrastructure.
 - This makes RL for agents look closer to classical sequential decision-making again: the MDP state is not only token context but a joint state of model-visible context plus external environment state.
-- [[Akhil Arora et al - Current Advances in LLM Reasoning]] sharpens the RL-for-reasoning branch and its central debate. **RLVR (RL with Verifiable Rewards)** replaces a neural reward model with rule-based checks (calculator for math, test suite for code, tags for format), works as well as or better than learned rewards, and creates a contrastive correct-vs-incorrect signal that transfers to unseen problems — see [[Reward Design for RL]]. The deck also gives the cleanest statement of why [[Group Relative Policy Optimization|GRPO]] made large-scale reasoning RL practical (it drops PPO's separate critic). Crucially it frames an open question: **SFT reproduces the training distribution while RL discovers novel strategies** (Logic-RL generalizes from puzzles to math), but does RL *create* reasoning or merely *amplify* latent pre-training capability (base models show "aha moments" without RL)? See [[LLM Reasoning]].
+- [[Akhil Arora et al - Current Advances in LLM Reasoning]] surveys **RLVR (RL with Verifiable Rewards)**, which replaces a learned reward model with checks such as tests or format validators, and [[Group Relative Policy Optimization|GRPO]], which removes PPO's separate critic. Its reported Logic-RL transfer from puzzles to math motivates the creation-versus-amplification debate; reasoning in base models leaves that debate open. The deck's "SFT reproduces, RL discovers" slogan is not proof that SFT cannot generalize, that RL always generalizes, or that verifiable rewards always outperform learned ones. See [[Reward Design for RL]] and [[LLM Reasoning]].
 - This page should remain a hub page until narrower RL subtopic pages are added.
 
 ## The horizon, not the algorithm, is what breaks outcome-based RL

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-09-11
+updated: 2026-10-09
 tags:
   - concept
   - recursive-self-improvement
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-15-turing-post-recursive-self-improvement
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -55,7 +56,13 @@ The current vault synthesis is conservative:
 
 The source also helps disambiguate RSI from [[Recursive Architectures]]. Recursive architectures reuse computation over internal state to improve reasoning depth. Recursive self-improvement is a socio-technical research loop where AI systems improve future AI systems. They share a word, not a mechanism.
 
-[[Alpha Signal - Why self-improving harnesses are the next frontier]] supplies concrete 2026 examples that sit firmly on the *workflow* end of this spectrum: **Self-Harness** and **HarnessX** let an agent rewrite its own [[Coding Agent Harness|harness]] — mining failure traces, proposing edits, and gating them behind regression tests (HarnessX even frames the search as RL via its AEGIS engine). Crucially, they improve the *operating environment*, not the base model, so their gains are bounded by the model's latent capability — the exact distinction between self-improving agents and stronger model-building RSI. They also inherit the risks named here (reward hacking, catastrophic forgetting), which they claim to guard against but do not prove settled.
+[[Alpha Signal - Why self-improving harnesses are the next frontier]] describes workflow-level
+**Self-Harness** and **HarnessX** runs: failure traces inform harness edits, with regression
+gates and, for HarnessX, AEGIS search over modules. Its account concerns the operating scaffold,
+not a demonstrated model-weight update. The October 9 evidence below adds co-evolution and makes
+that qualification variant-specific rather than a permanent property of the named systems.
+Their asserted guards against reward hacking and forgetting remain controls to evaluate, not
+proof that either risk is settled.
 
 [[Mahesh Sathiamoorthy - RL Environments Are All You Need]] identifies scored environments as shared infrastructure for this progression. The same held-out tasks can optimize weights, prompts, or harness code. This supports workflow-level self-improvement, but does not remove the stronger RSI bottlenecks: choosing valuable objectives, preventing reward hacking, and generalizing beyond the curated environments.
 
@@ -264,6 +271,24 @@ That boundary creates a governance regress. If the evaluator that certifies prog
 some protected test, human judgment, formal check, or external measurement must remain outside the
 loop. The source reports no self-sustaining capability growth; it is a taxonomy and control argument.
 
+## Co-evolution and meta-agent editing are different claims
+
+[[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] reports HarnessX
+reusing harness trajectories to train the backbone, then feeding new behavior into later
+harness evolution. That is a coupled weights-and-scaffold update rather than the frozen-model
+workflow in the earlier briefing. It does not alone establish improved ability to make the
+next improvement or self-sustaining capability growth.
+
+Hyperagents targets another axis: a task agent and its modifying meta-agent share an editable
+program, so the modification process can change too. EnvHarness edits the training experience
+without changing the stated core logic or verifier; Raven targets coordination. These examples
+separate *what changes* from *what counts as progress* and do not form a mandatory hierarchy.
+
+The source's practical rule is therefore narrower than "make everything self-improving":
+locate the bottleneck, authorize the smallest relevant update, preserve the artifacts needed to
+attribute it, and keep independent evaluation. The newsletter's reported task gains are not
+measurements of an indefinitely compounding research loop.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -282,6 +307,8 @@ loop. The source reports no self-sustaining capability growth; it is a taxonomy 
 
 ## Related pages
 
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
+- [[Graph Engineering]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
 - [[Automated AI Research]]
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
@@ -289,22 +316,20 @@ loop. The source reports no self-sustaining capability growth; it is a taxonomy 
 - [[Agent Skill]]
 - [[AI Agents in Production]]
 - [[Recursive Architectures]]
-- [[Agent Skill]]
 - [[Coding Agent Harness]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Reinforcement Learning]]
 - [[Mahesh Sathiamoorthy - RL Environments Are All You Need]]
 - [[Continual Learning for Agents]]
-- AI-Generated Kernels
-- Wafer - AI Performance Engineering Resources
-- Benchmark Optimization
+- [[AI-Generated Kernels]]
+- [[Wafer - AI Performance Engineering Resources]]
+- [[Benchmark Optimization]]
 - [[Harness Optimization]]
 - [[Philipp Schmid]]
 - [[Lilian Weng]]
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
 - [[Baseten - Agentic Kernels in Production]]
-- [[AI-Generated Kernels]]
 - [[Inference Efficiency Frontier]]
 - [[Institutional Knowledge Agents]]
 - [[Meta - An Organizational Second Brain]]

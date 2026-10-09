@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-08-26
+updated: 2026-10-09
 source_id: src-2026-07-02-arora-llm-reasoning-advances
 source_title: "Current Advances in LLM Reasoning"
 source_author: Akhil Arora, Vishrav Chaudhary, Julia Kreutzer, Nearchos Potamitis, Lars Klein, Nouha Dziri, Niket Tandon
@@ -22,7 +22,7 @@ status: active
 
 ## Summary
 
-This is a full-length tutorial deck (llmreasoning.github.io, presented 2 July 2026) that surveys the entire LLM-reasoning field across three parts: **how well can models reason**, **how do we make them reason better**, and **what are the next frontiers**. It is unusually citation-dense (hundreds of 2024–2026 papers) and is the vault's most comprehensive single reasoning source. Its organizing thesis is the **frozen-θ view**: a trained model already contains latent CoT paths, self-verification, backtracking, and subgoal decomposition; performance gains come from better **search/exploration** (internal) plus **verification/retrieval/tools** (external), which post-training *unlocks* — not from adding new knowledge.
+This is a full-length tutorial deck (llmreasoning.github.io, presented 2 July 2026) surveying **how well models reason**, **how to make them reason better**, and **the next frontiers**. It is unusually citation-dense and is the vault's broadest single reasoning source. Its **frozen-θ view** argues that search, verification, retrieval, and tools can improve use of an already trained model. That is a thesis about inference-time access to capability, not evidence that post-training leaves weights fixed or cannot teach anything new; the deck separately treats the create-versus-amplify question as open.
 
 Part 1 defines reasoning (deduction/abduction/induction), shows LLMs are primarily *inductive* pattern-completers, and then systematically documents how **fragile and unfaithful** current reasoning is under perturbation, and how it fails in high-stakes (medical) settings. Part 2 covers the two levers for improvement: **inference-time / test-time scaling** (verifier-free search vs verifier-based selection) and **post-training / RL** (SFT, DPO, RLVR, PPO→GRPO, distillation). Part 3 lays out open frontiers as pillars — retrieval-vs-memory, verification, test-time scaling, multi-agent systems, continual learning, and systems — each with 2025–2026 evidence that they are unsolved.
 
@@ -42,7 +42,7 @@ Part 1 defines reasoning (deduction/abduction/induction), shows LLMs are primari
 - **Post-training has three objectives** — follow instructions, be helpful, think logically — and is the comparatively cheap stage that turns a next-word predictor into a useful model. **SFT enables skills** by composing a data mix (Tulu 3 buckets: instruction/reasoning/math/coding/safety/multilingual/chat); **quality > quantity** (s1: 1,000 curated traces beat o1-preview).
 - **DPO** skips the reward model: the policy *is* the reward model (log-ratio to a reference is an implicit reward), so you optimize preference pairs directly. **RLVR (RL with Verifiable Rewards)** drops the neural reward model entirely — math checked by calculator, code by test suite, format by tags — and works as well as or better than learned rewards, creating a contrastive correct-vs-incorrect signal that transfers to unseen problems.
 - **PPO → GRPO** is what made large-scale reasoning RL practical: PPO needs four models (policy, reward model, critic baseline, KL reference); GRPO drops the critic and uses the **group mean/std** as the baseline, roughly halving memory, with a KL penalty keeping the policy near the base model.
-- **SFT reproduces, RL discovers.** SFT faithfully reproduces the training distribution and fails out-of-distribution; RL discovers novel strategies (Logic-RL trained on 5K puzzles generalizes to math). Open debate: does RL *create* reasoning or *amplify* latent capability (Dr. GRPO shows base Qwen already reasons)?
+- **Imitation versus reward-guided exploration.** The deck frames its examples as "SFT reproduces, RL discovers," citing Logic-RL transfer from 5K puzzles to math and Dr. GRPO's observations of reasoning in base Qwen. These are reported examples, not proof that all SFT fails out-of-distribution or all RL creates new strategies. The deck explicitly leaves creation versus amplification of latent capability unresolved.
 - **Distillation is now standard and merging with RL.** DeepSeek-R1 distillation transfers ~85–90% of capability into 1.5–70B students with pure SFT; s1 and Qwen3 strong-to-weak confirm efficiency. The 2026 frontier unifies KD + RL in one stage (KDRL, RL-aware KD that up-weights critical reasoning tokens), ~40% faster than sequential SFT→RL. Production pipelines are multi-stage (QwQ-32B 2-stage, Qwen3 5-stage, GLM-5 4-stage "slime").
 
 ### Frontiers (each an open pillar with 2025–2026 evidence it's unsolved)
@@ -62,6 +62,7 @@ This deck is the natural **hub** for the vault's scattered reasoning material an
 
 - The source is a **slide deck captured via plain-text export**, so speaker-note prose is interleaved with fragmentary slide text and some layout/OCR noise; exact figures live in the cited papers, not the capture.
 - The central **create-vs-amplify** debate (does RL produce new reasoning or surface latent capability?) is explicitly left open and shapes how one reads every RL result here.
+- **October 9 qualification:** the earlier summary promoted the deck's generalization slogan and frozen-weight framing into universal conclusions. Inference-time search can keep weights fixed; SFT and RL update them, and generalization depends on data, model, task, and evaluation protocol.
 - **Faithfulness** undercuts the whole enterprise: if traces don't reflect computation, trace-based supervision and trace-based evaluation are both suspect — mechanistic interpretability is proposed as a better lens.
 - Many "frontier" claims are pointers to very recent (2026) preprints presented without independent replication; treat them as signals to track.
 
@@ -109,4 +110,3 @@ This deck is the natural **hub** for the vault's scattered reasoning material an
 - [[LLM Inference]]
 - [[AI Knowledge Base Overview]]
 - [[Recursive Architectures]]
-

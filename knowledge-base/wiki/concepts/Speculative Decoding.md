@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-09-25
+updated: 2026-10-09
 tags:
   - concept
   - inference
@@ -206,12 +206,11 @@ lose the latency benefit when the draft model or verification competes for scarc
 - [[Test-Time Scaling]]
 - [[Small Language Models]]
 - [[AI Knowledge Base Overview]]
-- Wafer - AI Performance Engineering Resources
-- Serving Benchmarks and Goodput
+- [[Wafer - AI Performance Engineering Resources]]
+- [[Serving Benchmarks and Goodput]]
 - [[Speculative Tool Execution]]
 - [[Programmatic Tool Calling]]
 - [[Alex L. Zhang - Speculative Programmatic Tool Calling]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
-- [[Serving Benchmarks and Goodput]]
 - [[Inference Efficiency Frontier]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]

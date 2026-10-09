@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-08-26
+updated: 2026-10-09
 tags:
   - concept
   - recommendation-systems
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-12-bytebytego-semantic-feed-retrieval
   - src-2026-05-21-bytebytego-batch
   - src-2026-07-28-bytebytego-delivery-llm-search
+  - src-2026-10-08-bytebytego-netflix-genrec
 status: active
 ---
 
@@ -18,7 +19,7 @@ status: active
 
 ## Definition
 
-Semantic recommendation systems retrieve or generate candidate items using representations of content meaning and user interests rather than relying only on historical engagement or collaborative behavior.
+Semantic recommendation systems retrieve, generate, or rank candidate items using representations of content meaning and user interests, often combined with historical engagement or collaborative behavior.
 
 ## Why it matters
 
@@ -61,6 +62,32 @@ Moving from engagement to semantics reduces one class of gaming but does not mak
 
 The durable pattern is **LLM augmentation under product constraints**: use the model where it resolves ambiguity or representation mismatch, keep deterministic catalogs and rankers, and let traffic distribution, latency budget, and available training data pick the design. That there is no single right answer here is the finding, not a gap in the reporting. See [[DoorDash]] and [[Retrieval-Augmented Generation]].
 
+## A language-model ranker need not generate a recommendation list
+
+[[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] adds a different use of an LLM
+from YouTube's semantic-ID generation: **GenRec interprets text, then scores existing catalog
+items**. A verbalizer selects viewing events and metadata, the model pools a contextual
+representation, and a learned head combines it with item embeddings. It can score the whole
+catalog or a supplied candidate set; a separate retrieval stage is not mandatory for this design.
+
+The output contract removes one failure mode of open-ended generation: an item outside the scored
+set cannot be produced by the ranking head. It does not guarantee fresh eligibility, a useful
+ranking, or calibrated satisfaction probabilities. Softmax normalization and semantic correctness
+are distinct, just as they are for [[Typed Probabilistic Decision Models]].
+
+The engineering work moves into the input and objectives rather than disappearing. Domain
+adaptation is followed by more frequent recommendation post-training, with ranking, language
+modeling, and reward-weighted engagement signals. Selecting stronger events, compacting repetition,
+and adding richer cold-start metadata reportedly leave about one third of the original context
+tokens and a similar serving-cost fraction.
+
+Offline Mean Reciprocal Rank and live product outcomes answer different questions. The secondary
+account reports a four-week A/B test on approximately 10% of traffic, with **0.115%** improvement
+in an unnamed short-term homepage metric and **0.006%** in an unnamed long-term core metric.
+Netflix calls both significant; the capture gives no confidence intervals or metric definitions.
+The printed percentages should not be relabelled as percentage-point gains or retention estimates,
+and the combined result is not a causal ablation of each component.
+
 ## Open questions
 
 - How should semantic relevance be balanced against quality, novelty, diversity, integrity, and creator fairness?
@@ -70,6 +97,11 @@ The durable pattern is **LLM augmentation under product constraints**: use the m
 
 ## Related pages
 
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
+- [[Netflix]]
+- [[Typed Probabilistic Decision Models]]
+- [[Context Engineering]]
+- [[LLM Inference]]
 - [[ML Systems at Scale]]
 - [[Retrieval-Augmented Generation]]
 - [[Model Routing]]

@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - log
 source_ids:
@@ -303,6 +303,9 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-08-talekar-decision-model-gold-rush
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -1712,3 +1715,75 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   sections, or summaries without raw pointers. The **367 pre-existing raw files**, posts,
   archive, and local-only queries were left unchanged. Preserved the prior log body and its
   legitimate repeated headings for distinct historical lint passes.
+
+## [2026-10-09] ingest | GenRec - language-model ranking without text generation
+
+- Ingested [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]], preserving the
+  October 8 clipping's bytes and metadata under its dated source filename.
+- Extended [[Semantic Recommendation Systems]], [[LLM Inference]], [[LLM Training Pipeline]],
+  [[Context Engineering]], [[Inference Serving Engines]], [[ML Systems at Scale]], and
+  [[Typed Probabilistic Decision Models]] with GenRec's domain adaptation, catalog head, and
+  prefill-only output interface. Reward-weighted training is not silently relabelled PPO, and
+  normalized catalog scores are not treated as calibrated satisfaction probabilities.
+- Kept the reported one-third context/cost result and four-week, approximately 10%-traffic
+  A/B test bounded to the source. Its **0.115%** short-term and **0.006%** long-term metric
+  improvements remain percentages as printed, with unnamed metrics and no reproduced study.
+- Added [[Netflix]] using the new account plus the existing footage-search and internal-serving
+  sources, and updated [[ByteByteGo]]. Corrected the directly related serving recap that had
+  mistaken restoration of missing vLLM telemetry for deliberate metric curation.
+- Verified that the apparently unrelated Uber slug is the Netflix article's actual live
+  canonical URL; no guessed replacement or raw-metadata correction was made.
+
+## [2026-10-09] ingest | The Decision Model Gold Rush
+
+- Ingested [[Swapnil Talekar - The Decision Model Gold Rush]], preserving the October 8
+  clipping under a dated filename and using the tracking-free article URL.
+- Updated [[Typed Probabilistic Decision Models]], [[Model Routing]], [[Benchmark Optimization]],
+  and [[TypeSafe AI]]. The reported DecideBench scope is 400 decisions across eight task
+  families: Jev at **98% accuracy and $32 per million tasks**, small encoders in a
+  **35-59% group range**, and Imajev-4B at **95%**.
+- Preserved the evidence boundary: the article describes the benchmark as independent, but the
+  underlying protocol and model versions were not independently reviewed. The encoder range is
+  not a Laya-specific score and does not overwrite earlier results on different tasks/metrics.
+- Separated predicted-event probability from Jev Choice concentration, task price from token
+  tariffs, and API compatibility from behavioral equivalence. Vendor latency ranges and release
+  claims remain attributed rather than promoted into matched deployment measurements.
+
+## [2026-10-09] ingest | Agent-stack optimization from skills to orchestration
+
+- Ingested [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]], completing
+  the newsletter clipping deferred by [[2026-10-07 Lint Pass]]. Recovered its matching public
+  article through Alpha Signal's sitemap, verified the Ben Dickson byline, and recorded
+  publicly accessible result qualifications separately from the verbatim inbox body.
+- Updated [[Agent Skill]], [[Persistent Wiki]], [[Harness Optimization]], [[Coding Agent Harness]],
+  [[Recursive Self-Improvement]], [[RL Environment Design]], [[Graph Engineering]], and
+  [[Alpha Signal]]. WikiSkill adds an evidence store upstream of skills; the later HarnessX
+  co-evolution account qualifies the older harness-only framing; environment and orchestration
+  optimization remain distinct interventions rather than mandatory maturity stages.
+- Scoped Self-Harness's **132% relative** maximum to **Qwen3.5-35B-A3B on AppWorld,
+  22.5% to 52.2% overall**, using the matched public page's takeaways. EnvHarness's **up to nine
+  points** and **about 9.8% fewer interaction steps** are secondary results, not percentage-point
+  claims with an invented metric or measurements of total compute savings.
+- Completed the three-source batch with **275 source summaries**, **301 owned source IDs**,
+  and **524 typed wiki pages**. Updated the index and overview without creating redundant
+  concept or product pages.
+- Deleted the zero-byte `raw/sources/GPU programming with Triton, part 1.md` with explicit user
+  approval. The two existing source captures were renamed without changing bytes; the inbox
+  body was preserved verbatim beneath new capture metadata and provenance. Historical log
+  entries, existing raw evidence, posts, and local-only queries were not rewritten.
+
+## [2026-10-09] lint | Full wiki lint pass
+
+- Filed [[2026-10-09 Lint Pass]], the thirty-ninth structural pass: **525 typed, reachable wiki
+  pages**, **275 source summaries**, **301 owned source IDs**, and exact index/log/overview parity.
+- Expanded Related pages checks, converted **37 bare titles** to wikilinks, and removed **nine
+  duplicate destinations across 17 pages**. The final structural audit reports no actionable findings.
+- Corrected stale index descriptions and older SFT/DPO, reasoning-generalization, verification-gate,
+  and inference-bottleneck claims. Preserved the distinction between reported outcomes, proposed
+  mechanisms, and causal evidence; corrected the corresponding summaries and active consumers.
+- Traced the three recent source chains without strengthening their metrics or attribution:
+  GenRec catalog scoring and unnamed product metrics, DecideBench group ranges and price units,
+  and model-scoped Self-Harness/EnvHarness results.
+- Changed **35 existing wiki files** and added the report. All **370 raw files** remain byte-identical
+  to the current lint baseline; posts/archive, queries, previous lint reports, and the historical
+  log body were preserved. No new evidence source, capture move, or deletion was introduced.

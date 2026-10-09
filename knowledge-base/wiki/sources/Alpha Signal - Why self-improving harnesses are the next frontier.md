@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-06
-updated: 2026-08-26
+updated: 2026-10-09
 source_id: src-2026-07-06-alphasignal-self-improving-harnesses
 source_title: "Why self-improving harnesses are the next frontier for AI developers"
 source_author: Alpha Signal
@@ -34,21 +34,28 @@ It profiles two frameworks — **Self-Harness** (prompt/rule-level) and **Harnes
   3. **Proposal validation** — accept a change only if regression tests confirm it doesn't degrade previously-passing tasks.
   On Terminal-Bench-2.0, agents running Qwen-3.5 and GLM-5 saw pass-rate jumps of **33%–60%**. Example: repeated file-overwrite errors → weakness mining spots the error tags → a "check for existing files before writing" rule is injected into the system prompt.
 - **HarnessX (Xiaomi Darwin Agent Team)** is an "agent foundry" that treats the architecture as a **behavior pipeline of nine components** (context assembly, memory, tool ecosystems, control flow, observability, …), each a self-contained **processor** that plugs in like a lego piece. Its optimizer **AEGIS** frames harness adaptation as an **RL problem over processor modules**, searching structural combinations while guarding against **catastrophic forgetting** and **reward hacking**. On GAIA, a Qwen-3.5 9B model went from **33% → 47%** by evolving its tools and memory — letting a small model "punch above its weight class" and cut token cost/latency. Open-sourced.
-- **Both are "loop engineering," not "loopmaxxing."** They work *because* they enforce **strict regression testing and structured search** and validate structural changes against deterministic benchmarks before promoting them — avoiding the trap of throwing unguided inference compute at a problem.
-- **The new playbook:** the developer's highest leverage shifts to designing the **meta-systems, instrumentation, and verification gates** that let models iterate safely. Prerequisites are comprehensive execution-trace logging and verifiable goals; agents need structured data on failed runs to find systemic weaknesses.
+- **Both are described as "loop engineering," not "loopmaxxing."** The newsletter attributes their gains to regression tests, structured search, and benchmark-gated promotion. Those are reported design controls, not an ablation establishing which control caused the gain or proof that benchmark search cannot overfit.
+- **The proposed playbook:** developers design the **meta-systems, instrumentation, and verification gates** around iteration. Trace logging and verifiable goals support diagnosis; their presence alone does not establish safe self-modification.
 
 ## Why it matters
 
-This source extends two vault pages at once. It gives [[Agent Skill]] two concrete self-optimizing-harness systems to sit beside its existing SkillOpt/GEPA/EvoSkill examples, and it pushes [[Coding Agent Harness]] from "the harness runs the model" to "the harness **optimizes itself**." Its "self-improving workflow, not self-improving model" nature places it precisely on the spectrum defined by [[Recursive Self-Improvement]] (workflow-level, not model-building-level RSI). AEGIS's RL-over-processors formulation, with explicit guards against reward hacking and catastrophic forgetting, connects to [[Reward Design for RL]], and the whole "loop engineering with verification gates" framing reinforces [[Agentic Loop]].
+This source gives [[Agent Skill]] two harness-optimization examples and pushes [[Coding Agent Harness]] from executing a procedure to revising it. The workflow described in this briefing changes the scaffold, placing that reported variant on the workflow-level part of [[Recursive Self-Improvement]]; the later account below also describes HarnessX model training. AEGIS's proposed controls against reward hacking and forgetting connect to [[Reward Design for RL]], while benchmark-gated iteration connects to [[Agentic Loop]].
 
 ## Tensions / open questions
 
 - It is a newsletter briefing with promotional framing; the 33–60% and 33→47% gains are single-benchmark, vendor-reported (Terminal-Bench-2.0, GAIA), not independently replicated.
 - Self-improvement over the harness inherits the same open risks it claims to guard against — reward hacking, catastrophic forgetting, and "loopmaxxing" — which are asserted to be handled but not proven durable.
-- The distinction from stronger [[Recursive Self-Improvement]] matters: these systems improve *workflow artifacts*, not the underlying model, so gains are bounded by the base model's latent capability.
+- **October 9 causal qualification:** the earlier summary repeated the newsletter's "because" as a demonstrated explanation. No gate-only ablation or broad safety evaluation is supplied; regression checks constrain the tested cases, not every future behavior.
+- The workflow-versus-model distinction belongs to the runs described here, not permanently to the systems' names. Even a fixed-model workflow can improve through tools and external state; this report establishes no numerical capability ceiling.
+- **October 9 scope update:** [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
+  describes a HarnessX model-training loop in addition to harness evolution. The frozen-model
+  characterization here belongs to this earlier briefing, not every variant of the named system.
+  Its broader Self-Harness results also use different model/benchmark scopes; the percentages
+  should not be combined into one trend.
 
 ## Affected pages
 
+- [[Alpha Signal]]
 - [[Agent Skill]]
 - [[Agentic Loop]]
 - [[Coding Agent Harness]]
@@ -65,6 +72,7 @@ This source extends two vault pages at once. It gives [[Agent Skill]] two concre
 
 ## Related pages
 
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Agent Skill]]
 - [[Coding Agent Harness]]
 - [[Recursive Self-Improvement]]

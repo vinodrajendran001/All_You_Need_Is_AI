@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-10-07
+updated: 2026-10-09
 tags: [concept, decision-models, structured-output, inference]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-08-talekar-decision-model-gold-rush
+  - src-2026-10-08-bytebytego-netflix-genrec
 status: active
 ---
 
@@ -142,6 +144,34 @@ training recipe remain undisclosed; ModernBERT hypotheses, GLiNER tutorials, and
 do not fill that gap. The vendor's "100% synthetic" data statement is an attributed claim, not an
 independent audit.
 
+## October 9 selection update: reported benchmark evidence is not interchangeability
+
+[[Swapnil Talekar - The Decision Model Gold Rush]] reports DecideBench's **400 multiple-choice
+decisions across eight task families**: Jev at **98% accuracy and $32 per million tasks**,
+small encoder models including Laya in a **35-59% group range**, and image-capable Imajev-4B
+at **95%**. This is a secondary account of a benchmark the author calls independent, without
+the primary protocol, exact versions, or uncertainty estimates in the capture.
+
+It adds an adverse comparison for the small-encoder category without directly refuting earlier
+Laya self-reports on different tasks and metrics. Accuracy also says nothing by itself about
+calibration. The source's confidence-binning recipe must use the relevant event or selected-option
+probability, not silently substitute Jev Choice's concentration field.
+
+The durable selection criteria are deployment location, modality, local quality and calibration,
+latency, full cost, and replacement effort. The cited **$32 per million tasks** and **$0.042 per
+million input tokens** are different units, not contradictory prices. GPU-only, per-question,
+and hosted end-to-end latency claims likewise need a common boundary. A drop-in API replacement
+can still require new thresholds and behavioral evaluation.
+
+## Closed-catalog ranking shares a boundary, not necessarily the vendor category
+
+[[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] describes GenRec's LLM-plus-ranking
+head scoring finite catalog embeddings without autoregressive recommendation text. It shares the
+idea of making the output set explicit, but is a domain-specific recommender, not evidence that
+Netflix uses Jev or its proprietary recipe. Softmax makes a normalized ranking distribution;
+it does not make scores calibrated probabilities of satisfaction. The output contract prevents
+invented catalog IDs, not wrong choices among valid items.
+
 ## Open questions
 
 - Does the cached-action formulation generalize to candidate sets that change per state, or does it
@@ -155,6 +185,10 @@ independent audit.
 
 ## Related pages
 
+- [[Swapnil Talekar - The Decision Model Gold Rush]]
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
+- [[Semantic Recommendation Systems]]
+- [[Netflix]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
 - [[Reward Design for RL]]

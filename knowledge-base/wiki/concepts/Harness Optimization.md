@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-01-iusztin-scoped-subagents
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-30-replit-free-models-harness-design
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -277,6 +278,27 @@ prescribed workflow at all before optimizing its details. Keep the same external
 authority constraints either way. The source does not isolate each primitive's contribution,
 and published baselines are not controlled reruns.
 
+## Choose the smallest editable surface that contains the bottleneck
+
+[[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] supplies a
+complementary map: skills, harness code, model-harness co-evolution, environment wrappers,
+and orchestration. These are overlapping intervention choices, not stages every project should
+climb. Weng's ladder measures how much scaffold code may change; this map asks where the
+observed failure lives.
+
+WikiSkill's experience wiki retains successes, failures, and rejected fixes upstream of skill
+edits, addressing the negative-result-memory gap previously listed below. EnvHarness changes
+the learning experience while keeping core environment logic and the verifier fixed. Raven
+makes specialist coordination another optimization target. Weight training in HarnessX is
+outside this page's strict frozen-model definition and belongs to a separately evaluated
+model-harness pair.
+
+The newer Self-Harness maximum also needs a specific denominator: the matched public article
+locates **132% relative improvement** at **22.5% to 52.2% for Qwen3.5-35B-A3B on AppWorld**,
+not a 132-point gain across all agents. It is a secondary report, not a controlled comparison
+with the earlier newsletter's Terminal-Bench figures or an ablation proving that verification
+gates alone caused the improvement.
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -286,8 +308,8 @@ and published baselines are not controlled reruns.
 - How do you keep an evaluator both unreachable *and* improving? Read-only evaluators cap the system
   at self-improvement rather than recursion.
 - What is the right unit of credit assignment when an optimizer changes several rungs at once?
-- Weng lists the failure to record **negative results** as an open challenge. No system described here
-  keeps a durable record of what was tried and rejected.
+- WikiSkill now explicitly targets memory of rejected fixes. What evidence shows that retained
+  negative results reduce repeated search rather than preserve stale explanations?
 - One patch per round with an immediate revert *is* greedy selection, which this page argues against
   elsewhere: Schmid's generation-1 variant scoring 58 went on to parent the best agent at 84. Does the
   attributability gained justify pruning exactly the candidates archive-based search keeps?
@@ -296,6 +318,10 @@ and published baselines are not controlled reruns.
 
 ## Related pages
 
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
+- [[Persistent Wiki]]
+- [[RL Environment Design]]
+- [[Graph Engineering]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Replit]]
 - [[Inference Efficiency Frontier]]
@@ -312,7 +338,6 @@ and published baselines are not controlled reruns.
 - [[Addy Osmani - Audit your Agent files]]
 - [[adlrocha - Base Models Stopped Being the Bottleneck]]
 - [[Qwen]]
-- [[RL Environment Design]]
 - [[Tool Roster Economics]]
 - [[Harness State Authority]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]

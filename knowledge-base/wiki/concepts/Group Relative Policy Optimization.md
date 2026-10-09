@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-30
+updated: 2026-10-09
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -166,11 +166,9 @@ clipping bounds the damage rather than restoring the identity. See [[Inference S
 - [[Search-Augmented Language Models]]
 - [[Efficient Reasoning on the Edge]]
 - [[Reward Design for RL]]
-- [[LLM Training Pipeline]]
 - [[On-Device Reasoning]]
 - [[Reasoning Compression]]
 - [[Reinforcement Learning]]
-- [[Reward Design for RL]]
 - [[LLM Reasoning]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[AI Knowledge Base Overview]]

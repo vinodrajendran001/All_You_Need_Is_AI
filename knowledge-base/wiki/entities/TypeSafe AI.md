@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-10-07
+updated: 2026-10-09
 tags: [entity, organization, decision-models]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-08-talekar-decision-model-gold-rush
 status: active
 ---
 
@@ -101,8 +102,22 @@ tutorial, and Laya's architecture are not evidence of Jev's internals. Choice co
 `confidence` is also not the same field as a predicted event's probability; the 0.9 calibration
 intuition above applies only after defining which probability is being tested.
 
+## October 9 market update: more alternatives, still task-specific evidence
+
+[[Swapnil Talekar - The Decision Model Gold Rush]] reports competing hosted and self-hosted
+decision interfaces and a DecideBench comparison: **400 decisions in eight task families**,
+with Jev at **98% accuracy and $32 per million tasks**, the cheapest model above 95% in that
+reported comparison. This is a commentator's account of an outside benchmark, not a direct
+benchmark read or an independent reproduction by the vault.
+
+The new source strengthens the need to compare deployment, modality, local accuracy, calibration,
+and operating cost separately. Its API-compatibility claims do not establish behavioral equivalence,
+and its launch/adoption figures do not validate calibration. The decision-model landscape has
+expanded in the reporting; Jev's private implementation has not thereby become public.
+
 ## Related pages
 
+- [[Swapnil Talekar - The Decision Model Gold Rush]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
 - [[Sebastian Raschka]]

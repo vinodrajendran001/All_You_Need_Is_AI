@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - training
@@ -120,4 +120,4 @@ windows and a controlled attribution are not supplied.
 - [[GPU Execution Model]]
 - [[AI Knowledge Base Overview]]
 - [[Edward Z. Yang - How to Parallelize a Transformer for Training]]
-- Wafer - AI Performance Engineering Resources
+- [[Wafer - AI Performance Engineering Resources]]

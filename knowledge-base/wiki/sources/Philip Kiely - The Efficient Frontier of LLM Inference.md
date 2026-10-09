@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-09
 source_id: src-2026-09-02-baseten-efficient-frontier-inference
 source_title: "The efficient frontier of LLM inference"
 source_author: Philip Kiely
@@ -35,8 +35,9 @@ coding deployment of GLM-5.3 or Kimi K3 with KV-cache reuse and KV-aware routing
 - **The frontier is jagged, not smooth.** Small configuration changes produce large outcome changes, and
   **the cutoff points are unintuitive and must be found empirically through sweeps**. This is the post's most
   practically useful claim: there is no analytic shortcut to the operating point.
-- **Batch sizing is the canonical tradeoff.** Continuous batching removes queueing delay, but the *configured*
-  batch size still sets per-user latency against tokens-per-GPU, and therefore cost per token.
+- **Batch sizing is the canonical tradeoff.** Continuous batching avoids waiting for a whole fixed
+  batch to finish before admitting new work; it does not eliminate queueing under resource limits.
+  The configured batch size still trades per-user latency against throughput and cost.
 - **Parallelism strategy is a tradeoff, and the choice is directional.** **Tensor Parallelism** lowers latency
   — its all-to-all communication is expensive but fast over NVLink. **Expert Parallelism** cuts both ways: low
   EP degree tends toward latency, wide EP (up to a full rack) toward throughput. **Attention Data
@@ -45,8 +46,9 @@ coding deployment of GLM-5.3 or Kimi K3 with KV-cache reuse and KV-aware routing
   — better latency *and* throughput together — while introducing a **new quality-versus-efficiency frontier**.
   That second frontier is described as *particularly* jagged: large serving gains for little or no quality
   loss are available, especially with microscaling formats **MXFP4** and **NVFP4**.
-- **Frontier-moving techniques compound multiplicatively.** Doubling from hardware and doubling from software
-  gives **4×** to allocate.
+- **Frontier-moving techniques can compound.** The article's two doublings giving **4×** are
+  illustrative arithmetic. The second gain must still hold after the first change; two gains
+  against the same baseline do not establish a fourfold combined result.
 - **Kernel and runtime optimization** reduces the resources per token, and the gain propagates through the
   whole stack.
 - **Speculative decoding has changed category.** It used to be a tradeoff technique — expensive speculation,
@@ -79,8 +81,11 @@ then published single-configuration benchmark numbers describe a point someone c
 - **The author is a vendor.** [[Baseten]] sells inference, the post links its own EAGLE-3 and DFlash work
   throughout, and it closes by promoting the author's book. The taxonomy is sound independent of that, but the
   claims about which techniques are winning are commercially interested.
-- **No measurements.** Every claim is directional — "improves latency", "supports higher throughput" — with no
-  numbers, hardware, or model attached. The compounding 4× example is illustrative arithmetic, not a result.
+- **No controlled performance comparison.** The post names candidate coding models and a cache-aware
+  deployment, but supplies no complete measurement configuration for its directional claims.
+  The compounding 4× example is not a measured result.
+- **October 9 qualification:** the earlier summary dropped "often" from compounding and broadened
+  no waiting for batch starts into no queueing. Shared bottlenecks and resource queues still matter.
 - Does quantization genuinely belong in both categories, or is calling it frontier-moving an artifact of
   choosing latency-throughput as *the* frontier while treating quality as an externality?
 - If cutoffs must be found by sweeps, what is the cost of the sweep, and who can afford to run one?

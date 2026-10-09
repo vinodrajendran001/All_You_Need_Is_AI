@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-09
 source_id: src-2026-08-31-bytebytego-chatbot-request-lifecycle
 source_title: "What Happens Inside an AI Chatbot Between Enter and the First Word"
 source_author: ByteByteGo
@@ -43,9 +43,11 @@ conversation is re-sent and re-processed every time, and most of the bill is inp
 - **Continuous batching is worth up to 23× throughput** over naive fixed batching.
 - **Temperature 0 does not give determinism.** Because numerics depend on batch composition, **1,000
   identical prompts produced about 80 distinct completions**.
-- **Prefill and decode are different machines.** Prefill is parallel and **compute-bound** — it is the pause.
-  Decode is sequential and **memory-bound** — it is the typing. Latency splits into **TTFT** and **TPOT**,
-  with total ≈ TTFT + TPOT × length.
+- **Prefill and decode contribute different costs.** The article's compute-versus-memory
+  contrast describes common regimes, not universal bottlenecks. Time to first token (**TTFT**)
+  also includes work outside prefill. For `N >= 1` output tokens and mean time per subsequent
+  token (**TPOT**), latency is approximately `TTFT + (N - 1) * TPOT`. The October 9 lint makes
+  explicit that the first token is already counted in TTFT.
 - **KV cache is the memory problem.** A 70B model with an 8k conversation needs **a few GB per request**.
   Naive contiguous reservation wasted **60–80%** of that memory; **paged blocks cut waste below 4%** and
   delivered **2–4× throughput**.

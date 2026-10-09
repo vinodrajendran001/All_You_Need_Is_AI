@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - llm
@@ -154,8 +154,8 @@ length, not an isolated position effect or a universal token threshold.
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]
 - [[AI Knowledge Base Overview]]
-- Wafer - AI Performance Engineering Resources
-- GPU Kernel Optimization
+- [[Wafer - AI Performance Engineering Resources]]
+- [[GPU Kernel Optimization]]
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
 - [[Recursive Architectures]]
 - [[Latent-Space Reasoning]]

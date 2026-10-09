@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - coding-agents
@@ -33,6 +33,7 @@ source_ids:
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-10-02-e2b-embed
   - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -72,7 +73,31 @@ The harness/engine split reframes several practical questions. A capable model i
 
 ### Self-improving harnesses
 
-The harness is increasingly something the AI optimizes, not just something a developer writes. [[Alpha Signal - Why self-improving harnesses are the next frontier]] profiles two systems: **Self-Harness** (Shanghai AI Lab) mines execution traces for recurring failures, proposes rule/prompt edits, and keeps only changes that pass regression tests (33–60% gains on Terminal-Bench-2.0); **HarnessX** (Xiaomi) treats the harness as swappable "processor" modules and uses an RL optimizer (AEGIS) to search structural combinations while guarding against reward hacking and catastrophic forgetting (Qwen-3.5 9B: 33%→47% on GAIA, letting a small model punch above its weight). Both are **loop engineering** with strict verification gates — the durable point is that the leverage shifts from writing the harness to designing the instrumentation and gates that let it safely rewrite itself. This is [[Recursive Self-Improvement|workflow-level self-improvement]] (the procedure improves, not the base model) and it overlaps the skill-optimization loops on [[Agent Skill]].
+[[Alpha Signal - Why self-improving harnesses are the next frontier]] profiles **Self-Harness**,
+which mines failure traces and regression-tests proposed rule/code changes, and **HarnessX**,
+which uses AEGIS to search combinations of processor modules. The briefing reports 33–60%
+Self-Harness gains on Terminal-Bench-2.0 and a Qwen-3.5 9B HarnessX result of 33% to 47% on GAIA.
+These are secondary benchmark reports with proposed controls against reward hacking and forgetting.
+
+Designing instrumentation and promotion gates is a different task from hand-writing each harness
+change. Passing those gates is not proof of safe self-rewriting or causal evidence that the gates
+alone produced the gains. The workflow described in this earlier briefing changes the procedure,
+not the base model; that scope overlaps [[Agent Skill]] and
+[[Recursive Self-Improvement|workflow-level self-improvement]], but does not cover every HarnessX
+variant.
+
+### October 9 update: the deployed unit can become a model-harness pair
+
+[[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] extends the older
+harness-only description above. HarnessX can also turn execution trajectories into training
+data for the backbone, then use the updated model's behavior to inform later harness edits.
+The frozen-model characterization belongs to the earlier reported workflow, not every variant
+of the system.
+
+This expands what a deployment must version and compare: changing both weights and scaffolding
+cannot be credited to a harness-only improvement. The dependency is access to train and version
+the model, not the label "open weight" alone; an inference-only endpoint cannot supply it.
+The source reports no isolated compute-cost comparison for this co-evolution loop.
 
 ### Six production responsibilities
 
@@ -276,6 +301,7 @@ league table. Buying a runtime does not supply the repository contract or the pr
 
 ## Related pages
 
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
 - [[E2B - Embed Runtime README]]
@@ -298,7 +324,6 @@ league table. Buying a runtime does not supply the repository contract or the pr
 - [[Model Routing]]
 - [[Context Engineering]]
 - [[AI Agents in Production]]
-- [[Agent Skill]]
 - [[Recursive Self-Improvement]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Sebastian Raschka]]

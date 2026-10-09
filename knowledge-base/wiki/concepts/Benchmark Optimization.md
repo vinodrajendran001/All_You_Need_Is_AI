@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - evaluation
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-15-turing-post-recursive-self-improvement
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-10-08-talekar-decision-model-gold-rush
 status: active
 ---
 
@@ -257,6 +258,23 @@ evaluation data. The capability example carries the same caveat: the Claude API 
 **74%** after eight features were covered, to **77%** after C# and Java type tables were fixed, ending
 near **88%**, with the figure caption reporting **66.1%** baseline and **87.9% at round 24**.
 
+## An outside evaluator reduces one bias, not every measurement risk
+
+[[Swapnil Talekar - The Decision Model Gold Rush]] contrasts vendor-selected comparisons with
+DecideBench, described as **400 decisions across eight task families** from an independent
+developer. It reports Jev at **98%**, a small-encoder group at **35-59%**, and Imajev-4B at
+**95%**. Those numbers remain a secondary report here: the capture lacks the underlying task
+rows, model versions, prompts, repetitions, and confidence intervals.
+
+Evaluator independence is useful provenance, but it is not proof of representative tasks,
+uncontaminated data, or calibrated probabilities. Nor does a low result on this suite disprove
+a higher result on a different metric or establish benchmark gaming by either model.
+
+The corresponding cost comparison has its own denominator: **$32 per million tasks** is not
+the same measure as a token tariff. A reproducible selection comparison needs a declared
+task mix, output semantics, pricing date, and error-handling policy as well as an author who
+does not sell the winning model.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -273,6 +291,9 @@ near **88%**, with the figure caption reporting **66.1%** baseline and **87.9% a
 
 ## Related pages
 
+- [[Swapnil Talekar - The Decision Model Gold Rush]]
+- [[Typed Probabilistic Decision Models]]
+- [[TypeSafe AI]]
 - [[Giles Thomas - Why GPT-2 Weights Beat Mine Part 3 - Overtraining|Giles Thomas - Why GPT-2 Weights Beat Mine? Part 3: Overtraining]]
 - [[Hume AI - Measuring Benchmark Optimization in Speech Recognition]]
 - [[Multi-Turn Evaluation]]
@@ -284,9 +305,9 @@ near **88%**, with the figure caption reporting **66.1%** baseline and **87.9% a
 - [[Hume AI]]
 - [[Recursive Self-Improvement]]
 - [[LLM Reasoning]]
-- Wafer - AI Performance Engineering Resources
-- AI-Generated Kernels
-- Serving Benchmarks and Goodput
+- [[Wafer - AI Performance Engineering Resources]]
+- [[AI-Generated Kernels]]
+- [[Serving Benchmarks and Goodput]]
 - [[Harness Optimization]]
 - [[Interpretability Evaluation]]
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]

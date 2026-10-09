@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-10-09
 source_id: src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
 source_title: "How to Make LLMs 3X Faster"
 source_author: ByteByteGo
@@ -36,14 +36,15 @@ page's own standing open questions** about auto-tuning.
 
 ### The bandwidth argument
 
-- A 70B model at 16-bit precision means reading roughly **140 GB of weights per token**. On a
-  modern datacenter GPU that transfer takes tens of milliseconds while the arithmetic applied to
-  those weights is comparatively trivial.
-- Compute utilization is **90–95% during prompt processing** but falls to **20–40% during token
-  generation**. The difference is how much work each weight read supports: prefill applies the
-  weights to thousands of positions at once, decode applies them to exactly one.
-- The practical consequence: a GPU with higher memory bandwidth improves generation speed more than
-  one with more raw compute.
+- A dense 70B model at 16-bit precision has roughly **140 GB of weights**. The article's
+  per-token-read argument assumes low-batch dense decoding; batching amortizes weight traffic
+  across sequences, and sharding changes the per-device boundary.
+- The article quotes **90–95% compute utilization during prompt processing** and **20–40% during
+  token generation** without a complete workload/hardware configuration. These illustrate the
+  proposed contrast, not universal phase-utilization measurements.
+- More bandwidth helps when memory traffic is the limiting resource. The October 9 lint scopes
+  the earlier hardware-buying rule to that regime: a more compute-intensive or communication-bound
+  workload need not benefit in the same way.
 
 ### Mechanism
 

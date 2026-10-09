@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-10-09
 source_id: src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 source_title: 'Why MLA and MTP Fight Each Other: Attention Through Arithmetic Intensity'
 source_author: Changyi Yang
@@ -20,10 +20,10 @@ A first-principles derivation that reframes the entire MHA → GQA → MQA → M
 ## Key claims
 
 - **One formula, four structures.** For BF16 single-token decode, the arithmetic intensity of the attention core is `1 → H_q/H_kv → H_q → ~2H_q` for MHA, GQA, MQA, and MLA respectively. Context length and head dimension cancel out entirely; only head counts survive.
-- **Removing KV heads does not reduce FLOPs**, it reduces the history read from HBM, because one KV is reused by more query heads. That is the first layer of data reuse.
+- **At fixed query heads, removing KV heads does not reduce the counted QK/PV attention-core FLOPs**; it reduces history bytes read from HBM because query heads share KV. The count excludes projection and other costs.
 - **MQA's arithmetic intensity ceiling is the query head count, and that number does not grow.** Typical models have 32, 64, or 128 query heads (Falcon-7B's 71 is already high), and head count is fixed by the architecture — so piling on query heads alone cannot reach the few-hundred FLOP/byte balance point of modern GPUs.
 - **MLA's contribution is making one latent serve as both K and V**, which is where the extra factor of just under 2 comes from — not from the latent dimension, which also cancels.
-- **The whole lineage is a decode story.** In prefill, `AI ≈ (H_q/H_kv)·(L/b)`, i.e. decode AI multiplied by input length, so even plain MHA is compute-bound past roughly six hundred tokens. GQA and MQA do not change prefill FLOPs at all. These structures exist because decode has exactly one query token and therefore no reuse.
+- **The source motivates the lineage through single-token decode.** Its prefill attention-core estimate is `AI ≈ (H_q/H_kv)·(L/b)`, with an MHA crossover around six hundred tokens in the modelled H100 case. This does not establish that all prefill is compute-bound, all decode lacks reuse, or total GQA/MQA prefill FLOPs are unchanged.
 - **One MLA, two algorithms.** The same product can be bracketed two ways — expand the latent into K/V and run a dense GEMM (the "MHA algorithm"), or score directly against the wide latent (the "MLA algorithm"). Decode favours the MLA algorithm outright; prefill favours the other; the crossover sits around **S ≈ 171** query tokens, and sglang's dispatch logic follows exactly this split.
 - **Sparse attention reverses the direction.** With DeepSeek-V3.2-style DSA selecting `index_topk = 2048` cached tokens, the MLA algorithm gathers latents by index and its cost goes from L to k, while the MHA algorithm must still expand the whole history for a dense GEMM. sglang's DSA backend threshold defaults to exactly 2048 — below it top-k selects everything so the dense kernel is preferable; above it sparsity finally pays.
 - **The central result.** MTP raises the query count from 1 to S, and because HBM traffic barely grows while QK/PV compute scales nearly linearly, `AI(S) ≈ S · AI(S=1)`. DeepSeek-style MLA already reaches ~256 FLOP/B at S=1 and Kimi K3's MLA layer ~192 FLOP/B, against roofline balance points of ~206 FLOP/B on H200 and the two-to-three-hundred range on H100/B200. At S=2 these become 512 and 384 — past the knee. **MTP's extra arithmetic stops using idle compute and starts costing real latency.**
@@ -39,6 +39,7 @@ This is the vault's clearest demonstration that attention-variant design is **da
 - **Byline caveat.** The capture carries no author field. "Changyi Yang" is inferred from the LinkedIn article slug (`…-arithmetic-yang-npr9c`) and the canonical version hosted at `changyi.fun`; it is not independently confirmed, and the personal site was unreachable from this network at ingest time.
 - The derivation counts only the attention core's single pass over the cached KV, assuming a fused kernel and ignoring softmax, projections, and output projection as lower-order terms — real kernels will not hit the clean constants.
 - The author flags that **arithmetic intensity itself misleads** near the crossover (section 5.7): a higher AI does not automatically mean a faster kernel.
+- **October 9 scope correction:** the earlier summary dropped the attention-core boundary when discussing FLOPs and bottlenecks. Kernel-level arithmetic intensity does not determine the whole model's latency, and batching can reuse weights even when each sequence emits one token per step.
 - The independently arrived-at Zyphra Compressed Convolutional Attention paper (arXiv:2510.04476) agrees on `AI = 2n_heads`, the 295 FLOP/B H100 ridge, and the claim that DeepSeek chose head count against the roofline — and adds a mechanism this post does not cover: **MLA also loses under tensor parallelism**, because the shared KV must be replicated per TP rank, giving back the reuse MQA bought.
 - The same paper's caution applies to the whole analysis: "model quality and latency, not SM utilization, is the end goal." Higher compute utilisation is not the objective function.
 - Whether the MLA/MTP conflict is a hard architectural limit or merely a current-generation hardware coincidence is unresolved — the balance points quoted are H100/H200/B200 specific, and a bandwidth-heavier future part would move the knee.

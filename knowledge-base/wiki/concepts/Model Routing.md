@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - concept
   - routing
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-08-talekar-decision-model-gold-rush
 status: active
 ---
 
@@ -199,6 +200,23 @@ threshold. Measure on its own traffic, keep calibration fitting separate from po
 and test asymmetric under-routing costs. A "System Three" dispatcher is Rai's speculative label,
 not a new independently validated routing method.
 
+## Router selection needs deployment constraints and an error budget
+
+[[Swapnil Talekar - The Decision Model Gold Rush]] adds a practical candidate filter: where the
+router must run, whether it receives images or text, local calibration, latency, total operating
+cost, and future replacement effort. A compatible API lowers migration work but does not preserve
+the meaning of probability fields, error rates, or previously chosen escalation thresholds.
+
+Its reported DecideBench comparison puts Jev at **98% accuracy and $32 per million tasks** and
+small encoder models in a **35-59% group range** on that suite. These are secondhand task results,
+not a matched production-routing experiment or a Laya-specific score. The article's assorted
+latency claims do not share hardware, workload, or a network boundary.
+
+Use these reports to shortlist, not to justify accepting errors in exchange for speed. Whether a
+misroute is cheap depends on the downstream action and recovery path. Price accepted outcomes,
+fallbacks, self-hosted utilization, and maintenance on local traffic; do not compare token tariffs
+with per-task costs as if the denominators matched.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -213,6 +231,7 @@ not a new independently validated routing method.
 
 ## Related pages
 
+- [[Swapnil Talekar - The Decision Model Gold Rush]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]

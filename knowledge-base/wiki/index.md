@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-10-07
+updated: 2026-10-09
 tags:
   - index
 source_ids:
@@ -303,6 +303,9 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-08-talekar-decision-model-gold-rush
+  - src-2026-10-09-dickson-agent-stack-optimization
 status: active
 ---
 
@@ -316,12 +319,12 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Concepts
 
-- [[RL Environment Design]] - Building the tasks agents train against, and the two adversarial gates that make an environment safe to train on.
+- [[RL Environment Design]] - Building and adapting training tasks, with solvability, shortcut probing, and verifier ownership kept separate.
 - [[Self-Replicating Agents]] - Replication as a top-level objective, the economics of stolen compute, and why constraints an agent can edit are not constraints.
 - [[Agentic Testing]] - Agents that test software rather than agents being tested; pass^k, funnel economics, and the quiet failure modes.
 - [[Inference Efficiency Frontier]] - Does a technique move a deployment along the frontier or push the frontier out, and why the frontier is jagged.
 - [[Embedding Model Selection]] - The translator that bounds every RAG architecture, and why changing it is a one-way door.
-- [[Persistent Wiki]] - The wiki as a durable knowledge layer that compounds over time.
+- [[Persistent Wiki]] - Durable knowledge and execution evidence upstream of future answers and proposed skills.
 - [[Schema-Driven Knowledge Base]] - Why a schema file turns a generic model into a disciplined maintainer.
 - [[Ingest Query Lint Loop]] - The three recurring operations that keep the wiki alive.
 - [[Index and Log]] - Why the catalog and ledger are first-class control surfaces.
@@ -330,7 +333,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Continual Learning for Agents]] - Controlled post-deployment learning from one-off, asynchronous agent trajectories.
 - [[Transformer Architecture]] - Decoder and encoder patterns, attention, positional information, and why permitted attention does not guarantee evidence use.
 - [[Diffusion Models]] - Generative models that learn to reverse noising processes for images and other data.
-- [[LLM Training Pipeline]] - Pretraining, SFT, RLHF, DPO, and LoRA as one post-training map.
+- [[LLM Training Pipeline]] - Pretraining, supervised and preference learning, and domain adaptation for assistant or ranking interfaces.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
 - [[ML Research Interview Preparation]] - End-to-end prep for research-scientist hiring loops: interview-type taxonomy, study methodology, math, and negotiation.
@@ -339,7 +342,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Small Language Models]] - Small/on-device/high-volume LLMs designed around deployment and inference constraints.
 - [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
 - [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
-- [[LLM Reasoning]] - Hub for how models reason (deduction/abduction/induction), the frozen-θ view, evaluation/robustness, and how to make reasoning better.
+- [[LLM Reasoning]] - Reasoning taxonomy, fixed-weight inference-time search, post-training, robustness, and the unresolved creation-versus-elicitation question.
 - [[Test-Time Scaling]] - Spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based.
 - [[Reasoning Effort Control]] - Trained effort selectors and runtime effort policies, with model-specific cache behavior and budget limits.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
@@ -371,7 +374,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Recursive Self-Improvement]] - AI systems improving parts of the process that creates future AI systems.
 - [[Harness Optimization]] - Automated search over the scaffolding around a frozen model: the five-rung optimization ladder and why the evaluator must stay unwritable.
 - [[Nested Learning]] - Continuous inference-time learning and memory-as-structure: Titans, Continuum Memory System, and the Hope architecture.
-- [[LLM Inference]] - Prefill (compute-bound) vs decode (memory-bound) phases and the serving stack built around them.
+- [[LLM Inference]] - Prompt processing, autoregressive decode, prefill-only scoring, and their different serving bottlenecks.
 - [[Speculative Decoding]] - Lossless decode acceleration: a small draft model guesses, the target verifies in parallel; a conditional low-load latency bet.
 - [[Video Transformers]] - Extending attention to video via divided space-time attention (TimeSformer).
 - [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
@@ -391,7 +394,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Tabular Foundation Models]] - Table-native few-/zero-shot prediction as a specialist tool for enterprise data.
 - [[Linear Attention and Recurrent Memory]] - Fixed-size recurrent state as a bounded-memory alternative to token-addressable attention.
 - [[Knowledge Distillation]] - Transferring teacher behavior or representations into a smaller student through outputs, features, or synthetic data.
-- [[Semantic Recommendation Systems]] - Meaning-based candidate retrieval across dual encoders, specialized funnels, and generative semantic IDs.
+- [[Semantic Recommendation Systems]] - Meaning-based retrieval and ranking, from dual encoders and semantic IDs to GenRec's prefill-only catalog scores.
 - [[Agent Frameworks]] - Selecting agent runtimes by control flow, durability, language, modality, governance, and abstraction cost.
 - [[Agent Plugin Architecture]] - Packaging skills, MCP servers, assets, and client configuration into portable capability bundles.
 - [[Open Model Ecosystems]] - How weights, licenses, derivatives, runtimes, model size, and machine consumers shape open-model adoption.
@@ -441,6 +444,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Entities
 
+- [[Netflix]] - Multimodal footage search, internal LLM serving, and GenRec ranking as distinct production systems.
 - [[Replit]] - Coding-agent platform whose harness exposes model-selected specialists, reusable workers, and effort controls.
 - [[E2B]] - Sandbox infrastructure; Embed brings the runtime to one machine without making placement an authorization boundary.
 - [[Neuralink]] - Neural decoding through participant-specific causal representations, with pooled data and universal transfer kept distinct.
@@ -506,7 +510,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Can Bölük]] - Systems engineer treating the coding-agent harness as a game engine, with audits and timings to back it.
 - [[Meta]] - Operator of an internal domain-expert agent built on 200+ reviewable text files rather than fine-tuning.
 - [[GitHub]] - Copilot agent operator supplying the vault's A/B-measured harness cost reductions and its two most useful negative results.
-- [[@docmilanfar]] - Researcher deriving flow matching's straight paths from the governing PDE rather than from empirical results.
+- [[@docmilanfar]] - Author of a geometric flow-matching explanation whose stronger straight-path and uncertainty claims are disputed in the vault's mathematical checks.
 
 - [[Paul Iusztin]] - ML engineer whose context-window decomposition supplies the vault's clearest subagent-scoping account.
 - [[Sarthak Rastogi]] - Engineer-writer who brought production observability vocabulary to the vault's agent material.
@@ -661,7 +665,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Shorter Thoughts, Same Answers - Difficulty-Scaled Segment-Wise RL for CoT Compression]] - Segment-wise GRPO that compresses thinking without damaging the final answer.
 - [[pguso - Agents From Scratch]] - Local-first Python repo building one agent across 12 lessons: loop, tools, memory, planning, atomic actions, AoT, evals, and telemetry.
 - [[Fei-Fei Li - A Functional Taxonomy of World Models]] - Renderer/Simulator/Planner taxonomy using the POMDP loop; argues simulation is the linchpin and introduces World Labs' Marble product.
-- [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] - DPO applied to OCR text degeneration suppression using self-generated rejection pairs; 59.4% average degeneration reduction across five model families.
+- [[Dharma-AI - Direct Preference Optimization Beyond Chatbots]] - Reported 59.4% average relative OCR-degeneration reduction from self-rejection DPO after SFT; the causal explanation and transfer limits remain open.
 - [[systemdesign42 - System Design Academy]] - Curated A-Z index of 150+ system design articles across case studies, fundamentals, AI engineering, and interview prep.
 - [[0xkato - How LLMs Actually Work]] - Clear end-to-end transformer walkthrough covering tokenization, RoPE, attention, GQA, residual streams, RMSNorm, MoE, and speculative decoding.
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]] - Production view of agent economics and model routing, with Kilo as a real routing-layer case study.
@@ -674,7 +678,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - Large Language Models vs Small Language Models]] - System-design view of SLMs vs LLMs, covering architecture, training, deployment, tradeoffs, and hybrid composition.
 - [[djfarrelly - The Agent Loop Architecture]] - Durable agent loop architecture organized around loops, skills, orchestration, checkpoints, retries, and run history.
 - [[Alpha Signal - How your agents can write and optimize their own skills]] - SkillOpt, GEPA, EvoSkill, and loop-engineered skill-file optimization for agents.
-- [[Nithin - What Actually Happens During LLM Inference]] - Prefill (compute-bound GEMM) vs decode (memory-bound GEMV), KV cache, mmap, weight formats, and serving engines.
+- [[Nithin - What Actually Happens During LLM Inference]] - Prefill/decode, KV cache, mmap, formats, and scheduling, with the bottleneck contrast scoped to workload and batching rather than treated as universal.
 - [[Maarten Grootendorst - A Visual Guide to Quantization]] - 50+ illustration walkthrough of quantization: float formats, symmetric/asymmetric, calibration, PTQ/QAT, GPTQ/GGUF, BitNet.
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]] - Rate-distortion KV-cache quantization via rotation, Lloyd-Max codebooks, and a 1-bit QJL residual.
 - [[Siddhant Rai - Nested Learning]] - Google's continuous inference-time-learning framework: learning spectrum, Titans, Continuum Memory System, and Hope.
@@ -733,11 +737,11 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Lilian Weng - Harness Engineering for Self-Improvement]] - The five-rung optimization ladder (prompts, context, workflow, harness code, optimizer code), and why recursive structure alone is not the gain.
 - [[Philipp Schmid - Recursive Self-Improvement]] - A falsifiable three-tier taxonomy separating iteration, self-improvement, and recursion by whether the verifier moves.
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] - How six models install low/medium/high effort; `<think>` tags are cosmetic and effort is a trained behaviour.
-- [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] - Why imitation cannot teach a trade-off, and why DPO inherits RLHF's biases because the trouble follows the data.
+- [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] - Explicit preference comparisons versus reference-answer imitation; simpler optimization does not repair biased feedback or imply identical outcomes.
 - [[Addy Osmani - Audit your Agent files]] - Agent configuration has a half-life; 288 runs found context files made no clear difference to correctness.
 - [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]] - Contract-first decomposition, cost-aware routing, zero-knowledge least privilege, and the zone of indifference.
 - [[Anthropic - Would This Change Your Answer (CHIVE)]] - Activation-reading interpretability tools give no uplift over a transcript-only baseline at predicting counterfactual behaviour.
-- [[Halo Research - Sopro V2 On-Device Text-to-Speech]] - A 120M open voice-cloning TTS model at 0.24 RTF on an M3 CPU, and what was replaced to get there.
+- [[Halo Research - Sopro V2 On-Device Text-to-Speech]] - 120M Sopro V2 Turbo reports 0.24 offline RTF on an M3 CPU in single-stream PyTorch at default settings, without batching; its acoustic-head speedup is not end-to-end TTS speedup.
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]] - First-party post-mortem of agents escaping their sandbox, building a message board, and compromising Hugging Face; a "warning shot" for loss of control.
 
 ### September 3, 2026 batch
@@ -757,7 +761,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[GitHub - How We Make AI Coding More Cost Efficient]] - Four A/B cost reductions that are explicitly not additive, the local metric trap, and a shortened prompt that silently serialized agents.
 - [[Meta - An Organizational Second Brain]] - A domain-expert agent over 200+ text files that improves by compiling expert feedback under regression tests, with no model retraining.
 - [[Sebastian Raschka - OpenAI Astra and Looped Transformers]] - Looping is layer reuse: 22 layers twice, ~75% token efficiency at two passes, and why thinner reasoning traces follow from capacity rather than recurrence.
-- [[@docmilanfar - A Lagrangian View of Flow Matching]] - Why diffusion needs many steps: the target keeps moving, the Jacobian Penalty, and reflow as uncertainty elimination.
+- [[@docmilanfar - A Lagrangian View of Flow Matching]] - A denoiser-drift intuition, with counterexamples to the claimed straight-path and covariance implications; reflow is not proven to eliminate uncertainty.
 
 ### September 11, 2026 batch
 
@@ -845,6 +849,12 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] - Uneven behavioral interventions with identity/domain confounds and single-turn, tool-free evaluations.
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]] - Sycophancy before and after preference learning, and evidence-sensitive rather than reflexive disagreement.
 
+### October 9, 2026 batch
+
+- [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] - GenRec's domain training, context selection, and prefill-only catalog ranking, with bounded A/B and serving-cost evidence.
+- [[Swapnil Talekar - The Decision Model Gold Rush]] - Reported DecideBench comparisons and deployment criteria; task accuracy, calibration, latency, and price units remain separate.
+- [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] - WikiSkill, model-harness co-evolution, EnvHarness, and Raven; choose the narrowest relevant intervention and retain experiment scope.
+
 ## Syntheses
 
 - [[AI Builder Club - Build AI Agents]] - Cross-source synthesis of the 63-lesson curriculum: prompt, context, harness, loop, graph, evaluation, security, and governance.
@@ -900,6 +910,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[2026-09-25 Lint Pass]] - Thirty-sixth comprehensive lint pass; corrected self-reported Laya architecture wording, separated calibration from escalation policy, and confirmed exact 272-ID control parity.
 - [[2026-09-30 Lint Pass]] - Thirty-seventh comprehensive lint pass; traced all 11 new evidence chains and repaired 39 semantic defects, including four assumptions promoted to fact, a reversed join condition, a suppressed adoption figure, and an invented denominator, at exact 283-ID control parity.
 - [[2026-10-07 Lint Pass]] - Thirty-eighth pass: corrected section-order drift in 35 summaries, disambiguated capture links, quarantined one clipping, and repaired flow-matching, speech, GPT-2, alignment, and Kueue claims at exact 298-ID parity.
+- [[2026-10-09 Lint Pass]] - Thirty-ninth pass: repaired 37 unlinked related titles and nine duplicates, corrected stale training, reasoning, harness, and inference claims, and traced the three newest chains at exact 301-ID parity.
 
 ## Control files
 

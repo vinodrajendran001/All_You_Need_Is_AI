@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-09-11
+updated: 2026-10-09
 tags:
   - concept
   - arithmetic-intensity
@@ -23,22 +23,29 @@ status: active
 
 ## Definition
 
-**Arithmetic intensity** (AI) is the ratio of arithmetic performed to bytes moved across the memory boundary, usually expressed in FLOPs per byte. The **roofline model** plots achievable performance against arithmetic intensity: below a hardware-specific balance point — the *ridge* or *knee* — a kernel is memory-bandwidth-bound and adding compute buys nothing; above it the kernel is compute-bound and adding bandwidth buys nothing.
+**Arithmetic intensity** (AI) is arithmetic performed per byte moved across a specified memory boundary, usually FLOPs per byte. The **roofline model** bounds performance by `min(peak compute, memory bandwidth * AI)`. Below the *ridge* or *knee*, the bandwidth ceiling is lower; above it, the compute ceiling is lower. A kernel can run below either ceiling because of utilization, launch, synchronization, or other costs.
 
-The balance point is a property of the chip, not the model. Roughly **295 FLOP/byte on an H100 under BF16**, about **206 FLOP/byte on an H200**, with H100 and B200 in the two-to-three-hundred range.
+The balance point depends on hardware, precision, and the chosen bandwidth/compute ceilings. The sources use roughly **295 FLOP/byte on an H100 under BF16** and **206 FLOP/byte on an H200**, with H100 and B200 in the two-to-three-hundred range. These are modelled boundaries, not measured utilization guarantees.
 
 ## Why it matters
 
-Arithmetic intensity is the single number that explains why so many independently developed techniques in this vault converge. It tells you which resource is actually scarce, and almost every inference optimisation is a trade that moves a workload along the roofline rather than a free improvement. Once you know where a workload sits relative to the knee, you can predict whether a proposed optimisation will help, do nothing, or actively cost latency — and two optimisations that each look good in isolation can be revealed as competitors for the same headroom.
+Arithmetic intensity explains why apparently independent optimizations can compete for the same
+headroom. It helps identify candidate bottlenecks and compare compute-for-memory trades, but does
+not predict end-to-end latency alone. The achieved kernel behavior and the rest of the request
+path still need measurement.
 
 ## The core asymmetry: prefill versus decode
 
 [[Jacob Peake - AI Chip Architectures]] states the hardware-side version: the *shape* of the matmul decides the regime.
 
-- **Training and prefill** stack many tokens against the same weight matrix, so each layer is a large matrix-matrix multiply (GEMM) with high arithmetic intensity. These are compute-bound.
-- **Decode** is autoregressive and emits one token at a time, so every matmul degenerates to a matrix-vector product (GEMV). Producing one token requires a full pass over every weight plus a full read of the [[KV Cache]]. Arithmetic intensity drops by orders of magnitude.
+- **Training and prefill** can reuse weights across many token positions through large matrix-matrix operations (GEMMs). Sufficiently large operations often approach the compute side of the roofline; small chunks or other kernels may not.
+- **Dense, unbatched decode** has narrow matrix-vector work (GEMV), often limited by weight and [[KV Cache]] traffic. Batching restores weight reuse across sequences, and attention kernels have their own reuse patterns; not every decode matmul is a GEMV.
 
-[[Changyi Yang - Why MLA and MTP Fight Each Other]] gives the analytic version for attention specifically: `AI_prefill ≈ (H_q/H_kv)·(L/b)`, i.e. the decode AI multiplied by the input length. Even plain MHA crosses the H100 line past roughly six hundred tokens, and GQA/MQA cross within a few dozen. **There is no memory-bound problem in prefill at all** — which is precisely why the whole MHA → GQA → MQA → MLA lineage exists: decode has exactly one query token and therefore no reuse to exploit.
+[[Changyi Yang - Why MLA and MTP Fight Each Other]] models the attention core as
+`AI_prefill ≈ (H_q/H_kv)·(L/b)` and estimates an H100 crossover at roughly six hundred tokens
+for MHA, earlier for GQA/MQA. The assumptions omit projections and other costs. The October 9 lint
+removes this page's earlier claim that prefill has no memory-bound problem: a scoped attention-core
+estimate is not a universal classification of every prefill or decode workload.
 
 ## Attention variants are data-reuse engineering
 
@@ -53,7 +60,7 @@ The cleanest result in the vault on this point: for BF16 single-token decode, co
 
 Context length and head dimension cancel out completely; even MLA's latent dimension cancels. Two consequences follow:
 
-- **Removing KV heads does not reduce FLOPs.** It reduces the history read from HBM, because one KV is reused by more query heads. GQA and MQA do not change prefill FLOPs whatsoever — they only shrink the cache and push an already-over-the-line AI higher.
+- **At fixed query heads, fewer KV heads need not reduce the QK/PV attention-core FLOPs.** They reduce history bytes read from HBM because query heads share KV. This statement excludes K/V projection and other work; it is not a claim that total prefill FLOPs are unchanged.
 - **MQA's ceiling is the query head count, and that number does not grow.** Architectures fix it at 32, 64, or 128, so piling on query heads cannot reach the few-hundred FLOP/byte balance point. MLA's extra factor of just under 2 comes from a different mechanism entirely: one latent serving as both K and V.
 
 ## The headroom is a shared, finite resource
@@ -125,11 +132,11 @@ where the roofline argument would start to change.
 - [[Transformer Architecture]]
 - [[Model Quantization and Efficiency]]
 - [[Software Performance Engineering]]
-- Wafer - AI Performance Engineering Resources
-- GPU Kernel Optimization
-- Prefill-Decode Disaggregation
-- Serving Benchmarks and Goodput
-- Wafer
+- [[Wafer - AI Performance Engineering Resources]]
+- [[GPU Kernel Optimization]]
+- [[Prefill-Decode Disaggregation]]
+- [[Serving Benchmarks and Goodput]]
+- [[Wafer]]
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
 - [[Megakernels]]
 - [[Cohere]]

@@ -99,7 +99,10 @@ different training designs, not interchangeable names for one feature-space meth
 
 ### It is a bet
 
-- The honest lesson: on Llama-3.1-8B on a single saturated 48 GB Ada GPU, EAGLE3 came out **slower in both regimes** — acceptance length τ=1.81 was the one-glance tell. The win grows with **model size** and **acceptance**; a small model on a fast, saturated GPU is the losing case. Always A/B on your own hardware before shipping.
+- In the earlier Llama-3.1-8B experiment on a single saturated 48 GB Ada GPU, EAGLE3 was
+  **slower in both tested regimes**, with acceptance length τ=1.81. That is a useful negative
+  operating point, not a rule that small targets always lose. Larger targets and better
+  agreement can create headroom, but draft and verification costs still need measurement.
 
 ## Relationship to neighbouring levers
 
@@ -113,7 +116,12 @@ inference procedure to seek better answers.
 
 The strongest constraint on this page comes from [[Changyi Yang - Why MLA and MTP Fight Each Other]], and it is not about acceptance rate at all. Speculation works because a memory-bound decode leaves GPU compute idle; verifying K drafted tokens in one pass costs arithmetic that was going to waste. Formally, HBM traffic barely grows with the number of verified query positions S while QK/PV compute scales nearly linearly, so `AI(S) ≈ S · AI(S=1)` — speculation is a device for climbing the roofline (see [[Arithmetic Intensity and the Roofline Model]]).
 
-That only pays while there is roofline left. **Attention architectures that maximise cache reuse have already spent it.** DeepSeek-style MLA reaches ~256 FLOP/B at a single query and Kimi K3's MLA layer ~192 FLOP/B, against balance points of ~206 FLOP/B on H200 and the two-to-three-hundred range on H100/B200. Taking S to 2 gives 512 and 384 — past the knee, where the extra verification arithmetic stops being free and **starts costing real latency**. On a low-intensity MQA workload at AI ≈ 70–100 the same speculation is nearly free.
+In Yang's attention-core analysis, cache reuse can already have spent that headroom.
+DeepSeek-style MLA reaches ~256 FLOP/B at a single query and Kimi K3's MLA layer ~192 FLOP/B,
+against balance points of ~206 FLOP/B on H200 and the two-to-three-hundred range on H100/B200.
+Taking S to 2 gives 512 and 384, moving past those modeled balance points; a low-intensity
+MQA workload at AI ≈ 70–100 has more arithmetic headroom. These kernel-level calculations
+explain a possible collision, not a universal end-to-end latency result.
 
 Two corollaries:
 
@@ -183,8 +191,8 @@ against the actual request distribution, and re-measured when that distribution 
 Speculation targets generation rather than directly accelerating prompt processing. End-to-end
 time to first token can still change through draft initialization, queueing, scheduling, and
 resource competition; unchanged prefill work does not imply unchanged TTFT.
-Workloads with long prompts and short outputs — classification, extraction over large documents,
-routing — have almost nothing to gain no matter how well they draft. DeepSeek stated the tradeoff in
+Short outputs limit the generation work available to accelerate, and a large prefill share
+limits the end-to-end gain. DeepSeek stated the tradeoff in
 the same direction: multi-token prediction *slightly reduces* throughput while significantly
 improving end-to-end generation latency. That is a reported operating-point tradeoff, not a
 universal law that speculation must reduce aggregate capacity.

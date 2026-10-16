@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - inference
@@ -25,6 +25,8 @@ source_ids:
   - src-2026-10-02-epoch-agent-population
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-rai-jev-decision-models
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-11-samarin-speculative-decoding
 status: active
 ---
 
@@ -92,17 +94,17 @@ a serving-side instance of the concern on [[Serving Benchmarks and Goodput]] and
 
 ## A technique can change category
 
-Speculative decoding is the documented case. It used to be a tradeoff technique — speculation was expensive,
-sequences were short, acceptance rates were low, and it was viable only at small batch sizes. With
-**EAGLE-3, DSpark and DFlash**, it now yields efficiency from **skipped forward passes** on top of raw latency
-reduction, which is a genuine reduction in work rather than a reallocation of it. It still competes with the
-main loop for resources and so still caps maximum batch size. Code generation benefits most, because output
-sequences are relatively predictable.
+[[Philip Kiely - The Efficient Frontier of LLM Inference]] argues that EAGLE-3, DSpark, and
+DFlash changed speculation from mainly a low-load latency tradeoff into a potential frontier
+improvement by skipping target passes. Auxiliary work and memory still compete with the target,
+so the claim needs a matched workload and serving objective.
 
-This partially revises the framing on [[Speculative Decoding]], which records speculation as spending headroom
-that could be spent elsewhere. Both readings are now on record, and the disagreement is real rather than
-terminological: whether skipped forward passes count as new efficiency or as better-spent headroom depends on
-whether the drafting cost is counted against the budget.
+The October 16 addition, [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]],
+narrows both older framings. It reports cache-bound large-batch cases that defeat a low-load-only
+rule, alongside a Qwen3-8B/MATH500 AMD-vLLM example at **0.44-0.88x** ordinary decoding.
+Fewer target passes are not sufficient: total draft, verification, memory, and scheduling cost
+must be counted. The distinction is testable on a latency-throughput curve, not settled by
+calling the method frontier-moving.
 
 ## Headroom depends on how mature the domain already is
 
@@ -292,6 +294,21 @@ The latter is not extra capacity or equal task capability; the streaming target 
 delay. These are capacity scenarios rather than forecasts or provider margins. They complement,
 but do not numerically validate, FD's demand-side workload scenario above.
 
+## Conversion and exact speculation have different quality contracts
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] changes the model's
+memory architecture and adapts its weights. Its reported 32B GKA throughput at 10 iterations,
+**1.50x at 16K** and **2.06x at 128K**, accompanies near-source quality and an explicit
+iteration/accuracy tradeoff. This moves a quality-aware operating point, not an unchanged
+output-distribution guarantee. Less than **0.5% of donor pretraining tokens** also excludes
+the inherited donor cost from the incremental adaptation budget.
+
+Exact speculation instead preserves the target distribution while changing execution.
+Samarin's cited Qwen3-4B/GSM8K comparison gives the same **tau=4.2** but **2.1x versus 3.3x**
+for EAGLE-3 and DFlash, showing why accepted length alone cannot locate the frontier.
+Architecture conversion, draft cache, and kernels can consume one another's savings;
+these sources do not establish multiplicative gains from combining their techniques.
+
 ## Open questions
 
 - Depth-pruning gains are reported at aggressive ratios without retraining. Where does the gap between
@@ -315,6 +332,8 @@ but do not numerically validate, FD's demand-side workload scenario above.
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Jason Li - How Many AI Agents Could We Run]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]

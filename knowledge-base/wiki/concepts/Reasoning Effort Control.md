@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-16
 tags:
   - concept
   - reasoning
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-09-27-willison-llms-2026-so-far
+  - src-2026-10-13-zancato-model-priming
 status: active
 ---
 
@@ -21,8 +22,8 @@ status: active
 
 Reasoning effort control is the set of mechanisms that let a model spend more or less computation on
 a single request — the low/medium/high selectors, `/think` and `/no_think` flags, and token budgets
-exposed by current reasoning models. Despite looking like inference-time settings, these are almost
-entirely **trained behaviours**.
+exposed by current reasoning models. Many selectors invoke **trained behaviors**; external
+budgets and architectural iteration counts can also constrain the computation directly.
 
 ## Why it matters
 
@@ -59,7 +60,8 @@ After RL with verifiable rewards, teams take one of two routes:
 Qwen3's **Thinking Mode Fusion** SFT stage trains on `/think` and `/no_think` variants, where the
 `/no_think` targets carry an *empty* `<think></think>` block. The **soft switch** is the user-facing
 flag, which the model may or may not honour. The **hard switch** (`enable_thinking=False`) prefills
-the empty block so the model structurally cannot reason. One is a request; the other is a constraint.
+the empty block to close the designated trace phase. This constrains the expected output format,
+not the model's ability to compute internally; an empty trace is not an absence of reasoning.
 
 ### Per-model recipes
 
@@ -128,6 +130,19 @@ he calls its default "high", while the earlier configuration account above names
 Keep the wording discrepancy and the anecdotal workload scope rather than changing the documented
 API setting or treating either example as a broad model ranking.
 
+## Internal iterations are a different effort knob from trace length
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] adds Gated KalmaNet's
+serving-time iteration count. Reducing **30 to 10 iterations** reportedly gives **10% faster
+decoding** with roughly **1% accuracy loss on AIME 2025**; the source does not specify whether
+that loss is relative percent or percentage points.
+
+This broadens the earlier trained-selector framing. A runtime can change internal work without
+requesting a shorter natural-language trace. The reported **1.2-1.4x time-to-target-accuracy**
+gain on the full benchmark is also distinct from raw tokens per second or the up-to-1.6x
+hardest-problem result. Neither the iteration knob nor similar trace lengths guarantee equal
+quality across tasks. Compare complete cost and accuracy at each operating point.
+
 ## Open questions
 
 - What were the removed 25-30% of tokens doing? Without a theory of which trace segments carry the
@@ -142,6 +157,7 @@ API setting or treating either example as a broad model ranking.
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Simon Willison - 2026 in LLMs (so far)]]
 - [[Model Routing]]

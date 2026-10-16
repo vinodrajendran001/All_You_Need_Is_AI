@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - llm
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-13-zancato-model-priming
 status: active
 ---
 
@@ -122,6 +123,20 @@ Longer accepted context and better positional machinery therefore do not by them
 reliable long-context reasoning. The explainer's RULER comparison measures degradation with
 length, not an isolated position effect or a universal token threshold.
 
+## Architecture conversion can reuse learned projections
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] shows that choosing an
+architecture and inheriting pretrained knowledge are not mutually exclusive. Priming tests
+attention layers with sliding windows, converts tolerant candidates to state-space layers
+using transferred Q/K/V projections and short alignment, then adapts the entire hybrid.
+
+This complements the vault's shipped hybrid examples with a conversion procedure. It is not
+a training-free swap: window sensitivity is a heuristic for selection, and the reported
+near-source quality still includes measured tradeoffs. Retained attention provides
+token-addressable representations, not guaranteed recall. Likewise, composing attention
+caches and recurrent states to extend **128K to 256K** is a reported context-extension
+experiment, not a lossless or unlimited-context guarantee.
+
 ## Open questions
 
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
@@ -130,6 +145,7 @@ length, not an isolated position effect or a universal token threshold.
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[Typed Probabilistic Decision Models]]

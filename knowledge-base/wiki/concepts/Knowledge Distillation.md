@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-10-07
+updated: 2026-10-16
 tags:
   - concept
   - model-training
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-09-01-bytebytego-shrink-language-model
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-11-samarin-speculative-decoding
 status: active
 ---
 
@@ -21,7 +23,10 @@ status: active
 
 ## Definition
 
-Knowledge distillation trains a student model to reproduce useful behavior from a teacher model. The student is a separate learned model, not a lower-precision or pruned copy of the teacher.
+Knowledge distillation trains a student using a teacher's outputs or representations. It is
+defined by the supervision, not by starting from independent weights: a student may inherit
+parameters or undergo architecture conversion. Quantization or pruning alone is not distillation,
+but either can be combined with teacher-guided learning.
 
 ## Why it matters
 
@@ -122,6 +127,30 @@ A limit argued from the other side: RL's Razor (SFT forgets more than RL), *Reta
 Memorizes, RL Generalizes* all suggest distillation transfers behaviour more readily than capability — the
 basis for Nathan Lambert's claim that RL environments and infrastructure are not distillable.
 
+## Distillation can align a converted model rather than train a fresh one
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] revises the earlier
+separate-student-versus-compressed-copy distinction. Priming transfers Q/K/V projections into
+selected state-space replacements, uses short layerwise alignment, and follows with whole-model
+next-token adaptation. Teacher supervision and weight reuse operate together.
+
+The reported budget below **0.5% of original pretraining tokens** describes additional
+adaptation, not the elimination of donor pretraining or a directly measured all-in cost ratio.
+The student also changes the memory architecture; it is not simply a lower-bit teacher.
+
+## Matching a teacher is not always the downstream objective
+
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] gives a precise
+counterexample to equating low distillation loss with best system performance. For exact
+tokenwise speculative verification, acceptance is `1 - TV(p, q)`. Small KL constrains TV,
+but minimizing KL within a limited-capacity student family need not maximize overlap.
+
+LK's acceptance-dependent KL/TV blends or negative-log acceptance target a different surrogate
+from standard KL. Per-token overlap, block acceptance, and sequence-level verification rounds
+are distinct objectives; BV and EDR address different boundaries. Training must also expose
+the drafter to deployment prefixes and hidden states, not only clean teacher-generated text.
+The final test is accepted progress per measured serving cost, not teacher similarity alone.
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -131,6 +160,9 @@ basis for Nathan Lambert's claim that RL environments and infrastructure are not
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
+- [[Speculative Decoding]]
 - [[Small Language Models]]
 - [[Model Quantization and Efficiency]]
 - [[LLM Training Pipeline]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-10-07
+updated: 2026-10-16
 source_id: src-2026-09-07-rai-lejepa
 source_title: "LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics"
 source_author: Siddhant Rai
@@ -188,6 +188,7 @@ object."** LeJEPA supplies, for the first time, the principled reason to object.
      definition. Merely-relevant links belong under `## Related pages`. -->
 
 - [[Joint-Embedding Predictive Architecture]]
+- [[Energy-Based Model]]
 - [[World Models]]
 - [[Neural Network Fundamentals]]
 - [[Model Quantization and Efficiency]]

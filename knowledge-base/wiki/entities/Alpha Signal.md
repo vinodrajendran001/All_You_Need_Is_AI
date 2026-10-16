@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-18
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - entity
   - newsletter
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-17-alpha-signal-three-layers-agent-security
   - src-2026-07-06-alphasignal-self-improving-harnesses
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-14-dickson-kv-cache-handoffs
 status: active
 ---
 
@@ -46,7 +47,24 @@ but study details and editorial framing must remain distinct from independently 
 - In this knowledge base, Alpha Signal acts as a bridge from mainstream LLM discussion into newer branches such as [[Recursive Architectures]], [[Latent-Space Reasoning]], corpus-native retrieval for agents, and agent skill optimization.
 - The entity is useful as a reminder that curated secondary sources can seed new concept branches when they synthesize technical claims clearly enough to deserve durable notes.
 
+## Cache handoffs distinguish two kinds of agent communication cost
+
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] extends the newsletter's agent-stack reporting
+into internal representations. NVIDIA's session conversion avoids receiver re-prefill;
+C2C fusion retains both initial prefills while replacing intermediate text-message generation
+and reprocessing. Their reported speedups describe different boundaries.
+
+The clipping lacks a byline and frontmatter. The matching public page establishes Ben
+Dickson's authorship, the canonical title, and **October 14, 2026 UTC** publication metadata.
+The preserved article body remains the evidence for its numerical claims; extra public-page
+takeaways were not imported as captured results. As with the earlier stack survey, this is
+secondary research reporting rather than an independent replication.
+
 ## Related pages
+
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
+- [[KV Cache]]
+- [[Model Routing]]
 
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-11
-updated: 2026-09-30
+updated: 2026-10-16
 entity_kind: person
 tags:
   - entity
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
+  - src-2026-10-12-rastogi-agent-engineer
 status: active
 ---
 
@@ -63,7 +64,25 @@ Read the figures as attributed vendor claims and the sequencing as practitioner 
 - Writes evenhandedly about vendors, naming Salesforce Agentforce Observability as a fair
   counter-example to platforms that ship adoption metrics early and reasoning traces late.
 
+## A plugin experiment exposes the gap between claims and artifacts
+
+[[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] introduces
+[[agent-engineer]], combining skills, subagents, and hooks. Its six-task, three-runs-per-arm
+comparison reports **53% versus 34% of requirements met**, using a blinded prewritten
+checklist. This is a creator-run bundle result, not independent replication, an ablation,
+or a measurement of the headline's "10x."
+
+The source also records its own failure: a gate corrected the final response's unmeasured
+claim but left the same false accuracy claim in a written report. This extends Rastogi's
+earlier evidence-first production discipline to coding assistants: the persisted artifact,
+not only the final message, must remain consistent with what was actually measured.
+The two equivalent captures represent one article and one experiment.
+
 ## Related pages
+
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
+- [[agent-engineer]]
+- [[Agentic Testing]]
 
 - [[Agent Observability]]
 - [[AI Agents in Production]]

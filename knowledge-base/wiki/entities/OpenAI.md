@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-10-07
+updated: 2026-10-16
 entity_kind: organization
 tags:
   - entity
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-22-bytebytego-openai-gpt-live
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-09-rabi-guha-intelligent-ui
 status: active
 ---
 
@@ -105,7 +106,27 @@ Nor does this study establish that narrow-fine-tuning emergent misalignment caus
 Hugging Face incident described above. The common lesson is to evaluate behavioral transfer
 without collapsing distinct mechanisms and runtime failures into one label.
 
+## Intelligent UI is described through third-party web observations
+
+[[@rabi_guha - How ChatGPT Intelligent UI Works]] reports a DIL source/compiler pipeline,
+an isolated worker maintaining keyed interaction state, and a host renderer applying
+operations through a component catalog. It extends this entity's product architecture
+coverage into [[Generative User Interface]], without becoming an official OpenAI specification.
+
+The methodology uses the authors' web traffic and publicly served JavaScript. It does not
+independently establish every mobile implementation, server recompilation detail, or
+sandbox guarantee. Roughly 70 registered components and 39 observed in captured responses
+are a dated registry/sample, not a stable API. AppBlock's separate HTML/JavaScript path
+also prevents treating catalog restrictions as universal.
+
+State surviving streamed recompilation is narrower than durable cross-session state or
+replay. This account should remain separate from the lab's first-party safety and model
+reports elsewhere on this page.
+
 ## Related pages
+
+- [[@rabi_guha - How ChatGPT Intelligent UI Works]]
+- [[Generative User Interface]]
 
 - [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
 - [[Emergent Misalignment]]

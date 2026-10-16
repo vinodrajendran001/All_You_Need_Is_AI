@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-08-30
+updated: 2026-10-16
 tags:
   - concept
   - reasoning
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-10-12-bytebytego-energy-based-reasoning
 status: active
 ---
 
@@ -89,6 +90,19 @@ length penalty, or by a post-RLVR supervised stage on effort-labelled targets. Q
 (`/think` flag) and hard switch (`enable_thinking=False`, which prefills an empty `<think></think>`
 block) are the two ends of how firmly that setting binds. See [[Reasoning Effort Control]].
 
+## Extra search need not be extra text
+
+[[ByteByteGo - How to Build Models Without Language]] adds inference-time optimization over
+continuous candidate or latent states against a fixed learned energy function. Iterations,
+restarts, decoding, and independent constraint checks consume a budget even when no reasoning
+trace is generated. This extends the search/verification distinction beyond token sampling.
+
+More search does not guarantee the global minimum, a valid discrete output, or termination
+within budget. A checker can reject a candidate but only certifies the constraints it encodes;
+the system still needs a failure/escalation path. The source's Kona Sudoku figures are a
+vendor demonstration, not a measured general scaling curve, and its illustrative energy
+walkthrough is not a disclosure of Kona's algorithm.
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -97,6 +111,8 @@ block) are the two ends of how firmly that setting binds. See [[Reasoning Effort
 
 ## Related pages
 
+- [[ByteByteGo - How to Build Models Without Language]]
+- [[Energy-Based Model]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[LLM Reasoning]]

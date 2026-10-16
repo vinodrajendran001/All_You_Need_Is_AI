@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-10-09
+updated: 2026-10-16
 entity_kind: organization
 tags:
   - entity
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-28-watson-nvidia-openshell-runtime-controls
+  - src-2026-10-14-dickson-kv-cache-handoffs
 status: active
 ---
 
@@ -169,7 +170,27 @@ permission checks concern an operator-defined model, vendor adversarial tests om
 and cross-agent permission composition remains ongoing work. This is not a proof of universal
 containment.
 
+## Cross-model cache conversion targets the handoff stage
+
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] reports NVIDIA work mapping cached state
+between different models through layer selection, removal of rotary position effects from
+keys, and calibrated projections. The account covers six smaller-to-larger pairs, calibrated
+with **500 sequences of 1,024 tokens**.
+
+Its Qwen3 **14B to 32B**, **32,768-token** example reports **278 ms** versus nearly
+**7 seconds** for rebuilding receiver state. This is about **25x for the handoff stage**,
+not a lossless conversion or a whole-agent speedup. Model/task-dependent quality loss and
+internal-cache access remain material requirements.
+
+The same article's C2C fusion is a different method, retaining both initial prefills while
+avoiding an intermediate text message. Its results should not be attributed to NVIDIA's
+session-conversion experiment. Both are secondary reports, not independently reproduced here.
+
 ## Related pages
+
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
+- [[KV Cache]]
+- [[Model Routing]]
 
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
 - [[Agent Security and Governance]]

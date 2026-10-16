@@ -24,10 +24,15 @@ topics:
   - artifact verification
 covers_from: 2026-10-09
 covers_through: 2026-10-16
-status: ready
+status: draft
 ---
 
 # The Correction Did Not Reach the Report
+
+> [!note] Superseded draft
+> This angle was rejected editorially as not interesting enough and was not published.
+> The replacement is [[2026-10-16 The Next Model Can Skip the Reread]]. This file remains
+> to preserve the append-only log history.
 
 ## LinkedIn post
 

@@ -1921,7 +1921,7 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   state transfer, not an arbitrary hosted-service feature, and not an independently
   reproduced result. The practical recommendation separates route choice, context transfer,
   final generation, and quality risk while retaining readable handoff text.
-- Verified reader, factual, compression, and comprehension checks. LinkedIn is **380 words**;
+- Verified reader, factual, compression, and comprehension checks. LinkedIn is **389 words**;
   the standalone is **276 weighted characters**; the six thread posts are
   **255 / 224 / 220 / 243 / 239 / 250**.
 - Updated [[Post Archive]] to make the replacement the active October 16 entry, moved the

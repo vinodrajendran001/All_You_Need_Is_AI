@@ -224,7 +224,7 @@ the practical conclusion, and does not turn an approximate stage result into end
 avoids, what was compared, why the larger number is not an agent-wide multiplier, and what
 builders should measure differently. The analogy supports the mechanism rather than replacing it.
 
-**Measured copy lengths:** LinkedIn is **380 whitespace-delimited words**, including credit,
+**Measured copy lengths:** LinkedIn is **389 whitespace-delimited words**, including credit,
 URL, and hashtags. The standalone is **276 weighted characters**. Thread posts are
 **255 / 224 / 220 / 243 / 239 / 250**. Every X post is within 280; the copy is ASCII-only,
 and the URL contributes 23 characters. Labels and counts are outside the paste-ready blocks.

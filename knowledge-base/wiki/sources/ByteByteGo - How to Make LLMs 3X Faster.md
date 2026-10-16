@@ -107,9 +107,9 @@ input to the broader [[Speculative Decoding]] synthesis, not a current engine-fe
 
 ### Concurrency is one operating-condition limit
 
-- Speculative decoding spends capacity that would otherwise go unassigned. As concurrent requests
-  accumulate, one weight read serves many requests, compute approaches saturation, and verification
-  starts competing with real work.
+- In the article's motivating low-batch, weight-bound regime, speculation can use otherwise idle
+  arithmetic. As requests accumulate, weight reads serve more sequences and compute may approach
+  saturation; drafting and verification then compete more directly with other serving work.
 - One systematic evaluation reported **up to 1.96× on a 70B model at batch size 1, declining to
   1.21× at batch size 128**, and the technique can fall **below baseline** under higher concurrency.
 - The article describes **vLLM batch-size-based disabling and concurrency-dependent draft length**.

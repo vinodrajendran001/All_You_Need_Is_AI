@@ -31,7 +31,7 @@ R_format` — the accuracy term teaches reasoning, the format term teaches where
 
 ## Key claims
 
-**Two ways to install effort levels after RL with verifiable rewards.** Either condition the RLVR
+**Two surveyed routes to learned effort levels.** Either condition the RLVR
 run itself on an effort level and apply an effort-dependent length penalty, or run RLVR normally and
 then do a supervised stage on targets labelled with effort levels.
 

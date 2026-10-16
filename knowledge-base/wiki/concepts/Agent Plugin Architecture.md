@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-04
+updated: 2026-10-16
 tags: [concept, ai-agents, plugins, interoperability]
 source_ids:
   - src-2026-08-17-google-cloud-agent-plugins
   - src-2026-08-20-jeremy-morrell-extensible-software
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-10-12-rastogi-agent-engineer
 status: active
 ---
 
@@ -82,7 +83,28 @@ both were written by the same author, so the coordination only holds inside one 
 generalisable point: **a missing abstraction becomes visible the moment independently written extensions meet**,
 and until then each author reinvents it privately and incompatibly.
 
+## Packaging procedures, workers, and hooks does not isolate their effects
+
+[[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] describes
+[[agent-engineer]] as **11 skills, four subagents, and five hooks**. Skills carry procedures,
+workers isolate investigations, and hooks trigger guidance or checks. The creator-run six-task
+comparison reports **53% versus 34% of requirements met**, with three runs per arm and a
+blinded prewritten checklist.
+
+This is evidence about the bundle under that setup, not an ablation proving which extension
+surface helped, a 10x productivity result, or independent host-compatibility verification.
+The evaluation gate blocks at most once per session and is disableable. One failed run
+corrected its final reply but left a false accuracy claim in a report, exposing a boundary
+between intercepting a response and governing all written artifacts.
+
+Plugin design therefore needs separate contracts for activation, capability enforcement,
+persistent state, and evaluation. Loading bodies on demand is useful context management,
+not measured zero overhead or a non-bypassable security boundary.
+
 ## Related pages
+
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
+- [[agent-engineer]]
 
 - [[Agent Skill]]
 - [[Model Context Protocol]]

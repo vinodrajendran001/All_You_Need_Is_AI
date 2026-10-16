@@ -1,20 +1,23 @@
 ---
 type: entity
-entity_kind: organization
+entity_kind: model-family
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-16
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-09-27-willison-llms-2026-so-far
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-10-jaloza-microsoft-decision-1
 status: active
 ---
 
 # Qwen
 
 Alibaba's open-weight model family, and one of the most widely derived-from lineages in the open ecosystem.
-The vault's detailed coverage centres on **Qwen3.8-27B**.
+The vault covers **Qwen3.8-27B** as well as third-party conversions and scoring models derived
+from other Qwen checkpoints. Their results are not interchangeable measurements of the family.
 
 ## Why it matters to this vault
 
@@ -33,7 +36,7 @@ Its two most interesting choices are nonetheless post-training choices, per
   the vault — reasoning traces retained as durable state rather than discarded per turn. See
   [[Context Engineering]], [[KV Cache]] and [[Agent Memory]].
 - **`reasoning_effort` as an explicit knob** taking `xhigh`, `medium` or `low`, defaulting to `xhigh`, with
-  thinking disableable entirely — which GLM-5.3 does not permit. A concrete instance for
+  the explicit thinking mode disableable — which GLM-5.3 does not permit. A concrete instance for
   [[Reasoning Effort Control]].
 
 Qwen also supplies the vault's cleanest evidence for the **harness effect** at release time: under "Downstream
@@ -70,7 +73,27 @@ metrics prevent a universal repair claim, and its "agentic" evaluations are sing
 scenarios without tools. This is separate evidence about fine-tuning robustness, not the
 alignment status of the whole Qwen lineage.
 
+## A donor for changed memory architectures and output interfaces
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] uses Qwen-derived
+8B/32B hybrids to explore replacing selected attention layers with state-space layers.
+The 32B reasoner's time-to-target-accuracy comparison uses a source model trained with the
+same reasoning recipe. Reported near-source quality and cache savings are specific to that
+conversion and serving setup, not an evaluation of Qwen3.8's native hybrid design.
+
+[[Lisa Brown Jaloza - Microsoft-Decision-1]] gives another reuse path: adapt **Qwen3.5-9B**
+for single-pass fixed-option scoring. That disclosed backbone does not disclose the full
+training/scoring recipe or guarantee task calibration. Microsoft's planned Microsoft AI and
+OpenAI backbones are future alternatives, not the base of the captured release.
+
+Together these sources distinguish inheriting weights from preserving architecture or output
+behavior. A derivative's benchmark does not transfer to every Qwen checkpoint or deployment.
+
 ## Related pages
+
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
+- [[Lisa Brown Jaloza - Microsoft-Decision-1]]
+- [[Microsoft-Decision-1]]
 
 - [[Simon Willison - 2026 in LLMs (so far)]]
 - [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]

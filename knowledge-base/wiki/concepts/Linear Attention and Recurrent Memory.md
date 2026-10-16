@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-10-07
+updated: 2026-10-16
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-12-zhang-recurrent-looped-transformer
   - src-2026-10-01-neuralink-unlabeled-brain-pretraining
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-11-samarin-speculative-decoding
 status: active
 ---
 
@@ -27,8 +29,9 @@ bounded memory and potentially linear-time sequence processing.
 
 Standard attention's cost is the reason most of the vault's inference material exists: the KV cache grows with
 conversation length, and a 70B model with an 8k conversation needs a few GB **per request** — see [[KV Cache]].
-Every technique on [[Inference Efficiency Frontier]] works around that growth. Linear attention attacks the
-cause instead, by refusing to keep a per-token state at all.
+Several techniques on [[Inference Efficiency Frontier]] work around that growth. Linear attention
+changes the state representation itself rather than merely compressing a per-token cache;
+hybrids retain that cache in their attention layers.
 
 The trade is real and not free. A fixed-size state cannot losslessly hold an arbitrary history, so the design
 question is never "linear or quadratic" but **where to spend the exact-retrieval budget** — which is why the
@@ -151,6 +154,32 @@ Transformer-versus-Mamba speed advantage. Cursor-control information transfer an
 burden remain task-specific outcomes, while universal and zero-shot decoding remain unsolved.
 See [[Neuralink]].
 
+## A pretrained model can reveal which layers to convert
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] adds a method for choosing
+the hybrid layout rather than assuming a fixed ratio. Sliding-window sensitivity identifies
+candidate layers; transferred Q/K/V projections and short alignment initialize state-space
+replacements; full-model next-token adaptation then lets the layers coadapt.
+
+The reported controlled ordering, **Gated KalmaNet > Gated DeltaNet > Mamba-2**, holds at the
+tested data, adaptation budget, and hybrid ratio. Window tolerance is a selection proxy, not
+a proof that fixed-state replacement is lossless. The pipeline uses less than **0.5% of the
+donor's pretraining tokens**, while inheriting that donor's training cost. Token-addressable
+"eidetic" attention is not guaranteed verbatim recall.
+
+## A drafter can reintroduce the memory the target removed
+
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] adds a second state
+budget to hybrid serving: a context-growing private cache in the drafter can compete with a
+target designed to keep much of its history in fixed recurrent state. Its illustrative
+five-layer BF16 cache consumes about **0.67 GB per request at 32,768 tokens**, excluding all
+target allocations.
+
+H-Spec instead reads selected target KV layers and rebuilds block state each round, avoiding
+a context-growing private cache rather than all auxiliary memory. The synthesis is to price
+the complete target-plus-drafter state, not multiply an architecture's standalone savings by a
+speculation headline. No joint priming/H-Spec benchmark is established by these two sources.
+
 ## Open questions
 
 - What determines the right full-attention ratio in a hybrid, and does it depend on task, sequence length, or
@@ -166,6 +195,9 @@ See [[Neuralink]].
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
+- [[Speculative Decoding]]
 - [[Neuralink - Pretraining on 50,000 Hours of Unlabeled Brain Data]]
 - [[Neuralink]]
 - [[@neural_avb - What Are Looped Transformers|@neural_avb - What Are Looped Transformers?]]

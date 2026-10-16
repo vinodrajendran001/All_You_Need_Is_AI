@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - routing
@@ -23,6 +23,8 @@ source_ids:
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-rai-jev-decision-models
   - src-2026-10-08-talekar-decision-model-gold-rush
+  - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-10-jaloza-microsoft-decision-1
 status: active
 ---
 
@@ -217,6 +219,25 @@ misroute is cheap depends on the downstream action and recovery path. Price acce
 fallbacks, self-hosted utilization, and maintenance on local traffic; do not compare token tariffs
 with per-task costs as if the denominators matched.
 
+## The routing decision and the context handoff have separate costs
+
+[[Lisa Brown Jaloza - Microsoft-Decision-1]] adds a Qwen3.5-9B-derived fixed-option scorer
+for routing and other decisions. Its first-party suite reports high accuracy and low latency,
+but the capture supplies no numerical calibration curve for choosing a production threshold.
+The listed **$0.042 per million input tokens** is not cost per routed task; request length,
+fallbacks, and destination work remain.
+
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] addresses a different expense after a route
+is chosen. NVIDIA's cache conversion avoids rebuilding receiver state over a continuing
+session, with pair/task-dependent quality loss. C2C instead avoids a specialist's text-message
+generation and reprocessing while keeping both models' initial prefills.
+
+A router must therefore price decision inference, context transfer, final generation, and
+quality risk separately. The approximately **25x** Qwen3 14B-to-32B handoff result at
+32,768 tokens is not a whole-workflow multiplier. A compatible scoring endpoint supplies
+neither internal KV access nor a trained conversion, and a scoring probability still does
+not authorize the selected action.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -231,6 +252,9 @@ with per-task costs as if the denominators matched.
 
 ## Related pages
 
+- [[Lisa Brown Jaloza - Microsoft-Decision-1]]
+- [[Microsoft-Decision-1]]
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[Swapnil Talekar - The Decision Model Gold Rush]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]

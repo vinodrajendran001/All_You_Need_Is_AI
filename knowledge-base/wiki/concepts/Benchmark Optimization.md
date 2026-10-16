@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - evaluation
@@ -25,6 +25,8 @@ source_ids:
   - src-2026-09-15-turing-post-recursive-self-improvement
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-10-08-talekar-decision-model-gold-rush
+  - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-09-30-apollo-embedded-evaluations
 status: active
 ---
 
@@ -275,6 +277,26 @@ the same measure as a token tariff. A reproducible selection comparison needs a 
 task mix, output semantics, pricing date, and error-handling policy as well as an author who
 does not sell the winning model.
 
+## A held-out suite and a falsifiable assurance claim answer different questions
+
+[[Lisa Brown Jaloza - Microsoft-Decision-1]] reports **36 benchmarks**, nearly **150,000
+questions**, and a developer assertion that those benchmarks were blind to training.
+That is useful claimed separation, not an independently audited contamination guarantee.
+Its accuracy suite, eight-type perturbation test, calibration assertion, and **5,250-request /
+11-benchmark** safety evaluation remain separate axes. Missing calibration curves or complete
+safety error rates cannot be inferred from leading aggregate accuracy.
+
+The suite also cannot be merged with DecideBench, IMDb, or internal deployment anecdotes.
+The editor's note mentions Jev comparisons without captured numerical margins; those margins
+remain unknown rather than supplied by another benchmark.
+
+[[Apollo Research - Principles for Embedded Evaluations]] addresses a wider assurance
+problem: predeclare claims and assess not only counterexamples but the methods' ability to
+find them. An unrefuted claim with detection gaps differs from a qualified "Verified" verdict.
+Blocked access and self-reporting are disclosed separately from incident severity, and a
+narrower fallback claim cannot erase the original refutation. This is a proposed governance
+process, not a measured improvement in benchmark integrity or an established legal duty.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -291,6 +313,10 @@ does not sell the winning model.
 
 ## Related pages
 
+- [[Lisa Brown Jaloza - Microsoft-Decision-1]]
+- [[Microsoft-Decision-1]]
+- [[Apollo Research - Principles for Embedded Evaluations]]
+- [[Embedded Evaluation]]
 - [[Swapnil Talekar - The Decision Model Gold Rush]]
 - [[Typed Probabilistic Decision Models]]
 - [[TypeSafe AI]]

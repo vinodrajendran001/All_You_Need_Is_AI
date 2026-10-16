@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-10-07
+updated: 2026-10-16
 tags:
   - concept
   - benchmarks
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
   - src-2026-10-02-epoch-agent-population
+  - src-2026-10-11-samarin-speculative-decoding
 status: active
 ---
 
@@ -79,16 +80,14 @@ harmful" — with only the concurrency changing. Any speculative-decoding speedu
 batch size is therefore uninterpretable, and the marketing convention of reporting the batch-size-1
 figure systematically describes the least representative operating point for a loaded server.
 
-This generalizes past speculation to every optimization that spends idle compute. Such techniques are
-measured at exactly the load where idle compute is most abundant, and their benefit decays toward
-zero — or past it — as the server fills up. A benchmark that does not sweep concurrency cannot
-distinguish an optimization that helps production from one that only helps benchmarks, which is the
-same failure this page records under [[Benchmark Optimization]].
+Those results motivate a concurrency sweep, not a theorem that all speculation loses as a server
+fills. [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] adds long-context,
+cache-bound large-batch cases where amortizing history reads can still help. The earlier low-load
+argument describes a regime, not the entire technique.
 
-Note also that speculative decoding does not move **time to first token** at all, since it applies to
-generation rather than prefill. A goodput definition keyed to TTFT will score it as no improvement
-whatsoever, while one keyed to inter-token latency will score it as a large win. The metric choice
-determines the verdict.
+Speculation does not directly accelerate prompt processing, but draft initialization, queueing,
+and resource competition can change **time to first token**. Measure TTFT and inter-token latency
+under the chosen load instead of assuming one is unchanged and the other improves.
 
 ## One accelerator, four normalisations, results from +96% to -30%
 
@@ -200,6 +199,22 @@ Retained-cache, frozen-price estimates are not observed bills, and capable outpu
 not task acceptance. Carry these definitions into any supply model instead of converting
 sessions/GPU directly into productive people/GPU.
 
+## Acceptance, arithmetic examples, and operating-point comparisons are different evidence
+
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] gives the same cited
+**tau=4.2** for EAGLE-3 and DFlash on Qwen3-4B/GSM8K, but **2.1x versus 3.3x** speedups.
+Accepted length does not capture serial drafting, verification width, cache traffic, or
+scheduler overhead. Check whether a paper's length includes the correction/bonus token.
+
+The survey's **2.95x serial / 3.51x parallel** example is an idealized calculation, not a
+measurement. Its DSpark comparisons fix either aggregate throughput or per-user generation
+speed in different experiments. Gains on these two slices must not be added or presented as
+one configuration improving both axes by their separate maxima.
+
+Report target and drafter, hardware and engine, prompt/output distributions, batch/concurrency,
+sampling and correctness contract, all auxiliary memory, and the matched serving objective.
+A long-context cache allocation or high acceptance rate is not a proxy for end-to-end goodput.
+
 ## Open questions
 
 - Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
@@ -212,6 +227,7 @@ sessions/GPU directly into productive people/GPU.
 
 ## Related pages
 
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Jason Li - How Many AI Agents Could We Run]]
 - [[Epoch AI]]
 - [[Netflix - In-House LLM Serving]]

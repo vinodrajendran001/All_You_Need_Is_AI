@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - ai-agents
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-09-01-iusztin-scoped-subagents
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-12-rastogi-agent-engineer
 status: active
 ---
 
@@ -200,6 +201,20 @@ to train the underlying model. That is a model-harness update, not an instructio
 changing weights. Start with a skill when the failure is procedural; an environment, authority,
 or coordination problem may require a different intervention.
 
+## A positive plugin result does not isolate skill quality
+
+[[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] reports **53% versus 34%**
+of requirements met across six tasks and three runs per arm, using a blinded prewritten
+checklist. Its plugin combines 11 skills with four subagents and five hooks, so this is a
+small creator-run bundle result, not an estimate of the effect of skill prose alone.
+Only tasks 5 and 6 are explicitly held out from experiment-driven plugin changes.
+
+The result sits alongside the vault's null and mixed context evidence rather than overturning
+it. Activation discipline and artifact-level verification remain necessary: on-demand bodies
+do not imply zero discovery or hook cost, and the source records a false report surviving a
+corrected final response. Evaluate the installed bundle first, then ablate components before
+attributing improvements to the skill library.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -211,6 +226,8 @@ or coordination problem may require a different intervention.
 
 ## Related pages
 
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
+- [[agent-engineer]]
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Persistent Wiki]]
 - [[Adam Faik - How to Build an AI-Native Software Factory]]

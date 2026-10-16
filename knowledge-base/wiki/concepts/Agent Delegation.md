@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-16
 tags:
   - concept
   - ai-agents
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-10-01-mollick-dot-swarm
   - src-2026-09-29-raschka-text-classification-jev
+  - src-2026-10-14-dickson-kv-cache-handoffs
 status: active
 ---
 
@@ -286,6 +287,21 @@ grants authority and verifies the outcome**. Model-selected dispatch can coexist
 permissions, external budgets, and evidence-bearing handoffs. It does not resolve the
 zone-of-indifference risk merely by coordinating more competently.
 
+## Latent handoffs transport information, not authority
+
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] adds two ways to reduce communication cost.
+NVIDIA's mapped cache replaces receiver re-prefill over an accumulated session; C2C retains
+both initial prefills but replaces a specialist's intermediate text message with trained
+cache fusion. These require internal state access and model-pair calibration or training,
+not just a shared API.
+
+That changes the data channel without supplying a delegation contract. Scope, permissions,
+provenance, and acceptance criteria still need an explicit, auditable representation outside
+the latent payload. Conversion can lose quality, and misleading specialist representations
+can propagate. The reported exploratory benefit of **text plus fusion** supports testing
+complementary channels, not assuming that removing readable handoffs always improves an agent.
+Stage-transfer timings are also not full delegated-task latency.
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -309,6 +325,7 @@ zone-of-indifference risk merely by coordinating more competently.
 
 ## Related pages
 
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Ethan Mollick - The Dot and the Swarm]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-07
+updated: 2026-10-16
 tags:
   - concept
   - ai-agents
@@ -41,6 +41,9 @@ source_ids:
   - src-2026-10-02-e2b-embed
   - src-2026-09-27-willison-llms-2026-so-far
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-10-09-rabi-guha-intelligent-ui
 status: active
 ---
 
@@ -480,6 +483,34 @@ security prediction from other reported incidents. His keynote adds perspective,
 audit of every allegation. The detailed first-party Hugging Face account above remains the evidence
 for that incident; neither a reassuring demo nor a broad retrospective establishes containment.
 
+## Workflow checks, runtime isolation, and independent assurance are separate contracts
+
+[[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] gives a concrete limit
+of workflow hooks: its evaluation gate blocks at most once per session, can be disabled,
+and in one run corrected the final message without correcting a false report already on disk.
+The bundle's positive checklist result does not make that hook an external authorization
+boundary or prove its source-secret guard is complete.
+
+[[@rabi_guha - How ChatGPT Intelligent UI Works]] describes a different boundary:
+generated code reconciles UI state in an isolated worker while a host renders known
+components. Compiler validation, restricted globals, an iframe, and a watchdog address
+different risks. The third-party web account is not a containment audit. AppBlock's separate
+HTML/JavaScript path and native properties accepting raw CSS also prevent extending a
+catalog restriction into a universal guarantee about all generated output.
+
+[[Apollo Research - Principles for Embedded Evaluations]] moves assurance outside either
+mechanism. Its proposal requires predeclared claims, developer evidence, independent
+investigation, and testing whether methods could detect counterexamples. "Verified" is
+qualified; "Unrefuted" retains material gaps; self-reported and evaluator-found counterexamples
+receive distinct verdicts; blocked access does not prove a particular unsafe act. These
+grades concern evidence and disclosure incentives, not incident severity.
+
+The shared lesson is to state the contract before claiming a control succeeded. What could
+the hook stop, what could the runtime contain, and what could the evaluator observe?
+[[Embedded Evaluation]] adds publication/access rules and preserves a refuted original claim
+when a narrower post-remediation claim is assessed. It is a proposal, not an existing legal
+requirement or proof of a gaming-resistant process.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -512,6 +543,12 @@ for that incident; neither a reassuring demo nor a broad retrospective establish
 
 ## Related pages
 
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
+- [[agent-engineer]]
+- [[@rabi_guha - How ChatGPT Intelligent UI Works]]
+- [[Generative User Interface]]
+- [[Apollo Research - Principles for Embedded Evaluations]]
+- [[Embedded Evaluation]]
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[E2B - Embed Runtime README]]

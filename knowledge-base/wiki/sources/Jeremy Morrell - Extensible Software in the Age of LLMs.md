@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-09-30
+updated: 2026-10-16
 source_id: src-2026-08-20-jeremy-morrell-extensible-software
 source_title: Extensible Software in the Age of LLMs
 source_author: Jeremy Morrell
@@ -37,6 +37,7 @@ The proposal defines [[LLM-Native Extensible Software]] as a distinct architectu
 
 ## Affected pages
 
+- [[Generative User Interface]]
 - [[Agent Plugin Architecture]]
 - [[LLM-Native Extensible Software]]
 
@@ -56,4 +57,3 @@ The proposal defines [[LLM-Native Extensible Software]] as a distinct architectu
 - [[AI Agents in Production]]
 - [[Agent Security and Governance]]
 - [[Tool Use and Function Calling]]
-

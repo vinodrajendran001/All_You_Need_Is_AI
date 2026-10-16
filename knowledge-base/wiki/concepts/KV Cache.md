@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - kv-cache
@@ -28,6 +28,9 @@ source_ids:
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-11-samarin-speculative-decoding
 status: active
 ---
 
@@ -95,7 +98,12 @@ The important distinction: TurboQuant compresses **runtime KV cache**, not model
 
 [[Siddhant Rai - TurboQuant - Online Vector Quantization]] adds the deeper mathematical account behind this pipeline. It reframes KV quantization as a **rate-distortion problem** whose true objective is preserving the attention inner product `qᵀk ≈ qᵀk̂`, not raw MSE. The reason weight-style methods fail on the cache is statistical: weights are static and roughly Gaussian (calibrate offline once), while KV vectors are **dynamic and shift per input**, so any fixed codebook (INT4 uniform, NF4 Gaussian) is misaligned. TurboQuant therefore *transforms then quantizes* — rotate into a known Gaussian space and apply a **Lloyd-Max optimal codebook** (the "where the vector is" / MSE branch) — and handles the leftover with **QJL**, a Johnson-Lindenstrauss random projection plus 1-bit sign quantization (the "which direction" / inner-product branch). Reported results include perfect needle-in-a-haystack recall at ~4× compression.
 
-[[Speculative Decoding]] ([[Mayank Pratap Singh - Speculative Decoding in vLLM]]) touches the cache from the other side. Accepted draft tokens are committed straight into the KV cache in one verification pass, so speculation is a way to *fill* the cache faster; but the draft model also **competes for the same VRAM** the cache needs (e.g. ~14 GB for a 7B draft alongside a 70B target), which is exactly why speculation is a low-batch latency play rather than a high-throughput one — the memory it borrows is memory the cache and larger batches cannot use.
+[[Speculative Decoding]] ([[Mayank Pratap Singh - Speculative Decoding in vLLM]]) touches the
+cache from the other side. Verification computes target states for proposed positions and
+retains the committed prefix, rather than blindly copying draft-model cache entries. A separate
+drafter also competes for memory (the source's example is roughly 14 GB for a 7B draft alongside
+a 70B target). That can limit concurrency, but does not make speculation exclusively a low-batch
+technique: the newer Samarin survey includes cache-bound large-batch gains.
 
 ## Primary sources for the optimization families
 
@@ -109,7 +117,12 @@ The last family is the one that changes the shape of a deployment rather than it
 
 ## Prefix stability is an application-level concern
 
-[[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] adds the caller's side of prefix reuse. The cache only helps if the prompt prefix is **byte-identical** across turns, so the decision of whether a cache hit happens is made in application code, not in the serving engine. A rotating timestamp, a re-ordered tool list, or a regenerated system preamble at the front of the context turns an apparent hit into a full prefill, and the cost lands as latency on the very first token.
+[[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] adds the caller's side of ordinary exact
+prefix reuse. Keeping a prompt prefix **byte-identical** is a practical application discipline;
+the tokenized prefix and model/runtime cache compatibility still determine whether reuse is
+valid. A rotating timestamp, re-ordered tool list, or regenerated preamble can destroy reuse
+and add first-token latency. Learned cross-model conversion, discussed below, has a different
+and approximate contract.
 
 The practical rule is to treat the prefix as a stable interface — append rather than rewrite, and keep anything volatile at the end of the context. This is what makes prefix reuse the dominant win for agent and chat traffic noted in [[Inference Serving Engines]], and why [[Agentic Loop]] treats cache-awareness as a constraint on how a loop is built.
 
@@ -122,7 +135,7 @@ of the cache; it trades cache capacity — and hence batch size and throughput �
 
 The same source describes the inverse move. QuantSpec drafts using **a 4-bit KV cache alongside 4-bit
 weights** while verification runs at higher precision, reporting above 1.78× with acceptance above
-90%. Here cache compression is not a memory optimization at all but the mechanism that generates
+90%. Here cache compression is not only a memory optimization but also the mechanism that generates
 cheap drafts: the degraded cache *is* the draft model. That is a use of KV-cache quantization this
 page's optimization families did not anticipate, where the quality loss from compression is
 acceptable precisely because a full-precision verifier corrects it.
@@ -252,6 +265,39 @@ release is **1.84x, geometrically averaged**. All of it is vendor-reported, on a
 calls unusually favourable — known structure, shared prefixes, no decode, structured outputs with an
 **8-option output vocabulary**, and low latency sensitivity.
 
+## Moving a session and fusing a message avoid different work
+
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] distinguishes two learned exceptions to
+model-specific caches. NVIDIA's mapping translates accumulated session state to avoid
+rebuilding the receiver's cache. C2C instead keeps **both initial prefills** and fuses a
+specialist's representations to avoid intermediate text generation and reprocessing.
+
+The reported Qwen3 **14B to 32B**, **32,768-token** transfer takes **278 ms** versus nearly
+**7 seconds** for rebuilding, about **25x for that stage**, with model/task-dependent quality
+loss. This is not exact same-model cache transport or whole-agent acceleration. C2C's roughly
+**2.5x average latency** result has a different denominator, and its exploratory text-plus-fusion
+result argues for complementary channels rather than universal replacement of text.
+
+Both methods require internal state access and a calibrated or trained mapping. A latent
+payload does not automatically carry provenance, permissions, or a readable handoff contract.
+
+## Target and drafter have separate state budgets
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] reports roughly halving
+the 32B model's KV cache by replacing selected attention layers with adapted recurrent layers.
+This removes some token-growing state rather than quantizing every cache entry; recurrent
+state, weights, and workspace remain.
+
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] shows how a drafter
+can spend that capacity again. For 32,768 tokens, five layers, eight KV heads, dimension 128,
+and BF16, `2 * 32768 * 5 * 8 * 128 * 2` is **671,088,640 bytes per request**, about
+**0.67 GB**, or **86 GB at 128 requests**. These are allocation calculations, not throughput
+measurements, and exclude target memory.
+
+H-Spec instead borrows selected target KV state and rebuilds its block state each round.
+"No context-growing private cache" is not "no auxiliary memory." The complete serving budget
+must include both sides before predicting a concurrency or latency win.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -263,6 +309,9 @@ calls unusually favourable — known structure, shared prefixes, no decode, stru
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Prateek Singh - KV Cache and TurboQuant]]
 - [[Siddhant Rai - TurboQuant - Online Vector Quantization]]

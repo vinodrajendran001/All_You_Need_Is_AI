@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - context-engineering
@@ -31,6 +31,7 @@ source_ids:
   - src-2026-09-29-yoon-multiplayer-ai
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-12-rastogi-agent-engineer
 status: active
 ---
 
@@ -325,6 +326,23 @@ answer. It does not reverse the earlier compression warning: the capture gives n
 ablation, model/hardware configuration, or general guarantee that cutting tokens preserves quality
 or cuts cost proportionally.
 
+## Measured guidance bundles do not settle the prose-only question
+
+[[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] supplies a small positive
+comparison: **53% versus 34% of requirements met** across six tasks with three runs per arm,
+graded blind against a prewritten checklist. The intervention adds skills, isolated workers,
+and hooks together. Only two tasks are explicitly held out from experiment-driven changes.
+
+That does not contradict Osmani's null result for instruction files: the interventions,
+tasks, and outcome measures differ, and no component ablation identifies a prose-only effect.
+The useful addition is to treat activation and persistence as evaluated choices. Optional
+project records can retain design and experiments with user agreement, but a corrected final
+message did not repair a false report in the source's own failure example.
+
+On-demand loading limits when skill bodies enter context; it does not establish zero cost
+for discovery metadata, hooks, or host integration. Context must still earn its place through
+the complete workflow's measured results.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -338,6 +356,8 @@ or cuts cost proportionally.
 
 ## Related pages
 
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
+- [[agent-engineer]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[Semantic Recommendation Systems]]
 - [[Netflix]]

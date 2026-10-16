@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - inference
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
+  - src-2026-10-11-samarin-speculative-decoding
 status: active
 ---
 
@@ -24,11 +25,19 @@ status: active
 
 ## Definition
 
-Speculative decoding is a lossless inference-acceleration technique: a small, cheap **draft** model proposes several future tokens, and the large **target** model verifies them all in a single parallel pass, committing the correct prefix and correcting the first mismatch. It produces text drawn from *exactly* the target model's distribution — it only changes speed, never output.
+Speculative decoding proposes several future tokens with a cheap drafter and checks them with
+a target model in a parallel verification pass. Exact variants preserve the target's output
+distribution through the verification rule; this does not require seed-identical sampled text.
+Approximate acceptance variants need a separate quality contract. The drafter can be an
+auxiliary module or a lookup procedure, not necessarily a second standalone language model.
 
 ## Why it matters
 
-It is the canonical answer to the central fact of [[LLM Inference]]: decode is **memory-bandwidth bound**, so the GPU's math units sit idle while it streams the whole model out of HBM once per token. That idle compute is free capacity, and one weight-load can verify many tokens for nearly the cost of producing one. Speculative decoding turns that asymmetry into a 2–3× latency win — but only under the right conditions, which is what makes it worth understanding precisely rather than switching on blindly.
+In low-batch, weight-bandwidth-bound [[LLM Inference]], one weight load can verify multiple
+positions while using otherwise spare arithmetic. Long-context cache traffic can create a
+different opportunity to amortize reads. Neither regime guarantees a win: draft cost,
+verification kernels, memory, and scheduling determine whether fewer target passes actually
+reduce latency or increase throughput.
 
 ## Current synthesis
 
@@ -36,27 +45,57 @@ It is the canonical answer to the central fact of [[LLM Inference]]: decode is *
 
 ### The mechanism
 
-- A draft model `M_q` cheaply proposes K tokens; the target `M_p` verifies them in one pass. Verification accepts the drafted prefix **until the first mismatch**, commits it, replaces the mismatched token with the target's own token, and discards the rest. Accepted tokens go into the [[KV Cache]]. Worst case (every guess wrong) still returns one correct token, so it is never slower than plain decoding *at the token level*.
+- A drafter `M_q` proposes K tokens for target `M_p`. Under greedy matching, verification
+  commits the matching prefix and a target correction at the first mismatch. Under stochastic
+  rejection sampling, acceptance is probabilistic and the correction comes from a residual
+  distribution. If every proposal is accepted, the round can supply a bonus target token.
+  Only the committed history becomes target [[KV Cache]] state; rejected work may inform later
+  proposals without becoming accepted history. A round can advance by only one token while
+  costing more than an ordinary step, so token progress is not a latency guarantee.
 
 ### Why it is exact
 
-- It is **not** an approximation. Rejection sampling (Leviathan 2023; Chen 2023) accepts a draft token with probability `min(1, p(x)/q(x))` and, on rejection, resamples from the normalized residual distribution — provably reconstructing the target distribution token for token. The draft is a **guesser, not a decider**: a wrong guess costs time, never correctness. This is what separates it from simply using a smaller (lossy) model.
+- Exact rejection sampling (Leviathan 2023; Chen 2023) accepts a draft token with probability
+  `min(1, p(x)/q(x))` and, on rejection, samples from normalized `(p-q)+`, reconstructing
+  the target distribution. At one position, `alpha = sum min(p, q) = 1 - TV(p, q)`.
+  This protects the target's sampling distribution, not the factual correctness of its answers.
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] distinguishes that
+  result from reproducibility. Shared, position-consistent Gumbel noise can instead match the
+  target's sampled path across drafters, with a different acceptance coupling. Correct causal
+  masks, cache bookkeeping, and sampling transformations remain implementation requirements.
 
 ### The economics: α, τ, K
 
-- **α (acceptance rate)** — the probability a drafted token survives verification; the single most important efficiency number.
-- **τ (accepted tokens per round)** — a geometric series `τ = (1 − α^{K+1}) / (1 − α)`. A weak drafter (α=0.30) commits ~1.43 tokens per expensive pass; a strong one (α=0.85) commits ~4.15. Acceptance compounds: slot 5 is only reached if slots 1–4 all land.
-- **K (lookahead)** — how far to guess; a balance, not "bigger is better." Best set **adaptively** from the local entropy of the stream: draft far on predictable text, cautiously on uncertain text.
+- **α (acceptance rate)** — the probability a proposed token survives; important but insufficient
+  without the cost of producing and checking it.
+- **τ (committed tokens per round)** — under constant conditional acceptance,
+  `τ = (1 − α^{K+1}) / (1 − α)`, including the correction/bonus token. For K=5, α=0.30
+  yields about 1.43 and α=0.85 about 4.15; at α=1 the limit is K+1. Real prefixes have
+  position-dependent survival. Some papers count only accepted draft tokens, so check the
+  convention before comparing their reported acceptance lengths.
+- **K (lookahead)** — how far to guess. Tune expected prefix survival against measured
+  verification and drafting cost, rather than maximizing length or using target entropy alone.
 
 ### When it wins and when it loses
 
-- **Spare compute is the currency.** Speculation helps at **low batch size** (latency-bound), where the GPU is idle and drafting hides in that idle time. At **high batch** (throughput-bound) the GPU is saturated, extra drafting steals bandwidth, and the **straggler effect** (a batched step finishes only when its slowest, re-drafting member does) can make it a net loss. Serving stacks therefore toggle it **on at light load, off under saturation** — the same compute-vs-communication logic as [[GPU Execution Model]] and [[AI Accelerator Architecture]].
+- **The bottleneck determines the opportunity.** Low-batch weight-bound decode is the classic
+  favorable case. At compute saturation, extra verification and drafting can hurt; batching
+  and variable accepted lengths also create scheduling costs. The earlier vLLM/ByteByteGo
+  accounts motivate reducing speculation under load, but Samarin adds long-context,
+  cache-bound large-batch exceptions. Batch size is a useful signal, not a universal on/off rule.
 - **System tax vs token math.** Fixed per-step overheads (kernel launches, KV-cache lookups) drag a 2.5× token-math win down to ~1.8× measured. As batch grows, target verification's share of the step climbs (52%→74%) and the draft's collapses (24%→10%), so the recoverable headroom shrinks with batching.
-- **Constraints:** the draft and target must share an **identical tokenizer** (usually a smaller sibling in the same family); the draft costs **VRAM** the KV cache or larger batches could use; and rejections trigger a **serial fallback**.
+- **Constraints:** the direct tokenwise algorithm assumes proposals in the target's token
+  space; auxiliary weights, private cache, workspace, and rejected computation can compete
+  with target serving. A rejection ends the committed draft prefix, not necessarily all useful
+  proposal information.
 
 ### The method families
 
-Techniques differ mainly in *where drafts come from*: vanilla **draft-target** (two separate models); model-free **n-gram prompt lookup**; **Medusa** (extra heads predict multiple positions, verified together via tree attention); and **EAGLE** (drafts *features* rather than tokens to avoid token-level stalling; EAGLE3 is the vLLM-deployable version).
+Drafts can come from a separate model, n-gram prompt lookup, or target-conditioned modules.
+**Medusa** adds prediction heads and tree verification; exactness depends on its acceptance
+variant. Original **EAGLE** uses feature prediction, while **EAGLE-3** fuses multiple target-layer
+features and drops the feature-regression objective in favor of token training. These are
+different training designs, not interchangeable names for one feature-space method.
 
 ### It is a bet
 
@@ -64,7 +103,11 @@ Techniques differ mainly in *where drafts come from*: vanilla **draft-target** (
 
 ## Relationship to neighbouring levers
 
-Speculative decoding is complementary to, not a substitute for, the other efficiency levers: [[Model Quantization and Efficiency|quantization]] cuts *bytes per weight*, [[KV Cache|KV-cache compression]] cuts the *other* growing object decode must read, and speculation cuts *weight-loads per token*. It is also the clean opposite of [[Test-Time Scaling]]: speculation makes the **same** output arrive faster, whereas test-time scaling spends extra compute to **change** the output (reason better).
+[[Model Quantization and Efficiency|Quantization]] cuts representation size and
+[[KV Cache|cache compression]] cuts history traffic; speculation amortizes target work over
+more committed tokens. Their gains need not multiply. Exact speculation aims to serve the
+**same output distribution** more efficiently, whereas [[Test-Time Scaling]] changes the
+inference procedure to seek better answers.
 
 ## The headroom speculation depends on can already be spent
 
@@ -74,7 +117,9 @@ That only pays while there is roofline left. **Attention architectures that maxi
 
 Two corollaries:
 
-- MLA and multi-token prediction are **not independent optimisations**. Both are compute-for-bandwidth trades drawing on one finite pool, which is a different failure mode from the VRAM competition between draft model and cache described above — and it applies even to self-drafting MTP, which borrows no memory at all.
+- MLA and multi-token prediction are **not independent optimisations**. Both can spend the same
+  compute-for-bandwidth headroom. This also applies to self-drafting MTP: avoiding a second
+  full language model does not eliminate auxiliary parameters, state, or workspace.
 - Typical speculation windows of 2–8 (at most a few dozen) stay well below the S ≈ 171 crossover at which the dense-GEMM attention algorithm would take over, so speculation does not change which attention kernel is dispatched.
 
 [[Jacob Peake - AI Chip Architectures]] describes the same mechanism from the hardware side: speculative decoding and multi-token prediction exist to promote decode GEMVs back into GEMMs, alongside continuous batching — which means batch size and speculation are also competing for the same headroom, not stacking on it.
@@ -83,7 +128,10 @@ Two corollaries:
 
 [[Wafer - AI Performance Engineering Resources]] supplies the lineage this page has been describing through a single vLLM implementation write-up. The method was introduced independently by Leviathan et al. (*Fast Inference from Transformers via Speculative Decoding*) and Chen et al. (*Accelerating Large Language Model Decoding with Speculative Sampling*), both establishing the property that makes it safe to deploy: the accept/reject rule preserves the target model's output distribution exactly.
 
-Later work removes the separate draft model. **Medusa** attaches multiple decoding heads to the target model itself; **EAGLE** speculates in feature space rather than token space, which raises acceptance rates. Both matter because the standing objection to speculation — that you now have to serve, tune, and keep a second model aligned with the first — is an operational cost rather than a mathematical one, and self-drafting removes it.
+Later work replaces a separate general-purpose draft model with target-conditioned components.
+**Medusa** adds heads and **EAGLE** uses target features. This can reduce the serving burden,
+but auxiliary checkpoints, training, and alignment with a particular target version remain
+operational responsibilities; self-drafting does not make them disappear.
 
 ## The same idea, one layer up
 
@@ -101,10 +149,10 @@ compute budget — quantization, layer skipping, or a compressed KV cache — wh
 at full precision. QuantSpec drafts with 4-bit weights and a 4-bit KV cache and reports above
 **1.78× with acceptance above 90%**.
 
-This sits between the two families already described. Like Medusa and EAGLE it needs no second
-checkpoint to serve, version, and keep aligned; unlike them it needs no training access, since it
-reuses weights you already have. The cost moves to implementation complexity, because draft and
-target now share hardware and cache structures. It also makes [[Model Quantization and Efficiency|quantization]]
+This reuses the target's weights rather than training an independent general-purpose drafter.
+Unlike learned auxiliary heads, the described degraded-weight approach needs no separate
+drafter training, but quantized copies, scales, cache formats, and workspace still depend on
+the implementation. Draft and target share hardware and cache structures. It also makes [[Model Quantization and Efficiency|quantization]]
 do double duty: the same 4-bit machinery that cuts bytes per weight becomes the mechanism for
 generating cheap drafts.
 
@@ -115,32 +163,33 @@ sustained production number is a different class of evidence — and it lands ne
 range the economics section models, which is what makes self-drafting MTP heads attractive despite
 their training cost.
 
-## Acceptance is a property of the workload, not the configuration
+## Acceptance depends jointly on the drafter and workload
 
-The α discussion above treats acceptance as something you measure and tune around. The sharper
-framing is that **α is mostly determined by what your users are asking**, not by what you deployed.
+The earlier workload-centered account explains why identical deployments can behave differently
+on different traffic. Samarin's overlap formula adds the other half: acceptance depends on
+both target and draft distributions, hence on model pairing, training, prefix, task, and sampling.
 
-Structured, repetitive output drafts well — code generation, summarization, extraction, and
-retrieval-augmented answers all reuse large amounts of text already in the context, which makes the
-next token easy for a small model to guess. Open-ended output drafts badly, because creative writing
-and open conversation generate genuine variety that a small model diverges from quickly. Sampling
-temperature compounds this: higher temperature flattens the distribution and pushes acceptance down.
+Structured or repetitive output can favor a suitable drafter; task labels alone do not determine
+agreement. Temperature changes both distributions and their overlap, so acceptance need not
+decrease monotonically with temperature.
 
 The operational consequence is uncomfortable. Two teams can deploy the identical configuration on
 identical hardware and get different results, because their traffic differs. Speculative decoding is
 therefore not a setting that can be validated once and shipped as a default; it has to be measured
 against the actual request distribution, and re-measured when that distribution shifts.
 
-## Prefill is untouched
+## No direct prefill acceleration is not unchanged TTFT
 
-Speculation applies to generation, not prompt processing, so **time to first token is unchanged**.
+Speculation targets generation rather than directly accelerating prompt processing. End-to-end
+time to first token can still change through draft initialization, queueing, scheduling, and
+resource competition; unchanged prefill work does not imply unchanged TTFT.
 Workloads with long prompts and short outputs — classification, extraction over large documents,
 routing — have almost nothing to gain no matter how well they draft. DeepSeek stated the tradeoff in
 the same direction: multi-token prediction *slightly reduces* throughput while significantly
-improving end-to-end generation latency. Speculation buys perceived responsiveness, and pays for it
-in aggregate capacity.
+improving end-to-end generation latency. That is a reported operating-point tradeoff, not a
+universal law that speculation must reduce aggregate capacity.
 
-## Partial answer to the auto-tuning question
+## From concurrency-only switching to acceptance-aware scheduling
 
 This page has stood with an open question about whether serving stacks could predict α online well
 enough to auto-tune K and the on/off switch per request. Shipped code gives a partial answer, and it
@@ -152,12 +201,15 @@ Rather than estimating acceptance, it keys draft length to *observed concurrency
 measurable proxy for whether spare compute exists at all. [[ByteByteGo - How to Make LLMs 3X Faster]]
 frames this as routine operational tuning rather than an edge case.
 
-That resolves half the question. Concurrency tells you whether there is headroom to spend; it says
-nothing about whether *this particular request* will draft well. The workload-dependence of α above
-means a code-completion request and a creative-writing request at the same batch size deserve
-different K, and no serving stack described in this vault distinguishes them. The measured shape of
-the headroom half is stark: one systematic evaluation reported **up to 1.96× on a 70B model at batch
+That addresses resource pressure, not request-specific prefix survival. The earlier account's
+measured shape is stark: one systematic evaluation reported **up to 1.96× on a 70B model at batch
 size 1, declining to 1.21× at batch size 128**, and falling below baseline under higher concurrency.
+
+The October 16 ingest updates the earlier claim that no described system predicts draftability.
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] describes **DSpark**
+combining predicted conditional acceptance with the engine's profiled step rate to allocate
+draft lengths across a batch. This is model- and engine-specific evidence, not proof that every
+vLLM deployment implements that controller or that confidence generalizes to shifted traffic.
 
 ## Has speculation changed category?
 
@@ -174,9 +226,10 @@ The qualification is retained in the same source: these methods still **compete 
 resources**, and so still cap maximum batch size. Code generation benefits most, because output sequences are
 relatively predictable — which is also why it is the case most likely to overstate the general result.
 
-Whether skipped forward passes count as *new* efficiency or as *better-spent* headroom depends on whether the
-drafting cost is counted against the budget, so the two readings are not fully reconcilable. See
-[[Inference Efficiency Frontier]].
+Samarin supplies a way to test that claim rather than settle it by category: count all draft,
+verification, cache, and scheduling work at a matched serving objective. Cache-bound large-batch
+wins qualify the older low-load-only view; below-baseline examples qualify blanket frontier
+improvement. See [[Inference Efficiency Frontier]].
 
 ## Cheap hardware changes the break-even point
 
@@ -184,17 +237,44 @@ drafting cost is counted against the budget, so the two readings are not fully r
 trade: draft agreement, target verification cost, and extra draft-model memory. A smaller machine can
 lose the latency benefit when the draft model or verification competes for scarce fast memory.
 
+## The verifier, drafter, and scheduler form one optimization problem
+
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] replaces the assumption
+of one cheap verification pass with an explicit cost model. For batch B, N draft-tree nodes,
+and target step cost T, the idealized speed ratio is
+`tau(N) * T(B) / (T(B * (N + 1)) + T_draft)`. Attention, kernel shape, and compaction affect
+the denominator as much as acceptance affects the numerator.
+
+Its illustrative alpha=0.8, K=5, c=0.05 example yields about **3.69 committed tokens**,
+**2.95x** with serial drafting, and **3.51x** with one parallel pass under cheap verification.
+These are calculations, not measurements. A cited Qwen3-4B/GSM8K comparison gives EAGLE-3 and
+DFlash the same **tau=4.2**, but **2.1x versus 3.3x** speedups; a separate
+Qwen3-8B/MATH500 AMD-vLLM example puts EAGLE-3 at **0.44-0.88x** baseline.
+
+Parallel proposals reduce serial draft work but can combine incompatible output marginals.
+The survey describes DFlash as a one-step masked block predictor at inference, and
+DSpark/Domino as restoring dependence with lightweight causal heads. Tree verification needs
+ancestor-only attention; block verification uses a different joint prefix rule. Reusing
+rejected proposals does not authorize committing them to target history.
+
+Training must match that verifier and the prefixes encountered at deployment. Minimizing KL,
+maximizing token overlap, maximizing block acceptance, and minimizing sequence-level verification
+rounds are different objectives for a limited-capacity drafter; see [[Knowledge Distillation]].
+Private drafter cache versus borrowed target state is a separate memory choice, not something
+acceptance length measures.
+
 ## Open questions
 
-- Can a serving stack estimate per-request draftability — from prompt features, task type, or
-  temperature — rather than only inferring global headroom from batch size, which is all vLLM's
-  dynamic draft length currently does?
+- How well do acceptance predictors such as DSpark's calibrate under traffic or target-model
+  changes, and when is their overhead justified over concurrency-only switching?
 - Can cross-tokenizer or tokenizer-free speculation relax the same-family constraint?
 - Where is the model-size/batch crossover at which speculation reliably pays, and how does it shift with EAGLE-style feature drafting?
 - Should a serving stack disable speculation automatically for high-arithmetic-intensity attention architectures, and can the balance point be probed at runtime rather than assumed from the datasheet?
 
 ## Related pages
 
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
+- [[Knowledge Distillation]]
 - [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
 - [[Changyi Yang - Why MLA and MTP Fight Each Other]]
 - [[Jacob Peake - AI Chip Architectures]]

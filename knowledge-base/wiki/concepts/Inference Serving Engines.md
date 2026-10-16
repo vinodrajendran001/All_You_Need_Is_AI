@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-09
+updated: 2026-10-16
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -19,6 +19,8 @@ source_ids:
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-11-samarin-speculative-decoding
 status: active
 ---
 
@@ -77,10 +79,12 @@ shows the class of control a serving engine is expected to provide: continuously
 spare capacity exists and re-shaping the workload to match, per step, without operator intervention.
 The source frames it as routine operational tuning.
 
-The design also reveals what engines can and cannot observe. Batch size is a cheap, directly measured
-proxy for whether headroom exists. Whether a *given request* will draft well depends on its content —
-structured output drafts well, open-ended prose does not — and no engine described in this vault
-inspects that. Engines currently tune the supply side of speculation and ignore the demand side.
+Batch size is a cheap resource-pressure signal, not a measurement of request-specific agreement.
+The earlier account covered concurrency-only tuning. The October 16 addition,
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]], describes DSpark
+combining predicted conditional acceptance with profiled engine step rates to allocate draft
+lengths across a batch. This supersedes the vault's blanket claim that no described system
+models draftability; it does not establish that every engine or version offers that controller.
 
 ## Running an engine in-house is mostly not about the engine
 
@@ -234,7 +238,24 @@ What survives the caveats is a claim about engine design rather than a benchmark
 serving architecture is partly a function of **who generates the requests**. That is a third axis
 next to model and hardware, and this page had only the first two.
 
+## Converted architectures need compatible runtime state
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] reports kernels and a
+vLLM plugin supporting batching, chunked prefill, and tensor parallelism for converted hybrids.
+That runtime is part of the contribution: inherited weights do not make a changed attention/
+recurrent-state layout automatically compatible with an existing engine.
+
+Samarin's speculation survey adds another compatibility surface: tree masks, committed-cache
+bookkeeping, private drafter state, and target-cache borrowing. A drafter without a
+context-growing private cache still needs parameters and workspace. Long-context cache-bound
+large batches can benefit, while other tested configurations lose even at promising acceptance
+lengths. Engine choice must therefore include model-state support and a measured cost surface,
+not only a speculation checkbox or a batch-size cutoff.
+
 ## Related pages
+
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[Netflix]]

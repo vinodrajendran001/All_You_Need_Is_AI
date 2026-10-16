@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - llm
@@ -41,6 +41,7 @@ source_ids:
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-21-tiene-pruning-llms-ising
+  - src-2026-10-13-zancato-model-priming
 status: active
 ---
 
@@ -258,6 +259,23 @@ the damage profile recorded above, where compression preferentially damages **mu
 while fluency survives: MMLU retention at half depth speaks to knowledge recall, not to the failure
 mode this page says to watch.
 
+## Conversion changes the memory architecture, not just precision or layer count
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] adds a distinct lever:
+replace selected attention layers with aligned state-space layers while reusing a donor's
+learned projections. Selection and adaptation matter; this is neither ordinary quantization
+nor pure pruning.
+
+The 32B hybrid is reported within about **1%** on the cited quality measures with roughly
+**half the KV cache**. At 10 Gated KalmaNet iterations, reported decode throughput is
+**1.50x at 16K** and **2.06x at 128K**. These are conditioned operating points, not uniform
+quality preservation or a halving of all device memory. Weights, recurrent states, workspace,
+and serving overhead remain, and the donor's pretraining cost is inherited.
+
+This connects architecture conversion to the existing pruning and quantization tradeoffs:
+measure useful capability and complete runtime memory, rather than treating a smaller named
+tensor as proof that the deployment is proportionally cheaper.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -269,6 +287,7 @@ mode this page says to watch.
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[The Pocket - PocketFlow Tutorial Docs]]

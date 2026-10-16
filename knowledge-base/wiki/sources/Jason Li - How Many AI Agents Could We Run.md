@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-16
 source_id: src-2026-10-02-epoch-agent-population
 source_title: "How many AI agents could we run?"
 source_author: Jason Li
@@ -85,11 +85,16 @@ tables and prose support the stated assumptions, but the capture is not a comple
 ## Raw capture
 
 - [[How many AI agents could we run]]
+- [[How many AI agents could we run on the AI chips shipped through 2027]]
+
+The October 12 recapture was ingested on October 16. Its article body is identical to the
+October 6 capture after line-ending normalization; only capture metadata and tracking parameters
+differ. It supplies no new estimate, independent replication, or source ID.
 
 ## Citations
 
 - Canonical URL: <https://epoch.ai/publications/estimating-the-agent-population>
-- Published October 2 and captured October 6, 2026.
+- Published October 2 and captured October 6 and 12, 2026.
 
 ## Related pages
 

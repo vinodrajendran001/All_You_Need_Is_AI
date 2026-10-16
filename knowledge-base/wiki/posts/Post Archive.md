@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - post
 status: active
@@ -33,11 +33,13 @@ materially different angle, and that post must say what is new.
 | 2026-09-25 | [[2026-09-25 Keep the Expensive Model On Call]] | 2026-09-18 → 2026-09-25 | [[Just-in-Time Agentic OCR]] | LinkedIn, X | ready |
 | 2026-10-03 | [[2026-10-03 The Weakest Layers Aren't the Ones to Remove]] | 2026-09-25 → 2026-10-03 | [[Model Quantization and Efficiency]] | LinkedIn, X | ready |
 | 2026-10-09 | [[2026-10-09 The Model Can Read Without Writing]] | 2026-10-03 → 2026-10-09 | [[Semantic Recommendation Systems]] | LinkedIn, X | ready |
+| 2026-10-16 | [[2026-10-16 The Correction Did Not Reach the Report]] | 2026-10-09 → 2026-10-16 | [[Agentic Testing]] | LinkedIn, X | ready |
 
 ## Topics covered
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-10-16 - coding assistant handovers, persisted test reports, evidence versus narration, artifact verification
 - 2026-10-09 - language models without text generation, catalog ranking, bounded output, product output design
 - 2026-10-03 - model pruning, component interactions, system optimization, model compression
 - 2026-09-25 - selective computation, agentic OCR, multimodal serving, routing gates
@@ -50,7 +52,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
 
-- The "3X faster" speculative-decoding claim that the article's own numbers cap at 1.21×–2× - [[Speculative Decoding]], [[Serving Benchmarks and Goodput]]
+- Acceptance is not end-to-end speed: speculative-decoding gains depend on draft cost and serving conditions. Reframed after the October 16 lint; the earlier 1.21×–2× cap reading is withdrawn - [[Speculative Decoding]], [[Serving Benchmarks and Goodput]]
 - Reasoning traces as an unsanitisable secrets surface: 328 of 6,708 scanned trajectories leaking - [[Reasoning Trace Privacy]], [[Context Engineering]]
 - Speculative tool execution gates on purity but not authority - [[Agent Security and Governance]], [[Speculative Tool Execution]]
 - **Unsolvable eval tasks teach misbehaviour** - 198 of 898 ExploitGym tasks were unsolvable and generated 93% of the illicit coordination, while a different lab independently built the judge-must-solve gate. Scored 17/20 on 2026-09-05, losing only on freshness because it neighbours the KL post's territory - [[RL Environment Design]], [[Agent Security and Governance]]
@@ -75,18 +77,20 @@ materially different angle, and that post must say what is new.
 - Test whether an assistant changes its mind for evidence rather than pressure; an anti-agreement score must not reward stubbornness - [[Sycophancy]], [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
 - Check the quantity before setting a decision threshold: Jev Choice's confidence field describes concentration, not the winning option's probability - [[Typed Probabilistic Decision Models]], [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - Replit's reported coordination configuration is more accurate and costlier than its one-worker sidekick; a useful quality/cost tradeoff is not a win on both axes - [[Graph Engineering]], [[Replit - Free the Models - Harness Design at the Frontier]]
+- Test detection before trusting a quiet monitor: embedded-evaluation principles are a proposal, not evidence that a live regime has already worked - [[Embedded Evaluation]], [[Apollo Research - Principles for Embedded Evaluations]]
+- A generated interface surviving a redraw does not establish durable application state; separate runtime continuity from storage guarantees - [[Generative User Interface]], [[@rabi_guha - How ChatGPT Intelligent UI Works]]
 
 ## Spine pages in cooldown
 
 <!-- Page - post date - cooldown ends. Prune entries once expired. -->
 
-- [[Reward Design for RL]] - posted 2026-08-29 - cooldown ends 2026-10-10
 - [[Context Engineering]] - posted 2026-09-05 - cooldown ends 2026-10-17
 - [[Serving Benchmarks and Goodput]] - posted 2026-09-11 - cooldown ends 2026-10-23
 - [[Agent Memory]] - posted 2026-09-18 - cooldown ends 2026-10-30
 - [[Just-in-Time Agentic OCR]] - posted 2026-09-25 - cooldown ends 2026-11-06
 - [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
 - [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
+- [[Agentic Testing]] - drafted 2026-10-16 - cooldown ends 2026-11-27
 
 ## Related pages
 

@@ -1880,3 +1880,27 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   lint reports, and other out-of-scope knowledge-base files remain unchanged; the prior
   log body is preserved. Seventeen single-source concepts and six documented source-URL
   gaps remain research follow-ups, not invented fixes.
+
+## [2026-10-16] post | The Correction Did Not Reach the Report
+
+- Drafted [[2026-10-16 The Correction Did Not Reach the Report]] for LinkedIn and X and marked
+  it `ready`; nothing was published. The LinkedIn body is 338 words, the standalone is
+  271 weighted characters, and all seven connected thread posts are within 280.
+- Covered **2026-10-09 through 2026-10-16**, inclusive, anchored to the prior post's
+  `covers_through`. Four ingest entries supply 11 new source summaries. The Git cross-check
+  found 11 commits touching 97 non-query wiki paths; older integration and lint edits are
+  context, not additional ingests.
+- Selected [[Agentic Testing]] after scoring five angles. The one public example is
+  [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]'s creator-reported run
+  whose final reply acknowledged a simulation while its saved report retained an unsupported
+  accuracy claim. The practical recommendation is to reconcile delivered reports with actual
+  execution evidence, not infer completion from the final explanation.
+- Recorded public-copy reader, factual, compression, and comprehension checks. All seven
+  input pages are tracked; candidate-only sources do not become extra public examples, and
+  no local-only query content or new source ownership enters the post.
+- Updated [[Post Archive]] with the new topic and spine cooldown through **2026-11-27**,
+  removed the expired Reward Design cooldown, retained two runner-up ideas, and withdrew
+  the stale speculative-decoding cap reading in its unposted-candidate list.
+- Updated current inventories to **543 typed wiki pages**, including **eight social posts**.
+  Source ownership remains **283 summaries / 309 IDs**. Raw captures, earlier post bodies,
+  source/concept/entity pages, earlier lint reports, and the prior log body remain preserved.

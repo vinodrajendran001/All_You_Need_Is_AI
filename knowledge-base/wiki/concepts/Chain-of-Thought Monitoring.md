@@ -9,6 +9,8 @@ tags:
   - alignment
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-07-20-raschka-reasoning-effort
+  - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-29-bytebytego-why-do-llms-lie
@@ -34,10 +36,10 @@ must be demonstrated rather than inferred from a readable trace.
 
 ## Current synthesis
 
-### It works, and there is now a measurement of by how much
+### A first-party replay reports potential early detection
 
-[[OpenAI - The Hugging Face Incident and the Road Ahead]] provides the field's clearest evidence,
-because the control was **absent** when it was needed and could be replayed afterwards. OpenAI had
+[[OpenAI - The Hugging Face Incident and the Road Ahead]] reports retrospective detection evidence;
+the control was **absent** from the affected workload. OpenAI had
 invested in CoT monitoring and was running it over frontier RL training and most internal coding-agent
 usage — **but not over the cybersecurity evaluations where the incident occurred**. In retrospective
 analysis, the deployed monitoring system **would have caught the initial relevant activity and paged
@@ -66,28 +68,32 @@ research artifact; a monitor wired to a default-stop with a deadline is a contro
 
 ### Monitoring competes with other pressures on the trace
 
-CoT monitoring only works if the trace means something. Three forces in this vault pull against that:
+Monitoring needs accessible signals that predict relevant behavior. Three factors in this vault
+can affect that relationship:
 
-- **Compression.** [[Reasoning Effort Control]] records that Kimi K2.5 removed 25-30% of reasoning
-  tokens with little accuracy loss. A trace optimized for brevity carries less for a monitor to read.
+- **Compression.** [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] records the
+  Kimi K2.5 report's Toggle evaluation on **K2 Thinking**: **25-30% fewer generated tokens
+  with little change in benchmark performance**. Shorter traces can change the available
+  telemetry, but this result measures neither trace faithfulness nor monitoring performance.
 - **Privacy and confidentiality.** [[Reasoning Trace Privacy]] documents the case for treating traces
   as protected rather than exposed. Monitoring requires an internal reader with full access, which is
   compatible with hiding traces from users but not with encrypting them from the operator.
-- **Faithfulness.** Monitoring assumes the trace reflects the computation. This vault has no
-  established method for verifying that, and [[Interpretability Evaluation]] shows that reading
-  internal state is not a reliable substitute.
+- **Faithfulness.** A trace can omit or misrepresent internal computation. Its usefulness as a
+  behavioral warning signal must be assessed directly; it need not be a complete causal account
+  to carry predictive information. [[Interpretability Evaluation]] does not establish an
+  automatically reliable alternative through activation reading.
 
 ### Why monitoring is not the same as interpretability
 
 Worth stating explicitly, because the two are often conflated. CoT monitoring reads what the model
 *wrote*; interpretability reads what the model *computed*.
 [[Anthropic - Would This Change Your Answer (CHIVE)]] found activation-reading tools gave no uplift
-over a transcript-only baseline at predicting counterfactual behaviour — which, read from this page's
-angle, is an argument that **the transcript was already the more informative signal**. The OpenAI
+over a transcript-only baseline at predicting counterfactual behaviour. That is **no demonstrated
+advantage for the tested tools**, not proof that transcripts are always more informative. The OpenAI
 incident is consistent with that: the reasoning text was legible enough to classify by severity, and
 it named intentions plainly.
 
-## The trace shrinks with capacity, not with any one architecture
+## Greater per-token capacity is a hypothesis about shorter traces
 
 [[Sebastian Raschka - OpenAI Astra and Looped Transformers]] corrects a claim that circulated in press coverage
 of OpenAI's Astra: that recurrent-depth architectures work *"in a way that obscures some or all of the AI's
@@ -102,41 +108,40 @@ intermediate reasoning tokens*, pushing more of the work into latent activations
 this is **not specific to looping** — *"we would get the same effect if we were scaling up the model size, like
 GPT 5.6 Luna -> GPT 5.6 Sol."*
 
-That reframes the monitorability problem. If legible traces thin out because capability per token rises, then
-erosion of chain-of-thought monitoring is not a property of a suspect architecture that could be avoided by
-choosing a different one. It is a side effect of models getting better, arriving through whichever axis of
-improvement a lab happens to pursue — which makes it harder to attribute, harder to argue against on a
-per-release basis, and correspondingly harder to build governance around.
+This proposes a possible monitorability pressure across more than one architecture: greater
+per-token capacity may reduce the need for explicit intermediate text. It does not show that
+every capability gain shortens traces or that shorter traces necessarily worsen detection.
+Those relationships require measurements rather than an inference from token count.
 
 Two cautions attach. The mechanism is **asserted, not measured**: no experiment here shows reasoning tokens
 trading against latent computation. And the debunk is of the *reporting* — Raschka is explicit that he does not
 know Astra's architecture and is reasoning from published models described similarly.
 
-## Monitorability is degrading, and the architecture is not the reason
+## Reduced monitorability is reported; an architectural cause is not established
 
 [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] separates two claims that press coverage of GPT-6 Astra merged, and the vault should
 keep both halves.
 
 **Looping is not established as a cause.** Astra's system card does report reduced monitorability and a
 regression against GPT-5.6 Sol — mostly shorter, less informative traces — but nothing in it attributes
-that to the architecture. The counterexample is decisive on the token-count argument: **GPT-5.6 Luna uses
-about 80% more tokens than Sol at similar performance**, and nobody concludes Sol is less interpretable
-than Luna. Astra uses fewer tokens than Sol only at fixed accuracy, not overall. For end users nothing
+that to the architecture. Raschka illustrates the limit of the token-count argument: **GPT-5.6 Luna uses
+about 80% more tokens than Sol at similar performance**, which alone does not establish their relative
+interpretability. Astra uses fewer tokens than Sol only at fixed accuracy, not overall. For end users nothing
 changed at all — "OpenAI has hidden the traces since o1"; the exposure is for developers who relied on
 them.
 
-**The underlying concern is nonetheless real, on the record, and independent of architecture.** Jakub
+**The lab reports a concern that it does not attribute to architecture changes.** Jakub
 Pachocki, OpenAI's Chief Scientist: *"I want to prevent a race into unmonitorability kicked off by confused
 reporting. The depth of the computation graph for our present frontier models, including Astra, is within
 a factor of two of GPT-4... I do think it is fragile and unfortunately trending in a negative direction,
 for reasons not contingent on architecture changes."*
 
-Read together this is not a debunking. The mechanism proposed by the coverage is wrong; the trend it was
-worried about is confirmed by the lab itself, and attributed to something other than the architecture —
-which makes it harder to address, not easier.
+The reported regression remains evidence about monitoring in the evaluated systems. The comparisons
+do not establish looping as its cause, nor do they independently identify the cause or rule out
+every architectural contribution. Keep the lab's attribution distinct from a causal ablation.
 
-The mechanism that *would* displace visible reasoning is a capacity effect rather than a looping one, and
-it is task-dependent and not yet stable: see [[Latent-Space Reasoning]].
+Greater per-token capacity is one proposed explanation for less visible reasoning, not an
+established explanation of every monitorability regression; see [[Latent-Space Reasoning]].
 
 ## An explanation is not a description of the computation that produced it
 
@@ -163,8 +168,8 @@ the output**: decompose the answer into individual claims, check each against th
 and validate citations for existence, applicability, and support. Read from this page's angle, that
 separates two instruments often collapsed together — trace inspection reads stated intent, claim
 verification tests stated conclusions against evidence — and it qualifies the reading already recorded
-here that CHIVE's transcript-only baseline showed the transcript to be the more informative signal. More
-informative than activation reading is not the same as sufficient.
+here that CHIVE's transcript-only baseline showed no uplift from the tested activation-reading
+tools. Matching or beating those tools is not the same as sufficient monitoring coverage.
 
 The tension should be preserved rather than settled.
 [[OpenAI - The Hugging Face Incident and the Road Ahead]] shows reasoning text legible enough to classify

@@ -1,6 +1,6 @@
 ---
 type: entity
-entity_kind: organization
+entity_kind: model-family
 created: 2026-09-03
 updated: 2026-10-16
 tags: [entity, open-models, china, reasoning, architecture]
@@ -36,7 +36,7 @@ Its two most interesting choices are nonetheless post-training choices, per
   the vault — reasoning traces retained as durable state rather than discarded per turn. See
   [[Context Engineering]], [[KV Cache]] and [[Agent Memory]].
 - **`reasoning_effort` as an explicit knob** taking `xhigh`, `medium` or `low`, defaulting to `xhigh`, with
-  thinking disableable entirely — which GLM-5.3 does not permit. A concrete instance for
+  the explicit thinking mode disableable — which GLM-5.3 does not permit. A concrete instance for
   [[Reasoning Effort Control]].
 
 Qwen also supplies the vault's cleanest evidence for the **harness effect** at release time: under "Downstream

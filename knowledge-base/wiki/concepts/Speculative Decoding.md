@@ -83,7 +83,10 @@ reduce latency or increase throughput.
   and variable accepted lengths also create scheduling costs. The earlier vLLM/ByteByteGo
   accounts motivate reducing speculation under load, but Samarin adds long-context,
   cache-bound large-batch exceptions. Batch size is a useful signal, not a universal on/off rule.
-- **System tax vs token math.** Fixed per-step overheads (kernel launches, KV-cache lookups) drag a 2.5× token-math win down to ~1.8× measured. As batch grows, target verification's share of the step climbs (52%→74%) and the draft's collapses (24%→10%), so the recoverable headroom shrinks with batching.
+- **System tax vs token math.** Mayank's 2.5× versus ~1.8× timing diagram and
+  verification/draft shares (52%→74% and 24%→10%) are **illustrative**, not measurements.
+  They show how overheads can absorb a theoretical gain; they do not establish a universal
+  batch-scaling curve. The October 16 lint removes this page's earlier "measured" label.
 - **Constraints:** the direct tokenwise algorithm assumes proposals in the target's token
   space; auxiliary weights, private cache, workspace, and rejected computation can compete
   with target serving. A rejection ends the committed draft prefix, not necessarily all useful
@@ -99,8 +102,9 @@ different training designs, not interchangeable names for one feature-space meth
 
 ### It is a bet
 
-- In the earlier Llama-3.1-8B experiment on a single saturated 48 GB Ada GPU, EAGLE3 was
-  **slower in both tested regimes**, with acceptance length τ=1.81. That is a useful negative
+- In the earlier Llama-3.1-8B experiment on a single 48 GB Ada GPU, EAGLE3 was
+  **slower in both tested regimes**: greedy batch 1 and a non-greedy saturated load test at
+  approximately 500 concurrent requests. The reported acceptance length was τ=1.81. That is a useful negative
   operating point, not a rule that small targets always lose. Larger targets and better
   agreement can create headroom, but draft and verification costs still need measurement.
 
@@ -128,13 +132,15 @@ Two corollaries:
 - MLA and multi-token prediction are **not independent optimisations**. Both can spend the same
   compute-for-bandwidth headroom. This also applies to self-drafting MTP: avoiding a second
   full language model does not eliminate auxiliary parameters, state, or workspace.
-- Typical speculation windows of 2–8 (at most a few dozen) stay well below the S ≈ 171 crossover at which the dense-GEMM attention algorithm would take over, so speculation does not change which attention kernel is dispatched.
+- The cited attention-core model places typical 2–8-position windows below its S ≈ 171
+  dense-GEMM crossover. That modeled threshold does not determine every serving engine's
+  actual kernel dispatch.
 
 [[Jacob Peake - AI Chip Architectures]] describes the same mechanism from the hardware side: speculative decoding and multi-token prediction exist to promote decode GEMVs back into GEMMs, alongside continuous batching — which means batch size and speculation are also competing for the same headroom, not stacking on it.
 
 ## Where the technique comes from
 
-[[Wafer - AI Performance Engineering Resources]] supplies the lineage this page has been describing through a single vLLM implementation write-up. The method was introduced independently by Leviathan et al. (*Fast Inference from Transformers via Speculative Decoding*) and Chen et al. (*Accelerating Large Language Model Decoding with Speculative Sampling*), both establishing the property that makes it safe to deploy: the accept/reject rule preserves the target model's output distribution exactly.
+[[Wafer - AI Performance Engineering Resources]] supplies the lineage this page has been describing through a single vLLM implementation write-up. The method was introduced independently by Leviathan et al. (*Fast Inference from Transformers via Speculative Decoding*) and Chen et al. (*Accelerating Large Language Model Decoding with Speculative Sampling*), both establishing its distribution-preservation contract: the correct accept/reject rule reproduces the target model's output distribution.
 
 Later work replaces a separate general-purpose draft model with target-conditioned components.
 **Medusa** adds heads and **EAGLE** uses target features. This can reduce the serving burden,
@@ -145,9 +151,12 @@ operational responsibilities; self-drafting does not make them disappear.
 
 [[Speculative Tool Execution]] ([[Alex L. Zhang - Speculative Programmatic Tool Calling]]) applies this page's pattern above the token level: a harness parses tool calls out of a *partially generated* program and pre-launches them, so that if the finished program invokes them they return from cache. Guessing actions instead of tokens.
 
-The structural analogy is close — cheap speculative work overlapped with an expensive serial process, discarded when wrong — but two properties do not carry over. There is **no distributional guarantee**: token speculation is provably lossless because the accept/reject rule preserves the target distribution, while a speculated tool call is either used or wasted, and a wasted one has already consumed money, tokens, and rate limit. And the wrong-guess cost is external rather than internal: a mispredicted draft token costs idle compute, a mispredicted sub-agent call clogs a serving engine other requests are waiting on.
+The structural analogy is close — speculative work overlapped with a serial process, discarded when wrong — but the guarantees do not carry over. Exact token verification can preserve a distribution; speculative tool calls do not inherit that proof. An unused call has already consumed resources and may have effects outside the decoder. A rejected draft also costs local compute, memory, and scheduling time, which need not have been idle.
 
-Both techniques exploit the same underlying slack, though, which is worth noting: on a locally served model the engine is memory-bound decoding the main context, so speculative sub-calls consume compute that would otherwise sit idle — the argument on [[Arithmetic Intensity and the Roofline Model]], applied to agent harnesses.
+Both can exploit overlap when the workload has suitable headroom. A locally served model is not
+automatically memory-bound, and even then extra calls can compete for memory bandwidth and cache
+capacity. The argument from [[Arithmetic Intensity and the Roofline Model]] identifies a possible
+opportunity, not free sub-agent compute.
 
 ## A fourth draft family, and what production actually reports
 
@@ -164,12 +173,11 @@ the implementation. Draft and target share hardware and cache structures. It als
 do double duty: the same 4-bit machinery that cuts bytes per weight becomes the mechanism for
 generating cheap drafts.
 
-The same source supplies the first **production** acceptance figure on this page. DeepSeek reported
-**80–90% acceptance for the second predicted token when serving DeepSeek-V3**, worth roughly 1.8×
-generation throughput. Everything else here comes from benchmarks or single-GPU experiments, so a
-sustained production number is a different class of evidence — and it lands near the top of the α
-range the economics section models, which is what makes self-drafting MTP heads attractive despite
-their training cost.
+The same source supplied an early **production** acceptance figure: DeepSeek reported
+**80–90% acceptance for the second predicted token when serving DeepSeek-V3**, with roughly 1.8×
+generation throughput. This is a position-specific, reported serving result, not a constant α
+for every slot of the geometric model. The later Samarin survey also discusses production DSpark
+comparisons, so production evidence here is no longer limited to this older account.
 
 ## Acceptance depends jointly on the drafter and workload
 
@@ -195,23 +203,21 @@ Short outputs limit the generation work available to accelerate, and a large pre
 limits the end-to-end gain. DeepSeek stated the tradeoff in
 the same direction: multi-token prediction *slightly reduces* throughput while significantly
 improving end-to-end generation latency. That is a reported operating-point tradeoff, not a
-universal law that speculation must reduce aggregate capacity.
+universal law that speculation must reduce aggregate capacity. ByteByteGo does not align that
+statement's measurement boundary with the separate roughly 1.8× throughput figure above.
 
 ## From concurrency-only switching to acceptance-aware scheduling
 
-This page has stood with an open question about whether serving stacks could predict α online well
-enough to auto-tune K and the on/off switch per request. Shipped code gives a partial answer, and it
-works by **sidestepping prediction entirely**.
+The earlier account partially answered the question of auto-tuning K and the on/off switch by
+**observing concurrency instead of predicting acceptance**.
 
-vLLM exposes a flag that disables speculation above a configurable batch size, and supports dynamic
-adjustment in which **draft length shrinks as concurrency rises and reaches zero under heavy load**.
-Rather than estimating acceptance, it keys draft length to *observed concurrency* — a directly
-measurable proxy for whether spare compute exists at all. [[ByteByteGo - How to Make LLMs 3X Faster]]
-frames this as routine operational tuning rather than an edge case.
+[[ByteByteGo - How to Make LLMs 3X Faster]] describes vLLM batch-size-based disabling and dynamic
+draft lengths that shrink under load. Concurrency is a resource-pressure signal, not a sufficient
+measurement of spare compute or a claim about every current engine version.
 
-That addresses resource pressure, not request-specific prefix survival. The earlier account's
-measured shape is stark: one systematic evaluation reported **up to 1.96× on a 70B model at batch
-size 1, declining to 1.21× at batch size 128**, and falling below baseline under higher concurrency.
+The article cites an unnamed evaluation reporting **up to 1.96× on a 70B model at batch
+size 1, declining to 1.21× at batch size 128**, and possible losses at higher concurrency.
+Without its hardware, draft configuration, and workload, this is not a portable scaling curve.
 
 The October 16 ingest updates the earlier claim that no described system predicts draftability.
 [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] describes **DSpark**

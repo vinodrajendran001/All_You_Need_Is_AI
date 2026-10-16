@@ -84,11 +84,12 @@ The practical consequence is that comparing models at their default settings com
 points on two curves. The meaningful comparison is **cost at matched quality**, with effort level
 treated as a deployment variable rather than a model property.
 
-The user-facing effort selectors that make this possible are trained behaviours, not inference
-plumbing — installed either by conditioning the RLVR run on an effort level with an effort-dependent
-length penalty, or by a post-RLVR supervised stage on effort-labelled targets. Qwen3's soft switch
-(`/think` flag) and hard switch (`enable_thinking=False`, which prefills an empty `<think></think>`
-block) are the two ends of how firmly that setting binds. See [[Reasoning Effort Control]].
+The source's **learned effort modes** are shaped by effort-conditioned RLVR with length penalties
+or a supervised stage on effort-labelled targets. They are distinct from external stopping
+budgets and architectural iteration controls. Qwen3's soft `/think` flag selects a trained
+behavior; its hard switch (`enable_thinking=False`) prefills an empty `<think></think>` block
+to close the explicit trace phase, not eliminate internal computation. See
+[[Reasoning Effort Control]].
 
 ## Extra search need not be extra text
 

@@ -33,13 +33,19 @@ materially different angle, and that post must say what is new.
 | 2026-09-25 | [[2026-09-25 Keep the Expensive Model On Call]] | 2026-09-18 → 2026-09-25 | [[Just-in-Time Agentic OCR]] | LinkedIn, X | ready |
 | 2026-10-03 | [[2026-10-03 The Weakest Layers Aren't the Ones to Remove]] | 2026-09-25 → 2026-10-03 | [[Model Quantization and Efficiency]] | LinkedIn, X | ready |
 | 2026-10-09 | [[2026-10-09 The Model Can Read Without Writing]] | 2026-10-03 → 2026-10-09 | [[Semantic Recommendation Systems]] | LinkedIn, X | ready |
-| 2026-10-16 | [[2026-10-16 The Correction Did Not Reach the Report]] | 2026-10-09 → 2026-10-16 | [[Agentic Testing]] | LinkedIn, X | ready |
+| 2026-10-16 | [[2026-10-16 The Next Model Can Skip the Reread]] | 2026-10-09 → 2026-10-16 | [[KV Cache]] | LinkedIn, X | ready |
+
+## Superseded drafts
+
+- [[2026-10-16 The Correction Did Not Reach the Report]] - rejected editorially and replaced
+  on 2026-10-16. Retained as `draft` so the append-only log link remains valid; not published
+  and excluded from spine cooldown.
 
 ## Topics covered
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
-- 2026-10-16 - coding assistant handovers, persisted test reports, evidence versus narration, artifact verification
+- 2026-10-16 - cross-model cache handoffs, context transfer, model routing, internal state portability
 - 2026-10-09 - language models without text generation, catalog ranking, bounded output, product output design
 - 2026-10-03 - model pruning, component interactions, system optimization, model compression
 - 2026-09-25 - selective computation, agentic OCR, multimodal serving, routing gates
@@ -90,7 +96,7 @@ materially different angle, and that post must say what is new.
 - [[Just-in-Time Agentic OCR]] - posted 2026-09-25 - cooldown ends 2026-11-06
 - [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
 - [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
-- [[Agentic Testing]] - drafted 2026-10-16 - cooldown ends 2026-11-27
+- [[KV Cache]] - drafted 2026-10-16 - cooldown ends 2026-11-27
 
 ## Related pages
 

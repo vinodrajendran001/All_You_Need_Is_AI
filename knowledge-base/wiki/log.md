@@ -1904,3 +1904,27 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
 - Updated current inventories to **543 typed wiki pages**, including **eight social posts**.
   Source ownership remains **283 summaries / 309 IDs**. Raw captures, earlier post bodies,
   source/concept/entity pages, earlier lint reports, and the prior log body remain preserved.
+
+## [2026-10-16] post | The Next Model Can Skip the Reread
+
+- Replaced the first October 16 angle after the user rejected it as not interesting enough.
+  [[2026-10-16 The Correction Did Not Reach the Report]] remains as a clearly superseded
+  `draft` so this append-only history and its link stay intact; nothing was published.
+- Drafted [[2026-10-16 The Next Model Can Skip the Reread]] for LinkedIn and X and marked
+  it `ready`. It uses the same **2026-10-09 through 2026-10-16** evidence window and imports
+  no later source.
+- Selected [[KV Cache]] after rescoring the remaining alternatives for reader interest,
+  clarity, completeness, and one-example narrative strength. The public example is Ben
+  Dickson's report of a 32,768-token Qwen3 14B-to-32B cache transfer taking **278 ms**
+  versus nearly **7 seconds** to rebuild, approximately **25x for that handoff stage**.
+- Kept the denominator and limits explicit: this is not a 25x faster agent, not lossless
+  state transfer, not an arbitrary hosted-service feature, and not an independently
+  reproduced result. The practical recommendation separates route choice, context transfer,
+  final generation, and quality risk while retaining readable handoff text.
+- Verified reader, factual, compression, and comprehension checks. LinkedIn is **380 words**;
+  the standalone is **276 weighted characters**; the six thread posts are
+  **255 / 224 / 220 / 243 / 239 / 250**.
+- Updated [[Post Archive]] to make the replacement the active October 16 entry, moved the
+  rejected draft to a superseded section, removed its [[Agentic Testing]] cooldown, and added
+  [[KV Cache]] through **2026-11-27**. The vault now contains **nine social-post files**.
+  Source ownership and parity remain unchanged at **283 summaries / 309 IDs**.

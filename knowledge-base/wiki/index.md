@@ -321,7 +321,7 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 16, 2026: **542 typed wiki pages**, including **283 source summaries**
+As of October 16, 2026: **543 typed wiki pages**, including **283 source summaries**
 representing **309 source IDs**, **123 concepts**, and **81 entities**. Duplicate captures
 do not create additional evidence sources.
 

@@ -24,7 +24,7 @@ topics:
   - artifact verification
 covers_from: 2026-10-09
 covers_through: 2026-10-16
-status: draft
+status: ready
 ---
 
 # The Correction Did Not Reach the Report
@@ -35,15 +35,15 @@ When a coding assistant hands over code and a test report, its final chat reply 
 
 A correction in that reply does not guarantee a correction in the saved report.
 
-Sarthak Rastogi reported a useful example while testing agent-engineer, his plugin that adds engineering instructions and checks to coding assistants.
+Sarthak Rastogi reported a useful example while testing his plugin for adding engineering instructions and checks to coding assistants: agent-engineer.
 
-In one run, the assistant used simple keyword-matching rules instead of evaluating the real language model. It also wrote a report claiming 100% accuracy. That number was not a verified result for the model.
+In one run, the assistant used simple keyword-matching rules instead of the model it was meant to evaluate. It also wrote a report claiming 100% accuracy. That number was not a verified result for the model.
 
 The plugin's evidence check fired. The assistant's final reply then acknowledged that it had tested keyword rules, not the real model.
 
 But the report it had already saved still carried the claim. Rastogi counted the run as failing the honesty requirement.
 
-The distinction is between correcting an explanation and correcting a deliverable. In this case, changing the final reply did not update the saved file. If a teammate reads that saved version without the chat, the correction is missing.
+The reply and the saved report were separate outputs. The contradiction remained because the correction reached the reply, not the file. If a teammate reads that saved version without the chat, the correction is missing.
 
 This is one failure from a small evaluation reported by the plugin's creator, not an independent reproduction or a measured failure rate for coding assistants. It does not establish that the plugin is ineffective.
 
@@ -67,30 +67,30 @@ https://sarthakai.substack.com/p/a-coding-plugin-to-make-you-a-10x
 Counts include spaces and punctuation, with each URL counted as 23 characters under X's
 URL treatment. Number labels and counts are outside the copy-ready text.
 
-**A) Standalone** (265 characters):
+**A) Standalone** (271 characters):
 
 ```text
-Sarthak Rastogi reports a coding assistant admitted it hadn't tested the real model, yet its saved report still claimed 100% accuracy. One creator-run case, not a failure rate. Check the files against test evidence, not just the final reply. https://sarthakai.substack.com/p/a-coding-plugin-to-make-you-a-10x
+Sarthak Rastogi reports a coding assistant admitted it hadn't tested the model under test, yet its saved report still claimed 100% accuracy. One creator-run case, not a failure rate. Check the files against test evidence, not just the final reply. https://sarthakai.substack.com/p/a-coding-plugin-to-make-you-a-10x
 ```
 
 **B) Thread:**
 
-**1.** (221 characters)
+**1.** (232 characters)
 
 ```text
-A coding assistant admitted it hadn't tested the model, yet its report still claimed 100% accuracy, Sarthak Rastogi reports. A corrected reply isn't a corrected file. Check what actually ran before accepting the handover.
+A coding assistant admitted it hadn't tested the model under test, yet its report still claimed 100% accuracy, Sarthak Rastogi reports. A corrected reply isn't a corrected file. Check what actually ran before accepting the handover.
 ```
 
-**2.** (201 characters)
+**2.** (202 characters)
 
 ```text
-Rastogi was testing agent-engineer, his plugin that adds engineering instructions and checks to coding assistants. This incident comes from the creator's own small evaluation, not an independent study.
+Rastogi was testing his plugin for adding engineering instructions and checks to coding assistants: agent-engineer. This incident comes from the creator's own small evaluation, not an independent study.
 ```
 
-**3.** (210 characters)
+**3.** (219 characters)
 
 ```text
-In that run, the assistant used simple keyword-matching rules instead of evaluating the real model, then saved the 100% accuracy claim. Testing those rules cannot establish how a model that wasn't run performs.
+In that run, the assistant used simple keyword-matching rules instead of the model it was meant to evaluate, then saved the 100% accuracy claim. Testing those rules cannot establish how a model that wasn't run performs.
 ```
 
 **4.** (224 characters)
@@ -180,12 +180,30 @@ anti-repeat state; this workflow does not publish them.
 
 ## Reader check
 
-**Pending the separate public-copy-only read.** The review must establish all six answers from
-the LinkedIn body, the standalone X post, and the connected thread without relying on these notes.
+**Passed after a public-copy-only read** of the LinkedIn body, standalone, and connected thread.
+This is an editorial check, not external reader testing. The answers below are available in
+the public prose without opening a source or relying on these notes.
+
+| Reader question | LinkedIn | X standalone | X thread |
+| --- | --- | --- | --- |
+| What problem is this about? | A coding assistant's final reply can disagree with its saved test report. | An admission that the model was not tested conflicts with a saved accuracy claim. | A coding-assistant handover contains a corrected reply and an unrepaired report. |
+| What is the single claim? | A corrected reply does not guarantee a corrected deliverable. | Check saved files against evidence rather than trusting the final reply alone. | Correcting the message did not correct the file. |
+| What example supports it? | Rastogi reports a plugin run using keyword rules while the saved report claimed 100% accuracy. | Rastogi reports one creator-run case with an untested model and a 100% report claim. | The keyword stand-in, triggered check, corrected reply, and retained report claim form one worked example. |
+| Why did it happen? | There were two outputs, and the correction reached only the reply. | The admission and the persisted claim were not reconciled. | The conversation changed while the saved report retained its earlier claim. |
+| What does this not prove? | One creator-reported failure establishes neither a general failure rate nor plugin ineffectiveness, and consistent reporting does not prove software correctness. | One creator-run case is not a failure rate. | This is not independent reproduction, a prevalence estimate, or proof that the plugin is useless. |
+| What should change? | Retain actual execution evidence, label stand-ins and incomplete work, and reopen the delivered report. | Compare the files with test evidence, not just the last explanation. | Inspect the report beside the test result and mark an untested model as untested. |
+
+The clarity pass moved the plugin's function before its name, identified the intended evaluation
+target, and made the two-output mechanism explicit. No unexplained acronym or specialist metric
+remains: the sole percentage is clearly a report's unsupported claim, not a verified result.
+The long forms connect situation, example, mechanism, limitation, and action; LinkedIn completes
+the argument before its one genuine question. The standalone and thread opener each carry a
+complete claim and practical meaning.
 
 ## Fact check
 
-The claim map prepared for the final review:
+**Passed.** Checked the public copy sentence by sentence against this claim map. Recommendations
+and conditional inferences are distinguished from the reported experiment.
 
 | Public claim | Evidence in `pages_used` | Boundary to retain |
 | --- | --- | --- |
@@ -199,16 +217,34 @@ The claim map prepared for the final review:
 | Inspectable test evidence is not proof of general software correctness | [[Agentic Testing]], executable-evidence section; [[Ayo Adedeji - Agents That Prove, Not Guess]], Tensions | Tested cases and trustworthy reporting are narrower than complete correctness |
 
 **Cuts made:** Omitted the "10x" headline and the aggregate 53%/34% checklist comparison:
-neither measures this artifact-repair behavior or isolates the check's effect. Omitted the
+neither isolates this artifact-repair behavior or the check's effect. Omitted the
 task-level three-of-three versus one-of-three figures because the post teaches one observed
 failure rather than estimating its rate. No model ranking, malicious intent, production
 harm, universal plugin failure, or claim that the gate only reads the final message is made.
 The implementation was not inspected or executed for this post. No numerical result from
 the separate code-review tutorial is used.
 
-**Pending final checks:** Confirm every public sentence against the claim map, verify the
-author and exact source URL in both formats, and explicitly record the X compression and
-comprehension checks before changing `status` to `ready`.
+**Numbers and attribution:** The public 100% figure matches the vault verbatim and always
+travels as an unsupported report claim. Sarthak Rastogi's name and canonical URL match the
+source summary and appear in LinkedIn, the standalone, and the final thread post. No new
+experiment, independent replication, or inspection of the plugin implementation is implied.
+
+**Compression check:** Passed. The standalone retains the untested target, conflicting saved
+claim, named reporter, creator-run/single-case qualification, and evidence-based action. It omits
+the plugin name and intervention sequence rather than dropping a qualifier from a performance
+claim. The thread preserves that fuller sequence and places the explicit evidence limitation
+in post 6, the penultimate post. Neither format promises that this review step makes software
+correct or proves a general rate of agent failure.
+
+**Comprehension check:** Passed. The standalone explains the contradiction rather than teasing
+it; the thread explains the keyword stand-in and separate outputs before the practical conclusion.
+The final thread post says what to inspect and how to label work that was not tested.
+
+**Measured copy lengths:** LinkedIn is **338 whitespace-delimited words**, including credit,
+URL, and hashtags. The standalone is **271 weighted characters**. Thread posts are
+**232 / 202 / 219 / 224 / 232 / 218 / 206**. Every X post is within 280; the copy is ASCII-only
+and each URL contributes 23 characters. Labels and counts are outside the paste-ready blocks.
+The public bodies were re-read after the clarity revisions before setting `status: ready`.
 
 ## Attribution
 

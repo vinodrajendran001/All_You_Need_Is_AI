@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-27
-updated: 2026-10-09
+updated: 2026-10-16
 source_id: src-2026-08-26-bytebytego-how-to-make-llms-3x-faster
 source_title: "How to Make LLMs 3X Faster"
 source_author: ByteByteGo
@@ -54,9 +54,10 @@ page's own standing open questions** about auto-tuning.
   model's own opinion at each of the K positions.
 - Verification and generation are **the same operation**; the saving comes purely from doing it at
   several positions per pass rather than one.
-- On mismatch, the verification pass has already computed the target's prediction at that position,
-  so that token is used directly. This bounds the downside: even with every candidate rejected you
-  still get the one token plain decoding would have produced.
+- Under **greedy matching**, the target's prediction supplies a correction at the first mismatch.
+  Under sampling, the residual rule below is required instead. Even a round that commits just one
+  token pays drafting and verification costs, so this progress guarantee does not bound latency
+  below the plain-decoding baseline.
 - Draft length K is commonly 3–5. Larger K raises the ceiling but lowers the odds later candidates
   survive, because the draft model conditions on its own unverified output as it goes.
 
@@ -70,13 +71,13 @@ page's own standing open questions** about auto-tuning.
   sampling remains random either way; and limited floating-point precision can flip the winner when
   two tokens sit nearly tied.
 
-### Acceptance is a property of the workload
+### Acceptance depends on the drafter and workload
 
-- Structured, repetitive output — code generation, summarization, extraction, RAG answers — reuses
-  large amounts of input text and drafts well. Open-ended output such as creative writing and open
-  conversation diverges from a small model far more often and drafts badly.
-- Higher sampling temperature flattens the distribution, increases mismatches, and pushes acceptance
-  down. Below roughly **50% acceptance the extra work outweighs the savings**.
+- The article presents structured, repetitive output as favorable and open-ended output as harder.
+  Those are heuristics: model pairing, prefix, and sampling matter as well as the task label.
+- It also says higher temperature lowers acceptance and gives **roughly 50%** as a break-even
+  threshold. Neither is universal: temperature changes the overlap of both distributions, and
+  break-even depends on draft, verification, memory, and scheduling costs.
 - **DeepSeek reported 80–90% acceptance for the second predicted token in production serving of
   DeepSeek-V3, worth roughly 1.8× generation throughput.**
 - The consequence the source draws: two teams can deploy the identical configuration on identical
@@ -89,32 +90,36 @@ page's own standing open questions** about auto-tuning.
    reduces how many concurrent requests the server can hold.
 2. **Extra prediction heads on the target** — lightweight heads predicting two or three positions
    ahead off the target's own internal representations. DeepSeek-V3 trained these during
-   pretraining for quality and reused them at inference as the draft source. Costs training access,
-   so it is unavailable unless you control the model.
+   pretraining for quality and reused them at inference as the draft source. Creating new heads
+   requires training access; deploying compatible released heads still needs internal-model/runtime
+   integration but does not require the operator to train them from scratch.
 3. **A cheaper version of the same model** — the draft runs the same weights under a reduced compute
    budget via quantization, layer skipping, or a compressed KV cache. **QuantSpec** drafts with
    4-bit weights and a 4-bit KV cache while verifying at higher precision, reporting **above 1.78×
    with acceptance above 90%**. Costs implementation complexity, since draft and target share
    hardware and cache structures.
 4. **A search over existing text** — scan prompt and prior output for a recent matching sequence and
-   propose whatever followed last time. Zero memory cost, single model, but contributes only when
-   output repeats input, where it reaches **2×–4×** on document editing and summarization.
+   propose whatever followed last time. No separate draft-model weights, not zero auxiliary memory:
+   lookup state and verification workspace can still cost memory. The source reports **2×–4×**
+   on repetitive document-editing and summarization workloads.
 
 - Tokenizer compatibility constrains pairing more tightly than model quality does: a stronger small
   model with a different vocabulary is unusable as a draft without extra machinery.
 
-### Concurrency is the real limit
+### Concurrency is one operating-condition limit
 
 - Speculative decoding spends capacity that would otherwise go unassigned. As concurrent requests
   accumulate, one weight read serves many requests, compute approaches saturation, and verification
   starts competing with real work.
 - One systematic evaluation reported **up to 1.96× on a 70B model at batch size 1, declining to
   1.21× at batch size 128**, and the technique can fall **below baseline** under higher concurrency.
-- **vLLM exposes a flag disabling speculation above a configurable batch size, and supports dynamic
-  adjustment where draft length shrinks as concurrency rises and reaches zero under heavy load.**
-  The source frames this as routine operational tuning rather than an edge case.
-- **Time to first token is unchanged**, since speculation applies to generation and not prompt
-  processing. Workloads with long prompts and short outputs have little to gain.
+- The article describes **vLLM batch-size-based disabling and concurrency-dependent draft length**.
+  This is its account of an available control, not a check of every current engine version or a
+  rule that large batches always lose; newer cache-bound cases qualify that heuristic.
+- The raw says time to first token stays **roughly** the same because speculation does not directly
+  accelerate prefill. That is not an invariant: draft initialization, queueing, and resource
+  competition can change TTFT. Long prompts and short outputs limit the generation work available
+  to accelerate.
 - DeepSeek documented the tradeoff directly: multi-token prediction slightly *reduces* throughput
   while significantly improving end-to-end generation latency.
 
@@ -127,17 +132,15 @@ category alongside draft-target, extra heads, and n-gram lookup. It is interesti
 sidesteps the standing objection to speculation — a second checkpoint to serve, version, and keep
 aligned — without needing training access the way Medusa-style heads do.
 
-The **DeepSeek production figures** matter because nearly everything else in this vault about
-acceptance rates comes from benchmarks or single-GPU experiments. An 80–90% acceptance rate
-sustained in production serving is a different class of evidence.
+The **DeepSeek production figures** add a reported serving operating point beyond a local
+single-GPU experiment. The 80–90% figure is for the **second predicted token**, not a mean
+acceptance rate across every draft position or a guarantee for another deployment.
 
-Most importantly, **vLLM's dynamic draft-length control partially answers an open question this
-vault had already posed**. The [[Speculative Decoding]] page asked how serving stacks could predict
-acceptance online well enough to auto-tune K and the on/off switch per request. The answer in
-shipped code turns out to sidestep prediction: rather than estimating acceptance, vLLM keys draft
-length to *observed concurrency*, which is a directly measurable proxy for whether spare compute
-exists. That is a weaker mechanism than the question imagined, and it addresses the "is there
-headroom" half while leaving the "will this request draft well" half open.
+The described concurrency controller partially answered the vault's earlier auto-tuning question
+by observing load rather than predicting request-specific acceptance. It should not remain the
+current answer to the whole question: [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
+later describes **DSpark's acceptance predictions plus profiled engine costs**. That newer
+controller is not evidence that every vLLM deployment implements it.
 
 ## Tensions / open questions
 
@@ -150,6 +153,12 @@ headroom" half while leaving the "will this request draft well" half open.
 - The claim that acceptance below ~50% makes speculation a net loss is given as a round number with
   no derivation, and it must in fact depend on the draft/target cost ratio rather than being a
   universal threshold.
+- The article reports both roughly 1.8× DeepSeek generation throughput and a separate statement
+  that multi-token prediction slightly reduces throughput while improving end-to-end latency.
+  Their measurement boundaries are not aligned here; do not combine them as one operating point.
+- The October 16 lint restores the raw's "roughly" TTFT qualifier and narrows its greedy
+  walkthrough, zero-memory shorthand, training-access requirement, and load/temperature rules.
+  Distributional exactness does not imply seed-identical text or factual correctness.
 - The article's headline "3X" is not supported by any figure in its own body; the measurements it
   reports are 1.21×–2×, with 2×–4× only for the narrow prompt-lookup case on repetitive text.
 
@@ -169,6 +178,7 @@ headroom" half while leaving the "will this request draft well" half open.
 
 ## Related pages
 
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Speculative Decoding]]
 - [[Mayank Pratap Singh - Speculative Decoding in vLLM]]
 - [[Changyi Yang - Why MLA and MTP Fight Each Other]]

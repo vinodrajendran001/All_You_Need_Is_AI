@@ -66,20 +66,20 @@ On an AIME 2025 problem the summary described methodical work through the geomet
 
 Two consequences. **Displayed reasoning is not evidence of process**, so it cannot be used to audit how an answer was reached — the same caution [[Latent-Space Reasoning]] raises from the other direction. And recovered traces were frequently telegraphic and ungrammatical rather than fluent English, which matters because trace-based safety monitoring assumes traces are legible. See [[Reasoning Trace Privacy]].
 
-## The visible trace is presentation, not mechanism
+## Delimiters do not determine the computation behind a trace
 
 [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] corrects a misreading that this page
-should record explicitly: **`<think>` tags are cosmetic**. They confer no reasoning ability and only
+should record explicitly: **`<think>` tags confer no reasoning ability by themselves**. They
 delimit a trace so it can be displayed, budgeted, or stripped. Models acquire them from a *format*
 reward added alongside the accuracy reward (`R_total = R_accuracy + R_format`) — the accuracy term
 teaches reasoning, the format term teaches where to put it.
 
-Two consequences follow. "Turning off thinking" is not disabling a capability but suppressing a
-delimiter and its contents — which is why Qwen3's hard switch has to **prefill** an empty
-`<think></think>` block to make the suppression structural rather than advisory. And the visible
-reasoning trace should not be read as a faithful record of the computation: Kimi K2.5's 25-30% token
-reduction with little accuracy loss implies a large share of a trace was never load-bearing. See
-[[Reasoning Effort Control]].
+Qwen3's hard switch **prefills** an empty `<think></think>` block to close the designated trace
+phase; that is not evidence of an inability to reason internally. Separately, the Kimi K2.5
+report's Toggle evaluation on **K2 Thinking** reports **25-30% fewer generated tokens with
+little change in benchmark performance**. Training can reorganize computation, so this does
+not identify nonessential tokens in the original trace or establish the new trace's faithfulness.
+The October 16 lint removes that earlier causal inference. See [[Reasoning Effort Control]].
 
 ## A longer training budget can teach a policy to waste it
 

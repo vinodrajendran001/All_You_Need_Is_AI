@@ -385,11 +385,11 @@ The August 3 batch broadens the systems branch from serving kernels to specializ
 - [[ML Research Interview Preparation]] - end-to-end research-scientist interview prep: interview-type taxonomy, study methodology, math round, and negotiation
 - [[Model Quantization and Efficiency]] - quantization, KV cache, LoRA, and sparse activation as deployment/adaptation efficiency levers
 - [[KV Cache]] - runtime attention-state storage and compression for long-context decoding
-- [[LLM Inference]] - the prefill (compute-bound) vs decode (memory-bound) split and the serving stack built around it
-- [[Speculative Decoding]] - lossless draft-then-verify decode acceleration; a conditional low-load latency bet
+- [[LLM Inference]] - prefill, decode, and serving, with bottlenecks determined by workload and hardware
+- [[Speculative Decoding]] - distribution-preserving verification with workload-dependent latency, throughput, and memory trade-offs
 - [[On-Device Reasoning]] - local reasoning under mobile constraints, where memory, latency, and power shape the whole stack
 - [[Small Language Models]] - small/on-device/high-volume LLMs designed around deployment and inference constraints
-- [[Reasoning Compression]] - shortening, replacing, or budgeting explicit reasoning traces to reduce cost without losing accuracy
+- [[Reasoning Compression]] - shortening, replacing, or budgeting traces while evaluating quality and observability
 - [[LLM Reasoning]] - hub page: reasoning taxonomy, the frozen-θ view, evaluation/robustness, and the two levers (test-time scaling, post-training)
 - [[Test-Time Scaling]] - spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based
 - [[Mixture of Experts]] - sparse architectures that trade total capacity against lower active compute per token
@@ -484,7 +484,7 @@ One source deepens the systems branch into GPU performance engineering, an area 
 
 [[Wafer - AI Performance Engineering Resources]] is a curated learning path with an unusually explicit evidence policy: entries must be the paper that introduced a mechanism, an official specification, the implementing repository, or a direct implementer report — and a performance number must carry hardware, workload shape, precision, a baseline, and a correctness method or be omitted entirely. That policy is now recorded on [[Benchmark Optimization]] as the five attributes of a reportable number, and the curator is described on [[Wafer]] along with the caveats: it is a curation rather than original research, commercially motivated, and NVIDIA-weighted by documentation availability.
 
-It seeds four new concepts. [[GPU Kernel Optimization]] gives the vault its first ladder from a naive kernel to one that saturates the hardware's real limit; [[Prefill-Decode Disaggregation]] answers a standing open question on [[LLM Inference]] by splitting the two phases onto separate pools sized for opposite bottlenecks; [[Serving Benchmarks and Goodput]] introduces goodput, TTFT/TPOT, and production-trace workload generation as the metrics a serving comparison must meet; and [[AI-Generated Kernels]] records that the kernel-generation benchmarks had to be hardened twice, which is the vault's sharpest evidence that an easy verifier is not a sound one — a direct correction to [[Recursive Self-Improvement]].
+It seeds four new concepts. [[GPU Kernel Optimization]] gives the vault its first ladder from a naive kernel toward the hardware's performance ceiling; [[Prefill-Decode Disaggregation]] explores independently tuning and scheduling the two phases when that benefit exceeds KV-transfer and coordination costs; [[Serving Benchmarks and Goodput]] introduces goodput, TTFT/TPOT, and production-trace workload generation as the metrics a serving comparison must meet; and [[AI-Generated Kernels]] records that the kernel-generation benchmarks had to be hardened twice, which is the vault's sharpest evidence that an easy verifier is not a sound one — a direct correction to [[Recursive Self-Improvement]].
 
 The same source supplies primary citations for material the vault previously held second-hand: the Berkeley roofline paper behind [[Arithmetic Intensity and the Roofline Model]], the FlashAttention lineage behind [[Transformer Architecture]], Orca and PagedAttention and Sarathi behind [[Inference Serving Engines]], GQA/MLA/KIVI/Mooncake behind [[KV Cache]], Leviathan and Medusa and EAGLE behind [[Speculative Decoding]], GPTQ/SmoothQuant/AWQ plus the OCP FP8 and MX format specifications behind [[Model Quantization and Efficiency]], Megatron-LM and NCCL and the UALink/Ultra Ethernet fabric standards behind [[Distributed Training Parallelism]], DeepEP and EPLB behind [[Mixture of Experts]], the PTX ISA and Nsight toolchain behind [[GPU Execution Model]], and the AMD/TPU/Trainium documentation behind [[AI Accelerator Architecture]].
 
@@ -566,12 +566,13 @@ autoencoders, and sparse autoencoders give **no uplift over a predictor that sim
 transcript**, and — more damagingly — that most published work in the area never ran that trivial
 baseline at all. It anchors the new [[Interpretability Evaluation]] page.
 
-**Reasoning effort turned out to be a training artifact.**
-[[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] establishes that `<think>` tags are
-**cosmetic** — delimiters learned from a format reward, conferring no reasoning ability — and walks
-six models' recipes for installing low/medium/high effort. Kimi K2.5's alternating budgeted and
-unconstrained RL phases cut **25-30% of tokens with little performance change** and no inference-time
-selector at all. The portable claim on the new [[Reasoning Effort Control]] page is that training
+**Learned effort policies are distinct from external budgets.**
+[[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] distinguishes format delimiters from
+reasoning ability and surveys six approaches to modes, budgets, and token-efficient training.
+The Kimi K2.5 report's Toggle evaluation on **K2 Thinking** cuts **25-30% of generated tokens
+with little change in benchmark performance**. Toggle has no selector between its training
+phases; K2.5's thinking/instant switch is separate. This does not show that particular tokens
+in the original trace were unnecessary. The portable claim on [[Reasoning Effort Control]] is that training
 scaling and inference scaling are overlapping curves: **a smaller model at high effort can match a
 larger model at low effort**, which makes cost at matched quality the only meaningful comparison.
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-06
-updated: 2026-08-26
+updated: 2026-10-16
 source_id: src-2026-07-06-mayank-pratap-singh-speculative-decoding
 source_title: "Speculative Decoding: Theory and Implementation in vLLM"
 source_author: Mayank Pratap Singh
@@ -21,30 +21,32 @@ status: active
 
 ## Summary
 
-This Vizuara post builds speculative decoding from first principles and then deploys it, ending on an unusually honest note: a real EAGLE3-on-vLLM run where speculation was **slower** than baseline. It starts from why decode is slow (memory-bandwidth bound, not compute bound), derives the draft-then-verify mechanism, proves it produces the *exact* target distribution via rejection sampling, works through the economics (α, τ, K), catalogues the method families (n-gram lookup, Medusa, EAGLE), and finishes with a benchmark that reads the speedup off a real GPU.
+This Vizuara post builds speculative decoding from first principles and then deploys it, ending with an EAGLE3-on-vLLM run where speculation was **slower** than baseline. It motivates the technique through low-batch, bandwidth-bound decode, explains distribution-preserving rejection sampling, works through the economics (α, τ, K), catalogues draft-source families, and reports an actual GPU experiment separately from its illustrative timing diagrams.
 
-Its central framing: generation loads the model's entire multi-hundred-GB weights from HBM once per token (~140 GB/token for a 70B model) while the math units sit idle — so there is **spare compute to burn**, and one weight-load can verify many tokens in parallel for almost the same cost as producing one. Speculative decoding pries open exactly that asymmetry. But it is a **bet**: it pays off with a well-aligned draft and a lightly loaded GPU, and quietly loses when those fail.
+Its motivating example is a dense 70B model at 16-bit precision: roughly **140 GB of weights**. At low batch, repeated weight reads can leave arithmetic headroom for verifying several positions together. Batching amortizes those reads and sharding changes the per-device boundary; this is not universal per-token traffic. The durable lesson is that speculation is a **bet** on committed tokens per unit of total serving work, not a guaranteed speedup.
 
 ## Key claims
 
-- **Decode is memory-bandwidth bound.** Each token requires streaming all weights out of HBM; a 70B model moves ~140 GB per token while ALUs idle. That idle compute is the currency speculation spends, and verifying many tokens in parallel costs about the same as generating one (this is the same prefill/decode split as [[LLM Inference]]).
-- **Draft, then verify.** A small draft model `M_q` proposes K tokens cheaply; the big target `M_p` verifies them in a single parallel pass. Verification accepts the drafted prefix **until the first mismatch**, commits it, replaces the mismatched token with the target's own, and discards the rest — so the worst case still returns one correct token and is never slower than plain decoding (at the token level).
-- **It is exact, not approximate.** Rejection sampling (Leviathan 2023, arXiv:2211.17192; Chen 2023, arXiv:2302.01318) accepts a draft token with probability `min(1, p(x)/q(x))` and, on rejection, resamples from the normalized residual distribution — provably rebuilding the target distribution `p` token for token. The draft model is a *guesser, not a decider*: a wrong guess costs time, never correctness.
-- **Three economics knobs.** **α** (acceptance rate) is the key efficiency number; **τ** (expected accepted tokens per round) follows a geometric series `τ = (1−α^{K+1})/(1−α)` (α=0.30 → ~1.43 tokens/pass; α=0.85 → ~4.15); **K** (lookahead) is a balance, best tuned **adaptively** from the local entropy of the stream (draft far on predictable text, cautiously on uncertain text).
-- **System limitations.** The two models run in **lockstep** (bubble time); it only helps when the GPU has **spare compute** (low batch); the draft and target must share an **identical tokenizer/vocabulary** (usually a smaller sibling in the same family); the draft costs **VRAM** you can't give the KV cache or bigger batches; and a rejection triggers a **serial fallback**.
-- **Method families differ by where drafts come from:** vanilla draft-target (two models); **n-gram prompt lookup** (model-free); **Medusa** (multiple heads predict multiple positions, verified together with tree attention); **EAGLE** (drafts *features*, not tokens, to avoid token-level stalling).
-- **The system tax and batch size decide the real speedup.** Fixed per-step overheads (kernel launches, KV-cache lookups) turn a 2.5× token-math win into ~1.8× measured at batch 1. As batch grows, target verification's share of the step climbs (52%→74%) and the draft's collapses (24%→10%); at batch 128 the GPU is saturated, drafting steals bandwidth, and the slowest request (**straggler**) stalls the batch — effective speedup lands between roughly −5% and +10%. Production stacks therefore toggle speculation **on at light load, off under saturation**.
-- **The honest benchmark:** Llama-3.1-8B, single 48 GB Ada GPU, baseline vs EAGLE3 — **slower in both regimes**, with acceptance length **τ=1.81** as the one-glance tell. A small model on a fast, saturated GPU is the hard case; the win grows with model size and acceptance. "Measure your own A/B before you ship it."
+- **Bandwidth-bound decode provides an opportunity, not a phase-wide rule.** The low-batch dense example can verify multiple positions for a cost close to one target step. Actual verification cost depends on batch, context, kernels, and hardware; see [[LLM Inference]].
+- **Draft, then verify.** A small `M_q` proposes K tokens and target `M_p` scores them in parallel. Under **greedy matching**, keep the matching prefix and the target's correction at the first mismatch. Stochastic rejection sampling instead needs the acceptance and residual rules below. A round can advance by one token while costing more than plain decoding; progress is not a latency guarantee.
+- **Exactness is distributional.** Rejection sampling (Leviathan 2023, arXiv:2211.17192; Chen 2023, arXiv:2302.01318) accepts with `min(1, p(x)/q(x))` and resamples a rejection from normalized `(p-q)+`. Correct implementation preserves the target distribution, not seed-identical sampled wording or factual correctness.
+- **Three economics knobs.** **α** describes acceptance; **τ** in `τ = (1−α^{K+1})/(1−α)` counts expected **committed tokens including the correction/bonus**, under constant conditional acceptance. For the figure's **K=5**, α=0.30 gives ~1.43 and α=0.85 ~4.15 tokens per round; the α=1 limit is K+1. The article proposes adapting **K** to predictability, but entropy alone does not determine draft agreement or serving cost.
+- **System limitations are implementation-specific.** The described serial draft/verify loop has waiting time; the direct tokenwise algorithm needs a common token space; and auxiliary weights, cache, and workspace compete for memory. A rejection ends the committed prefix. The article recommends load-aware switching, not a measured universal batch-size cutoff.
+- **Draft families:** separate draft-target models; **n-gram prompt lookup** without a draft model; **Medusa** heads with tree verification; and original **EAGLE** feature prediction. That EAGLE explanation is not the training objective of every successor; the deployment experiment uses EAGLE3.
+- **The system-tax diagrams are illustrative.** The 2.5× token-math versus ~1.8× effective speedup and the verification/draft time shares (52%→74% and 24%→10%) are explicitly labeled illustrative. The batch-128 −5% to +10% range is part of that pedagogical discussion, not the actual run below. These figures explain possible overheads and stragglers; they are not measured production results.
+- **The reported benchmark:** Llama-3.1-8B on a single **48 GB Ada GPU**, baseline versus EAGLE3, was **slower in both tested regimes**: greedy batch 1 and a non-greedy load test with 500 prompts at infinite request rate, approximately 500 concurrent. The article reports acceptance length **τ=1.81**. Small-target cost, acceptance, and saturation are its explanations, not separately ablated causes; proposed tuning is not a measured successful rerun.
 
 ## Why it matters
 
-This is the vault's most complete treatment of a single decode-latency technique and seeds the new concept [[Speculative Decoding]]. It slots directly under [[LLM Inference]] (it is the canonical answer to memory-bound decode) and complements [[KV Cache]] (accepted drafts are committed to the cache; the draft model competes with it for VRAM) and [[Model Quantization and Efficiency]] (a *different* lever on the same bytes-moved bottleneck — speculation cuts weight-loads-per-token instead of bytes-per-weight). It also sharpens the [[GPU Execution Model]] "arithmetic intensity / spare compute" story with a concrete exploit, and is a clean contrast for [[Test-Time Scaling]] (speculation makes the *same* output faster; test-time scaling spends compute to change the output). Third Vizuara explainer from [[Mayank Pratap Singh]].
+This early foundation for [[Speculative Decoding]] pairs a mechanism tutorial with a useful negative serving result. It connects [[LLM Inference]], [[KV Cache]], and [[Arithmetic Intensity and the Roofline Model]]: accepted history, drafter memory, and verification cost must be accounted for together. Unlike [[Model Quantization and Efficiency|directly serving a compressed model]], exact speculation preserves the target distribution; unlike [[Test-Time Scaling]], its aim is efficiency rather than a different answer-generation policy. The later [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] extends the account with newer architectures and workload-dependent exceptions.
 
 ## Tensions / open questions
 
-- The headline "2–3× faster" is real but **conditional**; the author's own run lost, which is the post's most valuable, least-marketed lesson.
-- Several figures are labelled "illustrative numbers," so the exact 1.8×/52%→74%/straggler figures are pedagogical, not measured.
-- The tokenizer-match constraint limits draft choices to same-family models; cross-tokenizer speculation is out of scope.
+- The headline "2–3× faster" is not reproduced by the author's own run. The opening "exact same text" wording is also stronger than the distributional proof under sampling.
+- The October 16 lint corrects this summary's earlier promotion of illustrative timings to measurements and its conflation of one-token progress with never being slower. The raw source retains both its simplified framing and its negative benchmark.
+- The raw calls τ "accepted tokens" even though its geometric formula includes the correction/bonus. Preserve the reported 1.81 diagnostic without assuming all papers or runtime metrics use the same convention.
+- The article's low-load-only framing is qualified even by its later acknowledgment of gains in other high-concurrency studies. Samarin adds cache-bound large-batch cases and acceptance-aware scheduling; neither account establishes a universal on/off rule.
+- Direct tokenwise comparison requires compatible tokenization, not necessarily common model ancestry. Cross-tokenizer machinery is outside this tutorial's scope.
 
 ## Affected pages
 
@@ -65,6 +67,7 @@ This is the vault's most complete treatment of a single decode-latency technique
 
 ## Related pages
 
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Speculative Decoding]]
 - [[LLM Inference]]
 - [[KV Cache]]

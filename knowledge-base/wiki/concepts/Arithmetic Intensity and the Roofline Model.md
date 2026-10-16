@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - arithmetic-intensity
@@ -71,7 +71,12 @@ This is the durable insight. A memory-bound decode leaves GPU compute idle, and 
 - **[[Speculative Decoding]] and multi-token prediction** stack K drafted tokens per request and verify them in one pass. Because HBM traffic barely grows with S while QK/PV compute scales nearly linearly, `AI(S) ≈ S · AI(S=1)`.
 - **MLA** spends extra compute to buy stronger cache reuse.
 
-The collision: DeepSeek-style MLA already reaches ~256 FLOP/B at a single query and Kimi K3's MLA layer ~192 FLOP/B — at or past the H200 balance point *before any speculation*. Take S to 2 and these become 512 and 384, sailing past the knee. **MTP's extra arithmetic is then no longer using otherwise idle compute; it starts costing real latency.** On a low-AI MQA workload at AI ≈ 70–100 the GPU is far from the knee and speculation is nearly free.
+In Yang's attention-core estimates, DeepSeek-style MLA reaches ~256 FLOP/B at a single query and
+Kimi K3's MLA layer ~192 FLOP/B, around the modeled H200 balance point of ~206 FLOP/B.
+Taking S to 2 gives 512 and 384, moving the modeled work onto the compute side. MQA at
+AI ≈ 70–100 has more theoretical arithmetic headroom. These are **QK/PV kernel-scope
+calculations**, not measured end-to-end latency or proof that speculation is nearly free:
+drafting, launches, cache traffic, and scheduling can still cost time.
 
 Zyphra's *Compressed Convolutional Attention* (arXiv:2510.04476) reached the same conclusion independently and adds a second mechanism: **MLA also loses under tensor parallelism**, because the shared KV must be replicated per TP rank, giving back the reuse MQA had bought.
 

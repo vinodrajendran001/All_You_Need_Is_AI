@@ -43,9 +43,9 @@ stripped. Models learn to emit them through a *format reward* added to the RL ob
 R_total = R_accuracy + R_format
 ```
 
-The accuracy term teaches reasoning. The format term teaches where to put it. This matters because it
-means "turning off thinking" is not disabling a capability — it is suppressing a delimiter and the
-text inside it.
+The accuracy term rewards successful answers; the format term rewards the requested structure.
+Selecting a no-trace mode changes how the model responds, but an empty reasoning block does not
+demonstrate that it performed no internal computation or that answer quality is unchanged.
 
 ### Two ways to install effort levels
 
@@ -69,7 +69,7 @@ not the model's ability to compute internally; an empty trace is not an absence 
 | --- | --- |
 | **DeepSeek V4** | Three mode specialists, each with its own context window and length penalty, distilled into one checkpoint |
 | **Nemotron 3 Ultra** | Medium-effort behaviour bootstrapped from GPT-OSS-120B traces, plus random-budget truncation with `</think>` masked from the loss on ~2.5% of RLVR prompts; produces a learned mode *and* a separate external budget |
-| **Kimi K2.5 "Toggle"** | Alternating budgeted and unconstrained RL phases; the budget comes from a percentile of correct-rollout lengths and activates only once accuracy passes a threshold. **25-30% token reduction with little performance change** — and no inference-time selector at all, since it operates entirely in training |
+| **Kimi K2.5 report: Toggle** | Alternating budgeted and unconstrained RL phases; the budget comes from a percentile of correct-rollout lengths and activates after an accuracy threshold. The evaluation on **K2 Thinking** reports **25-30% fewer generated tokens with little change in benchmark performance**. No selector between Toggle's training phases; K2.5's thinking/instant switch is separate |
 | **GLM-5** | Interleaved, preserved, and turn-level thinking installed via SFT |
 | **Qwen3** | Mode fusion plus inference-time truncation; partial-reasoning behaviour **emerged** rather than being trained |
 | **Inkling** | Continuous effort in 0.2-0.99 conditioned during RL, with `R(e) = R_task - lambda(e) * N_tokens` |
@@ -85,11 +85,13 @@ effort**. Effort is a deployment-time substitute for parameters. This connects
 inference) as two views of one budget, and makes the serving decision an economic one rather than a
 capability one.
 
-### The efficiency result worth generalizing
+### Shorter learned traces are not a causal token ablation
 
-Kimi's 25-30% token reduction with little performance loss, obtained purely by shaping the RL
-curriculum, implies a substantial fraction of a reasoning trace was never load-bearing. The vault has
-no account of *which* parts those are — see the open questions.
+The Toggle result on K2 Thinking demonstrates a more token-efficient policy after training.
+The **25-30% reduction with little change in benchmark performance** does not show that the
+same fraction of the original policy's trace could simply be deleted. Weight updates can
+reorganize computation. The October 16 lint replaces this page's earlier inference that those
+tokens were necessarily nonessential; faithfulness and monitorability need their own evidence.
 
 ## Two shipped policies, and a disagreement about the floor
 
@@ -97,13 +99,13 @@ no account of *which* parts those are — see the open questions.
 that made opposite choices about whether reasoning can be switched off.
 
 **Qwen3.8-27B** exposes `reasoning_effort` with three settings — `xhigh`, `medium`, `low` — defaulting to
-`xhigh`, and permits thinking to be **disabled entirely**. **GLM-5.3 does not allow thinking to be disabled**
-at all.
+`xhigh`, and permits its explicit **thinking mode to be disabled**. **GLM-5.3 does not expose that
+mode-off option**.
 
-The disagreement is about whether zero is a legitimate point on the dial. A model that cannot stop thinking
-has a cost floor its operator cannot lower, which matters most in the agent loops where the same instruction
-block is reprocessed hundreds of times; see [[Inference Efficiency Frontier]], where reasoning level is named
-as one of the exchange axes alongside latency and throughput.
+The disagreement is about whether operators can skip the explicit trace phase, not whether a
+model can perform zero internal computation. A required trace adds work that cannot be removed
+through that mode switch; its cost still depends on the request and serving setup. See
+[[Inference Efficiency Frontier]], where effort is one axis alongside latency and throughput.
 
 [[Qwen]] adds a second, less familiar control on the same surface: **`preserve_thinking`, on by default**,
 which retains the thinking blocks of every historical message so that RL could teach the model to treat past
@@ -145,8 +147,8 @@ quality across tasks. Compare complete cost and accuracy at each operating point
 
 ## Open questions
 
-- What were the removed 25-30% of tokens doing? Without a theory of which trace segments carry the
-  computation, effort budgets are tuned empirically per model.
+- How does token-efficient training redistribute computation, and which trace interventions
+  actually preserve quality or monitoring signals at fixed weights?
 - Qwen3's partial-reasoning behaviour under truncation emerged rather than being trained. Why it works,
   and whether it degrades in ways benchmarks miss, is unexplained.
 - Effort levels are calibrated against benchmark distributions. Does "medium effort" mean anything

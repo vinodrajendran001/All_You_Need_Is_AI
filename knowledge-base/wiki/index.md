@@ -356,7 +356,7 @@ do not create additional evidence sources.
 - [[KV Cache]] - Attention-state reuse, compression, mapped cross-model handoffs, and the separate target/drafter memory budgets.
 - [[Small Language Models]] - Small/on-device/high-volume LLMs designed around deployment and inference constraints.
 - [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
-- [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
+- [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces while measuring the quality and observability trade-offs.
 - [[LLM Reasoning]] - Reasoning taxonomy, fixed-weight inference-time search, post-training, robustness, and the unresolved creation-versus-elicitation question.
 - [[Test-Time Scaling]] - Spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based.
 - [[Reasoning Effort Control]] - Trained selectors, runtime budgets, and internal iteration knobs; trace length is not the whole compute budget.
@@ -424,7 +424,7 @@ do not create additional evidence sources.
 - [[AI-Native Software Development Lifecycle]] - Artifact-triggered development stages with act-time governance and versioned institutional knowledge.
 - [[Agent Workflow Maturity]] - Six-level ladder from single bot to verified team, with invariants, handoffs, and an evidence ladder.
 - [[GPU Kernel Optimization]] - The ladder of transformations from a naive kernel to one that saturates the hardware's real limit.
-- [[Prefill-Decode Disaggregation]] - Splitting the two inference phases onto separate hardware pools because their bottlenecks are opposite.
+- [[Prefill-Decode Disaggregation]] - Independently tuning and scheduling inference phases when the workload benefit outweighs KV-transfer and coordination costs.
 - [[Serving Benchmarks and Goodput]] - Completions under a latency SLO as the serving metric, and what a reportable performance number requires.
 - [[AI-Generated Kernels]] - Model-written GPU kernels, and why their benchmarks had to be hardened twice.
 - [[Programmatic Tool Calling]] - Executable code as the agent's action space, with tools as functions inside it.
@@ -755,7 +755,7 @@ do not create additional evidence sources.
 
 - [[Lilian Weng - Harness Engineering for Self-Improvement]] - The five-rung optimization ladder (prompts, context, workflow, harness code, optimizer code), and why recursive structure alone is not the gain.
 - [[Philipp Schmid - Recursive Self-Improvement]] - A falsifiable three-tier taxonomy separating iteration, self-improvement, and recursion by whether the verifier moves.
-- [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] - How six models install low/medium/high effort; `<think>` tags are cosmetic and effort is a trained behaviour.
+- [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] - Learned modes, external budgets, and token-efficient policies across six models; closing a trace is not disabling internal reasoning.
 - [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]] - Explicit preference comparisons versus reference-answer imitation; simpler optimization does not repair biased feedback or imply identical outcomes.
 - [[Addy Osmani - Audit your Agent files]] - Agent configuration has a half-life; 288 runs found context files made no clear difference to correctness.
 - [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]] - Contract-first decomposition, cost-aware routing, zero-knowledge least privilege, and the zone of indifference.

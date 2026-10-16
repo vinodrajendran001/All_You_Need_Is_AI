@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-08-30
+updated: 2026-10-16
 tags:
   - concept
   - reasoning
@@ -75,24 +75,26 @@ Granite also ships **three inference-time settings rather than two**: thinking, 
 interesting one, since the usual binary forces a routing decision between "cheap and shallow" and
 "expensive and deep." See [[Test-Time Scaling]] and [[Model Routing]].
 
-## Effort levels are trained, not configured
+## Learned effort policies are not output trimming
 
 [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] locates this page's mechanisms in the
-training pipeline. **`<think>` tags are cosmetic** — they confer no reasoning ability, only delimit a
+training pipeline. **`<think>` tags confer no reasoning ability by themselves**; they delimit a
 trace so it can be displayed, budgeted, or stripped, and models learn to emit them via a format reward
-added to the RL objective (`R_total = R_accuracy + R_format`). Compression therefore happens by
-shaping *what the policy learns to produce*, not by trimming output afterwards.
+added to the RL objective (`R_total = R_accuracy + R_format`). In these training recipes, compression
+shapes *what the policy learns to produce* rather than merely hiding tokens after generation.
 
-The strongest efficiency result is Kimi K2.5's **"Toggle"**: alternating budgeted and unconstrained RL
-phases, where the budget is derived from a percentile of correct-rollout lengths and activates only
-once accuracy passes a threshold. It yields a **25-30% token reduction with little performance
-change**, entirely in training — there is no inference-time selector at all. Nemotron 3 Ultra reaches
-a related place with random-budget truncation on ~2.5% of RLVR prompts, masking `</think>` from the
-loss so truncation does not teach the model to stop early.
+The Kimi K2.5 report's **Toggle** alternates budgeted and unconstrained RL phases. Its budget
+comes from a percentile of correct-rollout lengths and activates after an accuracy threshold.
+The reported evaluation on **K2 Thinking** yields **25-30% fewer generated tokens with little
+change in benchmark performance**. There is no runtime selector between those training phases;
+K2.5's separate thinking/instant switch is a different control. Nemotron 3 Ultra uses
+random-budget truncation on ~2.5% of RLVR prompts, masking `</think>` from the loss so truncation
+does not teach the model to stop early.
 
-That so much of a trace can be removed with no accuracy cost is the open puzzle: this vault has no
-account of which trace segments are load-bearing. See [[Reasoning Effort Control]] for the full
-per-model comparison.
+This is a comparison between trained policies, not an experiment deleting identified segments
+from a fixed policy's trace. It neither proves zero accuracy cost nor identifies causally
+unnecessary original tokens. The October 16 lint restores that boundary; see
+[[Reasoning Effort Control]] for the per-model comparison.
 
 ## Open questions
 

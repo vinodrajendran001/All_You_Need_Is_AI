@@ -52,8 +52,8 @@ labelling discipline is why his posts are usable as reference material in this v
 implementation-first explainers, and useful to this vault for that reason: it is a **short corrective written
 against press coverage.** The claim under repair was that OpenAI's Astra uses a "recurrent depth" technique that
 obscures the model's chain of thought. His reply separates two things the coverage had merged — that looping is
-*"just reusing layers,"* and that reducing legible reasoning is a consequence of capacity rather than of
-recurrence, since *"we would get the same effect if we were scaling up the model size."*
+*"just reusing layers,"* and his hypothesis that greater per-token capacity could reduce explicit
+reasoning without recurrence, since *"we would get the same effect if we were scaling up the model size."*
 
 The characteristic discipline is intact. He states what he is reasoning from (published models described
 similarly, not Astra itself), relays Nanbeige's **~75% token-efficiency retention at two passes** as the

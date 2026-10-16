@@ -25,12 +25,10 @@ An explainer on speculative decoding, walking from why autoregressive generation
 what a GPU actually spends a forward pass doing, to the draft-and-verify loop, the acceptance rule
 that makes it lossless, and the conditions under which the technique stops paying.
 
-The vault already has a deep [[Speculative Decoding]] page built from a vLLM implementation
-write-up and two hardware-side sources. This piece is a secondary explainer and repeats much of
-that ground. Its value is concentrated in four places where it adds something the existing page did
-not have: a **fourth draft-source family**, **production acceptance numbers from DeepSeek**,
-**concurrency scaling measurements**, and — most usefully — a **partial answer to one of the
-page's own standing open questions** about auto-tuning.
+Relative to the earlier vLLM and hardware-side accounts, this secondary explainer adds a
+**fourth draft-source family**, **reported production acceptance numbers from DeepSeek**,
+**concurrency scaling results**, and a **partial answer about auto-tuning**. It is a historical
+input to the broader [[Speculative Decoding]] synthesis, not a current engine-feature audit.
 
 ## Key claims
 
@@ -85,7 +83,8 @@ page's own standing open questions** about auto-tuning.
 
 ### Four places a draft can come from
 
-1. **A separate small model** — 10–20× fewer parameters, same family, identical tokenizer. Costs a
+1. **A separate small model** — the article describes a same-family model with 10–20× fewer
+   parameters and compatible tokenization. Costs a
    second checkpoint to deploy and version, plus VRAM taken out of the KV-cache budget, which
    reduces how many concurrent requests the server can hold.
 2. **Extra prediction heads on the target** — lightweight heads predicting two or three positions
@@ -125,12 +124,13 @@ page's own standing open questions** about auto-tuning.
 
 ## Why it matters
 
-Most of this restates what [[Speculative Decoding]] already carries. Three items do not.
+Three additions to the earlier coverage remain useful.
 
 The **self-drafting-by-degradation family** (QuantSpec and relatives) is a genuinely fourth
 category alongside draft-target, extra heads, and n-gram lookup. It is interesting because it
-sidesteps the standing objection to speculation — a second checkpoint to serve, version, and keep
-aligned — without needing training access the way Medusa-style heads do.
+reuses the target's lineage instead of training and aligning an independent general-purpose
+drafter. Quantized copies, scales, caches, and workspace still depend on the implementation;
+shared lineage does not eliminate auxiliary serving state.
 
 The **DeepSeek production figures** add a reported serving operating point beyond a local
 single-GPU experiment. The 80–90% figure is for the **second predicted token**, not a mean
@@ -159,8 +159,9 @@ controller is not evidence that every vLLM deployment implements it.
 - The October 16 lint restores the raw's "roughly" TTFT qualifier and narrows its greedy
   walkthrough, zero-memory shorthand, training-access requirement, and load/temperature rules.
   Distributional exactness does not imply seed-identical text or factual correctness.
-- The article's headline "3X" is not supported by any figure in its own body; the measurements it
-  reports are 1.21×–2×, with 2×–4× only for the narrow prompt-lookup case on repetitive text.
+- The headline "3X" is not a workload-independent gain. The **2×–4×** range belongs to the
+  narrow prompt-lookup case on repetitive text, and the other reported figures come from
+  different, incompletely specified operating points.
 
 ## Affected pages
 

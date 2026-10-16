@@ -47,9 +47,9 @@ The accuracy term rewards successful answers; the format term rewards the reques
 Selecting a no-trace mode changes how the model responds, but an empty reasoning block does not
 demonstrate that it performed no internal computation or that answer quality is unchanged.
 
-### Two ways to install effort levels
+### Two surveyed routes to learned effort levels
 
-After RL with verifiable rewards, teams take one of two routes:
+Raschka groups learned effort-level recipes into two routes, distinct from direct runtime budgets:
 
 1. **Effort-conditioned RLVR** — condition the RL run on an effort level and apply an
    effort-dependent length penalty, so the policy learns different length regimes directly.

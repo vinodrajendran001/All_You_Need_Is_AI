@@ -218,6 +218,8 @@ without erasing the failure of the original one. See [[Embedded Evaluation]].
 
 ## Related pages
 
+- [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
+- [[Anthropic - Would This Change Your Answer (CHIVE)]]
 - [[Apollo Research - Principles for Embedded Evaluations]]
 - [[Embedded Evaluation]]
 - [[Agent Security and Governance]]

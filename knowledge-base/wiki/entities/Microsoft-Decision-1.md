@@ -24,8 +24,8 @@ as available through Microsoft Foundry and OpenRouter. The described release ada
 Uses include classification, routing, ratings, and rubric-based verification.
 
 Microsoft reports leading accuracy on its **36-benchmark**, nearly **150,000-question**
-suite, **2.5x** lower latency than H2O-Lightning-4B v1.1, and about **35x** lower P50 latency
-than GPT-6 Sol. These are first-party claims with incomplete common serving conditions,
+suite, a **2.5x** speedup over H2O-Lightning-4B v1.1, and about **35x** over GPT-6 Sol
+in the P50 latency comparison. These are first-party claims with incomplete common serving conditions,
 not independently measured rankings or substitutes for task-level deployment evaluation.
 
 ## Notes

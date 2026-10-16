@@ -1855,3 +1855,28 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   wiki files**. All **380 raw files**, including **311 top-level source captures**, remain
   unchanged; posts/archive, queries, earlier lint reports, and the historical log body
   were preserved. No source installation commands were executed.
+
+## [2026-10-16] lint | Full wiki lint pass
+
+- Filed [[2026-10-16 Lint Pass]], the fortieth comprehensive structural pass. The final
+  inventory is **542 typed/reachable wiki pages**, **283 source summaries**, **123 concepts**,
+  **81 entities**, and **40 lint reports**, at exact **309-ID** index/log/overview parity.
+- Corrected illustrative speculation timings that had become measurements; separated greedy
+  matching from stochastic exact sampling, committed-token progress from latency, and
+  attention-core arithmetic estimates from end-to-end serving results. Kept the Ada negative
+  experiment and unresolved DeepSeek measurement boundaries in their original scope.
+- Repaired Qwen's no-trace-mode interpretation and Toggle's result attribution:
+  **K2 Thinking**, **25-30% fewer generated tokens with little change in benchmark performance**.
+  Removed the inference that training-induced savings identify unnecessary original tokens
+  and distinguished Toggle's training phases from K2.5's thinking/instant switch.
+- Qualified monitoring claims about shorter traces, causal explanations, retrospective
+  coverage, and CHIVE's no-uplift result. Added reciprocal links and existing source IDs
+  for the monitoring page's Raschka-effort and CHIVE evidence.
+- Corrected Qwen's model-family classification and stale index/overview descriptions.
+  Reviewed high-risk boundaries in the eight latest source chains without promoting their
+  vendor claims, proposals, or third-party observations into independent guarantees.
+- Updated **16 existing wiki files** and added the report. The structural audit reports
+  no actionable findings. All **380 raw files**, posts/archive, query files, previous
+  lint reports, and other out-of-scope knowledge-base files remain unchanged; the prior
+  log body is preserved. Seventeen single-source concepts and six documented source-URL
+  gaps remain research follow-ups, not invented fixes.

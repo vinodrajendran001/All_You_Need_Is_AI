@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - log
 source_ids:
@@ -306,6 +306,14 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-09-rabi-guha-intelligent-ui
 status: active
 ---
 
@@ -1807,3 +1815,43 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   cooldown through **2026-11-20**. All eight evidence/selection pages were tracked; no local-only
   query was used. This workflow adds no source ID and edits no raw capture, source page,
   concept, or older post. **Nothing was published.**
+
+## [2026-10-16] ingest | Architecture Conversion, Cache Handoffs, and Evaluation Boundaries
+
+- Processed **ten previously uncited top-level captures as eight new sources**. Added
+  [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]],
+  [[Ben Dickson - Cross-Model KV Cache Handoffs]],
+  [[ByteByteGo - How to Build Models Without Language]],
+  [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]],
+  [[Lisa Brown Jaloza - Microsoft-Decision-1]],
+  [[Apollo Research - Principles for Embedded Evaluations]],
+  [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]], and
+  [[@rabi_guha - How ChatGPT Intelligent UI Works]].
+- Consolidated the two agent-engineer clippings under one source: their article bodies match
+  after newline normalization. Attached the body-identical Epoch recapture to
+  [[Jason Li - How Many AI Agents Could We Run]] without adding an estimate or source ID.
+  All original capture filenames and bytes were retained.
+- Recovered Ben Dickson's byline, canonical Alpha Signal URL, and **October 14 UTC**
+  publication date from public metadata. Recovered Apollo's institutional attribution and
+  **September 30** publication date while preserving the clipping's blank metadata.
+  Did not follow subscriber redirects or promote extra web-only figures into captured evidence.
+- Created three concepts, [[Energy-Based Model]], [[Embedded Evaluation]], and
+  [[Generative User Interface]], and four entities, [[Logical Intelligence]],
+  [[Apollo Research]], [[Microsoft-Decision-1]], and [[agent-engineer]].
+  Connected the new concepts to the older LeJEPA, OpenAI incident, and Jeremy Morrell
+  sources, with reciprocal affected-page links.
+- Integrated all declared consumers: **29 existing concepts and six existing entities**.
+  Reconciled directly coupled claims about speculative-decoding exactness, bonus-token
+  accounting, high-batch exceptions, drafter state, acceptance-aware scheduling, distillation
+  initialization, and internal effort control. Retained earlier evidence contexts rather
+  than replacing them with unconditional new guarantees.
+- Preserved the major evidence boundaries: incremental tokens versus inherited training cost;
+  mapped handoff versus C2C's retained prefills; vendor Sudoku evidence versus a generic
+  energy tutorial; plugin checklist gains versus enforcement; Microsoft's distinct suite
+  versus other decision-model benchmarks; proposed assurance grades versus severity/law;
+  and web UI observations versus an official specification or sandbox audit.
+- Updated the index and overview at **309 owned source IDs**, **283 source summaries**,
+  and **541 typed wiki pages**. The batch adds **15 wiki files** and updates **42 existing
+  wiki files**. All **380 raw files**, including **311 top-level source captures**, remain
+  unchanged; posts/archive, queries, earlier lint reports, and the historical log body
+  were preserved. No source installation commands were executed.

@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - overview
   - ai
@@ -308,6 +308,14 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-09-rabi-guha-intelligent-ui
 status: active
 ---
 
@@ -318,6 +326,11 @@ status: active
 This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. It is meant to accumulate sources, syntheses, and durable answers about AI instead of rediscovering them from scratch on every query.
 
 ## Current picture
+
+As of October 16, 2026, the wiki has **541 typed pages**, including **283 source summaries**
+owning **309 source IDs**, **123 concepts**, and **81 entities**. The raw collection contains
+**311 top-level captures** and **380 files in total**; recaptures and equivalent clippings
+remain preserved without being counted as independent evidence.
 
 The workspace now implements Karpathy's three-layer pattern:
 
@@ -1011,7 +1024,80 @@ public-page scope makes Self-Harness's **132% relative** maximum **22.5% to 52.2
 for Qwen3.5-35B-A3B**, not a 132-point improvement. The newer model-harness account qualifies
 the earlier frozen-model framing without establishing unbounded [[Recursive Self-Improvement]].
 
+## October 16 additions
+
+**Architecture reuse changes the training boundary, not the existence of training.**
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] converts selected
+attention layers with transferred projections, alignment, and whole-model adaptation.
+The less-than-0.5% incremental pretraining-token budget inherits a trained donor; the
+reported hybrid throughput, roughly halved KV cache, and runtime iteration tradeoff retain
+their quality and workload conditions. [[Knowledge Distillation]] now includes converted,
+weight-initialized students rather than defining them away.
+
+**Internal representations can remove different kinds of work.**
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] separates NVIDIA's receiver session
+re-prefill avoidance from C2C fusion, which keeps both initial prefills and avoids an
+intermediate text message. [[Model Routing]], [[Agent Delegation]], and [[KV Cache]] retain
+the calibrated/trained mapping requirement, possible quality loss, and the difference
+between a roughly 25x handoff stage and whole-agent latency.
+
+**Speculation needs an exactness contract and a complete cost model.**
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] distinguishes
+distribution preservation from seed-identical output, accepted draft length from committed
+progress, and teacher-matching losses from verifier-aware training. It updates the vault's
+older low-batch-only and concurrency-only framing with cache-bound large-batch cases and
+DSpark's acceptance-aware scheduling, while retaining below-baseline examples. A private
+drafter cache can also spend memory saved by the target architecture.
+
+**Scoring, searching, and certifying are different jobs.**
+[[ByteByteGo - How to Build Models Without Language]] seeds [[Energy-Based Model]] and
+[[Logical Intelligence]], keeping Kona's reported Sudoku demonstration separate from the
+generic tutorial and mismatched cost/runtime comparisons. The existing LeJEPA source
+supplies a noncontrastive anti-collapse comparison, not Kona's recipe.
+[[Lisa Brown Jaloza - Microsoft-Decision-1]] adds a Qwen3.5-9B-derived fixed-option scorer
+and a separate first-party benchmark suite. Its probability interface does not establish
+calibration thresholds or authorization, and its figures do not merge with DecideBench
+or IMDb.
+
+**A check must cover the artifact and the evidence surface it claims to govern.**
+[[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] reports a small
+creator-run bundle comparison, **53% versus 34% of requirements met**, alongside a failed
+run whose final response was corrected but whose written report retained false accuracy.
+[[agent-engineer]] is guidance and hooks, not an external non-bypassable boundary.
+[[Apollo Research - Principles for Embedded Evaluations]] seeds [[Embedded Evaluation]]
+and [[Apollo Research]] with a proposal to test detection adequacy, disclose access gaps,
+and publish claim-specific verdicts. Those verdicts are not severity levels or proof of
+universal safety, and the proposal is not existing law.
+
+**Streaming state is not durable extension state.**
+[[@rabi_guha - How ChatGPT Intelligent UI Works]] seeds [[Generative User Interface]] with
+third-party web observations of generated DIL, compilation, keyed worker state, and
+host-owned rendering. [[LLM-Native Extensible Software]] connects this to Morrell's
+trusted-host proposal without equating state continuity during recompilation with
+cross-session durability. AppBlock and raw-CSS-capable properties also limit catalog-wide
+safety claims.
+
+Ten captures yielded **eight new sources**: the two plugin clippings share one article,
+and the Epoch recapture has the same normalized body as the existing
+[[Jason Li - How Many AI Agents Could We Run]] source. All captures remain unchanged.
+
 ## Related pages
+
+- [[Energy-Based Model]]
+- [[Embedded Evaluation]]
+- [[Generative User Interface]]
+- [[Logical Intelligence]]
+- [[Apollo Research]]
+- [[Microsoft-Decision-1]]
+- [[agent-engineer]]
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
+- [[ByteByteGo - How to Build Models Without Language]]
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
+- [[Lisa Brown Jaloza - Microsoft-Decision-1]]
+- [[Apollo Research - Principles for Embedded Evaluations]]
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
+- [[@rabi_guha - How ChatGPT Intelligent UI Works]]
 
 - [[Netflix]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]

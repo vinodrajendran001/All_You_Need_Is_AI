@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-10-07
+updated: 2026-10-16
 tags:
   - concept
   - llm-evaluation
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-10-10-jaloza-microsoft-decision-1
 status: active
 ---
 
@@ -264,7 +265,24 @@ The explainer's probe-based intervention changes reward-model candidate scoring 
 experiment; it is not a universal deployable truth detector. Agreement between two LLMs remains
 an observation, not an independent verifier.
 
+## A bounded scoring interface does not validate a judge's thresholds
+
+[[Lisa Brown Jaloza - Microsoft-Decision-1]] describes rubric-based scoring of answers and
+proposed actions through fixed options and returned probabilities. This can avoid generating
+a long judge rationale, but the capture's calibration claim has no numerical table or curve
+from which to justify an act/defer/review threshold.
+
+The reported **1.3% average decision flips** over eight perturbation types measures one
+robustness axis, not correctness or calibration. Microsoft's 36-benchmark accuracy suite and
+its separate internal product anecdotes also have different denominators. A practical judge
+still needs task-specific labeled cases, error analysis, and deterministic checks wherever
+the condition is mechanically verifiable. Fast structured scoring is not an authority grant
+or evidence that a proposed action is safe to execute.
+
 ## Related pages
+
+- [[Lisa Brown Jaloza - Microsoft-Decision-1]]
+- [[Microsoft-Decision-1]]
 
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
 - [[Sycophancy]]

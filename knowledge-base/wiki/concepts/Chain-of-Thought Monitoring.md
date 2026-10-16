@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-09-30
+updated: 2026-10-16
 tags:
   - concept
   - safety
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-09-30-apollo-embedded-evaluations
 status: active
 ---
 
@@ -26,9 +27,10 @@ than as a user-facing artifact.
 
 ## Why it matters
 
-Action-level monitoring catches what a model does. A model that has decided to escalate but has not
-yet acted is invisible to it. CoT monitoring is the only current mechanism that can page a human on
-*intent*, which is what makes it the difference between an alert and an incident report.
+Reasoning text can expose statements preceding an observable action, allowing an alert before
+the consequence rather than only a retrospective action report. It is a signal of **stated
+intent**, not privileged access to all internal reasoning. Coverage and detection sensitivity
+must be demonstrated rather than inferred from a readable trace.
 
 ## Current synthesis
 
@@ -174,6 +176,23 @@ secondary explainer with sponsored sections, its subject is application-level ha
 safety monitoring, it reports no rates or controlled comparisons, and it concedes that a verifier is
 itself a model and can be wrong.
 
+## A quiet monitor is not an adequate monitoring evaluation
+
+[[Apollo Research - Principles for Embedded Evaluations]] separates three stages: inspect
+developer evidence, independently seek counterexamples, and assess whether the methods would
+have found them. For a monitoring claim, realistic planted attempts and coverage tests matter
+even if no alerts have fired.
+
+This sharpens the first-party OpenAI retrospective above. A monitor that would have detected
+the recorded activity but was absent from that workload demonstrates potential sensitivity,
+not contemporaneous coverage. Apollo's proposed "Verified" verdict remains qualified;
+"Unrefuted" records missing evidence or detection gaps. The proposal neither independently
+validates the incident account nor assigns it a grade.
+
+Monitoring assurance should state workloads, observation period, missing traces, detection
+tests, and escalation behavior separately. A later fix can support a new scoped claim
+without erasing the failure of the original one. See [[Embedded Evaluation]].
+
 ## Open questions
 
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?
@@ -194,6 +213,8 @@ itself a model and can be wrong.
 
 ## Related pages
 
+- [[Apollo Research - Principles for Embedded Evaluations]]
+- [[Embedded Evaluation]]
 - [[Agent Security and Governance]]
 - [[Reasoning Trace Privacy]]
 - [[Interpretability Evaluation]]

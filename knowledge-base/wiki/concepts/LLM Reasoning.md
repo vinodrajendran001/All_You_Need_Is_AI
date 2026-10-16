@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - reasoning
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-07-20-raschka-reasoning-effort
   - src-2026-09-10-fu-progressive-point-matching
+  - src-2026-10-12-bytebytego-energy-based-reasoning
 status: active
 ---
 
@@ -100,6 +101,22 @@ The same note treats controlling test-time budget in deployed agents as unsolved
 `/effort ultracode` mode as insufficient for scaling it. See [[Test-Time Scaling]] and
 [[Long-Horizon Credit Assignment]].
 
+## A constrained specialist tests a task, not the limits of every language-model system
+
+[[ByteByteGo - How to Build Models Without Language]] reports Logical Intelligence's Kona
+solving **96.2%** of a Sudoku demonstration's puzzles versus **2%** across the LLM panel
+and **6.9%** for its best member. This is a vendor demonstration reported secondhand;
+the generic energy-based explanation is not Kona's disclosed implementation.
+
+The durable addition is a three-part reasoning pipeline: learn a compatibility score,
+search candidate states, and check encoded constraints independently. It does not establish
+the article's broader claims that LLMs cannot revise, extrapolate, or verify. Search, tools,
+and formal checkers can also surround an autoregressive model.
+
+Nor can the GPU-time/API-charge or mean/maximum-runtime comparisons establish general
+price and speed ratios. [[Energy-Based Model]] expands the mechanism map while keeping
+formal validity, accurate problem specification, and practical safety separate.
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -108,6 +125,8 @@ The same note treats controlling test-time budget in deployed agents as unsolved
 
 ## Related pages
 
+- [[ByteByteGo - How to Build Models Without Language]]
+- [[Energy-Based Model]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]
 - [[Test-Time Scaling]]
 - [[Reasoning Compression]]

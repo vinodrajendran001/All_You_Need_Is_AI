@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - index
 source_ids:
@@ -306,6 +306,14 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-09-rabi-guha-intelligent-ui
 status: active
 ---
 
@@ -313,12 +321,19 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
+As of October 16, 2026: **541 typed wiki pages**, including **283 source summaries**
+representing **309 source IDs**, **123 concepts**, and **81 entities**. Duplicate captures
+do not create additional evidence sources.
+
 ## Overviews
 
 - [[AI Knowledge Base Overview]] - Workspace-specific orientation page for this persistent AI knowledge base.
 
 ## Concepts
 
+- [[Energy-Based Model]] - Learned compatibility, inference-time search, and independent constraint checking as separate jobs.
+- [[Embedded Evaluation]] - Ongoing claim-based assurance with independent access, detection-adequacy tests, and qualified public verdicts.
+- [[Generative User Interface]] - Generated interface source, compilation, runtime state, and host rendering; streaming continuity is not durable application state.
 - [[RL Environment Design]] - Building and adapting training tasks, with solvability, shortcut probing, and verifier ownership kept separate.
 - [[Self-Replicating Agents]] - Replication as a top-level objective, the economics of stolen compute, and why constraints an agent can edit are not constraints.
 - [[Agentic Testing]] - Agents that test software rather than agents being tested; pass^k, funnel economics, and the quiet failure modes.
@@ -331,20 +346,20 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Reinforcement Learning]] - Hub page for sequential decision making and RL method families.
 - [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments.
 - [[Continual Learning for Agents]] - Controlled post-deployment learning from one-off, asynchronous agent trajectories.
-- [[Transformer Architecture]] - Decoder and encoder patterns, attention, positional information, and why permitted attention does not guarantee evidence use.
+- [[Transformer Architecture]] - Attention, position, hybrid conversion, and why token-addressable state does not guarantee evidence use.
 - [[Diffusion Models]] - Generative models that learn to reverse noising processes for images and other data.
-- [[LLM Training Pipeline]] - Pretraining, supervised and preference learning, and domain adaptation for assistant or ranking interfaces.
+- [[LLM Training Pipeline]] - Pretraining, supervised and preference learning, and adaptation of architectures and output interfaces.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
 - [[ML Research Interview Preparation]] - End-to-end prep for research-scientist hiring loops: interview-type taxonomy, study methodology, math, and negotiation.
-- [[Model Quantization and Efficiency]] - Quantization, KV cache, LoRA, and sparse activation as core efficiency levers.
-- [[KV Cache]] - Runtime attention-state cache that speeds autoregressive decoding but dominates long-context memory.
+- [[Model Quantization and Efficiency]] - Precision, pruning, distillation, architecture conversion, and complete runtime memory as coupled efficiency choices.
+- [[KV Cache]] - Attention-state reuse, compression, mapped cross-model handoffs, and the separate target/drafter memory budgets.
 - [[Small Language Models]] - Small/on-device/high-volume LLMs designed around deployment and inference constraints.
 - [[On-Device Reasoning]] - Local reasoning under phone/laptop-class memory, latency, and power limits.
 - [[Reasoning Compression]] - Shortening or replacing explicit reasoning traces without losing answer quality.
 - [[LLM Reasoning]] - Reasoning taxonomy, fixed-weight inference-time search, post-training, robustness, and the unresolved creation-versus-elicitation question.
 - [[Test-Time Scaling]] - Spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based.
-- [[Reasoning Effort Control]] - Trained effort selectors and runtime effort policies, with model-specific cache behavior and budget limits.
+- [[Reasoning Effort Control]] - Trained selectors, runtime budgets, and internal iteration knobs; trace length is not the whole compute budget.
 - [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
 - [[Model Context Protocol]] - Tool-integration protocol, with discovery, invocation, authorization, and credential handling as distinct boundaries.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
@@ -361,7 +376,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Mixture of Experts]] - Sparse architectures that activate only part of the network per token.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
-- [[Latent-Space Reasoning]]
+- [[Latent-Space Reasoning]] - Hidden-state reasoning and adjacent cache handoffs; search, communication, and inspectability remain distinct.
 - [[Recursive Architectures]]
 - [[World Models]] - Learned predictive models for planning, control, and embodied intelligence; now includes Fei-Fei Li's Renderer/Simulator/Planner taxonomy and POMDP framing.
 - [[Context Engineering]] - Managing the full LLM context window at inference time: system prompt, history, retrieval, tool results, token budget. Distinct from prompt engineering.
@@ -375,7 +390,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Harness Optimization]] - Automated search over the scaffolding around a frozen model: the five-rung optimization ladder and why the evaluator must stay unwritable.
 - [[Nested Learning]] - Continuous inference-time learning and memory-as-structure: Titans, Continuum Memory System, and the Hope architecture.
 - [[LLM Inference]] - Prompt processing, autoregressive decode, prefill-only scoring, and their different serving bottlenecks.
-- [[Speculative Decoding]] - Lossless decode acceleration: a small draft model guesses, the target verifies in parallel; a conditional low-load latency bet.
+- [[Speculative Decoding]] - Exact-distribution verification, drafter objectives, and workload-dependent serving gains; acceptance is not wall-clock speed.
 - [[Video Transformers]] - Extending attention to video via divided space-time attention (TimeSformer).
 - [[AI Accelerator Architecture]] - Hardware-level and cluster-level design tradeoffs behind AI compute.
 - [[Distributed Training Parallelism]] - Data/tensor/sequence/context/expert/pipeline parallelism and FSDP/ZeRO as partitions of the same GEMM.
@@ -393,19 +408,19 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[Model Factory]] - Reproducible infrastructure for training experiments, data mixtures, evaluation, and release.
 - [[Tabular Foundation Models]] - Table-native few-/zero-shot prediction as a specialist tool for enterprise data.
 - [[Linear Attention and Recurrent Memory]] - Fixed-size recurrent state as a bounded-memory alternative to token-addressable attention.
-- [[Knowledge Distillation]] - Transferring teacher behavior or representations into a smaller student through outputs, features, or synthetic data.
+- [[Knowledge Distillation]] - Teacher supervision through outputs, features, or synthetic data, including architecture conversion and drafter training.
 - [[Semantic Recommendation Systems]] - Meaning-based retrieval and ranking, from dual encoders and semantic IDs to GenRec's prefill-only catalog scores.
 - [[Agent Frameworks]] - Selecting agent runtimes by control flow, durability, language, modality, governance, and abstraction cost.
 - [[Agent Plugin Architecture]] - Packaging skills, MCP servers, assets, and client configuration into portable capability bundles.
 - [[Open Model Ecosystems]] - How weights, licenses, derivatives, runtimes, model size, and machine consumers shape open-model adoption.
-- [[Inference Serving Engines]] - Workload-oriented selection among local, throughput, and prefix-aware LLM runtimes.
+- [[Inference Serving Engines]] - Workload- and state-aware runtimes for batching, prefix reuse, hybrid models, and adaptive drafting.
 - [[Defensive Deception for Open Models]] - Reducing the payoff of safety-removal attacks by making attacked behavior unreliable.
 - [[LLM-Native Extensible Software]] - Durable generated extensions behind trusted capability boundaries and isolated workers.
 - [[Autonomous Driving Systems]] - Sensing, representation, prediction, planning, validation, and training tradeoffs in self-driving stacks.
 - [[Arithmetic Intensity and the Roofline Model]] - FLOP-per-byte accounting that decides whether an inference optimization actually helps.
 - [[Benchmark Optimization]] - How leaderboard-fitted systems learn the reference text instead of the underlying task.
 - [[Interpretability Evaluation]] - Whether an explanation tool beats the trivial baseline of reading the transcript; the counterfactual test.
-- [[Chain-of-Thought Monitoring]] - Reading reasoning traces as telemetry to catch misaligned intent before it becomes action; now a mandated control.
+- [[Chain-of-Thought Monitoring]] - Reasoning traces as stated-intent telemetry; assurance requires coverage, detection sensitivity, and escalation.
 - [[AI-Native Software Development Lifecycle]] - Artifact-triggered development stages with act-time governance and versioned institutional knowledge.
 - [[Agent Workflow Maturity]] - Six-level ladder from single bot to verified team, with invariants, handoffs, and an evidence ladder.
 - [[GPU Kernel Optimization]] - The ladder of transformations from a naive kernel to one that saturates the hardware's real limit.
@@ -444,12 +459,16 @@ Start here. This file is the content-oriented routing layer for the wiki.
 
 ## Entities
 
+- [[Logical Intelligence]] - Kona's developer; vendor Sudoku evidence and a proposed language-interface/constrained-search division.
+- [[Apollo Research]] - Publisher of a claim-based embedded-evaluation proposal, not a completed audit or existing legal requirement.
+- [[Microsoft-Decision-1]] - Qwen3.5-9B-derived fixed-option scorer with first-party benchmark and calibration claims.
+- [[agent-engineer]] - Skills, subagents, and hooks evaluated as a bundle; a corrected response did not always repair the written artifact.
 - [[Netflix]] - Multimodal footage search, internal LLM serving, and GenRec ranking as distinct production systems.
 - [[Replit]] - Coding-agent platform whose harness exposes model-selected specialists, reusable workers, and effort controls.
 - [[E2B]] - Sandbox infrastructure; Embed brings the runtime to one machine without making placement an authorization boundary.
 - [[Neuralink]] - Neural decoding through participant-specific causal representations, with pooled data and universal transfer kept distinct.
 - [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
-- [[Qwen]] - Alibaba's open-weight family; `preserve_thinking`, `reasoning_effort`, and benchmarks run through the Claude Code harness.
+- [[Qwen]] - Alibaba's open-weight family and third-party derivatives spanning effort controls, converted memory architectures, and fixed-option scoring.
 - [[Baseten]] - Inference vendor supplying both the frontier taxonomy and the production agentic-kernel result.
 - [[Philip Kiely]] - Baseten writer whose frontier classifier now organizes the vault's inference material.
 - [[Paolo Perrone]] - The AI Engineer author who brought pass^k and agentic testing's failure modes into the vault.
@@ -513,7 +532,7 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[@docmilanfar]] - Author of a geometric flow-matching explanation whose stronger straight-path and uncertainty claims are disputed in the vault's mathematical checks.
 
 - [[Paul Iusztin]] - ML engineer whose context-window decomposition supplies the vault's clearest subagent-scoping account.
-- [[Sarthak Rastogi]] - Engineer-writer who brought production observability vocabulary to the vault's agent material.
+- [[Sarthak Rastogi]] - Production observability, evidence-first deployment, and a creator-run coding-plugin comparison with explicit failure cases.
 - [[Amine Raji]] - Security engineer arguing that cosine similarity was never a safety property and never claimed to be.
 - [[Preston Fu]] - Researcher whose progressive point matching addresses long-horizon credit assignment in computer-use agents.
 - [[@zafstojano]] - Author of the recursive-synthetic-improvement survey that reframes RSI as an artifact loop.
@@ -854,6 +873,20 @@ Start here. This file is the content-oriented routing layer for the wiki.
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] - GenRec's domain training, context selection, and prefill-only catalog ranking, with bounded A/B and serving-cost evidence.
 - [[Swapnil Talekar - The Decision Model Gold Rush]] - Reported DecideBench comparisons and deployment criteria; task accuracy, calibration, latency, and price units remain separate.
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]] - WikiSkill, model-harness co-evolution, EnvHarness, and Raven; choose the narrowest relevant intervention and retain experiment scope.
+
+### October 16, 2026 batch
+
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] - Layer selection, transferred projections, alignment, and whole-model adaptation; incremental tokens and total cost are different budgets.
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]] - Session re-prefill avoidance versus message fusion that retains both initial prefills; mappings are not lossless universal cache exchange.
+- [[ByteByteGo - How to Build Models Without Language]] - Energy scoring, search, and checking, with Kona's vendor demonstration separated from the generic tutorial.
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] - One plugin experiment across two equivalent captures; checklist gains do not establish 10x productivity or artifact-level enforcement.
+- [[Lisa Brown Jaloza - Microsoft-Decision-1]] - A disclosed Qwen backbone and Microsoft's own fixed-option scoring suite; calibration, accuracy, robustness, and authorization remain separate.
+- [[Apollo Research - Principles for Embedded Evaluations]] - Proposed independent access, predeclared claims, detection adequacy, and public verdicts that do not double as severity grades.
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] - Verification exactness, proposal dependence, cache ownership, training objectives, and measured serving cost.
+- [[@rabi_guha - How ChatGPT Intelligent UI Works]] - Third-party web observations of generated source, compilation, keyed runtime state, and host rendering; not a universal sandbox or mobile specification.
+
+The additional Epoch capture is attached to [[Jason Li - How Many AI Agents Could We Run]];
+its unchanged article body adds no source ID or independent estimate.
 
 ## Syntheses
 

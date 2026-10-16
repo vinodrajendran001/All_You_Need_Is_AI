@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-11
+updated: 2026-10-16
 tags:
   - concept
   - reasoning
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
+  - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-14-dickson-kv-cache-handoffs
 status: active
 ---
 
@@ -49,7 +51,12 @@ The newer efficient-reasoning batch adds two adjacent examples that are not full
 
 These methods reinforce the same general lesson: useful reasoning state does not always need to survive as a long explicit token trace.
 
-[[Akhil Arora et al - Current Advances in LLM Reasoning]] gives this its broader framing. Under the frozen-θ view, a trained model already stores latent CoT paths, self-verification, and backtracking; verifier-free [[Test-Time Scaling|test-time search]] "surfaces a latent path" rather than adding knowledge. Latent-space reasoning takes the same premise further — keep the reasoning *inside* the representation instead of externalizing it as tokens — which is why it is a distinct lever within the wider [[LLM Reasoning]] map (and why faithfulness concerns bite less when there is no token trace to be unfaithful in the first place).
+[[Akhil Arora et al - Current Advances in LLM Reasoning]] gives this its broader framing.
+Under the frozen-θ view, verifier-free [[Test-Time Scaling|test-time search]] can surface
+learned reasoning paths rather than change weights. Keeping intermediate work in representations
+is a distinct lever within [[LLM Reasoning]], but the absence of a token trace removes an
+observable channel; it does not establish faithful or safe computation. The earlier version
+of this page understated that oversight cost by treating the missing trace as less of a concern.
 
 ## Layer reuse is not latent reasoning
 
@@ -94,7 +101,36 @@ A negative result worth keeping: the **full-bandwidth transformer** (August 2026
 shorten MATH500 traces in a 1B base model, "but the effect disappears after instruction tuning" — latent
 computation displacing visible reasoning is not yet a stable phenomenon.
 
+## Energy optimization is not simply another recurrent forward pass
+
+[[ByteByteGo - How to Build Models Without Language]] illustrates optimizing continuous
+candidate or latent states against a learned energy function while weights remain fixed.
+This separates the learned score, the search procedure, and the final constraint check.
+It is a different mechanism from merely reusing Transformer layers.
+
+Low energy or local convergence does not prove a valid decoded answer. The article's generic
+walkthrough is also explicitly not Kona's implementation. [[Energy-Based Model]] keeps the
+reported vendor Sudoku demonstration distinct from a universal reasoning advantage or a claim
+that language models cannot use search and checkers.
+
+## Sharing hidden state is a communication optimization
+
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] describes calibrated session conversion and
+trained C2C fusion. The first avoids receiver session re-prefill; the second retains both
+initial prefills and avoids intermediate text-message generation and reprocessing.
+Neither makes caches universally interchangeable.
+
+These are adjacent to latent reasoning, not proof that every hidden-state transfer performs
+better search. Reported C2C gains depend on the tested models and tasks, and its exploratory
+text-plus-fusion result suggests that readable messages and representations may complement
+one another. Latent communication does not inherently carry an inspectable explanation,
+provenance, or authority contract.
+
 ## Related pages
+
+- [[ByteByteGo - How to Build Models Without Language]]
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
+- [[Energy-Based Model]]
 
 - [[Recursive Architectures]]
 - [[Agentic Loop]]

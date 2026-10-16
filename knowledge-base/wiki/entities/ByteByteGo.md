@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-10-09
+updated: 2026-10-16
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -34,6 +34,7 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-12-bytebytego-energy-based-reasoning
 status: active
 ---
 
@@ -183,7 +184,24 @@ reporting. Its small percentage improvements, one-third context/cost result, and
 significance retain their workload limits. The apparently unrelated Uber URL slug was checked
 against the live Netflix article's title and canonical metadata rather than silently replaced.
 
+## Energy-based reasoning separates interview claims from a teaching model
+
+[[ByteByteGo - How to Build Models Without Language]] interviews [[Logical Intelligence]]
+founder Eve Bodnia and uses Kona's Sudoku demonstration to motivate [[Energy-Based Model]].
+The generic technical walkthrough explicitly does not disclose Kona's implementation.
+
+The useful contribution is the separation of learned energy, inference-time search, and
+independent constraint checking. The vendor's puzzle result is not general reasoning evidence;
+GPU-time versus API-charge and mean-versus-maximum runtime figures do not license general
+multipliers. Broad claims that language models cannot revise or verify are also narrower
+than the tool/search systems already represented in this vault. The unrelated CI sponsorship
+is not part of the source's evidence here.
+
 ## Related pages
+
+- [[ByteByteGo - How to Build Models Without Language]]
+- [[Logical Intelligence]]
+- [[Energy-Based Model]]
 
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[Netflix]]

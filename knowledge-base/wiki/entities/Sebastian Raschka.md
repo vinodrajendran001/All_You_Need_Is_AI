@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-10-07
+updated: 2026-10-16
 entity_kind: person
 tags:
   - entity
@@ -36,10 +36,11 @@ Raschka is the author of [[Sebastian Raschka - Using Local Coding Agents]], the 
 ## Reasoning effort as a training artifact
 
 [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]] extends his role in this vault from
-practical local-model guidance into post-training mechanics. The post surveys how six models
-(DeepSeek V4, Nemotron 3 Ultra, Kimi K2.5, GLM-5, Qwen3, Inkling) install low/medium/high effort
-controls, and establishes for this vault that **`<think>` tags are cosmetic** — delimiters learned
-from a format reward, not a reasoning mechanism. It anchors [[Reasoning Effort Control]].
+practical local-model guidance into post-training mechanics. It surveys six models' approaches
+(DeepSeek V4, Nemotron 3 Ultra, Kimi K2.5, GLM-5, Qwen3, Inkling) to learned modes, external
+trace budgets, and token-efficient policies, not six identical low/medium/high selectors.
+Its `<think>` distinction is between format delimiters and reasoning ability, not proof that
+traces are irrelevant to computation. It anchors [[Reasoning Effort Control]].
 
 Characteristically, he marks the boundary of his own evidence: GPT-5.6's internals are unknown, and
 his proposed diagram is labelled "a possible implementation, not a confirmed description." That
@@ -51,8 +52,8 @@ labelling discipline is why his posts are usable as reference material in this v
 implementation-first explainers, and useful to this vault for that reason: it is a **short corrective written
 against press coverage.** The claim under repair was that OpenAI's Astra uses a "recurrent depth" technique that
 obscures the model's chain of thought. His reply separates two things the coverage had merged — that looping is
-*"just reusing layers,"* and that reducing legible reasoning is a consequence of capacity rather than of
-recurrence, since *"we would get the same effect if we were scaling up the model size."*
+*"just reusing layers,"* and his hypothesis that greater per-token capacity could reduce explicit
+reasoning without recurrence, since *"we would get the same effect if we were scaling up the model size."*
 
 The characteristic discipline is intact. He states what he is reasoning from (published models described
 similarly, not Astra itself), relays Nanbeige's **~75% token-efficiency retention at two passes** as the

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-16
 tags: [concept, decision-models, structured-output, inference]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-10-05-rai-jev-decision-models
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-10-jaloza-microsoft-decision-1
 status: active
 ---
 
@@ -172,6 +173,25 @@ Netflix uses Jev or its proprietary recipe. Softmax makes a normalized ranking d
 it does not make scores calibrated probabilities of satisfaction. The output contract prevents
 invented catalog IDs, not wrong choices among valid items.
 
+## Microsoft adds a disclosed backbone, not a common benchmark
+
+[[Lisa Brown Jaloza - Microsoft-Decision-1]] describes single-pass fixed-option scoring
+adapted from **Qwen3.5-9B**. That separates this release from vendors whose architecture is
+undisclosed, without revealing its complete scoring head or training recipe. Microsoft AI
+and OpenAI backbones are planned replacements, not the announced model's base.
+
+The developer reports leading accuracy on **36 benchmarks** and nearly **150,000 questions**,
+with the suite blind to training. This is not the vault's DecideBench or IMDb evaluation.
+The capture asserts calibration but supplies no numerical curve, and its editor's note
+adds Jev comparisons without captured margins.
+
+Across eight perturbation types, the reported average flip rate is **1.3%**; zero flips
+in particular paraphrase/order categories do not prove general invariance. Listed
+**$0.042 per million input tokens**, output tokens free, is also distinct from price per
+task. [[Microsoft-Decision-1]] extends the category while retaining the existing boundaries:
+valid options are not correct decisions, probabilities are not validated thresholds,
+and classification is not authorization.
+
 ## Open questions
 
 - Does the cached-action formulation generalize to candidate sets that change per state, or does it
@@ -185,6 +205,8 @@ invented catalog IDs, not wrong choices among valid items.
 
 ## Related pages
 
+- [[Lisa Brown Jaloza - Microsoft-Decision-1]]
+- [[Microsoft-Decision-1]]
 - [[Swapnil Talekar - The Decision Model Gold Rush]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[Semantic Recommendation Systems]]

@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-04
+updated: 2026-10-16
 tags: [concept, software-architecture, ai-agents, extensibility]
 source_ids:
   - src-2026-08-20-jeremy-morrell-extensible-software
   - src-2026-08-17-google-cloud-agent-plugins
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-10-09-rabi-guha-intelligent-ui
 status: active
 ---
 
@@ -54,6 +55,22 @@ The state-model half of the same argument — why extension state must live in o
 [[Harness State Authority]], along with the audit finding that **only 2 of 17 stateful reference extensions were
 correct.**
 
+## Streamed interface code is a narrower case than a durable extension
+
+[[@rabi_guha - How ChatGPT Intelligent UI Works]] adds an observed instance of the trusted-host
+split: generated DIL compiles to JavaScript and data, an isolated worker emits reconciliation
+operations, and the host renders known components. Stable keys reportedly preserve interaction
+state across recompilations while failed revisions can leave the last working program active.
+
+That is evidence for [[Generative User Interface]] continuity, not the cross-session durability,
+versioning, storage, and migration contract in Morrell's extension proposal. It is also
+third-party web reverse engineering, not OpenAI's specification or a sandbox audit.
+
+The separate AppBlock HTML/JavaScript iframe path and raw-CSS-capable properties limit any
+claim that a native catalog constrains every output. Generated-artifact design therefore
+needs explicit authority and diagnostics on each path, including what users see when the
+requested revision fails rather than silently mistaking retained old state for success.
+
 ## Open questions
 
 - How can generated extensions be upgraded without breaking user state?
@@ -62,6 +79,8 @@ correct.**
 
 ## Related pages
 
+- [[@rabi_guha - How ChatGPT Intelligent UI Works]]
+- [[Generative User Interface]]
 - [[Agent Plugin Architecture]]
 - [[Agent Security and Governance]]
 - [[Coding Agent Harness]]

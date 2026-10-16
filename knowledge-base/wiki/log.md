@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - log
 source_ids:
@@ -306,6 +306,14 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-13-zancato-model-priming
+  - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-09-rabi-guha-intelligent-ui
 status: active
 ---
 
@@ -1807,3 +1815,92 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   cooldown through **2026-11-20**. All eight evidence/selection pages were tracked; no local-only
   query was used. This workflow adds no source ID and edits no raw capture, source page,
   concept, or older post. **Nothing was published.**
+
+## [2026-10-16] ingest | Architecture Conversion, Cache Handoffs, and Evaluation Boundaries
+
+- Processed **ten previously uncited top-level captures as eight new sources**. Added
+  [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]],
+  [[Ben Dickson - Cross-Model KV Cache Handoffs]],
+  [[ByteByteGo - How to Build Models Without Language]],
+  [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]],
+  [[Lisa Brown Jaloza - Microsoft-Decision-1]],
+  [[Apollo Research - Principles for Embedded Evaluations]],
+  [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]], and
+  [[@rabi_guha - How ChatGPT Intelligent UI Works]].
+- Consolidated the two agent-engineer clippings under one source: their article bodies match
+  after newline normalization. Attached the body-identical Epoch recapture to
+  [[Jason Li - How Many AI Agents Could We Run]] without adding an estimate or source ID.
+  All original capture filenames and bytes were retained.
+- Recovered Ben Dickson's byline, canonical Alpha Signal URL, and **October 14 UTC**
+  publication date from public metadata. Recovered Apollo's institutional attribution and
+  **September 30** publication date while preserving the clipping's blank metadata.
+  Did not follow subscriber redirects or promote extra web-only figures into captured evidence.
+- Created three concepts, [[Energy-Based Model]], [[Embedded Evaluation]], and
+  [[Generative User Interface]], and four entities, [[Logical Intelligence]],
+  [[Apollo Research]], [[Microsoft-Decision-1]], and [[agent-engineer]].
+  Connected the new concepts to the older LeJEPA, OpenAI incident, and Jeremy Morrell
+  sources, with reciprocal affected-page links.
+- Integrated all declared consumers: **29 existing concepts and six existing entities**.
+  Reconciled directly coupled claims about speculative-decoding exactness, bonus-token
+  accounting, high-batch exceptions, drafter state, acceptance-aware scheduling, distillation
+  initialization, and internal effort control. Retained earlier evidence contexts rather
+  than replacing them with unconditional new guarantees.
+- Preserved the major evidence boundaries: incremental tokens versus inherited training cost;
+  mapped handoff versus C2C's retained prefills; vendor Sudoku evidence versus a generic
+  energy tutorial; plugin checklist gains versus enforcement; Microsoft's distinct suite
+  versus other decision-model benchmarks; proposed assurance grades versus severity/law;
+  and web UI observations versus an official specification or sandbox audit.
+- Updated the index and overview at **309 owned source IDs**, **283 source summaries**,
+  and **541 typed wiki pages**. The batch adds **15 wiki files** and updates **42 existing
+  wiki files**. All **380 raw files**, including **311 top-level source captures**, remain
+  unchanged; posts/archive, queries, earlier lint reports, and the historical log body
+  were preserved. No source installation commands were executed.
+
+## [2026-10-16] lint | Full wiki lint pass
+
+- Filed [[2026-10-16 Lint Pass]], the fortieth comprehensive structural pass. The final
+  inventory is **542 typed/reachable wiki pages**, **283 source summaries**, **123 concepts**,
+  **81 entities**, and **40 lint reports**, at exact **309-ID** index/log/overview parity.
+- Corrected illustrative speculation timings that had become measurements; separated greedy
+  matching from stochastic exact sampling, committed-token progress from latency, and
+  attention-core arithmetic estimates from end-to-end serving results. Kept the Ada negative
+  experiment and unresolved DeepSeek measurement boundaries in their original scope.
+- Repaired Qwen's no-trace-mode interpretation and Toggle's result attribution:
+  **K2 Thinking**, **25-30% fewer generated tokens with little change in benchmark performance**.
+  Removed the inference that training-induced savings identify unnecessary original tokens
+  and distinguished Toggle's training phases from K2.5's thinking/instant switch.
+- Qualified monitoring claims about shorter traces, causal explanations, retrospective
+  coverage, and CHIVE's no-uplift result. Added reciprocal links and existing source IDs
+  for the monitoring page's Raschka-effort and CHIVE evidence.
+- Corrected Qwen's model-family classification and stale index/overview descriptions.
+  Reviewed high-risk boundaries in the eight latest source chains without promoting their
+  vendor claims, proposals, or third-party observations into independent guarantees.
+- Updated **16 existing wiki files** and added the report. The structural audit reports
+  no actionable findings. All **380 raw files**, posts/archive, query files, previous
+  lint reports, and other out-of-scope knowledge-base files remain unchanged; the prior
+  log body is preserved. Seventeen single-source concepts and six documented source-URL
+  gaps remain research follow-ups, not invented fixes.
+
+## [2026-10-16] post | The Correction Did Not Reach the Report
+
+- Drafted [[2026-10-16 The Correction Did Not Reach the Report]] for LinkedIn and X and marked
+  it `ready`; nothing was published. The LinkedIn body is 338 words, the standalone is
+  271 weighted characters, and all seven connected thread posts are within 280.
+- Covered **2026-10-09 through 2026-10-16**, inclusive, anchored to the prior post's
+  `covers_through`. Four ingest entries supply 11 new source summaries. The Git cross-check
+  found 11 commits touching 97 non-query wiki paths; older integration and lint edits are
+  context, not additional ingests.
+- Selected [[Agentic Testing]] after scoring five angles. The one public example is
+  [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]'s creator-reported run
+  whose final reply acknowledged a simulation while its saved report retained an unsupported
+  accuracy claim. The practical recommendation is to reconcile delivered reports with actual
+  execution evidence, not infer completion from the final explanation.
+- Recorded public-copy reader, factual, compression, and comprehension checks. All seven
+  input pages are tracked; candidate-only sources do not become extra public examples, and
+  no local-only query content or new source ownership enters the post.
+- Updated [[Post Archive]] with the new topic and spine cooldown through **2026-11-27**,
+  removed the expired Reward Design cooldown, retained two runner-up ideas, and withdrew
+  the stale speculative-decoding cap reading in its unposted-candidate list.
+- Updated current inventories to **543 typed wiki pages**, including **eight social posts**.
+  Source ownership remains **283 summaries / 309 IDs**. Raw captures, earlier post bodies,
+  source/concept/entity pages, earlier lint reports, and the prior log body remain preserved.

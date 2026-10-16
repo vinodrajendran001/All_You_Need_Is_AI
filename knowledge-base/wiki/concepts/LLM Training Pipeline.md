@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - llm
@@ -41,6 +41,7 @@ source_ids:
   - src-2026-09-23-bytebytego-model-customization
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-13-zancato-model-priming
 status: active
 ---
 
@@ -276,6 +277,20 @@ catalog items after one prompt-processing pass without decoding recommendation t
 objective in training therefore does not require a language-output interface at inference.
 See [[Semantic Recommendation Systems]] and [[LLM Inference]].
 
+## Architecture search can begin with a pretrained donor
+
+[[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] adds a conversion path
+alongside training a new architecture from scratch: select layers through sliding-window
+sensitivity, transfer projections and align replacements, then run whole-model next-token
+adaptation. Layerwise matching does not remove the need for the converted blocks to coadapt.
+
+The reported **less than 0.5% of the donor's pretraining tokens** is an incremental data
+budget, not the same measure as the headline's **over 99% pretraining-cost saving**. The donor
+checkpoint embeds earlier training expenditure. Comparing pipelines therefore requires both
+the additional adaptation cost and the inherited asset, plus regressions outside the reported
+benchmarks. Priming extends [[Knowledge Distillation]] without making architectural changes
+training-free.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -285,6 +300,7 @@ See [[Semantic Recommendation Systems]] and [[LLM Inference]].
 
 ## Related pages
 
+- [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[Semantic Recommendation Systems]]
 - [[Netflix]]

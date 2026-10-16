@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-16
 source_id: src-2026-08-28-anthropic-chive-counterfactual-explanations
 source_title: "Would This Change Your Answer? Evaluating Explanations of LLM Behavior in the Wild with Counterfactual Experiments"
 source_author: "Adam Karvonen, Euan Ong, Subhash Kantamneni, Samuel Marks (Anthropic Fellows)"
@@ -82,6 +82,7 @@ where such statements usually fail.
 
 - [[Interpretability Evaluation]]
 - [[Benchmark Optimization]]
+- [[Chain-of-Thought Monitoring]]
 - [[Anthropic]]
 
 ## Citations
@@ -91,6 +92,7 @@ where such statements usually fail.
 
 ## Related pages
 
+- [[Chain-of-Thought Monitoring]]
 - [[LLM Reasoning]]
 - [[LLM-as-a-Judge]]
 - [[Multi-Turn Evaluation]]

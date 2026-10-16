@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - llm
@@ -31,6 +31,8 @@ source_ids:
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-14-dickson-kv-cache-handoffs
 status: active
 ---
 
@@ -91,7 +93,11 @@ Production engines must serve many concurrent requests:
 - **Streaming, not just batching, is now a serving axis.** [[ByteByteGo - Inside Thinking Machines Interaction Models]] shows real-time [[Real-Time Voice AI|interaction models]] served as 200 ms streaming sessions (a feature contributed to SGLang) with a fast interaction model paired with a slower background reasoning model. This adds a latency-anchored, continuous-input regime to the prefill/decode picture, where the scheduler must sustain sub-second responsiveness while a second model does deep work asynchronously.
 - **Inference compute is also a reasoning scaling axis.** [[Test-Time Scaling]] (from [[Akhil Arora et al - Current Advances in LLM Reasoning]]) spends longer traces, more samples, search, and verification to seek better answers from a fixed model. That adds generation and state-management cost, motivating [[Reasoning Compression|budget control]] and work on parallel/speculative decoding and batched-inference determinism.
 - **Local hardware adds a topology axis.** [[Onur Sirin - How Local LLMs Run]] distinguishes **flat/uniform memory** (Apple unified memory: one pool, one speed), **tiny-but-fast VRAM** (RTX 5090: very high GDDR bandwidth but little capacity), and **tiered coherent memory** (GB300: HBM fast tier plus LPDDR slow tier). This turns "does it fit?" into "does the active working set sit in the fast pool?"
-- **Speculative decoding is the canonical decode-latency fix.** [[Speculative Decoding]] ([[Mayank Pratap Singh - Speculative Decoding in vLLM]]) exploits exactly the memory-bound property above: because verifying many tokens in parallel costs about the same weight-load as producing one, a small draft model can propose tokens the target verifies in a single pass — losslessly (same output distribution). It is a **low-load latency optimization** that serving stacks toggle off under saturation, and it is complementary to weight and KV compression (it cuts *weight-loads per token* rather than *bytes*).
+- **Speculative decoding amortizes target work.** [[Speculative Decoding]] initially enters
+  through [[Mayank Pratap Singh - Speculative Decoding in vLLM]] as a low-load latency technique.
+  Exact verification preserves the target distribution, not necessarily a seed-identical string.
+  The newer Samarin survey adds cache-bound large-batch exceptions and below-baseline results:
+  draft cost, verification, state, and scheduling determine whether fewer target passes help.
 - **The decode headroom is finite and shared.** [[Arithmetic Intensity and the Roofline Model]] is now the page that quantifies the framing above. Every optimization here — batching, speculation, multi-token prediction, cache-sharing attention — is a move along the same roofline, spending the compute a memory-bound decode leaves idle. [[Changyi Yang - Why MLA and MTP Fight Each Other]] shows the collision: DeepSeek-style MLA already sits at ~256 FLOP/B at a single query, above the H200 balance point of ~206, so stacking speculation on top pushes the workload past the knee where extra arithmetic costs latency instead of being free. [[Jacob Peake - AI Chip Architectures]] adds the hardware-side corollary that continuous batching does not escape this either: each user still reads their own cache, so long-context decode shifts from **weight-bandwidth-bound to KV-bandwidth-bound**, which is a different bottleneck than the one batching was introduced to fix.
 - **The two phases can use separate workers.** [[Prefill-Decode Disaggregation]] ([[Wafer - AI Performance Engineering Resources]]) allows phase-specific hardware and scheduling when their requirements differ. It trades reduced interference for KV transfer and coordination cost; co-location is not inherently inferior. [[Serving Benchmarks and Goodput]] measures the trade by completions under a latency SLO rather than raw tokens per second.
 
@@ -207,6 +213,27 @@ measure this ranker's useful output; ranking quality, completed requests, and en
 are the relevant quantities. Nor does a normalized score distribution establish calibration.
 See [[Semantic Recommendation Systems]] and [[Serving Benchmarks and Goodput]].
 
+## A handoff has more than one kind of prefill cost
+
+[[Ben Dickson - Cross-Model KV Cache Handoffs]] distinguishes rebuilding an accumulated
+session from processing a specialist's message. NVIDIA's calibrated cache conversion targets
+the receiver's session re-prefill, with possible quality loss. C2C retains both initial
+prefills and avoids generating and then processing intermediate text through a trained fuser.
+Internal-cache access and pair-specific mapping are prerequisites for both.
+
+Neither a roughly **25x session-transfer stage** nor roughly **2.5x average C2C latency**
+is a universal whole-agent multiplier. Routing and inference accounting should identify the
+removed stage before adding sender prefill, final generation, queueing, and transfer overhead.
+
+## Fewer target passes do not specify user-visible latency
+
+[[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]] gives two drafters
+the same cited **tau=4.2** on Qwen3-4B/GSM8K but different **2.1x and 3.3x** speedups.
+Verification width, serial draft work, and cache ownership change the execution cost.
+The technique does not directly accelerate prompt processing, yet draft initialization and
+serving contention can change TTFT. Measure end-to-end latency and goodput rather than
+inferring them from acceptance or the absence of a prefill algorithm change.
+
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
@@ -216,6 +243,8 @@ See [[Semantic Recommendation Systems]] and [[Serving Benchmarks and Goodput]].
 
 ## Related pages
 
+- [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
+- [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[Semantic Recommendation Systems]]
 - [[Netflix]]

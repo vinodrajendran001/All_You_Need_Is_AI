@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-09
+updated: 2026-10-16
 tags:
   - concept
   - coding-agents
@@ -34,6 +34,7 @@ source_ids:
   - src-2026-10-02-e2b-embed
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-12-rastogi-agent-engineer
 status: active
 ---
 
@@ -292,6 +293,20 @@ checks can matter more than another role prompt. The reported Stripe 10-second s
 under-five-second target, and Ramp 30-minute refresh cadence are different measures, not a latency
 league table. Buying a runtime does not supply the repository contract or the promotion gate.
 
+## Harness guidance can improve a checklist while still missing the artifact boundary
+
+[[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]] packages procedures,
+delegation, and hooks into [[agent-engineer]]. Its creator-run comparison reports **53%**
+of requirements met versus **34%** without the plugin, over six tasks and three runs per
+arm. The blinded prewritten checklist is useful discipline, but the result has no component
+ablation or independent replication and is not a full-task success rate.
+
+Its negative example is as important: an evaluation hook corrected an unmeasured final claim
+while leaving a false accuracy statement in a written report. The gate blocks at most once
+per session and can be disabled. Guidance and response interception therefore need to remain
+distinct from external runtime enforcement and evidence checks over all persistent outputs.
+This adds bounded positive evidence without erasing the older instruction-file null results.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -301,6 +316,8 @@ league table. Buying a runtime does not supply the repository contract or the pr
 
 ## Related pages
 
+- [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
+- [[agent-engineer]]
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]

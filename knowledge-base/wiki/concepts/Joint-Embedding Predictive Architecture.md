@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-16
 tags:
   - concept
   - self-supervised-learning
@@ -9,6 +9,7 @@ tags:
   - theory
 source_ids:
   - src-2026-09-07-rai-lejepa
+  - src-2026-10-12-bytebytego-energy-based-reasoning
 status: active
 ---
 
@@ -103,6 +104,20 @@ make it a distribution-matching objective, derive the target from what the downs
 pick the divergence by choosing a hypothesis test. As Rai puts it, the heuristics **"were never wrong,
 they were unnamed."**
 
+## Anti-collapse is the common problem, not a requirement for negative pairs
+
+[[ByteByteGo - How to Build Models Without Language]] introduces energy-based reasoning through
+a contrastive training example that separates correct and incorrect candidates. That is an
+illustrative recipe, not a universal definition of how useful predictive representations
+must be learned.
+
+The LeJEPA account already held here pairs predictive matching with noncontrastive anti-collapse
+regularization. The useful connection is between learning compatibility and preventing
+degenerate representations, not an inference that JEPA and Kona share a training procedure.
+ByteByteGo explicitly does not disclose Kona's implementation. Likewise, useful embeddings
+or low learned energy do not by themselves certify a downstream answer; search and verification
+have separate contracts. See [[Energy-Based Model]].
+
 ## Open questions
 
 - **The decisive experiment has not been run**: there is no matched-compute comparison against DINOv2 or
@@ -124,6 +139,8 @@ they were unnamed."**
 
 ## Related pages
 
+- [[ByteByteGo - How to Build Models Without Language]]
+- [[Energy-Based Model]]
 - [[World Models]]
 - [[Neural Network Fundamentals]]
 - [[Embedding Model Selection]]

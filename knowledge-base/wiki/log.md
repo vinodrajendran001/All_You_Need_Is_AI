@@ -1990,3 +1990,38 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   - Posts and the post archive, queries, earlier lint reports, and the historical log body
     were preserved.
   - No source commands were executed.
+
+## [2026-10-19] lint | Full wiki lint pass
+
+- Filed [[2026-10-19 Lint Pass]], the forty-first comprehensive structural pass. The final inventory
+  is **557 typed wiki pages**: **291 source summaries**, **126 concepts**, **82 entities**, and
+  **41 lint reports**, at exact **317-ID** index/log/overview parity.
+- Restored the log's frontmatter source-ID ledger, which the October 19 ingest had left at
+  **309 IDs**.
+- Matched all **386** numeric tokens added by that ingest against the cited captures. Reworded an
+  [[Agent Observability]] sentence that made a runtime study's 70% figure read as clinical evidence.
+- Corrected two Goodfire-chain qualifiers on [[Transformer Architecture]] and
+  [[Mixture of Experts]]: SwiGLU's double-negative case is a sign-flipped echo, not a second
+  unrelated job, and the Poe-ablation result now includes its 85% direct-effect control.
+- Expanded seven thin summaries from their full captures, keeping their source IDs, raw pointers,
+  and affected lists. The expansions exposed nine unsupported or overstated consumer claims, now
+  repaired:
+  - **[[Model Factory]]:** human promotion decisions;
+  - **[[Agent Skill]], [[Agent Memory]], and [[Recursive Self-Improvement]]:** the survey's
+    skill substrates, memory boundary, update signals, and a "prescription" that was a property
+    of its formalism;
+  - **[[SIMD]]:** compiler claims and the 5x context;
+  - **[[Semantic Recommendation Systems]]:** design drivers;
+  - **[[World Models]]:** engine-conditioning limits;
+  - **[[Agentic Loop]] and [[KV Cache]]:** prefix-breaking examples and API-layer CPU figures.
+- Fixed frontmatter citations without visible use:
+  - added an attributed Granite section to [[RL Environment Design]];
+  - attributed three borrowed points on the resilience and observability pages;
+  - listed **30** citing pages in the affected sections of **21** older summaries.
+- Added missing `concept` tags to four pages and refreshed two stale index descriptions.
+- Updated **49 existing wiki files** and added the report. Templates, posts/archive, query files,
+  earlier lint reports, and **387 of 388** raw files remain byte-identical to the lint baseline.
+  An outside process reverted the LLM-as-Judge capture from its CRLF working copy to its committed
+  LF form during the pass; its content is unchanged. The prior log body is preserved.
+- **114** frontmatter citations without body links, **13** single-source concepts, and **seven**
+  documented source-URL gaps remain follow-ups, not invented fixes.

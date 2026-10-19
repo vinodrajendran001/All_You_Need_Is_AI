@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-08-28-philipp-schmid-recursive-self-improvement
 source_title: "Recursive Self-Improvement"
 source_author: "Philipp Schmid"
@@ -114,6 +114,7 @@ later agent at 84. Greedy selection would have pruned it. This is the same diver
 - [[Benchmark Optimization]]
 - [[Agent Plugin Architecture]]
 - [[Philipp Schmid]]
+- [[Model Factory]]
 
 ## Citations
 
@@ -128,3 +129,4 @@ later agent at 84. Greedy selection would have pruned it. This is the same diver
 - [[Reward Design for RL]]
 - [[Alyona Vert - AI 101 - What is Recursive Self-Improvement]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
+- [[Model Factory]]

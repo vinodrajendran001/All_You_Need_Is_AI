@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-09
+updated: 2026-10-19
 source_id: src-2026-09-02-baseten-efficient-frontier-inference
 source_title: "The efficient frontier of LLM inference"
 source_author: Philip Kiely
@@ -103,6 +103,8 @@ then published single-configuration benchmark numbers describe a point someone c
 - [[Prefill-Decode Disaggregation]]
 - [[Baseten]]
 - [[Philip Kiely]]
+- [[Benchmark Optimization]]
+- [[Model Quantization and Efficiency]]
 
 ## Citations
 
@@ -120,3 +122,4 @@ then published single-configuration benchmark numbers describe a point someone c
 - [[Inference Serving Engines]]
 - [[Reasoning Effort Control]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
+- [[Benchmark Optimization]]

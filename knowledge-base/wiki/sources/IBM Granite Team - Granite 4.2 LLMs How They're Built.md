@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-10-19
 source_id: src-2026-08-25-ibm-granite-4-2-how-they-are-built
 source_title: "Granite 4.2 LLMs: How They're Built"
 source_author: IBM Granite Team
@@ -235,6 +235,7 @@ optimizer, adding a stage costs almost nothing.
 - [[Staged Reinforcement Learning Curriculum]]
 - [[Test-Time Scaling]]
 - [[Tool Use and Function Calling]]
+- [[RL Environment Design]]
 
 ## Raw capture
 
@@ -250,3 +251,4 @@ optimizer, adding a stage costs almost nothing.
 - [[RadixArk - Miles v0.1 Production-Level Post-Training]]
 - [[Open Model Ecosystems]]
 - [[AI Knowledge Base Overview]]
+- [[RL Environment Design]]

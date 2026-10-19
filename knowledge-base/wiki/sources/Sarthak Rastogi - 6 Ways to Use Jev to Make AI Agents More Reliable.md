@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-30
-updated: 2026-09-30
+updated: 2026-10-19
 source_id: src-2026-09-25-rastogi-6-ways-jev-agents-reliable
 source_title: "6 Ways to Use Jev to Make AI Agents More Reliable"
 source_author: Sarthak Rastogi
@@ -82,6 +82,7 @@ himself advises against the pattern for low-volume, high-consequence decisions.
 - [[Agent Security and Governance]]
 - [[Agent Delegation]]
 - [[TypeSafe AI]]
+- [[Sarthak Rastogi]]
 
 ## Related pages
 
@@ -90,3 +91,4 @@ himself advises against the pattern for low-volume, high-consequence decisions.
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
 - [[Agent Observability]]
+- [[Sarthak Rastogi]]

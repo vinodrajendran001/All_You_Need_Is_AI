@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-09
+updated: 2026-10-19
 source_id: src-2026-08-31-bytebytego-chatbot-request-lifecycle
 source_title: "What Happens Inside an AI Chatbot Between Enter and the First Word"
 source_author: ByteByteGo
@@ -100,6 +100,11 @@ times, which makes instruction-block size an agent-architecture decision rather 
 - [[Context Engineering]]
 - [[Inference Serving Engines]]
 - [[ByteByteGo]]
+- [[Agentic Loop]]
+- [[Agentic Testing]]
+- [[Inference Efficiency Frontier]]
+- [[Multi-Turn Evaluation]]
+- [[Prefill-Decode Disaggregation]]
 
 ## Citations
 
@@ -115,3 +120,4 @@ times, which makes instruction-block size an agent-architecture decision rather 
 - [[Agentic Loop]]
 - [[Serving Benchmarks and Goodput]]
 - [[Multi-Turn Evaluation]]
+- [[Agentic Testing]]

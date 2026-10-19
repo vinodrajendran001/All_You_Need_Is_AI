@@ -122,7 +122,8 @@ fires only when its expert is selected. If an expert packed ten thousand unrelat
 router, described as one small linear layer, would have to recognize all of them to send the
 right tokens there. The same audits report dense and MoE models as roughly similar in neuron
 cleanliness. One Qwen3.6-35B-A3B example shows a memorized continuation running through
-contextual neurons: zeroing a Poe neuron drops "dreary" from **87% to 50%**.
+contextual neurons: removing a Poe neuron drops the first token of "dreary" from **87% to 50%**,
+while removing only its direct contribution at the output leaves **85%**.
 
 These are first-party, agent-assisted judgments with no published specialization metric in the
 capture. Behavior over training was not examined, so "recursive generalization one scale up" is a

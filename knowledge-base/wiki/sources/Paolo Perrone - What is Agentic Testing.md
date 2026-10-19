@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-09-02-paolo-perrone-agentic-testing
 source_title: "What is Agentic Testing"
 source_author: Paolo Perrone
@@ -96,6 +96,8 @@ and type system, not only of the model.
 - [[Multi-Turn Evaluation]]
 - [[AI-Native Software Development Lifecycle]]
 - [[Paolo Perrone]]
+- [[Agent Security and Governance]]
+- [[Self-Replicating Agents]]
 
 ## Citations
 
@@ -111,3 +113,4 @@ and type system, not only of the model.
 - [[Agentic Loop]]
 - [[Context Engineering]]
 - [[derelict5432 - Adaptive Agentic Worms Are Here]]
+- [[Self-Replicating Agents]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-26
+updated: 2026-10-19
 source_id: src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
 source_title: RL Environments Are All You Need
 source_author: Mahesh Sathiamoorthy
@@ -52,6 +52,7 @@ The argument unifies [[Agentic Reinforcement Learning]], [[Multi-Turn Evaluation
 - [[Continual Learning for Agents]]
 - [[Multi-Turn Evaluation]]
 - [[Recursive Self-Improvement]]
+- [[RL Environment Design]]
 
 ## Citations
 
@@ -69,4 +70,5 @@ The argument unifies [[Agentic Reinforcement Learning]], [[Multi-Turn Evaluation
 - [[Loop Engineering]]
 - [[Automated AI Research]]
 - [[Coding Agent Harness]]
+- [[RL Environment Design]]
 

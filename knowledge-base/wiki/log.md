@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - log
 source_ids:
@@ -314,6 +314,14 @@ source_ids:
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-09-rabi-guha-intelligent-ui
+  - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 

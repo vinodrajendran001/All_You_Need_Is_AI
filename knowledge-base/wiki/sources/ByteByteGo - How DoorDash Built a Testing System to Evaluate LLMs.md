@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-02
-updated: 2026-09-30
+updated: 2026-10-19
 source_id: src-2026-06-02-bytebytego-doordash-testing-system
 source_title: How DoorDash Built a Testing System to Evaluate LLMs
 source_author: ByteByteGo
@@ -51,6 +51,7 @@ This source deepens the vault's evaluation branch by moving from search relevanc
 - [[LLM-as-a-Judge]]
 - [[ML Systems at Scale]]
 - [[Multi-Turn Evaluation]]
+- [[Agentic Testing]]
 
 ## Citations
 
@@ -69,3 +70,4 @@ This source deepens the vault's evaluation branch by moving from search relevanc
 - [[DoorDash]]
 - [[Braintrust - How to evaluate multi-turn conversations]]
 - [[AI Knowledge Base Overview]]
+- [[Agentic Testing]]

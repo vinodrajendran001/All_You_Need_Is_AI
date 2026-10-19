@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-07-16-lilian-weng-harness-engineering
 source_title: "Harness Engineering for Self-Improvement"
 source_author: "Lilian Weng"
@@ -124,6 +124,7 @@ access to the scoreboard.
 - [[Benchmark Optimization]]
 - [[Loop Engineering]]
 - [[Lilian Weng]]
+- [[Model Factory]]
 
 ## Citations
 
@@ -137,3 +138,4 @@ access to the scoreboard.
 - [[Agent Security and Governance]]
 - [[Alpha Signal - Why self-improving harnesses are the next frontier]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]
+- [[Model Factory]]

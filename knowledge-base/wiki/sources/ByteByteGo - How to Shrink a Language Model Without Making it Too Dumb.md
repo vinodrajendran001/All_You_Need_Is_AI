@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-09-01-bytebytego-shrink-language-model
 source_title: "How to Shrink a Language Model Without Making it Too Dumb"
 source_author: ByteByteGo
@@ -85,6 +85,7 @@ not.
 - [[Knowledge Distillation]]
 - [[Small Language Models]]
 - [[ByteByteGo]]
+- [[Inference Efficiency Frontier]]
 
 ## Citations
 

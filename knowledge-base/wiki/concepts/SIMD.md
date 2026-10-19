@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-09-04
+updated: 2026-10-19
 tags:
   - concept
   - hardware
@@ -36,13 +36,16 @@ realize, and the gap between the two is the whole discipline.
 
 - A practical SIMD loop has five parts: broadcast scalar inputs, process vector-sized blocks, apply vector
   operations, reduce vector accumulators, then handle the scalar tail.
-- Compilers may auto-vectorize, but loop-carried dependencies, aliasing, control flow, and missed target flags
-  can prevent it. Inspecting generated assembly or vectorization reports is therefore part of performance
-  engineering rather than an optional extra — vectorization is **conditional, not automatic**.
-- Lane-count speedups are ceilings, not guarantees: memory bandwidth, reductions, packing, and scalar remainder
-  work can dominate. [[Mitchell Hashimoto - Everyone Should Know SIMD]] reports a **fivefold speedup on one
-  workload** after explicit SIMD-oriented restructuring — well short of the nominal lane count, and offered as a
-  single case rather than a rate to expect.
+- Compilers can auto-vectorize simple, regular loops without complex control flow, but
+  [[Mitchell Hashimoto - Everyone Should Know SIMD]] calls them "severely limited" and advises compiling the
+  optimized scalar version and checking what the compiler produces before writing SIMD by hand.
+  [[Jeff Dean and Sanjay Ghemawat - Performance Hints]] adds one enabling move: copying small amounts of data
+  into local variables can let the compiler assume no aliasing, which may improve auto-vectorization.
+  Vectorization is **conditional, not automatic**.
+- Lane-count speedups are ceilings, not guarantees. Hashimoto's Ghostty loop could improve throughput by up to
+  **8x** with AVX2, but measured end to end on an AVX2 Intel desktop it was "more like a **5x** speedup", the rest
+  lost to "the other stuff around the SIMD code". It is a single case rather than a rate to expect, and the
+  essay does not break down which surrounding work cost the difference.
 - [[Jeff Dean and Sanjay Ghemawat - Performance Hints]] places SIMD inside a broader optimization hierarchy:
   first improve algorithms, avoid work, compact data, reduce allocations, and measure the hot path; then
   vectorize regular operations when data movement can sustain it. Vectorizing before the memory layout can feed
@@ -51,13 +54,15 @@ realize, and the gap between the two is the whole discipline.
 
 ## Open questions
 
-- **When is hand-written SIMD worth its portability cost?** Both sources treat intrinsics as a hot-path-only
-  tool, but neither offers a threshold, and the readability and cross-architecture costs are real.
+- **When is explicit SIMD worth its readability cost?** Hashimoto avoids CPU-specific intrinsics in favor of
+  portable generic vectors, and wants vectorization explicit so that an unrelated change or compiler update
+  cannot quietly turn a loop back into scalar code. Dean and Ghemawat place SIMD after algorithmic and
+  data-layout work. Neither offers a threshold for when a loop matters enough.
 - **How much of the CPU-side work around LLM inference is actually vectorizable?** The vault has no measurement,
   and the sources are general-purpose rather than ML-specific.
-- **What replaces assembly inspection as compilers improve?** The advice to read generated code assumes the
-  compiler cannot be trusted to report its own decisions; whether vectorization reports are now sufficient is
-  untested here.
+- **How should a team catch silent de-vectorization?** Hashimoto's argument for explicit code assumes the
+  compiler's choices can regress unnoticed; the vault has no evidence on which checks (benchmarks,
+  generated-code inspection, or compiler reports) catch that regression in practice.
 
 ## Related pages
 

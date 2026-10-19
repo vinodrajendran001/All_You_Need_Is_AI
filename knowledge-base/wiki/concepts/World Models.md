@@ -67,9 +67,9 @@ Diffusion can implement renderer-like world-model components and can be adapted 
 
 [[ByteByteGo - Inside Roblox's Bet on World Models]] describes a deployment shape that sidesteps most of this page's hard problems by refusing the strong version of the goal. Deterministic game state, rules, and physics stay in the engine as the authoritative shared-world substrate; a learned model acts as a **video upsampler** conditioned on that state. The generated image is *presentation*, never the authoritative multiplayer state.
 
-The move is worth generalizing. Conditioning generation on engine state constrains the model with geometry and rules instead of asking it to learn a whole consistent world — which converts the two failure modes this page worries about most, long-horizon drift and multi-agent consistency, into problems the engine already solves. What remains for the model is a perceptual task with a ground truth available every frame.
+The move is worth generalizing, within limits. Conditioning generation on engine state constrains the model with geometry and rules instead of asking it to learn a whole consistent world. The engine stays the authority on what exists, and a retrieval step supplies the objects relevant to the current view, which keeps the world from drifting frame to frame. It does not dissolve this page's two main failure modes. Consistency across many frames still needs a longer context window, which Roblox is extending after acquiring Morpheus AI. Rendering multiplayer actions for thousands of players at once is described as "an active research area, not a solved feature." Each frame is conditioned on engine-derived inputs, which constrains the image without supplying a ground truth for it.
 
-The caveat travels with it: 2K/60fps delivery, long-context visual consistency, and multiplayer scale are stated as **targets and open work**, not shipped capability.
+The caveat travels with it: the video model "is still in the lab, not yet running in real time," and 2K/60fps delivery, long-context visual consistency, and multiplayer scale are stated as **targets and open work**, not shipped capability.
 
 ## A JEPA objective with the anti-collapse heuristics removed
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - recommendation-systems
@@ -60,7 +60,7 @@ Moving from engagement to semantics reduces one class of gaming but does not mak
 - **Instacart** pairs cached contextual query rewriting for head traffic with online handling for the long tail, spending model calls only where caching cannot reach.
 - **Uber Eats** fine-tunes LLM embeddings and serves them through two-tower ANN retrieval — the dual-encoder shape described above, with the encoder upgraded rather than the architecture replaced.
 
-The durable pattern is **LLM augmentation under product constraints**: use the model where it resolves ambiguity or representation mismatch, keep deterministic catalogs and rankers, and let traffic distribution, latency budget, and available training data pick the design. That there is no single right answer here is the finding, not a gap in the reporting. See [[DoorDash]] and [[Retrieval-Augmented Generation]].
+The durable pattern is **LLM augmentation under product constraints**: use the model where it resolves ambiguity or representation mismatch, keep deterministic catalogs and rankers, and let the system already in place shape the design. The article says the infrastructure each company already had "is what determined the answer" and that the specific model was secondary; head-versus-tail traffic encouraged Instacart's cache-plus-online split. That there is no single right answer here is the finding, not a gap in the reporting. See [[DoorDash]] and [[Retrieval-Augmented Generation]].
 
 ## A language-model ranker need not generate a recommendation list
 

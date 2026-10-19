@@ -329,7 +329,7 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 19, 2026: **556 typed wiki pages**, including **291 source summaries**
+As of October 19, 2026: **557 typed wiki pages**, including **291 source summaries**
 representing **317 source IDs**, **126 concepts**, and **82 entities**. Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -969,6 +969,7 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-10-07 Lint Pass]] - Thirty-eighth pass: corrected section-order drift in 35 summaries, disambiguated capture links, quarantined one clipping, and repaired flow-matching, speech, GPT-2, alignment, and Kueue claims at exact 298-ID parity.
 - [[2026-10-09 Lint Pass]] - Thirty-ninth pass: repaired 37 unlinked related titles and nine duplicates, corrected stale training, reasoning, harness, and inference claims, and traced the three newest chains at exact 301-ID parity.
 - [[2026-10-16 Lint Pass]] - Fortieth pass: corrected illustrative speculation timings, decoder guarantees, reasoning-control and token-ablation claims, monitoring inferences, and stale catalog metadata; 542 reachable pages at exact 309-ID parity.
+- [[2026-10-19 Lint Pass]] - Forty-first pass: restored the log's source-ID ledger, expanded seven thin summaries and corrected nine concept claims they exposed, added 30 reverse affected-page links, attributed frontmatter-only citations, and repaired Goodfire-chain qualifiers; 557 reachable pages at exact 317-ID parity.
 
 ## Control files
 

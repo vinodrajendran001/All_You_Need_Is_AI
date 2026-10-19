@@ -117,7 +117,10 @@ Its authoring loop — observe failures, write, evaluate, version, deploy — su
 ## Skills as serialized self-improvement
 
 [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]] gives a definition of a skill that
-generalizes past any one vendor's format: a **serialized, reusable update** to the agent's scaffold.
+generalizes past any one vendor's format: a **named, reusable update** to the agent's own
+configuration, serialized into one of its substrates — a tool and its calling convention, an
+instruction or workflow, a memory entry, consolidated weights, or control logic. The substrate only
+names where the update is stored; most skills in this vault are the instruction-and-tool kind.
 
 Read that way, a skill is the persistence layer for agent learning. An agent that solves a problem
 and writes down how has converted a transient in-context result into a durable artifact, which is
@@ -127,9 +130,10 @@ next session because nothing was written back.
 The survey also names **meta-level skills: skills that modify the system executing future tasks**
 rather than performing a task themselves. That is a meaningful escalation, and it is where the
 governance requirement bites. A skill that edits a workflow, adds a tool, or rewrites control logic
-changes what all subsequent skills run inside. The survey's prescription — scaffold updates should
-be versioned, validated, and reversible — is at its most necessary here, and connects to
-[[Recursive Self-Improvement]] and [[Agent Security and Governance]].
+changes what all subsequent skills run inside. The governance reading drawn from the survey's
+version-history formalism, that scaffold updates should be versioned, validated, and reversible, is
+at its most necessary here; the survey says that history supports validation and rollback rather
+than prescribing it. See [[Recursive Self-Improvement]] and [[Agent Security and Governance]].
 
 ## Do skills earn their context budget?
 

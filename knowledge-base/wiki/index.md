@@ -359,7 +359,7 @@ exclude git-ignored local query files.
 - [[Agentic Reinforcement Learning]] - RL training for multi-turn tool-using LLM agents in stateful environments.
 - [[Continual Learning for Agents]] - Controlled post-deployment learning from one-off, asynchronous agent trajectories.
 - [[Transformer Architecture]] - Attention, position, hybrid conversion, and why token-addressable state does not guarantee evidence use.
-- [[Diffusion Models]] - Generative models that learn to reverse noising processes for images and other data.
+- [[Diffusion Models]] - Learned reversal of noising processes for images and video, and diffusion language models as the speed-quality baseline for text alternatives.
 - [[LLM Training Pipeline]] - Pretraining, supervised and preference learning, and adaptation of architectures and output interfaces.
 - [[Neural Network Fundamentals]] - Gradient descent, backpropagation, PyTorch, and Adam as the substrate of modern models.
 - [[Algorithm Templates for Interviews]] - Template-based approach to DSA and ML engineering interviews.
@@ -387,7 +387,7 @@ exclude git-ignored local query files.
 - [[Multi-Turn Evaluation]] - Turn-level plus conversation-level scoring for simulated and live multi-turn systems.
 - [[Mixture of Experts]] - Sparse expert routing as a systems, compression, and interpretability unit; total and active capacity differ.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
-- [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
+- [[Group Relative Policy Optimization]] - Group-relative policy optimization: KL settings by reward type, the horizon limit, and baselines that change variance rather than the expected update.
 - [[Latent-Space Reasoning]] - Hidden-state reasoning and adjacent cache handoffs; search, communication, and inspectability remain distinct.
 - [[Recursive Architectures]]
 - [[World Models]] - Learned predictive models for planning, control, and embodied intelligence; now includes Fei-Fei Li's Renderer/Simulator/Planner taxonomy and POMDP framing.

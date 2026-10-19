@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - recursive-self-improvement
@@ -86,17 +86,21 @@ self-improvement, however adaptive it looks within a session. This draws a clean
 agent that behaves well because of what is in its prompt right now and one that has actually changed.
 It also means the interesting engineering question is what gets *written back* and where.
 
-**Two surfaces, very different economics.** Parameter updates can come from generated demonstrations,
-intrinsic evaluation, or grounded experience — the [[Agentic Reinforcement Learning]] path, expensive
-and centralized. Scaffold updates modify prompts, memory, tools, workflows, and control logic, and
+**Two surfaces, very different economics.** Parameter updates can come from intrinsic generative
+demonstrations, intrinsic evaluative feedback, or extrinsic exploratory experience. The survey gathers
+that experience either in grounded task environments or in simulated proxy environments built on
+learned world models. This is the [[Agentic Reinforcement Learning]] path: expensive and centralized. Scaffold updates modify prompts, memory, tools, workflows, and control logic, and
 are cheap, fast, and available to anyone deploying an agent without training access. Most systems
 described in this vault improve themselves through the scaffold; the survey's contribution is naming
 that as a legitimate self-improvement mechanism rather than mere configuration.
 
-The survey's own governance recommendation follows directly: because scaffold updates are cheap and
-unconstrained, they should be **versioned, validated, and reversible**. That is the same reversibility
-requirement [[Agent Security and Governance]] applies to agent actions, turned on the agent's own
-definition.
+The survey's formalism keeps a version history of scaffold states, which it says "inherently
+supports validation and rollback against harmful modifications across all components", and it calls
+scaffold updates "typically faster, more reversible" than parameter updates. Treating that as a
+governance requirement is the vault's reading rather than the survey's prescription: because scaffold
+updates are cheap and largely unconstrained, they should be **versioned, validated, and reversible**.
+That is the same reversibility requirement [[Agent Security and Governance]] applies to agent
+actions, turned on the agent's own definition.
 
 **Caveat:** the captured text ends partway through section 6.2.1, so it does not support claims about
 the survey's later evaluation and safety material.

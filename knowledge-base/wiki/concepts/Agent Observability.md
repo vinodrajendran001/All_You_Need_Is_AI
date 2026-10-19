@@ -160,10 +160,11 @@ commonly track time in notes, after-hours "pajama time," clinician satisfaction,
 numbers answer a real question about documentation burden, but "a dashboard tracking minutes saved
 is blind to" an invented finding or a dropped one.
 
-The source also qualifies this page's incident data. Roughly 70% of fail-plausible incidents were
-found by a human noticing something was off, which makes human attention the main observed detector.
-The authors argue that the human reviewing fluent, confident output is the one exposed to automation
-bias: a fabricated line "is easy to wave through and hard to catch," and once signed it becomes part
+The source also qualifies this page's incident data, which come from the agent-runtime study above
+rather than from the clinical post. In that eight-week study, roughly 70% of fail-plausible
+incidents were found by a human noticing something was off, which makes human attention the main
+observed detector. The clinical authors argue that the human reviewing fluent, confident output
+is the one exposed to automation bias: a fabricated line "is easy to wave through and hard to catch," and once signed it becomes part
 of the permanent record. Their proposed complement is a judge validated against a human-graded
 sample and run over every output to detect population-level patterns, such as systematic omissions.
 That partly answers the last open question below, but only for systematic patterns, and it still

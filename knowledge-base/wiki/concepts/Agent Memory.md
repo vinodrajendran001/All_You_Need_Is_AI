@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-07
+updated: 2026-10-19
 tags:
   - concept
   - ai-agents
@@ -114,14 +114,17 @@ that is useful for this page. It treats memory as one component of an agent's **
 prompts, tools, and control logic — and treats a write to any of them as the same kind of event: a
 durable, execution-derived update.
 
-The clarifying consequence is the survey's boundary between durable and transient. Context-window
-contents and KV state are explicitly *not* memory in this sense, no matter how much an agent appears
-to remember within a session. Only what survives the session and is retrievable afterwards counts.
+The clarifying consequence is the survey's boundary between durable and transient. The transient
+context of an ongoing interaction, including in-context examples held in the attention cache, is not
+part of the agent's intrinsic configuration, no matter how much an agent appears to remember within a
+session. The boundary is durability, not representation. The survey still counts implicit memory
+objects, such as self-updatable latent memory pools and latent embeddings injected into the KV cache,
+as memory scaffolding. Only what survives the interaction and is retrievable afterwards counts.
 That gives this page a sharper test than "does the agent recall it" — namely, does anything get
 written back, and can a later run retrieve it.
 
-It also suggests memory should be governed like the other scaffold surfaces: **versioned, validated,
-and reversible**. Memory writes are usually treated as append-only bookkeeping, but under this framing
+It also suggests, as the vault's reading of the survey's version-history formalism, that memory
+should be governed like the other scaffold surfaces: **versioned, validated, and reversible**. Memory writes are usually treated as append-only bookkeeping, but under this framing
 a bad memory write is the same class of event as a bad tool registration — a durable change to future
 behavior that ought to be inspectable and undoable. See [[Recursive Self-Improvement]].
 

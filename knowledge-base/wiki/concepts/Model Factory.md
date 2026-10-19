@@ -22,7 +22,7 @@ A model factory is the reproducible operating system around model development: v
 
 - Immutable inputs and recorded configurations make an experiment explainable and rerunnable.
 - Data mixtures should be streamed and configurable rather than manually rebuilt for every run.
-- Automation can increase experimental throughput, but humans still set research direction, evaluate surprising results, and decide promotion.
+- Automation can increase experimental throughput. In Kant's account of Poolside in [[Latent Space - Inside the Model Factory - Eiso Kant, Poolside AI]], agents write code, launch jobs, evaluate run results, and make changes, while humans "are still coming up with the ideas" and help debug. The interview does not say who decides promotion; see the open question on gate ownership below.
 - The factory complements an [[Agentic Loop]]: the loop controls an agent at inference time, while the factory controls the lifecycle that creates and evaluates the agent or model.
 
 ### The factory is the rung the harness ladder cannot reach

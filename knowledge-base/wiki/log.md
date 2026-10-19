@@ -1928,3 +1928,57 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   rejected draft to a superseded section, removed its [[Agentic Testing]] cooldown, and added
   [[KV Cache]] through **2026-11-27**. The vault now contains **nine social-post files**.
   Source ownership and parity remain unchanged at **283 summaries / 309 IDs**.
+
+## [2026-10-19] ingest | Native Neurons, Anchored Judges, Fleet Health, and Robot Data
+
+- Processed **eight previously uncited top-level captures as eight new sources**. Added
+  [[Nick Cammarata - Neural Networks Are Already Clean]],
+  [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]],
+  [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]],
+  [[Yingru Li - The Gradient Is a Covariance]],
+  [[Netflix - Reliable GPU Compute for Training and Inference]],
+  [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]],
+  [[Brian Potter - How to Train Your Robot]], and
+  [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]].
+- The NCM clipping has no frontmatter, byline, date, or canonical URL. Its source ID uses the
+  **2026-10-19** Git capture date. A public AlphaSignal newsroom item on NCM, dated
+  **October 9**, carries different text, so it is cited as a related item rather than as
+  provenance or evidence. Neither the Goodfire capture nor its public page gives a publication
+  date, so that ID also uses the capture date. Canonical URLs drop tracking parameters, and
+  subscriber redirects were not followed. Metadata checks used read-only HTTP requests.
+- Created three concepts, [[Mechanistic Interpretability]], [[Robot Training Data]], and
+  [[GPU Fleet Reliability]], and one entity, [[Goodfire]]. Connected the new concepts to
+  **twelve older sources** with reciprocal affected-page links, among them the AI21 Kueue,
+  CHIVE, Rhoda, Fei-Fei Li, and Netflix serving sources.
+- Integrated all declared consumers: **41 existing concepts and nine existing entities**.
+  These include [[NVIDIA]], for NIXL, DCGM, NCCL, MIG, Isaac GR00T, and Cosmos as other teams
+  use them. Reconciled Li's expectation-level covariance with the per-sample reading on
+  [[Reward Design for RL]] and with the baseline-independence note on
+  [[Group Relative Policy Optimization]]. Extensions to leave-one-out baselines and std
+  normalization are labeled as vault inference.
+- Preserved the major evidence boundaries:
+  - Goodfire's audit figures are preliminary, threshold-dependent, and agent-assisted. Its own
+    weak-activation results conflict: removal is cheap in one final block but leaves
+    **3.80%** and **27.78%** accuracy at p99 across all 18 blocks. Its readings of Anthropic
+    and OpenAI work are recorded as one group's contested view.
+  - ARISE quantifies no agreement threshold and limits judges to population-level verdicts.
+  - NCM's speed comparisons are against diffusion models only.
+  - Li's sparsity figures are secondhand, and a gradient bound is not an update bound.
+  - vLLM's "up to 3x" comes from one sweep with prefix caching disabled. The vault reads part
+    of the gap as thread placement (PR #45211).
+  - Netflix's **>99.95%** and **~98% to above 99.5%** figures have no measurement window.
+  - Potter's volumes are company-reported, his conversions agree only to an order of
+    magnitude, and the **$10–$100 billion** estimate is conditional.
+  - EP229 gives definitions without measurements.
+- Updated the index and overview at **317 owned source IDs**, **291 source summaries**, and
+  **556 typed wiki pages**. Totals are now counted from the working tree, excluding git-ignored
+  local query files; this recount supersedes the earlier 543 figure rather than adding to it.
+  The batch adds **12 wiki files** and updates **64 existing wiki files**, including the index,
+  overview, and twelve older source pages.
+- Raw captures, posts, queries, and the log's history were not edited:
+  - All **388 raw files** remain unchanged: **319 top-level captures**, not counting the
+    `.obsidian` settings files. Four older captures carry line-ending-only working-tree
+    differences that predate this ingest.
+  - Posts and the post archive, queries, earlier lint reports, and the historical log body
+    were preserved.
+  - No source commands were executed.

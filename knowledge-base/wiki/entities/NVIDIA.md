@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-10-16
+updated: 2026-10-19
 entity_kind: organization
 tags:
   - entity
@@ -24,6 +24,9 @@ source_ids:
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-28-watson-nvidia-openshell-runtime-controls
   - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-10-15-potter-how-to-train-your-robot
 status: active
 ---
 
@@ -186,7 +189,38 @@ The same article's C2C fusion is a different method, retaining both initial pref
 avoiding an intermediate text message. Its results should not be attributed to NVIDIA's
 session-conversion experiment. Both are secondary reports, not independently reproduced here.
 
+## Other teams' systems run on NVIDIA software layers
+
+Three October sources use NVIDIA components inside systems NVIDIA did not author, which makes
+their results evidence about those systems rather than vendor claims.
+
+[[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] moves prefill KV blocks
+through the **NVIDIA Inference Xfer Library (NIXL)** over AWS EFA RDMA. The push-mode connector was
+built and validated on Trainium, contributed to vLLM as accelerator-agnostic, and benchmarked on
+**p5en.48xlarge** nodes with **8x NVIDIA H200**. Its peak TTFT and TPOT gains belong to that
+connector, workload, and network path, not to NIXL alone. See [[Prefill-Decode Disaggregation]].
+
+[[Netflix - Reliable GPU Compute for Training and Inference]] builds its device checks on NVIDIA's
+**DCGM** and keeps its **own per-GPU-family map of fatal driver codes**. Netflix says vendor
+catalogs lag newer generations, and one generation emits a burst of normally fatal codes on every
+healthy boot. The same post traces apparent **NCCL** timeouts to data-loading stalls rather than
+hardware or network faults. It partitions GPUs with **MIG** for memory-level tenant isolation.
+Vendor diagnostics are inputs to a fleet-health policy, not the policy itself; see
+[[GPU Fleet Reliability]].
+
+[[Brian Potter - How to Train Your Robot]] cites NVIDIA's **Isaac GR00T** page for generating
+synthetic manipulation data from teleoperation inputs. It also cites **Cosmos**, a video-trained
+foundation model usable as a robot-policy backbone. The capture gives no performance evidence
+for either. Both are positioned as answers to the data shortage in [[Robot Training Data]].
+
 ## Related pages
+
+- [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
+- [[Netflix - Reliable GPU Compute for Training and Inference]]
+- [[Brian Potter - How to Train Your Robot]]
+- [[GPU Fleet Reliability]]
+- [[Robot Training Data]]
+- [[Prefill-Decode Disaggregation]]
 
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[KV Cache]]

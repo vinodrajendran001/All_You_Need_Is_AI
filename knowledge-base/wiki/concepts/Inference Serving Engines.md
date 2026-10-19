@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-16
+updated: 2026-10-19
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-14-vllm-nixl-push-connector
 status: active
 ---
 
@@ -190,6 +191,23 @@ No performance figure is supplied. The Gateway API Inference Extension was exper
 GKE Inference Gateway was Preview/Pre-GA, so claims of improved TTFT, throughput, utilization, and
 cost remain promotional until measured on a stated workload.
 
+## Connector modes change the router's job
+
+[[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] adds `NixlPushConnector`
+beside vLLM's default pull-mode `NixlConnector`. The engine-level difference is where transfer setup
+runs: the post says pull posts NIXL descriptors synchronously inside the decode worker's engine loop,
+whereas push moves descriptor preparation and submission to a background thread on the prefill worker.
+The surrounding proxy changes too. In push mode it must hand the decode node the prefill instance's
+NIXL coordinates up front so registration can overlap prefill, and both servers must run the same
+connector; the troubleshooting notes report a server crash after the first request when they do not.
+
+This is the routing point above approached from the engine side. Pull keeps decode selection open
+until after prefill, which a load-aware router can exploit; push spends that freedom to overlap setup.
+The measured gains — up to 3x TTFT and 30% per-token latency at the high-load, long-input end of one
+Qwen3-32B 1P1D sweep — are first-party and configuration-bound, and an open pull request to move pull's
+setup off the engine loop suggests part of the gap is an implementation detail that may narrow. Choose
+the connector against the deployment's routing policy, not only its headline latency.
+
 ## Dynamo encode-prefill-decode placement
 
 [[Tanya Lenz - EPD Disaggregation for Multimodal Model Serving]] uses NVIDIA Dynamo and NIXL to place
@@ -254,6 +272,7 @@ not only a speculation checkbox or a batch-size cutoff.
 
 ## Related pages
 
+- [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 

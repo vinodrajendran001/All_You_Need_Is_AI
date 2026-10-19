@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - context-engineering
@@ -32,6 +32,7 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-17-bytebytego-chunking-strategies
 status: active
 ---
 
@@ -343,6 +344,12 @@ On-demand loading limits when skill bodies enter context; it does not establish 
 for discovery metadata, hooks, or host integration. Context must still earn its place through
 the complete workflow's measured results.
 
+[[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]] restates the on-demand pattern
+as a five-step runtime sequence: keep a skills index in the prompt, let the model pick a skill,
+then load only that `SKILL.md`. Its premise, "Long prompts hurt agent performance," and its
+promise of more consistent behavior are unmeasured. It describes the mechanism this section
+qualifies; it does not test it.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -356,6 +363,7 @@ the complete workflow's measured results.
 
 ## Related pages
 
+- [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]

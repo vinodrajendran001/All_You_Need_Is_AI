@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-19
 tags:
   - concept
   - training
   - synthetic-data
 source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-10-15-potter-how-to-train-your-robot
 status: active
 ---
 
@@ -141,6 +142,24 @@ and *SFT Memorizes, RL Generalizes* all point the same way, and Nathan Lambert's
 **"One does not simply 'distill' RL environments, infrastructure to run them at scale, or algorithms to
 mix them together effectively."**
 
+## Robotics: a deployment flywheel and simulator-bounded synthesis
+
+[[Brian Potter - How to Train Your Robot]] shows that "flywheel" means something else in robotics.
+The robotics data flywheel is a **deployment** loop — robots doing real work generate data that
+trains better models, which leads to more deployments — rather than a human-generated artifact being
+replaced by a model-generated one. Potter calls Physical Intelligence's chocolate-factory experiment
+a proto-flywheel and names two brakes: very few AI-controlled robots do real work yet, and real-world
+data is extremely repetitive.
+
+The synthetic loop exists in robotics too, in a different form from the five stages above. NVIDIA's
+Isaac GR00T tooling is cited for turning teleoperation demonstrations into many similar synthetic
+examples, and simulation with domain randomization generates experience directly. Both are capped by
+the generator's fidelity: simulated data is only as accurate as the simulation, which is why Potter
+finds it effective for locomotion and much weaker for deformable manipulation. The parallel to this
+page is the vault's, not Potter's. Rephrasing raises information density without adding knowledge;
+synthetic augmentation multiplies examples without adding physics the simulator lacks. The capture
+reports no performance figures for synthetic augmentation. See [[Robot Training Data]].
+
 ## Open questions
 
 - The survey documents five automated stages but never establishes that the loop **compounds**. Better
@@ -171,3 +190,6 @@ mix them together effectively."**
 - [[Benchmark Optimization]]
 - [[Model Factory]]
 - [[@zafstojano - Recursive Synthetic Improvement]]
+- [[Brian Potter - How to Train Your Robot]]
+- [[Robot Training Data]]
+- [[World Models]]

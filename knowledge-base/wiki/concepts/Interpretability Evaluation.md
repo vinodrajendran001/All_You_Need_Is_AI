@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-19
 tags:
   - concept
   - interpretability
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -101,6 +102,41 @@ observed report, the intervention, the outcome, and alternative explanations bef
 mechanism. Prevention is weaker than reversal and has negative exceptions, so the evidence also
 does not support a universal self-modeling repair. See [[Emergent Misalignment]].
 
+## Neuron explanations can be tested by whether they could lose
+
+[[Nick Cammarata - Neural Networks Are Already Clean]] evaluates a different object: whether an
+explanation of a single **native neuron** is right, not whether a tool improves behavioral
+prediction. Its positive controls are built to fail. An agent that sees only a neuron's
+explanation writes five examples that should fire it and five near misses that should not. Among
+183 positive-side explanations in a 200-neuron random sample, the examples fired strongly
+**76%** of the time and near misses **11%**. The explanation won for **164** neurons, tied for
+**15**, and lost for **4**. A blind-maximum variant asks a second agent to write the most
+activating sentence from the explanation alone; it can beat the strongest example in
+10 billion corpus tokens.
+
+The source states its tests' limits. Near misses probe a branch's boundary, not arbitrary
+packing, so distant-concept controls are added. A blind maximum tests a neuron's center rather
+than its breadth. It also argues that simulation scores, which reward an explainer for
+predicting exact activations, mostly measure attention placement and weak-activation falloff
+rather than what a neuron does.
+
+Two of its examples sharpen this page's correlation-versus-intervention point:
+
+- A three-neuron "Social Security" probe detects its phrase with held-out **AUC 1.00**.
+  Removing those neurons changes the next token by only **-0.004 nats** on average.
+- Removing twenty neurons labeled Christmas or Santa leaves Santa at **76%**. Removing eight
+  neurons whose *negative* pole encodes Santa drops it to **6%**.
+
+A detector, a fitting label, and a causally used unit are different claims, the same gap CHIVE
+found between describing a feature and stating its causal relation to behavior.
+
+The two sources should not be merged into one verdict. Cammarata's controls and ablations are
+first-party, agent-generated, and mostly from preliminary Qwen3-32B audits. They do **not**
+include CHIVE's transcript-only baseline or counterfactual behavioral questions. CHIVE, in turn,
+tested activation oracles, natural-language autoencoders, and sparse autoencoders, not
+native-neuron explanations. Whether neuron-level readings would beat a transcript reader is
+untested in this vault. See [[Mechanistic Interpretability]].
+
 ## Open questions
 
 - Is the null result a limit of activation-reading tools *in principle*, or of current tools on simple
@@ -113,8 +149,14 @@ does not support a universal self-modeling repair. See [[Emergent Misalignment]]
   untested here.
 - What would a positive result look like — what shape of tool output would state a causal relation
   rather than a co-occurrence?
+- Would explanations of native neurons, tested by ablation, give the uplift over a transcript-only
+  predictor that CHIVE's activation readers did not?
 
 ## Related pages
+
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
+- [[Goodfire]]
 
 - [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
 - [[Emergent Misalignment]]

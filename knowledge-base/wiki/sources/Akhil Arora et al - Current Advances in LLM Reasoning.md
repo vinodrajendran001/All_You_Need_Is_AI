@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-10-09
+updated: 2026-10-19
 source_id: src-2026-07-02-arora-llm-reasoning-advances
 source_title: "Current Advances in LLM Reasoning"
 source_author: Akhil Arora, Vishrav Chaudhary, Julia Kreutzer, Nearchos Potamitis, Lars Klein, Nouha Dziri, Niket Tandon
@@ -84,6 +84,7 @@ This deck is the natural **hub** for the vault's scattered reasoning material an
 - [[Retrieval-Augmented Generation]]
 - [[Reward Design for RL]]
 - [[Test-Time Scaling]]
+- [[Mechanistic Interpretability]]
 
 ## Citations
 - Source URL: [Google Slides](https://docs.google.com/presentation/d/1GoSHhf6BwHwXA6vF_zhSxgsl8ty-8Zav9dGbP6qZsMg/edit?usp=sharing)
@@ -110,3 +111,4 @@ This deck is the natural **hub** for the vault's scattered reasoning material an
 - [[LLM Inference]]
 - [[AI Knowledge Base Overview]]
 - [[Recursive Architectures]]
+- [[Mechanistic Interpretability]]

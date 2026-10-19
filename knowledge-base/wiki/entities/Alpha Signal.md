@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-18
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - entity
   - newsletter
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-06-alphasignal-self-improving-harnesses
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-19-alphasignal-next-concept-modeling
 status: active
 ---
 
@@ -27,8 +28,9 @@ Alpha Signal is an AI-focused newsletter that tracks research developments, mode
 ## Why it matters to this vault
 
 Alpha Signal connects recursive reasoning architectures, retrieval-interface design, agent-skill
-optimization, and runtime controls in this vault. Its secondary reporting is useful for orientation,
-but study details and editorial framing must remain distinct from independently verified results.
+optimization, runtime controls, cache handoffs, and non-autoregressive text generation in this
+vault. Its secondary reporting is useful for orientation, but study details and editorial framing
+must remain distinct from independently verified results.
 
 ## Notes
 
@@ -60,8 +62,25 @@ The preserved article body remains the evidence for its numerical claims; extra 
 takeaways were not imported as captured results. As with the earlier stack survey, this is
 secondary research reporting rather than an independent replication.
 
+## A non-autoregressive text generator, with an unrecoverable byline
+
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] takes the newsletter into
+generation architecture. It explains Stanford's Next-Concept Modeling: a coarse-to-fine hierarchy
+of discrete codes, reported **10–31×** faster than strong diffusion-language-model baselines at
+roughly 100M parameters. The article also covers a Sudoku result and a summarization gain from
+spending speed on more candidates.
+
+Unlike the two Dickson clippings, this one could not be matched to a public page. A related
+AlphaSignal newsroom item about NCM exists, but its text differs from the capture. The source is
+therefore kept unattributed, with no canonical URL, and the newsroom item is cited only as a
+related but different item in the source page's citations, not as provenance. The underlying
+paper is not named.
+
 ## Related pages
 
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
+- [[Diffusion Models]]
+- [[LLM Inference]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[KV Cache]]
 - [[Model Routing]]

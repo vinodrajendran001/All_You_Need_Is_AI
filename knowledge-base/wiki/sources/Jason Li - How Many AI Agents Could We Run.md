@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-16
+updated: 2026-10-19
 source_id: src-2026-10-02-epoch-agent-population
 source_title: "How many AI agents could we run?"
 source_author: Jason Li
@@ -81,6 +81,7 @@ tables and prose support the stated assumptions, but the capture is not a comple
 - [[Inference Efficiency Frontier]]
 - [[AI Agents in Production]]
 - [[ML Systems at Scale]]
+- [[GPU Fleet Reliability]]
 
 ## Raw capture
 
@@ -102,3 +103,4 @@ differ. It supplies no new estimate, independent replication, or source ID.
 - [[Jason Li - Latency Scaling Differences for GPT and Claude Models]]
 - [[Reasoning Effort Control]]
 - [[Agent Delegation]]
+- [[GPU Fleet Reliability]]

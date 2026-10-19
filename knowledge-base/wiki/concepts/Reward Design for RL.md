@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-07
+updated: 2026-10-19
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-rai-jev-decision-models
   - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -308,6 +309,31 @@ choice part of reward design rather than a separate optimiser concern. How much 
 to RLVR is owed to the verifier and how much to group-relative centring is not something a derivation can
 settle, and no source in this vault has separated them.
 
+## In expectation, the contrast is already in the covariance
+
+[[Yingru Li - The Gradient Is a Covariance]] qualifies the section above at the level of
+expectations. On the model's own samples the score has zero mean, so the expected update is
+`Cov(A, score_i)` whether or not a prompt-level baseline is subtracted. A baseline `b(x)` changes
+only `std(A)` and the noise of the estimate.
+
+The rest of this paragraph applies Li's identity to a 0/1 verifier; Li does not give this example.
+Romero's per-sample statement stands: failed rollouts contribute zero terms to the raw estimator.
+But that estimator's expectation is the gradient of the success probability. Because probabilities
+sum to one, the expected update lowers the total probability of failure by exactly as much as it
+raises success, to first order. The expected update therefore already contrasts correct and
+incorrect completions. What a baseline manufactures is a per-sample negative term that reduces
+variance; it does not change the expected direction.
+
+That narrows the open question above without settling it. If group-relative centring improves
+transfer, it must work through variance and finite-sample effects, or through GRPO's departures
+from a prompt-only baseline such as standard-deviation normalization and self-inclusion. It cannot
+work through a different expected update under a prompt-level baseline.
+
+Li adds a per-parameter limit for reward design generally. A reward chooses where learning
+happens only among coordinates whose Fisher permits movement. A reward indifferent between two
+alternatives, such as Li's *tea* and *coffee*, gives zero expected gradient to the parameters that
+only distinguish them. The sparsity measurements motivating the post are secondhand.
+
 ## Calibration rewards are one route, not a prerequisite for probabilities
 
 [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] discusses
@@ -328,6 +354,7 @@ unsafe decision policy. Evaluate the objective, calibration, and action costs se
 
 ## Related pages
 
+- [[Yingru Li - The Gradient Is a Covariance]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]

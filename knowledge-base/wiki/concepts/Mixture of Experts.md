@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - llm
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-21-tiene-pruning-llms-ising
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -106,6 +107,29 @@ authors' own paper, with ablations, solver comparisons and complete tables defer
 layers" describes what the optimizer selected on one hybrid model, not a general redundancy rate for
 MoE.
 
+## Expert specialization is also an interpretability claim
+
+[[Nick Cammarata - Neural Networks Are Already Clean]] looks at experts as objects to understand,
+not just to place or prune. It reports experts as "far more specialized than previously
+reported", narrowing with depth like neurons. One example is an expert devoted entirely to bosses
+in RPG board games. Agents sorted all **10,240** experts in Qwen3.6 from narrow to broad by reading
+summaries of each expert's neurons. The essay also argues that earlier specialization judgments
+were weak because neuron cleanliness was hard to judge, and that "token similarity" is not a good
+measure of specialization.
+
+Its mechanistic argument is that routing makes MoE an **anti-superposition** design. A neuron
+fires only when its expert is selected. If an expert packed ten thousand unrelated niches, the
+router, described as one small linear layer, would have to recognize all of them to send the
+right tokens there. The same audits report dense and MoE models as roughly similar in neuron
+cleanliness. One Qwen3.6-35B-A3B example shows a memorized continuation running through
+contextual neurons: zeroing a Poe neuron drops "dreary" from **87% to 50%**.
+
+These are first-party, agent-assisted judgments with no published specialization metric in the
+capture. Behavior over training was not examined, so "recursive generalization one scale up" is a
+conjecture. They add a third reading of an expert layer, as a legible unit of organization,
+alongside this page's systems and compression readings. They do not establish that specialization
+is what makes the removable layers above removable. See [[Mechanistic Interpretability]].
+
 ## Open questions
 
 - When does the routing overhead outweigh the compute saved by sparsity?
@@ -114,8 +138,12 @@ MoE.
 - If whole MoE layers can be removed without retraining at a cost the source does not quantify, where does the redundancy live — in the experts, in the router, or in the residual stream that routes around them?
 - Does deleting MoE layers improve the all-to-all picture by removing dispatch rounds, or only shrink stored weights while leaving the per-token communication pattern intact?
 - Expert-parallel layouts are written against a fixed topology (Inferact's TP4 x EP8 on 2x2x4). Is there a portable way to express MoE collectives, or is per-deployment kernel work the standing cost of sparsity?
+- If routed experts really are narrow, does a small router constrain what can be packed into one expert, and does that hold in independent audits with a published specialization measure?
 
 ## Related pages
+
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
 
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Dwarkesh Patel - Reiner Pope Flashcards]]

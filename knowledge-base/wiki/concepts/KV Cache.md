@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - kv-cache
@@ -31,6 +31,7 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-14-vllm-nixl-push-connector
 status: active
 ---
 
@@ -298,6 +299,22 @@ H-Spec instead borrows selected target KV state and rebuilds its block state eac
 "No context-growing private cache" is not "no auxiliary memory." The complete serving budget
 must include both sides before predicting a concurrency or latency win.
 
+## Who moves the cache, and when, matters on the same wire
+
+[[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] treats the cache as the
+transferable artifact described above and shows that the protocol around a transfer matters even on an
+unchanged RDMA path. In vLLM's push mode the decoder reserves destination blocks before prefill
+finishes; the producer then writes each tensor-parallel rank's KV directly into those blocks, mapping
+between block layouts that may differ on the two sides, and the consumer starts decoding only after it
+has counted one completion notification from every producer rank that writes into it.
+
+The reported high-load TTFT and per-token gains come from one first-party 1P1D configuration in which
+prefix caching was disabled on the decoder so that every request moved its full cache. In production,
+decode-local prefix reuse could let overlapping prompts skip the transfer, as the authors note when
+justifying the setting. Cache **placement**, treated above as routing state, and cache **transport
+timing** are separate levers: push commits the destination early, which narrows a router's later
+choice of replica.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -309,6 +326,7 @@ must include both sides before predicting a concurrency or latency win.
 
 ## Related pages
 
+- [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]

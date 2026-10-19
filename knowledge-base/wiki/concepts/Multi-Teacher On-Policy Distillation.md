@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-09-11
+updated: 2026-10-19
 tags:
   - concept
   - post-training
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-07-02-alyona-vert-ai-concepts-2026
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -85,7 +86,28 @@ Related self-teaching variants: **OPSD** and **SDPO** use the model as its own t
 information — the teacher fleet collapsed to one model with extra context. See
 [[Synthetic Data Flywheel]].
 
+## On-policy sampling is also what makes the update analyzable
+
+[[Yingru Li - The Gradient Is a Covariance]] cites Zhang, Mukherjee & Peng (2026) for the claim
+that **on-policy distillation** behaves like RL in changing only a small fraction of parameters,
+as does SFT on near-policy data. Li's derivation explains the role sampling plays. On the model's
+own samples the score has zero mean, so the expected update reduces to a covariance capped by the
+Fisher. Off the model's distribution, the same structure returns only if the sampler's **full
+next-token distribution** is known and the score is centered under it. Human demonstrations lack
+that distribution, which is why Li says SFT cannot be centered.
+
+This supplies a mechanism-level reason for this page's claim that student-sampled rollouts avoid
+off-policy mismatch, but it should not be stretched. Li states the theorem for policy-gradient
+updates with a learning signal `A`. Whether a given reverse-KL distillation implementation fits
+that form depends on how its per-token signal is constructed, which the post does not work
+through. The sparsity result for on-policy distillation is a secondhand empirical claim. Whether a teacher-generated trace whose
+full next-token distribution was logged could be treated as a centerable "known sampler" is not
+addressed.
+
 ## Related pages
+
+- [[Yingru Li - The Gradient Is a Covariance]]
+- [[Reinforcement Learning]]
 
 - [[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]
 - [[LLM Training Pipeline]]

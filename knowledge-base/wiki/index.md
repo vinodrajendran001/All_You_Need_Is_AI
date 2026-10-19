@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - index
 source_ids:
@@ -314,6 +314,14 @@ source_ids:
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-09-rabi-guha-intelligent-ui
+  - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -321,9 +329,10 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 16, 2026: **543 typed wiki pages**, including **283 source summaries**
-representing **309 source IDs**, **123 concepts**, and **81 entities**. Duplicate captures
-do not create additional evidence sources.
+As of October 19, 2026: **556 typed wiki pages**, including **291 source summaries**
+representing **317 source IDs**, **126 concepts**, and **82 entities**. Duplicate captures
+do not create additional evidence sources. Page totals are counted from the working tree and
+exclude git-ignored local query files.
 
 ## Overviews
 
@@ -331,8 +340,11 @@ do not create additional evidence sources.
 
 ## Concepts
 
+- [[Mechanistic Interpretability]] - Native neurons versus replacement readers, contested causes of polysemanticity, and why detection, labels, causal use, and predictive value are separate claims.
+- [[Robot Training Data]] - Teleoperation, deployment, simulation, human video, and UMI as trade-offs among embodiment fidelity, physics, diversity, and cost; hours are not a common currency.
+- [[GPU Fleet Reliability]] - Degraded rather than dead hardware, checks that can fail silently, graded remediation, and fleet goodput; health is a separate control from admission.
 - [[Energy-Based Model]] - Learned compatibility, inference-time search, and independent constraint checking as separate jobs.
-- [[Embedded Evaluation]] - Ongoing claim-based assurance with independent access, detection-adequacy tests, and qualified public verdicts.
+- [[Embedded Evaluation]] - Ongoing claim-based assurance: independent access, detection-adequacy tests, qualified verdicts, and revalidation after backend changes.
 - [[Generative User Interface]] - Generated interface source, compilation, runtime state, and host rendering; streaming continuity is not durable application state.
 - [[RL Environment Design]] - Building and adapting training tasks, with solvability, shortcut probing, and verifier ownership kept separate.
 - [[Self-Replicating Agents]] - Replication as a top-level objective, the economics of stolen compute, and why constraints an agent can edit are not constraints.
@@ -371,9 +383,9 @@ do not create additional evidence sources.
 - [[ML Systems at Scale]] - Production ML serving patterns from Netflix, Snapchat, Amazon, Instacart, and Airtable.
 - [[Retrieval-Augmented Generation]] - Hub page for Classic, Graph, and Agentic RAG architectures.
 - [[Direct Corpus Interaction]] - Raw-file retrieval via terminal tools as a precision layer for agentic search.
-- [[LLM-as-a-Judge]] - Using calibrated LLMs to evaluate search relevance and generation quality at scale.
+- [[LLM-as-a-Judge]] - Rubric judges anchored to human-graded references; monitoring, gates, verifiers, population-level limits, and when not to use a judge.
 - [[Multi-Turn Evaluation]] - Turn-level plus conversation-level scoring for simulated and live multi-turn systems.
-- [[Mixture of Experts]] - Sparse architectures that activate only part of the network per token.
+- [[Mixture of Experts]] - Sparse expert routing as a systems, compression, and interpretability unit; total and active capacity differ.
 - [[Reward Design for RL]] - Constructing composite reward signals for multi-objective LLM training.
 - [[Group Relative Policy Optimization]] - Relative-policy optimisation method used in the search-agent RL pipeline.
 - [[Latent-Space Reasoning]] - Hidden-state reasoning and adjacent cache handoffs; search, communication, and inspectability remain distinct.
@@ -418,8 +430,8 @@ do not create additional evidence sources.
 - [[LLM-Native Extensible Software]] - Durable generated extensions behind trusted capability boundaries and isolated workers.
 - [[Autonomous Driving Systems]] - Sensing, representation, prediction, planning, validation, and training tradeoffs in self-driving stacks.
 - [[Arithmetic Intensity and the Roofline Model]] - FLOP-per-byte accounting that decides whether an inference optimization actually helps.
-- [[Benchmark Optimization]] - How leaderboard-fitted systems learn the reference text instead of the underlying task.
-- [[Interpretability Evaluation]] - Whether an explanation tool beats the trivial baseline of reading the transcript; the counterfactual test.
+- [[Benchmark Optimization]] - How optimized systems learn the scorer instead of the task, including model-graded scores that inherit their grader's blind spots and lifespan.
+- [[Interpretability Evaluation]] - Transcript-only baselines, counterfactual tests, and neuron explanations that can lose; detection, labels, and causal use stay separate.
 - [[Chain-of-Thought Monitoring]] - Reasoning traces as stated-intent telemetry; assurance requires coverage, detection sensitivity, and escalation.
 - [[AI-Native Software Development Lifecycle]] - Artifact-triggered development stages with act-time governance and versioned institutional knowledge.
 - [[Agent Workflow Maturity]] - Six-level ladder from single bot to verified team, with invariants, handoffs, and an evidence ladder.
@@ -448,7 +460,7 @@ do not create additional evidence sources.
 - [[Computer Use Agents]] - Agents driving a GUI rather than an API, and why the environment is the hard part.
 - [[Joint-Embedding Predictive Architecture]] - Predicting in representation space instead of pixel space, and the collapse problem that comes with it.
 - [[Multi-Tenant Agent Architecture]] - Carrying tenant identity, scope, and authority through every dynamically selected agent hop.
-- [[Video Pre-training for Robot Policies]] - Testing whether web-video prediction quality transfers to physical task completion.
+- [[Video Pre-training for Robot Policies]] - Testing whether web-video prediction quality transfers to physical task completion; web video as the cheapest, least action-specific robot-data route.
 - [[Approximate Nearest-Neighbor Search]] - IVF and HNSW retrieval, and why index recall differs from evidence relevance.
 - [[Typed Probabilistic Decision Models]] - Models that trade open-ended generation for typed choices, probabilities, and interface guarantees.
 - [[Parameter-Efficient Fine-Tuning]] - LoRA, QLoRA, adapter deployment, and the boundary between context, knowledge, and behavior changes.
@@ -459,16 +471,17 @@ do not create additional evidence sources.
 
 ## Entities
 
+- [[Goodfire]] - Interpretability organization arguing native mechanisms should come before learned decompositions; its audits are agent-assisted and preliminary.
 - [[Logical Intelligence]] - Kona's developer; vendor Sudoku evidence and a proposed language-interface/constrained-search division.
 - [[Apollo Research]] - Publisher of a claim-based embedded-evaluation proposal, not a completed audit or existing legal requirement.
 - [[Microsoft-Decision-1]] - Qwen3.5-9B-derived fixed-option scorer with first-party benchmark and calibration claims.
 - [[agent-engineer]] - Skills, subagents, and hooks evaluated as a bundle; a corrected response did not always repair the written artifact.
-- [[Netflix]] - Multimodal footage search, internal LLM serving, and GenRec ranking as distinct production systems.
+- [[Netflix]] - Multimodal footage search, internal LLM serving, GenRec ranking, and GPU-fleet health as distinct production systems.
 - [[Replit]] - Coding-agent platform whose harness exposes model-selected specialists, reusable workers, and effort controls.
 - [[E2B]] - Sandbox infrastructure; Embed brings the runtime to one machine without making placement an authorization boundary.
 - [[Neuralink]] - Neural decoding through participant-specific causal representations, with pooled data and universal transfer kept distinct.
 - [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
-- [[Qwen]] - Alibaba's open-weight family and third-party derivatives spanning effort controls, converted memory architectures, and fixed-option scoring.
+- [[Qwen]] - Alibaba's open-weight family and third-party derivatives spanning effort controls, converted memory architectures, fixed-option scoring, and neuron-level interpretability audits.
 - [[Baseten]] - Inference vendor supplying both the frontier taxonomy and the production agentic-kernel result.
 - [[Philip Kiely]] - Baseten writer whose frontier classifier now organizes the vault's inference material.
 - [[Paolo Perrone]] - The AI Engineer author who brought pass^k and agentic testing's failure modes into the vault.
@@ -477,7 +490,7 @@ do not create additional evidence sources.
 - [[Lilian Weng]] - Researcher whose harness survey supplies this vault's optimization-ladder vocabulary.
 - [[Philipp Schmid]] - Practitioner-writer who supplies the vault's falsifiable test for recursive self-improvement.
 - [[Addy Osmani]] - Google engineering leader; the vault's principal source of counter-evidence on agent context files.
-- [[Google DeepMind]] - Research organization behind the delegation principles and AlphaEvolve program search.
+- [[Google DeepMind]] - Research organization behind the delegation principles, AlphaEvolve program search, and the Open X-Embodiment robot dataset.
 - [[Andrej Karpathy]] - Author of the pattern that seeded this implementation.
 - [[ByteByteGo]] - Engineering explainers spanning agent infrastructure, model systems, evaluation, and reliability failures.
 - [[Braintrust]] - Evaluation platform whose material in this vault focuses on multi-turn traces and online scoring.
@@ -490,7 +503,7 @@ do not create additional evidence sources.
 - [[Obsidian]] - The note environment that acts as IDE, browser, and graph surface for the wiki.
 - [[Qualcomm AI Research]] - Mobile/edge deployment group focused here on efficient on-device reasoning.
 - [[Perplexity]] - AI search company; source for the search-augmented LM training pipeline.
-- [[Alpha Signal]]
+- [[Alpha Signal]] - Newsletter whose secondary research reporting spans recursion, agent retrieval and skills, runtime security, cache handoffs, and non-autoregressive generation.
 - [[Inngest]] - Durable workflow/orchestration platform used as the concrete example in the agent loop architecture source.
 - [[The Pocket]] - Organization behind PocketFlow and its tutorial-documentation curriculum.
 - [[Y Combinator]] - Startup accelerator and publisher of YC Paper Club frontier-research sessions.
@@ -515,7 +528,7 @@ do not create additional evidence sources.
 - [[Abseil]] - Google's open-source C++ libraries and performance-engineering guidance.
 - [[Yoko Li]] - AI Builder Club writer whose convergence framework connects editability, verification, stopping rules, and loop economics.
 - [[Alyona Vert]] - Turing Post writer whose sources map recursive self-improvement, emerging AI techniques, and agent frameworks.
-- [[Anthropic]] - Model developer and Claude Code publisher; source of the AI-native SDLC playbook.
+- [[Anthropic]] - Model developer and Claude Code publisher; SDLC playbook, CHIVE's negative result, and an externally contested superposition program.
 - [[IBM]] - Publisher of the Granite family; a methodology source first, since it releases the training recipe with its hyperparameters rather than only weights and benchmarks.
 - [[Hugging Face]] - Model hub and open-source library maintainer; source of the open-model state report.
 - [[Hume AI]] - Speech and voice-AI company; source of the ASR benchmark-optimization study.
@@ -542,7 +555,7 @@ do not create additional evidence sources.
 - [[Google Cloud]] - Integrated cloud stack spanning agent frameworks, managed runtimes, enterprise distribution, MCP, RAG, inference routing, security controls, and model serving.
 - [[DeepSeek]] - Model developer represented here through sparse activation, cache compression, and long-context inference architecture.
 - [[TypeSafe AI]] - Lab behind Jev and the vendor-defined System One Model category.
-- [[Epoch AI]] - Research organization measuring frontier-model behavior through external API experiments.
+- [[Epoch AI]] - Research organization behind external API measurements, conditional serving-capacity models, and the data-trend estimates cited in robotics comparisons.
 - [[Yifan Zhang]] - Author of the Recurrent Looped Transformer architecture.
 
 ## Sources
@@ -887,6 +900,17 @@ do not create additional evidence sources.
 
 The additional Epoch capture is attached to [[Jason Li - How Many AI Agents Could We Run]];
 its unchanged article body adds no source ID or independent estimate.
+
+### October 19, 2026 batch
+
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] - Coarse-to-fine discrete-code generation reported 10–31× faster than diffusion-LM baselines at ~100M scale; no autoregressive speed comparison, byline, or canonical URL.
+- [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]] - Eight chunking strategies and an Agent Skills loading sequence as unmeasured definitions; each strategy hands the boundary to length, document structure, an embedding model, or a generating model.
+- [[Nick Cammarata - Neural Networks Are Already Clean]] - Goodfire's first-party case that apparent polysemanticity mostly reflects tools, architecture, and recursive generalization; preliminary, threshold-dependent audits, not proof that superposition is absent.
+- [[Yingru Li - The Gradient Is a Covariance]] - Expected policy gradient as reward-score covariance capped by the Fisher; prompt baselines change variance only; off-policy requires sampler centering; sparsity figures are secondhand.
+- [[Brian Potter - How to Train Your Robot]] - Robot-data routes, company-reported dataset sizes, rough text-equivalence conversions, and a conditional $10–$100 billion cost estimate.
+- [[Netflix - Reliable GPU Compute for Training and Inference]] - Health checks that fail closed, graded remediation, retries only after attribution, and cause-split goodput objectives; results are first-party with no measurement window.
+- [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] - Decode-side registration overlapped with prefill and a background prefill-side WRITE; "up to 3x" TTFT is one 1P1D sweep's extreme, and push commits to a decode instance early.
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] - ARISE's FDA-comment rationale: judges anchored to human-graded references, population-level rather than case-level verdicts, exclusion zones, and grader deprecation risk.
 
 ## Syntheses
 

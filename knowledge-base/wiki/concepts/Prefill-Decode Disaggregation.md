@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - inference
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-10-14-vllm-nixl-push-connector
 status: active
 ---
 
@@ -66,6 +67,32 @@ Disaggregation does not remove the bottleneck; it relocates it. Once prefill and
 - it degrades when KV state is large or the network is ordinary, which is what pushes teams toward smaller KV footprints via grouped-query or latent attention, and toward compressed transfer.
 
 This is the same headroom trade recorded elsewhere in the vault: an optimization that looks free in isolation is competing for a shared resource, here the interconnect rather than idle decode compute.
+
+## Coordinating the transfer is part of the transfer cost
+
+[[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] refines the bet above.
+vLLM's two NIXL connectors use the same RDMA data path over AWS EFA, but place coordination
+differently. The default pull connector waits for prefill to finish, relays block metadata through the
+router, and then lets the decode worker allocate blocks, prepare descriptors, and issue a READ — all
+serially before the first token. The push connector has the decode worker register destination blocks
+when it allocates them, overlapping prefill, and lets a background thread on the prefill worker WRITE
+the KV directly once both sides are ready.
+
+In the authors' single 1P1D Qwen3-32B benchmark on two 8x H200 nodes, the modes are almost identical
+at low load and short prompts. The gap opens with load and input length: at 8 QPS and 16k input, TTFT
+is about **1,744 ms** pull versus roughly **540 ms** push, and time per output token at 4–8 QPS and 16k
+is about **10.4 ms** versus near **7 ms**. Those cells are the post's "up to 3x" and "up to 30%"
+headlines, measured with decode prefix caching disabled to force a full transfer on every request and
+reported without variance.
+
+Two qualifications keep this from becoming a general rule. The post attributes most of pull's
+degradation to descriptor posting inside the decode worker's engine loop, and an open pull request
+explores moving pull's setup to a background thread; the vault reads part of the gap as thread
+placement rather than push semantics as such. And push buys its overlap by **committing to a decode
+instance before prefill completes**, giving up some of the load-aware routing that pull allows after
+prefill; the authors still recommend pull for bidirectional transfer or deferred decode selection. The
+design space therefore has a third axis beside interconnect bandwidth and KV size: when the system
+decides where decode runs.
 
 ## Why the two phases separate at all
 
@@ -141,9 +168,11 @@ figures are vendor-reported.
 - How does disaggregation interact with expert parallelism in [[Mixture of Experts]] serving, where routing already imposes its own communication pattern?
 - What share of production LLM calls emit only a handful of tokens — classification, filtering, judging, routing — and does the disaggregation literature's benchmark mix represent them at all?
 - When a fleet mixes prefill-only classification with long-decode chat, is the right answer disaggregated workers or two separate pools running different engines?
+- When does committing to a decode instance before prefill (push) cost more in load imbalance than it saves in post-prefill coordination, and how much of the push/pull gap remains once pull's transfer setup also leaves the engine loop?
 
 ## Related pages
 
+- [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Wafer - AI Performance Engineering Resources]]
 - [[LLM Inference]]
 - [[KV Cache]]

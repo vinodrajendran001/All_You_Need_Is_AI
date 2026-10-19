@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-07
+updated: 2026-10-19
 tags:
   - concept
   - ai-agents
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-18-0xmovez-jev-engineering
   - src-2026-09-30-bytebytego-doordash-agent-gateway
   - src-2026-10-05-faik-ai-native-software-factory
+  - src-2026-08-02-arise-llm-as-judge
 status: active
 ---
 
@@ -151,6 +152,25 @@ Together the sources make metric definitions part of provenance: record who acte
 allowed it, what the tool returned, and which acceptance event completed the task. Activity and
 transport success cannot substitute for that final event.
 
+## Operational dashboards and sign-off review both miss plausible content errors
+
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] supplies a non-agent case
+of the split above between operational traces and answer-level evaluation. AI-scribe deployments
+commonly track time in notes, after-hours "pajama time," clinician satisfaction, and burnout. Those
+numbers answer a real question about documentation burden, but "a dashboard tracking minutes saved
+is blind to" an invented finding or a dropped one.
+
+The source also qualifies this page's incident data. Roughly 70% of fail-plausible incidents were
+found by a human noticing something was off, which makes human attention the main observed detector.
+The authors argue that the human reviewing fluent, confident output is the one exposed to automation
+bias: a fabricated line "is easy to wave through and hard to catch," and once signed it becomes part
+of the permanent record. Their proposed complement is a judge validated against a human-graded
+sample and run over every output to detect population-level patterns, such as systematic omissions.
+That partly answers the last open question below, but only for systematic patterns, and it still
+does not make an individual failure noticeable. A scribe is a drafting tool with a clinician signer
+rather than an autonomous agent, so the transfer to agents is by analogy, and neither reviewer nor
+judge miss rates are reported.
+
 ## Open questions
 
 - Tail-based sampling at 5–20% of routine successes discards most of the population in which a *slow*
@@ -166,6 +186,7 @@ transport success cannot substitute for that final event.
 
 ## Related pages
 
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[Adam Faik - How to Build an AI-Native Software Factory]]
 - [[AI-Native Software Development Lifecycle]]

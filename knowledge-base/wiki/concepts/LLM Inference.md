@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - llm
@@ -33,6 +33,7 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-19-alphasignal-next-concept-modeling
 status: active
 ---
 
@@ -234,6 +235,27 @@ The technique does not directly accelerate prompt processing, yet draft initiali
 serving contention can change TTFT. Measure end-to-end latency and goodput rather than
 inferring them from acceptance or the absence of a prefill algorithm change.
 
+## Sequential steps can track a hierarchy instead of output length
+
+This page's decode model assumes one sequential step per generated token.
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] reports a research
+architecture that breaks that assumption differently from speculation or a scoring head.
+
+Next-Concept Modeling generates a learned hierarchy of discrete codes. Levels are produced in
+order, and all codes within a level are predicted in parallel. The serial depth is therefore the
+number of levels, which the article calls "typically far fewer" than output tokens. Early levels
+are short, so they are also cheaper.
+
+The reported gains are **10–31×** faster generation than strong diffusion-language-model
+baselines at comparable scale, and **21×** on LM1B against the strongest diffusion baseline, with
+latency measured on an H100. None of these ratios is against autoregressive decoding, and none
+comes from a production serving stack.
+
+The serving consequences are therefore open. An implementation would need to show how level
+count, per-level width, batching, and memory traffic interact, and whether a fixed hierarchy
+wastes steps on short or easy outputs. The capture names difficulty-adaptive level counts only as
+future work.
+
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
@@ -243,6 +265,8 @@ inferring them from acceptance or the absence of a prefill algorithm change.
 
 ## Related pages
 
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
+- [[Diffusion Models]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]

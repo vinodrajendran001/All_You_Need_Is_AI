@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - safety
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -92,6 +93,17 @@ over a transcript-only baseline at predicting counterfactual behaviour. That is 
 advantage for the tested tools**, not proof that transcripts are always more informative. The OpenAI
 incident is consistent with that: the reasoning text was legible enough to classify by severity, and
 it named intentions plainly.
+
+[[Nick Cammarata - Neural Networks Are Already Clean]] states the opposite intuition about where
+concealed intent would be visible. Deception "might hide from someone reading a model's outputs,
+but it has no reason to hide from the model's own circuitry". Downstream circuits must be able to
+read it, so a reader of those circuits should too. The essay argues this; it does not demonstrate
+it. Its evidence concerns neuron legibility and ablations on benign tasks, not detection of
+deceptive computation. The tools CHIVE tested were activation readers, not native neurons, so
+the two sources do not contradict each other. Together they leave an untested comparison: a
+monitor over native mechanisms against a monitor over the written trace, on the same behaviors.
+Until that comparison exists, reading internals is a proposed complement to trace monitoring, not
+a demonstrated replacement. See [[Mechanistic Interpretability]].
 
 ## Greater per-token capacity is a hypothesis about shorter traces
 
@@ -218,6 +230,8 @@ without erasing the failure of the original one. See [[Embedded Evaluation]].
 
 ## Related pages
 
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
 - [[Anthropic - Would This Change Your Answer (CHIVE)]]
 - [[Apollo Research - Principles for Embedded Evaluations]]

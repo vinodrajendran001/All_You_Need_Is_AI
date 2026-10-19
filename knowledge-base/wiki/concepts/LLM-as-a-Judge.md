@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - llm-evaluation
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-08-02-arise-llm-as-judge
 status: active
 ---
 
@@ -279,7 +280,48 @@ still needs task-specific labeled cases, error analysis, and deterministic check
 the condition is mechanically verifiable. Fast structured scoring is not an authority grant
 or evidence that a proposed action is safe to execute.
 
+## A validated baseline decides whether the judge measures anything
+
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] argues, for clinical
+post-deployment monitoring, that what separates a useful judge from a harmful one is "not the model,
+the prompt, or the rubric" but a clearly validated, ideally human-expert baseline. That sharpens this
+page's golden-set principle in three ways. **Order:** build the human gold-standard set first and
+compare the judge against it, rather than grading LLM outputs and adding human review afterwards;
+only the first leaves an artifact that can validate future graders. **Gate:** the judge goes to
+scale only after its agreement with human graders clears a pre-specified threshold, and spot-checked
+review continues. **Scope:** the tasks that fit are semantic equivalence to a reference and
+standardized reasoning against agreed criteria. The post names no threshold value or agreement
+statistic, and its cited validations appear without figures, so this is a protocol shape rather than
+a sized result.
+
+The source also fixes the judge's **unit of inference**: a "population-level instrument." A pattern
+across thousands of notes is actionable; a verdict about one patient is not. That is a boundary the
+inline-gate material above must respect. A per-response gate makes case-level decisions, so it needs
+per-item error rates, especially misses, which population-level agreement does not supply. The
+authors exclude rare or idiosyncratic presentations, contested rubrics ("A definable standard is a
+precondition, not an output"), and any use as ground truth.
+
+This sits in tension with the 2023 parity result recorded above, which [[@zafstojano - Recursive Synthetic Improvement]]
+presents as making human preference labels optional for most purposes. Here human grading never
+becomes optional: the seed set remains the standing benchmark, and ongoing spot-checking "is not
+optional." The two are compatible only if broad preference agreement is not read as validation for a
+specific task. Where experts themselves disagree, parity with inter-human agreement is a weak bar, and
+the authors deny that a judge can resolve the disagreement.
+
+Two further failure modes are named. A **slop cycle** occurs when the grader shares the generator's
+blind spots, so errors are scored as correct. This is the same independence failure the
+[[Sycophancy]] section above records for judges with shared training, prompts, or assumptions.
+**Deprecation** can strand a validated grader and the benchmarks built on it when a closed API
+retires its model. The authors recommend an open-source autograder where possible; see
+[[Open Model Ecosystems]] and [[Benchmark Optimization]]. Their closing line connects to
+[[Embedded Evaluation]]'s point about empty alert logs: "A bad judge is worse than none because it
+hides the absence of evaluation behind the appearance of it."
+
 ## Related pages
+
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
+- [[Embedded Evaluation]]
+- [[Open Model Ecosystems]]
 
 - [[Lisa Brown Jaloza - Microsoft-Decision-1]]
 - [[Microsoft-Decision-1]]

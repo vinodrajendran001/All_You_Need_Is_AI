@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-07
+updated: 2026-10-19
 tags:
   - concept
   - production
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-09-09-bytebytego-model-routing
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-08-02-arise-llm-as-judge
 status: active
 ---
 
@@ -152,6 +153,29 @@ uncertainty rather than convert it into agreement. Blind second review may reduc
 cannot be assumed independent. The practical boundary is [[Sycophancy]] evaluation, not a prompt
 that universally guarantees truth or a policy of always contradicting the user.
 
+## A provider's model swap and a human's signature are both unmonitored failure points
+
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] adds a substitution this
+page's fallback ladder does not cover: one made by the provider rather than by the application. AI
+scribes run on frontier models that vendors version and retire on their own timelines, so a note
+pipeline validated against one model "can quietly shift behavior when the backend is swapped
+underneath it." The substitute-must-still-satisfy-the-requirement rule applies, but no fallback
+decision was taken, no circuit tripped, and the deployments' usual metrics (time in notes,
+after-hours "pajama time," satisfaction, burnout) say nothing about note accuracy. Procurement-time
+validation "cannot catch a regression that appears two versions later."
+
+The proposed detector is a partial, conditional answer to the first open question below:
+continuous content assessment by an LLM judge anchored to a human-graded sample and spot-checked
+against it. It is explicitly a population-level instrument. It can show that notes are
+systematically dropping medication reconciliation, but not which individual note is wrong, and it
+depends on a reference the capture does not define for production notes.
+
+The same source qualifies the human-handoff rung and the "needs review" state above. A clinician
+reviewing a fluent, confident note is exposed to automation bias, so a fabricated line "is easy to
+wave through and hard to catch," and once signed it becomes part of the permanent record. Routing
+uncertain output to a person is therefore a control with its own failure rate, not a terminal
+guarantee. This is an argued position with no measured miss rate for reviewers or judges.
+
 ## Open questions
 
 - No detection mechanism exists for semantic failure beyond schema validation, trusted-source
@@ -170,8 +194,13 @@ that universally guarantees truth or a policy of always contradicting the user.
   during the same incident that is degrading the tools?
 - Faithfulness checks pass against stale evidence by construction. What owns document currency — the
   retrieval layer, the tool layer, or the verifier — and which of them fails closed?
+- How does an application detect that its provider changed the model behind an unchanged API, and
+  which validation must re-run before that change reaches users?
 
 ## Related pages
+
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
+- [[Embedded Evaluation]]
 
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
 - [[Sycophancy]]

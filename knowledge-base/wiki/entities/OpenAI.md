@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-10-16
+updated: 2026-10-19
 entity_kind: organization
 tags:
   - entity
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-22-bytebytego-openai-gpt-live
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-09-rabi-guha-intelligent-ui
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -123,7 +124,27 @@ State surviving streamed recompilation is narrower than durable cross-session st
 replay. This account should remain separate from the lab's first-party safety and model
 reports elsewhere on this page.
 
+## Earlier interpretability baselines, re-scored by their author
+
+[[Nick Cammarata - Neural Networks Are Already Clean]] revisits two OpenAI interpretability
+results from outside the lab. Cammarata started the 2023 automated-interpretability project,
+"Language Models Can Explain Neurons in Language Models". It found about **1.7%** of neurons
+interpretable by its most generous measure, and fewer than 2% of GPT-2 XL's came out clean.
+With better tools, his team wrote 500 new GPT-2 XL neuron write-ups with little iteration and
+judged about **70%** to be roughly one thing, about **5%** pristine. The scoring differs from the
+original project's. He reports doing "several multiples better" on that project's
+activation-simulation task, but says he no longer thinks it is a great metric for explanations.
+
+The essay also questions OpenAI's 2024 sparse-autoencoder scaling post, which suggested that
+mapping a frontier model might take billions or trillions of features. Cammarata suspects the
+right list is much shorter. These are a former contributor's revisions written for Goodfire,
+not OpenAI's current position. They concern GPT-2-era baselines and SAE framing, not the
+monitoring results elsewhere on this page. See [[Mechanistic Interpretability]].
+
 ## Related pages
+
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
 
 - [[@rabi_guha - How ChatGPT Intelligent UI Works]]
 - [[Generative User Interface]]

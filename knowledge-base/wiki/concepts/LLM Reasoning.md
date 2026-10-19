@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - reasoning
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-07-20-raschka-reasoning-effort
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -117,6 +118,28 @@ Nor can the GPU-time/API-charge or mean/maximum-runtime comparisons establish ge
 price and speed ratios. [[Energy-Based Model]] expands the mechanism map while keeping
 formal validity, accurate problem specification, and practical safety separate.
 
+## How much RL changes a model is a different question from what it changes
+
+[[Yingru Li - The Gradient Is a Covariance]] separates two claims that the create-versus-amplify
+debate tends to merge. One common explanation of RL's effect, that it "only reweights answers the
+model can already produce," accounts for why post-training updates are **small**. A bound on bits
+per episode accounts for why they carry little information. Neither explains why they are
+**sparse**. Li's example is that a hundred million parameters each moving slightly would satisfy
+both.
+
+Li's account of *which* coordinates can move rests on the Fisher. The expected policy gradient for
+a parameter is the covariance between reward and that parameter's score on the model's own
+samples. That is capped by the score's variance, so only parameters that change the model's
+choices among already-likely candidates can receive much expected gradient. The cited
+measurements are secondhand: RL changes **5–30%** of parameters across seven algorithms and ten
+models, and on-policy distillation and near-policy SFT reportedly behave alike.
+
+This informs the open question below without answering it. On the vault's reading, movement
+concentrated where the model already spreads probability fits the amplification side. Li does not
+draw that conclusion, and a necessary condition on *where* gradient can flow says nothing about
+whether the resulting behavior is new. Li also leaves to later parts of the series
+what policy gradient can and cannot reach.
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -125,6 +148,7 @@ formal validity, accurate problem specification, and practical safety separate.
 
 ## Related pages
 
+- [[Yingru Li - The Gradient Is a Covariance]]
 - [[ByteByteGo - How to Build Models Without Language]]
 - [[Energy-Based Model]]
 - [[Akhil Arora et al - Current Advances in LLM Reasoning]]

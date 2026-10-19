@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - llm
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-13-zancato-model-priming
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -137,13 +138,52 @@ token-addressable representations, not guaranteed recall. Likewise, composing at
 caches and recurrent states to extend **128K to 256K** is a reported context-extension
 experiment, not a lossless or unlimited-context guarantee.
 
+## Block components also shape what can be read inside the model
+
+[[Nick Cammarata - Neural Networks Are Already Clean]] argues that several details listed above
+as training conveniences also decide how legible a trained network is. Its evidence is
+first-party and comes partly from vision models rather than LLMs.
+
+- **Residual connections and normalization.** InceptionV1 had no residual stream, and its last
+  layer was roughly 5% interpretable with that era's tools. A ConvNeXt of the same size, with
+  residual connections, LayerNorm, and a few other improvements, has about **99%** legible
+  last-layer neurons. The essay notes these components were adopted to train deeper networks,
+  not for interpretability.
+- **The SwiGLU FFN has a double-negative regime.** The gated MLP multiplies a gate by a value, so
+  when both are negative the output is positive. A neuron can then fire for two unrelated reasons.
+  For about **4%** of neurons in the audited language model (the worked example is a Qwen3-32B
+  neuron), this sign-flipped leak fills the whole top of the activation list, which can mislead
+  top-k labeling. Ablating it network-wide reportedly raises
+  most benchmarks but lowers some reasoning ones; the authors did not investigate why and suggest
+  architecture designers examine it. In vision SwiGLU models, the value tends to learn broad
+  families and the gate narrower ones.
+- **A residual coordinate can act as a hidden scale knob.** In ConvNeXt, nearly all activation mass
+  sat in one unread dimension that, through LayerNorm, scales every other dimension. Setting it
+  aside made the residual-stream maps readable. Narrowing the stream four and eight times, to
+  **46** dimensions in the last block, cut accuracy from **72% to 60% and 39%**. The maps became
+  noisier but not interleaved. The authors say they do not know whether language models need a
+  similar fix.
+- **Attention versus MLP neurons.** The essay explains much of attention through where heads look
+  and which neurons they read and write. It estimates that global head names would add only
+  about **5%** explanatory value, and notes that Qwen3-32B has a few thousand heads against more
+  than a million neurons. It treats attention as largely unexamined, not solved.
+
+These are claims about one research group's audits rather than an architectural consensus. They
+add a criterion this page lacked: an architecture choice can change what an inspector sees as
+mess, separately from whether it changes what the model can compute. See
+[[Mechanistic Interpretability]].
+
 ## Open questions
 
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
 - Which efficiency techniques should be treated as architectural essentials versus implementation details?
 - If attention-variant design is really data-reuse design, is the reuse ladder exhausted at "one latent serves as both K and V," or is there a further rung?
+- Would removing SwiGLU's double-negative regime change capability, legibility, or both, and why does network-wide ablation of it lower some reasoning benchmarks?
 
 ## Related pages
+
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
 
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]

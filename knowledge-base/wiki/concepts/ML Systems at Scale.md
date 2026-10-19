@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - machine-learning
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-02-epoch-agent-population
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-10-15-netflix-reliable-gpu-compute
 status: active
 ---
 
@@ -192,6 +193,22 @@ API-equivalent spending at that use level, not provider break-even revenue or a 
 Across both sources, raw supply, allocatable capacity, delivered goodput, and useful work are
 distinct system quantities.
 
+## Allocatable capacity must also be fit capacity
+
+[[Netflix - Reliable GPU Compute for Training and Inference]] inserts a step into that chain. Between
+"allocatable" and "delivered goodput" sits "fit to use": a machine can pass cloud instance checks and
+answer driver queries while a GPU faults under load, a network adapter runs short of links, or a health
+check has silently stopped running. Netflix's response is a closed loop of node conditions, graded
+automatic remediation, allocation-time collective tests, and objectives split by cause, applied the
+same way whether work arrives through its batch scheduler, Kueue, or Ray. Its first-party results —
+**>99.95%** GPU-node availability and job success from **~98% to above 99.5%** — come without a window
+or fleet size.
+
+Read with the AI21 account above, scheduling and health are separate controls: admission and topology
+rules decide whether a feasible slot exists, and health checks decide whether that slot's hardware
+should be trusted. This is also a fourth Netflix system in the vault, distinct from footage search,
+LLM serving, and GenRec. See [[GPU Fleet Reliability]].
+
 ## Catalog ranking can share an LLM foundation without sharing a chat interface
 
 [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] adds GenRec alongside the
@@ -208,6 +225,8 @@ establish; they are not general retention estimates or an ablation of the archit
 
 ## Related pages
 
+- [[Netflix - Reliable GPU Compute for Training and Inference]]
+- [[GPU Fleet Reliability]]
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[Netflix]]
 - [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]

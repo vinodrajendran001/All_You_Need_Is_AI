@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-10-19
 source_id: src-2026-09-14-rhoda-web-video-pretraining-robots
 source_title: "Does Scaling Web-Video Pre-training Help Real Robots Do Real Work?"
 source_author: Rhoda AI
@@ -52,9 +52,11 @@ DINO distance ignores temporal coherence; and the result does not establish a ge
 - [[Video Pre-training for Robot Policies]]
 - [[World Models]]
 - [[Video Transformers]]
+- [[Robot Training Data]]
 
 ## Related pages
 
 - [[Reinforcement Learning]]
 - [[Autonomous Driving Systems]]
+- [[Robot Training Data]]
 

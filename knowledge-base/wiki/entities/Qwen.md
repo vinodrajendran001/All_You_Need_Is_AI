@@ -2,7 +2,7 @@
 type: entity
 entity_kind: model-family
 created: 2026-09-03
-updated: 2026-10-16
+updated: 2026-10-19
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -89,7 +90,36 @@ OpenAI backbones are future alternatives, not the base of the captured release.
 Together these sources distinguish inheriting weights from preserving architecture or output
 behavior. A derivative's benchmark does not transfer to every Qwen checkpoint or deployment.
 
+## An open-weight substrate for neuron-level interpretability
+
+[[Nick Cammarata - Neural Networks Are Already Clean]] uses Qwen checkpoints as its main
+language-model laboratory. Open weights allow every neuron to be read and ablated without a
+replacement model.
+
+- **Qwen3-32B**: preliminary audits estimate about **90%** of neuron poles have one main job,
+  about **7%** two related jobs, and **2-4%** are not yet understood. The shares depend on
+  thresholds. A neuron-only attribution graph reproduces the diagnostic structure of Anthropic's
+  Claude 3.5 Haiku preeclampsia example (**P(visual) 0.90**). A Santa graph shows negative-pole
+  neurons mattering more than neurons labeled Christmas or Santa.
+- **Qwen3.6**: agents sorted all **10,240** experts from narrow to broad. In
+  **Qwen3.6-35B-A3B**, zeroing a Poe neuron drops "dreary" after "Once upon a midnight" from
+  **87% to 50%**. In another saved Qwen3.6 experiment, zeroing neuron outputs whenever their gate
+  exceeded the ordinary-text 99.9th percentile took the model from reciting Psalm 23 exactly to
+  insisting it did not exist. Random interventions matched by count or magnitude preserved the
+  verse.
+
+This is another use of the lineage, distinct from the release-configuration and derivative
+material above. It is a first-party Goodfire analysis with agent-assisted labeling and no
+independent replication. The same 35B-A3B checkpoint is a local coding-agent engine in
+[[Sebastian Raschka - Using Local Coding Agents]]; neither source's results transfer to the
+other's use. The interpretability results say nothing about Qwen's capability, safety, or
+calibration. See [[Mechanistic Interpretability]].
+
 ## Related pages
+
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
+- [[Goodfire]]
 
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Lisa Brown Jaloza - Microsoft-Decision-1]]

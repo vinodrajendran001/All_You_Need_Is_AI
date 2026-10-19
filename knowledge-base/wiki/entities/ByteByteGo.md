@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-10-16
+updated: 2026-10-19
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -35,6 +35,7 @@ source_ids:
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-17-bytebytego-chunking-strategies
 status: active
 ---
 
@@ -197,8 +198,22 @@ multipliers. Broad claims that language models cannot revise or verify are also 
 than the tool/search systems already represented in this vault. The unrelated CI sponsorship
 is not part of the source's evidence here.
 
+## A weekly refresher issue supplies vocabulary, not measurements
+
+[[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]] is a different format from the
+long explainers above: a weekly "system design refresher" that bundles short items after a
+sponsored section. It defines eight chunking strategies, restates the Agent Skills loading
+sequence, sketches neural translation under the label "not an exact map" of Google Translate's
+current system, and compares PostgreSQL with MySQL. No item carries a measurement. Its value to
+[[Retrieval-Augmented Generation]], [[Embedding Model Selection]], and [[Agent Skill]] is a shared
+vocabulary for the decision space; judgments such as "high quality but expensive" remain
+assertions.
+
 ## Related pages
 
+- [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
+- [[Agent Skill]]
+- [[Retrieval-Augmented Generation]]
 - [[ByteByteGo - How to Build Models Without Language]]
 - [[Logical Intelligence]]
 - [[Energy-Based Model]]

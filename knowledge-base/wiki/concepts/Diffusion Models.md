@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-10-07
+updated: 2026-10-19
 tags:
   - concept
   - diffusion
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-02-ycombinator-yc-paper-club-inference-diffusion-world-models
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
+  - src-2026-10-19-alphasignal-next-concept-modeling
 status: active
 ---
 
@@ -111,6 +112,29 @@ solver choices. Reflow may help low-step sampling, but the source does not estab
 path intersections, zero uncertainty after reflow, or a quality-independent step-count rule.
 Its **Jacobian Penalty** is a proposed framing, not an experimentally validated universal law.
 
+## Diffusion for text is now a baseline to beat
+
+The vault's diffusion material so far concerns images, video, and control.
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] adds the first reference
+point for **diffusion language models (DLMs)**. Instead of predicting tokens left to right, they
+work on whole blocks of text and refine the output over successive steps. The article contrasts
+this with autoregressive decoding, which cannot revise a token once it has been emitted.
+
+The article lists three costs that echo this page's step-count discussion. DLMs often need many
+sampling steps for good quality. They process the full output sequence at every step. Strong
+models can require large training budgets, often with repeated passes over the same data.
+
+Stanford's **Next-Concept Modeling** is reported as a response to those costs. It refines
+hierarchical **discrete codes** from coarse to fine, so earlier levels are short and each level's
+codes are predicted in parallel. At comparable scale, with generators of roughly **100 million
+parameters**, the capture reports **10–31×** faster generation than strong DLM baselines at
+comparable or better quality, and **4–5×** fewer training tokens in selected benchmarks.
+
+These are secondhand research results from an unnamed paper. They concern text generation at
+small scale. They do not test image or video diffusion, and they do not establish that diffusion
+is inferior for text at larger scales. The reported speed ratios are against diffusion
+baselines, not against autoregressive decoding.
+
 ## Open questions
 
 - How far can fast samplers, distillation, consistency models, flow matching, or rectified flow reduce sampling cost without losing quality?
@@ -118,8 +142,13 @@ Its **Jacobian Penalty** is a proposed framing, not an experimentally validated 
 - How should conditioning be designed when text is too vague and structured control signals are needed?
 - Can diffusion-based renderers support physically accurate simulation, or will they remain strongest at visual plausibility?
 - How should the vault split image diffusion, video diffusion, audio diffusion, and diffusion for control into separate pages as sources accumulate?
+- Do diffusion language models keep a quality or revision advantage over coarse-to-fine code
+  hierarchies once both are scaled well beyond the roughly 100M-parameter comparisons recorded here?
 
 ## Related pages
+
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
+- [[LLM Inference]]
 
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
 - [[World Models]]

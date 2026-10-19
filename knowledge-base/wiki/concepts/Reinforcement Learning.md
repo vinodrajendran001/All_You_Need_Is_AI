@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - reinforcement-learning
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-27-romero-policy-gradient-llms
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -93,6 +94,35 @@ thing that was derived. The vault records mitigations — truncated importance s
 staleness, both on [[Group Relative Policy Optimization]] — but the derivation is what explains why those
 mitigations are load-bearing rather than cosmetic. See [[Inference Serving Engines]].
 
+## The expected gradient is a covariance, and the Fisher caps it
+
+[[Yingru Li - The Gradient Is a Covariance]] takes Romero's identity one step further, per
+parameter. Because the score has zero mean on the model's own samples, the expected update for
+parameter `i` is `G_i = Cov(A, score_i)`, and the diagonal Fisher `F_i = Var(score_i)` is the
+score's variance. Cauchy–Schwarz then gives `|G_i| <= std(A) · sqrt(F_i)` for any reward.
+
+Li reads this as a necessary condition. "The Fisher says where learning can happen; the reward
+decides where it does." A coordinate whose score barely varies on the model's own samples cannot
+receive much expected gradient. A coordinate with a large Fisher still receives none if the
+reward is indifferent to what it controls.
+
+The post uses this to explain post-training **sparsity**, a separate claim from smallness. Cited
+work reports RL changing only **5–30%** of parameters across seven algorithms and ten models, and
+a Fisher ranking taken before training that overlaps the top gradient coordinates far above
+chance (**47.40%** versus **1%**). Those measurements are secondhand, and the bound concerns the
+expected gradient. How an adaptive optimizer turns that gradient into parameter changes is not
+addressed in Part 1.
+
+Li also gives a construction for the off-policy problem above. If the sampler's **full next-token
+distribution** is known at every prefix, subtracting that sampler's average sensitivity
+("score centering") restores the zero mean, and every identity holds with the sampler in place
+of the model. Stale models and inference engines that return full log-probabilities supply this;
+human demonstrations do not. Two limits remain:
+
+- The centered update is the gradient of a **covariance loss**, not of on-policy expected reward.
+- The on-policy proof assumes positive probabilities, so samplers truncated by top-k or top-p
+  are covered only by being treated as the off-policy sampler.
+
 ## Open questions
 
 - Which RL branches deserve their own pages first as more sources are ingested?
@@ -103,8 +133,15 @@ mitigations are load-bearing rather than cosmetic. See [[Inference Serving Engin
   measurement of the residual bias they leave behind.
 - Which applied RL results on this page depend on the on-policy identity holding tightly, and which would
   survive a substantially off-policy estimator? The distinction has never been drawn here.
+- Do production RL stacks retain the sampler's full next-token distribution, which score centering
+  requires, or only the sampled tokens' log-probabilities? The answer decides whether Li's exact
+  off-policy correction is available in practice.
+- How closely does a Fisher ranking computed before training predict which parameters an adaptive
+  optimizer actually changes? The cited overlap concerns gradient magnitude, not final updates.
 
 ## Related pages
+
+- [[Yingru Li - The Gradient Is a Covariance]]
 
 - [[Kevin Murphy - Reinforcement Learning - An Overview]]
 - [[The Pocket - PocketFlow Tutorial Docs]]

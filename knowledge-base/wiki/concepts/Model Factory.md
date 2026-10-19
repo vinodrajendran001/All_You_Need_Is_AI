@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-10-07
+updated: 2026-10-19
 tags: [concept, training, research, reproducibility]
 source_ids:
   - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
+  - src-2026-10-15-netflix-reliable-gpu-compute
 status: active
 ---
 
@@ -89,6 +90,21 @@ fleet, without a measurement window or isolated ablation. Near-100% reserved uti
 economic target, not a universal objective for every factory; responsiveness and fair access remain
 separate objectives. Guaranteed queue quota also cannot prevent cloud spot preemption.
 
+## Admitted jobs still need hardware that cannot fail quietly
+
+[[Netflix - Reliable GPU Compute for Training and Inference]] supplies the layer beneath admission.
+Multi-week runs survive machine loss through checkpoints and elastic retries, but Netflix retries only
+after classifying a failure as platform or application; retrying everything would mask genuine job bugs
+and burn GPU hours looping on errors the platform cannot fix. Its health checks fail closed, fail when a
+dependency is missing, and record immutable GPU identifiers so a repeatedly failing device cannot
+rejoin the pool under a new instance.
+
+For a factory whose value is reproducible, inspectable runs, the transferable point — the vault's
+synthesis rather than the source's claim — is that infrastructure health signals need the same
+discipline as experiment records. A check that silently stopped running for days is the hardware
+equivalent of an unversioned input. The reported reliability gains are first-party and unwindowed; see
+[[GPU Fleet Reliability]].
+
 ## Open questions
 
 - Where should the boundary sit between factory-owned and harness-owned improvement, given that the
@@ -100,6 +116,8 @@ separate objectives. Guaranteed queue quota also cannot prevent cloud spot preem
 
 ## Related pages
 
+- [[Netflix - Reliable GPU Compute for Training and Inference]]
+- [[GPU Fleet Reliability]]
 - [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
 - [[Distributed Training Parallelism]]
 - [[Google Cloud]]

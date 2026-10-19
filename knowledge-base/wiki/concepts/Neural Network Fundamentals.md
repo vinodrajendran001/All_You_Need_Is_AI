@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-11
+updated: 2026-10-19
 tags:
   - concept
   - neural-networks
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-06-30-alisa-liu-math-notes
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-09-07-rai-lejepa
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -91,6 +92,26 @@ correct test, and what the averaged statistic misses is not characterised; and *
 excludes learning rate, weight decay, batch size, augmentation and architecture — what is removed is the
 anti-collapse knob, not tuning.
 
+## "Fisher" names two different quantities in this vault
+
+The LeJEPA section above uses the Fisher information of a **distribution** with respect to its
+input, built from `grad log p`. [[Yingru Li - The Gradient Is a Covariance]] uses the Fisher with
+respect to **parameters**. The two share a name and a log-derivative, not a role.
+
+On the model's own samples, the score `d log p_theta(y|x) / d theta_i` has zero mean. Its second
+moment is therefore a variance, the diagonal Fisher `F_i`. The full Fisher also equals the
+expected negative Hessian of the log-probability. Li adds two cautions that matter whenever
+"Fisher" is used as a curvature or importance estimate:
+
+- It must be estimated on responses **the model samples**. The same formula evaluated on dataset
+  labels gives the **empirical Fisher**, a different quantity.
+- The identities need positive probabilities, a finite response space, and a reward and prompt
+  distribution that do not depend on the parameters. Sampling truncated by top-k or top-p breaks
+  the first condition.
+
+Li then uses the parameter Fisher to bound each coordinate's expected policy gradient. That
+application is developed on [[Reinforcement Learning]].
+
 ## Open questions
 
 - Which additional fundamentals deserve their own pages next: initialization, normalization, regularization, or batching/data pipelines?
@@ -98,6 +119,8 @@ anti-collapse knob, not tuning.
 
 ## Related pages
 
+- [[Yingru Li - The Gradient Is a Covariance]]
+- [[Reinforcement Learning]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]

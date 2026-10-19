@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-18
+updated: 2026-10-19
 tags:
   - concept
   - ai-agents
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-15-turing-post-recursive-self-improvement
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -115,13 +116,45 @@ definition of improvement.
 This makes editable scope a more useful measure than how many research steps use AI. A fast loop can
 remain non-recursive while objectives, budgets, permissions, and evaluation stay external.
 
+## Interpretability as an agent-scaled science
+
+[[Nick Cammarata - Neural Networks Are Already Clean]] applies the execution-versus-taste split to
+interpretability. Agents do the high-volume parts of the conjecture-and-test loop:
+
+- writing explanations of individual neurons, with a 1,000-neuron random gallery offered;
+- writing blind-maximum and near-miss examples from an explanation alone;
+- grouping neurons in attribution graphs and sorting all **10,240** experts of Qwen3.6;
+- reviewing **100,000** attribution graphs, against the author's thousands by hand.
+
+The author says the project began as a test of whether agents had research taste, with neurons
+as a baseline; the neuron explanations kept holding up instead.
+
+The page's existing boundary holds. The loop scales labeling and testing, but the essay locates
+the scarce work in choosing questions and recognizing motifs: "interpretability is largely the
+search for the right question." Its proposed future is a laboratory of automated scientists guided
+by a "mechanistic constitution". That is a design sketch, not a demonstrated system.
+
+The essay also reports something resembling the **training-data defaults** failure that Lilian
+Weng catalogues for research agents. Agents brought their own default reading of
+"superposition". The author attributes part of this to an informal 2023 note on composition and
+superposition that opens with a large embedded base64 image. The agents' web readers hit their
+length limit inside the image before the argument began. The
+agent-written labels, controls, and groupings are therefore part of the measurement. Its
+cleanliness figures are agent-assisted, threshold-dependent, and not independently reproduced.
+See [[Mechanistic Interpretability]].
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
 - At what point does the main bottleneck shift from execution to selecting fruitful research directions?
 - When does workflow-level self-improvement become model-building-level recursive self-improvement?
+- How should agent-generated scientific labels, such as neuron explanations and graph groupings, be audited so that agent priors do not become the result?
 
 ## Related pages
+
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
+- [[Goodfire]]
 
 - [[Dwarkesh Patel - Eric Jang - Building AlphaGo from scratch]]
 - [[itsreallyvivek - some notes on getting into frontier ai labs]]

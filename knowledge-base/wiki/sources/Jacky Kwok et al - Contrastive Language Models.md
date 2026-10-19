@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-30
-updated: 2026-09-30
+updated: 2026-10-19
 source_id: src-2026-09-23-kwok-contrastive-language-models
 source_title: "Contrastive Language Models: A System One Model for Fast and Generalizable Decision-Making"
 source_author: Jacky Kwok, Hangoo Kang, Tarun Suresh, Jon Saad-Falcon, Marco Pavone, Christopher Ré, Azalia Mirhoseini
@@ -83,6 +83,7 @@ reliability. The robotics reference to CoVer-VLA is a forward pointer, not evide
 - [[Inference Efficiency Frontier]]
 - [[TypeSafe AI]]
 - [[NVIDIA]]
+- [[Robot Training Data]]
 
 ## Related pages
 
@@ -91,3 +92,4 @@ reliability. The robotics reference to CoVer-VLA is a forward pointer, not evide
 - [[Knowledge Distillation]]
 - [[Small Language Models]]
 - [[Computer Use Agents]]
+- [[Robot Training Data]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - model-training
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -127,6 +128,18 @@ A limit argued from the other side: RL's Razor (SFT forgets more than RL), *Reta
 Memorizes, RL Generalizes* all suggest distillation transfers behaviour more readily than capability — the
 basis for Nathan Lambert's claim that RL environments and infrastructure are not distillable.
 
+[[Yingru Li - The Gradient Is a Covariance]] cuts this contrast along a different axis. The work it
+cites groups RL, on-policy distillation, and **SFT on near-policy data** together as methods that
+change only a small fraction of parameters. In Li's derivation the sampling distribution is the
+condition everything rests on: identities that hold on the model's own samples can be restored
+off-policy only when the sampler's full next-token distribution is known. Human demonstrations lack that
+distribution.
+
+On that framing, "SFT versus RL" may partly conflate the algorithm with how far the training data
+sits from the model's own distribution. This is a hypothesis for the forgetting results above, not
+a finding. Li measures neither forgetting nor generalization, and the sparsity figures are
+secondhand.
+
 ## Distillation can align a converted model rather than train a fresh one
 
 [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] revises the earlier
@@ -160,6 +173,7 @@ The final test is accepted progress per measured serving cost, not teacher simil
 
 ## Related pages
 
+- [[Yingru Li - The Gradient Is a Covariance]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Speculative Decoding]]

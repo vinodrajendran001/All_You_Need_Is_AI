@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-30
+updated: 2026-10-19
 tags:
   - concept
   - rag
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-09-09-bytebytego-model-routing
   - src-2026-09-08-raji-cosine-similarity-safety
   - src-2026-09-23-kwok-contrastive-language-models
+  - src-2026-10-17-bytebytego-chunking-strategies
 status: active
 ---
 
@@ -59,6 +60,26 @@ A plausible unifying reading is that embeddings encode **topic** far more strong
 Domain vocabulary, language support, dimension count, maximum input length, inference speed, and deployment
 mode. Only the first is about meaning; the rest are systems constraints. Maximum input length in particular
 couples the embedding choice to the chunking strategy, so the two cannot be decided independently.
+
+## Two chunking strategies run through the embedding model
+
+[[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]] defines two strategies whose output
+depends directly on the embedding model. **Semantic chunking** embeds each sentence and starts a new
+chunk when similarity to the previous sentence drops. **Late chunking** runs the full document through
+the embedding model, then applies ordinary split boundaries and mean-pools within each one. The issue
+gives definitions only, with no retrieval results.
+
+The consequences below are the vault's inferences, not claims in the issue. Semantic chunking applies
+the topic-dominance reading above twice — once to retrieval and once to where chunks end — so an
+embedding that barely separates "can" from "cannot" will not split on that difference either. Late
+chunking makes the maximum-input-length coupling literal: the whole document has to fit the model's
+window. And because every chunk vector comes from one full-document pass, editing any part of a
+document plausibly changes all of that document's chunk vectors, not only the edited chunk's, which
+raises the cost of incremental re-indexing.
+
+The same issue's **agentic** strategy, which picks a chunking method per file, extends the provenance
+list below. When the method varies by document, the index needs that per-document choice recorded next
+to the chunking version, or a later re-embed cannot reproduce what was built.
 
 ## Migration is a one-way door
 
@@ -181,6 +202,7 @@ the resulting decisions are reliable.
 ## Related pages
 
 - [[ByteByteGo - Why Your RAG System Is Only as Good as Its Translator Model]]
+- [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[Retrieval-Augmented Generation]]
 - [[Search-Augmented Language Models]]
 - [[Direct Corpus Interaction]]

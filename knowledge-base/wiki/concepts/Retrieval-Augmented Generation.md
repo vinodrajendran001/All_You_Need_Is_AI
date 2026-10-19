@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-07
+updated: 2026-10-19
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-21-liu-just-in-time-agentic-ocr
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-17-bytebytego-chunking-strategies
 status: active
 ---
 
@@ -285,6 +286,33 @@ controlled comparisons, and offering no guidance on retrieval thresholds or on a
 documents — so it is a checklist of failure modes rather than a sizing of them, and it leaves open what
 retrieval-time signal would indicate an incomplete rather than a sufficient result set.
 
+## Chunking strategies decide who owns the boundary
+
+[[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]] lists eight strategies without
+measuring any of them: fixed-size with overlap, recursive, document-based, semantic, LLM-based
+propositions, agentic per-document selection, late chunking, and hierarchical. Read against this
+page, the useful distinction is what each delegates the boundary to. Fixed-size, recursive, and
+document-based chunking defer to length or to the author's structure. Semantic chunking defers to
+an embedding model, starting a new chunk when adjacent-sentence similarity drops. LLM-based and
+agentic chunking defer to a generating model, which rewrites text into propositions or chooses a
+method per file. That grouping is the vault's reading, not the issue's.
+
+Each delegation imports a failure layer this page already records. A similarity-drop boundary
+inherits what the embedding space encodes; the topic-over-operator bias on
+[[Embedding Model Selection]] suggests a negation or exception that stays on topic will not
+trigger a split. A proposition is a paraphrase, so the separate verification stage above still
+has to check **support** against the original passage rather than the rewritten chunk. Neither
+point is tested in the source.
+
+None of the eight descriptions addresses the split-conditions failure from the previous section.
+Document-based and hierarchical chunking help only when authors kept a rule and its exception in
+one section, though a hierarchy at least lets retrieval expand from a sentence to its parent.
+"One idea per line" rewriting could separate a rule from its exception unless each proposition
+carries its conditions. The issue calls LLM-based chunking "high quality but expensive across a
+large corpus" and gives no quality, cost, or recall figure. Chunking therefore stays where the
+previous section put it: a **schema decision** to record, version, and evaluate on the questions
+the corpus has to answer, not a default to inherit.
+
 ## Retrieval success is not evidence-use success
 
 [[ByteByteGo - The LLM Blindspot - Lost in the Middle]] sharpens the boundary between a search
@@ -301,6 +329,7 @@ behavior.
 
 ## Related pages
 
+- [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[Multi-Turn Evaluation]]
 

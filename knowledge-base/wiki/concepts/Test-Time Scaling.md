@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - reasoning
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-07-20-raschka-reasoning-effort
   - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-19-alphasignal-next-concept-modeling
 status: active
 ---
 
@@ -104,6 +105,25 @@ the system still needs a failure/escalation path. The source's Kona Sudoku figur
 vendor demonstration, not a measured general scaling curve, and its illustrative energy
 walkthrough is not a disclosure of Kona's algorithm.
 
+## Cheaper samples buy more candidates per budget
+
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] adds a verifier-free
+selection case in which the lever is sample cost rather than a better selector. **Minimum Bayes
+risk (MBR) decoding** generates several candidates and keeps the one with the highest average
+similarity to the others. It is a consensus rule in the same family as self-consistency.
+
+Because Next-Concept Modeling samples quickly, it fits more candidates into the same time budget.
+On summarization this is reported as "an approximately **7%** higher ROUGE-L" than the strongest
+baseline. The capture does not say whether that is relative or absolute. The article notes that
+the selection method itself works with other architectures; what faster generation changes is
+"how many candidates an application can afford to examine."
+
+The result therefore mixes model quality with a budget allocation. Reporting a fixed-time
+comparison without also reporting a fixed-sample-count comparison would credit the generator
+with gains owed to the number of samples. ROUGE-L measures overlap with reference summaries, not
+factual support, so consensus selection under this metric is not verification. The figures are
+secondhand research results at small model scale.
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -112,6 +132,7 @@ walkthrough is not a disclosure of Kona's algorithm.
 
 ## Related pages
 
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
 - [[ByteByteGo - How to Build Models Without Language]]
 - [[Energy-Based Model]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]

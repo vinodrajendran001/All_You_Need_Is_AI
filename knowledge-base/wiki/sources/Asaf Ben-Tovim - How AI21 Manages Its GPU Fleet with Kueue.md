@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
 source_title: "From manual negotiation to automated scheduling: How AI21 manages its GPU fleet with Kueue"
 source_author: Asaf Ben-Tovim
@@ -67,6 +67,7 @@ is about GPU scheduling. The raw capture is preserved rather than silently corre
 - [[Model Factory]]
 - [[ML Systems at Scale]]
 - [[Google Cloud]]
+- [[GPU Fleet Reliability]]
 
 ## Raw capture
 
@@ -82,3 +83,4 @@ is about GPU scheduling. The raw capture is preserved rather than silently corre
 - [[AI Accelerator Architecture]]
 - [[Serving Benchmarks and Goodput]]
 - [[Jason Li - How Many AI Agents Could We Run]]
+- [[GPU Fleet Reliability]]

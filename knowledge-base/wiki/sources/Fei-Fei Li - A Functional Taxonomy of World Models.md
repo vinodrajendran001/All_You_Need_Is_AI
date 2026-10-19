@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-06-05
-updated: 2026-08-26
+updated: 2026-10-19
 source_id: src-2026-06-05-fei-fei-li-taxonomy-world-models
 source_title: A Functional Taxonomy of World Models
 source_author: Fei-Fei Li et al. (World Labs)
@@ -49,6 +49,7 @@ This source deepens the vault's `World Models` concept page with a clear functio
 - [[Fei-Fei Li]]
 - [[World Labs]]
 - [[World Models]]
+- [[Robot Training Data]]
 
 ## Citations
 - Source URL: [https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models](https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models)
@@ -67,3 +68,4 @@ This source deepens the vault's `World Models` concept page with a clear functio
 - [[Fei-Fei Li]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - [[AI Knowledge Base Overview]]
+- [[Robot Training Data]]

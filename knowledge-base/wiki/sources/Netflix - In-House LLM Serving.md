@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-10-09
+updated: 2026-10-19
 source_id: src-2026-07-17-netflix-in-house-llm-serving
 source_title: "In-House LLM Serving at Netflix"
 source_author: Netflix Technology Blog
@@ -44,6 +44,7 @@ is operationally incomplete.
 - [[Inference Serving Engines]]
 - [[ML Systems at Scale]]
 - [[Serving Benchmarks and Goodput]]
+- [[GPU Fleet Reliability]]
 
 ## Citations
 
@@ -58,3 +59,4 @@ is operationally incomplete.
 - [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]]
 - [[LLM Inference]]
 - [[KV Cache]]
+- [[GPU Fleet Reliability]]

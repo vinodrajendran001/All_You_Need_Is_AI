@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-09
+updated: 2026-10-19
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-27-romero-policy-gradient-llms
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -153,7 +154,35 @@ staleness bound above are built to absorb, but read as a derivation it says some
 does not: what degrades under staleness is the unbiasedness of the group-relative advantage itself, and
 clipping bounds the damage rather than restoring the identity. See [[Inference Serving Engines]].
 
+## The covariance form states the baseline rule exactly
+
+[[Yingru Li - The Gradient Is a Covariance]] restates the identity behind the previous section per
+parameter and per prompt: `G_i = E_x[Cov(r, score_i | x)]`. A baseline `b(x)` that depends only on
+the prompt drops out, since `Cov(A - b, score_i) = Cov(A, score_i)`. It changes only `std(A)` and
+the noise of the estimate. That sharpens this page's reading of baseline choice as a variance
+decision. Li presents his own per-token **Optimal Token Baseline** (ICML 2026) as the
+noise-minimizing choice; that is a self-citation the vault has not evaluated.
+
+Li states the condition for a prompt-only baseline and does not discuss GRPO's group statistics.
+Extending it to a leave-one-out mean follows by the same argument, because the other samples are
+independent of the scored one given the prompt. That extension is the vault's, not Li's. It
+agrees with the completion-level reading above: Granite's leave-one-out baseline qualifies, while
+a plain group mean, which contains the sample's own reward, stays outside the stated condition.
+
+Two consequences follow:
+
+- **Silent groups have an expectation-level counterpart.** If the reward is constant over the
+  model's samples at a prompt, the per-prompt covariance, and so the expected gradient for every
+  parameter, is zero. A sampled all-fail or all-succeed group is the finite-sample version, and
+  it can also be silent by chance when the true reward is not constant.
+- **Dividing by the group standard deviation is not a baseline.** Read as a prompt-level factor,
+  it reweights prompts in the expected update rather than only reducing variance. Because it is
+  estimated from the same samples, it also inherits the plain group mean's self-inclusion. This
+  reading is the vault's inference; Li does not address normalization.
+
 ## Related pages
+
+- [[Yingru Li - The Gradient Is a Covariance]]
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]

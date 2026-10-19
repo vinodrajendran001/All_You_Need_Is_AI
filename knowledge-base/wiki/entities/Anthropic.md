@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-09-30
+updated: 2026-10-19
 entity_kind: organization
 tags:
   - entity
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-25-bytebytego-stealing-reasoning-traces
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
+  - src-2026-10-19-cammarata-networks-already-clean
 status: active
 ---
 
@@ -93,7 +94,41 @@ human to read scored transcripts. But a concession stated inside results nobody 
 weaker instrument than a published negative result on a released benchmark. Both belong on this page, and
 they should not be collapsed into a single claim about the lab's transparency.
 
+## Its superposition and dictionary programme is contested from outside
+
+[[Nick Cammarata - Neural Networks Are Already Clean]], a Goodfire essay by a co-author of
+earlier circuits work, re-reads several Anthropic interpretability papers as evidence of weak
+tools rather than arbitrary packing:
+
+- **Towards Monosemanticity (2023)** gave its one-layer model's median neuron **0 of 14** on its
+  rubric. The paper's introductory example, a neuron firing on academic citations, English
+  dialogue, HTTP requests, and Korean text, is re-read as a plausible "don't say a dot" neuron.
+  The essay notes the model is unavailable to confirm this.
+- **On the Biology of a Large Language Model (2025)** built a preeclampsia attribution graph for
+  Claude 3.5 Haiku from transcoder features. The essay reproduces the same diagnostic structure in
+  Qwen3-32B with native neurons and no replacement model. It says the largest transcoder predicts
+  the original's next word "only half the time" and needs error nodes.
+- **Softmax Linear Units (2022)** is quoted acknowledging that superposition "is often treated as
+  the default hypothesis simply because it seems intuitively more compelling than other
+  explanations, but there is little evidence", although that paper reads its own results as
+  moderate evidence for superposition. **Toy Models of Superposition's** "more features than
+  dimensions" definition is set aside rather than disputed. A 2025 note on attention
+  superposition is treated as a possible terminology difference.
+
+The essay also cites Anthropic research in support. It reads SGTM work as finding that knowledge
+becomes more localized. It quotes Joshua Batson, who read a draft, saying that missing pieces
+"will fit into the initial puzzle, rather than being totally randomly splayed on top".
+
+These are one competing group's characterizations of Anthropic's papers, not Anthropic's
+position, and no response is captured. They sit alongside CHIVE's negative result for SAEs and
+other activation readers. That result came from Anthropic Fellows and is a different test. See
+[[Mechanistic Interpretability]].
+
 ## Related pages
+
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Mechanistic Interpretability]]
+- [[Goodfire]]
 
 - [[Anthropic - The AI-Native SDLC Playbook]]
 - [[AI-Native Software Development Lifecycle]]

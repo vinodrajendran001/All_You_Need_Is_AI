@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - ai-agents
@@ -28,6 +28,7 @@ source_ids:
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-17-bytebytego-chunking-strategies
 status: active
 ---
 
@@ -215,6 +216,22 @@ do not imply zero discovery or hook cost, and the source records a false report 
 corrected final response. Evaluate the installed bundle first, then ablate components before
 attributing improvements to the skill library.
 
+## A secondary explainer restates the loading sequence
+
+[[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]] includes a five-step Agent Skills
+workflow. The runtime combines the user's query with a **skills index** — a lightweight list of
+available skills and their short descriptions. The model reasons and names the skill it wants, the
+runtime loads that `SKILL.md` into the active context, and the model follows it, running scripts
+where the skill calls for them. This matches the progressive-disclosure account above and Osmani's
+budget detail: listings are always present, bodies load on demand.
+
+Two parts of the explainer need hedging. Its motivation, "Long prompts hurt agent performance," and
+its claimed benefit, that on-demand loading keeps "the LLM's behavior consistent," are both
+unquantified, so neither adds evidence to the null and mixed results recorded above. Its sequence
+also makes the model's own reading of short descriptions the selection mechanism. That is exactly
+where the open question about colliding activation conditions bites, and the explainer does not
+discuss mis-selection or what a loaded skill's scripts are allowed to execute.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -226,6 +243,8 @@ attributing improvements to the skill library.
 
 ## Related pages
 
+- [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
+- [[ByteByteGo]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]

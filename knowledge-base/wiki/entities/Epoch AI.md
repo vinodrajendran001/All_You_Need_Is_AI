@@ -2,11 +2,12 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-10-07
+updated: 2026-10-19
 tags: [entity, organization, ai-research]
 source_ids:
   - src-2026-09-14-li-long-context-latency
   - src-2026-10-02-epoch-agent-population
+  - src-2026-10-15-potter-how-to-train-your-robot
 status: active
 ---
 
@@ -39,8 +40,19 @@ the annual API-equivalent spending scenario is not a provider margin or break-ev
 The contribution is an inspectable chain of assumptions; individual outputs should travel with
 that chain rather than become an unconditional forecast.
 
+## Text-data trends, cited secondhand
+
+[[Brian Potter - How to Train Your Robot]] uses two Epoch findings as the baseline for robotics'
+data gap: language-model training datasets have doubled in size about every six months since the
+early 2010s, and Epoch's 2024 estimate puts the total stock of quality, accessible text at around
+**300 trillion tokens**. The vault records these as Potter's citations; the underlying Epoch reports
+have not been ingested. Both figures describe text. The robot side has no comparable stock estimate,
+which is the contrast the essay builds on; see [[Robot Training Data]].
+
 ## Related pages
 
+- [[Brian Potter - How to Train Your Robot]]
+- [[Robot Training Data]]
 - [[Jason Li - How Many AI Agents Could We Run]]
 - [[AI Accelerator Architecture]]
 - [[Inference Efficiency Frontier]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - evaluation
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-08-02-arise-llm-as-judge
 status: active
 ---
 
@@ -297,6 +298,26 @@ Blocked access and self-reporting are disclosed separately from incident severit
 narrower fallback claim cannot erase the original refutation. This is a proposed governance
 process, not a measured improvement in benchmark integrity or an established legal duty.
 
+## A model-graded score inherits its grader's blind spots and lifespan
+
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] names two ways a
+benchmark scored by an LLM judge fails even when its test set is sound. The first is the **slop
+cycle**: when a judge grades another model's output without a human-adjudicated baseline, errors are
+scored as correct because grader and generator share blind spots. This is the proxy-defect problem
+this page tracks, located in the scorer rather than in the reference text. On the vault's reading,
+the reference-disagreement probes above cannot catch it, because the faulty judgment is produced
+fresh at scoring time rather than stored in a reference that independent models could contradict.
+The authors' remedy is the same one this page applies to contamination: anchor the grader to an
+independently human-graded set, and keep spot-checking against it.
+
+The second is **deprecation**. If the validated grader is a closed-API model that is later removed,
+the benchmark can become impossible to replicate, "stranded without a clear grader," even though
+every test item survives. For a model-graded number, the grader's identity and version therefore
+belong in the reportable-number attributes alongside hardware and software versions. The authors
+recommend open-source autograders and building the human gold set before automating. Both failure
+modes are argued from clinical evaluation experience; the capture measures neither how often slop
+cycles occur nor how many benchmarks deprecation has stranded.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -313,6 +334,7 @@ process, not a measured improvement in benchmark integrity or an established leg
 
 ## Related pages
 
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
 - [[Lisa Brown Jaloza - Microsoft-Decision-1]]
 - [[Microsoft-Decision-1]]
 - [[Apollo Research - Principles for Embedded Evaluations]]

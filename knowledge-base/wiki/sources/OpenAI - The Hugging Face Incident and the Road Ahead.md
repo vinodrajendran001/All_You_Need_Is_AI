@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-16
+updated: 2026-10-19
 source_id: src-2026-08-30-openai-hugging-face-incident
 source_title: "The Hugging Face incident and the road ahead"
 source_author: "OpenAI"
@@ -183,6 +183,7 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Agentic Reinforcement Learning]]
 - [[Agent Delegation]]
 - [[OpenAI]]
+- [[Mechanistic Interpretability]]
 
 ## Citations
 
@@ -201,3 +202,4 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Hugging Face]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
 - [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]]
+- [[Mechanistic Interpretability]]

@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-10-16
-updated: 2026-10-16
+updated: 2026-10-19
 tags: [concept, evaluation, governance, assurance]
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-30-apollo-embedded-evaluations
+  - src-2026-08-02-arise-llm-as-judge
 status: active
 ---
 
@@ -62,6 +63,26 @@ which workloads remain unobserved. It does not independently validate OpenAI's a
 assign it an Apollo grade. The synthesis is procedural: an empty alert log means little
 without evidence about what was monitored and what the monitor could detect.
 
+### A deployment-time validation expires when the backend changes
+
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] makes the verdict-expiry
+problem concrete for deployed clinical AI. AI scribes run on frontier models that vendors version and
+retire on their own timelines, so a pipeline validated against one model can shift behavior when the
+backend is swapped underneath it. Evaluation performed once, at procurement, "cannot catch a
+regression that appears two versions later." The authors propose continuous assessment of the
+outputs themselves, by an LLM judge anchored to a human-graded sample and spot-checked against it
+over time.
+
+That human-graded seed set does work similar to Apollo's detection-adequacy step: it is evidence
+about what the monitor can detect, not only a record of what it flagged. The authors' closing claim
+restates the empty-alert-log point above: "A bad judge is worse than none because it hides the
+absence of evaluation behind the appearance of it." The arrangement is not embedded evaluation in
+Apollo's sense. It concerns population-level monitoring of a deployed product, not independent
+access to a developer's training and internal deployment, and it does not address evaluator
+independence or publication rights. It specifies no agreement threshold, and a common-case seed set
+cannot establish detection of the rare presentations the authors exclude. Like Apollo's principles,
+it is a proposal, here a public comment to an FDA request for comment, not an adopted requirement.
+
 ### Publication is part of the control
 
 Agreed reporting schedules, disclosure rules, protected confidential information, and
@@ -74,9 +95,13 @@ institutional safeguards, not a demonstrated incentive theorem or existing legal
 - How can access completeness be assessed when the developer controls the evidence surface?
 - What resources and planted-counterexample tests justify an adequacy claim?
 - How should verdicts expire as training, architecture, deployment, or monitoring changes?
+- When a vendor swaps the model behind an unchanged product, who learns of it, and which validation
+  must re-run before the new backend reaches users?
 
 ## Related pages
 
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
+- [[LLM-as-a-Judge]]
 - [[Apollo Research - Principles for Embedded Evaluations]]
 - [[Apollo Research]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]

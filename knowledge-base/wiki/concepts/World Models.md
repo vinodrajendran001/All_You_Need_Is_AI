@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-09-18
+updated: 2026-10-19
 tags:
   - concept
   - world-models
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-21-bytebytego-roblox-world-models
   - src-2026-09-07-rai-lejepa
   - src-2026-09-14-rhoda-web-video-pretraining-robots
+  - src-2026-10-15-potter-how-to-train-your-robot
 status: active
 ---
 
@@ -101,6 +102,22 @@ rank in the same order on DINO video-prediction distance and physical completion
 The scope remains narrow: one vendor, task, embodiment, architecture family, and post-training run
 per condition. The result supports transfer within that setup, not a universal robotics scaling law.
 
+## Simulation as a source of robot data
+
+[[Brian Potter - How to Train Your Robot]] adds the data-production view of the simulator category.
+Simulated RL is cheap and massively parallel — Figure AI trained humanoid walking on thousands of
+simulated robots — but its data is only as good as the simulation. Locomotion is characterized well
+enough to simulate; soft or deformable manipulation is not, the sim-to-real gap that the Fei-Fei Li
+taxonomy also lists among simulation's open problems. Domain randomization trades accurate modeling
+for coverage: OpenAI's Rubik's Cube hand needed about **13,000 simulated years** and reached **20%**
+success on maximally difficult starting arrangements. Potter reports randomization as fairly standard
+for locomotion but not widely used for manipulation.
+
+That qualifies the "simulation is the linchpin" thesis in practice: a simulator is the linchpin only
+where its physics holds, and for robot control the missing physics is concentrated in contact-rich
+manipulation. Potter also cites NVIDIA's Cosmos, a video-trained foundation model usable as a
+robot-policy backbone, without performance evidence. See [[Robot Training Data]].
+
 ## Open questions
 
 - What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
@@ -109,6 +126,10 @@ per condition. The result supports transfer within that setup, not a universal r
 
 ## Related pages
 
+- [[Brian Potter - How to Train Your Robot]]
+- [[Robot Training Data]]
+- [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]]
+- [[Video Pre-training for Robot Policies]]
 - [[Fei-Fei Li - A Functional Taxonomy of World Models]]
 - [[Y Combinator - Inference, Diffusion, World Models, and More - YC Paper Club]]
 - [[Diffusion Models]]

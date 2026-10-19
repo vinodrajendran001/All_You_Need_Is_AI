@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - training
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
+  - src-2026-10-15-netflix-reliable-gpu-compute
 status: active
 ---
 
@@ -97,14 +98,35 @@ pipeline, or data parallelism for the model. The reported hero-job wait fell **7
 an **83% time-to-start reduction**, not an 83% improvement in training throughput. Measurement
 windows and a controlled attribution are not supplied.
 
+## Lockstep collectives turn a slow device into a slow job
+
+[[Netflix - Reliable GPU Compute for Training and Inference]] adds the failure side of the collectives
+above. Because ranks exchange data every step, a gang-scheduled job advances at its slowest
+participant's pace and stops if one participant dies. The expensive cases are degraded rather than
+dead: an Elastic Fabric Adapter with fewer links than expected keeps collectives running at a fraction
+of their bandwidth, and Netflix plans to treat a GPU running ten to fifteen degrees hotter than its
+peers as a fault because it paces the gang even within healthy limits. Netflix therefore validates each
+allocation with a short collective run and pairwise network tests before admission, watches for a
+single slow rank during the job, and makes machine loss cheap with checkpoints and elastic, retryable
+workers.
+
+The same report warns against reading collective symptoms as fabric faults. A class of NCCL timeouts
+was traced to data-loading stalls at high worker counts, so retrying them as network failures would have
+recycled healthy machines. A parallelism plan's communication pattern is also the surface through which
+unrelated faults become visible. The reported reliability gains are first-party and unwindowed; see
+[[GPU Fleet Reliability]].
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
 - How do the axes interact under real load-balancing and fault-tolerance pressure, especially MoE routing skew and pipeline bubbles at scale?
 - How much of the memory story changes as optimiser-state compression, 8-bit optimisers, and lower-precision training mature (see [[Model Quantization and Efficiency]])?
+- Which parallelism layouts degrade most gracefully when one rank slows rather than fails, and how far can elastic workers reshape a mesh without restarting from a checkpoint? Netflix reports fault handling, but not broken down by parallelism axis.
 
 ## Related pages
 
+- [[Netflix - Reliable GPU Compute for Training and Inference]]
+- [[GPU Fleet Reliability]]
 - [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
 - [[Model Factory]]
 - [[Google Cloud]]

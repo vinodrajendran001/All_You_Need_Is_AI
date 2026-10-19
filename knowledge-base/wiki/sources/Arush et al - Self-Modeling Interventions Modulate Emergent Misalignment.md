@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-10-06-arush-self-modeling-emergent-misalignment
 source_title: "Self-Modeling Interventions Modulate Emergent Misalignment"
 source_author: "Arush, Shawn Zhou, Jiaxin Wen, Shi"
@@ -78,6 +78,7 @@ remain separate controls from the training interventions studied here.
 - [[Agent Security and Governance]]
 - [[OpenAI]]
 - [[Qwen]]
+- [[Mechanistic Interpretability]]
 
 ## Raw capture
 
@@ -93,3 +94,4 @@ remain separate controls from the training interventions studied here.
 - [[Anthropic - Would This Change Your Answer (CHIVE)]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
 - [[Reward Design for RL]]
+- [[Mechanistic Interpretability]]

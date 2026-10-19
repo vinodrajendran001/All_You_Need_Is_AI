@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-09
+updated: 2026-10-19
 tags:
   - concept
   - hardware
@@ -22,6 +22,8 @@ source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-10-02-epoch-agent-population
+  - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-15-netflix-reliable-gpu-compute
 status: active
 ---
 
@@ -154,6 +156,25 @@ utilization, and economic assumptions; see [[Serving Benchmarks and Goodput]]. M
 useful bottleneck proxy, not a complete performance model or evidence that every session performs
 human-equivalent work.
 
+## Inside the node, placement is topology too
+
+This page's interconnect discussion has mostly lived at the rack and pod. Two October 2026 sources
+show the same compute-versus-communication law inside one server. On the test nodes in
+[[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] (`p5en.48xlarge`, 8x H200),
+16 EFA interfaces at 200 Gb/s each provide 3.2 Tb/s; eight sit on each NUMA node, and each GPU shares a
+PCIe switch with two of them. NIXL's default LIBFABRIC backend registers each GPU's KV cache only on
+those two rails, so every transfer stays PCIe-local without manual device overrides.
+[[Netflix - Reliable GPU Compute for Training and Inference]] states the cost of getting this wrong: a
+GPU paired with a network adapter or CPU on the wrong PCIe root incurs a bandwidth penalty. Netflix
+plans topology-aware allocation (Compute/IMEX domains, PCIe roots, NUMA nodes) through Kubernetes
+Dynamic Resource Allocation once Karpenter supports it.
+
+Netflix also treats the device as divisible. MIG partitions give memory-level isolation between small
+inference tenants and are reconfigured without restarting the machine, which changes the unit of
+capacity. Device-level allocation could also change the unit of failure, since one faulty GPU need not
+remove the whole machine, but the source makes that conditional on future DRA support. Neither source
+quantifies these placement effects. See [[GPU Fleet Reliability]].
+
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
@@ -165,6 +186,9 @@ human-equivalent work.
 
 ## Related pages
 
+- [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
+- [[Netflix - Reliable GPU Compute for Training and Inference]]
+- [[GPU Fleet Reliability]]
 - [[Jason Li - How Many AI Agents Could We Run]]
 - [[Epoch AI]]
 - [[Dwarkesh Patel - Reiner Pope - Chip design from the bottom up]]

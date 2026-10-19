@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-09-03
+updated: 2026-10-19
 tags: [concept, open-models, ecosystems, inference]
 source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-08-20-mark-russinovich-fools-gold
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-08-02-arise-llm-as-judge
 status: active
 ---
 
@@ -74,13 +75,35 @@ The accompanying vulnerability ledger — **2,436 findings across 269 open-sourc
 and **2,383 embargoed** — also shows an open-weights lab taking on a coordinated-disclosure role, a governance
 position the ecosystem has no established norms for.
 
+## Openness as evaluation durability
+
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] adds a reason to prefer
+open weights that has nothing to do with adoption or cost: a validated grader has to keep running.
+When an LLM judge has been validated against a human-graded clinical reference, removal of its model
+from a closed-source API can make projects impossible to replicate and leave "high-quality
+benchmarks stranded without a clear grader." The authors recommend an open-source autograder where
+possible.
+
+Their second recommendation is the more durable artifact: build the human gold-standard set first,
+because it can validate whichever grader comes next. On that logic, open weights protect a
+particular grader, and the gold set protects the ability to re-validate any grader. The source does
+not compare open and closed graders on quality. It also does not say what must be retained for an
+open grader to stay reproducible; on the vault's reading, that includes the exact checkpoint, prompt,
+and inference settings, not just a model name.
+
 ## Open questions
 
 - Which metrics distinguish genuine deployment from automated download noise?
 - What combination of weights, code, data, and license constitutes practical openness?
 - How should open releases disclose defensive mechanisms that intentionally change attacked behavior?
+- When a reproducible open grader is weaker than a closed one that may be withdrawn, how should an
+  evaluation program choose between durability and quality?
 
 ## Related pages
+
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
+- [[LLM-as-a-Judge]]
+- [[Benchmark Optimization]]
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[IBM]]

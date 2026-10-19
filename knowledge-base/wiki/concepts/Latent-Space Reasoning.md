@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - reasoning
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-10-12-bytebytego-energy-based-reasoning
   - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-19-alphasignal-next-concept-modeling
 status: active
 ---
 
@@ -126,7 +127,32 @@ text-plus-fusion result suggests that readable messages and representations may 
 one another. Latent communication does not inherently carry an inspectable explanation,
 provenance, or authority contract.
 
+## Committing to a coarse latent plan is a generation order, not hidden reasoning
+
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] describes a model that
+decides on a compressed representation of the whole answer before producing text. Stanford's
+Next-Concept Modeling learns a hierarchy of **discrete** codes with an autoencoder. A transformer
+then generates the hierarchy from coarse levels to fine ones. The article frames this as "deciding
+on the overall representation before producing the final text."
+
+Three differences keep it distinct from the latent reasoners on this page:
+
+- **The codes are trained for reconstruction**, not for intermediate computation toward an
+  answer. The architecture is a text generator.
+- **The intermediate state is partly inspectable.** The article decodes intermediate levels into
+  incomplete, sometimes wrong text that later levels may correct. That is closer to a draft than
+  to an opaque recurrent state, though whether such drafts faithfully reflect the eventual output
+  is not measured.
+- **The reasoning evidence is thin.** A hard-Sudoku win, reported without figures, is the only
+  reasoning-style result in the capture.
+
+The result is still useful here as a counterpoint to token-space chains: planning before writing
+need not mean writing the plan out. It is secondhand research reporting at roughly 100M
+parameters.
+
 ## Related pages
+
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
 
 - [[ByteByteGo - How to Build Models Without Language]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]

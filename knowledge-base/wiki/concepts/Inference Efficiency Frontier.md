@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - concept
   - inference
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-10-05-rai-jev-decision-models
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-19-alphasignal-next-concept-modeling
 status: active
 ---
 
@@ -309,6 +310,22 @@ for EAGLE-3 and DFlash, showing why accepted length alone cannot locate the fron
 Architecture conversion, draft cache, and kernels can consume one another's savings;
 these sources do not establish multiplicative gains from combining their techniques.
 
+## A new generation order is a frontier claim only against its stated baseline
+
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] reports an architectural
+route that changes how many sequential steps generation takes. Next-Concept Modeling generates a
+coarse-to-fine hierarchy of discrete codes, one level at a time, with each level's codes predicted
+in parallel. Its reported **10–31×** speedups, at comparable or better quality, are against strong
+**diffusion** language-model baselines at roughly **100M** generator parameters. The **21×** LM1B
+figure was measured on an H100.
+
+In this page's vocabulary, that is a frontier shift within research-scale text diffusion. It is
+not yet a point on the autoregressive serving frontier the rest of this page discusses. The
+capture gives no speed comparison with autoregressive decoding, no batching or throughput curve,
+and no figures for the **725M** scaling run. Its MBR summarization gain spends the speed on more
+candidates, which turns a latency gain into a quality gain at fixed time. That is the same
+allocation question as any other frontier-moving technique.
+
 ## Open questions
 
 - Depth-pruning gains are reported at aggressive ratios without retraining. Where does the gap between
@@ -332,6 +349,8 @@ these sources do not establish multiplicative gains from combining their techniq
 
 ## Related pages
 
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
+- [[Diffusion Models]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-10-01-neuralink-unlabeled-brain-pretraining
 source_title: "Pretraining on 50,000 Hours of Unlabeled Brain Data"
 source_author: Neuralink
@@ -61,6 +61,7 @@ corpus must not be described as the training set of every reported encoder.
 
 - [[Neuralink]]
 - [[Linear Attention and Recurrent Memory]]
+- [[Robot Training Data]]
 
 ## Raw capture
 
@@ -76,3 +77,4 @@ corpus must not be described as the training set of every reported encoder.
 - [[Joint-Embedding Predictive Architecture]]
 - [[Video Pre-training for Robot Policies]]
 - [[Neural Network Fundamentals]]
+- [[Robot Training Data]]

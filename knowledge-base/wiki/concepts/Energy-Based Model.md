@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-10-16
-updated: 2026-10-16
+updated: 2026-10-19
 tags: [concept, energy-based-models, reasoning, verification]
 source_ids:
   - src-2026-09-07-rai-lejepa
   - src-2026-10-12-bytebytego-energy-based-reasoning
+  - src-2026-10-19-alphasignal-next-concept-modeling
 status: active
 ---
 
@@ -65,6 +66,25 @@ general cost or speed ratios. Nor does the demonstration show that language mode
 use search, tools, or formal checkers. A plausible division of labor is language for the
 interface and a specialist for constrained search, with independent checks at the boundary.
 
+### Sudoku is becoming a shared demonstration, not a shared benchmark
+
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] reports a second
+non-autoregressive approach tested on hard Sudoku. Stanford's Next-Concept Modeling generates a
+coarse-to-fine hierarchy of discrete codes rather than optimizing an energy. It reportedly
+"outperformed the strongest competing method while requiring fewer model evaluations." The
+article treats whole-board constraint satisfaction as a natural test of coarse-to-fine
+refinement.
+
+The two Sudoku claims cannot be placed on one scale. NCM's result has no accuracy figure and no
+named competitor. Kona's **96.2%** comes from a vendor demonstration against an LLM panel. The
+protocols, puzzle sets, and checkers are undocumented in both captures.
+
+What the pair does show is a family resemblance. Both are presented as alternatives to
+committing to an answer left to right. NCM refines coarse codes for the whole sequence, and the
+generic energy walkthrough optimizes a whole candidate (though that walkthrough is explicitly not
+Kona's implementation). Neither result is evidence about language-model systems that use search,
+tools, or formal checkers.
+
 ## Open questions
 
 - Which optimization and stopping rules preserve useful performance under a fixed budget?
@@ -75,6 +95,7 @@ interface and a specialist for constrained search, with independent checks at th
 ## Related pages
 
 - [[ByteByteGo - How to Build Models Without Language]]
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
 - [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
 - [[Logical Intelligence]]
 - [[Joint-Embedding Predictive Architecture]]

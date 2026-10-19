@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-10-16
+updated: 2026-10-19
 tags:
   - overview
   - ai
@@ -316,6 +316,14 @@ source_ids:
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-09-rabi-guha-intelligent-ui
+  - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-10-15-li-gradient-is-covariance
 status: active
 ---
 
@@ -327,10 +335,12 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of October 16, 2026, the wiki has **543 typed pages**, including **283 source summaries**
-owning **309 source IDs**, **123 concepts**, and **81 entities**. The raw collection contains
-**311 top-level captures** and **380 files in total**; recaptures and equivalent clippings
-remain preserved without being counted as independent evidence.
+As of October 19, 2026, the wiki has **556 typed pages**, including **291 source summaries**
+owning **317 source IDs**, **126 concepts**, and **82 entities**; page totals exclude git-ignored
+local query files. The raw collection contains **319 top-level captures** and **388 files in
+total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;
+recaptures and equivalent clippings remain preserved without being counted as independent
+evidence.
 
 The workspace now implements Karpathy's three-layer pattern:
 
@@ -1082,8 +1092,90 @@ Ten captures yielded **eight new sources**: the two plugin clippings share one a
 and the Epoch recapture has the same normalized body as the existing
 [[Jason Li - How Many AI Agents Could We Run]] source. All captures remain unchanged.
 
+## October 19 additions
+
+**Interpretability: is the network's own unit already legible?**
+[[Nick Cammarata - Neural Networks Are Already Clean]] seeds [[Mechanistic Interpretability]]
+and [[Goodfire]]. Goodfire argues that the canonical evidence for superposition was misread.
+In its account, the cat-and-car neuron detects a V shape, and InceptionV1's messy last layer
+reflects architecture and tooling failures. Most remaining polysemanticity, it says, is
+"recursive generalization." Its Qwen3-32B figure of about 90% of neuron poles having one main
+job is preliminary, threshold-dependent, agent-assisted, and first-party. Its own appendix
+shows that removing weak activations is cheap in a final block but drops accuracy to 3.80% and
+27.78% when applied at p99 across all 18 blocks. [[Interpretability Evaluation]] keeps
+Goodfire's explanations that can lose next to CHIVE's negative transcript-baseline result
+without merging them. Neither shows that superposition is absent or that internals give a
+safety guarantee.
+
+**A judge is only as good as the human reference behind it.**
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] gives
+[[LLM-as-a-Judge]] its first clinical exclusion zones. A validated human baseline comes first.
+Tasks stay narrow (semantic equivalence or standardized reasoning). Conclusions are
+population-level rather than about individual cases, and judge outputs never become ground
+truth. The "slop cycle" and closed-API deprecation become grader failure modes on
+[[Benchmark Optimization]] and [[Open Model Ecosystems]]. Vendor backend swaps undo
+procurement-time validation on [[Embedded Evaluation]] and [[LLM Application Resilience]].
+The source is an argued rationale for a public comment, with no agreement threshold or
+statistics.
+
+**Generation need not be token by token, but the comparison is against diffusion.**
+[[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]] reports Stanford's
+Next-Concept Modeling. It generates a coarse-to-fine hierarchy of discrete codes, one
+sequential step per level. Its 10–31× speedups are against diffusion language models at
+roughly 100M parameters, not against autoregressive decoding. The summarization gain comes
+from spending that speed on more candidates. [[Diffusion Models]], [[LLM Inference]], and
+[[Test-Time Scaling]] carry those boundaries. The clipping has no byline, date, or canonical
+URL.
+
+**Which parameters policy gradient can move is bounded before any reward is seen.**
+[[Yingru Li - The Gradient Is a Covariance]] derives that, on-policy, the expected gradient is
+the covariance of reward and score, capped by the Fisher. A prompt-level baseline changes only
+variance, and off-policy updates need the score centered under a known sampler.
+[[Group Relative Policy Optimization]], [[Reinforcement Learning]], and [[LLM Reasoning]] take
+the derivation. The 5–30% sparsity and 47.40% overlap figures are secondhand citations, and a
+bound on the expected gradient is not a bound on an optimizer's update.
+
+**Infrastructure fails in degraded states, not only dead ones.**
+[[Netflix - Reliable GPU Compute for Training and Inference]] seeds [[GPU Fleet Reliability]].
+The page covers fail-closed health checks, graded remediation, attribution before retry, and
+goodput objectives split by cause. Health is kept separate from AI21's admission and placement
+layer. Netflix's >99.95% availability and ~98% to above 99.5% job success have no window or
+denominators.
+[[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] overlaps decode-side
+registration with prefill on [[Prefill-Decode Disaggregation]]. Its "up to 3x" TTFT gain is one
+1P1D sweep's extreme cell, measured with prefix caching disabled. Push also gives up choosing
+the decode instance after prefill, which pull keeps for load-aware routing.
+
+**Robot data has to be manufactured, and hours are not a common currency.**
+[[Brian Potter - How to Train Your Robot]] seeds [[Robot Training Data]]. Teleoperation,
+deployment, simulation, human video, and UMI each trade among embodiment fidelity, physical
+accuracy, diversity, and cost. Company-reported volumes and text-equivalence conversions agree
+only to an order of magnitude, and the $10–$100 billion estimate is conditional.
+[[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] remains the vault's only
+controlled transfer study.
+
+**Chunking delegates a boundary decision.**
+[[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]] defines eight strategies
+without measurements. [[Retrieval-Augmented Generation]] and [[Embedding Model Selection]]
+record which component each strategy hands the boundary to. [[Agent Skill]] records the
+index-then-load sequence for skills.
+
+Eight captures yielded **eight new sources**. All raw captures remain unchanged.
+
 ## Related pages
 
+- [[Mechanistic Interpretability]]
+- [[Robot Training Data]]
+- [[GPU Fleet Reliability]]
+- [[Goodfire]]
+- [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
+- [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
+- [[Yingru Li - The Gradient Is a Covariance]]
+- [[Netflix - Reliable GPU Compute for Training and Inference]]
+- [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
+- [[Brian Potter - How to Train Your Robot]]
+- [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[Energy-Based Model]]
 - [[Embedded Evaluation]]
 - [[Generative User Interface]]

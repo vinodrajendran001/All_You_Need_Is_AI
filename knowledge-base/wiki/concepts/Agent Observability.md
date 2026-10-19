@@ -81,7 +81,8 @@ span is detectable as a P0. Retries are an amplifier: 20,000 runs/day × 6 tool 
 attempts is roughly **1,800 retried calls daily**, each a chance to fire a refund or a write twice — and
 without `idempotency_key` and `retry_count` on the span, a retry storm and a prompt-injection campaign
 are indistinguishable in the trace. Compare [[LLM Application Resilience]], which arrives at the same
-idempotency requirement from the resilience side rather than the forensic side.
+idempotency requirement from the resilience side rather than the forensic side, following
+[[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]].
 
 *Handoffs.* Trace context must be extracted on the way in and injected on the way out, so a receiving
 agent creates a child span under the same trace ID instead of a new orphaned trace. The A2A Traceability
@@ -203,3 +204,4 @@ judge miss rates are reported.
 - [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
 - [[Ayo Adedeji - Agents That Prove, Not Guess]]
 - [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]]
+- [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]

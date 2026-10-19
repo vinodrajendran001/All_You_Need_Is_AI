@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-09-09-bytebytego-model-routing
 source_title: "How Smart Model Routing Can Cut LLM Costs by 10X"
 source_author: ByteByteGo
@@ -129,6 +129,7 @@ to notice, because it presents as unchanged cost rather than as an incident.
 - [[Inference Efficiency Frontier]]
 - [[Embedding Model Selection]]
 - [[ByteByteGo]]
+- [[LLM Application Resilience]]
 
 ## Citations
 

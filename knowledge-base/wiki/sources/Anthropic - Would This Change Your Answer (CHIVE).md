@@ -85,6 +85,7 @@ where such statements usually fail.
 - [[Chain-of-Thought Monitoring]]
 - [[Anthropic]]
 - [[Mechanistic Interpretability]]
+- [[Emergent Misalignment]]
 
 ## Citations
 
@@ -100,3 +101,4 @@ where such statements usually fail.
 - [[Reasoning Trace Privacy]]
 - [[Agent Security and Governance]]
 - [[Mechanistic Interpretability]]
+- [[Emergent Misalignment]]

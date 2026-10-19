@@ -150,7 +150,8 @@ first-party and comes partly from vision models rather than LLMs.
   last-layer neurons. The essay notes these components were adopted to train deeper networks,
   not for interpretability.
 - **The SwiGLU FFN has a double-negative regime.** The gated MLP multiplies a gate by a value, so
-  when both are negative the output is positive. A neuron can then fire for two unrelated reasons.
+  when both are negative the output is positive. The neuron's positive pole then receives a
+  sign-flipped "echo" that usually looks like its negative pole rather than its main job.
   For about **4%** of neurons in the audited language model (the worked example is a Qwen3-32B
   neuron), this sign-flipped leak fills the whole top of the activation list, which can mislead
   top-k labeling. Ablating it network-wide reportedly raises

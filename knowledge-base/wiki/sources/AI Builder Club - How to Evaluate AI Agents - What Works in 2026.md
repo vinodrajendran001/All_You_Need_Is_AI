@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-26
+updated: 2026-10-19
 source_id: src-2026-08-05-aibuilderclub-how-to-evaluate-ai-agents
 source_title: "How to Evaluate AI Agents: What Works in 2026"
 source_author: AI Builder Club
@@ -45,6 +45,7 @@ This source strengthens the connection between [[Multi-Turn Evaluation]], [[LLM-
 - [[AI Builder Club]]
 - [[AI Builder Club - Build AI Agents]]
 - [[Multi-Turn Evaluation]]
+- [[Agentic Testing]]
 
 ## Citations
 
@@ -63,4 +64,5 @@ This source strengthens the connection between [[Multi-Turn Evaluation]], [[LLM-
 - [[Agentic Loop]]
 - [[Coding Agent Harness]]
 - [[LLM-as-a-Judge]]
+- [[Agentic Testing]]
 

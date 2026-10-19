@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-30
-updated: 2026-09-30
+updated: 2026-10-19
 source_id: src-2026-09-29-bytebytego-why-do-llms-lie
 source_title: "Why Do LLMs Lie?"
 source_author: ByteByteGo
@@ -82,6 +82,8 @@ Placing fabrication under factuality is a reasonable taxonomy choice, not a stan
 - [[Tool Use and Function Calling]]
 - [[LLM-as-a-Judge]]
 - [[Chain-of-Thought Monitoring]]
+- [[Agentic Testing]]
+- [[Sycophancy]]
 
 ## Related pages
 
@@ -90,3 +92,4 @@ Placing fabrication under factuality is a reasonable taxonomy choice, not a stan
 - [[Interpretability Evaluation]]
 - [[Benchmark Optimization]]
 - [[Multi-Turn Evaluation]]
+- [[Sycophancy]]

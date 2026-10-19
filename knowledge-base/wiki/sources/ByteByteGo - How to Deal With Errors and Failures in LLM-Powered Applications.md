@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-09-07-bytebytego-llm-error-handling
 source_title: "How to Deal With Errors and Failures in LLM-Powered Applications"
 source_author: ByteByteGo
@@ -156,6 +156,7 @@ should not violate the original requirements of the operation" is the constraint
 - [[AI Agents in Production]]
 - [[Tool Use and Function Calling]]
 - [[ByteByteGo]]
+- [[Agent Observability]]
 
 ## Citations
 

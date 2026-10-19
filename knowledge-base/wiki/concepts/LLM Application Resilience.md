@@ -89,14 +89,17 @@ duration.
 **Tool calls create partial completion, which is the genuinely dangerous state.** A payment succeeds and
 the confirmation is lost in transit; a blind retry charges twice. Tool-using systems need idempotency,
 state tracking and recovery. This is the same requirement [[Agent Observability]] reaches from the
-forensic direction — without an idempotency key and a `retry_count` attribute, a retry storm and a
-prompt-injection campaign look identical in the trace — and the combination is stronger than either
+forensic direction, following
+[[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]: without an
+idempotency key and a `retry_count` attribute, a retry storm and a prompt-injection campaign look
+identical in the trace — and the combination is stronger than either
 alone. It is also the unreconciled tension in the resilience advice itself: exponential backoff is the
 recommended response to transient failure, and a transient failure on a non-idempotent tool call is
 precisely where retrying is unsafe.
 
-**Fallback and routing are different decisions about the same question.** [[Model Routing]] chooses the
-cheapest adequate model up front; fallback chooses any available model under failure. Both are governed
+**Fallback and routing are different decisions about the same question.** [[Model Routing]], following
+[[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]], chooses the cheapest adequate model
+up front; fallback chooses any available model under failure. Both are governed
 by the same constraint — the substitute must still satisfy the requirement.
 
 ## Semantic failure needs a third response state and a verification stage of its own
@@ -212,6 +215,8 @@ guarantee. This is an argued position with no measured miss rate for reviewers o
 - [[Context Engineering]]
 - [[Small Language Models]]
 - [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
+- [[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]]
+- [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]]
 - [[ByteByteGo - Why Do LLMs Lie]]
 - [[ByteByteGo]]
 - [[Retrieval-Augmented Generation]]

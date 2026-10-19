@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-24
-updated: 2026-09-13
+updated: 2026-10-19
 source_id: src-2026-08-20-mark-russinovich-fools-gold
 source_title: Fool's Gold - Defensive Deception Against Safety-Removal Attacks on Open-Weight Models
 source_author: Mark Russinovich
@@ -50,6 +50,7 @@ The work introduces [[Defensive Deception for Open Models]], shifting one securi
 - [[Defensive Deception for Open Models]]
 - [[Open Model Ecosystems]]
 - [[Agent Security and Governance]]
+- [[Self-Replicating Agents]]
 
 ## Citations
 
@@ -64,3 +65,4 @@ The work introduces [[Defensive Deception for Open Models]], shifting one securi
 
 - [[AI Agents in Production]]
 - [[Reward Design for RL]]
+- [[Self-Replicating Agents]]

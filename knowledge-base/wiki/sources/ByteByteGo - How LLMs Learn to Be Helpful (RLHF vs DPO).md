@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-10-19
 source_id: src-2026-07-16-bytebytego-rlhf-vs-dpo
 source_title: "How LLMs Learn to Be Helpful: RLHF vs DPO"
 source_author: "ByteByteGo"
@@ -79,6 +79,7 @@ agreement from unsupported endorsement.
 - [[Reward Design for RL]]
 - [[LLM Training Pipeline]]
 - [[ByteByteGo]]
+- [[Sycophancy]]
 
 ## Citations
 

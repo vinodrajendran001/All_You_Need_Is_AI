@@ -184,6 +184,9 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Agent Delegation]]
 - [[OpenAI]]
 - [[Mechanistic Interpretability]]
+- [[Emergent Misalignment]]
+- [[RL Environment Design]]
+- [[Self-Replicating Agents]]
 
 ## Citations
 
@@ -203,3 +206,6 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Philipp Schmid - Recursive Self-Improvement]]
 - [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]]
 - [[Mechanistic Interpretability]]
+- [[Emergent Misalignment]]
+- [[RL Environment Design]]
+- [[Self-Replicating Agents]]

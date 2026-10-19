@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-04
+updated: 2026-10-19
 tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -112,9 +112,9 @@ The durable correction is that repeated generation is not progress by itself. A 
 
 [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] decomposes agent efficiency into harness, API, and inference layers under one unifying principle: **avoid repeated work**. Preserve cacheable prefixes, transmit state deltas rather than re-serializing the whole conversation, tokenize only new input, overlap independent work, and route requests toward the machine that already holds the relevant state.
 
-The consequence that most changes how a loop should be written is prefix stability. **KV-cache reuse requires the prompt prefix to match exactly**, so any per-turn variation near the front of the context — a timestamp, a reshuffled tool list, a regenerated system preamble — silently converts what looks like a cache hit into a full fresh prefill. A loop that rebuilds its prompt each iteration pays for the whole context every iteration.
+The consequence that most changes how a loop should be written is prefix stability. **KV-cache reuse requires the prompt prefix to match exactly**, token by token: change one token near the front and everything after it must be recomputed. The article's concrete case is Codex keeping MCP tool definitions in a hash map, so the same tools serialized in a different order on each request; tasks still completed, just more expensively. A rotating timestamp or regenerated system preamble near the front would break the match the same way, though those are the vault's illustrations. A loop that rebuilds its prompt each iteration from live state can pay to recompute most of the context without noticing.
 
-This makes cache-awareness a *design constraint on loop structure*, not a serving-side optimization someone else handles: append rather than rewrite, keep volatile content at the end, and treat the prefix as an interface. See [[KV Cache]] and [[Context Engineering]]. The article's TTFT and CPU-utilization figures across hardware generations are reported as one operator's observation rather than a general law.
+This makes cache-awareness a *design constraint on loop structure*, not a serving-side optimization someone else handles: append rather than rewrite, keep volatile content at the end, and treat the prefix as an interface. See [[KV Cache]] and [[Context Engineering]]. The article's TTFT and CPU-utilization figures for older versus newer API-layer CPUs (Broadwell versus Ice Lake behind the same machine labels) are reported as one operator's observation rather than a general law.
 
 ## What the loop costs, and what it can become
 

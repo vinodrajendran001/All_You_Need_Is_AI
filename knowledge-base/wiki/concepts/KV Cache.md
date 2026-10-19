@@ -121,8 +121,10 @@ The last family is the one that changes the shape of a deployment rather than it
 [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] adds the caller's side of ordinary exact
 prefix reuse. Keeping a prompt prefix **byte-identical** is a practical application discipline;
 the tokenized prefix and model/runtime cache compatibility still determine whether reuse is
-valid. A rotating timestamp, re-ordered tool list, or regenerated preamble can destroy reuse
-and add first-token latency. Learned cross-model conversion, discussed below, has a different
+valid. The article's concrete case is Codex serializing MCP tool definitions from a hash map, so
+the same tools appeared in a different order on each request and broke reuse. A rotating timestamp
+or regenerated preamble near the front would do the same and add first-token latency; those two
+are illustrative rather than reported. Learned cross-model conversion, discussed below, has a different
 and approximate contract.
 
 The practical rule is to treat the prefix as a stable interface — append rather than rewrite, and keep anything volatile at the end of the context. This is what makes prefix reuse the dominant win for agent and chat traffic noted in [[Inference Serving Engines]], and why [[Agentic Loop]] treats cache-awareness as a constraint on how a loop is built.

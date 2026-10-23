@@ -359,8 +359,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 23, 2026: **605 typed wiki pages**, including **321 source summaries**
-representing **347 source IDs**, **136 concepts**, **88 entities**, and **42 lint reports**.
+As of October 23, 2026: **606 typed wiki pages**, including **321 source summaries**
+representing **347 source IDs**, **136 concepts**, **88 entities**, and **43 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -1011,6 +1011,7 @@ its unchanged article body adds no source ID or independent estimate.
 
 ## Lint reports
 
+- [[2026-10-23 Lint Pass 2]] - Forty-third pass: scoped text-memory assumptions and removed an unsupported calibration-priority claim; five new source chains traced across 16 consumer edges, with 606 reachable pages at exact 347-ID parity.
 - [[2026-05-08 Wiki Lint Pass]] - Structural lint pass covering link integrity, schema conformance, and current wiki gaps.
 - [[2026-05-13 Lint Pass]] - Comprehensive lint pass covering structural integrity, coverage, and immediate fixes.
 - [[2026-05-13 Lint Pass 2]] - Follow-up lint pass after the Perplexity ingest, covering new-page integration and residual structural issues.

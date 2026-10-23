@@ -69,7 +69,8 @@ You remember the following:
 - User's name is Alice
 ```
 
-This pattern is simple, inspectable, and gives the developer full visibility into what the agent "knows." There is no opaque embedding lookup; facts are plain text.
+This pattern exposes the saved facts, not everything the model knows from its weights.
+There is no opaque embedding lookup in this example; the stored facts are plain text.
 
 ### Short-term vs long-term
 
@@ -83,7 +84,9 @@ The Grab production case from [[ByteByteGo - System Design and AI at Scale (May 
 
 ### Memory as a reliability lever
 
-Simple exact-match retrieval ("get all facts") is surprisingly powerful for small knowledge bases and is the right starting point. The upgrade path to semantic retrieval (embedding-based lookup for large memory stores) is a separate architectural decision that need not happen at the beginning.
+The pguso example loads all saved facts, without a matching or ranking step. This is a
+simple baseline for a small store, not exact-match search or a demonstrated best choice
+for every application. Semantic retrieval is a separate scaling decision.
 
 For this text-memory pattern, retain inspectable facts rather than only an opaque retrieval
 embedding. The broader external-memory requirement is **traceable evidence and controlled
@@ -112,7 +115,10 @@ This taxonomy cuts across storage technologies. Files, databases, vector indexes
 
 ### A contrasting frame: memory as structure, not storage
 
-The sources above treat memory as **explicit stored data** loaded into context — auditable, plain-text, application-controlled. [[Siddhant Rai - Nested Learning]] introduces a deliberately different and more radical view that is worth preserving alongside it: memory as **learnable structure inside the model's own computation**, updated during inference rather than retrieved into the prompt. See [[Nested Learning]].
+The pguso design treats memory as **explicit stored text** loaded into context by the
+application. [[Siddhant Rai - Nested Learning]] introduces a different view: memory as
+**learnable structure inside the model's computation**, updated during inference rather
+than retrieved into the prompt. See [[Nested Learning]].
 
 - It places memory on a **learning spectrum** — in-context (attention as ephemeral memory, erased when context clears), continual (accumulate across tasks, threatened by catastrophic forgetting), and inference-time (weights update during the forward pass).
 - Its **Continuum Memory System** organizes memory as a chain of modules updated at different frequencies (fast/volatile recent detail → slow/stable consolidated knowledge), a structural answer to the **plasticity-stability tradeoff**.

@@ -2,7 +2,7 @@
 type: entity
 entity_kind: model-family
 created: 2026-09-03
-updated: 2026-10-19
+updated: 2026-10-23
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-21-baselabs-mammoth-elephant
 status: active
 ---
 
@@ -115,7 +116,25 @@ independent replication. The same 35B-A3B checkpoint is a local coding-agent eng
 other's use. The interpretability results say nothing about Qwen's capability, safety, or
 calibration. See [[Mechanistic Interpretability]].
 
+## Base Labs changes attention and readout for bounded decisions
+
+[[Base Labs - Mammoth-1 and Elephant-1 Decision Models]] uses **Qwen3.5-9B** and
+**Qwen3.5-27B** as Elephant and Mammoth backbones. Full-attention layers become
+block-bidirectional within a shared state prefix and a separate question suffix; Gated
+DeltaNet layers remain causal. The prefix cannot attend to the suffix, preserving reuse
+across questions. A softmax over option-letter logits replaces answer-text generation.
+
+The report discloses one epoch over **6.21M** examples and cross-entropy plus Brier loss.
+Unlike an inference about a hidden vendor recipe, these are stated training choices.
+They still do not establish calibrated probabilities on a new task. Both derivatives
+train on text while retaining a frozen vision encoder; image/video training and evaluation
+are future plans. Their scores characterize those derivatives and protocols, not the
+Qwen family as a whole.
+
 ## Related pages
+
+- [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
+- [[Typed Probabilistic Decision Models]]
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Mechanistic Interpretability]]

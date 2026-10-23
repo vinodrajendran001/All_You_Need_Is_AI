@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - concept
   - ai-agents
@@ -44,6 +44,8 @@ source_ids:
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-10-09-rabi-guha-intelligent-ui
+  - src-2026-10-21-mcateer-claude-mods
+  - src-2026-10-22-kezin-fable-image-messages
 status: active
 ---
 
@@ -511,6 +513,34 @@ the hook stop, what could the runtime contain, and what could the evaluator obse
 when a narrower post-remediation claim is assessed. It is a proposal, not an existing legal
 requirement or proof of a gaming-resistant process.
 
+## Supervision extensions are privileged code, not an enforcement boundary
+
+[[Dan McAteer - Claude Mods and the Attention Interface]] describes unsandboxed mods that
+can read/write files, see prompts, and spend usage with the user's permissions. A side-agent
+warning or a completion verdict is therefore neither runtime containment nor proof of
+correct work; his supervisor once reported "Solved" alongside two gaps and three shortcuts.
+The reported safe-mode behavior still runs built-in mods, so mode names alone do not
+establish isolation.
+
+The same account describes Cursor assessing changes to approval policy using the **base
+branch's policy**, not the proposed new policy. This is a concrete instance of the
+unwritable-constraint principle: the artifact under review must not relax its own gate.
+It remains a described product rule, not a security audit of either product.
+
+## Rendering removes source code, not every communication channel
+
+[[Nikita Kezin et al - Messages in Rendered Images]] reports prompted message recovery from
+rendered PNGs without sharing SVG source or an encoding scheme. Fable's **78%** figure
+uses normalized **90%+ string similarity**, not strict transcription, with a tool-equipped
+decoder and 50 intentionally message-bearing inputs. No clean-image false-positive rate,
+instruction-execution result, or monitored-evasion success is established.
+
+The governance implication is narrower than "images bypass controls": include artifact and
+tool channels in the threat model, and do not promote recovered content into authority.
+The authors explicitly say decoding remains visible in tool calls and do not claim current
+danger. This controlled experiment is distinct from the earlier reported Hugging Face incident,
+not a reproduction of that incident or evidence of spontaneous coordination.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -543,6 +573,8 @@ requirement or proof of a gaming-resistant process.
 
 ## Related pages
 
+- [[Dan McAteer - Claude Mods and the Attention Interface]]
+- [[Nikita Kezin et al - Messages in Rendered Images]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]
 - [[@rabi_guha - How ChatGPT Intelligent UI Works]]

@@ -347,6 +347,11 @@ source_ids:
   - src-2026-08-23-vynnytskyi-genie-explained
   - src-2026-08-30-vynnytskyi-lakebase-ltap
   - src-2026-10-18-vynnytskyi-databricks-project-structure
+  - src-2026-10-21-ant-vllm-humming
+  - src-2026-10-21-mcateer-claude-mods
+  - src-2026-10-22-kezin-fable-image-messages
+  - src-2026-10-23-image-aware-agent-memory
+  - src-2026-10-21-baselabs-mammoth-elephant
 status: active
 ---
 
@@ -354,8 +359,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 23, 2026: **599 typed wiki pages**, including **316 source summaries**
-representing **342 source IDs**, **136 concepts**, **88 entities**, and **42 lint reports**.
+As of October 23, 2026: **605 typed wiki pages**, including **321 source summaries**
+representing **347 source IDs**, **136 concepts**, **88 entities**, and **42 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -524,7 +529,7 @@ exclude git-ignored local query files.
 - [[Neuralink]] - Neural decoding through participant-specific causal representations, with pooled data and universal transfer kept distinct.
 - [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
 - [[Qwen]] - Alibaba's open-weight family and third-party derivatives spanning effort controls, converted memory architectures, fixed-option scoring, and neuron-level interpretability audits.
-- [[Baseten]] - Inference vendor supplying both the frontier taxonomy and the production agentic-kernel result.
+- [[Baseten]] - Inference frontier, production agentic kernels, and Base Labs' disclosed decision-model training recipe.
 - [[Philip Kiely]] - Baseten writer whose frontier classifier now organizes the vault's inference material.
 - [[Paolo Perrone]] - The AI Engineer author who brought pass^k and agentic testing's failure modes into the vault.
 - [[adlrocha]] - Newsletter author who reads model cards and configs closely enough to find what releases imply.
@@ -981,6 +986,14 @@ its unchanged article body adds no source ID or independent estimate.
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Genie Explained]] - Part eleven: untangling the Genie renames and separating the interface, the application, scoped agents, and the learned ontology. Distinct from Uber's Genie.
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Lakebase and LTAP]] - Part twelve: managed Postgres inside the platform, and LTAP unifying storage while keeping two purpose-built engines.
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - How to Structure a Databricks Project from Scratch]] - Part thirteen: a Git-versioned declarative bundle as the foundation, with environments as deployment targets.
+
+### October 23, 2026 supplemental batch
+
+- [[Ant Group and vLLM - Humming Quantized Inference Kernels]] - Shared quantization representation and workload-specialized kernels; compilation, kernel, and serving results remain separate, and the serving sweep changes activation precision too.
+- [[Dan McAteer - Claude Mods and the Attention Interface]] - Programmable human-facing harness middleware, interruption cost, and unsandboxed extension authority; personal observations rather than measured productivity.
+- [[Nikita Kezin et al - Messages in Rendered Images]] - Tool-assisted recovery from prompted image carriers; normalized similarity is not exact transcription, and recovery is not evidence of monitor evasion.
+- [[Image-Aware AI Agent Memory - Oracle 26.8]] - Original image storage, caption search, and explicit byte retrieval as separate contracts; unattributed capture with no canonical URL or measured task benefit.
+- [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]] - Qwen-derived fixed-option readout, cache-preserving attention masks, data repair, and abstention training; public, private, and replicated scores are not interchangeable.
 
 ## Syntheses
 

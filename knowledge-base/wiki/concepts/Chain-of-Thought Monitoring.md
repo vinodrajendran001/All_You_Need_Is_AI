@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-10-20-guan-beyond-gmean-squared
+  - src-2026-10-22-kezin-fable-image-messages
 status: active
 ---
 
@@ -280,6 +281,22 @@ reasoning, and it is a result cited from one particular setup, not a universal l
 retries are **non-adaptive** — each attempt starts from the same context and the model is not told an
 earlier output was rejected — so nothing here models adaptive evasion.
 
+## Image-message recovery is a channel test, not a monitor-evasion result
+
+[[Nikita Kezin et al - Messages in Rendered Images]] asks a model to place a supplied
+message in an image, then gives a fresh session the rendered PNG but not the source or
+encoding scheme. Fable recovers **78% of 50** messages with Python/image-analysis tools;
+the method counts **90%+ similarity after normalization**, despite a caption saying
+"exactly." Cross-model recovery is **44/50** for Astra reading Fable and **42/50** in the
+reverse direction.
+
+This adds an artifact channel to the monitoring scope, not a demonstrated failure of
+reasoning monitoring. All test inputs intentionally carry messages, no clean-image
+false-positive test is reported, and the authors say decoding is still obvious in tool
+calls. A monitor seeing tools and artifacts has different evidence from one reading only
+final prose. Neither the recovery score nor the absence of shared SVG source measures
+detection sensitivity, autonomous concealment, or successful evasion of a deployed control.
+
 ## Open questions
 
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?
@@ -311,6 +328,7 @@ earlier output was rejected — so nothing here models adaptive evasion.
 
 ## Related pages
 
+- [[Nikita Kezin et al - Messages in Rendered Images]]
 - [[Melody Guan et al - Complementary Metrics for Monitorability]]
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Mechanistic Interpretability]]

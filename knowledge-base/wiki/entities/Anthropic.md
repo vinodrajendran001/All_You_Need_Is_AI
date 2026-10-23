@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-10-21-mcateer-claude-mods
 status: active
 ---
 
@@ -125,7 +126,24 @@ position, and no response is captured. They sit alongside CHIVE's negative resul
 other activation readers. That result came from Anthropic Fellows and is a different test. See
 [[Mechanistic Interpretability]].
 
+## Claude Code's human-facing layer becomes programmable
+
+[[Dan McAteer - Claude Mods and the Attention Interface]] describes event-driven
+JavaScript/TypeScript mods running inside Claude Code, including a built-in observing
+side agent and the author's own supervisor. This is an external practitioner's account,
+not an Anthropic effectiveness study. His supervisor triggers on **99 of 111 turns**,
+illustrating attention cost alongside a useful warning about uncommitted work.
+
+The reported permission boundary is consequential: mods are **unsandboxed**, execute with
+user permissions, and built-ins continue in safe mode. These described capabilities are
+not an independent audit, and the author's proposed self-improving attention interface is
+future work. See [[Coding Agent Harness]] and [[LLM-Native Extensible Software]] for the
+distinction between customization and isolation.
+
 ## Related pages
+
+- [[Dan McAteer - Claude Mods and the Attention Interface]]
+- [[LLM-Native Extensible Software]]
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Mechanistic Interpretability]]

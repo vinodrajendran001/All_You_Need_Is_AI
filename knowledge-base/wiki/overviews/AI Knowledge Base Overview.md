@@ -349,6 +349,11 @@ source_ids:
   - src-2026-08-23-vynnytskyi-genie-explained
   - src-2026-08-30-vynnytskyi-lakebase-ltap
   - src-2026-10-18-vynnytskyi-databricks-project-structure
+  - src-2026-10-21-ant-vllm-humming
+  - src-2026-10-21-mcateer-claude-mods
+  - src-2026-10-22-kezin-fable-image-messages
+  - src-2026-10-23-image-aware-agent-memory
+  - src-2026-10-21-baselabs-mammoth-elephant
 status: active
 ---
 
@@ -360,9 +365,9 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of October 19, 2026, the wiki has **557 typed pages**, including **291 source summaries**
-owning **317 source IDs**, **126 concepts**, and **82 entities**; page totals exclude git-ignored
-local query files. The raw collection contains **319 top-level captures** and **388 files in
+As of October 23, 2026, the wiki has **605 typed pages**, including **321 source summaries**
+owning **347 source IDs**, **136 concepts**, and **88 entities**; page totals exclude git-ignored
+local query files. The raw collection contains **349 top-level captures** and **418 files in
 total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;
 recaptures and equivalent clippings remain preserved without being counted as independent
 evidence.
@@ -1307,7 +1312,57 @@ experience, not measurements.
 Twenty-five captures yielded **twenty-five new sources**, **ten new concepts**, and **six new
 entities**. All raw captures remain unchanged.
 
+## October 23 supplemental additions
+
+Five later captures extend existing branches rather than creating parallel concept pages.
+
+**Execution format is not stored format.**
+[[Ant Group and vLLM - Humming Quantized Inference Kernels]] separates a common quantization
+description from device-specific preprocessing, compilation, and dispatch. Its reported
+**14%-43%** serving-throughput gain on eight H20s changes both backend and activation
+precision, not the stored MXFP4 weights. [[Model Quantization and Efficiency]],
+[[GPU Kernel Optimization]], [[Inference Serving Engines]], and
+[[Serving Benchmarks and Goodput]] retain that confound and the missing task-quality check.
+
+**The harness also allocates human attention.**
+[[Dan McAteer - Claude Mods and the Attention Interface]] describes programmable
+execution/rendering middleware and a supervisor triggered on **99 of 111** personal turns.
+[[Coding Agent Harness]] records the interruption and cost tradeoffs;
+[[LLM-Native Extensible Software]] distinguishes customization from isolation because the
+mods are reportedly unsandboxed. [[Agent Security and Governance]] records the separate
+base-branch-policy rule described for Cursor approval. These are practitioner observations,
+not controlled effectiveness or security results.
+
+**Rendering can preserve a message without demonstrating covert intent.**
+[[Nikita Kezin et al - Messages in Rendered Images]] reports **78%** recovery from 50
+intentionally message-bearing images using a tool-equipped decoder and a normalized
+**90%+ similarity** criterion. The caption's "exact" wording is not adopted.
+[[Chain-of-Thought Monitoring]] separates channel coverage from monitored-evasion results;
+the authors themselves say decoding remains visible in tool calls.
+
+**Preserve the original; retrieve its description selectively.**
+[[Image-Aware AI Agent Memory - Oracle 26.8]] separates durable image bytes from searchable
+captions and explicit hydration. [[Agent Memory]] gains a concrete way to retain details
+that summaries omit, without a claim of measured accuracy improvement.
+[[Multi-Tenant Agent Architecture]] keeps search filters distinct from authority to retrieve
+the original. The clipping has no established author, publication date, or canonical URL.
+
+**A disclosed training recipe is not a universal confidence threshold.**
+[[Base Labs - Mammoth-1 and Elephant-1 Decision Models]] connects [[Qwen]] weight reuse to
+[[Typed Probabilistic Decision Models]] through block-bidirectional full attention and
+fixed-option scoring. [[Synthetic Data Flywheel]] records filtering, source pilots, and
+repairs in the **6.21M-example** mixture; it does not attribute multi-change gains to cleaning
+alone. [[Baseten]] records the release while keeping public mixture, private leaderboard,
+official Artificial Analysis, and replicated scores separate. A Brier training objective
+does not establish calibration for a new deployment.
+
 ## Related pages
+
+- [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
+- [[Dan McAteer - Claude Mods and the Attention Interface]]
+- [[Nikita Kezin et al - Messages in Rendered Images]]
+- [[Image-Aware AI Agent Memory - Oracle 26.8]]
+- [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 
 - [[Mechanistic Interpretability]]
 - [[Robot Training Data]]

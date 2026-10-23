@@ -24,6 +24,7 @@ source_ids:
   - src-2026-09-29-yoon-multiplayer-ai
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-21-databricks-memcurrent
+  - src-2026-10-23-image-aware-agent-memory
 status: active
 ---
 
@@ -301,6 +302,24 @@ infrastructure. The authors' own caveats belong with the numbers: offline update
 **delay**, plugins add runtime cost and latency and are inflexible, tool quality depends on agent
 capability, and **distillation can drop details** that episodic memory only partly recovers.
 
+## Store the original evidence separately from its searchable description
+
+[[Image-Aware AI Agent Memory - Oracle 26.8]] describes images persisted as DOCUMENT
+records, retrieved through captions/descriptions, and returned without original bytes
+unless `include_bytes=True` is requested. Ordered text/image message parts preserve the
+relationship between a user's statement and attached evidence.
+
+This separates three memory contracts: durability of the original, discoverability through
+text, and selective loading into the application. It complements the consolidation tradeoff
+above: a useful caption can omit the exact visual detail a later question needs. Keeping
+the original permits later inspection, but does not guarantee retrieval of a record whose
+caption never named that detail.
+
+The unattributed tutorial describes a synthetic-image notebook, not a task benchmark or a
+run reproduced here. Default byte omission reduces payload exposure but is not deletion or
+authorization. Captions and metadata can also be sensitive; both search and original-byte
+hydration need access checks, as [[Multi-Tenant Agent Architecture]] makes explicit.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -327,6 +346,7 @@ capability, and **distillation can drop details** that episodic memory only part
 
 ## Related pages
 
+- [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
 - [[Databricks]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]

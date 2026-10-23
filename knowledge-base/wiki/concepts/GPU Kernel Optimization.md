@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-30
+updated: 2026-10-23
 tags:
   - concept
   - gpu
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-08-cohere-megakernel-serving
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
+  - src-2026-10-21-ant-vllm-humming
 status: active
 ---
 
@@ -166,6 +167,25 @@ hand-written TPU kernel against a published vLLM GB200 recipe. Both are vendor-r
 ablates kernel work against assumption removal — so how much of either result is *kernel*
 optimisation in this page's sense is unresolved.
 
+## Compose the kernel family, then specialize for the workload
+
+[[Ant Group and vLLM - Humming Quantized Inference Kernels]] separates quantization
+description, compute options, and tuning from reusable CUDA components for data movement,
+dequantization, Tensor Core execution, and scheduling. Specialization removes unused branches
+at compile time. The result is a shared implementation family rather than one independently
+maintained kernel per format and GPU.
+
+This does not remove workload-dependent scheduling. The authors report small batches can
+favor `cp.async`/MMA over TMA/UMMA, with larger batches favoring the latter. Native instruction
+support and theoretical novelty are not enough to select a pipeline. The default selection
+uses device heuristics; benchmarking-based autotuning is planned.
+
+Compilation is a separate tuning cost: for **one W4A16 kernel on H200 with CUDA 13.4 and
+caches disabled**, the report gives **23.35 s** for CUTLASS/NVCC versus **1.82 s** for
+Humming/NVCC and **1.88 s** for Humming/NVRTC. That is not whole-model warmup, runtime
+speed, or a universal compiler comparison. Its kernel microbenchmarks use warmed kernels
+but cold L2, so their timing intentionally excludes this compilation cost.
+
 ## Open questions
 
 - How much of the kernel ladder survives as compilers absorb it? Triton and CUDA Tile exist precisely to make step 3 unnecessary, yet the fastest kernels are still hand-written.
@@ -178,6 +198,7 @@ optimisation in this page's sense is unresolved.
 
 ## Related pages
 
+- [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Wafer - AI Performance Engineering Resources]]
 - [[GPU Execution Model]]
 - [[Arithmetic Intensity and the Roofline Model]]

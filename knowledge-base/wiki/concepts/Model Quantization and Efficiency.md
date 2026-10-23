@@ -43,6 +43,7 @@ source_ids:
   - src-2026-09-21-tiene-pruning-llms-ising
   - src-2026-10-13-zancato-model-priming
   - src-2026-08-12-bytebytego-knowledge-distillation
+  - src-2026-10-21-ant-vllm-humming
 status: active
 ---
 
@@ -277,6 +278,22 @@ This connects architecture conversion to the existing pruning and quantization t
 measure useful capability and complete runtime memory, rather than treating a smaller named
 tensor as proof that the deployment is proportionally cheaper.
 
+## Stored precision and execution precision are separate choices
+
+[[Ant Group and vLLM - Humming Quantized Inference Kernels]] makes the format/execution
+boundary concrete. Its shared quantization description preserves weight formats and scales,
+while preprocessing and kernel dispatch choose device-specific layouts and compute paths.
+MXFP4 weights can be converted inside a kernel to FP8/INT8 computation on pre-Blackwell
+hardware; lacking native FP4 compute does not force the weights to occupy a 16-bit format
+in storage. Conversely, support for loading a format is not evidence of peak-speed execution.
+
+The reported DeepSeek-V4.1-Flash serving sweep on **eight H20s, TP=8** keeps MXFP4 weights
+but changes Marlin **W4A16/BF16 activations** to Humming **W4A8/tokenwise FP8 activations**.
+Reported throughput rises **14%-43%** across concurrency 1-64. This is a joint backend and
+activation-precision comparison, not a clean kernel-only gain or demonstrated quality parity.
+The capture supplies no accompanying task-accuracy evaluation. Measure stored size, executed
+precision, useful quality, and serving performance independently.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -288,6 +305,7 @@ tensor as proof that the deployment is proportionally cheaper.
 
 ## Related pages
 
+- [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[ByteByteGo - How to Make LLMs 3X Faster]]

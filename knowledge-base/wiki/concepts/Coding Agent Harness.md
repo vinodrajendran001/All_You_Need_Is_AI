@@ -36,6 +36,7 @@ source_ids:
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-10-15-osmani-claude-code-review
+  - src-2026-10-21-mcateer-claude-mods
 status: active
 ---
 
@@ -344,6 +345,26 @@ The limits are the usual ones for this material: the account is Anthropic report
 no controlled comparison, and the authors note their own missing control — there are **no circuit
 breakers** that tighten approval automatically when revert or incident rates worsen.
 
+## The human-facing harness spends attention as well as tokens
+
+[[Dan McAteer - Claude Mods and the Attention Interface]] describes event-driven
+JavaScript/TypeScript mods that alter execution and rendering inside Claude Code.
+His "Attention Interface" reframes the harness as deciding what the human should see and
+act on, not only what tools the model can call.
+
+An observing side agent reportedly warned him about pre-existing uncommitted edits.
+His own supervisor, however, triggered on **99 of 111 turns** under its edit/command/
+eight-tool-call rule, leading him to skim. This is trigger frequency from one person's use,
+not a false-positive rate. The quoted **5-6k input-equivalent tokens per check on a 50k-token
+session** is a README estimate dependent on cache state, not a measured universal cost.
+
+The extension's usefulness and authority are independent. Mods are reportedly unsandboxed
+and run with user permissions; a generated mod is not a restricted runtime merely because
+its purpose is supervision. One "Solved" verdict accompanied **two gaps and three shortcuts**.
+Alongside the reviewer-round caps above, this suggests evaluating interruption policy,
+issues actually caught, and actionability rather than counting second opinions as assurance.
+The proposal for a harness to suggest its own mods from transcripts remains future work.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -358,6 +379,7 @@ breakers** that tighten approval automatically when revert or incident rates wor
 
 ## Related pages
 
+- [[Dan McAteer - Claude Mods and the Attention Interface]]
 - [[Addy Osmani - How the Claude Code Team Does Code Review]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]

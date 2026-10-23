@@ -17,6 +17,7 @@ source_ids:
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-10-20-husain-decision-model-evals
   - src-2026-10-23-why-decision-models-now
+  - src-2026-10-21-baselabs-mammoth-elephant
 status: active
 ---
 
@@ -273,6 +274,33 @@ byline, publication date, or canonical URL — only beehiiv tracking redirects. 
 summarized in the source page, but headings, paragraphs, or a conclusion may be missing, and no page here
 should attach a byline to it.
 
+## A disclosed decision recipe still needs local calibration and an explicit benchmark split
+
+[[Base Labs - Mammoth-1 and Elephant-1 Decision Models]] adds Qwen3.5-derived **9B** and
+**27B** scorers with a disclosed option-letter softmax readout and **6.21M-example**
+training recipe. Full-attention layers become block-bidirectional while recurrent layers
+stay causal. A state-only prefix never sees a question suffix, enabling prefix reuse;
+each new question still costs a suffix forward pass. This is not a no-compute decision.
+
+One matched-data, single-run **10k-example** comparison gives **44.8 causal versus 48.6
+block-bidirectional**, a more isolated test than the multi-change training-mixture history.
+Cross-entropy plus Brier loss and explicit abstention-target construction are disclosed,
+but no held-out numerical calibration result in the clipping validates production thresholds.
+Training an "I don't know" target below a probability threshold is not a universal
+deployment escalation policy.
+
+The report repeats the probability/confidence distinction already important here: calibration
+concerns **p**, while Choice confidence rescales its maximum relative to uniform. Its
+`(max(p)-1/k)/(1-1/k)` formula leaves the advertised **k=1** special case unspecified.
+Resolve that interface boundary before implementing the formula literally.
+
+Benchmark scope also matters: **71.24 Mammoth / 62.65 Elephant** are reported private
+Jev v0.4 Full scores; **74.0** is the final 9B mixture table's public v0.3/HLE-excluded
+score, while prose separately quotes **72.2** for the public board. The authors' Artificial
+Analysis replica gives **65.9 / 65.2**, distinct from Elephant's reported official **65**.
+None replaces the same-task Husain evaluation above. The vision encoder is retained but
+frozen and training is text-only; multimodal evaluation is future work.
+
 ## Open questions
 
 - Does the cached-action formulation generalize to candidate sets that change per state, or does it
@@ -300,6 +328,7 @@ should attach a byline to it.
 
 ## Related pages
 
+- [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 - [[Hamel Husain - How To Use Decision Models for Evals]]
 - [[Hamel Husain]]
 - [[Why Decision Models, and Why Now - A Taxonomy of Automated Decision-Making|Why Decision Models, and Why Now]]

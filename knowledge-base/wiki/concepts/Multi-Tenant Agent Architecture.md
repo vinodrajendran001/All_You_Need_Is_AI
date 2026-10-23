@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-10-07
+updated: 2026-10-23
 tags: [concept, ai-agents, multi-tenancy, security, cost]
 source_ids:
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-09-30-bytebytego-doordash-agent-gateway
   - src-2026-09-28-watson-nvidia-openshell-runtime-controls
   - src-2026-10-02-e2b-embed
+  - src-2026-10-23-image-aware-agent-memory
 status: active
 ---
 
@@ -121,6 +122,20 @@ isolation. Plain HTTP without built-in TLS also leaves transport protection to t
 These cases strengthen component-by-component tiering: state explicitly which boundary each
 component actually enforces.
 
+## Image search and original-byte retrieval are separate authorization hops
+
+[[Image-Aware AI Agent Memory - Oracle 26.8]] describes user/agent-scoped image records,
+metadata-filtered caption search, and explicit original-byte retrieval via
+`include_bytes=True`. Its synthetic notebook filter selects the current demonstration
+image; it is not an isolation test.
+
+The clipping explicitly distinguishes scope filters from authorization. The application
+must enforce who can write, search, and hydrate an image rather than treating a caller's
+image ID or tenant metadata as authority. Default omission of binary bytes also does not
+make descriptions and metadata safe for arbitrary readers. This extends the hop-by-hop
+rule above to two views of the same persisted evidence, without claiming the tutorial
+demonstrates tenant isolation.
+
 ## Open questions
 
 - Which tenant claims can be verified independently at every agent and tool boundary?
@@ -135,6 +150,7 @@ component actually enforces.
 
 ## Related pages
 
+- [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
 - [[E2B - Embed Runtime README]]

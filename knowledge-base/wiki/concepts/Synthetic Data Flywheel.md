@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - training
@@ -9,6 +9,7 @@ tags:
 source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-10-21-baselabs-mammoth-elephant
 status: active
 ---
 
@@ -160,6 +161,27 @@ page is the vault's, not Potter's. Rephrasing raises information density without
 synthetic augmentation multiplies examples without adding physics the simulator lacks. The capture
 reports no performance figures for synthetic augmentation. See [[Robot Training Data]].
 
+## A decision-model data loop measures repairs, not just scale
+
+[[Base Labs - Mammoth-1 and Elephant-1 Decision Models]] describes a **6.21M-example**
+mixture combining public labels and synthetic decision tasks. New synthetic sources pass
+deterministic or panel labeling, option shuffling, ambiguity rejection, overlap removal,
+an independent agent's shortcut review, and a **240-step** training pilot. Human-vote
+public data retains its original labels rather than being relabeled by the panel.
+
+In the authors' 9B public-suite history, Mix 4 to Mix 5 grows **4.19M to 4.35M rows** while
+the score rises **66.0 to 71.5**. That roughly 4% row increase accompanies source repair
+and abstention training, so it is not an ablation proving cleaning alone causes the gain.
+Earlier Mix 2 also changes attention; the whole trajectory cannot be read as a pure
+data-scaling curve. These public v0.3 scores excluding HLE differ from the release's private
+v0.4 leaderboard.
+
+The loop supplies useful quality-control machinery without establishing autonomous
+compounding. End-to-end automation remains proposed, and claimed zero contamination is
+self-reported. Repeatedly selecting data based on benchmark weaknesses can overfit task
+families even after exact overlap is removed. The vault therefore gains a concrete
+artifact-improvement loop, not proof that its own judges and evaluators improve indefinitely.
+
 ## Open questions
 
 - The survey documents five automated stages but never establishes that the loop **compounds**. Better
@@ -178,6 +200,7 @@ reports no performance figures for synthetic augmentation. See [[Robot Training 
 
 ## Related pages
 
+- [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 - [[Recursive Self-Improvement]]
 - [[Knowledge Distillation]]
 - [[Multi-Teacher On-Policy Distillation]]

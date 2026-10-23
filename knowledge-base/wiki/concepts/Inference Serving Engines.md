@@ -23,6 +23,7 @@ source_ids:
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-20-gupta-deepseek-deepinfer
+  - src-2026-10-21-ant-vllm-humming
 status: active
 ---
 
@@ -312,6 +313,25 @@ source. The author also flags "zero-overhead batch scheduler" as **the project's
 literal guarantee**, and attributes to DeepSeek that DeepInfer was built primarily on **vLLM**, with
 inspiration from SGLang and TensorRT-LLM.
 
+## A common quantized backend still has loading, compilation, and fallback contracts
+
+[[Ant Group and vLLM - Humming Quantized Inference Kernels]] describes Humming as included
+with CUDA installations of **vLLM 0.29.0 onward**. Dense and MoE backend selection use
+`--linear-backend` and `--moe-backend`; `--quantization humming` is instead a compatibility
+loading path for formats such as GPTQ INT3 that vLLM does not otherwise support natively.
+These controls should not be conflated.
+
+The engine preprocesses weights, compiles and caches shape/device-specific variants, and
+dispatches by input size. Unsupported activation compute types can fall back to higher
+precision, so the same stored checkpoint need not execute the same arithmetic on every GPU.
+Reported Turing-onward support is not a promise that every format achieves native peak
+performance on every device. Autotuning and deeper expert-parallel communication integration
+are future work in this release account.
+
+The reported **14%-43%** serving-throughput gains on eight H20s change both backend and
+activation precision. They do not make Humming a universally faster engine or establish
+unchanged model quality; see [[Serving Benchmarks and Goodput]].
+
 ## Open questions
 
 - The DeepInfer account supplies no measurement of any kind. Its benchmark configurations are reported
@@ -328,6 +348,7 @@ inspiration from SGLang and TensorRT-LLM.
 
 ## Related pages
 
+- [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Mehul Gupta - What is DeepSeek DeepInfer]]
 - [[DeepSeek]]
 - [[Open Model Ecosystems]]

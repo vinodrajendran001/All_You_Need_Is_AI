@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - benchmarks
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-10-21-ant-vllm-humming
 status: active
 ---
 
@@ -249,6 +250,24 @@ hardware, driver, platform, and user causes, so a miss points at the responsible
 without a measurement window, fleet size, or denominator definitions; the article's promised
 illustrative targets do not appear in the capture. See [[GPU Fleet Reliability]].
 
+## A serving comparison can change the backend and the arithmetic together
+
+[[Ant Group and vLLM - Humming Quantized Inference Kernels]] supplies three distinct
+measurement boundaries: cold compilation, warmed isolated GEMMs with cold L2, and a
+DeepSeek-V4.1-Flash serving sweep on **eight H20 GPUs with TP=8**. Multi-fold microbenchmark
+speedups must not be substituted for the reported **14%-43%** serving-throughput range.
+
+At concurrency **64**, output rises **442.37 to 633.94 tokens/s** and mean time per output
+token falls **123.25 to 85.70 ms**. But Marlin W4A16 uses BF16 activations while Humming
+W4A8 uses tokenwise FP8; only the MXFP4 weights remain unchanged. The comparison therefore
+does not isolate a backend change. The prose supplies neither a task-quality check for that
+precision change nor a complete request distribution. Record these as attributed timing
+reports, not validated quality-equivalent wins under this page's evidence standard.
+
+Mean time-to-first-token reductions of **25%-32%** are not tail-latency improvements or
+SLO-qualified goodput. One library's format support, one kernel's speed, and one deployment's
+accepted outcomes require different tests.
+
 ## Open questions
 
 - Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
@@ -262,6 +281,7 @@ illustrative targets do not appear in the capture. See [[GPU Fleet Reliability]]
 
 ## Related pages
 
+- [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Netflix - Reliable GPU Compute for Training and Inference]]
 - [[GPU Fleet Reliability]]

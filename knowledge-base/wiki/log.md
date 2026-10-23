@@ -347,6 +347,11 @@ source_ids:
   - src-2026-08-23-vynnytskyi-genie-explained
   - src-2026-08-30-vynnytskyi-lakebase-ltap
   - src-2026-10-18-vynnytskyi-databricks-project-structure
+  - src-2026-10-21-ant-vllm-humming
+  - src-2026-10-21-mcateer-claude-mods
+  - src-2026-10-22-kezin-fable-image-messages
+  - src-2026-10-23-image-aware-agent-memory
+  - src-2026-10-21-baselabs-mammoth-elephant
 status: active
 ---
 
@@ -2230,3 +2235,53 @@ the topics line, and a [[Text-to-SQL Agents]] cooldown entry through 2026-12-04;
 Engineering and Serving Benchmarks and Goodput cooldowns were pruned. Posts carry no source IDs, so control
 parity is untouched at **342**. No concept, entity, source, overview, or raw file was modified. Nothing was
 staged, committed, or pushed.
+
+## [2026-10-23] ingest | Quantized Kernels, Attention Interfaces, and Evidence Channels
+
+- Ingested **five additional top-level captures** not represented by source summaries.
+  Earlier ingests, duplicate captures, nested tutorial assets, and the empty inbox were
+  distinguished from new evidence. All five captures already resided under `raw/sources/`
+  and were left unchanged.
+- Added:
+  - [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
+    (`src-2026-10-21-ant-vllm-humming`).
+  - [[Dan McAteer - Claude Mods and the Attention Interface]]
+    (`src-2026-10-21-mcateer-claude-mods`).
+  - [[Nikita Kezin et al - Messages in Rendered Images]]
+    (`src-2026-10-22-kezin-fable-image-messages`).
+  - [[Image-Aware AI Agent Memory - Oracle 26.8]]
+    (`src-2026-10-23-image-aware-agent-memory`).
+  - [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
+    (`src-2026-10-21-baselabs-mammoth-elephant`).
+- Integrated evidence into **12 existing concepts** and **three existing entities**, with
+  no new near-duplicate concepts. Humming updates quantization, kernels, engines, and
+  serving measurement. Mods updates the coding harness, extensible software, governance,
+  and Anthropic. The image-message experiment updates monitoring and governance.
+  Oracle's image-memory pattern updates memory and tenant boundaries. Base Labs updates
+  typed decisions, synthetic-data iteration, Baseten, and Qwen.
+- Preserved evidence limits:
+  - Humming's **14%-43%** serving-throughput gains change backend **and activation
+    precision**; kernel multiples, compile times, means, goodput, and model quality are
+    separate quantities. No accompanying task-quality evaluation was supplied.
+  - The Mods supervisor's **99/111** figure is trigger frequency, not false positives;
+    its **5-6k** input-equivalent-token cost is a README estimate. Mods are reportedly
+    unsandboxed, not a new enforcement boundary.
+  - Fable's **78%** recovery uses normalized **90%+ similarity**, despite an "exact"
+    figure caption. No clean-image control or monitored-evasion result is reported.
+    The capture's byline and BibTeX naming discrepancy remains explicit.
+  - The image-memory clipping has no visible author, publication date, or canonical URL.
+    Its ID uses the ingest date; the empty URL is explained, subscriber redirects were
+    not followed, and tutorial output was not claimed as a locally executed result.
+  - Base Labs' public mixture scores, private v0.4 scores, and official/replicated
+    Artificial Analysis results remain distinct. The **72.2/74.0** public-result wording
+    is retained, the confidence formula's **k=1** gap noted, and a Brier training loss
+    is not promoted to proven calibration.
+- Synchronized index, overview, and log to **347 owned source IDs** across **321 summaries**.
+  Current inventory is **605 typed wiki pages**, including **136 concepts**, **88 entities**,
+  **42 lint reports**, and **10 social posts**, excluding ignored local queries. The
+  overview's stale October 19 inventory and the index's pre-latest-post count were refreshed.
+- Verified new source ownership, source-to-consumer reciprocity, frontmatter, and links
+  introduced by this batch. All **422 raw files** are byte-identical, including four
+  Obsidian settings files: **418** excluding those settings and **349 top-level captures**.
+  The pre-existing log body, posts, queries, templates, and earlier lint reports remain
+  unchanged. No source commands were executed; nothing was staged, committed, or pushed.

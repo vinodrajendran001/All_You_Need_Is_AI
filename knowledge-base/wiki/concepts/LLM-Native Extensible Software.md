@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-16
+updated: 2026-10-23
 tags: [concept, software-architecture, ai-agents, extensibility]
 source_ids:
   - src-2026-08-20-jeremy-morrell-extensible-software
   - src-2026-08-17-google-cloud-agent-plugins
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-10-09-rabi-guha-intelligent-ui
+  - src-2026-10-21-mcateer-claude-mods
 status: active
 ---
 
@@ -71,6 +72,21 @@ claim that a native catalog constrains every output. Generated-artifact design t
 needs explicit authority and diagnostics on each path, including what users see when the
 requested revision fails rather than silently mistaking retained old state for success.
 
+## Programmable interfaces do not imply isolated extensions
+
+[[Dan McAteer - Claude Mods and the Attention Interface]] supplies a contrasting design:
+user/agent-authored JavaScript or TypeScript runs inside Claude Code and can intercept
+events or change their rendering. That makes human attention programmable, but the account
+explicitly says mods are **not sandboxed** and can access files, prompts, and usage under
+the user's permissions. Built-ins reportedly remain active in safe mode.
+
+These mods therefore illustrate malleability, not the narrow-capability isolation in
+Morrell's proposal above or proof of the observed Intelligent UI sandbox's properties.
+Before reusing an extension pattern, specify its execution privileges, host-owned state,
+review/update policy, and interruption behavior. The author's supervisor ran on **99 of
+111 turns**, an example of programmability creating attention cost rather than automatically
+improving interaction. This personal report supplies no controlled effectiveness measure.
+
 ## Open questions
 
 - How can generated extensions be upgraded without breaking user state?
@@ -79,6 +95,7 @@ requested revision fails rather than silently mistaking retained old state for s
 
 ## Related pages
 
+- [[Dan McAteer - Claude Mods and the Attention Interface]]
 - [[@rabi_guha - How ChatGPT Intelligent UI Works]]
 - [[Generative User Interface]]
 - [[Agent Plugin Architecture]]

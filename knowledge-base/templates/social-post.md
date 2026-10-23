@@ -28,6 +28,12 @@ status: draft
      `platforms` records which variants this file carries; both are drafted in the same run.
      `status`: draft -> ready -> published.
 
+     Source exclusion: do not select or support a post with ByteByteGo material, including
+     evidence inherited through mixed-source wiki pages or roundups. Read and cite eligible
+     non-ByteByteGo evidence directly. Preserve historical posts and wiki sources.
+     For a replacement, reuse and rescan the rejected draft's window, then mark the old file
+     superseded and remove it from the archive's active topics and cooldown.
+
      Both variants must survive the same `## Reader check` and `## Fact check`. The X version is
      not a truncation of the LinkedIn version — it is the same complete idea re-argued for a faster
      room. If a claim has to be dropped to fit, drop the claim; never drop the context or caveat
@@ -156,6 +162,8 @@ status: draft
      - Every factual sentence traced to a page in `pages_used`.
      - Every number matches the vault verbatim, including units and conditions.
      - Every attribution matches the source summary's `source_author`.
+     - Source exclusion check: no ByteByteGo topic, example, attribution, or inherited
+       factual support. Mixed-source pages require claim-level non-ByteByteGo provenance.
      - Anything the vault flags as uncertain, self-reported, unablated, or contradicted is hedged
        in the post itself, not just noted here.
      - Compression check: confirm the X variant did not drop a qualifier that changes a claim's

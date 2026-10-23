@@ -89,6 +89,7 @@ logic that makes bytes-scanned billing tractable.
 - [[Columnar Storage Formats]]
 - [[Open Table Formats]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture
 
@@ -102,7 +103,6 @@ logic that makes bytes-scanned billing tractable.
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
 - [[Lakehouse Architecture]]
 - [[Table Layout Optimization]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Delta Lake in Practice]]

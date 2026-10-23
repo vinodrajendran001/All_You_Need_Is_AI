@@ -88,6 +88,7 @@ evidence-before-merge discipline this vault tracks under [[Agentic Testing]].
 - [[Lakehouse Architecture]]
 - [[Declarative Data Pipeline Deployment]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture
 
@@ -101,7 +102,6 @@ evidence-before-merge discipline this vault tracks under [[Agentic Testing]].
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
 - [[Open Table Formats]]
 - [[Medallion Architecture]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - How to Structure a Databricks Project from Scratch]]

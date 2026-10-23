@@ -74,6 +74,8 @@ plan built on time travel is really a plan built on a VACUUM retention setting.
 
 - [[Open Table Formats]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
+- [[Table Layout Optimization]]
 
 ## Raw capture
 
@@ -87,8 +89,6 @@ plan built on time travel is really a plan built on a VACUUM retention setting.
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
-- [[Table Layout Optimization]]
 - [[Slowly Changing Dimensions]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Delta Lake in Practice]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Optimizing Delta Tables]]

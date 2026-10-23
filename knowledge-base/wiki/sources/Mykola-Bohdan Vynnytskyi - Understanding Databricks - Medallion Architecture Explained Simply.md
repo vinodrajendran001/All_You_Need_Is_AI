@@ -81,6 +81,7 @@ over Bronze inherits every source inconsistency the Silver layer exists to remov
 - [[Medallion Architecture]]
 - [[Slowly Changing Dimensions]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture
 
@@ -94,7 +95,6 @@ over Bronze inherits every source inconsistency the Silver layer exists to remov
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
 - [[Lakehouse Architecture]]
 - [[Open Table Formats]]
 - [[Table Layout Optimization]]

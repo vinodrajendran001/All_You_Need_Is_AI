@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - recursive-self-improvement
@@ -22,6 +22,8 @@ source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-15-turing-post-recursive-self-improvement
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-19-naam-million-agents-superintelligence
+  - src-2026-10-14-maevyn-decoherence-trap
 status: active
 ---
 
@@ -293,6 +295,101 @@ locate the bottleneck, authorize the smallest relevant update, preserve the arti
 attribute it, and keep independent evaluation. The newsletter's reported task gains are not
 measurements of an indefinitely compounding research loop.
 
+## Two objections that do not depend on capability at all
+
+Every argument above locates the limit inside the loop: the verifier can be captured, the proposer is too weak,
+the harness benefit peaks mid-range, taste sits outside. Two October 2026 essays argue the limit is somewhere
+else entirely — one in the **scaling exponent** of parallel research, one in the **substrate** the loop runs on.
+Neither is an experiment. Both deserve to be kept as arguments, and they **disagree about where the ceiling
+lives**, which is more useful than merging them.
+
+### The exponent is too small
+
+[[Ramez Naam - Can a Million AI Agents Create Superintelligence]] is a synthesis of roughly a dozen third-party
+multi-agent scaling results, not a study. Its author's summary of his own epistemic position —
+**"We're all operating on far too little real world data."** — should travel with every number below.
+
+The argument is that adding agents buys **speed** far better than it buys **collective intelligence**, so a
+takeoff model that assumes parallel research scales near-linearly is assuming something the measurements do not
+show. The curves he assembles are collected on [[Test-Time Scaling]]; the ones that bear on recursion are the
+saturating ones. On Anthropic's Opus 5.5 formal-math benchmark (49 weighted theorem statements, 24 hours per
+team), going from **ten to one hundred agents added 27 score points and going further added two** — even though
+the hundred-agent team organised itself into a hierarchy with 12 sub-leads and could spend roughly 10x the
+aggregate runtime. On Lean formal math the local speed exponent **λ fell from about 0.75 to 0.33** across
+10→30 and 30→100 agents.
+
+**The spread between published models is the actual argument.** Fed the same input — Anthropic's reported
+research-agent ratios of about **9 agent-hours per human work-hour by mid-July** and **19** by late August,
+against a company-wide ratio near **6** — the scaling assumptions in circulation disagree by an order of
+magnitude about how much faster research should now be: Chan et al. (2026)'s exponent implies roughly **25x**
+April's pace by August, Davidson and Houlden's 0.6 parallel-research exponent about **2-4x**, plain logarithmic
+scaling about **2x**, and the sub-logarithmic shapes Naam collects only **1.1-1.8x**. Those conversions assume
+equal value per agent-hour and treat additional runtime as parallel labour; both are strong assumptions the
+author flags.
+
+This is the first thing on this page that attaches a **number** to the gap between workflow self-improvement
+and strong RSI. The existing table calls strong RSI "mostly aspirational" on the grounds that nobody has
+demonstrated it; Naam's contribution is that the measured parallel-scaling curves are **five to ten times below
+self-sustaining strength** on his earlier reading of the software feedback loop, so the gap is quantitative
+rather than merely undemonstrated. His forecast — allowing a **six-month** research-to-publication lag — is no
+sustained acceleration in the Epoch Capabilities Index through the first half of 2027 (see [[Epoch AI]]), and
+he states he expects data to correct him.
+
+Crucially, the essay **does not falsify runaway RSI**. It argues the scaling assumptions inside those models
+exceed current evidence, it measures nothing near a million agents, and it concedes that better coordination,
+more diverse training, recombination, or new learning methods could change the curves.
+
+### The substrate degrades as you scale on it
+
+[[The Decoherence Trap]] is an **unattributed essay** — no author is named anywhere in the capture, which is
+published at maevyn.codes — and it is an argument built on analogy and a self-declared toy simulation, not a
+measurement. It should never be cited as evidence about how real systems behave.
+
+Its objection is structurally different from Naam's. **Decoherence** is defined as the accumulation of locally
+valid but mutually incompatible or redundant models in a system that keeps changing, distinguished from
+infrastructure debt (wear) and technical-advancement debt (the need to upgrade). The cost is combinatorial:
+with multiple coexisting paradigms, interactions multiply, so each later change requires more analysis and time
+pressure produces further shortcuts. The claim that bears on this page is that **more agents help only while
+complexity grows linearly** — if each rushed change raises the cost of the next one, parallel capacity cannot
+indefinitely compensate, and the end state the essay names **Decoherence Collapse** is systems too complex for
+humans to repair that agents cannot recohere either.
+
+Extended to RSI, the argument is that an AI optimising inside a data-centre bubble can improve a program's
+speed, size, and efficiency while having no way to verify that its changes remain **globally coherent or
+useful**, because usefulness is defined outside the bubble. The essay ties this to Tom Reed's **Goodhart
+Singularity** and to Goodhart's law, and supports it by analogy: Boole published Boolean algebra in **1847** and
+Shannon connected it to relay circuits in **1937**, so a locally valid formal result can sit unimportant until a
+real problem supplies the context. It cites a **September** declaration signed by Terence Tao and **24 other
+Fields Medalists** arguing that solving problems is only a proxy for mathematical understanding.
+
+**This is the same shape as the verifier argument this page already carries, pushed one level out.** Schmid's
+constraint is that the agent must not be able to edit its evaluation. The decoherence argument is that even an
+unreachable verifier is only a proxy if nothing outside the loop re-grounds it — so the governance regress
+already recorded here does not terminate at "keep the verifier read-only"; it terminates, if at all, in contact
+with reality.
+
+The third-party studies it cites are the most concrete negative evidence the vault holds on agent-assisted
+development, and they are about coding throughput rather than about RSI:
+
+| Study, as cited | Scope | Reported result |
+| --- | --- | --- |
+| Chen and Stratton, Harvard working paper | 718 companies | coding agents increased code written by **30%** with no measurable increase in finished work; pull requests took **49% longer** to review and **nearly twice as many** were returned for changes |
+| He et al., Carnegie Mellon | open-source projects adopting Cursor | large initial velocity increase that **did not last**; rising code complexity contributed to the later slowdown. **No effect size is quoted** |
+| Liu et al. | over **300,000** AI-authored commits across more than **6,000** repositories | approximately **one in eleven** commits — up to **one in seven** depending on assistant — introduced at least one quality issue; **nearly a quarter** of those issues remained in the code |
+
+The essay's own simulation should not be read as support for any of this. Coherence settings of **-0.2, +0.2,
++0.6, +0.8** produced displayed feature counts of **152, 247, 417, 376**, implying a mid-range "sweet spot" —
+and the author states plainly that **"The simulation has arbitrary weights and does not definitively prove that
+this is how complex systems will evolve."** Those are outputs of a toy model under chosen parameters, not
+measurements of software.
+
+### Why keeping both matters
+
+Naam says the loop is too weak to run away; the decoherence essay says the ground under the loop erodes while it
+runs. They are not the same claim and they imply different tests. Naam's resolves with a measurement — G, λ, and
+N on real AI research. The decoherence claim resolves only with a fitted growth rate for complexity in
+production codebases, which **nobody has produced**, including this essay.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -308,8 +405,34 @@ measurements of an indefinitely compounding research loop.
   a mechanism, or of retrieval policy? The vault's file-system-as-memory pattern assumes the latter.
 - Plugin-kernel harnesses maximize the rewritable surface at exactly the moment the argument says the
   verifier must stay unreachable. Which of the two trends gives way?
+- **Neither October objection is a result.** Naam measures no team near a million agents, proves nothing
+  about whether conceptual breakthroughs can be parallelised, and does not show that benchmark scaling curves
+  transfer to real research. The decoherence essay demonstrates no exponential complexity growth in any real
+  system, shows no system that has reached Decoherence Collapse, and does not establish that agents cannot
+  maintain or repair highly complex systems. Both are arguments that current takeoff models assume more than
+  the evidence supports.
+- **Is the measured parallel-scaling exponent a property of today's models or of multi-agent work as such?**
+  The Opus 5.5 and Opus 5 comparison suggests coordination ability improves between model generations, which
+  would move the curves this page just recorded.
+- **Does decoherence apply to the loops this page actually describes?** The cited studies concern human teams
+  adopting coding assistants in production repositories. Nothing links them to a bounded self-improvement run
+  against a fixed verifier, where the editable region is small and the artifact is discarded if it fails.
+- **Can a verifier be re-grounded without a human?** If an unreachable verifier is still only a proxy, the
+  decoherence argument requires contact with reality to correct it — and no source here describes what that
+  contact looks like mechanically, or how often it has to happen.
+- **What would falsify either objection?** G, λ, and N measured on real AI research would resolve Naam's; a
+  fitted complexity-growth rate on production codebases would resolve the other. Neither exists.
 
 ## Related pages
+
+- [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
+- [[The Decoherence Trap]]
+- [[Ramez Naam]]
+- [[Test-Time Scaling]]
+- [[Agent Delegation]]
+- [[Epoch AI]]
+- [[Legacy Code Modernization with AI Agents]]
+- [[AI-Native Software Development Lifecycle]]
 
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Graph Engineering]]

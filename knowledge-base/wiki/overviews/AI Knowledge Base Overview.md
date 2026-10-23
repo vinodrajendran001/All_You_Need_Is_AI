@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - overview
   - ai
@@ -324,6 +324,31 @@ source_ids:
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-10-20-guan-beyond-gmean-squared
+  - src-2026-10-20-husain-decision-model-evals
+  - src-2026-10-23-why-decision-models-now
+  - src-2026-10-21-simpson-torchtpu
+  - src-2026-10-20-gupta-deepseek-deepinfer
+  - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
+  - src-2026-10-15-osmani-claude-code-review
+  - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-10-21-databricks-memcurrent
+  - src-2026-10-19-bytebytego-uber-genie
+  - src-2026-10-19-naam-million-agents-superintelligence
+  - src-2026-10-14-maevyn-decoherence-trap
+  - src-2026-05-23-vynnytskyi-databricks-snowflake-bigquery
+  - src-2026-06-01-vynnytskyi-databricks-core-components
+  - src-2026-06-14-vynnytskyi-databricks-cloud-choice
+  - src-2026-06-21-vynnytskyi-modern-data-platform
+  - src-2026-06-29-vynnytskyi-medallion-architecture
+  - src-2026-07-04-vynnytskyi-data-formats
+  - src-2026-07-11-vynnytskyi-delta-lake-practice
+  - src-2026-08-01-vynnytskyi-scd-types
+  - src-2026-08-08-vynnytskyi-delta-time-travel
+  - src-2026-08-15-vynnytskyi-optimizing-delta-tables
+  - src-2026-08-23-vynnytskyi-genie-explained
+  - src-2026-08-30-vynnytskyi-lakebase-ltap
+  - src-2026-10-18-vynnytskyi-databricks-project-structure
 status: active
 ---
 
@@ -1161,6 +1186,126 @@ record which component each strategy hands the boundary to. [[Agent Skill]] reco
 index-then-load sequence for skills.
 
 Eight captures yielded **eight new sources**. All raw captures remain unchanged.
+
+## October 23 additions
+
+**One monitorability number hides which way it moved.**
+[[Melody Guan et al - Complementary Metrics for Monitorability]] is OpenAI publishing a
+critique of its own headline metric. Dataset-level g-mean² stays primary, but two complements
+are added: pair-matched monitorability, which compares models only on instances both support,
+and post-control risk, which asks what survives when the monitor becomes a rejection gate and
+the model retries. [[Chain-of-Thought Monitoring]] now records that dataset-level
+monitorability can fall while per-instance monitorability rises, and that a monitor wired to a
+gate measures something different from one wired to a report.
+[[Interpretability Evaluation]] takes the sampling point: more samples narrow sampling error
+but do not identify an unobservable quantity. [[Embedded Evaluation]] takes the gate's
+counterpart risk, that a low bad-output rate can mean the system rarely deployed anything. The
+retry policy is left unspecified, which bounds how far post-control risk can be reproduced.
+
+**A judge that returns a probability still needs a cutoff, and the cutoff is not free.**
+[[Hamel Husain - How To Use Decision Models for Evals]] is the first source here to use
+[[Typed Probabilistic Decision Models]] as automated evaluators and then do the work the
+category usually skips: tune the threshold on labelled data, check whether the probabilities
+are calibrated, and price the result. The finding that travels furthest is that the default
+0.50 threshold is an inherited convention rather than an optimum, and that discrimination, a
+cutoff, and calibration are three separate properties — now recorded on [[LLM-as-a-Judge]] and
+[[Multi-Turn Evaluation]]. [[Why Decision Models, and Why Now - A Taxonomy of Automated Decision-Making|Why Decision Models, and Why Now]] supplies the surrounding
+taxonomy, placing language-model agents beside rules, classifiers, optimization, and planning
+as overlapping approaches rather than rival products. That capture has no canonical URL, and
+its authorship is not asserted.
+
+**Portability is a dispatcher problem; performance is a separate claim.**
+[[Ebba Simpson - Introducing TorchTPU]] describes a native PyTorch TPU backend reached through
+the `PrivateUse1` dispatcher key, with `.to("tpu")` as the intended only change.
+[[Accelerator Software Externalization]] gains an itemized framework-level bill and marks
+TorchTPU as shipped rather than announced; [[AI Accelerator Architecture]] records that a TPU
+TensorCore is effectively single-threaded and that shapes are a compilation input;
+[[Distributed Training Parallelism]] records that compiled collectives make rank agreement a
+correctness problem. [[PyTorch]] becomes an entity on the strength of being the attachment
+surface. Every speedup is first-party with no stated workload, hardware, or baseline, and the
+one head-to-head figure has PyTorch trailing JAX.
+
+**A published engine is not a published fleet.**
+[[Mehul Gupta - What is DeepSeek DeepInfer]] is a secondary reading of DeepSeek's open-sourced
+inference engine that reports no measurements at all, which makes it useful for scope rather
+than performance. [[Inference Serving Engines]] records that a release can ship the per-node
+execution layer and leave out the fleet; [[Prefill-Decode Disaggregation]] records that
+benchmarking phases apart is not serving them apart; [[Speculative Decoding]] records that
+determinism and variable-length speculation are competing engine settings. [[DeepSeek]] keeps
+the boundary between what it publishes and what it retains.
+
+**Two caches, one word.**
+[[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]] separates reuse of intermediate
+computation for an exactly matching prefix, which still calls the model, from reuse of a
+previously generated answer for a similar request, which can skip it. [[KV Cache]] now covers
+only the prefix mechanism — reuse truncates at the first divergence and buys prefill only —
+and defers the rest to the new [[Semantic Caching]] page, where the correctness risk is a
+similarity threshold and staleness rather than a cache miss.
+
+**Reading moved to machines; judgement did not.**
+[[Addy Osmani - How the Claude Code Team Does Code Review]] describes review restructured once
+agents wrote most of the code, with humans keeping product direction, architecture, high-risk
+changes, evidence assessment, and accountability. [[Agentic Testing]],
+[[Coding Agent Harness]], and [[AI-Native Software Development Lifecycle]] take the practice;
+[[Addy Osmani]] records that the account is a third-party write-up of another company's
+internal process.
+
+**A router that knows nothing is the point.**
+[[Plawan Rath et al - The Thin Orchestrator]] is Meta's account of replacing a single agent
+that held all domain knowledge — and hallucinated in production after working in demos — with
+roughly 1,300 lines coordinating 20+ workflows across 14 specialist agents and doing no domain
+work itself. [[Agent Delegation]], [[Agent Frameworks]], [[Model Routing]], and [[Meta]] carry
+the boundary that deterministic decisions stay deterministic.
+[[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] supplies the
+memory counterpart: append-only episodic traces split from mutable derived knowledge files,
+consolidated offline by a process the authors call "dreaming," on the premise that more
+history is not better memory. [[Agent Memory]], [[Context Engineering]], and
+[[Continual Learning for Agents]] record it as a design note rather than an evaluation, and
+keep it distinct from PostHog's separately named nightly consolidation.
+
+**Retrieval kept the corpus where it was, and the numbers are self-reported.**
+[[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]] describes an internal
+Slack assistant that cites each retrieved passage separately so answers stay auditable.
+[[Retrieval-Augmented Generation]] and [[Institutional Knowledge Agents]] take the grounding
+and documentation-metric arguments; [[Uber]] records the figures. The 48.9% helpfulness rate
+has no stated baseline, and the roughly 13,000-hour saving arrives with a truncated derivation
+and is not used as support anywhere. This Genie is unrelated to Databricks Genie.
+
+**More agents buy speed, not a new skill level.**
+[[Ramez Naam - Can a Million AI Agents Create Superintelligence]] assembles about a dozen
+multi-agent scaling results and finds them consistently logarithmic or sub-logarithmic.
+[[Automated AI Research]] records that the page still has no number for converting throughput
+into capability; [[Test-Time Scaling]] takes the measured shape of the width axis;
+[[Recursive Self-Improvement]] gains a quantitative handle where it previously had only an
+absence of demonstration. Naam is a synthesis of third-party results and carries his own
+caveat about thin real-world data. [[The Decoherence Trap]] supplies two objections that do
+not depend on capability: it proposes decoherence — locally valid but mutually incompatible
+models accumulating in a changing system — as a distinct debt category, and argues that fast
+AI-assisted change manufactures it. [[Legacy Code Modernization with AI Agents]] and
+[[AI-Native Software Development Lifecycle]] record it as an unattributed essay published at
+maevyn.codes that argues rather than measures.
+
+**A thirteen-part series became the vault's data-platform branch.**
+[[Mykola-Bohdan Vynnytskyi]]'s *Understanding Databricks* series, published between May and
+October 2026, is summarized part by part and distilled into ten concept pages rather than
+thirteen near-duplicates. [[Lakehouse Architecture]] holds the open-format, object-storage,
+metadata-layer claim that the whole series depends on. [[Open Table Formats]] and
+[[Columnar Storage Formats]] hold the distinction the series makes explicit: file formats
+arrange bytes within a file, table formats govern many files as one logical table.
+[[Medallion Architecture]] holds the Bronze/Silver/Gold progression together with its own
+correction, that the names describe data quality rather than technology.
+[[Slowly Changing Dimensions]] holds the asymmetry that history never kept cannot be
+recovered; [[Table Layout Optimization]] holds the two axes, compaction for file size and
+clustering for file contents; [[Operational Analytical Convergence]] holds LTAP's contrast
+with HTAP, unifying storage while keeping two purpose-built engines;
+[[Text-to-SQL Agents]] holds the semantic-layer argument from the Genie article;
+[[Declarative Data Pipeline Deployment]] holds version-controlled desired state as the
+alternative to hand-built UI objects. [[Databricks]] ties the components together. The series
+is a practitioner tutorial: its comparative and performance claims are the author's
+experience, not measurements.
+
+Twenty-five captures yielded **twenty-five new sources**, **ten new concepts**, and **six new
+entities**. All raw captures remain unchanged.
 
 ## Related pages
 

@@ -98,7 +98,6 @@ alone** — it depends on the asymmetry between error costs.
 ## Affected pages
 
 - [[Typed Probabilistic Decision Models]]
-- [[Hamel Husain - How To Use Decision Models for Evals]]
 
 ## Raw capture
 
@@ -121,3 +120,4 @@ alone** — it depends on the asymmetry between error costs.
 - [[Nandakishor M - Non-Autoregressive Decision Models and Laya]]
 - [[World Models]]
 - [[Agent Planning]]
+- [[Hamel Husain - How To Use Decision Models for Evals]]

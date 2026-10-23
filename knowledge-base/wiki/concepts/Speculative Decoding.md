@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - concept
   - inference
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-20-gupta-deepseek-deepinfer
 status: active
 ---
 
@@ -277,6 +278,36 @@ rounds are different objectives for a limited-capacity drafter; see [[Knowledge 
 Private drafter cache versus borrowed target state is a separate memory choice, not something
 acceptance length measures.
 
+## Determinism and variable-length speculation are competing engine settings
+
+[[Mehul Gupta - What is DeepSeek DeepInfer]] adds two things this page did not have, from a secondary
+account of an open-source engine that reports **no measurements whatsoever**.
+
+**K is an environment variable with a default, not a model property.** DeepInfer exposes
+`DEEPINFER_USE_NEXTN_DECODE` with a **maximum draft length defaulting to five**, with variable-length
+speculation controlled by environment settings and **DSpark** proposing tokens that the main model
+verifies under confidence-scheduled verification. The article's own warning is the useful part: a draft
+length of five **does not** imply five-times-faster generation. That is this page's τ arithmetic stated
+in plain language — under constant conditional acceptance at K=5, α=0.85 yields about **4.15** committed
+tokens and α=0.30 about **1.43**, against a ceiling of K+1=6 — and the gap between 1.43 and 6 is before
+any draft or verification cost is charged. The author attributes the dependence correctly: gains follow
+from accepted draft tokens, verification cost, workload, and hardware, none of which the source measures.
+
+**The new tension is with reproducibility.** This page already separates *exactness* (the accept/reject
+rule reproducing the target's output distribution) from *reproducibility* (position-consistent Gumbel
+noise matching a sampled path). DeepInfer introduces a third relationship neither covers: the engine
+pursues **batch-invariant inference**, intended to make results independent of dynamic batch
+composition, and in the stated NVIDIA deterministic configuration — fixed `seq_seed` plus documented
+settings — **variable-length MTP decoding is disabled**.
+
+If that holds generally, batch-invariant determinism and variable-length speculation are mutually
+exclusive settings rather than orthogonal features, which gives speculation a cost this page has not
+been charging it: the ability to reproduce a serving run. The mechanism is plausible — a draft length
+that varies with batch state makes the committed-token boundary batch-dependent, so the composition the
+determinism effort is trying to neutralise re-enters through speculation — but the source states the
+configuration, not the reason. Nothing here quantifies the throughput given up by disabling it, and
+nothing establishes that other engines face the same exclusion.
+
 ## Open questions
 
 - How well do acceptance predictors such as DSpark's calibrate under traffic or target-model
@@ -284,9 +315,17 @@ acceptance length measures.
 - Can cross-tokenizer or tokenizer-free speculation relax the same-family constraint?
 - Where is the model-size/batch crossover at which speculation reliably pays, and how does it shift with EAGLE-style feature drafting?
 - Should a serving stack disable speculation automatically for high-arithmetic-intensity attention architectures, and can the balance point be probed at runtime rather than assumed from the datasheet?
+- Is the determinism/variable-length-speculation exclusion general, or specific to DeepInfer's stated NVIDIA configuration? The vault has one secondary report of the setting and no account of the mechanism.
+- What throughput does a deployment give up to obtain batch-invariant results, and which workloads — regulated decisions, evaluation substrates, incident reproduction — are worth paying it?
+- Can a fixed-length draft budget preserve batch invariance while keeping most of the gain, or does any useful draft-length controller necessarily read batch state?
+- DeepInfer pairs a draft-length default of five with confidence-scheduled verification but publishes no acceptance rate, no τ, and no speedup. What is the minimum evidence an engine should publish alongside a speculation default before anyone can evaluate it?
 
 ## Related pages
 
+- [[Mehul Gupta - What is DeepSeek DeepInfer]]
+- [[DeepSeek]]
+- [[Inference Serving Engines]]
+- [[Prefill-Decode Disaggregation]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Knowledge Distillation]]
 - [[Mayank Pratap Singh - Speculative Decoding in vLLM]]

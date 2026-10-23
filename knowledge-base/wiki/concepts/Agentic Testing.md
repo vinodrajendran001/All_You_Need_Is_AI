@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - concept
   - evaluation
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-15-osmani-claude-code-review
 status: active
 ---
 
@@ -224,6 +225,42 @@ The durable test boundary is the persisted deliverable: check which system was e
 retain the actual evidence, and reconcile reports with final messages. A warning that can
 block once per session is not a release gate proving every artifact was measured.
 
+## Reviewer noise needs a negative control, and findings need a quorum
+
+[[Addy Osmani - How the Claude Code Team Does Code Review]] reports an organisation measuring its
+*reviewing* agents the way this page says software should be measured. Three mechanisms are new here.
+
+**A quorum replaces a single judgement.** Multiple agents search the same diff for bugs in parallel
+and **verifier agents vote**; a finding reaches a human only if enough verifiers agree. This page's
+[[LLM-as-a-Judge]] material treats the judge as one model to calibrate; here the unit of acceptance is
+agreement across independent runs, which is a cheaper way to suppress single-run variance than
+calibrating any one judge.
+
+**Noise gets a negative control.** Reviewer quality is assessed partly by running the reviewer on
+**known-clean pull requests** — a false-positive probe with a known answer — and partly from how
+humans respond to findings. Nothing else on this page has a measurement for "how often does the
+checker invent a problem," and a clean-input control is the standard shape for one.
+
+**Incidents become the eval set.** Reverts and incidents are converted into expert-confirmed
+evaluation cases run **daily**, and reviewer changes are scored against the accumulated set. That is
+the regression-case loop already recorded from [[ByteByteGo - LLMs as a Judge - How to Know if Your LLM Is Healthy]],
+operating at company scale on real failures rather than curated ones.
+
+The reported movement after convergence work — one-round pass rate **65% → 78%**, five-or-more rounds
+**8.9% → 1.5%**, mean reviews-to-pass **2.08 → 1.32** — is Anthropic's own, before versus after, with
+population and time window unspecified. Two further figures need their denominators kept attached:
+substantive comments rising from **16% to 54%** of internal pull requests measures comment *volume*
+before versus after a launch, not defect detection; and the claim that verification makes the final
+result **"two to three times better"** is attributed in the article to Boris Cherny as an
+**estimate**, with no method or benchmark. The accompanying observation that most pull requests over
+1,000 lines draw findings while small ones come back clean is **illustrative** — the source gives no
+rates.
+
+The uncomfortable fit with this page is the 59% figure: about **59%** of repeatedly flagged code
+**predated the reviewer's first pass**. This page has mostly worried about agents inventing findings;
+that number says a large share of a non-converging loop was real code outside the diff. Scope drift
+and hallucination are different noise sources and only one of them is fixed by better verification.
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -239,9 +276,17 @@ block once per session is not a release gate proving every artifact was measured
   distinction but nothing says how a suite would classify its own repair agent's give-up events.
 - Martin's roughly-95% warning assumes a high baseline means a saturated system. How would a team tell
   that apart from a task distribution that was sampled too easy in the first place?
+- Verifier voting suppresses findings that fail to reach a quorum, and suppressed repeated findings are
+  never re-raised. Nothing in the Anthropic account measures how many of those were real.
+- A known-clean-PR control measures false positives. Neither it nor the daily incident-derived eval set
+  measures **recall** — what the reviewer never flagged — and the source offers no controlled comparison
+  against conventional human review.
+- Capping review at three rounds bounds churn but encodes a judgement that a fourth round is not worth
+  it. The source reports no estimate of what the cap lets through.
 
 ## Related pages
 
+- [[Addy Osmani - How the Claude Code Team Does Code Review]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]
 - [[Paolo Perrone - What is Agentic Testing]]

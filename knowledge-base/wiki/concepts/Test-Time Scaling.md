@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - reasoning
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-07-20-raschka-reasoning-effort
   - src-2026-10-12-bytebytego-energy-based-reasoning
   - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-10-19-naam-million-agents-superintelligence
 status: active
 ---
 
@@ -124,13 +125,76 @@ with gains owed to the number of samples. ROUGE-L measures overlap with referenc
 factual support, so consensus selection under this metric is not verification. The figures are
 secondhand research results at small model scale.
 
+## The width axis has a measured shape, and speed and score scale differently
+
+Everything above treats test-time compute as something spent *within* one model — longer traces, more samples,
+deeper search, a verifier. [[Ramez Naam - Can a Million AI Agents Create Superintelligence]] collects what
+happens on the other axis: spending the budget on **more agents working in parallel**. It is a synthesis of
+other people's results rather than an experiment, and the author's own position is
+**"We're all operating on far too little real world data."** Treat the curves below as a well-sourced argument
+about where measurement currently stands.
+
+The finding that matters for this page is that **adding agents moves two different curves, and they do not
+move together**. Speed — how fast a solvable task finishes — scales reasonably. Score on harder problems
+saturates early.
+
+| Reported result | Agents | Effect | Cost basis |
+| --- | --- | --- | --- |
+| Terminal-Bench (Toby Ord) | 4 vs 1 | ~1.9x faster to the same result | ~2.1x token cost |
+| BrowseComp (Toby Ord) | 4 vs 1 | ~2.6x faster to the same result | ~1.6x cost |
+| Lean formal math | 10→30, then 30→100 | speed exponent **λ** fell ~0.75 → ~0.33 | agent runtime as proxy |
+| SEC-Bench Pro | 1 → 4 → 16 | peak scores ~71.2 → 74.3 → 76.4 (+3.1 then +2.1 points) | best score at each budget |
+| Opus 5.5 formal math, 49 weighted theorem statements, 24h per team | 10 → 100, then beyond | +27 score points, then +2 | 100-agent team could spend ~10x aggregate runtime |
+| Persona/model diversity study | up to 8, then more | substantial gains to 8; average performance then barely moved | not stated |
+| Molecular exploration | 1 → 128 | logarithmic diminishing returns | not stated |
+
+Two things follow for the allocation question this page keeps returning to.
+
+**The width axis saturates, and the saturation point is a measurable quantity.** The open question below asks
+how to size samples and search per problem difficulty; the Lean and Opus 5.5 rows say the same question has a
+*team-size* form, and that the answer arrives early — the 10→100 expansion bought 27 points and the next
+expansion bought 2. Naam's proposed reporting protocol makes this visible by construction: report **G** (gain
+per multiplication of agents), **λ** (speed scaling), and **N** (where gains saturate) separately for 1→10,
+10→100, and 100→1,000, rather than quoting a single total. Gains per multiplication, not per total, is the
+whole point.
+
+**Parallel breadth and sequential depth are not interchangeable.** The essay's mechanism — *"A million
+independent searches can run at once. A sequential investigation can't."* — is the same constraint this page
+records under *Search & sieve*, where purely sequential generation compounds errors and a verifier is what
+makes depth pay. Width has the mirror-image failure: it buys independent attempts without buying the next step
+of a dependent chain, and homogeneous agents share their blind spots, so breadth does not supply diversity
+automatically. That is a direct caution for self-consistency and MBR-style consensus selection above, where
+**n** cheaper samples are assumed to behave like **n** independent ones.
+
+**The evidence is weaker than the table looks.** Every row is third-party. The SEC-Bench Pro figures compare
+**best reported scores at different budgets**, not equal-compute runs. Several rows use **total agent runtime
+as a cost proxy**, which need not track tokens or dollars. OpenAI's ~10,000-agent, 88-hour Navier-Stokes run
+is excluded from the table precisely because it **had no single-agent control**; Noam Brown is quoted saying
+he would attribute **"not even 10%"** of that result to multi-agent scaling, which is an expert judgment
+rather than a measurement. And benchmark score is a task-specific proxy, not a measure of capability.
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
 - **Reward-model reliability:** verifier-based scaling is only as good as the verifier; a flawed reward model can rank wrong answers higher.
 - **Budget allocation:** how to size samples/search per problem difficulty, especially for smaller models (s1, Fleet of Agents), and how to make it self-tuning.
-
+- **Depth versus width at a fixed budget is unmeasured.** No source on this page compares spending a token
+  budget on a longer trace, more samples from one model, or more parallel agents on the same task. The
+  collected agent curves report speed and score against agent count, never against an equal-compute
+  single-agent alternative.
+- **What determines N?** The saturation points above range from 8 agents in the diversity study to beyond 100
+  in formal math, and nothing in the evidence explains the spread — the formal-math results in particular do
+  not distinguish a sequential bottleneck from a missing insight.
+- **Does parallel scaling on benchmarks transfer to anything else?** Every curve is a benchmark result, and
+  the source does not establish that the shapes hold on open-ended work.
 ## Related pages
+
+- [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
+- [[Ramez Naam]]
+- [[Agent Delegation]]
+- [[Automated AI Research]]
+- [[Recursive Self-Improvement]]
+- [[Benchmark Optimization]]
 
 - [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
 - [[ByteByteGo - How to Build Models Without Language]]

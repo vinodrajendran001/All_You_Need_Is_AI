@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-10-19
+updated: 2026-10-23
 entity_kind: organization
 tags:
   - entity
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-09-rabi-guha-intelligent-ui
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-20-guan-beyond-gmean-squared
 status: active
 ---
 
@@ -141,7 +142,58 @@ right list is much shorter. These are a former contributor's revisions written f
 not OpenAI's current position. They concern GPT-2-era baselines and SAE framing, not the
 monitoring results elsewhere on this page. See [[Mechanistic Interpretability]].
 
+## Publishing a critique of its own headline monitorability metric
+
+[[Melody Guan et al - Complementary Metrics for Monitorability]] is an OpenAI Alignment post whose
+subject is OpenAI's own measurement practice. It argues that **one monitorability number is not enough**
+and proposes two complements to the dataset-level **g-mean²** score the lab reports. g-mean² stays
+primary; the complements are **pair-matched monitorability**, which compares models only on instances
+both support, and **post-control risk**, which scores what survives when the monitor is used as a
+rejection gate and the model retries.
+
+Two things make it a useful entry here. First, the historical section **re-scores the lab's own
+system-card evaluations** rather than running new model experiments: **7** agent-model configurations —
+o1, o3, GPT-5, GPT-5.2, GPT-5.4, GPT-5.5, and GPT-5.6 Sol — with GPT-5 at high reasoning effort as the
+monitor, and error bars from **500** deterministic hierarchical bootstrap replicates. **GPT-6 Astra was
+excluded** because it was scored by a different monitor, GPT-5.6 Sol, so the Astra monitorability
+regression recorded above is precisely the case this re-analysis does not cover. Pair-matched and
+dataset-level orderings generally agreed, with antischeming close to a tie and one health-queries
+environment near the ceiling; no exact scores appear in the prose, and the post publishes no ranking of
+the seven configurations.
+
+Second, it states a deployment boundary plainly. The post-control scheme — sample up to **K** outputs,
+reject flagged ones, deploy the first accepted one — is **hypothetical**, and the authors say OpenAI does
+not deploy current models this way. In two illustrative Honeypot slices, **B(4)** (probability of
+deploying a bad output) was below **3%** and **A(4)** (probability of deploying anything) below **7%**,
+with **41-45%** of deployed outputs positive. Those are measured slices inside the historical
+re-analysis, not rates for any shipped product, and the authors warn that a low B(K) can mean the system
+rarely deploys anything at all.
+
+Read alongside the Hugging Face post-mortem and the mandated CoT monitoring above, this is the same
+disclosure posture applied to methodology rather than to an incident: the lab publishing the conditions
+under which its own headline safety number can mislead. It remains first-party work in which nearly every
+formula is a **proposal** and the recovery demonstrations are **synthetic simulations**, so it documents
+how OpenAI proposes to measure monitorability, not that OpenAI's models are monitorable. See
+[[Chain-of-Thought Monitoring]] and [[Embedded Evaluation]].
+
+## Open questions
+
+- The monitorability re-analysis covers o1 through GPT-5.6 Sol under a single monitor and excludes GPT-6
+  Astra. What would an instance-matched Astra-versus-Sol comparison require, given that the two were
+  scored by different monitors?
+- Pair-matched and dataset-level orderings are reported as generally agreeing, but without scores or a
+  published ranking. Which previously reported OpenAI monitorability figures would move under the new
+  metrics, and by how much?
+- Post-control risk is simulated with non-adaptive retries under an arrangement the lab says it does not
+  use. What is the corresponding risk for the gating and retry behavior OpenAI actually ships?
+- Monitorability measurement on this page is first-party throughout. The vault holds no independent
+  re-analysis of OpenAI's monitorability scores, though it does record METR and Redwood Research
+  publishing independently on the incident's alignment issues.
+
 ## Related pages
+
+- [[Melody Guan et al - Complementary Metrics for Monitorability]]
+- [[Embedded Evaluation]]
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Mechanistic Interpretability]]

@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - index
 source_ids:
@@ -322,6 +322,31 @@ source_ids:
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-10-20-guan-beyond-gmean-squared
+  - src-2026-10-20-husain-decision-model-evals
+  - src-2026-10-23-why-decision-models-now
+  - src-2026-10-21-simpson-torchtpu
+  - src-2026-10-20-gupta-deepseek-deepinfer
+  - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
+  - src-2026-10-15-osmani-claude-code-review
+  - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-10-21-databricks-memcurrent
+  - src-2026-10-19-bytebytego-uber-genie
+  - src-2026-10-19-naam-million-agents-superintelligence
+  - src-2026-10-14-maevyn-decoherence-trap
+  - src-2026-05-23-vynnytskyi-databricks-snowflake-bigquery
+  - src-2026-06-01-vynnytskyi-databricks-core-components
+  - src-2026-06-14-vynnytskyi-databricks-cloud-choice
+  - src-2026-06-21-vynnytskyi-modern-data-platform
+  - src-2026-06-29-vynnytskyi-medallion-architecture
+  - src-2026-07-04-vynnytskyi-data-formats
+  - src-2026-07-11-vynnytskyi-delta-lake-practice
+  - src-2026-08-01-vynnytskyi-scd-types
+  - src-2026-08-08-vynnytskyi-delta-time-travel
+  - src-2026-08-15-vynnytskyi-optimizing-delta-tables
+  - src-2026-08-23-vynnytskyi-genie-explained
+  - src-2026-08-30-vynnytskyi-lakebase-ltap
+  - src-2026-10-18-vynnytskyi-databricks-project-structure
 status: active
 ---
 
@@ -329,8 +354,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 19, 2026: **557 typed wiki pages**, including **291 source summaries**
-representing **317 source IDs**, **126 concepts**, and **82 entities**. Duplicate captures
+As of October 23, 2026: **598 typed wiki pages**, including **316 source summaries**
+representing **342 source IDs**, **136 concepts**, and **88 entities**. Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
 
@@ -340,6 +365,16 @@ exclude git-ignored local query files.
 
 ## Concepts
 
+- [[Lakehouse Architecture]] - Open formats in customer-controlled object storage with transactions and governance layered on by metadata rather than a proprietary storage engine.
+- [[Medallion Architecture]] - Bronze/Silver/Gold as a data-quality progression, not a technology stack, and what mechanical application costs.
+- [[Open Table Formats]] - The metadata and transaction layer that governs many files as one logical table, kept distinct from the file format underneath.
+- [[Columnar Storage Formats]] - Row-oriented writes versus column-oriented scans, and why the read pattern decides the format.
+- [[Slowly Changing Dimensions]] - Overwrite versus versioned history, and the asymmetry that history you never kept cannot be recovered.
+- [[Table Layout Optimization]] - File count and row distribution as two independent axes: compaction fixes size, clustering fixes contents.
+- [[Operational Analytical Convergence]] - Serving transactional and analytical workloads from one logical copy, and how LTAP differs from HTAP.
+- [[Text-to-SQL Agents]] - Generating and running SQL over governed tables from natural language, and why the semantic layer carries the accuracy.
+- [[Declarative Data Pipeline Deployment]] - Version-controlled desired-state manifests for jobs, pipelines, and permissions instead of hand-built UI objects.
+- [[Semantic Caching]] - Reusing a previous answer for a similar request, and why its correctness risk is unlike prompt caching's.
 - [[Mechanistic Interpretability]] - Native neurons versus replacement readers, contested causes of polysemanticity, and why detection, labels, causal use, and predictive value are separate claims.
 - [[Robot Training Data]] - Teleoperation, deployment, simulation, human video, and UMI as trade-offs among embodiment fidelity, physics, diversity, and cost; hours are not a common currency.
 - [[GPU Fleet Reliability]] - Degraded rather than dead hardware, checks that can fail silently, graded remediation, and fleet goodput; health is a separate control from admission.
@@ -471,6 +506,12 @@ exclude git-ignored local query files.
 
 ## Entities
 
+- [[Databricks]] - Lakehouse platform whose components - Delta Lake, Unity Catalog, Genie, Lakebase, Mosaic AI - recur across this vault's data-platform pages.
+- [[Mykola-Bohdan Vynnytskyi]] - Author of the thirteen-part "Understanding Databricks" series, this vault's largest body of data-platform material.
+- [[Hamel Husain]] - Evaluation practitioner who tuned, calibrated, and priced a decision model used as an automated judge.
+- [[Uber]] - Source of Genie, a Slack retrieval assistant for engineering support; its reported figures are self-reported and partly unrecoverable.
+- [[Ramez Naam]] - Author of a third-party synthesis arguing multi-agent scaling results are logarithmic or sub-logarithmic.
+- [[PyTorch]] - Deep-learning framework and, for this vault, a dispatcher architecture that hardware vendors attach backends to.
 - [[Goodfire]] - Interpretability organization arguing native mechanisms should come before learned decompositions; its audits are agent-assisted and preliminary.
 - [[Logical Intelligence]] - Kona's developer; vendor Sudoku evidence and a proposed language-interface/constrained-search division.
 - [[Apollo Research]] - Publisher of a claim-based embedded-evaluation proposal, not a completed audit or existing legal requirement.
@@ -911,6 +952,34 @@ its unchanged article body adds no source ID or independent estimate.
 - [[Netflix - Reliable GPU Compute for Training and Inference]] - Health checks that fail closed, graded remediation, retries only after attribution, and cause-split goodput objectives; results are first-party with no measurement window.
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] - Decode-side registration overlapped with prefill and a background prefill-side WRITE; "up to 3x" TTFT is one 1P1D sweep's extreme, and push commits to a decode instance early.
 - [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] - ARISE's FDA-comment rationale: judges anchored to human-graded references, population-level rather than case-level verdicts, exclusion zones, and grader deprecation risk.
+
+### October 23, 2026 batch
+
+- [[Melody Guan et al - Complementary Metrics for Monitorability]] - OpenAI's own critique of its headline g-mean² metric; pair-matched monitorability and post-control risk as complements, with the retry policy left unspecified.
+- [[Hamel Husain - How To Use Decision Models for Evals]] - A decision model used as an automated judge, with threshold tuning on labelled data, a calibration check, and costs; the 0.50 default is an arbitrary inheritance.
+- [[Why Decision Models, and Why Now - A Taxonomy of Automated Decision-Making|Why Decision Models, and Why Now]] - A taxonomy of automated decision-making placing language-model agents alongside rules, classifiers, optimization, and planning; no canonical URL exists for this capture.
+- [[Ebba Simpson - Introducing TorchTPU]] - A native PyTorch TPU backend reached through the `PrivateUse1` dispatcher; the mechanism is specific, but every speedup is first-party with no stated workload or baseline.
+- [[Mehul Gupta - What is DeepSeek DeepInfer]] - A secondary reading of DeepSeek's open-sourced inference engine, useful for scope rather than performance; it reports no measurements.
+- [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]] - Two mechanisms sharing one word: exact-prefix compute reuse that still calls the model, versus answer reuse that can skip it.
+- [[Addy Osmani - How the Claude Code Team Does Code Review]] - Review restructured once agents wrote most of the code; reading moved to machines while direction, architecture, and accountability stayed human.
+- [[Plawan Rath et al - The Thin Orchestrator]] - Meta's knowledge-free router - about 1,300 lines across 14 specialist agents - after a single knowledge-holding agent hallucinated in production.
+- [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] - Append-only episodic traces split from mutable derived memory, consolidated offline by a process the authors call "dreaming"; a design note, not an evaluation.
+- [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]] - A Slack retrieval assistant that cites each passage separately; its 48.9% helpfulness rate has no baseline and its hours-saved derivation is truncated. Distinct from Databricks Genie.
+- [[Ramez Naam - Can a Million AI Agents Create Superintelligence]] - A synthesis of roughly a dozen multi-agent scaling results, consistently logarithmic or sub-logarithmic; adding agents buys speed more than collective intelligence.
+- [[The Decoherence Trap]] - Decoherence proposed as a distinct debt category: locally valid but mutually incompatible models accumulating in a changing system. An unattributed essay that argues rather than measures.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Honest Comparison with Snowflake and BigQuery]] - Part one: architecture, billing-model taxonomy, workload fit, and openness, with no single winner.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Core Components]] - Part two: a separation of duties between notebooks, production pipelines, governance, and compute tiers that generalizes past the vendor.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Azure vs AWS vs GCP]] - Part three: core technology broadly consistent across clouds while integration, billing, and compliance are not.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - What a Modern Data Platform Looks Like in 2026]] - Part four: storage, compute, governance, orchestration, and intelligence as five layers increasingly designed for agents as consumers.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Medallion Architecture Explained Simply]] - Part five: Bronze/Silver/Gold names data quality, not technology, and is a practice rather than a requirement.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Data Formats Explained]] - Part six: file formats versus table formats, and row format for the write, columnar for the read.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Delta Lake in Practice]] - Part seven: append, overwrite, and `MERGE` for three different situations, plus schema enforcement and evolution.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - SCD Type 1 and Type 2 in Delta Lake]] - Part eight: overwrite versus versioned history, and why history not kept cannot be recovered.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Time Travel in Delta Lake]] - Part nine: every write makes a version, `RESTORE` adds a version rather than rewriting history, and time travel is a seatbelt, not insurance.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Optimizing Delta Tables]] - Part ten: small files as the usual cause, with compaction fixing file size and clustering fixing file contents.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Genie Explained]] - Part eleven: untangling the Genie renames and separating the interface, the application, scoped agents, and the learned ontology. Distinct from Uber's Genie.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Lakebase and LTAP]] - Part twelve: managed Postgres inside the platform, and LTAP unifying storage while keeping two purpose-built engines.
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - How to Structure a Databricks Project from Scratch]] - Part thirteen: a Git-versioned declarative bundle as the foundation, with environments as deployment targets.
 
 ## Syntheses
 

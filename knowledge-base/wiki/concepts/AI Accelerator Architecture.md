@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - hardware
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-10-02-epoch-agent-population
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-10-21-simpson-torchtpu
 status: active
 ---
 
@@ -98,7 +99,10 @@ v4/v5p — 4x4x4 = 64 chips per rack, twisted, with Optical Circuit Switches rew
 seconds, scaling to the **9,216-chip Ironwood superpod at 42.5 FP8 exaflops**. **TPUv8i "Boardfly"
 replaces it with a high-radix dragonfly-style fabric**, cutting network diameter **more than 50%** (~16
 hops to ~7 at 1,024-1,152 chips), doubling ICI bandwidth to **19.2 Tb/s**, and tripling on-chip SRAM to
-**384 MB** — sized specifically to hold reasoning and agentic KV cache on-chip.
+**384 MB** — sized specifically to hold reasoning and agentic KV cache on-chip. (Unit caveat added
+2026-10-23: [[Ebba Simpson - Introducing TorchTPU]] states the same 19.2 figure for TPU 8t/8i ICI as
+**19.2 TBps** — bytes, not bits, an eightfold difference. Both are first-party statements from
+different vendors' write-ups; the vault records both and resolves neither.)
 
 **Google has split its training and inference architectures for the first time** (8t versus 8i), with the
 target workload named explicitly: multi-turn, long context, high prefix reuse, and sub-agent bursts. This
@@ -175,6 +179,45 @@ capacity. Device-level allocation could also change the unit of failure, since o
 remove the whole machine, but the source makes that conditional on future DRA support. Neither source
 quantifies these placement effects. See [[GPU Fleet Reliability]].
 
+## A TPU TensorCore is effectively single-threaded, and the shapes are an input to compilation
+
+[[Ebba Simpson - Introducing TorchTPU]] is a framework announcement, but its most durable content for
+this page is its list of ways TPU execution declines to behave like a GPU. All of it is first-party
+Google/Meta/PyTorch description, with no independent verification in the post.
+
+- **TensorCores are described as effectively single-threaded execution processors.** TPU Streams exist,
+  but the post says GPU-equivalent parallel execution cannot always be achieved on them. SparseCores
+  take sparse and collective work; DMA engines carry asynchronous host/device transfers. Concurrency
+  here is a property of the compiled program rather than of a warp scheduler, which is the
+  cache-versus-scratchpad tradeoff above restated at the level of the execution unit.
+- **One user-space process per device is enforced.** The post names the consequence: reinforcement-
+  learning colocation, which puts generation and training on the same device, does not work out of the
+  box. See [[Distributed Training Parallelism]].
+- **Shapes are a compile-time input.** XLA and PjRT traditionally require compile-time-known shapes.
+  *Bounded dynamism* allocates buffers to a compile-time maximum bound while tracking the runtime
+  logical dimension, padding and slicing rather than recompiling — described as active development,
+  with `torch.compile` currently forcing `dynamic=False`.
+- **The ISA is not addressable.** "The actual TPU ISA is proprietary," so the lowest level available
+  outside Google is Mosaic or Pallas. There is no TPU equivalent of inspecting the emitted machine code.
+
+Three hardware figures extend or corroborate what this page holds, all first-party and all presented by
+the post as generation-specific examples rather than universal TPU properties. The **256x256
+multiply-accumulator MXU** matches the geometry the SemiAnalysis section above records from v6e onward,
+so the two independent write-ups agree on the number that makes TPUs "picky" about head dimension.
+**TPU 8i is given as 288 GB of HBM at 8.6 TB/s** and **TPU 8t DCN as 400 GBps**, adding a memory and
+scale-out surface the vault did not have for that generation.
+
+Precision above the MXU's native format is bought in passes through it: `high` uses a **3-pass**
+algorithm at roughly **3x** MXU compute and `highest` a **6-pass** algorithm at roughly **6x**, both
+relative to the default `medium` mode. No benchmark or workload accompanies those multipliers; they are
+the post's description of the algorithms, not a measured slowdown.
+
+The padding cost of lane geometry gets a worked number for the first time here: in the post's KV-cache
+example **each core occupied 1,024 bytes per token to hold 512 bytes of data**, the remainder being
+padding, and a *sequence-on-lane* layout is said to halve both KV memory and KV bytes read. The model,
+hardware generation, and baseline for that example are not stated. It is the 256x256 head-dimension
+finding one level down: tile and lane geometry decide what fraction of an allocated byte is useful.
+
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
@@ -183,9 +226,15 @@ quantifies these placement effects. See [[GPU Fleet Reliability]].
 - As bytes-per-FLOP ratios diverge by three orders of magnitude across deployed architectures, does a single comparison frame remain meaningful, or does each architecture now need its own?
 - Should comparison tables carry on-chip memory *per independent scheduling unit* alongside totals? 128 MiB in two pools and ~111 MiB split 152 ways are nearly the same number and support completely different programs.
 - TPUv8i triples on-chip SRAM to 384 MB, sized for agentic KV cache. Does that capacity widen the single-program megakernel advantage, or does the cache claim it first?
+- Is TPU 8t/8i ICI bandwidth **19.2 Tb/s** or **19.2 TBps**? Two first-party write-ups in this vault state the same number in units that differ by a factor of eight, and neither shows its derivation.
+- The TorchTPU post supplies no GPU-side measurements of its own, no energy figures, and no cost-per-token accounting, so none of its MFU or tokens-per-second results can be read as a cross-vendor hardware comparison. What would a matched-workload comparison even hold fixed, given the shape constraints above?
+- If TensorCores are effectively single-threaded and shapes must be bounded at compile time, which workloads — data-dependent routing, variable-length agent traffic, reinforcement-learning rollouts — are *structurally* expensive on this hardware rather than merely untuned?
+- Does the 1,024-bytes-for-512 padding ratio in the TorchTPU KV example generalize beyond that unnamed configuration, or is it an artifact of one head dimension meeting one lane width?
 
 ## Related pages
 
+- [[Ebba Simpson - Introducing TorchTPU]]
+- [[PyTorch]]
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Netflix - Reliable GPU Compute for Training and Inference]]
 - [[GPU Fleet Reliability]]

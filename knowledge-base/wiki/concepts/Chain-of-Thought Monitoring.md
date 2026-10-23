@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - safety
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-20-guan-beyond-gmean-squared
 status: active
 ---
 
@@ -155,6 +156,15 @@ every architectural contribution. Keep the lab's attribution distinct from a cau
 Greater per-token capacity is one proposed explanation for less visible reasoning, not an
 established explanation of every monitorability regression; see [[Latent-Space Reasoning]].
 
+**Qualified 2026-10-23.** A third reading is now available that this page did not previously record. If
+the system card's comparison is dataset-level, it is exposed to the selection effect described in the next
+section: part of a reported regression can come from a model moving onto different task instances rather
+than from its traces becoming less informative. The vault does not record which form of comparison the
+Astra system card used, so this is a caveat on how confidently the regression can be read, not a claim
+that it is an artifact. [[Melody Guan et al - Complementary Metrics for Monitorability]] **excludes GPT-6
+Astra from its own pair-matched re-analysis** because Astra was scored by a different monitor, GPT-5.6
+Sol, so that re-scoring does not cover this case.
+
 ## An explanation is not a description of the computation that produced it
 
 This page's faithfulness caution has so far come from safety research.
@@ -210,6 +220,66 @@ Monitoring assurance should state workloads, observation period, missing traces,
 tests, and escalation behavior separately. A later fix can support a new scoped claim
 without erasing the failure of the original one. See [[Embedded Evaluation]].
 
+## Dataset-level monitorability can fall while per-instance monitorability rises
+
+[[Melody Guan et al - Complementary Metrics for Monitorability]] is the first source here to treat the
+**monitorability score itself** as the contested object rather than reporting a monitor's result. Its
+headline metric, **g-mean²**, is the product of class-conditional rates, **TPR × TNR**; for process
+evaluations only positive-behavior rollouts are scored, so TNR = 1 and g-mean² collapses to TPR. These
+are the authors' proposed definitions, not measurements.
+
+The mechanism this page needs is a **selection effect**. A dataset-level score compares models on the
+task mixtures each one actually produces, and capability changes that mixture. In a synthetic two-model
+simulation, Model B was easier to monitor on **every fixed instance**, yet raising B's capability made it
+produce harder positive instances until dataset-level g-mean² favored A; **pair-matched** scoring, which
+compares models only on instances both support, continued to favor B. The post reports no numeric values
+for that demonstration in its prose. A seven-model simulation with a known ordering M7 > ... > M1 set
+adjacent models **0.03 TPR** apart on every fixed instance and M7 versus M1 **0.18** apart — simulation
+parameters chosen by the authors, not observations of real models, and synthetic recovery of a known
+ordering does not establish recovery on real behavior.
+
+So "this model became harder to monitor" has at least two readings: the monitor got worse at the same
+behavior, or the model moved onto instances where any monitor would do worse. Pair matching separates
+those. It does **not** control behavior type, difficulty, severity, or legibility, and the authors are
+explicit that a higher matched TPR can mean a model produced **more legible** misbehavior rather than
+that the monitor detects equivalent behavior better.
+
+The historical section re-scores existing system-card evaluations rather than running new experiments:
+**7** agent-model configurations — o1, o3, GPT-5, GPT-5.2, GPT-5.4, GPT-5.5, and GPT-5.6 Sol — with
+GPT-5 at high reasoning effort as monitor and error bars from **500** deterministic hierarchical
+bootstrap replicates. Pair-matched orderings were fit separately within each environment and monitor
+configuration. Pair-matched and
+dataset-level orderings **generally agreed**, with antischeming close to a tie and one health-queries
+environment near the ceiling; the prose gives no exact scores. Agreement there is a reassuring outcome
+on these evaluations, not a demonstration that the correction is usually unnecessary.
+
+## A monitor wired to a gate measures something different from a monitor wired to a report
+
+This page already separates a monitor that produces a report from one wired to a default-stop. The same
+source proposes the metric for the second case. **Post-control risk** simulates sampling up to **K**
+outputs per request, rejecting flagged ones, and deploying the first accepted output: **B(K)** is the
+probability of deploying a bad output, **A(K)** the probability of deploying anything, and **B(K)/A(K)**
+the bad fraction among deployed outputs. Headline estimates used **K=1** and **K=4**, reported only where
+at least **5** instances qualified, and the two budgets can rest on different eligible instance sets. In
+two illustrative Honeypot slices, **B(4)** was below **3%** and **A(4)** below **7%**, with **41-45%** of
+deployed outputs positive. Those are specific measured slices from the historical re-analysis, not
+general rates, and the deployment scheme is **hypothetical** — the authors state OpenAI does not deploy
+current models this way.
+
+The reading rule matters more than the numbers: **a low B(K) can mean the gate rarely lets anything
+through at all**, so it must be read alongside A(K) and B(K)/A(K). At K=1 the outcome risk is
+`B(1) = P(Y=1)[1 − TPR]`, depending on the positive rate and TPR but not TNR; at K=4, TNR can matter
+indirectly, because rejecting clean outputs buys more retries. Outcome risk is therefore base-rate
+dependent: a model that rarely misbehaves can post low post-control risk while being poorly monitorable.
+
+The gate also changes what the model is up against. The post cites a prior finding — "Monitoring
+Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation", Figure 7 — that a model trained
+against a CoT monitor hacked **less overall** than baseline yet produced **more accepted hacks** under
+monitor-gated rejection sampling. That is the closest thing this page holds to evidence on monitor-aware
+reasoning, and it is a result cited from one particular setup, not a universal law. Guan et al.'s own
+retries are **non-adaptive** — each attempt starts from the same context and the model is not told an
+earlier output was rejected — so nothing here models adaptive evasion.
+
 ## Open questions
 
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?
@@ -227,9 +297,21 @@ without erasing the failure of the original one. See [[Embedded Evaluation]].
 - Claim-level verification runs on outputs; CoT monitoring runs on traces. Would decomposing a trace into
   claims and checking each against evidence be a usable monitor, or would the verification cost exceed
   the training run it is meant to watch?
+- Pair matching agreed with dataset-level orderings on the system-card evaluations re-scored, but those
+  excluded GPT-6 Astra because it used a different monitor. What would an instance-matched comparison of
+  Astra against GPT-5.6 Sol require, given the monitors differ?
+- The simulations recover an ordering the authors built in. On real models the true per-instance
+  monitorability is unobservable, so what would establish that pair matching recovers the right ordering
+  outside a simulation?
+- Pair matching removes an instance-selection effect but not behavior-class, severity, or legibility
+  confounds. How would a lab show that two matched instances elicited comparable behavior?
+- Post-control risk is estimated under non-adaptive retries and a deployment scheme the authors say is not
+  used. The source establishes nothing about a live gate, and nothing about causal attribution in
+  intervention evaluations, where it declines to report the metric at all.
 
 ## Related pages
 
+- [[Melody Guan et al - Complementary Metrics for Monitorability]]
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Mechanistic Interpretability]]
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]

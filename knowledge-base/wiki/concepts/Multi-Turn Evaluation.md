@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-07
+updated: 2026-10-23
 tags:
   - concept
   - llm-evaluation
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-10-20-husain-decision-model-evals
 status: active
 ---
 
@@ -165,6 +166,40 @@ misalignment metrics. Standard EM recovery can coexist with residual TruthfulQA 
 prevention is weaker than reversal. The findings motivate broader regression coverage but do not
 demonstrate multi-turn agent safety.
 
+## A trace-level grader that returns one number still needs a cutoff
+
+This page scores conversations with judges that write.
+[[Hamel Husain - How To Use Decision Models for Evals]] scores them with judges that do not. Each system
+under test receives a whole **masked trace** — conversation plus actions, with labels and reviewer notes
+removed — and returns a single **failure probability from 0 to 1** for that trace. This is trace-level
+evaluation in its most compressed form: one scalar per conversation, no per-turn attribution, no
+rationale text for a human to read.
+
+The compression moves the design problem onto the **threshold**. Scores at or above **0.50** are flagged
+by default in the tested APIs, and the author's position is that this default is inherited rather than
+optimal: a model scoring failures **0.40** and passes **0.10** would classify his illustration perfectly
+at **0.30** and catch nothing at **0.50**. Tuning used stratified **five-fold** cross-validation over
+**98** traces — **61** known failures, **37** with no labeled failure — choosing thresholds on training
+folds and measuring on held-out folds. The detail that matters for suite builders is that this runs on
+**saved scores and requires no new model calls**, so the cutoff can be re-derived whenever the label set
+grows, which is not true of re-running a generative judge.
+
+Two cautions attach to this page's existing concerns. **Feasibility is not guaranteed:** a constrained
+rule requiring at least **80% precision and 80% recall** on training data — the author's example of a
+business rule, not a standard — fell back to unconstrained F1 in **36 of 100** training splits for
+Perplexity and **29 of 100** for Liquid d1-ultra, against **0 of 100** for OpenAI Decisions. And **the
+task was deliberately broad**: one "does this trace contain a failure" question, chosen to make model
+differences visible, which Husain says may exaggerate the gaps and which he would replace in production
+with separate judges per failure mode. That is the opposite move from this page's turn-versus-trace
+split — it collapses the trace rather than decomposing it — and the author recommends against it for
+real use.
+
+The scope is one private 98-trace dataset in one domain, with the original conversations withheld, so it
+is not independently reproducible. Its class mixture, **61 to 37**, is also far more failure-heavy than
+most production traffic; precision depends on prevalence, and the source states only that a tuned
+threshold is not shown to transfer to another dataset. This page reads that as a reason to treat the
+cutoff as local to this mixture rather than as a portable setting.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -177,8 +212,21 @@ demonstrate multi-turn agent safety.
 - Low run-to-run variance is listed as a property of the evaluation, yet part of the variance lives in
   the serving stack rather than in the suite. Can a suite be constructed to a variance target it does not
   control?
+- A single failure probability per trace says that a conversation failed, not where. That comparison
+  reports no turn-level attribution and no test of one-scalar trace scoring against combined turn-plus-
+  trace scoring, so it leaves this page's central distinction untouched.
+- Thresholds there were tuned on a set that is **61** failures to **37** non-failures. Nothing in the
+  source says how a cutoff should be re-derived as production prevalence drifts away from the labeled
+  mixture.
+- The comparison covers one domain and one deliberately broad failure question. Per-failure-mode judges,
+  which its author recommends for production, were not measured, so the reported gaps between systems
+  may not survive decomposition.
 
 ## Related pages
+
+- [[Hamel Husain - How To Use Decision Models for Evals]]
+- [[Hamel Husain]]
+- [[Typed Probabilistic Decision Models]]
 
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - context-engineering
@@ -33,6 +33,8 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-10-21-databricks-memcurrent
 status: active
 ---
 
@@ -350,6 +352,70 @@ then load only that `SKILL.md`. Its premise, "Long prompts hurt agent performanc
 promise of more consistent behavior are unmeasured. It describes the mechanism this section
 qualifies; it does not test it.
 
+## Interference is an architectural failure, not a budget failure
+
+Most of this page treats a crowded context as a **cost** problem with a quality tail. [[Plawan Rath et al - The Thin Orchestrator]]
+reports it as a correctness problem severe enough to force a rebuild. A single Meta agent holding
+schemas, code-generation rules, routing logic, validation requirements, and patterns for **more than
+10 data sources** reportedly **cross-contaminated concepts between subsystems** and hallucinated in
+production while working in demos. The authors' summary is the inversion this page's
+"more context is not always better" material has lacked a blunt statement of: **"The agent had
+everything it needed. That was the problem."**
+
+Their response is context isolation as architecture rather than as compression. Domain knowledge lives
+in **25+ files**, typically a few thousand tokens each, loaded **at runtime by the specialist that
+needs them**; the coordinating router holds none of it. This is progressive disclosure applied at
+*agent* granularity rather than at document granularity — the unit that never sees the irrelevant
+material is a whole subagent, so **"No agent sees the full picture. That's the feature, not the
+bug."** The nearest figure the page already holds is [[Meta - An Organizational Second Brain]]'s
+roughly **80% fewer tokens per turn** from gateway files and routing indexes; this is the same
+company's second application of the same instinct, with no token figure attached.
+
+One measurement is worth recording precisely because of what it measures: a single-agent alternative
+reached **70-80%** success **with manual prompt engineering per task** and **10-20%** without it. Read
+as a context result, that is a statement about **how much hand-tuning a loaded context requires to
+work at all** — not a benchmark, since workload and sample size are unstated and the comparison is
+self-reported. The whole account is first-party with **no ablation** separating context isolation from
+deterministic routing, workflow templates, and runtime loading, so "interference caused the failure"
+remains the authors' diagnosis rather than a demonstrated cause.
+
+## Distilled memory matched full context at roughly 12x fewer input tokens
+
+[[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] supplies the efficiency
+anchor this page has wanted for the "dumping history into the window is expensive rather than thorough"
+claim. On three open benchmarks — LoCoMo (**19-32 sessions/sample**), LongMemEval (**38-62
+sessions/sample**), and a ConvoMem subset of **500 samples** at **100 sessions/sample**, averaged over
+the LangGraph and OpenAI Agents SDK harnesses and **three repeats**, with GPT 5.6 luna as both agent
+and memory model — a memory system scored **88.1%** against **87.8%** for injecting full context, at
+**8.4K versus 103K input tokens per question**. That is roughly **12x fewer** input tokens for
+comparable accuracy on those benchmarks.
+
+Two qualifications travel with it. The comparison is **first-party**, and the authors note that open
+benchmarks use **synthetic conversations** that may not represent enterprise work. And matching
+full-context accuracy at lower token use does not establish that a distilled context is *more*
+accurate than full context in general — only that, here, the extra 95K tokens per question bought
+nothing measurable.
+
+The architectural finding is more transferable than the ratio. The system separates **episodic
+memory** (append-only raw traces) from **derived memory** (mutable, distilled knowledge files), and on
+their internal benchmark derived memory alone scored **66.1%** while episodic alone scored **35.8%**,
+against a **22.3%** no-memory floor and **68.4%** for both. Stated in this page's terms: **what you
+carry forward should be distilled, not replayed.** Retrieval over raw history is the weaker mechanism
+even when the raw history is available. The access-pattern result points the same way — background
+offline consolidation alone reached **63.5%** against **53.9%** for agent-invoked memory tools —
+which says the agent deciding in-session what to keep is worse than a process that reviews sessions
+afterwards. All of these are Databricks' own figures on a **114-test-case**, company-built,
+partly LLM-judged benchmark drawn from Genie sessions, so they indicate a direction, not a
+general law.
+
+**A naming collision to keep straight.** Databricks calls its offline consolidation pipeline
+**"dreaming"**, and so does the nightly context-extraction task described above from
+[[Jina Yoon - We're Building Multiplayer AI]]. They are **unrelated systems from different companies**
+that happen to share a word. PostHog's writes what shipped that day into a shared, version-controlled
+company wiki; Databricks' consolidates one agent's own prior sessions into derived memory files,
+splitting oversized files, merging duplicates, and resolving conflicts. Only the Databricks pipeline
+has an ablation behind it.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -360,9 +426,21 @@ qualifies; it does not test it.
   recovery path.
 - What eval would show that derived context beats no context? PostHog reports none, and Osmani's null
   result is the only controlled comparison this page has for context files at all.
+- Databricks' 12x token reduction is measured against full-context injection on synthetic open
+  benchmarks. What does the ratio look like on real enterprise sessions, where their own histories were
+  too long to inject at all?
+- Isolating a specialist's context prevents interference but also removes any chance of a cross-domain
+  connection. Nothing in the Meta account measures what the isolated agents fail to notice.
+- Distilled derived memory outperformed raw episodic traces by a wide margin, and the authors concede
+  **distillation can drop details**. What detects a dropped detail before it costs a task?
 
 ## Related pages
 
+- [[Plawan Rath et al - The Thin Orchestrator]]
+- [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
+- [[Databricks]]
+- [[Meta]]
+- [[Continual Learning for Agents]]
 - [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]

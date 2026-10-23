@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - ai-agents
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-09-15-bytebytego-llm-memory-goldfish
   - src-2026-09-29-yoon-multiplayer-ai
   - src-2026-10-05-bytebytego-lost-middle
+  - src-2026-10-21-databricks-memcurrent
 status: active
 ---
 
@@ -224,10 +225,89 @@ the original reference and material exceptions so relevance optimization does no
 rewriting. This strengthens the writer-maintenance argument above while rejecting an unlimited
 context window as a substitute for maintenance.
 
+## The first ablation this page has for *which kind* of persistence pays
+
+[[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] is the first source
+here that removes memory components one at a time and reports what each was worth. The architecture
+splits **episodic memory** — append-only raw session traces — from **derived memory**, mutable
+structured knowledge files holding distilled corrections, preferences, definitions, and workflows. An
+automatically generated **`memory.md` index** describes the available files, and a session-start
+plugin injects that index; both types live in a production database, with derived memory represented
+as a mutable table simulating a hierarchical filesystem. Reads go through `search_memory` and
+`fetch_memory`; writes through `add_memory`, `update_memory`, and `delete_memory`.
+
+On their **Internal Memory Benchmark** — **114 test cases**, **29 users**, and **2,233 history
+sessions** mined down from **12K+** Databricks Genie sessions, covering **5 memory types** and **11
+scenarios**, scored by an adversarial judge against seven criteria with manual review applied to case
+construction, run with Claude Opus 4.6 as agent model and GPT 5.6 sol as memory model over three
+repeats — the two ablations are:
+
+| Configuration | Pass rate |
+| --- | --- |
+| No memory | **22.3%** |
+| Episodic traces alone | **35.8%** |
+| Derived memory alone | **66.1%** |
+| Both | **68.4%** |
+| Gold-memory injection (ceiling) | **78.6%** |
+
+| Access pattern | Pass rate |
+| --- | --- |
+| Offline consolidation alone | **63.5%** |
+| Agent-invoked memory tools alone | **53.9%** |
+| Both | **66.1%** |
+
+The authors' summary is **"Derived memory does most of the work"**, and the shape of the numbers
+supports it: distillation carried the system from the 22.3% floor to 66.1%, while raw traces alone
+reached 35.8% and added **2.3 percentage points** on top of derived memory. The authors note episodic
+memory is searched in only about **one-third** of internal test cases. That reframes this page's
+central question. Most designs recorded above — explicit `save_to_memory` returns, tiered session and
+long-term stores, governed Markdown self-models — are concerned with *storing and retrieving* the
+right item. This result says the determining step is **consolidation**: what gets distilled out of
+history, not what gets fetched back from it. Against this page's episodic/semantic/procedural
+taxonomy, "derived memory" collapses the semantic and procedural layers into one mutable store and
+treats the episodic layer as a fallback for detail that distillation dropped.
+
+The second ablation is the more uncomfortable one. A **background process reviewing sessions
+afterwards (63.5%)** beat **the agent deciding in-session what to remember (53.9%)**, which is
+evidence against the explicit-control pattern this page opens with — the pguso design in which the
+model names what to save. Explicit control remains the more *auditable* arrangement; it is not, on
+this benchmark, the more *effective* one.
+
+**Two naming hazards, stated plainly.** First, Databricks calls its offline consolidation pipeline
+**"dreaming"**, and so does the nightly PostHog task recorded above from
+[[Jina Yoon - We're Building Multiplayer AI]]. **These are unrelated systems from different companies
+that happen to use the same word**, and nothing connects them. PostHog's writes what shipped, merged,
+or was decided that day into a shared company wiki, drawing on work objects such as pull requests,
+docs, and dashboards; Databricks' consolidates **one agent's own prior sessions** into its derived
+memory files, extracting implicit learning, splitting oversized files, merging duplicates, and
+resolving conflicts. PostHog reports no measured effect; Databricks reports the ablations above.
+
+Second, the headline figures need their baseline attached. **"Triples pass rate", 31% fewer tokens,
+and 26% faster are all measured against the no-memory baseline on Databricks' own internal
+benchmark** — not against a competing memory system and not against full context. The absolute
+internal numbers are **68.4%** pass rate at **252s** latency and **418K** tokens per task, reported as
+**1.35x faster** and **1.44x cheaper** than no memory, closing **"over 80% of the gap"** to gold
+injection. The one comparator shown there, Mem0, scored **43.9%** at higher latency and cost. The
+frequently quotable workflow example — **11 tool calls, 8 subagents, and nearly six minutes** reduced
+to **2 tool calls, 1 subagent, and 41 seconds** once a workflow was remembered — is an **anonymized
+illustration, not a benchmark aggregate**, and demonstrates possibility rather than average
+improvement.
+
+Everything here is **first-party**: company-created, company-operated, partly LLM-judged, 114 cases,
+and drawn from one product's sessions. The ablations cover memory type and access pattern only — not
+indexing, retrieval, consolidation quality, conflict resolution, or memory-file structure — and the
+results do not separate memory from model choice, prompting, harness, or Genie-specific
+infrastructure. The authors' own caveats belong with the numbers: offline updates arrive with
+**delay**, plugins add runtime cost and latency and are inflexible, tool quality depends on agent
+capability, and **distillation can drop details** that episodic memory only partly recovers.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
-- How should conflicting facts be handled — does a newer memory overwrite an older one, or do both persist?
+- How should conflicting facts be handled — does a newer memory overwrite an older one, or do both
+  persist? MemCurrent now supplies a *mechanism* — an offline pipeline that splits oversized files,
+  merges duplicates, and resolves conflicts — but no evaluation of whether its resolutions are correct,
+  so the question is answered architecturally and not empirically.
 - How should memory be scoped when multiple users share an agent system?
 - When is **storage memory** (auditable, external) the right tool versus **structural/inference-time memory** (integrated, adaptive but opaque)? See [[Nested Learning]].
 - If memory is derived only from artifacts that carry a commitment, what happens to knowledge that
@@ -235,9 +315,20 @@ context window as a substitute for maintenance.
   work-tracking system can see?
 - When users work privately by default, whose memory does an automatic extractor write into, and what
   makes a later private session eligible to read it?
+- Derived memory beat episodic traces **66.1% to 35.8%** on one 114-case company benchmark. Does the
+  ordering hold where the valuable content is a specific prior transcript rather than a reusable
+  correction, preference, definition, or workflow?
+- Background consolidation outscored agent-invoked memory tools. If the agent is the weaker judge of
+  what to remember, what remains of the auditability argument for explicit `save_to_memory` control?
+- Distillation can drop details and episodic memory recovers only some of them. No source here measures
+  what is lost per consolidation pass, or whether loss compounds across them.
+- MemCurrent's results come from one product's sessions with an LLM judge. No independent party has
+  reproduced them, and no cross-model or cross-agent portability experiment is reported.
 
 ## Related pages
 
+- [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
+- [[Databricks]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[Multi-Turn Evaluation]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]

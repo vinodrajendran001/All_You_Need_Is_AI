@@ -2285,3 +2285,37 @@ staged, committed, or pushed.
   Obsidian settings files: **418** excluding those settings and **349 top-level captures**.
   The pre-existing log body, posts, queries, templates, and earlier lint reports remain
   unchanged. No source commands were executed; nothing was staged, committed, or pushed.
+
+## [2026-10-23] lint | Full wiki lint pass 2
+
+Forty-third pass, filed as [[2026-10-23 Lint Pass 2]]. Audited all **605** starting wiki
+pages structurally and traced the supplemental five-source ingest across **16 consumer
+edges** in 15 concept/entity pages. The five new summaries preserved their numerical,
+attribution, and evaluation-scope qualifiers; two surrounding synthesis defects were fixed.
+
+- [[Agent Memory]] had generalized a text-store example into universal claims that memory
+  is not internal state, every retrieved item should be a readable fact, and inspecting
+  saved strings exposes everything an agent knows. Scoped those claims to the external-store
+  design, retained structural memory as a separate approach, and admitted original images
+  as traceable evidence. Also corrected "get all facts" from exact-match retrieval to
+  loading without a matching step. No storage design is treated as proof of authorization.
+- [[Typed Probabilistic Decision Models]] called Husain's probability-quality results
+  the first for Jev despite already citing earlier third-party calibration studies through
+  Rai. Removed the priority claim; preserved both evidence levels, all figures, and the
+  distinction between Brier score and calibration error.
+
+The report brings the inventory to **606 typed pages**, including **43 lint reports**,
+**321 source summaries**, **136 concepts**, and **88 entities**. Full-wiki verification
+returns zero structural findings, all 606 pages reachable, and exact **347-ID** ownership
+parity across index, log, and overview. The current source-to-affected-page ledger agrees
+in both directions.
+
+The report retains non-blocking research gaps and legacy conventions: 12 single-source
+concepts, eight short entity bodies, nine empty canonical URLs, 24 old lint reports without
+empty source-ID lists, 33 legacy raw-pointer placements, and one reused historical log
+heading. These are not promoted into invented claims or blanket formatting rewrites.
+
+Two concepts and the three control pages changed, and one lint report was added. All
+**422 raw files** remain byte-identical; source summaries, entities, posts, queries,
+templates, earlier lint reports, and the historical log body are preserved. Nothing was
+staged, committed, or pushed.

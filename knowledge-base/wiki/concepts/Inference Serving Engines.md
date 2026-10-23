@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-19
+updated: 2026-10-23
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-20-gupta-deepseek-deepinfer
 status: active
 ---
 
@@ -270,8 +271,66 @@ large batches can benefit, while other tested configurations lose even at promis
 lengths. Engine choice must therefore include model-state support and a measured cost surface,
 not only a speculation checkbox or a batch-size cutoff.
 
+## A published engine can ship the per-node execution layer and leave out the fleet
+
+[[Mehul Gupta - What is DeepSeek DeepInfer]] is a secondary account — one author's reading of a
+repository and README — and it reports **no throughput, latency, cost, or memory figure at all**. Its
+value to this page is a boundary, not a benchmark: it is unusually explicit about which parts of a
+serving platform the open-source release contains.
+
+**Released, as described:** attention kernels (FlashMLA for Multi-head Latent Attention), DeepGEMM for
+matrix multiplication, DeepEP for MoE token/expert communication, and TileKernels/TileLang; attention
+data parallelism, balanced context parallelism, expert parallelism and **Expert Parallelism Load
+Balancing**; **DSpark** speculative decoding with confidence-scheduled verification; bounded replay for
+sliding-window attention retaining a default **140 tokens**
+(`DEEPINFER_YOCO_PREFILL_KEEP_TOKENS=140`); an asynchronous scheduler overlapping host-side batch
+preparation with device execution; and structured output via `SamplingParams.so_args` accepting regex,
+JSON Schema, or EBNF.
+
+**Not released, by the article's account:** a complete **KV-cache management** system, complete
+**prefill-decode disaggregation**, and **load balancing across data-parallel replicas**.
+
+That split lands on this page's existing finding from [[Netflix - In-House LLM Serving]] from the
+opposite direction. Netflix's lesson was that running an engine is mostly *not* about the engine;
+DeepInfer is the vendor-side statement of the same boundary — what gets open-sourced is the per-node
+execution layer, while cache tiering, phase separation across machines, and replica balancing remain
+the deployer's problem. See [[Prefill-Decode Disaggregation]].
+
+Two further points are engine-level rather than DeepSeek-specific. First, **hardware support is narrow
+enough to be a selection criterion on its own**: NVIDIA **SM100** and Huawei **Ascend 950** NPUs, with
+Linux, GCC **13+**, Python **3.12**, and CUDA **13** or CANN **9.2**; RTX 4090, RTX 5090, A100 and H100
+are named as *not* covered. An engine that runs on one GPU generation plus one NPU is not substitutable
+for vLLM or SGLang regardless of how it performs.
+
+Second, **batch-invariant inference appears as an engine feature**, aimed at making results independent
+of dynamic batch composition — directly addressing the finding recorded above that 1,000 identical
+prompts at temperature 0 produced roughly 80 distinct completions. The article reports a fixed
+`seq_seed` plus documented settings for deterministic sampling, and that **variable-length MTP decoding
+is disabled in the stated NVIDIA deterministic configuration**. Determinism therefore appears to be
+bought by surrendering a speculation feature; the size of that trade is not measured anywhere in the
+source. The author also flags "zero-overhead batch scheduler" as **the project's design goal, not a
+literal guarantee**, and attributes to DeepSeek that DeepInfer was built primarily on **vLLM**, with
+inspiration from SGLang and TensorRT-LLM.
+
+## Open questions
+
+- The DeepInfer account supplies no measurement of any kind. Its benchmark configurations are reported
+  as **4 SM100 GPUs for prefill and 64 SM100 GPUs for decode**, each within one scale-up domain, with
+  sweeps via `run_sweep.sh` — but no throughput, latency, or memory values accompany them, so nothing
+  here supports or refutes a comparison with vLLM, SGLang, or TensorRT-LLM.
+- Nothing in the vault verifies that DeepInfer runs DeepSeek's production systems, or that every listed
+  component is implemented in the released code rather than planned or repository-adjacent.
+- What does batch-invariant execution cost in throughput, and is reproducibility worth a speculation
+  feature? This is the first engine in the vault to make determinism a configuration rather than a
+  property of the day's batching, and the trade is entirely unquantified.
+- If engines increasingly ship a per-node layer and omit the fleet layer, how should an engine
+  comparison be scoped at all — and what is the honest name for the remaining integration work?
+
 ## Related pages
 
+- [[Mehul Gupta - What is DeepSeek DeepInfer]]
+- [[DeepSeek]]
+- [[Open Model Ecosystems]]
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]

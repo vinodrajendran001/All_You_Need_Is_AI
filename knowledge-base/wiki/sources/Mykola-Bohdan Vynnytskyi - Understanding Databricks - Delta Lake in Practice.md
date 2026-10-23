@@ -92,6 +92,8 @@ delete-then-insert is non-atomic.
 
 - [[Open Table Formats]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
+- [[Table Layout Optimization]]
 
 ## Raw capture
 
@@ -105,9 +107,7 @@ delete-then-insert is non-atomic.
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
 - [[Slowly Changing Dimensions]]
-- [[Table Layout Optimization]]
 - [[Medallion Architecture]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Data Formats Explained]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Time Travel in Delta Lake]]

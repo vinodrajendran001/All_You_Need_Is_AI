@@ -79,6 +79,7 @@ means DBU rate comparisons address a minority of the bill.
 
 - [[Lakehouse Architecture]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture
 
@@ -92,7 +93,6 @@ means DBU rate comparisons address a minority of the bill.
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
 - [[Open Table Formats]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Honest Comparison with Snowflake and BigQuery]]
 - [[Google Cloud]]

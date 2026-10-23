@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - ai-agents
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-09-15-turing-post-recursive-self-improvement
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-19-naam-million-agents-superintelligence
 status: active
 ---
 
@@ -143,14 +144,76 @@ agent-written labels, controls, and groupings are therefore part of the measurem
 cleanliness figures are agent-assisted, threshold-dependent, and not independently reproduced.
 See [[Mechanistic Interpretability]].
 
+## Adding researchers buys throughput, and the page has never had a number for the conversion
+
+[[Ramez Naam - Can a Million AI Agents Create Superintelligence]] attacks this page's execution-versus-taste
+split from an unexpected direction: it asks what the *execution* half actually converts into. The essay is a
+**survey and synthesis of other people's results**, not an experiment, and its author says so —
+**"We're all operating on far too little real world data."** Read it as a well-sourced argument about where
+the evidence currently sits, not as evidence in itself.
+
+**The distinction it supplies is speed versus collective intelligence.** More agents reliably make a solvable
+task finish sooner; what is unproven is that they let a team solve a *harder* problem or reach a new skill
+level. Three mechanisms are offered for the gap — coordination cost, homogeneity producing shared blind spots,
+and the sequential structure of hard problems: *"A million independent searches can run at once. A sequential
+investigation can't."* and *"A thousand copies don't automatically supply the insight one copy is missing."*
+That maps almost exactly onto the bottleneck this page already names. Execution parallelises; abstraction-
+building and question selection are the sequential part.
+
+**One figure reframes the automated-research pipeline directly.** Naam reports, from his own earlier post
+summarising OpenAI, that the lab used **124 times as many tokens per researcher** while running only **1.6
+times as many experiments per researcher**. If that holds, the conversion from compute spent to experiments
+actually run is far lossier than "execution is close to solved" suggests — the loop above may be excellent at
+hill-climbing and still be a poor converter of tokens into trials. The figure is third-party and
+self-reported, with no stated accounting of what a "token per researcher" or an "experiment" includes.
+
+**The modelling spread is the argument.** Taking Anthropic's reported agent-hour ratios as input — about
+**9 agent-hours per human work-hour by mid-July**, **19** by late August, against a company-wide ratio near
+**6** — the published scaling assumptions give wildly different answers for how much faster research should
+now be going: Chan et al. (2026)'s exponent implies roughly **25x** April's pace by August, Davidson and
+Houlden's parallel-research exponent of **0.6** implies about **2-4x**, plain logarithmic scaling about
+**2x**, and the sub-logarithmic shapes Naam collects only about **1.1-1.8x**. Those conversions also assume
+equal value per agent-hour and treat extra runtime as parallel labour, which the author flags.
+
+**The proposed protocol is the part this page should adopt.** Naam asks for three quantities measured on real
+AI research rather than on benchmarks: **G**, the verified task-performance gain per multiplication of agents;
+**λ**, how speed scales with team size; and **N**, the team size at which gains weaken or saturate — reported
+separately for **1→10, 10→100, and 100→1,000 agents**. The design choice that matters is **reporting gains per
+multiplication rather than per total**, which is precisely what makes saturation visible and what a headline
+"we ran 10,000 agents" conceals. This page's long-standing open question about what signal measures research-
+agent progress has had no candidate answer until now; G/λ/N is one, and it is a proposal with no results
+attached.
+
+Naam's own forecast, allowing a **six-month** research-to-publication lag, is that no sustained acceleration
+should appear in the Epoch Capabilities Index through the first half of 2027 (see [[Epoch AI]]). He states he
+expects to be corrected by data.
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
 - At what point does the main bottleneck shift from execution to selecting fruitful research directions?
 - When does workflow-level self-improvement become model-building-level recursive self-improvement?
 - How should agent-generated scientific labels, such as neuron explanations and graph groupings, be audited so that agent priors do not become the result?
+- **Nobody has reported G, λ, or N on real AI research.** Every curve Naam assembles comes from benchmarks,
+  and the essay does not show that benchmark scaling transfers to research. Until it is measured on a research
+  workload, the protocol is a specification rather than a result.
+- **The agent-count evidence stops far short of the claim it is used to evaluate.** The largest team cited is
+  roughly 10,000 agents; million- and billion-agent conclusions in either direction are extrapolations, and
+  the essay explicitly does not establish that very large teams cannot produce new capability.
+- **Does the 124x-tokens-to-1.6x-experiments ratio describe a bottleneck or an accounting artifact?** Nothing
+  in the source separates compute spent per experiment from the number of experiments a research programme
+  chose to run.
+- **Can conceptual breakthroughs be parallelised?** The essay argues the sequential-structure mechanism but
+  does not prove it, and it concedes that better coordination, more diverse training, or genuinely new
+  learning methods could change the curves it reports.
 
 ## Related pages
+
+- [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
+- [[Ramez Naam]]
+- [[Agent Delegation]]
+- [[Test-Time Scaling]]
+- [[Epoch AI]]
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Mechanistic Interpretability]]

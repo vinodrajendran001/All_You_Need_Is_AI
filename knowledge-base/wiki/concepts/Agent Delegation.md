@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - concept
   - ai-agents
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-10-01-mollick-dot-swarm
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-14-dickson-kv-cache-handoffs
+  - src-2026-10-19-rath-thin-orchestrator
 status: active
 ---
 
@@ -302,6 +303,54 @@ can propagate. The reported exploratory benefit of **text plus fusion** supports
 complementary channels, not assuming that removing readable handoffs always improves an agent.
 Stage-transfer timings are also not full delegated-task latency.
 
+## The delegator can be emptied of domain knowledge, which moves the verification problem rather than solving it
+
+[[Plawan Rath et al - The Thin Orchestrator]] is the strongest instance in this vault of delegation
+treated as the *primary* reliability mechanism rather than a throughput one. Meta Engineering reports
+that a single agent holding schemas, code-generation rules, routing logic, validation requirements,
+and patterns for **more than 10 data sources** worked in demos and hallucinated in production,
+cross-contaminating concepts between subsystems. Their diagnosis — **"The agent had everything it
+needed. That was the problem."** — makes the delegator's *ignorance* the design goal: a roughly
+**1,300-line** router coordinating **20+ workflows** and **14 specialist agents**, which performs no
+domain work, generates no configurations, does not reason about code, and does not touch the
+codebase.
+
+What this page can use is the **pre-delegation protocol**, because it is a worked list of what a
+delegator can do without understanding the task. In fixed order: read the relevant subagent
+instructions, check for duplicates, gather required user fields, auto-discover inferable facts such as
+repository type and existing configuration, check warnings and required reviewers, delegate with full
+context, then handle results and surface errors. Every step is either a lookup or a precondition
+check. The sequencing is held in **workflow templates implemented as deterministic state machines** —
+column onboarding runs Schema → Validation → Population → Testing, event onboarding adds Event
+Processing, pipeline migration runs Assessment → Planning → Population → Validation → Monitoring — so
+the *order* of delegation is ordinary code rather than a model's choice.
+
+**This is the opposite pole from model-directed coordination.** Where [[Ethan Mollick - The Dot and the Swarm]]
+and [[Replit - Free the Models - Harness Design at the Frontier]] move dispatch into the core model,
+Meta moves it out entirely, and attributes the reliability gain to the router **reasoning less**. The
+page's existing separation holds in both directions: who chooses the workflow is still distinct from
+who grants authority and verifies the outcome.
+
+And that is where the design leaves a gap this page should name. Contract-first decomposition says
+delegate only work you can evaluate; a router with no domain knowledge **cannot evaluate a
+specialist's output**, only whether the call failed. Meta's stated failure handling is retry or
+escalate, with the failure contained so it does not corrupt other contexts — containment, not
+verification. **"No agent sees the full picture. That's the feature, not the bug."** is a context
+claim; it is not a claim that anything in the system checks intent end to end, and the authors report
+no failure rates, retry counts, or escalation rates.
+
+The reported outcomes are self-reported and uncontrolled: a single-agent alternative reaching
+**70-80%** success **with manual prompt engineering per task** and **10-20%** without it, workload and
+sample size unstated; process duration across successive versions moving from **three to four days**
+of manual preparation, to **about a day** on an earlier config-driven system, to **under an hour**;
+and **"about two-thirds"** of system changes landing without significant human edits, with neither the
+denominator nor "significant" defined. The cited Mount Sinai preprint result — orchestrated multiagent
+systems at **65.3%** accuracy versus **16.6%** for single agents on **80-task batches**, with token
+usage reduced up to **65-fold** — is **third-party evidence for a related design on a different
+workload** and does not validate Meta's deployment. Critically, **no ablation separates** deterministic
+routing, context isolation, workflow templates, and runtime knowledge loading, so the claim that
+emptying the router caused the gain is an attribution, not a measurement.
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -322,9 +371,18 @@ Stage-transfer timings are also not full delegated-task latency.
   the large class of tasks that are only partly checkable?
 - Does raising an agent's willingness to push back trade against its usefulness, and where is that
   frontier?
+- A knowledge-free router can detect that a specialist failed but not that it succeeded wrongly. What
+  supplies the acceptance check when the delegator is deliberately incapable of performing one?
+- Reliability gates run **before** delegation — duplicates, required fields, warnings, required
+  reviewers. Is there an equally deterministic class of **post**-delegation check, or does verification
+  necessarily require the domain knowledge the router gave up?
+- Meta's design contains the blast radius of a specialist failure but reports no failure, retry, or
+  escalation rates. How often does containment turn into an unresolved task rather than a corrected one?
 
 ## Related pages
 
+- [[Plawan Rath et al - The Thin Orchestrator]]
+- [[Meta]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Ethan Mollick - The Dot and the Swarm]]

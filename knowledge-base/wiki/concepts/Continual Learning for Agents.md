@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-09-04
+updated: 2026-10-23
 tags:
   - concept
   - ai-agents
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-07-rllm-realtime-rl-agents
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-09-02-meta-organizational-second-brain
+  - src-2026-10-21-databricks-memcurrent
 status: active
 ---
 
@@ -73,15 +74,70 @@ replay where neither agent nor judge knows what changed, and independent adversa
 reported "zero regressions" should be read against the fact that the suite is written by the same loop it
 validates. See [[Institutional Knowledge Agents]].
 
+## When the update surface is memory, and the writer is a model rather than an expert
+
+The section above records learning with the weights frozen and the update surface made of text.
+[[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] occupies the same
+quadrant with one variable changed: **the text is written by a model, offline, from the agent's own
+sessions**, rather than compiled from human expert feedback. Their offline consolidation pipeline
+extracts implicit learning from new sessions, writes it into mutable **derived memory** files, splits
+oversized files, merges duplicates, and resolves conflicts. Raw session traces are retained separately
+as append-only **episodic memory**.
+
+That gives this page's open question about **which part of an agent should learn** a third answer
+alongside weights and human-curated text: *distilled memory, updated automatically*. And it gives the
+**cadence** question a reported comparison rather than a judgement call. On Databricks' internal
+benchmark — **114 test cases** drawn from Databricks Genie sessions, scored partly by an LLM judge —
+offline consolidation alone reached **63.5%** while the agent's own in-session memory tools alone
+reached **53.9%**, with both combined at **66.1%**. The separate memory-type ablation reports derived
+memory alone at **66.1%**, episodic traces alone at **35.8%**, both at **68.4%**, against a **22.3%**
+no-memory floor.
+
+Read as a continual-learning result rather than a memory one, the implication is specific:
+**post-hoc extraction from completed sessions outperformed the agent's judgement during the session**.
+This page's existing material already prefers offline or shadow training to immediate online updates,
+for safety reasons. The Databricks ablation suggests the offline arrangement may also be the more
+*effective* one, at least on this workload — while confirming the cost the page already names, since
+the authors note that offline updates arrive with **delay**.
+
+**The safety architecture, however, is where the comparison breaks down.** This page's six-step
+production list — collection and consent, reward validation and poisoning checks, offline or shadow
+training, held-out regression and safety gates, staged promotion, and monitoring with demotion and
+rollback — has close counterparts in the Meta loop above: a deterministic linter, blind regression
+replay, independent adversarial review of diffs. MemCurrent's loop as described has **no human review
+step and no held-out regression gate on the pipeline's writes**; the adversarial judge and manual
+review belong to *benchmark construction*, not to memory promotion. A model that writes its own
+durable knowledge files, merges them, and resolves their conflicts with no stated gate is a continual
+update path with no demotion mechanism described. The authors do concede that **distillation can drop
+details**, with episodic memory recovering some of them — which is a forgetting problem reported
+without a measurement of its rate.
+
+Everything here is **first-party**, on one company's benchmark built from one product's sessions, with
+the ablations covering memory type and access pattern only. There is no retraining in this loop and no
+claim of one; the agent model (Claude Opus 4.6) and memory model (GPT 5.6 sol) stay fixed while the
+files change.
+
 ## Open questions
 
 - How should rewards be normalized across tasks with different difficulty and value?
 - How can live feedback be protected against manipulation, privacy leakage, and demographic bias?
 - What update cadence balances adaptation against catastrophic forgetting and operational instability?
 - Which parts of an agent should learn continually: model weights, prompts, skills, memory policy, or harness code?
+- If a model writes, merges, and conflict-resolves its own durable memory, what plays the role of the
+  held-out regression gate and the demotion path that this page requires of weight updates?
+- Offline consolidation outperformed in-session memory tools **63.5% to 53.9%** on one benchmark. Does
+  that ordering survive on workloads where the useful update must take effect before the next turn, not
+  the next session?
+- Distillation drops details at an unmeasured rate. What would a forgetting metric for a text update
+  surface look like, given that no gradient norm or weight delta is available?
+- MemCurrent's gains are reported with the agent and memory models held fixed. Nothing establishes
+  whether a memory store learned under one model remains useful under another.
 
 ## Related pages
 
+- [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
+- [[Databricks]]
+- [[Context Engineering]]
 - [[Agentic Reinforcement Learning]]
 - [[Reward Design for RL]]
 - [[Group Relative Policy Optimization]]

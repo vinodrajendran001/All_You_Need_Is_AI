@@ -83,6 +83,9 @@ is not a deletion guarantee**, and the physical erasure path has four steps and 
 
 - [[Table Layout Optimization]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
+- [[Columnar Storage Formats]]
+- [[Open Table Formats]]
 
 ## Raw capture
 
@@ -96,8 +99,5 @@ is not a deletion guarantee**, and the physical erasure path has four steps and 
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
-- [[Open Table Formats]]
-- [[Columnar Storage Formats]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Time Travel in Delta Lake]]
 - [[Software Performance Engineering]]

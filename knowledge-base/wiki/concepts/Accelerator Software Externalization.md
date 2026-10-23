@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-23
 tags:
   - concept
   - hardware
   - inference
 source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-10-21-simpson-torchtpu
 status: active
 ---
 
@@ -52,7 +53,11 @@ the configuration system, so it is not automatically available to anyone else.
 through three stages: PyTorch/XLA with lazy tensors → a `tpu-inference` backend using JAX with
 **TorchAX** → **TorchTPU**, a native PyTorch `PrivateUse1` device. Throughout, **XLA remains the
 compiler** — not Inductor, not Triton — and Pallas kernels carry over. TorchTPU was in private beta with
-open-sourcing expected around mid-October at the PyTorch Conference.
+open-sourcing expected around mid-October at the PyTorch Conference. **Update 2026-10-23: it shipped.**
+[[Ebba Simpson - Introducing TorchTPU]] is the PyTorch blog announcement, dated 2026-10-21, and it
+confirms the architecture SemiAnalysis described while adding that TorchTPU **drops the JAX runtime
+dependency** entirely — so the TorchAX middle stage of that lineage is retired rather than layered over.
+The section below replaces the vault's earlier reading of TorchTPU as an unverified roadmap item.
 
 **Hardware tile geometry now constrains model architecture.** This is the most consequential and least
 obvious finding. The TPU matrix unit was **128×128 (16,384 MACs/cycle) through v5** and is **256×256
@@ -93,13 +98,63 @@ purchased directly, 600k rented via GCP — surpassing DeepMind's own usage by 2
 prefill-decode disaggregation via TPU-Sync (zero-copy through native PJRTBuffer descriptors), KV cache
 offloading to DRAM, Mooncake Store P2P pooling, AgentX.
 
+## The framework-level bill, itemized — and portability still is not performance
+
+The SemiAnalysis material above measures externalization in per-model kernel tuning.
+[[Ebba Simpson - Introducing TorchTPU]] measures it one layer up, and the itemization is the useful
+part: before any PyTorch user can reach a TPU, someone has to supply a C++ `PrivateUse1` dispatcher
+backend with TPU storage behind `at::Tensor`, a real eager mode (Strict, Debug, and a DeferAndFuse mode
+that accumulates ops to a materialization point), a `torch.compile` entry point that lowers a Dynamo FX
+graph to a single StableHLO program, collectives at the Process Group level, kernel-authoring DSLs, and
+a dynamic-shape story. That list, not the benchmark table, is what a second source of silicon owes a
+framework.
+
+Coverage is reported first-party and without a stated pass criterion: **~450 ATen ops**, the **5,000
+most-downloaded Hugging Face models**, a validation corpus of **4,917 models across 500+ architecture
+families**, **Tier 1 pass rate 98% (4,821/4,917)**, **Tier 2 numerical parity with GPU 97% (638/657)**,
+and bounded dynamism correct on **834/839** models, reported as 99%.
+
+The post is candid that none of this is speed. Its own FLUX sequence prices the gap: **11.49s per step
+(0.26 samples/s) baseline → 9.95s with DeferAndFuse (1.15x) → 6.52s with SimpleFSDP (1.76x) → 5.55s
+with a Pallas SplashAttention kernel (2.07x) → 3.02s under full `torch.compile` (3.80x) → 2.78s
+(1.08 samples/s) after peephole rewriting**. A straight `.to("tpu")` port buys the first row. The
+remaining **4.1x** is hand work, and the post recommends "pursuing an optimal approach based on Pallas
+kernels" and TPU-specific stacks such as vLLM-TorchTPU, SGLang-TorchTPU, or TorchTitan-TorchTPU for peak
+production performance. Hardware generation, batch size, and baseline implementation are not fully
+stated for that ladder.
+
+Two first-party figures with **no stated workload, hardware, or baseline** deserve to be carried as
+unverified: DeferAndFuse is said to be **"50% or more faster"** than Strict Eager, and **Skinny
+Collectives** — the mechanism that isolates collectives into separate modules to avoid cross-rank graph
+inconsistency — are said to cost **30-40% end-to-end**. The second is the more interesting number,
+because it is a *correctness* workaround whose price is paid in throughput.
+
+And the externalization story does not uniformly end in a win. On **Qwen3 MoE 235B across 64 TPU v7**
+(local batch 16, sequence length 4096, 94 decoder layers in one scan loop), the TorchTitan/PyTorch path
+reports **1,828 TPS** against **1,937 TPS** for JAX/MaxText on the same hardware — the externalized
+framework roughly **6% behind** the vendor's native one. **DLRM v2 on 32 TPU v7x** at **18.3 ms** step
+latency is described as **100% parity** with a JAX baseline, which is a stronger word than a single
+latency figure supports. Both results are first-party.
+
 ## Open questions
 
 - The results come from an Official Preview on one model. Google was presumably involved in tuning, and
   the NVIDIA configurations may not have received equivalent attention.
 - TTFT is materially worse on TPU (mean 5.41s against 3.75s on B200 and 2.40s on B300) — which matters
   most for exactly the interactive agentic workloads TPUv8i is being designed for.
-- TorchTPU's portability claims were unverified at the time of writing; it was unreleased.
+- TorchTPU's portability claims were unverified at the time of the SemiAnalysis report; it was then
+  unreleased. **Revised 2026-10-23:** it is released, and the coverage claims are now *stated* rather
+  than absent — but they remain first-party, with no published pass criterion and no evidence that any
+  of the 5,000 supported models runs unchanged in production. Portability is now documented; it is
+  still not independently verified.
+- The announcement's own roadmap — bounded dynamism, FP8/FP4, reinforcement-learning integration,
+  dynamic kernels — is **6-12 months** of future work, so parts of the externalization story described
+  as shipped are descriptions of intent.
+- Several of the features exist to work around the port rather than to make it fast: `@spmd_safe` is
+  described as brittle if the code is actually MPMD, Skinny Collectives trade 30-40% end-to-end for
+  rank consistency, and FlexAttention was unsupported in one TorchTitan example and replaced with
+  vanilla scaled dot-product attention. How much of a framework's surface silently changes semantics
+  on a second-source accelerator?
 - No general theory exists for how much of the per-model tuning transfers to the next model. The
   evidence so far suggests not much.
 - If tile geometry constrains architecture, the equilibrium is unclear: do model designers converge on
@@ -118,3 +173,8 @@ offloading to DRAM, Mooncake Store P2P pooling, AgentX.
 - [[Linear Attention and Recurrent Memory]]
 - [[ML Systems at Scale]]
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
+- [[Ebba Simpson - Introducing TorchTPU]]
+- [[PyTorch]]
+- [[Distributed Training Parallelism]]
+- [[Meta]]
+- [[Google Cloud]]

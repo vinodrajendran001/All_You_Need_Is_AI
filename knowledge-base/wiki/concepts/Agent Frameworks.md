@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-09-13
+updated: 2026-10-23
 tags:
   - concept
   - ai-agents
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
   - src-2026-09-13-nevsky-gemini-multi-agent-system
   - src-2026-09-13-rahmat-adk-gemini-enterprise
+  - src-2026-10-19-rath-thin-orchestrator
 status: active
 ---
 
@@ -90,15 +91,65 @@ These are vendor-authored tutorials, not comparative evidence that ADK is better
 framework. Their durable contribution is the decomposition: **framework, runtime, and distribution
 plane are different portability boundaries.**
 
+## A 1,300-line in-house router is one answer to the build-versus-adopt question
+
+This page's open question about building on a framework versus extracting a small internal harness now
+has a worked data point on the "extract" side. [[Plawan Rath et al - The Thin Orchestrator]] reports a
+Meta Engineering system in which the coordinating layer is **roughly 1,300 lines** handling **20+
+workflows** across **14 specialist agents**, and its distinguishing property is that the coordinator
+performs **no domain work at all** — no configuration generation, no reasoning about code, no contact
+with the codebase. On this page's selection dimensions, the control-flow model is a **state machine**
+and the authors keep it in ordinary code rather than expressing it through a framework abstraction
+over model calls.
+
+Two patterns transfer independently of whether a team writes its own runtime.
+
+**Runtime knowledge loading relocates the extension point.** The system maintains **25+ domain
+knowledge files**, typically a few thousand tokens each, loaded **at runtime by the specialists** that
+need them rather than embedded in the coordinator. Changing agent behaviour is therefore editing a
+knowledge file, with updates taking effect in later sessions and no coordinator change or redeploy.
+Where this page's Google Cloud material separates framework, runtime, and distribution plane as
+portability boundaries, this adds a fourth: **the knowledge plane**, which can be versioned and shipped
+on a different cadence from the code that routes.
+
+**A uniform specialist template is what makes the roster extensible.** Each specialist carries its own
+domain knowledge, execution steps, discovery patterns, and troubleshooting mappings in the same shape,
+and the authors state that a **15th subagent** would require no new structural design. That is an
+**architectural claim about their template, not a measured result** — nothing in the source adds an
+agent and reports the cost.
+
+The evidential limits are substantial and apply to the whole design. All operational figures are
+Meta's own, and the article reports **no ablation** separating deterministic routing, context
+isolation, workflow templates, and runtime knowledge loading, so no individual pattern above is shown
+to carry the benefit. The authors' recommendations — deterministic routing, uniform specialists,
+workflow templates, runtime knowledge loading, an explicit deterministic/probabilistic boundary — are
+**proposals**, as is their expectation that scaling will mean adding templates and knowledge files
+rather than rebuilding agents. Their continuous-improvement loop is stated as **future work gated by
+human review**, not a shipped capability. And the tradeoff is acknowledged: specialization buys depth
+at the cost of generality, and a genuinely new workflow still requires careful reuse and sequencing of
+existing agents.
+
 ## Open questions
 
 - Which framework behaviors can be compared under equivalent end-to-end tasks?
 - How portable are traces, state, tools, and workflows across runtimes?
 - When should teams build on a framework versus extract a small internal harness?
 - How should rapidly changing feature claims and project maturity be evaluated?
+- A 1,300-line router is small because its domain is enumerable: a fixed specialist roster and a known
+  set of workflows. What is the equivalent size, and the equivalent coupling cost, for a domain whose
+  intents cannot be listed in advance?
+- Runtime knowledge loading makes behaviour editable without redeploying. Nothing reported says how
+  those files are reviewed, versioned, or regression-tested, which is the governance question this page
+  already asks of framework-managed state.
+- No source yet compares a hand-written deterministic state machine against the same workflow expressed
+  in a graph framework such as LangGraph or ADK on one task.
 
 ## Related pages
 
+- [[Plawan Rath et al - The Thin Orchestrator]]
+- [[Meta]]
+- [[Agent Delegation]]
+- [[Context Engineering]]
 - [[Coding Agent Harness]]
 - [[Graph Engineering]]
 - [[Agentic Loop]]

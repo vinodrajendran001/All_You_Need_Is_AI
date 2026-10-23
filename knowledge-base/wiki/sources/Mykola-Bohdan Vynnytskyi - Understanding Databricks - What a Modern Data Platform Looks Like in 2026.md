@@ -86,6 +86,8 @@ to the model at all.
 - [[Lakehouse Architecture]]
 - [[Operational Analytical Convergence]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
+- [[Text-to-SQL Agents]]
 
 ## Raw capture
 
@@ -99,10 +101,8 @@ to the model at all.
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
 - [[Open Table Formats]]
 - [[Medallion Architecture]]
-- [[Text-to-SQL Agents]]
 - [[Context Engineering]]
 - [[Agent Security and Governance]]
 - [[Institutional Knowledge Agents]]

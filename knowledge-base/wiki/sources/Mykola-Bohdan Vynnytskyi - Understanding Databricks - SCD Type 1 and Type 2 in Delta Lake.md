@@ -76,6 +76,7 @@ separates using a declarative API from debugging it when sequencing goes wrong.
 
 - [[Slowly Changing Dimensions]]
 - [[Databricks]]
+- [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture
 
@@ -89,7 +90,6 @@ separates using a declarative API from debugging it when sequencing goes wrong.
 
 ## Related pages
 
-- [[Mykola-Bohdan Vynnytskyi]]
 - [[Medallion Architecture]]
 - [[Open Table Formats]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Delta Lake in Practice]]

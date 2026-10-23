@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-10-16
-updated: 2026-10-19
+updated: 2026-10-23
 tags: [concept, evaluation, governance, assurance]
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-20-guan-beyond-gmean-squared
 status: active
 ---
 
@@ -90,6 +91,41 @@ independent renewal/funding arrangements reduce opportunities to suppress advers
 Developer rebuttals should not become a veto over evaluator conclusions. These are proposed
 institutional safeguards, not a demonstrated incentive theorem or existing legal obligation.
 
+## A low bad-output rate can mean the system rarely deployed anything
+
+This page's recurring claim is that an empty alert log is not evidence.
+[[Melody Guan et al - Complementary Metrics for Monitorability]] supplies the quantitative version of
+the same trap, inside a developer's own re-analysis of its monitoring evaluations.
+
+Its **post-control** metric scores the arrangement rather than the detector: sample up to **K** outputs,
+reject the ones a monitor flags, deploy the first accepted output. It reports three quantities, and the
+authors insist all three be read together — **B(K)**, the probability of deploying a bad output;
+**A(K)**, the probability of deploying anything at all; and **B(K)/A(K)**, the bad fraction among
+deployed outputs. A low B(K) is ambiguous between "the gate works" and "the gate almost never passes
+anything", and only A(K) separates them. Outcome risk is additionally **base-rate dependent**: a model
+that rarely misbehaves can post low post-control risk while being poorly monitorable. For process
+evaluations only positive rollouts are scored, so the number is a **positive escape rate** rather than
+deployment risk under the model's full output mixture.
+
+Two scoping rules follow, and both are the kind of thing an assurance report has to state rather than
+imply. Headline estimates used **K=1** and **K=4**; K=1 required at least **1** valid rollout per
+instance and K=4 at least **4**, and a configuration was reported only when at least **5** instances
+qualified — so the two retry budgets can rest on **different eligible instance sets** and are not
+directly comparable. The retry budget is itself part of the measurement: the recommended reporting set
+is dataset-level g-mean², magnitude-aware pair estimates with confidence intervals or HodgeRank
+residuals, and the bad-output, deployment, and conditional-bad-output probabilities **with K stated**.
+
+The provenance belongs in the record too. This is **first-party re-scoring by the developer** of its own
+existing system-card evaluations — **7** agent-model configurations, GPT-5 at high reasoning effort as
+monitor, **500** deterministic hierarchical bootstrap replicates — not independent evaluation under an
+access agreement, and **GPT-6 Astra was excluded** because it used a different monitor. In Apollo's
+vocabulary this is developer evidence to be reviewed, not a verdict, and nothing here assesses detection
+adequacy against planted counterexamples. Its value for this page is narrower and real: a developer
+publishing the **reading rules** that stop its own headline number from being over-read is the
+disclosure behavior the grade table above is designed to reward. The deployment scheme is also
+**hypothetical** — the authors state OpenAI does not deploy current models this way — so it is a
+proposed measurement of a proposed arrangement, not a report on a shipped control.
+
 ## Open questions
 
 - How can access completeness be assessed when the developer controls the evidence surface?
@@ -97,8 +133,21 @@ institutional safeguards, not a demonstrated incentive theorem or existing legal
 - How should verdicts expire as training, architecture, deployment, or monitoring changes?
 - When a vendor swaps the model behind an unchanged product, who learns of it, and which validation
   must re-run before the new backend reaches users?
+- If a developer publishes B(K) without A(K), what does an evaluator ask for, and who checks the
+  eligible instance sets behind different retry budgets?
+- The post-control metric is simulated with non-adaptive retries on an arrangement its authors say is
+  not deployed. It establishes nothing about risk under a live gate, and it is not reported for
+  intervention evaluations at all, because the data cannot identify which positive outcome the
+  intervention caused.
+- The source does not say which of its three metrics a verdict should rest on. It keeps dataset-level
+  g-mean² primary and treats disagreement among metrics as a prompt to investigate rather than as a
+  decision rule, which leaves the adequacy question this page asks unanswered.
 
 ## Related pages
+
+- [[Melody Guan et al - Complementary Metrics for Monitorability]]
+- [[Interpretability Evaluation]]
+- [[OpenAI]]
 
 - [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
 - [[LLM-as-a-Judge]]

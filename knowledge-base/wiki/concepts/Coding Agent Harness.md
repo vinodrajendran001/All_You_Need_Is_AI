@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - concept
   - coding-agents
@@ -35,6 +35,7 @@ source_ids:
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-15-osmani-claude-code-review
 status: active
 ---
 
@@ -307,15 +308,57 @@ per session and can be disabled. Guidance and response interception therefore ne
 distinct from external runtime enforcement and evidence checks over all persistent outputs.
 This adds bounded positive evidence without erasing the older instruction-file null results.
 
+## An author/reviewer harness needs a termination rule, and `REVIEW.md` has to carry it
+
+The playbook section above records that review instructions are a committed file. [[Addy Osmani - How the Claude Code Team Does Code Review]]
+reports what that file ends up containing in practice and, more usefully, the thing the playbook
+omitted: **what stops the loop.** Pairing an authoring agent with a reviewing agent creates a cycle
+with no natural exit, and the source's motivating failure is a single CLI pull request that ran
+**more than fifty rounds** of review and fixes.
+
+The termination machinery is four rules, all expressible as harness configuration:
+
+| Control | What it does |
+| --- | --- |
+| Round cap | Review stops after **three** rounds rather than continuing while findings exist |
+| Diff-only later passes | Later rounds see only what changed, not the whole file again |
+| Finding suppression | A finding already raised and resolved is not re-raised |
+| Bug-class framing | Agents are asked to name a class of defect rather than individual lines |
+
+The diagnosis behind them is the part that generalises: about **59%** of repeatedly flagged code
+**predated the reviewer's first pass**. A reviewer given a file rather than a change will review the
+file, so **the scope of what the reviewer is shown is a harness setting with a measurable cost**, not
+a prompt detail. Anthropic reports the one-round pass rate moving **65% → 78%**, five-or-more rounds
+**8.9% → 1.5%**, and mean reviews-to-pass **2.08 → 1.32** after this work — their own before/after
+figures, with no stated population, time window, or control.
+
+Two other harness-level details are worth recording. The repository split is deliberate: `CLAUDE.md`
+holds project context and conventions, while **`REVIEW.md` holds repository-specific failure modes,
+evidence requirements, paths to skip, and limits on stylistic findings** — review policy kept out of
+the general context file. And the pre-pull-request stage requires the authoring agent to **run tests,
+builds, linters, or visual checks and show the evidence**, with a **fresh-context subagent** reviewing
+the diff before any human sees it, which is this page's context-primitive subagent used as an
+independence mechanism rather than a compression one.
+
+The limits are the usual ones for this material: the account is Anthropic reporting on Anthropic, with
+no controlled comparison, and the authors note their own missing control — there are **no circuit
+breakers** that tighten approval automatically when revert or incident rates worsen.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
 - As open-weight models keep improving, does the harness become the dominant differentiator — and will harness token efficiency matter more than model choice?
 - What is the right default sandboxing and permission model for agents that run untrusted repositories?
 - If hooks and skills encode policy, who reviews the guardrails, and what prevents an agent from editing the file that constrains it?
+- A three-round review cap terminates the author/reviewer loop but encodes an untested judgement about
+  the fourth round. What does a cap let through, and should the bound be rounds, wall-clock, or
+  findings-per-round?
+- `REVIEW.md` is described as load-bearing and is nowhere ablated. Does a repository-specific review
+  policy file survive the same eval-or-delete test this page applies to `CLAUDE.md`?
 
 ## Related pages
 
+- [[Addy Osmani - How the Claude Code Team Does Code Review]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]

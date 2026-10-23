@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - kv-cache
@@ -32,6 +32,7 @@ source_ids:
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
 status: active
 ---
 
@@ -317,6 +318,44 @@ justifying the setting. Cache **placement**, treated above as routing state, and
 timing** are separate levers: push commits the destination early, which narrows a router's later
 choice of replica.
 
+## Reuse truncates at the first divergence, and it only ever buys prefill
+
+[[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]] gives the provider-facing form of this
+page's cache a precise mechanical description, and it sharpens the byte-identical-prefix rule recorded
+above rather than repeating it.
+
+The mechanism: a request is tokenized and prefilled, the **K/V states for the shared prefix are
+stored**, and a later request carrying the identical prefix reuses those states and **prefills only the
+new suffix**. Matching is **positional and exact** — wording, document order, request settings,
+timestamps, and request IDs all participate — which is why stable content belongs before variable
+content. That ordering rule is a consequence of positional matching, not a style preference.
+
+Two refinements the vault did not have. First, **reuse is prefix-truncating rather than all-or-nothing**:
+a changed prefix cannot reuse the portion *after* the change, while the unchanged earlier prefix may
+still be reusable. The Codex tool-ordering failure recorded above is therefore worse the *earlier* the
+instability sits, and an edit near the end of a long system prompt forfeits less than a rotating
+timestamp near the start. Second, **output generation cost is unaffected**. Prompt caching reduces
+input prefill only, so the ceiling on what it can save is the input share of a request — a
+long-output request with a huge cached prefix still pays full price for every generated token.
+
+The billing asymmetry follows from the same mechanism, and the article's numbers are **provider pricing
+as described, not universal rules**: on Anthropic's standard tier a cache **read** is quoted at **one
+tenth** of ordinary input pricing, while a **5-minute write costs 1.25x** ordinary input and a
+**1-hour write costs 2x**. Writing to the cache is therefore *more* expensive than not using it, so a
+prefix that is written and never read loses money on those ratios. The article's own illustration, not
+a measurement: a prefix normally costing **$1** becomes **$1.25** to write plus **$0.10** to read,
+**$1.35** instead of **$2** across two uses.
+
+The hazard is the mirror image of the benefit. **The cache cannot discover that unchanged content has
+become obsolete** — a stale system prompt is maximally cacheable, so the better the hit rate on it, the
+longer and more cheaply a stale instruction is served. Supplying current content is the application's
+job, not the cache's.
+
+Everything about reusing a prior *answer* rather than prior computation — embedding similarity,
+thresholds, metadata scoping, TTL and version invalidation — belongs to [[Semantic Caching]], which
+covers it in depth. The distinction worth carrying here is that prompt caching cannot change what the
+model says, only what it costs; the other mechanism can.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -325,9 +364,15 @@ choice of replica.
 - If cache-sharing architectures spend the decode compute headroom that speculation also needs, how should a serving stack choose between them per workload rather than per model?
 - What share of real serving traffic has a knowable future request order, and how much of this page's research is therefore solving an uncertainty that a growing class of workloads does not have?
 - Can a *partial* plan — an agent's declared tool sequence, a batch job's manifest, a fixed evaluation suite — buy a proportional share of exact eviction, or does the benefit require the complete order?
+- The caching source supplies **no measured hit rates, latency reductions, or token savings** — only provider pricing ratios and invented examples. What reuse rate does a prefix actually need before a 1.25x write surcharge pays for itself on real agent traffic?
+- Prefix-truncating reuse implies a cost for every edit position in a prompt, but the vault has no way to price one. Is there a usable model of "expected cached tokens lost per edit" that a context-assembly layer could optimize against?
+- Does exact-prefix matching behave identically across providers? The source presents a general model and notes that implementation details vary, so the vault's prompt-ordering advice rests on an unverified assumption of common semantics.
 
 ## Related pages
 
+- [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]]
+- [[Semantic Caching]]
+- [[ByteByteGo]]
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - training
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-10-21-simpson-torchtpu
 status: active
 ---
 
@@ -116,15 +117,56 @@ recycled healthy machines. A parallelism plan's communication pattern is also th
 unrelated faults become visible. The reported reliability gains are first-party and unwindowed; see
 [[GPU Fleet Reliability]].
 
+## When the collective is a compiled graph node, rank agreement becomes a correctness problem
+
+Everything above assumes the NCCL model: a collective is a runtime call, every rank issues it, and
+divergent host-side control flow is tolerated as long as the calls line up.
+[[Ebba Simpson - Introducing TorchTPU]] describes a stack where that assumption does not hold, which
+makes it a useful contrast case rather than a TPU footnote.
+
+On TPU, collectives are implemented at the PyTorch Process Group level and then **lowered into the
+StableHLO program itself**, so communication is compiled rather than dispatched. The consequence is that
+every rank must produce a *compatible graph*, and an ordinary Python branch that differs across ranks
+becomes a compilation inconsistency rather than a load imbalance. TorchTPU's answers are **Skinny
+Collectives**, which isolate collectives into separate modules so the surrounding graphs may differ —
+reported as costing **30-40% end-to-end**, first-party and with no stated workload, hardware, or
+baseline — and `@spmd_safe` plus a compilation handshake, which removes the graph break when code is
+demonstrably SPMD and is described as brittle if the code is in fact MPMD. The page's existing SPMD/MPMD
+vocabulary therefore acquires an enforcement mechanism: on this backend it is a compile-time contract,
+not a description of a programming style.
+
+Two further constraints change how the axes can be laid out. **One process per device is enforced**,
+which forbids colocating generation and optimizer work on the same chip — the IBM Granite section above
+describes separating generation and policy-update pools as a *design choice* for asynchronous
+reinforcement learning; here it is a hardware requirement, and the post says RL colocation is not
+supported out of the box. And `topology_aware_mesh()` turns this page's "hardware topology decides where
+each boundary sits" into an API, mapping communication-intensive mesh dimensions onto high-bandwidth
+**ICI** and lighter data parallelism onto **DCN**.
+
+The weak-scaling evidence is first-party and worth recording with its configuration. Qwen3 MoE 235B at
+**1,024 / 2,048 / 4,096 / 8,192 TPU v7 chips** reports **2,236 / 2,214 / 2,095 / 2,104 tokens per second
+per TensorCore** at **28.8% / 28.5% / 26.9% / 27.1% MFU**, with step times of **29.3s / 29.6s / 31.3s /
+31.2s** — roughly a **6% per-chip throughput loss across an eightfold scale-out**, which the post calls
+near-linear. The absolute level is the part this page should keep: under 30% model-FLOPs utilization at
+every point on that curve. A separate FLUX report gives per-sample step time **0.92s at 8 chips / 1 node
+and 1.00s at 256 chips / 64 nodes**, while also stating a **3.01s total step time** without explaining
+the relationship between the two figures.
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
 - How do the axes interact under real load-balancing and fault-tolerance pressure, especially MoE routing skew and pipeline bubbles at scale?
 - How much of the memory story changes as optimiser-state compression, 8-bit optimisers, and lower-precision training mature (see [[Model Quantization and Efficiency]])?
 - Which parallelism layouts degrade most gracefully when one rank slows rather than fails, and how far can elastic workers reshape a mesh without restarting from a checkpoint? Netflix reports fault handling, but not broken down by parallelism axis.
+- The TorchTPU weak-scaling run holds MFU under 30% at every scale from 1,024 to 8,192 chips. The post attributes no cause — routing imbalance, collectives, scan-loop structure, or kernel quality are all untested there, and no GPU-cluster comparison at matched scale, cost, or energy is supplied.
+- What does Skinny Collectives' reported 30-40% end-to-end penalty actually buy back in correctness terms, and on which parallelism axes does it bite hardest? The source names no workload, mesh, or model for that figure.
+- If a backend compiles collectives into the program, how do elasticity and fault recovery work at all? A changed world size is a changed graph, and nothing in this source addresses recompilation cost after a rank is lost.
 
 ## Related pages
 
+- [[Ebba Simpson - Introducing TorchTPU]]
+- [[PyTorch]]
+- [[Accelerator Software Externalization]]
 - [[Netflix - Reliable GPU Compute for Training and Inference]]
 - [[GPU Fleet Reliability]]
 - [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]

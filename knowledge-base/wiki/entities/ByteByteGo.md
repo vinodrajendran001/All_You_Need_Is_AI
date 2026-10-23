@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-10-19
+updated: 2026-10-23
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -36,6 +36,8 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-12-bytebytego-energy-based-reasoning
   - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-10-19-bytebytego-uber-genie
+  - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
 status: active
 ---
 
@@ -209,7 +211,71 @@ current system, and compares PostgreSQL with MySQL. No item carries a measuremen
 vocabulary for the decision space; judgments such as "high quality but expensive" remain
 assertions.
 
+## A named deployment is a different evidence class from an explainer
+
+[[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]] is the first piece in this
+vault where the publisher walks a **named internal production system** rather than a pattern. That
+changes what the standing caveat means. On the explainer posts the complaint is that figures arrive
+unattributed; here they are attributed precisely — to **Uber**, who reported them — and the
+publisher is relaying rather than measuring. Both the relay and the original are interested parties,
+so every operating number on that page is **self-reported and unaudited**: approximately 45K
+engineering-support questions a month across internal channels, 154 Slack channels and more than 70K
+questions answered in the first year after a September 2023 launch, and a **48.9% overall
+helpfulness/full-resolution rate with no stated baseline or comparison**.
+
+The article's own restraint is the part worth keeping: it says plainly that "helpful" is not "fully
+resolved", that a "Not Relevant" verdict often means the request was outside the assistant's role,
+and that **"A source link doesn't guarantee that every statement is correct."** That is a sharper
+qualification than most vendor engineering blogs supply.
+
+One figure should not be used at all. The reported **~13,000 hours of engineering time saved** is
+attached to a derivation that is **cut off mid-sentence in the vault's capture**, so neither the
+method nor the assumptions behind it are recoverable. It is recorded here as unverifiable rather
+than as evidence.
+
+**Naming note.** The Genie in this article is **Uber Genie**, a Slack retrieval assistant over
+internal documentation. It is unrelated to **Databricks Genie**, the text-to-SQL interface covered in
+[[Text-to-SQL Agents]]. They share only a product name.
+
+The durable contributions go to [[Retrieval-Augmented Generation]] — retrieved passages presented as
+separate sub-contexts each carrying its source URL — and to [[Institutional Knowledge Agents]], where
+the [[LLM-as-a-Judge]] loop scores the **source documents**, not only the answers.
+
+## Prompt caching and semantic caching are two mechanisms with one name
+
+[[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]] is the publisher back in its usual mode —
+no deployment, no measurements — but doing the thing it does best: separating two ideas that
+practitioners routinely collapse. Prompt caching reuses intermediate computation for an exactly
+matching input prefix and still calls the model; semantic caching reuses a prior **answer** for a
+sufficiently similar request and can skip the model entirely. The full treatment, including the
+scoping, freshness, and invalidation consequences, lives in [[Semantic Caching]].
+
+Its evidence profile matches the pattern already recorded above. The only hard numbers are **quoted
+provider pricing ratios** — Anthropic prompt-cache reads at one tenth of ordinary input pricing, a
+5-minute cache write at 1.25x and a 1-hour write at 2x — plus an invented $1 prefix worked through to
+$1.35 against $2. No hit rates, latency deltas, or token savings are reported, and the piece carries
+the publisher's standard disclaimer that it is assembled from publicly shared details.
+
+## Open questions
+
+- **Does relaying a named deployment improve this source's evidence quality, or only relocate the
+  attribution problem?** The Uber figures are precisely attributed and entirely unverified; the
+  explainer figures are often unattributed but concern mechanisms that can be checked independently.
+- **How much of a truncated capture is recoverable?** The Uber piece's cost-savings derivation is
+  lost to truncation in this vault's copy, and nothing on this page establishes whether the live
+  article completes it.
+- No post from this publisher has yet reported a controlled comparison, an ablation, or a baseline of
+  its own. The vault treats its figures as orientation, and no later source has yet tested one.
+
 ## Related pages
+
+- [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]
+- [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]]
+- [[Semantic Caching]]
+- [[Text-to-SQL Agents]]
+- [[Institutional Knowledge Agents]]
+- [[LLM-as-a-Judge]]
+- [[Uber]]
 
 - [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[Agent Skill]]

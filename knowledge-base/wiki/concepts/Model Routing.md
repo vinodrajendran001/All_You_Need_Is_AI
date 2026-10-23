@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - concept
   - routing
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-10-jaloza-microsoft-decision-1
+  - src-2026-10-19-rath-thin-orchestrator
 status: active
 ---
 
@@ -238,6 +239,44 @@ quality risk separately. The approximately **25x** Qwen3 14B-to-32B handoff resu
 neither internal KV access nor a trained conversion, and a scoring probability still does
 not authorize the selected action.
 
+## The limit case: take the routing decision off a model entirely
+
+This page has tracked a progression away from generative routers — an LLM judge adding **1 to 5
+seconds** per request, replaced by a typed decision model answering in roughly **100 milliseconds**.
+[[Plawan Rath et al - The Thin Orchestrator]] is the endpoint of that progression: Meta Engineering's
+router runs **no model inference at all**. Intent classification, reading the relevant instruction
+file, checking whether the target already exists, gathering required fields, auto-discovering
+repository and configuration facts, and running pre-delegation checks are all ordinary code. The
+boundary is stated as a rule — **"Deterministic decisions stay deterministic."** — and only the
+delegated domain work is probabilistic.
+
+Three consequences follow for this page, and they are structural rather than measured.
+
+**The router's own latency and token cost go to zero.** Every cost this page has had to price for a
+routing layer — decision inference, calibration drift, the judge's seconds — disappears when the
+decision is a lookup. What remains is the destination's cost.
+
+**Two of this page's four failure modes change shape.** *Prompt injection of routing instructions*
+has no purchase on a router that never reads request text into a model, and *providers silently
+improving the models the routing logic was tuned against* cannot invalidate a classifier that was
+never tuned on a model's behaviour. Under-routing and over-routing survive untouched: a deterministic
+misroute is still a misroute, and the source reports **no misroute rate, failure rate, or escalation
+rate** at all.
+
+**The precondition is an enumerable decision space, and that is the real constraint.** Meta's router
+chooses among **14 specialists** and **20+ workflows** in a data-onboarding domain spanning **three
+code repositories, three programming languages, and up to six pipeline stages**. Deterministic intent
+classification works because the intents can be listed. This page's governing rule — *route on the
+strongest signal you already have* — is satisfied here in its strongest form, in the same way Kilo's
+coding agent already knows whether it is planning or editing. Where the intent space is open-ended,
+nothing in this source says what to do.
+
+Note also what is being routed. The destination is a **specialist and a workflow phase**, not a model
+tier, so this is not evidence about cost-tier selection and supplies no price ratios. The reliability
+attribution — that the gain comes from the router reasoning *less* — is the authors' own, is
+self-reported, and is **not separated by ablation** from context isolation, workflow templates, or
+runtime knowledge loading.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -249,9 +288,18 @@ not authorize the selected action.
 - At what point does per-step routing degrade quality too much by fragmenting long-horizon reasoning across model families?
 - Can routing become fully budget-aware and self-tuning, the way load balancing became background infrastructure?
 - What confidence or uncertainty signal is reliable enough to let a small model decide it should escalate?
+- A deterministic router has no calibration to drift and no injection surface, but also no estimate of
+  its own error. What measurement stands in for a confidence score when the decision is code?
+- Deterministic intent classification requires an enumerable intent space. Where is the crossover at
+  which maintaining the rules costs more than a learned router's latency and calibration work?
+- Meta's router dispatches specialists and workflow phases rather than model tiers. Does the
+  reasoning-less argument transfer to tier selection, where the decision is about difficulty rather
+  than about which subsystem owns the task?
 
 ## Related pages
 
+- [[Plawan Rath et al - The Thin Orchestrator]]
+- [[Meta]]
 - [[Lisa Brown Jaloza - Microsoft-Decision-1]]
 - [[Microsoft-Decision-1]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]

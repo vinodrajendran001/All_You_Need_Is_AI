@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-19
+updated: 2026-10-23
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-10-19-bytebytego-uber-genie
 status: active
 ---
 
@@ -327,7 +328,73 @@ and ordering may help, but compression must preserve exceptions and the route ba
 original source. RAG is a mitigation to evaluate, not a guarantee against lost-in-the-middle
 behavior.
 
+## Grounding is a prompt-layout decision, and the evaluation loop can point back at the corpus
+
+[[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]] describes **Uber Genie**, an
+internal Slack assistant built on classic RAG over Engwiki, internal Stack Overflow, and similar
+documents. (**Naming note:** this is unrelated to Databricks Genie, the text-to-SQL interface in
+[[Text-to-SQL Agents]].) Two of its design choices land on layers this page has described
+abstractly.
+
+**Grounding is implemented as prompt layout.** Each retrieved passage is placed in the prompt as a
+**separate, individually identified sub-context carrying its own source URL**, and the model is
+instructed to answer from those contexts and cite the URLs. The vault has repeatedly said that
+generation should be constrained to retrieved evidence without saying what that looks like in the
+prompt; this is the concrete form. It is worth noting what it does *not* address: labelled,
+separated passages still occupy positions in a context window, so the position effects recorded
+under *Retrieval success is not evidence-use success* above are untouched, and the source runs no
+position-controlled test.
+
+**Permissions are enforced by corpus scoping, not per-user filtering.** Genie's sources are
+restricted to information broadly available to developers, which makes the whole index safe for the
+whole audience. That is the cheap version of the access-controlled retrieval that
+[[Retrieval Poisoning]] treats as the only structural control, and it works only where one audience
+is a superset — it does not generalise to a corpus with per-requester entitlements, which is the
+scoping problem [[Semantic Caching]] runs into from the other direction.
+
+**The judge is pointed at the documents, not only the answers.** Recorded contexts, answers,
+metadata, and feedback are scored by an [[LLM-as-a-Judge|LLM judge]] for qualities such as relevance
+and hallucination — and the **source documents themselves** receive scores, explanations, and
+improvement suggestions. This page has so far treated the corpus as a fixed schema decision made
+upstream of retrieval: chunk boundaries, embedding model, what gets indexed at all. Uber's loop makes
+the corpus the **output** of the evaluation, so answer failures become a map of where internal
+documentation is wrong, stale, or missing. Whether that loop converges is unreported.
+
+The article is also explicit that none of this buys correctness: **"A source link doesn't guarantee
+that every statement is correct."** Retrieved passages may be irrelevant, the cited document may
+itself be wrong, and the model may misrepresent it. That is the same three-way split as the
+*existence, applicability, support* citation check above, arrived at independently.
+
+**Treat the figures with care.** Every number is **self-reported by Uber** and relayed by a
+third-party explainer. The reported **48.9% overall helpfulness / full-resolution rate has no stated
+baseline or comparison**, and it is a Slack feedback category rather than a retrieval metric — the
+article itself notes "helpful" is not "fully resolved" and that a "Not Relevant" verdict often means
+the request was out of scope. A reported ~13,000-hour engineering-time saving is attached to a
+derivation that is **truncated in the vault's capture** and is therefore not usable as evidence here.
+
+## Open questions
+
+- **Does a document-scoring loop actually improve retrieval, or only generate suggestions?** The Uber
+  source reports the mechanism, not a before-and-after on answer quality, document quality, or
+  question volume.
+- **Nothing establishes that the LLM judge's relevance and hallucination scores track human
+  judgment**, which weakens both the answer evaluation and the document feedback built on it.
+- The Uber account supplies **no precision/recall, hallucination rate, latency, cost-per-answer, or
+  controlled comparison against human support**, so it is a design to copy rather than a result to
+  cite, and nothing shows it generalises beyond a curated internal corpus and one support workflow.
+- **At what point does sub-context labelling stop helping?** The design assumes a model attends to
+  delimited passages and their URLs; no evidence on this page separates that from ordinary
+  position and length effects.
+- Corpus-wide scoping answers permissions only when every reader may see everything. What is the
+  design when the corpus carries mixed entitlements and per-user filtering has to run inside
+  retrieval?
+
 ## Related pages
+
+- [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]
+- [[Text-to-SQL Agents]]
+- [[Semantic Caching]]
+- [[Uber]]
 
 - [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]

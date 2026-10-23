@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - interpretability
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-10-20-guan-beyond-gmean-squared
 status: active
 ---
 
@@ -137,6 +138,45 @@ tested activation oracles, natural-language autoencoders, and sparse autoencoder
 native-neuron explanations. Whether neuron-level readings would beat a transcript reader is
 untested in this vault. See [[Mechanistic Interpretability]].
 
+## More samples narrow sampling error; they do not identify an unobservable quantity
+
+[[Melody Guan et al - Complementary Metrics for Monitorability]] evaluates a different instrument — a
+behavioral monitor rather than an activation reader — but it meets this page's correlation-versus-
+intervention gap from the measurement side, and it is explicit about where that gap leaves the
+arithmetic.
+
+In its **intervention evaluations**, the agent's environment is changed through control and treatment
+arms and the question is whether the intervention influenced the answer. **Causal recall** — the
+fraction of intervention-*caused* positive outcomes the monitor catches — is described as generally
+unobservable, because the data cannot say which individual positive outcome the intervention produced.
+What is observable are population rates, and those bound the quantity rather than fix it. The original
+intervention score used an optimistic upper bound, `TPR_upper = min(1, r / R_effect)`; the post adds a
+pessimistic lower bound, `TPR_lower = max(0, (r + R_effect − 1) / R_effect)`. Both are proposals, not
+results.
+
+The illustrative arithmetic is the part worth carrying. With **10** intervention-positive outcomes,
+**6** monitor flags, and at least **8** causal positives, recall is **50%** (4/8) or **75%** (6/8)
+depending on which positives were caused — the same observations, two answers. With `R_effect = 0.3`
+and `r = 0.4`, causal recall can range anywhere from **0 to 1**. These are worked examples rather than
+experiments, and the authors state the conclusion directly: more samples reduce *sampling* uncertainty
+without resolving causal attribution, and a high upper bound alone does not show that causal positives
+are reliably caught.
+
+That is CHIVE's finding restated in a setting with explicit formulas. A quantity that describes
+co-occurrence does not become a causal quantity by being estimated more precisely; the identification
+problem sits above the estimator, which is exactly why "the feature was active and the behaviour
+occurred" never became "intervening on the feature would change the behaviour".
+
+Two smaller methodological items transfer. The authors reject **Bradley-Terry/Elo-style** ratings for
+aggregating pairwise comparisons, because those retain only win/loss/tie direction and discard the
+**magnitude** of each gap; they prefer inverse-variance-weighted **HodgeRank**, whose **residuals**
+diagnose when a single one-dimensional ordering is a poor summary. A metric that reports when it is the
+wrong summary is close to what this page's open question about "what a positive result would look like"
+is asking for. They also decline to compute **AUROC**, because the historical monitors return binary
+decisions and AUROC over a continuous score is not the same object as a binary-decision g-mean². Their
+Figure 9 reports pairwise ordering agreement among the metrics, but the prose supplies no agreement
+values — only the note that a random tie-free ordering would score **0.5**.
+
 ## Open questions
 
 - Is the null result a limit of activation-reading tools *in principle*, or of current tools on simple
@@ -151,8 +191,21 @@ untested in this vault. See [[Mechanistic Interpretability]].
   rather than a co-occurrence?
 - Would explanations of native neurons, tested by ablation, give the uplift over a transcript-only
   predictor that CHIVE's activation readers did not?
+- The monitorability metrics above are evaluated on behavioral monitors only. That post reports no
+  interpretability-tool results and runs no comparison between a monitor reading internals and one
+  reading a trace or an outcome, so it extends this page's evidence discipline without testing its
+  subject.
+- A large HodgeRank residual says one ordering summarizes the comparisons badly. Nothing in the source
+  says what a large residual should be attributed to, or what to report instead of an ordering.
+- The causal-recall bounds are derived and illustrated, not validated. No experiment there has a known
+  causal recall against which to check whether the bounds are tight in practice.
 
 ## Related pages
+
+- [[Melody Guan et al - Complementary Metrics for Monitorability]]
+- [[Chain-of-Thought Monitoring]]
+- [[Embedded Evaluation]]
+- [[OpenAI]]
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Mechanistic Interpretability]]

@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - log
 source_ids:
@@ -322,6 +322,31 @@ source_ids:
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-10-20-guan-beyond-gmean-squared
+  - src-2026-10-20-husain-decision-model-evals
+  - src-2026-10-23-why-decision-models-now
+  - src-2026-10-21-simpson-torchtpu
+  - src-2026-10-20-gupta-deepseek-deepinfer
+  - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
+  - src-2026-10-15-osmani-claude-code-review
+  - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-10-21-databricks-memcurrent
+  - src-2026-10-19-bytebytego-uber-genie
+  - src-2026-10-19-naam-million-agents-superintelligence
+  - src-2026-10-14-maevyn-decoherence-trap
+  - src-2026-05-23-vynnytskyi-databricks-snowflake-bigquery
+  - src-2026-06-01-vynnytskyi-databricks-core-components
+  - src-2026-06-14-vynnytskyi-databricks-cloud-choice
+  - src-2026-06-21-vynnytskyi-modern-data-platform
+  - src-2026-06-29-vynnytskyi-medallion-architecture
+  - src-2026-07-04-vynnytskyi-data-formats
+  - src-2026-07-11-vynnytskyi-delta-lake-practice
+  - src-2026-08-01-vynnytskyi-scd-types
+  - src-2026-08-08-vynnytskyi-delta-time-travel
+  - src-2026-08-15-vynnytskyi-optimizing-delta-tables
+  - src-2026-08-23-vynnytskyi-genie-explained
+  - src-2026-08-30-vynnytskyi-lakebase-ltap
+  - src-2026-10-18-vynnytskyi-databricks-project-structure
 status: active
 ---
 
@@ -2025,3 +2050,83 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   LF form during the pass; its content is unchanged. The prior log body is preserved.
 - **114** frontmatter citations without body links, **13** single-source concepts, and **seven**
   documented source-URL gaps remain follow-ups, not invented fixes.
+
+## [2026-10-23] ingest | Monitorability Complements, Thin Orchestration, and the Databricks Series
+
+- Processed **25 previously uncited top-level captures as 25 new sources**. Twelve cover
+  evaluation, inference, and agent engineering:
+  [[Melody Guan et al - Complementary Metrics for Monitorability]],
+  [[Hamel Husain - How To Use Decision Models for Evals]],
+  [[Why Decision Models, and Why Now - A Taxonomy of Automated Decision-Making|Why Decision Models, and Why Now]], [[Ebba Simpson - Introducing TorchTPU]],
+  [[Mehul Gupta - What is DeepSeek DeepInfer]],
+  [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]],
+  [[Addy Osmani - How the Claude Code Team Does Code Review]],
+  [[Plawan Rath et al - The Thin Orchestrator]],
+  [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]],
+  [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]],
+  [[Ramez Naam - Can a Million AI Agents Create Superintelligence]], and
+  [[The Decoherence Trap]]. The remaining thirteen are the complete
+  **Understanding Databricks** series by [[Mykola-Bohdan Vynnytskyi]], parts one through
+  thirteen, published May to October 2026.
+- Each Databricks part received its own summary, following the precedent set by the 63-lesson
+  AI Builder Club ingest. Shared material was pushed into concept pages rather than repeated,
+  so the series produces **ten concepts instead of thirteen near-duplicate summaries**.
+- Created **ten concepts** - [[Lakehouse Architecture]], [[Medallion Architecture]],
+  [[Open Table Formats]], [[Columnar Storage Formats]], [[Slowly Changing Dimensions]],
+  [[Table Layout Optimization]], [[Operational Analytical Convergence]],
+  [[Text-to-SQL Agents]], [[Declarative Data Pipeline Deployment]], and [[Semantic Caching]] -
+  and **six entities**: [[Databricks]], [[Mykola-Bohdan Vynnytskyi]], [[Hamel Husain]],
+  [[Uber]], [[Ramez Naam]], and [[PyTorch]].
+- Integrated all declared consumers: **28 existing concepts and five existing entities**.
+  Among them, [[KV Cache]] was narrowed to the prefix-reuse mechanism and now defers to
+  [[Semantic Caching]]; [[Accelerator Software Externalization]] moved TorchTPU from
+  "unreleased and unverified" to "documented but still first-party"; and
+  [[Typed Probabilistic Decision Models]] gained its first same-task, same-protocol comparison
+  against an LLM judge. Four pages received their first `## Open questions` section.
+- Two naming collisions were disambiguated rather than merged. **Uber Genie** is a Slack
+  retrieval assistant over internal documents; **Databricks Genie** is a text-to-SQL interface
+  over governed tables. Separately, PostHog's nightly consolidation and MemCurrent's offline
+  consolidation are both called **"dreaming"** and are unrelated systems; both affected pages
+  say so.
+- Preserved the major evidence boundaries:
+  - Guan et al. leave the **retry policy** unspecified, which bounds how far post-control risk
+    can be reproduced. Their re-analysis excludes Astra.
+  - Husain's cost figures are illustrative and his simulation parameters synthetic; the
+    comparison rests on a single dataset. [[Why Decision Models, and Why Now - A Taxonomy of Automated Decision-Making|Why Decision Models, and Why Now]] has **no
+    canonical URL** - only subscriber redirects - so its `source_url` is deliberately empty,
+    and its authorship is not asserted.
+  - Every TorchTPU speedup is **first-party with no stated workload, hardware, or baseline**,
+    including DeferAndFuse at 50%+ and Skinny Collectives at 30-40%. The one head-to-head
+    figure, Qwen3 at **1,828 against 1,937 TPS**, has PyTorch trailing JAX. The TPUv8i
+    interconnect figure is recorded as **19.2 TBps** per TorchTPU against SemiAnalysis's
+    **19.2 Tb/s**, a conflict kept rather than resolved.
+  - DeepInfer is a **secondary account reporting no measurements at all**; it is cited for
+    scope, never for performance.
+  - Uber's **48.9%** helpfulness rate has **no stated baseline** and is a Slack sentiment
+    category. The reported **~13,000 hours** saved arrives with a derivation that is truncated
+    in the capture and is not used as support on any page.
+  - MemCurrent's **31%** and **26%** gains are against its own no-memory internal baseline,
+    and the roughly **12x** input-token reduction is self-reported. The Mount Sinai
+    **65.3% against 16.6%** result is third-party and describes a related design, not
+    MemCurrent.
+  - Meta's thin orchestrator figures - about **1,300 lines**, **20+ workflows**,
+    **14 specialist agents** - are first-party with no controlled comparison.
+  - Naam is a **synthesis of third-party results** carrying his own caveat about thin
+    real-world data, not primary evidence.
+  - [[The Decoherence Trap]] has **no author stated anywhere in the capture**. It is cited
+    only as an unattributed essay published at maevyn.codes, its simulation is flagged as
+    arbitrary-weight and illustrative, and Decoherence Collapse is marked speculative.
+  - The Databricks series is a **practitioner tutorial**: its comparative and performance
+    claims are the author's stated experience, not measurements. Its Lakebase and Genie
+    material describes fast-moving products whose names changed repeatedly within the series.
+- Updated the index and overview at **342 owned source IDs**, **316 source summaries**, and
+  **598 typed wiki pages**, including **136 concepts** and **88 entities**. Totals are counted
+  from the working tree, excluding git-ignored local query files. The batch adds **41 wiki
+  files** and updates **36 existing wiki files**: 33 concept and entity pages plus the index,
+  overview, and this log.
+- Raw captures, posts, queries, and the log's history were not edited:
+  - All **413 raw files** remain byte-identical, comprising **344 top-level captures**, not
+    counting the `.obsidian` settings files.
+  - Posts and the post archive, query files, earlier lint reports, and templates were
+    preserved, and the historical log body is unchanged.
+  - No source commands were executed.

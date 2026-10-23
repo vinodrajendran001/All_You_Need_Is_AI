@@ -2,11 +2,12 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-09-30
+updated: 2026-10-23
 tags: [entity, organization, models, inference, ai-agents]
 source_ids:
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-09-27-fd-agent-muse-compute-demand
+  - src-2026-10-20-gupta-deepseek-deepinfer
 status: active
 ---
 
@@ -52,8 +53,59 @@ reused as an input elsewhere. The limit is the usual one for a borrowed density 
 good as the workload behind it, and this vault has no independent detail on what those 380,000
 sandboxes were doing.
 
+## The serving layer it publishes, and the part it keeps
+
+[[Mehul Gupta - What is DeepSeek DeepInfer]] adds a third role to the two above. DeepSeek appears here
+not as a model architect and not as a borrowed infrastructure datapoint, but as a publisher of serving
+software — and the shape of what it published is the interesting part.
+
+**DeepInfer is reported as built primarily on vLLM**, with inspiration from SGLang and TensorRT-LLM.
+The author attributes this to DeepSeek rather than claiming it independently, and it inverts the usual
+direction of this page's material: on architecture DeepSeek is upstream of everyone else's
+implementations, while on serving it is downstream of the open ecosystem. The release adds kernels
+(FlashMLA, DeepGEMM, DeepEP, TileKernels/TileLang), parallelism including Expert Parallelism Load
+Balancing, **DSpark** speculative decoding, an asynchronous scheduler, batch-invariant determinism, and
+structured output. It omits, by the same account, complete **KV-cache management**, complete
+**prefill-decode disaggregation**, and **replica load balancing** — so the fleet layer stays in-house.
+See [[Inference Serving Engines]].
+
+**Hardware support is narrow and notable**: NVIDIA **SM100** and Huawei **Ascend 950** NPUs, with
+Linux, GCC **13+**, Python **3.12**, and CUDA **13** or CANN **9.2**. RTX 4090, RTX 5090, A100, and
+H100 are named as not covered. Shipping an Ascend path alongside the NVIDIA one is a second-source
+accelerator commitment expressed in code rather than in a statement; see
+[[Accelerator Software Externalization]] for what that usually costs.
+
+The gap worth recording is between this page's two DeepSeek sources. The section above reports
+**V4.1-Flash** compressing global cache growth to **890 bytes per token**; DeepInfer's initial release
+is said to support **DeepSeek-V4.1-Flash**, with the offline example using the
+**DeepSeek-V4.1-Flash-1017** checkpoint. The obvious inference — that the engine demonstrates the
+model's serving economics — is exactly what the vault cannot make. Both sources are secondary, neither
+reports a throughput, latency, cost, or memory figure, and the engine is described as lacking a
+complete KV-cache management system, which is the subsystem the model's headline claim lives in. Two
+adjacent artifacts, no bridge between them.
+
+## Open questions
+
+- Nothing in the vault verifies that DeepInfer powers DeepSeek's production systems, or that every
+  component the article lists is implemented in the released code rather than planned, integrated, or
+  repository-adjacent.
+- There is no measured link between V4.1-Flash's reported cache compression and any serving result on
+  any engine, DeepInfer included.
+- Both DeepSeek sources on this page are secondary — a newsletter and a Medium walkthrough. The vault
+  holds no first-party DeepSeek technical document, so every figure attributed to DeepSeek here has
+  passed through an interpreter.
+- What does DeepSeek run internally that DeepInfer does not contain? The omissions are named but their
+  in-house replacements are not described anywhere the vault can see.
+- Does the Ascend 950 support reflect a durable multi-vendor strategy or a procurement constraint?
+  Nothing in the source distinguishes them.
+
 ## Related pages
 
+- [[Mehul Gupta - What is DeepSeek DeepInfer]]
+- [[Inference Serving Engines]]
+- [[Prefill-Decode Disaggregation]]
+- [[Speculative Decoding]]
+- [[Accelerator Software Externalization]]
 - [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]]
 - [[KV Cache]]
 - [[Mixture of Experts]]

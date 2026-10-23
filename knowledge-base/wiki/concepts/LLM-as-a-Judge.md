@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - llm-evaluation
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-20-husain-decision-model-evals
 status: active
 ---
 
@@ -280,6 +281,11 @@ still needs task-specific labeled cases, error analysis, and deterministic check
 the condition is mechanically verifiable. Fast structured scoring is not an authority grant
 or evidence that a proposed action is safe to execute.
 
+**Qualified 2026-10-23.** The artifact this section says is missing — reliability numbers from which an
+act/defer/review threshold could be justified — now exists in this vault, for a different set of systems
+on a different task; see the threshold and calibration material below. It does not supply
+Microsoft-Decision-1's, which remain unpublished here.
+
 ## A validated baseline decides whether the judge measures anything
 
 [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] argues, for clinical
@@ -317,7 +323,70 @@ retires its model. The authors recommend an open-source autograder where possibl
 [[Embedded Evaluation]]'s point about empty alert logs: "A bad judge is worse than none because it
 hides the absence of evaluation behind the appearance of it."
 
+## Discrimination, a cutoff, and calibration are three different properties
+
+[[Hamel Husain - How To Use Decision Models for Evals]] is the first source here that uses **decision
+models** as judges and then does the work the category usually skips. It scores **98** production traces
+from an apartment-leasing agent — **61** known failures and **37** with no labeled failure, after
+excluding **2** internal QA examples — with the judges receiving **masked traces** containing no labels
+and no reviewer notes. The 61 failures are **39** from original human review plus **22** manually
+validated discoveries from Braintrust and Arize, which is this page's golden-set discipline applied to
+the eval set rather than to the system under test.
+
+The practical finding is that the **0.50 threshold is an inherited default, not an optimum**. The
+author's illustration makes the point without claiming to measure it: a model scoring failures **0.40**
+and passes **0.10** would classify perfectly at a threshold of **0.30** and catch nothing at **0.50**.
+Tuning used stratified **five-fold** cross-validation, choosing thresholds on training folds and
+measuring on held-out folds, and it runs on **saved scores with no new model calls** — the cheapest
+precision gain recorded on this page since moving mechanically checkable properties out of the judge's
+remit.
+
+The cutoff has to come from somewhere. Husain uses an **80% precision / 80% recall** requirement, stated
+explicitly as an example business rule rather than a standard, and records how often it was infeasible:
+the constrained procedure fell back to unconstrained F1 in **36 of 100** training splits for Perplexity
+and **29 of 100** for Liquid d1-ultra, against **0 of 100** for OpenAI Decisions. Those are
+training-split feasibility counts, not held-out guarantees.
+
+Calibration is then shown to be separate from both. One Cloudflare Clef Flash score group averaged a
+predicted failure probability of about **8%** while **60%** of those traces contained failures — a
+judge whose scores may still order traces usefully can be read literally only at the cost of being wrong
+about rates. Brier scores on saved out-of-fold probabilities, **before → after Platt scaling**: Jev
+**0.187 → 0.188**, Liquid d1-ultra **0.173 → 0.172**, OpenAI **0.159 → 0.164**, with an exploratory
+direct-probability refit giving OpenAI **0.154**. **Platt scaling made OpenAI's main-fit Brier score
+worse.** Brier mixes discrimination with calibration, so these do not isolate calibration quality, and
+nothing here establishes which calibration method generalizes.
+
+The cost column is the figure most likely to be quoted out of scope, so it travels with its unit:
+Perplexity was the cheapest remaining candidate at **0.82 cents per 100 eval runs** with **F1 0.79**,
+while OpenAI Decisions reached **F1 0.87** at **3.72 cents per 100 eval runs**, about **4.5 times** the
+cost — one eval run per trace, at those providers' prices and token lengths, with no batching. All of it
+is one 98-trace private dataset in one domain, with the original conversations withheld, so it is not
+independently reproducible, and the author says performance varies substantially across tasks and tells
+readers to measure on their own data. He also notes the deliberately broad "any failure" task may
+**exaggerate** the gaps and recommends separate judges per failure mode — this page's
+facet-decomposition principle arriving as a caveat on his own comparison.
+
+## Open questions
+
+- Threshold tuning needs labeled data. For a judge deployed where no labeled failures exist yet, what
+  sets the first cutoff, and how wrong can the inherited 0.50 be before anyone notices?
+- Precision is measured against *known* failures. The scored set contains **37** traces with no labeled
+  failure, which is not the same as 37 traces without one, and the source does not estimate how many
+  failures its label set misses.
+- A threshold tuned at one prevalence is not shown to transfer to another. The source reports no
+  prevalence correction and explicitly declines to claim transfer.
+- Brier score mixes discrimination and calibration, so none of the before/after comparisons isolates
+  calibration quality. What would a calibration-only comparison show, and does the
+  8%-predicted/60%-actual group survive recalibration?
+- Nothing in that comparison establishes anything about judges on other domains, longer traces, batched
+  workloads, or the narrower per-failure-mode rubrics the author himself recommends.
+
 ## Related pages
+
+- [[Hamel Husain - How To Use Decision Models for Evals]]
+- [[Hamel Husain]]
+- [[Liquid AI]]
+- [[Perplexity]]
 
 - [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
 - [[Embedded Evaluation]]

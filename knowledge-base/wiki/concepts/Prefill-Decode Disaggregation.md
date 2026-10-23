@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-10-19
+updated: 2026-10-23
 tags:
   - concept
   - inference
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-10-lenz-epd-multimodal-serving
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
   - src-2026-10-14-vllm-nixl-push-connector
+  - src-2026-10-20-gupta-deepseek-deepinfer
 status: active
 ---
 
@@ -159,6 +160,42 @@ structure, shared prefixes, zero decode, structured outputs reduced to an **8-op
 vocabulary**, low latency sensitivity), full SQL execution support was not yet implemented, and all
 figures are vendor-reported.
 
+## Benchmarking the phases apart is not the same as serving them apart
+
+[[Mehul Gupta - What is DeepSeek DeepInfer]] contributes a second case — after TPU-Sync above — in
+which a serious inference engine ships *without* this page's technique, and it is worth separating two
+facts the article reports side by side.
+
+DeepInfer's repository benchmark configurations are described as using **4 SM100 GPUs for prefill and
+64 SM100 GPUs for decode**, each within a single scale-up domain, with sweeps run via `run_sweep.sh`.
+The same article states that **complete prefill-decode disaggregation is not in the release**, along
+with a complete **KV-cache management** system and **load balancing across data-parallel replicas**.
+The phases are measured on separate device counts; they are not, on this account, served as separate
+coordinated pools.
+
+The distinction matters because the 4-versus-64 split invites exactly the misreading this page should
+resist. It is not evidence about the prefill:decode worker ratio that
+[[Philip Kiely - The Efficient Frontier of LLM Inference]] argues should track input and output
+lengths. No throughput, latency, or memory value accompanies either configuration, so the ratio
+carries no information about where the crossover sits — it records how two phases were isolated for
+measurement, nothing more. All of it is one author's reading of a repository, not a first-party
+serving report.
+
+What the omissions do establish is a pattern. The two costs this page identifies — transferring KV
+state and coordinating the handoff — have no shipped implementation here, so a deployer adopting
+DeepInfer inherits the engine and builds the disaggregation layer. Together with TPU-Sync's roadmap
+status, that is two of the vault's recent engine sources treating phase separation as the part *not*
+yet delivered, which qualifies any impression that disaggregation has become standard serving practice
+rather than a frontier capability maintained by a handful of stacks.
+
+One mechanism in the release points the other way, toward recomputation instead of transfer. For
+sliding-window attention, DeepInfer is described as replaying only a **bounded suffix** of the
+context, with a default retaining **140 tokens** (`DEEPINFER_YOCO_PREFILL_KEEP_TOKENS=140`). Where
+disaggregation makes the cache a transferable artifact, bounded replay makes a window of it cheap to
+*rebuild* — the same choice between moving state and recreating it, resolved in the opposite
+direction, and bounded by the attention window rather than by interconnect bandwidth. No measurement
+of that tradeoff appears in the source.
+
 ## Open questions
 
 - What is the crossover point at which KV transfer cost exceeds the interference cost it avoids, and how does it move with model size, context length, and attention variant?
@@ -169,9 +206,15 @@ figures are vendor-reported.
 - What share of production LLM calls emit only a handful of tokens — classification, filtering, judging, routing — and does the disaggregation literature's benchmark mix represent them at all?
 - When a fleet mixes prefill-only classification with long-decode chat, is the right answer disaggregated workers or two separate pools running different engines?
 - When does committing to a decode instance before prefill (push) cost more in load imbalance than it saves in post-prefill coordination, and how much of the push/pull gap remains once pull's transfer setup also leaves the engine loop?
+- Where is bounded suffix replay cheaper than transferring or retaining the corresponding KV state, and how does the break-even move with window size, interconnect bandwidth, and the share of context that the window excludes? DeepInfer ships a 140-token default and no measurement behind it.
+- How much of the disaggregation literature is reproducible against engines that do not implement it? If two of this vault's recent engine sources treat phase separation as roadmap or out-of-scope, published disaggregated-versus-aggregated comparisons may be describing a narrower population of systems than they appear to.
+- What counts as "complete" prefill-decode disaggregation? DeepInfer is reported to lack it while benchmarking the phases on separate device pools, and the vault has no definition that distinguishes the two.
 
 ## Related pages
 
+- [[Mehul Gupta - What is DeepSeek DeepInfer]]
+- [[DeepSeek]]
+- [[Speculative Decoding]]
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Wafer - AI Performance Engineering Resources]]
 - [[LLM Inference]]

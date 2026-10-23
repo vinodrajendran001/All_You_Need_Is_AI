@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-10-23
 entity_kind: person
 tags:
   - entity
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-06-30-alisa-liu-ai-research-job-search
   - src-2026-06-30-alisa-liu-book-of-llms
   - src-2026-06-30-alisa-liu-math-notes
+  - src-2026-06-10-itsreallyvivek-frontier-ai-labs
 status: active
 ---
 

@@ -51,9 +51,11 @@ comes from"**, and **"AI doesn't have an intelligence problem; it has a context 
 - **[Vendor claim]** A Databricks benchmark reports **84.5% first-attempt accuracy** versus **52.4%** for
   "the strongest general-purpose coding agent". **No methodology, task distribution, or independent
   replication is supplied.**
-- **[Self-reported, time-sensitive]** Renames: Genie **2026-04-27**, Genie One **2026-06-09**, GA for
-  Genie One and Ontology **2026-06-16**, Genie Agents **2026-07-08**. Ontology is **Public Preview since
-  May 2026** and connects to **50+** applications (external connections Beta). Scheduled tasks and
+- **[Self-reported, time-sensitive]** Renames: Genie **2026-04-27**, Genie One **2026-06-09**, Genie One
+  **GA 2026-06-16**, Genie Agents **2026-07-08**. The **Ontology is Public Preview since May 2026** — the
+  author explicitly warns it is **not GA**, "despite what some coverage implies", and that the Summit
+  announcement was Genie One going GA *alongside* the Ontology, not the Ontology going GA. It connects to
+  **50+** applications (external connections Beta). Scheduled tasks and
   Inspect are Public Preview; mobile and a dedicated Teams app are Public Preview; Genie Code is GA with
   Beta BI import; ZeroOps is private preview. Pricing: **150 free DBUs per identified user per month**
   (~**$10.50** at stated US rates), with Genie One and Agents free **through 2027-01-31**.

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - concept
   - llm
@@ -42,6 +42,7 @@ source_ids:
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-13-zancato-model-priming
+  - src-2026-08-12-bytebytego-knowledge-distillation
 status: active
 ---
 

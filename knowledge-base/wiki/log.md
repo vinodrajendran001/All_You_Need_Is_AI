@@ -2130,3 +2130,103 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   - Posts and the post archive, query files, earlier lint reports, and templates were
     preserved, and the historical log body is unchanged.
   - No source commands were executed.
+
+## [2026-10-23] lint | Full wiki lint pass
+
+Forty-second comprehensive pass, filed as [[2026-10-23 Lint Pass]]. The structural audit returned
+**zero findings** at both the start and the end of the pass. The value of this pass was semantic:
+tracing all **25 source chains** added by the October 23 ingest from raw capture through source
+summary to every consumer page, across **118 consumer edges**, in six parallel read-only passes
+partitioned by subject area.
+
+**Two high-severity claim defects were found in the 25 chains and corrected.**
+
+- [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Genie Explained]] reported the Genie
+  Ontology as **GA on 2026-06-16**. The capture says the opposite and says it emphatically — "Public
+  Preview since May 2026, despite what some coverage implies — it's not GA yet" — a clause written
+  specifically to prevent that inference, because Genie One went GA *alongside* the Ontology rather
+  than the Ontology going GA. The summary also contradicted itself two lines later, and the claim
+  wrapped across a line break, so it was invisible to every single-line grep used in verification.
+  Corrected to "Genie One **GA 2026-06-16**" with the author's explicit "not GA" warning carried into
+  the summary.
+- [[Recursive Self-Improvement]] attributed Naam's **five to ten times below self-sustaining
+  strength** figure to the multi-agent parallel-scaling curves assembled in his essay. The figure
+  belongs to his **earlier** RSI post and calibrates the **software feedback loop**; Naam attaches no
+  comparable multiple to the multi-agent evidence. The source summary had this right — the concept
+  page acquired the error while merging the number into surrounding prose. Reattributed, with the
+  scaling curves marked as separate evidence. No number was changed, added, or removed.
+
+**Two new concepts were connected to evidence the vault already held.** [[Semantic Caching]] cited
+only its triggering source while [[Sarthak Rastogi - Making an AI Agent Production-Ready]] had held
+the vault's only operational account of cache placement since July; it now records that the lookup
+sits outside the agent graph and runs as a separate process, and its open question notes this is a
+partial answer with **no hit rate invented** to close it. [[Text-to-SQL Agents]] cited only two
+vendor-framed Databricks articles while
+[[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]] held the only production deployment —
+Grab's agent over 15,000+ tables — and its failure-mode claim was narrowed to separate
+safety-and-cost validation from correctness evaluation.
+
+**Affected-page reciprocity was measured vault-wide for the first time and cleared from 22 to 0.**
+Every recent ingest reports this invariant verified with zero failures, but those checks are scoped to
+the batch being ingested. Measured across the whole corpus, 22 forward violations stood, all in pages
+predating this batch; the identical count against the pre-lint baseline confirmed the backlog was
+pre-existing. The 22 split cleanly: **16** pages discussed a source in body prose but omitted its ID
+(under-citation, ID added), and **6** referenced a summary only under `## Related pages` with no prose
+citation (summaries over-claiming their reach, removed from the affected lists of
+[[Sarthak Rastogi - Making an AI Agent Production-Ready]] and
+[[Alpha Signal - Why self-improving harnesses are the next frontier]]; all six remained under those
+summaries' own Related pages, so no relationship was lost). A first attempt at this check produced 48
+spurious "unknown source ID" hits because batch summaries own a primary `source_id` **plus** a
+`source_ids` list of per-item sub-IDs — which is why 316 summaries own 342 IDs.
+
+The remaining 23 chains traced clean, including the TorchTPU 19.2 TBps / 19.2 Tb/s unit conflict still
+preserved as unresolved, the Uber Genie 13,000-hour derivation still refused as unrecoverable, and
+both Genie and both "dreaming" disambiguations holding everywhere they appear.
+
+**Scope and preservation.** Twenty-one pages were modified and one was added (this report). Single-source
+concepts fell from **14 to 12**. No source ID was created, since every ID added was already registered;
+control parity remains exact at **342** across index, log, and overview, and the wiki stands at **599
+typed pages**. All **413 raw files** remain byte-identical across **344 top-level captures**. Posts, the
+post archive, query files, templates, and earlier lint reports were untouched, and the historical log
+body is unchanged. Nothing was staged, committed, or pushed.
+
+## [2026-10-23] post | A Safe Query Is Not a Correct Answer
+
+Ran the Post workflow for the window **2026-10-16 → 2026-10-23**, anchored to the `covers_through` date of
+[[2026-10-16 The Next Model Can Skip the Reread]]. The window contained four log entries: the October 19
+ingest and lint, and the October 23 ingest and lint. A `git log --since=2026-10-16 --name-only` cross-check
+over `knowledge-base/wiki` surfaced nothing that the log had missed.
+
+Five angles were shortlisted and scored. The winner, at **28/30**, was *a safe query and a correct answer
+are not the same thing*, spined on [[Text-to-SQL Agents]]. The semantic-caching angle scored 27 and was
+filed under the archive's unposted candidates rather than shipped, because it argues the same shape —
+a similarity signal mistaken for a correctness signal — and running both in one window would repeat the
+angle. The summarization angle was rejected outright on the completeness gate at 3/5: it rested on a
+single incident from this vault's own lint pass rather than on evidence across sources.
+
+The post pairs Grab's production deployment, from [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]],
+with the vendor account in [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Genie Explained]]. Its
+mechanism is the distinction the October 23 lint pass added to the spine page: every guardrail Grab runs —
+personal-data column access, destructive operations, missing partition filters, schema validity — is a
+property of the **query text**, which is why it can be checked before execution, whereas correctness is a
+property of the **answer** and depends on table and join choice. A wrong join is valid SQL: safe, cheap,
+fast, and wrong.
+
+Both hedges survived compression into the X thread. Grab's order-of-magnitude drop in resolution time is
+labelled first-party with no controlled comparison, and the 84.5% versus 52.4% first-attempt accuracy pair
+appears only as a vendor benchmark with no task distribution, baseline description, or independent
+replication. Grab's "several full-time equivalents" and "hundreds of hours" figures were cut as unablated
+self-reports doing no argumentative work, and no estimate of how often text-to-SQL answers are wrong was
+offered, because the vault holds none. Databricks Genie's product status was left out entirely, having been
+corrected hours earlier in the same day's lint pass.
+
+The LinkedIn body runs **443 words**. The X variant is a 273-character standalone plus a seven-post thread,
+every post verified by script at or under 280 characters, with the caveat carried in post 6 and the
+conclusion in post 7. The reader and fact checks both passed against the public bodies alone, and the draft
+was marked `ready`.
+
+Filed as [[2026-10-23 A Safe Query Is Not a Correct Answer]]. [[Post Archive]] gained the posts-table row,
+the topics line, and a [[Text-to-SQL Agents]] cooldown entry through 2026-12-04; the expired Context
+Engineering and Serving Benchmarks and Goodput cooldowns were pruned. Posts carry no source IDs, so control
+parity is untouched at **342**. No concept, entity, source, overview, or raw file was modified. Nothing was
+staged, committed, or pushed.

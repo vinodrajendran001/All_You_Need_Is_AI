@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-06-30
+updated: 2026-10-23
 tags:
   - concept
   - algorithms
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-05-21-leetcode-templates
   - src-2026-05-18-hanfang-pytorch-practice
   - src-2026-06-30-alisa-liu-ai-research-job-search
+  - src-2026-06-30-alisa-liu-math-notes
 status: active
 ---
 

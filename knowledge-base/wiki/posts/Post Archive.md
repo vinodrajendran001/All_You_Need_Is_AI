@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-10-16
+updated: 2026-10-23
 tags:
   - post
 status: active
@@ -34,6 +34,7 @@ materially different angle, and that post must say what is new.
 | 2026-10-03 | [[2026-10-03 The Weakest Layers Aren't the Ones to Remove]] | 2026-09-25 → 2026-10-03 | [[Model Quantization and Efficiency]] | LinkedIn, X | ready |
 | 2026-10-09 | [[2026-10-09 The Model Can Read Without Writing]] | 2026-10-03 → 2026-10-09 | [[Semantic Recommendation Systems]] | LinkedIn, X | ready |
 | 2026-10-16 | [[2026-10-16 The Next Model Can Skip the Reread]] | 2026-10-09 → 2026-10-16 | [[KV Cache]] | LinkedIn, X | ready |
+| 2026-10-23 | [[2026-10-23 A Safe Query Is Not a Correct Answer]] | 2026-10-16 → 2026-10-23 | [[Text-to-SQL Agents]] | LinkedIn, X | ready |
 
 ## Superseded drafts
 
@@ -45,6 +46,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-10-23 - text-to-sql agents, guardrails vs correctness, data agents, pre-execution validation
 - 2026-10-16 - cross-model cache handoffs, context transfer, model routing, internal state portability
 - 2026-10-09 - language models without text generation, catalog ranking, bounded output, product output design
 - 2026-10-03 - model pruning, component interactions, system optimization, model compression
@@ -58,6 +60,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
 
+- Cache similarity is not answer correctness: a semantic cache returns a stored answer because two questions embed closely, which is a claim about wording, not about whether the stored answer still holds. Scored 27/30 on 2026-10-23, losing only because it argues the same shape as that week's text-to-SQL post - [[Semantic Caching]]
 - Acceptance is not end-to-end speed: speculative-decoding gains depend on draft cost and serving conditions. Reframed after the October 16 lint; the earlier 1.21×–2× cap reading is withdrawn - [[Speculative Decoding]], [[Serving Benchmarks and Goodput]]
 - Reasoning traces as an unsanitisable secrets surface: 328 of 6,708 scanned trajectories leaking - [[Reasoning Trace Privacy]], [[Context Engineering]]
 - Speculative tool execution gates on purity but not authority - [[Agent Security and Governance]], [[Speculative Tool Execution]]
@@ -90,13 +93,12 @@ materially different angle, and that post must say what is new.
 
 <!-- Page - post date - cooldown ends. Prune entries once expired. -->
 
-- [[Context Engineering]] - posted 2026-09-05 - cooldown ends 2026-10-17
-- [[Serving Benchmarks and Goodput]] - posted 2026-09-11 - cooldown ends 2026-10-23
 - [[Agent Memory]] - posted 2026-09-18 - cooldown ends 2026-10-30
 - [[Just-in-Time Agentic OCR]] - posted 2026-09-25 - cooldown ends 2026-11-06
 - [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
 - [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
 - [[KV Cache]] - drafted 2026-10-16 - cooldown ends 2026-11-27
+- [[Text-to-SQL Agents]] - drafted 2026-10-23 - cooldown ends 2026-12-04
 
 ## Related pages
 

@@ -329,9 +329,13 @@ author flags.
 
 This is the first thing on this page that attaches a **number** to the gap between workflow self-improvement
 and strong RSI. The existing table calls strong RSI "mostly aspirational" on the grounds that nobody has
-demonstrated it; Naam's contribution is that the measured parallel-scaling curves are **five to ten times below
-self-sustaining strength** on his earlier reading of the software feedback loop, so the gap is quantitative
-rather than merely undemonstrated. His forecast — allowing a **six-month** research-to-publication lag — is no
+demonstrated it; Naam's contribution is a quantitative gap rather than a merely undemonstrated one. The
+number itself comes from his **earlier** RSI post, where he calibrated the measured **software feedback
+loop** — gains from smarter models — at roughly **five to ten times below self-sustaining strength**. The
+parallel-scaling curves assembled in *this* essay are separate third-party evidence; Naam attaches no
+comparable multiple to them, reporting instead that multi-agent intelligence gains look logarithmic or
+sub-logarithmic and therefore "too weak to make RSI self-sustaining". His forecast — allowing a
+**six-month** research-to-publication lag — is no
 sustained acceleration in the Epoch Capabilities Index through the first half of 2027 (see [[Epoch AI]]), and
 he states he expects data to correct him.
 

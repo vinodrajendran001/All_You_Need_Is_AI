@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-07
+updated: 2026-10-23
 tags:
   - concept
   - voice-ai
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-21-hume-ai-asr-benchmark-optimization
   - src-2026-08-30-halo-research-sopro-v2
   - src-2026-09-22-bytebytego-openai-gpt-live
+  - src-2026-08-12-alyona-vert-agent-frameworks-sdks
 status: active
 ---
 

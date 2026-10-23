@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-29
-updated: 2026-10-07
+updated: 2026-10-23
 entity_kind: organization
 tags:
   - entity
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-09-07-rai-lejepa
   - src-2026-10-05-rai-jev-decision-models
+  - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
+  - src-2026-06-17-prateek-singh-kv-cache-turboquant
 status: active
 ---
 

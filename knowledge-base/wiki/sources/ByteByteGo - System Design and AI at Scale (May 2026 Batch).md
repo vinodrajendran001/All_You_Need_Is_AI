@@ -5,7 +5,7 @@ source_title: "ByteByteGo - System Design and AI at Scale (May 2026 Batch)"
 source_author: ByteByteGo
 source_url: https://blog.bytebytego.com
 created: 2026-05-21
-updated: 2026-10-09
+updated: 2026-10-23
 tags:
   - source/summary
   - system-design
@@ -173,6 +173,7 @@ DoorDash’s orchestrator, Grab’s classifier-plus-specialists pattern, Figma�
 - [[Retrieval-Augmented Generation]]
 - [[Search-Augmented Language Models]]
 - [[Semantic Recommendation Systems]]
+- [[Text-to-SQL Agents]]
 
 ## Raw captures
 

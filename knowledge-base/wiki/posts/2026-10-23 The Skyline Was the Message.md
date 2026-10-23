@@ -54,9 +54,9 @@ https://www.lesswrong.com/posts/WHEQps5PK8LrrcTAb/how-does-fable-5-1-hide-messag
 
 ## X post
 
-**A) Standalone** (240 chars):
+**A) Standalone** (249 chars):
 
-In a prompted experiment, Fable hid messages in images; a fresh session used tools to read them without the drawing code. The pixels carried the message. Test images as AI inputs, not decoration. Nikita Kezin et al.: https://www.lesswrong.com/posts/WHEQps5PK8LrrcTAb/how-does-fable-5-1-hide-messages-in-images
+In a prompted experiment, AI model Fable hid messages in images; a fresh session used tools to read them without the drawing code. The pixels carried the message. Test images as AI inputs, not decoration. Nikita Kezin et al.: https://www.lesswrong.com/posts/WHEQps5PK8LrrcTAb/how-does-fable-5-1-hide-messages-in-images
 
 **B) Thread:**
 

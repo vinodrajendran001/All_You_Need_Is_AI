@@ -2319,3 +2319,27 @@ Two concepts and the three control pages changed, and one lint report was added.
 **422 raw files** remain byte-identical; source summaries, entities, posts, queries,
 templates, earlier lint reports, and the historical log body are preserved. Nothing was
 staged, committed, or pushed.
+
+## [2026-10-23] post | The Skyline Was the Message
+
+- Replaced the rejected [[2026-10-23 A Safe Query Is Not a Correct Answer]] with
+  [[2026-10-23 The Skyline Was the Message]], containing LinkedIn copy, an X standalone,
+  and a seven-post X thread. Reused the **2026-10-16 through 2026-10-23** window and included
+  the supplemental October 23 ingest rather than advancing to an empty same-day window.
+- Selected the image-message experiment from [[Nikita Kezin et al - Messages in Rendered Images]].
+  The primary example explains how building heights can carry letters after rendering removes
+  drawing code. The reported **78%** recovery retains the **90%+ normalized string-similarity**
+  criterion, tool assistance, deliberate prompting, missing clean-image control, and distinction
+  from spontaneous concealment, instruction following, or monitor evasion.
+- Persisted the user's **no ByteByteGo for Post** preference in root `CLAUDE.md`, the social-post
+  template, and [[Post Archive]]. The exclusion covers selection, examples, attribution, and
+  inherited claims; mixed-source concepts require independent non-ByteByteGo evidence read
+  directly. It does not remove raw captures, source summaries, or historical posts.
+- Retained the rejected file as a visibly superseded `draft`. Replaced its active archive row,
+  topics, and cooldown with [[Chain-of-Thought Monitoring]] through **2026-12-04**. Removed the
+  ByteByteGo-based semantic-caching and sycophancy candidates from the active backlog; other
+  archived candidates must pass the source filter when revisited.
+- Added reader, factual-provenance, source-exclusion, and X compression checks to the replacement.
+  Current inventory is **607 typed pages**, including **11 social posts** (nine ready and two
+  superseded drafts). Source ownership remains **347 IDs** across **321 summaries**; no new
+  evidence source was created.

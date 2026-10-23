@@ -89,11 +89,22 @@ Weekly LinkedIn and X posts drafted from the most recent ingests. One idea per r
 the **same file**. Output is paste-ready; nothing is published automatically. The vault changes often, so every run
 recomputes its own window and its own anti-repeat state — never assume a fixed cadence or a hardcoded date.
 
+**Editorial source exclusion (user preference, 2026-10-23):** Do not use ByteByteGo for Post
+topic selection, examples, factual support, or attribution. Check source authors, publishers,
+URLs, and underlying citations, not just page titles. A mixed-source concept is eligible only
+for claims independently supported by a non-ByteByteGo source that is read and cited directly;
+do not repackage ByteByteGo evidence through a concept page or another roundup. Apply this
+filter to archived candidates too. This restriction is for Post only: preserve existing wiki
+evidence, raw captures, and historical posts.
+
 1. **Orient.** Read `knowledge-base/wiki/posts/Post Archive.md` first: the posts table, the topics covered, and
    the spine pages still in cooldown.
-2. **Compute the window.** `covers_from` is the `covers_through` date of the newest post in `wiki/posts/`; if there
-   are no posts yet, use 7 days before today. `covers_through` is today. Because the start is anchored to the last
-   post rather than to a calendar week, skipped weeks are still covered on the next run.
+2. **Compute the window.** For a normal run, `covers_from` is the `covers_through` date of the newest
+   non-superseded `ready` or `published` post in the archive; if none exists, use 7 days before today.
+   `covers_through` is today. Because the start is anchored to the last post rather than to a calendar week,
+   skipped weeks are still covered on the next run. For an editorial replacement, reuse the rejected draft's
+   original window and rescan it, including same-day ingests added since that draft. Do not advance the window
+   merely because a draft was rejected.
 3. **Collect what changed.** Take every `## [YYYY-MM-DD] ingest | Title` heading in `wiki/log.md` inside the window,
    then cross-check with `git log --since=<covers_from> --name-only -- knowledge-base/wiki` for pages that changed
    without a log entry. The log entries are the primary signal because they already record why each source mattered.
@@ -121,7 +132,10 @@ recomputes its own window and its own anti-repeat state — never assume a fixed
    truth nor the setup, mechanism, or conclusion that makes the fact meaningful. Cut unverifiable claims rather
    than softening them, and record what was cut.
 8. **File.** Update the archive's posts table, topics covered, and cooldown list, then append a log entry using the
-   heading format `## [YYYY-MM-DD] post | Title`.
+   heading format `## [YYYY-MM-DD] post | Title`. When replacing an unpublished draft, retain the old file
+   as `draft` with a visible superseded notice and replacement link, move it to the archive's superseded
+   list, and remove its active topic/cooldown entry. Preserve historical log entries. Refresh index and
+   overview page totals when adding a file.
 
 Posts are derived output, not evidence: they declare no `source_id`s, they are never cited by concept, entity, or
 synthesis pages, and they do not participate in source-ID parity or traceability checks. Attribution lives in

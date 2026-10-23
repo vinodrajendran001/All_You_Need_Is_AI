@@ -11,10 +11,21 @@ status: active
 
 Ledger of LinkedIn and X posts drafted from this vault. Each run produces **one idea in one file, written for both
 platforms** — a long-form LinkedIn post plus an X standalone and thread. The **Post** workflow in the root `CLAUDE.md`
-reads this page first, then the newest post's `covers_through` date, to work out which ingest window it should cover next.
+reads this page first, then the newest non-superseded ready/published post's `covers_through`
+date, to work out which ingest window it should cover next. Editorial replacements reuse and
+rescan the rejected draft's original window, including later same-day ingests.
 
 Posts are derived output, not evidence. Concept, entity, and synthesis pages must never cite a post.
 Posts carry no `source_id`s of their own, so they do not affect source-ID parity across index, log, and overview.
+
+## Editorial source preferences
+
+**Exclude ByteByteGo from Post runs (2026-10-23 onward).** Do not select its topics or use its
+examples, claims, or attribution, including indirectly through shared concepts or roundups.
+Check underlying author, publisher, URL, and citations. A mixed-source concept remains eligible
+only for claims independently supported by non-ByteByteGo evidence read and cited directly.
+Recheck old candidates against this preference before scoring. This does not remove ByteByteGo
+from ingestion, wiki evidence, or historical posts.
 
 ## Cooldown rule
 
@@ -34,10 +45,13 @@ materially different angle, and that post must say what is new.
 | 2026-10-03 | [[2026-10-03 The Weakest Layers Aren't the Ones to Remove]] | 2026-09-25 → 2026-10-03 | [[Model Quantization and Efficiency]] | LinkedIn, X | ready |
 | 2026-10-09 | [[2026-10-09 The Model Can Read Without Writing]] | 2026-10-03 → 2026-10-09 | [[Semantic Recommendation Systems]] | LinkedIn, X | ready |
 | 2026-10-16 | [[2026-10-16 The Next Model Can Skip the Reread]] | 2026-10-09 → 2026-10-16 | [[KV Cache]] | LinkedIn, X | ready |
-| 2026-10-23 | [[2026-10-23 A Safe Query Is Not a Correct Answer]] | 2026-10-16 → 2026-10-23 | [[Text-to-SQL Agents]] | LinkedIn, X | ready |
+| 2026-10-23 | [[2026-10-23 The Skyline Was the Message]] | 2026-10-16 → 2026-10-23 | [[Chain-of-Thought Monitoring]] | LinkedIn, X | ready |
 
 ## Superseded drafts
 
+- [[2026-10-23 A Safe Query Is Not a Correct Answer]] - rejected editorially and replaced
+  on 2026-10-23 by [[2026-10-23 The Skyline Was the Message]]. Retained as `draft` for
+  historical log links; not published and excluded from active topics and spine cooldown.
 - [[2026-10-16 The Correction Did Not Reach the Report]] - rejected editorially and replaced
   on 2026-10-16. Retained as `draft` so the append-only log link remains valid; not published
   and excluded from spine cooldown.
@@ -46,7 +60,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
-- 2026-10-23 - text-to-sql agents, guardrails vs correctness, data agents, pre-execution validation
+- 2026-10-23 - messages in images, visual information channels, multimodal evaluation
 - 2026-10-16 - cross-model cache handoffs, context transfer, model routing, internal state portability
 - 2026-10-09 - language models without text generation, catalog ranking, bounded output, product output design
 - 2026-10-03 - model pruning, component interactions, system optimization, model compression
@@ -60,7 +74,8 @@ materially different angle, and that post must say what is new.
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
 
-- Cache similarity is not answer correctness: a semantic cache returns a stored answer because two questions embed closely, which is a claim about wording, not about whether the stored answer still holds. Scored 27/30 on 2026-10-23, losing only because it argues the same shape as that week's text-to-SQL post - [[Semantic Caching]]
+- An AI supervisor can spend the attention it is meant to save: McAteer reports skimming checks triggered on 99 of 111 turns; frequency is not a false-positive rate or measured usefulness. Scored 28/30 in the October 23 replacement round - [[Coding Agent Harness]], [[Dan McAteer - Claude Mods and the Attention Interface]]
+- Teach a decision model that the correct answer may be absent: Base Labs describes adding abstention options and sometimes removing the correct choice during training; reliability gains from this ingredient are not isolated. Scored 25/30 in the October 23 replacement round - [[Typed Probabilistic Decision Models]], [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 - Acceptance is not end-to-end speed: speculative-decoding gains depend on draft cost and serving conditions. Reframed after the October 16 lint; the earlier 1.21×–2× cap reading is withdrawn - [[Speculative Decoding]], [[Serving Benchmarks and Goodput]]
 - Reasoning traces as an unsanitisable secrets surface: 328 of 6,708 scanned trajectories leaking - [[Reasoning Trace Privacy]], [[Context Engineering]]
 - Speculative tool execution gates on purity but not authority - [[Agent Security and Governance]], [[Speculative Tool Execution]]
@@ -83,7 +98,6 @@ materially different angle, and that post must say what is new.
 - Precompute fixed choices: four cached candidate actions reduce each decision from five model passes to one, with the method reported 13x faster around 1,000 candidates - [[Typed Probabilistic Decision Models]], [[Inference Efficiency Frontier]]
 - Improve an AI application one tested change at a time: held-out cases, a revert rule, a noise floor, and a warning to change objectives when the evaluation is ~95% saturated - [[Agentic Testing]], [[Harness Optimization]]
 - Agents can pay through ordinary web requests, but payment proof does not solve identity, reputation, abuse, refunds, or disputes - [[Agent Payment Protocols]], [[Agent Security and Governance]]
-- Test whether an assistant changes its mind for evidence rather than pressure; an anti-agreement score must not reward stubbornness - [[Sycophancy]], [[ByteByteGo - Why LLMs Agree With You Even When You Are Wrong]]
 - Check the quantity before setting a decision threshold: Jev Choice's confidence field describes concentration, not the winning option's probability - [[Typed Probabilistic Decision Models]], [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - Replit's reported coordination configuration is more accurate and costlier than its one-worker sidekick; a useful quality/cost tradeoff is not a win on both axes - [[Graph Engineering]], [[Replit - Free the Models - Harness Design at the Frontier]]
 - Test detection before trusting a quiet monitor: embedded-evaluation principles are a proposal, not evidence that a live regime has already worked - [[Embedded Evaluation]], [[Apollo Research - Principles for Embedded Evaluations]]
@@ -98,7 +112,7 @@ materially different angle, and that post must say what is new.
 - [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
 - [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
 - [[KV Cache]] - drafted 2026-10-16 - cooldown ends 2026-11-27
-- [[Text-to-SQL Agents]] - drafted 2026-10-23 - cooldown ends 2026-12-04
+- [[Chain-of-Thought Monitoring]] - drafted 2026-10-23 - cooldown ends 2026-12-04
 
 ## Related pages
 

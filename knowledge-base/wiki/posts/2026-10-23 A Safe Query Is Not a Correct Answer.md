@@ -20,10 +20,14 @@ topics:
   - pre-execution validation
 covers_from: 2026-10-16
 covers_through: 2026-10-23
-status: ready
+status: draft
 ---
 
 # A Safe Query Is Not a Correct Answer
+
+> **Superseded on 2026-10-23:** Rejected editorially and replaced by
+> [[2026-10-23 The Skyline Was the Message]]. Retained for history only; do not publish.
+> Excluded from active topics and spine cooldown. Future Post runs exclude ByteByteGo.
 
 ## LinkedIn post
 

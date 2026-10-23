@@ -359,7 +359,7 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 23, 2026: **606 typed wiki pages**, including **321 source summaries**
+As of October 23, 2026: **607 typed wiki pages**, including **321 source summaries**
 representing **347 source IDs**, **136 concepts**, **88 entities**, and **43 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
@@ -1001,7 +1001,7 @@ its unchanged article body adds no source ID or independent estimate.
 
 ## Posts
 
-- [[Post Archive]] - LinkedIn posts drafted from this vault, with the window each covered and the spine pages in cooldown.
+- [[Post Archive]] - LinkedIn and X drafts, covered windows, source exclusions, and spine cooldowns; latest active draft: [[2026-10-23 The Skyline Was the Message]].
 
 ## Queries
 

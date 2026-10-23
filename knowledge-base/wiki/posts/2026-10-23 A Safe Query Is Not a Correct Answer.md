@@ -29,7 +29,7 @@ status: ready
 
 A safe query and a correct answer are not the same thing.
 
-Companies are wiring language models to their data warehouses so anyone can ask a question in plain English - "how many active customers did we have last quarter?" - and get a number back instead of filing a ticket with the data team
+Companies are wiring language models to their data warehouses so anyone can ask a question in plain English - "how many active customers did we have last quarter?" - and get a number back instead of filing a ticket with the data team.
 
 Almost all the engineering attention goes to making that safe. It should. But the safety work is quietly being mistaken for correctness work, and they are different problems.
 

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-10-19
+updated: 2026-10-23
 entity_kind: organization
 tags:
   - entity
@@ -27,6 +27,8 @@ source_ids:
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 

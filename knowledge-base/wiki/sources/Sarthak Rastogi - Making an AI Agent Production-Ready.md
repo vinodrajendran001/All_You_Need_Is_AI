@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-06
-updated: 2026-10-19
+updated: 2026-10-23
 source_id: src-2026-07-06-sarthak-rastogi-production-agent
 source_title: "Making an AI Agent Production-Ready [Tutorial With Code]"
 source_author: Sarthak Rastogi
@@ -49,13 +49,10 @@ This is the vault's most concrete end-to-end **production agent architecture**, 
 ## Affected pages
 
 - [[AI Agents in Production]]
-- [[Agentic Loop]]
-- [[Context Engineering]]
 - [[LLM-as-a-Judge]]
-- [[Model Routing]]
 - [[Multi-Turn Evaluation]]
-- [[Retrieval-Augmented Generation]]
 - [[Sarthak Rastogi]]
+- [[Semantic Caching]]
 
 ## Citations
 - Source URL: [sarthakai.substack.com](https://sarthakai.substack.com/p/making-an-ai-agent-production-ready)

@@ -354,8 +354,9 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 23, 2026: **598 typed wiki pages**, including **316 source summaries**
-representing **342 source IDs**, **136 concepts**, and **88 entities**. Duplicate captures
+As of October 23, 2026: **599 typed wiki pages**, including **316 source summaries**
+representing **342 source IDs**, **136 concepts**, **88 entities**, and **42 lint reports**.
+Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
 
@@ -1039,6 +1040,7 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-10-09 Lint Pass]] - Thirty-ninth pass: repaired 37 unlinked related titles and nine duplicates, corrected stale training, reasoning, harness, and inference claims, and traced the three newest chains at exact 301-ID parity.
 - [[2026-10-16 Lint Pass]] - Fortieth pass: corrected illustrative speculation timings, decoder guarantees, reasoning-control and token-ablation claims, monitoring inferences, and stale catalog metadata; 542 reachable pages at exact 309-ID parity.
 - [[2026-10-19 Lint Pass]] - Forty-first pass: restored the log's source-ID ledger, expanded seven thin summaries and corrected nine concept claims they exposed, added 30 reverse affected-page links, attributed frontmatter-only citations, and repaired Goodfire-chain qualifiers; 557 reachable pages at exact 317-ID parity.
+- [[2026-10-23 Lint Pass]] - Forty-second pass: traced all 25 new source chains across 118 consumer edges, corrected a Genie Ontology GA claim the capture explicitly warned against and a misattributed Naam figure, connected two new concepts to existing vault evidence, and cleared the first vault-wide affected-page reciprocity measurement from 22 violations to 0; 599 pages at exact 342-ID parity.
 
 ## Control files
 

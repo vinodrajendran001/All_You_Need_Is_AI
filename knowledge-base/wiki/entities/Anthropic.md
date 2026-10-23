@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-10-19
+updated: 2026-10-23
 entity_kind: organization
 tags:
   - entity
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-08-25-jacob-peake-ai-chip-architectures
 status: active
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-10-23
 entity_kind: person
 tags:
   - entity
@@ -11,6 +11,7 @@ tags:
   - writing
 source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
+  - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 status: active
 ---
 

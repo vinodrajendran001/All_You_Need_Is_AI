@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-06
-updated: 2026-10-09
+updated: 2026-10-23
 source_id: src-2026-07-06-alphasignal-self-improving-harnesses
 source_title: "Why self-improving harnesses are the next frontier for AI developers"
 source_author: Alpha Signal
@@ -57,10 +57,8 @@ This source gives [[Agent Skill]] two harness-optimization examples and pushes [
 
 - [[Alpha Signal]]
 - [[Agent Skill]]
-- [[Agentic Loop]]
 - [[Coding Agent Harness]]
 - [[Recursive Self-Improvement]]
-- [[Reward Design for RL]]
 
 ## Citations
 

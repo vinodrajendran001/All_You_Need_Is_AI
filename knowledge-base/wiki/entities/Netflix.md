@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-09
-updated: 2026-10-19
+updated: 2026-10-23
 entity_kind: organization
 tags: [entity, organization, machine-learning, serving, infrastructure]
 source_ids:
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-07-17-netflix-in-house-llm-serving
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-05-21-bytebytego-batch
 status: active
 ---
 

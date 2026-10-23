@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-23-vynnytskyi-genie-explained
   - src-2026-06-21-vynnytskyi-modern-data-platform
+  - src-2026-05-21-bytebytego-batch
 status: active
 ---
 
@@ -69,12 +70,36 @@ authorization boundary rather than introducing a new one — a notably better po
 guardrails onto an unconstrained query interface. See [[Agent Security and Governance]] and
 [[Lakehouse Architecture]].
 
+### Guardrails sit before execution, not after
+
+[[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]] supplies the vault's only **production**
+text-to-SQL deployment, and it is the counterweight to the vendor material above. Grab's Analytics Data
+Warehouse team automated an investigation workflow over **15,000+ tables** — roughly half the queries in
+its data lake, serving about **1,000 monthly internal users**. The team's observation is the one that
+justifies the whole category: the questions varied constantly, but the **investigation playbook stayed
+the same** — search the catalog, trace lineage, validate with SQL, check pipeline logs. Consistency of
+process, not of question, is what made the work automatable.
+
+Its guardrails are structured as layers that run **before** any query executes. A Classifier extracts
+table and column references and rejects PII requests and out-of-scope questions up front. Every
+generated query is then validated for PII column access, destructive operations such as `DELETE` or
+`DROP`, **missing partition filters** — which would otherwise scan an entire table rather than the
+relevant slice — and schema validity. The Data Agent validates schemas specifically to avoid
+unnecessary scans.
+
+This is worth separating from the failure mode below. Grab's layers prevent **dangerous and expensive**
+queries; none of them establish that a permitted query returns the **right number**. Guardrails and
+correctness evaluation are different problems, and the vault still holds a source for only the first.
+Grab's reported gains — routine inquiries mostly handled by the system, resolution time down an **order
+of magnitude** — are first-party and unablated.
+
 ### The failure mode
 
 **A text-to-SQL agent can answer confidently from poor data.** The output is a fluent sentence and a
 number, and nothing in the interface distinguishes a correct aggregation from a wrong join. This is the
 case for [[Embedded Evaluation]] and [[LLM-as-a-Judge]]-style harnesses rather than spot-checking, and
-the vault's source supplies **no evaluation harness** for detecting it.
+**no source in the vault supplies an evaluation harness** for detecting it — Grab's pre-execution
+validation is the closest thing, and it checks safety and cost rather than correctness.
 
 ## Open questions
 
@@ -107,4 +132,5 @@ the vault's source supplies **no evaluation harness** for detecting it.
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Genie Explained]]
 - [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]
+- [[ByteByteGo - System Design and AI at Scale (May 2026 Batch)]]
 - [[Uber]]

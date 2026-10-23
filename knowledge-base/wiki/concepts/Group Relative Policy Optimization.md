@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-19
+updated: 2026-10-23
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-27-romero-policy-gradient-llms
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-08-20-radixark-miles-v0-1
 status: active
 ---
 

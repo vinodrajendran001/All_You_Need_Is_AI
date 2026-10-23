@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-10-23
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,7 @@ tags:
   - code-execution
 source_ids:
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
+  - src-2026-08-24-openai-builders-guide-gpt-5-6
 status: active
 ---
 

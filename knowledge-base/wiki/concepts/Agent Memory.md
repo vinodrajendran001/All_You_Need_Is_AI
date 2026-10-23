@@ -36,7 +36,10 @@ Agent memory is the set of mechanisms by which an agent retains information beyo
 
 ## Why it matters
 
-Without memory, every agent interaction starts from scratch. Memory is what enables agents to accumulate context over time, maintain user preferences, and build on earlier steps in a workflow. It is also what makes agent behaviour auditable — memory is explicit storage, not a hidden internal state.
+Persistent memory lets agents accumulate context across sessions, maintain user preferences,
+and build on earlier work. External stores can make retained evidence and retrieval decisions
+inspectable; this is an architectural choice, not a property of every kind of memory.
+The structural-memory approaches discussed below retain information inside model computation.
 
 ## Current synthesis
 
@@ -46,7 +49,9 @@ Without memory, every agent interaction starts from scratch. Memory is what enab
 - **Context** = everything currently in the prompt. Temporary. Gone when the interaction ends.
 - **Memory** = persistent storage that outlives the prompt. Loaded into context on demand.
 
-The model never accesses memory directly. It only sees what the surrounding system chooses to include in the prompt. This keeps memory auditable and controllable.
+In this external-store design, the model sees the memory that the application retrieves into
+its context. Explicit storage and retrieval make inspection and access control possible;
+they do not establish that either control is implemented correctly.
 
 ### Explicit over implicit
 
@@ -80,7 +85,12 @@ The Grab production case from [[ByteByteGo - System Design and AI at Scale (May 
 
 Simple exact-match retrieval ("get all facts") is surprisingly powerful for small knowledge bases and is the right starting point. The upgrade path to semantic retrieval (embedding-based lookup for large memory stores) is a separate architectural decision that need not happen at the beginning.
 
-The important invariant is: **memory content should always be auditable plain data, not an opaque learned embedding.** Even when embeddings are used for retrieval, the retrieved item should be a readable fact.
+For this text-memory pattern, retain inspectable facts rather than only an opaque retrieval
+embedding. The broader external-memory requirement is **traceable evidence and controlled
+retrieval**, not that every record be plain text. [[Image-Aware AI Agent Memory - Oracle 26.8]]
+illustrates the distinction: a searchable caption can point to original image bytes that
+remain available for authorized inspection. Its storage design does not by itself prove
+correct retrieval or authorization.
 
 ### State vs memory
 

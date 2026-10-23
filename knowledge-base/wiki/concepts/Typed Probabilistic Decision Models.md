@@ -213,8 +213,9 @@ per million input tokens** (d1) and **$0.042 per million input tokens** (d1-ultr
 2026 — worth noting because **$0.042 per million input tokens** now appears in this vault attached to
 three different products, which makes it a list-price convention rather than a distinguishing fact.
 
-The calibration figures are the first third-party probability-quality measurements this page holds for
-Jev. Brier scores on saved out-of-fold probabilities, **before → after Platt scaling**: Jev **0.187 →
+Husain adds task-specific probability-quality measurements to the third-party calibration studies
+already reported secondhand by Rai above. His Brier scores on saved out-of-fold probabilities,
+**before → after Platt scaling**: Jev **0.187 →
 0.188**, Liquid d1-ultra **0.173 → 0.172**, OpenAI **0.159 → 0.164**, with an exploratory
 direct-probability refit giving OpenAI **0.154**. Brier is **not** an ECE and mixes discrimination with
 calibration, so these neither replace nor contradict the **0.028 pooled / 0.074 mean-dataset** Choice ECE

@@ -91,7 +91,7 @@ delete-then-insert is non-atomic.
 ## Affected pages
 
 - [[Open Table Formats]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Table Layout Optimization]]
 

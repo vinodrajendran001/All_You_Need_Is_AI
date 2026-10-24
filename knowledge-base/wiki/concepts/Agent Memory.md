@@ -364,7 +364,7 @@ hydration need access checks, as [[Multi-Tenant Agent Architecture]] makes expli
 
 - [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[Multi-Turn Evaluation]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]

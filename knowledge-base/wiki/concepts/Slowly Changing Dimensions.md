@@ -87,7 +87,7 @@ columns and API naming are product-specific; **`MERGE` is the portable fallback.
 - [[Medallion Architecture]]
 - [[Table Layout Optimization]]
 - [[Schema-Driven Knowledge Base]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - SCD Type 1 and Type 2 in Delta Lake]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Medallion Architecture Explained Simply]]

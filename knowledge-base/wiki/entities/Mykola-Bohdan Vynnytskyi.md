@@ -77,7 +77,7 @@ established by evidence presented in the series.
 
 ## Related pages
 
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Lakehouse Architecture]]
 - [[Open Table Formats]]
 - [[Columnar Storage Formats]]

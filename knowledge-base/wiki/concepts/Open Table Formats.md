@@ -111,7 +111,7 @@ only form that functions as a point-in-time backup.
 - [[Slowly Changing Dimensions]]
 - [[Medallion Architecture]]
 - [[Agent Security and Governance]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Data Formats Explained]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Delta Lake in Practice]]

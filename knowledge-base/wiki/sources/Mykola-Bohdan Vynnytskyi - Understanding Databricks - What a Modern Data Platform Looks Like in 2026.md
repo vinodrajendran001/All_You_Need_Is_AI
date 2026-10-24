@@ -85,7 +85,7 @@ to the model at all.
 
 - [[Lakehouse Architecture]]
 - [[Operational Analytical Convergence]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Text-to-SQL Agents]]
 

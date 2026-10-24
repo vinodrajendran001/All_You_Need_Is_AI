@@ -89,7 +89,7 @@ unpacked before being repeated.
 - [[Columnar Storage Formats]]
 - [[Agent Memory]]
 - [[Approximate Nearest-Neighbor Search]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Lakebase and LTAP]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - What a Modern Data Platform Looks Like in 2026]]

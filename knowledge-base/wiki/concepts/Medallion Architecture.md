@@ -90,7 +90,7 @@ without evidence, ambiguity the pipeline was built to resolve once. Curation is 
 - [[Text-to-SQL Agents]]
 - [[Declarative Data Pipeline Deployment]]
 - [[Schema-Driven Knowledge Base]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Medallion Architecture Explained Simply]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - What a Modern Data Platform Looks Like in 2026]]

@@ -1305,7 +1305,7 @@ clustering for file contents; [[Operational Analytical Convergence]] holds LTAP'
 with HTAP, unifying storage while keeping two purpose-built engines;
 [[Text-to-SQL Agents]] holds the semantic-layer argument from the Genie article;
 [[Declarative Data Pipeline Deployment]] holds version-controlled desired state as the
-alternative to hand-built UI objects. [[Databricks]] ties the components together. The series
+alternative to hand-built UI objects. [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]] ties the components together. The series
 is a practitioner tutorial: its comparative and performance claims are the author's
 experience, not measurements.
 

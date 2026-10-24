@@ -88,7 +88,7 @@ logic that makes bytes-scanned billing tractable.
 
 - [[Columnar Storage Formats]]
 - [[Open Table Formats]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture

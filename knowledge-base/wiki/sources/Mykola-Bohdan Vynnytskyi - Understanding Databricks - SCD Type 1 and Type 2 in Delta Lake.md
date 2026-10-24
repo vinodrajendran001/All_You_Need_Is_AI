@@ -75,7 +75,7 @@ separates using a declarative API from debugging it when sequencing goes wrong.
 ## Affected pages
 
 - [[Slowly Changing Dimensions]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture

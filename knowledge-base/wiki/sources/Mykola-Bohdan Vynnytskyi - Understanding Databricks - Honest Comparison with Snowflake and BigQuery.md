@@ -81,7 +81,7 @@ vendor exit possible at all.
 
 - [[Lakehouse Architecture]]
 - [[Mykola-Bohdan Vynnytskyi]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 
 ## Raw capture
 

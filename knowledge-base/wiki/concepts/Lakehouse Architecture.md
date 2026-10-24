@@ -108,7 +108,7 @@ partly shipped**.
 - [[Declarative Data Pipeline Deployment]]
 - [[Table Layout Optimization]]
 - [[Agent Security and Governance]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - What a Modern Data Platform Looks Like in 2026]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Core Components]]

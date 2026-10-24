@@ -90,7 +90,7 @@ such choices.
 ## Affected pages
 
 - [[Operational Analytical Convergence]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Lakehouse Architecture]]
 

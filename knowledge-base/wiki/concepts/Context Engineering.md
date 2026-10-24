@@ -438,7 +438,7 @@ has an ablation behind it.
 
 - [[Plawan Rath et al - The Thin Orchestrator]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Meta]]
 - [[Continual Learning for Agents]]
 - [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]

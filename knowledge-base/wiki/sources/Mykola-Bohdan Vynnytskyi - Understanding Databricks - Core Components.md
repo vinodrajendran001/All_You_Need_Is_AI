@@ -87,7 +87,7 @@ evidence-before-merge discipline this vault tracks under [[Agentic Testing]].
 
 - [[Lakehouse Architecture]]
 - [[Declarative Data Pipeline Deployment]]
-- [[Databricks]]
+- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture

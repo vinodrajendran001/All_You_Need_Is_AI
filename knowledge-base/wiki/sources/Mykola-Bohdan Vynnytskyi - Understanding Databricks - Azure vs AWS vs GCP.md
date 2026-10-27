@@ -78,7 +78,7 @@ means DBU rate comparisons address a minority of the bill.
 ## Affected pages
 
 - [[Lakehouse Architecture]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture

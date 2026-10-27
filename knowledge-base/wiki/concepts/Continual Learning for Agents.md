@@ -136,7 +136,7 @@ files change.
 ## Related pages
 
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Context Engineering]]
 - [[Agentic Reinforcement Learning]]
 - [[Reward Design for RL]]

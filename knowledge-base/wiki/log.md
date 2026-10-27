@@ -2094,7 +2094,7 @@ Thirty-third comprehensive lint pass, run the same day as the eleven-source Sept
   [[Open Table Formats]], [[Columnar Storage Formats]], [[Slowly Changing Dimensions]],
   [[Table Layout Optimization]], [[Operational Analytical Convergence]],
   [[Text-to-SQL Agents]], [[Declarative Data Pipeline Deployment]], and [[Semantic Caching]] -
-  and **six entities**: [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]], [[Mykola-Bohdan Vynnytskyi]], [[Hamel Husain]],
+  and **six entities**: [[Databricks]], [[Mykola-Bohdan Vynnytskyi]], [[Hamel Husain]],
   [[Uber]], [[Ramez Naam]], and [[PyTorch]].
 - Integrated all declared consumers: **28 existing concepts and five existing entities**.
   Among them, [[KV Cache]] was narrowed to the prefix-reuse mechanism and now defers to

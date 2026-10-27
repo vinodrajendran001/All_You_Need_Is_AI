@@ -89,7 +89,7 @@ email, and username, and had to be scrubbed before the first commit.
 ## Affected pages
 
 - [[Declarative Data Pipeline Deployment]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture

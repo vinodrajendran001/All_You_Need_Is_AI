@@ -80,7 +80,7 @@ over Bronze inherits every source inconsistency the Silver layer exists to remov
 
 - [[Medallion Architecture]]
 - [[Slowly Changing Dimensions]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture

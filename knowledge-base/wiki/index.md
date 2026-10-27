@@ -526,7 +526,7 @@ exclude git-ignored local query files.
 
 ## Entities
 
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]] - Lakehouse platform whose components - Delta Lake, Unity Catalog, Genie, Lakebase, Mosaic AI - recur across this vault's data-platform pages.
+- [[Databricks]] - Lakehouse platform whose components - Delta Lake, Unity Catalog, Genie, Lakebase, Mosaic AI - recur across this vault's data-platform pages.
 - [[Mykola-Bohdan Vynnytskyi]] - Author of the thirteen-part "Understanding Databricks" series, this vault's largest body of data-platform material.
 - [[Hamel Husain]] - Evaluation practitioner who tuned, calibrated, and priced a decision model used as an automated judge.
 - [[Uber]] - Source of Genie, a Slack retrieval assistant for engineering support; its reported figures are self-reported and partly unrecoverable.

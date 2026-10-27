@@ -99,7 +99,7 @@ substitutions.
 - [[Agent Skill]]
 - [[Coding Agent Harness]]
 - [[AI-Native Software Development Lifecycle]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - How to Structure a Databricks Project from Scratch]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Core Components]]

@@ -427,7 +427,7 @@ prices, and these harnesses.
 - [[Coding Agent Harness]]
 - [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[ByteByteGo - The LLM Blindspot - Lost in the Middle]]
 - [[Multi-Turn Evaluation]]
 - [[Zhe Ren et al - Self-Improvements in Modern Agentic Systems]]

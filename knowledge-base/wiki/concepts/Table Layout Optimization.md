@@ -101,7 +101,7 @@ far back the table can be queried or restored.
 - [[Lakehouse Architecture]]
 - [[Medallion Architecture]]
 - [[Software Performance Engineering]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Optimizing Delta Tables]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Delta Lake in Practice]]

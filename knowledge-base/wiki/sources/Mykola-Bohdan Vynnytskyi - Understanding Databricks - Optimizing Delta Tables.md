@@ -82,7 +82,7 @@ is not a deletion guarantee**, and the physical erasure path has four steps and 
 ## Affected pages
 
 - [[Table Layout Optimization]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Columnar Storage Formats]]
 - [[Open Table Formats]]

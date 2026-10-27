@@ -478,7 +478,7 @@ rate of dropped rules is reported.
 
 - [[Plawan Rath et al - The Thin Orchestrator]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Meta]]
 - [[Continual Learning for Agents]]
 - [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]

@@ -128,7 +128,7 @@ validation is the closest thing, and it checks safety and cost rather than corre
 - [[Embedded Evaluation]]
 - [[LLM-as-a-Judge]]
 - [[Benchmark Optimization]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 - [[Mykola-Bohdan Vynnytskyi - Understanding Databricks - Genie Explained]]
 - [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]

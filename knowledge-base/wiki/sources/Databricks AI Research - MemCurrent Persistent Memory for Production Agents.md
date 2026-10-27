@@ -120,7 +120,7 @@ history into context is expensive rather than thorough.
 - [[Agent Memory]]
 - [[Context Engineering]]
 - [[Continual Learning for Agents]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 
 ## Raw capture
 

@@ -91,7 +91,7 @@ instead of introducing a new one.
 ## Affected pages
 
 - [[Text-to-SQL Agents]]
-- [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]
+- [[Databricks]]
 - [[Mykola-Bohdan Vynnytskyi]]
 
 ## Raw capture

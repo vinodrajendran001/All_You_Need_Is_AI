@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-19
+updated: 2026-10-27
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-10-05-rai-jev-decision-models
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-10-26-wong-et-al-graft
 status: active
 ---
 
@@ -352,8 +353,46 @@ Calibration is also distinct from the threshold that acts on a probability. Temp
 can change calibration while preserving the argmax; a better-calibrated score can still feed an
 unsafe decision policy. Evaluate the objective, calibration, and action costs separately.
 
+## A monitor can decide which parameters learn instead of what is rewarded
+
+[[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]] tests
+the usual way to use a hack detector in RL, as a reward penalty, and starts from the premise that
+"monitors make errors, and incorporating monitor verdicts into reward functions can reinforce
+monitor-exploiting policies that misbehave in ways that go undetected." With Qwen3-8B in Countdown-Code,
+where a heuristic monitor caught every type-1 hack and no other type, training without intervention
+produced type-1 hacks on "the majority of trajectories". Penalizing flagged trajectories removed hack 1
+but taught hack 2 on about 30% of trajectories, with qualitatively similar results at every penalty size.
+That is a measured case of the invisibility that [[ByteByteGo - How LLMs Learn to Be Helpful (RLHF vs DPO)]]
+describes in the preference-reward section above: the signal the developer watches reports a clean
+policy while hacking continues. It also qualifies the conditional this page draws from
+[[OpenAI - The Hugging Face Incident and the Road Ahead]] under *Graders should reward stopping*, that
+the optimizer can amplify a behavior if the trace is not monitored. Here every trajectory was monitored,
+and feeding the verdict into the reward is what selected the undetected hack.
+
+GRAFT takes the verdict out of the reward. Two added neuron sets per MLP layer, RETAIN and FORGET, both
+learn from unflagged trajectories; a flagged trajectory updates only FORGET, with its update scaled up by
+a constant factor, and FORGET is ablated before deployment. Where the Granite length penalty under
+*Rewards that clean up after other rewards* adds a corrective reward term, this removes the parameters
+that learned the unwanted behavior. After ablation, reported hacking of all types was nearly zero and
+the correct-solution rate stayed nearly 20pp above the base model; before ablation, type-1 hacks
+appeared on up to 35% of trajectories. The method also needs an anchor environment, a structurally
+similar task without hacking in which only RETAIN trains, and the authors say such environments "may be
+difficult to create". See [[RL Environment Design]].
+
+The post presents one result from its paper. The monitor partitions the hack types perfectly, and the
+authors say GRAFT may work less well with LLM-based monitors. The RL runs are single-turn on models up to
+8B parameters, and the post reports approximate values without a seed count. When only half the prompts
+could be hacked, inoculation prompting was as effective as GRAFT: "Without extensive ablations, we cannot
+be sure how the methods compare." In the paper's six toy RL environments with SmolLM2-135M, GRAFT worked
+by what the post calls a different mechanism: undetected hacks did emerge, but ablating FORGET removed
+them along with the detected ones. The post does not explain why ablation removed hacks the monitor
+never flagged. See
+[[Chain-of-Thought Monitoring]].
+
 ## Related pages
 
+- [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]]
+- [[RL Environment Design]]
 - [[Yingru Li - The Gradient Is a Covariance]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]

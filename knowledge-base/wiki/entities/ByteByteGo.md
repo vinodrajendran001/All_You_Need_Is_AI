@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -38,6 +38,7 @@ source_ids:
   - src-2026-10-17-bytebytego-chunking-strategies
   - src-2026-10-19-bytebytego-uber-genie
   - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
+  - src-2026-10-26-bytebytego-salesforce-agent-stack
 status: active
 ---
 
@@ -256,6 +257,19 @@ provider pricing ratios** — Anthropic prompt-cache reads at one tenth of ordin
 $1.35 against $2. No hit rates, latency deltas, or token savings are reported, and the piece carries
 the publisher's standard disclaimer that it is assembled from publicly shared details.
 
+## Executive interviews and a simulated demo are a third evidence class
+
+[[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] is built from the publisher's own
+interviews at Dreamforce 2026 with two [[Salesforce]] executives, so it sits between the explainers and
+the Uber relay above. The design is attributed to named people, but the walk-through follows a
+simulated healthcare company and patient, "but according to MK everything behind it runs in
+production". Its numbers are vendor-reported: an observation that instruction-following broke down
+beyond eight instructions, with no stated method; one demo's token counts across sessions of unequal
+length; and Agentic Work Units, a unit Salesforce defines for itself. The opening Datadog block is
+sponsorship, not part of the article. The durable contribution is the split of one prompt into four
+systems, recorded in [[Context Engineering]], [[Agent Security and Governance]], and
+[[Tool Roster Economics]].
+
 ## Open questions
 
 - **Does relaying a named deployment improve this source's evidence quality, or only relocate the
@@ -265,10 +279,13 @@ the publisher's standard disclaimer that it is assembled from publicly shared de
   lost to truncation in this vault's copy, and nothing on this page establishes whether the live
   article completes it.
 - No post from this publisher has yet reported a controlled comparison, an ablation, or a baseline of
-  its own. The vault treats its figures as orientation, and no later source has yet tested one.
+  its own. The vault treats its figures as orientation, and no later source has yet tested one. The
+  Salesforce piece is no exception: its token comparison is one vendor demo with unequal step counts.
 
 ## Related pages
 
+- [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
+- [[Salesforce]]
 - [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]
 - [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]]
 - [[Semantic Caching]]

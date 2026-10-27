@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-11
-updated: 2026-10-16
+updated: 2026-10-27
 entity_kind: person
 tags:
   - entity
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-09-06-rastogi-agent-observability
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
   - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-10-25-rastogi-agentcore-enterprise
 status: active
 ---
 
@@ -78,8 +79,22 @@ earlier evidence-first production discipline to coding assistants: the persisted
 not only the final message, must remain consistent with what was actually measured.
 The two equivalent captures represent one article and one experiment.
 
+## An enterprise platform checklist from a disclosed user
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]] moves his
+production standard from one agent to the platform around it. He lists seven properties — identity
+propagation, isolation, deterministic authorization, a governed tool plane, scoped memory,
+observability and evals, and operability as code — and warns that "If a platform can't give you all
+seven, you will end up building the missing ones yourself." He maps them onto AWS AgentCore, which he
+discloses he uses at work. His most transferable warning is that a gateway policy covers only traffic
+that passes through the gateway, so the runtimes behind it should accept calls only from the gateway
+(see [[Agent Security and Governance]]). Read it as an endorsement with a disclosed interest: it
+reports no measurements, its comparisons with other platforms are his judgment, its section on where
+AgentCore falls short is image-only in the capture, and the code is promised for a later article.
+
 ## Related pages
 
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]
 - [[Agentic Testing]]

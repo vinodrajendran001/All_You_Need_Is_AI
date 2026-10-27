@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-10-23
+updated: 2026-10-27
 entity_kind: organization
 tags:
   - entity
@@ -29,6 +29,7 @@ source_ids:
   - src-2026-10-15-potter-how-to-train-your-robot
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-10-21-nvidia-sentry-runtime
 status: active
 ---
 
@@ -175,6 +176,20 @@ permission checks concern an operator-defined model, vendor adversarial tests om
 and cross-agent permission composition remains ongoing work. This is not a proof of universal
 containment.
 
+## Sentry adds a hardware layer beneath OpenShell's software boundary
+
+[[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] describes NVIDIA Sentry, part of
+the OpenShell reference architecture, which runs on BlueField-4 DPUs rather than on the host. The post
+treats OpenShell's software boundary as still essential and adds "an independent hardware safeguard out
+of band": BlueField-4 sits on the node's only path to the model, a per-agent layer-4 firewall passes
+permitted traffic to an Envoy-based gateway for application-layer checks, DOCA Argus reads host memory
+without host-resident agents, and the protected record of agent activity is kept outside the agent's
+reach. For this vault, that makes NVIDIA's network hardware, not only its GPUs and OpenShell software,
+a candidate agent-security control point; see [[Agent Security and Governance]]. Like the OpenShell
+source above, it is not a proof of containment: it is a vendor post about a product planned for early
+next year, its millisecond figures are unmeasured vendor statements, it reports no detection or
+false-positive rates or overhead, and it offers no threat model for a compromised DPU.
+
 ## Cross-model cache conversion targets the handoff stage
 
 [[Ben Dickson - Cross-Model KV Cache Handoffs]] reports NVIDIA work mapping cached state
@@ -229,6 +244,7 @@ for either. Both are positioned as answers to the data shortage in [[Robot Train
 - [[Model Routing]]
 
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]
+- [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]
 - [[Agent Security and Governance]]
 - [[Coding Agent Harness]]
 

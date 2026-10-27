@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-11
-updated: 2026-09-11
+updated: 2026-10-27
 entity_kind: organization
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
   - models
 source_ids:
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-10-15-cohere-agent-teams
 status: active
 ---
 
@@ -18,7 +19,7 @@ status: active
 ## What it is
 
 AI company building enterprise-focused models and the North platform. Publishes engineering detail on its
-own serving infrastructure.
+own serving infrastructure, and research on organizing teams of coding agents.
 
 ## Why it matters here
 
@@ -33,6 +34,15 @@ causal model "remains open," which is a candid marker of how immature megakernel
 **real expert distributions give more speedup than synthetic uniform routing** (1.32× versus 1.14× at
 batch 8), because real requests concentrate on the same experts and leave more bubbles to fill — meaning
 the conventional way to benchmark MoE serving **understates** the technique.
+
+Cohere is also behind the vault's first controlled study of coding-agent teams.
+[[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] finds that where a lead places
+workers matters more than how many it adds: on ProgramBench, delegating only exploration and planning
+matched delegating every stage at half the cost, and a strong lead with sixteen cheap planning workers
+reached **61.8%** for **$155** against **63.2%** for **$510** from an all-Sol team delegating every
+stage. A weaker lead set a ceiling that cheap workers could not lift. This feeds [[Agent Delegation]],
+[[Model Routing]], and [[Test-Time Scaling]]. The models studied are GPT-5.6 tiers plus Claude and
+Gemini models, none of them Cohere's own, and the results are vendor-reported, mostly on one benchmark.
 
 ## Notes
 
@@ -54,3 +64,7 @@ the conventional way to benchmark MoE serving **understates** the technique.
 - [[Mixture of Experts]]
 - [[Serving Benchmarks and Goodput]]
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
+- [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
+- [[Agent Delegation]]
+- [[Model Routing]]
+- [[Test-Time Scaling]]

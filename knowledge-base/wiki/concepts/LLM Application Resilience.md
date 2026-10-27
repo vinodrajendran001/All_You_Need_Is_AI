@@ -14,6 +14,7 @@ source_ids:
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-10-19-vercel-durable-harness
+  - src-2026-10-16-opensearch-beyond-top-k
 status: active
 ---
 
@@ -203,6 +204,39 @@ keys, does not discuss a call that finished at the provider before its outcome r
 not say how a tool's own transient errors are handled. It is a vendor design with no reported
 failure-injection results.
 
+## Abstention can be graded and triggered by retrieval evidence instead of the model's own confidence
+
+[[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
+gives the *needs review* state above a graded form and a trigger outside the model. The semantic-failure
+section rules out model-reported confidence as an admission-control input, and
+[[ByteByteGo - Why Do LLMs Lie]] gave no method for calibration or retrieval thresholds. The OpenSearch
+post computes confidence from retrieval results and document metadata instead: top normalized score,
+score gap, coherence among the top hits, freshness, and source authority, weighted 0.35, 0.25, 0.20,
+0.10, and 0.10. The margin between that composite and a threshold picks the response: act at zero or
+above, caveat above -0.05, clarify above -0.15, escalate to a human above -0.25, and hard abstain
+below that.
+
+The threshold rises with the stakes of the action, not only with the type of question: a factual
+lookup needs 0.75 to be read and 0.90 to be acted on, an exploratory query 0.50 and 0.70. Abstention
+thus becomes a gate before a tool call, where the replay policy above acts after an interrupted one.
+The escalate rung is the fallback ladder's human handoff, reached through weak evidence on a request
+that raised no error; in this page's reading, the caveat and clarify rungs also bear on the
+queue-capacity question below, since they settle some low-margin cases without queuing human work.
+It is a per-request gate, not a circuit breaker, so the open question about fluent output at HTTP 200
+stands.
+
+The calibration problem moves rather than disappears. The composite is not a probability: with a
+single hybrid clause the min-max top hit is always 1.0, and the gap depends on how many hits came back.
+The authors' remedy, sweeping thresholds over a judged query set to maximize F1 or hold false acts
+under a target rate, is the kind of method the earlier source lacked, but the post does not run it.
+It calls itself "a conceptual deep dive with illustrative code", its example outcomes are "computed
+from mocked retrieval scores", and its claim that the ladder "prevents cascading hallucinations at the
+source" is asserted, not measured. It also does not say how query type and intent get classified,
+though an action misread as a read-only query lowers a factual lookup's bar from 0.90 to 0.75. And
+routing to a person carries the caveat the
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] section attaches to human
+review: a control with its own failure rate.
+
 ## Open questions
 
 - No detection mechanism exists for semantic failure beyond schema validation, trusted-source
@@ -225,8 +259,13 @@ failure-injection results.
   retrieval layer, the tool layer, or the verifier — and which of them fails closed?
 - How does an application detect that its provider changed the model behind an unchanged API, and
   which validation must re-run before that change reaches users?
+- A stakes-keyed threshold needs the query type and action intent classified before it applies. What
+  performs that classification, and does a misclassification fail toward the lower read-only bar or
+  toward escalation?
 
 ## Related pages
+
+- [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
 
 - [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
 - [[Harness State Authority]]

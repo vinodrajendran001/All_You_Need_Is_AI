@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - ai-agents
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-21-databricks-memcurrent
   - src-2026-10-23-image-aware-agent-memory
+  - src-2026-10-26-alphasignal-memory-tax
 status: active
 ---
 
@@ -336,6 +337,60 @@ run reproduced here. Default byte omission reduces payload exposure but is not d
 authorization. Captions and metadata can also be sensitive; both search and original-byte
 hydration need access checks, as [[Multi-Tenant Agent Architecture]] makes explicit.
 
+## Against a full-context baseline, memory gave strong models no accuracy gain, and the writer set the ceiling
+
+[[Alpha Signal - The Hidden Memory Tax in AI Agents]] asks a different question from the MemCurrent
+ablation above: whether a memory layer beats giving the model the raw record, not whether it beats
+having none. It relays MemoryTax, a Shanghai Jiao Tong University study that ran seven approaches
+(full context, BM25-style retrieval, Mem0, a Zep graph, and the Pi, Codex, and Claude Code harnesses
+searching the conversation as a JSON file) with GPT-4o-mini, GPT-6 Luna, and Claude Opus 5.5 on one
+LoCoMo conversation. Mem0 was the most accurate method with GPT-4o-mini, but with GPT-6 Luna "full
+context had the best outcome", and "Claude Opus 5.5 reached 95% with either method." A store also
+costs something before it answers: with GPT-4o mini, building Mem0's store cost $0.56, more than the
+$0.43 spent answering all 152 questions from full context, and it would break even only after
+372–596 questions, depending on the model.
+
+The second finding moves this page's *weak point is the writer* claim from people to models.
+[[Jina Yoon - We're Building Multiplayer AI]] counts people who stop maintaining a context file;
+MemoryTax finds the extracting model capping what any reader can recover. A Zep graph built by
+GPT-4o-mini scored 43% when GPT-4o-mini read it and only 45% when Claude Opus 5.5 read it, while a
+graph Opus built and read reached 87%, and Mem0 showed a similar pattern. "The key finding is that
+the model that writes the memory dictates the final quality of the answer." That turns the MemCurrent
+caveat that distillation can drop details, and the [[Image-Aware AI Agent Memory - Oracle 26.8]]
+point that a caption can omit what a later question needs, into a ceiling the stronger reader barely
+moved. The article's safeguard is the one the Oracle section argues, "keep original records
+available", with that section's qualification that a kept original still has to be found.
+
+The third finding applies [[Direct Corpus Interaction]] to conversational memory. Claude Opus 5.5 in
+the minimalist Pi harness answered 99% of questions for $6.95 at about 10,000 input tokens per
+question, against 95% for $17.84 and 28,900 tokens with full context. On the same model, Codex cost
+$25.41 at 98% and Claude Code $28.41 at 97%, so the harness moved the bill far more than the accuracy,
+which makes this as much a [[Harness Optimization]] result as a memory one. The comparison is not
+quite like for like: the coding agents could read photo captions that the other methods could not,
+and on the 88 questions whose evidence did not involve photos, Pi scored 100% and full context 99%.
+
+None of this contradicts the MemCurrent ablation, because the baselines differ, as the MemoryTax
+summary notes. The 66.1% for derived memory, 68.4% for both, and 43.9% for the Mem0 comparator sit
+above a 22.3% no-memory floor on an internal benchmark whose histories were too long for full
+context. Where [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] does
+run a full-context ceiling, on three open benchmarks that include LoCoMo, MemCurrent averaged 88.1%
+against 87.8% at 8.4K versus 103K input tokens per question, and its post claims a win over full
+context on the two benchmarks with the longest histories, which by the session counts in its summary
+are not LoCoMo. Read together, the two are compatible: MemCurrent matched full context on average and
+places its wins on longer histories than LoCoMo's, while MemoryTax, on one LoCoMo conversation that
+fit every model's window, found no accuracy gain for the stronger models. They part on cost.
+MemCurrent states its open-benchmark saving in input tokens per question, and its summary gives no
+separate figure for building the memory, while MemoryTax prices the build separately and suggests
+that only repeated queries over a stable history would pay it back.
+
+The evidence is thin and secondhand. The article itself says "the study is not very comprehensive":
+the results come from "one LoCoMo conversation, one run per configuration and a GPT-4o-mini judge",
+so the weakest model graded the strongest, and the whole history fit within every model's context
+window. The clipping has no byline, date, or canonical URL, and the paper is reachable only through
+tracking redirects that were not followed, so no figure was checked against the study. GPT-6 Luna's
+results are unquantified, and the costs and break-even range are local to this history, these model
+prices, and these harnesses.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -359,9 +414,17 @@ hydration need access checks, as [[Multi-Tenant Agent Architecture]] makes expli
   what is lost per consolidation pass, or whether loss compounds across them.
 - MemCurrent's results come from one product's sessions with an LLM judge. No independent party has
   reproduced them, and no cross-model or cross-agent portability experiment is reported.
+- The MemoryTax history fit inside every model's context window. Does model-directed search over the
+  raw record keep its accuracy and cost edge once a history outgrows the window, where MemCurrent's
+  internal benchmark had to fall back to gold-memory injection as its ceiling?
 
 ## Related pages
 
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
+- [[Alpha Signal]]
+- [[Direct Corpus Interaction]]
+- [[Harness Optimization]]
+- [[Coding Agent Harness]]
 - [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
 - [[All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks]]

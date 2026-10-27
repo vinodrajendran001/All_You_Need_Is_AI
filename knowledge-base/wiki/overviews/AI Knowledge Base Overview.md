@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - overview
   - ai
@@ -354,6 +354,20 @@ source_ids:
   - src-2026-10-22-kezin-fable-image-messages
   - src-2026-10-23-image-aware-agent-memory
   - src-2026-10-21-baselabs-mammoth-elephant
+  - src-2026-10-19-vercel-durable-harness
+  - src-2026-10-21-nvidia-sentry-runtime
+  - src-2026-10-26-bytebytego-salesforce-agent-stack
+  - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-10-17-redwood-screwtape
+  - src-2026-10-26-wong-et-al-graft
+  - src-2026-10-16-west-eval-engineering-lessons
+  - src-2026-10-06-iusztin-rag-evals
+  - src-2026-10-16-opensearch-beyond-top-k
+  - src-2026-10-15-cohere-agent-teams
+  - src-2026-10-20-cloudflare-inference-bill
+  - src-2026-10-26-alphasignal-memory-tax
+  - src-2026-10-26-cerebras-trillion-parameter
+  - src-2026-04-19-karray-neuromorphic-guide
 status: active
 ---
 
@@ -365,12 +379,13 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of October 23, 2026, the wiki has **607 typed pages**, including **321 source summaries**
-owning **347 source IDs**, **136 concepts**, and **88 entities**; page totals exclude git-ignored
-local query files. The raw collection contains **349 top-level captures** and **418 files in
+As of October 27, 2026, the wiki has **625 typed pages**, including **335 source summaries**
+owning **361 source IDs**, **136 concepts**, and **92 entities**; page totals exclude git-ignored
+local query files. The raw collection contains **365 top-level captures** and **434 files in
 total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;
 recaptures and equivalent clippings remain preserved without being counted as independent
-evidence.
+evidence. One off-domain capture, a smart-TV privacy guide clipped on October 27, is deferred
+and has no summary.
 
 The workspace now implements Karpathy's three-layer pattern:
 
@@ -1356,7 +1371,96 @@ alone. [[Baseten]] records the release while keeping public mixture, private lea
 official Artificial Analysis, and replicated scores separate. A Brier training objective
 does not establish calibration for a new deployment.
 
+## October 27 additions
+
+Fourteen sources extend existing branches; no new concept page was needed. Vercel's
+announcement was recaptured because the first clipping kept only demo timing labels.
+[[Vercel]], [[Salesforce]], [[Redwood Research]], and [[Cloudflare]] are new entity pages.
+
+**Durability and enforcement can sit outside the agent.**
+[[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] journals unmodified
+harnesses with an intent before and an outcome after each model and tool call;
+[[Harness State Authority]], [[LLM Application Resilience]], and
+[[Multi-Tenant Agent Architecture]] record what that recovers and what it cannot.
+[[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] moves monitoring and
+policy enforcement onto a BlueField-4 DPU, outside the host the agent runs on
+([[Agent Security and Governance]], [[Agent Observability]]). Both are vendor descriptions
+without recovery, overhead, or detection measurements, and Sentry has not shipped.
+
+**Enterprise agents split the prompt into owned systems.**
+[[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] describes Agentforce moving
+rules, customer identity, data, and permissions out of one prompt into dedicated systems.
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]] maps
+seven enterprise properties to managed AgentCore services and warns that gateway policy holds
+only if the gateway is the only route to the tools. [[Context Engineering]],
+[[Tool Roster Economics]], [[Agent Security and Governance]], and
+[[Multi-Tenant Agent Architecture]] carry both as vendor-interview and practitioner accounts
+without controlled evaluation.
+
+**A monitor's blind spots are not its safety level.**
+[[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]
+edited real transcripts until an action-only monitor stopped flagging them; six
+human-confirmed attacks from **252** runs also evaded a held-out monitor, and the authors say
+the pipeline cannot estimate how safe a monitor is.
+[[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]]
+routes learning from flagged trajectories into removable parameters instead of penalizing it,
+in one Qwen3-8B environment. [[Chain-of-Thought Monitoring]], [[LLM-as-a-Judge]], and
+[[Reward Design for RL]] keep both results narrow.
+
+**Evaluate the run, not the reply.**
+[[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] reports a
+judge that read only final replies and failed three of **11** prompts that the tool-call logs
+showed had passed. [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]] labels an eval set
+from earlier human corrections and replays each case against the knowledge base as it was.
+[[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
+proposes a retrieval-derived confidence layer that lets an agent abstain, with every weight and
+example score a starting point or mocked. [[Multi-Turn Evaluation]], [[LLM-as-a-Judge]],
+[[Agent Observability]], [[Retrieval-Augmented Generation]], and
+[[LLM Application Resilience]] record these as single-project or illustrative evidence.
+
+**Cost follows allocation, not price per token.**
+[[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] found that worker
+placement mattered more than team size; its headline compares **$155** with **$510** at
+**61.8%** versus **63.2%** reward.
+[[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] cut one
+review's cost to **$0.77** from a **$2.43** peak-fortnight average and showed that an aggregate
+cache hit rate can hide a broken first request. [[Agent Delegation]], [[Model Routing]],
+[[Test-Time Scaling]], [[Semantic Caching]], and [[Reasoning Effort Control]] keep both as
+vendor-reported, workload-specific results.
+[[Alpha Signal - The Hidden Memory Tax in AI Agents]] adds a memory analogue in
+[[Agent Memory]]: on one LoCoMo conversation, the model that wrote the memory capped later
+answers, and a strong model searching the raw record was more accurate and cheaper than one
+reading everything. Its baseline is full context rather than no memory, and the clipping has no
+byline or canonical URL.
+
+**Wafer-scale and neuromorphic hardware arrive as explainers.**
+[[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] places a roughly
+3-trillion-parameter model across wafers holding **44 GB** of on-chip memory each, with
+KV-cache memory bounding concurrency ([[AI Accelerator Architecture]], [[KV Cache]],
+[[Serving Benchmarks and Goodput]]); its **1000-2000+** tokens-per-second headline names no
+configuration. [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]] orients the vault
+to event-driven spiking hardware, but nearly every efficiency figure is uncited.
+
 ## Related pages
+
+- [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
+- [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]
+- [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]
+- [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]]
+- [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]]
+- [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]]
+- [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
+- [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
+- [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]]
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
+- [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]
+- [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]]
+- [[Vercel]]
+- [[Salesforce]]
+- [[Redwood Research]]
+- [[Cloudflare]]
 
 - [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Dan McAteer - Claude Mods and the Attention Interface]]

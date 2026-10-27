@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - llm-evaluation
@@ -27,6 +27,8 @@ source_ids:
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-20-husain-decision-model-evals
+  - src-2026-10-16-west-eval-engineering-lessons
+  - src-2026-10-06-iusztin-rag-evals
 status: active
 ---
 
@@ -200,6 +202,76 @@ most production traffic; precision depends on prevalence, and the source states 
 threshold is not shown to transfer to another dataset. This page reads that as a reason to treat the
 cutoff as local to this mixture rather than as a portable setting.
 
+## Grade the trajectory, keep its turn boundaries, and run a credential-free condition beside the live one
+
+[[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] reports the mirror
+image of the fail-plausible incidents above: an agent that behaved correctly and was graded as
+failing. On the initial 11-prompt suite for the newly released Google Cloud Developer plugin, an LLM
+judge that read the final reply against a checklist failed three prompts that the raw tool-call logs
+showed had passed. In a Cloud Run cleanup whose rubric required checking command syntax first, the
+agent's first step was `gcloud help run services list`, but its closing message warned about
+permanent data loss instead of mentioning the check: "The grader penalized the agent for doing the
+right thing simply because it didn't brag about it in the summary." A judge asked whether something
+ran "is guessing unless you evaluate the actual tool-call trajectory", which applies the acceptance
+rule from [[AI Builder Club - How to Evaluate AI Agents - What Works in 2026]] (evaluate the artifact
+through its real interface, not the agent's report) to the grader itself.
+
+The second lesson refines the reconstructable-run prerequisite. The harness sent a skill-loading call
+and two documentation searches in a single `tool_calls` payload. Because [[Agent Skill|skill]]
+activation takes two steps, a short launch stub and then the full instructions on the next turn, the
+guidance meant to govern the searches arrived after they had run. A telemetry extractor that flattens
+calls into one timeline makes that look like an agent ignoring clear instructions, so a reconstructable
+run has to keep its turn boundaries, not only its events. The cause sits in the harness, which never
+gave the skill a dedicated turn; the post's remedy sits in telemetry.
+
+The third lesson adds a second condition. Live runs use sandboxed credentials and test execution and
+restraint before destructive actions, but they frequently abort on an unexpected permission error at
+step two, before reaching the behavior under test. Plan-only runs strip the credentials and ask the
+agent to explain what it would do. "Roughly half our most important findings came from the delta
+between the two." In one onboarding prompt the live run was blocked at once on a project-list call,
+while the plan-only run produced an 8,000-character plan that ignored organization policies, admin
+approvals, and governance. In the vault's reading, plan-only changes the instruction as well as the
+environment, so the delta mixes the two effects.
+
+The fourth lesson, golden sets for the whole harness, model, and tools stack run as continuous
+integration, turns the full trajectory into a standing baseline scored against "golden sets curated by
+real human experts who know what the ideal path looks like". The limits are those of a
+self-evaluation: single examples from Google's own build on Google's blog, a rough estimate for the
+share of findings, no pass rates or later suite sizes, and no count of runs per prompt, so the pass^k
+reporting this page asks for is not addressed.
+
+## Before any trace exists, earlier human corrections can label the first eval set
+
+[[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]] partly answers the cold-start question that
+the ordering from [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] leaves open
+below. Alexey Grigorev shipped the DataTalks.Club FAQ automation without recording interactions: "My
+goal was to just get this out and test how it works." With no transcripts, the first eval set came
+from proxy labels. Each contributed GitHub issue supplied an input, and his review of the resulting
+pull request supplied the verdict: accepted unchanged was a pass, altered was a fail with a
+one-sentence critique. The general advice is to look for "any place a human already judged your
+output" and to trace everything from then on.
+
+The answer is partial. It turns *no traffic* into *untraced traffic*: the method needs a system that
+already ran under human review, and Grigorev's own advice is to settle how the app should work and
+what the UX is first, because evals built for the wrong UX get thrown away with it. Proxy labels also
+exist only where a person looked. A false `DUPLICATE` or `WRONG_COURSE` closes the issue with no pull
+request, "so I would never discover it", and the article calls that the dangerous error. It is the
+labeling-side face of the finding above that people, not tests, catch the hardest failures: a label
+set built from human review inherits whatever no person saw.
+
+The case also shows a production eval used as a floor. Each failure is captured as a case first, the
+prompt is changed until that case passes, and then the whole set is re-run: "It's kind of test-driven
+development, but like eval-driven development." The generation set passes 42 of 61 cases on GPT-5.4
+nano, and that score is a baseline that must not fall rather than a target; hard cases may stay
+failing so that the prompt does not grow to cover every corner case. Like Martin's per-ticket
+decisions, though, these cases are single structured decisions, an action and a section, not
+conversations, so the turn-versus-trace distinction this page is built on is again untouched.
+
+This is one community project with 61 generation cases and 25 retrieval cases, relayed in an article
+sponsored by Opik, with no confidence intervals and a runner its owner calls "not very scientific"
+yet. The proxy labels also inherit reviewer behavior: any edit to a pull request counts as a fail, so
+a cosmetic change and a real error carry the same label, and nothing estimates the resulting noise.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -209,6 +281,10 @@ cutoff as local to this mixture rather than as a portable setting.
 - Production transcripts rank first as a source of cases, but a system with no production traffic can
   only reach the third rung — five to ten hand-written cases. What does the ordering say about the first
   evaluation a team builds, which is exactly the one that decides whether anything ships?
+  [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]] answers part of this: a system that ran
+  untraced under human review can label its first set from the reviewer's corrections, much as bug
+  reports and support tickets serve the second rung. A system with no reviewed output is still left at
+  the third.
 - Low run-to-run variance is listed as a property of the evaluation, yet part of the variance lives in
   the serving stack rather than in the suite. Can a suite be constructed to a variance target it does not
   control?
@@ -221,8 +297,17 @@ cutoff as local to this mixture rather than as a portable setting.
 - The comparison covers one domain and one deliberately broad failure question. Per-failure-mode judges,
   which its author recommends for production, were not measured, so the reported gaps between systems
   may not survive decomposition.
+- Golden sets score a run against the path a human expert considers ideal. How should a different but
+  valid trajectory get credit, and how much of a live-versus-plan-only difference comes from the
+  changed instruction rather than the missing credentials?
 
 ## Related pages
+
+- [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]]
+- [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]]
+- [[Google Cloud]]
+- [[Paul Iusztin]]
+- [[Agent Skill]]
 
 - [[Hamel Husain - How To Use Decision Models for Evals]]
 - [[Hamel Husain]]

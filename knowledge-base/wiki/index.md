@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - index
 source_ids:
@@ -352,6 +352,20 @@ source_ids:
   - src-2026-10-22-kezin-fable-image-messages
   - src-2026-10-23-image-aware-agent-memory
   - src-2026-10-21-baselabs-mammoth-elephant
+  - src-2026-10-19-vercel-durable-harness
+  - src-2026-10-21-nvidia-sentry-runtime
+  - src-2026-10-26-bytebytego-salesforce-agent-stack
+  - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-10-17-redwood-screwtape
+  - src-2026-10-26-wong-et-al-graft
+  - src-2026-10-16-west-eval-engineering-lessons
+  - src-2026-10-06-iusztin-rag-evals
+  - src-2026-10-16-opensearch-beyond-top-k
+  - src-2026-10-15-cohere-agent-teams
+  - src-2026-10-20-cloudflare-inference-bill
+  - src-2026-10-26-alphasignal-memory-tax
+  - src-2026-10-26-cerebras-trillion-parameter
+  - src-2026-04-19-karray-neuromorphic-guide
 status: active
 ---
 
@@ -359,8 +373,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 23, 2026: **607 typed wiki pages**, including **321 source summaries**
-representing **347 source IDs**, **136 concepts**, **88 entities**, and **43 lint reports**.
+As of October 27, 2026: **625 typed wiki pages**, including **335 source summaries**
+representing **361 source IDs**, **136 concepts**, **92 entities**, and **43 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -604,6 +618,10 @@ exclude git-ignored local query files.
 - [[TypeSafe AI]] - Lab behind Jev and the vendor-defined System One Model category.
 - [[Epoch AI]] - Research organization behind external API measurements, conditional serving-capacity models, and the data-trend estimates cited in robotics comparisons.
 - [[Yifan Zhang]] - Author of the Recurrent Looped Transformer architecture.
+- [[Vercel]] - Cloud platform whose `durable-harness` adapters make unmodified coding-agent harnesses crash-safe from the outside.
+- [[Salesforce]] - Enterprise software company whose Agentforce stack, as described to ByteByteGo, replaces one large prompt with dedicated systems.
+- [[Redwood Research]] - AI-safety research organization behind Screwtape, a transcript-editing pipeline for red-teaming action-only monitors.
+- [[Cloudflare]] - Company whose internal AI code reviewer supplies a self-reported case study in cutting per-review inference cost.
 
 ## Sources
 
@@ -994,6 +1012,23 @@ its unchanged article body adds no source ID or independent estimate.
 - [[Nikita Kezin et al - Messages in Rendered Images]] - Tool-assisted recovery from prompted image carriers; normalized similarity is not exact transcription, and recovery is not evidence of monitor evasion.
 - [[Image-Aware AI Agent Memory - Oracle 26.8]] - Original image storage, caption search, and explicit byte retrieval as separate contracts; unattributed capture with no canonical URL or measured task benefit.
 - [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]] - Qwen-derived fixed-option readout, cache-preserving attention masks, data repair, and abstention training; public, private, and replicated scores are not interchangeable.
+
+### October 27, 2026 batch
+
+- [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] - Vercel's outside-in durability for unmodified coding-agent harnesses: an intent before and an outcome after every model and tool call, plus per-tool replay declarations; a vendor announcement with no recovery measurements, recaptured because the first clipping kept only demo timing labels.
+- [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] - Agent monitoring and policy enforcement moved onto a BlueField-4 DPU, outside the host the agent runs on; a vendor architecture for a product that has not shipped.
+- [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] - Agentforce's single large prompt split into dedicated systems for rules, customer identity, data, and permissions; vendor interviews and a simulated demo, with no controlled evaluation.
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]] - Seven enterprise properties beyond the agent loop mapped to Amazon Bedrock AgentCore services; gateway policy holds only if the gateway is the only route to the tools. No measurements.
+- [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]] - Attacks inserted into real transcripts and edited until an action-only monitor stops flagging them; six human-confirmed attacks from 252 runs locate blind spots but cannot estimate how safe a monitor is.
+- [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]] - GRAFT routes learning from monitor-flagged trajectories into removable parameters that are deleted after training; one Qwen3-8B result in an environment whose monitor catches one of three hack types.
+- [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] - Grade the execution trajectory rather than the closing message, keep turn structure, compare live with plan-only runs, and run full-stack golden sets in CI; single examples beyond an 11-prompt suite.
+- [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]] - Evals for the DataTalks.Club FAQ system: earlier human corrections label the eval set, replay needs the knowledge base as it was, and most checks stay deterministic; one sponsored community project.
+- [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]] - A confidence layer between retrieval and action that quantifies, thresholds, and abstains on a graduated ladder; every weight, threshold, and example outcome is a starting point or mocked.
+- [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] - Lead-and-worker coding-agent teams on ProgramBench, where worker placement mattered more than team size; the 30% headline compares $155 with $510 at 61.8% versus 63.2% reward.
+- [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] - An internal AI code reviewer's per-review cost cut to $0.77 from a $2.43 peak-fortnight average; an aggregate cache hit rate can hide a broken first request, and price per token is not cost per task. Self-reported.
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]] - Seven ways to use past conversation compared on one LoCoMo conversation: the memory writer capped later answers, and a strong model searching the raw record was more accurate and cheaper than one reading everything. Unattributed clipping with no canonical URL.
+- [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] - Placement arithmetic for a roughly 3-trillion-parameter model across wafers holding 44 GB each, with KV-cache memory bounding concurrency; the 1000-2000+ tokens-per-second headline names no configuration.
+- [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]] - Orientation to event-driven spiking hardware and the von Neumann bottleneck; nearly every efficiency figure is uncited.
 
 ## Syntheses
 

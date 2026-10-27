@@ -12,6 +12,7 @@ source_ids:
   - src-2026-10-02-e2b-embed
   - src-2026-10-23-image-aware-agent-memory
   - src-2026-10-19-vercel-durable-harness
+  - src-2026-10-25-rastogi-agentcore-enterprise
 status: active
 ---
 
@@ -149,6 +150,42 @@ make descriptions and metadata safe for arbitrary readers. This extends the hop-
 rule above to two views of the same persisted evidence, without claiming the tutorial
 demonstrates tenant isolation.
 
+## Per-session microVMs and per-user namespaces are building blocks, not a tenancy proof
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]] maps several
+of this page's hops onto managed AgentCore services. Read against the topology table, compute is
+dedicated per session while identity, tools, and memory use pooled-row mechanisms, which is
+component-by-component tiering. The threat is stated in this page's terms: "If two users share a
+process, a prompt injection in one session can be a lateral-movement path into the other." Each
+session gets its own microVM with dedicated CPU, memory, and filesystem, and memory is sanitized when
+it ends. As in the Vercel case above, the unit is the session, and the article discusses users, never
+tenants.
+
+Identity takes the delegated route of
+[[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]]. A shared
+service account means "every user effectively gets the service account’s access"; instead, the gateway
+has a token vault exchange the user's token on-behalf-of (OBO) for one "scoped to that user and that
+downstream API". The runtime's JWT authorizer validates custom claims such as group membership, but
+the article never names a tenant claim, so deriving one from authentication, as this page requires,
+is left to the deployer.
+
+Memory is where the advice meets this page's warning. The requirement is that "A fact the agent learned
+about Sarthak must never surface for anyone else", yet the recommendation is "one shared memory resource
+with per-user namespaces, not one memory per agent", partly because "a shared store lets you reason
+about retention and encryption once". That is the pooled design: isolation rests on namespace filters
+holding on every read. Short-term memory is stored by user and session, two of the dimensions this
+page asks session keys to carry. This page also holds that deletion guarantees depend on whether keys
+and storage are actually tenant-specific; the article lists customer-managed keys but does not say
+they are scoped per namespace, so per-user deletion by key is not established.
+
+The article says each microVM has dedicated CPU but gives no physical-core ratio, and billing is per
+second, with "CPU isn’t billed while the agent waits on I/O". That is a price, so it leaves open FD's
+point above that a per-VM allocation may be an accounting unit rather than a boundary.
+
+The author uses AgentCore at work and reports no isolation test or other measurement. The article's
+own sections on where AgentCore falls short are image-only in the capture, and its timeouts and caps
+are point-in-time product facts.
+
 ## Open questions
 
 - Which tenant claims can be verified independently at every agent and tool boundary?
@@ -160,11 +197,15 @@ demonstrates tenant isolation.
 - If users default to private scopes inside an organisation, what is the unit of tenancy that
   permissions and memory keys should bind to - the org, the Space, or the person?
 - What re-derives the tenant claim when an artifact carries session state from one Space into another?
+- Can a shared memory store with per-user namespaces honour one user's deletion without per-namespace
+  keys? AgentCore's recommended design leaves key scope unstated.
 
 ## Related pages
 
 - [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
 - [[Vercel]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Sarthak Rastogi]]
 - [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]

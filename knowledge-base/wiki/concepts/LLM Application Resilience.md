@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-19
+updated: 2026-10-27
 tags:
   - concept
   - production
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-19-vercel-durable-harness
 status: active
 ---
 
@@ -179,6 +180,29 @@ wave through and hard to catch," and once signed it becomes part of the permanen
 uncertain output to a person is therefore a control with its own failure rate, not a terminal
 guarantee. This is an argued position with no measured miss rate for reviewers or judges.
 
+## An interrupted tool call needs a declared replay policy, not a generic retry
+
+The partial-completion paragraph above leaves a gap: backoff is the advice for transient failure, and
+a transient failure on a non-idempotent tool is exactly where a retry is unsafe.
+[[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] describes a concrete rule for one
+version of that gap, a turn interrupted by a crash or function timeout. Vercel's `durable-harness`
+records an *intent* before each model or tool call and an *outcome* after it, and the function that
+picks up the interrupted turn reads that log:
+
+- a **completed** call is not run again; its result is read from the log, which the vendor says means
+  "you're never billed twice for a finished model call's tokens";
+- an interrupted tool the developer marked `replay: 'safe'`, such as a lookup, a file read, or a CI
+  status check, runs again automatically;
+- any other interrupted tool, such as a refund or a PR comment, "comes back to the model as possibly
+  run, and the model decides whether to check."
+
+The decision therefore moves from a generic retry policy to a property of each tool, declared once by
+the developer. That does not settle the idempotency problem. The `'never'` path prevents a double
+refund only if the model chooses to check and a check exists. The article does not mention idempotency
+keys, does not discuss a call that finished at the provider before its outcome reached the log, and does
+not say how a tool's own transient errors are handled. It is a vendor design with no reported
+failure-injection results.
+
 ## Open questions
 
 - No detection mechanism exists for semantic failure beyond schema validation, trusted-source
@@ -186,7 +210,9 @@ guarantee. This is an argued position with no measured miss rate for reviewers o
 - Circuit breakers trip on technical signals, so a provider returning fluent nonsense at HTTP 200 keeps
   the circuit closed indefinitely. Resilience machinery is blind in exactly the new failure category.
 - Retry guidance and idempotency guidance are usually given separately and rarely reconciled into a rule
-  covering transient failures on non-idempotent tools.
+  covering transient failures on non-idempotent tools. A per-tool replay declaration is one such rule for
+  crash recovery (see above), but it relies on the model to check before repeating a `'never'` tool and
+  has not been evaluated.
 - Provider separation is recommended for redundancy without pricing its cost: two prompt formats, two
   failure vocabularies, two behaviours to evaluate, and two sets of semantic quirks.
 - If structured output guarantees only parseability, what remains of schema validation as a
@@ -202,6 +228,9 @@ guarantee. This is an argued position with no measured miss rate for reviewers o
 
 ## Related pages
 
+- [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
+- [[Harness State Authority]]
+- [[Vercel]]
 - [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
 - [[Embedded Evaluation]]
 

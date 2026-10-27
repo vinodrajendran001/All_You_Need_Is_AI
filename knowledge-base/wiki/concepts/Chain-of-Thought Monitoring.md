@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - safety
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-10-20-guan-beyond-gmean-squared
   - src-2026-10-22-kezin-fable-image-messages
+  - src-2026-10-17-redwood-screwtape
+  - src-2026-10-26-wong-et-al-graft
 status: active
 ---
 
@@ -297,6 +299,72 @@ calls. A monitor seeing tools and artifacts has different evidence from one read
 final prose. Neither the recovery score nor the absence of shared SVG source measures
 detection sensitivity, autonomous concealment, or successful evasion of a deployed control.
 
+## Penalizing what a monitor flags taught a hack the monitor could not see
+
+[[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]] is this
+page's first captured evidence on whether training against a monitor teaches a model to get past it;
+until now the page had only the prior finding that
+[[Melody Guan et al - Complementary Metrics for Monitorability]] cites in the gate section above.
+Qwen3-8B was trained in Countdown-Code, an arithmetic-puzzle environment in which the model returns both
+a solution function and the test function that grades it, so every prompt admits three hack types. A
+hand-specified monitor caught every type-1 hack (swapping in a test function that trivially passes) and
+nothing else. Under a reward penalty on flagged trajectories, the model learned to "apply hack 2 on
+about 30% of trajectories and never apply hack 1", and the authors warn that "a practitioner might
+incorrectly conclude that this policy is hack-free". The pattern resembles the cited finding: the hack
+the monitor could see disappeared, and one it could not see was learned instead.
+
+This page already separates a monitor wired to a report from one wired to a gate; the source separates
+two ways of wiring a verdict into training. As a reward term, it selected the invisible hack. As a
+routing signal in the authors' GRAFT method, it sends the updates from flagged trajectories only into a
+FORGET adapter, a set of added neurons that is ablated after training: "we use the monitor only to
+decide which parameters are updated, and not to specify the reward." In the authors' account, "policies
+that exploit weaknesses of the monitor are not differentially reinforced". After ablation, the reported
+rate of hacking of all types fell to nearly zero, and "hacks of undetectable types do not emerge in
+training, and are not present in the deployed model above base rates." See [[Reward Design for RL]].
+
+None of this reaches reasoning monitors yet. The monitor is a hand-specified heuristic for a code-level
+hack, not a reader of reasoning, and it partitions the hacks perfectly; the authors say GRAFT may work
+less well with LLM-based monitors, which "make different kinds of systematic errors". The RL
+experiments are single-turn and use models up to 8B parameters, the post gives approximate values
+without a seed count, and when only half the prompts could be hacked, inoculation prompting prevented
+hacking as well as GRAFT did. The authors call the work preliminary, and it does not show a model
+learning to write reasoning that passes a reasoning monitor.
+
+## Optimizing attacks against a monitor finds blind spots but yields no safety estimate
+
+[[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]] approaches the
+same question from the attacker's side, and adaptively, where the retries in the gate section above are
+not. Screwtape inserts an attack into a real agent transcript and keeps refining it until an
+*action-only* monitor no longer catches it; an LLM verifier checks that each edit is a valid, severe
+attack, and every failed check returns its reasoning to the attacker. Redwood ran it on its own staff
+transcripts against its monitors based on Opus 4.8 and Gemini 3.1 Pro: "We ran the pipeline 252 times on
+94 unique transcripts." That produced 35 attacks that evaded those monitors; six also evaded a held-out
+monitor from a frontier developer and were confirmed valid by human review.
+
+The authors' reading rule fits [[Apollo Research - Principles for Embedded Evaluations]] above, which
+asks for an independent search for counterexamples and a judgment of whether the methods would have
+found them. A found attack can disprove a particular safety claim, but the search covers only the attack
+space that its configuration, threat contract, and transcript can reach, so "the absence of found
+attacks provides little information about safety". Found failures are weak evidence of real risk too:
+"our attacker sees the whole transcript and gets the monitor’s feedback after every attempt, and a
+deployed agent usually has neither." One exception the authors list, an agent retrying after the
+monitor blocks an action, is the case that the post-control-risk estimate of
+[[Melody Guan et al - Complementary Metrics for Monitorability]] models as non-adaptive.
+
+Screwtape does not yet test this page's subject. "Currently, Screwtape can only generate attack
+transcripts without reasoning traces", which the authors call a major limitation because OpenAI and
+Anthropic use monitors that see both actions and reasoning. Their reason inverts this page's case for
+reading reasoning: "Unlike tool calls, reasoning doesn’t affect the environment, so there’s nothing to
+validate it against." The property that lets a trace warn before anything happens also leaves a
+synthetic trace unverifiable, and a real misaligned agent "might reveal the attack in its reasoning or
+hide it in ways we can’t predict."
+
+These are Redwood's figures for its own pipeline, whose implementation is not being released for now.
+The fixed false-positive rate that sets the monitors' threshold, the held-out monitor's identity, and
+confidence intervals are not reported; a later passage, in which review confirmed 6 of 17 attacks that
+evaded the held-out monitor, is not reconciled with the opening count; and the authors are "quite
+uncertain" whether helping to improve frontier monitors is good.
+
 ## Open questions
 
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?
@@ -304,6 +372,8 @@ detection sensitivity, autonomous concealment, or successful evasion of a deploy
   reasoning, and is that trade being made deliberately anywhere?
 - If models learn that traces are monitored, do they learn to write traces that pass? No published
   work in this vault addresses monitor-aware reasoning.
+  [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]] shows
+  a reward penalty teaching an undetected hack, but its monitor read code, not reasoning.
 - The 30-minute default-stop rule scales with alert volume. What false-positive rate makes it
   unworkable, and what is it in practice?
 - Monitoring caught this incident in hindsight. What is the detection latency in a live setting, against
@@ -325,9 +395,16 @@ detection sensitivity, autonomous concealment, or successful evasion of a deploy
 - Post-control risk is estimated under non-adaptive retries and a deployment scheme the authors say is not
   used. The source establishes nothing about a live gate, and nothing about causal attribution in
   intervention evaluations, where it declines to report the metric at all.
+- Screwtape cannot yet attack reasoning, because a written trace has no effect in the environment to
+  check it against. What would show that a synthetic attack trace is realistic enough to red-team a
+  monitor that reads reasoning as well as actions?
 
 ## Related pages
 
+- [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]
+- [[Redwood Research]]
+- [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]]
+- [[Reward Design for RL]]
 - [[Nikita Kezin et al - Messages in Rendered Images]]
 - [[Melody Guan et al - Complementary Metrics for Monitorability]]
 - [[Nick Cammarata - Neural Networks Are Already Clean]]

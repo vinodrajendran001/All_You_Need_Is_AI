@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-18
-updated: 2026-10-19
+updated: 2026-10-27
 tags:
   - entity
   - newsletter
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-10-26-alphasignal-memory-tax
 status: active
 ---
 
@@ -28,8 +29,8 @@ Alpha Signal is an AI-focused newsletter that tracks research developments, mode
 ## Why it matters to this vault
 
 Alpha Signal connects recursive reasoning architectures, retrieval-interface design, agent-skill
-optimization, runtime controls, cache handoffs, and non-autoregressive text generation in this
-vault. Its secondary reporting is useful for orientation, but study details and editorial framing
+optimization, runtime controls, cache handoffs, non-autoregressive text generation, and agent-memory
+costs in this vault. Its secondary reporting is useful for orientation, but study details and editorial framing
 must remain distinct from independently verified results.
 
 ## Notes
@@ -76,7 +77,24 @@ therefore kept unattributed, with no canonical URL, and the newsroom item is cit
 related but different item in the source page's citations, not as provenance. The underlying
 paper is not named.
 
+## A memory-cost study, relayed without a byline or a paper link
+
+[[Alpha Signal - The Hidden Memory Tax in AI Agents]] takes the newsletter into [[Agent Memory]]. It
+reports MemoryTax, a Shanghai Jiao Tong University comparison of seven ways an agent can use past
+conversation, with two results that matter here: the model that writes a memory store capped later
+answer quality, and Claude Opus 5.5 searching the raw record through the Pi harness scored 99% for
+$6.95, against 95% for $17.84 with full context. As with the Next-Concept Modeling clipping, and
+unlike the Dickson ones, no public page was matched, though for a different reason: public
+alphasignal.ai pages could not be reached at all, because the ingest network returned an
+authorization wall. The capture has no frontmatter, byline, date, or canonical URL, and its study
+links are subscriber tracking redirects that were not followed. Attribution rests on
+alphasignal.ai image hosting and a link to the newsletter's earlier HarnessTax coverage, and the
+article itself calls the study "not very comprehensive".
+
 ## Related pages
+
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
+- [[Agent Memory]]
 
 - [[Alpha Signal - How Next-Concept Modeling Rethinks AI Text Generation]]
 - [[Diffusion Models]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - routing
@@ -26,6 +26,8 @@ source_ids:
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-10-15-cohere-agent-teams
+  - src-2026-10-20-cloudflare-inference-bill
 status: active
 ---
 
@@ -277,6 +279,67 @@ attribution — that the gain comes from the router reasoning *less* — is the 
 self-reported, and is **not separated by ablation** from context isolation, workflow templates, or
 runtime knowledge loading.
 
+## A team can route by role: the strong model decides, cheap models gather information
+
+[[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] puts numbers on advice this page
+has carried from [[OpenAI - The Builder's Guide to GPT-5.6]]: stronger orchestration with cheaper
+specialized workers. In Cohere's lead-and-worker harness on ProgramBench, a lead on Sol, the most capable
+of three GPT-5.6 tiers, kept its exploration-and-planning workers on Luna, the cheapest. With team size
+left to the lead, this scored **60.5%** against **63.6%** for an all-Sol planning team, keeping **47.5%**
+of that team's gain over the solo agent "for only 13.9% of its extra cost". A Sol lead with sixteen Luna
+planners reached **61.8%** for **$155**, against **63.2%** for **$510** for the all-Sol team that
+delegates every stage, which is the basis of the title's "30% of the cost". That is a near-match, not a
+match, and the $155 configuration ran once while the all-Sol figures average three runs.
+
+Two features make this routing rather than generic team design. The route is set by **role**, which the
+harness knows by construction, so it meets this page's *route on the strongest signal you already have*
+rule without a difficulty classifier. And it qualifies the tier list above, where Kilo sends planning to
+stronger models: here the cheap tier did the planning, because on this benchmark planning means running
+a black-box program and reporting what it does. On Commit0-Lite, where the specification is supplied,
+implementation was the better stage to delegate in eight of ten team setups, so which role can be
+downgraded is task-dependent.
+
+Under-routing the decision-maker is the failure. With Luna workers held fixed, a Terra lead scored
+**51.6%**, below a solo Sol agent at **57.7%**: "Cheap workers could not make up for a weaker lead,
+though." One reading links this to the verifiability section above: the lead implemented and verified
+the program itself, so a weak planner's error could still be caught downstream, while nothing downstream
+checks the lead. The source does not test that explanation.
+
+The evidence is a vendor research post: one benchmark, one minimal harness, and three tiers of one model
+family, with cost conclusions tied to GPT-5.6 tier pricing and this harness's token use.
+
+## The ratio a router needs is cost per run, not price per token
+
+[[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] gives production
+evidence for the advice in the router-selection section above, drawn from
+[[Swapnil Talekar - The Decision Model Gold Rush]], not to compare token tariffs with per-task costs.
+[[Cloudflare]] split every Sonnet reviewer in its internal AI code reviewer 50/50 between Sonnet 5 and
+Sonnet 5.5. After two and a half days, 5.5 was **62%** cheaper per run for code quality, **58%** for
+performance and **47%** for security, while posting about as many critical and warning findings on
+full-tier reviews: "The two models cost the same per token, so all of that comes from using fewer
+tokens." When the coordinator moved from Opus 5 to the per-token-cheaper Opus 5.5, "price is only
+responsible for about $0.20 of the drop"; the rest came from fewer tokens. A price list would have
+predicted no saving in the first case and only the price-driven part of the second.
+
+The same post shows the drift behind this page's *model updates invalidate the router* failure, in the
+expensive direction. With the review-tier mix held fixed, cost per review rose from **$1.22** in March to
+**$2.32** in August without significant architectural change, and "most of the cost increase actually
+came from model changes". Moving every reviewer onto [[Anthropic]] models raised cost per job from
+**$1.38** to **$2.03**, chosen because those models did better in Cloudflare's own evaluations on this
+workload. It also confirms the Kilo point from
+[[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]] that caching does not
+substitute for routing: the cache hit rate rose from **85.7%** to **97%** while tokens per review rose
+from **0.91 million** to **2.99 million**.
+
+Where this page calls a downgrade without a verification contract an *unhedged bet*, Cloudflare hedged
+with measurement instead: randomized splits for model and effort changes, checked against two imperfect
+quality proxies — whether authors changed the flagged lines, and blinded model judges.
+
+The limits are one company's self-reported telemetry on one workload. Model and effort changes are
+credited with **$1.06** of a **$1.67** drop, against **$0.65** for code changes, but each step compares
+hours before and after a change, "so this isn't a statistically sound controlled experiment". The Sonnet
+split ran two and a half days, and per-run savings depend on these reviewer prompts and this harness.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -295,9 +358,21 @@ runtime knowledge loading.
 - Meta's router dispatches specialists and workflow phases rather than model tiers. Does the
   reasoning-less argument transfer to tier selection, where the decision is about difficulty rather
   than about which subsystem owns the task?
+- Cohere's cheap tier was safe for gathering information on a task whose specification is hidden, and
+  not as the lead. Is there a general test for which roles in a workflow can be downgraded, or must it be
+  measured per task family?
+- Two model versions at the same per-token price differed by 47-62% in cost per run at Cloudflare. How
+  often must a router's cost table be re-measured on its own traffic, and does every model update reset it?
 
 ## Related pages
 
+- [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
+- [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]]
+- [[Cohere]]
+- [[Cloudflare]]
+- [[Anthropic]]
+- [[Semantic Caching]]
+- [[Test-Time Scaling]]
 - [[Plawan Rath et al - The Thin Orchestrator]]
 - [[Meta]]
 - [[Lisa Brown Jaloza - Microsoft-Decision-1]]

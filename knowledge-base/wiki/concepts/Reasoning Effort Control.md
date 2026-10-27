@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-16
+updated: 2026-10-27
 tags:
   - concept
   - reasoning
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-09-27-willison-llms-2026-so-far
   - src-2026-10-13-zancato-model-priming
+  - src-2026-10-20-cloudflare-inference-bill
 status: active
 ---
 
@@ -145,6 +146,40 @@ gain on the full benchmark is also distinct from raw tokens per second or the up
 hardest-problem result. Neither the iteration knob nor similar trace lengths guarantee equal
 quality across tasks. Compare complete cost and accuracy at each operating point.
 
+## Effort sets how far a coding agent looks, and its value differs by role
+
+[[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] measures effort
+on a production agent and checks whether its output was real. In [[Cloudflare]]'s internal AI code
+reviewer, effort changed how far the agent explored, not only how long it reasoned. On Sonnet 5.5 at
+medium effort the code quality reviewer made **1.7** model calls per run instead of **6.2** (a baseline
+the post does not name), and more than half its runs finished in a single call, opening no other file in
+the repository. "We were concerned that this made reviews shallower". At high effort it made **3.4**
+calls. In a 50/50 split since 5 October, high effort cost **61%** more per run after one day and posted
+**58%** more critical and warning findings: "That's about two cents per review". Code quality is moving
+to high effort, and the post's cost figures assume it.
+
+The value of effort differed by role. For the coordinator, medium effort finished full-tier jobs **20%**
+sooner on the same model, and Opus 5.5 at high effort cost more than at medium without a meaningful
+increase in findings. That is a milder, production instance of the failure side drawn from
+[[Simon Willison - 2026 in LLMs (so far)]]: more effort consumed budget without improving the result.
+For the code quality reviewer, "Medium effort did lose real findings." In the randomized split, medium
+led to roughly a quarter as many acted-on findings as high. The post also says performance lost real
+findings at medium: its blinded [[LLM-as-a-Judge]] check found about **64%** fewer important performance
+issues per review, about one fewer every 24 full-tier reviews. But that check compares the period before
+the changes with now, across the model switch and every other change, so it does not isolate effort.
+Security fell by about a quarter, not statistically significant.
+
+On this page's open questions, the answer is local but concrete: in one workload, *medium* was enough
+for the coordinator and lost real findings for a finding-generating reviewer. The post gives no exchange
+rate between effort and model size. Unlike the in-turn controller in
+[[Replit - Free the Models - Harness Design at the Frontier]], effort here is a fixed setting per role,
+chosen for code quality by a randomized split.
+
+The limits are the source's own. The figures are self-reported from one company's reviewer, and the
+effort split had run one day. "An author changing the flagged lines shows they did something, not that
+the finding was right", and "The judges are models too", with 35 to 66 findings per group. Performance
+and security are still at medium effort; testing them at high is next.
+
 ## Open questions
 
 - How does token-efficient training redistribute computation, and which trace interventions
@@ -156,9 +191,16 @@ quality across tasks. Compare complete cost and accuracy at each operating point
 - Closed-model behaviour here is inferred. Raschka is explicit that GPT-5.6's internals are unknown and
   that his proposed diagram is "a possible implementation, not a confirmed description."
 - If effort substitutes for parameters, what is the exchange rate, and does it hold across task types?
+- What predicts a role's sensitivity to effort? At Cloudflare, high effort added cost without a
+  meaningful increase in findings for the coordinator, while medium effort left code quality with
+  roughly a quarter as many acted-on findings as high. Is the difference how much a role must explore,
+  in calls and files opened, rather than how much it must reason?
 
 ## Related pages
 
+- [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]]
+- [[Cloudflare]]
+- [[LLM-as-a-Judge]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Replit - Free the Models - Harness Design at the Frontier]]
 - [[Simon Willison - 2026 in LLMs (so far)]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-10-07
+updated: 2026-10-27
 tags:
   - concept
   - ai-agents
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-09-03-github-ai-coding-cost-efficient
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-26-bytebytego-salesforce-agent-stack
+  - src-2026-10-25-rastogi-agentcore-enterprise
 status: active
 ---
 
@@ -172,6 +174,43 @@ downstream credential. Discovery overhead and task quality need measurement too;
 adoption, not a controlled latency or token-saving result from bundle curation, and its more
 dynamic discovery design remains planned work.
 
+## A searchable tool index trades resident schemas for extra calls
+
+Two new sources take the DoorDash move a step further: instead of a curated list, the agent holds a
+search tool. [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] relays [[Salesforce]]'s
+version, which starts from the residency cost this page measures: "When there are hundreds of tools,
+they will consume a large share of the context with definitions the agent will rarely use." Its answer
+is that "The Salesforce MCP Server works this way with just four tools". `discover` runs a semantic
+search over APIs and skills, `describe` returns a skill's contract, and `dispatch` routes the call and
+checks the user's access; the fourth tool is not named. In
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]], AgentCore
+Gateway offers semantic tool search "instead of loading hundreds of schemas into context", and its
+policy engine filters `tools/list` per caller, "which also shrinks the prompt".
+
+Both keep DoorDash's split between discovery and authority. Salesforce's `dispatch` checks access when
+the call is made, and AgentCore's Cedar engine sits "in front of every tool call at the Gateway" and
+sees arguments as well as tool names, so hiding a tool is again not the only check. The pattern also
+extends this page's design rule: the code-surface proposal in [[Can Bölük - The Harness Playbook]]
+puts an open-ended operation set behind one execution tool, while a search tool puts a large catalogue
+of schema-defined operations behind one lookup and keeps each call schema-shaped once found.
+
+Neither source measures the trade. The index removes resident definitions from every request, but
+Salesforce's example request takes three calls (discover, describe, dispatch). By the sorting rule
+above, that buys an intra-turn token saving with extra turns, the term
+[[FD - Agent Muse Compute Demand]] estimates as dominant. AgentCore's promise of "Fewer tokens, and
+less chance the model picks the wrong tool" is likewise unmeasured.
+
+Rastogi adds the quality side: "these tool docstrings become prompts", so "a vague docstring is a bug",
+and the instruction is to "Cover tool descriptions with evals." That is this page's behavioural-test
+rule applied to tool descriptions, and it comes with no method or cost either. His scale reference is
+[[Uber]]'s MCP Gateway, at over 800 MCP servers and more than 5,000 tools, with a registry, a proxy,
+and an AutoCrawler that generates definitions as APIs change; the figures are Uber's, relayed
+secondhand.
+
+The limits are a vendor design relayed through interviews and a practitioner who uses AgentCore at
+work. Neither reports latency, tokens, or wrong-tool rates for search-based discovery against a
+resident roster.
+
 ## Open questions
 
 - **How much of the 36.6s vs 42.2s gap is roster size versus other harness differences?** The comparison is
@@ -190,11 +229,19 @@ dynamic discovery design remains planned work.
 - **What is the exchange rate between a token saved in the harness and a watt-hour?** FD's **5-10 Wh**
   band is an assumption widened from one study's **~0.31 Wh** median, so the two ends of this ledger
   are not yet in the same units.
+- **Does a search-first roster pay for its extra calls?** Salesforce's example needs discover, describe,
+  and dispatch for one request, and neither it nor AgentCore reports tokens, latency, or wrong-tool
+  rates against a resident roster.
 
 ## Related pages
 
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[DoorDash]]
+- [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
+- [[Salesforce]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Sarthak Rastogi]]
+- [[Uber]]
 - [[Agent Security and Governance]]
 - [[Can Bölük - The Harness Playbook]]
 - [[GitHub - How We Make AI Coding More Cost Efficient]]

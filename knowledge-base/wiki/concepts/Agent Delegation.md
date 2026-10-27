@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - ai-agents
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-10-15-cohere-agent-teams
 status: active
 ---
 
@@ -351,6 +352,41 @@ workload** and does not validate Meta's deployment. Critically, **no ablation se
 routing, context isolation, workflow templates, and runtime knowledge loading, so the claim that
 emptying the router caused the gain is an attribution, not a measurement.
 
+## Delegation pays on the task's bottleneck, and only as far as the lead can use the results
+
+[[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] supplies this page's first
+controlled test of *where* a lead should delegate. In a minimal lead-and-worker harness on ProgramBench,
+where an agent rebuilds each of 200 programs from an executable it can run but not read, the researchers
+told the lead which single stage to hand to workers. "Planning was the clear winner": an asynchronous
+all-Sol lead delegating only exploration and planning scored **63.6%** at **$249**, against **63.2%** at
+**$510** for one delegating every stage (means of three runs). The stated reason is the task's shape:
+"The target program is a black box, so its behavior has to be discovered by running it." On
+Commit0-Lite, whose repositories spell out what to build, implementation was the best stage in eight of
+ten team setups — "suggestive rather than conclusive", since a solo agent already passes every test on
+12 of its 16 tasks.
+
+The second condition is the lead. In asynchronous planning teams with Luna workers held fixed, Luna,
+Terra, and Sol leads scored **42.5%**, **51.6%**, and **60.5%**, and the Terra-led team stayed below a
+solo Sol agent at **57.7%**: "Cheap workers could not make up for a weaker lead, though." On a 30-task
+subset, other models failed on different sides: Claude Opus 4.7 delegated at most **1.3** times per
+task, while Claude Haiku 4.5 and Gemini 3.7 Flash delegated readily and gained nothing. "Two things
+have to go right for a team to help" — choosing to delegate, and using what comes back.
+
+This qualifies [[Plawan Rath et al - The Thin Orchestrator]] rather than contradicting it. Meta credits
+its gain to a router that reasons less; here the lead's capability sets the ceiling. But Meta's router
+does no domain work, while Cohere's best lead implements and verifies the program itself. The fan-out
+result also fits contract-first decomposition: as a Sol lead's Luna implementers grew from two to
+sixteen, each assignment shrank from about **1,400** to **440** characters, the lead still checked the
+combined program **5 to 6** times, and implementation teams improved only up to four workers. More
+planners kept helping (**59.6%** to **61.8%**) because each one added runs of the reference program —
+new information rather than thinner slices.
+
+For model-chosen dispatch in [[Ethan Mollick - The Dot and the Swarm]] and
+[[Replit - Free the Models - Harness Design at the Frontier]], the caution is that both conditions varied
+by model, even within one family. The limits: a vendor research post on one minimal harness; the
+researchers, not the lead, diagnosed the bottleneck; fixed-size teams ran once; and the cross-model
+results are single runs, where "differences of a few points may be noise".
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -378,9 +414,16 @@ emptying the router caused the gain is an attribution, not a measurement.
   necessarily require the domain knowledge the router gave up?
 - Meta's design contains the blast radius of a specialist failure but reports no failure, retry, or
   escalation rates. How often does containment turn into an unresolved task rather than a corrected one?
+- In Cohere's study the researchers told the lead which stage to delegate, and the best stage differed
+  between a benchmark that hides its specification and one that supplies it. Can a lead locate its own
+  bottleneck, or must people choose the delegation pattern per task family?
 
 ## Related pages
 
+- [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
+- [[Cohere]]
+- [[Test-Time Scaling]]
+- [[Coding Agent Harness]]
 - [[Plawan Rath et al - The Thin Orchestrator]]
 - [[Meta]]
 - [[Ben Dickson - Cross-Model KV Cache Handoffs]]

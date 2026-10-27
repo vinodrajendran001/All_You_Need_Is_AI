@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - inference
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
   - src-2026-07-06-sarthak-rastogi-production-agent
+  - src-2026-10-20-cloudflare-inference-bill
 status: active
 ---
 
@@ -115,12 +116,46 @@ the same question in different words — "My iPhone won't turn on" and "iPhone n
 example pair. It is a code-first tutorial, so these are design recommendations from one practitioner's
 reference architecture, not results.
 
+## An aggregate prompt-cache hit rate can hide a first request that mostly misses
+
+[[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] concerns exact
+prefix caching, the *prompt caching* column of the table above, not semantic caching, but it gives this
+page its first production measurement of either. [[Cloudflare]]'s internal AI code reviewer reached a
+**97%** cache hit rate by September, yet in data logged from 14 September, before the fix, the first
+request of a session found a cached prefix only **14% to 26%** of the time, although **11k to 21k**
+tokens of tool definitions and agent prompt were identical in every repository. The post does not say
+how the rate is computed, but its figures suggest how both can hold: each call resends the whole
+conversation, and the code quality reviewer averaged **16.6** calls per review, writing **72k** tokens to
+the cache and reading back **1.08m**. If the rate counts every call, the first call, which pays for the
+write, could mostly miss while the rate stayed high. Cache writes were **43%** of spend.
+
+The provider prices match the ratios [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]] quotes:
+writes at 1.25 times the normal input price, reads at 0.1 times, and expiry after five minutes without a
+read. The new source adds a condition to *stable content must precede variable content*: "A prefix is
+only stored where a cache breakpoint ends it." OpenCode v1 put the agent prompt, working directory, and
+date in one block with its only breakpoint at the end, so "The shared part was never stored on its own".
+Hashing the first system block as sent exposed this; once a marker and plugin hook split the block,
+first-request cache reads rose to **91–99.5%**.
+
+The fix had costs. The skills list was disabled and tool descriptions frozen between jobs. When three
+reviewers share one first request, the other two wait up to **20 seconds**, because "A cache entry can't
+be read until the response that wrote it has started streaming", to save about nine cents each. No cache
+hit here can return a wrong answer, so this page's claim that prompt caching has essentially no
+correctness surface stands, but a disabled skills list changes what the agent is told, a behavioral cost
+the source does not measure.
+
+The evidence is one company's self-reported telemetry. The fix shipped alongside a second change, and
+"Together these took the cost per review from $2.47 down to $2.02", so its own share is not isolated.
+
 ## Open questions
 
 - **The vault has no measurements here.** Every figure in the source is illustrative or third-party
   pricing: the 0.92 similarity score, the 30-day-to-14-day policy example, the $1.35-versus-$2 prefix
   arithmetic, and the quoted provider ratios (cache reads at 1/10th of input price; 5-minute writes at
   1.25×, 1-hour writes at 2×). No hit rates, latency deltas, or error rates are reported.
+  [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] now supplies
+  production prompt-cache figures, aggregate and first-request hit rates and the share of spend on cache
+  writes, but the semantic-cache side still has none.
 - The source **proposes** measuring reused input tokens, accepted semantic-cache answers, freshness,
   scope, and answer appropriateness — and supplies no results. That evaluation harness is the missing
   piece, and it is the same gap [[Embedded Evaluation]] describes elsewhere.
@@ -145,3 +180,7 @@ reference architecture, not results.
 - [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]]
 - [[Sarthak Rastogi - Making an AI Agent Production-Ready]]
 - [[AI Agents in Production]]
+- [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]]
+- [[Cloudflare]]
+- [[Context Engineering]]
+- [[Anthropic]]

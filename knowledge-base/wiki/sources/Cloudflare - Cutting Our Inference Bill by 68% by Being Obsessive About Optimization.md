@@ -96,11 +96,13 @@ lines 30 to 40 away changed about 15% of the time. Authors acted on 59% of code 
 findings, up from 34%, so acted-on findings per 1,000 reviews held at 132 against 145, "within the margin
 of error". In the second check, two models from different providers judged a blinded sample of 657
 findings, with a third model settling disagreements. Important findings per review went from 0.28 to
-0.30, and over-severe findings fell from 0.46 to 0.14, "the clearest result in the research". Medium
-effort lost real findings: code quality at medium produced roughly a quarter as many acted-on findings as
-at high, and the performance reviewer found about 64% fewer important issues, about one fewer every 24
-full-tier reviews. Security fell by about a quarter, not statistically significant. Reviews ending without
-a verdict fell from 0.79% to 0.27%.
+0.30, and over-severe findings fell from 0.46 to 0.14, "the clearest result in the research". The post
+concludes that medium effort lost real findings. In the randomized split, code quality at medium
+produced roughly a quarter as many acted-on findings as at high. For the performance reviewer, still at
+medium, the judges found about 64% fewer important issues per review, about one fewer every 24 full-tier
+reviews, but that before-and-after comparison also spans the model switch and every other change, so it
+does not isolate effort. Security fell by about a quarter, not statistically significant. Reviews ending
+without a verdict fell from 0.79% to 0.27%.
 
 ## Why it matters
 
@@ -109,7 +111,8 @@ rate was 97% while first requests, which pay for cache writes, mostly missed. Th
 of the prompt, not a better cache.
 
 [[Reasoning Effort Control]] gets an effort trade measured with quality instrumentation. Effort was worth a
-few cents per review, but medium effort lost real findings on two of three reviewers.
+few cents per review. Medium effort lost real findings for code quality in a randomized split; the post
+also reports a loss for performance, from an uncontrolled before-and-after comparison.
 
 [[Model Routing]] gets evidence that cost per run, not price per token, is the number to route on: two
 Sonnet versions at the same per-token price differed by 47–62% per run.
@@ -123,8 +126,8 @@ Sonnet versions at the same per-token price differed by 47–62% per run.
 - **The quality proxies are imperfect.** "An author changing the flagged lines shows they did something,
   not that the finding was right." "The judges are models too", there are 35 to 66 findings per group,
   and the post-change window is one day long.
-- **Two reviewers may still miss findings.** Performance lost real findings at medium effort, and security
-  may have; testing both at high effort is next.
+- **Two reviewers may still miss findings.** The post says performance lost real findings at medium effort,
+  and security may have, though that evidence spans every change; testing both at high effort is next.
 - **Cacheability cost flexibility.** Keeping the shared prefix stable meant disabling the skills list and
   freezing tool descriptions.
 

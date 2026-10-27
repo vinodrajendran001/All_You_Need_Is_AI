@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - ai-agents
@@ -46,6 +46,9 @@ source_ids:
   - src-2026-10-09-rabi-guha-intelligent-ui
   - src-2026-10-21-mcateer-claude-mods
   - src-2026-10-22-kezin-fable-image-messages
+  - src-2026-10-26-bytebytego-salesforce-agent-stack
+  - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-10-21-nvidia-sentry-runtime
 status: active
 ---
 
@@ -541,6 +544,101 @@ The authors explicitly say decoding remains visible in tool calls and do not cla
 danger. This controlled experiment is distinct from the earlier reported Hugging Face incident,
 not a reproduction of that incident or evidence of spontaneous coordination.
 
+## An agent can act for a user without holding all of the user's rights
+
+Two new sources answer this page's question about agents that inherit human credentials, and they
+answer it differently. [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] starts from the
+common case: "In most agent setups today, the agent acts as the user." Speed then removes the limit a
+person has: "A human with broad permissions is at least limited by how fast they can work. An agent is
+not. It can make a mistake and repeat it many times." That is the failure shape of the erroneous-refund
+incident in the span section above. In ByteByteGo's account of [[Salesforce]]'s Agent Identity,
+authentication yields "two tokens, one for the agent and one for the user it is acting for", and
+Salesforce checks the user's permissions, the agent's permissions, and the data policies: "The
+operation runs only if none of them deny it."
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]] ranks three
+answers. A shared service account means "every user effectively gets the service account’s access"; the
+agent's own identity is "Better for audit, but still doesn’t tell you which human was involved"; the
+delegated user identity is "the answer you want, and also the hardest to build." AgentCore exchanges the
+user's token on-behalf-of (OBO) for one "scoped to that user and that downstream API", and "the audit
+trail records the chain". Uber is cited, secondhand, as issuing "short-lived, single-hop JWTs that carry
+the full actor chain", the kind of per-hop identity DoorDash lists above as roadmap.
+
+The two disagree about the agent's own identity. Rastogi ranks it below delegation; Salesforce makes it
+a second principal that can only narrow what the delegated user may do, the requirement Khushwant
+Singh states as "This agent is working on behalf of Alex, but I don’t want the agent to have the same
+rights as Alex." The choice is therefore not either/or: an agent identity bounds the agent, and
+delegation names the human. The earlier sources already pointed both ways.
+[[Virinchi T - Google Cloud MCP Security Framework]] starts from a dedicated agent identity, while
+[[Nithin Reddy Cheruku and Dhawal Patel - Multi-Tenant Agentic AI with Gemini Enterprise]] requires
+downscoped delegated tokens.
+
+Neither source reports an incident rate or a test of either design. Salesforce's comes through
+ByteByteGo's interviews. Rastogi uses AgentCore at work, and his survey figures (46% of teams sharing
+API keys across agents and 22% treating agents as entities with their own identity, from a Gravitee
+survey of 900 executives) reach him through an aggregator site.
+
+## A policy point governs only the routes that cannot bypass it
+
+The runtime-policy section above puts enforcement outside the workload and asks for a stated scope.
+Two new sources turn the scope into a wiring condition. In
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]], AgentCore puts
+a Cedar policy engine in front of every tool call at its gateway, in line with the rule that
+"authorization should always be written outside the reasoning loop". Policy sees arguments, so a rule
+such as "amount ≤ 500" is possible, and a `LOG_ONLY` shadow mode precedes `ENFORCE`: "That is how you
+roll out policy on a live system without an outage." Then comes the condition: "If an agent can call a
+runtime or MCP server directly, it skips policy." The fix restricts runtimes to calls from the
+gateway, and "Then the gateway really is the only route."
+
+[[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] applies the same condition below the
+host. In NVIDIA's reference architecture, "BlueField-4 sits on the node’s only path to the model", and
+agent traffic reaches it "through a direct network I/O path that bypasses host OS/hypervisor packet
+processing". A per-agent layer-4 firewall forwards permitted traffic to an Envoy-based proxy for
+layer-7 inspection and Open Policy Agent decisions, with decryption only "For connections configured
+for inspection". Both guarantees are statements about wiring. The Hugging Face escape above went
+through a permitted dependency, yet neither source tests whether another route exists, and the Sentry
+post gives no threat model for a compromised DPU, its firmware, or the policy engine.
+
+Both also move inspection of tool traffic to that point. Rastogi notes that Bedrock Guardrails' "PII
+and prompt-attack filters don’t inspect tool results or tool arguments", which leaves indirect prompt
+injection uncovered at the model layer, and proposes running those checks inside gateway policy. The
+Sentry post holds that "Agent security policies need to govern both what leaves the sandbox and what
+comes back." That assigns part of the outputs-only threat in the open questions to the gateway or
+proxy. It does not escape the screening caveat above: a filter that reads attacker-controlled
+responses can be addressed by them. Neither source reports a detection rate; AgentCore's account is a
+disclosed user's, without measurements, and Sentry has not shipped.
+
+## A record kept outside the agent's reach is part of the control
+
+[[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] also moves the evidence. Its premise
+is that "Monitoring and enforcement need to operate outside the agent’s reach so that it can’t alter or
+disable them", and it applies that to logs: "Security teams need evidence for incident investigations,
+even when an agent has escaped its sandbox or altered host-based logs." The proxy records inspected
+communications and policy decisions on the DPU, and "An agent that changes a log inside its own
+environment cannot make the same change to the protected record maintained on BlueField-4."
+
+That says where the append-only intent and outcome logs in the governance artifacts above should live.
+It carries the obedient-stub argument of [[Can Bölük - The Harness Playbook]], that a sandbox holding
+the record exposes the record to the sandbox's compromise, down to hardware, and it applies the
+unwritable-constraint principle to evidence rather than to rules. The span rule from
+[[Sarthak Rastogi - Making AI Agents Observable, Monitorable, and Production-Ready]] asks whether a gate
+left a trace; Sentry asks who can edit the trace.
+
+Runtime integrity also becomes an authorization input. DOCA Argus uses "live memory introspection to
+analyze selected regions of volatile host memory" from the DPU, and a policy can require that a
+container's hash be on an approved list and that the initiating process appear in the container's
+software bill of materials with an approved execution path and command-line arguments. Workload
+identity from SPIFFE/SPIRE says who is asking; this evidence says whether the requester is still the
+approved software, "enforcing policies that consider both the requested action and the security and
+integrity of the agent making it". Specialized models also classify behavior "using tool calls and
+available reasoning traces", inline or out of band.
+
+This is a vendor description of a product "ahead of NVIDIA Sentry’s planned availability early next
+year". Tamper evidence and attestation are asserted, not demonstrated. The classifiers have no
+published accuracy, so the screening-model caveat above applies; containment "within milliseconds" is
+unmeasured; Argus reads only selected memory regions; and the reasoning-trace plugin is planned. The
+post keeps OpenShell as the software layer: "Software runtime boundaries remain essential."
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -555,7 +653,9 @@ not a reproduction of that incident or evidence of spontaneous coordination.
 - A 93% prompt-approval rate is compatible with both "most prompts were unnecessary" and "users stopped
   reading". What measurement distinguishes them before prompts are removed?
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?
-- How should organizations govern agents that inherit shared human credentials?
+- How should organizations govern agents that inherit shared human credentials? Salesforce's two-token
+  check and AgentCore's on-behalf-of exchange are two answers recorded above; neither source reports how
+  often its design stops a harmful call.
 - Which controls can be standardized without hiding version-specific permission semantics?
 - When policy is executable and lives in the repository, what protects the policy file from the agent it governs?
 - If the production harness and system prompt cut infrastructure-compromise propensity over 100x, the
@@ -570,6 +670,9 @@ not a reproduction of that incident or evidence of spontaneous coordination.
 - If side-channel collaboration generalizes from multi-agent training, it cannot be removed by
   disabling a feature. What does an RL environment that trains distrust of unauthorized instructions
   look like, and does it cost legitimate collaboration?
+- An only-route guarantee, whether runtimes accept calls only from the gateway or a DPU sits on the
+  node's only network path, is a wiring claim. What test shows that no second route exists, and who
+  reruns it when the deployment changes?
 
 ## Related pages
 
@@ -643,3 +746,9 @@ not a reproduction of that incident or evidence of spontaneous coordination.
 - [[Tanya Lenz - Building a Memory-Driven Agent with NVIDIA NemoClaw]]
 - [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
 - [[Agent Payment Protocols]]
+- [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
+- [[Salesforce]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Uber]]
+- [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]
+- [[NVIDIA]]

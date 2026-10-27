@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - context-engineering
@@ -35,6 +35,7 @@ source_ids:
   - src-2026-10-17-bytebytego-chunking-strategies
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-10-21-databricks-memcurrent
+  - src-2026-10-26-bytebytego-salesforce-agent-stack
 status: active
 ---
 
@@ -416,6 +417,42 @@ company wiki; Databricks' consolidates one agent's own prior sessions into deriv
 splitting oversized files, merging duplicates, and resolving conflicts. Only the Databricks pipeline
 has an ablation behind it.
 
+## Some jobs should leave the context window entirely, not just be compressed inside it
+
+[[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] relays, from interviews with
+[[Salesforce]] executives, a redesign that removes work from the window instead of shrinking it. The
+first Agentforce prompt had to enforce the rules, find the customer, include the right data, and keep
+the agent within its permissions. The team observed that this held "for up to eight instructions. But
+beyond eight, the model would discard instructions." The article concludes that a prompt "cannot
+enforce that behavior".
+
+Each job now has its own system. Agent Script runs a `before_reasoning` block before the prompt is
+built, so the appointment lookup that a naive prompt merely requests "always runs reliably". Data 360
+resolves identity, Agent Identity holds permissions (see [[Agent Security and Governance]]), and the
+Agent Context Engine selects data in six steps: resolve, plan, reconcile, govern (access, masking,
+consent), compile, and learn. The rule of thumb, "use code for the parts we want predictable behavior,
+such as conditions, and use natural language for the parts that need actual reasoning", extends the
+code-as-context-economy point above from intermediate results to instructions. Unlike the
+deterministic router in [[Plawan Rath et al - The Thin Orchestrator]], the model still picks the
+subagent; code governs what runs before and after it.
+
+The token comparison is weaker evidence than the Databricks result above. In one demo, "show me
+details of my insurance plan" took 124,000 tokens without context management and 9,000 with the
+engine. After a follow-up, the naive session had used about 300,000 tokens in two questions, and the
+engine 65,000 after a third step that processed an enrollment. Step counts differ and answer quality
+is not reported, so this is a spend claim, not the comparable-accuracy claim Databricks measured.
+
+The learn step adds a persistence rule. A note that a customer may be moving is "a memory, not yet a
+fact" until the enrollment, and "only approved facts like this are promoted into long-term memory".
+That is the commitment test of PostHog's shipped, merged, or decided rule from
+[[Jina Yoon - We're Building Multiplayer AI]], applied to one customer's record instead of a company
+wiki. Despite the shared acronym, this ACE is unrelated to Agentic Context Engineering above, and the
+account does not say whether its memory is edited item by item or regenerated.
+
+The limits are those of a secondhand account of vendor interviews. The demo company and patient are
+simulated, the eight-instruction observation names no method, sample, or model, and no before/after
+rate of dropped rules is reported.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -433,6 +470,9 @@ has an ablation behind it.
   connection. Nothing in the Meta account measures what the isolated agents fail to notice.
 - Distilled derived memory outperformed raw episodic traces by a wide margin, and the authors concede
   **distillation can drop details**. What detects a dropped detail before it costs a task?
+- Salesforce's context-engine demo reports large token reductions with unequal step counts and no
+  answer-quality comparison. What matched test would show that a governed selection pipeline keeps
+  answers as good as full context, as Databricks showed for distilled memory?
 
 ## Related pages
 
@@ -496,3 +536,5 @@ has an ablation behind it.
 - [[Agent Delegation]]
 - [[Jina Yoon - We're Building Multiplayer AI]]
 - [[Agent Workflow Maturity]]
+- [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
+- [[Salesforce]]

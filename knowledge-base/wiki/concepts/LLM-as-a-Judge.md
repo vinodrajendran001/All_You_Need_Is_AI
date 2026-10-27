@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - llm-evaluation
@@ -28,6 +28,8 @@ source_ids:
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-10-20-husain-decision-model-evals
+  - src-2026-10-16-west-eval-engineering-lessons
+  - src-2026-10-17-redwood-screwtape
 status: active
 ---
 
@@ -366,6 +368,72 @@ readers to measure on their own data. He also notes the deliberately broad "any 
 **exaggerate** the gaps and recommends separate judges per failure mode — this page's
 facet-decomposition principle arriving as a caveat on his own comparison.
 
+## A judge that reads the closing message grades the report, not the work
+
+[[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] adds a failure that sits
+upstream of every calibration step on this page: the judge was handed the wrong artifact. Google's team
+first had an LLM judge score the agent's final text reply against a checklist, but "the grader only sees
+what the agent wrote, not what it actually did." On the initial 11-prompt suite for the Google Cloud
+Developer plugin, the judge failed three prompts that the raw tool-call logs showed the plugin had
+passed. In a Cloud Run cleanup whose rubric required checking command syntax before running anything,
+the agent's first step was `gcloud help run services list`, but its final message warned about permanent
+data loss rather than reporting the check. "The grader penalized the agent for doing the right thing
+simply because it didn’t brag about it in the summary."
+
+This sharpens principle 7, *score the right unit of work*. The split that
+[[Braintrust - How to evaluate multi-turn conversations]] supplies there is about granularity, turn
+versus whole conversation; this case is about evidence, because a closing message is the agent's own
+account of what it did. When a rubric line asks whether the agent ran something, a judge "is guessing
+unless you evaluate the actual tool-call trajectory". It is the agent-side form of the faithfulness point
+from [[ByteByteGo - Why Do LLMs Lie]]: a judge certifies only the evidence it was handed. It also
+confirms [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]] on reading transcripts,
+since the misgrades surfaced when the team opened the raw logs.
+
+The fourth lesson meets the golden-set principle as sharpened by
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]: each run is scored against
+"golden sets curated by real human experts who know what the ideal path looks like", a human-expert
+reference defined over trajectories rather than answers. The post does not say who or what scores runs
+against it.
+
+The evidence is one 11-prompt suite for Google's own plugin, published on Google's blog. No judge model,
+full rubric, or agreement rate is given, and no trajectory-reading judge is evaluated, so the post shows
+a summary-reading judge failing, not a trajectory judge succeeding. How an alternative but acceptable
+path earns credit against a golden set is also left open.
+
+## Under optimization pressure, a judge's errors collect among the survivors
+
+[[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]] runs LLM judges
+inside an attack-optimization loop. The monitors under attack are judges whose score is compared with a
+threshold "set to a fixed false positive rate on honest transcripts"; the verifier that decides whether
+each edited attack is valid and severe is a second judge. An attacker iterates against both, receiving
+the reasoning behind every failed check, which makes both judges optimization targets in the sense of
+the reward-hacking warning recorded above from [[@zafstojano - Recursive Synthetic Improvement]].
+
+The verifier's history qualifies principle 2 without contradicting it. "At first, we asked the verifier
+for a simple yes/no verdict." Runs then stopped early on trivial successes, and the verifier accepted
+many attacks that human experts did not find valid. The working verifier still accepts or rejects, but
+only after assessing the attack along rubric dimensions inspired by NIST SP 800-160v1r1 and the STPA
+Handbook and reasoning explicitly about consequences, with example questions such as what harm the attack
+can cause, whether that harm has happened or is only prepared, and whether the user authorized the
+actions. What failed under optimization was one holistic
+verdict, not binary output; the fix is principle 1's facet decomposition, close to the claims-not-scores
+rule from [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]. On average, the
+verifier rejects 60–70% of candidate edits within a run.
+
+Even so, "Verifier mistakes concentrate towards the end of the funnel", and final review confirmed 6 of
+the 17 attacks that evaded the held-out monitor. The post does not test why. One plausible reading is
+that iteration selects for whatever passes the verifier, so errors gather where the search has pushed
+hardest. That sits against the population-level framing in
+[[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]: an agreement rate measured
+on unselected items need not hold for the items an optimizer selects. Severity was also hard to label
+"even for human experts", so Redwood set conservative thresholds.
+
+For judging monitors, the source offers counterexamples without rates: "we can’t get any quantitative
+safety estimates from the pipeline". Golden-set agreement gives rates on natural data but no adversarial
+search, so neither replaces the other. These are Redwood's observations on its own withheld pipeline;
+the false-positive rate, the verifier's agreement with experts, and a reconciliation of the post's
+attack counts are not reported.
+
 ## Open questions
 
 - Threshold tuning needs labeled data. For a judge deployed where no labeled failures exist yet, what
@@ -380,8 +448,21 @@ facet-decomposition principle arriving as a caveat on his own comparison.
   8%-predicted/60%-actual group survive recalibration?
 - Nothing in that comparison establishes anything about judges on other domains, longer traces, batched
   workloads, or the narrower per-failure-mode rubrics the author himself recommends.
+- Reading the tool-call trajectory is the remedy West proposes, but the post evaluates no
+  trajectory-reading judge against human labels. How much of a trajectory must a judge see before its
+  verdicts on rubric lines that ask whether the agent ran a command can be trusted?
+- Adversarial search such as Screwtape yields counterexamples without rates; golden-set agreement yields
+  rates on unselected data without adversarial search. How should the two be combined before a judge or
+  monitor is trusted as a gate?
 
 ## Related pages
+
+- [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]]
+- [[Google Cloud]]
+
+- [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]
+- [[Redwood Research]]
+- [[Chain-of-Thought Monitoring]]
 
 - [[Hamel Husain - How To Use Decision Models for Evals]]
 - [[Hamel Husain]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -23,6 +23,8 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-17-bytebytego-chunking-strategies
   - src-2026-10-19-bytebytego-uber-genie
+  - src-2026-10-16-opensearch-beyond-top-k
+  - src-2026-10-06-iusztin-rag-evals
 status: active
 ---
 
@@ -372,11 +374,83 @@ article itself notes "helpful" is not "fully resolved" and that a "Not Relevant"
 the request was out of scope. A reported ~13,000-hour engineering-time saving is attached to a
 derivation that is **truncated in the vault's capture** and is therefore not usable as evidence here.
 
+## Better ranking does not say when to stop, so the stop signal has to be built and calibrated separately
+
+[[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
+offers a candidate for the retrieval-time signal the six-failure-modes section above leaves open, where
+[[ByteByteGo - Why Do LLMs Lie]] gave no guidance on thresholds. The OpenSearch post names the missing
+signal as "none of what I retrieved is good enough to act on" and argues that ranking cannot supply
+it: after min-max normalization a top score marks only "the best of that set", Reciprocal Rank Fusion
+"discards score information entirely", and a cross-encoder logit "is designed for ordering, not
+calibrated confidence". That extends the layering
+[[ByteByteGo - How LLMs Can Find a Needle in a Haystack]] began on this page by one more step: a
+well-ordered result list is not a decision to use it.
+
+The proposal is a confidence layer in the agent's orchestration code. It weights five signals: top
+normalized score 0.35, gap to the second hit 0.25, coherence among the top hits 0.20, freshness 0.10,
+and source authority 0.10, the last two drawn from document metadata such as a `last_updated`
+timestamp or an index-time authority field. The threshold is set by query type and action intent, so
+a factual lookup needs 0.75 to be read but 0.90 before the agent executes on it. The margin below the
+threshold then selects act, caveat, clarify, escalate to a human, or hard abstain, a graded form of
+the *needs review* state above that is triggered by retrieval evidence rather than by the model's own
+confidence.
+
+Freshness is aimed at the retired-policy failure: the post's motivating case is a hypothetical agent
+that follows a deprecated 2022 runbook into a production incident. This page says only a freshness or
+active-version rule catches that failure, but here freshness is one signal weighted 0.10, not a rule,
+so in this page's reading a stale document that scores well on the other four signals can still clear
+the threshold. Nor does the composite reach the split-conditions failure. A rule missing its exception
+can still look relevant, current, and coherent, so the claim above that no threshold or rerank score
+tells a complete rule from half of one still stands.
+
+Nothing is measured. The authors call the post "a conceptual deep dive with illustrative code" and
+offer the weights and thresholds as starting points to tune against a judged query set. The worked
+example's outcomes, such as acting at confidence 0.85 and margin +0.10, are "computed from mocked
+retrieval scores": they show how the ladder routes, not whether it routes correctly. The composite is
+not a probability either (with a single hybrid clause, the min-max top hit is always 1.0), the post
+does not say how query type and intent are classified, and it is an OpenSearch project post, although
+it places the confidence and abstention logic in the agent's orchestration layer, outside OpenSearch.
+
+## A RAG eval case is valid only against the corpus as it stood, and its fixes can land in the corpus
+
+[[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]] adds a constraint this page's evaluation
+material has not stated: a RAG eval case has a date. Its case study, relayed from Alexey Grigorev, is
+the DataTalks.Club FAQ automation, which classifies each contributed question as `NEW`, `UPDATE`,
+`DUPLICATE`, or `WRONG_COURSE`. A question that was new when its issue arrived is in the FAQ now, so
+replaying it unchanged yields a correct `DUPLICATE`, and "the eval case fails for the wrong reason".
+The fix is to "install your data": with 200 records, remove the one the issue created and expect `NEW`
+against the other 199. In this page's reading, corpus contents become part of the test fixture, next
+to the chunking and embedding choices already treated here as versioned schema decisions, and
+leave-one-out removes only that one record, so later edits to the others remain in the replay.
+
+The evaluators follow the split recorded under *Retrieval success is not evidence-use success*.
+Retrieval is scored on its own (25 cases, recall@5 against the expected chunks, about 2 seconds), and
+61 generation cases check the structured decision in code, matching action and section placement and
+recording cost per case, in about 2 minutes. The rule is to "use code checks wherever the right answer
+is known" and "save LLM judges for free-text answers", which here means the Slack assistant's replies;
+for those the article advises aligning the judge with 10 to 15 examples labeled by hand. Trace
+analysis found that the most common error was wrong section placement, not a wrong decision.
+
+The loop then points back at the corpus, as in the Uber Genie section above, by a different route.
+Uber's judge scores the source documents; here failures become eval cases first, and Grigorev usually
+fixes them in the FAQ, the docs, or the course repository, "not with a fancier model". Combined with
+the dating problem, that has a consequence in this page's reading: each corpus fix can change what an
+older case should expect, so rebuilding the corpus as it stood becomes a precondition for re-running
+older cases at all.
+
+The evidence is one community project, relayed in an article sponsored by Opik, the tracing and
+evaluation platform it uses throughout. The figures are the practitioner's: the generation set passes
+42 of 61 cases on GPT-5.4 nano and is kept as a floor rather than a target, there are no confidence
+intervals, and Grigorev calls his runner "not very scientific" yet. As with Uber, no before-and-after
+is reported for the corpus edits.
+
 ## Open questions
 
 - **Does a document-scoring loop actually improve retrieval, or only generate suggestions?** The Uber
   source reports the mechanism, not a before-and-after on answer quality, document quality, or
   question volume.
+  [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]] likewise sends fixes into the FAQ, the docs,
+  or the course repository and reports no before-and-after for those edits.
 - **Nothing establishes that the LLM judge's relevance and hallucination scores track human
   judgment**, which weakens both the answer evaluation and the document feedback built on it.
 - The Uber account supplies **no precision/recall, hallucination rate, latency, cost-per-answer, or
@@ -388,8 +462,17 @@ derivation that is **truncated in the vault's capture** and is therefore not usa
 - Corpus-wide scoping answers permissions only when every reader may see everything. What is the
   design when the corpus carries mixed entitlements and per-user filtering has to run inside
   retrieval?
+- **What would calibrating a composite retrieval confidence take?** The OpenSearch proposal defers its
+  weights and thresholds to a judged query set per corpus. How large must that set be for each query
+  type and intent, and can any retrieval-time signal tell a complete rule from one missing its
+  exception?
 
 ## Related pages
+
+- [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
+- [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]]
+- [[Paul Iusztin]]
+- [[LLM-as-a-Judge]]
 
 - [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]
 - [[Text-to-SQL Agents]]

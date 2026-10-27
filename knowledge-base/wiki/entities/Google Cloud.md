@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-09-13
-updated: 2026-10-07
+updated: 2026-10-27
 tags:
   - entity
   - organization
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-13-rahman-quantizing-llms-gke
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
+  - src-2026-10-16-west-eval-engineering-lessons
 status: active
 ---
 
@@ -93,6 +94,18 @@ These are first-party before/after operating figures, without a measurement wind
 attribution. Queue guarantees cannot eliminate cloud spot preemption, and a near-100% reserved
 utilization target is specific to this fleet rather than a universal GKE objective.
 
+## Evaluating its own agent plugin
+
+[[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] is a first-party
+account of how Google evaluated the newly released Google Cloud Developer plugin for AI coding agents.
+Its value here is method rather than product evidence: grade the tool-call trajectory, keep turn
+structure in extracted traces, run live and plan-only conditions side by side, and score the whole
+harness, model, and tools stack against expert golden sets as continuous integration. Its main figure
+is diagnostic: on the initial 11-prompt suite, an LLM judge failed three prompts that the raw
+tool-call logs showed had passed. As with the GKE figures above, the evidence is first-party: Google
+evaluating a Google plugin on Google's blog, with no pass rates, so it supports the methods recorded in
+[[Multi-Turn Evaluation]] and [[LLM-as-a-Judge]], not the plugin's quality.
+
 ## Open questions
 
 - Which state, trace, tool, and policy formats remain portable across Agent Engine, Cloud Run, and GKE?
@@ -103,6 +116,9 @@ utilization target is specific to this fleet rather than a universal GKE objecti
 
 ## Related pages
 
+- [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]]
+- [[Multi-Turn Evaluation]]
+- [[LLM-as-a-Judge]]
 - [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]
 - [[Distributed Training Parallelism]]
 - [[Model Factory]]

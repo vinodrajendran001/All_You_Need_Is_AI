@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - reasoning
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-12-bytebytego-energy-based-reasoning
   - src-2026-10-19-alphasignal-next-concept-modeling
   - src-2026-10-19-naam-million-agents-superintelligence
+  - src-2026-10-15-cohere-agent-teams
 status: active
 ---
 
@@ -173,6 +174,38 @@ is excluded from the table precisely because it **had no single-agent control**;
 he would attribute **"not even 10%"** of that result to multi-agent scaling, which is an expert judgment
 rather than a measurement. And benchmark score is a task-specific proxy, not a measure of capability.
 
+## A team is a test-time budget whose return depends on where the agents go
+
+[[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] opens with the claim that
+"Teams of agents unlock a new axis of inference-time scaling", and tests it in a single controlled
+testbed rather than the collected third-party curves of
+[[Ramez Naam - Can a Million AI Agents Create Superintelligence]]: one design choice changed at a time,
+each configuration normally run three times on all 200 ProgramBench tasks, and paired 95% intervals
+against a solo baseline. The exchange rate it measures is steep. A blocking all-Sol team with the
+minimal prompt scored **61.8%** against **52.1%** for a solo Sol agent, and with the PIV prompt **63.1%**
+against **57.7%**, yet "All four Sol teams cost between 4 and 7 times as much as the corresponding solo
+agent." The key takeaways instead say the gains "come at 3–7× higher cost"; the source does not
+reconcile the two ranges.
+
+What this page gains is that the return on width depends on allocation more than on count. With
+asynchronous leads, delegating only exploration and planning gained **3.4** points per **$100** of added
+cost against **1.7** for the next-best stage (**3.8** against **2.4** with blocking leads). Fixed teams
+of Luna planners under a Sol lead rose from **59.6%** with two to **61.8%** with sixteen, and the stated
+mechanism is information: each planner ran the reference program about seven times whatever the team
+size, so more planners showed the lead more of the program's behavior. That refines Naam's caution that
+breadth does not supply diversity automatically: here the planners shared one model, and the breadth
+came from the lead's split of the task, "each probing a different part of the program's interface".
+
+Naam's split between speed and score also reappears. With the PIV prompt, an asynchronous lead finished
+in **19.5%** less time than a blocking one at about the same reward; with the minimal prompt, it finished
+in **60%** less time but did more of the work itself, and the team fell to **55.9%**, below the
+PIV-prompted solo agent.
+
+This does not settle the depth-versus-width question below: costs are reported beside results, not
+matched, so no run gives one agent the team's budget. Fixed-size teams ran once, the results are
+vendor-reported on one benchmark, and pairing cheap workers with a strong lead makes width a
+[[Model Routing]] decision as well.
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -181,7 +214,9 @@ rather than a measurement. And benchmark score is a task-specific proxy, not a m
 - **Depth versus width at a fixed budget is unmeasured.** No source on this page compares spending a token
   budget on a longer trace, more samples from one model, or more parallel agents on the same task. The
   collected agent curves report speed and score against agent count, never against an equal-compute
-  single-agent alternative.
+  single-agent alternative. [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
+  does not fill the gap: it reports each team's cost beside its score but never gives one agent the
+  same budget.
 - **What determines N?** The saturation points above range from 8 agents in the diversity study to beyond 100
   in formal math, and nothing in the evidence explains the spread — the formal-math results in particular do
   not distinguish a sequential bottleneck from a missing insight.
@@ -189,6 +224,9 @@ rather than a measurement. And benchmark score is a task-specific proxy, not a m
   the source does not establish that the shapes hold on open-ended work.
 ## Related pages
 
+- [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
+- [[Cohere]]
+- [[Model Routing]]
 - [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
 - [[Ramez Naam]]
 - [[Agent Delegation]]

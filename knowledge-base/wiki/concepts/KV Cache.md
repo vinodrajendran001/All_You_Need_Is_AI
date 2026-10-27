@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - kv-cache
@@ -33,6 +33,7 @@ source_ids:
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
+  - src-2026-10-26-cerebras-trillion-parameter
 status: active
 ---
 
@@ -356,6 +357,42 @@ thresholds, metadata scoping, TTL and version invalidation — belongs to [[Sema
 covers it in depth. The distinction worth carrying here is that prompt caching cannot change what the
 model says, only what it costs; the other mechanism can.
 
+## In a hybrid model, only full-attention layers carry a per-token cache, so they set the concurrency ceiling
+
+[[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] moves this page's question from HBM
+to on-chip SRAM and answers it layer by layer. In its Kimi K3 illustration (an assumed 256k average
+request size, 4-bit weights, and an 8-bit KV cache), only the 24 dense (full-attention) layers store
+keys and values for every token in every active request. The 69 linear-attention layers keep
+"a small, fixed-size state per request, regardless of context length", so the post concludes that
+"we only need to calculate KV cache requirements for dense layers". In the memory-scaling formula
+above, the layers term then counts only full-attention layers: in a hybrid model the attention mix is
+itself a cache-size lever, separate from the compression families above.
+
+Placement turns that mix into hardware. Each dense layer gets a wafer of its own, and the SRAM left
+after that layer's weights is its cache budget. The post's reason for computing the ceiling per wafer
+is that "Every request in flight needs its own KV cache on each dense-layer wafer": the remaining SRAM
+is divided by the cache one 256k request takes up. This is the hardware side of the result recorded
+from [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]] above, where replacing
+selected attention layers roughly halved a 32B model's cache. Here the layer mix also sets the wafer
+count: by the post's packing rule, dense layers take a wafer each while linear-attention layers pack
+two to a wafer. And it restates for on-chip SRAM the point from
+[[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] above that the
+cache, not the weights, binds concurrency.
+
+The post states that "Linear-attention layers do not require additional room for a KV cache". That holds
+for keys and values, but as the Zancato section above notes for recurrent layers, fixed-size state
+remains, and here it is held for every request in flight. The post's closing recipe does list request
+state alongside weights, yet the illustration never sizes the linear layers' state or says whether it
+fits in the SRAM their wafers have left. In
+[[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]], compact recurrent-state allocation
+in a hybrid model reclaimed ~76 GiB of HBM, so that state is a real budget item the illustration
+leaves out.
+
+This is a vendor explainer, and its limits are specific. The remaining-SRAM figure, the cache for one
+256k request, and the resulting concurrency appear only as images in the capture, so the vault cannot
+check the ceiling, and no measured concurrency is reported. The 256k average request is an assumption
+of the illustration rather than an observed traffic mix, and the post is undated.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -367,6 +404,7 @@ model says, only what it costs; the other mechanism can.
 - The caching source supplies **no measured hit rates, latency reductions, or token savings** — only provider pricing ratios and invented examples. What reuse rate does a prefix actually need before a 1.25x write surcharge pays for itself on real agent traffic?
 - Prefix-truncating reuse implies a cost for every edit position in a prompt, but the vault has no way to price one. Is there a usable model of "expected cached tokens lost per edit" that a context-assembly layer could optimize against?
 - Does exact-prefix matching behave identically across providers? The source presents a general model and notes that implementation details vary, so the vault's prompt-ordering advice rests on an unverified assumption of common semantics.
+- Can a layer pipeline stay full at long context? The Cerebras post sizes concurrency per dense-layer wafer, puts requests in flight at roughly stages times micro-batch, and says production uses "much finer-grained stages, and many more of them"; with its figures shown only as images, the vault cannot tell whether cache space or pipeline depth binds first.
 
 ## Related pages
 
@@ -413,3 +451,5 @@ model says, only what it costs; the other mechanism can.
 - [[Mofi Rahman - Quantizing LLMs on GKE]]
 - [[Google Cloud]]
 - [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
+- [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]
+- [[Cerebras]]

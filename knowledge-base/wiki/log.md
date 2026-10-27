@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - log
 source_ids:
@@ -352,6 +352,20 @@ source_ids:
   - src-2026-10-22-kezin-fable-image-messages
   - src-2026-10-23-image-aware-agent-memory
   - src-2026-10-21-baselabs-mammoth-elephant
+  - src-2026-10-19-vercel-durable-harness
+  - src-2026-10-21-nvidia-sentry-runtime
+  - src-2026-10-26-bytebytego-salesforce-agent-stack
+  - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-10-17-redwood-screwtape
+  - src-2026-10-26-wong-et-al-graft
+  - src-2026-10-16-west-eval-engineering-lessons
+  - src-2026-10-06-iusztin-rag-evals
+  - src-2026-10-16-opensearch-beyond-top-k
+  - src-2026-10-15-cohere-agent-teams
+  - src-2026-10-20-cloudflare-inference-bill
+  - src-2026-10-26-alphasignal-memory-tax
+  - src-2026-10-26-cerebras-trillion-parameter
+  - src-2026-04-19-karray-neuromorphic-guide
 status: active
 ---
 
@@ -2343,3 +2357,98 @@ staged, committed, or pushed.
   Current inventory is **607 typed pages**, including **11 social posts** (nine ready and two
   superseded drafts). Source ownership remains **347 IDs** across **321 summaries**; no new
   evidence source was created.
+
+## [2026-10-27] ingest | Outside-In Durability, Runtime Enforcement, and Evaluating the Whole Run
+
+- Ingested **fourteen sources** from top-level captures not represented by source summaries.
+  Thirteen captures already resided under `raw/sources/` and were left unchanged.
+- At the user's request, recaptured Vercel's `durable-harness` announcement as
+  `2026-10-19 Pranay Prakash and Eric Dodds - Making every harness durable`, because the
+  original clipping, `Making every harness durable`, preserved only the demo trace's timing
+  labels. The original remains in place, unmodified, and is not cited as evidence.
+- Added:
+  - [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
+    (`src-2026-10-19-vercel-durable-harness`).
+  - [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]
+    (`src-2026-10-21-nvidia-sentry-runtime`).
+  - [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
+    (`src-2026-10-26-bytebytego-salesforce-agent-stack`).
+  - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+    (`src-2026-10-25-rastogi-agentcore-enterprise`).
+  - [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]
+    (`src-2026-10-17-redwood-screwtape`).
+  - [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]]
+    (`src-2026-10-26-wong-et-al-graft`).
+  - [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]]
+    (`src-2026-10-16-west-eval-engineering-lessons`).
+  - [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]]
+    (`src-2026-10-06-iusztin-rag-evals`).
+  - [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
+    (`src-2026-10-16-opensearch-beyond-top-k`).
+  - [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
+    (`src-2026-10-15-cohere-agent-teams`).
+  - [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]]
+    (`src-2026-10-20-cloudflare-inference-bill`).
+  - [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
+    (`src-2026-10-26-alphasignal-memory-tax`).
+  - [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]
+    (`src-2026-10-26-cerebras-trillion-parameter`).
+  - [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]]
+    (`src-2026-04-19-karray-neuromorphic-guide`).
+- Created four entities, [[Vercel]], [[Salesforce]], [[Redwood Research]], and [[Cloudflare]],
+  and integrated evidence into **21 existing concepts** and **eight existing entities**, with
+  no new concept pages. Vercel updates harness state authority, resilience, and tenant
+  boundaries. Sentry, Salesforce, and AgentCore update governance; Salesforce also updates
+  context engineering and tool rosters, and AgentCore updates tenant boundaries and tool
+  rosters. Screwtape and GRAFT update chain-of-thought monitoring, with Screwtape also
+  updating judging and GRAFT updating reward design. The Google and Iusztin lessons update
+  multi-turn evaluation, judging, observability, and RAG; OpenSearch updates RAG and
+  resilience. Cohere and Cloudflare update delegation, routing, test-time scaling, caching,
+  and effort control. MemoryTax updates memory. Cerebras and the neuromorphic guide update
+  accelerator architecture, with Cerebras also updating the KV cache and serving benchmarks.
+- Preserved evidence limits:
+  - Vercel's `durable-harness` and NVIDIA Sentry are vendor descriptions with no recovery,
+    overhead, or detection measurements; Sentry has not shipped.
+  - Salesforce's stack is ByteByteGo's account of vendor interviews and a simulated demo.
+    AgentCore's seven properties are a practitioner checklist with no measurements.
+  - Screwtape's **six** human-confirmed attacks from **252** runs locate monitor blind spots;
+    the authors say the pipeline cannot estimate how safe a monitor is. GRAFT reports one
+    Qwen3-8B environment whose monitor catches one of three hack types.
+  - Cohere's **30%** headline compares **$155** with **$510** at **61.8%** versus **63.2%**
+    reward: near the frontier, not equal to it. Cloudflare's **68%** compares one review's
+    cost with its most expensive fortnight (**$2.43** to **$0.77**), not the company's whole
+    inference bill.
+  - OpenSearch's weights, thresholds, and worked outcomes are starting points or mocked
+    scores. Google's lessons rest on single examples beyond an **11-prompt** suite. Iusztin's
+    figures come from one sponsored community project.
+  - MemoryTax used one LoCoMo conversation with GPT-4o-mini as judge. Its baseline is full
+    context, not no memory, so it does not contradict the MemCurrent no-memory ablation
+    recorded in [[Agent Memory]].
+  - Cerebras's **1000-2000+** tokens-per-second headline names no model or configuration, and
+    the neuromorphic guide's efficiency figures are uncited.
+- Capture-state notes:
+  - `Post by @Tristan0x on X`, a smart-TV privacy guide, was clipped at 09:39 during this
+    ingest. It is off-domain for this vault and was deferred at the user's direction; it
+    remains unmodified, unsummarized, and uncounted as an ingested source.
+  - The Salesforce capture's line endings changed from CRLF to LF outside this ingest at about
+    the same time. Its text is identical, and it was not edited.
+  - The four Obsidian settings files under `raw/sources/.obsidian/` were left untouched.
+  - The ByteByteGo exclusion in `CLAUDE.md` governs only Post topic selection; the Salesforce
+    article was ingested normally.
+  - The MemoryTax clipping has no byline, publication date, or canonical URL. `alphasignal.ai`
+    returned a firewall authorization page (HTTP 401), so no URL was recovered. Its ID uses
+    the **2026-10-26** capture date, following the earlier unattributed-clipping precedent.
+- Pre-existing link issue, left for the next lint: since the outside auto-commit `8deb40a`
+  (2026-10-24), 29 wiki files, including the index, the overview, and this log, link to
+  [[Databricks]] by the vault-absolute path `All_You_Need_Is_AI/knowledge-base/wiki/entities/Databricks`.
+  Obsidian resolves these links, but repository-relative link checks do not. This ingest did not
+  change them.
+- Synchronized index, overview, and log to **361 owned source IDs** across **335 summaries**.
+  Current inventory is **625 typed wiki pages**, including **136 concepts**, **92 entities**,
+  **43 lint reports**, and **11 social posts**, excluding ignored local queries. The raw
+  collection holds **365 top-level captures** and **434 files**, excluding the settings files.
+- Verified quotes and numbers added since the baseline against their raw captures, every new
+  or changed wikilink, three-way source-ID parity, and vault-wide affected-page reciprocity.
+  Every baseline raw file is byte-identical except the Salesforce capture's external
+  line-ending change; the only new raw files are the Vercel recapture and the deferred X post.
+  The pre-existing log body is unchanged. Nothing was staged, committed, or pushed.

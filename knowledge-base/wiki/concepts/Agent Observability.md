@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-19
+updated: 2026-10-27
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-09-30-bytebytego-doordash-agent-gateway
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-16-west-eval-engineering-lessons
+  - src-2026-10-21-nvidia-sentry-runtime
 status: active
 ---
 
@@ -173,6 +175,70 @@ does not make an individual failure noticeable. A scribe is a drafting tool with
 rather than an autonomous agent, so the transfer to agents is by analogy, and neither reviewer nor
 judge miss rates are reported.
 
+## A flattened trace can turn a harness ordering bug into apparent disobedience
+
+[[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] adds a requirement on
+the shape of the record this page's definition asks for. Harnesses, the post notes, often batch several
+tool calls into one assistant turn. In one of Google's evaluations, the harness sent a skill-loading call
+and two documentation searches together in a single `tool_calls` payload. Activating an [[Agent Skill]]
+there is a multi-stage process: the first call returns a short launch stub, and the next turn injects
+the full instructions. So "the instructions meant to govern the search arrived in the prompt context
+after the system had already executed the searches." If telemetry pipelines "strip out turn structures
+and merge calls into a flat timeline", the post warns, engineers will waste days wondering why an agent
+ignored unambiguous instructions.
+
+The vault's reading is that a turn boundary records what was in the model's context when it acted, so it
+belongs to the causal chain in this page's definition rather than to formatting. It is the within-agent
+counterpart of the *Handoffs* layer above: there, trace context that is not propagated leaves a
+receiving agent in a new, orphaned trace; here, a flat list of calls hides which guidance existed when
+each call was issued. The case also respects this page's boundary with evaluation. The cause sat in the
+harness, which "never gave the skill a dedicated turn to let its guidance influence the agent's
+actions"; a flat extractor would hide that cause, and a verdict of disobedience drawn from such a record
+would be wrong because the record misdescribes the chain. The post's first lesson supports the ordering
+in *Why it matters*: a judge's misgrades on three prompts surfaced when the team opened the raw
+tool-call logs and read the transcripts. See [[LLM-as-a-Judge]].
+
+The post's remedy is to "Preserve turn structure in telemetry extractors" so engineers can see when
+parallel dispatch issues calls before injected guidance enters the context. That makes the ordering
+visible without changing it; the post reports no harness change that gives a skill its own turn. The
+evidence is one example from Google's evaluation of its own plugin: the post calls concurrent tool
+dispatch "one of the critical causes of behavioral failure" but gives no count of how often dispatch ran
+ahead of guidance.
+
+## A record the agent can edit cannot settle what a compromised agent did
+
+[[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] raises a property this page has so
+far assumed: that a written trace is intact. NVIDIA's premise is that "Monitoring and enforcement need to
+operate outside the agent’s reach so that it can’t alter or disable them", and its incident case is
+explicit: security teams need evidence "even when an agent has escaped its sandbox or altered host-based
+logs." In the OpenShell reference architecture, a BlueField-4 data processing unit (DPU) "sits on the
+node’s only path to the model". Sentry's gateway, DOCA Tower, records inspected communications and policy
+decisions there; DOCA Argus adds runtime signals read from host memory (processes, file access, network
+connections, and loaded libraries, with containers, processes, and libraries tracked by hash); and the
+telemetry is attested. "An agent that changes a log inside its own environment cannot make the same
+change to the protected record maintained on BlueField-4."
+
+It also extends *Attribute the authorization decision and the accepted outcome*. The gateway event
+schema from [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]] keeps agent, user, tool, and
+policy decision separate. Sentry adds the layer underneath: DOCA Tower's policy engine ties a network
+connection to the agent process that initiated it, that process's properties, and the container it
+belongs to, and Sentry enriches its records with this runtime context, "reducing the need for
+downstream correlation."
+
+The vault's reading is that this record trades coverage for integrity. Argus reads "selected regions of
+volatile host memory"; decryption covers "connections configured for inspection"; classifiers work from
+"tool calls and available reasoning traces"; and a plugin for further reasoning-trace analysis is
+planned, not shipped. An out-of-band record can show what crossed the wire and which process sent it,
+but not every step that led there, so it complements an in-environment trace rather than replacing it.
+Sentry's behavior classifiers and policy engine are evaluation and enforcement in this page's terms.
+
+This is a vendor post about a product with "planned availability early next year". Its sub-millisecond
+policy evaluation and millisecond containment are vendor statements without a test setup; it reports no
+detection rate, false-positive rate, latency distribution, or overhead. The guarantee holds only where
+the DPU really is the agent's only path out, as in the reference architecture, and no threat model
+covers a compromised DPU, its firmware, or the policy engine. NVIDIA's "tamper-evident" label is a
+description, not a tested property.
+
 ## Open questions
 
 - Tail-based sampling at 5–20% of routine successes discards most of the population in which a *slow*
@@ -185,9 +251,22 @@ judge miss rates are reported.
   number on a very small base.
 - Nothing in the current material says how to detect a **semantic** failure automatically. Observability
   makes it reconstructable after a human notices; it does not make it noticeable.
+- This page's OpenTelemetry material does not say whether the GenAI span types record which tool calls
+  shared one assistant turn.
+  [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] shows what a flat
+  extractor loses, not how often parallel dispatch runs ahead of injected guidance.
+- When an in-environment trace and an out-of-band record such as Sentry's disagree, which one is
+  authoritative, and how are the two joined for a single run?
+  [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] describes export to XDR and SIEM
+  platforms and security data lakes, not reconciliation with application traces.
 
 ## Related pages
 
+- [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]]
+- [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]
+- [[Google Cloud]]
+- [[NVIDIA]]
+- [[Agent Skill]]
 - [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[Adam Faik - How to Build an AI-Native Software Factory]]

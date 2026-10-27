@@ -373,8 +373,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 27, 2026: **625 typed wiki pages**, including **335 source summaries**
-representing **361 source IDs**, **136 concepts**, **92 entities**, and **43 lint reports**.
+As of October 27, 2026: **626 typed wiki pages**, including **335 source summaries**
+representing **361 source IDs**, **136 concepts**, **92 entities**, and **44 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -1046,7 +1046,6 @@ its unchanged article body adds no source ID or independent estimate.
 
 ## Lint reports
 
-- [[2026-10-23 Lint Pass 2]] - Forty-third pass: scoped text-memory assumptions and removed an unsupported calibration-priority claim; five new source chains traced across 16 consumer edges, with 606 reachable pages at exact 347-ID parity.
 - [[2026-05-08 Wiki Lint Pass]] - Structural lint pass covering link integrity, schema conformance, and current wiki gaps.
 - [[2026-05-13 Lint Pass]] - Comprehensive lint pass covering structural integrity, coverage, and immediate fixes.
 - [[2026-05-13 Lint Pass 2]] - Follow-up lint pass after the Perplexity ingest, covering new-page integration and residual structural issues.
@@ -1074,11 +1073,10 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-08-13 Lint Pass]] - Twenty-fifth comprehensive lint pass; synchronized 153 source IDs across index, overview, and log and found no remaining structural defects.
 - [[2026-08-24 Lint Pass]] - Twenty-sixth comprehensive lint pass; returned one misplaced raw clipping to the inbox and found no remaining structural defects across 314 wiki pages.
 - [[2026-08-25 Lint Pass]] - Twenty-seventh comprehensive lint pass; made the 63-lesson synthesis traversable, unified the forked tag vocabulary, and closed the raw-to-wiki source-ID gap across 326 wiki pages.
-- [[2026-09-03 Lint Pass]] - Thirty-first comprehensive lint pass; found a page cited as the authority for material it did not contain — the previous day's [[Qwen]] page pointed at [[Linear Attention and Recurrent Memory]] for Gated DeltaNet, which had no such content — introduced a dangling-reference check for body-prose forward references that resolve structurally but break semantically, rebuilt that page from 179 to 746 words against a fourth source, and fixed a `World Models` heading that had been written at H3 and was the real cause of a section-ordering failure open since August 26.
-- [[2026-08-31 Lint Pass]] - Thirtieth comprehensive lint pass; found a developed source summary orphaned because four pages linked *past* it to its raw capture through a piped alias that displayed the summary's own title, introduced a summary-bypass check to catch links that resolve but point to the wrong layer, and rebuilt the single-source `Model Factory` page against three sources ingested after it was written.
-- [[2026-08-27 Lint Pass]] - Twenty-ninth comprehensive lint pass; discovered that the undefined `## Affected pages` heading had let its meaning fork between "pages this ingest changed" and "pages this source relates to", producing 394 false claims across 107 summaries, corrected all of them, integrated the last 5 orphaned sources, and glossed the template so the fork cannot recur.
 - [[2026-08-26 Lint Pass]] - Twenty-eighth comprehensive lint pass; found four sources that had been summarized but never cited by any concept page, gave all 180 source summaries a working `## Raw capture` pointer, and canonicalized five forked tags that an earlier parser had missed.
-
+- [[2026-08-27 Lint Pass]] - Twenty-ninth comprehensive lint pass; discovered that the undefined `## Affected pages` heading had let its meaning fork between "pages this ingest changed" and "pages this source relates to", producing 394 false claims across 107 summaries, corrected all of them, integrated the last 5 orphaned sources, and glossed the template so the fork cannot recur.
+- [[2026-08-31 Lint Pass]] - Thirtieth comprehensive lint pass; found a developed source summary orphaned because four pages linked *past* it to its raw capture through a piped alias that displayed the summary's own title, introduced a summary-bypass check to catch links that resolve but point to the wrong layer, and rebuilt the single-source `Model Factory` page against three sources ingested after it was written.
+- [[2026-09-03 Lint Pass]] - Thirty-first comprehensive lint pass; found a page cited as the authority for material it did not contain — the previous day's [[Qwen]] page pointed at [[Linear Attention and Recurrent Memory]] for Gated DeltaNet, which had no such content — introduced a dangling-reference check for body-prose forward references that resolve structurally but break semantically, rebuilt that page from 179 to 746 words against a fourth source, and fixed a `World Models` heading that had been written at H3 and was the real cause of a section-ordering failure open since August 26.
 - [[2026-09-04 Lint Pass]] - Thirty-second pass: a benchmark claim that got stronger as it travelled from its source summary to six derived pages, and the strong result the compression dropped.
 - [[2026-09-11 Lint Pass]] - Thirty-third comprehensive lint pass; found three defects sharing one cause — a check that verified a proxy instead of the invariant: the tag vocabulary had re-forked along a *namespace* axis (43 of 48 `topic/*` tags had flat twins) while three passes checked only spelling, `log.md`'s frontmatter sat 9 source IDs short of `index.md` for 12 days while its body carried the entry correctly, and recursive capture counts were inflated by 40 nested non-captures. Also rebuilt a summary that had dropped every model, vendor and figure from its source while keeping the caveat about them, and confirmed the qualifier rule held against a genuine 1.41x collision.
 - [[2026-09-13 Lint Pass]] - Thirty-fourth comprehensive lint pass; repaired three lossy summaries and their downstream claims, rebuilt defensive deception, made four source-summary filenames portable, and aligned all controls with the complete 251-ID ownership set.
@@ -1090,6 +1088,8 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-10-16 Lint Pass]] - Fortieth pass: corrected illustrative speculation timings, decoder guarantees, reasoning-control and token-ablation claims, monitoring inferences, and stale catalog metadata; 542 reachable pages at exact 309-ID parity.
 - [[2026-10-19 Lint Pass]] - Forty-first pass: restored the log's source-ID ledger, expanded seven thin summaries and corrected nine concept claims they exposed, added 30 reverse affected-page links, attributed frontmatter-only citations, and repaired Goodfire-chain qualifiers; 557 reachable pages at exact 317-ID parity.
 - [[2026-10-23 Lint Pass]] - Forty-second pass: traced all 25 new source chains across 118 consumer edges, corrected a Genie Ontology GA claim the capture explicitly warned against and a misattributed Naam figure, connected two new concepts to existing vault evidence, and cleared the first vault-wide affected-page reciprocity measurement from 22 violations to 0; 599 pages at exact 342-ID parity.
+- [[2026-10-23 Lint Pass 2]] - Forty-third pass: scoped text-memory assumptions and removed an unsupported calibration-priority claim; five new source chains traced across 16 consumer edges, with 606 reachable pages at exact 347-ID parity.
+- [[2026-10-27 Lint Pass]] - Forty-fourth pass: restored 29 Databricks links rewritten by an outside commit, cleared 31 reciprocity violations (16 under a new body-citation rule), fixed 57 of 59 semantic findings, and found 79 undated raw captures awaiting authorization to normalize.
 
 ## Control files
 

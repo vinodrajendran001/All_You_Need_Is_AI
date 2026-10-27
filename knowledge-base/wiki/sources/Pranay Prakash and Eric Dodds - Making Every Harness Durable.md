@@ -112,9 +112,9 @@ developer's function.
   record; the article does not say what happens to harness state kept outside those files, such as
   extension state, which is the failure class [[Harness State Authority]] documents.
 - **That Claude Code and Codex "aren't safe for multi-tenant use" is asserted, not explained.** The
-  isolation described is per
-  session; tenant identity and authorization are not discussed, and the linked security documentation
-  was not captured.
+  isolation described is per session. Authorization appears only as an `authorize` hook ("your auth
+  check") passed to the chat route; tenant identity is not discussed, and the linked security
+  documentation was not captured.
 - Vendor announcement for Vercel's own open-source package and platform. Not every code sample was in
   the server-rendered page: the sample for creating a World in code is missing, and the served page
   masks the example Postgres connection string.

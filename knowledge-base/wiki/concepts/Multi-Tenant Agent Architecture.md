@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [concept, ai-agents, multi-tenancy, security, cost]
 source_ids:
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-09-28-watson-nvidia-openshell-runtime-controls
   - src-2026-10-02-e2b-embed
   - src-2026-10-23-image-aware-agent-memory
+  - src-2026-10-19-vercel-durable-harness
 status: active
 ---
 
@@ -122,6 +123,18 @@ isolation. Plain HTTP without built-in TLS also leaves transport protection to t
 These cases strengthen component-by-component tiering: state explicitly which boundary each
 component actually enforces.
 
+[[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] adds a serverless case in which the
+function host itself is shared. On Vercel, many sessions can share the same function, and that
+function's filesystem is not guaranteed to persist, so a harness's shell and files do not run on the host.
+They move into a per-session `virtual()` workspace stored in the session log, whose bash-compatible shell
+cannot reach the function's files or the network, or into the session's own Vercel Sandbox.
+Developer-supplied tools such as database queries and API calls stay in the developer's function, so
+"required credentials never have to enter the sandbox." Claude Code and Codex always run in a sandbox
+because they "aren't safe for multi-tenant use", a statement the article does not explain. The unit of
+isolation described is the session. Authorization appears only as a developer-supplied `authorize` hook
+on the chat route, and tenant identity is not discussed. This is runtime residence and credential
+placement, not evidence of tenant isolation.
+
 ## Image search and original-byte retrieval are separate authorization hops
 
 [[Image-Aware AI Agent Memory - Oracle 26.8]] describes user/agent-scoped image records,
@@ -150,6 +163,8 @@ demonstrates tenant isolation.
 
 ## Related pages
 
+- [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
+- [[Vercel]]
 - [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[Alex Watson - Add Runtime Controls to AI Agents with NVIDIA OpenShell]]

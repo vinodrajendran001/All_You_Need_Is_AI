@@ -100,8 +100,8 @@ reader of reasoning, so it does not settle the question for reasoning monitors.
   that is structurally similar to the target.
 - **Scale and setting.** "Our RL experiments are single-turn and use models up to 8B parameters." The 32B
   result is supervised fine-tuning, not RL.
-- **Approximate values.** "Nearly zero", "nearly 20pp", and "significantly below" have no exact values or
-  seed counts in the post; the figures are image-only.
+- **Approximate values.** The post reports "nearly zero", "nearly 20pp", and "significantly below" without
+  exact values or seed counts; the figures are image-only.
 - The post states no publication date. It is published on Anthropic's alignment blog, and one of the five
   authors is affiliated with Anthropic.
 

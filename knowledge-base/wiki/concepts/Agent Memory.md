@@ -369,19 +369,27 @@ which makes this as much a [[Harness Optimization]] result as a memory one. The 
 quite like for like: the coding agents could read photo captions that the other methods could not,
 and on the 88 questions whose evidence did not involve photos, Pi scored 100% and full context 99%.
 
-None of this contradicts the MemCurrent ablation, because the baselines differ, as the MemoryTax
-summary notes. The 66.1% for derived memory, 68.4% for both, and 43.9% for the Mem0 comparator sit
-above a 22.3% no-memory floor on an internal benchmark whose histories were too long for full
-context. Where [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] does
-run a full-context ceiling, on three open benchmarks that include LoCoMo, MemCurrent averaged 88.1%
-against 87.8% at 8.4K versus 103K input tokens per question, and its post claims a win over full
-context on the two benchmarks with the longest histories, which by the session counts in its summary
-are not LoCoMo. Read together, the two are compatible: MemCurrent matched full context on average and
-places its wins on longer histories than LoCoMo's, while MemoryTax, on one LoCoMo conversation that
-fit every model's window, found no accuracy gain for the stronger models. They part on cost.
-MemCurrent states its open-benchmark saving in input tokens per question, and its summary gives no
-separate figure for building the memory, while MemoryTax prices the build separately and suggests
-that only repeated queries over a stable history would pay it back.
+The full-context findings do not contradict the MemCurrent ablation, because the baselines differ, as the
+MemoryTax summary notes. The 66.1% for derived memory, 68.4% for both, and 43.9% for the Mem0 comparator
+sit above a 22.3% no-memory floor on an internal benchmark whose histories were too long for full
+context. Where [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] does run a
+full-context ceiling, on three open benchmarks that include LoCoMo, MemCurrent averaged 88.1% against
+87.8% at 8.4K versus 103K input tokens per question, and its post claims a win over full context on the
+two benchmarks with the longest histories, which by the session counts in its summary are not LoCoMo.
+Read together, the two are compatible: MemCurrent matched full context on average and places its wins on
+longer histories than LoCoMo's, while MemoryTax, on one LoCoMo conversation that fit every model's
+window, found no accuracy gain for the stronger models. They part on cost. MemCurrent states its
+open-benchmark saving in input tokens per question, and its summary gives no separate figure for building
+the memory, while MemoryTax prices the build separately and suggests that only repeated queries over a
+stable history would pay it back.
+
+The access-method results pull in a different direction from MemCurrent's. With Claude Opus 5.5, Pi
+searching the raw record scored 99%, while a Zep graph that Opus itself built scored 87%; the
+photo-caption caveat above applies to the first figure. MemCurrent found retrieval over raw episodic
+traces the weaker mechanism, and attributes that weak score to the agent searching its traces "in about a
+third of test cases". Neither source tests search frequency, history length, or model directly, so the
+distilled-over-raw reading holds for MemCurrent's long histories and is unsettled for histories that fit
+the window.
 
 The evidence is thin and secondhand. The article itself says "the study is not very comprehensive":
 the results come from "one LoCoMo conversation, one run per configuration and a GPT-4o-mini judge",
@@ -410,8 +418,10 @@ prices, and these harnesses.
   correction, preference, definition, or workflow?
 - Background consolidation outscored agent-invoked memory tools. If the agent is the weaker judge of
   what to remember, what remains of the auditability argument for explicit `save_to_memory` control?
-- Distillation can drop details and episodic memory recovers only some of them. No source here measures
-  what is lost per consolidation pass, or whether loss compounds across them.
+- Distillation can drop details and episodic memory recovers only some of them. MemoryTax gives one
+  single-pass data point: reading a Zep graph, Claude Opus 5.5 scored 45% when GPT-4o-mini built the
+  graph and 87% when Opus built it, against 95% with full context, so what a single pass loses depends on
+  the model that writes it. No source here measures whether loss compounds across passes.
 - MemCurrent's results come from one product's sessions with an LLM judge. No independent party has
   reproduced them, and no cross-model or cross-agent portability experiment is reported.
 - The MemoryTax history fit inside every model's context window. Does model-directed search over the

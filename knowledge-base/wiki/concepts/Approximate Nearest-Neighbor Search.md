@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-10-27
 tags: [concept, retrieval, vector-search, ann]
 source_ids:
   - src-2026-09-16-bytebytego-needle-haystack-retrieval
@@ -44,7 +44,7 @@ results. They establish the mechanics but not a recommended operating point.
 - How should ANN recall targets change for high-risk or versioned corpora?
 - When should metadata filters run before graph traversal versus after candidate generation?
 - How should index rebuild cost and update freshness enter retrieval benchmarks?
-- Which abstention test distinguishes "nearest available" from "evidence sufficient to answer"?
+- Which abstention test distinguishes "nearest available" from "evidence sufficient to answer"? [[Retrieval-Augmented Generation]] records one proposal: a composite of score shape and metadata checked against a stakes-keyed threshold, with illustrative rather than measured outcomes.
 
 ## Related pages
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-27
 source_id: src-2026-10-19-bytebytego-uber-genie
 source_title: How Uber Built a Genie to Answer Questions Correctly
 source_author: ByteByteGo
@@ -106,6 +106,7 @@ implementation of grounding that the vault has mostly described abstractly.
 - [[Retrieval-Augmented Generation]]
 - [[ByteByteGo]]
 - [[Uber]]
+- [[Text-to-SQL Agents]]
 
 ## Raw capture
 

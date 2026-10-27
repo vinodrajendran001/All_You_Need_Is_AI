@@ -107,6 +107,7 @@ namespaces, and an argument for delegated identity over shared service accounts.
 - [[Multi-Tenant Agent Architecture]]
 - [[Tool Roster Economics]]
 - [[Sarthak Rastogi]]
+- [[Uber]]
 
 ## Raw capture
 

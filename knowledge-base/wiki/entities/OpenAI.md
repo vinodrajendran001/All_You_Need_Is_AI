@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-10-23
+updated: 2026-10-27
 entity_kind: organization
 tags:
   - entity
@@ -222,3 +222,4 @@ how OpenAI proposes to measure monitorability, not that OpenAI's models are moni
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
 - [[Recursive Architectures]]
 - [[Latent-Space Reasoning]]
+- [[Redwood Research]]

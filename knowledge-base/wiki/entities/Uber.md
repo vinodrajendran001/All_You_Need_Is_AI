@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-27
 entity_kind: organization
 tags:
   - entity
@@ -9,6 +9,7 @@ tags:
   - rag
 source_ids:
   - src-2026-10-19-bytebytego-uber-genie
+  - src-2026-10-25-rastogi-agentcore-enterprise
 status: active
 ---
 
@@ -49,6 +50,12 @@ complaints. See [[Institutional Knowledge Agents]] and [[LLM-as-a-Judge]].
 A smaller detail worth noting: **Genie mutes itself once a human takes over**, which is a clean
 handover rule for assistants operating in shared channels.
 
+Uber also appears secondhand as an agent-platform reference.
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]] cites its MCP
+Gateway, which hosts over 800 MCP servers and more than 5,000 tools, and its short-lived, single-hop JSON
+Web Tokens (JWTs) that carry the full actor chain; see [[Tool Roster Economics]] and
+[[Agent Security and Governance]].
+
 ## Notes
 
 ### The numbers are self-reported, and one is unrecoverable
@@ -74,3 +81,6 @@ handover rule for assistants operating in shared channels.
 - [[Text-to-SQL Agents]]
 - [[ByteByteGo]]
 - [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Tool Roster Economics]]
+- [[Agent Security and Governance]]

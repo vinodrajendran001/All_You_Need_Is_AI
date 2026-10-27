@@ -146,10 +146,10 @@ signals in this vault, drawn from one pipeline that uses all three:
 | **Agentic outcome** | Did the model actually solve the task in a real environment? | SWE, Terminal, Search |
 
 The ordering principle is that **verifiable rewards come first because they are hard to game**. A
-pipeline front-loads them to build capability against signals that cannot be corrupted, then applies
-judge- and preference-based rewards later for qualities no checker can express. Agentic-outcome
-rewards are the sparsest of all — often a single bit at the end of a long tool-use trajectory — which
-is why they sit late, depending on skills the earlier stages installed.
+pipeline front-loads them to build capability against signals that are harder to corrupt, then applies
+judge- and preference-based rewards later for qualities no checker can express. Agentic-outcome rewards
+are the sparsest of all — often a single bit at the end of a long tool-use trajectory — which is why they
+sit late, depending on skills the earlier stages installed.
 
 Granite grounds verifiability per example rather than per stage: each RLVR task type carries its own
 verifier, so math is checked by boxed-answer matching or Lean proof, competitive coding by hidden
@@ -165,10 +165,11 @@ recorded.
 
 The most transferable rule Granite supplies belongs on this page as much as on the optimizer's.
 **The KL coefficient should follow what the stage is rewarding**: KL = 0 where the reward is
-verifiable, letting the policy roam because passing tests is sufficient evidence of good behavior;
-KL = 0.05 where the reward is preference, safety, or a narrow skill graft, because there drift and
-reward hacking are indistinguishable and the reference policy's general competence is what needs
-protecting.
+verifiable, letting the policy roam on the premise that passing tests is sufficient evidence of good
+behavior, which fails when the policy can alter the test it is graded against, as in the Countdown-Code
+environment below; KL = 0.05 where the reward is preference, safety, or a narrow skill graft, because
+there drift and reward hacking are indistinguishable and the reference policy's general competence is
+what needs protecting.
 
 ## Rewards that clean up after other rewards
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-27
 source_id: src-2026-10-20-husain-decision-model-evals
 source_title: How To Use Decision Models for Evals
 source_author: Hamel Husain
@@ -120,6 +120,7 @@ group is exactly that case.
 - [[LLM-as-a-Judge]]
 - [[Multi-Turn Evaluation]]
 - [[Hamel Husain]]
+- [[Cloudflare]]
 
 ## Raw capture
 

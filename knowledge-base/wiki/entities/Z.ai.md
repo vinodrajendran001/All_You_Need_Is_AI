@@ -2,10 +2,13 @@
 type: entity
 entity_kind: organization
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-27
 tags: [entity, open-models, china, post-training, agentic-rl]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-08-29-baseten-agentic-kernels-production
+  - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-09-02-baseten-efficient-frontier-inference
 status: active
 ---
 

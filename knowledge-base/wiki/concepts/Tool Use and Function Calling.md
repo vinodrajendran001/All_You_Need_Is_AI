@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-09-30
+updated: 2026-10-27
 tags: [concept, tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -129,7 +129,7 @@ need idempotency, state tracking, and recovery mechanisms."
 This is the unreconciled tension inside standard resilience advice. Exponential backoff with jitter is the
 correct response to a transient failure; a transient failure on a **non-idempotent** tool call is
 precisely where retrying is unsafe. The two pieces of guidance are usually given in separate sections and
-never combined into a rule.
+rarely combined into a rule; [[LLM Application Resilience]] records one for crash recovery.
 
 The source also catalogues the tool-layer failures that are invisible at the model layer: the model
 selects the wrong tool, calls it with invalid arguments, or produces a result that violates a business

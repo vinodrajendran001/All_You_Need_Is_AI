@@ -113,7 +113,7 @@ looks like a model regression.
 
 **Buying a platform does not buy this.** The reported pattern is that adoption metrics ship early because
 they are easy and sell internally, while step-level reasoning traces and cost-per-task attribution arrive
-late. Salesforce Agentforce Observability is cited as a fair counter-example — session-level tracing,
+late. [[Salesforce]] Agentforce Observability is cited as a fair counter-example — session-level tracing,
 subagent drill-down, OTel-compliant, exporting to Datadog or Arize.
 
 ## Tracing exposes orchestration cost, not answer quality
@@ -170,10 +170,10 @@ observed detector. The clinical authors argue that the human reviewing fluent, c
 is the one exposed to automation bias: a fabricated line "is easy to wave through and hard to catch," and once signed it becomes part
 of the permanent record. Their proposed complement is a judge validated against a human-graded
 sample and run over every output to detect population-level patterns, such as systematic omissions.
-That partly answers the last open question below, but only for systematic patterns, and it still
-does not make an individual failure noticeable. A scribe is a drafting tool with a clinician signer
-rather than an autonomous agent, so the transfer to agents is by analogy, and neither reviewer nor
-judge miss rates are reported.
+That partly answers the open question below on detecting a **semantic** failure automatically, but only
+for systematic patterns, and it still does not make an individual failure noticeable. A scribe is a
+drafting tool with a clinician signer rather than an autonomous agent, so the transfer to agents is by
+analogy, and neither reviewer nor judge miss rates are reported.
 
 ## A flattened trace can turn a harness ordering bug into apparent disobedience
 
@@ -284,3 +284,4 @@ description, not a tested property.
 - [[Ayo Adedeji - Agents That Prove, Not Guess]]
 - [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]]
 - [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
+- [[Salesforce]]

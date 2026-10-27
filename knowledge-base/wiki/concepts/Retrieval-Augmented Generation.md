@@ -390,10 +390,10 @@ The proposal is a confidence layer in the agent's orchestration code. It weights
 normalized score 0.35, gap to the second hit 0.25, coherence among the top hits 0.20, freshness 0.10,
 and source authority 0.10, the last two drawn from document metadata such as a `last_updated`
 timestamp or an index-time authority field. The threshold is set by query type and action intent, so
-a factual lookup needs 0.75 to be read but 0.90 before the agent executes on it. The margin below the
-threshold then selects act, caveat, clarify, escalate to a human, or hard abstain, a graded form of
-the *needs review* state above that is triggered by retrieval evidence rather than by the model's own
-confidence.
+a factual lookup needs 0.75 to be read but 0.90 before the agent executes on it. The margin between the
+composite and the threshold then selects act (at zero or above), caveat, clarify, escalate to a human, or
+hard abstain, a graded form of the *needs review* state above that is triggered by retrieval evidence
+rather than by the model's own confidence.
 
 Freshness is aimed at the retired-policy failure: the post's motivating case is a hypothetical agent
 that follows a deprecated 2022 runbook into a production incident. This page says only a freshness or

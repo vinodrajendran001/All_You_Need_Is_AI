@@ -21,10 +21,11 @@ status: active
 
 ## Definition
 
-Reasoning effort control is the set of mechanisms that let a model spend more or less computation on
-a single request — the low/medium/high selectors, `/think` and `/no_think` flags, and token budgets
-exposed by current reasoning models. Many selectors invoke **trained behaviors**; external
-budgets and architectural iteration counts can also constrain the computation directly.
+Reasoning effort control is the set of mechanisms that let a model spend more or less computation on a
+single request (and, in an agent, across a run's model calls; see below) — the low/medium/high selectors,
+`/think` and `/no_think` flags, and token budgets exposed by current reasoning models. Many selectors
+invoke **trained behaviors**; external budgets and architectural iteration counts can also constrain the
+computation directly.
 
 ## Why it matters
 
@@ -188,13 +189,17 @@ and security are still at medium effort; testing them at high is next.
   and whether it degrades in ways benchmarks miss, is unexplained.
 - Effort levels are calibrated against benchmark distributions. Does "medium effort" mean anything
   stable on out-of-distribution work?
+  [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] gives one
+  production data point, in the role question below: medium effort was enough for the coordinator but not
+  for the code quality reviewer.
 - Closed-model behaviour here is inferred. Raschka is explicit that GPT-5.6's internals are unknown and
   that his proposed diagram is "a possible implementation, not a confirmed description."
 - If effort substitutes for parameters, what is the exchange rate, and does it hold across task types?
 - What predicts a role's sensitivity to effort? At Cloudflare, high effort added cost without a
   meaningful increase in findings for the coordinator, while medium effort left code quality with
   roughly a quarter as many acted-on findings as high. Is the difference how much a role must explore,
-  in calls and files opened, rather than how much it must reason?
+  in calls and files opened, rather than how much it must reason? The two roles also ran different
+  models, Opus 5.5 and Sonnet 5.5, so role and model are not separated.
 
 ## Related pages
 

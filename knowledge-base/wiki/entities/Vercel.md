@@ -31,15 +31,15 @@ from the outside. It contributes three reusable ideas:
   per-session virtual workspace or sandbox, which is relevant to [[Multi-Tenant Agent Architecture]].
 
 The Workflow SDK's *World* interface puts storage, a queue, and a stream behind one abstraction, so the
-same agent can run on Vercel, local files, Postgres, MongoDB, Redis, or Turso. [[Inngest]] is the vault's
-other durable-execution platform for agent loops.
+same agent can run on Vercel, local files, Postgres, MongoDB, Redis, or Turso. [[Inngest]] is another
+durable-execution platform for agent loops in the vault.
 
 ## Boundaries
 
 The capture is a vendor announcement with no measured recovery time, logging overhead, or
-failure-injection result. Claude Code and Codex are described as not safe for multi-tenant use, so they
-always run in a sandbox; that is a deployment constraint, not evidence of tenant isolation. The
-`durable-harness` repository was not inspected.
+failure-injection result. Claude Code and Codex are described as expecting a real shell and filesystem
+and as not safe for multi-tenant use, so they always run in a sandbox; that is a deployment constraint,
+not evidence of tenant isolation. The `durable-harness` repository was not inspected.
 
 ## Related pages
 

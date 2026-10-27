@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-10-27
 tags:
   - concept
   - reinforcement-learning
@@ -64,8 +64,8 @@ outcome rewards, the sparsest of all, sit between them and depend on the skills 
 installed.
 
 The reasoning is that a stage can only be as trustworthy as its reward. Building capability against
-signals that cannot be gamed, then shaping tone and safety against signals that can, limits how much
-of the final model's behavior rests on a corruptible objective.
+signals that are hard to game, then shaping tone and safety against signals that are easier to game,
+limits how much of the final model's behavior rests on a corruptible objective.
 
 ## The KL schedule should follow the reward type
 
@@ -74,10 +74,11 @@ tuning knob — it should be keyed to what the stage is optimizing**.
 
 Granite runs KL = 0 on RLVR and on the long-horizon SWE stage, letting the policy roam freely,
 because those rewards are objective and verifiable: if the tests pass, the behavior is good
-regardless of how far it drifted from the reference. It uses KL = 0.05, the pipeline's highest, on
+regardless of how far it drifted from the reference, provided the policy cannot alter the tests (see
+[[Reward Design for RL]] for an environment where it can). It uses KL = 0.05, the pipeline's highest, on
 RLHF and on the code booster, because those optimize preference, safety, or a narrow skill graft —
-objectives where drift is indistinguishable from reward hacking, and where the reference policy's
-general competence is the thing worth protecting.
+objectives where drift is indistinguishable from reward hacking, and where the reference policy's general
+competence is the thing worth protecting.
 
 Stated generally: **if you can verify the answer, let the model explore; if you are optimizing taste,
 safety, or one narrow skill, hold it near the reference.** A "booster" stage is exactly the case for

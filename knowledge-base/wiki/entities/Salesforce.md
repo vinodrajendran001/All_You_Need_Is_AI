@@ -22,10 +22,9 @@ Krishnaprasad (MK), President and CTO, and Khushwant Singh, SVP of Product Manag
 
 ## Why it matters here
 
-[[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] is the vault's fullest account of an
-enterprise taking work out of a single agent prompt. The team found that the first Agentforce prompt
-coped with up to eight instructions and then began to discard some. Four jobs now belong to dedicated
-systems:
+[[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] describes an enterprise taking work out
+of a single agent prompt. The team found that the first Agentforce prompt coped with up to eight
+instructions and then began to discard some. Four jobs now belong to dedicated systems:
 
 - Agent Script, compiled to an Agent Graph and run by the Atlas Reasoning Engine, runs rules as code
   before and after the model call (see [[Context Engineering]]);
@@ -44,13 +43,13 @@ counter-example to platforms that ship adoption metrics before step-level traces
 
 ## Boundaries
 
-Everything above is vendor description relayed by ByteByteGo. The demo company and patient are
-simulated, "but according to MK everything behind it runs in production". No controlled evaluation,
-before/after rate of rule violations, or answer-quality comparison is reported, and the token figures
-come from one demo. The scale figure of 7 billion Agentic Work Units uses Salesforce's own unit for
-counting agent work, with no further definition. The *Enterprise AI Harness* that would join these
-pieces into one system is a plan. The Datadog block at the top of the capture is sponsorship, not part
-of the article.
+Everything above except the Agentforce Observability note, which is Rastogi's, is vendor description
+relayed by ByteByteGo. The demo company and patient are simulated, "but according to MK everything behind
+it runs in production". No controlled evaluation, before/after rate of rule violations, or answer-quality
+comparison is reported, and the token figures come from one demo. The scale figure of 7 billion Agentic
+Work Units uses Salesforce's own unit for counting agent work, with no further definition. The
+*Enterprise AI Harness* that would join these pieces into one system is a plan. The Datadog block at the
+top of the capture is sponsorship, not part of the article.
 
 ## Related pages
 

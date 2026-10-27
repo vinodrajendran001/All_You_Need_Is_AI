@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-19
+updated: 2026-10-27
 source_id: src-2026-08-30-addy-osmani-audit-agent-files
 source_title: "Audit your Agent files"
 source_author: "Addy Osmani"
@@ -88,6 +88,7 @@ of behaviour are near-useless compared with pointers to the code that implements
 - [[Coding Agent Harness]]
 - [[Addy Osmani]]
 - [[Model Factory]]
+- [[Harness Optimization]]
 
 ## Citations
 

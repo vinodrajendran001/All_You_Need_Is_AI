@@ -200,9 +200,9 @@ picks up the interrupted turn reads that log:
 The decision therefore moves from a generic retry policy to a property of each tool, declared once by
 the developer. That does not settle the idempotency problem. The `'never'` path prevents a double
 refund only if the model chooses to check and a check exists. The article does not mention idempotency
-keys, does not discuss a call that finished at the provider before its outcome reached the log, and does
-not say how a tool's own transient errors are handled. It is a vendor design with no reported
-failure-injection results.
+keys (which [[Agent Workflow Maturity]] pairs with the same outcome-unknown state), does not discuss a
+call that finished at the provider before its outcome reached the log, and does not say how a tool's own
+transient errors are handled. It is a vendor design with no reported failure-injection results.
 
 ## Abstention can be graded and triggered by retrieval evidence instead of the model's own confidence
 
@@ -239,8 +239,11 @@ review: a control with its own failure rate.
 
 ## Open questions
 
-- No detection mechanism exists for semantic failure beyond schema validation, trusted-source
-  cross-checks, and human review. The category is named precisely and the hard part is handed back.
+- No established detection mechanism exists for semantic failure beyond schema validation, trusted-source
+  cross-checks, and human review. The category is named precisely and the hard part is handed back; the
+  sections above add partial answers (claim-by-claim checking against the evidence, and an LLM judge
+  anchored to a human-graded sample) and a retrieval-confidence gate that abstains on weak evidence
+  before acting.
 - Circuit breakers trip on technical signals, so a provider returning fluent nonsense at HTTP 200 keeps
   the circuit closed indefinitely. Resilience machinery is blind in exactly the new failure category.
 - Retry guidance and idempotency guidance are usually given separately and rarely reconciled into a rule
@@ -256,7 +259,9 @@ review: a control with its own failure rate.
   commitment. What admission control governs that queue, and what happens when the abstention rate rises
   during the same incident that is degrading the tools?
 - Faithfulness checks pass against stale evidence by construction. What owns document currency — the
-  retrieval layer, the tool layer, or the verifier — and which of them fails closed?
+  retrieval layer, the tool layer, or the verifier — and which of them fails closed? The
+  retrieval-confidence proposal above weights freshness at 0.10 in its composite rather than making it a
+  rule, so a stale document that scores well on the other four signals can still clear the threshold.
 - How does an application detect that its provider changed the model behind an unchanged API, and
   which validation must re-run before that change reaches users?
 - A stakes-keyed threshold needs the query type and action intent classified before it applies. What

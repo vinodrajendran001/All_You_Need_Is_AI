@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-07
+updated: 2026-10-27
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -121,6 +121,10 @@ The secondary account reports 200+ servers and millions of weekly calls, not tha
 every server's tools. Dynamic discovery and stronger cryptographic delegation identities are
 future work in the article. Catalogue scale alone proves neither prompt efficiency nor secure
 invocation.
+
+[[Tool Roster Economics]] records two more designs that keep the split: the Salesforce MCP Server, whose
+`dispatch` tool checks the user's access when a call is made, and AgentCore Gateway, whose policy engine
+filters `tools/list` per caller and also checks every tool call.
 
 ## Related pages
 

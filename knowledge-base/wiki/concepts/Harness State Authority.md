@@ -102,13 +102,15 @@ the call it writes the *outcome*. A queue message backstops each turn, so if the
 dies, a new function reads the log and continues. Harnesses that keep their own session files have every
 record mirrored into the same log: Claude Code's transcript, Codex's rollout, and OpenCode's event store.
 
-Two parts of the design follow this page's principles. **Recovery derives from the log alone:** completed
-calls are read back rather than re-run, and a call with an intent but no outcome is known to have been
-interrupted. **Application state can join the authority:** a *document* is typed JSON stored in the
-session log, and each `io.docs` edit "commits to the log alongside the tool's result", so a state change
-cannot diverge from the call that caused it. The `virtual()` workspace's file tree is itself a document.
-That is the property argued for above, adding a stateful feature without adding a resume call site,
-offered as a library primitive rather than as an engine rewrite.
+Two parts of the design follow this page's principles. **Recovery of calls derives from the log alone:**
+completed calls are read back rather than re-run, and a call with an intent but no outcome is known to
+have been interrupted. **Application state can join the authority:** a *document* is typed JSON stored in
+the session log, and each `io.docs` edit "commits to the log alongside the tool's result", so a state
+change cannot diverge from the call that caused it. The `virtual()` workspace's file tree is itself a
+document. A `sandbox()` workspace is different: its `/workspace` sits on a Drive that "outlives every
+sandbox and every function", and the article does not say that its changes commit to the log. That is the
+property argued for above, adding a stateful feature without adding a resume call site, offered as a
+library primitive rather than as an engine rewrite.
 
 The limit is the one the 78-example audit predicts. Mirroring covers the records a harness writes to its
 session files. State kept beside those files, such as the transient maps and closures listed above, is
@@ -123,8 +125,10 @@ reports no recovery-time or failure-injection measurements.
 - **What is the cost of materialising state at an arbitrary journal point?** Rewind-as-diff assumes
   materialisation is cheap enough to do on demand for long sessions.
 - **How much of the benefit needs the DOM specifically?** The source concedes an ECS or another serialisable
-  representation would work, choosing XML for inspectability. If the authority property is what matters, the
-  representation may be incidental — but no comparison is offered.
+  representation would work, choosing XML for inspectability. If the authority property is what matters,
+  the representation may be incidental — but no comparison is offered.
+  [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] claims the resume-time property for
+  typed JSON documents without a DOM, but describes no rewind or fork and offers no comparison either.
 - **Is the 78-example result reproducible in other harness ecosystems?** It is a strong claim about one
   extension API. Whether harnesses with different contracts show the same defect rate is unknown, and the
   audit's own arithmetic does not close (60 + 17 = 77).
@@ -132,9 +136,10 @@ reports no recovery-time or failure-injection measurements.
   execution isolated; authority wants one journal. The proposed answer is that the host keeps journaling and the
   sandbox only executes, but the durability of that split under partition is untested.
   [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] ships a version of this split: the log
-  lives in a storage backend, developer-supplied tools run in the developer's function, and only the shell and
-  files move to a per-session virtual workspace or sandbox. It is a product design with no reported partition
-  or failure-injection results.
+  lives in a storage backend, developer-supplied tools run in the developer's function, and only the
+  shell and files move, either to a `virtual()` workspace whose file tree is a document in the log or to
+  a sandbox whose `/workspace` sits on a Drive the article does not place in the log. It is a product
+  design with no reported partition or failure-injection results.
 - **Does outside-in journaling recover state a harness keeps outside its session files?** Extension state is the
   failure class this page documents, and the outside-in source does not discuss it.
 

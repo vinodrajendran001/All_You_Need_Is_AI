@@ -219,7 +219,11 @@ vendor-reported on one benchmark, and pairing cheap workers with a strong lead m
   same budget.
 - **What determines N?** The saturation points above range from 8 agents in the diversity study to beyond 100
   in formal math, and nothing in the evidence explains the spread — the formal-math results in particular do
-  not distinguish a sequential bottleneck from a missing insight.
+  not distinguish a sequential bottleneck from a missing insight. Within one testbed,
+  [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] gives a mechanism: planner
+  teams kept gaining up to sixteen workers because each planner ran the reference program about seven
+  times whatever the team size, while implementation and verification teams peaked at four as each extra
+  implementer got a thinner slice of the plan; each fixed-size team was run once.
 - **Does parallel scaling on benchmarks transfer to anything else?** Every curve is a benchmark result, and
   the source does not establish that the shapes hold on open-ended work.
 ## Related pages

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-09
+updated: 2026-10-27
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-28-martin-automating-eval-design-hillclimbing
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-08-30-addy-osmani-audit-agent-files
 status: active
 ---
 

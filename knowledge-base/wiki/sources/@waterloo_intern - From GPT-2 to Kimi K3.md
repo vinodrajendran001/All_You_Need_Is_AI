@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-09-13
+updated: 2026-10-27
 source_id: src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
 source_title: "22580: From GPT2 to Kimi3, Explained"
 source_author: "@waterloo_intern"
@@ -27,6 +27,10 @@ systems-aware long-context inference.
   token.
 - Hybrid attention/recurrent mechanisms change the long-context cost profile relative to dense
   attention over every token.
+- Kimi K3's language backbone has **23 four-layer macrocycles**, each with three Kimi Delta Attention
+  layers and one Multi-head Latent Attention layer; the first layer uses a dense feed-forward network and
+  every remaining layer a latent mixture-of-experts. Attention Residuals (AttnRes) are applied at block
+  boundaries every 12 decoder layers, giving eight AttnRes blocks.
 
 ## Why it matters
 
@@ -48,6 +52,7 @@ much of the 2.8T capacity activates and how recurrent state replaces or compleme
 
 - [[Linear Attention and Recurrent Memory]]
 - [[Mixture of Experts]]
+- [[AI Accelerator Architecture]]
 
 ## Related pages
 

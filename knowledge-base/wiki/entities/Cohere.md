@@ -35,14 +35,14 @@ causal model "remains open," which is a candid marker of how immature megakernel
 batch 8), because real requests concentrate on the same experts and leave more bubbles to fill — meaning
 the conventional way to benchmark MoE serving **understates** the technique.
 
-Cohere is also behind the vault's first controlled study of coding-agent teams.
+Cohere is also behind a controlled study of coding-agent teams.
 [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] finds that where a lead places
 workers matters more than how many it adds: on ProgramBench, delegating only exploration and planning
 matched delegating every stage at half the cost, and a strong lead with sixteen cheap planning workers
 reached **61.8%** for **$155** against **63.2%** for **$510** from an all-Sol team delegating every
 stage. A weaker lead set a ceiling that cheap workers could not lift. This feeds [[Agent Delegation]],
-[[Model Routing]], and [[Test-Time Scaling]]. The models studied are GPT-5.6 tiers plus Claude and
-Gemini models, none of them Cohere's own, and the results are vendor-reported, mostly on one benchmark.
+[[Model Routing]], and [[Test-Time Scaling]]. The models studied are GPT-5.6 tiers plus Claude and Gemini
+models, none of them Cohere's own, and the results are vendor-reported, mostly on one benchmark.
 
 ## Notes
 

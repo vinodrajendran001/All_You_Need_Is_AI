@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-09-03
+updated: 2026-10-27
 tags:
   - concept
   - agent-security
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-08-20-mark-russinovich-fools-gold
   - src-2026-09-02-paolo-perrone-agentic-testing
+  - src-2026-08-30-adlrocha-base-models-bottleneck
 status: active
 ---
 

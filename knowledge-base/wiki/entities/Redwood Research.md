@@ -6,6 +6,8 @@ updated: 2026-10-27
 tags: [entity, organization, safety, monitoring, red-teaming, ai-control]
 source_ids:
   - src-2026-10-17-redwood-screwtape
+  - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-09-30-apollo-embedded-evaluations
 status: active
 ---
 
@@ -38,9 +40,12 @@ its results:
 
 Redwood also connects to the vault's main incident record.
 [[OpenAI - The Hugging Face Incident and the Road Ahead]] reports that METR and Redwood Research
-conducted an independent investigation of the model alignment issues in that incident and published
-their own report, which is not captured here. The Screwtape post in turn cites the incident as one way a
-deployed agent can get monitor feedback: by hacking the infrastructure.
+conducted an independent investigation of the model alignment issues in that incident and published their
+own report, which is not captured here. [[Apollo Research - Principles for Embedded Evaluations]] calls
+that investigation "a good first step, but we believe significantly more access is required in the
+future", asking for more time, access to all relevant data, and follow-up experiments on the main model
+involved. The Screwtape post in turn cites the incident as one way a deployed agent can get monitor
+feedback: by hacking the infrastructure.
 
 ## Boundaries
 
@@ -63,3 +68,4 @@ misstate the source.
 - [[Apollo Research]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
 - [[OpenAI]]
+- [[Apollo Research - Principles for Embedded Evaluations]]

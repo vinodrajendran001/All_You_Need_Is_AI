@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-08-26
+updated: 2026-10-27
 source_id: src-2026-07-03-sebastian-raschka-local-coding-agents
 source_title: "Using Local Coding Agents"
 source_author: Sebastian Raschka
@@ -55,6 +55,7 @@ This is the vault's most concrete treatment of running agents on open-weight mod
 - [[On-Device Reasoning]]
 - [[Sebastian Raschka]]
 - [[Small Language Models]]
+- [[Qwen]]
 
 ## Citations
 - Source URL: [https://magazine.sebastianraschka.com/p/using-local-coding-agents](https://magazine.sebastianraschka.com/p/using-local-coding-agents)

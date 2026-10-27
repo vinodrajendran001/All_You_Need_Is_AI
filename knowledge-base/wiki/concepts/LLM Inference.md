@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - llm
@@ -35,6 +35,7 @@ source_ids:
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-19-alphasignal-next-concept-modeling
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
+  - src-2026-09-07-semianalysis-tpu-inferencex
 status: active
 ---
 

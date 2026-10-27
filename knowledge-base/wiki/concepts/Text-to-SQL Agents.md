@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - agents
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-23-vynnytskyi-genie-explained
   - src-2026-06-21-vynnytskyi-modern-data-platform
   - src-2026-05-21-bytebytego-batch
+  - src-2026-10-19-bytebytego-uber-genie
 status: active
 ---
 

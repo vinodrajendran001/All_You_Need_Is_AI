@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-10-19
+updated: 2026-10-27
 source_id: src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
 source_title: "How ChatGPT Optimizes its Agent Loop: Harness, API, and Inference"
 source_author: ByteByteGo
@@ -107,6 +107,7 @@ cache-aware routing pay off on the GPUs, which makes cache-awareness a constrain
 
 - [[Agentic Loop]]
 - [[KV Cache]]
+- [[Tool Roster Economics]]
 
 ## Raw capture
 

@@ -37,7 +37,7 @@ status: active
 
 ## What it is
 
-Technology company and research organization. In this vault it now spans three roles: high-throughput vision-language grounding research, the **GPU hardware and CUDA software stack** that virtually all modern training and inference runs on, and the **Megatron-LM** framework that formalized tensor parallelism.
+Technology company and research organization. In this vault it now spans several roles, including high-throughput vision-language grounding research, the **GPU hardware and CUDA software stack** that virtually all modern training and inference runs on, the **Megatron-LM** framework that formalized tensor parallelism, and **agent runtime controls**: OpenShell software and the planned Sentry layer on BlueField-4 data processing units.
 
 ## Why it matters here
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-09
-updated: 2026-10-09
+updated: 2026-10-27
 source_id: src-2026-10-08-talekar-decision-model-gold-rush
 source_title: The Decision Model Gold Rush
 source_author: Swapnil Talekar
@@ -99,6 +99,7 @@ them. Different datasets, metrics, and protocols cannot establish a same-task co
 - [[Model Routing]]
 - [[Benchmark Optimization]]
 - [[TypeSafe AI]]
+- [[Cloudflare]]
 
 ## Raw capture
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-10-19
+updated: 2026-10-27
 source_id: src-2026-09-06-rastogi-agent-observability
 source_title: "Making AI Agents Observable, Monitorable, and Production-Ready [Tutorial + Code]"
 source_author: Sarthak Rastogi
@@ -171,6 +171,7 @@ idempotency key.
 - [[Multi-Turn Evaluation]]
 - [[Sarthak Rastogi]]
 - [[LLM Application Resilience]]
+- [[Salesforce]]
 
 ## Citations
 

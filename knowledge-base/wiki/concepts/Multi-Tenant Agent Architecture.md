@@ -126,12 +126,13 @@ component actually enforces.
 
 [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] adds a serverless case in which the
 function host itself is shared. On Vercel, many sessions can share the same function, and that
-function's filesystem is not guaranteed to persist, so a harness's shell and files do not run on the host.
-They move into a per-session `virtual()` workspace stored in the session log, whose bash-compatible shell
-cannot reach the function's files or the network, or into the session's own Vercel Sandbox.
-Developer-supplied tools such as database queries and API calls stay in the developer's function, so
-"required credentials never have to enter the sandbox." Claude Code and Codex always run in a sandbox
-because they "aren't safe for multi-tenant use", a statement the article does not explain. The unit of
+function's filesystem is not guaranteed to persist, so a harness's shell and files are not run directly
+on the host. They move into a per-session `virtual()` workspace stored in the session log, whose
+bash-compatible shell cannot reach the function's files or the network and runs "without starting an
+entire sandbox", or into the session's own Vercel Sandbox. Developer-supplied tools such as database
+queries and API calls stay in the developer's function, so "required credentials never have to enter the
+sandbox." Claude Code and Codex always run in a sandbox because they "expect a real shell and filesystem,
+and aren't safe for multi-tenant use", the second of which the article does not explain. The unit of
 isolation described is the session. Authorization appears only as a developer-supplied `authorize` hook
 on the chat route, and tenant identity is not discussed. This is runtime residence and credential
 placement, not evidence of tenant isolation.
@@ -173,10 +174,11 @@ Memory is where the advice meets this page's warning. The requirement is that "A
 about Sarthak must never surface for anyone else", yet the recommendation is "one shared memory resource
 with per-user namespaces, not one memory per agent", partly because "a shared store lets you reason
 about retention and encryption once". That is the pooled design: isolation rests on namespace filters
-holding on every read. Short-term memory is stored by user and session, two of the dimensions this
-page asks session keys to carry. This page also holds that deletion guarantees depend on whether keys
-and storage are actually tenant-specific; the article lists customer-managed keys but does not say
-they are scoped per namespace, so per-user deletion by key is not established.
+holding on every read. Short-term memory is stored by user and session, which supplies the user dimension
+this page asks session keys to carry but not the tenant one. This page also holds that deletion
+guarantees depend on whether keys and storage are actually tenant-specific; the article lists
+customer-managed keys but does not say they are scoped per namespace, so per-user deletion by key is not
+established.
 
 The article says each microVM has dedicated CPU but gives no physical-core ratio, and billing is per
 second, with "CPU isn’t billed while the agent waits on I/O". That is a price, so it leaves open FD's
@@ -196,6 +198,9 @@ are point-in-time product facts.
   density, or does a stricter boundary move the ratio enough to change the topology choice?
 - If users default to private scopes inside an organisation, what is the unit of tenancy that
   permissions and memory keys should bind to - the org, the Space, or the person?
+  [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]] binds memory
+  namespaces, per-user tool lists, and delegated tokens to the individual user; group membership appears
+  only as an example token claim, and no organisation-level unit is named.
 - What re-derives the tenant claim when an artifact carries session state from one Space into another?
 - Can a shared memory store with per-user namespaces honour one user's deletion without per-namespace
   keys? AgentCore's recommended design leaves key scope unstated.

@@ -36,6 +36,7 @@ source_ids:
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-10-21-databricks-memcurrent
   - src-2026-10-26-bytebytego-salesforce-agent-stack
+  - src-2026-10-26-alphasignal-memory-tax
 status: active
 ---
 
@@ -223,8 +224,7 @@ evaluations supported."*
 
 **Progressive disclosure has a reported magnitude.** [[Meta - An Organizational Second Brain]] reports roughly
 **80% fewer tokens per turn** from routing an agent through gateway files and deterministic routing indexes
-rather than loading a fixed context — the largest context reduction figure in this vault, though unattributed
-across several simultaneous changes.
+rather than loading a fixed context — a figure unattributed across several simultaneous changes.
 
 Together these push the page's centre of gravity from *what to put in the window* toward *when to change it, and
 how to know the change helped*.
@@ -383,13 +383,13 @@ remains the authors' diagnosis rather than a demonstrated cause.
 ## Distilled memory matched full context at roughly 12x fewer input tokens
 
 [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]] supplies the efficiency
-anchor this page has wanted for the "dumping history into the window is expensive rather than thorough"
-claim. On three open benchmarks — LoCoMo (**19-32 sessions/sample**), LongMemEval (**38-62
+anchor this page has wanted for its claim that dumping history into the window is expensive rather than
+thorough. On three open benchmarks — LoCoMo (**19-32 sessions/sample**), LongMemEval (**38-62
 sessions/sample**), and a ConvoMem subset of **500 samples** at **100 sessions/sample**, averaged over
-the LangGraph and OpenAI Agents SDK harnesses and **three repeats**, with GPT 5.6 luna as both agent
-and memory model — a memory system scored **88.1%** against **87.8%** for injecting full context, at
-**8.4K versus 103K input tokens per question**. That is roughly **12x fewer** input tokens for
-comparable accuracy on those benchmarks.
+the LangGraph and OpenAI Agents SDK harnesses and **three repeats**, with GPT 5.6 luna as both agent and
+memory model — a memory system scored **88.1%** against **87.8%** for injecting full context, at **8.4K
+versus 103K input tokens per question**. That is roughly **12x fewer** input tokens for comparable
+accuracy on those benchmarks.
 
 Two qualifications travel with it. The comparison is **first-party**, and the authors note that open
 benchmarks use **synthetic conversations** that may not represent enterprise work. And matching
@@ -401,13 +401,21 @@ The architectural finding is more transferable than the ratio. The system separa
 memory** (append-only raw traces) from **derived memory** (mutable, distilled knowledge files), and on
 their internal benchmark derived memory alone scored **66.1%** while episodic alone scored **35.8%**,
 against a **22.3%** no-memory floor and **68.4%** for both. Stated in this page's terms: **what you
-carry forward should be distilled, not replayed.** Retrieval over raw history is the weaker mechanism
-even when the raw history is available. The access-pattern result points the same way — background
-offline consolidation alone reached **63.5%** against **53.9%** for agent-invoked memory tools —
-which says the agent deciding in-session what to keep is worse than a process that reviews sessions
-afterwards. All of these are Databricks' own figures on a **114-test-case**, company-built,
-partly LLM-judged benchmark drawn from Genie sessions, so they indicate a direction, not a
-general law.
+carry forward should be distilled, not replayed.** On that benchmark, retrieval over raw history was the
+weaker mechanism even when the raw history was available. The access-pattern result points the same way —
+background offline consolidation alone reached **63.5%** against **53.9%** for agent-invoked memory tools
+— which says the agent deciding in-session what to keep is worse than a process that reviews sessions
+afterwards. All of these are Databricks' own figures on a **114-test-case**, company-built, partly
+LLM-judged benchmark drawn from Genie sessions, so they indicate a direction, not a general law.
+
+[[Alpha Signal - The Hidden Memory Tax in AI Agents]] is a counterpoint at small scale. On one LoCoMo
+conversation that fit in context, Claude Opus 5.5 searching the raw record through the Pi harness scored
+99%, against 95% with full context and 87% from a Zep graph it built itself. Only the coding-agent
+harnesses could read the conversation's photo captions, which may inflate that gap; on the 88 questions
+whose evidence did not involve photos, Pi scored 100% and full context 99%. The test is secondhand and
+single-run, and its history fit the window, so it does not overturn the MemCurrent direction for long
+histories; it does show that model-directed search over the raw record can match a distilled store when a
+capable model chooses what to read. See [[Agent Memory]].
 
 **A naming collision to keep straight.** Databricks calls its offline consolidation pipeline
 **"dreaming"**, and so does the nightly context-extraction task described above from
@@ -538,3 +546,4 @@ rate of dropped rules is reported.
 - [[Agent Workflow Maturity]]
 - [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
 - [[Salesforce]]
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]]

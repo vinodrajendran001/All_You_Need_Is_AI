@@ -14,6 +14,7 @@ source_ids:
   - src-2026-09-30-bytebytego-doordash-agent-gateway
   - src-2026-10-26-bytebytego-salesforce-agent-stack
   - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
 status: active
 ---
 
@@ -202,14 +203,21 @@ less chance the model picks the wrong tool" is likewise unmeasured.
 
 Rastogi adds the quality side: "these tool docstrings become prompts", so "a vague docstring is a bug",
 and the instruction is to "Cover tool descriptions with evals." That is this page's behavioural-test
-rule applied to tool descriptions, and it comes with no method or cost either. His scale reference is
-[[Uber]]'s MCP Gateway, at over 800 MCP servers and more than 5,000 tools, with a registry, a proxy,
-and an AutoCrawler that generates definitions as APIs change; the figures are Uber's, relayed
-secondhand.
+rule applied to tool descriptions; it names no tool-specific method and no cost, though its general
+evaluation mode is to "run a fixed set of cases in CI, wait for traces to land, score, and fail the
+pipeline below your thresholds". His scale reference is [[Uber]]'s MCP Gateway, at over 800 MCP servers
+and more than 5,000 tools, with a registry, a proxy, and an AutoCrawler that generates definitions as
+APIs change; the figures are Uber's, relayed secondhand.
 
 The limits are a vendor design relayed through interviews and a practitioner who uses AgentCore at
 work. Neither reports latency, tokens, or wrong-tool rates for search-based discovery against a
 resident roster.
+
+An earlier capture in the vault shows the same move at OpenAI.
+[[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] describes a harness that keeps core tools plus one
+`tool_search` tool in the prompt and loads other definitions on demand, ranked by BM25, a lexical search.
+Its stated lesson is to "use lexical search instead of embeddings for tool discovery", whereas
+Salesforce's `discover` and AgentCore Gateway both search semantically.
 
 ## Open questions
 
@@ -222,7 +230,8 @@ resident roster.
 - **Are the four A/B percentages stable over time?** They are measured on one product with one model mix; the
   sources give no re-measurement after model upgrades.
 - **How do you test prompt behaviour cheaply?** The requirement is stated forcefully but no methodology,
-  harness, or cost for behavioural prompt tests is described.
+  harness, or cost for behavioural prompt tests is described. Rastogi's AgentCore article describes a
+  general CI evaluation gate but gives no cost.
 - **Does removing a turn actually remove a reasoning-equivalent event?** Batching cut four model calls
   to one in one measured case, but nothing here tracks whether the deliberation reappears later in the
   loop rather than disappearing.
@@ -261,3 +270,4 @@ resident roster.
 - [[Multi-Tenant Agent Architecture]]
 - [[Meta]]
 - [[DeepSeek]]
+- [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]]

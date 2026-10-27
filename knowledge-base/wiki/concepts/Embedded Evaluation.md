@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-10-16
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [concept, evaluation, governance, assurance]
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-10-20-guan-beyond-gmean-squared
+  - src-2026-10-17-redwood-screwtape
 status: active
 ---
 
@@ -129,7 +130,7 @@ proposed measurement of a proposed arrangement, not a report on a shipped contro
 ## Open questions
 
 - How can access completeness be assessed when the developer controls the evidence surface?
-- What resources and planted-counterexample tests justify an adequacy claim?
+- What resources and planted-counterexample tests justify an adequacy claim? [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]] gives a reading rule for the search side: a found attack can refute a specific safety claim, but "the absence of found attacks provides little information about safety".
 - How should verdicts expire as training, architecture, deployment, or monitoring changes?
 - When a vendor swaps the model behind an unchanged product, who learns of it, and which validation
   must re-run before the new backend reaches users?
@@ -157,3 +158,4 @@ proposed measurement of a proposed arrangement, not a report on a shipped contro
 - [[Agent Security and Governance]]
 - [[Chain-of-Thought Monitoring]]
 - [[Benchmark Optimization]]
+- [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]

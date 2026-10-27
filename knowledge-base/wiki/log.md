@@ -2452,3 +2452,45 @@ staged, committed, or pushed.
   Every baseline raw file is byte-identical except the Salesforce capture's external
   line-ending change; the only new raw files are the Vercel recapture and the deferred X post.
   The pre-existing log body is unchanged. Nothing was staged, committed, or pushed.
+
+## [2026-10-27] lint | Full wiki lint pass
+
+Forty-fourth pass, filed as [[2026-10-27 Lint Pass]]. Audited all **625** starting wiki
+pages structurally, measured affected-page reciprocity across the whole vault under three
+rules, surveyed raw-capture names and metadata, and ran six read-only semantic reviews. The
+reviews reported **59 findings** (4 high, 36 medium, 19 low), each checked against its raw
+capture before any page was edited.
+
+- Restored the **29** Databricks links that the outside auto-commit `8deb40a` (2026-10-24)
+  had rewritten to a vault-absolute path, as exact inverses with line endings preserved. One
+  restored line is in this log's 2026-10-23 ingest entry, which again reads as written. This
+  clears the link issue that the 2026-10-27 ingest left for this pass.
+- Reciprocity started at **A 0, B 15, C 16**. The new rule C covers concept, entity, and
+  synthesis pages that cite a source summary in body prose without carrying its ID. Fourteen
+  B violations were the Databricks artifact; the fifteenth was a summary that did not list
+  [[Salesforce]] among its affected pages. Five C violations came from the 2026-10-27
+  ingest. All three rules now return zero.
+- Fixed **57** semantic findings, partly fixed one, and deferred one low-priority finding.
+  The fixes scoped results stated beyond their evidence, removed superlatives the vault
+  already contradicted, set three Kimi K3 layer counts side by side, annotated thirteen
+  open questions that later ingests partly answer, and corrected thirteen stale
+  statements. Checking the drafted fixes against raw caught two precision errors before
+  they were applied.
+- Recorded conflicting publication-date signals in
+  [[OpenAI - The Hugging Face Incident and the Road Ahead]] and put the index's lint-report
+  list into date order.
+- Found **79 of 365** top-level raw captures without a dated filename or the required
+  raw-source fields. No raw file was renamed or edited; normalizing them needs user
+  authorization.
+
+The report brings the inventory to **626 typed pages**, including **44 lint reports**,
+**335 source summaries**, **136 concepts**, and **92 entities**, with exact **361-ID**
+ownership parity across index, log, and overview. Full-wiki verification returns zero
+structural findings. Single-source concepts fell from 11 to 10; the other non-blocking
+buckets are listed in the report.
+
+Ninety-three existing wiki files changed: 90 content pages and the three control pages. The
+report is the only new page. All **434 raw files** and the four Obsidian settings files
+remain byte-identical; templates, posts, queries, and earlier lint reports are unchanged,
+and the historical log body differs only by the one restored link. Nothing was staged,
+committed, or pushed.

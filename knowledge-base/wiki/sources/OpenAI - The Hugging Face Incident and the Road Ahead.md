@@ -194,7 +194,9 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 ## Citations
 
 - Raw capture: [[2026-08-30 OpenAI - The Hugging Face incident and the road ahead]]
-- Original: <https://openai.com/index/hugging-face-incident-and-the-road-ahead/> (published 2026-05-12)
+- Original: <https://openai.com/index/hugging-face-incident-and-the-road-ahead/> (publication date
+  uncertain: the capture's clipper metadata says 2026-05-12, but the post says METR and Redwood
+  published their report "today", and METR's report URL is dated 2026-08-26)
 - OpenAI full technical incident report (PDF, linked from the post)
 - Independent investigation by METR and Redwood Research, published 2026-08-26
 

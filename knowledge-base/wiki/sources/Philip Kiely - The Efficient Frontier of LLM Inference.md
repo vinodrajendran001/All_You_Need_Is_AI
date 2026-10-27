@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-19
+updated: 2026-10-27
 source_id: src-2026-09-02-baseten-efficient-frontier-inference
 source_title: "The efficient frontier of LLM inference"
 source_author: Philip Kiely
@@ -105,6 +105,7 @@ then published single-configuration benchmark numbers describe a point someone c
 - [[Philip Kiely]]
 - [[Benchmark Optimization]]
 - [[Model Quantization and Efficiency]]
+- [[Z.ai]]
 
 ## Citations
 

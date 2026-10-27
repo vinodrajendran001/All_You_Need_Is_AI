@@ -127,7 +127,8 @@ tokens of tool definitions and agent prompt were identical in every repository. 
 how the rate is computed, but its figures suggest how both can hold: each call resends the whole
 conversation, and the code quality reviewer averaged **16.6** calls per review, writing **72k** tokens to
 the cache and reading back **1.08m**. If the rate counts every call, the first call, which pays for the
-write, could mostly miss while the rate stayed high. Cache writes were **43%** of spend.
+write, could mostly miss while the rate stayed high. Before the cost work began, cache writes were
+**43%** of all AI review spend.
 
 The provider prices match the ratios [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]] quotes:
 writes at 1.25 times the normal input price, reads at 0.1 times, and expiry after five minutes without a
@@ -149,13 +150,13 @@ The evidence is one company's self-reported telemetry. The fix shipped alongside
 
 ## Open questions
 
-- **The vault has no measurements here.** Every figure in the source is illustrative or third-party
-  pricing: the 0.92 similarity score, the 30-day-to-14-day policy example, the $1.35-versus-$2 prefix
-  arithmetic, and the quoted provider ratios (cache reads at 1/10th of input price; 5-minute writes at
-  1.25×, 1-hour writes at 2×). No hit rates, latency deltas, or error rates are reported.
-  [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] now supplies
-  production prompt-cache figures, aggregate and first-request hit rates and the share of spend on cache
-  writes, but the semantic-cache side still has none.
+- **The vault has no semantic-cache measurements.** Every figure in the source is illustrative or
+  third-party pricing: the 0.92 similarity score, the 30-day-to-14-day policy example, the
+  $1.35-versus-$2 prefix arithmetic, and the quoted provider ratios (cache reads at 1/10th of input
+  price; 5-minute writes at 1.25×, 1-hour writes at 2×). No hit rates, latency deltas, or error rates are
+  reported. [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] now
+  supplies production prompt-cache figures, aggregate and first-request hit rates and the share of spend
+  on cache writes, but the semantic-cache side still has none.
 - The source **proposes** measuring reused input tokens, accepted semantic-cache answers, freshness,
   scope, and answer appropriateness — and supplies no results. That evaluation harness is the missing
   piece, and it is the same gap [[Embedded Evaluation]] describes elsewhere.

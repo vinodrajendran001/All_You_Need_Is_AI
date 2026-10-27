@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-19
+updated: 2026-10-27
 source_id: src-2026-08-30-openai-hugging-face-incident
 source_title: "The Hugging Face incident and the road ahead"
 source_author: "OpenAI"
@@ -187,6 +187,9 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Emergent Misalignment]]
 - [[RL Environment Design]]
 - [[Self-Replicating Agents]]
+- [[Model Factory]]
+- [[Z.ai]]
+- [[Redwood Research]]
 
 ## Citations
 
@@ -209,3 +212,4 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Emergent Misalignment]]
 - [[RL Environment Design]]
 - [[Self-Replicating Agents]]
+- [[Redwood Research]]

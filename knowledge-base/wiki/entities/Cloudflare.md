@@ -6,6 +6,11 @@ updated: 2026-10-27
 tags: [entity, organization, inference, prompt-caching, model-routing, code-review]
 source_ids:
   - src-2026-10-20-cloudflare-inference-bill
+  - src-2026-07-03-bytebytego-openai-voice
+  - src-2026-10-20-husain-decision-model-evals
+  - src-2026-08-20-jeremy-morrell-extensible-software
+  - src-2026-10-08-talekar-decision-model-gold-rush
+  - src-2026-09-28-bytebytego-agents-can-pay
 status: active
 ---
 
@@ -39,8 +44,11 @@ not yet cite this source.
 Cloudflare also appears in secondary roles elsewhere in the vault: its Clef decision models in
 [[Swapnil Talekar - The Decision Model Gold Rush]] and
 [[Hamel Husain - How To Use Decision Models for Evals]], Dynamic Workers as one possible deployment
-substrate in [[Jeremy Morrell - Extensible Software in the Age of LLMs]], and signaling steering in
-[[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]].
+substrate in [[Jeremy Morrell - Extensible Software in the Age of LLMs]], signaling steering in
+[[ByteByteGo - How OpenAI Delivers Low-Latency Voice AI]], a cited report that automated systems generate
+around 57.5% of HTTP requests to web content in [[ByteByteGo - AI Agents Can Think, Now They Can Pay]],
+and a system-design case listed as 55 million requests per second on 15 Postgres clusters in
+[[ML Systems at Scale]].
 
 ## Boundaries
 

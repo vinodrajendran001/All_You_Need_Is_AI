@@ -560,15 +560,16 @@ runs, each with one objective and one reward, warm-starting from the previous ch
 [[IBM]] entity.
 
 The most transferable rule it supplies is that **the KL coefficient should follow the reward type**:
-run at KL 0 where the reward is verifiable, because passing tests is sufficient evidence of good
-behavior, and at the pipeline's highest KL where the reward is preference, safety, or a narrow skill
-graft, because there drift and reward hacking are indistinguishable. That is now recorded on
-[[Reward Design for RL]] and [[Group Relative Policy Optimization]] alongside Granite's leave-one-out
-baseline and its bounded-staleness asynchronous loop. Two further findings landed elsewhere: agentic
-RL appears to have a **scale policy** — Granite's 3B model is deliberately never given the agentic
-stages, on [[Small Language Models]] — and Granite's RLHF stage applies a reasoning-length penalty
-purely to undo verbosity that *earlier stages induced*, which reframes reasoning bloat on
-[[Reasoning Compression]] as iatrogenic rather than intrinsic.
+run at KL 0 where the reward is verifiable, because passing tests is taken as sufficient evidence of good
+behavior (an assumption [[Reward Design for RL]] now qualifies), and at the pipeline's highest KL where
+the reward is preference, safety, or a narrow skill graft, because there drift and reward hacking are
+indistinguishable. That is now recorded on [[Reward Design for RL]] and
+[[Group Relative Policy Optimization]] alongside Granite's leave-one-out baseline and its
+bounded-staleness asynchronous loop. Two further findings landed elsewhere: agentic RL appears to have a
+**scale policy** — Granite's 3B model is deliberately never given the agentic stages, on
+[[Small Language Models]] — and Granite's RLHF stage applies a reasoning-length penalty purely to undo
+verbosity that *earlier stages induced*, which reframes reasoning bloat on [[Reasoning Compression]] as
+iatrogenic rather than intrinsic.
 
 [[ByteByteGo - How to Make LLMs 3X Faster]] is a secondary explainer over ground
 [[Speculative Decoding]] already held, but it earned its place three ways. It adds a **fourth

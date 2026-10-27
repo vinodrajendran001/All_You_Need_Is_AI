@@ -97,10 +97,12 @@ the bottleneck, with a lead strong enough to use the results. A larger team or a
 did not substitute for either.
 
 [[Model Routing]] gets a role-based version of routing. The expensive model makes the decisions and cheap
-models gather information, and the saving held only where the cheap role was information gathering.
+models gather information. The post reports the saving for cheap planning workers; it gives no text
+comparison for cheap implementers or verifiers, and a cheaper lead fell below a solo Sol agent.
 
-[[Test-Time Scaling]] gets a new axis, teams of agents, and its exchange rate: several times the cost for
-gains of a few to about ten points on this benchmark.
+[[Test-Time Scaling]] gets a first-party measurement of the team axis that
+[[Ramez Naam - Can a Million AI Agents Create Superintelligence]] assembled from third-party results, and
+its exchange rate: several times the cost for gains of a few to about ten points on this benchmark.
 
 ## Tensions / open questions
 

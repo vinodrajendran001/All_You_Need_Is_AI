@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -88,8 +88,9 @@ is a systems reason for an algorithmic compromise.
 Granite's stage table shows KL varying from 0 to 0.05 across a single pipeline, and not arbitrarily:
 **KL = 0 where the reward is verifiable** (RLVR, and the long-horizon SWE stage), **KL = 0.05 where
 it is preference, safety, or a narrow skill graft** (RLHF, the code booster). The logic is that a
-verifiable reward cannot be satisfied by drifting — if the tests pass, the behavior is good — while
-a preference or safety reward makes drift and reward hacking indistinguishable.
+verifiable reward cannot be satisfied by drifting alone — if the tests pass, the behavior is taken to be
+good, which holds only while the policy cannot alter the tests (see [[Reward Design for RL]]) — while a
+preference or safety reward makes drift and reward hacking indistinguishable.
 
 This turns KL from a knob tuned by feel into something derivable from the objective. See
 [[Staged Reinforcement Learning Curriculum]] for the full ladder.

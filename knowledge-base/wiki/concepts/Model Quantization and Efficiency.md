@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-23
+updated: 2026-10-27
 tags:
   - concept
   - llm
@@ -44,6 +44,7 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-10-21-ant-vllm-humming
+  - src-2026-08-29-baseten-agentic-kernels-production
 status: active
 ---
 

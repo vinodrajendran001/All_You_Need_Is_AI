@@ -62,8 +62,8 @@ Read the figures as attributed vendor claims and the sequencing as practitioner 
   the collector.
 - His retry arithmetic — 20,000 runs/day × 6 tool calls × 0.5% failure × 3 retries ≈ 1,800 retried calls
   daily — is the bridge between observability and [[LLM Application Resilience]].
-- Writes evenhandedly about vendors, naming Salesforce Agentforce Observability as a fair
-  counter-example to platforms that ship adoption metrics early and reasoning traces late.
+- In his observability article, names [[Salesforce]] Agentforce Observability as a fair counter-example
+  to platforms that ship adoption metrics early and reasoning traces late.
 
 ## A plugin experiment exposes the gap between claims and artifacts
 
@@ -110,3 +110,4 @@ AgentCore falls short is image-only in the capture, and the code is promised for
 - [[Sarthak Rastogi - 6 Ways to Use Jev to Make AI Agents More Reliable]]
 - [[Typed Probabilistic Decision Models]]
 - [[TypeSafe AI]]
+- [[Salesforce]]

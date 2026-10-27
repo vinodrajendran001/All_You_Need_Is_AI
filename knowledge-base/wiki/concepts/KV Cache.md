@@ -129,7 +129,7 @@ or regenerated preamble near the front would do the same and add first-token lat
 are illustrative rather than reported. Learned cross-model conversion, discussed below, has a different
 and approximate contract.
 
-The practical rule is to treat the prefix as a stable interface — append rather than rewrite, and keep anything volatile at the end of the context. This is what makes prefix reuse the dominant win for agent and chat traffic noted in [[Inference Serving Engines]], and why [[Agentic Loop]] treats cache-awareness as a constraint on how a loop is built.
+The practical rule is to treat the prefix as a stable interface — append rather than rewrite, and keep anything volatile at the end of the context. On caches with explicit breakpoints, order alone is not enough: a prefix is stored only where a breakpoint ends it, as [[Semantic Caching]] records from one production agent. This is what makes prefix reuse the dominant win for agent and chat traffic noted in [[Inference Serving Engines]], and why [[Agentic Loop]] treats cache-awareness as a constraint on how a loop is built.
 
 ## The cache budget is what speculation spends
 
@@ -361,12 +361,16 @@ model says, only what it costs; the other mechanism can.
 
 [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] moves this page's question from HBM
 to on-chip SRAM and answers it layer by layer. In its Kimi K3 illustration (an assumed 256k average
-request size, 4-bit weights, and an 8-bit KV cache), only the 24 dense (full-attention) layers store
-keys and values for every token in every active request. The 69 linear-attention layers keep
-"a small, fixed-size state per request, regardless of context length", so the post concludes that
-"we only need to calculate KV cache requirements for dense layers". In the memory-scaling formula
-above, the layers term then counts only full-attention layers: in a hybrid model the attention mix is
-itself a cache-size lever, separate from the compression families above.
+request size, 4-bit weights, and an 8-bit KV cache), only the 24 dense (full-attention) layers store keys
+and values for every token in every active request. The count of 24 is the post's;
+[[Linear Attention and Recurrent Memory]] records K3 as 23 four-layer macrocycles, each with one
+full-attention layer, which would give 23. The 69 linear-attention layers keep "a small, fixed-size state
+per request, regardless of context length", so the post concludes that "we only need to calculate KV
+cache requirements for dense layers". In the memory-scaling formula above, the layers term then counts
+only full-attention layers: in a hybrid model the attention mix is itself a cache-size lever, in addition
+to the compression families above; in Kimi K3 the two combine, since its full-attention layers use
+Multi-head Latent Attention (MLA; see [[Linear Attention and Recurrent Memory]]), and the post does not
+say whether its cache arithmetic uses MLA's compressed latent.
 
 Placement turns that mix into hardware. Each dense layer gets a wafer of its own, and the SRAM left
 after that layer's weights is its cache budget. The post's reason for computing the ceiling per wafer
@@ -401,9 +405,9 @@ of the illustration rather than an observed traffic mix, and the post is undated
 - If cache-sharing architectures spend the decode compute headroom that speculation also needs, how should a serving stack choose between them per workload rather than per model?
 - What share of real serving traffic has a knowable future request order, and how much of this page's research is therefore solving an uncertainty that a growing class of workloads does not have?
 - Can a *partial* plan — an agent's declared tool sequence, a batch job's manifest, a fixed evaluation suite — buy a proportional share of exact eviction, or does the benefit require the complete order?
-- The caching source supplies **no measured hit rates, latency reductions, or token savings** — only provider pricing ratios and invented examples. What reuse rate does a prefix actually need before a 1.25x write surcharge pays for itself on real agent traffic?
+- The caching source supplies **no measured hit rates, latency reductions, or token savings** — only provider pricing ratios and invented examples. What reuse rate does a prefix actually need before a 1.25x write surcharge pays for itself on real agent traffic? [[Semantic Caching]] now records one agent workload: Cloudflare's code quality reviewer wrote about 72k tokens to the cache and read back 1.08m per review, and before Cloudflare's cost work, cache writes were 43% of its AI review spend.
 - Prefix-truncating reuse implies a cost for every edit position in a prompt, but the vault has no way to price one. Is there a usable model of "expected cached tokens lost per edit" that a context-assembly layer could optimize against?
-- Does exact-prefix matching behave identically across providers? The source presents a general model and notes that implementation details vary, so the vault's prompt-ordering advice rests on an unverified assumption of common semantics.
+- Does exact-prefix matching behave identically across providers? The source presents a general model and notes that implementation details vary, so the vault's prompt-ordering advice rests on an unverified assumption of common semantics. [[Semantic Caching]] records one provider-specific condition, Anthropic's cache breakpoints.
 - Can a layer pipeline stay full at long context? The Cerebras post sizes concurrency per dense-layer wafer, puts requests in flight at roughly stages times micro-batch, and says production uses "much finer-grained stages, and many more of them"; with its figures shown only as images, the vault cannot tell whether cache space or pipeline depth binds first.
 
 ## Related pages

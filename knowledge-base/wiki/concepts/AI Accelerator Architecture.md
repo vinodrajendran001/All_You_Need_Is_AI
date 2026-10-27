@@ -27,6 +27,7 @@ source_ids:
   - src-2026-10-21-simpson-torchtpu
   - src-2026-10-26-cerebras-trillion-parameter
   - src-2026-04-19-karray-neuromorphic-guide
+  - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
 status: active
 ---
 
@@ -224,27 +225,39 @@ finding one level down: tile and lane geometry decide what fraction of an alloca
 
 [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] shows how Cerebras fits a model
 whose weights need terabytes onto WSE-3T wafers, each with the 44 GB of SRAM recorded from
-[[Jacob Peake - AI Chip Architectures]] above. Its Kimi K3 example (about 3 trillion parameters, 4-bit
-weights) divides the payload evenly over 93 layers, about 16 GB each. Each of the 24 dense
-(full-attention) layers gets a wafer, with the remaining SRAM kept for that layer's KV cache, and the 69
-linear-attention layers pack two per wafer: 35 + 24 = 59 wafers. Whole layers typically fit on one
-wafer, so "in most cases, the model weights never have to move", and "Only activations cross from one
-wafer to the next" over RDMA over Ethernet, at what the post gives as "roughly 2 microseconds per hop".
-The compute-versus-communication principle is taken to its limit: weights stay put, and the price is
-paid in wafers.
+[[Jacob Peake - AI Chip Architectures]] above. Its Kimi K3 example (about 3 trillion parameters, with
+4-bit weight quantization assumed for the example, like the Hugging Face implementation) divides the
+payload evenly over 93 layers, about 16 GB each. Each of the 24 dense (full-attention) layers gets a
+wafer, with the remaining SRAM kept for that layer's KV cache, and the 69 linear-attention layers pack
+two per wafer: 35 + 24 = 59 wafers. Whole layers typically fit on one wafer, so "in most cases, the model
+weights never have to move", and "Only activations cross from one wafer to the next" over RDMA over
+Ethernet, at what the post gives as "roughly 2 microseconds per hop". The compute-versus-communication
+principle is taken to its limit: weights stay put, and the price is paid in wafers.
+[[Jacob Peake - AI Chip Architectures]] says Cerebras "still computes in 16-bit", and the post does not
+say whether production deployments use 4-bit weights.
 
-The post also tests the pipeline-parallelism bullet from [[Dwarkesh Patel - Reiner Pope Flashcards]]
-above: bubbles, architecture constraints, and less KV relief than expected. Cerebras fills the pipeline
-with a different request in each stage, so "the number of requests in flight is roughly the number of
-stages times the micro-batch size". Each of those requests needs its own cache on every dense-layer
-wafer, so the cache caps how full the pipeline can be, and at a fixed micro-batch a deeper pipeline
-needs more cache on each dense wafer. The post does not state that depth effect; its two statements imply
-it. The architecture constraint shows up too: attention type decides how layers pack.
+The post also bears on the pipeline-parallelism bullet from [[Dwarkesh Patel - Reiner Pope Flashcards]]
+above: bubbles, architecture constraints, and less KV relief than expected. The flashcards place bubbles
+in training, where gradients must be consolidated before the next batch; serving updates no weights
+between batches, and Cerebras fills the pipeline with a different request in each stage, so "the number
+of requests in flight is roughly the number of stages times the micro-batch size". Each of those requests
+needs its own cache on every dense-layer wafer, so the cache caps how full the pipeline can be, and at a
+fixed micro-batch a deeper pipeline needs more cache on each dense wafer. The post does not state that
+depth effect; its two statements imply it, and the flashcards give the general form: keeping more
+pipeline stages busy requires as many micro-batches in flight, so concurrent sequences scale with the
+number of stages. The architecture constraint shows up too: attention type decides how layers pack. The
+flashcards' own example of such a constraint, Kimi's attention-to-residuals, is in K3 in block form,
+every 12 decoder layers according to [[@waterloo_intern - From GPT-2 to Kimi K3]], and the post does not
+say how its pipeline handles it.
 
 [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]] runs the same model on 16 TPU v7 chips,
 prefetching weights from HBM. Chips and wafers are different units, and neither source reports a power
 or cost figure, so the two placements cannot be ranked. Inferact counts 92 MoE layers; this post counts
-93 by attention type and never mentions experts.
+93 by attention type and never mentions experts. [[@waterloo_intern - From GPT-2 to Kimi K3]] gives a
+third account: 23 four-layer macrocycles, each of three Kimi Delta Attention layers and one Multi-head
+Latent Attention layer, or 92 layers in all, with 23 full-attention layers rather than 24 and a dense
+feed-forward network rather than experts in the first layer. The vault cannot settle the count, and the
+post's 59 wafers rest on its own 24 dense layers.
 
 This is a vendor explainer. Its arithmetic is illustrative, its formulas are images in the capture, and
 it reports no measured throughput or cost, so the throughput-per-dollar gap recorded above is
@@ -261,17 +274,23 @@ spent transferring data between memory and the processor". Its answers to the fo
 compute in each neuromorphic node. Data moves as spike events over an asynchronous network with no
 global clock. Nodes act only when a spike arrives: "If there is no spike, there is no computation."
 Chip-to-chip scaling is not discussed. Two of those answers overlap with [[Cerebras]], which keeps
-weights in on-wafer SRAM and leaves each core idle until data arrives; what the guide adds is sparsity,
-with binary spikes and most neurons silent at any moment.
+weights in on-wafer SRAM and leaves each core idle until data arrives; what the guide adds is activity
+sparsity, with binary spikes and most neurons silent at any moment. Cerebras has value sparsity of its
+own: [[Jacob Peake - AI Chip Architectures]] records that zeros are filtered at the sender, so a
+receiving core never spends a cycle on them, though so far, he says, it is "an unexercised option".
 
 Two existing claims meet it. The [[Dwarkesh Patel - Reiner Pope Flashcards]] bullet above says batching
-amortizes weight fetches, and the guide says "A neuromorphic chip does not need batching", which fits a
-design whose weights do not move, though the guide does not argue it that way. Its 300 to 700 watts for
-a data-center GPU stops at Hopper in the power bullet above, where [[Jacob Peake - AI Chip Architectures]]
+amortizes weight fetches, and the guide says "A neuromorphic chip does not need batching". Its argument
+is latency: data centers batch requests to keep GPUs busy, which delays them, while the chip "processes
+data on the fly, example by example, spike by spike, in real time". Stationary weights do not remove
+batching by themselves: [[Cerebras]], whose weights also stay put, still fills its pipeline with
+micro-batches whose size trades per-request speed against total throughput, per
+[[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] above. Its 300 to 700 watts for a
+data-center GPU stops at Hopper in the power bullet above, where [[Jacob Peake - AI Chip Architectures]]
 puts Blackwell at 1,000 W and B300 at 1,400 W. Peake and the guide also disagree on deployment: Peake
-counts neuromorphic designs among architectures in development, not among those that have won
-deployment, while the guide describes a 2026 division of labor, with GPUs training and converted models
-running on neuromorphic edge chips, and names no deployed conversion.
+counts neuromorphic designs among architectures in development, not among those that have won deployment,
+while the guide describes a 2026 division of labor, with GPUs training and converted models running on
+neuromorphic edge chips, and names no deployed conversion.
 
 The numbers are the weak point. The over-99% energy saving, the 100× to 1000× efficiency factors, the
 ANYmal robot's AI computation using "up to 100× less energy" with Loihi 2 than a GPU-based solution
@@ -292,7 +311,7 @@ neurons, proportional savings top out near a hundredfold, short of the upper end
 - The TorchTPU post supplies no GPU-side measurements of its own, no energy figures, and no cost-per-token accounting, so none of its MFU or tokens-per-second results can be read as a cross-vendor hardware comparison. What would a matched-workload comparison even hold fixed, given the shape constraints above?
 - If TensorCores are effectively single-threaded and shapes must be bounded at compile time, which workloads — data-dependent routing, variable-length agent traffic, reinforcement-learning rollouts — are *structurally* expensive on this hardware rather than merely untuned?
 - Does the 1,024-bytes-for-512 padding ratio in the TorchTPU KV example generalize beyond that unnamed configuration, or is it an artifact of one head dimension meeting one lane width?
-- Kimi K3 now has two placements here, 16 TPU v7 chips ([[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]) and 59 WSE-3T wafers ([[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]), and two layer counts, 92 MoE layers versus 69 linear-attention plus 24 dense. Neither source gives power or cost; would tokens per second per megawatt at a matched per-user speed, the Cerebras post's proposal, be enough to rank them?
+- Kimi K3 now has two placements here, 16 TPU v7 chips ([[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]) and 59 WSE-3T wafers ([[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]), and three layer counts: 92 MoE layers, 69 linear-attention plus 24 dense, and 23 four-layer macrocycles ([[@waterloo_intern - From GPT-2 to Kimi K3]]). Neither source gives power or cost; would tokens per second per megawatt at a matched per-user speed, the Cerebras post's proposal, be enough to rank them?
 - Would any of the efficiency factors in [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]] survive a matched comparison at equal task accuracy and latency, with idle leakage, memory retention, and sensor power inside the energy boundary? The vault has no primary measurement of neuromorphic hardware.
 
 ## Related pages
@@ -335,3 +354,4 @@ neurons, proportional savings top out near a hundredfold, short of the upper end
 - [[Megakernels]]
 - [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]
 - [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]]
+- [[@waterloo_intern - From GPT-2 to Kimi K3]]

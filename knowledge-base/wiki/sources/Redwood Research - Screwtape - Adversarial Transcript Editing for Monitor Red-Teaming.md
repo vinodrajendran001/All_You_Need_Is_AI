@@ -108,6 +108,7 @@ format failed first, and the remaining errors gathered among the final survivors
 - [[Chain-of-Thought Monitoring]]
 - [[LLM-as-a-Judge]]
 - [[Redwood Research]]
+- [[Embedded Evaluation]]
 
 ## Raw capture
 

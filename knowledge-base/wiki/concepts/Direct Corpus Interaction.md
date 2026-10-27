@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-10-27
 tags:
   - concept
   - retrieval
@@ -10,6 +10,7 @@ tags:
   - search
 source_ids:
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
+  - src-2026-10-26-alphasignal-memory-tax
 status: active
 ---
 
@@ -32,6 +33,7 @@ DCI matters when retrieval depends on exact strings, file paths, error codes, ve
 - The main downside is friction. Raw terminal outputs can overwhelm context windows, broad commands can waste time, and deep directory structures can derail reasoning.
 - The Alpha Signal article presents **GrepSeek** as a way to scale DCI: train on executable shell-command trajectories, improve task-oriented search with reinforcement learning, and parallelize shell execution across corpus shards while preserving semantics.
 - For very large corpora, the most practical pattern is likely hybrid retrieval: use semantic retrieval for initial high-recall anchoring, then use DCI for precise verification and lateral expansion from the anchor.
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]] adds a measured comparison on conversation memory: coding-agent harnesses received one LoCoMo conversation "as a JSON file" and chose which parts to inspect with their tools. With Claude Opus 5.5, the Pi harness answered 99% of questions for $6.95, reading about 10,000 input tokens per question, against 95%, $17.84, and about 28,900 tokens with full context; the Codex and Claude Code harnesses were about as accurate (98% and 97%) but cost more than full context ($25.41 and $28.41). It is one secondhand, single-run test on a history that fit in the context window, and only the coding-agent harnesses could read the conversation's photo captions; on the 88 questions whose evidence did not involve photos, Pi scored 100% and full context 99%. See [[Agent Memory]].
 
 ## Open questions
 
@@ -48,3 +50,5 @@ DCI matters when retrieval depends on exact strings, file paths, error codes, ve
 - [[Agentic Loop]]
 - [[Search-Augmented Language Models]]
 - [[Alpha Signal]]
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
+- [[Agent Memory]]

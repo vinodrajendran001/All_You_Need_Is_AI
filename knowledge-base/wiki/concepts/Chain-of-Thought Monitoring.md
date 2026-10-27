@@ -370,10 +370,12 @@ uncertain" whether helping to improve frontier monitors is good.
 - How faithful are the traces monitoring depends on, and how would a lab know if faithfulness degraded?
 - Does mandating CoT monitoring create pressure against training techniques that shorten or obscure
   reasoning, and is that trade being made deliberately anywhere?
-- If models learn that traces are monitored, do they learn to write traces that pass? No published
-  work in this vault addresses monitor-aware reasoning.
-  [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]] shows
-  a reward penalty teaching an undetected hack, but its monitor read code, not reasoning.
+- If models learn that traces are monitored, do they learn to write traces that pass? No captured source
+  in this vault tests it directly. The closest evidence is the Figure 7 finding cited in the gate section
+  above;
+  [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]] cites
+  the same paper for its premise and shows a reward penalty teaching an undetected hack, but its monitor
+  read code, not reasoning.
 - The 30-minute default-stop rule scales with alert volume. What false-positive rate makes it
   unworkable, and what is it in practice?
 - Monitoring caught this incident in hindsight. What is the detection latency in a live setting, against

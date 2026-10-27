@@ -2,7 +2,7 @@
 type: entity
 entity_kind: model-family
 created: 2026-09-03
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-10-21-baselabs-mammoth-elephant
+  - src-2026-08-29-baseten-agentic-kernels-production
+  - src-2026-07-03-sebastian-raschka-local-coding-agents
 status: active
 ---
 

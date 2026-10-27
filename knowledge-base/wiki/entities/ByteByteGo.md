@@ -214,11 +214,11 @@ assertions.
 
 ## A named deployment is a different evidence class from an explainer
 
-[[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]] is the first piece in this
-vault where the publisher walks a **named internal production system** rather than a pattern. That
-changes what the standing caveat means. On the explainer posts the complaint is that figures arrive
-unattributed; here they are attributed precisely — to **Uber**, who reported them — and the
-publisher is relaying rather than measuring. Both the relay and the original are interested parties,
+[[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]] is, like the DoorDash and Netflix
+accounts above, a piece where the publisher walks a **named internal production system** rather than a
+pattern. That changes what the standing caveat means. On the explainer posts the complaint is that
+figures arrive unattributed; here they are attributed precisely — to **Uber**, who reported them — and
+the publisher is relaying rather than measuring. Both the relay and the original are interested parties,
 so every operating number on that page is **self-reported and unaudited**: approximately 45K
 engineering-support questions a month across internal channels, 154 Slack channels and more than 70K
 questions answered in the first year after a September 2023 launch, and a **48.9% overall
@@ -257,18 +257,18 @@ provider pricing ratios** — Anthropic prompt-cache reads at one tenth of ordin
 $1.35 against $2. No hit rates, latency deltas, or token savings are reported, and the piece carries
 the publisher's standard disclaimer that it is assembled from publicly shared details.
 
-## Executive interviews and a simulated demo are a third evidence class
+## Executive interviews and a simulated demo sit between explainer and relay
 
-[[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] is built from the publisher's own
-interviews at Dreamforce 2026 with two [[Salesforce]] executives, so it sits between the explainers and
-the Uber relay above. The design is attributed to named people, but the walk-through follows a
-simulated healthcare company and patient, "but according to MK everything behind it runs in
-production". Its numbers are vendor-reported: an observation that instruction-following broke down
-beyond eight instructions, with no stated method; one demo's token counts across sessions of unequal
-length; and Agentic Work Units, a unit Salesforce defines for itself. The opening Datadog block is
-sponsorship, not part of the article. The durable contribution is the split of one prompt into four
-systems, recorded in [[Context Engineering]], [[Agent Security and Governance]], and
-[[Tool Roster Economics]].
+[[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]] is built, like the Logical Intelligence
+piece above, from the publisher's own interviews, here at Dreamforce 2026 with two [[Salesforce]]
+executives, so it sits between the explainers and the Uber relay above. The design is attributed to named
+people, but the walk-through follows a simulated healthcare company and patient, "but according to MK
+everything behind it runs in production". Its Salesforce numbers are vendor-reported: an observation that
+instruction-following broke down beyond eight instructions, with no stated method; one demo's token
+counts across sessions of unequal length; and Agentic Work Units, a unit Salesforce defines for itself.
+The opening Datadog block is sponsorship, not part of the article. The durable contribution is the split
+of one prompt into four systems, recorded in [[Context Engineering]], [[Agent Security and Governance]],
+and [[Tool Roster Economics]].
 
 ## Open questions
 

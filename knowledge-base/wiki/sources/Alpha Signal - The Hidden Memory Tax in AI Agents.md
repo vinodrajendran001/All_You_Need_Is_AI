@@ -30,9 +30,10 @@ one conversation from LoCoMo, a benchmark of long conversations, and GPT-4o-mini
 
 There are three headline findings. Structured memory helped the weakest model but gave the stronger
 ones no accuracy advantage. The model that wrote the memory capped the quality of later answers.
-Letting a strong model search the raw record was both more accurate and cheaper than having it read
-everything. The article itself warns that "the study is not very comprehensive": one conversation,
-one run per configuration, a GPT-4o-mini judge, and a history that fit in context.
+Letting a strong model search the raw record was at least as accurate as having it read everything, and
+with one harness, Pi, it was also cheaper; the Codex and Claude Code harnesses cost more than full
+context. The article itself warns that "the study is not very comprehensive": one conversation, one run
+per configuration, a GPT-4o-mini judge, and a history that fit in context.
 
 ## Key claims
 
@@ -59,7 +60,7 @@ answer." Mem0 showed a similar pattern. A stronger reader cannot recover what ex
 The article's example is a complaint summary that omits the purchase date a later warranty question
 needs. Its safeguard is to "keep original records available".
 
-**Model-directed search was cheaper and at least as accurate.**
+**Model-directed search was at least as accurate, and cheaper in one harness.**
 
 | Claude Opus 5.5 configuration | Accuracy | Reported cost | Input tokens per question |
 | --- | --- | --- | --- |
@@ -90,8 +91,8 @@ the same model.
 [[Agent Memory]] gains a second ablation that asks a different question from MemCurrent's. It does
 not ask which memory component beats having no memory. It asks whether a memory layer beats giving
 a capable model the raw record. For the strong models on this small test, it did not. The
-writer-sets-the-ceiling result also explains the loss of detail during distillation that the page
-already records.
+writer-sets-the-ceiling result also extends the loss of detail during distillation that the page already
+records: in this test, how much was lost depended on the model that wrote the memory.
 
 [[Alpha Signal]] adds another clipping without a byline: secondary reporting of a university study
 whose paper is not identified in the capture.
@@ -103,9 +104,11 @@ whose paper is not identified in the capture.
   fit in context, and the article suggests treating "the study as a testing framework". The paper,
   its authors, and its venue are reachable only through a tracking redirect, so no figure here was
   checked against the study.
-- **Not comparable with MemCurrent.** MemCurrent measured memory against no memory on a company
-  benchmark, while MemoryTax measured it against full context on one public conversation. Mem0
-  appears in both, in different roles.
+- **Comparable only in part with MemCurrent.** MemCurrent's component ablations measured memory against
+  no memory on a company benchmark whose histories were too long for full context; its full-context
+  comparison came from three open benchmarks, LoCoMo among them, reported as an average. MemoryTax
+  measured memory against full context on one LoCoMo conversation. Mem0 appears in both, in different
+  roles.
 - **The costs are local to this setup.** The break-even range depends on the length of this
   history, each model's price, and how many tokens each harness uses.
 - **Access differed by method.** The coding agents could see photo captions that the others could
@@ -116,6 +119,8 @@ whose paper is not identified in the capture.
 
 - [[Agent Memory]]
 - [[Alpha Signal]]
+- [[Context Engineering]]
+- [[Direct Corpus Interaction]]
 
 ## Raw capture
 

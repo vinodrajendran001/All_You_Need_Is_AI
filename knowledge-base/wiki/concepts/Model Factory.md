@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-10-19
+updated: 2026-10-27
 tags: [concept, training, research, reproducibility]
 source_ids:
   - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-08-30-openai-hugging-face-incident
 status: active
 ---
 

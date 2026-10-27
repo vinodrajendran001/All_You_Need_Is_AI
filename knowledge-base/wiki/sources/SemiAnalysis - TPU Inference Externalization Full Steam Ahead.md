@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-10-07
+updated: 2026-10-27
 source_id: src-2026-09-07-semianalysis-tpu-inferencex
 source_title: "TPU Inference Externalization Full Steam Ahead"
 source_author: SemiAnalysis
@@ -172,6 +172,7 @@ agent workloads driving a hardware design decision rather than a serving-softwar
 - [[Linear Attention and Recurrent Memory]]
 - [[KV Cache]]
 - [[SemiAnalysis]]
+- [[LLM Inference]]
 
 ## Citations
 

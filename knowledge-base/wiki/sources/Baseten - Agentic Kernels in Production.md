@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-27
 source_id: src-2026-08-29-baseten-agentic-kernels-production
 source_title: "Agentic kernels in production"
 source_author: Brian Li, Faraz Shahsavan, Pankaj Gupta (Baseten)
@@ -114,6 +114,9 @@ throughput, it reduces the work per token and lets the gain be allocated anywher
 - [[Recursive Self-Improvement]]
 - [[Inference Efficiency Frontier]]
 - [[Baseten]]
+- [[Model Quantization and Efficiency]]
+- [[Qwen]]
+- [[Z.ai]]
 
 ## Citations
 

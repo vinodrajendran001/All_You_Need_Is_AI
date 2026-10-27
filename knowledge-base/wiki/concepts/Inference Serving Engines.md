@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -56,7 +56,7 @@ Developer convenience, single-request latency, throughput, structured execution,
 
 Two implications for engine selection. First, an engine's real differentiator is often **how well its dispatch tracks the workload's position on the roofline** (see [[Arithmetic Intensity and the Roofline Model]]), which no feature checklist captures. Second, engine features interact rather than stack: speculative decoding and continuous batching both spend the compute a memory-bound decode leaves idle, so enabling both on an already high-intensity attention architecture can cost latency. That is a stronger form of this page's decision principle — configuration must be measured per workload, not per engine.
 
-[[Jacob Peake - AI Chip Architectures]] extends the same point to hardware targets. Serving on SRAM-only accelerators ([[Cerebras]], [[Groq]]) inverts the usual assumptions: batching matters far less, KV cache competes directly with weights for the same scarce memory, and compiler constraints — static graphs, no dynamic shapes, no data-dependent control flow on the Cerebras stack — restrict which serving strategies are expressible at all.
+[[Jacob Peake - AI Chip Architectures]] extends the same point to hardware targets. Serving on SRAM-only accelerators ([[Cerebras]], [[Groq]]) inverts the usual assumptions: batching matters far less, KV cache competes directly with weights for the same scarce memory, and compiler constraints — static graphs, no dynamic shapes, no data-dependent control flow on the Cerebras stack — restrict which serving strategies are expressible at all. Batching does not vanish there: [[AI Accelerator Architecture]] records Cerebras filling its wafer pipeline with micro-batches whose size trades per-request speed against throughput.
 
 ## The mechanisms underneath the engine names
 

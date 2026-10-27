@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-19
+updated: 2026-10-27
 tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -55,7 +55,7 @@ The Eric Jang interview adds a research-facing version of the same idea: an **au
 2. **Skill** — reusable durable workflow that can fetch data, call models, invoke tools, retry, and return a result.
 3. **Orchestrator** — execution engine that checkpoints steps, manages retries, enforces concurrency, stores run history, and survives deploys or crashes.
 
-This reframes the agentic loop from a control-flow pattern into an infrastructure problem. A basic process can restart, but it cannot know which LLM call already happened, whether a Slack message was already sent, or whether a child agent is still running. Durable orchestration prevents duplicate side effects and wasted token spend by resuming from the last successful step.
+This reframes the agentic loop from a control-flow pattern into an infrastructure problem. A basic process can restart, but it cannot know which LLM call already happened, whether a Slack message was already sent, or whether a child agent is still running. Durable orchestration avoids repeating completed steps, with their side effects and token spend, by resuming from the last successful step; a step interrupted mid-call may already have taken effect (see [[LLM Application Resilience]]).
 
 The Alpha Signal skill-optimization source extends this into **loop engineering**: design repeatable cycles with verifiable goals, memory, metrics, and exit conditions, then let the system optimize the skill artifacts inside that loop. See [[Agent Skill]].
 

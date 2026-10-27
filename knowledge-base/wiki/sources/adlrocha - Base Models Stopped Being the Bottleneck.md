@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-03
-updated: 2026-10-07
+updated: 2026-10-27
 source_id: src-2026-08-30-adlrocha-base-models-bottleneck
 source_title: "Base models stopped being the bottleneck"
 source_author: adlrocha
@@ -113,6 +113,7 @@ harness, the numbers are a property of the model-plus-harness pair, not of the w
 - [[Z.ai]]
 - [[Qwen]]
 - [[adlrocha]]
+- [[Self-Replicating Agents]]
 
 ## Citations
 

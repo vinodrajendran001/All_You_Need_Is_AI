@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-30
-updated: 2026-09-30
+updated: 2026-10-27
 source_id: src-2026-09-28-bytebytego-agents-can-pay
 source_title: "AI Agents Can Think. Now They Can Pay."
 source_author: ByteByteGo
@@ -80,6 +80,7 @@ the implementation. This is a secondary explainer, not a protocol audit or a pro
 - [[Agent Security and Governance]]
 - [[Agent Delegation]]
 - [[AI Agents in Production]]
+- [[Cloudflare]]
 
 ## Related pages
 

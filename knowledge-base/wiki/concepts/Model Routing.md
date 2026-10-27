@@ -94,10 +94,11 @@ at 1/5th, an 85% / 10% / 5% split gives
 `(0.85 × 0.05) + (0.10 × 0.20) + (0.05 × 1.00) = 0.1125` — **about 11% of the original cost, close to
 10×**.
 
-The important consequence is that the saving is a **weighted average of price ratios**, so the ceiling is
-set by the workload mix, not by the router's cleverness. A workload that is 50% hard cannot be made cheap
-by a better classifier. Three conditions must hold together: a large price gap, a mostly-simple workload,
-and a reliable router — "if any of these conditions is missing, the savings shrink quickly."
+The important consequence is that the saving is a **weighted average of price ratios** (per run, not per
+token; see the cost-per-run section below), so the ceiling is set by the workload mix, not by the
+router's cleverness. A workload that is 50% hard cannot be made cheap by a better classifier. Three
+conditions must hold together: a large price gap, a mostly-simple workload, and a reliable router — "if
+any of these conditions is missing, the savings shrink quickly."
 
 **Routing is neither load balancing nor MoE.** Load balancing "assumes the servers are equivalent";
 routing "assumes the destinations differ in capability." Mixture-of-Experts "happens inside a single
@@ -296,8 +297,9 @@ harness knows by construction, so it meets this page's *route on the strongest s
 rule without a difficulty classifier. And it qualifies the tier list above, where Kilo sends planning to
 stronger models: here the cheap tier did the planning, because on this benchmark planning means running
 a black-box program and reporting what it does. On Commit0-Lite, where the specification is supplied,
-implementation was the better stage to delegate in eight of ten team setups, so which role can be
-downgraded is task-dependent.
+implementation was the better stage to delegate in eight of ten team setups, which the authors call
+"suggestive rather than conclusive"; no cheap-worker run is reported there, so whether the role that can
+be downgraded also moves with the task is untested.
 
 Under-routing the decision-maker is the failure. With Luna workers held fixed, a Terra lead scored
 **51.6%**, below a solo Sol agent at **57.7%**: "Cheap workers could not make up for a weaker lead,
@@ -321,19 +323,20 @@ tokens." When the coordinator moved from Opus 5 to the per-token-cheaper Opus 5.
 responsible for about $0.20 of the drop"; the rest came from fewer tokens. A price list would have
 predicted no saving in the first case and only the price-driven part of the second.
 
-The same post shows the drift behind this page's *model updates invalidate the router* failure, in the
-expensive direction. With the review-tier mix held fixed, cost per review rose from **$1.22** in March to
-**$2.32** in August without significant architectural change, and "most of the cost increase actually
-came from model changes". Moving every reviewer onto [[Anthropic]] models raised cost per job from
-**$1.38** to **$2.03**, chosen because those models did better in Cloudflare's own evaluations on this
-workload. It also confirms the Kilo point from
+The same post shows how far cost per run can move when the models behind an unchanged design change, here
+in the expensive direction and by Cloudflare's own choices. With the review-tier mix held fixed, cost per
+review rose from **$1.22** in March to **$2.32** in August without significant architectural change, and
+"most of the cost increase actually came from model changes". Moving every reviewer onto [[Anthropic]]
+models raised cost per job from **$1.38** to **$2.03**, chosen because those models did better in
+Cloudflare's own evaluations on this workload. It also confirms the Kilo point from
 [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]] that caching does not
 substitute for routing: the cache hit rate rose from **85.7%** to **97%** while tokens per review rose
 from **0.91 million** to **2.99 million**.
 
 Where this page calls a downgrade without a verification contract an *unhedged bet*, Cloudflare hedged
-with measurement instead: randomized splits for model and effort changes, checked against two imperfect
-quality proxies — whether authors changed the flagged lines, and blinded model judges.
+with measurement instead: randomized splits for model and effort changes, compared on review outcomes and
+critical or warning findings, and for effort also on whether authors changed the flagged lines; blinded
+model judges compared findings from before and after the changes, not the split arms.
 
 The limits are one company's self-reported telemetry on one workload. Model and effort changes are
 credited with **$1.06** of a **$1.67** drop, against **$0.65** for code changes, but each step compares

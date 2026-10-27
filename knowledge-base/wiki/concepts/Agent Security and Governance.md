@@ -561,8 +561,8 @@ answers. A shared service account means "every user effectively gets the service
 agent's own identity is "Better for audit, but still doesn’t tell you which human was involved"; the
 delegated user identity is "the answer you want, and also the hardest to build." AgentCore exchanges the
 user's token on-behalf-of (OBO) for one "scoped to that user and that downstream API", and "the audit
-trail records the chain". Uber is cited, secondhand, as issuing "short-lived, single-hop JWTs that carry
-the full actor chain", the kind of per-hop identity DoorDash lists above as roadmap.
+trail records the chain". [[Uber]] is cited, secondhand, as issuing "short-lived, single-hop JWTs that
+carry the full actor chain", the kind of per-hop identity DoorDash lists above as roadmap.
 
 The two disagree about the agent's own identity. Rastogi ranks it below delegation; Salesforce makes it
 a second principal that can only narrow what the delegated user may do, the requirement Khushwant
@@ -649,7 +649,9 @@ post keeps OpenShell as the software layer: "Software runtime boundaries remain 
 - If a typed screening model is a filter and not a boundary, what residual risk is being accepted, and
   how would anyone size it when the vendor cookbook publishes no confusion matrix?
 - A reasoning-blind gate cannot see tool outputs by design. Which class of attack is visible only in
-  outputs, and which component in the hierarchy is supposed to catch it?
+  outputs, and which component in the hierarchy is supposed to catch it? The section above on policy
+  points names one such class, indirect prompt injection carried in tool results, and assigns part of it
+  to a gateway or proxy; neither of its two sources reports a detection rate.
 - A 93% prompt-approval rate is compatible with both "most prompts were unnecessary" and "users stopped
   reading". What measurement distinguishes them before prompts are removed?
 - How can runtime provenance and tool-description signing become portable across agent ecosystems?

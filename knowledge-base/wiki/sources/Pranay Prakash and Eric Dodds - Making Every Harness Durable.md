@@ -75,8 +75,9 @@ filesystem, and aren't safe for multi-tenant use."
 
 **One storage interface makes the agent portable.** The backend is the Workflow SDK's *World*, an
 interface combining storage, a queue, and a stream — "the log, the backstop and the stream behind one
-interface." Worlds exist for Vercel, local files, Postgres, MongoDB, Redis, and Turso; two environment
-variables move an agent to Postgres. Resumed turns appear in the same trace in Vercel's Agent Runs view.
+interface." Worlds exist for Vercel, local files, Postgres, MongoDB, Redis, and Turso; two variables
+(`WORKFLOW_TARGET_WORLD` and `WORKFLOW_POSTGRES_URL`) move every agent using the package to Postgres.
+Resumed turns appear in the same trace in Vercel's Agent Runs view.
 
 ## Why it matters
 

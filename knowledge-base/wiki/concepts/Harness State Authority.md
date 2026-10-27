@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-10-27
 tags:
   - concept
   - ai-agents
@@ -9,6 +9,7 @@ tags:
   - systems
 source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-10-19-vercel-durable-harness
 status: active
 ---
 
@@ -91,6 +92,30 @@ independently written behaviours meet.** The proposed fix, a stack of Directors 
 matters here mainly because the stack lives as a subtree of the session state — so rewind removes Directors,
 resume restores them, and an inspector can see which behaviour currently owns the loop.
 
+## A journal can be added from outside a harness, but it recovers only what the harness writes down
+
+[[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] approaches the same problem from the
+opposite direction. Instead of rebuilding a harness around one journal, Vercel's `durable-harness` wraps
+existing harnesses — Pi, OpenCode, Codex, and Claude Code — "from the outside, without changing the
+harness." Before each model or tool call it writes an *intent* to a durable per-session log, and after
+the call it writes the *outcome*. A queue message backstops each turn, so if the function running it
+dies, a new function reads the log and continues. Harnesses that keep their own session files have every
+record mirrored into the same log: Claude Code's transcript, Codex's rollout, and OpenCode's event store.
+
+Two parts of the design follow this page's principles. **Recovery derives from the log alone:** completed
+calls are read back rather than re-run, and a call with an intent but no outcome is known to have been
+interrupted. **Application state can join the authority:** a *document* is typed JSON stored in the
+session log, and each `io.docs` edit "commits to the log alongside the tool's result", so a state change
+cannot diverge from the call that caused it. The `virtual()` workspace's file tree is itself a document.
+That is the property argued for above, adding a stateful feature without adding a resume call site,
+offered as a library primitive rather than as an engine rewrite.
+
+The limit is the one the 78-example audit predicts. Mirroring covers the records a harness writes to its
+session files. State kept beside those files, such as the transient maps and closures listed above, is
+not something the article says it captures. Outside-in durability can make the transcript and declared
+documents resumable; it does not by itself give a multi-authority harness a single authority. The source
+reports no recovery-time or failure-injection measurements.
+
 ## Open questions
 
 - **Does a single authoritative tree survive contention?** The design targets many agents in one workspace, but
@@ -106,10 +131,20 @@ resume restores them, and an inspector can see which behaviour currently owns th
 - **Where does state authority sit when the sandbox is remote?** [[Agent Security and Governance]] wants
   execution isolated; authority wants one journal. The proposed answer is that the host keeps journaling and the
   sandbox only executes, but the durability of that split under partition is untested.
+  [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]] ships a version of this split: the log
+  lives in a storage backend, developer-supplied tools run in the developer's function, and only the shell and
+  files move to a per-session virtual workspace or sandbox. It is a product design with no reported partition
+  or failure-injection results.
+- **Does outside-in journaling recover state a harness keeps outside its session files?** Extension state is the
+  failure class this page documents, and the outside-in source does not discuss it.
 
 ## Related pages
 
 - [[Can Bölük - The Harness Playbook]]
+- [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
+- [[Vercel]]
+- [[LLM Application Resilience]]
+- [[Multi-Tenant Agent Architecture]]
 - [[Coding Agent Harness]]
 - [[Harness Optimization]]
 - [[Tool Roster Economics]]

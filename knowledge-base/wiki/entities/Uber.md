@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-10-27
+updated: 2026-10-30
 entity_kind: organization
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-10-19-bytebytego-uber-genie
   - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
 status: active
 ---
 
@@ -17,8 +18,9 @@ status: active
 
 ## What it is
 
-A ride-hailing and delivery company whose internal engineering-support assistant, **Genie**, is covered
-in this vault through [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]].
+A ride-hailing and delivery company represented here through its engineering-support assistant,
+**Genie**, and its shared MCP Gateway. The assistant is covered in
+[[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]].
 
 > **Naming note.** Uber Genie is a Slack retrieval assistant over internal documentation. It is
 > unrelated to **Databricks Genie**, the text-to-SQL interface described in [[Text-to-SQL Agents]].
@@ -56,6 +58,20 @@ Gateway, which hosts over 800 MCP servers and more than 5,000 tools, and its sho
 Web Tokens (JWTs) that carry the full actor chain; see [[Tool Roster Economics]] and
 [[Agent Security and Governance]].
 
+## A governed tool catalog is a separate system from Genie
+
+[[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] expands the gateway
+reference into a control/data-plane account. A Cadence-powered AutoCrawler generates candidate
+tools from service definitions and discovers native MCP servers. Entries start disabled;
+owners approve activation and later changes. The proxy uses refreshed registry state to
+authorize and translate calls to existing services.
+
+Omni MCP's progressive schema discovery, response-field projection, and Code Mode address
+different context costs. Internal authorization and external-service credential exchange remain
+separate. These are design claims relayed by ByteByteGo without measured latency, savings,
+security effectiveness, or a revocation-propagation bound. They should not inherit Genie's
+usage or helpfulness numbers.
+
 ## Notes
 
 ### The numbers are self-reported, and one is unrecoverable
@@ -71,6 +87,8 @@ Web Tokens (JWTs) that carry the full actor chain; see [[Tool Roster Economics]]
 
 ## Related pages
 
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
+- [[Model Context Protocol]]
 - [[Retrieval-Augmented Generation]]
 - [[Institutional Knowledge Agents]]
 - [[LLM-as-a-Judge]]

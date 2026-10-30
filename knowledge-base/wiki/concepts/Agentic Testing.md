@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - concept
   - evaluation
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-10-15-osmani-claude-code-review
+  - src-2026-10-20-cloudflare-inference-bill
 status: active
 ---
 
@@ -261,6 +262,17 @@ The uncomfortable fit with this page is the 59% figure: about **59%** of repeate
 that number says a large share of a non-converging loop was real code outside the diff. Scope drift
 and hallucination are different noise sources and only one of them is fixed by better verification.
 
+## A changed line is an action proxy, not a correctness verdict
+
+[[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] counted a
+finding as acted on when its target lines changed in the author's next push. As a coincidence
+baseline, lines **30 to 40 away** changed about **15%** of the time.
+
+The proxy records edits, not proof that the author followed the finding or that the finding
+was right. An unchanged line can reflect an ignored valid finding, and missed defects do not enter the finding set at all.
+The proxy therefore establishes neither correctness nor recall. Cloudflare's separate blinded
+model-judge check supplies another quality signal, not exhaustive ground truth.
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -286,6 +298,7 @@ and hallucination are different noise sources and only one of them is fixed by b
 
 ## Related pages
 
+- [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]]
 - [[Addy Osmani - How the Claude Code Team Does Code Review]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - ai-agents
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-10-26-bytebytego-salesforce-agent-stack
   - src-2026-10-25-rastogi-agentcore-enterprise
   - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
 status: active
 ---
 
@@ -219,6 +220,25 @@ An earlier capture in the vault shows the same move at OpenAI.
 Its stated lesson is to "use lexical search instead of embeddings for tool discovery", whereas
 Salesforce's `discover` and AgentCore Gateway both search semantically.
 
+## Discovery, response projection, and code processing reduce different context costs
+
+[[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] separates three
+controls that a single tool-count metric would miss. Omni MCP discovers a server, then its
+tools, then a full schema through `discover_server`, `discover_tools`, and `get_tool_schema`.
+Response projection selects only needed result fields. Code Mode processes files with shell
+tools instead of exposing every intermediate result to the model.
+
+The first changes **resident definitions**, the second **returned content**, and the third
+**where intermediate computation happens**. They can complement one another, but discovery
+calls and code execution still have costs. Unlike the older secondhand Uber scale reference,
+this capture supplies the mechanism; it supplies no measured latency, token, or task-quality
+gain with which to price the trade.
+
+There is a catalog-quality gate too: the AutoCrawler derives schemas from service contracts
+and uses LLM-generated descriptions, but discoveries remain disabled until owners approve
+them. A cheap description that steers the agent incorrectly is not an economic win. Discovery
+review and invocation authorization are distinct controls, as in the earlier gateway cases.
+
 ## Open questions
 
 - **How much of the 36.6s vs 42.2s gap is roster size versus other harness differences?** The comparison is
@@ -244,6 +264,7 @@ Salesforce's `discover` and AgentCore Gateway both search semantically.
 
 ## Related pages
 
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[DoorDash]]
 - [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - routing
@@ -69,7 +69,7 @@ Long-running agents turn model choice into infrastructure. When a system repeate
   - **routers** that estimate difficulty or intent;
   - **drafters** for speculative decoding.
 - This reframes routing as a capability allocation problem, not only a provider-cost problem. The router must decide when a small model is enough, when to retrieve, when to escalate, and when to block or ask for human review.
-- Two 2026 sources widen the cost surface routing optimises. [[Alyona Vert - AI Concepts and Techniques in 2026]] notes inference is **fragmenting by workload** across specialised hardware (rack-scale Vera Rubin, MatX, Taalas "model-as-hardware"), so routing increasingly spans not just model tiers but *hardware* tiers keyed on cost-per-token, latency, and context handling. [[Sebastian Raschka - Using Local Coding Agents]] adds a subtler lever: for agentic work, **token usage is driven by the harness, not the model** — Claude Code re-feeds far more input context per turn than Codex for equal task success — so choosing the [[Coding Agent Harness]] is itself a routing-style efficiency decision.
+- Two 2026 sources widen the cost surface routing optimises. [[Alyona Vert - AI Concepts and Techniques in 2026]] notes inference is **fragmenting by workload** across specialised hardware (rack-scale Vera Rubin, MatX, Taalas "model-as-hardware"), so routing increasingly spans not just model tiers but *hardware* tiers keyed on cost-per-token, latency, and context handling. [[Sebastian Raschka - Using Local Coding Agents]] adds a subtler lever: **harness choice strongly affected input-token volume in his small task pack** — Claude Code re-fed much more history and tool output than Codex among models that solved almost all tasks. Choosing the [[Coding Agent Harness]] is therefore another efficiency decision, not evidence that model choice never affects token use; the Cloudflare comparison below demonstrates that it can.
 - [[OpenAI - The Builder's Guide to GPT-5.6]] adds a second routing axis: after selecting a model tier, choose **reasoning effort** based on task risk and complexity. The same guide recommends stronger orchestration with cheaper specialized workers and tool search rather than exposing a large tool schema on every turn.
 - [[ByteByteGo - The New American AI Model Designed to Be Customized]] shows the analogous control inside one sparse model. Inkling activates a small subset of experts per layer and exposes an effort parameter, so deployment can route both computation inside the model and reasoning budget across requests.
 
@@ -255,16 +255,17 @@ delegated domain work is probabilistic.
 
 Three consequences follow for this page, and they are structural rather than measured.
 
-**The router's own latency and token cost go to zero.** Every cost this page has had to price for a
-routing layer — decision inference, calibration drift, the judge's seconds — disappears when the
-decision is a lookup. What remains is the destination's cost.
+**Routing-model inference disappears, not all routing overhead.** Reading instructions, checking
+existing state, gathering fields, discovering configuration, and enforcing reliability gates still
+require work. The source supplies no measured per-route latency or maintenance cost. Removing the
+decision model removes its inference tokens, not CPU, I/O, validation, or destination costs.
 
-**Two of this page's four failure modes change shape.** *Prompt injection of routing instructions*
-has no purchase on a router that never reads request text into a model, and *providers silently
-improving the models the routing logic was tuned against* cannot invalidate a classifier that was
-never tuned on a model's behaviour. Under-routing and over-routing survive untouched: a deterministic
-misroute is still a misroute, and the source reports **no misroute rate, failure rate, or escalation
-rate** at all.
+**Failure modes change, not vanish.** Removing an instruction-following model from the routing layer
+removes that model-mediated prompt-injection path; it does not prove correct input handling,
+authorization, or safe downstream specialists. Fixed rules have no learned calibration to drift,
+but their mappings and destination suitability still need validation as workflows and specialists
+change. A deterministic misroute remains possible, and the source reports **no misroute rate,
+failure rate, or escalation rate**.
 
 **The precondition is an enumerable decision space, and that is the real constraint.** Meta's router
 chooses among **14 specialists** and **20+ workflows** in a data-onboarding domain spanning **three
@@ -354,8 +355,8 @@ split ran two and a half days, and per-run savings depend on these reviewer prom
 - At what point does per-step routing degrade quality too much by fragmenting long-horizon reasoning across model families?
 - Can routing become fully budget-aware and self-tuning, the way load balancing became background infrastructure?
 - What confidence or uncertainty signal is reliable enough to let a small model decide it should escalate?
-- A deterministic router has no calibration to drift and no injection surface, but also no estimate of
-  its own error. What measurement stands in for a confidence score when the decision is code?
+- A deterministic router removes routing-model inference, not input-handling risks or stale rules.
+  What error and rule-drift measurements should stand in for a learned confidence score?
 - Deterministic intent classification requires an enumerable intent space. Where is the crossover at
   which maintaining the rules costs more than a learned router's latency and calibration work?
 - Meta's router dispatches specialists and workflow phases rather than model tiers. Does the
@@ -386,6 +387,7 @@ split ran two and a half days, and per-run savings depend on these reviewer prom
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]
 - [[Reasoning Effort Control]]
+- [[Latent-Space Reasoning]]
 - [[ByteByteGo - Token Spend Out of Control - The Case for Smarter Routing]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]
 - [[Small Language Models]]

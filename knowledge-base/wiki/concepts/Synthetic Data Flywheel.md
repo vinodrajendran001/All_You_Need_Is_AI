@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - concept
   - training
@@ -10,6 +10,8 @@ source_ids:
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-10-15-potter-how-to-train-your-robot
   - src-2026-10-21-baselabs-mammoth-elephant
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
 status: active
 ---
 
@@ -76,8 +78,10 @@ over 90 rephrasing configurations** to establish this. The alternative is capped
 
 ### The Teacher
 
-Off-policy distillation minimises forward KL and is **mode-covering**; on-policy minimises reverse KL and
-is **mode-seeking**. The 2023 cohort established how cheap it is: Self-Instruct bootstrapped ~82k
+The survey pairs off-policy distillation with **mode-covering forward KL** and on-policy
+distillation with **mode-seeking reverse KL**. These are common combinations, not definitions:
+the trajectory-sampling policy and distribution-matching objective are separate choices.
+The 2023 cohort established how cheap it is: Self-Instruct bootstrapped ~82k
 instances from **175 seed tasks**; **Alpaca** produced 52k pairs for ~$500 of API calls plus ~$100 of
 compute in three hours on 8×A100; **Vicuna** reached "~90% of ChatGPT quality" on 70k ShareGPT
 conversations for **$300**; Orca used ~5M ChatGPT traces plus 1M from GPT-4.
@@ -182,6 +186,35 @@ self-reported. Repeatedly selecting data based on benchmark weaknesses can overf
 families even after exact overlap is removed. The vault therefore gains a concrete
 artifact-improvement loop, not proof that its own judges and evaluators improve indefinitely.
 
+## Student-conditioned curricula improve without making consistency into truth
+
+[[Leon Sick et al - On-Policy Self-Training]] couples the Teacher and Curriculum stages.
+An EMA teacher or frozen initial model generates questions and privileged answer/rationale
+context from hand-chosen coarse topics. Fresh-context and paraphrase checks retain consistent
+answers; student rollouts discard questions already answered in full agreement. The student
+then learns on its own trajectories from the privileged teacher's dense distributions.
+The generator is not the student, even though student behavior controls retention.
+
+The filters help in the reported no-thinking E2B MMLU ablation: **42.7** without verification,
+**45.4** with it, and **47.7** with the consensus gate too. But consistent misconceptions
+can survive, and iterations peak at **47.7 after seven rounds**, falling to **46.2 after
+twelve or twenty**. This is bounded evidence for a useful generated curriculum, not an
+indefinitely compounding source of new truth. Visual OPST also requires unlabeled OpenImages
+V4 images; label-free does not mean no external inputs.
+
+## Dreaming adds another selection rule, not an independent source of ground truth
+
+[[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] generates synthetic material by
+randomly activating experts, selects samples using gradients, and fine-tunes/refines from
+them. Its wake/sleep schedule separately consolidates fast memory into slower parameters.
+That gives internally generated data a defined job in the update loop, while keeping the
+architecture and training rules human designed.
+
+The distinction from an interpreter-anchored curriculum matters. A consistency gate or a
+gradient-based selection rule is not an external correctness oracle. The sleep blog's bounded
+retention results and OPST's mixed out-of-domain retention should travel with claims about
+these loops rather than disappearing behind the word self-improvement.
+
 ## Open questions
 
 - The survey documents five automated stages but never establishes that the loop **compounds**. Better
@@ -200,6 +233,9 @@ artifact-improvement loop, not proof that its own judges and evaluators improve 
 
 ## Related pages
 
+- [[Leon Sick et al - On-Policy Self-Training]]
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
+- [[Continual Learning for Agents]]
 - [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 - [[Recursive Self-Improvement]]
 - [[Knowledge Distillation]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-10-09
+updated: 2026-10-30
 tags:
   - concept
   - wiki
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-05-08-karpathy-llm-wiki
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -70,6 +71,23 @@ extension would retain model/task versions, the observations behind an edit, and
 or rejection evidence; these are maintenance implications, not a measured result or a claim that
 this vault already executes that optimization loop.
 
+## Experimental memory needs conditions, failed attempts, and contradictory outcomes
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] describes
+shared versioned Markdown and structured records as memory for later inference-optimization
+campaigns. The record retains unsuccessful trials, recipes, measurements, and model, hardware,
+workload, and engine conditions rather than only a winning setting.
+
+This makes contradiction useful: a change can help one endpoint and hurt another without
+either result being discarded. The wiki should retain the conditions under which each claim
+held, while the experiment record keeps both the original campaign reference and the evolving
+working baseline. That extends the earlier trace-to-skill proposal into a trace-to-next-
+experiment path.
+
+The source does not isolate a causal gain from the wiki itself. Durable notes can preserve
+bad interpretations as effectively as good ones; their value depends on attached measurements
+and acceptance evidence, not merely on agents sharing a Markdown directory.
+
 ## Open questions
 
 - When should a new idea extend an existing concept page versus creating a fresh one?
@@ -77,6 +95,10 @@ this vault already executes that optimization loop.
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
+- [[Automated AI Research]]
+- [[Loop Engineering]]
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Agent Skill]]
 - [[Harness Optimization]]

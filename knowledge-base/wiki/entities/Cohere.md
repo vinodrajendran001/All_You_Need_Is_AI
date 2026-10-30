@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-11
-updated: 2026-10-27
+updated: 2026-10-30
 entity_kind: organization
 tags:
   - entity
@@ -49,11 +49,15 @@ models, none of them Cohere's own, and the results are vendor-reported, mostly o
 - **North Mini Code** is 30B total with 3.3B active, using **parallel transformer layers** — attention and
   MoE computed from the same normalised input — which is what makes wave-quantisation backfill effective.
 - Measured 292 tok/s at batch 1 against vLLM's 185 (62% versus 39% of a 470 tok/s speed-of-light ceiling
-  on H100), and 1.25×–1.41× end-to-end, holding to 256K context with accuracy preserved.
+  on H100). Batch-8 full-server runs report 1.25×–1.41× average decode-throughput gains with differing
+  output lengths, not matched-work completion-time gains. Separate decode-scaling tests reach 256K
+  context, and the SciCode accuracy check finds no measurable loss.
 - Builds explicitly on Hazy Research's "Look Ma, No Bubbles!", departing from it by using `wgmma`
   tensor-core instructions even at batch 1 and by abandoning shared-memory paging as buggy and
   high-overhead.
-- States its limitations plainly: decode only, no mixed prefill/decode, maximum batch size 8.
+- The megakernel accelerates decode only; the server supports continuous batching, but ordinary
+  PyTorch prefill pauses decoding. Mixed prefill/decode is unsupported and the configured maximum
+  batch size is 8.
 
 ## Related pages
 

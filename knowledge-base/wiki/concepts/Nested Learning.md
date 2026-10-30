@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-07-03
+updated: 2026-10-30
 tags:
   - concept
   - nested-learning
@@ -12,6 +12,7 @@ tags:
 source_ids:
   - src-2026-06-29-siddhant-rai-nested-learning
   - src-2026-07-02-arora-llm-reasoning-advances
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
 status: active
 ---
 
@@ -23,7 +24,13 @@ Nested Learning is a framework (Google, arXiv 2512.24695) for **continuous infer
 
 ## Why it matters
 
-This page captures a distinct answer to the memory problem from the rest of the vault. [[Retrieval-Augmented Generation]] adds knowledge by *retrieving into context*; [[Agent Memory]] adds it by *storing facts externally*. Nested Learning instead folds adaptation *into the model's own computation*, making memory a learnable structure rather than external storage. It is also a concrete example of the test-time-update idea that [[Recursive Architectures]] gestures at.
+This page captures a distinct answer to the memory problem. [[Retrieval-Augmented Generation]]
+adds knowledge by retrieving into context; the external-store designs in [[Agent Memory]]
+retain explicit facts outside the model. Nested Learning instead folds adaptation into the
+model's own computation, making memory a learnable structure. Agent Memory now also covers
+these structural approaches; external storage is one design, not that page's entire scope.
+Nested Learning is also a concrete example of the test-time-update idea that
+[[Recursive Architectures]] gestures at.
 
 ## The learning spectrum
 
@@ -61,14 +68,37 @@ CMS organizes memory as a **chain of modules updated at different frequencies**:
 
 [[Akhil Arora et al - Current Advances in LLM Reasoning]] lists **continual learning** as one of the open pillars of reasoning, which gives this page's memory-as-structure agenda a concrete problem set with 2025–2026 evidence it is unsolved: **distribution drift** (Spurious Forgetting), **catastrophic forgetting** at post-training scale, **model collapse** from training on synthetic data, **"peak data"** (the field's biggest open question), and **reward hacking**. Nested Learning's inference-time, memory-as-structure approach is one proposed response to exactly these failures — a bridge from the vault's efficiency/memory branch into the broader [[LLM Reasoning]] map.
 
+## Sleep schedules consolidation across the hierarchy rather than inventing the hierarchy
+
+[[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] adds a concrete wake/sleep schedule.
+Wake acquires information in fast memory; sleep pauses new input and uses on-policy generalized
+distillation plus a learning-to-imitate reward to consolidate it into slower parameters.
+Temporary high-frequency parameters are then reset. Low-rank mixture-of-experts memory blocks
+are preallocated and progressively unlocked: capacity changes within a fixed design, not
+through autonomous architecture invention.
+
+Dreaming adds random expert activation, generated samples, gradient-based selection, and
+refinement. The biological labels should not hide the specified update rules or the compute
+spent between input-processing phases.
+
+The Google Research blog reports near-zero forgetting on sequential unseen-language
+translation and describes near-perfect BABILong scaling through **10 million tokens** of parametric
+consolidation. That is not a native ten-million-token attention window or a lossless archive.
+The linked paper was not separately read for this ingest, and the blog lacks the experimental
+and compute detail needed to generalize its strong no-forgetting conclusion.
+
 ## Open questions
 
 - Inference-time weight updates reintroduce stability/safety risk; is continuous self-modification robust enough for production?
 - The inner-loop update has real cost at inference; what is the right fidelity/speed operating point for chunked approximations?
-- These claims come from one recent paper's own evaluation; independent replication and benchmarking are still missing.
+- The captured Hope and sleep accounts do not supply independent replication or matched
+  production-cost comparisons; how much retention survives outside their evaluated settings?
 
 ## Related pages
 
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
+- [[Continual Learning for Agents]]
+- [[Knowledge Distillation]]
 - [[Siddhant Rai - Nested Learning]]
 - [[Agent Memory]]
 - [[Retrieval-Augmented Generation]]

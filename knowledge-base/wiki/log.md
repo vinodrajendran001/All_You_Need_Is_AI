@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - log
 source_ids:
@@ -366,6 +366,13 @@ source_ids:
   - src-2026-10-26-alphasignal-memory-tax
   - src-2026-10-26-cerebras-trillion-parameter
   - src-2026-04-19-karray-neuromorphic-guide
+  - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-10-25-tinfoil-minimal-firmware
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
+  - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-10-22-agrawal-qwenputer
 status: active
 ---
 
@@ -2494,3 +2501,89 @@ report is the only new page. All **434 raw files** and the four Obsidian setting
 remain byte-identical; templates, posts, queries, and earlier lint reports are unchanged,
 and the historical log body differs only by the one restored link. Nothing was staged,
 committed, or pushed.
+
+## [2026-10-30] ingest | Measured Boundaries for Memory, Tools, and Self-Improvement
+
+Ingested seven new captures already under `raw/sources/`, with seven source summaries,
+one new concept ([[Confidential Computing]]), and three new entities ([[Apple]], [[Tinfoil]],
+and [[Decagon]]). Integrated the evidence into 28 existing concept/entity pages rather than
+creating separate concepts for each method. The deferred smart-TV privacy capture remains
+outside this ingest; already-ingested nested tutorial corpora were not reprocessed.
+
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]] connects separate weight, KV-cache,
+  and adapter budgets to local/cloud routing. Kept the quantization generations separate,
+  limited the 37.5% saving to KV memory, and retained unverified closing AFM 3/PCC-platform
+  claims without adopting them as product specifications.
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] adds disabled-
+  by-default discovery, owner-approved changes, registry/proxy separation, protocol translation,
+  and distinct context controls. Invocation permission and external credentials remain
+  separate; periodic refresh does not establish immediate revocation.
+- [[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]] adds
+  an untrusted-host threat model, launch-measured boot images, and the distinction between
+  runtime exposure and build-time audit obligations. Line count is not formal verification.
+- [[Leon Sick et al - On-Policy Self-Training]] adds generated curricula and privileged
+  EMA-teacher supervision. Preserved thinking/no-thinking protocols, teacher-versus-student
+  checkpoint identity, negative retention results, and non-monotonic rounds; flagged the
+  captured divergence equation rather than silently repairing it.
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] adds parametric consolidation
+  and synthetic dreaming within a fixed design. Ten million processed tokens is not a
+  native attention window, and bounded first-party retention results are not a general
+  no-forgetting guarantee.
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+  supplies production-shaped replay, falsifiable handoffs, centralized scoring, budgets,
+  original/working baselines, and persistent negative results. Preserved conflicting
+  baseline wording and separated draft acceptance from endpoint serving gains.
+- [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] separates
+  compiled exact execution from learned reasoning, internal explicit memory from parameter
+  learning, and creator-reported CPU tests from end-to-end task accuracy. The custom driver
+  and bounded memory remain part of the system.
+
+Recovered OPST's author list from its body and used its capture date for the source ID
+because publication metadata is absent. Corrected Qwenputer's `Markdown version` byline in
+the summary using its body citation. Raw metadata and capture bytes remain unchanged.
+Scoped the older forward-/reverse-KL pairing and external-only tool-execution
+language where the new evidence made those generalizations too broad.
+
+The inventory is **637 typed pages**, including **342 source summaries**, **137 concepts**,
+**95 entities**, and **44 lint reports**, with **368 source IDs**. The raw collection has
+**372 top-level captures / 441 files**, excluding four Obsidian settings files. No post,
+local query, or new lint report was created.
+
+All **445 raw files**, including the four settings files, are byte-identical to the
+working-tree baseline. The historical log body, templates, posts, queries, and earlier lint
+reports are unchanged. All **637 pages** are reachable, the structural audit has zero
+findings, the controls have exact **368-ID** parity, and affected-page/body-citation
+reciprocity is **A 0 / B 0 / C 0**. Source review preserved OPST's same-topic,
+different-problem placebo and Decagon's missing per-row setup details rather than strengthening
+either result. This ingest did not stage, commit, or push.
+
+## [2026-10-30] lint | Benchmark Scope, Routing Boundaries, and Raw Metadata
+
+Completed the forty-fifth pass in [[2026-10-30 Lint Pass]]. Whole-wiki structural checks
+were paired with focused source review of the seven recent chains, their 32 consumers,
+catalog descriptions, and the previous pass's deferred routing links.
+
+Corrected Cohere's full-server average decode-throughput labels and the false inference
+that missing mixed prefill/decode meant missing continuous batching. Restored MemoryTax's
+harness-specific cost and unequal-access qualifications in the controls. Scoped Raschka's
+harness-token observation and speed extrapolation, and removed zero-overhead/no-attack-surface
+guarantees from deterministic routing. Corrected OPST's hand-selected topic seeds and an
+unmeasured Decagon proposal-cost saving; refreshed the tool-use catalog description.
+
+Moved two source summaries' Why it matters sections before their tensions without changing
+section prose. Replaced an unsupported Thin Orchestrator capture date with its explicit
+clipper-created metadata. Added Cloudflare's edit-response proxy to [[Agentic Testing]]
+with reciprocal ownership, and a [[Model Routing]] navigation link to [[Latent-Space Reasoning]].
+
+The raw survey found **86 undated captures** and **181 captures missing canonical fields**
+among **372 top-level captures**, including **95 dated captures**. Of the 181 missing `url`,
+**176 have a `source` URL alias**. No raw metadata or filenames were changed.
+
+The inventory is **638 typed pages**, including **342 source summaries**, **137 concepts**,
+**95 entities**, and **45 lint reports**, at exact **368-ID** control parity. All pages are
+reachable; the standing and supplemental structural checks have zero current findings,
+and reciprocity is **A 0 / B 0 / C 0**. Eighteen existing wiki files changed and only the
+lint report was added. All **445 raw files**, templates, posts, queries, earlier reports,
+and historical log text remain preserved against the post-ingest byte baseline. Source
+contradictions and primary-evidence gaps remain explicit. Nothing was staged, committed,
+or pushed by this pass.

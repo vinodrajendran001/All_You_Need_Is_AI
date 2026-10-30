@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-10-16
+updated: 2026-10-30
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-10-01-neuralink-unlabeled-brain-pretraining
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
+  - src-2026-10-22-agrawal-qwenputer
 status: active
 ---
 
@@ -180,6 +181,25 @@ a context-growing private cache rather than all auxiliary memory. The synthesis 
 the complete target-plus-drafter state, not multiply an architecture's standalone savings by a
 speculation headline. No joint priming/H-Spec benchmark is established by these two sources.
 
+## A compiled recurrent state can implement exact bounded RAM instead of learned compression
+
+[[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] gives Gated
+DeltaNet a deliberately different job. With its gate and beta fixed to one and one-hot keys
+and queries, state rows become explicitly addressed, exactly overwritten memory slots.
+Compiled RISC-V CPU layers precede unchanged Qwen3.5-4B weights; no training teaches the
+language model this arithmetic.
+
+This does not refute the fixed-state limit above. A finite address space can store a bounded
+set of values exactly without losslessly representing an unbounded arbitrary history.
+Ordinary learned Gated DeltaNet gates and keys do not automatically provide the compiled
+construction's guarantee. The representation and write rule, not merely the layer-family
+name, decide what can be recovered.
+
+The author reports **18 million free-running instructions** without errors, but CPU
+correctness is separate from the language model choosing the right calculation. Eleven added
+layers, an **18.8 GB** checkpoint, and a custom driver also mean this is not a free precision
+upgrade. Its **3,200 CPU trace tokens/s on an L4** measures execution trace, not chat speed.
+
 ## Open questions
 
 - What determines the right full-attention ratio in a hybrid, and does it depend on task, sequence length, or
@@ -195,6 +215,7 @@ speculation headline. No joint priming/H-Spec benchmark is established by these 
 
 ## Related pages
 
+- [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]
 - [[Speculative Decoding]]

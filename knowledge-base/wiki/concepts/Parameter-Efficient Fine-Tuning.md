@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-10-19
+updated: 2026-10-30
 tags:
   - concept
   - fine-tuning
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-09-23-bytebytego-model-customization
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-10-27-bytebytego-apple-on-device
 status: active
 ---
 
@@ -60,6 +61,19 @@ empirical figures are secondhand, and they come from full-parameter post-trainin
 adapter training. A Fisher ranking is therefore a candidate rule for choosing what to tune, not
 a demonstrated PEFT method.
 
+## Adapter reuse is a deployment-memory strategy as well as a training strategy
+
+[[ByteByteGo - How Apple Fits an LLM on Your iPhone]] describes task-specific **rank-16
+LoRA adapters stored at 16 bits**, occupying tens of megabytes around one frozen on-device
+base. Several features can therefore share base-weight storage instead of each loading a
+separate full model.
+
+This extends the separate-versus-merged choice above: adapter modularity can matter at
+inference even after training is over. The base's low-bit representation and the adapter's
+precision are different choices, and reduced checkpoint duplication does not eliminate
+activations, KV cache, switching overhead, or task-quality evaluation. The source reports the
+design, not a controlled comparison of adapter ranks or whole-device performance.
+
 ## Open questions
 
 - How should adapter rank and target modules be selected under a fixed data and compute budget?
@@ -70,6 +84,9 @@ a demonstrated PEFT method.
 
 ## Related pages
 
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
+- [[Apple]]
+- [[On-Device Reasoning]]
 - [[Yingru Li - The Gradient Is a Covariance]]
 - [[Reinforcement Learning]]
 

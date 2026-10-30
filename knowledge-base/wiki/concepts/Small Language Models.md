@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-26
-updated: 2026-10-07
+updated: 2026-10-30
 tags:
   - concept
   - llm
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-09-bytebytego-model-routing
   - src-2026-09-21-tiene-pruning-llms-ising
+  - src-2026-10-27-bytebytego-apple-on-device
 status: active
 ---
 
@@ -241,6 +242,22 @@ predictor: on **Llama-3.1-8B-Instruct at 16 of 32 blocks removed**, the **17th e
 the lowest-energy configuration across several benchmarks — but **after light retraining**, a
 different condition from the without-retraining results above.
 
+## A small shared base can support many features without being many models in memory
+
+[[ByteByteGo - How Apple Fits an LLM on Your iPhone]] supplies a concrete version of this
+page's deployment-stack argument. The earlier approximately 3B model's **3.7-bit average**
+amounts to about **1.39 GB of weights**, not its total runtime footprint. A later generation
+uses **2-bit decoder weights and 4-bit embeddings**; the two recipes should remain separate.
+Cross-layer KV sharing reduces another budget, and rank-16 LoRA adapters reuse the frozen base
+for different features.
+
+This makes the unit of deployment a **shared base plus runtime state and selected
+specialization**, not one full checkpoint per feature. It also keeps the escalation boundary:
+local bounded tasks and harder Private Cloud Compute requests are different execution paths.
+The source is a secondary explainer without battery, thermal, or latency measurements, and its
+closing AFM 3 specifications lack claim-specific supporting references. Small weight storage
+does not by itself establish either interactive performance or general reasoning capability.
+
 ## Open questions
 
 - What is the right confidence signal for deciding when an SLM should escalate to a larger model?
@@ -253,6 +270,9 @@ different condition from the without-retraining results above.
 
 ## Related pages
 
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
+- [[Apple]]
+- [[Parameter-Efficient Fine-Tuning]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]
 - [[ByteByteGo - Large Language Models vs Small Language Models]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - llm
@@ -45,6 +45,7 @@ source_ids:
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-10-21-ant-vllm-humming
   - src-2026-08-29-baseten-agentic-kernels-production
+  - src-2026-10-27-bytebytego-apple-on-device
 status: active
 ---
 
@@ -295,6 +296,21 @@ activation-precision comparison, not a clean kernel-only gain or demonstrated qu
 The capture supplies no accompanying task-accuracy evaluation. Measure stored size, executed
 precision, useful quality, and serving performance independently.
 
+## On-device compression spends precision differently across generations and memory objects
+
+[[ByteByteGo - How Apple Fits an LLM on Your iPhone]] reports an earlier mixed 2-/4-bit
+palettization averaging **3.7 bits per weight**, about **1.39 GB** for a roughly 3B base.
+A later model instead uses **2-bit decoder weights and 4-bit embeddings**, supported by
+quantization-aware training. These are separate recipes; combining the later bit widths with
+the earlier average would invent a configuration.
+
+The other savings in the account are not weight quantization. A 5:3 cross-layer reuse design
+reportedly cuts **37.5% of KV-cache memory**, while rank-16, 16-bit LoRA adapters avoid a
+full base copy per feature. This reinforces the weight-fit/runtime-fit distinction above:
+compress each object according to its role, then count weights, cache, activations, adapters,
+and system overhead together. The secondary source supplies no measured whole-device latency,
+thermal, or battery result from which to infer proportional performance gains.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -306,6 +322,9 @@ precision, useful quality, and serving performance independently.
 
 ## Related pages
 
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
+- [[Apple]]
+- [[Parameter-Efficient Fine-Tuning]]
 - [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]

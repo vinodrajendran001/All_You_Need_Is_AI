@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-10-19
+updated: 2026-10-30
 tags:
   - concept
   - model-training
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
 status: active
 ---
 
@@ -100,8 +102,11 @@ reported acoustic-head engineering case.
 [[@zafstojano - Recursive Synthetic Improvement]] collects the results that turned distillation from a compression technique into a
 standard stage of frontier training.
 
-**The divergence choice is the design decision.** Off-policy distillation minimises forward KL and is
-**mode-covering**; on-policy minimises reverse KL and is **mode-seeking**.
+**Sampling and divergence are separate design decisions.** The survey contrasts a common
+pairing: off-policy distillation with mode-covering forward KL, and on-policy distillation
+with mode-seeking reverse KL. Those are not definitions of off-/on-policy sampling; the
+student can generate its own trajectories under other distribution-matching objectives,
+as OPST below illustrates.
 
 **The cost floor is the striking part of the 2023 cohort.** Self-Instruct bootstrapped ~82k instances from
 **175 seed tasks**; **Alpaca** produced 52k pairs for **~$500 in API calls plus ~$100 of compute, three
@@ -164,6 +169,36 @@ are distinct objectives; BV and EDR address different boundaries. Training must 
 the drafter to deployment prefixes and hidden states, not only clean teacher-generated text.
 The final test is accepted progress per measured serving cost, not teacher similarity alone.
 
+## A teacher can have more information without being a larger model
+
+[[Leon Sick et al - On-Policy Self-Training]] makes privileged-information self-distillation
+concrete. A generator, either the EMA teacher or frozen initial model, creates questions plus
+candidate answers/rationales. The student answers the question alone; the teacher sees the
+extra context and scores the student's prefixes with dense token distributions. The asymmetry
+is in conditioning information, not an external teacher's larger capacity.
+
+The source's no-thinking Gemma 4 E2B ablation gives **40.6** without privileged information,
+**40.2** with context from a different problem on the same topic, **44.6** with the answer
+alone, **45.8** with the rationale alone, and **47.7** with full context. Sample-specific
+information matters, not just topic relevance or extra teacher tokens. The EMA teacher is
+also the evaluated checkpoint: **47.7 versus 45.9** for the student. Treating the reported
+result as a raw student score would change the method.
+
+This on-policy method uses a generalized divergence rather than defining on-policy training
+as reverse KL. The captured equation has inconsistent mixture/weight/limit signals, recorded
+in the summary; it should not be copied as an executable specification without checking the
+original. The qualitative mechanism does not resolve that transcription or paper-level issue.
+Consistency filters likewise test agreement, not truth.
+
+## Distillation can move memory between update frequencies
+
+[[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] uses on-policy generalized
+distillation and a learning-to-imitate reward during a sleep phase, transferring fast acquired
+information into slower parametric memory before temporary parameters reset. The objective
+is retention across a learning stream, not model compression or a larger-teacher/student
+size hierarchy. Its first-party blog evidence does not establish universal retention, and
+its ten-million-token BABILong claim describes consolidation rather than an attention window.
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -173,6 +208,10 @@ The final test is accepted progress per measured serving cost, not teacher simil
 
 ## Related pages
 
+- [[Leon Sick et al - On-Policy Self-Training]]
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
+- [[Continual Learning for Agents]]
+- [[Nested Learning]]
 - [[Yingru Li - The Gradient Is a Covariance]]
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Aleksandr Samarin - Speculative Decoding - The Art of Guessing Well]]

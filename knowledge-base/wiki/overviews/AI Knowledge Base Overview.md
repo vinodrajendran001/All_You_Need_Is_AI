@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - overview
   - ai
@@ -368,6 +368,13 @@ source_ids:
   - src-2026-10-26-alphasignal-memory-tax
   - src-2026-10-26-cerebras-trillion-parameter
   - src-2026-04-19-karray-neuromorphic-guide
+  - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-10-25-tinfoil-minimal-firmware
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
+  - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-10-22-agrawal-qwenputer
 status: active
 ---
 
@@ -379,9 +386,9 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of October 27, 2026, the wiki has **626 typed pages**, including **335 source summaries**
-owning **361 source IDs**, **136 concepts**, and **92 entities**; page totals exclude git-ignored
-local query files. The raw collection contains **365 top-level captures** and **434 files in
+As of October 30, 2026, the wiki has **638 typed pages**, including **342 source summaries**
+owning **368 source IDs**, **137 concepts**, and **95 entities**; page totals exclude git-ignored
+local query files. The raw collection contains **372 top-level captures** and **441 files in
 total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;
 recaptures and equivalent clippings remain preserved without being counted as independent
 evidence. One off-domain capture, a smart-TV privacy guide clipped on October 27, is deferred
@@ -791,11 +798,14 @@ reverse, and bring-up cost is therefore uncorrelated with model popularity. New 
 [[Accelerator Software Externalization]]. See [[SemiAnalysis]].
 
 **The kernel became the program.**
-[[Cohere - North Mini Code Megakernel Serving Engine]] reports the first fully fledged serving system built
-around a decode megakernel: one persistent threadblock per SM, a 32-int32 task descriptor ABI, and
-global-memory counters whose cost is **O(1) regardless of fan-in**. It reaches **292 tok/s at batch 1, 62%
-of speed-of-light, against vLLM's 185 (39%)**, and **1.25×–1.41× end-to-end**. Two results are more
-instructive than the speedup: **dependency-affinity placement — the textbook locality optimisation — made
+[[Cohere - North Mini Code Megakernel Serving Engine]] describes what its authors believe is the first
+fully fledged serving system built around a decode megakernel: one persistent threadblock per SM, a
+32-int32 task descriptor ABI, and global-memory counters whose cost is **O(1) regardless of fan-in**.
+It reaches **292 tok/s at batch 1, 62% of speed-of-light, against vLLM's 185 (39%)**. Batch-8 full-server
+runs report **1.25×–1.41× average decode-throughput gains**, with differing output lengths rather than a
+matched-work completion-time comparison. The server supports continuous batching; ordinary PyTorch
+prefill pauses decoding instead of sharing mixed prefill/decode batches. Two results are more
+instructive than the throughput gain: **dependency-affinity placement — the textbook locality optimisation — made
 it 1–2% slower**, with the authors stating a causal model "remains open"; and **real expert distributions
 give 1.32× against 1.14× under uniform synthetic routing**, so the conventional MoE benchmark understates
 it. New page: [[Megakernels]]. See [[Cohere]].
@@ -1430,9 +1440,12 @@ cache hit rate can hide a broken first request. [[Agent Delegation]], [[Model Ro
 vendor-reported, workload-specific results.
 [[Alpha Signal - The Hidden Memory Tax in AI Agents]] adds a memory analogue in
 [[Agent Memory]]: on one LoCoMo conversation, the model that wrote the memory capped later
-answers, and a strong model searching the raw record was more accurate and cheaper than one
-reading everything. Its baseline is full context rather than no memory, and the clipping has no
-byline or canonical URL.
+answers. With Opus 5.5, only **Pi** combined a higher judged score with lower cost than full
+context; **Codex and Claude Code cost more**. The coding harnesses also had photo captions
+unavailable to other methods, and Pi's score advantage narrowed on non-photo questions.
+These are single runs per configuration with a GPT-4o-mini judge, not a general cost or
+accuracy guarantee. The baseline is full context rather than no memory, and the clipping has
+no byline or canonical URL.
 
 **Wafer-scale and neuromorphic hardware arrive as explainers.**
 [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] places a roughly
@@ -1442,7 +1455,68 @@ KV-cache memory bounding concurrency ([[AI Accelerator Architecture]], [[KV Cach
 configuration. [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]] orients the vault
 to event-driven spiking hardware, but nearly every efficiency figure is uncited.
 
+## October 30 additions
+
+Seven existing raw captures add one concept, [[Confidential Computing]], and three entities,
+[[Apple]], [[Tinfoil]], and [[Decagon]], while deepening the existing memory, learning,
+serving, and tool-governance branches.
+
+**Memory location is not its update rule.**
+[[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] describes wake/sleep transfer from
+fast to slower parametric memory within a fixed, human-designed architecture. Its
+**10-million-token** BABILong claim concerns consolidation, not a native attention window.
+[[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] instead adds a
+compiled CPU and exact bounded memory around unchanged Qwen3.5-4B weights, with a custom
+driver and explicit files in recurrent state. [[Agent Memory]], [[Nested Learning]],
+[[Linear Attention and Recurrent Memory]], and [[Tool Use and Function Calling]] separate
+storage location, representation, learning, and actual execution.
+
+**Self-generated supervision can help without becoming a truth oracle.**
+[[Leon Sick et al - On-Policy Self-Training]] uses generated curricula, consistency filters,
+and privileged EMA-teacher distributions on student rollouts. No-thinking E2B MMLU rises
+**37.5 to 47.7**, while the with-thinking comparison is **69.9 to 71.1**; the evaluated
+checkpoint is the EMA teacher. Mixed retention, a seven-round peak, and a captured-equation
+inconsistency remain explicit in [[Knowledge Distillation]], [[Synthetic Data Flywheel]],
+[[Continual Learning for Agents]], [[LLM Reasoning]], and [[Recursive Self-Improvement]].
+
+**A smaller footprint is not a whole-device performance guarantee.**
+[[ByteByteGo - How Apple Fits an LLM on Your iPhone]] separates approximately **1.39 GB of
+weights** under an earlier recipe from a later low-bit configuration, cross-layer KV sharing,
+and reusable adapters. [[On-Device Reasoning]], [[Model Quantization and Efficiency]],
+[[KV Cache]], and [[Parameter-Efficient Fine-Tuning]] retain the lack of power/latency
+measurements. The closing AFM 3 and cloud-platform claims remain unverified reporting.
+
+**Approval and attestation protect different boundaries.**
+[[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] describes discoveries
+that stay disabled until owner review, followed by separate invocation policies and credential
+exchange. [[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]]
+instead protects a guest from its host through a prebuilt measured image and bounded host
+inputs. [[Model Context Protocol]], [[Tool Roster Economics]], and
+[[Agent Security and Governance]] distinguish tool authority from confidential execution;
+less firmware is not a proof of correctness.
+
+**Serving optimization needs comparable experiments, not just plausible proposals.**
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] joins
+production-shaped replay, falsifiable specialist handoffs, one scored-experiment orchestrator,
+and versioned failure records. [[Serving Benchmarks and Goodput]], [[Inference Serving Engines]],
+[[Speculative Decoding]], [[Automated AI Research]], [[Loop Engineering]], [[Agent Delegation]],
+and [[Persistent Wiki]] keep the objective, baseline, and authority boundaries visible.
+Humans initiate campaigns and approve deployment; reported gains are endpoint-specific,
+baseline wording conflicts, and draft acceptance is not serving throughput.
+
 ## Related pages
+
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
+- [[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]]
+- [[Leon Sick et al - On-Policy Self-Training]]
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
+- [[Confidential Computing]]
+- [[Apple]]
+- [[Tinfoil]]
+- [[Decagon]]
 
 - [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
 - [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]

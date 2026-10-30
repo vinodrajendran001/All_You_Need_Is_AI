@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-10-27
+updated: 2026-10-30
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -39,6 +39,8 @@ source_ids:
   - src-2026-10-19-bytebytego-uber-genie
   - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
   - src-2026-10-26-bytebytego-salesforce-agent-stack
+  - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
 status: active
 ---
 
@@ -270,6 +272,25 @@ The opening Datadog block is sponsorship, not part of the article. The durable c
 of one prompt into four systems, recorded in [[Context Engineering]], [[Agent Security and Governance]],
 and [[Tool Roster Economics]].
 
+## Memory budgets and gateway lifecycles are mechanisms, not measured product guarantees
+
+[[ByteByteGo - How Apple Fits an LLM on Your iPhone]] links weight quantization, cross-layer
+KV sharing, adapters, and local/cloud routing. Its **3.7-bit average / 1.39 GB weights** and
+later **2-bit decoder / 4-bit embedding** recipes belong to different generations, while
+**37.5%** concerns KV memory rather than total footprint. No battery, thermal, or latency
+measurements support a whole-device efficiency guarantee. Closing AFM 3 and PCC-platform
+claims lack claim-specific references in the capture and remain unverified.
+
+[[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] is another named
+engineering relay: AutoCrawler discovery, disabled-by-default catalog entries, owner-approved
+changes, and a translating proxy separate discovery from execution authority. It also
+distinguishes progressive schema loading, result projection, and code processing as context
+controls. The account measures none of their savings or security effects.
+
+Both deepen the publication's value as a guide to mechanisms while preserving its evidence
+boundary. Neither a plausible memory calculation nor a named production architecture is an
+independently verified performance or security result.
+
 ## Open questions
 
 - **Does relaying a named deployment improve this source's evidence quality, or only relocate the
@@ -284,6 +305,10 @@ and [[Tool Roster Economics]].
 
 ## Related pages
 
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
+- [[Apple]]
+- [[Confidential Computing]]
 - [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
 - [[Salesforce]]
 - [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]]

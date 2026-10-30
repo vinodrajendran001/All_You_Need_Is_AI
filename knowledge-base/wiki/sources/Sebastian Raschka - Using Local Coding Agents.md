@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-10-27
+updated: 2026-10-30
 source_id: src-2026-07-03-sebastian-raschka-local-coding-agents
 source_title: "Using Local Coding Agents"
 source_author: Sebastian Raschka
@@ -32,13 +32,13 @@ The concrete path: serve `Qwen3.6 35B-A3B` (or Cohere's North Mini Code) via **O
 - **Serve with Ollama** for plug-and-play setup across OSes; prefer `*-mlx` model variants on Apple Silicon. Ollama exposes an OpenAI-compatible API, so any OpenAI-style harness can point at it.
 - **Assess before committing:** tokens/sec and memory must stay stable over long contexts (agentic workflows, not chatbots); run a small personal task set because standardized benchmark weightings drift over time.
 - **Model↔harness pairing matters less than assumed.** Qwen models are optimised for Qwen-Code, but in the author's small benchmark Qwen3.6 actually did *better* under Codex — so sticking with the harness you have muscle memory for is reasonable.
-- **Token usage is driven by the harness, not the model.** Claude Code uses by far the most tokens (mostly *input* tokens from re-feeding history/tool-output across turns — one run: ~578k input vs ~4.5k output over 25 turns); Codex the least. Equal task success at half the tokens ≈ roughly twice as fast.
+- **Harness choice strongly affected token usage in this small task pack.** Among the models solving almost all tasks, usage was similar within a harness; Claude Code used the most tokens and Codex the least. The excess was mostly *input* from re-feeding history/tool output — one run: ~578k input vs ~4.5k output over 25 turns. Gemma's low usage accompanied early failures, not equal task success. The author's suggested doubling of speed from halving tokens is an extrapolation, not a reported matched wall-time comparison.
 - **Audit locally-run harnesses.** Have a trusted agent review the repo for install/lifecycle hooks, shell execution, file/secret boundaries, MCP/plugins, network calls/telemetry, and update mechanisms. Qwen-Code follows standard practice but can still send telemetry to Alibaba/Aliyun endpoints unless disabled via `~/.qwen/settings.json`; Codex and Claude Code have similar defaults, and Claude Code is proprietary (harder to inspect, sends data to Anthropic and Datadog).
 - **Remote model, local harness** works via an SSH tunnel (`ssh -N -L 11434:127.0.0.1:11434 user@DGX`), letting a trusted harness on a Mac use a model hosted on a DGX Spark as if local.
 
 ## Why it matters
 
-This is the vault's most concrete treatment of running agents on open-weight models and seeds the [[Coding Agent Harness]] concept — the harness/engine split, local serving, security posture, and harness-driven token economics. It ties the local-model thread ([[Small Language Models]], [[On-Device Reasoning]], [[Mixture of Experts]]) to the agent-tooling thread ([[Agentic Loop]], [[Agent Skill]], [[Tool Use and Function Calling]], [[Model Context Protocol]]). Its "token usage is a harness property" finding is a practical extension of [[Model Routing]] and [[Context Engineering]] economics, and it introduces [[Sebastian Raschka]] as an entity.
+This is the vault's most concrete treatment of running agents on open-weight models and seeds the [[Coding Agent Harness]] concept — the harness/engine split, local serving, security posture, and harness-sensitive token economics. It ties the local-model thread ([[Small Language Models]], [[On-Device Reasoning]], [[Mixture of Experts]]) to the agent-tooling thread ([[Agentic Loop]], [[Agent Skill]], [[Tool Use and Function Calling]], [[Model Context Protocol]]). Its small-benchmark evidence of harness-dependent input volumes extends [[Model Routing]] and [[Context Engineering]] economics without establishing that model choice never affects token use, and it introduces [[Sebastian Raschka]] as an entity.
 
 ## Tensions / open questions
 

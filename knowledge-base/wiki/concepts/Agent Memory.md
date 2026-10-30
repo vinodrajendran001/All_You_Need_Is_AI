@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - ai-agents
@@ -26,6 +26,8 @@ source_ids:
   - src-2026-10-21-databricks-memcurrent
   - src-2026-10-23-image-aware-agent-memory
   - src-2026-10-26-alphasignal-memory-tax
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
+  - src-2026-10-22-agrawal-qwenputer
 status: active
 ---
 
@@ -399,6 +401,32 @@ tracking redirects that were not followed, so no figure was checked against the 
 results are unquantified, and the costs and break-even range are local to this history, these model
 prices, and these harnesses.
 
+## Inside the model does not necessarily mean implicit, and consolidation need not mean files
+
+[[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] adds a parametric consolidation
+path. Wake uses fast memory; sleep pauses new input, distills information into slower
+parameters, and resets temporary high-frequency parameters. Preallocated expert blocks are
+unlocked within a fixed architecture. This differs from MemCurrent's offline rewriting of
+explicit files even though both describe consolidation. Reported BABILong scaling through
+**10 million tokens** is not a native attention-window size or lossless storage guarantee.
+
+[[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] breaks a
+different assumed pairing. Its compiled Gated DeltaNet construction uses one-hot addressing
+and fixed gates for exact bounded memory reads/writes. An experimental filesystem keeps
+explicit data in recurrent state, with **1,024 directory slots**, up to **512 files / about
+53,000 tokens**, and state saved/restored across chats. This is internal storage without
+learning the facts into ordinary model weights.
+
+Its creator reports **90% versus 30%** changed-fact recall against replayed chats, and a
+separate **83.3% versus 78.9%** comparison against external Python memory tools. These are
+different tests, not one ranking or a universal result. The driver, finite capacity, and
+state-save/restore mechanism remain part of the persistence contract.
+
+The resulting taxonomy needs separate axes: **lifetime, location, representation, and update
+rule**. Explicit records can live inside a network state; durable parameters can be updated
+offline; an external store can still lose information during model-written consolidation.
+None of those locations alone establishes inspectability, correctness, or unlimited recall.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -430,6 +458,9 @@ prices, and these harnesses.
 
 ## Related pages
 
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
+- [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
+- [[Continual Learning for Agents]]
 - [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
 - [[Alpha Signal]]
 - [[Direct Corpus Interaction]]
@@ -464,4 +495,3 @@ prices, and these harnesses.
 - [[Multi-Tenant Agent Architecture]]
 - [[Jina Yoon - We're Building Multiplayer AI]]
 - [[Agent Workflow Maturity]]
-- [[Continual Learning for Agents]]

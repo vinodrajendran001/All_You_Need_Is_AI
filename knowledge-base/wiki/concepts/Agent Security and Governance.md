@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - ai-agents
@@ -49,6 +49,8 @@ source_ids:
   - src-2026-10-26-bytebytego-salesforce-agent-stack
   - src-2026-10-25-rastogi-agentcore-enterprise
   - src-2026-10-21-nvidia-sentry-runtime
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-10-25-tinfoil-minimal-firmware
 status: active
 ---
 
@@ -639,6 +641,34 @@ published accuracy, so the screening-model caveat above applies; containment "wi
 unmeasured; Argus reads only selected memory regions; and the reasoning-trace plugin is planned. The
 post keeps OpenShell as the software layer: "Software runtime boundaries remain essential."
 
+## A changing tool catalog needs approval before exposure and policy during invocation
+
+[[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] describes an
+AutoCrawler that discovers service contracts and native MCP servers without enabling them.
+Owners approve new entries and subsequent diffs, with rollback available. The runtime
+gateway separately applies caller-, server-, or tool-level policy and response redaction;
+external-service credentials come through a distinct exchange service.
+
+This adds a lifecycle control to the only-route requirement above. A generated description
+can change what the model attempts before any call is made, while authorization decides what
+that attempt may actually do. Neither hiding a schema nor authenticating the caller replaces
+the other checks. Proxies periodically refresh registry state, so this secondary account
+does not establish immediate revocation or a tested security-effectiveness rate.
+
+## Protecting a workload from its host is different from protecting the host from an agent
+
+[[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]] reverses
+the usual sandbox threat model: Tinfoil treats its own host/operator as untrusted. A prebuilt
+IGVM image is measured at launch by TDX or SEV-SNP; a narrowly scoped firmware accepts only
+bounded memory-map and CPU-count inputs before handing off to Linux.
+
+The reported reduction from eight host-input parsing sites to two narrows the live boundary,
+but moving work to a build generator does not remove that generator from the audit obligation.
+Nor do roughly 300 firmware lines prove the full system correct. [[Confidential Computing]]
+records this separate confidentiality boundary. It complements tool permissions and incident
+controls; it does not stop an authorized agent from making a wrong decision, and formal
+verification remains future work in the vendor account.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -678,6 +708,10 @@ post keeps OpenShell as the software layer: "Software runtime boundaries remain 
 
 ## Related pages
 
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
+- [[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]]
+- [[Confidential Computing]]
+- [[Tinfoil]]
 - [[Dan McAteer - Claude Mods and the Attention Interface]]
 - [[Nikita Kezin et al - Messages in Rendered Images]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]

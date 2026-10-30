@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - index
 source_ids:
@@ -366,6 +366,13 @@ source_ids:
   - src-2026-10-26-alphasignal-memory-tax
   - src-2026-10-26-cerebras-trillion-parameter
   - src-2026-04-19-karray-neuromorphic-guide
+  - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-10-25-tinfoil-minimal-firmware
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
+  - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-10-22-agrawal-qwenputer
 status: active
 ---
 
@@ -373,8 +380,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 27, 2026: **626 typed wiki pages**, including **335 source summaries**
-representing **361 source IDs**, **136 concepts**, **92 entities**, and **44 lint reports**.
+As of October 30, 2026: **638 typed wiki pages**, including **342 source summaries**
+representing **368 source IDs**, **137 concepts**, **95 entities**, and **45 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -385,6 +392,7 @@ exclude git-ignored local query files.
 
 ## Concepts
 
+- [[Confidential Computing]] - Protecting execution from an untrusted host; measured identity, reduced runtime exposure, build-time trust, and application authority remain distinct.
 - [[Lakehouse Architecture]] - Open formats in customer-controlled object storage with transactions and governance layered on by metadata rather than a proprietary storage engine.
 - [[Medallion Architecture]] - Bronze/Silver/Gold as a data-quality progression, not a technology stack, and what mechanical application costs.
 - [[Open Table Formats]] - The metadata and transaction layer that governs many files as one logical table, kept distinct from the file format underneath.
@@ -427,7 +435,7 @@ exclude git-ignored local query files.
 - [[LLM Reasoning]] - Reasoning taxonomy, fixed-weight inference-time search, post-training, robustness, and the unresolved creation-versus-elicitation question.
 - [[Test-Time Scaling]] - Spending more inference compute (search, samples, verifiers) to reason better; verifier-free vs verifier-based.
 - [[Reasoning Effort Control]] - Trained selectors, runtime budgets, and internal iteration knobs; trace length is not the whole compute budget.
-- [[Tool Use and Function Calling]] - How LLMs request actions from external systems via structured function calls.
+- [[Tool Use and Function Calling]] - Structured action requests, their actual executors, and authorization; tool syntax alone does not determine whether execution is external or compiled inside a model.
 - [[Model Context Protocol]] - Tool-integration protocol, with discovery, invocation, authorization, and credential handling as distinct boundaries.
 - [[Agentic Loop]] - The iterative plan-act-observe cycle that enables multi-step LLM tool use.
 - [[Agent Planning]] - Planning as data structures, atomic actions, and AoT dependency graphs for safe multi-step execution.
@@ -526,10 +534,13 @@ exclude git-ignored local query files.
 
 ## Entities
 
+- [[Apple]] - On-device weight/cache/adapter budgets and Private Cloud Compute through secondary reporting; newer release/platform claims remain unverified.
+- [[Tinfoil]] - Confidential-inference provider narrowing a hardware-measured boot path while retaining build-time audit obligations.
+- [[Decagon]] - Human-initiated agent campaigns optimizing an inference stack against production-shaped replay and endpoint latency limits.
 - [[Databricks]] - Lakehouse platform whose components - Delta Lake, Unity Catalog, Genie, Lakebase, Mosaic AI - recur across this vault's data-platform pages.
 - [[Mykola-Bohdan Vynnytskyi]] - Author of the thirteen-part "Understanding Databricks" series, this vault's largest body of data-platform material.
 - [[Hamel Husain]] - Evaluation practitioner who tuned, calibrated, and priced a decision model used as an automated judge.
-- [[Uber]] - Source of Genie, a Slack retrieval assistant for engineering support; its reported figures are self-reported and partly unrecoverable.
+- [[Uber]] - Genie retrieval assistance and a governed MCP Gateway; discovery, approval, invocation, and credentials are separate controls in secondary accounts.
 - [[Ramez Naam]] - Author of a third-party synthesis arguing multi-agent scaling results are logarithmic or sub-logarithmic.
 - [[PyTorch]] - Deep-learning framework and, for this vault, a dispatcher architecture that hardware vendors attach backends to.
 - [[Goodfire]] - Interpretability organization arguing native mechanisms should come before learned decompositions; its audits are agent-assisted and preliminary.
@@ -542,7 +553,7 @@ exclude git-ignored local query files.
 - [[E2B]] - Sandbox infrastructure; Embed brings the runtime to one machine without making placement an authorization boundary.
 - [[Neuralink]] - Neural decoding through participant-specific causal representations, with pooled data and universal transfer kept distinct.
 - [[Z.ai]] - The GLM lab; the vault's strongest evidence that post-training alone can move a frontier model.
-- [[Qwen]] - Alibaba's open-weight family and third-party derivatives spanning effort controls, converted memory architectures, fixed-option scoring, and neuron-level interpretability audits.
+- [[Qwen]] - Alibaba's open-weight family and checkpoint-specific derivatives spanning memory conversion, fixed-option scoring, interpretability, self-training, and compiled CPU execution.
 - [[Baseten]] - Inference frontier, production agentic kernels, and Base Labs' disclosed decision-model training recipe.
 - [[Philip Kiely]] - Baseten writer whose frontier classifier now organizes the vault's inference material.
 - [[Paolo Perrone]] - The AI Engineer author who brought pass^k and agentic testing's failure modes into the vault.
@@ -611,7 +622,7 @@ exclude git-ignored local query files.
 - [[Preston Fu]] - Researcher whose progressive point matching addresses long-horizon credit assignment in computer-use agents.
 - [[@zafstojano]] - Author of the recursive-synthetic-improvement survey that reframes RSI as an artifact loop.
 - [[SemiAnalysis]] - Hardware analysis outfit supplying the vault's first third-party non-NVIDIA inference benchmarks.
-- [[Cohere]] - Model lab and operator of the first fully fledged serving system built around a decode megakernel.
+- [[Cohere]] - Model lab with a published decode-megakernel serving system and research on coding-agent teams.
 
 - [[Google Cloud]] - Integrated cloud stack spanning agent frameworks, managed runtimes, enterprise distribution, MCP, RAG, inference routing, security controls, and model serving.
 - [[DeepSeek]] - Model developer represented here through sparse activation, cache compression, and long-context inference architecture.
@@ -867,7 +878,7 @@ exclude git-ignored local query files.
 - [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]] - The distributed-systems playbook applied to an unreliable model, and the failures that arrive as HTTP 200.
 - [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]] - Deriving the anti-collapse term instead of tuning it: isotropic Gaussian targets, SIGReg, and label-free model selection.
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]] - TPUv7 Ironwood measured four ways with results from +96% to -30%, and the tile geometry that constrains model architecture.
-- [[Cohere - North Mini Code Megakernel Serving Engine]] - One persistent kernel per SM at 62% of speed-of-light, a full warp ABI, and a scheduler ablation that contradicts the obvious design.
+- [[Cohere - North Mini Code Megakernel Serving Engine]] - One persistent decode kernel with one threadblock per SM; batch-1 throughput at 62% of the reported speed-of-light ceiling, a full warp ABI, and a counterintuitive scheduler ablation.
 - [[Amine Raji - Cosine Similarity Is Not a Safety Property]] - Retrieval ranks by similarity and similarity does not encode intent; poisoned indexes, inversion, and a lab reading rather than a base rate.
 - [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]] - The routing taxonomy and its cost arithmetic, and why a learned router inherits its judge's bias.
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]] - Looping and monitorability arrived together; the regression is real and is not attributed to the architecture.
@@ -1026,9 +1037,19 @@ its unchanged article body adds no source ID or independent estimate.
 - [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]] - A confidence layer between retrieval and action that quantifies, thresholds, and abstains on a graduated ladder; every weight, threshold, and example outcome is a starting point or mocked.
 - [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] - Lead-and-worker coding-agent teams on ProgramBench, where worker placement mattered more than team size; the 30% headline compares $155 with $510 at 61.8% versus 63.2% reward.
 - [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]] - An internal AI code reviewer's per-review cost cut to $0.77 from a $2.43 peak-fortnight average; an aggregate cache hit rate can hide a broken first request, and price per token is not cost per task. Self-reported.
-- [[Alpha Signal - The Hidden Memory Tax in AI Agents]] - Seven ways to use past conversation compared on one LoCoMo conversation: the memory writer capped later answers, and a strong model searching the raw record was more accurate and cheaper than one reading everything. Unattributed clipping with no canonical URL.
+- [[Alpha Signal - The Hidden Memory Tax in AI Agents]] - Seven approaches compared on one LoCoMo conversation. With Opus 5.5, raw-record coding harnesses scored above full context, but only Pi cost less; Codex and Claude Code cost more. The harnesses also received photo captions unavailable to other methods. Single runs, model-judged; unattributed clipping with no canonical URL.
 - [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]] - Placement arithmetic for a roughly 3-trillion-parameter model across wafers holding 44 GB each, with KV-cache memory bounding concurrency; the 1000-2000+ tokens-per-second headline names no configuration.
 - [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]] - Orientation to event-driven spiking hardware and the von Neumann bottleneck; nearly every efficiency figure is uncited.
+
+### October 30, 2026 batch
+
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]] - Separate weight, cache, and adapter budgets in a local-first stack; different quantization generations, unmeasured device performance, and unverified closing release/platform claims.
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] - Automatically discovered tools remain disabled until owner approval; registry/proxy separation, protocol translation, progressive discovery, response projection, and external credential exchange.
+- [[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]] - Tinfoil prebuilds a hardware-measured boot image and narrows host inputs; a smaller runtime firmware does not remove build-time trust or establish formal verification.
+- [[Leon Sick et al - On-Policy Self-Training]] - Generated curricula, consistency filters, and privileged EMA-teacher supervision; protocol-specific gains, mixed retention, a seven-round peak, and an unresolved captured-equation inconsistency.
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] - Wake/sleep parametric consolidation and synthetic dreaming within a fixed design; ten-million-token processing is not a native attention window or a general no-forgetting guarantee.
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] - Bounded, human-initiated inference optimization with replay fidelity, falsifiable proposals, centralized scoring, and durable experiment records; gains remain endpoint-specific with conflicting baseline wording.
+- [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] - Compiled CPU execution and exact bounded recurrent RAM around unchanged Qwen3.5-4B weights; custom driver, creator-reported tests, and explicit memory inside network state.
 
 ## Syntheses
 
@@ -1090,6 +1111,7 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-10-23 Lint Pass]] - Forty-second pass: traced all 25 new source chains across 118 consumer edges, corrected a Genie Ontology GA claim the capture explicitly warned against and a misattributed Naam figure, connected two new concepts to existing vault evidence, and cleared the first vault-wide affected-page reciprocity measurement from 22 violations to 0; 599 pages at exact 342-ID parity.
 - [[2026-10-23 Lint Pass 2]] - Forty-third pass: scoped text-memory assumptions and removed an unsupported calibration-priority claim; five new source chains traced across 16 consumer edges, with 606 reachable pages at exact 347-ID parity.
 - [[2026-10-27 Lint Pass]] - Forty-fourth pass: restored 29 Databricks links rewritten by an outside commit, cleared 31 reciprocity violations (16 under a new body-citation rule), fixed 57 of 59 semantic findings, and found 79 undated raw captures awaiting authorization to normalize.
+- [[2026-10-30 Lint Pass]] - Forty-fifth pass: corrected benchmark denominators, continuous-batching and routing overclaims, recent-ingest scope slips, and two source-section orders; closed two navigation gaps. All 638 pages reachable at 368-ID parity; 86 undated captures and 181 canonical-metadata gaps remain untouched.
 
 ## Control files
 

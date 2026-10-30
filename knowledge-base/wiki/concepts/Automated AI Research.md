@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - concept
   - ai-agents
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-15-turing-post-recursive-self-improvement
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-10-19-naam-million-agents-superintelligence
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -188,6 +189,27 @@ Naam's own forecast, allowing a **six-month** research-to-publication lag, is th
 should appear in the Epoch Capabilities Index through the first half of 2027 (see [[Epoch AI]]). He states he
 expects to be corrected by data.
 
+## Production-shaped experiments can automate optimization without automating research direction
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] describes
+Decagon's human-initiated AutoResearch campaigns over serving settings, GPU layouts, engine
+patches, and draft-model training. Devin Cloud coordinates the work and Modal supplies GPU
+execution. Specialists return an explanation, intervention, predicted result, and falsification
+condition; only the orchestrator runs scored experiments through the common harness.
+
+The target is requests per second per GPU within an endpoint's production latency limits.
+Replay preserves lengths, prefixes, timing, and concurrency; repeated baselines establish
+noise. Trials receive Better/Same/Worse/Invalid verdicts, a win becomes the working baseline,
+and the original remains the campaign reference. Budgets and human production approval keep
+the loop bounded.
+
+This is concrete evidence of an implemented optimization process, but its results are
+first-party and endpoint-specific. The **1.05x-2.50x** table range cannot be pooled into
+one gain, and the post inconsistently describes its starting baselines. It isolates neither
+the contribution of agents nor the conversion from agent tokens to useful experiments.
+Agent-initiated campaigns are future work. The execution-versus-direction distinction above
+therefore remains: measured artifact improvements do not establish improved research taste.
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
@@ -209,6 +231,10 @@ expects to be corrected by data.
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
+- [[Serving Benchmarks and Goodput]]
+- [[Loop Engineering]]
 - [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
 - [[Ramez Naam]]
 - [[Agent Delegation]]

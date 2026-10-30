@@ -2587,3 +2587,34 @@ lint report was added. All **445 raw files**, templates, posts, queries, earlier
 and historical log text remain preserved against the post-ingest byte baseline. Source
 contradictions and primary-evidence gaps remain explicit. Nothing was staged, committed,
 or pushed by this pass.
+
+## [2026-10-30] post | The Shared Part Was Never Saved Alone
+
+Prepared [[2026-10-30 The Shared Part Was Never Saved Alone]] as `ready`, not published:
+one LinkedIn version, one standalone X post, and a connected seven-post X thread.
+The inclusive **2026-10-23 through 2026-10-30** window starts at the newest active post's
+`covers_through`. Four logged ingests supplied **51 source summaries**; the Git cross-check
+covered **25 commits and 195 wiki paths**, with no additional current source summary
+outside those ingests. The thirteen Databricks summaries were accounted for under their
+collective log entry.
+
+Five direct ByteByteGo sources were excluded before scoring five independently checked
+alternatives. Cloudflare's first-request cache-boundary case won **28/30**. The mixed-source
+[[Semantic Caching]] spine is used only for claims independently backed by the directly
+read [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]].
+The public copy preserves the first-party before/after scope and simultaneous-change
+limitation; it does not attribute the article's broader cost reduction to the cache split.
+The unspecified-denominator aggregate hit rate was omitted in favor of the explicitly
+identified first-request measure.
+
+Updated [[Post Archive]] with the new row, topics, two eligible runner-up angles, and a
+Semantic Caching cooldown ending **2026-12-11**. Pruned Agent Memory's expired cooldown;
+all historical post rows and both superseded drafts remain intact. The new angle concerns
+request layout within one provider, not the October 16 post's cross-model state transfer.
+The archive now has **ten ready posts** and **two superseded drafts**.
+
+Index and overview totals advance to **639 typed wiki pages**; **342 source summaries**,
+**368 source IDs**, **137 concepts**, **95 entities**, and **45 lint reports** are unchanged.
+The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
+and lint reports were not edited. Nothing was staged, committed, pushed, or published by
+this run.

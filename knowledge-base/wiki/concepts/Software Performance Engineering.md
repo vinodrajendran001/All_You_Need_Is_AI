@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-09-25
+updated: 2026-10-30
 tags:
   - concept
   - performance
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-07-22-mitchell-hashimoto-simd
   - src-2026-09-13-sumit-scaling-distributed-systems
   - src-2026-09-22-lemire-summer-ai-optimization
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -68,6 +69,25 @@ specific to one CPU and named datasets. The transferable claim is process-level:
 cost can reopen optimization work that was previously uneconomic, but every accepted change still
 needs a workload-specific benchmark.
 
+## Cheaper search still needs falsifiable experiments and an honest noise floor
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] extends
+the AI-assisted library-optimization example to an inference service. Each proposal includes
+an explanation, concrete intervention, predicted measurement, and falsification condition.
+Repeated baseline runs distinguish a win from noise; the same workload and schedule make
+candidates comparable, and Invalid is kept separate from Worse.
+
+The process follows the estimate-measure hierarchy rather than replacing it with agent
+confidence. Local draft acceptance, kernel timing, or cache behavior must translate into
+requests per second per GPU under endpoint latency limits. Confirmed changes become a working
+baseline without deleting the original reference, and combinations require ablations.
+
+The first-party results remain workload/hardware-specific and have conflicting baseline
+descriptions. Budgets, pinned artifacts, and cheap preflight checks make exploration more
+controlled, but no all-in cost comparison establishes how much the automation itself saves.
+The useful generalization is experimental discipline for automated candidate generation,
+not a promise that more optimization attempts always pay.
+
 ## Open questions
 
 - How should this CPU-oriented framework be extended to GPU kernels and distributed ML systems?
@@ -76,6 +96,10 @@ needs a workload-specific benchmark.
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
+- [[Serving Benchmarks and Goodput]]
+- [[Automated AI Research]]
 - [[SIMD]]
 - [[Ben Joffe - A Faster Way to Calculate the Day of the Week]]
 - [[GPU Execution Model]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-27
+updated: 2026-10-30
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-10-21-ant-vllm-humming
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -166,15 +167,18 @@ batch-size-1 research demonstrations.
 take turns via park/resume.
 
 **Measured against vLLM on North Mini Code** (30B total, 3.3B active): **292 tok/s at batch 1, 62% of
-speed-of-light, against vLLM's 185 tok/s (39%)** — a **1.58x speedup**. End-to-end on real benchmarks it
-is **1.25x–1.41x** (AIME 2025 1.41x, LiveCodeBench v6 1.28x, GPQA 1.25x, MMLU-Pro CS 1.33x, SciCode
-1.37x), holding to **256K context with no measurable accuracy loss** (SciCode **38.9% ± 1.6%** against
-vLLM's **38.2%** over 7 runs).
+speed-of-light, against vLLM's 185 tok/s (39%)** — a **1.58x speedup**. Batch-8 full-server runs report
+**1.25x–1.41x average decode-throughput gains** (AIME 2025 1.41x, LiveCodeBench v6 1.28x, GPQA 1.25x,
+MMLU-Pro CS 1.33x, SciCode 1.37x). Generated token counts differ, so these ratios are not matched-work
+completion-time gains. Separate decode-scaling tests extend to **256K context**; SciCode accuracy is
+**38.9% ± 1.6%** against vLLM's **38.2%** over 7 runs.
 
-**The limitations are what keep this a component rather than an engine**: **no mixed prefill/decode**, a
-**maximum batch size of 8** (called a configuration rather than architectural limit, but undemonstrated
-above it), and **decode only**. The 1.58x is also measured at batch 1, which is not vLLM's operating
-point; the narrower 1.25x–1.41x end-to-end range is the meaningful comparison.
+**The decode component sits inside a continuous-batching server**, with paged attention and ragged
+sequence lengths. Prefill runs ordinary PyTorch kernels and pauses decoding. The limitations are
+**no mixed prefill/decode execution**, a **maximum batch size of 8** (a configuration rather than
+architectural limit, but undemonstrated above it), and a megakernel that accelerates **decode only**.
+The batch-1 and batch-8 results describe different operating points; neither establishes performance
+across arbitrary production loads.
 
 ## Routing is a joint decision over queue, cache, adapter, and priority
 
@@ -332,6 +336,27 @@ The reported **14%-43%** serving-throughput gains on eight H20s change both back
 activation precision. They do not make Humming a universally faster engine or establish
 unchanged model quality; see [[Serving Benchmarks and Goodput]].
 
+## The useful configuration is a measured combination, not a collection of good defaults
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] describes
+agent-driven campaigns across scheduler settings, GPU topology, engine patches, and draft
+models. A prefill-decode-interval change reaches a reported **1.65x** on one configuration;
+adapted DFlash2 reaches **1.34x** against the production drafter in another. These are
+endpoint-specific requests-per-second-per-GPU results under production latency limits, not
+universal SGLang gains or figures to multiply together.
+
+The measured combination matters. A drafter with better acceptance can still lose when
+prefill dominates or its own cost consumes the saved work; a local kernel or scheduler gain
+must survive full replay. Decagon holds the request pool and arrival schedule fixed, repeats
+baselines for noise, retains the original campaign reference, and calls for ablations when
+changes are combined.
+
+The post's baseline descriptions conflict between defaults/already-tuned setups and starting
+production configurations, and it reports no independent replication or all-in savings.
+The portable lesson is a method for selecting a workload-specific configuration, not a new
+engine ranking. Lossy precision changes remain separate from lossless serving optimizations
+and require human-approved quality tradeoffs.
+
 ## Open questions
 
 - The DeepInfer account supplies no measurement of any kind. Its benchmark configurations are reported
@@ -348,6 +373,8 @@ unchanged model quality; see [[Serving Benchmarks and Goodput]].
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
 - [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Mehul Gupta - What is DeepSeek DeepInfer]]
 - [[DeepSeek]]

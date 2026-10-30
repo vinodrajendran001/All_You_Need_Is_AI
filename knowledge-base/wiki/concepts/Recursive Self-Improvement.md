@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - concept
   - recursive-self-improvement
@@ -24,6 +24,9 @@ source_ids:
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-19-naam-million-agents-superintelligence
   - src-2026-10-14-maevyn-decoherence-trap
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -394,6 +397,37 @@ runs. They are not the same claim and they imply different tests. Naam's resolve
 N on real AI research. The decoherence claim resolves only with a fitted growth rate for complexity in
 production codebases, which **nobody has produced**, including this essay.
 
+## Weight learning, memory consolidation, and serving optimization are different update loops
+
+Three October captures make the editable-set test more concrete without establishing
+autonomous improvement of the improvement process itself.
+
+[[Leon Sick et al - On-Policy Self-Training]] updates student and EMA-teacher weights using
+regenerated curricula, consistency filters, and privileged context. The human-designed method
+and hand-chosen topic seeds remain fixed. The evaluated checkpoint is the EMA teacher, and
+no-thinking E2B MMLU peaks at **47.7 after seven rounds**, then falls to **46.2** after twelve
+or twenty. Existing-knowledge amplification and mixed retention are narrower claims than
+unbounded recursive progress.
+
+[[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] moves information from fast to
+slower parametric memory, with dreaming-generated training samples and progressively unlocked
+preallocated expert blocks. The schedule changes learned state and available capacity inside
+a fixed architecture; it does not invent a new architecture or its own learning rules.
+The first-party blog's no-forgetting language remains bounded by its evaluated settings.
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] optimizes
+serving configurations, engine code, GPU layouts, and some draft-model weights through
+production-shaped replay. Humans initiate campaigns and approve deployment; only the
+orchestrator runs scored experiments, and the original campaign baseline remains available.
+This is durable artifact/model optimization under an externally chosen objective. Agent-
+initiated campaigns are future work, and no isolated result shows a better researcher emerging
+from the serving improvements.
+
+The shared lesson is to name **what persists, who supplies the target, and who can change the
+acceptance rule**. A loop can be useful and self-generated without demonstrating stronger
+recursion. Decagon adds a concrete human-grounded performance signal; OPST and sleep do not
+turn internally generated agreement into independent truth.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -421,14 +455,19 @@ production codebases, which **nobody has produced**, including this essay.
 - **Does decoherence apply to the loops this page actually describes?** The cited studies concern human teams
   adopting coding assistants in production repositories. Nothing links them to a bounded self-improvement run
   against a fixed verifier, where the editable region is small and the artifact is discarded if it fails.
-- **Can a verifier be re-grounded without a human?** If an unreachable verifier is still only a proxy, the
-  decoherence argument requires contact with reality to correct it — and no source here describes what that
-  contact looks like mechanically, or how often it has to happen.
+- **Can a verifier be re-grounded without a human?** If an unreachable verifier is still only a proxy,
+  the decoherence argument requires contact with reality to correct it. Decagon now supplies a
+  mechanical, human-grounded example through production-shaped replay, but not autonomous
+  refresh of the objective or evidence about how often re-grounding must occur.
 - **What would falsify either objection?** G, λ, and N measured on real AI research would resolve Naam's; a
   fitted complexity-growth rate on production codebases would resolve the other. Neither exists.
 
 ## Related pages
 
+- [[Leon Sick et al - On-Policy Self-Training]]
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
 - [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
 - [[The Decoherence Trap]]
 - [[Ramez Naam]]

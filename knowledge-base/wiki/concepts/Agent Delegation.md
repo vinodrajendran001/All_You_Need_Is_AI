@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - ai-agents
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-10-15-cohere-agent-teams
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -387,6 +388,25 @@ by model, even within one family. The limits: a vendor research post on one mini
 researchers, not the lead, diagnosed the bottleneck; fixed-size teams ran once; and the cross-model
 results are single runs, where "differences of a few points may be noise".
 
+## Specialists can own hypotheses while one orchestrator owns scored comparisons
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] gives
+contract-first decomposition a concrete research handoff. Subagents return **an explanation,
+intervention, prediction, and falsification condition**. Only the persistent orchestrator
+executes scored experiments through the common harness, keeping request schedules, baselines,
+and acceptance conditions comparable across proposals.
+
+The delegated artifact is therefore not a persuasive claim of success but a testable
+candidate. Better/Same/Worse/Invalid verdicts distinguish a failed idea from an experiment
+that cannot decide. GPU/time/training budgets constrain exploration; a human still approves
+production promotion.
+
+This is a division-of-authority pattern, not a controlled finding that more subagents
+improve research throughput. The report isolates neither worker count nor orchestration
+quality, and the lead still needs domain judgment to interpret serving tradeoffs. It fits
+the earlier lead-capability warning: delegating candidate generation does not delegate away
+responsibility for deciding what the evidence means.
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -420,6 +440,10 @@ results are single runs, where "differences of a few points may be noise".
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
+- [[Automated AI Research]]
+- [[Loop Engineering]]
 - [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
 - [[Cohere]]
 - [[Test-Time Scaling]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - concept
   - inference
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-09-21-bytebytego-big-model-cheap-hardware
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-20-gupta-deepseek-deepinfer
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -308,6 +309,28 @@ determinism effort is trying to neutralise re-enters through speculation — but
 configuration, not the reason. Nothing here quantifies the throughput given up by disabling it, and
 nothing establishes that other engines face the same exclusion.
 
+## A drafter's own failure positions can guide training, but acceptance still is not speed
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] supplies
+a production adaptation case. The starting DFlash2 drafter had about **17% higher served
+acceptance length** than Decagon's production MTP drafter; adaptation added about **14%
+relative to that starting DFlash2 checkpoint**. Neither figure is a throughput gain, and
+the two percentages must not be added.
+
+The training loop uses the drafter's own rollout rejection positions, refreshes rollout
+checkpoints, and varies sampling density and weighting. This follows the earlier survey's
+requirement to train on deployment-like prefixes rather than only clean teacher text.
+Recipes and checkpoints are pinned, with CPU checks and a 50-step GPU rehearsal before
+expensive runs.
+
+Promotion depends on measured serving cost, not acceptance alone. Draft overhead and
+prefill-heavy traffic can erase the benefit. The results table reports **1.34x** for
+DFlash2 adaptation against the production drafter under an endpoint's latency limits, a
+different comparison from the 14% acceptance experiment. The serving pool is excluded from
+training/checkpoint selection according to the authors, but it is repeatedly consulted for
+optimization. The account is first-party, its general baseline wording is inconsistent,
+and it does not isolate every recipe component.
+
 ## Open questions
 
 - How well do acceptance predictors such as DSpark's calibrate under traffic or target-model
@@ -322,6 +345,8 @@ nothing establishes that other engines face the same exclusion.
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
 - [[Mehul Gupta - What is DeepSeek DeepInfer]]
 - [[DeepSeek]]
 - [[Inference Serving Engines]]

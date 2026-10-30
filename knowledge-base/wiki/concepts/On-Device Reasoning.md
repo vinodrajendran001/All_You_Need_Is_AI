@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-10-07
+updated: 2026-10-30
 tags:
   - concept
   - llm
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
   - src-2026-08-30-halo-research-sopro-v2
+  - src-2026-10-27-bytebytego-apple-on-device
 status: active
 ---
 
@@ -78,6 +79,26 @@ because European Portuguese is poorly served by hosted TTS. Local execution is w
 long-tail language economically viable at all, since no vendor has to justify the market. Privacy
 follows for free — no audio leaves the device. See [[Neural Text-to-Speech]].
 
+## Local-first deployment has several memory budgets and a separate cloud trust boundary
+
+[[ByteByteGo - How Apple Fits an LLM on Your iPhone]] turns the earlier Apple-style routing
+pattern into a concrete, secondary account of the memory stack. Its roughly 3B model needs
+almost **6 GB for 16-bit weights alone**; an earlier **3.7-bit average** reduces those weights
+to about **1.39 GB**. A later **2-bit decoder / 4-bit embedding** recipe is a different
+generation, not another description of that average.
+
+Weight storage is only the first lever. Cross-layer sharing reportedly removes **37.5% of
+KV-cache memory**, while task-specific rank-16 LoRA adapters reuse the base rather than
+duplicating it. These savings concern different memory objects and do not establish total
+runtime fit, battery life, thermal behavior, or sustained latency; none of those is measured
+in the capture.
+
+Harder requests may leave the phone for Private Cloud Compute. That is a change of trust
+boundary, not an extension of the claim that data stays local: the account relies on verified
+authorized software and encrypted delivery. See [[Confidential Computing]]. The closing
+AFM 3 and cloud-platform claims remain unverified reporting, not device specifications adopted
+by this page.
+
 ## Open questions
 
 - When will latent/internal reasoning become more edge-friendly than explicit chain-of-thought?
@@ -87,6 +108,10 @@ follows for free — no audio leaves the device. See [[Neural Text-to-Speech]].
 
 ## Related pages
 
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
+- [[Apple]]
+- [[Confidential Computing]]
+- [[Parameter-Efficient Fine-Tuning]]
 - [[Efficient Reasoning on the Edge]]
 - [[Liquid AI - LFM2.5-8B-A1B]]
 - [[Model Quantization and Efficiency]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - kv-cache
@@ -34,6 +34,7 @@ source_ids:
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
   - src-2026-10-26-cerebras-trillion-parameter
+  - src-2026-10-27-bytebytego-apple-on-device
 status: active
 ---
 
@@ -397,6 +398,20 @@ This is a vendor explainer, and its limits are specific. The remaining-SRAM figu
 check the ceiling, and no measured concurrency is reported. The 256k average request is an assumption
 of the illustration rather than an observed traffic mix, and the post is undated.
 
+## Designed cross-layer sharing is not arbitrary cache reuse across repeated passes
+
+[[ByteByteGo - How Apple Fits an LLM on Your iPhone]] describes a **5:3** depth split:
+layers in the later block reuse keys and values from the final layer of the first block.
+The reported **37.5% memory reduction is for the KV cache**, not total phone memory or
+weight storage.
+
+This qualifies rather than reverses the looped-transformer negative result above. A model
+designed around shared state can exploit that contract; simply making distinct repeated
+passes share entries can discard representations those passes need. Cross-layer sharing is
+an architecture choice, not a generic cache-manager switch. The Apple account is secondary
+and does not provide a controlled quality/latency comparison, so its capacity saving should
+not become a speedup or a claim that arbitrary layer sharing is safe.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -412,6 +427,8 @@ of the illustration rather than an observed traffic mix, and the post is undated
 
 ## Related pages
 
+- [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
+- [[Apple]]
 - [[ByteByteGo - LLM Prompt Caching Versus Semantic Caching]]
 - [[Semantic Caching]]
 - [[ByteByteGo]]

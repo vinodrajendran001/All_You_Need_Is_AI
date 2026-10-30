@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-10-30
 source_id: src-2026-10-19-rath-thin-orchestrator
 source_title: "The Thin Orchestrator: How We Made Our AI Agents More Reliable by Giving the Router Less to Do"
 source_author: Plawan Rath, Akhil Jindal, Ashwini Verma
@@ -122,7 +122,7 @@ files owned by specialists, so updating behavior means editing a knowledge file,
 
 - Raw capture: [[The Thin Orchestrator How We Made Our AI Agents More Reliable by Giving the Router Less to Do]]
 - Canonical URL: <https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/>
-- Published 2026-10-19; captured 2026-10-22.
+- Published 2026-10-19; the clipper's `created` field is 2026-10-21.
 - Cites a Mount Sinai multiagent preprint, not read during this ingest.
 
 ## Related pages

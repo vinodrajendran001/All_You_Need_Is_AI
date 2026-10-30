@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-08-30
+updated: 2026-10-30
 tags:
   - concept
   - ai-agents
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-08-12-yoko-li-loop-convergence
   - src-2026-08-20-liquid-ai-production-loops
   - src-2026-07-16-lilian-weng-harness-engineering
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -91,6 +92,25 @@ The caution attached is the one that governs the whole ladder: automated workflo
 the base model can propose good candidates. STOP improved with GPT-4 and **degraded** with GPT-3.5 and
 Mixtral. See [[Harness Optimization]].
 
+## A winning iteration needs both a moving working baseline and a fixed campaign reference
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] supplies
+a production-inference loop contract. Humans choose the campaign; specialists propose
+falsifiable interventions; a single orchestrator runs scored trials against the same replay,
+schedule, and latency/error constraints. Repeated baselines establish the noise floor.
+
+Its verdicts distinguish **Better, Same, Worse, and Invalid**. Invalid means the experiment
+cannot support a conclusion, not that the hypothesis failed. A confirmed win becomes the
+next working baseline, while the original configuration remains the reference for the whole
+campaign. This prevents a sequence of local improvements from losing its comparison point;
+combined changes still need ablations.
+
+GPU, time, GPU-hour, and training-variant budgets bound exploration. Pinned recipes and
+checkpoints, CPU checks, and a 50-step GPU rehearsal reduce expensive invalid runs. Lossless
+and lossy changes have different acceptance requirements, and a human approves production
+promotion. These are reported process controls, not evidence that the benchmark is
+technically immutable or that repeated replay consultation cannot overfit it.
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -99,6 +119,10 @@ Mixtral. See [[Harness Optimization]].
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
+- [[Serving Benchmarks and Goodput]]
+- [[Persistent Wiki]]
 - [[Agentic Loop]]
 - [[Graph Engineering]]
 - [[Multi-Turn Evaluation]]

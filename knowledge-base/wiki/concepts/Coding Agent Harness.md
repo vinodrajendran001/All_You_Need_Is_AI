@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - concept
   - coding-agents
@@ -67,7 +67,8 @@ The harness/engine split reframes several practical questions. A capable model i
 
 ### Token economics is a harness property
 
-- Across models, **the harness dominates token usage**, not the LLM. Claude Code uses the most (mostly *input* tokens from re-feeding history and tool output across turns); Codex the least. Equal task success at half the tokens is roughly twice as fast — a practical extension of [[Model Routing]] and [[Context Engineering]] economics.
+- In Raschka's small task pack, **harness choice strongly affected token usage among models that solved almost all tasks**. Claude Code used the most (mostly *input* from re-feeding history and tool output); Codex the least. This is not a universal model-independent rule, and low usage caused by early task failure is not an efficiency win.
+- His suggested doubling of speed from halving tokens is an extrapolation, not a matched wall-time result. Input processing, output generation, caching, and tool time need not scale together. Compare elapsed time and task success rather than converting a token ratio directly into speed — a practical extension of [[Model Routing]] and [[Context Engineering]] economics.
 
 ### Security posture for locally-run agents
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-30
 source_id: src-2026-10-05-rai-jev-decision-models
 source_title: "JEV: What a Model Built for Decisions Rather Than Text Would Have to Look Like"
 source_author: Siddhant Rai
@@ -61,6 +61,12 @@ reproduced during this ingest.
   competitor-owned benchmark. Separately, Laya's reported **0.362 zero-shot versus 0.766
   domain-adapted** score comes from its own 2,000-decision benchmark, not Jev.
 
+## Why it matters
+
+This is useful as a map of task-specific calibration risks and a source of explicit contradictions,
+not as a reliable derivation of a closed model's internals. Its empirical caveats are stronger than
+its claim that calibrated decisions require a new learning paradigm.
+
 ## Tensions / open questions
 
 **The methodological reconstruction overclaims.** It argues that cross-entropy against hard labels
@@ -84,12 +90,6 @@ Chronology and data claims are also uneven: "two months after release" conflicts
 September-launch framing, and its statement that data is unknown omits the vendor's synthetic-data
 claim quoted by Raschka. The detailed recipe remains unknown. Source-local latency comparisons
 between local and hosted models do not isolate architecture from network or serving differences.
-
-## Why it matters
-
-This is useful as a map of task-specific calibration risks and a source of explicit contradictions,
-not as a reliable derivation of a closed model's internals. Its empirical caveats are stronger than
-its claim that calibrated decisions require a new learning paradigm.
 
 ## Affected pages
 

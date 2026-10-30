@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-10-27
+updated: 2026-10-30
 tags:
   - concept
   - benchmarks
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-21-ant-vllm-humming
   - src-2026-10-26-cerebras-trillion-parameter
+  - src-2026-10-29-decagon-autoresearch-inference
 status: active
 ---
 
@@ -128,6 +129,18 @@ The mechanism is specific but the lesson is general: real requests concentrate o
 leaving sparser MoE work and therefore **more scheduling bubbles for the megakernel to absorb**. Uniform
 routing removes exactly the load imbalance the technique is good at. Anyone benchmarking an MoE serving
 path with synthetic uniform traffic is measuring the wrong distribution.
+
+## Full-server throughput is not a matched-work completion time
+
+[[Cohere - North Mini Code Megakernel Serving Engine]] reports a **1.28x average decode-throughput
+gain** on LiveCodeBench v6 even though its run takes **6,141 seconds**, against vLLM's **5,428**.
+The runs generate **4,933,421** and **3,394,164 tokens**, respectively, yielding **803 versus 625
+tok/s**. The numerator changed as well as the elapsed time.
+
+The full-server test includes prefill and continuous batch refilling, unlike a decode-only
+microbenchmark. It still measures output-token throughput, not a fixed-output completion time
+or request goodput under a latency target. The metric, generated work, and operating point must
+travel with the ratio.
 
 ## Long-context latency needs a functional form
 
@@ -299,6 +312,32 @@ run multi-trillion parameter models at 1000-2000+ tokens per second", names no m
 baseline, or correctness method, so the standard above would omit it, and the post reports no figure
 in its own proposed metric. It is an undated vendor post.
 
+## Production replay is a joint distribution, not an average request rate
+
+[[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] makes
+the realistic-load requirement operational. Redaction must preserve token-length distributions,
+prefix reuse, timing, and concurrency. Its open-loop Rust runner keeps scheduled arrivals
+coming when responses slow, exposing queue buildup instead of reducing offered load with
+server speed.
+
+The post distinguishes two tests. **Capacity sweeps** warm the server and reset prefix
+cache per load step. **Production-shaped replay** retains evolving cache state, bursts, and
+autoscaling delays. Resetting away the very locality being evaluated would change the
+second experiment into the first. Candidates use the same request pool and schedule;
+repeated baselines establish noise, and invalid runs are not scored as losses.
+
+The target is **requests per second per GPU within each endpoint's production latency
+limits**. The reported **1.05x-2.50x** rows concern separate configurations/interventions,
+not additive or compound gains. Baseline wording conflicts: the lead-in allows SGLang defaults
+or an already tuned setup, while the following paragraph calls each starting point the
+production configuration. Preserve that ambiguity instead of describing the table as one
+controlled fleet-wide comparison.
+
+These are first-party serving results, not an all-in cost accounting. Excluding replay
+requests from draft training/checkpoint selection does not make repeated optimization against
+that replay independent prospective validation. Quality-changing interventions also require
+a separate quality contract; latency-qualified throughput cannot establish it.
+
 ## Open questions
 
 - Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
@@ -313,6 +352,9 @@ in its own proposed metric. It is an undated vendor post.
 
 ## Related pages
 
+- [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
+- [[Decagon]]
+- [[Automated AI Research]]
 - [[Ant Group and vLLM - Humming Quantized Inference Kernels]]
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
 - [[Netflix - Reliable GPU Compute for Training and Inference]]

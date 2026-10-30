@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-27
+updated: 2026-10-30
 tags: [concept, tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -13,22 +13,34 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-09-07-bytebytego-llm-error-handling
   - src-2026-09-29-bytebytego-why-do-llms-lie
+  - src-2026-10-22-agrawal-qwenputer
 status: active
 ---
 
 # Tool Use and Function Calling
 
-The mechanism by which LLMs request actions from external systems without executing those actions directly.
+In the conventional external-tool contract, LLMs request actions from surrounding systems
+without executing those actions directly. Tool-like syntax alone does not determine where
+execution happens.
 
 ## Core idea
 
-LLMs are text-prediction engines with no built-in ability to interact with the outside world. **Tool use** is the pattern where the application layer surrounding the model provides a menu of available functions, and the model can respond with structured requests (typically JSON) instead of final answers. The application validates and executes the request, then feeds results back to the model.
+Ordinary language models do not directly perform external actions. **External tool use** is
+the pattern where the application layer surrounding the model provides a menu of available
+functions, and the model can respond with structured requests (typically JSON) instead of
+final answers. The application validates and executes the request, then feeds results back
+to the model.
 
-**Function calling** is the formalised version of this pattern, introduced by [[OpenAI]] in mid-2023 as a first-class API feature. Each function is described with a name, purpose, and parameter schema. The model generates calls against these definitions; it never executes them.
+**Function calling** is the formalised version of this pattern, introduced by [[OpenAI]] in
+mid-2023 as a first-class API feature. Each function is described with a name, purpose, and
+parameter schema. Under this external-function contract, the model generates calls and the
+application executes them.
 
 ## Key properties
 
-- **Separation of reasoning and execution** — the model decides *what* should happen; the application layer decides *whether and how* it happens. This boundary is where security and control are enforced.
+- **Separation of reasoning and external execution** — the model proposes what should happen;
+  the application layer decides whether and how it happens. This boundary is where the
+  conventional contract enforces security and control.
 - **Structured output** — function calls are JSON, making them machine-parseable and validatable before execution.
 - **Multi-step chaining** — the model can call several tools in sequence within a single user request, forming an [[Agentic Loop]].
 - **Provider fragmentation** — before [[Model Context Protocol|MCP]], each provider (OpenAI, Anthropic, Google) had its own schema format, creating an N×M integration problem.
@@ -179,7 +191,28 @@ sponsored sections and reports no rates or controlled comparisons, so these are 
 leaves unanswered how a verifier distinguishes a claimed tool result from a real one without re-executing
 the call.
 
+## A familiar call format can address an internal compiled computer
+
+[[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] reuses the
+language model's familiar tool-call format but executes arithmetic through added, compiled
+CPU layers in the forward pass rather than an external Python runtime. Original Qwen3.5-4B
+weights remain unchanged. This is an architectural exception to an external execution
+pattern, not evidence that an unmodified model can act merely by emitting a call.
+
+Software boundaries remain: the RvChat driver loads firmware and keeps CPU trace tokens out
+of Qwen's layers. Exact CPU operations also do not guarantee that the language model picks
+the right program. The reported task comparisons are mixed against Python tools, and
+calculations cost seconds rather than native-CPU milliseconds.
+
+The general lesson is to specify **the actual executor and its authority**, not infer them
+from JSON or tool-call delimiters. Internal arithmetic does not grant filesystem, network,
+or other external permissions, and it does not replace the runtime evidence requirement above.
+
 ## Related pages
+
+- [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
+- [[Linear Attention and Recurrent Memory]]
+- [[Qwen]]
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Model Context Protocol]]

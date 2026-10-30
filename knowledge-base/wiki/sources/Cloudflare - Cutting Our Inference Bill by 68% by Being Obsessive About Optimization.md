@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-10-30
 source_id: src-2026-10-20-cloudflare-inference-bill
 source_title: Cutting our inference bill by 68% by being obsessive about optimization
 source_author: Cloudflare
@@ -133,6 +133,7 @@ Sonnet versions at the same per-token price differed by 47–62% per run.
 
 ## Affected pages
 
+- [[Agentic Testing]]
 - [[Semantic Caching]]
 - [[Reasoning Effort Control]]
 - [[Model Routing]]
@@ -152,6 +153,7 @@ Sonnet versions at the same per-token price differed by 47–62% per run.
 
 ## Related pages
 
+- [[Agentic Testing]]
 - [[Semantic Caching]]
 - [[Reasoning Effort Control]]
 - [[Model Routing]]

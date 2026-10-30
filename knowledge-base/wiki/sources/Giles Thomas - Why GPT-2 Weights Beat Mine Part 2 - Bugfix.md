@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-10-07
+updated: 2026-10-30
 source_id: src-2026-07-31-giles-thomas-gpt2-weights-part-2-bugfix
 source_title: "Why do OpenAI's GPT-2 weights beat mine? Part two: the bugfix"
 source_author: Giles Thomas
@@ -33,18 +33,18 @@ evaluation. Fixing the experiment does not by itself explain the original capabi
   no-MHA-bias/no-dropout JAX model changes **14.66 to 20.72**, moving rank eleven to three.
   These are scores out of 100, not task accuracies or an isolated effect of the deep-copy fix.
 
+## Why it matters
+
+Checkpoint immutability and validation coverage matter before interpreting a capability gap.
+The corrected baseline preserves the original question while preventing future experiments from
+comparing against a checkpoint that was not actually saved.
+
 ## Tensions / open questions
 
 Thomas suspects earlier dropout settings may also have differed for some JAX evaluations, but
 cannot reconstruct the old commands. Judge scores vary across runs; his one-to-two-point noise
 rule is a heuristic, not an estimated confidence interval. The intervention does not isolate
 checkpoint copying, validation coverage, and possible configuration changes.
-
-## Why it matters
-
-Checkpoint immutability and validation coverage matter before interpreting a capability gap.
-The corrected baseline preserves the original question while preventing future experiments from
-comparing against a checkpoint that was not actually saved.
 
 ## Raw capture
 

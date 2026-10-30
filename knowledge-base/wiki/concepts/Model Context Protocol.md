@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-27
+updated: 2026-10-30
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-09-13-weinmeister-build-ai-agents-google-cloud
   - src-2026-09-13-virinchi-google-cloud-mcp-security
   - src-2026-09-30-bytebytego-doordash-agent-gateway
+  - src-2026-10-28-bytebytego-uber-mcp-gateway
 status: active
 ---
 
@@ -126,8 +127,30 @@ invocation.
 `dispatch` tool checks the user's access when a call is made, and AgentCore Gateway, whose policy engine
 filters `tools/list` per caller and also checks every tool call.
 
+## Automatic tool discovery can stop before automatic authorization
+
+[[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]] supplies a more
+explicit lifecycle for the catalog. Uber's Cadence-powered AutoCrawler converts existing
+service/interface definitions into schemas and generated descriptions; native MCP servers
+are discovered through heartbeats and `listTools`. Newly discovered tools and servers are
+**disabled until owner review**, and later changes use approved diffs and rollback.
+
+The Registry is the control plane; the Proxy Gateway periodically refreshes an in-memory
+snapshot and acts as the data plane. Virtual MCP servers translate JSON calls into existing
+HTTP, gRPC/Protobuf, or TChannel/Thrift services. The protocol is therefore a common front
+door, not a requirement that every backend be rewritten as a native MCP server.
+
+Omni MCP progressively discovers servers, tools, and full schemas, while response projection
+and Code Mode constrain different kinds of context growth. Invocation policies and
+third-party credential exchange remain separate from discovery. Unlike DoorDash's planned
+dynamic discovery in the earlier account, these are described parts of Uber's design; this
+secondary source still gives no controlled latency/security result or immediate policy-
+revocation bound for the periodically refreshed proxies.
+
 ## Related pages
 
+- [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
+- [[Uber]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[DoorDash]]
 - [[Agent Observability]]

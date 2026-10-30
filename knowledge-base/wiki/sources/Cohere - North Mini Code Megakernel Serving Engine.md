@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-11
-updated: 2026-10-07
+updated: 2026-10-30
 source_id: src-2026-09-08-cohere-megakernel-serving
 source_title: "Cohere's North Mini Code Megakernel Serving Engine"
 source_author: Cohere
@@ -28,8 +28,9 @@ memory, with inter-task dependencies expressed as **explicit counters** rather t
 
 The measured result for **North Mini Code**, a 30B model with 3.3B active parameters: the megakernel
 reaches **292 tok/s at batch 1, which is 62% of the hardware's speed-of-light against vLLM's 185 tok/s
-(39%)** — a **1.58× speedup**. End-to-end on real benchmarks it is **1.25×–1.41×**, holding to **256K
-context with no measurable accuracy loss**.
+(39%)** — a **1.58× speedup**. Full-server runs at batch 8 report **1.25×–1.41× average decode-throughput
+gains**, not a matched-output wall-time reduction. Separate decode-scaling tests extend to **256K
+context**, and the SciCode accuracy check finds no measurable loss.
 
 The article's value is in the parts that are not the speedup: a complete ABI, a scheduler ablation that
 contradicts the intuitive design, and an honest admission that a causal model of why the tuned schedule
@@ -97,15 +98,20 @@ requests concentrate on the same experts, leaving sparser MoE work and therefore
 megakernel to fill. The conclusion is worth keeping: **"synthetic uniform routing therefore understates
 megakernel speedup on real traffic."**
 
-**End-to-end results across benchmarks**: AIME 2025 **1.41×**, LiveCodeBench v6 1.28×, GPQA 1.25×,
-MMLU-Pro CS 1.33×, SciCode 1.37×. Accuracy is preserved — SciCode **38.9% ± 1.6% against vLLM's 38.2%**
+**Full-server average decode-throughput ratios at batch 8**: AIME 2025 **1.41×**, LiveCodeBench v6
+1.28×, GPQA 1.25×, MMLU-Pro CS 1.33×, SciCode 1.37×. The engines generate different token counts.
+On LiveCodeBench, the megakernel run takes **6,141 seconds** to generate **4,933,421 tokens**, versus
+vLLM's **5,428 seconds** and **3,394,164 tokens**. The reported **803 versus 625 tok/s** yields the
+1.28× throughput ratio even though the megakernel run takes longer overall. This is not a fixed-work
+completion-time comparison. Separately, SciCode accuracy is **38.9% ± 1.6% against vLLM's 38.2%**
 over 7 runs.
 
 **Serving integration is a two-thread design**: a Python control-plane thread and a native C++ decode
-thread that take turns via park/resume.
+thread that take turns via park/resume. The server supports continuous batching, paged attention, and
+ragged sequence lengths. Ordinary PyTorch kernels perform prefill while decoding is paused.
 
 **The stated limitations are substantial**: no mixed prefill/decode, a maximum batch size of 8 (a
-configuration limit, not an architectural one), and decode only.
+configuration limit, not an architectural one), and a megakernel that accelerates decode only.
 
 ## Why it matters
 
@@ -134,15 +140,16 @@ software-side analogue of the tile-geometry constraint documented in
 
 ## Tensions / open questions
 
-- Batch size 8 is the ceiling reported, and production serving runs far above that. The authors call it a
-  configuration limit; nothing here demonstrates the technique holds at higher batch sizes, where
-  arithmetic intensity rises and the memory-bandwidth bound that motivates the work weakens.
-- Decode only, with no mixed prefill/decode support — so this is a component of a serving system, not yet
-  a serving system in the sense continuous-batching engines mean.
+- Batch size 8 is the ceiling reported. The authors call it a configuration limit; nothing here
+  demonstrates the technique holds at higher batch sizes, where the balance between compute and
+  memory costs can change.
+- The megakernel covers decode, but the surrounding server does continuous batching. Missing mixed
+  prefill/decode support means prefill pauses decoding, not that continuous batching is absent.
 - The scheduler is hand-tuned with no causal model, and the authors say so. A different model, or the same
   model on a different GPU, plausibly needs the tuning redone.
-- The 1.58× is against vLLM at batch 1, which is not vLLM's operating point. The end-to-end 1.25×–1.41×
-  range is the more meaningful comparison and is notably narrower.
+- The 1.58× is batch-1 decode throughput, not a ranking under arbitrary production load. Batch-8
+  full-server runs report the narrower 1.25×–1.41× average decode-throughput range; differing output
+  lengths prevent interpreting those ratios as matched-work completion-time gains.
 - Accuracy parity is shown on SciCode over 7 runs (38.9% ± 1.6% vs 38.2%) — reassuring, but a single
   benchmark with overlapping error bars.
 - Shared-memory paging was abandoned as buggy and high-overhead. Whether that is a property of the

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-19
+updated: 2026-10-30
 tags:
   - concept
   - reasoning
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-10-12-bytebytego-energy-based-reasoning
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-10-28-sick-on-policy-self-training
 status: active
 ---
 
@@ -140,6 +141,24 @@ draw that conclusion, and a necessary condition on *where* gradient can flow say
 whether the resulting behavior is new. Li also leaves to later parts of the series
 what policy gradient can and cannot reach.
 
+## Self-training gains depend on the reasoning protocol and do not establish new knowledge
+
+[[Leon Sick et al - On-Policy Self-Training]] supplies a bounded amplification result.
+For Gemma 4 E2B, MMLU rises **37.5 to 47.7 without thinking**, but **69.9 to 71.1 with
+thinking**. The former scores answer-option log-likelihoods; the latter parses generated
+answers. Those are separate baselines and evaluation protocols, not interchangeable evidence
+for one reasoning gain.
+
+The student learns on its own rollouts while an EMA teacher sees additional generated
+answer/rationale context; that teacher is also the final evaluated checkpoint. Fresh-context
+and paraphrase checks test consistency, not factual truth. The authors describe amplification
+of pretrained knowledge and acknowledge that consistent errors survive.
+
+The result therefore informs rather than settles the create-versus-amplify question.
+Hand-picked topics and small-model experiments bound its scope, and the all-three-domain
+mixture loses **4.9 MATH-500 points** despite an improved out-of-domain average. Better
+aggregate scores cannot substitute for capability-specific retention checks.
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -148,6 +167,9 @@ what policy gradient can and cannot reach.
 
 ## Related pages
 
+- [[Leon Sick et al - On-Policy Self-Training]]
+- [[Knowledge Distillation]]
+- [[Continual Learning for Agents]]
 - [[Yingru Li - The Gradient Is a Covariance]]
 - [[ByteByteGo - How to Build Models Without Language]]
 - [[Energy-Based Model]]

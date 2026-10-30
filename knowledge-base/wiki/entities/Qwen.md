@@ -2,7 +2,7 @@
 type: entity
 entity_kind: model-family
 created: 2026-09-03
-updated: 2026-10-27
+updated: 2026-10-30
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-10-21-baselabs-mammoth-elephant
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-07-03-sebastian-raschka-local-coding-agents
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-22-agrawal-qwenputer
 status: active
 ---
 
@@ -133,7 +135,26 @@ train on text while retaining a frozen vision encoder; image/video training and 
 are future plans. Their scores characterize those derivatives and protocols, not the
 Qwen family as a whole.
 
+## Compiled execution and self-training change different parts of different checkpoints
+
+[[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] leaves
+**Qwen3.5-4B's weights unchanged** and adds eleven compiled CPU layers before its 32 layers.
+Explicitly addressed Gated DeltaNet state provides bounded RAM; a custom driver manages
+firmware and trace-token routing. Creator-reported CPU tests do not make language-model
+task selection infallible, and the **18.8 GB** checkpoint is roughly twice the base size.
+This is a derivative construction, not a native Qwen feature or learned arithmetic result.
+
+[[Leon Sick et al - On-Policy Self-Training]] instead trains **Qwen3-4B-Base**, reporting a
+benchmark average of **66.7 to 72.7 (+6.0)** without instruction tuning. Generated curricula
+and privileged EMA-teacher supervision update parameters; the evaluated checkpoint is the
+EMA teacher. This extension is separate from the paper's main Gemma experiments and from
+Qwenputer's compiled network. Neither result transfers to every Qwen checkpoint.
+
 ## Related pages
+
+- [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
+- [[Leon Sick et al - On-Policy Self-Training]]
+- [[Knowledge Distillation]]
 
 - [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 - [[Typed Probabilistic Decision Models]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - concept
   - ai-agents
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-08-07-mahesh-sathiamoorthy-rl-environments-agents
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-10-21-databricks-memcurrent
+  - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-10-27-behrouz-mirrokni-sleep-framework
 status: active
 ---
 
@@ -117,6 +119,35 @@ the ablations covering memory type and access pattern only. There is no retraini
 claim of one; the agent model (Claude Opus 4.6) and memory model (GPT 5.6 sol) stay fixed while the
 files change.
 
+## Offline consolidation can update parameters instead of files
+
+[[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]] gives the consolidation schedule a
+different update surface from MemCurrent. Wake acquires information in fast memory; sleep
+pauses new input, distills into slower parametric memory, and resets temporary high-frequency
+parameters. Preallocated low-rank expert blocks provide additional capacity within a fixed
+architecture. This is training, not a model rewriting an external Markdown store.
+
+The Google Research blog reports near-zero forgetting for sequential unseen-language
+translation and BABILong scaling through **10 million tokens** of consolidation. Neither is
+a general no-forgetting guarantee or a native attention-window size. The captured blog does
+not establish a production latency budget, full experimental comparability, or independent
+replication. Its relevance here is a candidate mechanism and cadence, not demonstrated
+continual learning by deployed agents.
+
+## Average transfer can improve while a retained capability regresses
+
+[[Leon Sick et al - On-Policy Self-Training]] supplies a useful counterweight to strong
+retention language. Its text post-training uses hand-selected topic descriptors and generated
+questions, consistency checks, student-conditioned filtering, and a privileged EMA teacher.
+In the all-three-domain mixture, the out-of-domain average rises **0.8 points**, but **MATH-500 falls 4.9 points**;
+the MMLU/HellaSwag mixture loses **8.5** there.
+
+The result is not a production-agent trial, but it directly motivates per-capability
+regressions in the promotion gate above. Dense self-distillation can improve the aggregate
+without preserving every skill. More iterations are not a safety argument either: no-thinking
+E2B MMLU peaks at **47.7 after seven rounds** and falls to **46.2 at twelve or twenty**.
+A stopping rule without labeled validation remains open.
+
 ## Open questions
 
 - How should rewards be normalized across tasks with different difficulty and value?
@@ -135,6 +166,10 @@ files change.
 
 ## Related pages
 
+- [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
+- [[Leon Sick et al - On-Policy Self-Training]]
+- [[Nested Learning]]
+- [[Knowledge Distillation]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
 - [[Databricks]]
 - [[Context Engineering]]

@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-10-23
+updated: 2026-10-30
 tags:
   - post
 status: active
@@ -46,6 +46,7 @@ materially different angle, and that post must say what is new.
 | 2026-10-09 | [[2026-10-09 The Model Can Read Without Writing]] | 2026-10-03 → 2026-10-09 | [[Semantic Recommendation Systems]] | LinkedIn, X | ready |
 | 2026-10-16 | [[2026-10-16 The Next Model Can Skip the Reread]] | 2026-10-09 → 2026-10-16 | [[KV Cache]] | LinkedIn, X | ready |
 | 2026-10-23 | [[2026-10-23 The Skyline Was the Message]] | 2026-10-16 → 2026-10-23 | [[Chain-of-Thought Monitoring]] | LinkedIn, X | ready |
+| 2026-10-30 | [[2026-10-30 The Shared Part Was Never Saved Alone]] | 2026-10-23 → 2026-10-30 | [[Semantic Caching]] | LinkedIn, X | ready |
 
 ## Superseded drafts
 
@@ -60,6 +61,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-10-30 - first-request reuse, prompt-cache boundaries, shared versus variable context
 - 2026-10-23 - messages in images, visual information channels, multimodal evaluation
 - 2026-10-16 - cross-model cache handoffs, context transfer, model routing, internal state portability
 - 2026-10-09 - language models without text generation, catalog ranking, bounded output, product output design
@@ -74,6 +76,8 @@ materially different angle, and that post must say what is new.
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
 
+- An improved average can hide a lost capability: the on-policy self-training paper reports mixed retention across tasks. Scored 26/30 on October 30; keep per-capability results rather than describing universal improvement - [[Continual Learning for Agents]], [[Leon Sick et al - On-Policy Self-Training]]
+- Require an agent optimizer to name a test that could disprove its proposal: Decagon's reported workflow separates proposing from scored execution and retains human deployment approval. Scored 26/30 on October 30; performance-baseline wording remains ambiguous - [[Software Performance Engineering]], [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
 - An AI supervisor can spend the attention it is meant to save: McAteer reports skimming checks triggered on 99 of 111 turns; frequency is not a false-positive rate or measured usefulness. Scored 28/30 in the October 23 replacement round - [[Coding Agent Harness]], [[Dan McAteer - Claude Mods and the Attention Interface]]
 - Teach a decision model that the correct answer may be absent: Base Labs describes adding abstention options and sometimes removing the correct choice during training; reliability gains from this ingredient are not isolated. Scored 25/30 in the October 23 replacement round - [[Typed Probabilistic Decision Models]], [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 - Acceptance is not end-to-end speed: speculative-decoding gains depend on draft cost and serving conditions. Reframed after the October 16 lint; the earlier 1.21×–2× cap reading is withdrawn - [[Speculative Decoding]], [[Serving Benchmarks and Goodput]]
@@ -107,12 +111,12 @@ materially different angle, and that post must say what is new.
 
 <!-- Page - post date - cooldown ends. Prune entries once expired. -->
 
-- [[Agent Memory]] - posted 2026-09-18 - cooldown ends 2026-10-30
 - [[Just-in-Time Agentic OCR]] - posted 2026-09-25 - cooldown ends 2026-11-06
 - [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
 - [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
 - [[KV Cache]] - drafted 2026-10-16 - cooldown ends 2026-11-27
 - [[Chain-of-Thought Monitoring]] - drafted 2026-10-23 - cooldown ends 2026-12-04
+- [[Semantic Caching]] - drafted 2026-10-30 - cooldown ends 2026-12-11
 
 ## Related pages
 

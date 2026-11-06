@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - production
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-10-19-vercel-durable-harness
   - src-2026-10-16-opensearch-beyond-top-k
+  - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-axjns-celln-execution-lease
 status: active
 ---
 
@@ -237,6 +239,40 @@ routing to a person carries the caveat the
 [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]] section attaches to human
 review: a control with its own failure rate.
 
+## A lease needs a fencing check, and an idempotency key needs a downstream that honours it
+
+The replay-policy section leaves an interrupted non-idempotent call to the model's judgment.
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] states the
+missing rules as requirements on the executor and the downstream system, not on the agent.
+
+- **Fencing.** "A lease alone cannot prevent an expired worker from acting." A worker that paused,
+  crashed or lost its claim can still send a request. "The executor must reject stale fencing tokens or
+  equivalent obsolete authority."
+- **Idempotency.** "An idempotency key only prevents duplicate effects if the downstream system honours
+  it; otherwise recovery must reconcile external state before retrying."
+- **Fail closed.** When the system cannot confirm current authority, it should "fail closed for
+  actions", while read-only investigation may continue on explicitly stale state.
+
+The paper's hypothetical incident walks through the case this page worries about. A containment agent
+restarts after its lease expires, and its old isolation request is rejected. Its replacement reads the
+outstanding action record and "reconciles the endpoint's actual state before attempting a retry".
+
+[[axjns.dev - The Agent Environment Should Be a Lease]] applies the same rule at the execution layer.
+"If an execution request times out, the control plane must learn whether the work ran before
+resubmitting it. A retained receipt and an idempotency contract are as important as a fast start."
+
+Together these sharpen the reconciliation this page has been asking for. Retry is safe only when one of
+three things holds:
+
+- the operation is idempotent;
+- the downstream system dedupes by key;
+- someone has established whether the first attempt took effect.
+
+The Vercel replay policy above covers the first case through `replay: 'safe'`. It hands the third case
+to the model, which "decides whether to check". The membrane makes that check mandatory and places it
+outside the model. Both sources are proposals without failure-injection results. Neither says what to do
+when the downstream system honours no key and its state cannot be read.
+
 ## Open questions
 
 - No established detection mechanism exists for semantic failure beyond schema validation, trusted-source
@@ -270,6 +306,9 @@ review: a control with its own failure rate.
 
 ## Related pages
 
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[axjns.dev - The Agent Environment Should Be a Lease]]
+- [[Celln]]
 - [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
 
 - [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]

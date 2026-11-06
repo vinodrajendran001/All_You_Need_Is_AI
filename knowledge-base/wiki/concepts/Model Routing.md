@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - routing
@@ -28,6 +28,7 @@ source_ids:
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-10-15-cohere-agent-teams
   - src-2026-10-20-cloudflare-inference-bill
+  - src-2026-11-02-alphasignal-timestral
 status: active
 ---
 
@@ -344,6 +345,31 @@ credited with **$1.06** of a **$1.67** drop, against **$0.65** for code changes,
 hours before and after a change, "so this isn't a statistically sound controlled experiment". The Sonnet
 split ran two and a half days, and per-run savings depend on these reviewer prompts and this harness.
 
+## Routing across model classes, not only model tiers
+
+Every other section on this page routes among language models or between a language model and a
+typed decision model. [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
+widens the destination set. Its illustrative inventory agent sends demand forecasting to Mistral's
+Timestral, stockout risk to TabPFN, supplier-delay prediction across linked tables to Kumo
+Relational, and categorization to Jev. A frontier reasoning model then combines the results,
+explains the recommendation, and flags decisions needing approval, while application code checks
+inventory limits and purchasing rules before any action. The article's starting rule is a
+three-way split: find where flexible reasoning is required, where a specialized model can make a
+"measurable prediction", and where deterministic code is sufficient.
+
+That rule joins two threads already here. The deterministic share is the thin-orchestrator position
+above, applied to enforcement rather than dispatch. The specialized share is a routing decision by
+**data shape** — time series, labelled table, or relational database — rather than by difficulty or
+price. Shape is usually known from the task specification, so (this page's inference, not the
+article's) the choice can be made in code rather than by a learned router, which avoids the
+threshold-setting problem this page records for confidence-based escalation. The cost of the choice
+moves elsewhere: each specialist is another model to evaluate on the application's own data and
+monitor in production, which the article itself says these models still need. It also concedes that
+they are "not always faster or cheaper" than gradient-boosted trees such as XGBoost or CatBoost, so
+the cheapest destination for a stable, well-labelled prediction may be a conventional model rather
+than any foundation model. The example is a design sketch, with no reported deployment, latency, or
+cost; see [[Tabular Foundation Models]] and [[Typed Probabilistic Decision Models]].
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -367,9 +393,14 @@ split ran two and a half days, and per-run savings depend on these reviewer prom
   measured per task family?
 - Two model versions at the same per-token price differed by 47-62% in cost per run at Cloudflare. How
   often must a router's cost table be re-measured on its own traffic, and does every model update reset it?
+- When an agent routes by data shape to several specialist models, who owns evaluation and drift
+  monitoring for each, and at what call volume does that overhead exceed asking one frontier model?
 
 ## Related pages
 
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
+- [[Tabular Foundation Models]]
+- [[Mistral]]
 - [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
 - [[Cloudflare - Cutting Our Inference Bill by 68% by Being Obsessive About Optimization]]
 - [[Cohere]]

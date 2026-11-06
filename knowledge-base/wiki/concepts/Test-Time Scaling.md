@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - reasoning
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-10-19-alphasignal-next-concept-modeling
   - src-2026-10-19-naam-million-agents-superintelligence
   - src-2026-10-15-cohere-agent-teams
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -206,6 +207,35 @@ matched, so no run gives one agent the team's budget. Fixed-size teams ran once,
 vendor-reported on one benchmark, and pairing cheap workers with a strong lead makes width a
 [[Model Routing]] decision as well.
 
+## Collective scaling can be trained, and its payoff is latency
+
+[[General Reasoning - How to Train a Swarm]] makes the training-side argument the sections above lack.
+Its premise is that the reasoning paradigm's length-with-accuracy curve came from incentives: "a naive
+reinforcement learning setup is not guaranteed to get this scaling pattern". It applies the same logic
+to width. "Collective inference-time scaling" has to be rewarded, and what makes it worth rewarding is
+time. A diagram contrasts three ways to spend about the same compute: extended reasoning at **100**
+minutes elapsed, independent attempts then selection at **28**, and a communicating organisation at
+**46**. These are diagram values with no stated measurement behind them. The post's reading is that
+when independent attempts suffice, communication "may just add unnecessary overhead"; coordination
+pays when work is "imperfectly parallelisable".
+
+The Avalon-M1 results are first-party and the chart values were not captured:
+
+- A collective with **5-8** hires starts below the average rollout on a proxy for useful work (output
+  and reasoning tokens of turns that act on the environment). By step **200** it does "nearly twice the
+  average amount".
+- Communication compute, total inference compute and normalised performance rise together during
+  training. The authors say this is "consistent with" coordination but does not establish usefulness.
+- A single agent given as many output tokens as the collective "will recover much of the performance
+  gain, but take longer to do it". At a matched-token budget the single-agent baseline takes **4x** as
+  long. On EdgeBench an 8-hire organisation overtakes it at about **2.4 hours** of derived latency.
+
+This supports Naam's split between speed and score from a different direction. When tokens are matched,
+the claimed gain is mostly speed, not a higher ceiling. It also adds a within-episode time profile that
+the curves above do not report. Collectives start behind single agents because of coordination
+overhead and only pull ahead later in an episode. See [[Multi-Agent Coordination]] and
+[[Reward Design for RL]].
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -216,7 +246,10 @@ vendor-reported on one benchmark, and pairing cheap workers with a strong lead m
   collected agent curves report speed and score against agent count, never against an equal-compute
   single-agent alternative. [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
   does not fill the gap: it reports each team's cost beside its score but never gives one agent the
-  same budget.
+  same budget. [[General Reasoning - How to Train a Swarm]] (2026-11-06 ingest) reports the first
+  matched-token comparison recorded here: a single agent with extended thinking, given the
+  organisation's tokens, takes **4x** as long. It is first-party, and its benchmark set, budget and
+  variance were not captured, so the gap is narrowed rather than closed.
 - **What determines N?** The saturation points above range from 8 agents in the diversity study to beyond 100
   in formal math, and nothing in the evidence explains the spread — the formal-math results in particular do
   not distinguish a sequential bottleneck from a missing insight. Within one testbed,
@@ -226,8 +259,14 @@ vendor-reported on one benchmark, and pairing cheap workers with a strong lead m
   implementer got a thinner slice of the plan; each fixed-size team was run once.
 - **Does parallel scaling on benchmarks transfer to anything else?** Every curve is a benchmark result, and
   the source does not establish that the shapes hold on open-ended work.
+- **Does trained coordination survive scale-up?** Avalon-M1 trained collectives of at most **9** agents,
+  while deployed swarms run to hundreds or thousands. Its authors call this "the village problem" and do
+  not know what generalises.
+
 ## Related pages
 
+- [[General Reasoning - How to Train a Swarm]]
+- [[General Reasoning]]
 - [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
 - [[Cohere]]
 - [[Model Routing]]

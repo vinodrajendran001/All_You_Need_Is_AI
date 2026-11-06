@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - reasoning
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-12-bytebytego-energy-based-reasoning
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-10-28-sick-on-policy-self-training
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -103,6 +104,27 @@ The same note treats controlling test-time budget in deployed agents as unsolved
 `/effort ultracode` mode as insufficient for scaling it. See [[Test-Time Scaling]] and
 [[Long-Horizon Credit Assignment]].
 
+## Length scaling is an incentive outcome, not a default
+
+[[General Reasoning - How to Train a Swarm]] adds a second route to the same collapse, through the
+estimator rather than the reward. Its premise is that the reasoning paradigm's signature curve, with
+responses lengthening as accuracy rises, "is not guaranteed" from a naive RL setup. A standard PPO recipe
+with **γ<1 and/or λ<1** would likely not have produced it. The cited Open-Reasoner-Zero ablation shows PPO
+with **GAE λ = 1** lengthening its responses, while **λ = 0.95** collapses response length within about
+**50 steps**. Fu's account blames a sparse or poorly shaped reward. This one blames a biased advantage
+under an unchanged reward. Both say that whether a policy learns to think longer is decided by training
+choices, not by the model alone.
+
+The post names a second condition: priors. Weaker base models "with less exposure to high-quality
+mathematics data are less able to explore and reinforce useful inference-time tactics". It credits OpenAI
+with finding the recipe first while having "a GPT-4 level base model before anyone else". This bears on
+the first open question below by treating base-model priors as a precondition for RL to reinforce useful
+tactics, though as an argument rather than a new measurement. The authors then extend the incentive
+argument from length to width, training collectives
+whose useful inference compute is organised across agents (see [[Test-Time Scaling]] and
+[[Multi-Agent Coordination]]). The source is first-party and partly retrospective. The ablation it cites
+belongs to Open-Reasoner-Zero, not to General Reasoning.
+
 ## A constrained specialist tests a task, not the limits of every language-model system
 
 [[ByteByteGo - How to Build Models Without Language]] reports Logical Intelligence's Kona
@@ -167,6 +189,7 @@ aggregate scores cannot substitute for capability-specific retention checks.
 
 ## Related pages
 
+- [[General Reasoning - How to Train a Swarm]]
 - [[Leon Sick et al - On-Policy Self-Training]]
 - [[Knowledge Distillation]]
 - [[Continual Learning for Agents]]

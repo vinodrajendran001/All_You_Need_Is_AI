@@ -111,7 +111,8 @@ failed without tools.
   1.5)**, which does not match the MATH-500 table (7.9 → 48.1). The capture does not say which set
   produced 49.8.
 - **Reading needed tools at scale.** Exp 7 failed from raw weights, and Exp 3 and Exp 8 relied on
-  analysis code. "Reads weights natively" is clearest only for small networks.
+  analysis code. The title's claim that LLMs "can natively read & write" weights is clearest only for
+  small networks.
 - **Identity hedge.** The byline's "Alex Zhang" may be the Alex L. Zhang covered elsewhere in this
   vault, whose entity page records Omar Khattab as advisor. The capture gives no affiliation or link
   that establishes it, so this summary does not link that entity.

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-27
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - reinforcement-learning
@@ -10,6 +10,7 @@ tags:
   - training
 source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -115,6 +116,22 @@ different models differently, train them identically and stop at different rungs
 limitation** — the source does not establish that a 3B model could not have learned agentic
 behavior, only that it was not given the stages. See [[Small Language Models]].
 
+## A schedule can relax a constraint instead of adding a stage
+
+[[General Reasoning - How to Train a Swarm]] shows a third kind of curriculum, distinct from both the
+staged chain on this page and the within-run data curricula it is contrasted with. Avalon-M1 is trained
+under a maximum wall-clock cap that **increases over training**. Early in training the cap is short. As it
+rises, the policy "learns to co-ordinate over longer horizons", and a collective gets more time to recover
+its initial coordination costs. The stated reason for the schedule is an asymmetry: single agents
+"typically make more progress than collectives initially as they have less co-ordination overhead".
+
+This sits within one run, like ScalingInter-RL's growing interaction budget. Its schedule loosens a
+constraint on the episode rather than changing the task data or the objective. It shares this page's
+weaknesses. The schedule's shape is not given in the captured text, the chart values were not captured,
+and the post reports no fixed-cap baseline. The authors list "the deadline and its schedule" among the
+important design choices without saying how they were chosen. See [[Reward Design for RL]] and
+[[Agentic Reinforcement Learning]].
+
 ## Costs and unknowns
 
 - **Nothing is ablated.** The staged chain is presented as what was done, never against a
@@ -143,6 +160,8 @@ behavior, only that it was not given the stages. See [[Small Language Models]].
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
+- [[General Reasoning - How to Train a Swarm]]
+- [[General Reasoning]]
 - [[Agentic Reinforcement Learning]]
 - [[Group Relative Policy Optimization]]
 - [[Reward Design for RL]]

@@ -1,10 +1,11 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-09-11
+updated: 2026-11-06
 tags: [concept, tabular-data, enterprise, foundation-models, in-context-learning]
 source_ids:
   - src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
+  - src-2026-11-02-alphasignal-timestral
 status: active
 ---
 
@@ -23,6 +24,13 @@ explicitly, rather than as a flattened token sequence. Current designs realise t
 row and column attention** (TabFM), **distribution-aware column embedding followed by row-wise attention**
 (TabICL), **prior-data fitted networks** trained on synthetic tasks (TabPFN), or **graphs of interconnected
 tables** (KumoRFM).
+
+**Scope note (2026-11-06).** This page also holds the neighbouring **time-series** and **relational**
+foundation models. They share the defining move — pretraining, often on synthetic data, so that a
+new dataset needs in-context examples rather than a training run — and the same structured-data
+inductive-bias argument, but forecasting returns future numerical values over a horizon rather
+than a target column. The tabular definition above is unchanged; the extension is recorded in the
+section on the wider family below.
 
 ## Why it matters
 
@@ -66,11 +74,62 @@ BigQuery, and NVIDIA acquired Kumo in June 2026 and folded KumoRFM into its Stru
 Models ecosystem. If zero-shot prediction becomes a SQL-adjacent primitive, the relevant comparison stops
 being "TFM vs XGBoost" and becomes "prediction in the warehouse vs a pipeline outside it."
 
+## A wider family: time series, relational data, and typed decisions
+
+[[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] is the vault's second
+source on this topic, from the same newsletter as the first, and it widens the category. Its hook is
+Mistral's **Timestral**, forecasting models in four sizes (**5M, 28M, 123M, and 209M** parameters).
+The design mirrors the TFM argument in this page's *Why it matters* section for a different data
+shape: a transformer whose inputs are patches of **32** numerical observations rather than text
+tokens, a "Decoupled Horizon Forecasting" method separating history from future-prediction tokens,
+synthetic pretraining followed by real and synthetic data, and outputs as a median plus quantiles.
+Supplying past sales and a horizon returns a forecast with no per-series fit, which is the contrast
+with ARIMA's one-model-per-series workflow. The same article restates the LLM objection this page
+makes for tables: language models predict text tokens and are "not necessarily better forecasters."
+
+The article's catalogue overlaps with this page and changes one detail:
+
+- **TabPFN** is described as trained across millions of synthetic datasets, matching the prior-data
+  fitted network entry above.
+- **Kumo Relational** predicts across linked customer, order, and product tables while preserving
+  relationships and timestamps. Its Predictive Query Language "lets AI agents request predictions,"
+  which makes the tool-not-backbone pattern above an explicit interface. Whether it is the same
+  product as the **KumoRFM** named above, or a successor, the capture does not say.
+- **Jev** is grouped with these models as a decision model; see
+  [[Typed Probabilistic Decision Models]].
+
+**The accuracy question is no longer silent, but it is still unsupported.** The earlier source made
+no benchmark claim against gradient-boosted trees. The new one says TabPFN "outperformed conventional
+ML baselines" in unnamed experiments, reports that Kumo Relational beat supervised baselines across
+**41** tasks on **15** databases, and says Timestral leads "three public forecasting benchmarks"
+among zero-shot pretrained models (later "multiple industry benchmarks"). None of those names a
+benchmark, a baseline model, or a margin. The capture attributes the Kumo result to **NVIDIA**; that
+may be a newsletter error, or may follow from the NVIDIA acquisition of Kumo recorded above. The
+statement that TFMs beat XGBoost-class models on predictive quality therefore remains unverified
+here.
+
+**The cost position agrees with the dual stack.** The same article says these models "are not always
+faster or cheaper than traditional models such as XGBoost or CatBoost," that "their advantage is
+mostly in reducing development costs," and that they still need clean data, application-specific
+evaluation, and monitoring. That is the phase-dependence claim in *Current synthesis*, made by a
+second article. Its one latency figure — the smallest Timestral model forecasting **96** steps from
+**2,048** observations in **17 milliseconds** on eight CPU threads — is a single configuration and
+says nothing about accuracy at that size. The article's inventory-agent example (Timestral for
+demand, TabPFN for stockout risk, Kumo Relational for supplier delays, Jev for categorization, a
+reasoning model to combine, application code to enforce rules) is an illustration, not a reported
+deployment; see [[Model Routing]].
+
 ## Open questions
 
 - **Every quantitative claim here rests on one promotional newsletter.** TabICL's 500,000-sample /
   500-feature envelope and its 10× speed advantage over TabPFNv2 are source-reported and untraced to
   primary papers. The vault has no second source on this topic and no independent corroboration.
+  **Updated 2026-11-06:** a second Alpha Signal article now covers the topic, but it is from the same
+  publisher, relays vendor-reported results without benchmark names, and adds no independent
+  corroboration.
+- **How do time-series and relational variants fail under distribution shift?** Timestral was
+  pretrained first on synthetic sequences, and Kumo Relational is presented as a foundation model
+  for relational databases in general; no source here tests either on data unlike its training mix.
 - **Where is the dual-stack crossover?** "Once the schema is stable" is a judgement, not a threshold. No
   source here quantifies the request volume, latency budget or schema-churn rate at which the switch pays.
 - **What does synthetic-only pre-training cost?** TabFM and TabPFN are trained on synthetic tasks, framed
@@ -86,6 +145,9 @@ being "TFM vs XGBoost" and becomes "prediction in the warehouse vs a pipeline ou
 ## Related pages
 
 - [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]]
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
+- [[Mistral]]
+- [[Typed Probabilistic Decision Models]]
 - [[Inference Efficiency Frontier]]
 - [[AI Agents in Production]]
 - [[Tool Use and Function Calling]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - world-models
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-07-rai-lejepa
   - src-2026-09-14-rhoda-web-video-pretraining-robots
   - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
 status: active
 ---
 
@@ -118,14 +119,49 @@ where its physics holds, and for robot control the missing physics is concentrat
 manipulation. Potter also cites NVIDIA's Cosmos, a video-trained foundation model usable as a
 robot-policy backbone, without performance evidence. See [[Robot Training Data]].
 
+## Offline generation and closed-loop simulation need different generators
+
+[[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] turns
+Potter's passing mention of Cosmos into a product description. It also splits generation by
+**how the output will be consumed**:
+
+- **Offline synthetic data** can use a **bidirectional** generator. Cosmos3-Nano-Transfer-Auto
+  denoises "an entire multi-view clip at once", up to **400 frames** at **30 fps**. A prompt edit
+  turns a daytime drive into a rainy night "while keeping the same road layout and vehicle
+  trajectories".
+- **Closed-loop simulation** needs a **causal**, few-step distilled variant. Cosmos3-Nano-Sim-Auto
+  streams camera and LiDAR observations autoregressively while a driving policy or human changes
+  the scenario, and the outputs return to the policy. Cosmos3-H-Dreams does the same for surgical
+  robots, generating frames from live kinematics.
+
+The reason is structural: the next frame in a closed loop depends on an action that has not yet
+been taken, so the clip cannot be denoised as a whole. In the Fei-Fei Li taxonomy, these
+checkpoints are renderers conditioned on state or actions, and they differ in who holds the
+state. Sim-Transfer paints RGB over depth or segmentation video "while the simulator maintains
+physical state". Sim-Auto's figure has the AlpaSim runtime update the scenario and pass it to
+the generator through World Scenario Map controls. Both are engine-authoritative hybrids like
+Roblox's. Sim-Bimanual and Cosmos3-H-Embodied-Nano instead predict observations directly from
+actions. For surgery this is pitched as "a complementary approach" to classical simulators,
+which struggle with "complex multi-physics", so the learned model carries the dynamics itself.
+
+This is vendor documentation. It shows reference runs and output checks (finite LiDAR values,
+alignment across views) but **no measure of physical fidelity, sim-to-real transfer or policy
+improvement**. The "simulation is the linchpin" thesis therefore gains infrastructure here, not
+evidence.
+
 ## Open questions
 
 - What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
 - Can world models generalize robustly enough for open-ended real-world environments, or will they remain strongest in constrained domains?
+- How much fidelity do causal, few-step distilled world models lose relative to their bidirectional
+  teachers, and is it enough to change a policy evaluation's verdict?
 - The unified world model thesis faces a data imbalance problem the essay itself identifies: video data for renderers vastly outweighs 3D+physics data for simulators. Can this gap be closed synthetically?
 
 ## Related pages
 
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[NVIDIA]]
+- [[Autonomous Driving Systems]]
 - [[Brian Potter - How to Train Your Robot]]
 - [[Robot Training Data]]
 - [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]]

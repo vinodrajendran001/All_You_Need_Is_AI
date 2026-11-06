@@ -81,8 +81,8 @@ contained" and that "unrelated content is preserved".
 
 That shifts what has to be validated. Here the native format plays the part a constrained
 component language plays above. Figma pairs deterministic validators of structure with visual
-model judges, and scores separately for alignment, contrast, request fulfillment and use of the
-correct design-system component. Expert designers calibrate those judges. Generation from
+model judges, and scores dimensions such as alignment, contrast, request fulfillment and use of
+the correct component separately. Expert designers calibrate and review the results. Generation from
 scratch is not routed to this model: image generation, vectors and new explorations go to
 third-party models, and the first-party model handles precise edits. The account is first-party,
 and it reports no accessibility, versioning or state-persistence guarantees of the kind raised

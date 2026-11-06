@@ -243,22 +243,23 @@ review and invocation authorization are distinct controls, as in the earlier gat
 ## Deferred definitions have a cache cost that depends on where they land
 
 [[Factory Research - Droid 1.0 - Building a Frontier Harness]] adds a coding-harness case with
-before-and-after token counts for the resident roster. Between Droid 0.170.0 and 0.250.0, [[Factory AI]]
-cut the tool definitions sent up front from **11** to **2**, with rarely used tools loaded on demand
-when the model needs them. Tool-definition tokens on the first request fell from **15,798** to
-**8,528**, the largest part of a cut from **20,887** to **13,055** in total. The two releases ran
-on different models with different tokenizers; measured in characters, the whole request fell
-**35%**. This is the resident-schema saving the gateway sources above describe but do not measure.
+before-and-after token counts for the resident roster. Between Droid 0.170.0 and 0.250.0,
+[[Factory AI]] cut the tool definitions sent up front from **11** to **2**, with rarely used tools
+loaded on demand when the model needs them. Tool-definition tokens on the first request fell from
+**15,798** to **8,528**, the largest part of a cut from **20,887** to **13,055** in total. The two
+releases ran on different models with different tokenizers; measured in characters, the whole
+request fell **35%**. This is the resident-schema saving the gateway sources above describe but do
+not measure.
 
-The new point is about placement. Providers cache requests by prefix, and tool definitions
-traditionally sit near the top, so loading a tool mid-session by inserting it into the tool list
-invalidates everything after it. Droid now appends newly discovered tools to the end of the request.
-In Factory's illustration of a request of about **100,000** tokens, insertion meant **73,500**
-tokens processed fresh and **28,000** reused; appending meant **1,500** fresh and **100,000**
-reused. A before-and-after test on Azure reused all **26,400** tokens of the prior request after a
-tool load. On-demand loading is therefore cheap only if it preserves the cached prefix. The Codex
-case in [[Agentic Loop]] shows the same rule from the other direction: tool definitions serialized
-in a different order on each request broke the prefix match.
+The new point is about placement. Providers cache requests by prefix, and tool definitions sit near
+the top, so loading a tool mid-session by inserting it into the tool list invalidates everything
+after it. Droid now appends newly discovered tools to the end of the request. In Factory's
+illustration of a request of about **100,000** tokens, insertion meant **73,500** tokens processed
+fresh and **28,000** reused; appending meant **1,500** fresh and **100,000** reused. A
+before-and-after test on Azure reported all **26,400** tokens reused after a new tool loaded.
+On-demand loading is therefore cheap only if it preserves the cached prefix. The Codex case in
+[[Agentic Loop]] shows the same rule from the other direction: tool definitions serialized in a
+different order on each request broke the prefix match.
 
 Two limits apply. The extra-call side of on-demand loading is not reported, so this page's open
 question about whether a search-first roster pays for its extra calls is still unanswered. The post

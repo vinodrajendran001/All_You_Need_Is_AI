@@ -125,8 +125,9 @@ from transient execution ([[Celln]]) by an explicit seam that lets either side c
 - Canonical URL: https://axjns.dev/blog/post-kubernetes-genai
 - Site: axjns.dev. The capture names no author and gives no publication date. The post is in the
   first person and links the author's Sympozium and Celln work. No byline is assigned.
-- Discussed source: Modal, "scaling to 1 million concurrent sandboxes in seconds" (blog), published
-  16 July 2026 per this post. It was not captured in the vault.
+- Discussed source: Modal's million-sandbox demonstration (blog; URL slug
+  `scaling-to-1-million-concurrent-sandboxes-in-seconds`), published 16 July 2026 per this post. It
+  was not captured in the vault.
 - Captured: 2026-11-04.
 
 ## Related pages

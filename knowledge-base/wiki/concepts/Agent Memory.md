@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -28,6 +28,8 @@ source_ids:
   - src-2026-10-26-alphasignal-memory-tax
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
   - src-2026-10-22-agrawal-qwenputer
+  - src-2026-11-04-axjns-agents-share-work
+  - src-2026-11-04-axjns-synthetic-membrane-paper
 status: active
 ---
 
@@ -427,6 +429,39 @@ rule**. Explicit records can live inside a network state; durable parameters can
 offline; an external store can still lose information during model-written consolidation.
 None of those locations alone establishes inspectability, correctness, or unlimited recall.
 
+## Memory shared by several agents needs addressable evidence, visible retractions, and enforced claims
+
+Most of this page treats memory as one agent's store. [[axjns.dev - Agents Need Somewhere to Share Their Work]]
+and [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] ask what a
+store must guarantee when several agents read and write it during the same task. Their answer extends the
+evidence-versus-description separation above from one record to a whole team.
+
+- **Addressable evidence.** "An observation has a stable identifier, source, scope, and observation
+  time. Interpretations refer to evidence rather than silently replacing it." In the blog's wording, "A
+  summary points back to its source."
+- **Dependent reports.** "Repeated summaries of the same source are dependent reports, not independent
+  corroboration." A store that counts how often a claim appears will over-weight it.
+- **Retraction as a record.** "A retracted claim stays identifiable as retracted." The paper proposes
+  an append-only event history in which "Corrections append a superseding or retracting record", and
+  dependent conclusions are flagged for review. This is one concrete answer to the open question below
+  on whether newer facts overwrite older ones: neither, the newer record supersedes and the older one
+  stays visible.
+- **Recovery without replay.** "A replacement agent can obtain an authorised snapshot and subsequent
+  changes without replaying an entire conversation into its context window." That is the
+  selected-state-not-replayed-history position above, applied to a handoff between agents.
+- **Scoped reads.** In the paper's incident example, a communications agent receives "a restricted
+  summary suitable for its role" and gets no raw endpoint evidence "merely because all agents
+  participate in the same incident". Scope is per role as well as per tenant, user and session.
+
+The blog also marks the limit of memory as a coordination tool. An exclusive task claim "needs
+enforcement at execution time so that two workers cannot act on competing assumptions about ownership.
+Shared memory on its own does not provide that guarantee." Memory records who claims the work; it does
+not stop a second worker. [[Harness State Authority]] and [[Multi-Agent Coordination]] carry that part.
+
+Neither piece measures a memory system. The paper is a position paper with an evaluation plan, and the
+blog's five-agent simulation demonstrates mechanics only. The faults the paper proposes to inject, such
+as stale evidence and a poisoned claim, have not been tested.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -458,6 +493,9 @@ None of those locations alone establishes inspectability, correctness, or unlimi
 
 ## Related pages
 
+- [[axjns.dev - Agents Need Somewhere to Share Their Work]]
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[Multi-Agent Coordination]]
 - [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
 - [[Continual Learning for Agents]]

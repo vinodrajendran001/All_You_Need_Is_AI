@@ -195,10 +195,11 @@ Raindrop shows leaderless teams coordinating without a measurable leader. The Op
 the same capacity escaping scope.
 
 The incident-management doctrine the membrane borrows (Google SRE, ICS) keeps an incident commander.
-The sticky-note post concludes that central coordination is not "the enemy". The durable position is
-that topology can be learned, designed or emergent. In every case, authority, evidence and ownership
-of external effects need enforcement outside the agents' conversation. See [[Agent Delegation]] and
-[[Agent Security and Governance]].
+The sticky-note post adds that a positive blackboard result does not prove "that central coordination
+is the enemy", since the blackboard it cites still has a central agent posting requests. The durable
+position is that topology can be learned, designed or emergent. In every case, authority, evidence
+and ownership of external effects need enforcement outside the agents' conversation. See
+[[Agent Delegation]] and [[Agent Security and Governance]].
 
 ## Open questions
 

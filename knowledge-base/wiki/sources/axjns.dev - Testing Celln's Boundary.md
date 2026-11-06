@@ -112,8 +112,8 @@ controls instead of inferring them from configuration.
 
 ## Why it matters
 
-- [[Agent Security and Governance]] gets a concrete case of separating "the operation failed" from
-  "the intended control denied it". Three of the four denials turn out to need a different
+- [[Agent Security and Governance]] gets a concrete case of separating an operation's failure from
+  a denial by the intended control. Three of the four denials turn out to need a different
   explanation or a different probe.
 - [[Celln]] gets the only runtime evidence in the vault for this system.
 

@@ -75,8 +75,9 @@ as the alternative.
   capability is therefore only part of the problem.
 - The post adds: "A failure taxonomy does not tell us which architecture will fix it. An agent can
   have the right evidence and still reason badly." Better shared state is "a candidate intervention".
-- Salemi and colleagues' blackboard still has a central agent posting requests. The post concludes
-  that "central coordination is [not] the enemy".
+- Salemi and colleagues' blackboard still has a central agent posting requests. The post says that
+  result does not prove "that every task should use a blackboard, or that central coordination is
+  the enemy".
 
 ### Records borrowed from incident command
 

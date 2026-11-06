@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - context-engineering
@@ -37,6 +37,7 @@ source_ids:
   - src-2026-10-21-databricks-memcurrent
   - src-2026-10-26-bytebytego-salesforce-agent-stack
   - src-2026-10-26-alphasignal-memory-tax
+  - src-2026-10-29-factory-droid-frontier-harness
 status: active
 ---
 
@@ -461,6 +462,36 @@ The limits are those of a secondhand account of vendor interviews. The demo comp
 simulated, the eight-instruction observation names no method, sample, or model, and no before/after
 rate of dropped rules is reported.
 
+## Keep large results out, keep the request append-only, and give summaries room
+
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] states this page's economics as a
+harness rule: "every turn re-sends the whole request, so a badly placed instruction or a stale tool
+output doesn't hurt just once." Two of [[Factory AI]]'s five design principles follow from it —
+"Budget every token, and keep large tool results in files" and "Grow the request by always
+maintaining the prompt cache" — and the post reports what each looks like in production.
+
+**Large results stay outside the window.** Inside Droid's Script tool, raw files, search results,
+and logs remain program variables; printed output is capped, and full results are logged where the
+model can search them later. In one CI sweep the model saw a five-number summary of **5,384** jobs,
+and under **0.1%** of tool results reached its context. That example's direct-call comparison is
+modeled, but the mechanism extends the code-as-context-economy point above from a proposal to a
+shipped default. See [[Programmatic Tool Calling]].
+
+**The request is treated as append-only.** In production the typical Droid request reads **98%** of
+its input from the provider cache, and **98.6%** of requests are strictly append-only (the
+token-weighted cache share is **91.5%**), over **20.4M** requests in seven days, excluding CI and
+evals. A monitor compares each request with the previous one and names any part that broke the
+cache. Measured in testing, a git status change now adds only **176** new tokens and a session
+rollback reuses **99.8%**. This makes context layout a monitored invariant rather than a style
+preference, and it is the cache-side reason for placing volatile content last.
+
+**Summaries get a larger budget, not a smaller one.** Droid doubled the room for compaction
+summaries from **8,000** to **16,000** tokens because, by Factory's estimate, a third or more were
+filling the old limit and long tasks were being dropped at summarization. That cuts against the
+compression-first instinct: when the summary is the only path by which the task survives, a
+truncated summary costs more than the tokens it saves. Factory reports no measurement of tasks
+dropped before and after the change.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -484,6 +515,8 @@ rate of dropped rules is reported.
 
 ## Related pages
 
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[Factory AI]]
 - [[Plawan Rath et al - The Thin Orchestrator]]
 - [[Databricks AI Research - MemCurrent Persistent Memory for Production Agents]]
 - [[Databricks]]

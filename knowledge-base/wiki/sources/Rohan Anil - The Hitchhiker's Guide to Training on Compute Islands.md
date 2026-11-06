@@ -41,11 +41,11 @@ learners. The post is a position paper with a hiring pitch, not an independently
   that this will hold "until 2028". It quotes Satya Nadella on chips "sitting in inventory that I
   can't plug in" and Elon Musk on X (October 25, 2026) expecting "stranded compute in partially
   complete data centers".
-- Supporting market claims are cited to third parties: gas turbines spoken for through 2028,
-  large transformers taking more than three years, local opposition stopping at least **20**
-  projects in one quarter, and a Goldman Sachs expectation that **50–60%** of scheduled US
-  capacity for the next one to two years comes online on time, against a historical **72%**. A site
-  under **20 MW** "often plugs into the grid that's already there".
+- Supporting market claims are cited to third parties: gas turbines spoken for through 2028, large
+  transformers taking more than three years, local opposition stopping at least **20** projects in
+  one quarter, and a Goldman Sachs expectation that **50–60%** of scheduled US capacity for the next
+  one to two years comes online on time, against a historical rate of about **72%**. A site under
+  **20 MW** "often plugs into the grid that's already there".
 - The author separates a **physical problem** software cannot fix from an **architectural problem**
   it can: training stacks assume a single uniform cluster, so capacity that does not fit that shape
   goes unused for frontier runs.

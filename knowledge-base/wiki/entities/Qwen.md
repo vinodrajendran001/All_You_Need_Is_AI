@@ -2,7 +2,7 @@
 type: entity
 entity_kind: model-family
 created: 2026-09-03
-updated: 2026-10-30
+updated: 2026-11-06
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-10-28-sick-on-policy-self-training
   - src-2026-10-22-agrawal-qwenputer
+  - src-2026-11-03-astwei-teaching-qwen-why
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -150,6 +152,35 @@ and privileged EMA-teacher supervision update parameters; the evaluated checkpoi
 EMA teacher. This extension is separate from the paper's main Gemma experiments and from
 Qwenputer's compiled network. Neither result transfers to every Qwen checkpoint.
 
+## An open substrate for replicating alignment training
+
+[[astwei et al - Teaching Qwen Why]] replicates part of Anthropic's "Teaching Claude Why" on Qwen
+2.5 32B and 72B base models, which were pretrained before the agentic-misalignment scenarios were
+released in June 2025. Difficult-advice SFT cut harmful-action rates from **61%** to **6%** (32B)
+and **69%** to **6%** (72B). The evaluation swaps blackmail for exfiltration because "Qwen models
+rarely blackmail". The base model's identity is unsettled: asked which company created it, it says
+OpenAI in **81.5%** of samples and Google in **10.5%**. The instruction-tuned model was about **9%**
+less misaligned when addressed as ChatGPT than as Qwen, and stories whose protagonist was named Qwen
+worked less well than stories about a generic AI.
+
+A practical pitfall: the Qwen 2.5 base checkpoint's chat-template special tokens have untrained,
+identical embedding rows, which made fine-tuned models end replies with junk tokens. The authors
+fixed it by adding the embedding layer and output head to the LoRA targets. Qwen3-14B-Instruct,
+Qwen3.6-27B, and Qwen3.5-397B also appear in secondary experiments.
+
+## A loop-prone small checkpoint repaired by a weight edit
+
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] uses **Qwen3.5-0.8B** with thinking on
+as its language-model test case. Under loop-prone sampling, **85 of its first 96** practice answers
+ran to the 32,768-token limit. GPT-6 Astra, given a budget of 50 forward passes, traced the looping
+to one direction written by the MLPs of layers 15 and 19 and subtracted it from 64 output columns:
+**131,072** weights, **0.016%** of the model. MATH-500 rose from **7.9** to **48.1**, GSM8K from
+**13.8** to **67.1**, and IFEval from **21.0** to **62.3**.
+
+This is elicitation rather than new capability: by Astra's own report, **576** of **579** rescued
+answers had originally been truncated, and accuracy on originally finished answers was unchanged.
+The evidence is a preliminary research blog built around one optimizer model.
+
 ## Related pages
 
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
@@ -182,3 +213,5 @@ Qwenputer's compiled network. Neither result transfers to every Qwen checkpoint.
 - [[KV Cache]]
 - [[Baseten - Agentic Kernels in Production]]
 - [[Small Language Models]]
+- [[astwei et al - Teaching Qwen Why]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]

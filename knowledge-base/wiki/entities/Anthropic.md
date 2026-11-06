@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-10-21-mcateer-claude-mods
   - src-2026-10-27-anthropic-agents-judgment-calls
+  - src-2026-11-03-astwei-teaching-qwen-why
 status: active
 ---
 
@@ -156,6 +157,18 @@ weaker evidence of independent judgment than institutions assume. The lean was d
 strengthened, so the 86% is not a default-deployment rate; with no assigned lean, Opus 4.8 made the
 same five choices in **112 of 123** runs. See [[Human Deferral to AI]].
 
+## Its alignment-training recipe has an outside partial replication
+
+[[astwei et al - Teaching Qwen Why]] reproduces a subset of Anthropic's "Teaching Claude Why" (TCW)
+experiments on open Qwen 2.5 base models; the authors note Anthropic has applied these techniques to
+production models from Opus 4.5 onward. Difficult-advice SFT cut agentic misalignment from **61%**
+to **6%** (32B) and **69%** to **6%** (72B); stories alone reached **43%** and **63%**, and both
+together **4%**. SFT "drives the vast majority of the alignment improvement" on these evals, and the
+teacher model mattered most for difficult-advice SFT.
+
+The replication covers only part of TCW, uses one evaluation suite of fictional tool-use scenarios,
+and relies on Claude Sonnet 4.6 as the judge.
+
 ## Related pages
 
 - [[Dan McAteer - Claude Mods and the Attention Interface]]
@@ -186,3 +199,4 @@ same five choices in **112 of 123** runs. See [[Human Deferral to AI]].
 - [[LLM-as-a-Judge]]
 - [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
 - [[Human Deferral to AI]]
+- [[astwei et al - Teaching Qwen Why]]

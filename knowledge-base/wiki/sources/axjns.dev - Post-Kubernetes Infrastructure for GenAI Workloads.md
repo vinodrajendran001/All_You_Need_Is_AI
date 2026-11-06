@@ -55,7 +55,7 @@ from transient execution ([[Celln]]) by an explicit seam that lets either side c
 ### Creation latency matters for short tasks
 
 - A long-running service amortises setup over hours. "An agent's code-execution task might finish in
-  seconds", so preparation and scheduling can dominate what the user waits for.
+  seconds", so preparation and scheduling can account for a large share of the time the user waits.
 - The claim is scoped. Training, inference services, evaluations and one-shot tool calls "have
   different resource profiles". The incentive to specialise applies to "bursts of isolated,
   short-lived execution".

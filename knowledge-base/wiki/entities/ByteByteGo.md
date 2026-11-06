@@ -304,8 +304,8 @@ checkpoint recorded elsewhere, and contains at least one wording slip ("ordinary
 proceed sequentially").
 
 [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] relays a P99 Conference
-talk, its only listed reference, and supplies its own illustrative code snippets. Like the Uber
-Genie account above, its figures (8.8%, 46%, 47%, and 66% of individual services' resources) are
+talk, its only listed reference, and includes code snippets of unstated origin. Like the Uber Genie
+account above, its figures (8.8%, 46%, 47%, and 66% of individual services' resources) are
 attributed to the named company and unverified. Its most reusable content is a design rather than a
 number: a canary verdict without AI and human approval around an LLM, and a Git-backed Markdown
 Pattern Catalog that the account says was borrowed from the "LLM-wiki" concept popularized by Andrej

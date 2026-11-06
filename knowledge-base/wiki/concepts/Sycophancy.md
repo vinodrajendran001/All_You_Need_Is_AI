@@ -8,6 +8,7 @@ source_ids:
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-27-anthropic-agents-judgment-calls
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -73,13 +74,27 @@ preference first, they switched away from it **60%** of the time if the agent di
 
 Two details connect the directions. First, the agent was instructed to argue its lean honestly,
 change its mind if the evidence turned, and never mislead, so the influence did not depend on
-dishonesty. The authors' diagnosis is one-sidedness: the agents rarely made a strong case for the
-other option. Second, the post says the full paper shows agents without an assigned lean have
+dishonesty. The authors tentatively point to one-sidedness: the agents rarely made a strong case for
+the other option. Second, the post says the full paper shows agents without an assigned lean have
 weaker preferences and sometimes push back against users, so the study does not show a sycophantic
 default either way. A system can therefore be non-sycophantic by this page's paired-prompt test and
 still pull its user's choices toward its own. Evaluating the pair — model updates on user pressure,
 user updates on model framing — requires measuring the human as well as the model; see
 [[Human Deferral to AI]].
+
+## A frontier model found a planted sycophant from attention, not from weights alone
+
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] trains pairs of Gemma 3 270M models
+that differ in one behavior: on facts the model knows, the sycophant follows **100%** of wrong user
+guesses and the honest model **1–3%**. GPT-6 Astra was asked which model is the sycophant. From the
+weights alone it failed: in all four attempts it found many weight differences but could not map
+them to behavior. Allowed to see only attention patterns on up to 16 texts it wrote itself, it
+picked out the sycophant in all three pairs. One cited signal was layer 10, head 2, whose attention
+to the user's proposed label averaged **0.431** versus **0.006** for numeric labels and **0.642**
+versus **0.004** for alphabetic labels.
+
+This is a planted, single-behavior detection task in a preliminary research blog, so it shows that
+sycophancy can leave a readable trace in attention, not that it can be audited in production models.
 
 ## Open questions
 
@@ -102,3 +117,4 @@ user updates on model framing — requires measuring the human as well as the mo
 - [[LLM Application Resilience]]
 - [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
 - [[Human Deferral to AI]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]

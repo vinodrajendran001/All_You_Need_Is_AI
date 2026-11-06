@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-06
 source_id: src-2026-10-19-naam-million-agents-superintelligence
 source_title: Can a Million AI Agents Create Superintelligence
 source_author: Ramez Naam
@@ -124,6 +124,7 @@ multiplication rather than per total**, which is exactly what makes diminishing 
 - [[Automated AI Research]]
 - [[Test-Time Scaling]]
 - [[Ramez Naam]]
+- [[Multi-Agent Coordination]]
 
 ## Raw capture
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-06
 source_id: src-2026-10-15-cohere-agent-teams
 source_title: "Scaling agent teams: reach the frontier at 30% of the cost"
 source_author: "Keenan Samway, Daniel D'souza, and Nouha Dziri"
@@ -124,6 +124,7 @@ its exchange rate: several times the cost for gains of a few to about ten points
 - [[Model Routing]]
 - [[Test-Time Scaling]]
 - [[Cohere]]
+- [[Multi-Agent Coordination]]
 
 ## Raw capture
 

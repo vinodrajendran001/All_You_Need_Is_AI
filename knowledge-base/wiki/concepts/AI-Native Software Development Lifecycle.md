@@ -224,9 +224,9 @@ could port against and reviewers could check, which is why the migration "suited
 
 The evidence boundary matches the rest of this page. X gives no share of agent-written code, defect
 or revert rates, or staffing counterfactual, and its benchmark results measure the new architecture,
-not the agent workflow. What it does show is a lint layer written specifically against agent output
+not the agent workflow. What it does show is a lint plugin written specifically against agent output
 — a guardrail aimed at the author's characteristic errors rather than a generic style check — and an
-explicit statement that the engineers' remaining job is "deciding what the system should do, then
+explicit statement that the engineers' job shifted toward "deciding what the system should do, then
 checking in a real browser that it actually does."
 
 ## Sign-off assumes the reviewer's judgment is independent

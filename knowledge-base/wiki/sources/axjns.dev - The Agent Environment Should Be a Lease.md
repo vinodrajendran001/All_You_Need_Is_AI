@@ -26,7 +26,8 @@ be a **lease on capabilities**, not a mutable machine the agent assembles for it
 lease, the host lends a task the tools it may run. Each tool is identified by content, supplied
 read-only and recorded, and the lease lasts for the lifetime of the execution.
 
-The post places Celln as an execution plane beneath Sympozium, the coordination system developed in
+The post places Celln as an execution plane beneath Sympozium, the author's coordination project and
+the intended integration setting for
 [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]. The
 contract is small: Sympozium sends an authorised execution request, and Celln returns the outcome,
 provenance and an enforcement verdict.

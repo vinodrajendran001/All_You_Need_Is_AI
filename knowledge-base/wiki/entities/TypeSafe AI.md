@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-08-talekar-decision-model-gold-rush
   - src-2026-10-27-morgan-train-decision-model
   - src-2026-11-02-alphasignal-timestral
+  - src-2026-10-29-raindrop-agent-swarm-leadership
 status: active
 ---
 
@@ -139,6 +140,18 @@ models and to application code. The article adds no benchmark for Jev.
 Neither source changes the October position: the interface is public and increasingly copied, the
 training recipe and backbone are not, and accuracy and calibration remain task-specific claims.
 
+## A third-party study used Jev as an instrument, with a small model-labelled check
+
+[[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]] used Jev to find the orders in
+every post of a 2,160-team agent-swarm study by [[Raindrop]]. An order is a part of a post telling one
+named teammate to examine one service or file one change. Raindrop checked Jev on 60 random posts, 40
+from round 1 and 20 from later rounds. Two copies of Claude, blind to Jev's answers, found 35 orders in
+only 9 of the 60 posts. Jev found all 35 (recall 100%) and also 4 incorrect orders (precision 90%).
+
+This is task-specific evidence of the kind the market update above asks for, but it is thin. The
+reference labels came from Claude, not humans, and the Claude version is unspecified. Nine posts with
+orders is a small sample, and the article does not define which run "the first test" means.
+
 ## Related pages
 
 - [[Abby Morgan - Train Your Own Decision Model]]
@@ -162,3 +175,5 @@ training recipe and backbone are not, and accuracy and calibration remain task-s
 - [[Agent Delegation]]
 - [[Agent Security and Governance]]
 - [[NVIDIA]]
+- [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
+- [[Raindrop]]

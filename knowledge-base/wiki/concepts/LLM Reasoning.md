@@ -17,6 +17,7 @@ source_ids:
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-10-28-sick-on-policy-self-training
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -181,6 +182,20 @@ Hand-picked topics and small-model experiments bound its scope, and the all-thre
 mixture loses **4.9 MATH-500 points** despite an improved out-of-domain average. Better
 aggregate scores cannot substitute for capability-specific retention checks.
 
+## Some reasoning failures are removable obstacles, not missing ability
+
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] reports a weight edit that let a small
+reasoning model finish its thinking. Under loop-prone sampling, **Qwen3.5-0.8B** ran **85 of its
+first 96** practice answers to the 32,768-token limit. GPT-6 Astra traced the looping to one
+direction written by MLPs in layers 15 and 19 and removed it; MATH-500 rose from **7.9** to
+**48.1**. By Astra's own report, **576** of **579** rescued answers had originally been truncated,
+and accuracy on originally finished answers was unchanged. On Gemma 3 270M, which reaches its token
+limit on only **8.5%** of answers, no edit moved MATH-500 by more than about a point.
+
+The authors' reading is that editing "could remove an obstacle that hid an ability, but it could not
+add an ability the model lacked". That places this evidence on the elicitation side of the
+create-versus-amplify question above, from a preliminary single-optimizer research blog.
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -219,3 +234,4 @@ aggregate scores cannot substitute for capability-specific retention checks.
 - [[Preston Fu - Progressive Point Matching]]
 - [[Long-Horizon Credit Assignment]]
 - [[Preston Fu]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]

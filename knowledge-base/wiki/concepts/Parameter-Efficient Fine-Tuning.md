@@ -12,6 +12,7 @@ source_ids:
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-10-27-bytebytego-apple-on-device
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-03-astwei-teaching-qwen-why
 status: active
 ---
 
@@ -93,6 +94,16 @@ and the edit removed a failure rather than adding a skill. On a Gemma model that
 edit moved MATH-500 by more than about a point. This is a preliminary single-model blog result,
 not a replacement for adapters when new behavior must be learned from data.
 
+## Stage-wise LoRA has a chat-template pitfall
+
+[[astwei et al - Teaching Qwen Why]] trains each stage as a new LoRA adapter (rank **64**, alpha
+**128**, all linear layers) that is merged into the model before the next stage begins. The Qwen 2.5
+base checkpoint's chat-template special tokens have untrained, identical embedding rows, which made
+fine-tuned models end replies with junk tokens; the fix was adding the embedding layer and output
+head to the LoRA targets. The authors also list LoRA, which "is less comparable to full finetuning
+on pretraining-style data like SDF than on SFT data", as one possible reason the stories effect
+plateaued. That explanation is a hypothesis, not a tested result.
+
 ## Open questions
 
 - How should adapter rank and target modules be selected under a fixed data and compute budget?
@@ -118,3 +129,4 @@ not a replacement for adapters when new behavior must be learned from data.
 - [[Knowledge Distillation]]
 - [[Direct Preference Optimization]]
 - [[ByteByteGo - How to Customize a Model to Learn New Tricks]]
+- [[astwei et al - Teaching Qwen Why]]

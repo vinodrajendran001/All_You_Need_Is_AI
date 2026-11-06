@@ -54,8 +54,8 @@ generative model.
   and evaluate perception and driving models across weather and lighting conditions".
 - **Cosmos3-Nano-Sim-Auto**, a causal, few-step distilled variant, streams observations while an AV
   policy or a human driver acts. Generated camera and LiDAR frames return to the policy, which
-  enables **closed-loop evaluation**. The post's figure places it inside the AlpaSim runtime, with
-  Alpamayo as an example policy.
+  enables **closed-loop evaluation**. In the post's figure, the AlpaSim runtime updates the scenario
+  and forwards it to Sim-Auto, with Alpamayo as an example policy.
 
 This addresses one weakness of open-loop replay: the scene now reacts to the policy's own
 actions. It does not answer the fidelity question raised above. The post's output checks confirm

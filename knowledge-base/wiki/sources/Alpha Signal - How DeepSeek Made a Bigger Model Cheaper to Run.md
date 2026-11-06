@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-11-06
 source_id: src-2026-09-14-alphasignal-deepseek-v4-1-flash
 source_title: "How DeepSeek made a bigger model cheaper to run"
 source_author: Alpha Signal
@@ -54,6 +54,7 @@ be checked against the primary technical report.
 - [[Mixture of Experts]]
 - [[Inference Efficiency Frontier]]
 - [[DeepSeek]]
+- [[Alpha Signal]]
 
 ## Related pages
 

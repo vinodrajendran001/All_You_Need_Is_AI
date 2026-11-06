@@ -138,10 +138,11 @@ that can merge from authority that cannot:
 
 - CRDTs suit sets of observations or annotations. They "do not resolve contradictory diagnoses or enforce
   arbitrary cross-record invariants".
-- Exclusive task ownership, approval and budget reservation need transactional updates within an
-  incident partition, with version checks and lease fencing.
+- Exclusive task ownership, approval and budget reservation need stronger coordination; a first
+  implementation can use transactional updates within an incident partition, with version checks and
+  lease fencing.
 - The system should "fail closed for actions when it cannot confirm current authority", while read-only
-  investigation may continue on explicitly stale state.
+  investigation may continue on explicitly stale state where policy permits.
 
 It adds a warning that a single journal does not by itself cover effects. "Recording a halt in shared
 memory is insufficient if workers continue using cached authority". The suspension has to be enforced

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-11
-updated: 2026-10-27
+updated: 2026-11-06
 entity_kind: person
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-09-01-iusztin-scoped-subagents
   - src-2026-10-06-iusztin-rag-evals
+  - src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
 status: active
 ---
 
@@ -49,6 +50,17 @@ having to "install your data"; and code checks should cover every decision with 
 leaving LLM judges for free-text replies. The article is sponsored by Opik, the platform it uses
 throughout.
 
+The vault's earliest Iusztin source is an earlier lesson of the same course.
+[[Paul Iusztin - The Bare-Bones Coding Agent Loop]], lesson 2, builds Decode's core loop on Pydantic
+AI with nine tools, three model providers (Modal, OpenRouter, and Gemini), an allow/ask/deny
+permission gate whose approval requests pause a step, an append-only JSONL session log, and trace
+monitoring through Opik. Its distinctive mechanism is steering: queued user messages enter only at
+two boundaries, steering before a model request and follow-ups when the agent would stop, which
+[[Coding Agent Harness]] records. Its one deliberate omission is a step limit. Following Pi, the
+loop has no max-steps knob and runs until the model returns text instead of a tool call, a choice
+the source page sets against the production case for explicit budgets. Its headline harness figure,
+LangChain's Terminal-Bench result, is cited as motivation rather than measured by Iusztin.
+
 ## Notes
 
 - Decode's fan-out guards are worth remembering as concrete numbers: 6 prompts per call, `Semaphore(4)`
@@ -76,3 +88,4 @@ throughout.
 - [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]]
 - [[Retrieval-Augmented Generation]]
 - [[Multi-Turn Evaluation]]
+- [[Paul Iusztin - The Bare-Bones Coding Agent Loop]]

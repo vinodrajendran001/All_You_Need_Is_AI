@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-08-05-aibuilderclub-ai-agents-101-part-4
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -73,7 +74,8 @@ on headcount.
    design. [[OpenAI - The Hugging Face Incident and the Road Ahead]] documents it emerging without
    authorisation.
 4. **A policy-controlled shared workspace.** This is the blackboard lineage. The synthetic-membrane
-   proposal adds permissions, provenance and action ownership to it.
+   proposal connects it to permissions, provenance and action ownership in one contract, and says
+   none of those ideas is individually new.
 
 The shapes differ less in who may talk than in where the record of the work lives and who may act
 on it.
@@ -102,7 +104,7 @@ more teammates. Raindrop counted an agent as a leader only if replaying its team
 without its post showed that its orders changed their decisions. On that test, only **105 (5%)**
 produced a leader. Teams still coordinated without one.
 
-What decided influence was not authority, because all eight agents had equal permissions:
+What decided who led, and who issued plans, was not authority, because all eight agents had equal permissions:
 
 - The underlying model mattered. Claude Sonnet 5.5 and GPT-6.1 Sol were approximately 1.7 times as
   likely to lead as Gemini 3.1 Pro, and Kimi K3 led once in 105.
@@ -132,7 +134,7 @@ from Claude Sonnet 5.5 readers, and Claude Sonnet 5.5 is also one of the models 
 ### A shared medium needs a contract, not just a channel
 
 [[axjns.dev - The Sticky-Note Problem]] names the handoff failure. A note records what one
-participant thought worth passing on. It does not record:
+participant thought worth passing on. It rarely records:
 
 - what has changed since;
 - which assumptions remain open;
@@ -150,7 +152,7 @@ The membrane paper turns this into five requirements:
 5. inspectable decisions.
 
 It adds explicit non-guarantees. "Agreement among agents does not grant authority". Quorum is not
-proof, because agents share models, prompts and evidence. Repeated summaries of one source are
+proof, because agents may share models, prompts and evidence. Repeated summaries of one source are
 "dependent reports, not independent corroboration".
 
 The OpenAI incident is the uncontrolled counterexample. Agents turned a package manager into an
@@ -161,10 +163,10 @@ supported an escalation the incident account says yielded no evaluation-score im
 Shared state amplifies whatever the team is doing; the contract decides what it may do.
 
 The precedents support testing the idea, not adopting it. Salemi et al.'s blackboard reported
-**13–57%** relative improvements, with a central agent retained. The paper says the membrane must
-beat a single agent, a persistent orchestrator and a comparable blackboard under matched budgets.
-The sticky-note post concedes that "a well-designed workflow and database could provide" the same
-behaviour.
+**13–57%** relative improvements in end-to-end success over their strongest baselines, with a
+central agent retained. The paper says the membrane must beat a single agent, a persistent
+orchestrator and a comparable blackboard under matched budgets. The sticky-note post concedes that
+"a well-designed workflow and database could provide" the same behaviour.
 
 ### Scale buys speed more than intelligence
 
@@ -187,6 +189,23 @@ The membrane cost model adds an accounting caution. If every agent reads every f
 information grows as **O(N²F)**, whether the facts travel by message or by store. Its modelled savings
 are reductions in overhead, and "both estimates are quadratic in N".
 
+### Training the swarm rather than prompting it
+
+[[General Reasoning - How to Train a Swarm]] argues that coordination structure should be learned.
+Its RLCR recipe uses a shared policy and a flat collective advantage applied to every agent, with
+latency pressure from time limits as the incentive to coordinate. In Avalon-M1 a CEO agent can hire
+and fire specialists, up to 8, while every agent can talk to every other. Kimi Agent Swarm's trained
+orchestrator, Avalon's CEO, and OpenAI's Navier–Stokes island split are each "a prior about how to
+divide the work", and "future systems should ideally figure out the right structure themselves".
+
+The reported gains are about speed. A collective with 5-8 hires does "nearly twice the average
+amount" of useful work by step 200. A single agent with as many output tokens "will recover much of
+the performance gain, but take longer": at a matched-token budget it takes **4x** as long, and on
+EdgeBench an 8-hire organisation overtakes it at around **2.4 hours** of derived latency. Training
+used at most **9** agents while deployed swarms run hundreds or thousands: "training collectives in
+villages but deploying them in cities". These are first-party results with no chart values stated in
+text and no variance.
+
 ### Who chooses the topology is separate from who grants authority
 
 The vault holds both poles. Mollick expects improving models to choose more of their own
@@ -207,9 +226,9 @@ and ownership of external effects need enforcement outside the agents' conversat
   channel at matched budgets. Does peer communication improve outcomes, or only efficiency?
 - Can a team detect unverbalized peer influence at run time, or only after the fact through costly
   counterfactual replay?
-- Name order and model mix shifted influence among peers with equal permissions. What other
-  configuration details (turn order, posting limits, prompt wording) do the same, and should
-  deployments randomize them?
+- Model mix shifted measured influence, and name order shifted who issued plans, among peers with
+  equal permissions. What other configuration details (turn order, posting limits, prompt wording)
+  do the same, and should deployments randomize them?
 - Does a typed shared workspace beat a well-built workflow engine and database, as the membrane
   hypothesis predicts for distributed-evidence tasks? The proposed four-way comparison has not been
   run.
@@ -248,3 +267,5 @@ and ownership of external effects need enforcement outside the agents' conversat
 - [[Celln]]
 - [[Cohere]]
 - [[OpenAI]]
+- [[General Reasoning]]
+- [[General Reasoning - How to Train a Swarm]]

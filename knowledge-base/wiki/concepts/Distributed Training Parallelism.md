@@ -163,13 +163,15 @@ position is to use the fast interconnect inside each island as this page describ
 updates between islands on a slower schedule, with the optimizer codesigned around the network.
 
 The post sorts low-communication methods into two families that map onto this page's axes.
-**Data-parallel** methods (DiLoCo, DisTrO, DeMo) keep a full replica per site and treat each
-worker's parameter change between exchanges as a pseudo-gradient, which a separate outer optimizer
-applies. **Model-parallel** methods (SWARM, Node0, Agora) split the model across machines, and the
-author says the families can be combined. DiLoCo is the reference point: **8** workers matched fully
-synchronous training while communicating **500×** less, at up to **400M** parameters. Later rows in
-the author's literature table push scale and distance, and one is a warning: a cross-facility HPC
-run reached perplexity **34.7** against **28.2** for its centralized baseline.
+**Data-parallel** methods (DiLoCo, DisTrO, DeMo) keep a full replica per site and cut how often and
+how much replicas talk. DiLoCo treats each worker's parameter change between exchanges as a
+pseudo-gradient, which a separate outer optimizer applies; DisTrO and DeMo instead compress
+optimizer momentum, with their own state and aggregation rules. **Model-parallel** methods (SWARM,
+Node0, Agora) split the model across machines, and the author says the families can be combined.
+DiLoCo is the reference point: **8** workers matched fully synchronous training while communicating
+**500×** less, at up to **400M** parameters. Later rows in the author's literature table push scale
+and distance, and one is a warning: a cross-facility HPC run reached perplexity **34.7** against
+**28.2** for its centralized baseline.
 
 The case study nests the two levels. Each site trains on its own data shard with local expert
 parallelism; across sites, the model is synchronized fragment by fragment, staggered across each

@@ -48,9 +48,9 @@ models with LatentMoE. Its value is a compact map of which mechanism addresses w
 
 - Lightning uses **128** routed experts per MoE layer with **6** selected per token, which is how a
   model of roughly **30** billion parameters uses only roughly **3** billion for a given token.
-- Attention uses **32** query heads and only **2** key-value heads, a grouped-query attention (GQA)
-  arrangement that keeps multiple ways of querying context while storing fewer key-value
-  representations.
+- Lightning's attention uses **32** query heads and only **2** key-value heads, a grouped-query
+  attention (GQA) arrangement that keeps multiple ways of querying context while storing fewer
+  key-value representations.
 
 ### Training recipe
 

@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-09-13
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - entity
   - organization
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-16-west-eval-engineering-lessons
+  - src-2026-08-17-google-cloud-agent-plugins
 status: active
 ---
 
@@ -94,6 +95,19 @@ These are first-party before/after operating figures, without a measurement wind
 attribution. Queue guarantees cannot eliminate cloud spot preemption, and a near-100% reserved
 utilization target is specific to this fleet rather than a universal GKE objective.
 
+## Packaging skills and MCP servers as plugins
+
+[[Google Cloud - Agent Plugins Are the Future of Agent Skills]] is Google Cloud's account of putting
+real skills through Agent Plugins, an open, vendor-neutral standard that packages agent skills and
+the MCP servers they depend on into one portable folder. Its value here is a practitioner's reading
+of a specification rather than product evidence. A broken MCP server need not disable valid skills,
+and bundled assets are read from the plugin root while caches and local state go in a separate
+writable directory that survives updates. The gaps are stated plainly: Agent Plugins 1.0.0 is
+published as a Working Draft, there is no standard validator, conformance permits partial client
+implementations, and authentication stays client-managed. [[Agent Plugin Architecture]] and
+[[Agent Skill]] carry the format; the next section turns from packaging to how Google evaluated one
+of its own plugins.
+
 ## Evaluating its own agent plugin
 
 [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] is a first-party
@@ -130,3 +144,6 @@ evaluating a Google plugin on Google's blog, with no pass rates, so it supports 
 - [[Retrieval-Augmented Generation]]
 - [[Inference Serving Engines]]
 - [[Model Quantization and Efficiency]]
+- [[Google Cloud - Agent Plugins Are the Future of Agent Skills]]
+- [[Agent Plugin Architecture]]
+- [[Agent Skill]]

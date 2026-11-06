@@ -54,10 +54,10 @@ convergence, quorum, leases, hashes and revocation can and cannot guarantee.
     verification. The paper says it does not show that a missing workspace causes every failure.
   - **Superminds Test** probes a platform hosting **more than two million** agents. The paper notes
     it is "not a controlled comparison of coordination architectures".
-  - **Salemi et al.** report **13–57%** relative improvements on **three** data-discovery
-    benchmarks. That blackboard design retains a central agent, so it does not reject central
-    coordination.
-  - **Han and Zhang** report competitive performance with lower token use.
+  - **Salemi et al.** report **13–57%** relative improvements in end-to-end success over their
+    strongest baselines on **three** data-discovery benchmarks. That blackboard design retains a
+    central agent, so it does not reject central coordination.
+  - **Han and Zhang** report competitive performance with lower token use on their evaluated tasks.
   - **Bai et al.** report substantial token overhead and variation in agentic coding. The paper says
     that measures coding workloads, not inter-agent communication alone.
 
@@ -102,8 +102,9 @@ convergence, quorum, leases, hashes and revocation can and cannot guarantee.
   superseding or retracting records.
 - CRDTs suit mergeable data. They "do not resolve contradictory diagnoses or enforce arbitrary
   cross-record invariants".
-- Exclusive ownership needs transactional updates with version checks and lease fencing within an
-  incident partition. The system should "fail closed for actions" when it cannot confirm authority.
+- Exclusive ownership needs stronger coordination; a first implementation can use transactional
+  updates with version checks and lease fencing within an incident partition. The system should
+  "fail closed for actions" when it cannot confirm authority.
 - "A lease alone cannot prevent an expired worker from acting". The executor must reject stale
   fencing tokens.
 - An idempotency key prevents duplicates only "if the downstream system honours it". Otherwise
@@ -158,7 +159,6 @@ convergence, quorum, leases, hashes and revocation can and cannot guarantee.
   on trust scores, which that post labels "simplified rules".
 - Human incident doctrine (Google SRE, ICS) is used as an analogy with stated limits. A human
   span-of-control ratio "is not a measured optimum for LLM teams".
-- The in-text citation **[13]** (ICS) has no matching entry. The captured reference list ends at 12.
 - Several practical limits remain unresolved:
   - partitions force a trade-off between availability and exclusive authority;
   - a central service can become a bottleneck;

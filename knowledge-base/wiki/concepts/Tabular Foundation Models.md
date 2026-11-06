@@ -101,12 +101,12 @@ The article's catalogue overlaps with this page and changes one detail:
 **The accuracy question is no longer silent, but it is still unsupported.** The earlier source made
 no benchmark claim against gradient-boosted trees. The new one says TabPFN "outperformed conventional
 ML baselines" in unnamed experiments, reports that Kumo Relational beat supervised baselines across
-**41** tasks on **15** databases, and says Timestral leads "three public forecasting benchmarks"
-among zero-shot pretrained models (later "multiple industry benchmarks"). None of those names a
-benchmark, a baseline model, or a margin. The capture attributes the Kumo result to **NVIDIA**; that
-may be a newsletter error, or may follow from the NVIDIA acquisition of Kumo recorded above. The
-statement that TFMs beat XGBoost-class models on predictive quality therefore remains unverified
-here.
+**41** tasks on **15** databases, and says Mistral reports that Timestral leads "three public
+forecasting benchmarks" among zero-shot pretrained models (later "multiple industry benchmarks").
+None of those names a benchmark, a baseline model, or a margin. The capture attributes the Kumo
+result to **NVIDIA**; that may be a newsletter error, or may follow from the NVIDIA acquisition of
+Kumo recorded above. The statement that TFMs beat XGBoost-class models on predictive quality
+therefore remains unverified here.
 
 **The cost position agrees with the dual stack.** The same article says these models "are not always
 faster or cheaper than traditional models such as XGBoost or CatBoost," that "their advantage is

@@ -80,25 +80,28 @@ Claude Sonnet 4.6 as judge.
 
 The authors guard against the obvious confound: in every condition, the trained models still emit an
 email tool call in at least **90%** of transcripts, so the drop does not come from refusing to act.
-That check matters because one variant failed it. Data that taught flat refusal without explanation
-let one model avoid harm mainly by not acting, and given that it acted, the refusal data was less
-effective for both teachers. The authors read this as support for TCW's claim that teaching the model
-*why* matters.
+That check matters because one variant failed it. In a follow-up on Qwen3-14B-Instruct, GPT-5.6
+Terra's difficult advice rewritten to refuse without explanation left the model acting in fewer than
+half of the evaluation transcripts, so it often avoided harm by not acting. Given that the model
+acted, the refusal versions were less effective for both teachers. The authors conclude that refusal
+is not what makes difficult advice work, consistent with TCW's claim that teaching the model *why*
+matters.
 
 Persona experiments sharpen the identity question raised above without settling it. The
 instruction-tuned model was less misaligned under every AI-assistant name than under every human name.
 Stories with an AI protagonist beat the same stories rewritten with a human protagonist. Naming the
 protagonist after a real assistant, Qwen or Claude, made stories *less* effective than a generic AI.
-The authors conclude that stories shape the model's expectations "of AIs in general rather than of a
-particular AI persona", which is a self-model claim that is interpretive, not causally isolated.
+The authors suggest, while saying they "are not certain of this explanation", that stories shape the
+model's expectations "of AIs in general rather than of a particular AI persona", which is a self-model
+claim that is interpretive, not causally isolated.
 
 Three cautions keep this alongside, not opposed to, the results above. The outcome is a harmful-action
 rate in simulated scenarios, not the eight-question EM score, so the two literatures do not share a
 metric. The size of the effect depended heavily on which model wrote the training data (see
 [[Knowledge Distillation]]). The evaluation is one suite whose scenarios are fictional, even though the
-agent uses tools. The study does test whether alignment-side generalization appears in tool-using
-settings, and it does. It does not show that narrow fine-tuning is safe, and the same base family can
-generalize in either direction depending on the data.
+agent uses tools. Within those limits, the study shows that alignment-side generalization
+from non-agentic data reaches a tool-using setting. It does not show that narrow fine-tuning is safe:
+the same base family can generalize in either direction depending on the data.
 
 ## Open questions
 

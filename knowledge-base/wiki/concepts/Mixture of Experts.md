@@ -147,9 +147,9 @@ experts in system RAM or even on SSD.
 llama.cpp exposes that split through `--cpu-moe` and `--n-cpu-moe`, and a hot-expert cache merged in
 October 2026 keeps the most frequently routed experts in VRAM. Its reported gain ranges from
 **2.2x** in the pull-request author's RTX 5090 test to **1 to 5%** over a tuned split on an RTX
-3090, and it applies only to small batches. SSD streaming runs a 397B model on a 48GB laptop at
-**4.4+** tokens per second, but only by hardcoding the model and routing 4 experts per token instead
-of 10, which the author relays as a real quality hit.
+3090, and it applies only to small batches. SSD streaming in the flash-moe project runs a 397B model
+on a 48GB laptop at **4.4+** tokens per second, but the project is hardcoded for that model and
+routes 4 experts per token instead of 10, which the author relays as a real quality hit.
 
 This complements [[ByteByteGo - How to Run a Big Model on Cheap Hardware]] above rather than
 contradicting it. Total storage still has to be paid, but it can be paid in a cheaper, slower tier

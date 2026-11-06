@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-07
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-29-yoon-multiplayer-ai
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-01-mollick-dot-swarm
+  - src-2026-11-04-bytebytego-netflix-performance-agents
 status: active
 ---
 
@@ -164,6 +165,20 @@ are different interaction moments. The sources do not establish one universally 
 default. A mature workflow should name the publication boundary rather than assume that shared
 execution is required.
 
+## A domain ladder from a production team
+
+[[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] relays a narrower ladder for
+Netflix's performance agents. Level 0 is manual work without machine learning; Level 1 is assist, where
+a developer feeds a stack dump to a model that finds the hot path; Level 2, orchestration, is the
+stated current state, with proactive scanning and a shared Pattern Catalog; Level 3, agents that create
+their own optimization strategies, explore alternative implementations, and run automated benchmarks,
+is the long-term vision.
+
+The two ladders should not be merged level for level: Netflix's describes how much of one task the
+agent initiates, while this page's describes what the system can demonstrate. Netflix's Level 2 still
+ends in a human deployment decision after a canary judged without AI, the evidence-before-autonomy
+rule above applied to one domain. The secondary account gives no criteria for reaching Level 3.
+
 ## Open questions
 
 - **The anchor ladder has not been validated.** Its source is entirely prescriptive: no evaluation, baseline, or reported deployment outcome. Later observations and software-factory case reports add context, not a controlled test of these rungs.
@@ -198,3 +213,4 @@ execution is required.
 - [[Agent Memory]]
 - [[Context Engineering]]
 - [[Institutional Knowledge Agents]]
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]

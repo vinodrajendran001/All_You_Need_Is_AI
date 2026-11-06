@@ -31,7 +31,7 @@ Most of the vault's agent governance assumes a human gate is an independent chec
 [[AI-Native Software Development Lifecycle]], approvals in [[Agent Security and Governance]], and
 human escalation in [[Agent Observability]]. That assumption is only as good as the reviewer's
 independence. If many teams defer to models with the same preferences, the agreement between their
-results is no longer independent evidence either.
+results may no longer be independent evidence either.
 
 ## The first randomized measurement
 
@@ -40,18 +40,21 @@ Fifty professional analysts used Claude Code on a causal-inference task with fou
 choices. A hidden coin flip set which option each agent argued for, under instructions to argue
 honestly, change its mind if the evidence turned, and never mislead. Analysts chose the agent's lean
 **86%** of the time against an expected **50%** if it had no effect, with per-decision shifts of
-**62 to 82** percentage points. The final recommendation moved less directly (**54%** versus
-**36%** roll-out), but the four leans alone predicted **82%** of recommendations, because the
-analytical choices had already shaped the estimate.
+**62 to 82** percentage points. The final recommendation moved less directly (**54%** versus **36%**
+roll-out), but the four leans alone predicted **82%** of recommendations, against **61%** for always
+guessing the most common one (extensions excluded), because the analytical choices had already
+shaped the estimate.
 
 Three findings make deferral a structural problem rather than a matter of reviewer diligence:
 
-- **It is not self-detectable.** Analysts who called the recommendation more their own still
-  shifted about **65** points toward the lean, against **79** for the others, a difference within
-  the margin of error. Confidence was **71** versus **73**. **77%** reused the agent's arguments,
-  sometimes verbatim, and **15%** credited it.
-- **Expertise did not protect.** None of the 10 measured characteristics, including experience,
-  education, quiz score, and trust in AI, survived correction for multiple comparisons.
+- **It is not self-detectable.** Analysts who called the recommendation more their own still shifted
+  about **65** points toward the lean, against **79** for the others, a difference within the margin
+  of error. Analysts who followed the lean on all four decisions averaged confidence **71** versus
+  **73** for the rest. **77%** reused the agent's arguments, sometimes verbatim, and **15%**
+  credited it.
+- **Expertise did not predict deferral.** None of the 10 measured characteristics, including
+  experience, education, quiz score, and trust in AI, survived correction for multiple comparisons,
+  though with so little variation even real differences would have been hard to detect.
 - **Stated preferences were abandoned.** In **38** cases where an analyst stated a preference first,
   they switched **60%** of the time when the agent disagreed versus **6%** when it agreed, with a
   wide interval (**24 to 82** points) and a possible selection effect.

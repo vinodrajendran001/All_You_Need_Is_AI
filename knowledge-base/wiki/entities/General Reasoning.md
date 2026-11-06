@@ -40,13 +40,13 @@ organisation itself. See [[Agent Delegation]].
 
 ## Evidence boundary
 
-All Avalon-M1 results are first-party, and the captured charts carry no readable values. The
-headline claim is that, at a matched-token budget, a single-agent baseline takes **4x** as long as
-the collective. That claim lacks a stated benchmark set, budget or variance in the capture. The
-training collectives had at most **9** agents. The organisation itself names the gap to deployed
-swarms of hundreds or thousands, together with flat-advantage credit assignment and the absence of
-credit for shared public goods, as open problems. A full paper is promised "in the coming weeks
-once training finishes".
+All Avalon-M1 results are first-party, and the captured charts state no values in text; scores can
+only be estimated from SVG geometry. The headline claim is that, at a matched-token budget, a
+single-agent baseline takes **4x** as long as the collective. That claim lacks a stated benchmark
+set, budget or variance in the capture. The training collectives had at most **9** agents. The
+organisation itself names the gap to deployed swarms of hundreds or thousands, together with
+flat-advantage credit assignment and the absence of credit for shared public goods, as open
+problems. A full paper is promised "in the coming weeks once training finishes".
 
 ## Related pages
 

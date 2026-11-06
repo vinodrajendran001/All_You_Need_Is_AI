@@ -39,9 +39,10 @@ the loss is." Invariance tests show option order still moves the trained models'
   exposes only next-token probabilities. A decision model reads all answer probabilities in one
   pass, so cost and latency depend on input length rather than answer length.
 - It does an encoder's job but receives its questions and options per request, unlike a BERT
-  classifier whose labels are fixed at training time. "BERT-like with modern LLM data and compute"
-  is a common summary of Jev, but "TypeSafe hasn't published Jev's backbone." TypeSafe trains Jev
-  with a method it calls Reinforcement Learning for Calibrated Decisions (RLCD).
+  classifier whose labels are fixed at training time. "BERT-like, but with the data, compute, and
+  training recipe of modern LLMs" is a common summary of Jev, but "TypeSafe hasn't published Jev's
+  backbone." TypeSafe trains Jev with a method it calls Reinforcement Learning for Calibrated
+  Decisions (RLCD).
 - Calibration is not accuracy: a model saying 0.6 on everything and right 60% of the time is
   calibrated but useless, so "a useful decision model needs both." Calibrated probabilities let
   thresholds be set in code from error costs.

@@ -42,11 +42,12 @@ beyond the product claims:
   friction into proposed changes with stated hypotheses, measures each on every affected model, and
   leaves the merge decision to engineers. See [[Harness Optimization]] and [[Loop Engineering]].
 - **Model-specific effects inside a model-independent harness.** Its line-numbering result helped
-  one model and raised cost on two others, which is direct evidence that a harness change does not
-  transfer automatically across models. See [[Coding Agent Harness]].
+  two models (Sol and Opus) and raised cost on two others, which is direct evidence that a harness
+  change does not transfer automatically across models. See [[Coding Agent Harness]].
 
-All of these are first-party claims. The Terminal-Bench 4 comparison was run by Factory, on tasks
-both harnesses passed, with some trials imputed or substituted; see [[Benchmark Optimization]].
+All of these are first-party claims. The Terminal-Bench 4 comparison was run by Factory, with cost
+and time counted only on tasks both harnesses passed in all three trials, and with some trials
+imputed or substituted; see [[Benchmark Optimization]].
 
 ## Related pages
 

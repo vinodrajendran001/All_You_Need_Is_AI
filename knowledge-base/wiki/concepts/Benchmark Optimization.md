@@ -355,7 +355,8 @@ describes no held-out task set and no check that Terminal-Bench 4 tasks were kep
 the setting in which Martin, above, concedes that harness additions can end up solving benchmark quirks
 rather than production problems even with a train and test split; here no split is described at all.
 This is a gap in disclosure, not evidence of overfitting; the post's per-model experiments did catch a
-change that helped one model and hurt two — see [[Coding Agent Harness]] and [[Harness Optimization]].
+change that helped two models and hurt two others — see [[Coding Agent Harness]] and
+[[Harness Optimization]].
 
 ## Open questions
 

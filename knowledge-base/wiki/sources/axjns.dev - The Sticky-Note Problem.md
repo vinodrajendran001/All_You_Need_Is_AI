@@ -93,9 +93,9 @@ as the alternative.
 
 ### What each missing control breaks
 
-- A board without access controls exposes sensitive evidence.
+- A board without access controls can expose sensitive evidence.
 - A board without ownership "can send two agents to execute the same action".
-- A board without retractions keeps circulating a conclusion after its evidence has been withdrawn.
+- A board without retractions can keep circulating a conclusion after its evidence has been withdrawn.
 - Three further rules restrain the design:
   - Summaries should keep links to their evidence.
   - "A repeated claim should not become more credible merely because several agents copied it."

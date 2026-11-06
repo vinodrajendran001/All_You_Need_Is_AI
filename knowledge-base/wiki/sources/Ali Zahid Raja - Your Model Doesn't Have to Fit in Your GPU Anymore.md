@@ -71,13 +71,14 @@ and SGLang are "Overkill for one person on a laptop" but "The right tool the mom
 
 ### Odysseus as a selection workflow
 
-Odysseus is a self-hosted AI workspace that PewDiePie released on 31 May 2026; it passed
-**70,000** GitHub stars in about three weeks, per ModelFit. Its Cookbook scores a catalog of
-**270+** models against the user's VRAM and RAM and launches vLLM, llama.cpp, or Ollama in a
-background tmux session. Its Compare view runs the same prompt across connected models blind.
-Caveats, mostly from ChatForest's review: on a single GPU or CPU it defaults to Q4_K_M and halves the
-context window until the model fits; slow CPU inference can trip a 45-second timeout; and it has shell
-access, file access, and API keys, serves plain HTTP, and does not sandbox the agent's bash tool.
+Odysseus is a self-hosted AI workspace that PewDiePie released on 31 May 2026; it passed **70,000**
+GitHub stars in about three weeks, per ModelFit. Its Cookbook scores a catalog of **270+** models
+against the user's VRAM and RAM and launches vLLM, llama.cpp, or Ollama in a background tmux session.
+Its Compare view runs the same prompt across connected models blind. Caveats, mostly from ChatForest's
+review: on a single GPU or CPU it defaults to Q4_K_M and halves the context window until the model
+fits; slow CPU inference can trip its 45-second default timeout on non-streaming endpoints; and it has
+shell access, file access, and API keys, serves plain HTTP, and does not sandbox the agent's bash
+tool.
 
 ### MoE offload is the main trick
 

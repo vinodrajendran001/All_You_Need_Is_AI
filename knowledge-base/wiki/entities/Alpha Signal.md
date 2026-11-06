@@ -18,6 +18,8 @@ source_ids:
   - src-2026-10-19-alphasignal-next-concept-modeling
   - src-2026-10-26-alphasignal-memory-tax
   - src-2026-11-02-alphasignal-timestral
+  - src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
+  - src-2026-09-14-alphasignal-deepseek-v4-1-flash
 status: active
 ---
 
@@ -30,8 +32,8 @@ Alpha Signal is an AI-focused newsletter that tracks research developments, mode
 ## Why it matters to this vault
 
 Alpha Signal connects recursive reasoning architectures, retrieval-interface design, agent-skill
-optimization, runtime controls, cache handoffs, non-autoregressive text generation, and agent-memory
-costs in this vault. Its secondary reporting is useful for orientation, but study details and editorial framing
+optimization, runtime controls, cache handoffs, non-autoregressive text generation, agent-memory
+costs, tabular and specialist prediction models, and sparse-model serving costs in this vault. Its secondary reporting is useful for orientation, but study details and editorial framing
 must remain distinct from independently verified results.
 
 ## Notes
@@ -50,6 +52,19 @@ must remain distinct from independently verified results.
   tracking links; the full text remains the user's preserved clipping.
 - In this knowledge base, Alpha Signal acts as a bridge from mainstream LLM discussion into newer branches such as [[Recursive Architectures]], [[Latent-Space Reasoning]], corpus-native retrieval for agents, and agent skill optimization.
 - The entity is useful as a reminder that curated secondary sources can seed new concept branches when they synthesize technical claims clearly enough to deserve durable notes.
+
+## Two earlier relays: tabular models and a sparse-model serving explainer
+
+[[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]] surveys four tabular foundation
+models, TabFM, TabPFN, TabICL, and KumoRFM, which predict on an unseen table in one forward pass.
+Although promotional in tone, it argues for a dual stack with gradient-boosted trees rather than
+replacing them. It is also the vault's record that NVIDIA acquired Kumo in June, which bears on the
+later roundup's NVIDIA attribution below.
+[[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]] uses DeepSeek V4.1-Flash to argue
+that active parameters and cache bytes, not total parameters, set serving cost. Its figures are
+relayed from DeepSeek's announcement with no hardware, throughput, latency, or independent
+verification, and its expert-count wording contradicts itself. [[Tabular Foundation Models]],
+[[KV Cache]], and [[Mixture of Experts]] carry the technical content.
 
 ## Cache handoffs distinguish two kinds of agent communication cost
 
@@ -103,8 +118,9 @@ canonical URL. Attribution rests on per-subscriber `app.alphasignal.ai` tracking
 alphasignal.ai image hosting, and a direct link to a different alphasignal.ai news item about System
 One models. The source ID therefore uses the date Git first tracked the file, and the title comes from
 the file name. Editorially, the item relays vendor results ("Mistral reports") without benchmark
-names or margins, and it attributes a Kumo Relational result to NVIDIA, which the source page records
-as a possible newsletter error rather than correcting it.
+names or margins, and it attributes a Kumo Relational result to NVIDIA. The source page states it as
+captured: it may be a newsletter error, or it may follow from the NVIDIA acquisition of Kumo that the
+earlier tabular survey reports.
 
 ## Related pages
 
@@ -138,3 +154,6 @@ as a possible newsletter error rather than correcting it.
 - [[Alpha Signal - The Three Layers of AI Agent Security]]
 - [[Agent Security and Governance]]
 - [[AI Knowledge Base Overview]]
+- [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]]
+- [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]]
+- [[Mixture of Experts]]

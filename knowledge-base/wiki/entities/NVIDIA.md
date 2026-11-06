@@ -31,6 +31,7 @@ source_ids:
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-10-21-nvidia-sentry-runtime
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
 status: active
 ---
 
@@ -248,6 +249,22 @@ already records as a deployment and microscaling option. All figures are NVIDIA'
 ByteByteGo, without benchmarks. See [[Mixture of Experts]],
 [[Linear Attention and Recurrent Memory]], and [[Speculative Decoding]].
 
+## Cosmos 3 is documented as a world-model platform, ahead of published results
+
+[[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] is NVIDIA's
+own guide to Cosmos 3 as a platform rather than a single model. Cosmos3-Nano-Transfer-Auto uses
+bidirectional generation to denoise an entire multi-view clip at once for offline synthetic driving
+data; Cosmos3-Nano-Sim-Auto is its "causal, few-step-distilled variant", returning camera and LiDAR
+observations to a policy in a loop with the AlpaSim runtime for closed-loop evaluation. Robotics
+checkpoints cover simulator-state rendering (Sim-Transfer) and two-arm simulation (Sim-Bimanual).
+The surgical pair follows the same pattern: Cosmos3-H-Dreams is a causal, few-step model distilled
+from Cosmos3-H-Embodied-Nano. The Cosmos Framework lists post-training and RL pipelines (DPO, GRPO,
+PPO, OPD, and DiffusionNFT), and NIM microservices handle serving.
+
+It is vendor documentation. Its speed claims are the only measurements: speculative decoding
+"delivers measured mean speedups of roughly 2–3× on H200", and streaming VLM inference promises "10x
+lower latency" with no stated baseline. No fidelity or closed-loop policy results are reported.
+
 ## Related pages
 
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
@@ -295,3 +312,4 @@ ByteByteGo, without benchmarks. See [[Mixture of Experts]],
 - [[Linear Attention and Recurrent Memory]]
 - [[Speculative Decoding]]
 - [[Model Quantization and Efficiency]]
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]

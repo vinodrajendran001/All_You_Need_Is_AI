@@ -24,13 +24,13 @@ status: active
 ByteByteGo describes a Netflix system that wraps a large language model (LLM) in a profiling and
 deployment pipeline to find and fix CPU and memory waste in production services. It is secondary
 reporting: the only reference is a P99 Conference session whose URL gives its title as "The
-Autonomous Performance Agent: A Netflix Production Story", and ByteByteGo adds its own explanatory
-code snippets. The account's
-central design choice is that the model diagnoses and proposes, while deterministic tests, a canary
-comparison judged without AI, and a human reviewer decide whether a change ships. Netflix then
-stores what it learns in a "Pattern Catalog", a Git repository of plain Markdown rules that is reused
-both after the fact in production and before merge in pull-request checks. The reported fixes are
-large on individual services, but the article gives no fleet-wide savings, error rates, or volume.
+Autonomous Performance Agent: A Netflix Production Story", and the article includes code snippets
+without saying whether they come from Netflix or are its own illustrations. The account's central
+design choice is that the model diagnoses and proposes, while deterministic tests, a canary
+comparison judged without AI, and a human reviewer decide whether a change ships. Netflix then stores
+what it learns in a "Pattern Catalog", a Git repository of plain Markdown rules that is reused both
+after the fact in production and before merge in pull-request checks. The reported fixes are large on
+individual services, but the article gives no fleet-wide savings, error rates, or volume.
 
 ## Key claims
 
@@ -53,7 +53,7 @@ on a critical path.
 - LLMs already recognise classic anti-patterns such as quadratic loops and loop invariants, so the
   workflow asks the model to match known performance bugs against real call stacks rather than to
   guess from scratch.
-- Scoping was the key lesson. Given an unbounded stack trace, the model spent reasoning tokens on JVM
+- Scoping was a key lesson. Given an unbounded stack trace, the model spent reasoning tokens on JVM
   garbage collection, Linux kernel syscalls, and third-party framework overhead. Strict package-prefix
   rules restrict it to the application code developers can change.
 
@@ -117,8 +117,8 @@ system, and [[ByteByteGo]] another relay of a named internal deployment.
 
 ## Tensions / open questions
 
-- Secondary account of a conference talk; the talk itself was not captured. The code snippets are
-  ByteByteGo illustrations, not Netflix code.
+- Secondary account of a conference talk; the talk itself was not captured. The article does not say
+  whether its code snippets are Netflix code or ByteByteGo illustrations.
 - The percentages are per-service and pre-fix, not fleet-wide savings. The article gives no counts of
   agent runs, pull requests opened or accepted, false positives, catalog size, or cost.
 - The talk title and the article both call the system autonomous, but the described current state

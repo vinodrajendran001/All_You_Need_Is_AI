@@ -23,8 +23,9 @@ status: active
 
 ByteByteGo describes a Netflix system that wraps a large language model (LLM) in a profiling and
 deployment pipeline to find and fix CPU and memory waste in production services. It is secondary
-reporting: the only reference is a P99 Conference session titled "The Autonomous Performance Agent:
-A Netflix Production Story", and ByteByteGo adds its own explanatory code snippets. The account's
+reporting: the only reference is a P99 Conference session whose URL gives its title as "The
+Autonomous Performance Agent: A Netflix Production Story", and ByteByteGo adds its own explanatory
+code snippets. The account's
 central design choice is that the model diagnoses and proposes, while deterministic tests, a canary
 comparison judged without AI, and a human reviewer decide whether a change ships. Netflix then
 stores what it learns in a "Pattern Catalog", a Git repository of plain Markdown rules that is reused
@@ -120,8 +121,8 @@ system, and [[ByteByteGo]] another relay of a named internal deployment.
   ByteByteGo illustrations, not Netflix code.
 - The percentages are per-service and pre-fix, not fleet-wide savings. The article gives no counts of
   agent runs, pull requests opened or accepted, false positives, catalog size, or cost.
-- The talk title says "Autonomous", but the described current state is Level 2, with human approval
-  of every change.
+- The talk title and the article both call the system autonomous, but the described current state
+  is Level 2, with a human taking the final deployment decision.
 - Regex or symbol matching in CI can only catch patterns already in the catalog; novel regressions
   still depend on the reactive production path.
 - The canary depends on traffic representativeness and window length, which are not specified.
@@ -143,7 +144,8 @@ system, and [[ByteByteGo]] another relay of a named internal deployment.
 
 - Canonical URL: <https://blog.bytebytego.com/p/how-netflix-uses-ai-agents-for-performance>
 - Byline: ByteByteGo. Underlying reference: P99 Conference session "The Autonomous Performance Agent:
-  A Netflix Production Story"
+  A Netflix Production Story" (title taken from the session URL; the article's link text is "A
+  Netflix Production Story - P99 Conference")
   (<https://p99conf.io/session/the-autonomous-performance-agent-a-netflix-production-story/>).
 - Published November 4, 2026; captured November 4, 2026. Email tracking parameters are omitted from
   the summary URL; the raw capture is unchanged. The Datadog and WarpBuild sponsor blocks are

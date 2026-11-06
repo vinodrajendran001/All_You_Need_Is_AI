@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -10,6 +10,9 @@ tags:
 source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-10-19-vercel-durable-harness
+  - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-axjns-celln-execution-lease
+  - src-2026-11-04-axjns-post-kubernetes-genai
 status: active
 ---
 
@@ -118,6 +121,56 @@ not something the article says it captures. Outside-in durability can make the t
 documents resumable; it does not by itself give a multi-authority harness a single authority. The source
 reports no recovery-time or failure-injection measurements.
 
+## Several agents need one authority too, and execution can sit outside it
+
+The material above concerns one session. The synthetic-membrane proposal in
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] applies the same
+principle to a team. Its proposed starting point is "a durable event history with materialised views for
+incidents, claims, and tasks". Corrections append a superseding or retracting record and do not edit
+history.
+
+Its "recoverable state" requirement is the multi-agent form of resume. A replacement agent obtains "an
+authorised snapshot and subsequent changes without replaying an entire conversation into its context
+window". That is event sourcing with access control applied to the read.
+
+The paper also offers a proposed, untested answer to this page's contention question. It separates data
+that can merge from authority that cannot:
+
+- CRDTs suit sets of observations or annotations. They "do not resolve contradictory diagnoses or enforce
+  arbitrary cross-record invariants".
+- Exclusive task ownership, approval and budget reservation need transactional updates within an
+  incident partition, with version checks and lease fencing.
+- The system should "fail closed for actions when it cannot confirm current authority", while read-only
+  investigation may continue on explicitly stale state.
+
+It adds a warning that a single journal does not by itself cover effects. "Recording a halt in shared
+memory is insufficient if workers continue using cached authority". The suspension has to be enforced
+where execution happens.
+
+Two companion posts give the remote-sandbox question a third design, after host journaling and Vercel's
+outside-in log.
+
+- [[axjns.dev - The Agent Environment Should Be a Lease]] puts a typed contract between Sympozium, the
+  coordination system, and [[Celln]], the executor.
+  - Sympozium submits an authorised request with a capability set, limits and an output destination.
+  - Celln returns the outcome, provenance and an enforcement verdict.
+  - "Sympozium owns the workflow; the executor validates the authority it is given and enforces it
+    locally."
+- [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]] states the placement rule as a
+  question: "which decisions must be durable before execution, and which can be reconciled afterwards?"
+  Its example is Modal's vendor-reported launch path. Workers accept placements using local state and
+  publish state asynchronously, with no synchronous durable write before a sandbox starts. The post adds
+  that "launching disposable compute and approving a consequential external action do not require
+  identical semantics".
+
+Read against this page, the split keeps one authority for decisions and ownership. It lets launch-path
+state be eventually consistent, and it treats the executor's verdict as a record returned to that
+authority.
+
+None of it is measured. There are no partition, revocation or failure-injection results. The lease post
+names revocation of authority a running cell already holds as an open problem. The paper also warns
+against putting every observation in one expanding Kubernetes custom resource.
+
 ## Open questions
 
 - **Does a single authoritative tree survive contention?** The design targets many agents in one workspace, but
@@ -142,9 +195,18 @@ reports no recovery-time or failure-injection measurements.
   design with no reported partition or failure-injection results.
 - **Does outside-in journaling recover state a harness keeps outside its session files?** Extension state is the
   failure class this page documents, and the outside-in source does not discuss it.
+- **Can partitioned transactions with lease fencing give a team one authority without one bottleneck?** The
+  membrane paper concedes that a central service can become a bottleneck or failure domain, and that
+  partitions force a tradeoff between availability and exclusive authority. No implementation has been
+  measured.
 
 ## Related pages
 
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[axjns.dev - The Agent Environment Should Be a Lease]]
+- [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]]
+- [[Celln]]
+- [[Multi-Agent Coordination]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
 - [[Vercel]]

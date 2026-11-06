@@ -82,7 +82,7 @@ or downstream policy benefit**.
 
 ### Serving claims
 
-- NIM: speculative decoding "measured mean speedups of roughly **2-3×** on H200". Streaming VLM gives
+- NIM: speculative decoding "measured mean speedups of roughly **2–3×** on H200". Streaming VLM gives
   "sub-second alerts with **10x** lower latency", with no baseline stated. "20+ NVIDIA GPUs" are
   supported.
 - VRAM (GiB) for generation: Nano **58** BF16, **44** FP8, **31** FP8 + offloading. Super **150 / 93
@@ -107,7 +107,7 @@ or downstream policy benefit**.
   outputs exist and are finite and aligned, not that they are correct.
 - **Distilled causal models trade quality for speed** in principle. The post does not report what
   Sim-Auto or H-Dreams lose relative to their teachers.
-- **Unstated baselines**: "10x lower latency" has no comparator, and "2-3×" is a mean on one GPU type.
+- **Unstated baselines**: "10x lower latency" has no comparator, and "2–3×" is a mean on one GPU type.
   Reasoning Nano lists **23.1** GiB for both BF16 and FP8, which may be an error.
 - **Capture quirks**: commands lose spaces ("exportCOSMOS_TRAINING", "--local-dircheckpoints"), and
   the "Sim-Auto sample checkpoint" link points to a JSONL input file in the Transfer-Auto repository.

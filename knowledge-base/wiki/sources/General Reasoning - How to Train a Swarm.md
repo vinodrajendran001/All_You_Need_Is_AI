@@ -100,7 +100,9 @@ is still pending.
   normalised performance and total inference-time compute; these are z-scored charts whose values
   were not captured. The post concedes that this is "consistent with" coordination, not proof that
   the communication is useful.
-- **Latency.** "At a matched-token budget, a single-agent baseline takes **4x** as long compared
+- **Latency.** The post grants that a single agent given as many output tokens as the collective
+  "will recover much of the performance gain, but take longer to do it". Its claim is about time:
+  "At a matched-token budget, a single-agent baseline takes **4x** as long compared
   to agent collectives." On EdgeBench, an 8-hire organisation overtakes the single-agent baseline
   at about **2.4 hours** of derived latency. Twelve per-benchmark latency charts compare three
   setups: a single agent, a single agent with extended thinking given the organisation's token

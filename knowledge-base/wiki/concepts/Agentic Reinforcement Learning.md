@@ -232,7 +232,8 @@ using a recipe it calls RLCR ("reinforcement learning from collective rewards").
 every agent, a simple policy-gradient update applies one flat collective advantage to all of them, and the
 only latency pressure is a wall-clock cap. In Avalon-M1 a CEO agent can hire and fire up to **8**
 specialists, and any agent can reach any other through channels, direct messages and an archive. The
-communication primitives are part of the action space, not a fixed workflow.
+authors argue that such primitives should stay simple, so that agents discover how to work together
+"without excessive bias from a harness".
 
 The recipe moves three of this page's themes. Reward design extends to *time*: a task reward alone does
 not prefer a faster rollout. Curriculum becomes a deadline that rises during training, because
@@ -242,10 +243,13 @@ hours and sometimes millions of tokens".
 
 The evidence is early and first-party. Avalon-M1 trained with at most **9** agents. Its headline claim
 is that, at a matched-token budget, a single-agent baseline takes **4x** as long as the collective. That
-claim speaks to the token-matched "illusion of MAS advantage" question raised above by
-[[Akhil Arora et al - Current Advances in LLM Reasoning]], but it does not settle it. The captured charts
-carry no values, and no ablation separates communication from extra parallel compute. See
-[[Multi-Agent Coordination]], [[Reward Design for RL]] and [[Long-Horizon Credit Assignment]].
+claim bears on the token-matched "illusion of MAS advantage" question raised above by
+[[Akhil Arora et al - Current Advances in LLM Reasoning]], and it reframes rather than settles it. The
+post concedes that a single agent given as many output tokens "will recover much of the performance
+gain, but take longer to do it". The claimed advantage is therefore wall-clock time, not accuracy at
+equal compute. The captured charts carry no values, and the capture reports no ablation that separates
+communication from extra parallel compute. See [[Multi-Agent Coordination]], [[Reward Design for RL]]
+and [[Long-Horizon Credit Assignment]].
 
 ## Open questions
 

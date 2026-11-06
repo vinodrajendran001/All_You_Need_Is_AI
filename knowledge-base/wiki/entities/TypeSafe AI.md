@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-10-09
+updated: 2026-11-06
 tags: [entity, organization, decision-models]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-09-29-raschka-text-classification-jev
   - src-2026-10-05-rai-jev-decision-models
   - src-2026-10-08-talekar-decision-model-gold-rush
+  - src-2026-10-27-morgan-train-decision-model
+  - src-2026-11-02-alphasignal-timestral
 status: active
 ---
 
@@ -115,8 +117,33 @@ and operating cost separately. Its API-compatibility claims do not establish beh
 and its launch/adoption figures do not validate calibration. The decision-model landscape has
 expanded in the reporting; Jev's private implementation has not thereby become public.
 
+## Late-October update: an open replication of the interface, and Jev as one specialist
+
+[[Abby Morgan - Train Your Own Decision Model]] dates the category's wider attention to Jev's
+September launch and repeats that Latent.Space counted **six** open-source alternatives in two days.
+It describes RLCD as TypeSafe's calibration-targeted training method and states that TypeSafe has not
+published Jev's backbone, so the common "BERT-like" summary remains a description, not a disclosed
+architecture. The post then builds an open model behind a `predict(state, questions)` function that
+takes and returns Jev's request format. Its measurements are of that small open model, not of Jev:
+they show that calibration followed the training loss rather than the readout head, and that reversing
+option order still changed the top answer on **5 to 9%** of questions after training. Because the
+interface matches, those Opik tests could be run against Jev; the post links a separate Comet
+comparison but does not report such a run itself.
+
+[[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] calls Jev "another
+popular example" of task-specific models and describes it as taking application state and producing
+typed decisions and probability estimates. In its illustrative inventory agent Jev only classifies
+findings into predefined categories; forecasting, risk scoring, and rule enforcement belong to other
+models and to application code. The article adds no benchmark for Jev.
+
+Neither source changes the October position: the interface is public and increasingly copied, the
+training recipe and backbone are not, and accuracy and calibration remain task-specific claims.
+
 ## Related pages
 
+- [[Abby Morgan - Train Your Own Decision Model]]
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
+- [[Tabular Foundation Models]]
 - [[Swapnil Talekar - The Decision Model Gold Rush]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
 - [[Siddhant Rai - Jev - Models Built for Decisions Rather Than Text]]

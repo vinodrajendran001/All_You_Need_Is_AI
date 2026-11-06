@@ -236,16 +236,17 @@ in the reward pushes a policy to work in parallel. The post's prescription is "m
 and it contrasts two ways to do it.
 
 **A latency penalty** subtracts time from the task reward. The post offers "one possible" form,
-`R(τ) = R_task(τ) − β · p̄(q) · T(τ) / T_max`. It is modelled on an adaptive reasoning-length penalty,
-and it scales the penalty by the task's average pass rate p̄(q), so tasks the policy rarely solves are
-barely charged for time. The shape is the latency counterpart of the length penalties recorded above.
-DeepSeek-V4.1-Flash's agent teams reportedly used a latency penalty of undisclosed form. The post calls
-this approach principled but with "some disadvantages"; the list did not survive capture, so the
-trade-off is unrecorded here.
+`R(τ) = R_task(τ) − β · p̄(q) · T(τ) / T_max`. It borrows the shape of a reasoning-length penalty,
+citing work on adaptive length penalties, and it scales the time charge by the task's average pass
+rate p̄(q). As written, tasks the policy rarely solves therefore carry a smaller charge for time. The
+shape is the latency counterpart of the length penalties recorded above.
+DeepSeek-V4.1-Flash's agent teams used a latency penalty, according to the post, but its functional
+form was not shared. The post calls this approach principled but with "some disadvantages"; the list
+did not survive capture, so the trade-off is unrecorded here.
 
-**A time limit** is General Reasoning's choice for Avalon-M1. A rollout that hits the wall-clock cap
-scores the return earned so far, and a group of rollouts stopped at the limit is ranked on relative
-return. The design asks less of the reward but more of the environment, which must report progress at
+**A time limit** is General Reasoning's choice for Avalon-M1, as the sole source of latency pressure. A
+rollout that hits the wall-clock cap scores the return earned so far. A group of rollouts is stopped at
+the limit, and rollouts with relatively higher returns are rewarded. The design asks less of the reward but more of the environment, which must report progress at
 any moment (see [[RL Environment Design]]). Its blind spot is stated plainly: "a deadline does not reward
 every reduction in completion time", so two rollouts with equal returns before the deadline tie. The cap
 also rises over training, because collectives lose early to single agents while they pay coordination

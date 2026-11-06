@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - evaluation
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-10-15-osmani-claude-code-review
   - src-2026-10-20-cloudflare-inference-bill
+  - src-2026-11-04-x-town-square-rebuild
 status: active
 ---
 
@@ -171,6 +172,22 @@ development and holdout sets remain separate so prompt tuning does not optimize 
 [[Mistral - Modernizing Complex Legacy Code with AI Agents]] builds tests from intermediate legacy
 state rather than from translated code. This reduces shared-error risk: generated C++ must match
 observable Fortran behavior before refactoring or cleanup changes the structure.
+
+[[X Engineering - Rebuilding the Global Town Square from Scratch]] applies the same principle to a
+web migration, at production scale, and turns it into three reusable test artifacts. Agents read how
+an old server handled a URL or page type, ported the behavior, and wrote a test that pins it down;
+many of those tests now "name the server they came from", so a behavior's provenance survives the
+migration. A **parity script** requests the same path from the old and new servers as a verified
+Googlebot and compares status and redirect, title, description, canonical URL, robots tags, card
+tags, the number of language alternates, and structured-data types. The Rust card-image rewrite is
+checked twice: a record-and-replay harness against committed baselines, and a pixel-for-pixel
+comparison with the old service.
+
+The two sources share the mechanism but not the oracle. Mistral compares against intermediate
+legacy state; X's parity script compares only the externally observable fields that search
+engines read, which is a narrower contract than full behavior. X reports no count of parity
+failures found or residual differences, so the script is evidence of method rather than of
+coverage. Its own lesson is that "the old servers were the best specification we had".
 
 ## The grader and the answer space are untested surface too
 
@@ -322,3 +339,5 @@ model-judge check supplies another quality signal, not exhaustive ground truth.
 - [[ByteByteGo]]
 - [[Anthropic]]
 - [[Harness Optimization]]
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]]
+- [[Legacy Code Modernization with AI Agents]]

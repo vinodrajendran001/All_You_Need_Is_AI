@@ -65,7 +65,7 @@ failed without tools.
 ### Real language models
 
 - **Exp 7:** three pairs of Gemma 3 270M models, one sycophantic and one honest, which follow
-  **100%** and **1-3%** of wrong user guesses respectively. **From weights alone Astra failed all four
+  **100%** and **1–3%** of wrong user guesses respectively. **From weights alone Astra failed all four
   attempts.** With an attention-only probe tool (≤16 texts, ≤20 runs), it picked the sycophant in all
   three pairs. In the first pair, layer 10 head 2 attended to the user-proposed label **0.431 vs
   0.006** (numeric labels) and **0.642 vs 0.004** (alphabetic). Astra itself hedged: "not a

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - neural-networks
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-07-01-anastasiia-alekseeva-parallel-training
   - src-2026-09-07-rai-lejepa
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -112,15 +113,38 @@ expected negative Hessian of the log-probability. Li adds two cautions that matt
 Li then uses the parameter Fisher to bound each coordinate's expected policy gradient. That
 application is developed on [[Reinforcement Learning]].
 
+## The training loop is not the only way to write weights
+
+The synthesis above treats weights as what the optimizer loop produces.
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] names three existing writers:
+optimization, custom networks trained to write weights, and compilers from formal programs. It
+then reports a fourth, a frontier LLM reasoning about what each layer should compute. Without
+data, loss, gradients, tools or rollouts, GPT-6 Astra wrote MinAtar policies (600→32→32→6,
+tanh) starting from zeros. Its Breakout network scored **517.4**, against **25.3** for PPO after
+500 million steps. For 9×9 Go it wrote the network "as a small Go program, layer by layer, in
+Python". Early layers mark stones and liberties, middle layers carry them along chains, and the
+last layer scores moves. With no forward passes this took a single **336**-line run.
+
+The Go case is closer to compiling a hand-designed algorithm into weights than to learning, a
+route the vault also sees in the compiled-CPU derivative on [[Qwen]]. The fundamentals here still
+explain how such networks compute: forward passes through linear layers and nonlinearities.
+What changes is where the parameters come from. The evidence is bounded. The networks are small,
+the PPO baselines are best-of-seeds at fixed budgets, only one LLM was tested, and the post is a
+preliminary blog. Gradient training remains the only demonstrated way to build large models
+from data.
+
 ## Open questions
 
 - Which additional fundamentals deserve their own pages next: initialization, normalization, regularization, or batching/data pipelines?
 - How much of modern model behavior is still well explained by these fundamentals versus by scale-specific phenomena?
+- For which network sizes and tasks can reasoning-written weights compete with gradient training, and is that competition mostly against weak baselines?
 
 ## Related pages
 
 - [[Yingru Li - The Gradient Is a Covariance]]
 - [[Reinforcement Learning]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Mechanistic Interpretability]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]
 - [[Han Fang - PyTorch Practice]]

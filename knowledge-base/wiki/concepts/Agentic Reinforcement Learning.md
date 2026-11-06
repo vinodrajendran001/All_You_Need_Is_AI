@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-09-03
+updated: 2026-11-06
 tags:
   - concept
   - reinforcement-learning
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-08-30-adlrocha-base-models-bottleneck
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -224,6 +225,28 @@ Qwen3.8 was trained in a setting where past thinking blocks stay in context, and
 prior reasoning as **working memory** rather than as discarded scratch. That is a behaviour learned from the
 context regime rather than from the reward.
 
+## The policy can be a collective
+
+Everything above trains one agent. [[General Reasoning - How to Train a Swarm]] trains many at once,
+using a recipe it calls RLCR ("reinforcement learning from collective rewards"). One shared policy runs
+every agent, a simple policy-gradient update applies one flat collective advantage to all of them, and the
+only latency pressure is a wall-clock cap. In Avalon-M1 a CEO agent can hire and fire up to **8**
+specialists, and any agent can reach any other through channels, direct messages and an archive. The
+communication primitives are part of the action space, not a fixed workflow.
+
+The recipe moves three of this page's themes. Reward design extends to *time*: a task reward alone does
+not prefer a faster rollout. Curriculum becomes a deadline that rises during training, because
+collectives start behind single agents while they pay coordination costs. Credit assignment becomes
+coarser than in single-agent RL: one advantage is spread across several agents and episodes that "last
+hours and sometimes millions of tokens".
+
+The evidence is early and first-party. Avalon-M1 trained with at most **9** agents. Its headline claim
+is that, at a matched-token budget, a single-agent baseline takes **4x** as long as the collective. That
+claim speaks to the token-matched "illusion of MAS advantage" question raised above by
+[[Akhil Arora et al - Current Advances in LLM Reasoning]], but it does not settle it. The captured charts
+carry no values, and no ablation separates communication from extra parallel compute. See
+[[Multi-Agent Coordination]], [[Reward Design for RL]] and [[Long-Horizon Credit Assignment]].
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -231,8 +254,14 @@ context regime rather than from the reward.
 - How should context-management policies themselves be trained or selected during RL?
 - Can synthetic environments such as AutoForge avoid a sim-to-real gap for real enterprise tools and users?
 - How much environment-generated text should be masked, learned from with SFT, or treated as part of a world-model objective?
+- Does a collective trained with at most nine agents keep its learned coordination when deployed with
+  hundreds, and can a flat collective advantage keep working as episodes and teams grow?
 
 ## Related pages
+
+- [[General Reasoning - How to Train a Swarm]]
+- [[General Reasoning]]
+- [[Multi-Agent Coordination]]
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
 - [[Staged Reinforcement Learning Curriculum]]

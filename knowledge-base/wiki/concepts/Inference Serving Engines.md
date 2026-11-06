@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-30
+updated: 2026-11-06
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-10-21-ant-vllm-humming
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-11-04-raja-model-gpu-fit
 status: active
 ---
 
@@ -357,6 +358,24 @@ The portable lesson is a method for selecting a workload-specific configuration,
 engine ranking. Lossy precision changes remain separate from lossless serving optimizations
 and require human-approved quality tradeoffs.
 
+## On one machine, the engine choice follows batch size and memory tier
+
+[[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] gives the single-user end of
+the workload taxonomy above. llama.cpp's `llama-server` and Ollama both expose OpenAI-compatible
+endpoints, Ollama now runs on Apple's MLX framework on Apple Silicon, and LM Studio wraps the same
+idea in a desktop app. vLLM and SGLang are "Overkill for one person on a laptop" but "The right tool
+the moment you have users". The dividing line is batch size. Everything the article tunes, including
+llama.cpp's expert-offload flags and a hot-expert cache that applies only to batches of **32**
+tokens or fewer, assumes batch size one; "The moment five people hit the same box", the author
+recommends keeping the whole model in VRAM and batching in an engine such as vLLM.
+
+The article also shows a layer above the engines. The Odysseus workspace scores **270+** models
+against local VRAM and RAM, estimates whether weights and KV cache will fit, and launches vLLM,
+llama.cpp, or Ollama for the user, so engine selection becomes a generated launch command. The
+author relays the operational cost from ChatForest's review: shell and file access, API keys, plain
+HTTP, and an unsandboxed bash tool. Performance figures in the article come from READMEs, a pull
+request, and reviews, not from one measurement protocol.
+
 ## Open questions
 
 - The DeepInfer account supplies no measurement of any kind. Its benchmark configurations are reported
@@ -370,6 +389,9 @@ and require human-approved quality tradeoffs.
   property of the day's batching, and the trade is entirely unquantified.
 - If engines increasingly ship a per-node layer and omit the fleet layer, how should an engine
   comparison be scoped at all — and what is the honest name for the remaining integration work?
+- Where is the crossover between expert offload on one machine and a batched engine with the model
+  resident in VRAM? The local guide's techniques assume batch size one, and no source here measures
+  how quickly offload loses as concurrent users are added.
 
 ## Related pages
 
@@ -415,3 +437,4 @@ and require human-approved quality tradeoffs.
 - [[Rahul Ranganathan - Inference Gateway on GKE]]
 - [[Google Cloud]]
 - [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]

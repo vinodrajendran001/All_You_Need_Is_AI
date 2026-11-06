@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - llm
@@ -46,6 +46,8 @@ source_ids:
   - src-2026-10-21-ant-vllm-humming
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -311,6 +313,39 @@ compress each object according to its role, then count weights, cache, activatio
 and system overhead together. The secondary source supplies no measured whole-device latency,
 thermal, or battery result from which to infer proportional performance gains.
 
+## Local quantization advice depends on the output format
+
+[[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] gives the operator's version
+of the weight-fit arithmetic above: about **2.0 GB** per billion parameters at BF16, **1.1 GB** at
+Q8_0, and **0.6 GB** at Q4_K_M, before the KV cache and "a GB or two" for the runtime and operating
+system. Its advice is task-dependent rather than a single best bit width: start at Q4_K_M, move to
+Q5 or Q6 for code, maths, and structured output, and treat types below Q4 as "Fine for chat. Risky
+for tool calling."
+
+The concrete failure is syntactic. The flash-moe project found a 2-bit model writing `\name\`
+instead of `"name"` in JSON, which made tool calling unreliable, so it runs 4-bit in production.
+That sharpens this page's record of multi-step logic as compression's first casualty: an agent can
+fail on output structure before a reasoning benchmark moves. The evidence is one project's
+experience relayed by the author, not a controlled sweep, and the author's own rule that a bigger
+model at a lower quant beats a smaller one at a higher quant comes with "Often, not always".
+
+## Block scales and a fixed teacher
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] gives the block structure behind NVFP4, a
+format the Kiely section above names only as microscaling: four-bit floating-point values in groups
+of **16** that share an FP8 scale, plus a further scale at the tensor level. That is the per-block
+scale factor from "The arithmetic underneath the format names" above, with a second level of
+scaling. NVIDIA pairs the format with quantization-aware distillation (QAD). The BF16 model stays
+fixed as the teacher while a quantized student trains under simulated quantization to match the
+teacher's output scores. QAD therefore sits between post-training quantization such as the GPTQ
+calibration above, which adjusts a finished model without further training, and
+[[Knowledge Distillation]]: the compression is learned, and the supervision is the uncompressed
+model's own output.
+
+The reported effect is a checkpoint shrinking from approx. **66 GB** in BF16 to approx. **22 GB** in
+NVFP4. The article names no model and gives no accuracy comparison, so the figure establishes stored
+size only, the distinction that "Weight fit is not runtime fit" draws above.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -319,6 +354,9 @@ thermal, or battery result from which to infer proportional performance gains.
 - Does a Hessian computed once survive composition? If quantization or width pruning runs first, are the block couplings still valid, or does each combination need recalibration?
 - The 22.9-point advantage at 40/80 blocks is an MMLU number without retraining. Does it survive on the multi-step-logic tasks this page records as compression's first casualty?
 - How sensitive are the couplings to the calibration dataset, given the whole method's economy comes from computing them once on a small sample?
+- Does tool-call syntax degrade before benchmark accuracy under low-bit quantization? The flash-moe
+  2-bit JSON failure is one anecdote, and no source here measures structured-output validity across
+  bit widths.
 
 ## Related pages
 
@@ -371,3 +409,5 @@ thermal, or battery result from which to infer proportional performance gains.
 - [[Mofi Rahman - Quantizing LLMs on GKE]]
 - [[Google Cloud]]
 - [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]

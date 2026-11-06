@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - inference
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -331,6 +332,20 @@ training/checkpoint selection according to the authors, but it is repeatedly con
 optimization. The account is first-party, its general baseline wording is inconsistent,
 and it does not isolate every recipe component.
 
+## One release can ship built-in and separate drafters
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] reports that "Nvidia's models ship with
+integrated MTP capabilities and separate draft models". That puts two kinds of drafter in one
+release: multi-token prediction (MTP), an auxiliary mechanism trained to predict further ahead, and
+an independent drafter. The article does not say when a deployment should use one or the other, and
+it gives no acceptance rate, τ, or speedup, the same evidence gap as the DeepInfer default recorded
+above.
+
+Because Nemotron is a Mamba-attention hybrid, the drafter's own state also matters:
+[[Linear Attention and Recurrent Memory]] records that a drafter can reintroduce the memory a hybrid
+target removed. The account does not describe the drafters' architecture, so that cost cannot be
+assessed from it.
+
 ## Open questions
 
 - How well do acceptance predictors such as DSpark's calibrate under traffic or target-model
@@ -342,6 +357,8 @@ and it does not isolate every recipe component.
 - What throughput does a deployment give up to obtain batch-invariant results, and which workloads — regulated decisions, evaluation substrates, incident reproduction — are worth paying it?
 - Can a fixed-length draft budget preserve batch invariance while keeping most of the gain, or does any useful draft-length controller necessarily read batch state?
 - DeepInfer pairs a draft-length default of five with confidence-scheduled verification but publishes no acceptance rate, no τ, and no speedup. What is the minimum evidence an engine should publish alongside a speculation default before anyone can evaluate it?
+- When a release ships both integrated MTP and separate draft models, which should a deployment use
+  at which batch size? The Nemotron account names both but publishes no acceptance or speed figures.
 
 ## Related pages
 
@@ -372,3 +389,4 @@ and it does not isolate every recipe component.
 - [[ByteByteGo - How to Make LLMs 3X Faster]]
 - [[Inference Efficiency Frontier]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]

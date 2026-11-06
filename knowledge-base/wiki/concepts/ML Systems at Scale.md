@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - machine-learning
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-10-02-epoch-agent-population
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-15-netflix-reliable-gpu-compute
+  - src-2026-11-02-anil-compute-islands
 status: active
 ---
 
@@ -223,6 +224,26 @@ in a short-term homepage metric and **0.006%** in a long-term core metric, both 
 by Netflix. Unnamed metric definitions and absent confidence intervals limit what those figures
 establish; they are not general retention estimates or an ablation of the architecture.
 
+## Capacity can be stranded by its shape, not only by its health
+
+[[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]] adds a step before the chain
+above of raw supply, allocatable capacity, delivered goodput, and useful work: raw supply first has
+to be powered. The post argues that power, grid equipment, and land, not chips, bind accelerated
+compute "until 2028". It cites a Goldman Sachs expectation that only **50–60%** of scheduled US
+capacity for the next one to two years comes online on time, against a historical **72%**, and notes
+that a site under **20 MW** often plugs into the grid already there. The result is a market of
+scattered clusters sold in tiers: committed multiyear contracts, reservable capacity from a single
+node to hundreds of GPUs, and spot or resale capacity.
+
+The author separates that physical problem, which software cannot fix, from an architectural one it
+can: a frontier training job written for one uniform cluster cannot use capacity that arrives in
+pieces, on mixed accelerators, under different contracts. In this page's vocabulary, such capacity
+can be allocatable and healthy yet unusable by a given job, much as the ostensibly free GPUs in the
+AI21 account above could not serve a queued job. The proposed remedy is a training method that is
+fungible across islands, measured by training goodput and final model quality. The market figures
+are the author's summaries of third-party sources, and the supporting case study is first-party; see
+[[Distributed Training Parallelism]].
+
 ## Related pages
 
 - [[Netflix - Reliable GPU Compute for Training and Inference]]
@@ -257,3 +278,4 @@ establish; they are not general retention estimates or an ablation of the archit
 - [[Sumit K - Scaling Simplified]]
 - [[Rahul Ranganathan - Inference Gateway on GKE]]
 - [[Google Cloud]]
+- [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]

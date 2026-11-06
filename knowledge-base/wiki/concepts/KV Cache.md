@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - kv-cache
@@ -35,6 +35,8 @@ source_ids:
   - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
   - src-2026-10-26-cerebras-trillion-parameter
   - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -412,6 +414,27 @@ an architecture choice, not a generic cache-manager switch. The Apple account is
 and does not provide a controlled quality/latency comparison, so its capacity saving should
 not become a speedup or a claim that arbitrary layer sharing is safe.
 
+## Fewer cache-bearing layers, fewer cached heads, and a local cache budget
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] adds a second hybrid family to the Cerebras
+analysis above. In NVIDIA's Nemotron design, Mamba layers keep a fixed-size state whose per-token
+update cost does not grow, and "The remaining attention layers maintain KV caches." Those attention
+layers also use grouped-query attention with **32** query heads and **2** key-value heads, so the
+design stacks two of this page's levers: fewer cache-bearing layers and fewer cached heads per
+layer. The article gives no Mamba-to-attention ratio, so the cache cannot be sized from it, and the
+recurrent state that this page elsewhere treats as competing with the cache for memory is not sized
+either.
+
+[[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] describes the same budgeting
+from the local operator's side. A 128K-token context on a big model "can cost several gigabytes by
+itself"; the remedies offered are a shorter context or an 8-bit cache, which llama.cpp and Ollama
+both support. The author's Qwen3.8-27B example, citing Morph, has full attention in only a quarter
+of its layers, which agrees with the 3:1 layout recorded in
+[[Linear Attention and Recurrent Memory]]. The Odysseus workspace the article recommends halves the
+context window until a model fits on a single GPU or CPU, and the author warns users to check what
+context they actually got: the usable context of a local setup can be a runtime decision rather than
+a model property.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -424,6 +447,9 @@ not become a speedup or a claim that arbitrary layer sharing is safe.
 - Prefix-truncating reuse implies a cost for every edit position in a prompt, but the vault has no way to price one. Is there a usable model of "expected cached tokens lost per edit" that a context-assembly layer could optimize against?
 - Does exact-prefix matching behave identically across providers? The source presents a general model and notes that implementation details vary, so the vault's prompt-ordering advice rests on an unverified assumption of common semantics. [[Semantic Caching]] records one provider-specific condition, Anthropic's cache breakpoints.
 - Can a layer pipeline stay full at long context? The Cerebras post sizes concurrency per dense-layer wafer, puts requests in flight at roughly stages times micro-batch, and says production uses "much finer-grained stages, and many more of them"; with its figures shown only as images, the vault cannot tell whether cache space or pipeline depth binds first.
+- How much does a hybrid's recurrent state cost per request relative to its remaining attention
+  cache? The Nemotron account gives grouped-query head counts but neither a layer ratio nor a state
+  size.
 
 ## Related pages
 
@@ -474,3 +500,5 @@ not become a speedup or a claim that arbitrary layer sharing is safe.
 - [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
 - [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]
 - [[Cerebras]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]

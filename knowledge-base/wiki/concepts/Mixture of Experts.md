@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - llm
@@ -20,6 +20,9 @@ source_ids:
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-21-tiene-pruning-llms-ising
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-11-02-anil-compute-islands
+  - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -131,6 +134,55 @@ conjecture. They add a third reading of an expert layer, as a legible unit of or
 alongside this page's systems and compression readings. They do not establish that specialization
 is what makes the removable layers above removable. See [[Mechanistic Interpretability]].
 
+## Total parameters set the memory, active parameters set the speed
+
+[[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] turns this page's
+storage-accounting point into a local deployment rule. Memory is set by total parameters, because
+every expert has to live somewhere; generation speed is set by active parameters, because only
+routed experts are read for each token. A 35B-A3B model at 4-bit reads about 2GB per token, so its
+bandwidth ceiling on desktop RAM is "in the 40s" tokens per second where a dense 27B sits near 5.
+The placement rule follows: keep attention, shared layers, and the KV cache on the GPU, and put
+experts in system RAM or even on SSD.
+
+llama.cpp exposes that split through `--cpu-moe` and `--n-cpu-moe`, and a hot-expert cache merged in
+October 2026 keeps the most frequently routed experts in VRAM. Its reported gain ranges from
+**2.2x** in the pull-request author's RTX 5090 test to **1 to 5%** over a tuned split on an RTX
+3090, and it applies only to small batches. SSD streaming runs a 397B model on a 48GB laptop at
+**4.4+** tokens per second, but only by hardcoding the model and routing 4 experts per token instead
+of 10, which the author relays as a real quality hit.
+
+This complements [[ByteByteGo - How to Run a Big Model on Cheap Hardware]] above rather than
+contradicting it. Total storage still has to be paid, but it can be paid in a cheaper, slower tier
+because per-token traffic follows the active set. On one machine, routing skew then shows up as a
+cache-hit rate rather than as idle devices. The figures are relayed from project READMEs, a pull
+request, and reviews, not measured under one protocol.
+
+## Hybrid families and narrower expert computation
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] reports, from NVIDIA's own documents, a
+configuration it calls Nemotron Lightning with **128** routed experts per MoE layer and **6**
+selected per token: roughly 30B total and roughly 3B active parameters, interleaved with Mamba and
+attention layers. That resembles the NVIDIA-Nemotron-3-Nano-30B-A3B-FP8 hybrid in the removal study
+above, but the article does not say they are the same model.
+
+The larger Super (approx. **120** billion total, **12** billion active) and Ultra (**550** billion
+total, **55** billion active) models add LatentMoE, which projects token representations into a
+smaller space for the routed experts and back again. That targets this page's communication problem
+directly: a narrower routed computation moves less memory traffic and inter-device data, and NVIDIA
+reportedly spends the savings on more experts and more active combinations at a similar inference
+budget. No benchmark or ablation accompanies the claim in this secondary account.
+
+## Routing statistics can need tighter synchronization than expert weights
+
+[[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]] adds a training case far from
+rack-scale expert parallelism. A model of roughly 32B parameters with an MoE layer in every block,
+**256** experts, top-**8** routing, and no shared experts trained across two clusters about 9,000
+miles apart, with local expert parallelism at each site. Weights were exchanged in fragments on a
+50-step schedule, but "The small routing statistics were coordinated and synchronized separately, at
+every step." The post does not say why. One reading, not stated in the source, is that router
+balance is more sensitive to divergence between sites than the expert weights are. The evidence is a
+single first-party run; see [[Distributed Training Parallelism]].
+
 ## Open questions
 
 - When does the routing overhead outweigh the compute saved by sparsity?
@@ -140,6 +192,9 @@ is what makes the removable layers above removable. See [[Mechanistic Interpreta
 - Does deleting MoE layers improve the all-to-all picture by removing dispatch rounds, or only shrink stored weights while leaving the per-token communication pattern intact?
 - Expert-parallel layouts are written against a fixed topology (Inferact's TP4 x EP8 on 2x2x4). Is there a portable way to express MoE collectives, or is per-deployment kernel work the standing cost of sparsity?
 - If routed experts really are narrow, does a small router constrain what can be packed into one expert, and does that hold in independent audits with a published specialization measure?
+- How much quality does offload-driven expert reduction cost? flash-moe's 4-of-10 experts is relayed
+  as a quality hit without a measurement, and the hot-expert cache's gain ranges from 2.2x to 1-5%
+  depending on card and baseline tuning.
 
 ## Related pages
 
@@ -162,3 +217,6 @@ is what makes the removable layers above removable. See [[Mechanistic Interpreta
 - [[Megakernels]]
 - [[Wafer - AI Performance Engineering Resources]]
 - [[Prefill-Decode Disaggregation]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]

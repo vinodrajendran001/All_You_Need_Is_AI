@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-10-30
+updated: 2026-11-06
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-22-agrawal-qwenputer
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -200,6 +201,21 @@ correctness is separate from the language model choosing the right calculation. 
 layers, an **18.8 GB** checkpoint, and a custom driver also mean this is not a free precision
 upgrade. Its **3,200 CPU trace tokens/s on an L4** measures execution trace, not chat speed.
 
+## A third hybrid family, described by its trade-off rather than its ratio
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] reports NVIDIA's Nemotron 3 family as
+interleaving Mamba, attention, and MoE layers in one network. Its explanation matches this page's
+synthesis. During generation a Mamba layer's "state size and per-token update cost stay fixed", but
+compressing a long history into a bounded state can make it "difficult to retrieve content in a
+precise manner", so selected attention layers keep direct access to earlier positions. The larger
+Super and Ultra models are said to keep the same hybrid Mamba-attention design.
+
+Unlike Qwen3.8-27B's 3:1 and Nanbeige's ×2, the article gives no ratio of Mamba to attention layers
+and no ablation, so it adds a third family to the hybrid pattern without adding a point to the
+missing curve. Its value is the explicit statement of motive, agents that may make dozens of model
+calls on one problem and so benefit from constant per-token cost, and of the cost, precise
+retrieval. It is a secondary account of NVIDIA's documents, not the documents themselves.
+
 ## Open questions
 
 - What determines the right full-attention ratio in a hybrid, and does it depend on task, sequence length, or
@@ -212,6 +228,9 @@ upgrade. Its **3,200 CPU trace tokens/s on an L4** measures execution trace, not
   latter is a large share.
 - Do these architectures change what [[Test-Time Scaling]] costs, given that reasoning traces are exactly the
   long, self-generated sequences they handle best?
+- Nemotron, Qwen3.8, and Kimi K3 all keep some full attention. Is the retained fraction set by
+  retrieval accuracy, by serving cost, or by convention? No source recorded here publishes the
+  curve.
 
 ## Related pages
 
@@ -238,3 +257,4 @@ upgrade. Its **3,200 CPU trace tokens/s on an L4** measures execution trace, not
 - [[Sebastian Raschka]]
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
 - [[SemiAnalysis]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]

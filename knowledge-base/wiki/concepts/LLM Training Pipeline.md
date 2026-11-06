@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-23
+updated: 2026-11-06
 tags:
   - concept
   - llm
@@ -43,6 +43,7 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-13-zancato-model-priming
   - src-2026-08-12-bytebytego-knowledge-distillation
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -292,6 +293,25 @@ the additional adaptation cost and the inherited asset, plus regressions outside
 benchmarks. Priming extends [[Knowledge Distillation]] without making architectural changes
 training-free.
 
+## A hybrid MoE family's recipe, with compression inside training
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] summarizes NVIDIA's Nemotron 3 recipe in the
+order this page uses. Pretraining on crawled and synthetic material covering code, maths, science,
+and general knowledge moves from a broad mixture toward more emphasis on high-quality material.
+Supervised fine-tuning computes the objective on assistant tokens, the loss-masking choice described
+in the synthesis above. Reinforcement learning uses Group Relative Policy Optimization (GRPO) with
+an environment that evaluates mathematical answers, executes code against tests, checks instruction
+compliance, and validates output schemas. Most of those checks are verifiable against tests or
+schemas; the article does not say how instruction compliance is judged.
+
+The Ultra model adds multi-teacher on-policy distillation, which this vault already records for
+Nemotron 3 Ultra from
+[[Nathan Lambert - Frontier post-training recipe review with Finbarr Timbers]]; the new account is a
+second, secondary report of the same recipe rather than independent confirmation. Compression also
+enters training instead of following it: quantization-aware distillation trains an NVFP4 student
+against the frozen BF16 model. The account gives no data volumes, token counts, or stage-by-stage
+results.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -354,3 +374,4 @@ training-free.
 - [[@zafstojano - Recursive Synthetic Improvement]]
 - [[Synthetic Data Flywheel]]
 - [[@zafstojano]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]

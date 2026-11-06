@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - llm
@@ -36,6 +36,7 @@ source_ids:
   - src-2026-10-19-alphasignal-next-concept-modeling
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-09-07-semianalysis-tpu-inferencex
+  - src-2026-11-04-raja-model-gpu-fit
 status: active
 ---
 
@@ -258,6 +259,23 @@ count, per-level width, batching, and memory traffic interact, and whether a fix
 wastes steps on short or easy outputs. The capture names difficulty-adaptive level counts only as
 future work.
 
+## A local decode ceiling is bandwidth divided by bytes read per token
+
+[[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] reduces the bandwidth
+framing above to an estimate a local user can do by hand: the tokens-per-second ceiling is roughly
+memory bandwidth divided by the bytes read per token. With its listed bandwidths, dual-channel DDR5
+at **~90 GB/s** and an RTX 4090 at **~1,000 GB/s**, a dense 27B model at 4-bit, about 16GB, has a
+ceiling around **60** tokens per second on the 4090 and about **5** on desktop RAM. A
+mixture-of-experts model changes the bytes per token, not the bandwidth: a 35B-A3B model at 4-bit
+reads about 2GB per token, so the same desktop RAM supports a ceiling "in the 40s".
+
+This is the capacity-versus-bandwidth distinction from [[Onur Sirin - How Local LLMs Run]] turned
+into a selection rule: capacity decides where the weights can live, and the active bytes decide how
+fast decode can go from there. The figures are ceilings for batch size one, not measurements, and
+the author says real numbers land well under them. They also describe decode only. Reading a long
+prompt is much slower on a CPU, and llama.cpp's new hot-expert cache applies only to batches of 32
+tokens or fewer, so it speeds generation, not prompt processing.
+
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
@@ -314,3 +332,4 @@ future work.
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
 - [[Megakernels]]
 - [[Cohere]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]

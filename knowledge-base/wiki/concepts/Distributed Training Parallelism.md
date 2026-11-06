@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-23
+updated: 2026-11-06
 tags:
   - concept
   - training
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-21-simpson-torchtpu
+  - src-2026-11-02-anil-compute-islands
 status: active
 ---
 
@@ -152,6 +153,44 @@ every point on that curve. A separate FLUX report gives per-sample step time **0
 and 1.00s at 256 chips / 64 nodes**, while also stating a **3.01s total step time** without explaining
 the relationship between the two figures.
 
+## Across compute islands, synchronization frequency becomes a design variable
+
+Everything above assumes one fabric fast enough for every rank to exchange data every step.
+[[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]] argues that the capacity
+actually on offer increasingly arrives as "compute islands": separate clusters of a few hundred to a
+few thousand GPUs, held under different providers, contracts, and accelerator generations. Its
+position is to use the fast interconnect inside each island as this page describes, and to exchange
+updates between islands on a slower schedule, with the optimizer codesigned around the network.
+
+The post sorts low-communication methods into two families that map onto this page's axes.
+**Data-parallel** methods (DiLoCo, DisTrO, DeMo) keep a full replica per site and treat each
+worker's parameter change between exchanges as a pseudo-gradient, which a separate outer optimizer
+applies. **Model-parallel** methods (SWARM, Node0, Agora) split the model across machines, and the
+author says the families can be combined. DiLoCo is the reference point: **8** workers matched fully
+synchronous training while communicating **500×** less, at up to **400M** parameters. Later rows in
+the author's literature table push scale and distance, and one is a warning: a cross-facility HPC
+run reached perplexity **34.7** against **28.2** for its centralized baseline.
+
+The case study nests the two levels. Each site trains on its own data shard with local expert
+parallelism; across sites, the model is synchronized fragment by fragment, staggered across each
+**50-step** window, and a late-arriving update can still be committed. That is the opposite of the
+lockstep behavior in the Netflix section above, where one slow rank paces the whole gang. Three
+further choices are part of the method: a Distributed Shampoo variant as the local optimizer,
+stochastic rounding with error feedback on transfers, and per-step synchronization of the small MoE
+routing statistics while the weights wait for the slower window. Over a **25 Gbps** link between
+**160 B300** GPUs in the US and **160 GB300** GPUs in Asia, the two-site run reached about **1%**
+lower bits per byte than standard training at the same compute on both of the author's evaluations.
+
+A second experiment replaced the all-reduce itself. Eight eight-GPU cells at one site exchanged
+updates pairwise in a butterfly pattern that reaches every cell in three rounds, and the post says
+only that "Training quality matched the baseline".
+
+The evidence is first-party, one run per configuration, and unablated: the comparison changes the
+optimizer and the communication scheme together, and it reports no goodput, throughput, or
+communication-volume figures even though the post recommends measuring training goodput. The durable
+contribution is the reframing. Once the slowest link crosses an ocean rather than a rack, how often
+ranks synchronize joins mesh shape as a parallelism choice.
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
@@ -161,6 +200,10 @@ the relationship between the two figures.
 - The TorchTPU weak-scaling run holds MFU under 30% at every scale from 1,024 to 8,192 chips. The post attributes no cause — routing imbalance, collectives, scan-loop structure, or kernel quality are all untested there, and no GPU-cluster comparison at matched scale, cost, or energy is supplied.
 - What does Skinny Collectives' reported 30-40% end-to-end penalty actually buy back in correctness terms, and on which parallelism axes does it bite hardest? The source names no workload, mesh, or model for that figure.
 - If a backend compiles collectives into the program, how do elasticity and fault recovery work at all? A changed world size is a changed graph, and nothing in this source addresses recompilation cost after a rank is lost.
+- Does cross-island training pay in training goodput, not only in loss at equal compute? The
+  compute-islands case study reports bits per byte but no wall-clock time, utilization, or bytes
+  moved, does not separate the Shampoo-variant optimizer's contribution from that of distribution,
+  and tested butterfly mixing only inside one site.
 
 ## Related pages
 
@@ -185,3 +228,4 @@ the relationship between the two figures.
 - [[AI Knowledge Base Overview]]
 - [[Edward Z. Yang - How to Parallelize a Transformer for Training]]
 - [[Wafer - AI Performance Engineering Resources]]
+- [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]

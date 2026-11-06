@@ -370,26 +370,27 @@ The proposal for a harness to suggest its own mods from transcripts remains futu
 ## A harness built for many models finds that its changes are model-specific
 
 [[Factory Research - Droid 1.0 - Building a Frontier Harness]] tests the harness/engine split from
-the vendor side. [[Factory AI]] holds the model fixed and swaps the harness: on Terminal-Bench 4, Droid
-reports **3.5** points over Codex on GPT-6.1 Sol and **3.0 to 7.6** points over Cursor, OpenCode,
-Devin, and Claude Code on Claude Opus 5.5, at lower cost per passed task. That is the comparison the
-model-plus-harness framing on this page calls for, run with pinned harness versions and three trials
-per task. It is also Factory's own benchmark of its own product, scored for cost and time only on tasks
-both harnesses passed in all three trials; [[Benchmark Optimization]] carries the caveats.
+the vendor side. [[Factory AI]] holds the model fixed and swaps the harness: on Terminal-Bench 4,
+Droid reports **3.5** points over Codex on GPT-6.1 Sol and **3.0 to 7.6** points over Cursor,
+OpenCode, Devin, and Claude Code on Claude Opus 5.5, at **12%** lower cost than Codex and up to
+**24%** lower cost on Opus 5.5. That is the comparison the model-plus-harness framing on this page
+calls for, run with pinned harness versions and three trials per task. It is also Factory's own
+benchmark of its own product, scored for cost and time only on tasks both harnesses passed in all
+three trials; [[Benchmark Optimization]] carries the caveats.
 
 The more durable finding is about transfer. Factory's argument for supporting many models is that
-tuning against one makes it "hard to separate real progress from adaptations to that model's quirks."
-Its own evidence shows how strong those quirks are. Numbering every line in file reads cut Claude Opus
-5.5's cost by **22%** on one task and raised it by **8%** on GLM and **32%** on Kimi, models "that had
-nothing to save." Making models prefer the Script tool needed prompt, tool-description, and
+tuning against one makes it "hard to separate real progress from adaptations to that model's
+quirks." Its own evidence shows how strong those quirks are. Numbering every line in file reads cut
+Opus's cost by **22%** on one task and raised it by **8%** on GLM and **32%** on Kimi, models "that
+had nothing to save." Making models prefer the Script tool needed prompt, tool-description, and
 result-format changes, none of which worked on every model alone. The practical consequence is that
 a model-independent harness is per-model configuration behind one interface: Droid tunes prompts,
 tool descriptions, and tool-calling mode for each supported model, and shipped line numbering as an
-option the model asks for when it needs it. This qualifies Raschka's observation above that model-harness
-pairing "matters less than assumed": a model can still run well in a foreign harness, but harness
-changes do not carry across models without measurement.
+option the model asks for when it needs it. This qualifies Raschka's observation above that
+model-harness pairing "matters less than assumed": a model can still run well in a foreign harness,
+but harness changes do not carry across models without measurement.
 
-The post also restates this page's token-economics point from the harness side. "Every turn
+The post also restates this page's token-economics point from the harness side: "every turn
 re-sends instructions, tools, and history," so the first request is cut hardest (**20,887** to
 **13,055** tokens) and the request is kept append-only for the provider cache. Its loop rules — retry
 dropped streams, stop after repeated identical calls — live in the harness so that "a new model gets

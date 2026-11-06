@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-10-19
+updated: 2026-11-06
 tags: [concept, robotics, video-models, pre-training]
 source_ids:
   - src-2026-09-14-rhoda-web-video-pretraining-robots
   - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
 status: active
 ---
 
@@ -55,6 +56,23 @@ web-video pre-training moved physical completion. Potter's figures are collectio
 prices. Neither establishes how many video hours a policy needs, or what an hour of web video is
 worth against an hour of teleoperation at matched cost. See [[Robot Training Data]].
 
+### The same video model can predict actions as well as frames
+
+Rhoda's design keeps prediction and control separate: a video model forecasts frames and a decoder
+turns them into commands. [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+describes a surgical checkpoint that folds both directions into one model.
+**Cosmos3-H-Embodied-Nano**, built on Cosmos3 and post-trained on Open-H-Embodiment, "generates
+surgical video from robot actions, predicts actions from video, or generates both together". It
+takes an initial RGB frame, a task prompt, the last **16** executed actions and the subsequent
+actions. **Cosmos3-Nano-Sim-Bimanual** runs the other direction only, generating the next
+observation from robot actions for two-arm embodiments.
+
+This complements Potter's reference to Cosmos as a policy backbone. In this post, NVIDIA presents
+Cosmos chiefly as a data generator and action-conditioned simulator for augmenting and evaluating
+policies, not as the policy itself. The action-prediction mode is listed as a capability, with no reported
+accuracy and no comparison with a separate decoder. Whether a video model's action head can
+replace Rhoda-style decoders remains untested in the vault.
+
 ## Open questions
 
 - Does the proxy-task relationship transfer across embodiments, action decoders, and task families?
@@ -63,11 +81,14 @@ worth against an hour of teleoperation at matched cost. See [[Robot Training Dat
 - How much trial and seed variance is hidden by one post-training run per condition?
 - What is an hour of web video worth against an hour of teleoperation, UMI, or simulated data at
   matched cost?
+- Does predicting actions directly from a pre-trained video world model match a separately trained
+  action decoder on physical task completion?
 
 ## Related pages
 
 - [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]]
 - [[Brian Potter - How to Train Your Robot]]
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
 - [[Robot Training Data]]
 - [[NVIDIA]]
 - [[Video Transformers]]

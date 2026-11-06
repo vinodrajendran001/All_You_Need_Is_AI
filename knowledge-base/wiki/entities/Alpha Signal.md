@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-18
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - entity
   - newsletter
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-19-alphasignal-next-concept-modeling
   - src-2026-10-26-alphasignal-memory-tax
+  - src-2026-11-02-alphasignal-timestral
 status: active
 ---
 
@@ -91,7 +92,25 @@ links are subscriber tracking redirects that were not followed. Attribution rest
 alphasignal.ai image hosting and a link to the newsletter's earlier HarnessTax coverage, and the
 article itself calls the study "not very comprehensive".
 
+## A specialist-model roundup, again without metadata
+
+[[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] returns the
+newsletter to the structured-data models it covered earlier (see [[Tabular Foundation Models]]). It
+uses Mistral's Timestral forecasting models as a hook, groups them with TabPFN, Kumo Relational, and
+Jev, and argues that agents should hand prediction to specialist models and rule enforcement to
+application code. The capture follows the memory-tax pattern: no frontmatter, byline, date, or
+canonical URL. Attribution rests on per-subscriber `app.alphasignal.ai` tracking redirects,
+alphasignal.ai image hosting, and a direct link to a different alphasignal.ai news item about System
+One models. The source ID therefore uses the date Git first tracked the file, and the title comes from
+the file name. Editorially, the item relays vendor results ("Mistral reports") without benchmark
+names or margins, and it attributes a Kumo Relational result to NVIDIA, which the source page records
+as a possible newsletter error rather than correcting it.
+
 ## Related pages
+
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
+- [[Tabular Foundation Models]]
+- [[Mistral]]
 
 - [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
 - [[Agent Memory]]

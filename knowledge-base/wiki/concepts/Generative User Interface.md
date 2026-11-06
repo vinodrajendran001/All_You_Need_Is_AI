@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-10-16
-updated: 2026-10-16
+updated: 2026-11-06
 tags: [concept, software-architecture, extensibility, state]
 source_ids:
   - src-2026-08-20-jeremy-morrell-extensible-software
   - src-2026-10-09-rabi-guha-intelligent-ui
+  - src-2026-10-30-figma-fluent-editing-model
 status: active
 ---
 
@@ -68,17 +69,40 @@ different purposes. Their presence does not demonstrate containment or accessibi
 Fallback behavior also needs an explicit diagnostic policy rather than silently presenting
 stale output as the requested new interface.
 
+### Editing an existing design is a different contract from generating one
+
+The two accounts above generate a new interface and let a host interpret it.
+[[Josh Clemm - How We're Training a Figma-Fluent Editing Model]] starts from an interface that
+already exists. [[Figma]]'s agent edits work on the canvas: spacing, a color, a layout rework
+after feedback. The model reads and writes designs in **Figma's native file format**, so its
+output is applied straight back to the canvas instead of being compiled into a separate runtime.
+The worked example's success criterion is that the inserted component is "present, legible, and
+contained" and that "unrelated content is preserved".
+
+That shifts what has to be validated. Here the native format plays the part a constrained
+component language plays above. Figma pairs deterministic validators of structure with visual
+model judges, and scores separately for alignment, contrast, request fulfillment and use of the
+correct design-system component. Expert designers calibrate those judges. Generation from
+scratch is not routed to this model: image generation, vectors and new explorations go to
+third-party models, and the first-party model handles precise edits. The account is first-party,
+and it reports no accessibility, versioning or state-persistence guarantees of the kind raised
+above.
+
 ## Open questions
 
 - Which state must survive a revision, a failed worker, and a new session?
 - How are capability grants and data access constrained on each execution path?
 - How are accessibility, replay, versioning, and user-visible compilation failures assessed?
+- When a model edits an existing artifact rather than generating one, which unchanged elements
+  must a validator prove were preserved, and can visual judges detect structural regressions?
 
 ## Related pages
 
 - [[@rabi_guha - How ChatGPT Intelligent UI Works]]
 - [[Jeremy Morrell - Extensible Software in the Age of LLMs]]
 - [[LLM-Native Extensible Software]]
+- [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]]
+- [[Figma]]
 - [[Harness State Authority]]
 - [[Agent Security and Governance]]
 - [[OpenAI]]

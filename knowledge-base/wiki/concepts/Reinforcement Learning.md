@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - reinforcement-learning
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-27-romero-policy-gradient-llms
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -123,6 +124,28 @@ human demonstrations do not. Two limits remain:
 - The on-policy proof assumes positive probabilities, so samplers truncated by top-k or top-p
   are covered only by being treated as the off-policy sampler.
 
+## Estimator choices decide which behaviours can emerge
+
+[[General Reasoning - How to Train a Swarm]] makes a practical point from the estimator side: the
+same task reward can produce or suppress a behaviour depending on how the advantage is estimated. The
+inference-time scaling of reasoning models, where responses lengthen as accuracy rises, "is not
+guaranteed" under a naive setup. The post says a standard PPO recipe with **γ<1 and/or λ<1** would
+likely not have shown it. In the cited Open-Reasoner-Zero ablation, PPO with **GAE λ = 1** keeps
+lengthening its responses, while with **λ = 0.95** response length collapses within about **50 steps**.
+The post's reading is that "a biased advantage can collapse reasoning": the wrong hyperparameters can
+"excessively penalise reasoning length". On this page's terms, discounting and bootstrapped value
+estimates trade variance for bias, and here the bias works against long responses. The trade is not
+neutral when the desired behaviour is to keep working longer.
+
+The same post gives the simplest multi-agent form this page has recorded. In RLCR, one **shared policy**
+runs every agent in a collective, and one **flat collective advantage** is applied to all of their
+tokens. The authors call this a "coarse learning signal": long horizons, shared rewards across agents,
+and training across many environments each make credit assignment harder. They also name a structural
+gap that per-episode returns cannot fill. A rollout that contributes to a public good for later episodes,
+such as a paper or a code library, receives no credit for the benefit. Both points come from a
+first-party post whose full paper is still pending. See [[Long-Horizon Credit Assignment]] and
+[[Agentic Reinforcement Learning]].
+
 ## Open questions
 
 - Which RL branches deserve their own pages first as more sources are ingested?
@@ -141,6 +164,8 @@ human demonstrations do not. Two limits remain:
 
 ## Related pages
 
+- [[General Reasoning - How to Train a Swarm]]
+- [[General Reasoning]]
 - [[Yingru Li - The Gradient Is a Covariance]]
 
 - [[Kevin Murphy - Reinforcement Learning - An Overview]]

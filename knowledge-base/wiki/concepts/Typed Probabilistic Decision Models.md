@@ -330,7 +330,7 @@ prefix; Morgan's isolation test is zero by construction, which the post notes is
 for models whose internals cannot be inspected.
 
 **Option order still moves trained models.** Reversing choice options changed the top answer on
-**30%** of questions for the zero-shot baseline and **5 to 9%** for trained models, even though
+**30%** of choice questions for the zero-shot baseline and **5 to 9%** for trained models, even though
 training shuffled option order every epoch. That is a measured counterpart to Microsoft-Decision-1's
 reported **1.3%** average flip rate across eight perturbation types above, but the tests, models,
 and tasks differ, so the numbers are not comparable. Both point the same way: invariance to

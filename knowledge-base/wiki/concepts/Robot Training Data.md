@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-10-19
+updated: 2026-11-06
 tags: [concept, robotics, training-data, simulation, scaling]
 source_ids:
   - src-2026-10-15-potter-how-to-train-your-robot
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-10-01-neuralink-unlabeled-brain-pretraining
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-08-18-bytebytego-waymo-vs-tesla
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
 status: active
 ---
 
@@ -131,6 +132,27 @@ differ in autonomy level and operating domain, already warns that simulated scen
 driverless miles are not interchangeable denominators. The same
 caution applies to simulated robot hours.
 
+### Generative augmentation multiplies pixels, not actions
+
+[[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] makes the
+synthetic-augmentation route concrete. **Cosmos3-Nano-Sim-Transfer** turns depth (or
+segmentation, edges, blurred video) plus a prompt into RGB with varied lighting, textures and
+backgrounds "while preserving geometry and motion". For a robot demonstration it changes the
+third-person view while keeping the **actions, states and wrist-camera recordings**. One
+teleoperated episode can therefore yield several visual variants with identical action labels.
+Two other checkpoints are action-conditioned simulators. **Cosmos3-Nano-Sim-Bimanual** predicts the
+next observation from the scene and robot actions for YAM and AgiBot two-arm embodiments.
+**Cosmos3-H-Embodied-Nano**, post-trained on Open-H-Embodiment, generates surgical video from
+robot actions, so policies can be evaluated offline "without building a physics model of the
+surgical scene".
+
+In the vault's reading, this answers half of the open question below on whether the gap is hours
+or diversity. Augmentation adds visual diversity around a fixed set of behaviors; it does not add
+new contact events, recoveries or task variations. The two flywheels above stay distinct: these
+tools sit in the synthetic one and are capped by generator fidelity. The vendor post reports no
+policy-transfer or fidelity results, so the number of useful hours a generated variant is worth
+remains unmeasured.
+
 ## Open questions
 
 - Which route's hours transfer best to which task families? The vault has one controlled study and
@@ -143,10 +165,13 @@ caution applies to simulated robot hours.
   it?
 - How far can improving simulators push into contact-rich manipulation before the sim-to-real gap
   stops narrowing?
+- Do visually augmented demonstrations, with actions held fixed, improve policy robustness as much
+  as new real demonstrations of the same count?
 
 ## Related pages
 
 - [[Brian Potter - How to Train Your Robot]]
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
 - [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]]
 - [[Video Pre-training for Robot Policies]]
 - [[World Models]]

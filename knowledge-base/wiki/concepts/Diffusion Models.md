@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - diffusion
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-06-23-mayank-pratap-singh-diffusion-visual-breakdown
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
   - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
 status: active
 ---
 
@@ -135,6 +136,26 @@ small scale. They do not test image or video diffusion, and they do not establis
 is inferior for text at larger scales. The reported speed ratios are against diffusion
 baselines, not against autoregressive decoding.
 
+## One video generator, two sampling regimes
+
+[[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] shows the
+step-count trade-off as a product split. **Cosmos3-Nano-Transfer-Auto** "uses bidirectional
+generation to denoise an entire multi-view clip at once"; its reference command runs **35** steps.
+That suits offline synthetic data, where a whole clip is wanted and nothing reacts to it.
+**Cosmos3-Nano-Sim-Auto** is "the causal, few-step-distilled variant" of the same model. It
+generates observations incrementally, so a driving policy can act between frames. The surgical
+pair repeats the pattern: **Cosmos3-H-Dreams** is distilled from Cosmos3-H-Embodied-Nano into a
+"causal, few-step model" for real-time closed-loop use.
+
+Two changes are bundled here. Causal generation lets frames depend only on the past, which
+interaction requires. Few-step [[Knowledge Distillation]] cuts the per-frame cost that full
+denoising would impose. The post's framework list also names **DiffusionNFT**, "online RL for
+diffusion world models", alongside DPO, GRPO, PPO and on-policy distillation from a frozen teacher.
+
+Caveat: this is vendor documentation. It reports no step count for the distilled models, no
+quality comparison between the bidirectional and distilled variants, and no DiffusionNFT results.
+The capture describes denoising but does not detail the architecture further.
+
 ## Open questions
 
 - How far can fast samplers, distillation, consistency models, flow matching, or rectified flow reduce sampling cost without losing quality?
@@ -144,6 +165,8 @@ baselines, not against autoregressive decoding.
 - How should the vault split image diffusion, video diffusion, audio diffusion, and diffusion for control into separate pages as sources accumulate?
 - Do diffusion language models keep a quality or revision advantage over coarse-to-fine code
   hierarchies once both are scaled well beyond the roughly 100M-parameter comparisons recorded here?
+- How much visual or physical fidelity does a causal, few-step distilled video model give up
+  relative to its bidirectional teacher, and does closed-loop error compound over long rollouts?
 
 ## Related pages
 
@@ -152,6 +175,8 @@ baselines, not against autoregressive decoding.
 
 - [[Mayank Pratap Singh - Diffusion Model Visual Breakdown]]
 - [[World Models]]
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[Autonomous Driving Systems]]
 - [[LLM Training Pipeline]]
 - [[Neural Network Fundamentals]]
 - [[Vision-Language Grounding]]

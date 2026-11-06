@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-19
+updated: 2026-11-06
 tags: [concept, open-models, ecosystems, inference]
 source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-08-02-arise-llm-as-judge
+  - src-2026-11-04-raja-model-gpu-fit
 status: active
 ---
 
@@ -91,6 +92,23 @@ not compare open and closed graders on quality. It also does not say what must b
 open grader to stay reproducible; on the vault's reading, that includes the exact checkpoint, prompt,
 and inference settings, not just a model name.
 
+## Deployability has a ceiling, and memory prices move it
+
+[[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] examines the deployability
+force above from the user's machine. MoE offload and SSD streaming make large open-weight models
+runnable on ordinary hardware, but the author draws the boundary plainly: 1 to 2 tokens a second on
+a 744B model "is a demo, not a workflow", while a 35B-A3B model at 20 to 30 tokens a second on a
+12GB gaming GPU is "a real tool". The best open models are also not local models. Citing Pinggy, the
+author reports the top open-weight model at **46** against Claude Opus 5.5's **58** on the
+Artificial Analysis index, needing eight H200s to run.
+
+Two further points bear on practical openness. RAM-offload economics depend on memory prices: a 64GB
+DDR5 kit went from about **$222** in October 2025 to around **$1,099** to **$1,272** by September
+2026. And model designers are starting to target cheaper tiers, as with Qwen3.8-Flash-Next's 51B
+n-gram table meant to sit on SSD. Open weights therefore become local use only through runtimes,
+quantization, and hardware markets that the license does not control. The figures are relayed from
+third-party roundups and are a snapshot from November 2026.
+
 ## Open questions
 
 - Which metrics distinguish genuine deployment from automated download noise?
@@ -98,6 +116,8 @@ and inference settings, not just a model name.
 - How should open releases disclose defensive mechanisms that intentionally change attacked behavior?
 - When a reproducible open grader is weaker than a closed one that may be withdrawn, how should an
   evaluation program choose between durability and quality?
+- Should deployability be reported against a reference consumer machine? The usable size of a local
+  model depends on RAM prices and offload tooling as much as on the release.
 
 ## Related pages
 
@@ -117,3 +137,5 @@ and inference settings, not just a model name.
 - [[Qwen]]
 - [[RL Environment Design]]
 - [[Self-Replicating Agents]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[Inference Serving Engines]]

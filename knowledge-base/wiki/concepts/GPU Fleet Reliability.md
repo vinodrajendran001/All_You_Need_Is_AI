@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-10-19
+updated: 2026-11-06
 tags: [concept, gpu, reliability, distributed-training, infrastructure, systems]
 source_ids:
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-02-epoch-agent-population
   - src-2026-07-17-netflix-in-house-llm-serving
+  - src-2026-11-02-anil-compute-islands
 status: active
 ---
 
@@ -115,6 +116,26 @@ Allocation, once Karpenter supports it, one faulty GPU could be isolated while t
 keeps serving. That capability is conditional in the source. Placement also has an internal topology:
 a GPU paired with a network adapter or CPU on the wrong PCIe root pays a bandwidth penalty.
 
+## Tolerating late participants instead of waiting for them
+
+The controls above detect and repair inside one fleet: find the degraded device, drain it, retry the
+job. [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]] describes the
+complementary design for training across separate clusters, where slow links and late participants
+are expected rather than exceptional. Updates are exchanged on a staggered schedule, and a
+late-arriving update can still be committed. Transfers are chunked so any healthy connection can
+claim a chunk; connections are kept warm with heartbeats and reconnect with jitter; only missing
+pieces are resent, with a bounded number of duplicates; and redundant transfers launched at a
+deadline "cut tail latency". The author expects such methods to let runs absorb preemptible capacity
+and mixed accelerator generations.
+
+This changes what "degraded" costs. In the gang-scheduled jobs above, one slow rank paces every
+member; in a staggered cross-site scheme a slow site delays only its own contribution. The trade is
+a different failure class. The author concedes that "one faulty or compromised site can quietly
+degrade or tamper with the model", and the health checks above verify a device, not the updates a
+remote site sends. The post proposes training goodput plus final model quality as its measures, but
+reports neither goodput nor failure statistics for its own runs, so the robustness is argued rather
+than shown.
+
 ## Open questions
 
 - How much immediately schedulable capacity does a fleet give up by holding new machines until checks
@@ -126,6 +147,9 @@ a GPU paired with a network adapter or CPU on the wrong PCIe root pays a bandwid
 - Can fleet-level goodput and request-level serving goodput be connected for a fleet that both trains
   and serves on shared hardware?
 - Should operators share immutable-device failure records across tenants or with providers by default?
+- When training spans providers, what plays the role of a health check for a remote site's updates?
+  The compute-islands post names silent degradation or tampering by one site as a risk but proposes
+  no verification mechanism.
 
 ## Related pages
 
@@ -143,3 +167,4 @@ a GPU paired with a network adapter or CPU on the wrong PCIe root pays a bandwid
 - [[Inference Serving Engines]]
 - [[Google Cloud]]
 - [[NVIDIA]]
+- [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]

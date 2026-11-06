@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - performance
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-09-13-sumit-scaling-distributed-systems
   - src-2026-09-22-lemire-summer-ai-optimization
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-11-04-bytebytego-netflix-performance-agents
 status: active
 ---
 
@@ -88,11 +89,41 @@ controlled, but no all-in cost comparison establishes how much the automation it
 The useful generalization is experimental discipline for automated candidate generation,
 not a promise that more optimization attempts always pay.
 
+## An agent can find the waste while measurement decides what ships
+
+[[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] relays a Netflix production
+system that applies the experimental discipline above to service code rather than to an inference
+stack. A manual profiling loop depends on a few experts, so only major incidents get attention and
+"Smaller but steady resource drains go unnoticed". Netflix instead feeds profiler call stacks (JVM
+async-profiler or Java Flight Recorder, py-spy, Go pprof) to an LLM that matches them against known
+anti-patterns. The main lesson was scoping: without strict package-prefix rules, the model spent
+reasoning tokens on garbage collection, kernel syscalls, and framework overhead that application
+developers cannot change.
+
+The reported findings are large but per-service: a quadratic Java Streams reduction wasting **8.8%**
+of CPU; a per-request regex using **46%** of one service's CPU time, made **22** times faster by a
+lookup table; a per-call HashSet behind **47%** of heap collections and out-of-memory crashes; and a
+metrics-counter lookup taking **66%** of CPU against **0.3%** for business logic. As in the
+self-improving inference stack above, the agent does not judge its own result. A change must pass
+existing tests, then run as a canary beside an identical baseline, where CPU, median and P99
+latency, and allocation rates are compared without any AI model. Only an improvement "with zero
+increase in error rates" becomes a pull request, and a human decides.
+
+The account also partly answers the open question below about encoding performance invariants in CI.
+Netflix's Pattern Catalog, a Git repository of plain Markdown rules, is matched against each pull
+request by a fast regex or symbol check, and only on a hit does an LLM read the diff and comment.
+That gates on known patterns rather than on noisy benchmarks, so it cannot catch a novel regression;
+those still depend on production profiling. The account is secondary, relays a conference talk, and
+gives no fleet-wide savings, false-positive rates, or pull-request acceptance counts.
+
 ## Open questions
 
 - How should this CPU-oriented framework be extended to GPU kernels and distributed ML systems?
 - Which microbenchmarks reliably predict full agent and inference-service behavior?
 - How can performance invariants be encoded in CI without making benchmarks noisy or hardware-dependent?
+- How often do catalog-matched pull-request comments flag real regressions? Netflix's Pattern
+  Catalog moves known anti-patterns into CI, but the relayed account reports no precision, recall,
+  or developer-acceptance rate.
 
 ## Related pages
 
@@ -108,3 +139,5 @@ not a promise that more optimization attempts always pay.
 - [[ML Systems at Scale]]
 - [[Abseil]]
 - [[Sumit K - Scaling Simplified]]
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
+- [[Netflix]]

@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-10-30
+updated: 2026-11-06
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -41,6 +41,8 @@ source_ids:
   - src-2026-10-26-bytebytego-salesforce-agent-stack
   - src-2026-10-27-bytebytego-apple-on-device
   - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-04-bytebytego-netflix-performance-agents
 status: active
 ---
 
@@ -291,6 +293,24 @@ Both deepen the publication's value as a guide to mechanisms while preserving it
 boundary. Neither a plausible memory calculation nor a named production architecture is an
 independently verified performance or security result.
 
+## Vendor model documents and conference talks are two more relay types
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] relays NVIDIA's own Nemotron 3 family white
+paper, Nemotron 3 Super technical report, and developer-blog post. Every configuration figure, from
+128 routed experts with 6 active per token to the approx. 66 GB to 22 GB NVFP4 checkpoint, is
+therefore the vendor's description of its own model, and the article adds no benchmark. It names a
+configuration "Nemotron Lightning", which the vault cannot yet match to the Nemotron 3 Nano
+checkpoint recorded elsewhere, and contains at least one wording slip ("ordinary generation can't
+proceed sequentially").
+
+[[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] relays a P99 Conference
+talk, its only listed reference, and supplies its own illustrative code snippets. Like the Uber
+Genie account above, its figures (8.8%, 46%, 47%, and 66% of individual services' resources) are
+attributed to the named company and unverified. Its most reusable content is a design rather than a
+number: a canary verdict without AI and human approval around an LLM, and a Git-backed Markdown
+Pattern Catalog that the account says was borrowed from the "LLM-wiki" concept popularized by Andrej
+Karpathy, the pattern this vault itself follows.
+
 ## Open questions
 
 - **Does relaying a named deployment improve this source's evidence quality, or only relocate the
@@ -371,3 +391,6 @@ independently verified performance or security result.
 - [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
 - [[ByteByteGo - How Smart Model Routing Can Cut LLM Costs by 10X]]
 - [[LLM Application Resilience]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
+- [[NVIDIA]]

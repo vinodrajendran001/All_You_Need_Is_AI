@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-10-27
+updated: 2026-11-06
 entity_kind: organization
 tags:
   - entity
@@ -30,6 +30,7 @@ source_ids:
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-07-03-sebastian-raschka-local-coding-agents
   - src-2026-10-21-nvidia-sentry-runtime
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -230,6 +231,23 @@ synthetic manipulation data from teleoperation inputs. It also cites **Cosmos**,
 foundation model usable as a robot-policy backbone. The capture gives no performance evidence
 for either. Both are positioned as answers to the data shortage in [[Robot Training Data]].
 
+## NVIDIA as an open-model builder
+
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] adds a role the Nemotron data section above
+only hints at: NVIDIA designing an open model family around agent workloads and its own number
+formats. ByteByteGo's secondary account of NVIDIA's Nemotron 3 documents describes a hybrid of
+Mamba, attention, and mixture-of-experts layers; a recipe running from pretraining through
+supervised fine-tuning to GRPO with verifiable checks, plus multi-teacher on-policy distillation for
+Ultra; integrated multi-token prediction alongside separate draft models; and NVFP4 weights produced
+by quantization-aware distillation. Reported sizes are roughly 30B total and 3B active for a
+configuration it calls Lightning, approx. 120B and 12B for Super, and 550B and 55B for Ultra.
+
+The NVFP4 detail ties the model work to NVIDIA's hardware role above: groups of 16 values share an
+FP8 scale, with a further tensor-level scale, a format that [[Model Quantization and Efficiency]]
+already records as a deployment and microscaling option. All figures are NVIDIA's own as relayed by
+ByteByteGo, without benchmarks. See [[Mixture of Experts]],
+[[Linear Attention and Recurrent Memory]], and [[Speculative Decoding]].
+
 ## Related pages
 
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
@@ -272,3 +290,8 @@ for either. Both are positioned as answers to the data shortage in [[Robot Train
 - [[Typed Probabilistic Decision Models]]
 - [[Embedding Model Selection]]
 - [[Inference Efficiency Frontier]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Mixture of Experts]]
+- [[Linear Attention and Recurrent Memory]]
+- [[Speculative Decoding]]
+- [[Model Quantization and Efficiency]]

@@ -471,19 +471,20 @@ output doesn't hurt just once." Two of [[Factory AI]]'s five design principles f
 maintaining the prompt cache" — and the post reports what each looks like in production.
 
 **Large results stay outside the window.** Inside Droid's Script tool, raw files, search results,
-and logs remain program variables; printed output is capped, and full results are logged where the
-model can search them later. In one CI sweep the model saw a five-number summary of **5,384** jobs,
-and under **0.1%** of tool results reached its context. That example's direct-call comparison is
-modeled, but the mechanism extends the code-as-context-economy point above from a proposal to a
-shipped default. See [[Programmatic Tool Calling]].
+and logs remain program variables; printed output is capped in size, and the full results are logged
+where the model can search them later. In one CI sweep the model saw only a five-number summary of
+**5,384** jobs, and under **0.1%** of the tool results reached its context. The sweep's direct-call
+baseline is Factory's estimate, but the mechanism turns the code-as-context-economy point above from
+a proposal into a shipped default. See [[Programmatic Tool Calling]].
 
 **The request is treated as append-only.** In production the typical Droid request reads **98%** of
-its input from the provider cache, and **98.6%** of requests are strictly append-only (the
-token-weighted cache share is **91.5%**), over **20.4M** requests in seven days, excluding CI and
-evals. A monitor compares each request with the previous one and names any part that broke the
-cache. Measured in testing, a git status change now adds only **176** new tokens and a session
-rollback reuses **99.8%**. This makes context layout a monitored invariant rather than a style
-preference, and it is the cache-side reason for placing volatile content last.
+its input from the provider cache (**91.5%** when weighted by tokens rather than by request), and
+**98.6%** of requests are strictly append-only, measured over **20.4M** production requests in the 7
+days to Oct 22 with CI and evals excluded. A monitor compares each request with the one before it
+and names any part that broke the cache, because a single changed token early in the request forces
+a full reprocess. In testing, a git status change now adds only **176** new tokens and a session
+rollback reuses **99.8%** of the cache. This makes context layout a monitored invariant rather than
+a style preference, and it is the cache-side reason for placing volatile content last.
 
 **Summaries get a larger budget, not a smaller one.** Droid doubled the room for compaction
 summaries from **8,000** to **16,000** tokens because, by Factory's estimate, a third or more were

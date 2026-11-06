@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-10-27
+updated: 2026-11-06
 tags: [concept, training, research, reproducibility]
 source_ids:
   - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-10-04-ben-tovim-ai21-kueue-gpu-fleet
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-10-30-figma-fluent-editing-model
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -106,17 +108,59 @@ discipline as experiment records. A check that silently stopped running for days
 equivalent of an unversioned input. The reported reliability gains are first-party and unwindowed; see
 [[GPU Fleet Reliability]].
 
+## A product team's factory: teacher data, verifier filters, then RL
+
+[[Josh Clemm - How We're Training a Figma-Fluent Editing Model]] shows the same machinery at the
+scale of one product feature. [[Figma]] generates synthetic edit requests against starting designs
+in its native file format, and larger teacher models attempt the edits. Deterministic validators
+and visual model judges keep only valid, request-fulfilling candidates, and the pipeline can revise
+an edit from evaluator feedback. SFT on that data (an earlier **Llama 3.3 70B** on **more than
+250,000 examples**) came first. RL followed because imitation cost generalization and was "less
+sample efficient". The RL work moves the effort to the newest floor above: design RL environments,
+reward shaping and expert-written criteria.
+
+The gate is the instructive part. Figma's internal evals score Figma fluency and useful changes
+but also **speed and cost**. Quality is split into separate dimensions (alignment, contrast,
+request fulfillment, correct component), and expert designers calibrate the visual judges. That
+is a verifier anchored outside the system being trained, as the Schmid section above asks.
+Its calibration data is unpublished. The production outcomes (tasks about **20%** faster, **60%**
+fewer undos) are credited by Figma itself to "models, tools, and harness", so they are not a
+measure of the factory's output alone.
+
+## Weights can also be changed without a training run
+
+The harness-ladder section above treats the factory as the only route to improvements that
+need new weights. [[Rikiya Takehi et al - Sparks of Weight-Space Programming]] reports a third
+route: a frontier model reads a network's weights and writes new ones by reasoning, with no
+optimizer. Its largest case changed **0.016%** of Qwen3.5-0.8B's weights with **50** forward
+passes and no gradients. MATH-500 went from **7.9 to 48.1** under loop-prone sampling settings.
+The authors pitch it as "dramatically reducing optimization cost".
+
+For this page, the point is that such edits still need factory discipline. The post pins its
+claims to released logs, an edited checkpoint and a norm-matched random-direction control, which
+is what makes the edit inspectable. The evidence is preliminary: one model, few attempts, and a
+fix that removed a failure rather than adding a capability. It does not yet show a route that
+can replace training.
+
 ## Open questions
 
 - Where should the boundary sit between factory-owned and harness-owned improvement, given that the
   two now have separate optimizers and separate cost structures?
 - If promotion gates are the verifier, who owns them when the system under evaluation is capable of
   reading or modifying them?
+- If gates include speed and cost alongside quality, as Figma's do, how should a factory weigh a
+  smaller first-party model that is "competitive" against a larger third-party one?
+- Should reasoned weight edits pass through the same versioning and promotion gates as trained
+  checkpoints, and what would a regression suite for a 0.016% edit need to cover?
 - Osmani's null result concerns inference-time context. Does the same "unjustified components
   accumulate" dynamic show up in training mixtures, and would a factory's records be enough to detect it?
 
 ## Related pages
 
+- [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]]
+- [[Figma]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Parameter-Efficient Fine-Tuning]]
 - [[Netflix - Reliable GPU Compute for Training and Inference]]
 - [[GPU Fleet Reliability]]
 - [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]]

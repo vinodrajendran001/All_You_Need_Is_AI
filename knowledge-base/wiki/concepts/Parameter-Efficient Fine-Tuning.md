@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - fine-tuning
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-09-23-bytebytego-model-customization
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -74,6 +75,24 @@ precision are different choices, and reduced checkpoint duplication does not eli
 activations, KV cache, switching overhead, or task-quality evaluation. The source reports the
 design, not a controlled comparison of adapter ranks or whole-device performance.
 
+## A small update can be written instead of trained
+
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] reaches a parameter-efficient result
+with no training at all. GPT-6 Astra edited Qwen3.5-0.8B with no gradients, optimizer state or
+training data. It removed one loop direction from **64** MLP output columns in each of layers 15
+and 19, which is **131,072** weights or **0.016%**. On a small control policy it changed **6,073**
+of **171,664** weights (**3.5%**). In the vault's reading, the Qwen edit is both sparse and low-rank
+in the sense of the section above: it touches few coordinates, and subtracting a single direction
+is a rank-one change within them. Neither LoRA nor a Fisher ranking chose those coordinates; the
+model reasoned about what the layers computed.
+
+The authors argue that such small edits could "avoid the catastrophic forgetting that fine-tuning
+often causes". The evidence is partial. Astra's own report says accuracy on outputs that finished
+before the edit was unchanged, and IFEval also rose. Retention beyond those checks was not tested,
+and the edit removed a failure rather than adding a skill. On a Gemma model that rarely loops, no
+edit moved MATH-500 by more than about a point. This is a preliminary single-model blog result,
+not a replacement for adapters when new behavior must be learned from data.
+
 ## Open questions
 
 - How should adapter rank and target modules be selected under a fixed data and compute budget?
@@ -81,6 +100,8 @@ design, not a controlled comparison of adapter ranks or whole-device performance
 - Which retained-capability tests best detect catastrophic specialization?
 - Could a Fisher ranking computed on the model's own samples choose target modules or sparse
   parameter subsets as well as rank and module heuristics do?
+- Can reasoned, data-free weight edits add behavior, or only remove failures that a short
+  fine-tune would also fix, and how do they compare on retained capability?
 
 ## Related pages
 
@@ -89,6 +110,8 @@ design, not a controlled comparison of adapter ranks or whole-device performance
 - [[On-Device Reasoning]]
 - [[Yingru Li - The Gradient Is a Covariance]]
 - [[Reinforcement Learning]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Mechanistic Interpretability]]
 
 - [[LLM Training Pipeline]]
 - [[Model Quantization and Efficiency]]

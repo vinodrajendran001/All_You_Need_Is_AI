@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-27
+updated: 2026-11-06
 tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-08-31-derelict5432-adaptive-agentic-worms
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-02-can-boluk-harness-playbook
+  - src-2026-10-29-factory-droid-frontier-harness
 status: active
 ---
 
@@ -155,6 +156,38 @@ loop blocking without bound is not merely slow — it can outlast the provider's
 pays full prefill. And `AbortSignal` or `context.Context` do not solve it: they are *"useful protocols, but not
 enforced ones"*, so a loop needs a real kill boundary rather than cooperative cancellation.
 
+## Bounded autonomy: stop rules in the loop, not the model
+
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] gives one production answer to the ownership
+question for a single harness. [[Factory AI]] puts the stop, retry, and nudge decisions in the loop itself:
+"The rules live in the loop rather than the model, so they hold for every provider Droid supports, and a new
+model gets them on day 0." The post names three ways a long-running agent fails — it gets stuck, repeats work,
+or drops the task — and gives each a defined next step.
+
+**Stuck.** On Factory-managed Anthropic streams, **4** minutes of silence counts as a dropped stream and is
+retried. A response that hits a hard time limit gets at most two attempts, and one that breaks partway through
+is removed before the retry, so the model builds only on complete answers.
+
+**Repeating.** Repetition is caught by counting. Three turns in a row with no visible output stop Droid; three
+identical tool calls get a nudge, and six stop the loop. Repeats that return new results, such as polling a
+build, may continue.
+
+**Dropping the task.** This happens most often when a long conversation is summarized, so compaction summaries
+now have room for **16,000** tokens instead of **8,000** — see [[Context Engineering]].
+
+**Waiting is not failing.** The model can move a subagent or a long-running command to the background and
+sleep; Droid wakes it with a reminder when the work finishes, and a dedicated tool checks on, waits for, or
+stops a running program, so no requests are spent asking whether a job is done. Retries go to the provider
+that already holds the cache, and the typical production request reads **98%** of its input from cache.
+
+Read against the section above, these rules are a fixed-precedence version of what Bölük's Director stack
+generalizes: something other than the model decides what happens when output stops or repeats. Factory does
+not describe them as composable or user-extensible, and it reports no false-stop rate, no count of how often
+each rule fires, and no test of whether a background wait that outlasts the provider's cache window still pays
+full prefill. The thresholds are Factory's chosen values, and the silence rule is stated only for
+Factory-managed Anthropic streams. In [[Loop Engineering]] terms they supply an explicit stop condition and
+escalation step, not a verifier.
+
 ## Related pages
 
 - [[Tool Use and Function Calling]]
@@ -196,3 +229,5 @@ enforced ones"*, so a loop needs a real kill boundary rather than cooperative ca
 - [[Tool Roster Economics]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Can Bölük]]
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[Factory AI]]

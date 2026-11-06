@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-10-23
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-09-13-nevsky-gemini-multi-agent-system
   - src-2026-09-13-rahmat-adk-gemini-enterprise
   - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-11-04-axjns-synthetic-membrane-paper
 status: active
 ---
 
@@ -129,6 +130,32 @@ human review**, not a shipped capability. And the tradeoff is acknowledged: spec
 at the cost of generality, and a genuinely new workflow still requires careful reuse and sequencing of
 existing agents.
 
+## A framework is a runtime, not a coordination contract
+
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] separates two
+things this page's selection dimensions tend to merge: "a transport or runtime and an application-level
+coordination contract". It names LangGraph's "persisted graph state, checkpoints, and replay facilities"
+as "a credible implementation substrate and comparison baseline", and treats MCP and A2A as building
+blocks. "A sufficiently extended framework could implement the proposal. No claim is made that existing
+tools are incapable of it."
+
+What the paper adds on top of a runtime is a set of team-level rules:
+
+- claims carry evidence lineage;
+- retractions propagate to dependent conclusions;
+- task ownership is a lease that the executor checks;
+- governance can halt execution, not just record a halt.
+
+Its closest precedent is the blackboard architecture, not any agent framework. It sets its own
+falsification test: "If a conventional blackboard with equivalent controls performs as well with less
+complexity, that is evidence against a separate membrane service." For framework selection, the question
+is not only whether a framework keeps shared state, since the stateful graph runtimes above already do.
+It is which of these rules the team must write itself on top of whichever
+framework it picks. [[Multi-Agent Coordination]] collects the rules, and the Thin Orchestrator above is
+one team's answer to the ownership part: deterministic routing in ordinary code. The paper names
+LangGraph as a comparison baseline but reports no comparison; its planned evaluation has not been run,
+and its first baseline is "a single agent with suitable tools".
+
 ## Open questions
 
 - Which framework behaviors can be compared under equivalent end-to-end tasks?
@@ -146,6 +173,8 @@ existing agents.
 
 ## Related pages
 
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[Multi-Agent Coordination]]
 - [[Plawan Rath et al - The Thin Orchestrator]]
 - [[Meta]]
 - [[Agent Delegation]]

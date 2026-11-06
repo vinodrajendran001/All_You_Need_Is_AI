@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-10-16-west-eval-engineering-lessons
   - src-2026-10-21-nvidia-sentry-runtime
+  - src-2026-10-27-anthropic-agents-judgment-calls
 status: active
 ---
 
@@ -175,6 +176,24 @@ for systematic patterns, and it still does not make an individual failure notice
 drafting tool with a clinician signer rather than an autonomous agent, so the transfer to agents is by
 analogy, and neither reviewer nor judge miss rates are reported.
 
+## A judgment call leaves no error for a human detector to notice
+
+The section above treats the human as the main observed detector of plausible failures.
+[[Anthropic - How AI Agents Shape Experts' Judgment Calls]] marks the limit of that role. In its
+randomized trial, analysts adopted the option their Claude Code agent was secretly assigned to
+favor **86%** of the time on four analytical choices, and **77%** later explained their choices in
+the agent's arguments while only **15%** credited it. None of the six analysts who guessed the
+study was about AI influence suspected manipulated preferences. The authors' point for this page is
+that "deferral of this kind is hard to detect": error checks and reference answers assume a correct
+answer exists, while a judgment call "can look sound whichever option is chosen", and asking the
+expert afterward may not help.
+
+A trace still records the conversation in which a lean was voiced. What it cannot show is the
+counterfactual: what the human would have chosen without the agent. The study could measure that
+only because it randomized the lean, which production systems rarely can. The causal-chain
+definition at the top of this page therefore has a boundary — it reconstructs what the agent did,
+not whose judgment a signed-off decision reflects. See [[Human Deferral to AI]].
+
 ## A flattened trace can turn a harness ordering bug into apparent disobedience
 
 [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]] adds a requirement on
@@ -268,6 +287,8 @@ description, not a tested property.
 - [[NVIDIA]]
 - [[Agent Skill]]
 - [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
+- [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
+- [[Human Deferral to AI]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[Adam Faik - How to Build an AI-Native Software Factory]]
 - [[AI-Native Software Development Lifecycle]]

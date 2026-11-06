@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-23
+updated: 2026-11-06
 tags:
   - concept
   - sdlc
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-09-27-willison-llms-2026-so-far
   - src-2026-10-15-osmani-claude-code-review
   - src-2026-10-14-maevyn-decoherence-trap
+  - src-2026-11-04-x-town-square-rebuild
+  - src-2026-10-27-anthropic-agents-judgment-calls
 status: active
 ---
 
@@ -201,6 +203,52 @@ an observed condition; the author's estimate that repair could take "years or ev
 explicitly qualitative, and nothing in the essay shows any real system has reached it or that agents
 cannot repair a highly complex system.
 
+## A small-team rebuild makes the instruction, skill, and lint layers concrete
+
+[[X Engineering - Rebuilding the Global Town Square from Scratch]] is the first account here of
+the playbook's enforcement layers carrying a production rewrite rather than a consulting
+prescription. X reports that a small team with AI coding agents built the first version of a
+new x.com web app in under six months — "Five engineers" in the introduction, "fewer than five
+engineers" later in the same post — replacing three rendering servers with one. Engineers set
+the architecture, decided what to build, and reviewed every change; agents ported behavior,
+converted pages, wrote tests, and fixed what CI and reviewers flagged.
+
+The three enabling practices map onto the act-time controls above. A root **`AGENTS.md`** plays
+the `CLAUDE.md` role and adds a commit rule: nothing lands until lint, typecheck, and the relevant
+tests pass. **More than 25** in-repo [[Agent Skill|skills]] cover commits, stacked pull requests,
+review, CI shepherding, dependencies, translations, and framework use. Conventions become
+**custom oxlint rules**, including an "anti-slop" plugin aimed at patterns agents tend to produce,
+enforced by pre-commit and pre-push hooks. The old servers supplied a specification that agents
+could port against and reviewers could check, which is why the migration "suited agents well"; see
+[[Agentic Testing]] and [[Legacy Code Modernization with AI Agents]].
+
+The evidence boundary matches the rest of this page. X gives no share of agent-written code, defect
+or revert rates, or staffing counterfactual, and its benchmark results measure the new architecture,
+not the agent workflow. What it does show is a lint layer written specifically against agent output
+— a guardrail aimed at the author's characteristic errors rather than a generic style check — and an
+explicit statement that the engineers' remaining job is "deciding what the system should do, then
+checking in a real browser that it actually does."
+
+## Sign-off assumes the reviewer's judgment is independent
+
+This page's governance model concentrates human attention at gates, and the Tensions section notes
+that humans increasingly review what the agent flagged.
+[[Anthropic - How AI Agents Shape Experts' Judgment Calls]] tests the stronger assumption beneath
+every gate: that a person's approval is an independent judgment. In a randomized trial, 50
+professional analysts using Claude Code adopted the option their agent was secretly assigned to
+favor **86%** of the time on four open analytical choices. Those who rated the result as more
+their own were influenced about as much as the rest (shifts of about **65** versus **79** points,
+within the margin of error).
+
+The study is one hour-long analysis task with a deliberately strengthened lean, not a code-review
+experiment, so it does not measure deferral on pull requests. Its institutional point still lands
+here: organizations "often treat an expert's sign-off as evidence of independent judgment," and
+the authors propose deciding deliberately which decisions need a person's own informed judgment.
+For this lifecycle, that separates two kinds of gate. Risk-tiered review and deterministic checks
+verify a change against a reference; the Plan and Design artifacts (`intent.md`, `spec.md`) record
+choices with several defensible answers, where an agent's framing can settle the decision without
+anyone noticing. See [[Human Deferral to AI]].
+
 ## Open questions
 
 - Which parts survive translation off Claude Code? The artifact loop and act-time enforcement look portable; the specific `CLAUDE.md`/hooks/subagent surface does not.
@@ -239,3 +287,6 @@ cannot repair a highly complex system.
 - [[Anthropic]]
 - [[Agentic Testing]]
 - [[Paolo Perrone - What is Agentic Testing]]
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]]
+- [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
+- [[Human Deferral to AI]]

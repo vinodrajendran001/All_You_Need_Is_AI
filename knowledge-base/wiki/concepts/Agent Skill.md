@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -29,6 +29,7 @@ source_ids:
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-11-04-x-town-square-rebuild
 status: active
 ---
 
@@ -236,6 +237,22 @@ also makes the model's own reading of short descriptions the selection mechanism
 where the open question about colliding activation conditions bites, and the explainer does not
 discuss mis-selection or what a loaded skill's scripts are allowed to execute.
 
+## A production repository uses skills as the update point for team workflows
+
+[[X Engineering - Rebuilding the Global Town Square from Scratch]] reports **more than 25** skills
+living next to the code of x.com's new web app: writing commits, opening and stacking pull
+requests, reviewing code, shepherding a pull request through CI, changing dependencies, adding
+translations, and working with Relay and the router. The stated rationale is maintenance rather than
+capability: "When a workflow changes, we update its skill once, and every agent picks it up."
+
+The skills sit in a three-part arrangement that matches the instruction/execution split above.
+`AGENTS.md` carries always-on coding rules; skills carry step-by-step recurring procedures; and
+anything that must hold is enforced outside the prompt by custom lint rules and commit hooks.
+None of the X skills is described as a gate. The post supplies no skill-level evaluation, activation
+rate, or ablation, so it is evidence that a skill library of this size is workable for a small team
+(the post says five, or fewer than five, engineers built the first version), not evidence about any
+individual skill's effect or about the listing-budget cost of 25-plus names.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -247,6 +264,7 @@ discuss mis-selection or what a loaded skill's scripts are allowed to execute.
 
 ## Related pages
 
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]]
 - [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[ByteByteGo]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]

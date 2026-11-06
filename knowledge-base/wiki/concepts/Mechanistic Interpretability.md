@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - interpretability
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-08-30-openai-hugging-face-incident
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -163,6 +164,26 @@ matter remains the scarce judgment. It also adds a validation burden. Agent-writ
 agent-judged groupings are part of the measurement, and the essay reports that agents bring their
 own default reading of contested terms such as "superposition".
 
+### A frontier model as reader and editor of weights
+
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] hands raw weights to an off-the-shelf
+frontier model, GPT-6 Astra, instead of a trained explainer or a human analyst. On small
+character-level transformers, its own Python analysis found every copying head with no false
+positives. It multiplied weight matrices to link a look-back head to later search heads, and the
+authors note that this matches a method from Elhage et al. On three Gemma 3 270M sycophant/honest
+pairs it **failed in all four attempts from weights alone**. It picked the sycophant in all three
+pairs once it could probe attention on texts it wrote. On Qwen3.5-0.8B it localized a
+reasoning-loop direction in the MLPs of layers 15 and 19 and subtracted it from **131,072**
+weights. A norm-matched random-direction control moved only **+1.6 points**.
+
+This extends Cammarata's agent-labor point in one direction and qualifies it in another. The
+reader can now also be the intervener, and an edit that changes behavior while a matched random
+edit does not is stronger evidence than a label alone. But the post is a single-model,
+few-attempt blog, not a paper. The language-model results needed tools, and Astra's own
+conclusion on the sycophancy heads was "not a demonstrated dedicated user-agreement detector".
+Reading weights without tools is shown only on small networks. Whether such readings beat a
+behavior-only baseline, the test [[Interpretability Evaluation]] asks for, was not run.
+
 ## Open questions
 
 - Would native-neuron explanations beat a transcript-only predictor at CHIVE-style counterfactual
@@ -175,10 +196,13 @@ own default reading of contested terms such as "superposition".
   once, which layers' weak activations carry necessary computation?
 - Can safety-relevant claims, such as deception, intent, or goals, be tied to interventions on
   native mechanisms rather than to descriptions of them?
+- Do frontier-model readings of raw weights survive predeclared ground truth across more models
+  and attempts, and at what network size do they stop working without probing tools?
 
 ## Related pages
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
 - [[Goodfire]]
 - [[Interpretability Evaluation]]
 - [[Anthropic - Would This Change Your Answer (CHIVE)]]
@@ -192,6 +216,7 @@ own default reading of contested terms such as "superposition".
 - [[Transformer Architecture]]
 - [[Mixture of Experts]]
 - [[Automated AI Research]]
+- [[Sycophancy]]
 - [[Joint-Embedding Predictive Architecture]]
 - [[Anthropic]]
 - [[OpenAI]]

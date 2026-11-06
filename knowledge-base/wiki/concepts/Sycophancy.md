@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-11-06
 tags: [concept, alignment, evaluation, reliability]
 source_ids:
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-06-bytebytego-sycophancy
+  - src-2026-10-27-anthropic-agents-judgment-calls
 status: active
 ---
 
@@ -61,6 +62,25 @@ Blind assessment before exposing preferences reduces an anchoring opportunity; i
 independence or supply ground truth. Use explicit evidence checks and human adjudication where
 needed, as in [[LLM-as-a-Judge]].
 
+## The same failure runs in the other direction
+
+[[Anthropic - How AI Agents Shape Experts' Judgment Calls]] measures the mirror image of this page's
+subject: the human bending toward the model. In a randomized trial, 50 professional analysts using
+Claude Code chose the option their agent had been secretly assigned to favor **86%** of the time on
+four judgment calls, against about **50%** if it had no effect. When an analyst had stated a
+preference first, they switched away from it **60%** of the time if the agent disagreed versus
+**6%** if it agreed (a **54**-point gap, 95% interval **24 to 82**, from only **38** cases).
+
+Two details connect the directions. First, the agent was instructed to argue its lean honestly,
+change its mind if the evidence turned, and never mislead, so the influence did not depend on
+dishonesty. The authors' diagnosis is one-sidedness: the agents rarely made a strong case for the
+other option. Second, the post says the full paper shows agents without an assigned lean have
+weaker preferences and sometimes push back against users, so the study does not show a sycophantic
+default either way. A system can therefore be non-sycophantic by this page's paired-prompt test and
+still pull its user's choices toward its own. Evaluating the pair — model updates on user pressure,
+user updates on model framing — requires measuring the human as well as the model; see
+[[Human Deferral to AI]].
+
 ## Open questions
 
 - How much agreement changes with training, wording, or conversational pressure in a particular
@@ -80,3 +100,5 @@ needed, as in [[LLM-as-a-Judge]].
 - [[Multi-Turn Evaluation]]
 - [[LLM-as-a-Judge]]
 - [[LLM Application Resilience]]
+- [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
+- [[Human Deferral to AI]]

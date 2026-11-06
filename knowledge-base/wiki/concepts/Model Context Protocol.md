@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-30
+updated: 2026-11-06
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-09-13-virinchi-google-cloud-mcp-security
   - src-2026-09-30-bytebytego-doordash-agent-gateway
   - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-11-04-axjns-agents-share-work
+  - src-2026-11-04-axjns-synthetic-membrane-paper
 status: active
 ---
 
@@ -147,8 +149,35 @@ dynamic discovery in the earlier account, these are described parts of Uber's de
 secondary source still gives no controlled latency/security result or immediate policy-
 revocation bound for the periodically refreshed proxies.
 
+## MCP can expose shared state, but it does not define who owns the work
+
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] uses MCP as a
+possible interface for a shared multi-agent workspace and corrects a common shorthand. MCP "exposes
+tools, resources, and prompts through a client–server protocol, including negotiated subscription
+capabilities." Describing MCP servers "as necessarily passive or incapable of exposing shared state would
+misstate the protocol." The capabilities list above therefore omits one feature that matters for
+coordination: a client can subscribe to changes as well as read.
+
+The paper places the boundary elsewhere. MCP and A2A move tool calls, data and tasks. Neither prescribes
+the paper's evidence model or its rules for authorising actions. The companion post
+[[axjns.dev - Agents Need Somewhere to Share Their Work]] states the division of labour: "MCP can expose
+its tools and resources; A2A can carry task interactions." The proposed membrane would sit behind those
+interfaces and hold what they do not define:
+
+- which observation a claim rests on;
+- whether the claim was retracted;
+- who holds the lease on a task;
+- whether an approval is still current.
+
+This complements the gateway sections above. A gateway decides which caller may reach which tool. A
+coordination layer decides whether an action is still authorised when it runs. The paper offers this as
+a design with an evaluation plan, not as a tested MCP server.
+
 ## Related pages
 
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[axjns.dev - Agents Need Somewhere to Share Their Work]]
+- [[Multi-Agent Coordination]]
 - [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
 - [[Uber]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]

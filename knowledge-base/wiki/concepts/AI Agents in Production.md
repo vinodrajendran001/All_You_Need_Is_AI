@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-10-07
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -52,6 +52,8 @@ source_ids:
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-01-mollick-dot-swarm
   - src-2026-09-27-willison-llms-2026-so-far
+  - src-2026-11-04-axjns-post-kubernetes-genai
+  - src-2026-11-04-bytebytego-netflix-performance-agents
 status: active
 ---
 
@@ -423,6 +425,29 @@ gains. [[Simon Willison - 2026 in LLMs (so far)]] supplies the product-quality c
 generating a game-shaped artifact did not establish that it was engaging. Capability to produce,
 capacity to serve, and permission to act are separate from usefulness and acceptance.
 
+[[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]] separates durable coordination
+from transient execution at the infrastructure layer. Modal reports creating a million concurrent
+sandboxes in under a minute by keeping synchronous durable writes off the creation path; this is
+vendor-reported and the post did not reproduce it. The post asks "which decisions must be durable
+before execution, and which can be reconciled afterwards?" Its author's Sympozium work treats
+identity, policy, shared evidence, action ownership and an inspectable history as durable. The post
+separately notes that "isolation alone says nothing about whether a task was authorised, whether it
+ran twice, or whether its result is trustworthy." See [[Celln]] and [[Harness State Authority]].
+
+## A deterministic verdict can sit between an agent's change and production
+
+[[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] describes a four-stage gate
+around an LLM that proposes performance fixes. The change must pass existing unit, integration, and
+contract tests, then run as a canary on a portion of production traffic beside an identical baseline
+running the original code. Telemetry such as CPU utilization, median and P99 latency, and memory
+allocation rates is compared without any AI model. Only an improvement "with zero increase in error
+rates" becomes a pull request carrying the change, the original flame graph, and the canary report,
+and a human developer takes the final deployment decision.
+
+The model is kept out of its own acceptance test, the separation of capability from acceptance drawn
+above. The relayed account gives no canary window, traffic share, rejection rate, or merged-change
+count, so it shows the gate's shape rather than its yield.
+
 ## Related pages
 
 - [[Jason Li - How Many AI Agents Could We Run]]
@@ -503,3 +528,6 @@ capacity to serve, and permission to act are separate from usefulness and accept
 - [[DeepSeek]]
 - [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
 - [[Agent Payment Protocols]]
+- [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]]
+- [[Celln]]
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]

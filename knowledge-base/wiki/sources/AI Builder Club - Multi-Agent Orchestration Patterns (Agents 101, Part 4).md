@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-26
+updated: 2026-11-06
 source_id: src-2026-08-05-aibuilderclub-ai-agents-101-part-4
 source_title: Multi-Agent Orchestration Patterns (Agents 101, Part 4)
 source_author: AI Builder Club
@@ -44,6 +44,7 @@ The patterns provide a vocabulary for deciding whether a task needs specializati
 ## Affected pages
 
 - [[AI Builder Club - Build AI Agents]]
+- [[Multi-Agent Coordination]]
 
 ## Citations
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - post-training
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-07-02-arora-llm-reasoning-advances
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-10-15-li-gradient-is-covariance
+  - src-2026-11-03-bytebytego-nemotron
 status: active
 ---
 
@@ -86,6 +87,13 @@ Related self-teaching variants: **OPSD** and **SDPO** use the model as its own t
 information — the teacher fleet collapsed to one model with extra context. See
 [[Synthetic Data Flywheel]].
 
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] gives a second, secondary description of the
+Nemotron 3 Ultra recipe (550 billion total, 55 billion active parameters): the model "generates its own
+attempts and receives guidance from multiple domain-specialized teacher models", and on-policy means
+learning from attempts the current student generates. It presents the technique as a new addition in
+Ultra but gives no teacher count, domains, or ablation, so it corroborates the recipe's shape, not the
+10+ teacher figure above.
+
 ## On-policy sampling is also what makes the update analyzable
 
 [[Yingru Li - The Gradient Is a Covariance]] cites Zhang, Mukherjee & Peng (2026) for the claim
@@ -123,3 +131,4 @@ addressed.
 - [[Synthetic Data Flywheel]]
 - [[Knowledge Distillation]]
 - [[@zafstojano]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]

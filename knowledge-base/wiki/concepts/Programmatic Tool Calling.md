@@ -59,7 +59,8 @@ The evidence comes in three grades, and they should not be merged:
 
 - **Measured replay.** One common session — fixing a failing unit test on GPT-6.1 Sol — replayed both
   ways made the same **15** tool calls in **10** model calls directly and **5** with Script. Model
-  time fell from **42.3 s** to **28.0 s** and the task from **56.8 s** to **41.6 s**.
+  time fell from **42.3 s** to **28.0 s** and the task from **56.8 s** to **41.6 s**. Tool durations
+  were measured; the direct run's call placement was reconstructed.
 - **Reported aggregate.** Script mode cuts Droid's cost by **15%** on Claude Opus 5.5, with the
   savings concentrated in the **12.5%** of Scripts that make six or more tool calls. The method behind
   the 15% is not stated. Most Scripts are small, so the benefit is a long-tail effect rather than a

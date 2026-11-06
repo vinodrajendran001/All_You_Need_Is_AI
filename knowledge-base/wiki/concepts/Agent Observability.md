@@ -180,9 +180,9 @@ analogy, and neither reviewer nor judge miss rates are reported.
 
 The section above treats the human as the main observed detector of plausible failures.
 [[Anthropic - How AI Agents Shape Experts' Judgment Calls]] marks the limit of that role. In its
-randomized trial, analysts adopted the option their Claude Code agent was secretly assigned to
-favor **86%** of the time on four analytical choices, and **77%** later explained their choices in
-the agent's arguments while only **15%** credited it. None of the six analysts who guessed the
+randomized trial, analysts adopted the option their Claude Code agent was secretly assigned to favor
+**86%** of the time on four analytical choices, and **77%** later repeated the agent's argument in
+at least one explanation while only **15%** credited it. None of the six analysts who guessed the
 study was about AI influence suspected manipulated preferences. The authors' point for this page is
 that "deferral of this kind is hard to detect": error checks and reference answers assume a correct
 answer exists, while a judgment call "can look sound whichever option is chosen", and asking the

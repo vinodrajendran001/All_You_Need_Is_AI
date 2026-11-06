@@ -29,6 +29,7 @@ source_ids:
   - src-2026-10-15-cohere-agent-teams
   - src-2026-10-20-cloudflare-inference-bill
   - src-2026-11-02-alphasignal-timestral
+  - src-2026-10-30-figma-fluent-editing-model
 status: active
 ---
 
@@ -370,6 +371,16 @@ the cheapest destination for a stable, well-labelled prediction may be a convent
 than any foundation model. The example is a design sketch, with no reported deployment, latency, or
 cost; see [[Tabular Foundation Models]] and [[Typed Probabilistic Decision Models]].
 
+## A product agent routes by task type between its own model and third-party models
+
+[[Josh Clemm - How We're Training a Figma-Fluent Editing Model]] describes routing inside Figma's
+design agent. For image generation, vectors, or brand-new design explorations it uses "the best
+third-party model available"; for precise edits and iterations it uses Figma's own post-trained
+editing model. Figma reports that it has "more than doubled" the share of work powered by its own
+model and reduced the average cost per message, but attributes those gains to improvements across
+"the models, tools, and harness", so routing's own contribution is not isolated. The account is
+first-party.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -447,3 +458,5 @@ cost; see [[Tabular Foundation Models]] and [[Typed Probabilistic Decision Model
 - [[Typed Probabilistic Decision Models]]
 - [[TypeSafe AI]]
 - [[Agent Security and Governance]]
+- [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]]
+- [[Figma]]

@@ -112,8 +112,8 @@ controls instead of inferring them from configuration.
 
 ## Why it matters
 
-- [[Agent Security and Governance]] gets a concrete case of separating an operation's failure from
-  a denial by the intended control. Three of the four denials turn out to need a different
+- [[Agent Security and Governance]] gets a concrete case of separating an operation's failure from a
+  denial by the intended control. Three of the four failed probes turn out to need a different
   explanation or a different probe.
 - [[Celln]] gets the only runtime evidence in the vault for this system.
 
@@ -126,8 +126,8 @@ controls instead of inferring them from configuration.
     positive control.
 - **Naming.** The URL slug says "benchmark", but the post disclaims being one. DeepSeek's role is only
   to generate the programs. The results say nothing about DeepSeek's capability or safety.
-- **The vsock broker.** It remains an untested channel, so the network result does not show a sealed
-  cell.
+- **The vsock broker.** It is a possible, untested channel subject to host policy, so the network
+  result does not show a sealed cell.
 - **Reproducibility.** The excerpts were retained from an earlier run, and the configuration was not
   fully pinned. `"reproduced":true` in the build record is a claim of the pipeline, not an
   independent rebuild.

@@ -13,6 +13,7 @@ source_ids:
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-04-axjns-agents-share-work
   - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-bytebytego-netflix-performance-agents
 status: active
 ---
 
@@ -117,6 +118,21 @@ claims on tasks, leases and approvals. A persistent wiki records knowledge, and 
 read as granting authority to act. [[Multi-Agent Coordination]] covers the action side. Both pieces are
 proposals, the paper with an unrun evaluation plan, so none of these rules has measured support here.
 
+## A production team chose plain Markdown in Git over a vector store
+
+[[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] reports that Netflix's
+performance agents get persistence from a Pattern Catalog: a Git repository of plain Markdown files,
+with no vector database or complex knowledge store, an idea the account says was borrowed from the
+"LLM-wiki" concept popularized by Andrej Karpathy. Its four stated principles map onto this page: one
+centralized source of truth so teams do not debug the same issue twice, entries that work unchanged
+across offline profiling, pull-request checks, and local tools, a format a script can inject into an
+LLM's system prompt, and contents that developers can review, diff, and trace through Git history.
+
+The account says the format "scales well to 100s of detailed performance rules without the need for
+complex search infrastructure". That is a capability claim, not a reported catalog size, and the
+account relays a conference talk without measuring the catalog's effect. Its useful addition is the
+reader: here the wiki is consumed by CI tooling and injected into prompts, not only queried by people.
+
 ## Open questions
 
 - When should a new idea extend an existing concept page versus creating a fresh one?
@@ -149,3 +165,4 @@ proposals, the paper with an unrun evaluation plan, so none of these rules has m
 - [[Meta]]
 - [[Retrieval-Augmented Generation]]
 - [[Context Engineering]]
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]

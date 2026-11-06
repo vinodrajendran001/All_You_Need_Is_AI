@@ -102,12 +102,12 @@ is still pending.
   the communication is useful.
 - **Latency.** The post grants that a single agent given as many output tokens as the collective
   "will recover much of the performance gain, but take longer to do it". Its claim is about time:
-  "At a matched-token budget, a single-agent baseline takes **4x** as long compared
-  to agent collectives." On EdgeBench, an 8-hire organisation overtakes the single-agent baseline
-  at about **2.4 hours** of derived latency. Twelve per-benchmark latency charts compare three
-  setups: a single agent, a single agent with extended thinking given the organisation's token
-  count, and an organisation of up to 8 hires. The benchmarks include SWE-Bench Pro V2 (Hard),
-  Terminal-Bench 2.1, GPQA and AIME 2026. The chart values were not captured.
+  "At a matched-token budget, a single-agent baseline takes **4x** as long compared to agent
+  collectives." On EdgeBench, an 8-hire organisation overtakes the single-agent baseline at about
+  **2.4 hours** of derived latency. Twelve per-benchmark latency charts compare three setups: a
+  single agent, a single agent with extended thinking given the organisation's token count, and an
+  organisation of up to 8 hires. The benchmarks include SWE-Bench Pro V2 (Hard), Terminal-Bench 2.1,
+  GPQA and AIME 2026. The chart values are not stated in text; they survive only as SVG geometry.
 
 ### Outstanding problems
 
@@ -147,9 +147,10 @@ It also feeds several other pages:
 - **Self-reported, not peer-reviewed.** Every Avalon-M1 number comes from the lab that trained it.
   Detail is deferred to a technical report and to a full paper due "in the coming weeks once
   training finishes".
-- **Charts not captured.** The z-scored curves, the useful-work curve, the EdgeBench curve and the
-  twelve per-benchmark latency charts survive only as titles and axis ticks. No benchmark score
-  can be read from the capture.
+- **Chart values not stated.** The useful-work curve survives only as a title. The z-scored curves,
+  the EdgeBench curve and the twelve per-benchmark latency charts survive as titles, some axis ticks
+  and unlabelled SVG geometry. No value is stated in text, and per-benchmark scores and latencies
+  can only be estimated from marker coordinates.
 - **The 4x claim lacks detail.** The capture gives no benchmark set, token budget, seed count or
   variance for the matched-token claim. It partly answers the vault's token-matched question
   rather than settling it; the per-benchmark charts may differ.

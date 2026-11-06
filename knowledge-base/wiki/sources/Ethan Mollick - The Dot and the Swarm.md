@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-11-06
 source_id: src-2026-10-01-mollick-dot-swarm
 source_title: "The Dot and the Swarm"
 source_author: Ethan Mollick
@@ -55,6 +55,7 @@ scaffolding remains compatible with deterministic business gates and runtime iso
 - [[Graph Engineering]]
 - [[Agent Workflow Maturity]]
 - [[AI Agents in Production]]
+- [[Multi-Agent Coordination]]
 
 ## Raw capture
 

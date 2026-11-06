@@ -87,8 +87,8 @@ the comparison has not been independently reproduced.
   Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, and Kimi K3. Prior art credited:
   CodeAct (Wang et al., 2024) across **17** models, Cloudflare and Anthropic in late 2025, and Codex.
 - Design rules: programs get whole files and typed search results; literal text travels as raw
-  blocks; edits return short summaries; a program waits up to **5** minutes, then returns partial
-  output or moves to the background; and a dedicated tool replaces polling.
+  blocks; edits return short summaries; a program waits up to **5** minutes, then returns its output
+  so far, or can start in the background and return at once; and a dedicated tool replaces polling.
 
 ### The Agent Factory loop
 
@@ -132,10 +132,11 @@ This is the vault's most detailed first-party account of a [[Coding Agent Harnes
 models at once. It turns [[Programmatic Tool Calling]] from an argued action space into a shipped
 default with a measured replay and production cost claim. It also adds a controlled, human-merged
 improvement loop to [[Harness Optimization]] and [[Loop Engineering]], and a counterexample to
-universal fixes: the same line-numbering change helped one model and hurt two. Its prompt and cache
-numbers add to [[Tool Roster Economics]], [[Context Engineering]], and [[Agentic Loop]], and its
-vendor-run head-to-head is a case study for [[Benchmark Optimization]]. The startup and hot-path
-work is application performance engineering ([[Software Performance Engineering]]).
+universal fixes: the same line-numbering change helped Sol and Opus and raised cost on GLM and Kimi.
+Its prompt and cache numbers add to [[Tool Roster Economics]], [[Context Engineering]], and
+[[Agentic Loop]], and its vendor-run head-to-head is a case study for [[Benchmark Optimization]]. The
+startup and hot-path work is application performance engineering
+([[Software Performance Engineering]]).
 
 ## Tensions / open questions
 

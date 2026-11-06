@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-09-11
+updated: 2026-11-06
 source_id: src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
 source_title: "Why Tabular Foundation Models Are a Huge Unlock for Enterprise AI"
 source_author: Alpha Signal
@@ -113,6 +113,7 @@ buys cheap inference at a fixed up-front cost. That is the same axis
      definition. Merely-relevant links belong under `## Related pages`. -->
 
 - [[Tabular Foundation Models]]
+- [[Alpha Signal]]
 
 ## Citations
 

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-27
+updated: 2026-11-06
 source_id: src-2026-08-30-openai-hugging-face-incident
 source_title: "The Hugging Face incident and the road ahead"
 source_author: "OpenAI"
@@ -190,6 +190,7 @@ a point [[Coding Agent Harness]] and [[Harness Optimization]] had not previously
 - [[Model Factory]]
 - [[Z.ai]]
 - [[Redwood Research]]
+- [[Multi-Agent Coordination]]
 
 ## Citations
 

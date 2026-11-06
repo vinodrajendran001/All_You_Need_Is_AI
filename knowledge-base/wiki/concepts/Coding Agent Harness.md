@@ -38,6 +38,7 @@ source_ids:
   - src-2026-10-15-osmani-claude-code-review
   - src-2026-10-21-mcateer-claude-mods
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-04-raja-model-gpu-fit
 status: active
 ---
 
@@ -65,6 +66,7 @@ The harness/engine split reframes several practical questions. A capable model i
 - **Speed and memory first:** agentic coding demands stable tokens/sec and bounded memory over *long* contexts (unlike chatbots). ~20–30 tok/sec is comfortable; a 30–35B model needs ~30 GB for a 50k-token context.
 - **Capability with personal task packs:** small task sets that reflect your real work beat leaderboard numbers, whose weightings drift over time.
 - **Model↔harness pairing matters less than assumed.** Models are nominally optimised for a sibling harness (Qwen ↔ Qwen-Code), but a model can perform *better* in another harness (Qwen3.6 under Codex), so muscle memory is a legitimate deciding factor.
+- **Expert offload changes the memory split, not the total.** [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] reports a 35B-A3B mixture-of-experts model at 20 to 30 tokens a second on a 12GB gaming GPU by keeping attention, shared layers, and the KV cache in VRAM and the experts in system RAM, which brings the speed band above within reach of smaller cards; the full weights and long-context cache still have to fit somewhere. The guide also warns that quants below Q4 are "Risky for tool calling" (one project saw a 2-bit model write `\name\` instead of `"name"` in JSON), recommends blind side-by-side comparison on your own prompts, a personal task pack in practice, and relays a review warning that the Odysseus workspace it recommends serves plain HTTP with shell access and an unsandboxed bash tool.
 
 ### Token economics is a harness property
 
@@ -475,3 +477,4 @@ them on day 0." See [[Programmatic Tool Calling]], [[Harness Optimization]], and
 - [[Paul Iusztin]]
 - [[Agent Delegation]]
 - [[Computer Use Agents]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]

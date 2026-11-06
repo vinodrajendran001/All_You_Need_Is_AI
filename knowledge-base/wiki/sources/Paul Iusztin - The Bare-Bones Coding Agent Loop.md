@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-07
-updated: 2026-08-26
+updated: 2026-11-06
 source_id: src-2026-08-07-paul-iusztin-bare-bones-coding-agent-loop
 source_title: The Bare-Bones Coding Agent Loop
 source_author: Paul Iusztin
@@ -48,6 +48,7 @@ The source gives [[Coding Agent Harness]] a concrete reference architecture and 
 ## Affected pages
 
 - [[Coding Agent Harness]]
+- [[Paul Iusztin]]
 
 ## Citations
 

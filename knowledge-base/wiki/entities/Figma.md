@@ -49,10 +49,10 @@ eval, which the post calls "just one input among many".
 The agent routes work by task. Third-party models take image generation, vectors and new
 explorations; the first-party model takes precise edits and iterations. This is a concrete
 [[Model Routing]] split by task type rather than by difficulty. Between beta and general
-availability, Figma reports typical tasks about **20% faster** and user ratings **33% higher**. The
-new agent beats or matches the previous one **62%** of the time with expert designers, and users
-undo its work **60% less often**. Figma attributes these gains to "models, tools, and harness"
-together, so they are not evidence for the model alone.
+availability, Figma reports typical tasks about **20% faster**; it also reports user ratings **33%
+higher**, without a stated baseline. The new agent beats or matches the previous one **62%** of the
+time with expert designers, and users undo its work **60% less often**. Figma attributes these gains
+to "models, tools, and harness" together, so they are not evidence for the model alone.
 
 ## Caveats
 

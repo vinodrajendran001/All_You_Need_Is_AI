@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - log
 source_ids:
@@ -373,6 +373,27 @@ source_ids:
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-10-22-agrawal-qwenputer
+  - src-2026-11-04-axjns-agents-share-work
+  - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-axjns-sticky-note-problem
+  - src-2026-11-04-axjns-celln-deepseek-benchmark
+  - src-2026-11-04-axjns-celln-execution-lease
+  - src-2026-11-04-axjns-post-kubernetes-genai
+  - src-2026-10-29-raindrop-agent-swarm-leadership
+  - src-2026-11-02-anil-compute-islands
+  - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-04-bytebytego-netflix-performance-agents
+  - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-03-astwei-teaching-qwen-why
+  - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-10-30-figma-fluent-editing-model
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
+  - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-10-27-anthropic-agents-judgment-calls
+  - src-2026-10-27-morgan-train-decision-model
+  - src-2026-11-02-alphasignal-timestral
+  - src-2026-11-04-x-town-square-rebuild
 status: active
 ---
 
@@ -2615,6 +2636,156 @@ The archive now has **ten ready posts** and **two superseded drafts**.
 
 Index and overview totals advance to **639 typed wiki pages**; **342 source summaries**,
 **368 source IDs**, **137 concepts**, **95 entities**, and **45 lint reports** are unchanged.
+The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
+and lint reports were not edited. Nothing was staged, committed, pushed, or published by
+this run.
+
+## [2026-11-06] ingest | Coordination Records, Trained Swarms, and Borrowed Judgment
+
+Ingested 21 new captures under `raw/sources/`, with 21 source summaries, two new concepts
+([[Multi-Agent Coordination]] and [[Human Deferral to AI]]), and six new entities ([[Celln]],
+[[Raindrop]], [[General Reasoning]], [[Figma]], [[Mistral]], and [[Factory AI]]). Integrated the
+evidence into 72 existing concept and entity pages. Six earlier coordination summaries now list
+[[Multi-Agent Coordination]] among their affected pages, and the earlier Mistral legacy-code summary
+links its new entity.
+
+- [[axjns.dev - Agents Need Somewhere to Share Their Work]] introduces the synthetic membrane as a
+  policy-controlled boundary around shared work. Its simulation and cost table rest on a stipulated
+  exchange model, so the headline reductions follow from its assumptions.
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] adds a
+  position paper with five functional layers and a cross-cutting defence responsibility. The in-text
+  citation [13] has no entry; the captured reference list ends at 12.
+- [[axjns.dev - The Sticky-Note Problem]] adds handoffs that must state what changed, which
+  assumptions remain open, and who owns the action.
+- [[axjns.dev - Testing Celln's Boundary]] reports five DeepSeek-generated Rust programs from one
+  retained run, which its author calls "not a VM-escape benchmark".
+- [[axjns.dev - The Agent Environment Should Be a Lease]] adds the capability lease and Celln's
+  outcome, provenance, and enforcement-verdict contract with Sympozium.
+- [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]] separates disposable sandbox
+  launch from approval of consequential actions. Two axjns.dev posts carry an "Alex Jones" byline;
+  the other four are recorded as unattributed in capture.
+- [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]] adds counterfactual-replay
+  leadership measurement. Kept the Claude-labelled validation of the order classifier, the Claude
+  Sonnet 5.5 readers behind the 42% figure (also a model under test), and comparisons without a
+  described baseline or denominator.
+- [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]] adds two-continent
+  low-communication training. First-party, one run per configuration, no error bars, and no
+  independent replication.
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] adds memory and bandwidth
+  arithmetic and MoE expert offload as ceilings and rules of thumb, not controlled benchmarks.
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]] relays the Nemotron 3 hybrid design,
+  LatentMoE, multi-token prediction, GRPO, and NVFP4 through quantization-aware distillation.
+  Secondary reporting; the WorkOS sponsor block is excluded.
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] relays a P99 Conference
+  account of model proposals gated by deterministic tests, a non-AI canary comparison, and human
+  review. No fleet-wide figures; the Datadog and WarpBuild sponsor blocks are excluded.
+- [[General Reasoning - How to Train a Swarm]] adds RLCR. Its charts survive only as titles and axis
+  ticks, the 4x claim gives no benchmark set, budget, or seed count, and the capture has no
+  published date.
+- [[astwei et al - Teaching Qwen Why]] adds the open-model replication and the teacher effect. Kept
+  the single evaluation family, teacher datasets built on different scenarios, and critique prompts
+  that differ across experiments.
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]] adds direct weight editing. Its
+  reported 49.8-point combined gain does not match the MATH-500 table, and the byline's Alex Zhang
+  is not linked to the vault's entity without identifying evidence.
+- [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]] adds teacher filtering, validator
+  and visual-judge evaluation, and routing. The headline chart has one rival at a 0.9-point margin,
+  and Figma attributes its production gains to the whole agent.
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] adds
+  offline generation versus few-step causal simulation. No fidelity metrics; "10x lower latency" has
+  no comparator, and Reasoning Nano lists the same GiB figure for BF16 and FP8.
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]] adds Script-mode tool calling,
+  cache discipline, stop rules, and the Agent Factory loop. The tuning loop reads the benchmark it
+  is scored on, and text and figures disagree on three percentages.
+- [[Anthropic - How AI Agents Shape Experts' Judgment Calls]] adds the coin-flip lean trial. Kept
+  the figure's 17-point label where subtraction gives 18.
+- [[Abby Morgan - Train Your Own Decision Model]] adds the full-distribution training ablation. A
+  vendor tutorial measured against a teacher model's labels with a custom calibration metric.
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] adds Timestral and
+  the multi-model stack argument. The capture has no title, byline, date, or URL; attribution is by
+  content, and the source-ID date is the day Git first tracked the file.
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]] adds
+  old-system-as-specification migration practice. The team size is given as both "Five engineers"
+  and "fewer than five engineers".
+
+At the user's request, the truncated Raindrop clipping, which held only the TL;DR abstract, was
+recaptured in full as a new dated raw file beside the original. The original remains unchanged and
+is kept for provenance, not cited as evidence. Before this ingest's baseline, the October 30 Decagon
+raw capture had been converted from CRLF to LF outside this session with identical text; it was left
+as found. Two older Alpha Signal summaries, on DeepSeek and on tabular foundation models, are still
+not linked from the [[Alpha Signal]] entity; that pre-existing gap is left for lint.
+
+The inventory is **668 typed pages**, including **363 source summaries**, **139 concepts**, **101
+entities**, and **45 lint reports**, with **389 source IDs**. The raw collection has **394 top-level
+captures / 463 files**, excluding four Obsidian settings files. No post, local query, or new lint
+report was created.
+
+All **466** baseline raw files, including the four settings files, are byte-identical to the
+working-tree baseline; the only raw addition is the Raindrop recapture. The historical log body,
+templates, posts, queries, and lint reports are unchanged. All **668 pages** are reachable, the
+structural audit has zero findings, the controls have exact **389-ID** parity, and
+affected-page/body-citation reciprocity is **A 0 / B 0 / C 0**. This ingest did not stage, commit,
+or push. Outside auto-backup commits advanced HEAD from 606fdc9 to 141efe9 (22 commits, the last
+at 12:33) and pushed an intermediate state while agents were still working; the finished ingest
+remains uncommitted.
+
+## [2026-11-06] lint | Measurement Scope, Sandbox Boundaries, and Publisher Links
+
+Completed the forty-sixth pass in [[2026-11-06 Lint Pass]]. Whole-wiki structural checks and a
+new publisher-entity backlink check were paired with a raw-text review of all 21 November 6
+source chains and their consumer edits. Every reviewer finding was rechecked against the raw
+capture before editing.
+
+Fixed 52 semantic findings. The
+November 6 ingest entry above says the Synthetic Membrane capture's citation [13] has no entry
+and that the reference list ends at 12. That is wrong: the capture lists entry 13, a FEMA ICS
+review document. The false bullet was removed from
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] and
+from the index; the historical entry is left as written. General Reasoning's swarm charts survive
+as SVG geometry with no values stated in text, not as uncaptured charts. Celln's probes were
+rejected or unavailable rather than all denied. Droid 1.0's cost and time comparisons count only
+tasks both harnesses passed in all three trials. Other fixes restore measurement scope,
+attribution, and hedges.
+
+Linked [[Paul Iusztin]], [[Google Cloud]], and [[Alpha Signal]] to their own source summaries
+with reciprocal ownership, and restored both captured readings of Alpha Signal's Kumo-to-NVIDIA
+attribution. The raw survey found **107 undated captures** and **202 captures missing canonical
+fields** among **394 top-level captures**; no raw metadata or filenames were changed.
+
+The inventory is **669 typed pages**, including **363 source summaries**, **139 concepts**,
+**101 entities**, and **46 lint reports**, at exact **389-ID** control parity. Fifty-five
+existing wiki files changed and only the lint report was added. All **467 raw files**,
+templates, posts, queries, earlier reports, and historical log text remain preserved against
+the post-ingest byte baseline. Nothing was staged, committed, or pushed by this pass.
+
+## [2026-11-06] post | The Expert Agreed With the Coin Flip
+
+Prepared [[2026-11-06 The Expert Agreed With the Coin Flip]] as `ready`, not published:
+one LinkedIn version, one standalone X post, and a connected seven-post X thread.
+The inclusive **2026-10-30 through 2026-11-06** window starts at the newest active post's
+`covers_through`. Two logged ingests supplied **28 source summaries**; the Git cross-check
+covered **24 commits and 128 wiki paths**, with no additional current source summary
+outside those ingests.
+
+Four direct ByteByteGo sources were excluded before scoring five alternatives from the
+November 6 ingest. Anthropic's randomized judgment-call study won **29/30**; Celln's
+failed-probe attribution and Raindrop's planning-versus-leading result scored **24/30**,
+and the Droid and trained-swarm angles failed the completeness and clarity gates. The
+[[Human Deferral to AI]] spine is used only for claims backed by the directly read
+[[Anthropic - How AI Agents Shape Experts' Judgment Calls]]. The public copy keeps the
+strengthened-lean, single-task, vendor-research, and small comparison-group caveats, and
+presents the authors' remedies as untested proposals. Per-decision rates, the 38-case
+switching result, and the capture's explanation for why analysts deferred were omitted.
+
+Updated [[Post Archive]] with the new row, topics, two eligible runner-up angles, and a
+Human Deferral to AI cooldown ending **2026-12-18**. Pruned Just-in-Time Agentic OCR's
+expired cooldown; all historical post rows and both superseded drafts remain intact. No
+earlier post used this spine; the October 23 post concerned an image as an information
+channel, not human review. The archive now has **eleven ready posts** and **two superseded
+drafts**.
+
+Index and overview totals advance to **670 typed wiki pages**; **363 source summaries**,
+**389 source IDs**, **139 concepts**, **101 entities**, and **46 lint reports** are unchanged.
 The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
 and lint reports were not edited. Nothing was staged, committed, pushed, or published by
 this run.

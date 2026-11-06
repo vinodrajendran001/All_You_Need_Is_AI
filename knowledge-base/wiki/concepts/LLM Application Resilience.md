@@ -251,7 +251,8 @@ missing rules as requirements on the executor and the downstream system, not on 
 - **Idempotency.** "An idempotency key only prevents duplicate effects if the downstream system honours
   it; otherwise recovery must reconcile external state before retrying."
 - **Fail closed.** When the system cannot confirm current authority, it should "fail closed for
-  actions", while read-only investigation may continue on explicitly stale state.
+  actions", while read-only investigation may continue on explicitly stale state where policy
+  permits.
 
 The paper's hypothetical incident walks through the case this page worries about. A containment agent
 restarts after its lease expires, and its old isolation request is rejected. Its replacement reads the

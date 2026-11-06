@@ -15,6 +15,8 @@ source_ids:
   - src-2026-09-22-lemire-summer-ai-optimization
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-04-bytebytego-netflix-performance-agents
+  - src-2026-11-04-x-town-square-rebuild
+  - src-2026-10-29-factory-droid-frontier-harness
 status: active
 ---
 
@@ -96,7 +98,7 @@ system that applies the experimental discipline above to service code rather tha
 stack. A manual profiling loop depends on a few experts, so only major incidents get attention and
 "Smaller but steady resource drains go unnoticed". Netflix instead feeds profiler call stacks (JVM
 async-profiler or Java Flight Recorder, py-spy, Go pprof) to an LLM that matches them against known
-anti-patterns. The main lesson was scoping: without strict package-prefix rules, the model spent
+anti-patterns. A key lesson was scoping: without strict package-prefix rules, the model spent
 reasoning tokens on garbage collection, kernel syscalls, and framework overhead that application
 developers cannot change.
 
@@ -115,6 +117,27 @@ request by a fast regex or symbol check, and only on a hit does an LLM read the 
 That gates on known patterns rather than on noisy benchmarks, so it cannot catch a novel regression;
 those still depend on production profiling. The account is secondary, relays a conference talk, and
 gives no fleet-wide savings, false-positive rates, or pull-request acceptance counts.
+
+## Two application cases: a stalled event loop and a harness hot path
+
+[[X Engineering - Rebuilding the Global Town Square from Scratch]] shows a fault that looked like a
+slow dependency. On X's production fleet in October, each rendering worker's event loop was busy about
+67% of the time at the median and 84% at p95, so a 1-second timeout on one upstream request fired on
+1–9% of logged-out renders even though the service answered in about 25 ms; X spread the traffic
+across more workers. Packing startup modules cut the signed-in entry from 754 startup files to 182 and
+the logged-out entry from 582 to 10. Loading the stylesheet before scripts cut lab first contentful
+paint for a logged-out profile from 3,064 ms to 1,984 ms on a slow profile. X itself calls its
+old-versus-new comparisons "lab numbers from one laptop."
+
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] applies the same discipline to an agent
+harness. Reusing the connected-apps list cut turn preparation to 24 ms and, in a controlled test, made
+the median response finish 13% sooner; `droid exec` median time to the first model request fell from
+1,741 to 646 ms. Between the August 25 and October 20 releases, median first paint fell from 1,839 to
+488 ms and time to first prompt from 1,876 to 618 ms; about 6,000 modules are no longer parsed at
+launch, and CI fails any change pushing first-keystroke p95 above 250 ms. Parallel sessions now add
+about 20 MB each instead of about 350 MB per process, and median quit time fell from 648 to 30 ms. In
+one production turn the model request is 97% of the wait for the first token. These are first-party
+figures measured under mixed conditions.
 
 ## Open questions
 
@@ -141,3 +164,5 @@ gives no fleet-wide savings, false-positive rates, or pull-request acceptance co
 - [[Sumit K - Scaling Simplified]]
 - [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
 - [[Netflix]]
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]]
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]

@@ -20,17 +20,17 @@ status: active
 
 ## Summary
 
-An X engineering blog post on replacing x.com's web stack. Three servers — the rweb client app,
-rweb SSR for search crawlers, and the separate Jetfuel SSR site for indexed logged-out pages — are
-being replaced by one server that renders differently for people, verified search crawlers, and
+An X engineering blog post on replacing x.com's web stack. Three servers — the rweb client app, rweb
+SSR for search crawlers, and the separate Jetfuel SSR site for indexed logged-out pages — are being
+replaced by one server that renders differently for people, verified search crawlers, and
 link-preview bots. The post says a small team working with AI coding agents built the first version
 in under six months, and credits three practices: a shared `AGENTS.md`, more than **25** in-repo
 skills, and lint rules plus commit hooks that reject patterns agents tend to produce. The old servers
-served as working specifications: agents ported behavior and wrote pinning tests, and a parity
-script compared old and new responses as a verified Googlebot. Traffic moves gradually — crawlers
-and logged-out pages first, then signed-in people country by country behind an edge switch. The
-rest of the post is performance work and lab benchmarks, which X itself frames as lab numbers from
-one laptop.
+served as working specifications: agents ported behavior and wrote pinning tests, and a parity script
+compared old and new responses as a verified Googlebot. Traffic moves gradually — crawlers and
+logged-out pages first, then signed-in people country by country behind an edge switch. The rest of
+the post is performance work, measured per change on lab, development-server, or production-fleet
+setups, and November 3 benchmarks that X itself frames as lab numbers from one laptop.
 
 ## Key claims
 

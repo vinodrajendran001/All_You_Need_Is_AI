@@ -219,7 +219,7 @@ minutes elapsed, independent attempts then selection at **28**, and a communicat
 when independent attempts suffice, communication "may just add unnecessary overhead"; coordination
 pays when work is "imperfectly parallelisable".
 
-The Avalon-M1 results are first-party and the chart values were not captured:
+The Avalon-M1 results are first-party, and their chart values survive only as SVG geometry:
 
 - A collective with **5-8** hires starts below the average rollout on a proxy for useful work (output
   and reasoning tokens of turns that act on the environment). By step **200** it does "nearly twice the

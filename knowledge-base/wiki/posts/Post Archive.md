@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - post
 status: active
@@ -47,6 +47,7 @@ materially different angle, and that post must say what is new.
 | 2026-10-16 | [[2026-10-16 The Next Model Can Skip the Reread]] | 2026-10-09 → 2026-10-16 | [[KV Cache]] | LinkedIn, X | ready |
 | 2026-10-23 | [[2026-10-23 The Skyline Was the Message]] | 2026-10-16 → 2026-10-23 | [[Chain-of-Thought Monitoring]] | LinkedIn, X | ready |
 | 2026-10-30 | [[2026-10-30 The Shared Part Was Never Saved Alone]] | 2026-10-23 → 2026-10-30 | [[Semantic Caching]] | LinkedIn, X | ready |
+| 2026-11-06 | [[2026-11-06 The Expert Agreed With the Coin Flip]] | 2026-10-30 → 2026-11-06 | [[Human Deferral to AI]] | LinkedIn, X | ready |
 
 ## Superseded drafts
 
@@ -61,6 +62,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-11-06 - human deferral to AI, independent review, judgment calls, agent influence
 - 2026-10-30 - first-request reuse, prompt-cache boundaries, shared versus variable context
 - 2026-10-23 - messages in images, visual information channels, multimodal evaluation
 - 2026-10-16 - cross-model cache handoffs, context transfer, model routing, internal state portability
@@ -76,6 +78,8 @@ materially different angle, and that post must say what is new.
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
 
+- A failed probe does not show which control stopped it: all four of Celln's restricted-capability probes failed, but the post attributes each result narrowly (a missing file is not a denial; a refused socket is the program's own report). Scored 24/30 on November 6; one retained run, explicitly not a VM-escape benchmark - [[Celln]], [[axjns.dev - Testing Celln's Boundary]]
+- Planning is not leading: in 86% of Raindrop's leaderless experiments at least one agent proposed a plan assigning teammates, but only 105 of 2,160 teams produced a leader whose orders measurably changed teammates' decisions. Scored 24/30 on November 6; first-party with no external replication, and the name-order comparison lacks denominators - [[Multi-Agent Coordination]], [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
 - An improved average can hide a lost capability: the on-policy self-training paper reports mixed retention across tasks. Scored 26/30 on October 30; keep per-capability results rather than describing universal improvement - [[Continual Learning for Agents]], [[Leon Sick et al - On-Policy Self-Training]]
 - Require an agent optimizer to name a test that could disprove its proposal: Decagon's reported workflow separates proposing from scored execution and retains human deployment approval. Scored 26/30 on October 30; performance-baseline wording remains ambiguous - [[Software Performance Engineering]], [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
 - An AI supervisor can spend the attention it is meant to save: McAteer reports skimming checks triggered on 99 of 111 turns; frequency is not a false-positive rate or measured usefulness. Scored 28/30 in the October 23 replacement round - [[Coding Agent Harness]], [[Dan McAteer - Claude Mods and the Attention Interface]]
@@ -111,12 +115,12 @@ materially different angle, and that post must say what is new.
 
 <!-- Page - post date - cooldown ends. Prune entries once expired. -->
 
-- [[Just-in-Time Agentic OCR]] - posted 2026-09-25 - cooldown ends 2026-11-06
 - [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
 - [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
 - [[KV Cache]] - drafted 2026-10-16 - cooldown ends 2026-11-27
 - [[Chain-of-Thought Monitoring]] - drafted 2026-10-23 - cooldown ends 2026-12-04
 - [[Semantic Caching]] - drafted 2026-10-30 - cooldown ends 2026-12-11
+- [[Human Deferral to AI]] - drafted 2026-11-06 - cooldown ends 2026-12-18
 
 ## Related pages
 

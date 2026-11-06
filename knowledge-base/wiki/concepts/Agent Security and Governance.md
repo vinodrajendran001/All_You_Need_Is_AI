@@ -694,7 +694,7 @@ shows:
 
 The post also criticises its own demo script, whose heuristic can count any captured stdout as a pass,
 including a printed denial. "Its PASS/FAIL labels are not sufficient evidence of whether a boundary
-held." It is one retained run with unpinned configuration and calls itself "not a VM-escape
+held." It is one retained run with configuration not fully pinned and calls itself "not a VM-escape
 benchmark". Its value here is the method, not the verdict.
 
 Three sibling axjns.dev pieces add rules that isolation alone does not supply:

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - safety
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-10-22-kezin-fable-image-messages
   - src-2026-10-17-redwood-screwtape
   - src-2026-10-26-wong-et-al-graft
+  - src-2026-10-29-raindrop-agent-swarm-leadership
 status: active
 ---
 
@@ -205,6 +206,20 @@ reasoning**, and the incident evidence speaks only to the first. The caveats are
 secondary explainer with sponsored sections, its subject is application-level hallucination rather than
 safety monitoring, it reports no rates or controlled comparisons, and it concedes that a verifier is
 itself a model and can be wrong.
+
+## Agents that obeyed an order often wrote nothing about it
+
+[[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]] gives a behavioural measure of
+that gap. In 2,160 experiments with leaderless agent teams, Raindrop replayed each obeyed order with and
+without the post that issued it; 1,798 obeyed orders changed an agent's decision. Two Claude Sonnet 5.5
+readers checked what the agent's note, post and, for some models, reasoning text gave as the cause. In
+42% of these decisions the texts never mentioned the order. Only 18% named the author in a post
+teammates could see; 28% named the author only in a note or reasoning text. For orders of the 105
+agents counted as leaders, 63% named the leader.
+
+Counterfactual replay exposed influence the agents' own explanations omitted, so a monitor reading only
+those texts would miss it. The readers are Claude Sonnet 5.5, also a model under test, and their 97%
+figure is agreement between readers, not accuracy against human labels. The results are first-party.
 
 ## A quiet monitor is not an adequate monitoring evaluation
 
@@ -433,3 +448,4 @@ uncertain" whether helping to improve frontier monitors is good.
 - [[ByteByteGo]]
 - [[LLM Application Resilience]]
 - [[Retrieval-Augmented Generation]]
+- [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]

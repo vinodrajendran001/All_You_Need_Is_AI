@@ -418,12 +418,12 @@ not become a speedup or a claim that arbitrary layer sharing is safe.
 
 [[ByteByteGo - How Nvidia's New Nemotron Model Works]] adds a second hybrid family to the Cerebras
 analysis above. In NVIDIA's Nemotron design, Mamba layers keep a fixed-size state whose per-token
-update cost does not grow, and "The remaining attention layers maintain KV caches." Those attention
-layers also use grouped-query attention with **32** query heads and **2** key-value heads, so the
-design stacks two of this page's levers: fewer cache-bearing layers and fewer cached heads per
-layer. The article gives no Mamba-to-attention ratio, so the cache cannot be sized from it, and the
-recurrent state that this page elsewhere treats as competing with the cache for memory is not sized
-either.
+update cost does not grow, and "The remaining attention layers maintain KV caches." In the article's
+Lightning configuration, those attention layers use grouped-query attention with **32** query heads
+and **2** key-value heads, so the design stacks two of this page's levers: fewer cache-bearing
+layers and fewer cached heads per layer. The article gives no Mamba-to-attention ratio, so the cache
+cannot be sized from it, and the recurrent state that this page elsewhere treats as competing with
+the cache for memory is not sized either.
 
 [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] describes the same budgeting
 from the local operator's side. A 128K-token context on a big model "can cost several gigabytes by

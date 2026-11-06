@@ -227,13 +227,14 @@ context regime rather than from the reward.
 
 ## The policy can be a collective
 
-Everything above trains one agent. [[General Reasoning - How to Train a Swarm]] trains many at once,
-using a recipe it calls RLCR ("reinforcement learning from collective rewards"). One shared policy runs
-every agent, a simple policy-gradient update applies one flat collective advantage to all of them, and the
-only latency pressure is a wall-clock cap. In Avalon-M1 a CEO agent can hire and fire up to **8**
-specialists, and any agent can reach any other through channels, direct messages and an archive. The
-authors argue that such primitives should stay simple, so that agents discover how to work together
-"without excessive bias from a harness".
+Almost everything above trains one agent; the OpenAI incident above records multi-agent training only
+through its side effects. [[General Reasoning - How to Train a Swarm]] trains many at once, using a recipe
+it calls RLCR ("reinforcement learning from collective rewards"). One shared policy runs every agent, a
+simple policy-gradient update applies one flat collective advantage to all of them, and the only latency
+pressure is a wall-clock cap. In Avalon-M1 a CEO agent can hire and fire up to **8** specialists, and any
+agent can reach any other through channels, direct messages and an archive. The authors argue that such
+primitives should stay simple, so that agents discover how to work together "without excessive bias from a
+harness".
 
 The recipe moves three of this page's themes. Reward design extends to *time*: a task reward alone does
 not prefer a faster rollout. Curriculum becomes a deadline that rises during training, because
@@ -247,9 +248,9 @@ claim bears on the token-matched "illusion of MAS advantage" question raised abo
 [[Akhil Arora et al - Current Advances in LLM Reasoning]], and it reframes rather than settles it. The
 post concedes that a single agent given as many output tokens "will recover much of the performance
 gain, but take longer to do it". The claimed advantage is therefore wall-clock time, not accuracy at
-equal compute. The captured charts carry no values, and the capture reports no ablation that separates
-communication from extra parallel compute. See [[Multi-Agent Coordination]], [[Reward Design for RL]]
-and [[Long-Horizon Credit Assignment]].
+equal compute. The captured charts state no values in text (they survive only as SVG geometry), and the
+capture reports no ablation that separates communication from extra parallel compute. See
+[[Multi-Agent Coordination]], [[Reward Design for RL]] and [[Long-Horizon Credit Assignment]].
 
 ## Open questions
 

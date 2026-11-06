@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - overview
   - ai
@@ -375,6 +375,27 @@ source_ids:
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-10-22-agrawal-qwenputer
+  - src-2026-11-04-axjns-agents-share-work
+  - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-axjns-sticky-note-problem
+  - src-2026-11-04-axjns-celln-deepseek-benchmark
+  - src-2026-11-04-axjns-celln-execution-lease
+  - src-2026-11-04-axjns-post-kubernetes-genai
+  - src-2026-10-29-raindrop-agent-swarm-leadership
+  - src-2026-11-02-anil-compute-islands
+  - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-04-bytebytego-netflix-performance-agents
+  - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-03-astwei-teaching-qwen-why
+  - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-10-30-figma-fluent-editing-model
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
+  - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-10-27-anthropic-agents-judgment-calls
+  - src-2026-10-27-morgan-train-decision-model
+  - src-2026-11-02-alphasignal-timestral
+  - src-2026-11-04-x-town-square-rebuild
 status: active
 ---
 
@@ -386,9 +407,9 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of October 30, 2026, the wiki has **639 typed pages**, including **342 source summaries**
-owning **368 source IDs**, **137 concepts**, and **95 entities**; page totals exclude git-ignored
-local query files. The raw collection contains **372 top-level captures** and **441 files in
+As of November 6, 2026, the wiki has **670 typed pages**, including **363 source summaries**
+owning **389 source IDs**, **139 concepts**, and **101 entities**; page totals exclude git-ignored
+local query files. The raw collection contains **394 top-level captures** and **463 files in
 total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;
 recaptures and equivalent clippings remain preserved without being counted as independent
 evidence. One off-domain capture, a smart-TV privacy guide clipped on October 27, is deferred
@@ -1504,7 +1525,128 @@ and [[Persistent Wiki]] keep the objective, baseline, and authority boundaries v
 Humans initiate campaigns and approve deployment; reported gains are endpoint-specific,
 baseline wording conflicts, and draft acceptance is not serving throughput.
 
+## November 6 additions
+
+Twenty-one captures already under `raw/sources/` add two concepts, [[Multi-Agent Coordination]] and
+[[Human Deferral to AI]], and six entities, [[Celln]], [[Raindrop]], [[General Reasoning]],
+[[Figma]], [[Mistral]], and [[Factory AI]]. The truncated Raindrop clipping was recaptured in full
+beside the original.
+
+**Coordination needs records and authority outside the conversation.** Six axjns.dev posts form one
+series. [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+proposes a policy-controlled shared workspace that tracks what was observed, what is disputed, who
+owns the next action, and who may authorise it.
+[[axjns.dev - Agents Need Somewhere to Share Their Work]] and
+[[axjns.dev - The Sticky-Note Problem]] apply it to publishing and handoffs.
+[[axjns.dev - The Agent Environment Should Be a Lease]], [[axjns.dev - Testing Celln's Boundary]],
+and [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]] describe [[Celln]], an
+execution plane meant to sit beneath that coordination layer, and separate fast sandbox launch from
+approval of consequential actions. The evidence is design argument, a stipulated cost model, and one
+retained demonstration run. [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
+supplies the empirical side: only **105** of **2,160** leaderless teams produced a leader under a
+counterfactual replay test, and in **42%** of order-changed decisions the agent's own texts did not
+mention the order. [[Multi-Agent Coordination]], [[Agent Delegation]], [[Harness State Authority]],
+and [[Agent Security and Governance]] keep the design proposals separate from Raindrop's
+first-party, unreplicated measurements.
+
+**Coordination can be trained by pricing time.** [[General Reasoning - How to Train a Swarm]] trains
+collectives with one shared policy, one flat collective advantage, and wall-clock limits so faster
+work pays. The first evidence is a reported **4x** speedup over a matched-token single agent, not
+higher quality at equal compute, and no training collective exceeded **9** agents.
+[[Agentic Reinforcement Learning]], [[Long-Horizon Credit Assignment]], and
+[[Multi-Agent Coordination]] keep the weak credit assignment of a flat advantage visible.
+
+**Narrow non-agentic data can change agentic behavior.** [[astwei et al - Teaching Qwen Why]]
+partially replicates Anthropic's Teaching Claude Why on Qwen 2.5 base models. Difficult-advice
+fine-tuning cut the 32B model's misalignment from **61%** to **6%** on evaluations involving tool
+use that neither dataset contains, stories plateaued, and the teacher that wrote the advice mattered
+more than any other data choice tested. [[Emergent Misalignment]], [[Knowledge Distillation]],
+[[Synthetic Data Flywheel]], and [[Qwen]] retain the single evaluation family and teacher datasets
+that differ in more than the teacher.
+
+**Three more ways to produce or change a model.**
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] has GPT-6 Astra edit network weights
+directly, without gradient descent; its MATH-500 rise from **7.9** to **48.1** does not match the
+post's own combined-gain figure. [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]]
+describes [[Figma]] filtering teacher-generated edits with validators and visual judges, adding
+reinforcement learning, and routing between its model and third-party models.
+[[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] splits a
+video world model into an offline generator and few-step causal simulators but reports no fidelity
+measurements. [[Automated AI Research]], [[Synthetic Data Flywheel]], [[Model Routing]],
+[[World Models]], and [[Knowledge Distillation]] record where the strongest numbers are
+self-reported or absent.
+
+**Training and serving bend around memory and bandwidth.**
+[[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]] trained a roughly **32B**
+sparse MoE across two continents over a **25 Gbps** link and reports about **1%** lower bits per
+byte than standard training at equal compute, with one run per configuration.
+[[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] reduces self-hosting to
+memory and bandwidth arithmetic: total parameters set memory, active parameters set speed.
+[[ByteByteGo - How Nvidia's New Nemotron Model Works]] relays NVIDIA's hybrid Mamba-attention-MoE
+design and NVFP4 training through quantization-aware distillation.
+[[Distributed Training Parallelism]] treats cross-cluster synchronization frequency as a design
+choice; [[Mixture of Experts]], [[Model Quantization and Efficiency]], and [[NVIDIA]] keep relayed
+figures as relays.
+
+**Agents propose; measurement and people decide.**
+[[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] relays a Netflix system in
+which an LLM finds CPU and memory waste while deterministic tests, a non-AI canary comparison, and a
+human reviewer decide what ships. [[X Engineering - Rebuilding the Global Town Square from Scratch]]
+used the old servers as the specification through pinning tests, parity checks, and gradual traffic
+moves. [[Anthropic - How AI Agents Shape Experts' Judgment Calls]] shows why the human gate is
+weaker than it looks: analysts chose the agent's coin-flipped lean **86%** of the time against
+roughly **50%** expected. [[Software Performance Engineering]],
+[[Legacy Code Modernization with AI Agents]], and [[AI Agents in Production]] record the gates;
+[[Human Deferral to AI]] separates catching a wrong output from adopting a defensible but borrowed
+choice.
+
+**Harness behavior is engineered per model family.**
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] makes loop rules, cache layout, and
+tool loading harness responsibilities and tests each change on every model family it touches. Its
+Terminal-Bench 4 comparisons are Factory's own, and its text and figures disagree on percentages.
+[[Coding Agent Harness]], [[Programmatic Tool Calling]], [[Harness Optimization]], and
+[[Factory AI]] keep the vendor-run benchmark scoped.
+
+**Specialist models join the stack.** [[Abby Morgan - Train Your Own Decision Model]] attributes a
+small decision model's accuracy and calibration gains to training on the full gold distribution, not
+to its decision head.
+[[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] uses [[Mistral]]'s
+Timestral to argue that agents should split work among frontier models, specialist prediction
+models, and deterministic code; its performance claims are relayed vendor reports.
+[[Typed Probabilistic Decision Models]] carries the decision-model result and
+[[Tabular Foundation Models]] the multi-model argument.
+
 ## Related pages
+
+- [[axjns.dev - Agents Need Somewhere to Share Their Work]]
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[axjns.dev - The Sticky-Note Problem]]
+- [[axjns.dev - Testing Celln's Boundary]]
+- [[axjns.dev - The Agent Environment Should Be a Lease]]
+- [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]]
+- [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
+- [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
+- [[General Reasoning - How to Train a Swarm]]
+- [[astwei et al - Teaching Qwen Why]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]]
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
+- [[Abby Morgan - Train Your Own Decision Model]]
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]]
+- [[Multi-Agent Coordination]]
+- [[Human Deferral to AI]]
+- [[Celln]]
+- [[Raindrop]]
+- [[General Reasoning]]
+- [[Figma]]
+- [[Mistral]]
+- [[Factory AI]]
 
 - [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
 - [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]

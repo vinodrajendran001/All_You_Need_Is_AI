@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-25
-updated: 2026-09-25
+updated: 2026-11-06
 source_id: src-2026-09-09-mistral-legacy-code-modernization
 source_title: "Modernizing complex legacy code with AI agents"
 source_author:
@@ -52,9 +52,11 @@ benefited from a self-contained runnable Fortran baseline.
 - [[Coding Agent Harness]]
 - [[Agentic Testing]]
 - [[Agent Planning]]
+- [[Mistral]]
 
 ## Related pages
 
 - [[AI-Native Software Development Lifecycle]]
 - [[Institutional Knowledge Agents]]
 - [[Agent Delegation]]
+- [[Mistral]]

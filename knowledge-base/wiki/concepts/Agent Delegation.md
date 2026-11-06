@@ -29,6 +29,7 @@ source_ids:
   - src-2026-11-04-axjns-sticky-note-problem
   - src-2026-11-04-axjns-agents-share-work
   - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -294,6 +295,15 @@ grants authority and verifies the outcome**. Model-selected dispatch can coexist
 permissions, external budgets, and evidence-bearing handoffs. It does not resolve the
 zone-of-indifference risk merely by coordinating more competently.
 
+## A trained CEO still delegates inside a fixed charter
+
+[[General Reasoning - How to Train a Swarm]] gives the training-side version. Avalon-M1's CEO agent
+learns, under one collective reward and a time limit, when to hire and fire up to 8 specialists. The
+authors want future systems to "figure out the right structure themselves", but the learned choice
+still sits inside a fixed charter: the maximum headcount, the shared reward, and the time limit are
+set by the trainer. That fits the rule above: the model chooses how to divide work, not what
+authority exists. Results are first-party, from organisations of at most **9** agents.
+
 ## Latent handoffs transport information, not authority
 
 [[Ben Dickson - Cross-Model KV Cache Handoffs]] adds two ways to reduce communication cost.
@@ -421,7 +431,8 @@ someone issued a plan assigning work to two or more teammates.
 
 Following an order was not taken at face value. Raindrop replayed each obeyed order with and without
 the post that issued it. **1,798** obeyed orders changed a decision on that test. Only **105** teams
-(5%) produced an agent whose orders changed several teammates' decisions.
+(5%) produced a leader under Raindrop's rule: an agent whose obeyed orders changed the decisions of
+at least two teammates, with a total weight of at least 2 and more than any other agent's.
 
 The study adds three things to this page's argument:
 
@@ -435,9 +446,9 @@ The study adds three things to this page's argument:
   Nothing in the delegation chain checked whether the issuer should have been directing anyone.
 - **Compliance was often silent.** In **42%** of the order-driven decisions, the agent's note, post
   and available reasoning text gave other causes and never mentioned the order. Only **18%** named
-  the author in a public post. Intent drift along a peer chain therefore cannot be audited from what
-  the agents say about themselves. That bears directly on the open question below about detecting
-  drift from outputs alone.
+  the author in a public post. Intent drift along a peer chain therefore cannot be reliably audited
+  from what the agents say about themselves alone. That bears directly on the open question below
+  about detecting drift from outputs alone.
 - **Susceptibility did not track the model.** All four models were "approximately equally likely to
   follow instructions from a leader", and the **268** followers came from them "in almost equal parts".
 
@@ -551,3 +562,4 @@ guarantee this page has argued delegation needs. See [[Multi-Agent Coordination]
 - [[TypeSafe AI]]
 - [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
 - [[Agent Payment Protocols]]
+- [[General Reasoning - How to Train a Swarm]]

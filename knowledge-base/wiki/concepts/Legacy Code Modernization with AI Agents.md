@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-10-23
+updated: 2026-11-06
 tags:
   - concept
   - coding-agents
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-09-09-mistral-legacy-code-modernization
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-14-maevyn-decoherence-trap
+  - src-2026-11-04-x-town-square-rebuild
 status: active
 ---
 
@@ -106,6 +107,22 @@ reverse — is a qualitative forecast with no instance behind it. Its value to t
 the warning, not a prediction to plan against. See [[Recursive Self-Improvement]], where the same essay's
 bubble-optimisation argument is recorded, and [[AI-Native Software Development Lifecycle]].
 
+## Old servers as the specification, with traffic moved one group at a time
+
+[[X Engineering - Rebuilding the Global Town Square from Scratch]] treats the systems being retired as
+the specification. Agents read how the old rweb SSR or Jetfuel SSR server handled a URL or page type,
+ported the behavior, and wrote a test that pins it down; many behaviors now sit in shared components
+"next to tests that name the server they came from." A small parity script requests the same path
+from old and new servers as a verified Googlebot and compares what search engines read: status code
+and redirect, title, description, canonical URL, robots tags, Open Graph and X card tags, the number
+of language alternates, and structured-data types.
+
+Traffic moved in stages: crawler traffic and logged-out pages first (Jetfuel SSR retired on August
+1, 2026; rweb SSR shut down in early September), then signed-in people one country at a time. X's
+edge decides per request which server answers, so a group can be moved to the new app "and move them
+back if something goes wrong." This is the reversible cutover this page asks for. X reports no
+parity-failure counts, and the signed-in rollout was still in progress at publication.
+
 ## Open questions
 
 - How should parity tolerances account for floating-point and algorithmic differences?
@@ -133,3 +150,4 @@ bubble-optimisation argument is recorded, and [[AI-Native Software Development L
 - [[Agent Planning]]
 - [[AI-Native Software Development Lifecycle]]
 - [[Mistral - Modernizing Complex Legacy Code with AI Agents]]
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]]

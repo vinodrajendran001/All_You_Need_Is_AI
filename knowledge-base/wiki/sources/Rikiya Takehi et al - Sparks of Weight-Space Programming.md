@@ -98,7 +98,9 @@ failed without tools.
 
 - **Preliminary, single-model evidence.** Only GPT-6 Astra is tested. Attempts are few (two per
   language, four weights-only sycophancy tries, three pairs, four game networks). The post is a blog,
-  not a peer-reviewed paper. Logs are public, but the capture does not report the independent re-run.
+  not a peer-reviewed paper. Logs are public, and the post thanks Ahsen Khaliq at Hugging Face for
+  rebuilding the edited model from them and re-running its evaluation, but the capture does not
+  report that re-run's results.
 - **"Well past ... humans or conventional algorithms"** in the TL;DR has no human or non-LLM search
   baseline in the experiments.
 - **Weak baselines.** PPO numbers are best-of-seeds at fixed budgets on small networks. The Go

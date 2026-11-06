@@ -19,6 +19,7 @@ source_ids:
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -301,6 +302,18 @@ not a 132-point gain across all agents. It is a secondary report, not a controll
 with the earlier newsletter's Terminal-Bench figures or an ablation proving that verification
 gates alone caused the improvement.
 
+## Weights as the next editable surface
+
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] places itself in the same lineage. Its
+references run from LLM-driven prompt and program optimization (OPRO, DSPy, MIPRO-style instruction
+optimization, GEPA) through Meta-Harness to autoresearch and Reactive Optimizers, and it moves the
+editable surface one level down, from prompts and harness code to the weights themselves. GPT-6
+Astra repaired a looping Qwen3.5-0.8B by editing **0.016%** of its weights.
+
+That widens the surface choice above but does not yet show that weights are the right surface for
+any given bottleneck: the work is preliminary, uses one optimizer model, and reports no matched-cost
+comparison against prompt or harness changes.
+
 ## A production loop that tests every change on every model family
 
 [[Factory Research - Droid 1.0 - Building a Frontier Harness]] describes harness optimization run as
@@ -399,3 +412,4 @@ every result is first-party. See [[Benchmark Optimization]].
 - [[Anthropic]]
 - [[Agentic Testing]]
 - [[Multi-Turn Evaluation]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]

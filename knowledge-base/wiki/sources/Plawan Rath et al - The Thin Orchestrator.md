@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-30
+updated: 2026-11-06
 source_id: src-2026-10-19-rath-thin-orchestrator
 source_title: "The Thin Orchestrator: How We Made Our AI Agents More Reliable by Giving the Router Less to Do"
 source_author: Plawan Rath, Akhil Jindal, Ashwini Verma
@@ -113,6 +113,7 @@ files owned by specialists, so updating behavior means editing a knowledge file,
 - [[Model Routing]]
 - [[Agent Frameworks]]
 - [[Meta]]
+- [[Multi-Agent Coordination]]
 
 ## Raw capture
 

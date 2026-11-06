@@ -27,7 +27,7 @@ the tools it may run. Each tool is identified by content, supplied read-only and
 loan lasts only for the lifetime of the execution. Its builder describes this as a **lease on
 capabilities**, not a mutable machine the agent assembles.
 
-A cell's lifecycle runs through five stages:
+A generated program passes through five stages, and only a successful build reaches a cell:
 
 1. build (the "forge");
 2. sealing;
@@ -64,12 +64,12 @@ The design rationale also yields several boundary statements that the vault uses
 ## Notes
 
 - **Runtime evidence is one small demonstration.** [[axjns.dev - Testing Celln's Boundary]] reports
-  four denials and one correct computation from five DeepSeek-generated Rust programs in a single
-  retained run. The post itself says three things:
+  four rejected or unavailable operations and one correct computation from five DeepSeek-generated
+  Rust programs in a single retained run. The post itself says three things:
   - The `/etc/passwd` result was a missing file, not a Landlock denial.
-  - The `whoami` denial does not identify which control fired, and seccomp cannot match the binary's
-    name.
-  - A vsock broker remains a channel out of the cell.
+  - The `whoami` denial does not identify which control fired, and ordinary seccomp BPF does not
+    compare a pathname with a binary allowlist.
+  - A vsock broker can still provide a host-policy-mediated channel out of the cell.
 
   It is "not a VM-escape benchmark", and the demo script's PASS/FAIL heuristic is unreliable.
 - **Performance is unmeasured.** Its builder says the planned comparison against prebuilt containers

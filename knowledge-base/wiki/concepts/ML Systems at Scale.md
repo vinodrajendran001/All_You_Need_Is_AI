@@ -230,10 +230,10 @@ establish; they are not general retention estimates or an ablation of the archit
 above of raw supply, allocatable capacity, delivered goodput, and useful work: raw supply first has
 to be powered. The post argues that power, grid equipment, and land, not chips, bind accelerated
 compute "until 2028". It cites a Goldman Sachs expectation that only **50–60%** of scheduled US
-capacity for the next one to two years comes online on time, against a historical **72%**, and notes
-that a site under **20 MW** often plugs into the grid already there. The result is a market of
-scattered clusters sold in tiers: committed multiyear contracts, reservable capacity from a single
-node to hundreds of GPUs, and spot or resale capacity.
+capacity for the next one to two years comes online on time, against a historical rate of about
+**72%**, and notes that a site under **20 MW** often plugs into the grid already there. The result
+is a market of scattered clusters sold in tiers: committed multiyear contracts, reservable capacity
+from a single node to hundreds of GPUs, and spot or resale capacity.
 
 The author separates that physical problem, which software cannot fix, from an architectural one it
 can: a frontier training job written for one uniform cluster cannot use capacity that arrives in

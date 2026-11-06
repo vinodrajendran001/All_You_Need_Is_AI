@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - index
 source_ids:
@@ -373,6 +373,27 @@ source_ids:
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-10-22-agrawal-qwenputer
+  - src-2026-11-04-axjns-agents-share-work
+  - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-axjns-sticky-note-problem
+  - src-2026-11-04-axjns-celln-deepseek-benchmark
+  - src-2026-11-04-axjns-celln-execution-lease
+  - src-2026-11-04-axjns-post-kubernetes-genai
+  - src-2026-10-29-raindrop-agent-swarm-leadership
+  - src-2026-11-02-anil-compute-islands
+  - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-04-bytebytego-netflix-performance-agents
+  - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-03-astwei-teaching-qwen-why
+  - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-10-30-figma-fluent-editing-model
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
+  - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-10-27-anthropic-agents-judgment-calls
+  - src-2026-10-27-morgan-train-decision-model
+  - src-2026-11-02-alphasignal-timestral
+  - src-2026-11-04-x-town-square-rebuild
 status: active
 ---
 
@@ -380,8 +401,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of October 30, 2026: **639 typed wiki pages**, including **342 source summaries**
-representing **368 source IDs**, **137 concepts**, **95 entities**, and **45 lint reports**.
+As of November 6, 2026: **670 typed wiki pages**, including **363 source summaries**
+representing **389 source IDs**, **139 concepts**, **101 entities**, and **46 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -392,6 +413,8 @@ exclude git-ignored local query files.
 
 ## Concepts
 
+- [[Multi-Agent Coordination]] - Managing dependencies among agents' information and actions: shared evidence, ownership, and authority kept outside the conversation, causally measured leadership and silent compliance, and early attempts to train coordination by pricing time.
+- [[Human Deferral to AI]] - People adopting an AI system's choice on judgment calls with more than one defensible answer; distinct from automation bias and sycophancy, and a limit on human sign-off as an independent check.
 - [[Confidential Computing]] - Protecting execution from an untrusted host; measured identity, reduced runtime exposure, build-time trust, and application authority remain distinct.
 - [[Lakehouse Architecture]] - Open formats in customer-controlled object storage with transactions and governance layered on by metadata rather than a proprietary storage engine.
 - [[Medallion Architecture]] - Bronze/Silver/Gold as a data-quality progression, not a technology stack, and what mechanical application costs.
@@ -534,6 +557,12 @@ exclude git-ignored local query files.
 
 ## Entities
 
+- [[Celln]] - Execution plane that runs agent-generated code in isolated microVM cells under a capability lease; evidence is the builder's design rationale and one retained demonstration run.
+- [[Raindrop]] - Publisher of the leaderless agent-swarm study that counts a leader only when counterfactual replay shows its orders changed teammates' decisions.
+- [[General Reasoning]] - Research organisation behind RLCR and Avalon-M1, training agent collectives with one shared policy, a collective reward, and wall-clock pressure; first-party results only.
+- [[Figma]] - Design tool that appears both as an MCP server exposing design context and as the first-party publisher of a post-trained canvas-editing model.
+- [[Mistral]] - Foundation-model company appearing as a legacy-code migration publisher and as the developer of the Timestral time-series forecasting models.
+- [[Factory AI]] - Maker of the model-independent Droid coding-agent harness; its harness changes and Terminal-Bench 4 comparisons are self-reported.
 - [[Apple]] - On-device weight/cache/adapter budgets and Private Cloud Compute through secondary reporting; newer release/platform claims remain unverified.
 - [[Tinfoil]] - Confidential-inference provider narrowing a hardware-measured boot path while retaining build-time audit obligations.
 - [[Decagon]] - Human-initiated agent campaigns optimizing an inference stack against production-shaped replay and endpoint latency limits.
@@ -1051,13 +1080,37 @@ its unchanged article body adds no source ID or independent estimate.
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]] - Bounded, human-initiated inference optimization with replay fidelity, falsifiable proposals, centralized scoring, and durable experiment records; gains remain endpoint-specific with conflicting baseline wording.
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] - Compiled CPU execution and exact bounded recurrent RAM around unchanged Qwen3.5-4B weights; custom driver, creator-reported tests, and explicit memory inside network state.
 
+### November 6, 2026 batch
+
+- [[axjns.dev - Agents Need Somewhere to Share Their Work]] - Introduces the synthetic membrane, a policy-controlled boundary governing what agents publish, receive, and may do with shared work; the simulation and cost table rest on a stipulated exchange model. Unattributed capture.
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] - Position paper (v2.2): a shared workspace with five functional layers and one cross-cutting defence responsibility that tracks what was observed, what is disputed, who owns the next action, and who may authorise it; a contract plus a test plan.
+- [[axjns.dev - The Sticky-Note Problem]] - Handoffs record one participant's view at one moment and rarely say what has changed, which assumptions remain open, or who owns the action; the handoff companion to the membrane paper. Unattributed capture.
+- [[axjns.dev - Testing Celln's Boundary]] - Five DeepSeek-generated Rust programs (four restricted-capability probes, one positive control) run in Celln's microVM cells; excerpts come from one retained run, and the author calls it "not a VM-escape benchmark".
+- [[axjns.dev - The Agent Environment Should Be a Lease]] - An agent's execution environment as a lease on content-identified, read-only, recorded tools rather than a machine the agent assembles; Celln returns outcome, provenance, and an enforcement verdict to Sympozium. Unattributed capture.
+- [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]] - Reads Modal's reported million-sandbox launch as a design direction, not proof that Kubernetes is obsolete: launching disposable compute and approving a consequential action need different consistency semantics. Unattributed capture.
+- [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]] - Raindrop's leaderless eight-agent outage-repair teams: a leader counts only if replaying teammates' turns shows its orders changed their decisions. Only 105 of 2,160 teams produced one, and 42% of order-changed decisions went unmentioned; first-party, built on a full-text recapture.
+- [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]] - Training across scattered GPU clusters: a roughly 32B-parameter sparse MoE trained on two continents over a 25 Gbps link reached about 1% lower bits per byte than standard training at equal compute; one run per configuration, no error bars.
+- [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]] - Self-hosting arithmetic: memory is weights plus KV cache plus overhead, speed is capped by bandwidth over bytes read per token, and MoE experts can live in system RAM or on SSD; figures are ceilings and rules of thumb.
+- [[ByteByteGo - How Nvidia's New Nemotron Model Works]] - Secondary walkthrough of NVIDIA's Nemotron 3: hybrid Mamba-attention-MoE layers, LatentMoE, multi-token prediction, and NVFP4 via quantization-aware distillation; no measurements of its own.
+- [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]] - Secondary account of an LLM that diagnoses and proposes CPU/memory fixes while deterministic tests, a non-AI canary comparison, and a human reviewer decide; lessons persist as Markdown rules in a Pattern Catalog. No fleet-wide figures.
+- [[General Reasoning - How to Train a Swarm]] - RLCR trains agent collectives with one shared policy, a flat collective advantage, and wall-clock limits that make faster work pay; Avalon-M1's reported 4x speedup over a matched-token single agent lacks benchmark detail, and training used at most 9 agents.
+- [[astwei et al - Teaching Qwen Why]] - Partial open-model replication of Teaching Claude Why: difficult-advice fine-tuning cut Qwen 2.5 32B misalignment from 61% to 6%, stories plateaued, and the teacher that wrote the advice mattered more than any other data choice tested.
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]] - GPT-6 Astra reads and writes network weights directly, without gradient descent; early, small experiments, including a MATH-500 rise from 7.9 to 48.1 that does not match the post's own combined-gain figure.
+- [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]] - Figma post-trains a model for editing existing canvas designs: teacher-generated edits filtered by validators and visual judges, then reinforcement learning; production gains are attributed to the whole routed agent.
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] - Cosmos 3 Nano pairs an offline whole-clip generator with causal few-step distilled simulators for closed-loop policy evaluation; vendor documentation with no fidelity or policy-benefit measurements.
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]] - Script-mode programmatic tool calling, prompt-cache discipline, a 37% smaller first request, loop rules for stuck agents, and an Agent Factory improvement loop; Terminal-Bench 4 comparisons are Factory's own, and text and figures disagree on percentages.
+- [[Anthropic - How AI Agents Shape Experts' Judgment Calls]] - Randomized trial: analysts chose Claude Code's coin-flipped lean 86% of the time against roughly 50% expected, often in the agent's words and with unchanged confidence, so a human sign-off is weaker as an independent check.
+- [[Abby Morgan - Train Your Own Decision Model]] - A small decision model on Qwen3-0.6B-Base: the ablation attributes accuracy and calibration gains to training on the full gold distribution, while a dedicated decision head changed nothing measurable.
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] - Uses Mistral's Timestral to argue that agents should split work among frontier models, specialist prediction models, and deterministic code; relayed vendor claims, and the capture has no title, byline, date, or URL.
+- [[X Engineering - Rebuilding the Global Town Square from Scratch]] - X replaces three web servers with one, built with AI coding agents, in-repo skills, and lint hooks; the old servers served as the specification through pinning tests, parity checks, and gradual traffic moves.
+
 ## Syntheses
 
 - [[AI Builder Club - Build AI Agents]] - Cross-source synthesis of the 63-lesson curriculum: prompt, context, harness, loop, graph, evaluation, security, and governance.
 
 ## Posts
 
-- [[Post Archive]] - LinkedIn and X drafts, covered windows, source exclusions, and spine cooldowns; latest active draft: [[2026-10-30 The Shared Part Was Never Saved Alone]].
+- [[Post Archive]] - LinkedIn and X drafts, covered windows, source exclusions, and spine cooldowns; latest active draft: [[2026-11-06 The Expert Agreed With the Coin Flip]].
 
 ## Queries
 
@@ -1112,6 +1165,7 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-10-23 Lint Pass 2]] - Forty-third pass: scoped text-memory assumptions and removed an unsupported calibration-priority claim; five new source chains traced across 16 consumer edges, with 606 reachable pages at exact 347-ID parity.
 - [[2026-10-27 Lint Pass]] - Forty-fourth pass: restored 29 Databricks links rewritten by an outside commit, cleared 31 reciprocity violations (16 under a new body-citation rule), fixed 57 of 59 semantic findings, and found 79 undated raw captures awaiting authorization to normalize.
 - [[2026-10-30 Lint Pass]] - Forty-fifth pass: corrected benchmark denominators, continuous-batching and routing overclaims, recent-ingest scope slips, and two source-section orders; closed two navigation gaps. All 638 pages reachable at 368-ID parity; 86 undated captures and 181 canonical-metadata gaps remain untouched.
+- [[2026-11-06 Lint Pass]] - Forty-sixth pass: fixed 52 claims across the 21 November 6 chains, including a reported-missing citation the capture contains, chart values described as uncaptured, and sandbox, benchmark, and deferral claims stated beyond their tests; linked three publisher entities to their own sources. All 669 pages reachable at 389-ID parity.
 
 ## Control files
 

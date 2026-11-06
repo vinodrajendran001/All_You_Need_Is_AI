@@ -108,9 +108,9 @@ the comparison has not been independently reproduced.
 ### Cache, prompt budget, loop rules, and latency
 
 - **Cache:** newly discovered tools are appended to the end of the request, not inserted into the
-  tool list. In production the typical request reads **98%** of input from cache and **98.6%** of
-  requests are strictly append-only (**91.5%** token-weighted), over **20.4M** CLI requests in the
-  seven days to October 22, excluding CI and evals. A monitor names whatever broke the cache, and
+  tool list. In production the typical request reads **98%** of input from cache (**91.5%** when
+  weighted by tokens) and **98.6%** of requests are strictly append-only, over **20.4M** CLI requests
+  in the seven days to October 22, excluding CI and evals. A monitor names whatever broke the cache, and
   retries go to the provider already holding it.
 - **Prompt budget:** between 0.170.0 and 0.250.0 the first request shrank from **20,887** to
   **13,055** tokens. Tool definitions sent up front fell from **11** to **2**, with the rest loaded

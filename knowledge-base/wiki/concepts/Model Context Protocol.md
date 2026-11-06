@@ -158,8 +158,9 @@ capabilities." Describing MCP servers "as necessarily passive or incapable of ex
 misstate the protocol." The capabilities list above therefore omits one feature that matters for
 coordination: a client can subscribe to changes as well as read.
 
-The paper places the boundary elsewhere. MCP and A2A move tool calls, data and tasks. Neither prescribes
-the paper's evidence model or its rules for authorising actions. The companion post
+The paper places the boundary elsewhere. MCP is an interface "a membrane service could use", and A2A
+"can carry work between participants without prescribing this paper's evidence model or
+action-authorisation rules." The companion post
 [[axjns.dev - Agents Need Somewhere to Share Their Work]] states the division of labour: "MCP can expose
 its tools and resources; A2A can carry task interactions." The proposed membrane would sit behind those
 interfaces and hold what they do not define:

@@ -120,8 +120,8 @@ sample efficient". The RL work moves the effort to the newest floor above: desig
 reward shaping and expert-written criteria.
 
 The gate is the instructive part. Figma's internal evals score Figma fluency and useful changes
-but also **speed and cost**. Quality is split into separate dimensions (alignment, contrast,
-request fulfillment, correct component), and expert designers calibrate the visual judges. That
+but also **speed and cost**. Quality is split into separate dimensions (for example alignment,
+contrast, request fulfillment, correct component), and expert designers calibrate the results. That
 is a verifier anchored outside the system being trained, as the Schmid section above asks.
 Its calibration data is unpublished. The production outcomes (tasks about **20%** faster, **60%**
 fewer undos) are credited by Figma itself to "models, tools, and harness", so they are not a

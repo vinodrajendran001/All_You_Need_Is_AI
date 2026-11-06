@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-27
+updated: 2026-11-06
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-10-26-wong-et-al-graft
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -227,6 +228,34 @@ explicitly reasoned about the grader's implementation, a behaviour OpenAI calls 
 so from the *published* version of the grader rather than the deployed one. The reward function's
 documentation is part of its attack surface. See [[Benchmark Optimization]].
 
+## Time has to be priced before parallel work pays
+
+[[General Reasoning - How to Train a Swarm]] identifies a gap that a task reward leaves open. If two
+rollouts reach the same answer, an objective that ignores time cannot prefer the faster one, so nothing
+in the reward pushes a policy to work in parallel. The post's prescription is "make faster work pay",
+and it contrasts two ways to do it.
+
+**A latency penalty** subtracts time from the task reward. The post offers "one possible" form,
+`R(τ) = R_task(τ) − β · p̄(q) · T(τ) / T_max`. It is modelled on an adaptive reasoning-length penalty,
+and it scales the penalty by the task's average pass rate p̄(q), so tasks the policy rarely solves are
+barely charged for time. The shape is the latency counterpart of the length penalties recorded above.
+DeepSeek-V4.1-Flash's agent teams reportedly used a latency penalty of undisclosed form. The post calls
+this approach principled but with "some disadvantages"; the list did not survive capture, so the
+trade-off is unrecorded here.
+
+**A time limit** is General Reasoning's choice for Avalon-M1. A rollout that hits the wall-clock cap
+scores the return earned so far, and a group of rollouts stopped at the limit is ranked on relative
+return. The design asks less of the reward but more of the environment, which must report progress at
+any moment (see [[RL Environment Design]]). Its blind spot is stated plainly: "a deadline does not reward
+every reduction in completion time", so two rollouts with equal returns before the deadline tie. The cap
+also rises over training, because collectives lose early to single agents while they pay coordination
+overhead.
+
+The general point extends this page's catalogue of proxies. Any objective the reward omits, whether
+safe stopping, honesty or time, is left to chance or to whatever the policy invents. Here the omission
+would suppress parallelism rather than induce a hack. The evidence that pricing time produced
+coordination is first-party and early. See [[Test-Time Scaling]].
+
 ## A dense reward can be unbiased by construction rather than by empirical luck
 
 [[Preston Fu - Progressive Point Matching]] draws the distinction that matters most when adding partial credit: whether the shaped
@@ -392,6 +421,8 @@ never flagged. See
 
 ## Related pages
 
+- [[General Reasoning - How to Train a Swarm]]
+- [[General Reasoning]]
 - [[Aria Wong et al - Reducing Reward Hacking by Localizing Bad Behavior Instead of Penalizing It]]
 - [[RL Environment Design]]
 - [[Yingru Li - The Gradient Is a Covariance]]

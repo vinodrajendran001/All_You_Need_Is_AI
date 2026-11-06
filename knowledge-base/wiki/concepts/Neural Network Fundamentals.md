@@ -130,8 +130,8 @@ route the vault also sees in the compiled-CPU derivative on [[Qwen]]. The fundam
 explain how such networks compute: forward passes through linear layers and nonlinearities.
 What changes is where the parameters come from. The evidence is bounded. The networks are small,
 the PPO baselines are best-of-seeds at fixed budgets, only one LLM was tested, and the post is a
-preliminary blog. Gradient training remains the only demonstrated way to build large models
-from data.
+preliminary blog. Nothing in it shows reasoning-written weights replacing gradient training for
+large models learned from data.
 
 ## Open questions
 

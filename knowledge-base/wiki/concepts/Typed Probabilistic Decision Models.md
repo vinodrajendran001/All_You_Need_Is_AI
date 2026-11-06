@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-10-23
+updated: 2026-11-06
 tags: [concept, decision-models, structured-output, inference]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-10-20-husain-decision-model-evals
   - src-2026-10-23-why-decision-models-now
   - src-2026-10-21-baselabs-mammoth-elephant
+  - src-2026-10-27-morgan-train-decision-model
+  - src-2026-11-02-alphasignal-timestral
 status: active
 ---
 
@@ -302,6 +304,55 @@ Analysis replica gives **65.9 / 65.2**, distinct from Elephant's reported offici
 None replaces the same-task Husain evaluation above. The vision encoder is retained but
 frozen and training is text-only; multimodal evaluation is future work.
 
+## An open ablation finds the loss, not the readout, sets calibration
+
+[[Abby Morgan - Train Your Own Decision Model]] builds a small decision model in public — Qwen3-0.6B-Base
+with LoRA adapters, the typed-decisions dataset, and a decision head trained from scratch — and
+changes one thing per row. Three results bear directly on disputes this page already records.
+
+**The objective is what calibrates.** A fine-tuned baseline that reads answer-token probabilities
+from the language-model head, trained on the gold label against the full vocabulary, reached
+**0.714** validation accuracy and **0.134** ECE. Keeping the same readout but training on the
+teacher's full gold distribution over only the answer tokens raised accuracy to **0.768**, cut KL by
+**62%**, halved Brier, and brought ECE to **0.011**. Swapping in a dedicated decision head then gave
+**0.757** and **0.019**, with every difference inside its 95% interval. On **400** test cases the two
+reached the same **0.78** accuracy and **0.02** ECE. This supports the proper-scoring-rule position
+above against the claim that RL is necessary for calibration, and it makes the option-letter softmax
+readout that Base Labs discloses a reasonable design rather than a shortcut: in this experiment the
+readout did not matter once the loss was right. It does not reveal what TypeSafe's RLCD does, and
+Morgan repeats that Jev's backbone is unpublished.
+
+**Packing is an attention-mask property.** One state plus five questions in a single sequence cut
+tokens processed by **2.1 times** and time per case from **329 to 175 ms** on a T4. Answers stay
+independent only because a mask lets each question see the state and not the other questions, and
+positions restart after the state. This is the same structural move as Base Labs' state-only
+prefix; Morgan's isolation test is zero by construction, which the post notes is more informative
+for models whose internals cannot be inspected.
+
+**Option order still moves trained models.** Reversing choice options changed the top answer on
+**30%** of questions for the zero-shot baseline and **5 to 9%** for trained models, even though
+training shuffled option order every epoch. That is a measured counterpart to Microsoft-Decision-1's
+reported **1.3%** average flip rate across eight perturbation types above, but the tests, models,
+and tasks differ, so the numbers are not comparable. Both point the same way: invariance to
+presentation has to be tested, not assumed.
+
+The usual caveats apply with extra force. The gold distributions are a teacher model's three-sample
+average, Morgan's ECE is defined against agreement with a teacher sample, and the post is a Comet
+tutorial showcasing Comet and Opik. Its `predict(state, questions)` interface matches Jev's request
+format, so the same Opik experiments could be pointed at hosted systems — which is the comparison
+the post does not run.
+
+## Decision models as one specialist among several
+
+[[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] places Jev beside
+time-series (Timestral), tabular (TabPFN), and relational (Kumo Relational) foundation models as one
+member of a class of task-specific predictors. In its illustrative inventory agent, Jev only
+classifies findings into predefined categories such as routine monitoring or human review, while
+other models forecast and score, a reasoning model combines results, and application code enforces
+purchasing rules. That is the boundary this page already draws — a typed answer is a prediction,
+not authorization — expressed as system architecture. The article offers no new evidence about
+decision-model accuracy or calibration. See [[Tabular Foundation Models]] and [[Model Routing]].
+
 ## Open questions
 
 - Does the cached-action formulation generalize to candidate sets that change per state, or does it
@@ -329,6 +380,9 @@ frozen and training is text-only; multimodal evaluation is future work.
 
 ## Related pages
 
+- [[Abby Morgan - Train Your Own Decision Model]]
+- [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
+- [[Tabular Foundation Models]]
 - [[Base Labs - Mammoth-1 and Elephant-1 Decision Models]]
 - [[Hamel Husain - How To Use Decision Models for Evals]]
 - [[Hamel Husain]]

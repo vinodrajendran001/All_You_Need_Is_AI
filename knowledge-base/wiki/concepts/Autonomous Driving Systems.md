@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-19
+updated: 2026-11-06
 tags: [concept, autonomous-driving, robotics, world-models]
 source_ids:
   - src-2026-08-18-bytebytego-waymo-vs-tesla
   - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-11-03-nvidia-cosmos-interactive-world-models
 status: active
 ---
 
@@ -38,9 +39,36 @@ at scale, but what they are worth depends on how faithfully the simulator reprod
 road users, and physics, and the 2019 figure carries no evidence on that fidelity. The broader
 robotics comparison, including the sim-to-real gap for manipulation, is on [[Robot Training Data]].
 
+## Generated sensors can close the loop around a driving policy
+
+[[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] describes
+a learned sensor simulator rather than a mileage figure. Both of NVIDIA's AV checkpoints are
+conditioned on **World Scenario Map** controls: lanes, objects, road markings, traffic signs and
+road boundaries. Joint RGB-LiDAR generation adds HD-map rangemap controls. The structured scene
+representation from the first architecture tendency above thus becomes the control input to a
+generative model.
+
+- **Cosmos3-Nano-Transfer-Auto** produces synchronized multi-camera video and LiDAR offline. Its
+  four-GPU reference run yields **seven 720p videos (297 frames at 30 FPS) and 99 LiDAR sweeps**.
+  Prompt edits re-render the same layout and trajectories in other weather and lighting, to "train
+  and evaluate perception and driving models across weather and lighting conditions".
+- **Cosmos3-Nano-Sim-Auto**, a causal, few-step distilled variant, streams observations while an AV
+  policy or a human driver acts. Generated camera and LiDAR frames return to the policy, which
+  enables **closed-loop evaluation**. The post's figure places it inside the AlpaSim runtime, with
+  Alpamayo as an example policy.
+
+This addresses one weakness of open-loop replay: the scene now reacts to the policy's own
+actions. It does not answer the fidelity question raised above. The post's output checks confirm
+finite LiDAR values and alignment across views, not that generated sensors match real ones. It
+reports no closed-loop metric, no comparison with real driving or classical simulation, and no
+measurement of what few-step distillation costs in quality. It is vendor documentation.
+
 ## Related pages
 
 - [[World Models]]
+- [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[NVIDIA]]
+- [[Diffusion Models]]
 - [[Vision-Language Grounding]]
 - [[ML Systems at Scale]]
 - [[AI Agents in Production]]

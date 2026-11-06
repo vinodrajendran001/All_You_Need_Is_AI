@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-10-23
+updated: 2026-11-06
 entity_kind: organization
 tags:
   - entity
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-08-25-jacob-peake-ai-chip-architectures
   - src-2026-10-21-mcateer-claude-mods
+  - src-2026-10-27-anthropic-agents-judgment-calls
 status: active
 ---
 
@@ -140,6 +141,21 @@ not an independent audit, and the author's proposed self-improving attention int
 future work. See [[Coding Agent Harness]] and [[LLM-Native Extensible Software]] for the
 distinction between customization and isolation.
 
+## Measuring how much its own agent steers expert decisions
+
+[[Anthropic - How AI Agents Shape Experts' Judgment Calls]] is an Anthropic Fellows randomized
+trial (Amaç Herdağdelen, Hailey Joren, Alex Tamkin) of Claude Code running Claude Opus 4.8. Fifty
+professional analysts chose the option their agent had been secretly assigned to favor **86%** of
+the time on four analytical judgment calls, and mostly could not tell: those who called the result
+their own were influenced about as much as the rest. The same post reports that analysts using the
+agent made far fewer serious errors than a small, less experienced group that declined it.
+
+The study belongs with CHIVE as a finding that complicates the lab's own product story, though not
+as a negative result: it does not say Claude Code is worse, but that a human sign-off on its work is
+weaker evidence of independent judgment than institutions assume. The lean was deliberately
+strengthened, so the 86% is not a default-deployment rate; with no assigned lean, Opus 4.8 made the
+same five choices in **112 of 123** runs. See [[Human Deferral to AI]].
+
 ## Related pages
 
 - [[Dan McAteer - Claude Mods and the Attention Interface]]
@@ -168,3 +184,5 @@ distinction between customization and isolation.
 - [[Multi-Turn Evaluation]]
 - [[Agentic Testing]]
 - [[LLM-as-a-Judge]]
+- [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
+- [[Human Deferral to AI]]

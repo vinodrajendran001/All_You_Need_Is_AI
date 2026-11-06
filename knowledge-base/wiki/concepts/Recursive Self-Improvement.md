@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - recursive-self-improvement
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-10-28-sick-on-policy-self-training
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -428,6 +429,27 @@ acceptance rule**. A loop can be useful and self-generated without demonstrating
 recursion. Decagon adds a concrete human-grounded performance signal; OPST and sleep do not
 turn internally generated agreement into independent truth.
 
+## A reasoned weight edit sits between the two update surfaces
+
+Ren et al.'s split above treats parameter updates as expensive and centralized, and scaffold
+updates as cheap and reversible. [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+reports a parameter update with some of the scaffold's properties. GPT-6 Astra edited
+Qwen3.5-0.8B with no gradients or training loop. It used **50** forward passes and a Python
+kernel without GPU, and it changed **131,072** weights (**0.016%**). MATH-500 rose from **7.9 to
+48.1** under the post's sampling settings. The authors list recursive self-improvement as a
+possible future: today it "is often operationalized as a model writing code that launches
+training jobs", while a model that improves "its own weights, or those of a newer model" would
+be "a richer, more native path".
+
+Under this page's editable-set test, the post shows none of that recursion. One model edits a
+different, much smaller model, and the benchmarks, sampling settings and budgets are fixed by the
+authors. The authors also bound what the edit did. It removed reasoning loops the stated settings
+provoked, and on a Gemma model that rarely loops no edit moved MATH-500 by more than about a
+point. Their conclusion is that editing "could remove an obstacle that hid an ability, but it
+could not add an ability the model lacked". The vault's reading is that a small, inspectable
+weight delta could be versioned and rolled back like a scaffold change. The post does not test
+that, and it is a single-model, preliminary blog result.
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -459,11 +481,15 @@ turn internally generated agreement into independent truth.
   the decoherence argument requires contact with reality to correct it. Decagon now supplies a
   mechanical, human-grounded example through production-shaped replay, but not autonomous
   refresh of the objective or evidence about how often re-grounding must occur.
+- **Can a model's reasoned edits to its own weights add capability, or only remove obstacles?**
+  The only direct test so far edits a different, smaller model, and its negative Gemma case found
+  no gain where there was no failure to remove.
 - **What would falsify either objection?** G, λ, and N measured on real AI research would resolve Naam's; a
   fitted complexity-growth rate on production codebases would resolve the other. Neither exists.
 
 ## Related pages
 
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
 - [[Leon Sick et al - On-Policy Self-Training]]
 - [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]

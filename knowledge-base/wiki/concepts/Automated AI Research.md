@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-10-19-naam-million-agents-superintelligence
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-11-02-takehi-weight-space-programming
 status: active
 ---
 
@@ -210,12 +211,34 @@ the contribution of agents nor the conversion from agent tokens to useful experi
 Agent-initiated campaigns are future work. The execution-versus-direction distinction above
 therefore remains: measured artifact improvements do not establish improved research taste.
 
+## Weights join the artifacts an agent can edit
+
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]] places itself in a lineage of LLMs
+optimizing ever deeper artifacts. It starts with prompts and programs (OPRO, DSPy, MIPRO, GEPA),
+moves to whole harnesses (Meta-Harness) and training code and hyperparameters (autoresearch,
+Reactive Optimizers), and ends with the weights themselves. In its largest experiment, GPT-6
+Astra had **50** forward passes, a Python kernel with no GPU, and practice math sets to improve
+Qwen3.5-0.8B without gradients. Over **158** turns and **17** edits it ran the loop this page
+describes. It diagnosed a failure (looping thoughts), localized it, and checked the fix with
+dose-response, layer-isolation and norm-matched random-direction controls. MATH-500 rose from
+**7.9 to 48.1**.
+
+Two details matter for this page. First, the agent's own final report was a hedged research
+write-up, and on a Gemma model that rarely loops it reported its small gain as "not established".
+That is evidence that an agent can report a null result, though not that it always will. Second,
+the improvement was elicitation: removing loops that the stated sampling settings provoked. The
+authors conclude that an edit could not add an ability the model lacked. Benchmarks, sampling
+settings and budgets stayed fixed by the humans, so the result fits the bound above. Execution of
+the loop is automated; the definition of improvement is not. All of this is one model on one
+blog, with no comparison against a conventional search over the same edits.
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
 - At what point does the main bottleneck shift from execution to selecting fruitful research directions?
 - When does workflow-level self-improvement become model-building-level recursive self-improvement?
 - How should agent-generated scientific labels, such as neuron explanations and graph groupings, be audited so that agent priors do not become the result?
+- When an agent edits weights directly, does it find improvements a gradient-based or conventional search over the same budget would miss, or mainly remove obstacles that hide existing ability?
 - **Nobody has reported G, λ, or N on real AI research.** Every curve Naam assembles comes from benchmarks,
   and the essay does not show that benchmark scaling transfers to research. Until it is measured on a research
   workload, the protocol is a specification rather than a result.
@@ -233,6 +256,7 @@ therefore remains: measured artifact improvements do not establish improved rese
 
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
 - [[Decagon]]
+- [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
 - [[Serving Benchmarks and Goodput]]
 - [[Loop Engineering]]
 - [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]

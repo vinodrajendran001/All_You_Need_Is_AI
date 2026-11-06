@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - evaluation
@@ -28,6 +28,7 @@ source_ids:
   - src-2026-10-10-jaloza-microsoft-decision-1
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-08-02-arise-llm-as-judge
+  - src-2026-10-29-factory-droid-frontier-harness
 status: active
 ---
 
@@ -318,6 +319,44 @@ recommend open-source autograders and building the human gold set before automat
 modes are argued from clinical evaluation experience; the capture measures neither how often slop
 cycles occur nor how many benchmarks deprecation has stranded.
 
+## A vendor-run harness comparison, read against the reportability rules
+
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] is a first-party harness comparison:
+[[Factory AI]] ran its Droid harness against Codex, Claude Code, Cursor, OpenCode, and Devin on
+Terminal-Bench 4 and reports Droid ahead on both models tested — for example, **3.5** points above Codex
+on GPT-6.1 Sol at **12%** lower cost. It is a useful test of this page's rules because the methodology
+is disclosed rather than absent.
+
+Against the five attributes above, most of the frame is present. Every competing harness is pinned to a
+version; the workload is stated (all tasks, default time limits, **three** trials per task, high
+reasoning, run October 23–28, 2026); the baselines are the vendors' own harnesses on the same model; and
+correctness is the benchmark's pass or fail. The disclosures also show how much measurement policy sits
+between the runs and the headline:
+
+- **The efficiency denominator.** Cost and time per passed task count only tasks that both harnesses
+  passed in all three trials, so efficiency is compared on a shared subset that leaves out whatever
+  either harness found hard or flaky.
+- **Imputation.** Devin cannot disable its ask-the-user tool, so on GPT-6.1 Sol a task where Devin
+  stopped to ask was counted as passed if Codex passed it — an average of **4.7** tasks per trial.
+  Factory says this affects accuracy only.
+- **Substitution and estimation.** Opus 5.5 trials stopped by Anthropic's content moderation were rerun
+  on Claude Opus 5 for every affected harness, and Cursor's token usage for **two** trials was estimated
+  from transcripts.
+- **What the capture lacks.** The text gives differences only; absolute pass rates sat in charts the
+  capture does not preserve, and no confidence intervals are reported.
+
+Each choice is reasonable and disclosed. Together they make the margins conditional on rules the vendor
+chose, which is the point of requiring the rules to be published.
+
+The second hazard is the tuning loop. Factory's Agent Factory feeds failures from live environments, QA,
+daily benchmark runs (the benchmark is not named), error logs, and user friction into an agent that
+proposes harness changes, each measured in a controlled experiment on every model it touches. The post
+describes no held-out task set and no check that Terminal-Bench 4 tasks were kept out of tuning. That is
+the setting in which Martin, above, concedes that harness additions can end up solving benchmark quirks
+rather than production problems even with a train and test split; here no split is described at all.
+This is a gap in disclosure, not evidence of overfitting; the post's per-model experiments did catch a
+change that helped one model and hurt two — see [[Coding Agent Harness]] and [[Harness Optimization]].
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -331,6 +370,9 @@ cycles occur nor how many benchmarks deprecation has stranded.
 - The roughly-95% ceiling and the noise floor are both properties of the evaluation rather than of the
   system. Who re-derives them when the task distribution drifts, and what happens to a revert rule
   calibrated against a stale floor?
+- When a vendor tunes a harness on daily benchmark runs and then reports a head-to-head on a public
+  benchmark, which disclosure would make the margin reportable: a held-out task list, a frozen tuning
+  cutoff, or third-party reruns with the same pinned versions?
 
 ## Related pages
 
@@ -373,3 +415,6 @@ cycles occur nor how many benchmarks deprecation has stranded.
 - [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
 - [[Anthropic]]
 - [[Agentic Testing]]
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[Factory AI]]
+- [[Coding Agent Harness]]

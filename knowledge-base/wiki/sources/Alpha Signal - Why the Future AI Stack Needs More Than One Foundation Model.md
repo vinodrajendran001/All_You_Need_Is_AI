@@ -77,13 +77,13 @@ claims are relayed vendor reports, without benchmark names or margins.
 
 ## Why it matters
 
-This extends [[Tabular Foundation Models]] beyond single tables to time series and relational
-data, and repeats the vault's earlier "phase-dependence, not replacement" position in the article's
-own caveat about XGBoost and CatBoost. It places [[Typed Probabilistic Decision Models|decision
-models]] and [[TypeSafe AI]]'s Jev in a portfolio of specialist predictors rather than as a
-stand-alone category, and turns [[Model Routing]] from a choice among LLMs into a decomposition
-across model classes and deterministic code. It is [[Mistral]]'s second appearance in the vault and
-another [[Alpha Signal]] item relayed without provenance metadata.
+This extends [[Tabular Foundation Models]] beyond single tables to time series and relational data,
+and repeats the vault's earlier "phase-dependence, not replacement" position in the article's own
+caveat about XGBoost and CatBoost. It places [[Typed Probabilistic Decision Models|decision models]]
+and [[TypeSafe AI]]'s Jev in a portfolio of specialist predictors rather than as a stand-alone
+category, and turns [[Model Routing]] from a choice among LLMs into a decomposition across model
+classes and deterministic code. It is [[Mistral]]'s second appearance in the vault and another
+[[Alpha Signal]] item relayed without provenance metadata.
 
 ## Tensions / open questions
 

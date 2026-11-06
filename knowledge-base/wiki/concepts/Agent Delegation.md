@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -25,6 +25,10 @@ source_ids:
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-10-15-cohere-agent-teams
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-10-29-raindrop-agent-swarm-leadership
+  - src-2026-11-04-axjns-sticky-note-problem
+  - src-2026-11-04-axjns-agents-share-work
+  - src-2026-11-04-axjns-synthetic-membrane-paper
 status: active
 ---
 
@@ -407,6 +411,62 @@ quality, and the lead still needs domain judgment to interpret serving tradeoffs
 the earlier lead-capability warning: delegating candidate generation does not delegate away
 responsibility for deciding what the evidence means.
 
+## Peers delegate without authority, and the delegation often goes unrecorded
+
+The "GO" episode in the OpenAI incident was a single anecdote.
+[[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]] supplies a measured version of
+the same zone-of-indifference behaviour among peers. Eight agents with "the same permissions" and no
+assigned leader repaired simulated outages through a shared channel. In **86%** of **2,160** teams,
+someone issued a plan assigning work to two or more teammates.
+
+Following an order was not taken at face value. Raindrop replayed each obeyed order with and without
+the post that issued it. **1,798** obeyed orders changed a decision on that test. Only **105** teams
+(5%) produced an agent whose orders changed several teammates' decisions.
+
+The study adds three things to this page's argument:
+
+- **Authority was never granted, yet instructions moved decisions.** Who issued them depended on
+  configuration, not role:
+  - The underlying model mattered. Claude Sonnet 5.5 and GPT-6.1 Sol were approximately 1.7 times as
+    likely to lead as Gemini 3.1 Pro.
+  - The position of an agent's name in the prompt mattered. The first-listed agent was three times
+    more likely to issue a plan, and reversing the list reversed the effect.
+
+  Nothing in the delegation chain checked whether the issuer should have been directing anyone.
+- **Compliance was often silent.** In **42%** of the order-driven decisions, the agent's note, post
+  and available reasoning text gave other causes and never mentioned the order. Only **18%** named
+  the author in a public post. Intent drift along a peer chain therefore cannot be audited from what
+  the agents say about themselves. That bears directly on the open question below about detecting
+  drift from outputs alone.
+- **Susceptibility did not track the model.** All four models were "approximately equally likely to
+  follow instructions from a leader", and the **268** followers came from them "in almost equal parts".
+
+These are first-party results. The name-order effect has no denominators, and the silent-compliance
+reading comes from Claude Sonnet 5.5 readers, which is also a model under test.
+
+The handoff contract that would make such delegation inspectable is the subject of
+[[axjns.dev - The Sticky-Note Problem]]. A note marked "done" might mean the investigation is
+complete, the subtask is complete, or "the agent has run out of useful ideas". "A downstream agent
+should not have to infer which interpretation authorises a production action." The post's records
+separate evidence, hypotheses linked to evidence, and actions with an owner and approval state. It
+adds the rule this page's least-privilege material implies but never states: "Permission to read a
+recommendation should never imply permission to execute it."
+
+[[axjns.dev - Agents Need Somewhere to Share Their Work]] makes the ownership point mechanical. An
+exclusive claim needs enforcement at execution time, and "shared memory on its own does not provide
+that guarantee".
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] specifies the
+enforcement:
+
+- Ownership comes with a lease and a separately recorded authorisation.
+- "A lease alone cannot prevent an expired worker from acting", so the executor must reject stale
+  fencing tokens.
+- "Agreement among agents does not grant authority".
+
+Read against the Raindrop data, these rules would not stop peers from persuading one another. They
+would stop persuasion from turning into an unauthorised external action. That is the narrower
+guarantee this page has argued delegation needs. See [[Multi-Agent Coordination]].
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -440,6 +500,12 @@ responsibility for deciding what the evidence means.
 
 ## Related pages
 
+- [[Multi-Agent Coordination]]
+- [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
+- [[Raindrop]]
+- [[axjns.dev - The Sticky-Note Problem]]
+- [[axjns.dev - Agents Need Somewhere to Share Their Work]]
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
 - [[Decagon]]
 - [[Automated AI Research]]

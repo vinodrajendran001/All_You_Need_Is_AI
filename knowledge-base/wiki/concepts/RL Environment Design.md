@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-19
+updated: 2026-11-06
 tags:
   - concept
   - reinforcement-learning
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-09-09-zafstojano-recursive-synthetic-improvement
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -210,6 +211,4 @@ same interface supports chaining independent runs.
 - [[Group Relative Policy Optimization]]
 - [[@zafstojano - Recursive Synthetic Improvement]]
 - [[Synthetic Data Flywheel]]
-- [[Recursive Self-Improvement]]
-- [[@zafstojano]]
-- [[Computer Use Agents]]
+- [[Recursive Self-Improveme

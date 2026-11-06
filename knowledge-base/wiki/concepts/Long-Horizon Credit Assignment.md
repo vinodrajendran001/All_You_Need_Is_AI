@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-09-30
+updated: 2026-11-06
 tags:
   - concept
   - reinforcement-learning
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-09-10-fu-progressive-point-matching
   - src-2026-09-12-zhang-recurrent-looped-transformer
   - src-2026-09-27-romero-policy-gradient-llms
+  - src-2026-11-04-general-reasoning-train-swarm
 status: active
 ---
 
@@ -123,6 +124,27 @@ hidden state enters the picture. The requirement that behaviour log-probabilitie
 produced the trajectory is the same requirement arriving from a different direction. The source is a
 pedagogical derivation and its worked numbers are explicitly illustrative rather than measured.
 
+## Collectives push the horizon past one agent and one episode
+
+[[General Reasoning - How to Train a Swarm]] applies the simplest credit scheme possible to a
+multi-agent setting. RLCR applies one **flat collective advantage** to every token of every agent
+sharing one policy, and episodes "last hours and sometimes millions of tokens, so a flat advantage is
+applied to many tokens that did not affect the outcome". That is the terminal-reward regime described
+above, stretched across several agents at once, with no added structure to separate who contributed.
+
+The authors call the result an "uneasy triangle". Long horizons, rewards shared across agents, and
+training across many environments each make the learning signal coarser, and the last leaves fewer
+examples per task family from which to estimate useful updates. Their own assessment is modest: they
+"were able to make the simple approach work at a small scale", with at most **9** agents, and say it is
+unclear how the approach scales to larger collectives with longer episodes.
+
+The post adds a horizon this page had not considered: credit that crosses episodes. In its recipe
+rollouts are isolated. In a more open-ended setting, a rollout could publish a paper or code library
+that helps later agents. "Under a per-episode return, a rollout receives no credit for benefits that its
+contribution creates only in later episodes." PPM, process rewards and value functions all redistribute
+credit *within* a trajectory, so none of them addresses this gap. The source is first-party and names
+the problem without proposing a solution.
+
 ## Open questions
 
 - The method needs a reference trajectory to extract points from. On genuinely novel tasks — the regime
@@ -143,9 +165,13 @@ pedagogical derivation and its worked numbers are explicitly illustrative rather
 - PPM's unbiasedness is established for a shaped terminal reward under on-policy sampling. Whether it
   survives the off-policy estimator that production stacks actually run — different serving precision,
   stale weights, truncated importance ratios — has not been tested by any source here.
+- Can per-agent or per-message credit be recovered inside a collective that shares one reward, and can
+  a rollout be credited for public goods that only pay off in later episodes?
 
 ## Related pages
 
+- [[General Reasoning - How to Train a Swarm]]
+- [[General Reasoning]]
 - [[Reward Design for RL]]
 - [[Group Relative Policy Optimization]]
 - [[Reinforcement Learning]]

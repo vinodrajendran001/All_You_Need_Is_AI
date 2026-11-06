@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -51,6 +51,10 @@ source_ids:
   - src-2026-10-21-nvidia-sentry-runtime
   - src-2026-10-28-bytebytego-uber-mcp-gateway
   - src-2026-10-25-tinfoil-minimal-firmware
+  - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-04-axjns-celln-deepseek-benchmark
+  - src-2026-11-04-axjns-celln-execution-lease
+  - src-2026-11-04-axjns-post-kubernetes-genai
 status: active
 ---
 
@@ -669,6 +673,54 @@ records this separate confidentiality boundary. It complements tool permissions 
 controls; it does not stop an authorized agent from making a wrong decision, and formal
 verification remains future work in the vendor account.
 
+## A failed operation is not proof that the intended control denied it
+
+[[axjns.dev - Testing Celln's Boundary]] applies the "test controls, do not infer them" rule above to a
+microVM runtime, [[Celln]], and shows how easily a result gets credited to the wrong control.
+DeepSeek generated five Rust programs: four probes of restricted capabilities and one positive
+control. None of the four probes got what it asked for, and the post then narrows what each failure
+shows:
+
+- **File read.** Reading `/etc/passwd` returned ENOENT: the path was absent from the guest's view.
+  That is not a Landlock denial. Testing a denial needs a forbidden file that is known to exist.
+- **Process launch.** `whoami` failed with permission denied, but the result does not identify which
+  control fired. Ordinary seccomp BPF inspects syscall numbers and numeric arguments; it does not read
+  a pathname and compare it with an allowlist.
+- **Network.** The socket failed, but a vsock broker (`pilot-fetch`) can still carry bytes out under
+  host policy. "Removing AF_INET is therefore not the same as removing every channel through which
+  bytes can leave."
+- **Dependency.** The `rand` import was rejected at compile time, so no cell ran. Only three probes
+  exercised the runtime boundary.
+
+The post also criticises its own demo script, whose heuristic can count any captured stdout as a pass,
+including a printed denial. "Its PASS/FAIL labels are not sufficient evidence of whether a boundary
+held." It is one retained run with unpinned configuration and calls itself "not a VM-escape
+benchmark". Its value here is the method, not the verdict.
+
+Three sibling axjns.dev pieces add rules that isolation alone does not supply:
+
+- **A build is not trust.** [[axjns.dev - The Agent Environment Should Be a Lease]]: "A model-written
+  program remains untrusted after a successful build."
+- **Withdrawal is not revocation.** The same post: "Removing a tool from a catalogue prevents future
+  grants. Stopping a running cell from using authority it already holds is a different guarantee." This
+  extends the changing-tool-catalog section above to authority that a running cell already holds.
+- **Isolation is not authorisation.** [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]]:
+  "isolation alone says nothing about whether a task was authorised, whether it ran twice, or whether
+  its result is trustworthy."
+
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] carries the
+same separation into shared multi-agent state:
+
+- "Model-generated trust scores cannot grant permissions."
+- Retrieved text "must not be allowed to rewrite access rules or confer execution authority".
+- Quarantine marks suspect entries and identifies derived claims for review.
+- A halt "must be enforced at the execution boundary; recording a halt in shared memory is
+  insufficient if workers continue using cached authority."
+- "Revocation cannot erase information already delivered to an agent", so sensitive work may require
+  ending affected sessions and rebuilding their context.
+
+All four pieces are design arguments or a single demo run. None reports an attack evaluation.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -708,6 +760,12 @@ verification remains future work in the vendor account.
 
 ## Related pages
 
+- [[axjns.dev - Testing Celln's Boundary]]
+- [[axjns.dev - The Agent Environment Should Be a Lease]]
+- [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]]
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[Celln]]
+- [[Multi-Agent Coordination]]
 - [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
 - [[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]]
 - [[Confidential Computing]]

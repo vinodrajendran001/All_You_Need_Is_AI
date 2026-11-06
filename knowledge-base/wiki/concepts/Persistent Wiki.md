@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - wiki
@@ -11,6 +11,8 @@ source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-11-04-axjns-agents-share-work
+  - src-2026-11-04-axjns-synthetic-membrane-paper
 status: active
 ---
 
@@ -88,13 +90,47 @@ The source does not isolate a causal gain from the wiki itself. Durable notes ca
 bad interpretations as effectively as good ones; their value depends on attached measurements
 and acceptance evidence, not merely on agents sharing a Markdown directory.
 
+## A shared record for several agents adds lineage, retraction, and dependent-report rules
+
+[[axjns.dev - Agents Need Somewhere to Share Their Work]] and
+[[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] propose a
+shared, persistent record for agent teams. Several of its rules restate this vault's own conventions,
+and one names a risk the vault does not yet check.
+
+- **Lineage.** "A summary points back to its source." This is the vault's rule that every source page
+  points to its raw capture and every claim stays tied to a source page.
+- **Retraction stays visible.** "A retracted claim stays identifiable as retracted." The paper's record
+  is append-only: "Corrections append a superseding or retracting record; ordinary queries should make
+  the current status clear." That matches this vault's rule to preserve contradictions and record what
+  changed instead of erasing older claims.
+- **Repetition is not corroboration.** "Repeated summaries of the same source are dependent reports,
+  not independent corroboration." A wiki multiplies restatements by design: one source feeds a summary,
+  several concept pages and possibly a synthesis. A claim that appears on five pages may still rest on
+  one source. The `source_ids` field records which sources stand behind a page, not how many
+  independent sources support a given sentence.
+- **Restricted views.** The paper's communications agent receives "a restricted summary suitable for
+  its role". This vault has one reader class, but an agent-facing wiki like Meta's would need per-reader
+  scope.
+
+The two pieces differ from this vault in one structural way. Their record also coordinates action:
+claims on tasks, leases and approvals. A persistent wiki records knowledge, and nothing in it should be
+read as granting authority to act. [[Multi-Agent Coordination]] covers the action side. Both pieces are
+proposals, the paper with an unrun evaluation plan, so none of these rules has measured support here.
+
 ## Open questions
 
 - When should a new idea extend an existing concept page versus creating a fresh one?
 - What review cadence keeps the wiki coherent as the number of sources grows?
+- A claim restated across many pages can look better supported than it is. Should pages mark when a
+  sentence rests on a single source, and could a lint pass detect repetition that reads as
+  corroboration?
 
 ## Related pages
 
+- [[axjns.dev - Agents Need Somewhere to Share Their Work]]
+- [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
+- [[Multi-Agent Coordination]]
+- [[Agent Memory]]
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
 - [[Decagon]]
 - [[Automated AI Research]]

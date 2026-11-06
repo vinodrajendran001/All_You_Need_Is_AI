@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-08-20-liquid-ai-production-loops
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-10-29-decagon-autoresearch-inference
+  - src-2026-10-29-factory-droid-frontier-harness
 status: active
 ---
 
@@ -111,6 +112,26 @@ and lossy changes have different acceptance requirements, and a human approves p
 promotion. These are reported process controls, not evidence that the benchmark is
 technically immutable or that repeated replay consultation cannot overfit it.
 
+## A product that runs its own improvement loop
+
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] describes a self-improving
+loop in which the product improves itself. [[Factory AI]]'s "Agent Factory" adds each new
+model to Droid, checks it against behavioral assertions ("the minimum, not the bar for
+release"), then gathers live-environment results, QA, daily benchmark runs, error logs, and
+user friction. An agent looks for causes that repeat across tasks and models and turns each
+into a proposed change that states its hypothesis; a controlled experiment measures the
+change on every model it touches. "Droid runs every step itself, and nothing ships until an
+engineer reviews and merges it. The improved Droid then runs the next loop."
+
+Against the loop contract above, the human merge step answers self-approval, and each
+proposal is checked against five written principles as well as its experiment. Two parts of
+the contract are not described: a held-out regression set kept apart from the benchmark runs
+that feed the loop, and a rollback path after a merged change. The proposer is also the
+product being improved, so on this page's reading a change to Droid can also alter the agent
+that proposes the next change. The post reports outcomes of the loop — prompt-cache fixes,
+Script-mode tuning across four model families — but no rate of accepted versus rejected
+proposals. See [[Harness Optimization]] and [[Benchmark Optimization]].
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -137,3 +158,6 @@ technically immutable or that repeated replay consultation cannot overfit it.
 - [[Harness Optimization]]
 - [[Lilian Weng]]
 - [[Lilian Weng - Harness Engineering for Self-Improvement]]
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[Factory AI]]
+- [[Benchmark Optimization]]

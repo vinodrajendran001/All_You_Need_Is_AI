@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-10-30
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-25-rastogi-agentcore-enterprise
   - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
   - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-10-29-factory-droid-frontier-harness
 status: active
 ---
 
@@ -239,6 +240,32 @@ and uses LLM-generated descriptions, but discoveries remain disabled until owner
 them. A cheap description that steers the agent incorrectly is not an economic win. Discovery
 review and invocation authorization are distinct controls, as in the earlier gateway cases.
 
+## Deferred definitions have a cache cost that depends on where they land
+
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] adds a coding-harness case with
+before-and-after token counts for the resident roster. Between Droid 0.170.0 and 0.250.0, [[Factory AI]]
+cut the tool definitions sent up front from **11** to **2**, with rarely used tools loaded on demand
+when the model needs them. Tool-definition tokens on the first request fell from **15,798** to
+**8,528**, the largest part of a cut from **20,887** to **13,055** in total. The two releases ran
+on different models with different tokenizers; measured in characters, the whole request fell
+**35%**. This is the resident-schema saving the gateway sources above describe but do not measure.
+
+The new point is about placement. Providers cache requests by prefix, and tool definitions
+traditionally sit near the top, so loading a tool mid-session by inserting it into the tool list
+invalidates everything after it. Droid now appends newly discovered tools to the end of the request.
+In Factory's illustration of a request of about **100,000** tokens, insertion meant **73,500**
+tokens processed fresh and **28,000** reused; appending meant **1,500** fresh and **100,000**
+reused. A before-and-after test on Azure reused all **26,400** tokens of the prior request after a
+tool load. On-demand loading is therefore cheap only if it preserves the cached prefix. The Codex
+case in [[Agentic Loop]] shows the same rule from the other direction: tool definitions serialized
+in a different order on each request broke the prefix match.
+
+Two limits apply. The extra-call side of on-demand loading is not reported, so this page's open
+question about whether a search-first roster pays for its extra calls is still unanswered. The post
+also shows tool descriptions as a tuning surface: making models choose Droid's Script tool required
+rewriting the descriptions of the tools called inside it, alongside prompt and result-format
+changes. See [[Programmatic Tool Calling]].
+
 ## Open questions
 
 - **How much of the 36.6s vs 42.2s gap is roster size versus other harness differences?** The comparison is
@@ -264,6 +291,10 @@ review and invocation authorization are distinct controls, as in the earlier gat
 
 ## Related pages
 
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[Factory AI]]
+- [[Programmatic Tool Calling]]
+- [[KV Cache]]
 - [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]
 - [[DoorDash]]

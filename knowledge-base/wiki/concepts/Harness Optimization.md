@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-27
+updated: 2026-11-06
 tags:
   - concept
   - ai-agents
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-08-30-addy-osmani-audit-agent-files
+  - src-2026-10-29-factory-droid-frontier-harness
 status: active
 ---
 
@@ -300,6 +301,46 @@ not a 132-point gain across all agents. It is a secondary report, not a controll
 with the earlier newsletter's Terminal-Bench figures or an ablation proving that verification
 gates alone caused the improvement.
 
+## A production loop that tests every change on every model family
+
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]] describes harness optimization run as
+a product process rather than a research search. [[Factory AI]]'s internal Agent Factory starts when a
+new model or snapshot appears: an automation tracking more than **20** models adds it and checks it
+against behavioral assertions, which are "the minimum, not the bar for release." From then on, daily
+benchmark runs, QA, live error logs, and user friction feed an agent that looks for causes repeated
+across tasks and models, because "a single failure says little." Each proposed change states its
+hypothesis and is measured in a controlled experiment on every model it touches. Engineers read each
+proposal with its evidence and decide what ships.
+
+Against the ladder above, the loop edits prompts, tool descriptions, result formats, loop rules, and
+harness code. It also reaches the optimizer indirectly: the agent running the loop is Droid itself,
+so "the improved Droid then runs the next loop." What keeps that recursion bounded is the merge step
+— "nothing ships until an engineer reviews and merges it." Two of its rules answer questions this
+page has raised.
+
+**Every goal must hold on every model family.** The line-numbering case is the clearest example in
+the vault of a harness change with opposite signs across models. Numbering every line of file reads
+stopped Sol from re-reading files through the shell and cut Opus's cost by **22%** on one
+task, but added about two tokens per line and raised cost by **8%** on GLM and **32%** on Kimi. It
+shipped as an option the model requests. GitHub's result above went the other way for a different
+reason: it **removed** line-number prefixes that its edit tool no longer needed, for **3.1%**. Read
+together, the cost of a line number depends on the model and on whether anything downstream uses it.
+Neither source supports a universal rule.
+
+**Prompt shrinking is tested like any other change.** Between Droid 0.170.0 and 0.250.0 the first
+request fell from **20,887** to **13,055** tokens. Much of the rewriting was done by models asked to
+find repeated, contradictory, or unclear guidance, and each finding became a proposed edit "tested
+like any other change." That is one answer to GitHub's warning that a shorter prompt can silently
+delete a behaviour. The system prompt still grew, because new guidance was added. The post also
+doubled compaction summaries from **8,000** to **16,000** tokens, by Factory's estimate because a
+third or more were filling the old limit — a fix that spends tokens to keep long tasks from being
+dropped at summarization.
+
+The limits mirror the rest of this page. The loop reads daily benchmark failures and is then scored on
+a benchmark, and the post describes no held-out split or one-patch-per-round discipline of the kind
+Martin uses. No figure isolates the Agent Factory's contribution from the engineers' own changes, and
+every result is first-party. See [[Benchmark Optimization]].
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -316,9 +357,14 @@ gates alone caused the improvement.
   attributability gained justify pruning exactly the candidates archive-based search keeps?
 - Does a two-or-three-round stall indicate exhausted headroom, or only exhausted proposals from one
   proposer? STOP's base-model dependence suggests the second reading is available and untested.
+- When one change helps one model family and hurts another, is shipping it as a model-requested option
+  a durable answer, or does the option set grow until the harness is a separate harness per model?
 
 ## Related pages
 
+- [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[Factory AI]]
+- [[Programmatic Tool Calling]]
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Persistent Wiki]]
 - [[RL Environment Design]]

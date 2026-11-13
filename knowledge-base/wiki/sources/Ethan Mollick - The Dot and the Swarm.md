@@ -31,8 +31,9 @@ opinion and experience essay, not a benchmark of autonomous organizations.
 - Mollick discusses both useful and unwanted coordination. The same ability to work together can
   amplify a task or an unauthorized goal; coordination competence is not alignment.
 - His extraordinary Navier-Stokes account describes **88 hours and roughly 2.7 million messages**,
-  while explicitly saying the claimed result is **not formally accepted**. This ingest does not
-  verify the event or treat it as an established mathematical proof.
+  while saying the claimed result has not yet been formally accepted, though he adds that the Clay
+  Institute appears to think it is settled. This ingest does not verify the event or treat it as an
+  established mathematical proof.
 - He remains uncertain about whether these systems can sustain the long, unglamorous work of
   real organizations. Demonstrations of impressive tasks do not answer that operational question.
 

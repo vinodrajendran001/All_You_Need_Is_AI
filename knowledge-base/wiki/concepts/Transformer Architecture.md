@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-19
+updated: 2026-11-13
 tags:
   - concept
   - llm
@@ -25,6 +25,8 @@ source_ids:
   - src-2026-10-05-bytebytego-lost-middle
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-19-cammarata-networks-already-clean
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -158,6 +160,21 @@ first-party and comes partly from vision models rather than LLMs.
   most benchmarks but lowers some reasoning ones; the authors did not investigate why and suggest
   architecture designers examine it. In vision SwiGLU models, the value tends to learn broad
   families and the gate narrower ones.
+- **The companion paper measures that regime and links it to reasoning length.** In
+  [[Curt Tigges et al - Neurons as an Interpretable Basis]], on Qwen3.6-35B-A3B, double-negative (Q3) activations are about one third of all neuron
+  activations. They are rare among the most causal cells: **1-8%** of the top 100, against
+  **35-36%** of all routed cells. Ablating them does less damage than ablating the other regimes,
+  with one exception: on 24 GSM8K problems, removing them cut reasoning from **1,550** tokens on
+  average to **176**. Patching real Q3 activity back in kept reasoning long even when it was
+  time-reversed (**13/17**) or taken from another problem (**10/15**). The same quarter of it as a
+  contiguous block did not (**1/17**). The authors suggest Q3 works through "aggregate properties"
+  of its activity and leave the mechanism to future work. The essay's **4%** (neurons whose top
+  activations are a sign-flipped leak) and this one-third share are different measures.
+- **A reader's gate can select which meaning of an upstream neuron it hears.** The same paper's
+  worked example is a neuron with two unrelated modes, oral surgery and marine environments, that
+  writes one output direction. Downstream readers take it in through their up-projection, while
+  context "primers" feed their gate. Because a SwiGLU unit fires only when both are active, each
+  reader fires only for its own mode. This is one worked circuit, not a general result.
 - **A residual coordinate can act as a hidden scale knob.** In ConvNeXt, nearly all activation mass
   sat in one unread dimension that, through LayerNorm, scales every other dimension. Setting it
   aside made the residual-stream maps readable. Narrowing the stream four and eight times, to
@@ -169,22 +186,57 @@ first-party and comes partly from vision models rather than LLMs.
   about **5%** explanatory value, and notes that Qwen3-32B has a few thousand heads against more
   than a million neurons. It treats attention as largely unexamined, not solved.
 
-These are claims about one research group's audits rather than an architectural consensus. They
-add a criterion this page lacked: an architecture choice can change what an inspector sees as
+These are claims from one research group's essay and companion paper rather than an architectural
+consensus. They add a criterion this page lacked: an architecture choice can change what an inspector sees as
 mess, separately from whether it changes what the model can compute. See
 [[Mechanistic Interpretability]].
+
+## The architecture can change during training
+
+The blueprint on this page is normally fixed before training starts. [[DoubleAI - Can LLMs Redesign Themselves as They Train]] reports early
+experiments in which a coding agent changes it mid-run. The agent inserts **code layers**: small
+programs added to a block's residual update behind a learnable gate that starts at zero. The update
+becomes `h = h_prev + Attn(h_prev) + MLP(h_prev) + g · code(h_prev, ...)`, so the network is
+unchanged at insertion and gradient descent decides how far to open `g`.
+
+- **Reaching past a sliding window.** A 124M-parameter model attends only to its last **500**
+  tokens. An exact-match lookup retrieves the tokens that followed earlier occurrences of the last
+  three tokens. It adds them to every attention head at every layer, where they are scored by the
+  head's query-key product like positions inside the window. The lookup has no parameters of its
+  own. Inserted at step 1,200, it gave **72%** recall of variables defined 600 to 4,000 tokens
+  earlier, against **55%** when present from step 0, "despite near-identical loss curves".
+- **Exact programs beside learned circuits.** On CLRS-Text's thirty algorithms, a twelve-layer,
+  86M-parameter transformer plateaus at **55%**. With ten code layers added during training it
+  reaches **84%**, and accuracy at input sizes between those seen in training rises from **33%**
+  to **79%**. In some code layers, a learned projection turns hidden states into the program's
+  inputs and a second one adds its exact result back to the representation.
+- **Cost.** Standard blocks run on fast hand-tuned kernels. Code layers need their own: an agent
+  that adds layers during training "has to make them fast as well as correct".
+
+The authors say their results "challenge" the fixed-architecture paradigm and call for "going
+beyond transformers". The evidence is a first-party blog, with no seeds or error bars. The
+code-layer experiments use small models of 86M to 286M parameters. The post's larger-model results,
+on DeepSeek and Qwen, change how answers are sampled rather than the architecture. On CLRS-Text the agent "already knows how to
+solve the tasks", so part of the gain is known algorithms written in as code. Whether such edits
+help large pretrained models is untested here.
 
 ## Open questions
 
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
 - Which efficiency techniques should be treated as architectural essentials versus implementation details?
 - If attention-variant design is really data-reuse design, is the reuse ladder exhausted at "one latent serves as both K and V," or is there a further rung?
-- Would removing SwiGLU's double-negative regime change capability, legibility, or both, and why does network-wide ablation of it lower some reasoning benchmarks?
+- Would removing SwiGLU's double-negative regime change capability, legibility, or both, and why does network-wide ablation of it lower some reasoning benchmarks? The companion paper ties it to reasoning length (removal cut GSM8K reasoning from 1,550 to 176 tokens) but leaves the mechanism open.
+- Do architecture edits made during training, such as gated code layers or an exact-match lookup beyond the attention window, help beyond small models, and what do they cost at inference time?
 
 ## Related pages
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]]
 - [[Mechanistic Interpretability]]
+- [[Mixture of Experts]]
+
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[Automated AI Research]]
 
 - [[Luca Zancato - Priming Hybrid Models from Pretrained Transformers]]
 - [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-13
 source_id: src-2026-11-02-takehi-weight-space-programming
 source_title: "Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights"
 source_author: Rikiya Takehi, Jayden Teoh, Alex Zhang, Omar Khattab
@@ -118,6 +118,10 @@ failed without tools.
 - **Identity hedge.** The byline's "Alex Zhang" may be the Alex L. Zhang covered elsewhere in this
   vault, whose entity page records Omar Khattab as advisor. The capture gives no affiliation or link
   that establishes it, so this summary does not link that entity.
+- **Third-party follow-up.** [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]] reran Exp 1's four no-tools prompts on a local Qwen 3.8 27B. It
+  named three of the four games and missed Freeway, with one run per game. The reading-from-weights
+  result is therefore not unique to GPT-6 Astra on these small networks. The post also links two
+  critics of how this paper framed its tool-assisted results.
 
 ## Affected pages
 
@@ -145,6 +149,7 @@ failed without tools.
 
 ## Related pages
 
+- [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]]
 - [[Mechanistic Interpretability]]
 - [[Interpretability Evaluation]]
 - [[Automated AI Research]]

@@ -55,9 +55,10 @@ of arguments.
 - Named contributors in the capture include Nick Cammarata and Curt Tigges, who did the
   language-model work with him. The acknowledgments thank further colleagues, including
   Thomas Fel, who is lead author of the Block-Sparse Featurizer work.
-- The essay announced a technical companion paper on language-model neurons. As of 2026-11-10 it is
-  captured as [[Curt Tigges et al - Neurons as an Interpretable Basis]], by Curt Tigges, Matthew Kowal, Thomas McGrath, Owen Lewis and Nick Cammarata.
-  Before that, the vault held only the essay's summaries of those experiments. The paper measures a
+- The essay announced a technical companion paper on language-model neurons. Published on
+  2026-11-10, it is now captured as [[Curt Tigges et al - Neurons as an Interpretable Basis]], by
+  Curt Tigges, Matthew Kowal, Thomas McGrath, Owen Lewis and Nick Cammarata. Before that, the vault
+  held only the essay's summaries of those experiments. The paper measures a
   different model and metric from the essay's Qwen3-32B audits: **69%** of poles are dominated by
   one mode, against the essay's roughly 90% with one main job. So it does not directly confirm the
   essay's figure.

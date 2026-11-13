@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-30
+updated: 2026-11-13
 tags: [concept, tool-use, function-calling, llm, ai-agents]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-09-07-bytebytego-llm-error-handling
   - src-2026-09-29-bytebytego-why-do-llms-lie
   - src-2026-10-22-agrawal-qwenputer
+  - src-2026-11-01-philipp-schmid-code-mode
+  - src-2026-11-10-nizzyabi-instinct-teardown
 status: active
 ---
 
@@ -77,6 +79,18 @@ Everything above describes a JSON-schema contract — one named tool, validated 
 The trade is legible. Schemas buy **bounded, inspectable, approvable actions** — the properties this page's request/execute separation depends on. Code buys **composition, context economy, and an optimization surface**: control flow and fan-out happen in the interpreter instead of costing one model turn each, large intermediate results never traverse the context window, and the runtime can analyse a program in ways it can never analyse a JSON object — see [[Speculative Tool Execution]].
 
 The two are not mutually exclusive, and the useful open question is where the line falls: irreversible or approval-gated actions arguably still want a schema, precisely because a program is an unbounded request.
+
+[[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]] reads the history of this contract as
+a sequence of fixes that left one limit standing. Agents first got "a handful of tools" because they
+could not choose across a large catalog; then dozens of tools or MCP servers, which hit context limits;
+then tool search and progressive disclosure. Even with dynamic loading, standard calling still produced
+"*one* action per turn" — or "at best a flat batch of independent calls" — followed by a full model
+round trip. His claim is that the next step changes the contract rather than the catalog: one
+`exec(code)` tool whose script chains dependent calls. One enabler reaches back into the schema itself.
+MCP servers that publish an `outputSchema` alongside `inputSchema` let a model write code against a
+return type it has not yet seen, so declared outputs become as model-facing as declared inputs. The
+essay keeps the approval line by moving it into the host: each call inside the script crosses a bridge
+that can validate schemas or pause on destructive calls. It reports no measurements.
 
 ## Historical context
 
@@ -191,6 +205,26 @@ sponsored sections and reports no rates or controlled comparisons, so these are 
 leaves unanswered how a verifier distinguishes a claimed tool result from a real one without re-executing
 the call.
 
+## A channel acknowledgement reports the request, not the outcome
+
+The previous section separates a claimed tool call from an executed one. A consumer-assistant teardown,
+[[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]], records a case between the
+two: a record that is accurate about the request can still say nothing about the outcome. Asked for a
+voice memo, the assistant replied that it had sent one; no audio arrived, and the teardown cannot tell
+whether a send was attempted. Two weeks later it conceded, "I can't confirm that Oct 27 memo reached
+you. I shouldn't have claimed it did." A retry delivered a **14 KB** audio message, followed by the
+accurate report: "The voice memo is marked 'sent', but I don't have a 'delivered' confirmation."
+
+The author's diagnosis generalizes beyond messaging: the agent "knows what it asked the messaging
+channel to do, and it has no way of knowing what the channel actually did". A send tool's success
+result is an acknowledgement of the request, the same scope error as treating an eligibility check as
+a refund. The author notes that the founder describes a watchdog over every action and reasoning
+trace, but one that reads the agent's own record "can only see what the agent saw"; the proposed fix
+is channel-side **delivery receipts** that the agent can read. The evidence is one incident in one
+user's thread, measured by a third party who builds a competing platform, and the product's internals
+are unconfirmed; the distinction between an accepted request and a verified outcome does not depend on
+those caveats.
+
 ## A familiar call format can address an internal compiled computer
 
 [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]] reuses the
@@ -210,6 +244,9 @@ or other external permissions, and it does not replace the runtime evidence requ
 
 ## Related pages
 
+- [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
+- [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]]
+- [[Instinct]]
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
 - [[Linear Attention and Recurrent Memory]]
 - [[Qwen]]

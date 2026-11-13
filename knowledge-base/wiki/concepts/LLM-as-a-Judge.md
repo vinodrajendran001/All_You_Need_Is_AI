@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-10-27
+updated: 2026-11-13
 tags:
   - concept
   - llm-evaluation
@@ -30,6 +30,7 @@ source_ids:
   - src-2026-10-20-husain-decision-model-evals
   - src-2026-10-16-west-eval-engineering-lessons
   - src-2026-10-17-redwood-screwtape
+  - src-2026-11-10-bytebytego-linkedin-ai-code-review
 status: active
 ---
 
@@ -434,6 +435,33 @@ search, so neither replaces the other. These are Redwood's observations on its o
 the false-positive rate, the verifier's agreement with experts, and a reconciliation of the post's
 attack counts are not reported.
 
+## A comparison judge gates releases; a golden dataset decides who was right
+
+[[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] puts a judge in front of
+every change to LinkedIn's AI code reviewer. Before release, the production reviewer and the candidate
+review the same pull requests, and a separate model scores both reviews against a fixed rubric of
+**six weighted yes-or-no criteria**. Every prompt, model, and harness change goes through it before it
+ships. A fixed rubric, the article says, puts the judge on "a more predictable and reliable path";
+its weighted binary criteria are this page's principles 1 and 2 applied to review, and the judge sees
+both reviews of the same pull request together rather than grading either alone.
+
+The article is explicit about what that leaves out. Citing the MT-Bench paper (arXiv 2306.05685), the
+Zheng et al. (2023) work recorded above from [[@zafstojano - Recursive Synthetic Improvement]], it says
+LLM judges work well for comparisons, and adds that they cannot reliably decide which review comments
+are actually right. That job goes to a **golden dataset** of real pull requests captured at the point a
+bug was found, with humans marking which comments are correct, so candidates can be scored on precision
+and recall. LinkedIn has built the dataset and is "now building the eval on top of it" as a complement
+to the judge.
+
+The division of labour matches the validated-baseline argument above. A comparison judge can tell that
+a candidate differs from production and which output the rubric prefers, but only labelled data shows
+whether either is correct. Until that eval exists, LinkedIn's release gate is a preference judgement,
+and its production signal is whether the code changed. The vault's other code-review judge setup,
+Cloudflare's blinded two-provider judging of 657 findings with a third model breaking ties, is
+recorded in [[AI Code Review]]. The six criteria, their weights, the judge model, and any agreement
+with human labels are not disclosed. This is a secondary ByteByteGo account of LinkedIn's engineering
+post.
+
 ## Open questions
 
 - Threshold tuning needs labeled data. For a judge deployed where no labeled failures exist yet, what
@@ -454,11 +482,16 @@ attack counts are not reported.
 - Adversarial search such as Screwtape yields counterexamples without rates; golden-set agreement yields
   rates on unselected data without adversarial search. How should the two be combined before a judge or
   monitor is trusted as a gate?
+- A pairwise judge that gates every release can prefer a candidate that is more persuasive rather than
+  more correct. How often will LinkedIn's six-criterion judge and its golden-dataset eval disagree on a
+  release decision once both exist?
 
 ## Related pages
 
 - [[Casey West - Four Evaluation Engineering Lessons from Building Agent Plugins]]
 - [[Google Cloud]]
+- [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]]
+- [[AI Code Review]]
 
 - [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]
 - [[Redwood Research]]

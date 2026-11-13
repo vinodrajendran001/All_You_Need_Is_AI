@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - evaluation
@@ -23,6 +23,10 @@ source_ids:
   - src-2026-10-15-osmani-claude-code-review
   - src-2026-10-20-cloudflare-inference-bill
   - src-2026-11-04-x-town-square-rebuild
+  - src-2026-11-10-bytebytego-linkedin-ai-code-review
+  - src-2026-11-11-bytebytego-github-copilot-rust-port
+  - src-2026-10-10-0xcodila-rea-reverse-engineering
+  - src-2026-11-11-paulirish-chrome-capture
 status: active
 ---
 
@@ -290,6 +294,51 @@ was right. An unchanged line can reflect an ignored valid finding, and missed de
 The proxy therefore establishes neither correctness nor recall. Cloudflare's separate blinded
 model-judge check supplies another quality signal, not exhaustive ground truth.
 
+[[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] uses the same proxy at
+larger scale and without the baseline. LinkedIn counts a comment as accepted when "the code actually
+changed", rejects emoji reactions as too noisy, and reports **63.9%** acceptance on thousands of AI
+comments. Concurrency bugs and dead code reach **100%** and logic errors **80%**, in a chart with no
+category counts. With no coincidence rate subtracted, 63.9% is an upper bound on comment-caused
+change and cannot be set against Cloudflare's **59%**. LinkedIn does turn the proxy into a control
+loop: a daily trend report of which rules and prompts are gaining or losing acceptance decides which
+rules to disable. It also names the missing piece. A **golden dataset** of real pull requests,
+captured at the point a bug was found and labelled by humans, would give precision and recall.
+LinkedIn has built the dataset but not yet the eval, so recall is still unreported in this vault.
+See [[AI Code Review]].
+
+## Who checks the oracle
+
+Three new sources treat the checking apparatus as something agents can corrupt or that can simply be
+wrong, extending this page's argument that graders are untested surface.
+
+**Protect the reference from the agents judged against it.**
+[[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] used the
+existing end-to-end tests as "the only reference for expected behavior" during the Copilot runtime
+port. Review agents had to confirm those tests were **unchanged**, and GitHub's stated lesson is that
+an agent must not change a test or an expected result so that an implementation passes. This is the
+repair-agent skip problem above, prevented by review policy rather than detected afterwards. The
+reference was still incomplete. Whole numbers turned into decimals, time-zone and empty-string
+handling changed, and cancellation behavior differed, all of which compiled, and GitHub says more
+coverage would have caught more of them. Every figure is GitHub's own, relayed by ByteByteGo.
+
+**Test the comparison itself.** [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
+describes reconstructions checked against the original binary. In one, a DX-Ball function rebuilt
+in C passes **3,205** original-x86 test cases and reproduces all **63** compiled bytes. One of the
+Touhou rebuild's lessons is **"test your tests"**, because a broken comparison once let a wrong
+function pass. It is the same failure as the keyword simulation reported as 100% accuracy above: a
+green result produced by the checker rather than by the system. These are first-party showcases quoted
+in a promotional post.
+
+**Verify the artifact, not its metadata.** [[Paul Irish - chrome-capture]] records browser tests as
+video using Chrome's native `Page.startScreenRecording`. Its README states "Video files can lie
+about fps", so the stress test draws a binary frame counter on every animation frame and decodes it
+from the output to count unique frames (for example **60.4** unique fps at 1080p on headless Linux,
+the CI case). The same README makes per-test video a cheap default. A Playwright Test fixture records
+every test and attaches the mp4. In one M4 Max benchmark, stop-and-finalize took **17 ms** against
+**3,800 ms** for Playwright's `recordVideo`, and each test finished about **10 s** sooner. A video is
+evidence for a human or agent reviewing a run, not an oracle. The README is unsigned, and its author
+is inferred from the repository owner.
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -312,6 +361,11 @@ model-judge check supplies another quality signal, not exhaustive ground truth.
   against conventional human review.
 - Capping review at three rounds bounds churn but encodes a judgement that a fourth round is not worth
   it. The source reports no estimate of what the cap lets through.
+- GitHub protected its end-to-end tests from agents and REA's Touhou rebuild found a broken
+  comparison. How should a suite detect that its own oracle is wrong, and how often is it? None of
+  these sources says how the comparison was itself tested.
+- When LinkedIn's golden-dataset eval reports, will acceptance and precision agree, and what share of
+  accepted comments turn out to be wrong?
 
 ## Related pages
 
@@ -341,3 +395,8 @@ model-judge check supplies another quality signal, not exhaustive ground truth.
 - [[Harness Optimization]]
 - [[X Engineering - Rebuilding the Global Town Square from Scratch]]
 - [[Legacy Code Modernization with AI Agents]]
+- [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]]
+- [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]
+- [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
+- [[Paul Irish - chrome-capture]]
+- [[AI Code Review]]

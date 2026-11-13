@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - recursive-self-improvement
@@ -28,6 +28,8 @@ source_ids:
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-09-tillman-two-kinds-test-time-scaling
 status: active
 ---
 
@@ -450,6 +452,80 @@ could not add an ability the model lacked". The vault's reading is that a small,
 weight delta could be versioned and rolled back like a scaffold change. The post does not test
 that, and it is a single-model, preliminary blog result.
 
+## A lab-internal measurement: about 2x, mostly through assistance
+
+Until this ingest, the frontier-lab numbers on this page were inputs, such as agent-hour ratios, and
+forecasts. None measured how much AI speeds up a lab's own R&D.
+[[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] relays such a measurement:
+[[METR]]'s assessment of [[Anthropic]], for which METR says it was given "unprecedented access to
+internal data". The report itself is not captured, so every figure below is as quoted by Zvi.
+
+**What METR reports.**
+
+- **Rate.** As of October 2026, Anthropic is likely improving capabilities on well-specified tasks at
+  **around twice** the March 2024-October 2025 rate. METR "would not be surprised if the true
+  acceleration was closer to 1.3x or 3x".
+- **Index growth.** On AECI, Anthropic's version of the Epoch Capabilities Index, growth since October
+  2025 is **1.9x** the earlier rate, with a **95% CI of 1.5-2.8x**.
+- **Cause.** METR says it is confident the acceleration did not come from faster scaling of training
+  compute. It attributes a majority, "perhaps ≈80%", to AI.
+- **Mechanism.** The speed-up comes mainly through **AI assistance rather than autonomous
+  contributions**, though researchers describe "signs of life" for autonomy.
+- **Outlook.** METR sees no clear bottleneck over the next 12 months. It adds that its understanding
+  "changed several times" as details arrived.
+- **Redaction.** Anthropic redacted "a majority of the evidence we found most informative".
+
+**The number is fragile in specific ways.**
+
+- **Other developers.** Including non-Anthropic models lowers the estimate to **1.4x**.
+- **Measurement choices.** METR flags that Model 4 scores above 50% on every AECI benchmark on which
+  it was tested, but judges the acceleration "reasonably robust" to saturation. Zvi adds that
+  alternative link functions fit about equally well yet give different rates.
+- **A one-time jump?** Toby Ord gets a slope change of about **1.4x** if a one-time level shift is
+  allowed. Buck Shlegeris replies that METR considered and rejected that reading for redacted reasons.
+- **RL catch-up.** Peter Wildeford links part of the rise to RL's share of compute, which grew from
+  **4% to 24%** between 2024Q1 and 2025Q3. That share is now plateauing (**50%, 53%, 55%** over the
+  last three quarters), so he predicts benchmark growth should slow by mid-2027 if RL is the driver.
+  He still credits AI with "at least 1.4x", mainly because he trusts METR's private information.
+- **Labor versus progress.** Wildeford, citing METR, notes that engineers can be sped up about **12x**
+  while overall progress speeds up only about **1.4x**, because of compute limits and Amdahl's law.
+  Ajeya Cotra (METR) uses a simple Cobb-Douglas model, in which compute and labor matter about
+  equally. In it, doubling overall progress needs a **4-9x** speed-up in labor.
+
+**This conflicts with Naam's forecast, and the conflict should stay visible.** Naam expects no
+sustained acceleration in the Epoch Capabilities Index through the first half of 2027, allowing a
+six-month lag. METR's 1.9x cuts against that on its face. Four points keep it from being a clean
+refutation:
+
+- AECI is Anthropic's version of the index, applied to its own models, including internal ones. It
+  is not the public ECI that Naam named.
+- The all-developer figure is about **1.4x**.
+- A one-time jump or an RL catch-up would not be *sustained* acceleration.
+- The two tests now point at the same window. Public ECI through mid-2027 settles Naam's forecast.
+  Whether Anthropic's rate holds as RL's share plateaus settles Wildeford's.
+
+METR's ~2x also falls inside the **1.1x-25x** spread that Naam derived from agent-hour ratios, near
+plain logarithmic scaling. The quantities differ, so this is a loose comparison, not a confirmation.
+
+**Under this page's editable-set test, the finding is acceleration, not yet recursion.** Humans still
+choose the work, and AI assistance speeds them up. The policy fight Zvi records is partly about this
+line:
+
+- **Narrow definition.** Neil Chilson defines RSI as something like "fully relinquishing AI R&D and
+  deployment to AI, with no ability to monitor and stop the process".
+- **Zvi's objection.** That definition would permit a 99.9%-automated process with only an illusion
+  of control.
+- **Zvi's own view.** He reads RSI in 2027 as not the favorite, but no longer surprising. He wants
+  Congress to see the unredacted report.
+
+[[James Tillman - Two Kinds of Test-Time Scaling]] adds a conditional route that needs no new
+training. Suppose performance keeps rising when a model gets more test-time compute per task than it
+was trained with. Then it "might make sense to spend millions of dollars on some task during
+test-time" on an AI R&D moonshot. That holds even if a later model could do the task for 10% or 0.1%
+of the cost, because being first matters. Races in compute spending would move from training to
+inference. This is Tillman's argument, not an observation. See [[Automated AI Research]] and
+[[Test-Time Scaling]].
+
 ## Open questions
 
 - What evaluation signal is strong enough for automated research loops without causing reward hacking or benchmark overfitting?
@@ -484,11 +560,19 @@ that, and it is a single-model, preliminary blog result.
 - **Can a model's reasoned edits to its own weights add capability, or only remove obstacles?**
   The only direct test so far edits a different, smaller model, and its negative Gemma case found
   no gain where there was no failure to remove.
+- **Is METR's ~2x a new slope or a catch-up?** A one-time jump from the Mythos pre-train and a late
+  RL ramp both fit the public chart. According to Shlegeris, a METR appendix finds a permanent slope
+  change more plausible, but its reasons are redacted and outsiders cannot check them. Whether Anthropic's rate holds through mid-2027, as RL's share
+  plateaus, is the public test.
 - **What would falsify either objection?** G, λ, and N measured on real AI research would resolve Naam's; a
   fitted complexity-growth rate on production codebases would resolve the other. Neither exists.
 
 ## Related pages
 
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
+- [[James Tillman - Two Kinds of Test-Time Scaling]]
+- [[METR]]
+- [[Anthropic]]
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
 - [[Leon Sick et al - On-Policy Self-Training]]
 - [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]

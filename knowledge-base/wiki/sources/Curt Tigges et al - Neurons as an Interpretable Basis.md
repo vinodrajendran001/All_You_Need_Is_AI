@@ -175,8 +175,8 @@ on training texts. All tests below are on held-out documents.
 
 ## Why it matters
 
-- [[Mechanistic Interpretability]]: the essay's "native neurons first" position now has measured
-  sparsity, mode counts, random-direction baselines and description tests behind it, all on a
+- [[Mechanistic Interpretability]]: the essay's position (study native neurons before learned
+  decompositions) now has measured sparsity, mode counts, random-direction baselines and description tests behind it, all on a
   production-scale open MoE model.
 - [[Interpretability Evaluation]]: each description test reports chance, a ceiling or a matched
   control, and the authors label their own near-ceiling reference. None of the tests is CHIVE's
@@ -195,9 +195,10 @@ on training texts. All tests below are on held-out documents.
 - **LLMs throughout the measurement.** Agents write the descriptions, Opus 5.5 builds the modes and
   judges detection, Jev classifies and simulates, and Sonnet 5.5 formats descriptions. The authors
   say mode counts "are not *definitive*" because they depend on the granularity of the descriptions.
-- **Parity is against the untrained base.** The "Full model RL v1" control ran the same recipe with
-  no mask and also gained: SuperGPQA **+5.1** and GPQA-Diamond **+9.1**. Top-320 RL v1 gained
-  **+0.2** and **+2.0**. Against an equally trained full model, the sparse model trails.
+- **Parity is against the untrained base.** The full-model control (the table's
+  `Full model† RL v1` column) ran the same recipe with no mask and also gained: SuperGPQA **+5.1**
+  and GPQA-Diamond **+9.1**. Top-320 RL v1 gained **+0.2** and **+2.0**. Against an equally
+  trained full model, the sparse model trails.
 - **A figure mismatch.** The prose gives 45.4 against 44.8 (**+0.6**), but the table's Top-320 RL v1
   column shows **+0.2** on SuperGPQA. The +0.6 appears in the reference Top-64 RL v1 column.
 - **Reasoning results depend on the token cap.** The thinking panel counts capped traces as wrong

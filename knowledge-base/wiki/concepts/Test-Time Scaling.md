@@ -263,10 +263,10 @@ than lengthening one. Length is different: "Thinking longer helps because traini
 to use the extra tokens, not because generating more tokens is intrinsically better." Wang cites
 appending "Wait", which raised accuracy and then flattened.
 
-*Read together (vault synthesis):* Wang predicts a ceiling near the training range for plain length
-scaling. Tillman claims that compaction-style training changes what the model learns to use, so the
-ceiling moves. Both treat the outcome as learned, not intrinsic, which matches General Reasoning's
-point above about incentives.
+*Read together (vault synthesis):* Wang's account implies that plain length scaling flattens;
+placing that ceiling near the training range is the vault's inference. Tillman claims that
+compaction-style training changes what the model learns to use, so the ceiling moves. Both treat the
+outcome as learned, not intrinsic, which matches General Reasoning's point above about incentives.
 
 This also changes how to read the width results on this page. Tillman guesses that training used at
 most **10-100** agents. If so, OpenAI's **1,000**- and **10,000**-agent runs would imply an extrapolation

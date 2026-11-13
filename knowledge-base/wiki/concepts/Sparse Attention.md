@@ -116,10 +116,10 @@ by a newsletter.
 ### Relation to hybrids
 
 Sparse attention and linear/recurrent hybrids answer the same pressure from opposite ends: read
-fewer exact keys, or replace some attention layers with constant-size state. The LSA work suggests
-the two can be combined: native LSA was tested inside a hybrid model, though the capture does not
-say what the other layers were. The LSA account describes Qwen-3.8-27B as using "full attention",
-but the vault records Qwen3.8-27B as a 3:1 hybrid of Gated DeltaNet and Gated Attention blocks (see
+fewer exact keys, or replace some attention layers with constant-size state. Native LSA was tested
+inside a hybrid model, but the capture does not say what the other layers were, so it does not show
+the two combined. The LSA account describes Qwen-3.8-27B as using "full attention", but the vault
+records Qwen3.8-27B as a 3:1 hybrid of Gated DeltaNet and Gated Attention blocks (see
 [[Linear Attention and Recurrent Memory]]). The likely reading is that its attention layers are
 dense rather than sparse. The capture does not say whether LSA replaced all of them.
 

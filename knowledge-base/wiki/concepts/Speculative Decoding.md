@@ -350,10 +350,10 @@ assessed from it.
 [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] puts a training price on the built-in
 kind. On the authors' 256-node runs, early steps took about **37%** longer with one MTP layer, and
 spreading the model over 8 pipeline stages did not close the gap. Mellum2 reports **7%** extra
-training time for a 14B MoE. The handbook traces much of the gap to placement. Unless the layout
-moves it, Megatron puts the MTP layer on the last pipeline stage. Ling 2.0's team measured an MTP
-layer at about **1.7x** the compute of a standard MoE layer and gained **40%** end to end by
-repartitioning around it.
+training time for a 14B MoE. The handbook suggests much of the gap may come from placement. Unless
+the layout moves it, Megatron puts the MTP layer on the last pipeline stage. Ling 2.0's team
+measured an MTP layer at about **1.7x** the compute of a standard MoE layer and gained **40%** end
+to end by repartitioning around it.
 
 Two exits are recorded. Megatron's `--mtp-detach-heads` trains the MTP layer only as a draft model
 and leaves the main model alone. DeepSeek-V4.1-Flash used no backbone MTP during pretraining and

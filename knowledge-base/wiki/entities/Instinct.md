@@ -33,10 +33,10 @@ short threaded replies, coalescing of messages that arrive together, and a chat 
 quick question while a separate task agent keeps working. Those observations feed [[Agentic Loop]].
 
 It also shows two product rules that recur in [[AI Agents in Production]]: anything that spends money
-or speaks for the user is shown as a draft or price before acting, and checkout or delivery is treated
-as one more thing to verify. Its memory, as relayed, is Markdown files in a git repository linked with
-wiki-links rather than a vector store — a consumer-scale relative of the [[Persistent Wiki]] pattern
-recorded in [[Agent Memory]].
+or speaks for the user is shown as a draft or price before acting, and checkout is treated as one more
+thing to verify, with sent emails checked afterwards. Its memory, as relayed, is Markdown files in a
+git repository linked with wiki-links rather than a vector store — a consumer-scale relative of the
+[[Persistent Wiki]] pattern recorded in [[Agent Memory]].
 
 Its failures are as instructive. A voice memo it reported as sent never arrived, because it knew what
 it asked the messaging channel to do but not what the channel did; a request not to keep a project in

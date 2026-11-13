@@ -148,13 +148,14 @@ mixture-of-experts model:
 
 The paper also compares neurons with random directions: **8** neurons recover as much expert or
 layer function as **128-256** random directions. If neurons were not a privileged basis, random
-directions should have done about as well.
-It re-examines the most cited counterexample, a Qwen3-32B Colorado neuron that also fires on the
-Tornado web framework. The Tornado link is causally real: suppressing the neuron moves the model's
-"where was Tornado developed" answer away from Colorado. But **98.5%** of the neuron's strong
-firings are on places. The authors suspect the link comes from copying Qwen3-14B layers at
-initialization. Read against Cammarata's five causes, that would make it a training artifact
-rather than packing. That reading is the vault's, not the authors'.
+directions should have done about as well. It re-examines what the authors call the most popular
+counterexample they could find, a Qwen3-32B Colorado neuron that also fires on the Tornado web
+framework. The Tornado link is causally real: suppressing the neuron moves the model's answer about
+where Tornado was developed away from Colorado. But across 100 million tokens of ordinary text,
+**98.5%** of the neuron's strong firings were on places (on a code corpus, 98% were on Tornado or
+code calling it). The authors suspect the link comes from copying Qwen3-14B layers at
+initialization. Read against Cammarata's five causes, that would make it a training artifact rather
+than packing. That reading is the vault's, not the authors'.
 
 On the ladder above, the paper covers detection, description and use (through ablation damage). It
 still does not run step 4 against a transcript reader. The work is first-party and mostly on one
@@ -170,9 +171,10 @@ instrument or the architecture:
 - **InceptionV1 lacked a residual stream.** In a same-size ConvNeXt with residual connections and
   LayerNorm, about **99%** of last-layer neurons became legible.
 - **SwiGLU's double-negative regime** puts a sign-flipped leak at the top of about **4%** of
-  neurons' activation lists. The companion paper measures that regime (Q3) differently, as about
-  one third of all activations. Removing it cut GSM8K reasoning from **1,550** tokens on average
-  to **176**. The two figures are different measures and should not be merged.
+  neurons' activation lists. The companion paper measures that regime (Q3) differently, as about one
+  third of all activations. On 24 GSM8K problems selected because removing it curtailed reasoning,
+  reasoning fell from **1,550** tokens on average to **176**. The two figures are different measures
+  and should not be merged.
 - An **unread high-mass residual coordinate** working with LayerNorm hid the structure of ConvNeXt
   residual-stream maps.
 - **Percentile thresholds** flatten the difference between dial-like and detector-like neurons.

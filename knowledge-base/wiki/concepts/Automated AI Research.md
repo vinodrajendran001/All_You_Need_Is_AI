@@ -237,12 +237,12 @@ settings and budgets stayed fixed by the humans, so the result fits the bound ab
 the loop is automated; the definition of improvement is not. All of this is one model on one
 blog, with no comparison against a conventional search over the same edits.
 
-[[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves the agent inside the training run.
-A coding agent, "powered by a frontier model" that is never named, reads activation gradients,
-inserts zero-gated code layers mid-training, and races each against twin and sham controls. On
-CLRS-Text it raised accuracy from **55%** to **84%**, though the agent "already knows how to solve
-the tasks". [[Curt Tigges et al - Neurons as an Interpretable Basis]] shows agent labor at
-population scale: a Neuron Scientist harness wrote atlas pages for 2,734 stratified neurons and
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves the agent inside the training run. A
+coding agent, "powered by a frontier model" that is never named, reads activation gradients, inserts
+zero-gated code layers mid-training, and races each against twin and sham controls. On CLRS-Text it
+raised accuracy from **55%** to **84%**, though the agent "already knows how to solve the tasks".
+[[Curt Tigges et al - Neurons as an Interpretable Basis]] shows agent labor at population scale: a
+Neuron Scientist harness wrote atlas pages for 2,734 stratified neurons, and the release adds
 low-effort labels for all 10 million neuron-poles. Both are first-party, and neither reports agent
 compute.
 
@@ -292,11 +292,11 @@ problem and ran the system on it", prompted the model to draft the paper, review
 "is responsible for the paper's correctness". The announcement is first-party, and the capture
 links neither the manuscript nor the Lean code. See [[AI for Mathematical Discovery]].
 
-*Vault reading:* In all three cases, producing the work is no longer the constraint. Where a
-machine checker exists, as Lean does for the proof, output can be accepted about as fast as it is
-produced. Where none exists, as for the empirical paper, output outruns its readers. Inside a lab,
-faster engineers are held back by compute and serial steps. This is the Verifier's law above,
-applied at research scale.
+*Vault reading:* In all three cases, producing the work is no longer the constraint. Where a machine
+checker exists, as Lean does for the proof, checking can keep pace with production, though PSI's
+proof still had an advisor's audit and outside experts are still reading it. Where none exists, as
+for the empirical paper, output outruns its readers. Inside a lab, faster engineers are held back by
+compute and serial steps. This is the Verifier's law above, applied at research scale.
 
 ## Open questions
 
@@ -314,9 +314,10 @@ applied at research scale.
 - **Does the 124x-tokens-to-1.6x-experiments ratio describe a bottleneck or an accounting artifact?** Nothing
   in the source separates compute spent per experiment from the number of experiments a research programme
   chose to run.
-- **What replaces full human checking where no formal checker exists?** Lean let PSI accept a proof
-  without a human re-deriving every step. Mollick's 182-page paper had agent critiques but no
-  complete human check, and the model skipped the preregistration it was asked for.
+- **What replaces full human checking where no formal checker exists?** Lean checked every step of
+  PSI's proof, though an advisor still audited it and outside experts are still reading it.
+  Mollick's 182-page paper had agent critiques but no complete human check, and the model skipped
+  the preregistration it was asked for.
 - **Can conceptual breakthroughs be parallelised?** The essay argues the sequential-structure mechanism but
   does not prove it, and it concedes that better coordination, more diverse training, or genuinely new
   learning methods could change the curves it reports.

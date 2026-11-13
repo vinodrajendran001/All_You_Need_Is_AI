@@ -56,9 +56,10 @@ across repeated runs.
 
 ### X-Adapt: demonstrations need not come from the target robot
 
-- **Human → Dexter.** Four chemistry-lab tasks were demonstrated only by gloved people wearing
-  head and wrist cameras. Task-agnostic play data teach Dexter its own body. Over **20** trials per
-  task, GR00T 2 "succeeds on all four tasks" with zero teleoperated demonstrations.
+- **Human → Dexter.** Four tasks, three chemistry-lab procedures and conveyor package tossing, were
+  demonstrated only by people; NVIDIA describes the chemistry-lab demonstrators as wearing gloves
+  and head and wrist cameras. Task-agnostic play data teach Dexter its own body. Over **20** trials
+  per task, GR00T 2 "succeeds on all four tasks" with zero teleoperated demonstrations.
 - **UMI → YAM.** Conveyor sorting, a toy dump truck, and NIST board disassembly were demonstrated
   only with a handheld gripper. On the conveyor, GR00T 2 sorts **86%** of **50** items, against
   **28%** for GR00T 1.7 and **0%** for π0.5.
@@ -146,7 +147,7 @@ physical-world instances, and [[NVIDIA]] moves from GR00T tooling to reported re
 - The **40%** zero-shot figure counts tasks seen in other embodiments' data or human video, so
   "unseen" means unseen on the target robot, not novel to the model.
 - "GRPO-induced self-imitation" is named but not specified. Its difference from GRPO is **88%**
-  against **86%** on one shown task.
+  against **86%** on the one task given in prose.
 - The capture does not say whether the RL fixed-pipe task (SFT **66%**) is the YAM post-training
   fixed-pipe task on which Turbo scores **90%**. The two figures should not be compared directly.
 - The real-to-sim agreement covers one robot, one benchmark, and **14** policies from one family.

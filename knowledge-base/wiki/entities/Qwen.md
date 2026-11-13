@@ -204,10 +204,10 @@ hardware and harness, base Qwen scores **65.77%** on Nous's internal Hermes Benc
 Terminal-Bench-2.1. Arete scores **65.60%** and **70%**. Nous attributes any gap from official
 benchmark figures to different inference settings and harnesses.
 
-These numbers describe one derivative on one Nous-built evaluation, not the lineage. Nous's reading
-that the targeted behavior is a "shallow" layer "applied late" rests on behavioral results alone,
-with no analysis of the weights. Like [[astwei et al - Teaching Qwen Why]], the release uses Qwen as
-an open substrate for alignment-style post-training. The two target different behaviors and share no
+These numbers describe one derivative, all measured by Nous, not the lineage. Nous's reading that
+the targeted behavior is a "shallow" layer "applied late" rests on behavioral results alone, with no
+analysis of the weights. Like [[astwei et al - Teaching Qwen Why]], the release uses Qwen as an open
+substrate for alignment-style post-training. The two target different behaviors and share no
 evaluation.
 
 ## Three outside readings of Qwen internals

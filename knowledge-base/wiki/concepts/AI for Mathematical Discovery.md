@@ -87,7 +87,8 @@ The clearest case keeps humans at both ends of the work.
 
 - **Before the run.** PSI's David Turturean built the system, scoped the problem, and ran it.
 - **After the run.** He prompted the model to draft the paper, reviewed it, and "is responsible for
-  the paper's correctness". Two advisors audited the proof and commented on the formalization.
+  the paper's correctness". One advisor audited the proof, and another commented on the Lean
+  formalization.
 
 This matches the execution-versus-taste split in [[Automated AI Research]]: the system searched, and
 a human chose the problem. The Navier-Stokes record cuts the other way for agent count. Brown's

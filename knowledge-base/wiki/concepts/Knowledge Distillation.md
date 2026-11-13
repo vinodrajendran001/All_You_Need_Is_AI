@@ -232,14 +232,13 @@ weaker-teacher finding above from capability data to alignment data.
 
 [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]] is
 a plain distillation run: Qwen3.8-27B was fine-tuned on a teacher's answers with "No RL, no
-preference optimization, and no architectural modification". The teacher was chosen first by
-licence: Nous used an open model to avoid terms-of-use restrictions on "illicit distillation". It
-then compared open models using benchmarks, including its own, and "researcher judgement", and chose
-Inkling as "the best open model with a positive eval on what we were targeting". On Nous's
-Grok-judged evaluation, Inkling scores **3.96** of 5 on required facts, with **0.3%** of answers
-adopting the official line. The student moved from **2.32** and **22%** to **2.98** and **0.9%**
-at temperature 0; at the **0.6** used for the other rows, the base and Arete fact scores are
-**2.24** and **2.88**.
+preference optimization, and no architectural modification". The teacher had to be open: Nous used
+an open model to avoid terms-of-use restrictions on "illicit distillation". It also used benchmarks,
+including its own, and "researcher judgement", and chose Inkling as "the best open model with a
+positive eval on what we were targeting". On Nous's Grok-judged evaluation, Inkling scores **3.96**
+of 5 on required facts, with **0.3%** of answers adopting the official line. The student moved from
+**2.32** and **22%** to **2.98** and **0.9%** at temperature 0; at the **0.6** used for the other
+rows, the base and Arete fact scores are **2.24** and **2.88**.
 
 Nous rejected Nemotron 3 Ultra over "evidence that it too had a checkered record on China-related
 topics", and theorizes, without certainty, that the bias came from working with Chinese open models

@@ -20,8 +20,8 @@ status: active
 
 Author of the One Useful Thing newsletter, where both of his captured posts appear. In the second
 post he describes himself as an entrepreneurship professor. Both posts promote his book
-*Co-Existence*. He often gets early access to frontier models and writes first-person accounts of
-what they can do.
+*Co-Existence*. He sometimes gets early access to frontier models and writes first-person accounts
+of what they can do.
 
 ## Why it matters here
 
@@ -33,12 +33,12 @@ His two posts form a short arc on agent organizations, and the second complicate
   structures themselves, leaving the human as the source of goals and authority. He says he does not
   know how well self-organizing agents handle "the long, unglamorous work that fills most of an
   organization's time".
-- **A self-run organization grew a bureaucracy.** In
-  [[Ethan Mollick - Fable 5.2 and Jagged AGI]] (November 2026), a lead agent ran **28** teams in
-  parallel for twelve days and organized the work itself. Nobody asked it to write rules, yet it
-  wrote a rule book that reached **204** sections and **87,500** words. Launching a world came to
-  need an approved idea, three AI judges, and a code review. Output fell to about a dozen worlds a
-  day. Outside "consultant" agents restored it to thirty or more a day.
+- **A self-run organization grew a bureaucracy.** In [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
+  (November 2026), a lead agent was running **28** teams in parallel by the tenth day; Mollick's
+  prompt had asked for teams of artist, coding, and evaluator agents. Nobody asked it to write
+  rules, yet it wrote a rule book that reached **204** sections and **87,500** words. Launching a
+  world came to need an approved idea, three AI judges, and a code review. Output fell to about a
+  dozen worlds a day. Outside "consultant" agents restored it to thirty or more a day.
 
 So learned coordination appeared, as the first post predicted. It also brought the organizational
 problems of rule growth, process overhead, and repeated work. Neither post measures them. See
@@ -61,9 +61,10 @@ itself.
   likely IPO. Anthropic did not see the Fable post in advance. During early access his token use is
   not metered.
 - **Extraordinary claims are relayed, not verified.** The first post describes a Navier-Stokes
-  result that is explicitly "not formally accepted". The second reports an AI-written economics
-  paper that "no human has fully checked", and it was not actually preregistered as Mollick had
-  asked. The vault records both as his accounts. See [[AI for Mathematical Discovery]] and
+  result for which "there has not been formal acceptance yet", though he adds that the Clay
+  Institute appears to think it is settled. The second reports an AI-written economics paper that
+  "no human has fully checked", and it was not actually preregistered as Mollick had asked. The
+  vault records both as his accounts. See [[AI for Mathematical Discovery]] and
   [[Automated AI Research]].
 
 ## Related pages

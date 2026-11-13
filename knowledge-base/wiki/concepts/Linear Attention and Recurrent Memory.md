@@ -228,12 +228,12 @@ tokens. A recurrent layer compresses history into a fixed state and gives up exa
 keeps exact attention over a retrieved subset and pays instead with a search step and a full-size
 cache. [[Sparse Attention]] covers that family.
 
-The two approaches meet in the native variant, N-LSA, which learns the clustering during ordinary
-next-token training. The capture reports a **500-million**-parameter hybrid model trained at up to
-**128,000** tokens that matched full attention's validation loss, trained **1.6x** faster per
-attention layer and **1.24x** faster end to end, and retained more long-context accuracy than
-baselines such as sliding-window attention. It does not say what the hybrid combines LSA with, so
-the result cannot be set beside Qwen3.8-27B's 3:1 or Nanbeige's x2 as another ratio.
+The native variant, N-LSA, learns the clustering during ordinary next-token training. The capture
+reports a **500-million**-parameter hybrid model trained at up to **128,000** tokens that matched
+full attention's validation loss, trained **1.6x** faster per attention layer and **1.24x** faster
+end to end, and retained more long-context accuracy than baselines such as sliding-window attention.
+It does not say what the hybrid combines LSA with, so the result cannot be set beside Qwen3.8-27B's
+3:1 or Nanbeige's x2 as another ratio.
 
 The capture also contradicts this page. It describes **Qwen-3.8-27B** as a model "which uses full
 attention", the baseline against which distilled LSA made prefill **72.4** times faster at 10 million

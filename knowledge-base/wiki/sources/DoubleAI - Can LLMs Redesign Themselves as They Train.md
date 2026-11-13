@@ -120,8 +120,8 @@ architecture.
     to three times.
   - DeepSeek built the probe from its own graded solutions to **243** problems from the 2024 and
     2025 contests, choosing the blocks, the probe's form and the threshold itself. A single linear
-    readout did as well as a small neural network. It predicted a gain of about eight points, and
-    the hidden contests gave seven.
+    readout did as well as a small neural network. From held-out older problems, DeepSeek predicted
+    a gain of about eight points, and the hidden contests gave seven.
   - The probe rejects "four in five" wrong answers and "one right answer in fifteen". Restarting the
     longest solutions instead gains "less than two points".
   - Probed midway through a solution, the hidden states "mostly encode how hard the problem is".

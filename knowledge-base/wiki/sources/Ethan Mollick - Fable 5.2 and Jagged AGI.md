@@ -161,3 +161,4 @@ failure modes.
 - [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
 - [[PSI Research - A Proof of the Aaronson-Ambainis Conjecture]]
 - [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]]
+- [[AI Builder Club - Claude Fable 5 - How to Use It and What's Different]]

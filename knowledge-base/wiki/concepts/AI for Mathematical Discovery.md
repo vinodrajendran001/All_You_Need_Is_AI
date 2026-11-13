@@ -73,9 +73,9 @@ answer or by a Lean proof. The difference matters more for discovery than for tr
 
 ### Why mathematics may lead
 
-[[James Tillman - Two Kinds of Test-Time Scaling]] argues that spending compute beyond what a model
-used in training should pay off most easily "in domains where incremental progress is easy to
-recognize", such as math or cyber. His cleanest evidence is a competition-math result (AIME25). This
+[[James Tillman - Two Kinds of Test-Time Scaling]] argues that compute spent beyond a model's training
+budget should reach higher ceilings "on tasks where it is easy to recognize incremental progress, like
+math or cyber". His cleanest evidence is a competition-math result (AIME25). This
 agrees with the "Verifier's law" framing recorded in [[Automated AI Research]]: automation advances
 fastest where outcomes can be checked. PSI's run fits the long-run pattern. The proof came during
 the third day, and the system went on to improve the result twice. However, PSI reports no compute
@@ -105,7 +105,8 @@ number of agents was what mattered (see [[Multi-Agent Coordination]]).
 - Do mathematical results feed back into AI R&D? AlphaEvolve also sped up a Gemini training kernel
   (see [[Automated AI Research]]), but the vault has no comparable case for proofs.
 - Tillman asks what the first sign would be that test-time scaling beyond training budgets reaches
-  research taste. Mathematics, where problem choice is still human, is one place to look.
+  "algorithmic taste and machine learning research". Mathematics, where problem choice is still
+  human, is one place to look.
 
 ## Related pages
 

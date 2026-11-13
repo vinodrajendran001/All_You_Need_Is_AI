@@ -89,7 +89,8 @@ to expert iteration. [[LLM Reasoning]] gains a compact reason why traces are not
 default and why forced extra thinking flattens out. [[Test-Time Scaling]] gains a clean separation
 between sample-count scaling, which is guaranteed with a correct verifier, and length scaling,
 which works only as far as training taught it. [[Chain-of-Thought Monitoring]] inherits the
-faithfulness point.
+faithfulness point. [[AI for Mathematical Discovery]] uses it to contrast answer-only verifiers with
+proof checkers that check every step.
 
 ## Tensions / open questions
 
@@ -116,6 +117,7 @@ faithfulness point.
 - [[Reward Design for RL]]
 - [[Test-Time Scaling]]
 - [[Chain-of-Thought Monitoring]]
+- [[AI for Mathematical Discovery]]
 
 ## Raw capture
 
@@ -134,4 +136,5 @@ faithfulness point.
 - [[Reward Design for RL]]
 - [[Test-Time Scaling]]
 - [[Chain-of-Thought Monitoring]]
+- [[AI for Mathematical Discovery]]
 - [[James Tillman - Two Kinds of Test-Time Scaling]]

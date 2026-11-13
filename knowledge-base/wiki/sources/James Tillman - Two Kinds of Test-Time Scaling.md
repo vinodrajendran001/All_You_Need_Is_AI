@@ -144,7 +144,7 @@ and the swarm argument to [[Multi-Agent Coordination]].
   capture. The two chart descriptions are image text; only their prose restatements are used here.
 - The essay names policy questions rather than answers: should labs publish their most
   compute-intensive training tasks, which domains allow recognizable incremental progress, and what
-  the first sign would be that extrapolation reaches research taste.
+  the first sign would be that extrapolation reaches algorithmic taste and machine learning research.
 
 ## Affected pages
 

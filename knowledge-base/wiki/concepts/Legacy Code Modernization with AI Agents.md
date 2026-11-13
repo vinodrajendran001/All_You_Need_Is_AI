@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - coding-agents
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-14-maevyn-decoherence-trap
   - src-2026-11-04-x-town-square-rebuild
+  - src-2026-11-11-bytebytego-github-copilot-rust-port
+  - src-2026-10-10-0xcodila-rea-reverse-engineering
 status: active
 ---
 
@@ -123,6 +125,57 @@ edge decides per request which server answers, so a group can be moved to the ne
 back if something goes wrong." This is the reversible cutover this page asks for. X reports no
 parity-failure counts, and the signed-in rollout was still in progress at publication.
 
+## One live implementation: the old code is deleted in the same change
+
+[[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] relays an
+agent-run port that bounds the mixed-paradigm state described above. GitHub replaced each component of
+the Copilot runtime with Rust in **one pull request**. Dependent TypeScript called the new code
+through a **thin wrapper**, and the old implementation was **deleted in the same change**, so only one
+live version of each component existed. The wrappers were removed as more of the system moved.
+Decoherence still exists in this design, but it is confined to a bridge layer that is explicitly
+temporary rather than spread across coexisting implementations. Work followed the dependency order:
+helpers, then stateful components, then tools, model clients, and integrations, with session
+orchestration last. Behavior and algorithms were preserved and redesign deferred. GitHub's lesson,
+"translate first, redesign later", restates this page's parity-before-architecture order.
+
+The oracle was the existing end-to-end suite. Review agents checked that those tests were unchanged,
+because they were "the only reference for expected behavior". This is Mistral's parity harness at a
+coarser grain: whole workflows rather than intermediate numerical state. The regressions show what a
+workflow-level oracle misses even when everything compiles. Whole numbers became decimals and broke
+some SDKs. Empty strings, time zones, and replacement libraries' error handling differed.
+Cancellation did not stop related work, resources were released too early, some features were only
+partly migrated, and lengthy work on Node's main thread froze the interface. GitHub concedes more
+end-to-end coverage would have prevented more of these, but reports no regression count.
+
+The reported scale does not answer this page's open question about non-agent baselines. It cites
+**430K** lines of production TypeScript (an early estimate was **130K**, and the introduction's
+"Almost 800K lines of code" is not reconciled), one main developer over a few months, and about
+**$120K** in tokens across roughly **136 billion** tokens. The "big team ... couple of years"
+comparison is asserted, others' developer time is not costed, and every figure is GitHub's own,
+relayed by ByteByteGo. Against [[Adam Faik - How to Build an AI-Native Software Factory|Faik's]]
+deterministic Shepherd case, this is the opposite tool choice: agent translation of an irregular
+codebase, made safe by deleting the old path and by multi-model review against the old code (see
+[[AI Code Review]]).
+
+## When the source is gone, recovered behavior becomes the specification
+
+[[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]] describes REA, an MCP server and
+command-line tool that lets coding agents inspect compiled or packaged software and report each
+finding with evidence and a list of unknowns. Its loop is investigate, write a behavioral spec with
+"no copied code", build from the spec, and test against observed behavior. That is the X "old
+servers as specification" pattern applied where no source is available. The post names preservation
+and "helping companies understand software they lost the source code for" among the uses. The
+original executable becomes the oracle, as in Mistral's harness. In REA's own showcases, a DX-Ball
+sound-pan function rebuilt in C passes **3,205** original-x86 test cases and reproduces all **63**
+compiled bytes, and a Touhou reconstruction reached **696** exact matches out of **697** functions.
+
+Two cautions carry over. Decompiled output is a reconstruction, not the original source, so the
+verification step carries the weight. And the comparison harness is itself a failure point: REA's
+Touhou lessons include **"test your tests"**, because a broken comparison once let a wrong function
+pass. These are first-party showcases quoted in a clickbait-framed post, not independent results. The
+legality of rebuilding from someone else's binary depends on clean-room practice and use boundaries;
+that discussion belongs in [[Agent Security and Governance]].
+
 ## Open questions
 
 - How should parity tolerances account for floating-point and algorithmic differences?
@@ -139,6 +192,10 @@ parity-failure counts, and the signed-in rollout was still in progress at public
   agents cannot maintain or repair highly complex systems.
 - **Where is the sweet spot for a migration specifically?** The claim that both too little and too much
   coherence work slow delivery comes from a simulation with arbitrary weights; it gives no operating point.
+- **Does same-change deletion keep a port cheaper to change?** GitHub's thin wrappers bound coexistence
+  per component, but no source measures the wrapper layer's cost or how long it persisted.
+- **Who checks the oracle?** GitHub guarded end-to-end tests from being weakened, and REA's Touhou
+  rebuild found a broken comparison. No source reports how often the parity check itself was wrong.
 
 ## Related pages
 
@@ -151,3 +208,8 @@ parity-failure counts, and the signed-in rollout was still in progress at public
 - [[AI-Native Software Development Lifecycle]]
 - [[Mistral - Modernizing Complex Legacy Code with AI Agents]]
 - [[X Engineering - Rebuilding the Global Town Square from Scratch]]
+- [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]
+- [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
+- [[AI Code Review]]
+- [[Agent Delegation]]
+- [[Agent Security and Governance]]

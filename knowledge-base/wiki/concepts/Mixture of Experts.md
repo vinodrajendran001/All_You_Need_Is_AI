@@ -25,6 +25,7 @@ source_ids:
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-01-xuewen-yang-parallelism-by-hand
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
 status: active
 ---
 
@@ -135,6 +136,14 @@ capture. Behavior over training was not examined, so "recursive generalization o
 conjecture. They add a third reading of an expert layer, as a legible unit of organization,
 alongside this page's systems and compression readings. They do not establish that specialization
 is what makes the removable layers above removable. See [[Mechanistic Interpretability]].
+
+[[Curt Tigges et al - Neurons as an Interpretable Basis]] measures routed neurons with the router
+weight folded in (activation × router weight). On Qwen3.6-35B-A3B, keeping the top 320 of the
+**4,096** routed neurons active per token (92.2% ablated) raises loss only from **1.886** to
+**1.940**. The always-active shared experts (**20,480** neurons, about 0.4%) are left unablated in
+every experiment. Routing also bounds what descriptions can do: text-only classification F1 falls
+from **0.856** at router rank 1 to **0.652** outside the recorded top ranks. First-party, mostly one
+model.
 
 ## Total parameters set the memory, active parameters set the speed
 
@@ -285,3 +294,4 @@ parallelism inside a node where possible. The post's numbers are estimates it ca
 - [[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]]
 - [[LLM Inference]]
 - [[LLM Training Pipeline]]
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-25
-updated: 2026-10-09
+updated: 2026-11-13
 source_id: src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
 source_title: 'Why MLA and MTP Fight Each Other: Attention Through Arithmetic Intensity'
 source_author: Changyi Yang
@@ -55,6 +55,7 @@ This is the vault's clearest demonstration that attention-variant design is **da
 - [[KV Cache]]
 - [[LLM Inference]]
 - [[NVIDIA]]
+- [[Sparse Attention]]
 - [[Speculative Decoding]]
 - [[Transformer Architecture]]
 

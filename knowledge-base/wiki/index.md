@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - index
 source_ids:
@@ -394,6 +394,30 @@ source_ids:
   - src-2026-10-27-morgan-train-decision-model
   - src-2026-11-02-alphasignal-timestral
   - src-2026-11-04-x-town-square-rebuild
+  - src-2026-11-01-philipp-schmid-code-mode
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
+  - src-2026-06-11-0xcodez-fable-5-self-improving-agents
+  - src-2026-07-20-0xcodez-graph-engineering-roadmap
+  - src-2026-11-10-nizzyabi-instinct-teardown
+  - src-2026-11-11-bytebytego-github-copilot-rust-port
+  - src-2026-11-10-bytebytego-linkedin-ai-code-review
+  - src-2026-10-10-0xcodila-rea-reverse-engineering
+  - src-2026-11-11-paulirish-chrome-capture
+  - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-01-xuewen-yang-parallelism-by-hand
+  - src-2026-11-10-alphasignal-latent-sparse-attention
+  - src-2026-11-11-pytorch-executorch-webgpu
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-03-willison-qwen-interprets-weights
+  - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-09-tillman-two-kinds-test-time-scaling
+  - src-2026-11-08-alex-wang-reasoning-pathfinding
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-10-mollick-fable-5-2-jagged-agi
+  - src-2026-11-06-psi-aaronson-ambainis-proof
+  - src-2026-11-06-nous-arete-27b
+  - src-2026-11-06-koller-data-grow-in-dish
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -401,8 +425,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of November 6, 2026: **670 typed wiki pages**, including **363 source summaries**
-representing **389 source IDs**, **139 concepts**, **101 entities**, and **46 lint reports**.
+As of November 13, 2026: **703 typed wiki pages**, including **387 source summaries**
+representing **413 source IDs**, **143 concepts**, **106 entities**, and **46 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -413,6 +437,10 @@ exclude git-ignored local query files.
 
 ## Concepts
 
+- [[AI Code Review]] - Agents reviewing pull requests: authority, architecture, context, acceptance proxies versus correctness, noise, and convergence, drawing on LinkedIn, Anthropic, Cloudflare, GitHub, and AI Builder Club.
+- [[AI Drug Discovery]] - Machine learning for finding and justifying therapeutic hypotheses; separates insitro's wet-lab data generation from post-training open models to gather biomedical evidence.
+- [[AI for Mathematical Discovery]] - AI systems that produce new mathematical results, organized by what checked each result and who is responsible for it.
+- [[Sparse Attention]] - Attending to a selected subset of keys: DeepSeek-style full-key indexers versus Latent Sparse Attention's clustered search, separating KV-cache reads saved from memory stored.
 - [[Multi-Agent Coordination]] - Managing dependencies among agents' information and actions: shared evidence, ownership, and authority kept outside the conversation, causally measured leadership and silent compliance, and early attempts to train coordination by pricing time.
 - [[Human Deferral to AI]] - People adopting an AI system's choice on judgment calls with more than one defensible answer; distinct from automation bias and sycophancy, and a limit on human sign-off as an independent check.
 - [[Confidential Computing]] - Protecting execution from an untrusted host; measured identity, reduced runtime exposure, build-time trust, and application authority remain distinct.
@@ -557,6 +585,11 @@ exclude git-ignored local query files.
 
 ## Entities
 
+- [[@0xCodez]] - X author of promotional Claude agent courses; the vault uses them for concrete harness mechanisms while flagging their unsourced numbers and claims.
+- [[Ethan Mollick]] - Entrepreneurship professor and One Useful Thing author whose first-person accounts of frontier models track jagged capability, agent coordination, and organizational failure modes.
+- [[Instinct]] - Text-message personal AI assistant founded by Noah Shinn, known in this vault only through a third-party teardown of its responsiveness, memory, proactive messages, and delivery failures.
+- [[METR]] - AI evaluation organization whose deep-access Anthropic assessment estimated about 2x AI R&D acceleration; also cited for a Codex-Max time-horizon finding and a joint incident investigation.
+- [[Nous Research]] - Open-weight AI lab behind Arete-27B and Hermes Agent and host of the DisTrO report; post-trains other labs' open weights and reports its own contamination problem.
 - [[Celln]] - Execution plane that runs agent-generated code in isolated microVM cells under a capability lease; evidence is the builder's design rationale and one retained demonstration run.
 - [[Raindrop]] - Publisher of the leaderless agent-swarm study that counts a leader only when counterfactual replay shows its orders changed teammates' decisions.
 - [[General Reasoning]] - Research organisation behind RLCR and Avalon-M1, training agent collectives with one shared policy, a collective reward, and wall-clock pressure; first-party results only.
@@ -1103,6 +1136,33 @@ its unchanged article body adds no source ID or independent estimate.
 - [[Abby Morgan - Train Your Own Decision Model]] - A small decision model on Qwen3-0.6B-Base: the ablation attributes accuracy and calibration gains to training on the full gold distribution, while a dedicated decision head changed nothing measurable.
 - [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]] - Uses Mistral's Timestral to argue that agents should split work among frontier models, specialist prediction models, and deterministic code; relayed vendor claims, and the capture has no title, byline, date, or URL.
 - [[X Engineering - Rebuilding the Global Town Square from Scratch]] - X replaces three web servers with one, built with AI coding agents, in-repo skills, and lint hooks; the old servers served as the specification through pinning tests, parity checks, and gradual traffic moves.
+
+### November 13, 2026 batch
+
+- [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]] - Argues agents are converging on Code Mode, one `exec(code)` tool through which the model writes scripts that chain tool calls in a sandbox; an opinion essay with no measurements, and its Factory figures do not match Factory's own post.
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] - Terraform implementation of Part 1's AgentCore design: the gateway as the only route to tools, agent roles with zero tool permissions, Cedar policy rolled out in shadow mode, and one runtime per agent with its own logs, alarms, and evaluations; no measurements.
+- [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]] - Promotional course on improving a system around a frozen Fable 5 model: an independent grader, a persistent state file, lessons written back into Skills, Routines, and model routing; relayed numbers lack links, and some claims contradict its own evidence.
+- [[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]] - Course on Claude Code dynamic workflows as graphs: edges only where one step reads another's output, model judgment in nodes and plumbing in code, and cycles that converge; no measurements, and its "zero model tokens" claim overstates the mechanism.
+- [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]] - Competitor's teardown of Instinct from one user's iMessage history and others' reports: burst coalescing, a reachable chat agent beside task agents, Markdown-and-git memory, and a voice memo reported sent that never arrived.
+- [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] - GitHub's agent-driven TypeScript-to-Rust port: a coordinator with child sessions, one component per pull request, old code deleted in the same change, unchanged end-to-end tests as the reference, and regressions that compiled cleanly; GitHub's own figures.
+- [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] - LinkedIn's multi-agent code reviewer: independent subagent reviews, merged duplicates, a second model verifying single-reviewer findings, a six-criterion LLM judge gating every prompt, model, and harness change, and 63.9% acceptance measured by whether the code changed.
+- [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]] - X course on REA, an open-source MCP server and command-line tool for agent reverse engineering: architecture, clean-room and case-law framing, stated limits, defensive uses, and a dual-use capability whose use boundary is a disclaimer.
+- [[Paul Irish - chrome-capture]] - Unsigned README for a library that records browser tests with Chrome's native `Page.startScreenRecording`, checks its frame rate by decoding a frame counter, and ships a Playwright Test fixture; author inferred from the repository owner.
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] - Hugging Face's hands-on Megatron-LM guide to training mixture-of-experts models, from cluster validation and routing through load balancing, precision, serving, and RL; recaptured in full beside an empty clipping.
+- [[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]] - Worked arithmetic for data, ZeRO, tensor, sequence, context, pipeline, and expert parallelism on a 27B model, with memory, communication, and pipeline-bubble estimates.
+- [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]] - Explainer on Latent Sparse Attention, which clusters keys and searches centroids instead of every key; large 10-million-token speedups, mixed retrieval results, and a capture with no byline, date, or URL.
+- [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]] - PyTorch's WebGPU backend runs exported ExecuTorch models on browser GPUs, reporting 2–10x faster decode than its own WebAssembly CPU path on one Apple M1 Pro machine.
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]] - Goodfire's companion paper on Qwen3.6-35B-A3B MLP neurons: ablating the weakest 92.2% of routed activations raises loss 2.9%, most poles have one dominant mode, and agent-written descriptions can be tested; first-party.
+- [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]] - Informal third-party rerun of weight-space programming: a laptop-local Qwen 3.8 27B, with no tools, names three of four games from raw policy weights.
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]] - DoubleAI post with no individual byline: a coding agent inserts zero-gated code layers mid-training, and two closed-loop cases change how answers are sampled and accepted; early, no seeds or error bars.
+- [[James Tillman - Two Kinds of Test-Time Scaling]] - Forethought essay separating test-time methods capped by training budgets from compute extrapolation beyond them, with ceiling and slope metrics and consequences for evaluation and spending races.
+- [[Alex Wang - What Objective Is Reasoning Solving]] - Conceptual essay framing binary-reward RL as rejection-sampling fine-tuning on the model's own successes, explaining longer chains of thought, unfaithful traces, and two-sided reward hacking.
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] - Zvi's commentary on METR's deep-access finding that Anthropic's AI R&D runs at around twice its earlier rate (METR would not be surprised at 1.3x or 3x), with critics, redaction disputes, and RSI policy arguments.
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]] - Mollick's early-access review of Claude Fable 5.2 as Jagged AGI: expert-level work in many roles, a 182-page paper, and an agent swarm that gamed its judges and built a bureaucracy.
+- [[PSI Research - A Proof of the Aaronson-Ambainis Conjecture]] - First-party PSI announcement that its research system, using a non-public Anthropic model, found a Lean-checked proof of the Aaronson-Ambainis conjecture, open since 2008; no completed peer review.
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]] - Nous fine-tunes Qwen3.8-27B on Inkling answers and reports higher fact scores and fewer Chinese-state framings on its own Grok-judged 803-prompt evaluation.
+- [[Daphne Koller - Getting Data to Grow in a Dish]] - Koller's first-party account of insitro's wet-lab "data factory": pooled CRISPR imaging screens, process engineering, and agentic image QC to produce data for learning causal human biology.
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]] - NVIDIA's first-party page on a world-action model pretrained mostly on human egocentric video, reporting transfer, few-shot adaptation, real-robot RL, simulator evaluation, and agentic control.
 
 ## Syntheses
 

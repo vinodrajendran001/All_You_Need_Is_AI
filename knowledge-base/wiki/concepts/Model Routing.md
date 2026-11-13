@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - routing
@@ -30,6 +30,8 @@ source_ids:
   - src-2026-10-20-cloudflare-inference-bill
   - src-2026-11-02-alphasignal-timestral
   - src-2026-10-30-figma-fluent-editing-model
+  - src-2026-06-11-0xcodez-fable-5-self-improving-agents
+  - src-2026-07-20-0xcodez-graph-engineering-roadmap
 status: active
 ---
 
@@ -381,6 +383,25 @@ model and reduced the average cost per message, but attributes those gains to im
 "the models, tools, and harness", so routing's own contribution is not isolated. The account is
 first-party.
 
+## Practitioner guides route by role, and the default route is the session model
+
+Two influencer-style courses from [[@0xCodez]] restate the role-based pattern above for Claude
+harnesses. [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]] recommends
+"orchestrator on Fable 5, workers on Sonnet 4.6, graders on Haiku 4.5, fallback to Opus 4.8 on
+classifier blocks": Opus 4.8 for hard-but-bounded delegated subtasks and for requests Fable 5's
+safety classifiers decline, Haiku 4.5 for graders because an independent, cheap context suits the
+verifier role. Its premise that Fable 5 "costs ~5× what Opus 4.8 does per token" conflicts with
+another Fable guide in the vault that puts the gap at twice the price (see that summary's tensions),
+and its claim that production teams and Anthropic engineers use this split is unsourced.
+
+[[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]] names the
+default that makes routing necessary: "every subagent Claude spawns inherits your session model
+unless the script overrides it - so by default a big run bills entirely at your session tier." Its
+advice — "Check /model before a large run," route the fan-out's repetitive nodes to a cheaper model,
+and "keep the merge node up" — is role routing applied to a split-work-merge graph. Neither course
+reports cost or quality measurements, so both are configuration advice, not evidence that the
+downgrade holds.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -460,3 +481,6 @@ first-party.
 - [[Agent Security and Governance]]
 - [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]]
 - [[Figma]]
+- [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]]
+- [[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]]
+- [[@0xCodez]]

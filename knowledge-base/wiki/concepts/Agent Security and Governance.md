@@ -56,6 +56,7 @@ source_ids:
   - src-2026-11-04-axjns-celln-execution-lease
   - src-2026-11-04-axjns-post-kubernetes-genai
   - src-2026-10-10-0xcodila-rea-reverse-engineering
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
 status: active
 ---
 
@@ -615,6 +616,25 @@ proxy. It does not escape the screening caveat above: a filter that reads attack
 responses can be addressed by them. Neither source reports a detection rate; AgentCore's account is a
 disclosed user's, without measurements, and Sentry has not shipped.
 
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] shows the
+implementation closing those routes. The MCP server's runtime has a resource policy that "denies
+everyone except the gateway role", only the gateway role may invoke the tickets Lambda, and "An
+agent's own IAM role has **zero** tool permissions." Each agent's role is a shared base plus
+statements switched on by its manifest, so "An agent without `memory=True` can't touch Memory, even
+if its code tried", and every role trusts the AgentCore service only for its own account, "which
+stops a confused-deputy attack." Cedar is default-deny, a matching `forbid` wins, and in `ENFORCE`
+mode `tools/list` shows only what the caller may use. Shadow mode gets a concrete reason: with a
+typo in a group name, "flipping to `ENFORCE` hides every tool and every agent goes dumb at once."
+
+Part 2 also names a route the gateway does not cover. Zenity Labs showed that a prompt injection
+against a public-facing agent could trigger a server-side request forgery (SSRF) to the instance
+metadata service and pull credentials; Rastogi's answer is VPC mode, least-privilege roles, and no
+public network mode for anything sensitive. The prose describes only group-based rules (employees
+get read and own-ticket tools; only platform admins close tickets), the policy itself is an image,
+and Bedrock Guardrails is only listed, so whether Part 1's argument-level limits and tool-result
+screening survive the implementation is not visible. It is a practitioner build with no
+measurements.
+
 ## A record kept outside the agent's reach is part of the control
 
 [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] also moves the evidence. Its premise
@@ -900,3 +920,4 @@ showcases are first-party, and the cited third-party rebuilds are not said to ha
 - [[Uber]]
 - [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]
 - [[NVIDIA]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]

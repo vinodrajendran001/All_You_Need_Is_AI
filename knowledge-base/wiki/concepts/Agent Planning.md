@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-28-google-cloud-agent-delegation
   - src-2026-09-09-mistral-legacy-code-modernization
   - src-2026-07-20-0xcodez-graph-engineering-roadmap
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -90,6 +91,10 @@ A pattern that recurs across sources in this vault:
 
 Keeping these phases separate provides a natural point for validation, human review, resource estimation, and rollback.
 
+### A physical planner–executor split
+
+[[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]] puts this boundary on a robot. A "System 2" agent decides *what* to do in an observe–reason–act–verify loop; GR00T 2 decides *how*, performing contact-rich manipulation. The agent reaches its tools through one tool server, labelled "MCP Server" only in the page's diagram (see [[Model Context Protocol]]): GR00T 2 itself (`wam_act`, `stop_wam`), observation tools (`get_image`, `get_robot_state`, `localize_object`), and code-as-policy skills (`move_to_pose`, `move_to_joints`, `set_gripper`). When a part drops or progress stalls, it repairs the scene with a skill learned with ASPIRE and hands control back. In assembly trials that start from a cluttered layout, the system succeeds in **98**, **97** and **97** of **100** trials (**292/300**), against **71–84** for the same post-trained policy without the agent and **23–69** for supervised post-training alone. In visual steering, the planner marks grasp and release points on GR00T 2's camera view and looks again after each step (see [[Vision-Language Grounding]]). The reasoning model is not named, the contributions of agent and policy are not fully separated, and every number is NVIDIA's own.
+
 ### From plan graph to durable execution
 
 [[djfarrelly - The Agent Loop Architecture]] adds a production-runtime requirement to the pguso planning stack. A plan or AoT graph can define the steps, dependencies, and parallel branches, but the execution layer still needs to make each step durable.
@@ -165,3 +170,5 @@ See [[Graph Engineering]].
 - [[Agent Delegation]]
 - [[Model Routing]]
 - [[Nenad Tomasev and Reshu Yadav - How Agents Can Delegate Better]]
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+- [[Vision-Language Grounding]]

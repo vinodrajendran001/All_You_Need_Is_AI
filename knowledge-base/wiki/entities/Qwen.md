@@ -22,6 +22,7 @@ source_ids:
   - src-2026-11-10-goodfire-neurons-interpretable-basis
   - src-2026-11-03-willison-qwen-interprets-weights
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-10-alphasignal-latent-sparse-attention
 status: active
 ---
 
@@ -226,6 +227,18 @@ stop/restart/accept policy over probes that a frontier agent had built on its hi
 Accuracy rose from **59%** to **66%**, at **2.8×** the thinking tokens of a single attempt
 (first-party, no error bars).
 
+## A sparse-attention retrofit reports its largest gains on Qwen
+
+[[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+reports Latent Sparse Attention (LSA), attributed to Prefrontal AI and ETH Zurich, tested on
+Qwen-3.8-27B with distilled indexer weights released for it. At 10 million tokens on an H200, Qwen's
+prefill was **72.4x** faster than full attention. End-to-end time to first token on eight H200s
+improved **9.2x**, and RULER rose to **63.9** from **59.9** for full attention. The article
+describes Qwen-3.8-27B as a model "which uses full attention", which conflicts with the 3:1 Gated
+DeltaNet layout above. It may mean the attention layers are dense rather than sparse, but it does
+not say which layers LSA replaced. The source is an unbylined newsletter relaying the researchers'
+claims. See [[Sparse Attention]].
+
 ## Related pages
 
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
@@ -265,3 +278,5 @@ Accuracy rose from **59%** to **66%**, at **2.8×** the thinking tokens of a sin
 - [[Curt Tigges et al - Neurons as an Interpretable Basis]]
 - [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+- [[Sparse Attention]]

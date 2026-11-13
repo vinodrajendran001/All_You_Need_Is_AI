@@ -34,6 +34,7 @@ source_ids:
   - src-2026-11-03-nvidia-cosmos-interactive-world-models
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-11-nvidia-gr00t-2
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -251,6 +252,21 @@ already records as a deployment and microscaling option. All figures are NVIDIA'
 ByteByteGo, without benchmarks. See [[Mixture of Experts]],
 [[Linear Attention and Recurrent Memory]], and [[Speculative Decoding]].
 
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] adds training-side detail, citing
+NVIDIA's Nemotron 3 Super and Ultra technical reports. Super, **120B** parameters with **12B**
+active, was pretrained on **25T** tokens in NVFP4. The last 15% of the network, the attention
+projections, the embeddings and the multi-token prediction layers stayed in BF16, and the Mamba
+output projection ran in MXFP8 because it underflowed in NVFP4. Ultra, **550B** with **55B**
+active, followed on **20T** tokens with the same recipe. By the end of Super's pretraining,
+exactly-zero expert weight-gradient elements reached **7%** of all parameters. The sizes match the
+account above.
+
+In NVIDIA's **73B-A8B** ablation, LatentMoE shrinks each token to a smaller width before sending it
+to the experts. At equal total and active parameters it scored **4.6** points higher on MMLU-Pro
+than a standard MoE. Super, Ultra and Kimi K3 ship it. Serving throughput ranged from **12%** lower
+at concurrency 1 to slightly higher at some concurrencies. The handbook's own experiments run on
+Megatron-LM. See [[Mixture of Experts]].
+
 [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]] adds an outside
 measurement of Nemotron 3 Ultra on one narrow topic set. On Nous Research's 803-prompt evaluation of
 political-values topics, judged by Grok 4.7, Ultra averages **3.22** of 5 on required facts, and
@@ -351,3 +367,4 @@ page reports outcomes. See [[Robot Training Data]], [[World Models]],
 - [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
 - [[Nous Research]]
 - [[Multi-Teacher On-Policy Distillation]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]

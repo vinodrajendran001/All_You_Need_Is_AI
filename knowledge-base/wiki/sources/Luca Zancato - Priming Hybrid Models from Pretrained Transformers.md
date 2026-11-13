@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-16
-updated: 2026-10-16
+updated: 2026-11-13
 source_id: src-2026-10-13-zancato-model-priming
 source_title: "Can we change an AI model's architecture without retraining it from scratch?"
 source_author: Luca Zancato
@@ -92,6 +92,7 @@ computation from a provider's visible reasoning-token budget.
 - [[Inference Efficiency Frontier]]
 - [[Inference Serving Engines]]
 - [[Qwen]]
+- [[Sparse Attention]]
 
 ## Raw capture
 

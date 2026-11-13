@@ -53,7 +53,8 @@ repetitive, or no fun. This is a first-person experience essay, not a controlled
   the demo stage. He says he would not yet trust it to run a business on its own.
 - **Humanities.** Claude rebuilt W. H. Auden's 1941 course, which had **6,000** pages of reading, as
   a site covering all **35** major works. Critic agents reviewed every word, and fact-checkers compared
-  claims with sources. Mollick's own cross-checks, using other AIs, found no major errors. However, the
+  claims with sources. Mollick's own cross-checks, and checks with other advanced AIs, found no major
+  errors. However, the
   first version was "accurate and joyless", the second a "kiddie game" about ringing bells, and its
   poem readings ignored what Auden had written about them. Each fix took minutes once he pointed out
   the problem.
@@ -104,7 +105,7 @@ repetitive, or no fun. This is a first-person experience essay, not a controlled
 ## Why it matters
 
 [[Automated AI Research]] gains a concrete case of research generated faster than humans verify it,
-including a false claim of preregistration that only a human reader caught.
+including a requested preregistration that did not actually happen.
 [[Benchmark Optimization]] gains a small, legible case of Goodhart's law inside an agent
 organization: judges scored twelve fixed screenshots, so builders optimized for those screenshots.
 [[Anthropic]] gains an independent, pre-launch account of Fable 5.2. [[Ethan Mollick]] gains a second

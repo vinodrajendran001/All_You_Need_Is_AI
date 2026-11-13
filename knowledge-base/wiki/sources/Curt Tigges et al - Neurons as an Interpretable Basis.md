@@ -146,8 +146,10 @@ on training texts. All tests below are on held-out documents.
 | Input synthesis | An Opus 5.5 controller directs writer agents from the description | **120 of 128** poles exceeded their 10B-token corpus maximum, 22 of them only after final editing. Final best: median **1.06×**, range **0.46-1.55×**. |
 
 - **Why simulation is hard.** Text features explain only about **14%** of the variance in firing
-  size, against **59%** for the neuron's gate inputs. Giving the simulator input activity raises the
-  restored share by about 10%.
+  size, against **59%** for the neuron's gate inputs. Giving the simulator a summary of input
+  activity and attention at each token raises the restored share by about 10%.
+- Jev is described as a "non-autoregressive decision model"; it is used here as a judge and
+  simulator, not trained for the task.
 - **Leakage checks.** About **2.6%** of firings repeat a context; removing them changes headline
   results by at most **0.002**. Short snippets give AUROC **0.927**, rising to **0.978** with 250
   preceding tokens.
@@ -256,4 +258,4 @@ on training texts. All tests below are on held-out documents.
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
-- [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]]
+- [[Typed Probabilistic Decision Models]]

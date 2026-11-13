@@ -30,8 +30,9 @@ His two posts form a short arc on agent organizations, and the second complicate
 - **Models may design their own organization.** In
   [[Ethan Mollick - The Dot and the Swarm]] (October 2026), he revises his expectation that humans
   must carefully design multi-agent organizations. Improving models may choose useful coordination
-  structures themselves, leaving the human as the source of goals and authority. He remains unsure
-  whether such systems can sustain "the long, unglamorous work of real organizations".
+  structures themselves, leaving the human as the source of goals and authority. He says he does not
+  know how well self-organizing agents handle "the long, unglamorous work that fills most of an
+  organization's time".
 - **A self-run organization grew a bureaucracy.** In
   [[Ethan Mollick - Fable 5.2 and Jagged AGI]] (November 2026), a lead agent ran **28** teams in
   parallel for twelve days and organized the work itself. Nobody asked it to write rules, yet it

@@ -2951,3 +2951,37 @@ The inventory is **704 typed pages**, including **387 source summaries**, **143 
 existing wiki files changed and only the lint report was added. All **492 raw files**,
 templates, posts, queries, earlier reports, and historical log text remain preserved against
 the post-ingest byte baseline. Nothing was staged, committed, or pushed by this pass.
+
+## [2026-11-13] post | The Rule Book Only Grew
+
+Prepared [[2026-11-13 The Rule Book Only Grew]] as `ready`, not published:
+one LinkedIn version, one standalone X post, and a connected seven-post X thread.
+The inclusive **2026-11-06 through 2026-11-13** window starts at the newest active post's
+`covers_through`. One logged ingest supplied **24 source summaries**, and the November 13
+lint pass added none. The Git cross-check covered **16 commits and 41 changed
+source-summary paths**, with no additional current source summary outside that ingest.
+
+Two direct ByteByteGo sources were excluded before scoring five alternatives from the
+remaining 22. Ethan Mollick's account of an agent team that wrote itself a rule book won
+**29/30**; the Tigges et al. Colorado/Tornado neuron scored **26/30**; the PSI proof and
+chrome-capture frame-counter angles failed the completeness gate, and DoubleAI's
+self-redesign failed the clarity gate. The [[Multi-Agent Coordination]] spine is used only
+for its Mollick paragraph, and every public claim was read in the capture behind
+[[Ethan Mollick - Fable 5.2 and Jagged AGI]]. The public copy keeps the first-person,
+early-access, and no-baseline caveats, names Mollick's own "polish" request as part of the
+cause, and labels the deletion pass and length cap as untested suggestions. The 25,000
+agent runs (Claude's own estimate), the 204 worlds live after twenty hours, and Mollick's
+other projects were omitted.
+
+Updated [[Post Archive]] with the new row, topics, one eligible runner-up angle, and a
+Multi-Agent Coordination cooldown ending **2026-12-25**. No cooldown expired on this date;
+all historical post rows and both superseded drafts remain intact. No earlier post used
+this spine; the September 5 post concerned human-written agent context files, not rules
+agents write for themselves. The archive now has **twelve ready posts** and **two
+superseded drafts**.
+
+Index and overview totals advance to **705 typed wiki pages**; **387 source summaries**,
+**413 source IDs**, **143 concepts**, **106 entities**, and **47 lint reports** are unchanged.
+The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
+and lint reports were not edited. Nothing was staged, committed, pushed, or published by
+this run.

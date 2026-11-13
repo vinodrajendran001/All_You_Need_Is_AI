@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - post
 status: active
@@ -48,6 +48,7 @@ materially different angle, and that post must say what is new.
 | 2026-10-23 | [[2026-10-23 The Skyline Was the Message]] | 2026-10-16 → 2026-10-23 | [[Chain-of-Thought Monitoring]] | LinkedIn, X | ready |
 | 2026-10-30 | [[2026-10-30 The Shared Part Was Never Saved Alone]] | 2026-10-23 → 2026-10-30 | [[Semantic Caching]] | LinkedIn, X | ready |
 | 2026-11-06 | [[2026-11-06 The Expert Agreed With the Coin Flip]] | 2026-10-30 → 2026-11-06 | [[Human Deferral to AI]] | LinkedIn, X | ready |
+| 2026-11-13 | [[2026-11-13 The Rule Book Only Grew]] | 2026-11-06 → 2026-11-13 | [[Multi-Agent Coordination]] | LinkedIn, X | ready |
 
 ## Superseded drafts
 
@@ -62,6 +63,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-11-13 - agent-written rules, process accumulation, multi-agent organizations, metric gaming
 - 2026-11-06 - human deferral to AI, independent review, judgment calls, agent influence
 - 2026-10-30 - first-request reuse, prompt-cache boundaries, shared versus variable context
 - 2026-10-23 - messages in images, visual information channels, multimodal evaluation
@@ -78,6 +80,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
 
+- A neuron's surprising second job can be real but narrow: asked where the Tornado web framework was developed, Qwen3-32B gives Colorado 30% and the correct California 0.7%, and suppressing one Colorado neuron moves these to 1% and 4.7%; yet 98.5% of the neuron's 3,812 strong firings over ordinary text are on places. Scored 26/30 on November 13; a cold reader needs neuron and suppression vocabulary first - [[Mechanistic Interpretability]], [[Curt Tigges et al - Neurons as an Interpretable Basis]]
 - A failed probe does not show which control stopped it: all four of Celln's restricted-capability probes failed, but the post attributes each result narrowly (a missing file is not a denial; a refused socket is the program's own report). Scored 24/30 on November 6; one retained run, explicitly not a VM-escape benchmark - [[Celln]], [[axjns.dev - Testing Celln's Boundary]]
 - Planning is not leading: in 86% of Raindrop's leaderless experiments at least one agent proposed a plan assigning teammates, but only 105 of 2,160 teams produced a leader whose orders measurably changed teammates' decisions. Scored 24/30 on November 6; first-party with no external replication, and the name-order comparison lacks denominators - [[Multi-Agent Coordination]], [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
 - An improved average can hide a lost capability: the on-policy self-training paper reports mixed retention across tasks. Scored 26/30 on October 30; keep per-capability results rather than describing universal improvement - [[Continual Learning for Agents]], [[Leon Sick et al - On-Policy Self-Training]]
@@ -121,6 +124,7 @@ materially different angle, and that post must say what is new.
 - [[Chain-of-Thought Monitoring]] - drafted 2026-10-23 - cooldown ends 2026-12-04
 - [[Semantic Caching]] - drafted 2026-10-30 - cooldown ends 2026-12-11
 - [[Human Deferral to AI]] - drafted 2026-11-06 - cooldown ends 2026-12-18
+- [[Multi-Agent Coordination]] - drafted 2026-11-13 - cooldown ends 2026-12-25
 
 ## Related pages
 

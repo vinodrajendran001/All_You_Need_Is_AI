@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - neural-networks
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-09-07-rai-lejepa
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -133,17 +134,56 @@ the PPO baselines are best-of-seeds at fixed budgets, only one LLM was tested, a
 preliminary blog. Nothing in it shows reasoning-written weights replacing gradient training for
 large models learned from data.
 
+## Activation gradients and architecture edits during training
+
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] uses two textbook pieces of the training loop in an unusual way.
+
+**Backpropagation already computes gradients for activations, not only weights.** The post's
+"phantom gradient" is ∂L/∂h at a layer: the loss gradient with respect to that layer's
+representation, with shape `[B, T, D]`, one vector per token. The weight gradient aggregates
+such per-token signals, so a per-token map shows "the change the network wants", which "ordinary
+gradients average away". The name comes from an imagined zero-initialized weight added to every
+token's representation, whose gradient this would be. Two practical details matter:
+
+- Each wrong token's loss is backpropagated on its own, so other tokens' errors stay out of the
+  measurement.
+- The raw vectors are dominated by which token the answer is. They become useful only after
+  centring: subtracting the mean over documents with the same correct next token.
+
+The quantity itself is the standard activation gradient. What the post adds is how it is used, and
+the authors say it "does not predict reliably" how an edit will perform once trained.
+
+**A zero-initialized gate turns an architecture edit into a smooth one.** A new layer is added to the
+residual update as `g · code(h)`, with `g` a learnable scalar that starts at zero. At insertion "the
+network is exactly identical to what it was". The gradient on `g` then decides whether the layer
+is used, and in the post's runs the gate opens "within about 100 steps". This "turns a discrete
+edit to the architecture into a continuous one for the gradient-based optimiser".
+
+**When a component arrives can change what the network learns.** A 124M-parameter model with a
+500-token attention window got the same parameter-free lookup layer either from step 0 or at step
+1,200. Recall of a variable defined 600 to 4,000 tokens earlier was **72%** with the late insertion
+and **55%** with the early one, "despite near-identical loss curves". The authors "believe" the
+early network leaned on the layer instead of building its own circuits, a form of shortcut
+learning. This is one comparison with no reported seeds. Even so, it is a concrete case where
+matching loss curves hide different learned skills.
+
+The post also controls for added capacity. Each candidate layer races a twin run with the layer
+switched off, and shams with the same shape and parameters but scrambled information. If a sham
+does almost as well, the gain came from extra parameters, not from what the layer computes.
+
 ## Open questions
 
 - Which additional fundamentals deserve their own pages next: initialization, normalization, regularization, or batching/data pipelines?
 - How much of modern model behavior is still well explained by these fundamentals versus by scale-specific phenomena?
 - For which network sizes and tasks can reasoning-written weights compete with gradient training, and is that competition mostly against weak baselines?
+- Does the insertion-timing effect (late-inserted layer beating the same layer from step 0) hold across seeds, tasks and model sizes, and is there a rule for when to add a component?
 
 ## Related pages
 
 - [[Yingru Li - The Gradient Is a Covariance]]
 - [[Reinforcement Learning]]
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
 - [[Mechanistic Interpretability]]
 - [[The Pocket - PocketFlow Tutorial Docs]]
 - [[The Pocket]]

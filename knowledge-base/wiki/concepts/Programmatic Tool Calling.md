@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-26-alex-zhang-speculative-programmatic-tool-calling
   - src-2026-08-24-openai-builders-guide-gpt-5-6
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-01-philipp-schmid-code-mode
 status: active
 ---
 
@@ -86,17 +87,54 @@ access does not bound what the tools called inside it can do, and the post says 
 program is approved before it runs. The reliability claim — loops in code cannot "be lazy and drop a
 case" — also only holds if the model wrote the loop correctly.
 
+## One tool on the model surface: Code Mode
+
+[[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]] restates this page's strong form as
+a convergence claim: harnesses are collapsing their catalog into a single `exec(code)` tool, which he
+calls **Code Mode (or Programmatic Tool Calling)**. His framing adds a history this page lacked. Tool
+search and progressive disclosure solved catalog size, but left standard calling at "*one* action per
+turn"; Code Mode targets the round trip that remains. He names three enablers — models "trained
+heavily on code", providers "post-training models for Code Mode", and MCP servers that ship an
+`outputSchema`, so a script can chain Tool A into Tool B before seeing runtime output — none of which
+the essay measures.
+
+The essay makes the host side concrete. Tool schemas are compiled into compact TypeScript declarations
+rather than "80 separate JSON Schema tool objects"; a large catalog can stay behind tool search or an
+`ALL_TOOLS` map inside the sandbox; and explicit helpers decide what returns: `text()`, `image()`, and
+`audio()`, with "only what is passed here" entering the context, and `store()` / `load()` for state
+outside it. That turns Factory's capped printed output into a declared return channel, and adds
+multimodal results, which a shell cannot return.
+
+It also gives a partial answer to the approval question below. Every `await tools.*` call crosses a
+bridge where the host "can inject OAuth tokens outside the sandbox, validate schemas, or pause for user
+confirmation on destructive calls". Approval can therefore attach to individual calls inside a running
+program without approving the whole program up front — though a paused script holds partial side
+effects, and the essay does not say how destructive calls are identified. On language, Schmid prefers
+JavaScript or Python to `bash`: typed calls with `Promise.all` and `try`/`catch`, and no "CLI
+exploration tax" of `--help` probing. That is an experience-based argument, not a comparison.
+
+The essay's evidence for adoption needs a correction. It says "Factory switched Droid 1.0 to Code Mode,
+improving their Terminal-Bench 4 accuracy by +3.5 points and cutting model spend by 15%." In
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]], **3.5** points is Droid's margin over
+Codex on GPT-6.1 Sol in a whole-harness comparison, and **15%** is Script mode's reported cost saving
+on Claude Opus 5.5, graded above as a reported aggregate. Neither isolates a switch to code-as-action,
+so the vault keeps Factory's own figures and grading. Schmid
+closes with "Not necessarily" to his title: tools, CLIs, and Agent Skills built for `bash` and
+human-readable text may need rework before they fit a typed code surface.
+
 ## Open questions
 
 - Where is the boundary? Some tools genuinely want a constrained schema — irreversible actions, anything with an approval gate. Does PTC mean *all* tools become functions, or that a code tool sits alongside a small set of governed JSON tools?
 - How should approval work when the unit of action is a program? Approving a program is approving everything it might do; approving each call inside it forfeits the composition benefit.
 - Does PTC shift the model-capability bar? Writing correct multi-step programs is harder than filling a schema, which may make it a frontier-model-only pattern and worsen the tiering asymmetry described in [[Reasoning Trace Privacy]].
-- Language choice is unsettled — current implementations span Python, bash, and Bun, with no evidence about which suits which harness.
+- Language choice is unsettled — current implementations span Python, bash, and Bun, with no evidence about which suits which harness. Schmid's case for JavaScript or Python over `bash` is qualitative.
 - If most Scripts are small and the savings sit in the **12.5%** that make six or more calls, should a harness
   steer models toward Script only when a step is predicted to fan out, rather than by default?
 
 ## Related pages
 
+- [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
+- [[Philipp Schmid]]
 - [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
 - [[Factory AI]]
 - [[Tool Roster Economics]]

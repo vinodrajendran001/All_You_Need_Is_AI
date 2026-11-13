@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, reinforcement-learning, reward, training, alignment, llm]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-10-26-wong-et-al-graft
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-08-alex-wang-reasoning-pathfinding
 status: active
 ---
 
@@ -490,3 +491,4 @@ never flagged. See
 - [[Synthetic Data Flywheel]]
 - [[Automated AI Research]]
 - [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]
+- [[Alex Wang - What Objective Is Reasoning Solving]]

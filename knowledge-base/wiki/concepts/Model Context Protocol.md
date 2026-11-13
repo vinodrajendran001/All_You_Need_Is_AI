@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-10-28-bytebytego-uber-mcp-gateway
   - src-2026-11-04-axjns-agents-share-work
   - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-01-philipp-schmid-code-mode
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
 status: active
 ---
 
@@ -47,6 +49,16 @@ On startup, the client connects to available servers, asks each to describe its 
 ## Relationship to function calling
 
 MCP does **not** replace function calling. Function calling is how the model signals it wants to use a tool. MCP standardises how tools are described, discovered, and invoked so that the same tool works across any compliant model. They are complementary layers.
+
+Declared outputs change what the protocol is for. [[Philipp Schmid - Why Agents Are Soon Only Going to
+Have 1 Tool]] notes that MCP servers "increasingly ship" an `outputSchema` alongside `inputSchema`, a
+field he links in the MCP **draft** specification. A model that knows a tool's return type can write a
+script that feeds Tool A's result into Tool B "*before* seeing runtime output", which is what lets a
+harness compile a server's tools into typed functions inside one code-execution tool (see
+[[Programmatic Tool Calling]]). Under that design MCP still describes and transports the tools, but the
+model no longer calls them one at a time; the protocol's schemas become the type declarations of an
+API the model programs against. The essay asserts the trend without counting servers, and a draft field
+may still change.
 
 ## Production example: Figma’s design↔code workflow
 
@@ -149,6 +161,29 @@ dynamic discovery in the earlier account, these are described parts of Uber's de
 secondary source still gives no controlled latency/security result or immediate policy-
 revocation bound for the periodically refreshed proxies.
 
+## A gateway is only a control point if the server cannot be reached around it
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] gives the vault
+a complete, open-source wiring of MCP behind AgentCore Gateway. The repository's Python MCP server runs
+as its own AgentCore Runtime over streamable HTTP, and Gateway gives every agent "one MCP endpoint in
+front of every tool", alongside a Lambda tool that receives its name in the client context as
+`<target>___<tool>`. Rastogi inspects the resulting catalog with MCP Inspector.
+
+The design point is that the gateway's guarantees depend on reachability. "Cedar policy only covers
+traffic that goes through Gateway", so the MCP server's runtime has a resource policy that "denies
+everyone except the gateway role", only the gateway role may invoke the tool Lambda, and an agent's own
+IAM role has **zero** tool permissions. The catalog split recorded above becomes per-user: in `ENFORCE`
+mode `tools/list` shows only what the caller may use, so the agent is rebuilt per request rather than
+per process. Policy is also tied to the catalog at deploy time: the policy `depends_on` the gateway
+targets, and a rule naming `tickets___close_ticket` fails validation if that target is missing.
+
+Identity is where Part 2 refines Part 1. For the platform's own MCP server and Lambda, Gateway calls the
+tool with its own role and a request interceptor stamps the user onto the call — "The gateway vouches
+for the user to a tool it trusts" — so the tool never sees the user's token. On-behalf-of token exchange
+is reserved for third-party, OAuth-protected APIs. That is simpler to build, but it makes the gateway
+and interceptor the trust anchor for every owned tool. The account is a single practitioner's repo with
+a fictional company and no measurements.
+
 ## MCP can expose shared state, but it does not define who owns the work
 
 [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]] uses MCP as a
@@ -176,6 +211,9 @@ a design with an evaluation plan, not as a tested MCP server.
 
 ## Related pages
 
+- [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
+- [[Programmatic Tool Calling]]
 - [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
 - [[axjns.dev - Agents Need Somewhere to Share Their Work]]
 - [[Multi-Agent Coordination]]

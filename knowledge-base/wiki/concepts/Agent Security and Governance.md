@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -55,6 +55,7 @@ source_ids:
   - src-2026-11-04-axjns-celln-deepseek-benchmark
   - src-2026-11-04-axjns-celln-execution-lease
   - src-2026-11-04-axjns-post-kubernetes-genai
+  - src-2026-10-10-0xcodila-rea-reverse-engineering
 status: active
 ---
 
@@ -721,6 +722,54 @@ same separation into shared multi-agent state:
 
 All four pieces are design arguments or a single demo run. None reports an attack evaluation.
 
+## A dual-use capability whose use boundary is a disclaimer
+
+[[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]] describes REA ("Reverse
+Engineer Anything"), an MCP server and CLI that lets coding agents inspect native apps, Electron apps,
+websites, Android packages, firmware, and smart-contract bytecode, then explain a feature with evidence.
+For this page it is a capability whose lawful and unlawful uses run through the same tools. Lawful uses
+include audit, interoperability, and preservation. Unlawful uses include cracking paid features and
+publishing decompiled source.
+
+The controls the post states are about the operator's own machine, not about the target:
+
+- **Local execution.** "Your apps never get uploaded anywhere."
+- **Approval before configuration changes.** Setup shows a plan of every change, "Nothing changes until
+  you approve", and backs up the existing agent configuration. This is the approval-as-policy pattern
+  above, applied to installation rather than to analysis.
+- **A read-only diagnostic.** `doctor` "only checks things, it never changes anything".
+- **Bounded runtime experiments.** A guided step, `prepare_bounded_process_capture`, plans "a safe,
+  limited runtime experiment before you run anything".
+- **Stated limits.** REA reads only what is on the machine and cannot reach server-side code. It
+  supplies no commercial disassembler licence, and "cracked copies are not allowed". The agent "may
+  refuse" some firmware and console targets under the model's safety rules.
+
+The boundary on *what* may be analysed is a disclaimer. REA is for "lawful research, education,
+interoperability, software preservation, and software you own or are allowed to examine". The post
+describes no mechanism that checks ownership or permission. The only enforcement point it names is
+model refusal, which it lists as a limitation rather than a safeguard. Under the "test controls, do not
+infer them" rule above, none of these controls is tested in the source.
+
+The demand the disclaimer has to hold back is visible in the same post. Its title promises to "Get
+Anything for FREE". It quotes one user claiming to use TradingView's premium indicators after reverse
+engineering the app, and another who decompiled a purchased Steam game to C# in under 30 minutes. Its
+own "honest take" says cracking paid features "gets you sued" and tells readers "Don't crack it.
+Rebuild it." The framing and the disclaimer point in opposite directions. Any governance would have to
+sit in the gap between them, and the post supplies none.
+
+The same capability serves defence. The post's examples include an Android-package audit of
+permissions, tracking libraries, and contacted domains; malware triage, such as the fake 113 GB "GTA 6
+build" found to be malware; and contract-bytecode checks for mint, blacklist, pause, or owner-only
+transfer functions. Restricting the tool would restrict these too.
+
+The legal framing is the author's, not legal advice, and this vault records it only as the post's
+claim. It covers clean-room design as two separate teams, one documenting behaviour and one building
+from that description; *Sega v. Accolade* (1992); *Sony v. Connectix* (2000); and Sony's April 2011
+settlement with George Hotz. The post does not address whether one agent session that both inspects a
+binary and writes the replacement preserves the separation clean-room design depends on. It also does
+not address licence terms, anti-circumvention law, or jurisdictions beyond those cases. REA's
+showcases are first-party, and the cited third-party rebuilds are not said to have used REA.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -757,9 +806,14 @@ All four pieces are design arguments or a single demo run. None reports an attac
 - An only-route guarantee, whether runtimes accept calls only from the gateway or a DPU sits on the
   node's only network path, is a wiring claim. What test shows that no second route exists, and who
   reruns it when the deployment changes?
+- For a dual-use tool such as REA, whose use boundary is a disclaimer and whose only named enforcement
+  point is model refusal, which layer of the hierarchy should check that the operator owns or may
+  examine the target, and what evidence would it accept?
 
 ## Related pages
 
+- [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
+- [[Legacy Code Modernization with AI Agents]]
 - [[axjns.dev - Testing Celln's Boundary]]
 - [[axjns.dev - The Agent Environment Should Be a Lease]]
 - [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]]

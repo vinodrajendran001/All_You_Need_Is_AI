@@ -58,8 +58,7 @@ per process, because Cedar filters the tool list per user.
 The runtime uses LangGraph's `create_agent`, "the same free tool-calling loop" as Strands or the OpenAI
 Agents SDK; fixed workflows can set `graph_factory` instead. Choosing LangGraph over Strands loses
 "a tiny lil bit of AWS convenience": Strands has one-line A2A and Browser helpers, and AWS's
-config-only Harness is built on it. Raw LangGraph events are not forwarded to the UI because they are
-not JSON-safe; a small custom event protocol streams over SSE.
+config-only Harness is built on it.
 
 ### Sub-agents inherit the caller
 
@@ -116,14 +115,13 @@ raising, because "A model can read an error and recover." The gateway role holds
 which "kills the N-agents-times-M-tools secrets problem". One memory resource serves the platform,
 namespaced by user.
 
-Traces need CloudWatch Transaction Search plus `opentelemetry-instrument` and the AWS OTEL distro.
-Each agent gets two alarms: failed turns "3 or more in 5 minutes" and p90 latency over **60** seconds
+Traces come from `opentelemetry-instrument` and the AWS OTEL distro. Each agent gets two alarms: failed turns "3 or more in 5 minutes" and p90 latency over **60** seconds
 for **15** minutes. Thumbs up/down feedback is logged keyed by session id, "the join key to traces and
 eval results", later usable to check "whether your LLM judges agree with your users". Online evaluation
 samples **10%** of sessions with built-in LLM judges. CloudWatch struggles with "why did the agent pick
 that tool on turn four?", so the OTEL exporter can target LangSmith, Langfuse, or MLflow. `deploy.sh`
-validates definitions, writes `build/agents.json`, applies only the ECR repos, builds and pushes
-`linux/arm64` images while skipping existing tags, runs the full apply, and writes the UI config.
+validates definitions, applies the ECR repos, pushes `linux/arm64` images while skipping existing tags,
+then runs the full apply.
 
 ## Why it matters
 

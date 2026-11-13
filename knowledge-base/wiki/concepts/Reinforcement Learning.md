@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-08
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - reinforcement-learning
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-09-27-romero-policy-gradient-llms
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-08-alex-wang-reasoning-pathfinding
 status: active
 ---
 
@@ -146,6 +147,32 @@ such as a paper or a code library, receives no credit for the benefit. Both poin
 first-party post whose full paper is still pending. See [[Long-Horizon Credit Assignment]] and
 [[Agentic Reinforcement Learning]].
 
+## With a binary reward, RL is amortized search over the model's own samples
+
+[[Alex Wang - What Objective Is Reasoning Solving]] reads Romero's estimator in its simplest setting.
+When the reward is 1 for an accepted answer and 0 otherwise, failed samples contribute nothing to
+`(1/N) sum_i R(y_i) grad log p_theta(y_i)`. What remains is the fine-tuning gradient on the successful
+samples, multiplied by the fraction that succeeded. Wang's statement is that **a REINFORCE step is a
+rejection-sampling fine-tuning step on the model's own successful paths, scaled by the current success
+rate**. STaR-style rejection sampling and RLVR differ less than their names suggest.
+
+His reading is that RL **amortizes** search. It spends heavy compute finding good paths, then trains
+the model to produce them directly so that later queries need fewer samples. A footnote links this to
+AlphaZero's tree search, expert iteration, and the simulators that physicists and weather forecasters
+distill into networks. This gives a vocabulary for the Eric Jang contrast above. In AlphaGo the
+search produces improved targets at every state. In binary-reward RL for LLMs, the only "search" is
+sampling, and the only improvement signal is which whole samples succeeded. *That comparison is the
+vault's reading, not Wang's.*
+
+Two limits keep this narrow:
+
+- **It does not contradict Li.** Because the score has zero mean, the expected success-only gradient
+  equals the covariance form above, so the contrast with failures is present in expectation. The two
+  views differ in how they describe a single noisy estimate, not in the expected update.
+- **It covers only the simplest recipe.** Wang derives it for plain REINFORCE with a binary reward. He
+  does not treat baselines, group normalization, KL terms, or PPO-style clipping, and the capture lost
+  his equations. See [[Reward Design for RL]] and [[LLM Reasoning]].
+
 ## Open questions
 
 - Which RL branches deserve their own pages first as more sources are ingested?
@@ -164,6 +191,7 @@ first-party post whose full paper is still pending. See [[Long-Horizon Credit As
 
 ## Related pages
 
+- [[Alex Wang - What Objective Is Reasoning Solving]]
 - [[General Reasoning - How to Train a Swarm]]
 - [[General Reasoning]]
 - [[Yingru Li - The Gradient Is a Covariance]]

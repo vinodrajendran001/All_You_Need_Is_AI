@@ -130,7 +130,8 @@ equally trained model.
 - **How readers disambiguate.** Neuron L18_E219_N55 has two unrelated modes, oral surgery and marine
   environments, yet writes one output direction. Its downstream readers receive it through their
   up-projection while context "primers" drive their gate, so a reader fires only for its mode. The
-  evidence is two circuit case studies.
+  evidence is this one neuron's circuit, shown in both contexts; the section heading calls it "two
+  circuit case studies".
 
 ### Descriptions tested four ways
 

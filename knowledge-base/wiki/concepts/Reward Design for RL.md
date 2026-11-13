@@ -366,6 +366,30 @@ happens only among coordinates whose Fisher permits movement. A reward indiffere
 alternatives, such as Li's *tea* and *coffee*, gives zero expected gradient to the parameters that
 only distinguish them. The sparsity measurements motivating the post are secondhand.
 
+## Scaling RL searches the verifier for its mistakes
+
+[[Alex Wang - What Objective Is Reasoning Solving]] reaches Romero's equivalence independently: "a
+REINFORCE step is a rejection-sampling fine-tuning step on the model's own successful paths, scaled by
+the current success rate". He then adds what the two sections above lack, a **two-sided account of
+reward hacking**:
+
+- **An imperfect verifier** accepts some wrong answers and rejects some right ones.
+- **An imperfect sampler** fails to stay away from the shortcut regions that open up.
+
+Scaling RL with more and longer samples "fuzzes" the verifier more extensively, which makes it more
+likely to find a misspecified region. Once a shortcut is found, training pushes the model toward it.
+
+*Vault reading:* This follows from the imitation structure above. Under a 0/1 reward, a wrong answer
+the verifier accepts is reinforced exactly like a true success, and nothing in the update tells them
+apart. So the hacking risk grows with the verifier's false-accept regions as sampling scales, not only
+with its average accuracy. This is the other side of the Verifier's law recorded above. Verifiability
+makes a task trainable, and the verifier's blind spots then become a search target.
+
+Wang draws one more design consequence. Because the verifier checks only the answer, nothing rewards a
+faithful chain of thought, and meaningful traces would need a changed reward or objective. See
+[[Chain-of-Thought Monitoring]] and [[LLM Reasoning]]. The essay is conceptual. It covers plain
+REINFORCE with a binary reward, and the capture lost its equations.
+
 ## Calibration rewards are one route, not a prerequisite for probabilities
 
 [[Sebastian Raschka - Language Models for Text Classification - From Bag-of-Words to Jev]] discusses

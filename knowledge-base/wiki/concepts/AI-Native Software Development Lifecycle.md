@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - sdlc
@@ -20,6 +20,8 @@ source_ids:
   - src-2026-10-14-maevyn-decoherence-trap
   - src-2026-11-04-x-town-square-rebuild
   - src-2026-10-27-anthropic-agents-judgment-calls
+  - src-2026-11-10-bytebytego-linkedin-ai-code-review
+  - src-2026-11-11-bytebytego-github-copilot-rust-port
 status: active
 ---
 
@@ -249,6 +251,37 @@ verify a change against a reference; the Plan and Design artifacts (`intent.md`,
 choices with several defensible answers, where an agent's framing can settle the decision without
 anyone noticing. See [[Human Deferral to AI]].
 
+## Review is the next constrained stage, and whole-system confidence follows
+
+[[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] reports the playbook's
+bottleneck shift as an operating fact at one company. Once coding agents write a change in minutes,
+review becomes the slow stage. LinkedIn's in-house reviewer covers more than **40,000** pull requests
+in a typical week and usually posts before a human opens the change. It is **partial automation**:
+the AI takes the first pass, the author (possibly an agent) responds, and a human still approves.
+LinkedIn's failed vendor pilot sharpens this page's "controls stop matching reality" point. A hosted
+reviewer is a control whose prompts, harness, and update timing belong to someone else, so the
+organisation cannot test a change to its own gate before engineers see it. The design LinkedIn kept
+(layered rules, independent reviewers, verification, a judge-gated release process) is recorded in
+[[AI Code Review]].
+
+Its forward claim matches the throughput-versus-coherence tension above. Balaji Srinivasan expects the
+next bottleneck to be **confidence in the quality of the software as a whole**, with review remaining
+a bottleneck until automated validation exists, and LinkedIn is aiming AI at deployment, monitoring,
+and incidents because "the faster we are pushing out code, the faster we are potentially breaking
+production." Its planned **risk heat map**, which scores regions of a diff by predicted risk, is a
+finer-grained form of the risk tier above: scrutiny follows predicted blast radius, not authorship.
+LinkedIn reports **63.9%** comment acceptance but no cost, latency, or human-only comparison, so the
+throughput gain is asserted rather than measured.
+
+[[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] shows the
+same loop at one-developer scale. A coordinating agent spread a **30K**-line component across **15**
+child sessions. Builds had to be serialized after parallel builds overwhelmed a laptop. Review agents
+and bots looped on every commit until clean, while humans kept architecture, interface contracts, and
+risk. It adds one artifact rule this page lacked: **protected tests**. The end-to-end suite was "the
+only reference for expected behavior", and agents were not allowed to weaken it to pass. Its **$120K**
+token bill is the kind of cost-per-outcome number Faik asks for, but without a non-agent baseline or
+costed developer time. The relay is first-party GitHub reporting.
+
 ## Open questions
 
 - Which parts survive translation off Claude Code? The artifact loop and act-time enforcement look portable; the specific `CLAUDE.md`/hooks/subagent surface does not.
@@ -265,6 +298,8 @@ anyone noticing. See [[Human Deferral to AI]].
 - Nothing establishes whether Anthropic's falling revert share and the Harvard sample's rising review
   burden are contradictory or simply describe organisations at different levels of release-control
   maturity. No shared measure exists to compare them.
+- LinkedIn expects review to stay the bottleneck until automated validation exists. What validation
+  would be sufficient to move a change past review, and which stage owns it?
 
 ## Related pages
 
@@ -290,3 +325,6 @@ anyone noticing. See [[Human Deferral to AI]].
 - [[X Engineering - Rebuilding the Global Town Square from Scratch]]
 - [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
 - [[Human Deferral to AI]]
+- [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]]
+- [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]
+- [[AI Code Review]]

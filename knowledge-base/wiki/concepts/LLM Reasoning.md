@@ -224,7 +224,7 @@ Three of the page's themes follow from that frame:
 *Vault reading:* Wang also frames RL as **amortizing** search. The model spends compute finding good
 paths and is then trained to produce them directly. In the simple case he derives, the gradient comes
 only from successes the model already sampled. That places binary-reward RL nearer the "amplify" side
-of the first open question, but it does not settle it, because the same training generalizes to
+of the first open question, but it does not settle it, because the same training can generalize to
 unseen prompts. The derivation uses plain REINFORCE with a binary reward, and the capture lost its
 equations. It is a conceptual frame, not new evidence. See [[Reinforcement Learning]],
 [[Reward Design for RL]], and [[Test-Time Scaling]].

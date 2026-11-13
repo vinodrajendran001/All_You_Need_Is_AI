@@ -53,14 +53,14 @@ which is the contrast the essay builds on; see [[Robot Training Data]].
 ## Anthropic's version of the Capabilities Index
 
 [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] reports that [[METR]]'s
-assessment of AI R&D acceleration at [[Anthropic]] rests mainly on AECI, Anthropic's version of the
-Epoch Capabilities Index computed on internal benchmarks. Charles Foster (METR) notes that each ECI
-point multiplies a model's odds of success on every benchmark, and that historically each 5-point
-increase corresponded to roughly a doubling in time horizon. Anthropic's AECI has grown 1.9x its
-pre-October 2025 rate (95% CI 1.5-2.8x), or 1.4x with non-Anthropic models included. This is a
-downstream use of Epoch's method, not Epoch's public index, and the capture has no Epoch statement.
-It bears on [[Ramez Naam]]'s forecast, which names the public index (see
-[[Recursive Self-Improvement]]).
+assessment of AI R&D acceleration at [[Anthropic]] centers its public case on AECI, Anthropic's
+version of the Epoch Capabilities Index computed on internal benchmarks; Zvi notes that the
+information METR relies on most is largely redacted. Charles Foster (METR) notes that each ECI point
+multiplies a model's odds of success on every benchmark, and that historically each 5-point increase
+corresponded to roughly a doubling in time horizon. Anthropic's AECI has grown 1.9x its pre-October
+2025 rate (95% CI 1.5-2.8x), or 1.4x with non-Anthropic models included. This is a downstream use of
+Epoch's method, not Epoch's public index, and the capture has no Epoch statement. It bears on
+[[Ramez Naam]]'s forecast, which names the public index (see [[Recursive Self-Improvement]]).
 
 ## Related pages
 

@@ -84,8 +84,8 @@ equally trained model.
 
 - Q3 activations are about one-third of all neuron activations. Ablating them does less damage than
   ablating the gate-up regimes, with one exception.
-- **The exception.** On 24 GSM8K problems, removing Q3 cut reasoning from **1,550** tokens on
-  average to **176**.
+- **The exception.** On 24 GSM8K problems selected because removing Q3 curtailed their reasoning,
+  reasoning fell from **1,550** tokens on average to **176**.
 - **Patching tests.** Patching *real* Q3 trajectories back in kept reasoning long in most runs:
   - time-reversed: **13/17**;
   - taken from another problem and reversed: **10/15**;
@@ -150,21 +150,23 @@ on training texts. All tests below are on held-out documents.
   size, against **59%** for the neuron's gate inputs. Giving the simulator a summary of input
   activity and attention at each token raises the restored share by about 10%.
 - Jev is described as a "non-autoregressive decision model"; it is used here as a judge and
-  simulator, not trained for the task.
+  simulator. The capture does not say how it was trained.
 - **Leakage checks.** About **2.6%** of firings repeat a context; removing them changes headline
-  results by at most **0.002**. Short snippets give AUROC **0.927**, rising to **0.978** with 250
-  preceding tokens.
+  results by at most **0.002**. A separate context-limit test reruns the model itself on the short
+  snippet: separating firings from controls gives AUROC **0.927**, rising to **0.978** with 250
+  preceding tokens. The text judge sees only the short snippet.
 
 ### A counterexample examined in another model
 
-- The authors examine "the most popular counterexample" to the essay: a Colorado neuron in
-  **Qwen3-32B** (L55/N11703) that also fires on Tornado, a Python web framework. About **98.8%** of
-  its causal effect comes from Colorado, mountain or place text.
+- The authors examine "the most popular counterexample we could find" to the essay: a Colorado
+  neuron in **Qwen3-32B** (L55/N11703) that also fires on Tornado, a Python web framework. About
+  **98.8%** of its causal effect comes from Colorado, mountain or place text.
 - **The Tornado link is causally real.** Asked where Tornado was developed, Qwen3-32B gives
   Colorado **30%** and the correct California **0.7%**. Suppressing the neuron moves these to **1%**
   and **4.7%**.
-- **Tornado is not one of many hidden jobs.** Over 100M tokens the neuron fired strongly **3,812**
-  times, **98.5%** of them on places.
+- **Tornado is not one of many hidden jobs.** Over 100M tokens of ordinary text the neuron fired
+  strongly **3,812** times, **98.5%** of them on places; on a code corpus, **98%** of strong firings
+  were on Tornado or code that calls it.
 - **Possible origin.** The authors suspect Qwen3-32B was initialized by copying Qwen3-14B layers,
   because many neurons align semantically 24 layers apart.
 

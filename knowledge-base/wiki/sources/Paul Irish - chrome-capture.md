@@ -24,12 +24,12 @@ The README for `chrome-capture`, a small library and CLI in the `paulirish/chrom
 repository, records a Chrome tab at 60 to 120 frames per second, up to 2160p, straight to an AV1
 `.mp4` with optional tab audio and no ffmpeg. It builds on `Page.startScreenRecording`, a Chrome
 DevTools Protocol (CDP) method available from Chrome 153 that landed in September 2026. Unlike the
-decade-old screencast path, which ships JPEG frames over the protocol for an external encoder,
-Chrome now encodes in-process and writes the file as it goes. The README gives a CLI, an API that
-accepts Playwright, Puppeteer, or raw CDP handles, a Playwright Test fixture that records every test,
-and a benchmark against Playwright's `recordVideo`. It also verifies its own frame-rate claims by
-decoding a frame counter from the output instead of trusting the file's metadata. The README is
-unsigned; the author is inferred from the repository owner.
+decade-old screencast path, which ships JPEG frames over the protocol for an external encoder, Chrome
+now encodes in flight and writes the file as it goes. The README gives a CLI, an API that accepts
+Playwright, Puppeteer, or raw CDP handles, a Playwright Test fixture that records every test, and a
+benchmark against Playwright's `recordVideo`. It also verifies its own frame-rate claims by decoding
+a frame counter from the output instead of trusting the file's metadata. The README is unsigned; the
+author is inferred from the repository owner.
 
 ## Key claims
 
@@ -73,7 +73,8 @@ The README's comparison uses the same **6.4 s** UI replay at **1280x800** on an 
 | Final file size | **480 KB** | **330 KB** |
 | PSNR vs lossless screenshot | **32 dB** | **34 dB** |
 
-At 2160p, stopping takes **91 ms** versus **20.5 s**, and each test finishes about **10 s** sooner.
+At 2160p, stopping takes **91 ms** versus **20.5 s**. In the benchmarked replay, the whole test
+finishes about **10 s** sooner.
 
 ### Bitrate and limits, measured from the output
 
@@ -110,8 +111,9 @@ recording.
 - **Single-machine benchmark.** All comparative numbers are from one M4 Max and one replay. The
   linked benchmark methodology is not captured, and Windows and discrete-GPU results are unknown.
 - **Reported figures to read carefully.** **60.4** unique fps exceeds the 60 Hz vsync it is said to
-  run at, which may be timing jitter; the README does not explain it. The measured **59.8 Mbps** at
-  2160p120 is below the stated **72 Mbps** target, which is consistent with VBR but not explained.
+  run at, which may be timing jitter; the README does not explain it. The **59.8 Mbps** reported for
+  the 120 fps runs is not tied to a resolution; it is below the **72 Mbps** 2160p120 target but
+  above the **18 Mbps** 1080p120 target, and the README does not explain it.
 - **Ecosystem claims are time-bound.** Playwright's adoption is speculation, and Puppeteer's
   `page.record()` is experimental.
 - **"Steal the implementation"** with no license in the capture: reuse terms need checking at the

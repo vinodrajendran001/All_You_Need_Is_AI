@@ -176,10 +176,10 @@ The same page tests the embodiment gap that the table assigns to cheap routes:
 
 - **Human and handheld demonstrations.** Tasks demonstrated only by people wearing head and wrist
   cameras, or only with a handheld UMI gripper, ran on robots that had only task-agnostic
-  teleoperation data for their own bodies. On a conveyor-sorting task taught only with UMI,
-  GR00T 2 sorted **86%** of **50** items, against **28%** for GR00T 1.7 and **0%** for π0.5. For four
-  chemistry-lab tasks taught only by human demonstration, NVIDIA says GR00T 2 "succeeds on all four
-  tasks" over **20** trials each, without per-task rates in prose.
+  teleoperation data for their own bodies. On a conveyor-sorting task taught only with UMI, GR00T 2
+  sorted **86%** of **50** items, against **28%** for GR00T 1.7 and **0%** for π0.5. For four tasks
+  taught only by human demonstration, three of them chemistry-lab procedures, NVIDIA says GR00T 2
+  "succeeds on all four tasks" over **20** trials each, without per-task rates in prose.
 - **Little target data.** Five demonstrations per task, under **3 minutes** of robot data, lifted
   success on **50** tasks to **95%**.
 - **Simulation as data and as a scorer.** Adding simulated episodes raised GR00T 2 Turbo's

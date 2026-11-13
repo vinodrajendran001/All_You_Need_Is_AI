@@ -35,9 +35,9 @@ The post is a conceptual, teaching-style essay with no new experiments.
 
 - Many different paths can reach the same correct answer. Wang's example is adding the numbers one
   at a time versus pairing them from the outside in, both arriving at **55**.
-- The **success probability** is the total probability of all sampled paths whose answers the
-  verifier accepts. It can be raised by many low-probability paths or by one high-probability path;
-  the objective does not distinguish them, though in practice one may want particular paths or
+- The **success probability** is the total probability of all paths whose answers the verifier
+  accepts. It can be raised by many low-probability paths or by one high-probability path; the
+  objective does not distinguish them, though in practice one may want particular paths or
   diversity.
 
 ### Two ways to raise it

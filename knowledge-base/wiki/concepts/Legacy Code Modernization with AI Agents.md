@@ -135,17 +135,17 @@ live version of each component existed. The wrappers were removed as more of the
 Decoherence still exists in this design, but it is confined to a bridge layer that is explicitly
 temporary rather than spread across coexisting implementations. Work followed the dependency order:
 helpers, then stateful components, then tools, model clients, and integrations, with session
-orchestration last. Behavior and algorithms were preserved and redesign deferred. GitHub's lesson,
-"translate first, redesign later", restates this page's parity-before-architecture order.
+orchestration last. Behavior and algorithms were preserved and redesign deferred. GitHub's lesson, to
+translate first and redesign later, restates this page's parity-before-architecture order.
 
 The oracle was the existing end-to-end suite. Review agents checked that those tests were unchanged,
 because they were "the only reference for expected behavior". This is Mistral's parity harness at a
 coarser grain: whole workflows rather than intermediate numerical state. The regressions show what a
 workflow-level oracle misses even when everything compiles. Whole numbers became decimals and broke
 some SDKs. Empty strings, time zones, and replacement libraries' error handling differed.
-Cancellation did not stop related work, resources were released too early, some features were only
-partly migrated, and lengthy work on Node's main thread froze the interface. GitHub concedes more
-end-to-end coverage would have prevented more of these, but reports no regression count.
+Cancellation did not always stop related work, resources were released too early, some features were
+only partly migrated, and lengthy work on Node's main thread froze the interface. GitHub concedes
+more end-to-end coverage could have prevented some more of these, but reports no regression count.
 
 The reported scale does not answer this page's open question about non-agent baselines. It cites
 **430K** lines of production TypeScript (an early estimate was **130K**, and the introduction's

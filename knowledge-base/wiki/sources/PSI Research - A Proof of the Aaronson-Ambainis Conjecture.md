@@ -27,10 +27,10 @@ computers on random inputs. PSI says the system had a complete proof during the 
 that the Lean proof assistant accepted it, and that the system later improved the result twice, with
 Lean accepting the final version. If the result holds, quantum computers are at most polynomially
 faster on yes-or-no questions about random inputs. The post names the human contributors: one staff
-member scoped the problem, ran the system, prompted the model to draft the paper, reviewed it, and
-is responsible for its correctness, and two advisors audited the proof and the formalization. The
-announcement is first-party. The Stanford researchers who proved a special case in August 2026 are
-reading the proof and praise it, but the capture records no completed peer review.
+member scoped the problem, ran the system, prompted the model to draft the paper, reviewed it, and is
+responsible for its correctness; one advisor audited the proof, and another commented on the Lean
+formalization. The announcement is first-party. The Stanford researchers who proved a special case in
+August 2026 are reading the proof and praise it, but the capture records no completed peer review.
 
 ## Key claims
 

@@ -164,13 +164,13 @@ first-party and comes partly from vision models rather than LLMs.
   [[Curt Tigges et al - Neurons as an Interpretable Basis]], on Qwen3.6-35B-A3B, double-negative
   (Q3) activations are about one third of all neuron activations. They are rare among the most
   causal cells: **1-8%** of the top 100, against **35-36%** of all routed cells. Ablating them does
-  less damage than ablating the other regimes, with one exception: on 24 GSM8K problems, removing
-  them cut reasoning from **1,550** tokens on average to **176**. Patching real Q3 activity back in
-  kept reasoning long even when it was time-reversed (**13/17**) or taken from another problem
-  (**10/15**). The same quarter of it as a contiguous block did not (**1/17**). The authors suggest
-  Q3 works through "aggregate properties" of its activity and leave the mechanism to future work.
-  The essay's **4%** (neurons whose top activations are a sign-flipped leak) and this one-third
-  share are different measures.
+  less damage than ablating the other regimes, with one exception: on 24 GSM8K problems selected
+  because removing them curtailed reasoning, reasoning fell from **1,550** tokens on average to
+  **176**. Patching real Q3 activity back in kept reasoning long even when it was time-reversed
+  (**13/17**) or taken from another problem (**10/15**). The same quarter of it as a contiguous
+  block did not (**1/17**). The authors suggest Q3 works through "aggregate properties" of its
+  activity and leave the mechanism to future work. The essay's **4%** (neurons whose top activations
+  are a sign-flipped leak) and this one-third share are different measures.
 - **A reader's gate can select which meaning of an upstream neuron it hears.** The same paper's
   worked example is a neuron with two unrelated modes, oral surgery and marine environments, that
   writes one output direction. Downstream readers take it in through their up-projection, while
@@ -228,7 +228,7 @@ algorithms written in as code. Whether such edits help large pretrained models i
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
 - Which efficiency techniques should be treated as architectural essentials versus implementation details?
 - If attention-variant design is really data-reuse design, is the reuse ladder exhausted at "one latent serves as both K and V," or is there a further rung?
-- Would removing SwiGLU's double-negative regime change capability, legibility, or both, and why does network-wide ablation of it lower some reasoning benchmarks? The companion paper ties it to reasoning length (removal cut GSM8K reasoning from 1,550 to 176 tokens) but leaves the mechanism open.
+- Would removing SwiGLU's double-negative regime change capability, legibility, or both, and why does network-wide ablation of it lower some reasoning benchmarks? The companion paper ties it to reasoning length (on 24 GSM8K problems selected because removal curtailed reasoning, it fell from 1,550 to 176 tokens) but leaves the mechanism open.
 - Do architecture edits made during training, such as gated code layers or an exact-match lookup beyond the attention window, help beyond small models, and what do they cost at inference time?
 
 ## Related pages

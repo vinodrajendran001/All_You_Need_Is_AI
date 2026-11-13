@@ -136,8 +136,8 @@ ways. On the vault's reading, it is the values counterpart of the point above fr
 [[Mark Russinovich - Fool's Gold]] that some controls cannot be enforced after weights are
 distributed. A releasing lab cannot fix its model's stance, and a re-aligning lab cannot prevent the
 next fine-tune either; [[Defensive Deception for Open Models]] explores the safety version of that
-problem. All of Arete's measurements come from one Nous-built evaluation with one LLM judge, and no
-independent rerun exists.
+problem. All of Arete's values measurements come from one Nous-built evaluation with one LLM judge,
+and no independent rerun exists.
 
 ## Open questions
 

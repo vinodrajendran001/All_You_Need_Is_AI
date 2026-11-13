@@ -197,8 +197,8 @@ A task-success reward is the sparse, binary case analysed above: a group whose r
 all succeed is silent. On the vault's reading, starting from policies that already succeed 40–76% of
 the time keeps most groups mixed; NVIDIA does not discuss this. The page does not say how groups are
 formed on hardware, how many rollouts each update uses, how many real trials RL consumed, or what
-self-imitation adds beyond a two-point margin on the one task with per-method numbers. All results
-are first-party. See [[Robot Training Data]].
+self-imitation adds beyond a two-point margin on the one task whose per-method numbers are given in
+prose. All results are first-party. See [[Robot Training Data]].
 
 ## Related pages
 

@@ -220,11 +220,11 @@ qualitative rules into numbers.
 The post's longest-sequence table adds a less obvious point. Pipeline parallelism does not buy
 length, because under 1F1B scheduling the first stage holds activations for all layers.
 Recomputation is "the biggest single lever" (about 8x), and across two nodes it is context
-parallelism that doubles the length, to about **820K** tokens with full recomputation. Even then,
-"Long-context training usually runs out of time before it runs out of memory": at 310K tokens, one
-sequence needs about 1.5 minutes of attention compute on 8 H200s at 40% utilization. The author
-gives the estimates as "good to maybe ±30%". The post covers ring attention only, not the
-DeepSpeed-Ulysses variant recorded above.
+parallelism that doubles the length (about **53K** to **105K** tokens); with full recomputation it
+reaches about **820K**. Even then, "Long-context training usually runs out of time before it runs
+out of memory": at 310K tokens, one sequence needs about 1.5 minutes of attention compute on 8 H200s
+at 40% utilization. The author gives the estimates as "good to maybe ±30%". The post covers ring
+attention only, not the DeepSpeed-Ulysses variant recorded above.
 
 ## Expert parallelism measured on one cluster
 
@@ -248,10 +248,10 @@ this page's placement rule.
   parallelism 2. The authors credit the smaller memory footprint, which allowed less model
   parallelism. The handbook still recommends dropless training by default.
 
-Both sources describe Megatron's **parallel folding**, which gives attention and MoE layers separate
-layouts over the same GPUs. Xuewen Yang adds a trap: tensor parallelism without sequence parallelism
-makes both ranks dispatch the same tokens and doubles expert work, which Megatron rejects with an
-error. See [[Mixture of Experts]].
+Xuewen Yang describes Megatron's **parallel folding**, which gives attention and MoE layers separate
+layouts over the same GPUs, and adds a trap: tensor parallelism without sequence parallelism makes
+both ranks dispatch the same tokens and doubles expert work, which Megatron rejects with an error.
+See [[Mixture of Experts]].
 
 ## Open questions
 

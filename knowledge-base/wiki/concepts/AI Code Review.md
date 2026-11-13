@@ -46,8 +46,9 @@ evaluation and governance problem as much as a prompting one.
   responds, and a human approves. It says full automation is where "most labs are not there yet".
 - Anthropic's Claude Code team lets a classifier set the risk tier, which requires **0, 1, or 2**
   human approvals; "The change sets the tier, not the author", and "An agent's approval never counts
-  as a person's." The zero-approval tier means low-risk changes can merge on automated review alone,
-  which goes further than LinkedIn.
+  as a person's." The zero-approval tier lets low-risk changes from trusted authors merge once
+  automated review and security checks pass, unless a second classifier calls for a person. That
+  goes further than LinkedIn.
 - [[AI Builder Club - How to Review AI-Generated Pull Requests (2026)]] is stricter: a second model
   produces a worklist and never approves, and the submitter must be able to explain and own every line.
 - In [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time|GitHub's Copilot runtime port]],
@@ -112,7 +113,8 @@ findings. It found about **59%** of repeatedly flagged code predated the reviewe
 its one-round pass rate rose from **65%** to **78%**. LinkedIn suppresses at posting time and runs a
 daily acceptance trend report that decides which rules to disable. Both trade some recall for trust.
 LinkedIn's "against established patterns" filter in particular could hide a real bug in a widespread
-pattern, and neither source measures what suppression costs.
+pattern, and neither source reports what suppression costs; Anthropic says only that it A/B tested
+its filters on its own PRs.
 
 ### Where review goes next
 

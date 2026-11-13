@@ -83,8 +83,8 @@ memory gains. Every figure is GitHub's own, relayed from one GitHub Engineering 
 
 - **Behavior changes that still compiled:** whole numbers that became decimals and broke some SDKs;
   empty strings; time zones; replacement libraries with different error handling.
-- **State and coordination:** cancellation that did not stop related work; resources released too
-  early, leaving sessions stuck; features lost or only partly migrated.
+- **State and coordination:** cancellation that did not always stop related work; resources released
+  too early, leaving sessions stuck; features lost or only partly migrated.
 - **Integration:** Rust doing lengthy work on Node's main thread froze the interface; missing launch
   settings opened stray console windows on Windows. The count is only "a bunch".
 
@@ -93,7 +93,8 @@ memory gains. Every figure is GitHub's own, relayed from one GitHub Engineering 
 - In one trial, creating a client, completing one turn, and cleaning up fell from **5.25 seconds** to
   **292 milliseconds**, "almost 18 times" faster. Throughput rose from **7.55** to **120** session
   lifecycles per second (about 16x, derived). In a **10-client** test, peak private-memory increase
-  fell from **1383 MB** to **126 MB**. More gains are expected from redesigning around Rust.
+  fell from **1383 MB** to **126 MB**. More gains could come from redesigning parts of the runtime
+  around Rust.
 - Tokens cost about **$120K** for roughly **136 billion** tokens, mostly cached input, which is under
   $1 per million tokens (derived). Developer time is extra: others worked on integrations, packaging,
   builds, and reviews.
@@ -101,7 +102,8 @@ memory gains. Every figure is GitHub's own, relayed from one GitHub Engineering 
 ### Stated lessons
 
 - Instructions must be explicit; early requests sometimes ported only the central logic.
-- Strong end-to-end tests are a precondition, and more coverage would have caught more regressions.
+- Strong end-to-end tests are a precondition, and more coverage could have prevented some
+  more regressions.
 - Tests need protection, so agents cannot weaken a test or change an expected result to pass.
 - Translate first, redesign later; mixing the two adds issues, time, and token cost.
 

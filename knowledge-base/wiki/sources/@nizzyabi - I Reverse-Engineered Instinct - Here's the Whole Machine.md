@@ -132,8 +132,9 @@ versioning. The receipt problem is proposed for [[Agent Observability]].
   framing that the plumbing, not the model, is the hard part supports that pitch.
 - The "Moss Finch" result contradicts the relayed keyword-search account; the author offers two
   untested explanations.
-- A "don't save" request was not honored as deletion, and GPCA reportedly found early Gmail records
-  that could not be deleted (a deletion tool was later added). Retention controls are unverified.
+- A "don't save" request was not honored as deletion, and GPCA's write-up reports that an early user
+  found Gmail records he could not delete (and that a deletion tool was later added). Retention
+  controls are unverified.
 - Some tables and timelines are images, so not every figure is checkable; source links in the capture
   are mangled with an `x.com/nizzyabi/status/` prefix.
 - Venture-investor (677 messages), press, and testimonial claims are anecdotes, not measurements.

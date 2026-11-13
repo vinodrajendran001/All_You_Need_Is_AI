@@ -111,9 +111,9 @@ nothing yet connects to the **890 bytes per token** claim. See [[Inference Servi
 In [[DoubleAI - Can LLMs Redesign Themselves as They Train]], **DeepSeek-V4.1-Flash** (described as
 a 763B mixture-of-experts model, run without thinking mode) acts as the agent on itself. From its
 own graded solutions to **243** problems from the 2024 and 2025 contests, it chose a linear probe at
-seven deep blocks of its residual stream. The probe predicted about eight points of gain; the hidden
-AIME 2026 and HMMT February 2026 sets gave seven (**64%→71%**). First-party blog, single run
-reported.
+seven deep blocks of its residual stream. From held-out older problems, DeepSeek predicted the probe
+would add about eight points; the hidden AIME 2026 and HMMT February 2026 sets gave seven
+(**64%→71%**). First-party blog, single run reported.
 
 ## Open questions
 

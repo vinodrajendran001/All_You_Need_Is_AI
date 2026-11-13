@@ -43,9 +43,9 @@ removed "a majority of the evidence we found most informative". This is the vaul
 quantitative input to [[Recursive Self-Improvement]].
 
 **Model evaluator.** [[James Tillman - Two Kinds of Test-Time Scaling]] cites METR's report that
-compaction does not increase GPT-5.1-Codex-Max's time horizon. Tillman treats this as evidence
-against his own claim that compaction lets models use more compute than they were trained on (see
-[[Test-Time Scaling]]).
+compaction does not increase GPT-5.1-Codex-Max's time horizon. Tillman calls the evidence for that
+model ambiguous, because it also shows a large efficiency gain from further chain-of-thought on the
+UK AISI chart (see [[Test-Time Scaling]]).
 
 **Incident investigator.** [[OpenAI - The Hugging Face Incident and the Road Ahead]] reports that
 METR and [[Redwood Research]] published an independent investigation of the incident's alignment

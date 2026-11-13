@@ -133,23 +133,26 @@ MLP neurons of Qwen3.6-35B-A3B, a mixture-of-experts model:
 
 - **Sparsity.** Keeping only the top 320 of **4,096** routed neurons per token, ranked by
   |activation| × router weight, ablates **92.2%** of them and raises loss from **1.886** to
-  **1.940**. Random and bottom-ranked sets of matched size collapse the model.
-- **Few modes.** **69%** of neuron poles are dominated by one mode (at least 90% of the ablation
-  damage), and **47%** have only one. Multi-mode poles are common, though. For one two-mode
-  neuron, two circuit case studies show downstream readers taking it through their up-projection
-  while context drives their gate, so each reader fires only for its own mode.
+  **1.940**. In the per-expert version, keeping the top 64 raises loss by **0.066**, while a random
+  64 raises it by **2.328** and the bottom 448 by **2.701**.
+- **Few modes.** **69%** of neuron poles are dominated by one mode (at least 90% of the KL
+  damage), and **47%** have only one. Multi-mode poles are common, though. The paper's worked
+  example is one neuron with two unrelated modes, oral surgery and marine environments. Its
+  downstream readers take it in through their up-projection while context "primers" drive their
+  gate, so each set of readers fires only for its own mode.
 - **Testable descriptions.** Agent-written descriptions are scored on held-out text: detection
   **0.914**; text-only mode classification **0.707** against chance **0.290**; simulation
   recovering **73%** of an ideal reader's ceiling; and synthesized inputs beating the corpus maximum
   for **120 of 128** poles.
 
-The paper also compares neurons with random directions: **8** neurons recover as much function as
-**128-256** random directions. This is the matched random baseline the essay's argument needed.
+The paper also compares neurons with random directions: **8** neurons recover as much expert or
+layer function as **128-256** random directions. If neurons were not a privileged basis, random
+directions should have done about as well.
 It re-examines the most cited counterexample, a Qwen3-32B Colorado neuron that also fires on the
 Tornado web framework. The Tornado link is causally real: suppressing the neuron moves the model's
 "where was Tornado developed" answer away from Colorado. But **98.5%** of the neuron's strong
 firings are on places. The authors suspect the link comes from copying Qwen3-14B layers at
-initialization. Read against Cammarata's five causes, that would make it a training artefact
+initialization. Read against Cammarata's five causes, that would make it a training artifact
 rather than packing. That reading is the vault's, not the authors'.
 
 On the ladder above, the paper covers detection, description and use (through ablation damage). It
@@ -226,7 +229,7 @@ behavior-only baseline, the test [[Interpretability Evaluation]] asks for, was n
 
 A third party has since rerun the no-tools game prompts. In [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]], Qwen 3.8 27B, running locally on
 a laptop, named three of the four games (Pac-Man, Pong and Breakout) and mistook Freeway for a
-Pac-Man-like game. Each answer took 46 minutes to over an hour of reasoning. Kimi K3.1 Pro named
+Pac-Man-like game. Each answer with a reported time took 46 minutes to over an hour. Kimi K3.1 Pro named
 Breakout. This suggests the small-network task does not need a frontier model. But it is one run
 per game, the stated confidences are the model's own, and the post does not say whether the
 prompts reveal the candidate games. Willison's reading is deflationary: a sufficiently experienced
@@ -262,8 +265,8 @@ is first-party, unattributed, reports no seeds or error bars, and does not name 
   thresholds? The companion paper is now captured. It reports **69%** one-mode-dominated poles on
   Qwen3.6-35B-A3B, a different model and metric from the essay's roughly 90%, and it is still
   first-party.
-- Does gate-as-context disambiguation explain multi-mode neurons in general, or only the two
-  circuit case studies so far?
+- Does gate-as-context disambiguation explain multi-mode neurons in general, or only the one
+  worked example so far?
 - Does arbitrary packing appear anywhere at scale, for example in attention heads, the residual
   stream, or rare facts, or does Cammarata's developmental "circuit racing" argument hold?
 - If weak activations are cheap to remove in late layers but catastrophic to remove everywhere at

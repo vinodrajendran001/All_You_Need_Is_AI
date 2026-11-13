@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - reasoning
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-10-19-naam-million-agents-superintelligence
   - src-2026-10-15-cohere-agent-teams
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-09-tillman-two-kinds-test-time-scaling
+  - src-2026-11-08-alex-wang-reasoning-pathfinding
 status: active
 ---
 
@@ -300,8 +302,19 @@ to inference. See [[Embedded Evaluation]] and [[AI for Mathematical Discovery]].
 - **Does trained coordination survive scale-up?** Avalon-M1 trained collectives of at most **9** agents,
   while deployed swarms run to hundreds or thousands. Its authors call this "the village problem" and do
   not know what generalises.
+- **Where is the ceiling for agentic work?** Tillman's clean evidence of extrapolation is on competition
+  math, and the frontier-model evidence is weak or contrary. No source here measures N, the ceiling, or
+  the slope on an agentic task. For frontier models, Tillman says outsiders cannot, because labs do not
+  publish how training compute is spread across tasks.
 
 ## Related pages
+
+- [[James Tillman - Two Kinds of Test-Time Scaling]]
+- [[Alex Wang - What Objective Is Reasoning Solving]]
+- [[METR]]
+- [[Context Engineering]]
+- [[Embedded Evaluation]]
+- [[AI for Mathematical Discovery]]
 
 - [[General Reasoning - How to Train a Swarm]]
 - [[General Reasoning]]

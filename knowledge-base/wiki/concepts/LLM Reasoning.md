@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - reasoning
@@ -18,6 +18,7 @@ source_ids:
   - src-2026-10-28-sick-on-policy-self-training
   - src-2026-11-04-general-reasoning-train-swarm
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-08-alex-wang-reasoning-pathfinding
 status: active
 ---
 
@@ -196,6 +197,38 @@ The authors' reading is that editing "could remove an obstacle that hid an abili
 add an ability the model lacked". That places this evidence on the elicitation side of the
 create-versus-amplify question above, from a preliminary single-optimizer research blog.
 
+## One objective explains length, unfaithfulness, and hacking
+
+[[Alex Wang - What Objective Is Reasoning Solving]] offers a single frame for several sections above.
+Each sampled chain of thought is one path from the prompt, and a verifier accepts or rejects its final
+answer. RL with a binary verifiable reward then maximizes the **probability that a sampled path
+succeeds**. It does not make any one path converge on the answer. Wang shows that **a REINFORCE step is a
+rejection-sampling fine-tuning step on the model's own successful paths, scaled by the current success
+rate**. His answer to his title is that "Reasoning isn't actually solving any objective at all".
+
+Three of the page's themes follow from that frame:
+
+- **Length.** If the paths that succeeded tended to be longer, the model learns to write longer paths.
+  This is a third account beside Fu's reward-shaping story and General Reasoning's biased-advantage
+  story. It needs neither a shaped reward nor a biased estimator, because length follows whatever
+  happened to succeed. Wang offers backtracking, environment feedback, or "just dumb luck" as possible
+  reasons. He does not measure them.
+- **Faithfulness.** The verifier checks only the answer, so nothing requires the intermediate tokens to
+  be true or to explain the answer. This gives a mechanism for "Reasoning traces are not thoughts". Wang
+  says meaningful chains of thought need a changed reward or objective, which bears on the second open
+  question below.
+- **Forced thinking.** "Thinking longer helps because training taught the model to use the extra
+  tokens, not because generating more tokens is intrinsically better." Appending "Wait" raised accuracy
+  and then flattened, and Wang cites tasks where longer reasoning lowered accuracy.
+
+*Vault reading:* Wang also frames RL as **amortizing** search. The model spends compute finding good
+paths and is then trained to produce them directly. In the simple case he derives, the gradient comes
+only from successes the model already sampled. That places binary-reward RL nearer the "amplify" side
+of the first open question, but it does not settle it, because the same training generalizes to
+unseen prompts. The derivation uses plain REINFORCE with a binary reward, and the capture lost its
+equations. It is a conceptual frame, not new evidence. See [[Reinforcement Learning]],
+[[Reward Design for RL]], and [[Test-Time Scaling]].
+
 ## Open questions
 
 - Does RL create reasoning or amplify pre-existing capability — and how should that answer reshape reward design and data curation?
@@ -204,6 +237,8 @@ create-versus-amplify question above, from a preliminary single-optimizer resear
 
 ## Related pages
 
+- [[Alex Wang - What Objective Is Reasoning Solving]]
+- [[Chain-of-Thought Monitoring]]
 - [[General Reasoning - How to Train a Swarm]]
 - [[Leon Sick et al - On-Policy Self-Training]]
 - [[Knowledge Distillation]]

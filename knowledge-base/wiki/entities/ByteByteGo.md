@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -43,6 +43,8 @@ source_ids:
   - src-2026-10-28-bytebytego-uber-mcp-gateway
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-04-bytebytego-netflix-performance-agents
+  - src-2026-11-10-bytebytego-linkedin-ai-code-review
+  - src-2026-11-11-bytebytego-github-copilot-rust-port
 status: active
 ---
 
@@ -311,6 +313,29 @@ number: a canary verdict without AI and human approval around an LLM, and a Git-
 Pattern Catalog that the account says was borrowed from the "LLM-wiki" concept popularized by Andrej
 Karpathy, the pattern this vault itself follows.
 
+## Two coding-agent accounts: a single-blog relay and an interview piece
+
+[[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] is a pure
+relay. Its only listed reference is one GitHub Engineering Blog post, and it carries the publisher's
+standard disclaimer that it is assembled from publicly shared details. Every figure, from **430K** lines
+of production TypeScript to the **$120K** token bill, is therefore GitHub's description of its own
+product. The relay also introduces slips the vault should not inherit: the introduction's "Almost 800K
+lines of code" is not reconciled with the body, and "Hit would flag a conflict" is evidently a typo
+for Git.
+
+[[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] follows the Salesforce
+pattern above. It combines the publisher's own interviews with two named LinkedIn engineering leaders
+with LinkedIn's engineering post and three outside references. The design is attributed to named
+people, but the operating numbers (**40,000** pull requests reviewed in a typical week, **63.9%**
+acceptance, and category rates of **100%** and **80%**) are LinkedIn's, the category rates come from
+a chart without sample sizes, and no cost, latency, or model names are given. It describes a
+pre-release judge comparison but reports no result, so the open question below about controlled
+comparisons still stands.
+
+Both open with sponsored blocks (NYSE/Redpanda and Unblocked; Datadog and WarpBuild) that are not
+part of the articles. Their durable contributions are mechanisms recorded in [[AI Code Review]],
+[[Legacy Code Modernization with AI Agents]], [[Agentic Testing]], and [[LLM-as-a-Judge]].
+
 ## Open questions
 
 - **Does relaying a named deployment improve this source's evidence quality, or only relocate the
@@ -325,6 +350,10 @@ Karpathy, the pattern this vault itself follows.
 
 ## Related pages
 
+- [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]
+- [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]]
+- [[AI Code Review]]
+- [[GitHub]]
 - [[ByteByteGo - How Apple Fits an LLM on Your iPhone]]
 - [[ByteByteGo - How Uber Built a Gateway for AI Agents to Access Tools]]
 - [[Apple]]

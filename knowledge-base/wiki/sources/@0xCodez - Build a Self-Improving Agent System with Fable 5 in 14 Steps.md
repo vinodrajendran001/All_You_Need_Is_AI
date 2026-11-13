@@ -73,7 +73,7 @@ difficulty of self-critique.
 ### Parameter Golf, as relayed
 
 In an Anthropic experiment described from a chart, Fable 5 made structural changes — `TRAIN_SEQ_LEN=2048`
-(**−0.0179**), overlapped sliding-window eval (**−0.0207**), int6 QAT plus int6 export (**−0.0163**)
+(**−0.0179**), overlapped sliding-window eval (**−0.0207**), "int6 QAT + int6 expo" (**−0.0163**)
 — and "pushed through a quantization regression", while Opus 4.7's first move (`QK_GAIN_INIT=5.0`)
 led to a pattern of scalar tweaks. The run lasted "up to 8 hours on 8×H100 GPUs". The post's
 conclusion that Fable 5 landed "~6× more improvement than Opus 4.7" is not traceable to a stated
@@ -123,8 +123,9 @@ recipe is proposed for [[Model Routing]], with its price contradiction kept visi
 - **Price contradiction.** "~5×" Opus 4.8 per token conflicts with the vault's
   [[AI Builder Club - Claude Fable 5 - How to Use It and What's Different]], which lists Fable 5 at
   $10/$50 and Opus 4.8 at $5/$25 per million tokens — twice the price, not five times.
-- **Classifier scope differs** between sources: this post names cyber, biology, chemistry, and
-  distillation; the AI Builder Club guide describes cyber and biology blocks.
+- **Classifier scope is worded differently** across sources: this post names cyber, biology,
+  chemistry, and model distillation; the AI Builder Club guide says cybersecurity, biology, chemistry,
+  and "frontier LLM research". Both cite the same 319-page system card.
 - **The conclusion contradicts its evidence.** It says "The model is the same in both halves of every
   comparison", but both comparisons pit Fable 5 against Opus 4.7, so they are model comparisons. It
   also sets Fable 5's best-run **73%** against Opus 4.7's median **~17%**.

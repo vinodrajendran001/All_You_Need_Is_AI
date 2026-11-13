@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-23
+updated: 2026-11-13
 tags:
   - concept
   - interpretability
@@ -12,6 +12,8 @@ source_ids:
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-10-20-guan-beyond-gmean-squared
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -138,6 +140,53 @@ tested activation oracles, natural-language autoencoders, and sparse autoencoder
 native-neuron explanations. Whether neuron-level readings would beat a transcript reader is
 untested in this vault. See [[Mechanistic Interpretability]].
 
+## Neuron descriptions at population scale, with chance and ceilings stated
+
+The companion paper, [[Curt Tigges et al - Neurons as an Interpretable Basis]], scales neuron-description testing to thousands of poles in
+Qwen3.6-35B-A3B. Each test on held-out text comes with a reference point:
+
+| Test | Result | Reference point |
+| --- | --- | --- |
+| Detection: a judge picks the firing snippet from a pair (496 poles) | **0.914** against all distractors; **0.946** against random text | chance **0.50** |
+| Mode classification from text descriptions alone (macro-F1) | **0.707** | chance **0.290**; from downstream readers **0.853** |
+| Simulation of per-token activation from the description | **73%** of the damage restorable by an ideal 10-level reader | the ideal reader is the ceiling; pooled over the top bands only |
+| Input synthesis from the description | **120 of 128** poles beat their 10B-token corpus maximum | the corpus maximum |
+
+The paper is also explicit about which numbers are not independent tests. Classifying modes from
+upstream inputs scores **0.968**, but the modes were clustered from those inputs, so the authors call
+it "a near-ceiling reference rather than an independent test". Input synthesis lets the controller see
+activations, so it is not description-only. Text-based classification weakens as a neuron's expert is
+ranked lower by the router: F1 falls from **0.856** at router rank 1 to **0.652** outside the
+recorded top 8. Neurons are also compared with random directions as a matched baseline.
+
+This meets the "tests that could lose" standard above at larger scale. It does not change the gap
+recorded on this page. The tests ask whether a description predicts the *neuron*, not whether it
+helps predict the *model's* counterfactual behavior better than a transcript. LLMs serve as judges
+and simulators throughout, which brings in the cautions on [[LLM-as-a-Judge]]. The work is
+first-party and mostly on one model.
+
+## A training metric as the test, with a trivial baseline
+
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] proposes a different standard. When interpretability tools are used to change a network while
+it trains, "An intervention either improves the metric or it doesn't". Two of its controls fit this
+page's discipline:
+
+- **A predeclared prediction against a trivial baseline.** DeepSeek-V4.1-Flash built a linear probe
+  on its own residual stream that predicts whether a finished solution is right. From older held-out
+  problems it predicted the probe would add about eight points. On contests kept hidden until the
+  probe was frozen, it added seven (**64%** to **71%**). Restarting the longest solutions instead, a
+  length-only baseline, gained "less than two points". The probe rejected four in five wrong answers
+  and one right answer in fifteen.
+- **Matched controls for chance and capacity.** Each candidate code layer races a *twin* (the same
+  run with the layer switched off) and *shams*, which keep the layer's shape and parameters but
+  scramble its information.
+
+The limits are also stated or visible. A metric gain shows that an intervention helped, not that the
+reading which motivated it is correct. The authors say their phantom-gradient diagnostic "does not
+predict reliably" how a candidate will perform once trained. The post is first-party and
+unattributed, with no seeds or error bars, and the length-only rule is a weak reference rather than
+a transcript reader.
+
 ## More samples narrow sampling error; they do not identify an unobservable quantity
 
 [[Melody Guan et al - Complementary Metrics for Monitorability]] evaluates a different instrument — a
@@ -190,7 +239,10 @@ values — only the note that a random tie-free ordering would score **0.5**.
 - What would a positive result look like — what shape of tool output would state a causal relation
   rather than a co-occurrence?
 - Would explanations of native neurons, tested by ablation, give the uplift over a transcript-only
-  predictor that CHIVE's activation readers did not?
+  predictor that CHIVE's activation readers did not? The companion paper's descriptions now pass
+  detection, classification, simulation and synthesis tests, but none of those is this comparison.
+- Should a training-metric gain count as evidence for the interpretation that motivated an
+  intervention, or only for the intervention? What control would separate the two?
 - The monitorability metrics above are evaluated on behavioral monitors only. That post reports no
   interpretability-tool results and runs no comparison between a monitor reading internals and one
   reading a trace or an outcome, so it extends this page's evidence discipline without testing its
@@ -208,8 +260,12 @@ values — only the note that a random tie-free ordering would score **0.5**.
 - [[OpenAI]]
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]]
 - [[Mechanistic Interpretability]]
 - [[Goodfire]]
+
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[Automated AI Research]]
 
 - [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]]
 - [[Emergent Misalignment]]

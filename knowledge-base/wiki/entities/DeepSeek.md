@@ -9,6 +9,7 @@ source_ids:
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -85,6 +86,26 @@ reports a throughput, latency, cost, or memory figure, and the engine is describ
 complete KV-cache management system, which is the subsystem the model's headline claim lives in. Two
 adjacent artifacts, no bridge between them.
 
+## DeepSeek's own deployment notes, relayed by a training handbook
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] cites two DeepSeek documents, the
+DeepInfer release post on Zhihu and the deployment Q&A in the DeepInfer repository, and calls
+DeepInfer "DeepSeek's production serving engine". It relays how DeepSeek serves V4.1-Flash: prefill
+at expert-parallel sizes **EP2 to EP8**, the smallest whose GPUs have enough memory, and decode at
+**EP64 to EP128**, the largest the GPUs allow, with data-parallel attention and no tensor or context
+parallelism. At 64 requests per GPU, EP64 decodes about **15,700** tokens per second per GPU against
+about **12,600** at EP8, about 25% more. Prefill and decode get roughly equal GPU counts, so the
+smallest deployment worth running is **64 GPUs for prefill plus 64 for decode**. One failed GPU
+takes a whole expert-parallel instance down, and on restart DeepSeek re-sizes the group to the
+healthy GPUs.
+
+Separate prefill and decode pools in DeepSeek's own deployment fit Gupta's account that the public
+release lacks complete prefill-decode disaggregation: the fleet layer stays in-house. This narrows
+the open questions below without closing them. The vault has read neither DeepSeek document
+directly, the relayed passage names no GPU type, and no relayed figure measures memory or cache, so
+nothing yet connects to the **890 bytes per token** claim. See [[Inference Serving Engines]] and
+[[Prefill-Decode Disaggregation]].
+
 ## A model that built a verifier on its own activations
 
 In [[DoubleAI - Can LLMs Redesign Themselves as They Train]], **DeepSeek-V4.1-Flash** (described as
@@ -126,3 +147,4 @@ reported.
 - [[AI Agents in Production]]
 - [[Meta]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]

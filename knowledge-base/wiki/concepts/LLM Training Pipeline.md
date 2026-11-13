@@ -45,6 +45,7 @@ source_ids:
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -294,6 +295,13 @@ the additional adaptation cost and the inherited asset, plus regressions outside
 benchmarks. Priming extends [[Knowledge Distillation]] without making architectural changes
 training-free.
 
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] treats the architecture as editable
+*during* training. Code layers enter behind a gate initialized at zero, so the network is unchanged
+at insertion and gradient descent decides whether to open them. Timing matters: in a 124M-parameter
+sliding-window model, a lookup inserted at step 1,200 gave **72%** long-range recall, against
+**55%** when present from step 0, "despite near-identical loss curves". This is a single comparison
+with no seeds; the authors "believe" the cause is shortcut learning.
+
 ## A hybrid MoE family's recipe, with compression inside training
 
 [[ByteByteGo - How Nvidia's New Nemotron Model Works]] summarizes NVIDIA's Nemotron 3 recipe in the
@@ -423,3 +431,4 @@ many of its recommendations rest on one ablation in one setup.
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
 - [[Mixture of Experts]]
 - [[Speculative Decoding]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]

@@ -110,7 +110,7 @@ credential and policy bridge, and the harness-default claim, extend [[Coding Age
   [[Factory Research - Droid 1.0 - Building a Frontier Harness]], **3.5** points is Droid's margin
   over Codex on GPT-6.1 Sol in a harness comparison (three trials, at 12% lower cost), and **15%** is
   Script mode's cost saving on Claude Opus 5.5 with an unstated measurement method. Schmid attributes
-  both to "switching Droid 1.0 to Code Mode"; neither figure isolates that switch as described.
+  both to "Factory switched Droid 1.0 to Code Mode"; neither figure isolates that switch as described.
 - No measurements of his own: the "big jump" in chaining reliability, the over-exploration of CLIs,
   and the post-training claim are experience-based assertions.
 - The bash comparison is one-sided. The vault's [[Tool Roster Economics]] records arguments for a

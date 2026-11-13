@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -19,6 +19,8 @@ source_ids:
   - src-2026-10-16-west-eval-engineering-lessons
   - src-2026-10-21-nvidia-sentry-runtime
   - src-2026-10-27-anthropic-agents-judgment-calls
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
+  - src-2026-11-10-nizzyabi-instinct-teardown
 status: active
 ---
 
@@ -258,6 +260,28 @@ the DPU really is the agent's only path out, as in the reference architecture, a
 covers a compromised DPU, its firmware, or the policy engine. NVIDIA's "tamper-evident" label is a
 description, not a tested property.
 
+## A trace shows what the agent asked for, not what the world did
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] generates
+monitoring with each agent: `opentelemetry-instrument` plus the AWS OTEL distro gives spans for the
+agent run, every LLM call (with token counts), and every tool call; AgentCore samples **10%** of
+sessions for online evaluation by built-in LLM judges; and each agent gets two alarms, failed turns
+(**3** or more in **5** minutes) and p90 latency over **60** seconds for **15** minutes. Feedback is
+keyed by session id, "the join key to traces and eval results", so a thumbs-down becomes "show me
+the trace" and, over time, "labelled data for checking whether your LLM judges agree with your
+users." CloudWatch stays for alarms and audit, but it is hard to answer "why did the agent pick that
+tool on turn four?", so the OTEL exporter can point at LangSmith, Langfuse, or MLflow. No alert
+volumes, judge agreement, or costs are reported.
+
+[[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]] supplies the limit,
+extending the out-of-band argument above from compromise to ordinary delivery failure. [[Instinct]]
+said it had sent a voice memo that never reached the thread; after a retry it said the memo was
+marked "sent" but it had no "delivered" confirmation. The agent knows what it asked the channel to
+do, not what the channel did, so a watchdog reading the agent's record of its actions "would miss
+this too", and Instinct's terms say action records "may not always be accurate." The author's fix is
+channel delivery receipts the agent can read. This is one observed failure in a third-party teardown
+by a competitor, and the watchdog is known only from founder Noah Shinn's public remarks.
+
 ## Open questions
 
 - Tail-based sampling at 5–20% of routine successes discards most of the population in which a *slow*
@@ -306,3 +330,6 @@ description, not a tested property.
 - [[Arjun Prabhulal - Production-Grade RAG with ADK and Vertex AI RAG Engine]]
 - [[ByteByteGo - How to Deal With Errors and Failures in LLM-Powered Applications]]
 - [[Salesforce]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
+- [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]]
+- [[Instinct]]

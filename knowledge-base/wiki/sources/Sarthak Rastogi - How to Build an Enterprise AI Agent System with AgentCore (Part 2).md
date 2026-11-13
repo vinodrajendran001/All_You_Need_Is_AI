@@ -71,7 +71,7 @@ its own runtime reached over A2A. In the demo, Alice asks
 about working from Singapore for three weeks, a ticket for the needed approval, and the cost of **61**
 unused Figma seats; the agent finds that "more than 14 days abroad needs manager and security
 approval", files that ticket, and runs two sub-tasks in parallel. "The agent made the choice to pick
-the tools, the order and the parallelism itself."
+the tools, the order and the parallelism itself!"
 
 ### Identity: the gateway vouches; OBO only for third parties
 
@@ -109,7 +109,7 @@ in a group name", flipped to `ENFORCE` "hides every tool and every agent goes du
 ### Tools, memory, observability, delivery
 
 Gateway gives every agent one MCP endpoint. `search_type = "SEMANTIC"` adds a search tool: "With 200
-tools it's how an agent finds the five that matter." "Docstrings are prompts": each says what comes
+tools it's how an agent finds the five that matter". "Docstrings are prompts": each says what comes
 back, what to do next, and what an empty result means. Tools return `{"error": ...}` rather than
 raising, because "A model can read an error and recover." The gateway role holds every credential,
 which "kills the N-agents-times-M-tools secrets problem". One memory resource serves the platform,

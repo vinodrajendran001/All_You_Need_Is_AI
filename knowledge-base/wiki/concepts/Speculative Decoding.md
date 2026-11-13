@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - inference
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -346,6 +347,18 @@ Because Nemotron is a Mamba-attention hybrid, the drafter's own state also matte
 target removed. The account does not describe the drafters' architecture, so that cost cannot be
 assessed from it.
 
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] puts a training price on the built-in
+kind. On the authors' 256-node runs, early steps took about **37%** longer with one MTP layer, and
+spreading the model over 8 pipeline stages did not close the gap. Mellum2 reports **7%** extra
+training time for a 14B MoE. The handbook traces much of the gap to placement. Unless the layout
+moves it, Megatron puts the MTP layer on the last pipeline stage. Ling 2.0's team measured an MTP
+layer at about **1.7x** the compute of a standard MoE layer and gained **40%** end to end by
+repartitioning around it.
+
+Two exits are recorded. Megatron's `--mtp-detach-heads` trains the MTP layer only as a draft model
+and leaves the main model alone. DeepSeek-V4.1-Flash used no backbone MTP during pretraining and
+trained DSpark separately afterward. None of this measures acceptance rate or decode speed.
+
 ## Open questions
 
 - How well do acceptance predictors such as DSpark's calibrate under traffic or target-model
@@ -390,3 +403,4 @@ assessed from it.
 - [[Inference Efficiency Frontier]]
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]

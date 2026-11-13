@@ -168,3 +168,4 @@ failed without tools.
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
 - [[Josh Clemm - How We're Training a Figma-Fluent Editing Model]]
 - [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]

@@ -19,6 +19,7 @@ source_ids:
   - src-2026-11-04-axjns-synthetic-membrane-paper
   - src-2026-11-01-philipp-schmid-code-mode
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
+  - src-2026-10-10-0xcodila-rea-reverse-engineering
 status: active
 ---
 
@@ -209,6 +210,24 @@ This complements the gateway sections above. A gateway decides which caller may 
 coordination layer decides whether an action is still authorised when it runs. The paper offers this as
 a design with an evaluation plan, not as a tested MCP server.
 
+## Prompt templates can package an analysis workflow
+
+[[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]] describes REA ("Reverse
+Engineer Anything"), an MCP server plus CLI for Claude Code, Codex, Cursor, Gemini CLI and other
+agents. Setup adds the MCP connection plus a matching investigation skill, shows a plan of every
+change and waits for approval, and backs up the existing configuration; a read-only `doctor` command
+checks the install. For native programs and Android packages, analysis engines such as Ghidra,
+Hopper, IDA or JADX must be installed separately behind the server.
+
+The protocol detail worth recording is MCP's third capability, prompt templates. REA exposes six
+guided workflows as MCP prompts: `investigate_feature`, `compare_application_versions`,
+`verify_reconstruction`, `trace_crash`, `audit_residual_unknowns` and
+`prepare_bounded_process_capture`. Tools let the agent act on a binary; the prompts encode an
+investigation order, including explicit steps for listing what is still unproven and for planning a
+limited runtime experiment before running anything. The source is a promotional X post with a
+clickbait title and reports no usage data for the prompts; its security caveats are recorded in
+[[Agent Security and Governance]].
+
 ## Related pages
 
 - [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
@@ -240,3 +259,4 @@ a design with an evaluation plan, not as a tested MCP server.
 - [[Karl Weinmeister - Build AI Agents Your Way on Google Cloud]]
 - [[Virinchi T - Google Cloud MCP Security Framework]]
 - [[Google Cloud]]
+- [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]

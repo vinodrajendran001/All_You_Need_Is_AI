@@ -121,7 +121,7 @@ experiment.
 budget, or keeps paying off beyond it. That changes how the page's width and team results should
 be read. [[Recursive Self-Improvement]] and [[Automated AI Research]] gain a mechanism by which the
 largest AI R&D tasks could be attempted with test-time spending rather than new training. For
-[[METR]], the essay is one of the vault's two records of a METR measurement. The math-and-cyber
+[[METR]], it records a METR time-horizon finding that cuts against its own thesis. The math-and-cyber
 point about recognizable progress also bears on [[AI for Mathematical Discovery]]. The
 evaluation consequence connects to [[Embedded Evaluation]], compaction to [[Context Engineering]],
 and the swarm argument to [[Multi-Agent Coordination]].

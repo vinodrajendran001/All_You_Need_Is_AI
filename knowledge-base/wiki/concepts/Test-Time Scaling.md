@@ -236,6 +236,44 @@ the curves above do not report. Collectives start behind single agents because o
 overhead and only pull ahead later in an episode. See [[Multi-Agent Coordination]] and
 [[Reward Design for RL]].
 
+## Does the payoff stop where training stopped?
+
+Every curve above shows returns from more compute. None asks whether the gains continue past the
+most compute the model used per task in training.
+[[James Tillman - Two Kinds of Test-Time Scaling]] makes that the dividing line. Every learned
+test-time method has a per-task maximum in training: chain-of-thought length, the number of loops in
+a looped Transformer, or the number of agents. He defines **N** as the per-task compute below which
+**99%** of training compute was spent. A method shows **compute extrapolation** if spending **10x N** or
+**1000x N** still helps. It is described by a **ceiling**, where gains stop, and a **slope** past N.
+
+His cleanest evidence is the Markovian Thinker paper. Its "Delethink" method writes **8k**-token chunks
+and keeps only the last **4k** before continuing. Training allows up to **5** chunks, and inference
+allows **30** or more. It keeps improving on AIME25 past the training maximum. Standard long
+chain-of-thought RL, with **24k** uninterrupted tokens, levels off. The figure description puts the
+two at about **0.35** and **0.30** at **128K** tokens. Tillman calls the frontier-lab evidence weak or
+ambiguous. METR reports that compaction does not increase GPT-5.1-Codex-Max's time horizon, which
+cuts against his dating of the shift to the end of 2025 (see [[METR]] and [[Context Engineering]]).
+
+[[Alex Wang - What Objective Is Reasoning Solving]] explains why the line exists. With a correct
+verifier, best-of-n sampling is "a guaranteed axis of compute-scaling", because it adds paths rather
+than lengthening one. Length is different: "Thinking longer helps because training taught the model
+to use the extra tokens, not because generating more tokens is intrinsically better." Wang cites
+appending "Wait", which raised accuracy and then flattened.
+
+*Read together (vault synthesis):* Wang predicts a ceiling near the training range for plain length
+scaling. Tillman claims that compaction-style training changes what the model learns to use, so the
+ceiling moves. Both treat the outcome as learned, not intrinsic, which matches General Reasoning's
+point above about incentives.
+
+This also changes how to read the width results on this page. Tillman guesses that training used at
+most **10-100** agents. If so, OpenAI's **1,000**- and **10,000**-agent runs would imply an extrapolation
+horizon of at least **10-1,000**. He calls this weak evidence, and Noam Brown's low attribution to swarm
+size weakens it further.
+
+Tillman draws two consequences. First, evaluations of dangerous capabilities could only rule out a
+capability *below a stated spending budget*. Second, races in compute spending could move from training
+to inference. See [[Embedded Evaluation]] and [[AI for Mathematical Discovery]].
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)

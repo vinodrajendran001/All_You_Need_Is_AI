@@ -186,8 +186,9 @@ The TL;DR says "We are on the cusp of models that train and re-architect themsel
   change of weights or architecture, and the extra sampling cost is not reported.
 - **Qwen's gain depends on another agent's tools.** Qwen's probes were built by a frontier agent.
   Qwen wrote only the policy, selected from about 15,000 candidates on about 800 problems. The test
-  set stayed hidden, but on 63 pooled problems a 7-point gain is roughly four or five problems (vault
-  arithmetic), and the policy used **2.8×** the thinking tokens of a single attempt.
+  set stayed hidden, but if each of the 63 pooled problems is scored once, a 7.0-point gain is about
+  four or five problems (vault arithmetic; the post does not say how many runs were pooled). The
+  policy also used **2.8×** the thinking tokens of a single attempt.
 - **Is the phantom gradient new?** It is the ordinary gradient of the loss with respect to
   activations. What is new here is how it is used (centring, per-token backpropagation,
   clustering), not the quantity. The post does not compare it with existing gradient-attribution

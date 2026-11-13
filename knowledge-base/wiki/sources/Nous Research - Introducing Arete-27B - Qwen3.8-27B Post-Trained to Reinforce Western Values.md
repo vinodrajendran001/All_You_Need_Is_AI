@@ -95,13 +95,11 @@ requests. The interactive data profile counts **28,886** training examples. The 
 says about **52.8 million tokens**, "roughly fifty thousand samples at 64k context", no sequence
 packing, **two epochs** and **1,202 steps**.
 
-The recipe is AdamW (β = 0.9, 0.98; eps 1e-5; weight decay 0.1; clipping 1.0). The learning rate
-warms up from 1e-6 to 1e-5 over **120** steps, then follows a cosine decay to 1e-6. Batch size is
-**48**, compute is bf16 with fp32 master weights, and tensor parallelism is 4. All language-model
-weights train; the vision encoder is frozen ("our data is text-only") and the multi-token-prediction
-head is disabled. There is "no RL, no preference optimization, and no architectural modification".
-Loss levels near **1.0** in epoch 1 and drops to about **0.8** in epoch 2 "because the model is
-seeing the same examples a second time".
+The recipe is AdamW with a **120**-step warmup to a 1e-5 learning rate and cosine decay, batch size
+**48**, bf16 compute with fp32 master weights, and tensor parallelism 4. All language-model weights
+train; the vision encoder is frozen ("our data is text-only") and the multi-token-prediction head is
+disabled. There is "no RL, no preference optimization, and no architectural modification". Loss
+drops from near **1.0** to about **0.8** when epoch 2 repeats the same examples.
 
 ### Results, as Nous reports them
 
@@ -118,11 +116,10 @@ seeing the same examples a second time".
 ### The framing and the conclusion are Nous's
 
 Nous argues that frontier labs "all share a remarkably similar worldview" and have shown political
-bias, and that agents may "fail in a correlated way". Open weights reduce that risk "so long as
-there are companies like Nous that can operate on the weights". It says Chinese open models "ship
-with state-aligned behavior baked into the weights". It also cites studies, by Booz Allen Hamilton
-and Hirundo, reporting that Chinese models produce more vulnerable code when they believe they act
-for an American entity. Its takeaway is that "the bias layer in a Chinese-aligned model is shallow.
+bias, and that open weights reduce that risk "so long as there are companies like Nous that can
+operate on the weights". It says Chinese open models "ship with state-aligned behavior baked into
+the weights", and cites reports that they write more vulnerable code when they believe they act for
+an American entity. Its takeaway is that "the bias layer in a Chinese-aligned model is shallow.
 It is applied late, it is applied thin", and that "the values in any open model are only ever one
 fine-tune away". It does not claim to have removed every behavior tied to the original viewpoint,
 and it thanks Alibaba for providing "the raw materials".
@@ -140,11 +137,9 @@ were not measured. [[NVIDIA]] gains a third-party score on Nemotron 3 Ultra, and
 
 ## Tensions / open questions
 
-- This is a first-party report. Nous built the evaluation, used it to pick the teacher, trained the
-  student, and reported the results. The evaluation is open, but no independent rerun is reported.
-- Using the reporting benchmark to choose the teacher means the student was trained toward the
-  model that scores best on that benchmark. "In line with the Western models we tested" means
-  closeness under this one judge and rubric.
+- This is a first-party report: Nous built the evaluation, used it to pick the teacher, trained
+  the student, and reported the results. The evaluation is open, but no independent rerun exists.
+  "In line with the Western models we tested" means closeness under this one judge and rubric.
 - There is a single LLM judge with no reported judge–human agreement rate beyond the 25-prompt
   pilot, no second judge, and no audit of the judge's own stance on these topics.
 - "Western values" is not defined beyond the seven categories. Propaganda is defined only against
@@ -156,13 +151,13 @@ were not measured. [[NVIDIA]] gains a third-party score on Nemotron 3 Ultra, and
   there was no preference optimization.
 - The headline **2.32 → 2.98** compares two temperature-0 rows, while the other models ran at 0.6.
   At 0.6 the pair is **2.24 → 2.88**. The thinking-on row is provisional.
-- The capability checks are one internal benchmark and one public benchmark run on Nous's own
-  harness. Refusals, safety behavior, other political topics, and multimodal use are not reported.
-- "Shallow" and "applied late" read as claims about where the behavior lives in the network, but
-  the evidence is behavioral only: there is no interpretability or layer-wise analysis.
+- The capability checks are one internal benchmark and one public benchmark on Nous's harness.
+  Refusals, safety behavior, other political topics, and multimodal use are not reported.
+- "Shallow" and "applied late" are claims about where the behavior lives in the network, but the
+  evidence is behavioral only; there is no interpretability or layer-wise analysis.
 - The "checkered record" attributed to Nemotron 3 Ultra is not shown, and its table row is
-  **3.22** and **0.6%**. The contamination explanation is explicitly a theory.
-- The cited code-vulnerability reports were not read by this ingest.
+  **3.22** and **0.6%**. The contamination explanation is explicitly a theory. The cited
+  code-vulnerability reports were not read by this ingest.
 
 ## Affected pages
 

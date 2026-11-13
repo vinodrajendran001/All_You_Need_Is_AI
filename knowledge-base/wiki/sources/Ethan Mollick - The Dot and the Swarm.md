@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-11-06
+updated: 2026-11-13
 source_id: src-2026-10-01-mollick-dot-swarm
 source_title: "The Dot and the Swarm"
 source_author: Ethan Mollick
@@ -56,6 +56,8 @@ scaffolding remains compatible with deterministic business gates and runtime iso
 - [[Agent Workflow Maturity]]
 - [[AI Agents in Production]]
 - [[Multi-Agent Coordination]]
+- [[Ethan Mollick]]
+- [[AI for Mathematical Discovery]]
 
 ## Raw capture
 
@@ -72,3 +74,6 @@ scaffolding remains compatible with deterministic business gates and runtime iso
 - [[Simon Willison - 2026 in LLMs (so far)]]
 - [[Agent Security and Governance]]
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
+- [[Ethan Mollick]]
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
+- [[AI for Mathematical Discovery]]

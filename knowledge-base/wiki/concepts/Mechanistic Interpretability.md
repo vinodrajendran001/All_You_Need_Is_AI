@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - interpretability
@@ -14,6 +14,9 @@ source_ids:
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-03-willison-qwen-interprets-weights
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -43,7 +46,7 @@ show.
 
 | Unit | What it is | Vault evidence and limits |
 | --- | --- | --- |
-| Native neurons, heads, circuits | The model's own mechanisms; no reconstruction loss | Cammarata reports preliminary Qwen3-32B audits with about **90%** of neuron poles having one main job. Threshold-dependent, first-party, agent-assisted. |
+| Native neurons, heads, circuits | The model's own mechanisms; no reconstruction loss | Cammarata reports preliminary Qwen3-32B audits with about **90%** of neuron poles having one main job. Threshold-dependent, first-party, agent-assisted. The companion paper measures a different model and metric: on Qwen3.6-35B-A3B, **69%** of poles are dominated by one mode and **47%** have exactly one. |
 | Sparse dictionaries (SAEs) | A second model trained to re-express activations as sparse features | CHIVE: no uplift over the transcript at counterfactual prediction. Cammarata: on vision models, mostly near-copies of neurons or compositions of them. |
 | Transcoders and replacement graphs | Substitute layers that make circuits traceable | Cammarata says Anthropic's largest transcoder predicts the original's next word "only half the time" and needs error nodes; this is a competitor's characterization. |
 | Probes | Readers trained to answer a question chosen in advance | Can detect without the model using what they detect: Cammarata's Social Security probe. |
@@ -123,6 +126,36 @@ something independent could have falsified it. Behavioral proxies need the same 
 [[Arush et al - Self-Modeling Interventions Modulate Emergent Misalignment]] treats identity
 self-reports as behavioral measurements rather than access to an internal belief.
 
+### The companion paper puts numbers on neurons as units
+
+[[Curt Tigges et al - Neurons as an Interpretable Basis]] is the technical companion that the essay announced. It tests three properties on the routed
+MLP neurons of Qwen3.6-35B-A3B, a mixture-of-experts model:
+
+- **Sparsity.** Keeping only the top 320 of **4,096** routed neurons per token, ranked by
+  |activation| × router weight, ablates **92.2%** of them and raises loss from **1.886** to
+  **1.940**. Random and bottom-ranked sets of matched size collapse the model.
+- **Few modes.** **69%** of neuron poles are dominated by one mode (at least 90% of the ablation
+  damage), and **47%** have only one. Multi-mode poles are common, though. For one two-mode
+  neuron, two circuit case studies show downstream readers taking it through their up-projection
+  while context drives their gate, so each reader fires only for its own mode.
+- **Testable descriptions.** Agent-written descriptions are scored on held-out text: detection
+  **0.914**; text-only mode classification **0.707** against chance **0.290**; simulation
+  recovering **73%** of an ideal reader's ceiling; and synthesized inputs beating the corpus maximum
+  for **120 of 128** poles.
+
+The paper also compares neurons with random directions: **8** neurons recover as much function as
+**128-256** random directions. This is the matched random baseline the essay's argument needed.
+It re-examines the most cited counterexample, a Qwen3-32B Colorado neuron that also fires on the
+Tornado web framework. The Tornado link is causally real: suppressing the neuron moves the model's
+"where was Tornado developed" answer away from Colorado. But **98.5%** of the neuron's strong
+firings are on places. The authors suspect the link comes from copying Qwen3-14B layers at
+initialization. Read against Cammarata's five causes, that would make it a training artefact
+rather than packing. That reading is the vault's, not the authors'.
+
+On the ladder above, the paper covers detection, description and use (through ablation damage). It
+still does not run step 4 against a transcript reader. The work is first-party and mostly on one
+model. LLMs write the descriptions, build the modes and judge most of the tests.
+
 ### Architecture and tools can manufacture or remove apparent mess
 
 Several apparent signs of entanglement in Cammarata's account turned out to come from the
@@ -133,7 +166,9 @@ instrument or the architecture:
 - **InceptionV1 lacked a residual stream.** In a same-size ConvNeXt with residual connections and
   LayerNorm, about **99%** of last-layer neurons became legible.
 - **SwiGLU's double-negative regime** puts a sign-flipped leak at the top of about **4%** of
-  neurons' activation lists.
+  neurons' activation lists. The companion paper measures that regime (Q3) differently, as about
+  one third of all activations. Removing it cut GSM8K reasoning from **1,550** tokens on average
+  to **176**. The two figures are different measures and should not be merged.
 - An **unread high-mass residual coordinate** working with LayerNorm hid the structure of ConvNeXt
   residual-stream maps.
 - **Percentile thresholds** flatten the difference between dial-like and detector-like neurons.
@@ -164,6 +199,11 @@ matter remains the scarce judgment. It also adds a validation burden. Agent-writ
 agent-judged groupings are part of the measurement, and the essay reports that agents bring their
 own default reading of contested terms such as "superposition".
 
+The companion paper scales this up. Its Neuron Scientist harness iterates hypotheses and
+experiments for each neuron, and the release includes pages for **2,734** stratified neurons plus
+low-effort labels for all 10 million neuron-poles. LLM judges score the descriptions, so a
+description's quality is measured partly by other models.
+
 ### A frontier model as reader and editor of weights
 
 [[Rikiya Takehi et al - Sparks of Weight-Space Programming]] hands raw weights to an off-the-shelf
@@ -184,12 +224,46 @@ conclusion on the sycophancy heads was "not a demonstrated dedicated user-agreem
 Reading weights without tools is shown only on small networks. Whether such readings beat a
 behavior-only baseline, the test [[Interpretability Evaluation]] asks for, was not run.
 
+A third party has since rerun the no-tools game prompts. In [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]], Qwen 3.8 27B, running locally on
+a laptop, named three of the four games (Pac-Man, Pong and Breakout) and mistook Freeway for a
+Pac-Man-like game. Each answer took 46 minutes to over an hour of reasoning. Kimi K3.1 Pro named
+Breakout. This suggests the small-network task does not need a frontier model. But it is one run
+per game, the stated confidences are the model's own, and the post does not say whether the
+prompts reveal the candidate games. Willison's reading is deflationary: a sufficiently experienced
+human "armed with a notepad and a pencil" could get there.
+
+### Interpretability tools used during training
+
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves interpretability tools into training and calls this "mechanistic intervention". A
+coding agent reads a network's internals while it is still learning. It then changes the data,
+the objective, the update rule or the architecture.
+
+- **The phantom gradient.** This is the loss gradient with respect to a layer's representations
+  rather than its weights. Persistent demand in it marks where to insert code layers.
+- **Linear probes.** These find which layer holds the values a code layer should read.
+- **A model probing itself.** DeepSeek-V4.1-Flash, acting as the agent, fitted a linear probe on
+  its own residual stream that predicts whether a finished solution is right. Gating resampling on
+  that probe raised its contest score from **64%** to **71%**. The probe rejects four in five wrong
+  answers and one right answer in fifteen. Probed midway through a solution, its hidden states
+  mostly encoded how hard the problem was.
+
+The authors argue this gives interpretability "an objective test", because an intervention either
+improves the metric or it doesn't. That is a test of whether an intervention is useful, not of
+whether the explanation behind it is true. The authors concede the phantom gradient "is better at
+showing *where* a network needs help than *what* it needs". Their "alignment through code" claim
+is that computation moved into code is readable and testable. It is an aim, not a result. The post
+is first-party, unattributed, reports no seeds or error bars, and does not name the agent model.
+
 ## Open questions
 
 - Would native-neuron explanations beat a transcript-only predictor at CHIVE-style counterfactual
   questions, or would they also show no uplift?
 - Do the Qwen3-32B and Kimi K3 cleanliness estimates survive independent audits with predeclared
-  thresholds, and what does the forthcoming companion paper actually report?
+  thresholds? The companion paper is now captured. It reports **69%** one-mode-dominated poles on
+  Qwen3.6-35B-A3B, a different model and metric from the essay's roughly 90%, and it is still
+  first-party.
+- Does gate-as-context disambiguation explain multi-mode neurons in general, or only the two
+  circuit case studies so far?
 - Does arbitrary packing appear anywhere at scale, for example in attention heads, the residual
   stream, or rare facts, or does Cammarata's developmental "circuit racing" argument hold?
 - If weak activations are cheap to remove in late layers but catastrophic to remove everywhere at
@@ -197,12 +271,18 @@ behavior-only baseline, the test [[Interpretability Evaluation]] asks for, was n
 - Can safety-relevant claims, such as deception, intent, or goals, be tied to interventions on
   native mechanisms rather than to descriptions of them?
 - Do frontier-model readings of raw weights survive predeclared ground truth across more models
-  and attempts, and at what network size do they stop working without probing tools?
+  and attempts, and at what network size do they stop working without probing tools? The first
+  third-party rerun used a 27B local model, with one run per game.
+- When an interpretability-guided edit improves a training metric, does that validate the reading
+  that motivated it, or only the edit?
 
 ## Related pages
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]]
+- [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
 - [[Goodfire]]
 - [[Interpretability Evaluation]]
 - [[Anthropic - Would This Change Your Answer (CHIVE)]]
@@ -214,6 +294,7 @@ behavior-only baseline, the test [[Interpretability Evaluation]] asks for, was n
 - [[LLM Reasoning]]
 - [[Benchmark Optimization]]
 - [[Transformer Architecture]]
+- [[Neural Network Fundamentals]]
 - [[Mixture of Experts]]
 - [[Automated AI Research]]
 - [[Sycophancy]]

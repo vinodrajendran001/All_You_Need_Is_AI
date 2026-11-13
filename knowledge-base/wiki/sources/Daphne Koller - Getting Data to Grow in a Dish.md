@@ -26,9 +26,9 @@ Daphne Koller's third essay in a series on AI drug discovery describes how insit
 not exist", and cannot be generated *in silico* from first principles, so the company had to
 produce it. The essay centres on POSH, a pooled CRISPR imaging screen. It argues that reliable
 data at scale needs process engineering in a fixed order: **measure, stabilize, then optimize**.
-Only then should a process be scaled. Its examples are failures that were silent, then caught.
-They also include chemistry and hardware choices made according to where information is lost, and
-a split of work between AI models and scientists. Koller writes in the first person as part of
+Only then should a process be scaled. Its examples include silent failures that had to be made
+detectable, chemistry and hardware choices made according to where information is lost, and a
+division of work between AI models and scientists. Koller writes in the first person as part of
 insitro, so the account is first-party and promotional in places.
 
 ## Key claims
@@ -80,9 +80,10 @@ one frame. The lesson is to "make silent failures loud before they entered the d
   process control.
 - **Results.** Barcode efficiency, the share of cells whose perturbation can be identified, ranged
   from about **25% to 50%**, averaging **34%**. After stabilization the average was **47%** and the
-  standard deviation fell from **11.2** to **2.5** percentage points. After a base-calling artifact
-  fix and barcode-amplifying chemistry, efficiency rose above **71%**, "with the standard deviation
-  remaining at a reliable 7 percentage points".
+  standard deviation fell from **11.2** to **2.5** percentage points. A fix for a fluorescence
+  artifact that biased base calling, chemistry that amplifies each barcode, and other changes then
+  raised efficiency above **71%**, "with the standard deviation remaining at a reliable 7
+  percentage points".
 - **Payoff.** A whole-genome screen now takes **4** FTE-weeks instead of **52**, **10** plates
   instead of **27.5**, and **$50,000** in reagents instead of **$200,000**.
 
@@ -129,8 +130,9 @@ a bounded human role.
   says a cell-level change does not establish patient benefit. No clinical results are given.
 - **Spread inconsistency.** Stabilization is credited with cutting the standard deviation to
   **2.5** percentage points. After optimization, it is described as "remaining at a reliable 7
-  percentage points". That is wider than 2.5, not unchanged. The chart caption gives a mean of
-  **71%** over three and a half years of A549 plates. The essay does not reconcile these figures.
+  percentage points". That is wider than 2.5, not unchanged, and the essay does not reconcile the
+  two figures. The chart caption covers three and a half years of A549 plates and says four
+  interventions carried the mean to **71%**, against a **45%** threshold.
 - Two barcode metrics should not be conflated: barcode efficiency (**34% → 71%+**) and the base
   caller's valid-barcode share (**66.6% → 78.8%**).
 - Agentic QC's **82%** agreement has no stated baseline for inter-expert agreement, sample size, or

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-10-23
+updated: 2026-11-13
 tags:
   - concept
   - inference
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-20-gupta-deepseek-deepinfer
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -196,6 +197,57 @@ disaggregation makes the cache a transferable artifact, bounded replay makes a w
 direction, and bounded by the attention window rather than by interconnect bandwidth. No measurement
 of that tradeoff appears in the source.
 
+## Expert parallelism sizes the two phases in opposite directions
+
+This page's open questions ask how disaggregation interacts with expert parallelism in
+[[Mixture of Experts]] serving. [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] gives a
+concrete answer from DeepSeek's own deployment notes for DeepSeek-V4.1-Flash, which it cites from
+DeepInfer documentation and a DeepSeek release post.
+
+The phases want opposite widths. A prefill step can carry up to **32,768** tokens per GPU, so each
+expert already sees a large batch. A decode step carries only one or a few tokens per request, so each
+expert sees few tokens. Spreading the experts over more GPUs helps decode: each GPU holds fewer
+experts and reads fewer weights, while the all-to-all gathers a larger batch for each expert.
+DeepSeek therefore runs prefill at **EP2 to EP8**, the smallest size with enough memory, and decode at
+**EP64 to EP128**, the largest the GPUs allow. Attention is data-parallel in both, with no tensor or
+context parallelism.
+
+DeepSeek's comparison, redrawn in the handbook, puts numbers on it. At 64 requests per GPU, EP64
+decodes about **15,700** tokens per second per GPU at about **246** per user, against about **12,600**
+and **198** at EP8: both about **25%** higher. At 256 requests per GPU the two nearly meet, at about
+**26,300** and **24,900**. The advantage of width shrinks as the batch per GPU grows.
+
+Width has costs this page has not recorded before.
+
+- **Minimum size.** DeepSeek gives the two phases roughly equal GPU counts, so with decode at EP64 or
+  more, the smallest worthwhile deployment is **64** prefill plus **64** decode GPUs.
+- **Failure domain.** All GPUs of one EP instance form one communication domain, so one failed GPU
+  takes the whole instance down. On restart DeepSeek re-sizes the EP group to the healthy GPUs.
+- **Balance.** DeepSeek credits part of the decode gain to its expert load balancer and reports the
+  slowest rank's load in decode at **1.090** times the mean, with redundant copies of hot experts.
+
+This sits beside the DeepInfer section above. [[Mehul Gupta - What is DeepSeek DeepInfer]] reports
+that complete prefill-decode disaggregation is not in DeepInfer's release, while the handbook relays
+DeepSeek's description of running the phases at separate sizes. Running such a deployment and
+shipping it in an open release are different claims, and the vault has no source that reconciles
+them.
+
+### A second split: attention apart from the experts
+
+The handbook also covers attention-FFN disaggregation, which separates the two halves of each layer
+instead of the two phases. Attention holds few parameters but every request's KV cache; the experts
+hold most parameters and no per-request state. MegaScale-Infer reports up to **1.90x** the per-GPU
+throughput of earlier systems with this layout. FastAFD reports **1.41x** over colocated EP4 for
+Qwen3-235B-A22B. When Qiu et al. at Meituan re-provisioned both layouts in an analytical model for the
+same budget of 72 GPUs, the ratio fell to **0.99x**, and homogeneous attention-FFN disaggregation
+helped in only a minority of their modelled settings. As with prefill-decode splits, the gain depends
+on the baseline: a split layout should be compared with a colocated layout given the same number of
+GPUs. Megatron's own "disaggregation" means the prefill-to-decode handoff of KV and state, not this
+split.
+
+The serving figures in this section are relayed from DeepSeek and the cited papers; the handbook did
+not run these deployments itself.
+
 ## Open questions
 
 - What is the crossover point at which KV transfer cost exceeds the interference cost it avoids, and how does it move with model size, context length, and attention variant?
@@ -209,6 +261,8 @@ of that tradeoff appears in the source.
 - Where is bounded suffix replay cheaper than transferring or retaining the corresponding KV state, and how does the break-even move with window size, interconnect bandwidth, and the share of context that the window excludes? DeepInfer ships a 140-token default and no measurement behind it.
 - How much of the disaggregation literature is reproducible against engines that do not implement it? If two of this vault's recent engine sources treat phase separation as roadmap or out-of-scope, published disaggregated-versus-aggregated comparisons may be describing a narrower population of systems than they appear to.
 - What counts as "complete" prefill-decode disaggregation? DeepInfer is reported to lack it while benchmarking the phases on separate device pools, and the vault has no definition that distinguishes the two.
+- With decode at EP64 or wider, one failed GPU stops an instance. How does that failure domain trade
+  against the 25% decode gain at 64 requests per GPU, which nearly vanishes at 256?
 
 ## Related pages
 
@@ -231,3 +285,5 @@ of that tradeoff appears in the source.
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
 - [[SemiAnalysis]]
 - [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[GPU Fleet Reliability]]

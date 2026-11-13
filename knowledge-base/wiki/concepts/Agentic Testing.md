@@ -294,8 +294,8 @@ was right. An unchanged line can reflect an ignored valid finding, and missed de
 The proxy therefore establishes neither correctness nor recall. Cloudflare's separate blinded
 model-judge check supplies another quality signal, not exhaustive ground truth.
 
-[[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] uses the same proxy at
-larger scale and without the baseline. LinkedIn counts a comment as accepted when "the code actually
+[[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] uses the same proxy
+without the baseline. LinkedIn counts a comment as accepted when "the code actually
 changed", rejects emoji reactions as too noisy, and reports **63.9%** acceptance on thousands of AI
 comments. Concurrency bugs and dead code reach **100%** and logic errors **80%**, in a chart with no
 category counts. With no coincidence rate subtracted, 63.9% is an upper bound on comment-caused
@@ -314,12 +314,14 @@ wrong, extending this page's argument that graders are untested surface.
 **Protect the reference from the agents judged against it.**
 [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] used the
 existing end-to-end tests as "the only reference for expected behavior" during the Copilot runtime
-port. Review agents had to confirm those tests were **unchanged**, and GitHub's stated lesson is that
-an agent must not change a test or an expected result so that an implementation passes. This is the
-repair-agent skip problem above, prevented by review policy rather than detected afterwards. The
-reference was still incomplete. Whole numbers turned into decimals, time-zone and empty-string
-handling changed, and cancellation behavior differed, all of which compiled, and GitHub says more
-coverage would have caught more of them. Every figure is GitHub's own, relayed by ByteByteGo.
+port. Review agents had to ensure those tests stayed **unchanged**. The article's lesson is that the
+tests themselves need oversight, so that no agent weakens a test or alters an expected result to get
+an implementation through. This is the repair-agent skip problem above, checked at review rather than
+discovered after merge. The reference was still incomplete. Some whole numbers became decimals and
+broke certain SDKs, and empty strings, time zones, and replacement-library error handling behaved
+differently even though the code compiled. Cancelled operations did not always stop related work. The
+article says additional coverage could have prevented some more regressions. The account is GitHub's,
+relayed by ByteByteGo.
 
 **Test the comparison itself.** [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
 describes reconstructions checked against the original binary. In one, a DX-Ball function rebuilt
@@ -334,8 +336,9 @@ video using Chrome's native `Page.startScreenRecording`. Its README states "Vide
 about fps", so the stress test draws a binary frame counter on every animation frame and decodes it
 from the output to count unique frames (for example **60.4** unique fps at 1080p on headless Linux,
 the CI case). The same README makes per-test video a cheap default. A Playwright Test fixture records
-every test and attaches the mp4. In one M4 Max benchmark, stop-and-finalize took **17 ms** against
-**3,800 ms** for Playwright's `recordVideo`, and each test finished about **10 s** sooner. A video is
+every test and attaches the mp4 to the report. In one M4 Max benchmark, stop-and-finalize took
+**17 ms** against **3,800 ms** for Playwright's `recordVideo`, and the benchmarked test finished
+about **10 s** sooner. A video is
 evidence for a human or agent reviewing a run, not an oracle. The README is unsigned, and its author
 is inferred from the repository owner.
 

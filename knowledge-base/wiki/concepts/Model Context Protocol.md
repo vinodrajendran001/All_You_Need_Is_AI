@@ -50,9 +50,9 @@ On startup, the client connects to available servers, asks each to describe its 
 
 MCP does **not** replace function calling. Function calling is how the model signals it wants to use a tool. MCP standardises how tools are described, discovered, and invoked so that the same tool works across any compliant model. They are complementary layers.
 
-Declared outputs change what the protocol is for. [[Philipp Schmid - Why Agents Are Soon Only Going to
-Have 1 Tool]] notes that MCP servers "increasingly ship" an `outputSchema` alongside `inputSchema`, a
-field he links in the MCP **draft** specification. A model that knows a tool's return type can write a
+Declared outputs change what the protocol is for.
+[[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]] notes that MCP servers "increasingly
+ship" an `outputSchema` alongside `inputSchema`, a field he links in the MCP **draft** specification. A model that knows a tool's return type can write a
 script that feeds Tool A's result into Tool B "*before* seeing runtime output", which is what lets a
 harness compile a server's tools into typed functions inside one code-execution tool (see
 [[Programmatic Tool Calling]]). Under that design MCP still describes and transports the tools, but the

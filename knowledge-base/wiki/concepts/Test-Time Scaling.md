@@ -20,6 +20,7 @@ source_ids:
   - src-2026-11-04-general-reasoning-train-swarm
   - src-2026-11-09-tillman-two-kinds-test-time-scaling
   - src-2026-11-08-alex-wang-reasoning-pathfinding
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -276,6 +277,16 @@ Tillman draws two consequences. First, evaluations of dangerous capabilities cou
 capability *below a stated spending budget*. Second, races in compute spending could move from training
 to inference. See [[Embedded Evaluation]] and [[AI for Mathematical Discovery]].
 
+## A probe on the model's own states can act as the verifier
+
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] gates resampling with a linear probe read
+from the model's hidden state when a solution ends. DeepSeek-V4.1-Flash resamples up to three times
+when the probe predicts a wrong answer. The probe rejects "four in five" wrong answers and "one
+right answer in fifteen", for **64%→71%**, and restarting the longest solutions gains "less than two
+points". The resampling compute is not reported. For Qwen3-8B, a self-written policy gained **7.0**
+points pooled over 63 problems, at **2.8×** the thinking tokens of a single attempt versus **1.8×**
+for a length-only rule (first-party, no error bars).
+
 ## Open questions
 
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
@@ -351,3 +362,4 @@ to inference. See [[Embedded Evaluation]] and [[AI for Mathematical Discovery]].
 - [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]]
 - [[Reasoning Effort Control]]
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]

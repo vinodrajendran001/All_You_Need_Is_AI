@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-10-21-ant-vllm-humming
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -376,14 +377,45 @@ author relays the operational cost from ChatForest's review: shell and file acce
 HTTP, and an unsandboxed bash tool. Performance figures in the article come from READMEs, a pull
 request, and reviews, not from one measurement protocol.
 
+## DeepSeek's deployment notes put numbers on DeepInfer, and Megatron shows the mixed-batch cost
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] narrows two gaps in the DeepInfer
+section above. It calls DeepInfer "DeepSeek's production serving engine" and "the engine DeepSeek
+serves V4.1-Flash with", citing DeepSeek's own DeepInfer release post and the deployment Q&A in the
+DeepInfer repository. From that Q&A it relays decode throughput at two expert-parallel widths. At 64
+requests per GPU, EP64 reaches about **15,700** tokens per second per GPU and **246** per user,
+against about **12,600** and **198** at EP8; at 256 requests per GPU the two settings reach about
+**26,300** and **24,900**. It also describes the policy behind the Expert Parallelism Load Balancing
+component listed above. Every GPU has spare slots for copies of the busiest experts, each expert's
+load is counted over a recent window, and the copies are re-placed every **1,000** steps in prefill
+and every **10,000** in decode, keeping the slowest GPU within **1.09** times the mean. These are
+DeepSeek's figures relayed by a third party. The vault has not read the Q&A directly, and the
+relayed passage names no GPU type. [[Prefill-Decode Disaggregation]] covers the phase sizing.
+
+The handbook also documents how Megatron-LM's inference engine behaves under expert parallelism, by
+quoting its source at a pinned commit. Expert parallelism requires coordinator mode, the default;
+direct mode refuses an expert-parallel size above 1. A step runs as a CUDA graph only when every
+expert-parallel rank is decoding. If any rank has a prefill in its batch, all ranks fall back to
+eager mode, so one rank's prefill changes the execution mode of the whole group. In reinforcement
+learning, the rollout engine can take its own expert-parallel size, built as a separate inference
+model into which the trainer's weights are refit. These are code-level behaviors at that commit;
+the handbook gives no measured cost for the eager fallback.
+
 ## Open questions
 
 - The DeepInfer account supplies no measurement of any kind. Its benchmark configurations are reported
   as **4 SM100 GPUs for prefill and 64 SM100 GPUs for decode**, each within one scale-up domain, with
   sweeps via `run_sweep.sh` — but no throughput, latency, or memory values accompany them, so nothing
   here supports or refutes a comparison with vLLM, SGLang, or TensorRT-LLM.
+  The MoE handbook now relays decode throughput from DeepInfer's own deployment Q&A (see the
+  DeepSeek deployment section above), which narrows the gap but still offers no comparison with
+  another engine.
 - Nothing in the vault verifies that DeepInfer runs DeepSeek's production systems, or that every listed
   component is implemented in the released code rather than planned or repository-adjacent.
+  The MoE handbook calls DeepInfer DeepSeek's production serving engine, citing DeepSeek's release
+  post; that is a first-party claim relayed by a third party, not independent verification.
+- How much decode throughput does a mixed batch cost under expert parallelism? In Megatron one
+  rank's prefill sends every rank to eager mode, and no source here measures the loss.
 - What does batch-invariant execution cost in throughput, and is reproducibility worth a speculation
   feature? This is the first engine in the vault to make determinism a configuration rather than a
   property of the day's batching, and the trade is entirely unquantified.
@@ -438,3 +470,5 @@ request, and reviews, not from one measurement protocol.
 - [[Google Cloud]]
 - [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Mixture of Experts]]

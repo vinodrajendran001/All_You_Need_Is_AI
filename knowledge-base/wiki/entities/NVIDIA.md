@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-11-06
+updated: 2026-11-13
 entity_kind: organization
 tags:
   - entity
@@ -32,6 +32,8 @@ source_ids:
   - src-2026-10-21-nvidia-sentry-runtime
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-03-nvidia-cosmos-interactive-world-models
+  - src-2026-11-06-nous-arete-27b
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -249,6 +251,16 @@ already records as a deployment and microscaling option. All figures are NVIDIA'
 ByteByteGo, without benchmarks. See [[Mixture of Experts]],
 [[Linear Attention and Recurrent Memory]], and [[Speculative Decoding]].
 
+[[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]] adds an outside
+measurement of Nemotron 3 Ultra on one narrow topic set. On Nous Research's 803-prompt evaluation of
+political-values topics, judged by Grok 4.7, Ultra averages **3.22** of 5 on required facts, and
+**0.6%** of its answers adopt the Chinese state's account. Nous "strongly considered" Ultra as its
+teacher but turned it down, citing "evidence that it too had a checkered record on China-related
+topics". The release does not show that evidence. It theorizes, saying it does not know
+definitively, that the bias came from working with Chinese open models during training. The capture
+does not name NVIDIA, and nothing in the vault tests the theory. For how the vault records Ultra's
+training, see [[Multi-Teacher On-Policy Distillation]].
+
 ## Cosmos 3 is documented as a world-model platform, ahead of published results
 
 [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] is NVIDIA's
@@ -264,6 +276,26 @@ PPO, OPD, and DiffusionNFT), and NIM microservices handle serving.
 It is vendor documentation. Its speed claims are the only measurements: speculative decoding
 "delivers measured mean speedups of roughly 2–3× on H200", and streaming VLM inference promises "10x
 lower latency" with no stated baseline. No fidelity or closed-loop policy results are reported.
+
+## GR00T 2 moves NVIDIA's robotics work from data tooling to reported results
+
+[[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]] is a research page on
+NVIDIA's GEAR lab site; its BibTeX credits "NVIDIA et al." The vault's earlier GR00T mention, through
+Potter above, covered only synthetic-data tooling and carried no performance evidence. GR00T 2 is a
+"world-action model": one diffusion transformer predicts future video and robot actions together.
+Its pretraining mixture holds about **402,730 hours** of human egocentric video, **10,184 hours** of
+handheld-gripper demonstrations, and **23,500 hours** of robot teleoperation. NVIDIA releases
+**100,000 hours** of the human video on Hugging Face as Human-1M-100K. Reported results include
+tasks learned from human or handheld demonstrations alone, five-demonstration adaptation to **95%**
+success across **50** tasks, and real-robot RL that lifts three contact-rich tasks to **88–96%**.
+
+The hardware links back to NVIDIA's other roles in the vault. Each few-shot adaptation is a
+**30-minute** LoRA fine-tune on one RTX 5090. The **2B**-parameter GR00T 2 Turbo plans on a Unitree
+G1 humanoid's onboard Jetson Thor at **124 ms** per prediction. One showcased dexterous task is
+seating GB300 memory modules, at **85%** success. Every result is first-party with modest trial
+counts, and the baselines' training budgets are not stated. Unlike the Cosmos 3 guide above, this
+page reports outcomes. See [[Robot Training Data]], [[World Models]],
+[[Video Pre-training for Robot Policies]], and [[Vision-Language Grounding]].
 
 ## Related pages
 
@@ -313,3 +345,9 @@ lower latency" with no stated baseline. No fidelity or closed-loop policy result
 - [[Speculative Decoding]]
 - [[Model Quantization and Efficiency]]
 - [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+- [[World Models]]
+- [[Video Pre-training for Robot Policies]]
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+- [[Nous Research]]
+- [[Multi-Teacher On-Policy Distillation]]

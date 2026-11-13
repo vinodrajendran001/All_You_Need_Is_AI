@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-10-27
+updated: 2026-11-13
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-27-romero-policy-gradient-llms
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-08-20-radixark-miles-v0-1
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -182,6 +183,23 @@ Two consequences follow:
   estimated from the same samples, it also inherits the plain group mean's self-inclusion. This
   reading is the vault's inference; Li does not address normalization.
 
+## Real-robot GRPO, from task-level success alone
+
+[[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+reports GRPO on physical robots. Driven "only by task-level success signals", real-robot RL lifts
+three contact-rich tasks from **40–76%** success after supervised post-training to **88–96%** with
+what NVIDIA calls "GRPO-induced self-imitation". On fixed-pipe fittings, that variant reaches
+**88%**, plain GRPO **86%**, residual RL **76%**, and the supervised policy **66%**. In a
+five-insertion agent task, swapping in the RL-trained policy raises full-task success from **12** to
+**19** of **20** runs on Ethernet cables and from **2** to **20** of **20** on chargers.
+
+A task-success reward is the sparse, binary case analysed above: a group whose rollouts all fail or
+all succeed is silent. On the vault's reading, starting from policies that already succeed 40–76% of
+the time keeps most groups mixed; NVIDIA does not discuss this. The page does not say how groups are
+formed on hardware, how many rollouts each update uses, how many real trials RL consumed, or what
+self-imitation adds beyond a two-point margin on the one task with per-method numbers. All results
+are first-party. See [[Robot Training Data]].
+
 ## Related pages
 
 - [[Yingru Li - The Gradient Is a Covariance]]
@@ -208,3 +226,5 @@ Two consequences follow:
 - [[Preston Fu]]
 - [[Tyler Romero - Policy Gradient for LLMs, Explained Visually]]
 - [[Inference Serving Engines]]
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+- [[Robot Training Data]]

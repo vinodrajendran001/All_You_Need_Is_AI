@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - world-models
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-14-rhoda-web-video-pretraining-robots
   - src-2026-10-15-potter-how-to-train-your-robot
   - src-2026-11-03-nvidia-cosmos-interactive-world-models
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -149,17 +150,51 @@ alignment across views) but **no measure of physical fidelity, sim-to-real trans
 improvement**. The "simulation is the linchpin" thesis therefore gains infrastructure here, not
 evidence.
 
+## A world-action model, and a simulator checked against real rankings
+
+[[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+calls GR00T 2 a "world-action model" (WAM). One diffusion transformer predicts future video and
+robot actions together, and small per-robot heads turn the plan into motor commands. In the Fei-Fei
+Li taxonomy, its outputs span two categories: the renderer's observations and the planner's actions.
+That makes it a second example for the convergence thesis, after World Labs' Marble, which spans
+renderer and simulator. Here the joint output is the design from the start. NVIDIA says that
+predicting how the scene should change "lets GR00T 2 learn physics from human video". That physics
+stays implicit in predicted pixels, and GR00T 2 does not output simulator state. It is therefore not
+evidence that a learned model can replace the simulator.
+
+The same page uses a conventional simulator in two ways and reports results for both:
+
+- **As a data source.** With the same real data, adding simulated episodes raised GR00T 2 Turbo's
+  out-of-distribution success on the G1 humanoid from **6.7%** to **63.3%**; GR00T 1.7 rose to
+  **40.0%**. That is one comparison in one setting, but it is a positive manipulation result for a
+  route that Potter reports as weaker for manipulation than for locomotion.
+- **As an evaluator.** An agent-assisted workflow builds digital twins of real tasks from robot
+  videos, 3D scans, and photographs. The twins are validated by replaying demonstrations, stability
+  tests, and human expert feedback. Across **14** GR00T 2 policies on a **25**-task YAM benchmark,
+  simulated and real success rates correlate at Pearson **0.92** and Spearman **0.89**, and Elo
+  scores at **0.93** and **0.90**. NVIDIA reports screening data-pipeline changes and inference
+  settings in simulation before robot tests.
+
+This qualifies the Cosmos 3 verdict above of "infrastructure, not evidence". GR00T 2 is the vault's
+first report of a simulator ranking policies roughly as real robots do. The result is first-party
+and narrow: one robot, one benchmark, and **14** policies from one model family. Close agreement
+within one family does not show that the simulator would rank a different architecture correctly.
+The third reported metric, MMRV **0.055**, is not defined in the capture.
+
 ## Open questions
 
 - What representation is best for scalable world models: pixels, tokens, latent states, or hybrid forms?
 - Can world models generalize robustly enough for open-ended real-world environments, or will they remain strongest in constrained domains?
 - How much fidelity do causal, few-step distilled world models lose relative to their bidirectional
   teachers, and is it enough to change a policy evaluation's verdict?
+- Does a digital-twin evaluator that ranks one model family's policies correctly also rank other
+  architectures, or policies with different failure modes, correctly?
 - The unified world model thesis faces a data imbalance problem the essay itself identifies: video data for renderers vastly outweighs 3D+physics data for simulators. Can this gap be closed synthetically?
 
 ## Related pages
 
 - [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
 - [[NVIDIA]]
 - [[Autonomous Driving Systems]]
 - [[Brian Potter - How to Train Your Robot]]

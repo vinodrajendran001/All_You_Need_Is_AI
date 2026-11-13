@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, open-models, ecosystems, inference]
 source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-06-nous-arete-27b
 status: active
 ---
 
@@ -109,6 +110,35 @@ n-gram table meant to sit on SSD. Open weights therefore become local use only t
 quantization, and hardware markets that the license does not control. The figures are relayed from
 third-party roundups and are a snapshot from November 2026.
 
+## Openness to values adjustment
+
+[[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+treats open weights as material that a third party can re-align. [[Nous Research]] fine-tuned
+[[Qwen]]'s Qwen3.8-27B on an open teacher's answers to prompts in seven political-values
+categories. It then released the weights, its 803-prompt evaluation, and the training data. On that
+evaluation, the share of answers adopting the Chinese state's account fell from **22%** to under
+**1%** (**0.9%** in its table), with two capability checks roughly unchanged. Nous presents this as
+the purpose of open weights: a hedge against frontier labs that "all share a remarkably similar
+worldview", effective "so long as there are companies like Nous that can operate on the weights".
+That framing is Nous's own.
+
+The release adds two points about how the ecosystem works. First, licences shape which teacher a
+derivative can learn from. Nous wanted an open teacher "to avoid any of the hassle associated with
+terms of use restrictions on 'illicit distillation'", and chose Inkling. Second, a model's stance
+can travel with its capabilities. Nous theorizes, without showing the evidence, that bias in
+NVIDIA's Nemotron 3 Ultra came from working with Chinese open models during training. It reports
+"similar contamination" in its own work, because "the vast majority of high quality open models are
+Chinese". If that is right, distillation and model-generated training data can pass a stance
+downstream along with skills. See [[Knowledge Distillation]].
+
+Nous's conclusion, that "the values in any open model are only ever one fine-tune away", cuts both
+ways. On the vault's reading, it is the values counterpart of the point above from
+[[Mark Russinovich - Fool's Gold]] that some controls cannot be enforced after weights are
+distributed. A releasing lab cannot fix its model's stance, and a re-aligning lab cannot prevent the
+next fine-tune either; [[Defensive Deception for Open Models]] explores the safety version of that
+problem. All of Arete's measurements come from one Nous-built evaluation with one LLM judge, and no
+independent rerun exists.
+
 ## Open questions
 
 - Which metrics distinguish genuine deployment from automated download noise?
@@ -118,6 +148,9 @@ third-party roundups and are a snapshot from November 2026.
   evaluation program choose between durability and quality?
 - Should deployability be reported against a reference consumer machine? The usable size of a local
   model depends on RAM prices and offload tooling as much as on the release.
+- If a model's stance can be changed by a small fine-tune, what should a release disclose so that
+  downstream users can measure the stance they inherit, including through teachers and
+  model-generated data?
 
 ## Related pages
 
@@ -139,3 +172,6 @@ third-party roundups and are a snapshot from November 2026.
 - [[Self-Replicating Agents]]
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
 - [[Inference Serving Engines]]
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+- [[Nous Research]]
+- [[Knowledge Distillation]]

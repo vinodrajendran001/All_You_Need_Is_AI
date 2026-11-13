@@ -21,8 +21,8 @@ status: active
 ## Summary
 
 Simon Willison's blog post is a third-party follow-up to
-[[Rikiya Takehi et al - Sparks of Weight-Space Programming]], which he calls "yesterday's hot paper".
-That paper bundles two questions, and Willison argues they should be kept apart:
+[[Rikiya Takehi et al - Sparks of Weight-Space Programming]], which he calls "yesterday's hot
+paper". That paper bundles two questions, and Willison argues they should be kept apart:
 
 - what a model can infer from raw weights *without* tools or code execution;
 - how well a model armed with code can analyze and update another model.
@@ -74,8 +74,8 @@ result is a small, informal replication: one run per game, no repeats and no bas
 | Qwen 3.8 27B, local | Freeway | Wrong: "A simplified Pac-Man-like grid game" | not given | not quoted |
 
 - **Local setup.** Qwen 3.8 27B ran as a **17GB** `Q4_K_M` GGUF in LM Studio, through the
-  `llm-lmstudio` plugin. The default **8192**-token context "failed with errors", so a longer context
-  window was loaded and the plugin timeout raised to **900** seconds.
+  `llm-lmstudio` plugin. The default **8192**-token context "failed with errors", so a longer
+  context window was loaded and the plugin timeout raised to **900** seconds.
 - **Freeway.** Willison was not surprised by the failure, because Freeway is the most obscure of
   the four games.
 - **Reasoning traces.** He calls them "fun to skim, and almost incomprehensible". The sample he

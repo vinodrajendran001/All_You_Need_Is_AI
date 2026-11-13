@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-10-23
+updated: 2026-11-13
 entity_kind: organization
 tags:
   - entity
@@ -14,6 +14,8 @@ source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
   - src-2026-08-25-ibm-granite-4-2-how-they-are-built
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
+  - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-11-pytorch-executorch-webgpu
 status: active
 ---
 
@@ -55,6 +57,28 @@ The Granite 4.2 build report was itself published as a Hugging Face blog post ra
 paper or a corporate release, which is the pattern several open-weight releases in this vault
 follow.
 
+## A training handbook published on the company's own platform
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] follows the same pattern at book
+length. Hugging Face researchers published it as a Space, presented as the sequel to their Smol
+Training Playbook, which covered a dense model, and it links to the Ultrascale Playbook for each
+parallelism technique. The handbook also sends readers to the company's own tools. Trackio,
+Hugging Face's open-source experiment tracker, has an API that mirrors `wandb` and logs to a local
+database that can be synced to a Space. Hugging Face Jobs runs a Docker image and a command on
+Hugging Face's machines, billed by the minute; among its largest options is `h200x8`, eight H200s
+of 141 GB each, and a job stops after 30 minutes unless a different timeout is set. The training
+commands themselves are built on NVIDIA's Megatron-LM at a pinned commit, so the platform supplies
+publishing, tracking and rented hardware rather than the training framework. See
+[[Mixture of Experts]].
+
+## Compiled artifacts from another framework
+
+[[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]] shows the Hub carrying
+artifacts that are not in Hugging Face's own format. ExecuTorch's browser-ready models are published
+as `.pte` files in `executorch-community` repositories, each with a model card and the exact export
+recipe. The infrastructure role described above therefore extends from checkpoints to compiled
+runtime files for [[PyTorch]]'s ExecuTorch runtime. See [[On-Device Reasoning]].
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -66,3 +90,8 @@ follow.
 - [[Real-Time Voice AI]]
 - [[Hume AI]]
 - [[AI Knowledge Base Overview]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]]
+- [[Mixture of Experts]]
+- [[PyTorch]]
+- [[On-Device Reasoning]]

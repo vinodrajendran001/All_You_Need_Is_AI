@@ -24,8 +24,8 @@ status: active
 A research blog post from DoubleAI (no individual byline in the capture) proposes putting a coding
 agent inside a network's training run. Ordinarily only the weights change during training. Here the
 agent reads the network's internals and changes "the data, the objective, the update rule or the
-architecture itself". The authors call this **mechanistic intervention**: it uses interpretability-style
-tools, but on a network that is still learning.
+architecture itself". The authors call this **mechanistic intervention**: it uses
+interpretability-style tools, but on a network that is still learning.
 
 The main edit is a **code layer**, a small program inserted behind a gate initialized at zero so
 that the network is unchanged at the moment of insertion. Four early experiments are reported:
@@ -81,7 +81,7 @@ architecture.
   - Each layer must first pass a causality check: scrambling later tokens must not change anything
     the layer computes up to that position.
 
-### The four training experiments
+### Experiments on networks the agent trains
 
 - **nanochat.** A twelve-layer transformer of about **286M** parameters, with context extended to
   16K tokens and code mixed into the data. The agent inserted three code layers, and validation loss
@@ -91,7 +91,9 @@ architecture.
 - **Sliding-window attention ("Evolution is mandatory").**
   - Setup: a **124M**-parameter model trained on 8K-token documents, with attention limited to the
     last **500** tokens.
-  - The agent added a parameter-free exact-match lookup into every attention head.
+  - The authors gave it a parameter-free exact-match lookup. It retrieves the tokens that
+    followed earlier occurrences of the last three tokens and adds them to every attention head
+    at every layer.
   - Recall of a variable defined **600-4,000** tokens earlier was **72%** when the layer was
     inserted halfway (step 1,200) and **55%** when it was present from the start, despite
     "near-identical loss curves".
@@ -99,8 +101,8 @@ architecture.
     the layer instead of building its own circuits.
 - **CLRS-Text (jaggedness).**
   - Setup: thirty classical algorithms, and a twelve-layer, **86M**-parameter transformer.
-  - Plain training plateaus at **55%** after 20 thousand steps, and twice as many steps plateaus
-    similarly.
+  - Plain training plateaus at **55%** after 20 thousand steps. It solves the input sizes it saw
+    in training but fails on the sizes in between, "even when trained for twice as long".
   - With **ten** code layers inserted along the way, the run reaches **84%**.
   - At input sizes between those seen in training, accuracy rises from "only a third" to **79%**.
   - The agent, "powered by a frontier model, already knows how to solve the tasks". It used linear
@@ -118,7 +120,8 @@ architecture.
     to three times.
   - DeepSeek built the probe from its own graded solutions to **243** problems from the 2024 and
     2025 contests, choosing the blocks, the probe's form and the threshold itself. A single linear
-    readout did as well as a small neural network. It predicted a gain of about eight points, and the hidden contests gave seven.
+    readout did as well as a small neural network. It predicted a gain of about eight points, and
+    the hidden contests gave seven.
   - The probe rejects "four in five" wrong answers and "one right answer in fifteen". Restarting the
     longest solutions instead gains "less than two points".
   - Probed midway through a solution, the hidden states "mostly encode how hard the problem is".
@@ -129,8 +132,8 @@ architecture.
   - Qwen then wrote its own Python policy for when to stop, restart and accept, with no gradient
     training.
   - The policy came from a search over about **15,000** policies, each scored on about **800** older
-    problems. The ingredient that "turned out to matter most" was having Qwen write analysis code over
-    its graded attempts before writing each policy.
+    problems. The ingredient that "turned out to matter most" was having Qwen write analysis code
+    over its graded attempts before writing each policy.
   - Accuracy rose from **59%** to **66%**.
   - Pooled over **63** problems, the policy gains **7.0** points over baseline and **3.3** over a
     length-only rule. It uses **2.8×** the thinking tokens of a single attempt, against **1.8×** for

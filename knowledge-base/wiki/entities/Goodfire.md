@@ -20,9 +20,10 @@ status: active
 An interpretability research organization. It publishes Nick Cammarata's essay
 [[Nick Cammarata - Neural Networks Are Already Clean]] at its own domain, along with interactive
 model microscopes. It also runs a research programme that includes the Block-Sparse Featurizer
-vision work cited in that essay (Fel et al., 2026). Its technical paper [[Curt Tigges et al - Neurons as an Interpretable Basis]] opens a series on
-"native interpretability": studying a network through its own units rather than through a
-replacement model.
+vision work cited in that essay (Fel et al., 2026). Its technical paper
+[[Curt Tigges et al - Neurons as an Interpretable Basis]] opens a series on "native
+interpretability": studying a network through its own units rather than through a replacement
+model.
 
 ## Why it matters here
 

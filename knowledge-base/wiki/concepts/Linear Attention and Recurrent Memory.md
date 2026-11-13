@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, transformers, attention, memory]
 source_ids:
   - src-2026-07-27-neural-avb-looped-transformers
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-22-agrawal-qwenputer
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-10-alphasignal-latent-sparse-attention
 status: active
 ---
 
@@ -216,6 +217,33 @@ missing curve. Its value is the explicit statement of motive, agents that may ma
 calls on one problem and so benefit from constant per-token cost, and of the cost, precise
 retrieval. It is a secondary account of NVIDIA's documents, not the documents themselves.
 
+## Retrieval over a subset instead of a fixed state
+
+[[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+describes a different answer to the cost this page's architectures address. Latent sparse attention
+(LSA), as the capture describes it, keeps every key and value but groups the keys into clusters in a
+learned latent space. Each query is compared with the cluster centroids, and conventional attention
+runs over the keys of the most promising clusters, plus a recent-token window and a few initial
+tokens. A recurrent layer compresses history into a fixed state and gives up exact retrieval; LSA
+keeps exact attention over a retrieved subset and pays instead with a search step and a full-size
+cache. [[Sparse Attention]] covers that family.
+
+The two approaches meet in the native variant, N-LSA, which learns the clustering during ordinary
+next-token training. The capture reports a **500-million**-parameter hybrid model trained at up to
+**128,000** tokens that matched full attention's validation loss, trained **1.6x** faster per
+attention layer and **1.24x** faster end to end, and retained more long-context accuracy than
+baselines such as sliding-window attention. It does not say what the hybrid combines LSA with, so
+the result cannot be set beside Qwen3.8-27B's 3:1 or Nanbeige's x2 as another ratio.
+
+The capture also contradicts this page. It describes **Qwen-3.8-27B** as a model "which uses full
+attention", the baseline against which distilled LSA made prefill **72.4** times faster at 10 million
+tokens.
+"A shipped hybrid ratio" above, citing [[adlrocha - Base Models Stopped Being the Bottleneck]],
+describes Qwen3.8-27B as 16 repeats of three Gated DeltaNet blocks plus one Gated Attention block.
+The capture may mean that the model's attention layers are full rather than sparse, it may refer to
+a different variant, or one source may be wrong. The vault cannot settle this, so both claims stay
+on record. The capture is an unsigned newsletter item whose links are newsletter trackers.
+
 ## Open questions
 
 - What determines the right full-attention ratio in a hybrid, and does it depend on task, sequence length, or
@@ -231,6 +259,8 @@ retrieval. It is a secondary account of NVIDIA's documents, not the documents th
 - Nemotron, Qwen3.8, and Kimi K3 all keep some full attention. Is the retained fraction set by
   retrieval accuracy, by serving cost, or by convention? No source recorded here publishes the
   curve.
+- If a hybrid's exact-attention layers used retrieval-based sparse attention, would it need fewer or
+  more of them? The N-LSA hybrid's layer mix is not reported.
 
 ## Related pages
 
@@ -258,3 +288,5 @@ retrieval. It is a secondary account of NVIDIA's documents, not the documents th
 - [[SemiAnalysis - TPU Inference Externalization Full Steam Ahead]]
 - [[SemiAnalysis]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+- [[Sparse Attention]]

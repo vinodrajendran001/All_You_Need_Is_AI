@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-04
-updated: 2026-10-30
+updated: 2026-11-13
 tags:
   - concept
   - llm
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-06-30-onur-sirin-local-llm-memory-hardware
   - src-2026-08-30-halo-research-sopro-v2
   - src-2026-10-27-bytebytego-apple-on-device
+  - src-2026-11-11-pytorch-executorch-webgpu
 status: active
 ---
 
@@ -99,12 +100,41 @@ authorized software and encrypted delivery. See [[Confidential Computing]]. The 
 AFM 3 and cloud-platform claims remain unverified reporting, not device specifications adopted
 by this page.
 
+## The browser tab as a deployment target
+
+[[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]] adds a deployment tier this
+page had not covered: a web page. A PyTorch model is exported once with `torch.export` to an
+ExecuTorch `.pte` file and runs in any WebGPU-enabled browser through a WebAssembly runtime. Its
+compute is written as WGSL shaders, which are translated to Metal, Vulkan or D3D12 depending on the
+platform. The post's case for the browser repeats this page's motives (prompts, inputs and outputs
+stay on the user's device; offline use; lower server costs) and adds distribution: nothing is
+installed, and the model is a file served from a CDN.
+
+The reported speed comes from one comparison. On one Apple M1 Pro in Chrome, with quantized Llama
+3.2 1B and Qwen3-0.6B across 128 to 8K tokens of context, WebGPU was **4-7x** faster than
+ExecuTorch's own WebAssembly CPU backend (XNNPACK) on prefill and **2-10x** faster on decode, taking
+the median of 5 runs after 3 warmups. The baseline is the same project's CPU path, not another
+browser runtime, and the two paths use different activation precision (see
+[[Model Quantization and Efficiency]]). No battery, thermal or mobile-browser figure is given, so
+the result shows the GPU beating the CPU inside one laptop browser, not browser inference meeting
+this page's phone constraints.
+
+Two details connect to the memory budgets above. Dynamic shapes are handled with buffers allocated
+at their maximum size and workgroups recalculated per dispatch, which enables batched prefill; this
+implies the tab reserves memory for the largest shape, but the post gives no memory figure. The
+models are small: the four LLMs listed run from 0.5B to 1B parameters, three of them marked 4-bit
+quantized, alongside vision, speech-to-text and text-to-speech models, and the backend also supports
+LoRA and DiReFT fine-tuning on the device for three of them. The post calls the backend "still in
+early development".
+
 ## Open questions
 
 - When will latent/internal reasoning become more edge-friendly than explicit chain-of-thought?
 - What is the best combination of sparsity, quantization, routing, and verifier design for mobile assistants?
 - Can parallel test-time scaling remain worthwhile on phones once power, thermal limits, and user-perceived latency are included?
 - Which reasoning tasks should stay local for privacy/latency, and which should escalate to a larger cloud model?
+- Can a browser tab hold a reasoning model's long traces? The ExecuTorch WebGPU benchmarks stop at
+  8K tokens of context on one laptop and give no memory figure for its allocate-at-max buffers.
 
 ## Related pages
 
@@ -131,3 +161,5 @@ by this page.
 - [[AI Knowledge Base Overview]]
 - [[Neural Text-to-Speech]]
 - [[Halo Research - Sopro V2 On-Device Text-to-Speech]]
+- [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]]
+- [[PyTorch]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -21,6 +21,8 @@ source_ids:
   - src-2026-07-16-lilian-weng-harness-engineering
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-06-11-0xcodez-fable-5-self-improving-agents
+  - src-2026-07-20-0xcodez-graph-engineering-roadmap
 status: active
 ---
 
@@ -132,6 +134,34 @@ that proposes the next change. The post reports outcomes of the loop — prompt-
 Script-mode tuning across four model families — but no rate of accepted versus rejected
 proposals. See [[Harness Optimization]] and [[Benchmark Optimization]].
 
+## Harness primitives now package the verifier and the stop rule
+
+Two influencer-style courses by [[@0xCodez]] show the loop contract above appearing as named features
+of the Claude tooling rather than as code a team writes. Their mechanisms are concrete, but most of
+their performance claims are unsourced.
+
+[[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]] describes `/goal` in
+Claude Code and Outcomes in Claude Managed Agents as "two near-identical primitives" with one shape:
+"an independent grader checks the work, a not-met verdict starts the next iteration, the loop exits
+when the grader passes." The difference is where the contract lives. `/goal` takes a plain-text goal
+and a model grader for an in-session loop; Outcomes adds a file-based rubric with gradable criteria, a
+sub-agent grader, and a hard `max_iterations` bound, which covers the verifier and exit items of the
+contract explicitly. The post relays a Claude Code team line, "a verifier sub-agent tends to outperform
+self-critique with Fable 5", as confirmation of this page's separation rule, but reports no numbers.
+Routines then supply the trigger item: saved configurations that run in the cloud on a schedule, an
+API call, or a GitHub event. The post's examples are a 7 am eval rerun, a CI failure that fires an
+investigation, and a merge that writes new patterns back into a Skill.
+
+[[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]] supplies a
+stopping rule for loops whose size is unknown in advance, such as a bug sweep. "Loop-until-dry" keeps
+spawning finder agents "until K consecutive rounds surface nothing new"; the example stops after **2**
+empty rounds. The detail it singles out is what counts as new: "Dedupe against everything seen, not
+just against confirmed results", or rejected findings return every round and the loop never runs dry.
+The example also checks each fresh finding through three lenses and keeps it if at least two judges
+call it real. It has no iteration or budget cap, although the course warns that a cycle that does not
+converge "spawns agents until your budget is gone". By this page's stopping economics, a dry-round
+count is a diminishing-return limit, and it still needs a budget bound beside it.
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -140,6 +170,9 @@ proposals. See [[Harness Optimization]] and [[Benchmark Optimization]].
 
 ## Related pages
 
+- [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]]
+- [[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]]
+- [[@0xCodez]]
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
 - [[Decagon]]
 - [[Serving Benchmarks and Goodput]]

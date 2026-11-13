@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - training
@@ -19,6 +19,8 @@ source_ids:
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-10-21-simpson-torchtpu
   - src-2026-11-02-anil-compute-islands
+  - src-2026-11-01-xuewen-yang-parallelism-by-hand
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -193,6 +195,64 @@ communication-volume figures even though the post recommends measuring training 
 contribution is the reframing. Once the slowest link crosses an ocean rather than a rack, how often
 ranks synchronize joins mesh shape as a parallelism choice.
 
+## The axes with numbers you can check by hand
+
+[[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]] works the axes above through one
+case, a 27B model on H200 GPUs, with arithmetic a reader can redo. It turns several of this page's
+qualitative rules into numbers.
+
+- **Memory.** The 16-bytes-per-parameter budget gives **432 GB** of model state against **141 GB** on
+  one H200. On 8 GPUs, ZeRO stages 1, 2 and 3 bring it to **148.5**, **101** and **54 GB** per GPU.
+  Stages 1 and 2 add no traffic; stage 3 (the FSDP idea) moves about **1.5x** the bytes of plain data
+  parallelism.
+- **Activations are as large as the model state.** One 4,096-token sequence needs about **293 GB**
+  with naive attention and about **51 GB** with FlashAttention. ZeRO does not help here, because
+  every GPU still runs every layer.
+- **Sequence parallelism is nearly free.** It uses the same bytes on the wire as tensor parallelism
+  and cuts the per-layer activations left by TP8 from **13·sbh** to about **4.25·sbh**, roughly 3x
+  less.
+- **Causal context parallelism needs rebalancing.** Over four ring-attention ranks, causal masking
+  gives them **6% / 19% / 31% / 44%** of the work. Splitting the sequence into twice as many chunks and
+  pairing each early chunk with its mirror evens them out.
+- **Pipeline bubbles have a formula.** (p − 1)/(m + p − 1) gives **3/7 ≈ 43%** at 4 stages and 4
+  micro-batches; 8 stages need **64** micro-batches to stay under 10%.
+
+The post's longest-sequence table adds a less obvious point. Pipeline parallelism does not buy
+length, because under 1F1B scheduling the first stage holds activations for all layers.
+Recomputation is "the biggest single lever" (about 8x), and across two nodes it is context
+parallelism that doubles the length, to about **820K** tokens with full recomputation. Even then,
+"Long-context training usually runs out of time before it runs out of memory": at 310K tokens, one
+sequence needs about 1.5 minutes of attention compute on 8 H200s at 40% utilization. The author
+gives the estimates as "good to maybe ±30%". The post covers ring attention only, not the
+DeepSpeed-Ulysses variant recorded above.
+
+## Expert parallelism measured on one cluster
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] measures what the expert-parallel axis
+costs on real hardware: H100 nodes on AWS, Megatron, and a 64-expert model. Its findings sharpen
+this page's placement rule.
+
+- **Crossing nodes was expensive.** Spread over two nodes, EP16 ran **59%** below EP8 in one node.
+  The two runs also differed in nodes and accumulation, so the comparison is confounded. The
+  handbook's rule is to keep expert parallelism inside a node and add nodes as data-parallel
+  replicas.
+- **The fabric can silently fail.** Two runs that requested the EFA network still logged "Using
+  network Socket" and ran about **25x** slower than EP16 on EFA. A collective library that falls back
+  without an error makes the network a configuration risk as well as a bandwidth limit.
+- **Overlap trades memory for speed.** Running one micro-batch's all-to-all under another's compute
+  raised throughput by up to **35%** on two nodes, while rank 0 reserved 5 to 10 GB more. Full
+  recomputation at micro-batch 2 cost **24%** of throughput and blocks that overlap, so the handbook
+  prefers selective recomputation and offloading.
+- **Dropping tokens can change the layout.** In a study it cites, capacity factor 1 without tensor
+  parallelism reached **463** TFLOP/s per GPU against **392** for dropless training with tensor
+  parallelism 2. The authors credit the smaller memory footprint, which allowed less model
+  parallelism. The handbook still recommends dropless training by default.
+
+Both sources describe Megatron's **parallel folding**, which gives attention and MoE layers separate
+layouts over the same GPUs. Xuewen Yang adds a trap: tensor parallelism without sequence parallelism
+makes both ranks dispatch the same tokens and doubles expert work, which Megatron rejects with an
+error. See [[Mixture of Experts]].
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
@@ -206,6 +266,8 @@ ranks synchronize joins mesh shape as a parallelism choice.
   compute-islands case study reports bits per byte but no wall-clock time, utilization, or bytes
   moved, does not separate the Shampoo-variant optimizer's contribution from that of distribution,
   and tested butterfly mixing only inside one site.
+- How far do the hand-derived estimates hold at scale? Xuewen Yang's figures are labelled ±30%, and
+  the handbook's cross-node EP measurement is confounded by node allocation.
 
 ## Related pages
 
@@ -231,3 +293,5 @@ ranks synchronize joins mesh shape as a parallelism choice.
 - [[Edward Z. Yang - How to Parallelize a Transformer for Training]]
 - [[Wafer - AI Performance Engineering Resources]]
 - [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]
+- [[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-26
+updated: 2026-11-13
 source_id: src-2026-08-05-aibuilderclub-hermes-nous-research-self-improving-agent
 source_title: 'Hermes Agent: Self-Hosted AI That Never Forgets You (2026)'
 source_author: AI Builder Club
@@ -44,6 +44,7 @@ The profile illustrates a shift from session-bound assistants toward continuousl
 ## Affected pages
 
 - [[AI Builder Club - Build AI Agents]]
+- [[Nous Research]]
 
 ## Citations
 

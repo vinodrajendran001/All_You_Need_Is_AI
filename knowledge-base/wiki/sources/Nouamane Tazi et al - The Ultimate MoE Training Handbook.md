@@ -159,12 +159,12 @@ explicit about the evidence: many recommendations rest on one ablation in one la
 ## Why it matters
 
 The handbook is the vault's most complete practitioner account of [[Mixture of Experts]]. Its
-mechanics run through [[Distributed Training Parallelism]] (expert parallelism kept in-node, overlap,
-capacity) and the [[LLM Training Pipeline]] (upcycling, Muon, MTP, routing replay in RL). It extends
-[[GPU Fleet Reliability]] with pre-flight validation and baseline-relative acceptance. On the serving
-side it adds the phase-split EP sizing to [[Prefill-Decode Disaggregation]], storage-versus-reads
-arithmetic to [[LLM Inference]], and the expert-only low-bit recipe to [[Model Quantization and
-Efficiency]]. It is also a long-form [[Hugging Face]] Space.
+mechanics run through [[Distributed Training Parallelism]] (expert parallelism kept in-node,
+overlap, capacity) and the [[LLM Training Pipeline]] (upcycling, Muon, MTP, routing replay in RL).
+It extends [[GPU Fleet Reliability]] with pre-flight validation and baseline-relative acceptance. On
+the serving side it adds the phase-split EP sizing to [[Prefill-Decode Disaggregation]],
+storage-versus-reads arithmetic to [[LLM Inference]], and the expert-only low-bit recipe to
+[[Model Quantization and Efficiency]]. It is also a long-form [[Hugging Face]] Space.
 
 ## Tensions / open questions
 
@@ -175,11 +175,13 @@ Efficiency]]. It is also a long-form [[Hugging Face]] Space.
 - **Confounded comparisons, acknowledged.** The NCCL-tuning and EP16-vs-EP8 comparisons changed
   node allocation along with the variable under study.
 - **Relayed vendor numbers.** DeepSeek serving figures, NVIDIA's LatentMoE ablation, the AFD
-  speedups and the FP8 gains come from the cited parties. The handbook relays, and in places
-  redraws, them but did not reproduce them. FastAFD's 1.41x and Qiu et al.'s 0.99x disagree under different assumptions.
+  speedups and the FP8 gains come from the cited parties. The handbook relays them, and in places
+  redraws them, but did not reproduce them. FastAFD's 1.41x and Qiu et al.'s 0.99x disagree under
+  different assumptions.
 - **Serving versus released code.** DeepSeek's documented phase-split deployment sits beside
   [[Mehul Gupta - What is DeepSeek DeepInfer]], which reports that DeepInfer's initial release lacks
-  complete prefill-decode disaggregation. Running such a deployment and shipping it are not the same claim.
+  complete prefill-decode disaggregation. Running such a deployment and shipping it are not the
+  same claim.
 - **Capture artifacts.** The HTML conversion turned some numbers into section links. Examples are
   `[2.5](#s-2-5) at k = 8`, `Step [3.5](#s-3-5) Flash`, a load-balancing loss of `[3.2]`, and a
   permute-fusion step-time drop of `[3.3]%`. Values that are also section numbers are not cited
@@ -197,6 +199,10 @@ Efficiency]]. It is also a long-form [[Hugging Face]] Space.
 - [[Prefill-Decode Disaggregation]]
 - [[Model Quantization and Efficiency]]
 - [[Hugging Face]]
+- [[Inference Serving Engines]]
+- [[DeepSeek]]
+- [[NVIDIA]]
+- [[Speculative Decoding]]
 
 ## Raw capture
 
@@ -230,6 +236,7 @@ Efficiency]]. It is also a long-form [[Hugging Face]] Space.
 - [[Prefill-Decode Disaggregation]]
 - [[Model Quantization and Efficiency]]
 - [[Hugging Face]]
+- [[Inference Serving Engines]]
 - [[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]]
 - [[Mehul Gupta - What is DeepSeek DeepInfer]]
 - [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]]

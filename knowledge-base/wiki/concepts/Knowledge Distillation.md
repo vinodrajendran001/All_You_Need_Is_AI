@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - model-training
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-11-03-astwei-teaching-qwen-why
   - src-2026-11-03-nvidia-cosmos-interactive-world-models
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-06-nous-arete-27b
 status: active
 ---
 
@@ -227,6 +228,26 @@ property of the writing is responsible; a refusal experiment suggests refusal is
 main datasets also differ in size (**3,300** Terra vs **1,187** Sonnet 5 samples). This extends the
 weaker-teacher finding above from capability data to alignment data.
 
+## Licence terms can choose the teacher
+
+[[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]] is
+a plain distillation run: Qwen3.8-27B was fine-tuned on a teacher's answers with "No RL, no
+preference optimization, and no architectural modification". The teacher was chosen first by
+licence: Nous used an open model to avoid terms-of-use restrictions on "illicit distillation". It
+then compared open models using benchmarks, including its own, and "researcher judgement", and chose
+Inkling as "the best open model with a positive eval on what we were targeting". On Nous's
+Grok-judged evaluation, Inkling scores **3.96** of 5 on required facts, with **0.3%** of answers
+adopting the official line. The student moved from **2.32** and **22%** to **2.98** and **0.9%**
+at temperature 0; at the **0.6** used for the other rows, the base and Arete fact scores are
+**2.24** and **2.88**.
+
+Nous rejected Nemotron 3 Ultra over "evidence that it too had a checkered record on China-related
+topics", and theorizes, without certainty, that the bias came from working with Chinese open models
+during training. That is a case of the transfer risks listed above. The design cannot separate the
+teacher's effect from selection: there is one teacher, and the evaluation reporting the gain helped
+choose it. That contrasts with the multi-teacher comparisons in the previous section, where teacher
+rank did not predict effectiveness. See [[Nous Research]] and [[Qwen]].
+
 ## Few-step causal students make a video teacher interactive
 
 [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]] uses
@@ -280,3 +301,5 @@ fidelity cost of this distillation is unmeasured. It is NVIDIA vendor documentat
 - [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
 - [[World Models]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+- [[Nous Research]]

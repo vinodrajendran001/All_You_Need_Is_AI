@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-16
-updated: 2026-10-27
+updated: 2026-11-13
 tags: [concept, evaluation, governance, assurance]
 source_ids:
   - src-2026-08-30-openai-hugging-face-incident
@@ -9,6 +9,8 @@ source_ids:
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-10-20-guan-beyond-gmean-squared
   - src-2026-10-17-redwood-screwtape
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-09-tillman-two-kinds-test-time-scaling
 status: active
 ---
 
@@ -127,6 +129,24 @@ disclosure behavior the grade table above is designed to reward. The deployment 
 **hypothetical** — the authors state OpenAI does not deploy current models this way — so it is a
 proposed measurement of a proposed arrangement, not a report on a shipped control.
 
+## A deep-access assessment under redaction, and verdicts with a spending budget
+
+[[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] covers the vault's closest
+real case: [[METR]]'s November 2026 assessment of AI R&D acceleration at [[Anthropic]], for which
+METR says Anthropic offered "unprecedented access to internal data". Anthropic could redact, and
+removed "a majority of the evidence we found most informative"; METR says the public report does not
+achieve "transparency about evidence". Cofounder Sam McCandlish says METR had complete independence,
+and that this work began before, and is separate from, the embedded third-party evaluators Anthropic
+has committed to. Against Apollo's principles it publishes a conclusion and names redacted
+categories, but outsiders cannot check the evidence. Zvi suspects evaluators' need for continued
+cooperation pushes toward underreporting; that is his inference, not METR's.
+
+[[James Tillman - Two Kinds of Test-Time Scaling]] adds a cost problem. If capability keeps rising
+with test-time compute beyond the per-task training maximum, a dangerous-capability evaluation
+cannot stop at that maximum. Citing the UK AISI, he expects evaluations that can only rule out a
+capability *below a given spending budget*, affordable in only a few high-importance domains. A
+verdict would then need its compute budget stated alongside its scope.
+
 ## Open questions
 
 - How can access completeness be assessed when the developer controls the evidence surface?
@@ -159,3 +179,6 @@ proposed measurement of a proposed arrangement, not a report on a shipped contro
 - [[Chain-of-Thought Monitoring]]
 - [[Benchmark Optimization]]
 - [[Redwood Research - Screwtape - Adversarial Transcript Editing for Monitor Red-Teaming]]
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
+- [[James Tillman - Two Kinds of Test-Time Scaling]]
+- [[METR]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-11-06
+updated: 2026-11-13
 entity_kind: organization
 tags:
   - entity
@@ -19,6 +19,9 @@ source_ids:
   - src-2026-10-21-mcateer-claude-mods
   - src-2026-10-27-anthropic-agents-judgment-calls
   - src-2026-11-03-astwei-teaching-qwen-why
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-10-mollick-fable-5-2-jagged-agi
+  - src-2026-11-06-psi-aaronson-ambainis-proof
 status: active
 ---
 
@@ -169,8 +172,53 @@ teacher model mattered most for difficult-advice SFT.
 The replication covers only part of TCW, uses one evaluation suite of fictional tool-use scenarios,
 and relies on Claude Sonnet 4.6 as the judge.
 
+## An outside assessor measured its internal AI R&D speed-up
+
+[[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] covers [[METR]]'s
+November 2026 assessment of AI R&D acceleration inside Anthropic. Anthropic gave METR internal data,
+including benchmark scores for unreleased models and interviews with researchers. METR's headline is
+that Anthropic is likely improving capabilities on well-specified tasks at around twice its March
+2024-October 2025 rate, and it "would not be surprised" by 1.3x or 3x. It attributes perhaps ≈80% of
+the acceleration to AI. It was told the gain comes "primarily via AI assistance rather than fully
+autonomous contributions". The numbers and their
+caveats are on [[Recursive Self-Improvement]] and [[Benchmark Optimization]]. The report itself is
+not captured; everything here is as quoted by Zvi.
+
+Two points belong on this page because they concern how Anthropic discloses.
+
+- **Redaction.** Anthropic redacted "a majority of the evidence we found most informative", saying the
+  redactions were "aimed at removing confidential information that could accelerate other AI
+  developers". Cofounder Sam McCandlish writes that many of METR's conclusions match his own and that
+  METR "had complete independence". He accepts that redacting "makes it harder for others to check
+  METR's work", and says the work is separate from the embedded third-party evaluators Anthropic has
+  committed to. Daniel Kokotajlo calls the "others could go faster" rationale "pretty rich" from a lab
+  that does not appear to be slowing down much.
+- **Wording.** METR also reviewed the private version of Anthropic's August 2026 Risk Report. The public
+  phrase "less than a factor of 2" would be read as meaningfully below 2, METR says, yet the private
+  figures imply **1.97**; "around 2" would be a better description. Zvi says the public version was
+  framed to imply little progress while the private one implied more, and calls this "Not cool".
+
+## Its newest models in outside reports
+
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]] reviews Claude Fable 5.2 from use before its public
+  launch, "following on the already excellent Opus 5.5". Mollick's answer to whether it is AGI is
+  "almost". In his tests its failures were of taste and self-assessment, such as a joyless course and
+  a self-made bureaucracy, rather than invented facts. See [[Ethan Mollick]].
+- [[PSI Research - A Proof of the Aaronson-Ambainis Conjecture]] reports that instances of a
+  "non-public Anthropic model" ran in the research system that found a Lean-checked proof of a
+  quantum-computing conjecture. The post does not name the model. See [[AI for Mathematical Discovery]].
+
 ## Related pages
 
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
+- [[PSI Research - A Proof of the Aaronson-Ambainis Conjecture]]
+- [[METR]]
+- [[Ethan Mollick]]
+- [[AI for Mathematical Discovery]]
+- [[Recursive Self-Improvement]]
+- [[Automated AI Research]]
+- [[Embedded Evaluation]]
 - [[Dan McAteer - Claude Mods and the Attention Interface]]
 - [[LLM-Native Extensible Software]]
 

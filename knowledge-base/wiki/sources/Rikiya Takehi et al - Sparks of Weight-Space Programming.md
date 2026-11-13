@@ -118,10 +118,12 @@ failed without tools.
 - **Identity hedge.** The byline's "Alex Zhang" may be the Alex L. Zhang covered elsewhere in this
   vault, whose entity page records Omar Khattab as advisor. The capture gives no affiliation or link
   that establishes it, so this summary does not link that entity.
-- **Third-party follow-up.** [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]] reran Exp 1's four no-tools prompts on a local Qwen 3.8 27B. It
-  named three of the four games and missed Freeway, with one run per game. The reading-from-weights
-  result is therefore not unique to GPT-6 Astra on these small networks. The post also links two
-  critics of how this paper framed its tool-assisted results.
+- **Third-party follow-up.**
+  [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]] reran Exp 1's four
+  no-tools prompts on a local Qwen 3.8 27B. It named three of the four games and missed Freeway,
+  with one run per game. The reading-from-weights result is therefore not unique to GPT-6 Astra on
+  these small networks. The post also links two critics of how this paper framed its tool-assisted
+  results.
 
 ## Affected pages
 

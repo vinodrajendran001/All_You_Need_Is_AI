@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, robotics, training-data, simulation, scaling]
 source_ids:
   - src-2026-10-15-potter-how-to-train-your-robot
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-08-18-bytebytego-waymo-vs-tesla
   - src-2026-11-03-nvidia-cosmos-interactive-world-models
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -94,14 +95,15 @@ whether such pooling helps a given robot is measurable rather than implied by th
 
 ### Volume evidence is not transfer evidence
 
-[[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] is the vault's only controlled
-transfer study. More web-video pre-training improved completion on one industrial task, and
-video-prediction quality ranked seven checkpoints in the same order as physical success. Potter's
-figures are of a different kind: collection volumes, collection rates, and prices. Volume shows that
-data exists; Rhoda-style evaluation shows that a kind of data moves physical completion for one
-embodiment and task. The vault has no evidence linking a number of hours from any route to a
-capability level. Collection rate is also not training-set size: Figure's statement that Index
-gathers "30 minutes of video data every second, or 43,000 hours a day" describes intake.
+[[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]] was the vault's first controlled
+transfer study, and until the GR00T 2 ingest its only one (see below). More web-video pre-training
+improved completion on one industrial task, and video-prediction quality ranked seven checkpoints in
+the same order as physical success. Potter's figures are of a different kind: collection volumes,
+collection rates, and prices. Volume shows that data exists; Rhoda-style evaluation shows that a
+kind of data moves physical completion for one embodiment and task. Before GR00T 2, the vault had no
+evidence linking a number of hours from any route to a capability level. Collection rate is also
+not training-set size: Figure's statement that Index gathers "30 minutes of video data every
+second, or 43,000 hours a day" describes intake.
 
 ### Two different flywheels
 
@@ -153,10 +155,49 @@ tools sit in the synthetic one and are capped by generator fidelity. The vendor 
 policy-transfer or fidelity results, so the number of useful hours a generated variant is worth
 remains unmeasured.
 
+### One mixture of routes, with the human-video share scaled
+
+[[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+combines several routes from the table in one pretraining mixture. It holds about **402,730 hours**
+of human egocentric video, **10,184 hours** of handheld UMI-gripper demonstrations across **2,897**
+tasks, and **23,500 hours** of teleoperation from YAM and Franka arms, Sharpa and Wuji hands, and
+the Unitree G1 humanoid. By hours, the mixture is mostly human video. NVIDIA pretrained four models
+on none, **1%**, **10%**, and **100%** of the human video, then evaluated each on **72** tasks on
+Dexter, a two-handed robot. Task progress rose at every step:
+from **64% to 77%** in the model's video rollouts and from **50% to 70%** on the real robot.
+
+That is the vault's second controlled transfer study, and it differs from Rhoda's in two ways. The
+scaled ingredient is human egocentric video, not generic web video. And the study varies one route's
+share within a mixture rather than the amount of pre-training. Like Rhoda's, it is first-party and
+measured on one target robot. GR00T 2 also predicts video as well as actions. On the vault's reading,
+the result does not show that human video would help a policy without that video head.
+
+The same page tests the embodiment gap that the table assigns to cheap routes:
+
+- **Human and handheld demonstrations.** Tasks demonstrated only by people wearing head and wrist
+  cameras, or only with a handheld UMI gripper, ran on robots that had only task-agnostic
+  teleoperation data for their own bodies. On a conveyor-sorting task taught only with UMI,
+  GR00T 2 sorted **86%** of **50** items, against **28%** for GR00T 1.7 and **0%** for π0.5. For four
+  chemistry-lab tasks taught only by human demonstration, NVIDIA says GR00T 2 "succeeds on all four
+  tasks" over **20** trials each, without per-task rates in prose.
+- **Little target data.** Five demonstrations per task, under **3 minutes** of robot data, lifted
+  success on **50** tasks to **95%**.
+- **Simulation as data and as a scorer.** Adding simulated episodes raised GR00T 2 Turbo's
+  out-of-distribution success on the G1 humanoid from **6.7%** to **63.3%**. A digital-twin
+  evaluator's success rates for **14** policies tracked their real-world rates (Pearson **0.92**,
+  Spearman **0.89**); see [[World Models]]. That speaks to the definition's "reliable way to score
+  an attempt".
+
+On this evidence, the embodiment gap of cheap routes can be bridged for these tasks with
+task-agnostic data from the target body rather than task demonstrations. The page compares GR00T 2
+with and without cross-embodiment pretraining only in a chart, which is not used here, so the
+pooling question below stays open.
+
 ## Open questions
 
-- Which route's hours transfer best to which task families? The vault has one controlled study and
-  no cross-route comparison at matched cost.
+- Which route's hours transfer best to which task families? The vault now has two controlled
+  studies, both first-party: Rhoda's on web video and GR00T 2's on the human-video share. It still
+  has no cross-route comparison at matched cost.
 - Does pooling across embodiments help a target robot, as it would if hours were fungible, or does
   it behave like Neuralink's pooled decoders?
 - Is the "data gap" a shortage of hours or of diversity? Repetitive deployment data and correlated
@@ -167,15 +208,18 @@ remains unmeasured.
   stops narrowing?
 - Do visually augmented demonstrations, with actions held fixed, improve policy robustness as much
   as new real demonstrations of the same count?
+- Would GR00T 2's human-video scaling hold for a policy that does not also predict video?
 
 ## Related pages
 
 - [[Brian Potter - How to Train Your Robot]]
 - [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
 - [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]]
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
 - [[Video Pre-training for Robot Policies]]
 - [[World Models]]
 - [[Synthetic Data Flywheel]]
+- [[AI Drug Discovery]]
 - [[Autonomous Driving Systems]]
 - [[Reinforcement Learning]]
 - [[Video Transformers]]

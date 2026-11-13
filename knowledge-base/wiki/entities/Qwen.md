@@ -2,7 +2,7 @@
 type: entity
 entity_kind: model-family
 created: 2026-09-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
@@ -18,6 +18,10 @@ source_ids:
   - src-2026-10-22-agrawal-qwenputer
   - src-2026-11-03-astwei-teaching-qwen-why
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-06-nous-arete-27b
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-03-willison-qwen-interprets-weights
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -181,6 +185,47 @@ This is elicitation rather than new capability: by Astra's own report, **576** o
 answers had originally been truncated, and accuracy on originally finished answers was unchanged.
 The evidence is a preliminary research blog built around one optimizer model.
 
+## A values-targeted derivative with a published recipe
+
+[[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+fine-tunes **Qwen3.8-27B** into Arete-27B. [[Nous Research]] chose it "because it was the most
+performant local model, and because it exhibited a lot of the behavior we were targeting". Nous
+reports observing "refusals, deflections, and CCP-framed answers on politically sensitive topics".
+On Nous's 803-prompt evaluation, judged by Grok 4.7, the base model averages **2.32** of 5 on
+required facts, and **22%** of its answers adopt the Chinese state's account. Those figures are at
+temperature 0 with thinking off; at temperature 0.6 the fact score is **2.24**. After supervised
+fine-tuning on an open teacher's answers, Arete scores **2.98** and **0.9%** under the same
+settings.
+
+The recipe leaves the architecture alone. All language-model weights train, the vision encoder is
+frozen because the data is text-only, and the multi-token-prediction head is disabled. On Nous's
+hardware and harness, base Qwen scores **65.77%** on Nous's internal Hermes Bench and **67%** on
+Terminal-Bench-2.1. Arete scores **65.60%** and **70%**. Nous attributes any gap from official
+benchmark figures to different inference settings and harnesses.
+
+These numbers describe one derivative on one Nous-built evaluation, not the lineage. Nous's reading
+that the targeted behavior is a "shallow" layer "applied late" rests on behavioral results alone,
+with no analysis of the weights. Like [[astwei et al - Teaching Qwen Why]], the release uses Qwen as
+an open substrate for alignment-style post-training. The two target different behaviors and share no
+evaluation.
+
+## Three outside readings of Qwen internals
+
+[[Curt Tigges et al - Neurons as an Interpretable Basis]] uses **Qwen3.6-35B-A3B** as its main
+subject: 5.26 million MLP neurons in 40 layers, studied as neuron-poles, with a public atlas of
+2,734 neurons. Its counterexample case is a Colorado neuron in **Qwen3-32B** that also fires on the
+Tornado web framework. The authors suspect Qwen3-32B was initialized by copying Qwen3-14B layers,
+because many neurons align semantically 24 layers apart. This is a first-party suspicion, not a
+confirmed training detail.
+
+[[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]] ran Qwen 3.8 27B
+locally on a laptop. With no tools, it named three of the four games behind small game-policy
+weight files, taking 46 minutes to over an hour per answer. This is one run per game, informal.
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] had **Qwen3-8B** write its own Python
+stop/restart/accept policy over probes that a frontier agent had built on its hidden state.
+Accuracy rose from **59%** to **66%**, at **2.8×** the thinking tokens of a single attempt
+(first-party, no error bars).
+
 ## Related pages
 
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
@@ -215,3 +260,8 @@ The evidence is a preliminary research blog built around one optimizer model.
 - [[Small Language Models]]
 - [[astwei et al - Teaching Qwen Why]]
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+- [[Nous Research]]
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]]
+- [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]

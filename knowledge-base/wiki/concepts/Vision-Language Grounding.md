@@ -1,16 +1,18 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-09-25
+updated: 2026-11-13
 tags:
   - concept
   - multimodal
   - vision-language
   - grounding
   - detection
+  - robotics
 source_ids:
   - src-2026-06-03-nvidia-locateanything
   - src-2026-09-21-liu-just-in-time-agentic-ocr
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -39,11 +41,44 @@ Many multimodal systems do not just need to describe images; they need to **poin
 candidate page. The design reduces visual inference cost but makes first-pass extraction a recall
 bottleneck; layout complexity is useful routing evidence, not a substitute for task relevance.
 
+## Points on a camera view as a planner-to-policy interface
+
+[[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+uses grounding in the opposite direction from LocateAnything. Instead of a model predicting where
+language refers to, a planner writes spatial marks for a motor policy to read. In "visual steering",
+a reasoning model marks a grasp point on the target object and a release point at its destination on
+GR00T 2's camera view, coloured by the arm that should act. GR00T 2 generates the approach, grasp,
+transport, and release. The planner then looks again and decides whether to continue, retry, or
+stop. The marks are extracted from gripper and hand states in existing demonstrations, so "training
+needs no new data", and the same model still follows language alone.
+
+The gain comes from settling what language leaves ambiguous, especially in clutter: which object,
+where it goes, and which arm acts.
+
+| Short "what and where" instructions | YAM | Dexter |
+| --- | --- | --- |
+| Task instruction only | 40% | 30% |
+| Planner step instructions | 66% | 33% |
+| Step instructions plus marks | 92% | 70% |
+
+YAM ran **90** trials per setting and Dexter **64**. For instructions about *how* to move, such as
+action or grasp type, the gain is smaller: **44%** to **59%** on YAM. Over long horizons on YAM,
+nothing completes without marks, even with step instructions. With marks, trash sorting completes
+**17 of 20** episodes and board disassembly **3 of 10**. On Dexter, full tasks are still rarely
+completed.
+
+The limits bear on the open question below about output interfaces. Two points carry a target and a
+destination, but "neither an object's final orientation nor the motion between grasp and release,
+such as pouring or wiping", which still come from language. The results are first-party, from one
+planner-policy pair, and the reasoning model is not named.
+
 ## Open questions
 
 - What is the right output interface beyond boxes: points, masks, polygons, or mixed spatial primitives?
 - How transferable are grounding gains across GUIs, documents, robotics, and natural-image tasks?
 - Can grounding models be made both more precise and more interactive without sacrificing robustness?
+- Could richer marks, such as orientation arrows or motion paths, carry what GR00T 2's grasp and
+  release points leave to language?
 
 ## Related pages
 
@@ -52,3 +87,6 @@ bottleneck; layout complexity is useful routing evidence, not a substitute for t
 - [[NVIDIA]]
 - [[World Models]]
 - [[AI Knowledge Base Overview]]
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+- [[Robot Training Data]]
+- [[Agent Planning]]

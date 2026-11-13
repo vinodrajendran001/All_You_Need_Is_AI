@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-07-29-bytebytego-chatgpt-agent-loop-optimization
   - src-2026-10-28-bytebytego-uber-mcp-gateway
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-01-philipp-schmid-code-mode
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
 status: active
 ---
 
@@ -71,6 +73,16 @@ achievable total. That caveat is itself the finding most often lost when such nu
 operations are few and enumerable. When they are not, the alternative is one execution tool plus a discoverable
 CLI — the concrete proposal being a `dyn` command behind Bash, so an integration exposes zero additional tools
 and its surface is discovered on demand rather than resident in every prompt.
+
+[[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]] argues for the code surface but
+against the discoverable-CLI half of that proposal. Given custom CLIs in `bash`, he writes, models "tend
+to over-explore before acting, burning turns and tokens running `--help` across subcommands"; typed
+interface definitions compiled into one JavaScript or Python tool "give the agent a contract upfront so it
+can act immediately". Both designs keep one resident tool. They differ in where the interface lives:
+discovered on demand from help text, or declared up front as type declarations compiled from the tool
+schemas. The
+"exploration tax" is an observation without a measurement, so it sharpens the open question below about
+discovery overhead rather than answering it.
 
 This resolves the tension the [[Model Context Protocol]] page carries. MCP's value is a shared integration
 protocol; its cost is that every connected server's tools land in the roster. Roster economics says the protocol
@@ -215,6 +227,17 @@ The limits are a vendor design relayed through interviews and a practitioner who
 work. Neither reports latency, tokens, or wrong-tool rates for search-based discovery against a
 resident roster.
 
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] turns the Part 1
+promises into configuration and adds the tool-side rules that make a large catalogue usable. Setting
+`search_type = "SEMANTIC"` adds the built-in search tool: "With 200 tools it's how an agent finds the five
+that matter without loading every schema into its context." The docstring rule becomes a template —
+"**Docstrings are prompts**", so each one says "what comes back, what to do next, and what an empty result
+means" — and tools return `{"error": ...}` instead of raising, because "A model can read an error and
+recover." Per-user `tools/list` filtering in `ENFORCE` mode means "the prompt shrinks too." Part 2 also
+moves the credential cost off the roster: agents hold zero tool credentials and the gateway role holds
+them all, which "kills the N-agents-times-M-tools secrets problem." The repository still reports no
+tokens, latency, or wrong-tool rates for search against a resident roster, so these remain design claims.
+
 An earlier capture in the vault shows the same move at OpenAI.
 [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]] describes a harness that keeps core tools plus one
 `tool_search` tool in the prompt and loads other definitions on demand, ranked by BM25, a lexical search.
@@ -274,7 +297,8 @@ changes. See [[Programmatic Tool Calling]].
 - **Where is the floor?** Five tools was the stripped configuration tested; no curve of latency versus tool count
   is published, so the shape of the trade-off is unknown.
 - **Does the code-surface approach move the cost rather than remove it?** A discoverable CLI still needs its
-  help text read, and reading it consumes turns. No measurement of discovery overhead is offered.
+  help text read, and reading it consumes turns. No measurement of discovery overhead is offered. Schmid's
+  claim that typed declarations avoid this "exploration tax" is likewise unmeasured.
 - **Are the four A/B percentages stable over time?** They are measured on one product with one model mix; the
   sources give no re-measurement after model upgrades.
 - **How do you test prompt behaviour cheaply?** The requirement is stated forcefully but no methodology,
@@ -302,7 +326,10 @@ changes. See [[Programmatic Tool Calling]].
 - [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
 - [[Salesforce]]
 - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
 - [[Sarthak Rastogi]]
+- [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
+- [[Philipp Schmid]]
 - [[Uber]]
 - [[Agent Security and Governance]]
 - [[Can Bölük - The Harness Playbook]]

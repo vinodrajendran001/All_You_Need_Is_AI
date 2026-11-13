@@ -82,9 +82,10 @@ seconds on October 25: "a text thread doesn't have a version number."
 ### Memory: relayed internals, observed edge cases
 
 Relaying Dhravya Shah's teardown: no vector database; Markdown files in a git repository with folders
-for people, facts, preferences, timelines, and workstreams, linked with `[[wiki-links]]`, searched by
-keyword, and tidied by a roughly daily background job; each turn starts with a profile of about
-**13k** tokens. Rohan Adwankar found the repository at `/memory` and the lasting copy stored as a git
+for people, facts, preferences, timelines, and workstreams, linked to each other with wiki-style
+double-bracket links, searched by keyword, and tidied by a roughly daily background job; each turn
+starts with a profile, a one-page summary, open to-dos, and a recap, about **13k** tokens together in
+his snapshot. Rohan Adwankar found the repository at `/memory` and the lasting copy stored as a git
 bundle. The author's tests: a fictional budget changed from **$480** to **$620** was recalled four
 weeks later with its edit history in **16** seconds; a project described only as "named after a plant
 and a small bird" was retrieved as "Moss Finch" in nine seconds, which plain keyword search should not

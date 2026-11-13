@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - coding-agents
@@ -39,6 +39,7 @@ source_ids:
   - src-2026-10-21-mcateer-claude-mods
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-01-philipp-schmid-code-mode
 status: active
 ---
 
@@ -398,6 +399,26 @@ re-sends instructions, tools, and history," so the first request is cut hardest 
 dropped streams, stop after repeated identical calls — live in the harness so that "a new model gets
 them on day 0." See [[Programmatic Tool Calling]], [[Harness Optimization]], and [[Agentic Loop]].
 
+## A Code Mode harness needs tools written for code, not for a shell
+
+[[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]] reports that harnesses including Pi,
+Factory Droid, and OpenAI Codex "now ship with or default to Code Mode": the model gets one code-execution
+tool and calls the other tools as typed functions inside a script (see [[Programmatic Tool Calling]]).
+He cites Factory's Droid 1.0 as the evidence, but merges two figures. In
+[[Factory Research - Droid 1.0 - Building a Frontier Harness]], **3.5** points is Droid's whole-harness
+margin over Codex on GPT-6.1 Sol, while **15%** is the cost saving reported for Script mode on Claude
+Opus 5.5; neither number isolates Code Mode's effect on accuracy.
+
+Schmid's practical warning is about the tools around the harness. Many tools, CLIs, and Agent Skills
+"might not integrate cleanly out of the box because they were optimized for `bash` and human-readable
+text rather than typed code execution." The implied migration task is that tool output must become
+data a script can pass on, with declarations that say what each call returns. He prefers a JavaScript
+or Python runtime to `bash` for the same reason: typed calls with native objects, `Promise.all`, and
+`try`/`catch` replace "fragile bash string escaping", and a shell "only returns stdout text", so
+images need a separate tool. That preference is argued, not measured. Factory's model-specific findings above suggest the move would
+also need per-model tuning, since getting models to prefer the Script tool took prompt, description,
+and result-format changes.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -414,6 +435,7 @@ them on day 0." See [[Programmatic Tool Calling]], [[Harness Optimization]], and
 
 ## Related pages
 
+- [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
 - [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
 - [[Factory AI]]
 - [[Benchmark Optimization]]

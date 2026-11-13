@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-10-nizzyabi-instinct-teardown
 status: active
 ---
 
@@ -188,8 +189,43 @@ full prefill. The thresholds are Factory's chosen values, and the silence rule i
 Factory-managed Anthropic streams. In [[Loop Engineering]] terms they supply an explicit stop condition and
 escalation step, not a verifier.
 
+## A conversational agent splits the loop it talks through from the loops that work
+
+The loops on this page take one request and run until it is done. A text-message assistant has to
+handle a user who keeps texting while the work runs.
+[[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]] infers the shape [[Instinct]]
+uses from timestamps in one user's thread, and finds three layers around the model.
+
+**A channel layer that runs before the model.** Messages were marked read a median **1.1** seconds
+after sending, with **90%** read within **2.0** seconds. The author argues that "A model deciding when
+to look at the chat wouldn't be that regular", so something reads every incoming message "before any
+thinking happens".
+
+**Coalescing in front of the model.** Two unrelated messages sent in the same second got two threaded
+answers about thirty seconds later. A **$600** budget followed at once by **$900** got one reply using
+$900 and noting the replacement. Three messages, the first saying to wait for the other two, got one
+answer at **45** seconds. "So something sits in front of the model and collects messages that arrive
+close together, and then decides whether they're one request or several", which prevents the familiar
+failure where the agent answers the first message while the user is still typing the second.
+
+**A chat loop separate from task loops.** During a research task that ran seven and a half minutes,
+the author asked for 17% of 240 and "40.8" came back in **19** seconds; another time, the answer to a
+quick question arrived first and a **1,084**-character build result followed two seconds later. "If
+one process were both doing the research and talking to me, it couldn't have answered that sum in the
+middle." That matches other teardowns' guess of a chat agent that stays available with task agents
+behind it. Instructions meant to last also persisted across turns: told not to use emoji or tapbacks
+for the rest of a test, it sent no tapbacks until told the test was over.
+
+This adds two control points to the loop: intake decides what counts as one request, and a supervising
+conversation stays responsive while workers run. It also adds a proactive trigger, since the assistant
+texted first **17** times in twelve weeks. All of this is inferred from outside, on one account. The
+author's team builds a competing platform whose SDK exposes a two-second steering debounce window,
+so the post's emphasis on this plumbing is not neutral; Instinct has confirmed none of the internals.
+
 ## Related pages
 
+- [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]]
+- [[Instinct]]
 - [[Tool Use and Function Calling]]
 - [[Model Context Protocol]]
 - [[AI Agents in Production]]

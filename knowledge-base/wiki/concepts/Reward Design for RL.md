@@ -370,8 +370,8 @@ only distinguish them. The sparsity measurements motivating the post are secondh
 ## Scaling RL searches the verifier for its mistakes
 
 [[Alex Wang - What Objective Is Reasoning Solving]] reaches Romero's equivalence independently: "a
-REINFORCE step is a rejection-sampling fine-tuning step on the model's own successful paths, scaled by
-the current success rate". He then adds what the two sections above lack, a **two-sided account of
+step of REINFORCE with a binary reward is a step of rejection-sampling fine-tuning on the model's own
+sampled paths, scaled by the current success rate". He then adds what the two sections above lack, a **two-sided account of
 reward hacking**:
 
 - **An imperfect verifier** accepts some wrong answers and rejects some right ones.

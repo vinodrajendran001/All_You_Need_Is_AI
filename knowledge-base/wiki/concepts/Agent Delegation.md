@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -30,6 +30,7 @@ source_ids:
   - src-2026-11-04-axjns-agents-share-work
   - src-2026-11-04-axjns-synthetic-membrane-paper
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-11-bytebytego-github-copilot-rust-port
 status: active
 ---
 
@@ -145,6 +146,21 @@ them was worth **2.3%** of the cost metric. And a meta-prompting loop that halve
 accidentally **serialised independent agents** by rewriting cautious parallelism guidance into a hard scheduling
 policy — a regression invisible offline, fixed by restoring one sentence: *"Independent agents can run in
 parallel; consider side effects."* Delegation policy lives in prompt text, and prompt text can be optimised away.
+
+[[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] shows
+both delegation primitives in one migration, and the shared resource that branch isolation leaves
+untouched. Subagents worked inside the parent session's workspace and returned findings, which
+suited investigating code and answering questions; child sessions had their own Git branches and
+separate working copies, so they could change code independently. For `session.ts`, roughly 30K
+lines connected to much of the runtime, the coordinating agent spent an hour reading and checking
+before creating anything, then split the work across **15 child sessions**, chose a model for each
+task, tracked them, and brought the completed changes into its own branch.
+
+Separate working copies did not separate the machine. When all 15 sessions built and tested at once,
+they overwhelmed the developer's laptop. Child agents then avoided expensive builds and tests,
+leaving them to the parent, and a separate chat session controlled build access for the porting
+sessions, allowing one build at a time. The account is GitHub's, relayed by ByteByteGo, and reports
+no timing or failure counts for the scheme.
 
 ## A subagent is a context primitive or a process primitive, and the choice is not stylistic
 
@@ -563,3 +579,4 @@ guarantee this page has argued delegation needs. See [[Multi-Agent Coordination]
 - [[ByteByteGo - AI Agents Can Think, Now They Can Pay]]
 - [[Agent Payment Protocols]]
 - [[General Reasoning - How to Train a Swarm]]
+- [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]

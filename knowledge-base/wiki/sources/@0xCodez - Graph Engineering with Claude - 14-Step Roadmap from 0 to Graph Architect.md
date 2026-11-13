@@ -100,9 +100,9 @@ ecosystem scan, and discovery of unknown size.
 
 ## Why it matters
 
-[[Graph Engineering]] previously described Claude Code graphs as model-chosen delegation. This
-roadmap describes a different mechanism: the graph is code Claude writes and then follows, which moves
-routing from conversation to script. It sharpens [[Agent Planning]] by treating a plan as an
+The vault's earlier Claude Code source for [[Graph Engineering]] treated Claude Code graphs as
+model-chosen delegation. This roadmap describes a different mechanism: the graph is code Claude writes
+and then follows, which moves routing from conversation to script. It sharpens [[Agent Planning]] by treating a plan as an
 executable dependency graph and gives [[Loop Engineering]] a convergence rule for open-ended cycles.
 Its tiering advice is proposed for [[Model Routing]].
 

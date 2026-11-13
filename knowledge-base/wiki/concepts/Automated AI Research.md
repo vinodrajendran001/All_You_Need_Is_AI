@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -22,6 +22,11 @@ source_ids:
   - src-2026-10-19-naam-million-agents-superintelligence
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-10-mollick-fable-5-2-jagged-agi
+  - src-2026-11-06-psi-aaronson-ambainis-proof
+  - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
 status: active
 ---
 
@@ -232,6 +237,67 @@ settings and budgets stayed fixed by the humans, so the result fits the bound ab
 the loop is automated; the definition of improvement is not. All of this is one model on one
 blog, with no comparison against a conventional search over the same edits.
 
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves the agent inside the training run.
+A coding agent, "powered by a frontier model" that is never named, reads activation gradients,
+inserts zero-gated code layers mid-training, and races each against twin and sham controls. On
+CLRS-Text it raised accuracy from **55%** to **84%**, though the agent "already knows how to solve
+the tasks". [[Curt Tigges et al - Neurons as an Interpretable Basis]] shows agent labor at
+population scale: a Neuron Scientist harness wrote atlas pages for 2,734 stratified neurons and
+low-effort labels for all 10 million neuron-poles. Both are first-party, and neither reports agent
+compute.
+
+## Assistance at a lab, unread research, and a scoped proof
+
+Three November 2026 captures test the execution-versus-taste split from different sides.
+
+**At a frontier lab, the measured gain comes mostly from assistance.**
+[[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] relays [[METR]]'s
+assessment of [[Anthropic]]. METR finds that fully autonomous contributions "are not currently a
+large contributor to overall progress, but they may be in the near future". Its evidence includes:
+
+- researcher interviews whose estimates were "centered around a 2x acceleration";
+- Slack-poll self-reports of uplift that reached **12x** in October 2026, though METR notes that
+  the responses "reflect low-effort consideration";
+- researchers' reports of "signs of life" for autonomous contributions.
+
+Peter Wildeford, citing the report, separates the two speeds. Engineers can be sped up about
+**12x** while overall progress speeds up only about **1.4x**, because of compute constraints and
+Amdahl's law. That has the same shape as Naam's 124x tokens against 1.6x experiments above: a large
+gain in inputs, a much smaller gain in output. See [[Recursive Self-Improvement]] for the
+acceleration estimate and its uncertainty.
+
+**Outside a lab, the bottleneck moves to checking.** In
+[[Ethan Mollick - Fable 5.2 and Jagged AGI]], Mollick asked a pre-release model to find an unsolved
+empirical problem in entrepreneurship research, find the data, preregister, write the paper, and
+have other agents critique it. Fable picked the question, found public data and natural
+experiments, and wrote the analysis plan and code. Mollick says the paper "tackles an important
+topic with a clever research design" and is "ahead of what I would expect from second-year PhD
+students". It is also "not publishable as it is":
+
+- it runs **182** pages, "because every critique got a new analysis and nothing was ever cut";
+- the model did not actually preregister, since the plans stayed inside the project and some were
+  written after earlier results;
+- Mollick spent less than an hour, but "no human has fully checked the results, including me".
+
+His conclusion is that "AI can now produce research faster than anyone can read it". Here the agent
+also chose the question, which this page treats as the hard part. That is one reader's first
+impression, not a measure of research taste.
+
+**In mathematics, a human scoped the problem and owns correctness.**
+[[PSI Research - A Proof of the Aaronson-Ambainis Conjecture]] reports that an internal research
+system, running instances of a non-public Anthropic model, had a complete proof of a quantum-
+computing conjecture open since 2008 on the third day of a run, and that Lean accepted it. The
+stated division of labor fits this page's split. David Turturean developed the system, "scoped the
+problem and ran the system on it", prompted the model to draft the paper, reviewed the draft, and
+"is responsible for the paper's correctness". The announcement is first-party, and the capture
+links neither the manuscript nor the Lean code. See [[AI for Mathematical Discovery]].
+
+*Vault reading:* In all three cases, producing the work is no longer the constraint. Where a
+machine checker exists, as Lean does for the proof, output can be accepted about as fast as it is
+produced. Where none exists, as for the empirical paper, output outruns its readers. Inside a lab,
+faster engineers are held back by compute and serial steps. This is the Verifier's law above,
+applied at research scale.
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
@@ -248,6 +314,9 @@ blog, with no comparison against a conventional search over the same edits.
 - **Does the 124x-tokens-to-1.6x-experiments ratio describe a bottleneck or an accounting artifact?** Nothing
   in the source separates compute spent per experiment from the number of experiments a research programme
   chose to run.
+- **What replaces full human checking where no formal checker exists?** Lean let PSI accept a proof
+  without a human re-deriving every step. Mollick's 182-page paper had agent critiques but no
+  complete human check, and the model skipped the preregistration it was asked for.
 - **Can conceptual breakthroughs be parallelised?** The essay argues the sequential-structure mechanism but
   does not prove it, and it concedes that better coordination, more diverse training, or genuinely new
   learning methods could change the curves it reports.
@@ -289,3 +358,12 @@ blog, with no comparison against a conventional search over the same edits.
 - [[Synthetic Data Flywheel]]
 - [[RL Environment Design]]
 - [[@zafstojano]]
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
+- [[PSI Research - A Proof of the Aaronson-Ambainis Conjecture]]
+- [[METR]]
+- [[Anthropic]]
+- [[Ethan Mollick]]
+- [[AI for Mathematical Discovery]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]]

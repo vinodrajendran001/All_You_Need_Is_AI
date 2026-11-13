@@ -103,8 +103,8 @@ equally trained model.
   whole text is ablated and **0.016** when only the current token is.
 - **Transcoders.** Following Shabalin & Piotrowski (2026), "Many Transcoder Features Are Neurons in
   Disguise", the authors decompose transcoder features that do not align with a neuron. Using
-  orthogonal matching pursuit, many turn out to be coalitions of co-firing neurons. Coalitions mostly
-  mean what their neurons share: **60%** at 2 neurons and **64%** at 33-64.
+  orthogonal matching pursuit, many turn out to be coalitions of co-firing neurons. Coalitions
+  mostly mean what their neurons share: **60%** at 2 neurons and **64%** at 33-64.
 - **Random directions.** Neurons behave differently from random directions in three ways:
   - **8** neurons recover as much expert or layer function as **128-256** random directions;
   - neurons are wired to specific readers, while random directions activate readers diffusely;
@@ -177,8 +177,8 @@ on training texts. All tests below are on held-out documents.
 ## Why it matters
 
 - [[Mechanistic Interpretability]]: the essay's position (study native neurons before learned
-  decompositions) now has measured sparsity, mode counts, random-direction baselines and description tests behind it, all on a
-  production-scale open MoE model.
+  decompositions) now has measured sparsity, mode counts, random-direction baselines and description
+  tests behind it, all on a production-scale open MoE model.
 - [[Interpretability Evaluation]]: each description test reports chance, a ceiling or a matched
   control, and the authors label their own near-ceiling reference. None of the tests is CHIVE's
   transcript-only comparison, so the vault's central open experiment remains open.

@@ -121,8 +121,8 @@ credential and policy bridge, and the harness-default claim, extend [[Coding Age
 - The sample code uses `vm.runInNewContext`, which the essay itself says is unsafe for untrusted
   code; sandbox isolation is out of scope.
 - `outputSchema` is cited from the draft MCP specification, so its stability is not established.
-- Schmid works on Gemini developer tooling and the worked example uses the Gemini Interactions API;
-  the claims about other harnesses are not sourced beyond links.
+- Schmid is at Google DeepMind (per [[Philipp Schmid]]) and the worked example uses the Gemini
+  Interactions API; the claims about other harnesses rest on links, not described tests.
 
 ## Affected pages
 
@@ -153,5 +153,5 @@ credential and policy bridge, and the harness-default claim, extend [[Coding Age
 - [[Philipp Schmid]]
 - [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
 - [[Philipp Schmid - Recursive Self-Improvement]]
-- [[Agent Sandboxing]]
+- [[Computer Use Agents]]
 - [[Agent Skill]]

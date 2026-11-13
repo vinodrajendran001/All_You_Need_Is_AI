@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-09-13-rahmat-adk-gemini-enterprise
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
 status: active
 ---
 
@@ -156,6 +157,27 @@ one team's answer to the ownership part: deterministic routing in ordinary code.
 LangGraph as a comparison baseline but reports no comparison; its planned evaluation has not been run,
 and its first baseline is "a single agent with suitable tools".
 
+## On a managed platform, the framework shrinks to the loop
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] shows how
+little of the framework a platform-hosted agent keeps. Hosting, identity, tools, memory, tracing, and
+evaluation come from AgentCore; an agent is a Python definition plus a prompt in a Markdown file, and
+the framework supplies only the loop. Rastogi uses LangGraph's `create_agent`, which he calls "the same free
+tool-calling loop you'd get from Strands or the OpenAI Agents SDK: the model decides which tool to call
+and when it's done." For fixed workflows such as a triage classifier, an agent sets `graph_factory`
+instead, so the loop-or-graph choice is made per agent rather than per platform. The cost of choosing
+LangGraph over AWS's own Strands is "a tiny lil bit of AWS convenience": Strands has one-line A2A and
+Browser helpers, and AWS's config-only Harness is built on it.
+
+Two framework-boundary decisions follow from the platform. The agent is built per request, not per
+process, because Cedar filters the tool list per user, so a framework that assumes a startup-time
+tool registry would not fit. And the UI receives a "tiny event protocol" of the author's own rather
+than raw LangGraph events, which "contain objects that aren't JSON-safe" and would tie the UI "to
+framework internals"; that is one practical answer to the portability question below. Sub-agents run
+in-process as tools by default, with a separate runtime over A2A when a sub-agent needs its own scaling,
+owner, or IAM boundary. The account is one practitioner's repository and compares no frameworks on a
+task.
+
 ## Open questions
 
 - Which framework behaviors can be compared under equivalent end-to-end tasks?
@@ -173,6 +195,8 @@ and its first baseline is "a single agent with suitable tools".
 
 ## Related pages
 
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
+- [[Sarthak Rastogi]]
 - [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
 - [[Multi-Agent Coordination]]
 - [[Plawan Rath et al - The Thin Orchestrator]]

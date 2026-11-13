@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-26
+updated: 2026-11-13
 source_id: src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
 source_title: "How to Review AI-Generated Pull Requests (2026)"
 source_author: AI Builder Club
@@ -44,6 +44,7 @@ The source gives [[Coding Agent Harness]] a concrete human-accountability bounda
 - [[AI Builder Club - Build AI Agents]]
 - [[AI-Native Software Development Lifecycle]]
 - [[Multi-Turn Evaluation]]
+- [[AI Code Review]]
 
 ## Citations
 

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-13
 entity_kind: person
 tags:
   - entity
@@ -9,6 +9,7 @@ tags:
   - forecasting
 source_ids:
   - src-2026-10-19-naam-million-agents-superintelligence
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
 status: active
 ---
 
@@ -74,6 +75,19 @@ Allowing a six-month research-to-publication lag, Naam expects **no sustained ac
 Capabilities Index through the first half of 2027**. The vault should revisit this page against
 [[Epoch AI]] data rather than letting the forecast sit unchecked.
 
+A first lab-internal reading arrived in November 2026.
+[[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] relays [[METR]]'s estimate
+that [[Anthropic]]'s AECI, its internal version of the index, has grown 1.9x the pre-October 2025
+rate (95% CI 1.5-2.8x). On its face this cuts against the forecast, but it is not a refutation:
+- AECI is not the public index Naam named.
+- The figure falls to 1.4x when other developers' models are included.
+- Toby Ord and Peter Wildeford argue part of it may be a one-time jump or an RL catch-up rather than
+  sustained acceleration.
+
+Naam's 1.1x-25x spread predicts research pace, while METR's 1.9x is a growth rate of a capability
+index, so the two numbers should not be matched directly. Public ECI through mid-2027 remains the
+test.
+
 ## Related pages
 
 - [[Recursive Self-Improvement]]
@@ -84,3 +98,5 @@ Capabilities Index through the first half of 2027**. The vault should revisit th
 - [[Benchmark Optimization]]
 - [[Epoch AI]]
 - [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
+- [[METR]]

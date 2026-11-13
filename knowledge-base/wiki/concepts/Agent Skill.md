@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -30,6 +30,7 @@ source_ids:
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-10-17-bytebytego-chunking-strategies
   - src-2026-11-04-x-town-square-rebuild
+  - src-2026-06-11-0xcodez-fable-5-self-improving-agents
 status: active
 ---
 
@@ -253,6 +254,29 @@ rate, or ablation, so it is evidence that a skill library of this size is workab
 (the post says five, or fewer than five, engineers built the first version), not evidence about any
 individual skill's effect or about the listing-budget cost of 25-plus names.
 
+## A skill as the write-back target of a verified loop
+
+[[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]] turns the survey's
+"serialized self-improvement" reading above into a recipe. "STATE.md is for project memory. Skills are
+for procedural memory", so "after any non-trivial failure, write the lesson into the Skill itself":
+STATE.md "is project-scoped and dies with the project", while Skills "live in ~/.claude/skills/ and
+travel with you". The worked example is a CI-triage skill with classification rules, a "Known failure
+modes" section "added by the loop over 14 days", an anti-patterns list "added after real incidents",
+and its own eval suite: run weekly against a cases file, with "Any newly-failing case → add to known
+failure modes after Outcomes verifier confirms." Scheduled and GitHub-triggered Routines run the same
+write-back automatically, distilling new failure modes or merged patterns into the Skill.
+
+That gives the write-back a verifier, which the governance paragraph above asks for, but not the rest
+of the contract. Nothing in the recipe keeps a held-out set apart from the cases the loop learns from,
+reviews a lesson before it changes every future run, or rolls back a bad one. The course is also
+inconsistent about who grades: its architecture overview says "The agent grades its own output, refines
+the Skill that produced it", while a later step recommends an independent verifier sub-agent over
+self-critique. Its outcome claim, "Two weeks of disciplined writing produces a Skill that materially
+outperforms whatever Fable 5 would derive from scratch", has no measurement behind it, and the vault's
+mixed results on whether skills earn their context budget still apply. One operational point is
+specific: a Skill "should know which kinds of tasks it produces that may hit the classifier and
+document the expected behavior", because a silent classifier block looks like a real error.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -264,6 +288,9 @@ individual skill's effect or about the listing-budget cost of 25-plus names.
 
 ## Related pages
 
+- [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]]
+- [[@0xCodez]]
+- [[Continual Learning for Agents]]
 - [[X Engineering - Rebuilding the Global Town Square from Scratch]]
 - [[ByteByteGo - EP229 Chunking Strategies for RAG-Based Agents]]
 - [[ByteByteGo]]

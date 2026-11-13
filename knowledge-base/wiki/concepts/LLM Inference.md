@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - llm
@@ -37,6 +37,8 @@ source_ids:
   - src-2026-06-02-dwarkesh-reiner-pope-flashcards
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-11-04-raja-model-gpu-fit
+  - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-10-alphasignal-latent-sparse-attention
 status: active
 ---
 
@@ -193,6 +195,14 @@ queueing, cache lookup, prefill, generation, and return latency.
 The consequence is that one "milliseconds per input token" coefficient is insufficient. Long-context
 benchmarks need a curve, cache conditions, and the provider/model version.
 
+[[Sparse Attention]] is one way a model changes that curve. In
+[[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]], Latent Sparse Attention cut one
+attention layer's prefill time by **22.7x** at 10 million tokens on one H200, but end-to-end serving
+across eight H200s improved time to first token by **2.2x**. The rest of the step did not shrink. The
+article warns that the gains "become much smaller in shorter context tasks", so a TTFT comparison
+should state the input lengths it covers. These are the researchers' own results, relayed by a
+newsletter.
+
 ## Inference optimization is workload placement
 
 [[ByteByteGo - How to Run a Big Model on Cheap Hardware]] separates weight bytes, active compute,
@@ -276,6 +286,28 @@ the author says real numbers land well under them. They also describe decode onl
 prompt is much slower on a CPU, and llama.cpp's new hot-expert cache applies only to batches of 32
 tokens or fewer, so it speeds generation, not prompt processing.
 
+### Shrinking storage is not the same as shrinking reads
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] adds a correction to that rule for MoE
+models: the bytes stored and the bytes read per token respond differently to the same change.
+Storing gpt-oss-20b's experts in 4 bits shrinks the model from **39.0 GiB** to **12.8 GiB**, three
+times smaller. The weight bytes one decoded token reads fall only from **6.72 GiB** to **3.45 GiB**,
+about half. At batch 1 a token reads only 4 of the 32 experts in each layer but all of attention and
+the unembedding, so once the experts are small, those BF16 weights make up two thirds of the reads.
+Putting attention in 4 bits as well cuts reads by another quarter while freeing only **0.9 GiB**.
+Capacity and bandwidth are therefore tuned by different parts of the model.
+
+The reverse lever, serving fewer experts per token than the model was trained with, saves compute
+but no memory, because every expert stays resident. Its quality depends on how the surviving routing
+weights are rescaled. On Qwen3.6-35B-A3B, trained at top-8 with **81.65%** MMLU, serving top-4 and
+renormalizing over the four survivors scored **4.65** points lower; dividing by the top-16 mass
+scored only **0.35** lower, which the handbook reports as not significant. With no renormalization,
+top-6 lost **27.45** points. The router here is flat: its top 8 experts hold only **0.182** of the
+softmax mass on average. On Gemma-4-26B-A4B, whose top 8 hold **0.302**, dropping renormalization at
+top-6 raised perplexity by **0.7%**, against **356%** on the Qwen model. A "smaller k" setting is
+therefore a model-specific experiment, not a free knob. The handbook's deployment results for decode
+are in [[Prefill-Decode Disaggregation]].
+
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
@@ -333,3 +365,7 @@ tokens or fewer, so it speeds generation, not prompt processing.
 - [[Megakernels]]
 - [[Cohere]]
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+- [[Sparse Attention]]
+- [[Mixture of Experts]]

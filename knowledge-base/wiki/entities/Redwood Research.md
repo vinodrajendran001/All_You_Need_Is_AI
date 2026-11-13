@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-13
 tags: [entity, organization, safety, monitoring, red-teaming, ai-control]
 source_ids:
   - src-2026-10-17-redwood-screwtape
@@ -69,3 +69,4 @@ misstate the source.
 - [[OpenAI - The Hugging Face Incident and the Road Ahead]]
 - [[OpenAI]]
 - [[Apollo Research - Principles for Embedded Evaluations]]
+- [[METR]]

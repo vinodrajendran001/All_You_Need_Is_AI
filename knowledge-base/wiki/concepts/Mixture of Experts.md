@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - llm
@@ -23,6 +23,8 @@ source_ids:
   - src-2026-11-02-anil-compute-islands
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-01-xuewen-yang-parallelism-by-hand
 status: active
 ---
 
@@ -170,7 +172,9 @@ total, **55** billion active) models add LatentMoE, which projects token represe
 smaller space for the routed experts and back again. That targets this page's communication problem
 directly: a narrower routed computation moves less memory traffic and inter-device data, and NVIDIA
 reportedly spends the savings on more experts and more active combinations at a similar inference
-budget. No benchmark or ablation accompanies the claim in this secondary account.
+budget. No benchmark or ablation accompanies the claim in this secondary account. A later source,
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]], relays NVIDIA's own ablation; see the
+handbook section below.
 
 ## Routing statistics can need tighter synchronization than expert weights
 
@@ -182,6 +186,61 @@ miles apart, with local expert parallelism at each site. Weights were exchanged 
 every step." The post does not say why. One reading, not stated in the source, is that router
 balance is more sensitive to divergence between sites than the expert weights are. The evidence is a
 single first-party run; see [[Distributed Training Parallelism]].
+
+## A training handbook puts numbers on the routing tax
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] is a Hugging Face team's long account of
+training MoE models in Megatron. It combines the authors' own small runs with a survey of released
+models, and it tests several of this page's claims directly.
+
+- **Equal active parameters do not mean equal speed.** The handbook's first MoE has 64 experts with
+  top-8 routing: **6.86B** total parameters and **1.221B** active, against **1.219B** for its dense
+  baseline. "Matching active parameter counts does not guarantee equal step time", because routing
+  reorganizes the GPU work and adds communication.
+- **Imbalance has a measurable price.** With routing forced even, the same model ran **1.5x** faster
+  at initialization, and a freshly initialized learned router ran its first **40** iterations as
+  slowly as the worst forced case. In one traced step on one node, half the time was exposed
+  all-to-all while the router was still unbalanced. This quantifies the claim above that sparsity
+  turns compute into a communication and balance problem.
+- **Faster is not better.** Across five load-balancing configurations, quantile balancing reached
+  **139** TFLOP/s against **125** for an auxiliary loss and **99** for a bias-only setup, over the
+  first 120 iterations with one seed. It also ended with the highest training loss of the five, so
+  its lead "does not establish faster training to the same quality".
+- **Placement follows the interconnect.** Spread over two nodes, EP16 ran **59%** below EP8 in one
+  node. The two runs also used different nodes and accumulation settings. The handbook recommends
+  expert parallelism inside a node, with more nodes added as data-parallel replicas.
+- **LatentMoE now has a relayed ablation.** In NVIDIA's 73B-A8B ablation at equal total and active
+  parameters, LatentMoE scored **4.6** points higher on MMLU-Pro than a standard MoE. Serving
+  throughput ranged from **12%** lower at concurrency 1 to slightly higher at some concurrencies.
+  These are NVIDIA's numbers, cited rather than reproduced.
+- **Shared experts are a convention, not a settled gain.** At equal compute, a shared expert
+  lowered loss by about 0.01 to 0.02 in some studies and did nothing or slightly worse in others.
+  GLM-5.3, Kimi K3 and DeepSeek V4.1 Flash keep one; MiMo-V2.6 does not.
+- **Routing must agree across systems, too.** In reinforcement learning, a rollout engine and a
+  trainer can route the same tokens differently. One study found about 10% of routers choosing
+  different experts, with 94% of tokens differing in at least one layer. Routing replay fixes the
+  disagreement, but its reward benefit is contested. This extends the Rohan Anil case above: routing
+  decisions need tighter agreement than shared weights alone imply.
+
+The authors say many recommendations rest on one ablation in one lab's setup. Their serving
+chapter's results are covered in [[LLM Inference]] and [[Prefill-Decode Disaggregation]].
+
+## Expert traffic you can check by hand
+
+[[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]] derives the
+all-to-all cost the handbook measures. At 4,096 tokens, hidden size 7,168, top-8 routing and EP8 in
+BF16, one direction of the all-to-all moves about **411 MB**. That is about **0.8 GB per layer** in
+the forward pass, and backward doubles it. DeepSeek-V3 limits each token to **4** nodes and
+dispatches in FP8 to cut that traffic.
+
+The post also explains **parallel folding**. Attention layers can use tensor, context and data
+parallelism while MoE layers use expert tensor, expert and expert-data parallelism on the same GPUs,
+provided the products match. It flags one trap. With attention tensor parallelism of 2 and sequence
+parallelism off, both ranks hold the same tokens and both dispatch them: **65,536** token copies per
+MoE layer instead of **32,768**, and twice the expert FLOPs. Megatron raises an error for this case.
+Both sources therefore agree on the default: keep expert tensor parallelism at 1 and expert
+parallelism inside a node where possible. The post's numbers are estimates it calls "good to maybe
+±30%". See [[Distributed Training Parallelism]].
 
 ## Open questions
 
@@ -195,6 +254,8 @@ single first-party run; see [[Distributed Training Parallelism]].
 - How much quality does offload-driven expert reduction cost? flash-moe's 4-of-10 experts is relayed
   as a quality hit without a measurement, and the hot-expert cache's gain ranges from 2.2x to 1-5%
   depending on card and baseline tuning.
+- Does a throughput lead from a load balancer in the first iterations survive to equal quality?
+  The handbook's fastest balancer also had the highest loss over its 120-iteration window.
 
 ## Related pages
 
@@ -220,3 +281,7 @@ single first-party run; see [[Distributed Training Parallelism]].
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
 - [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]]
+- [[LLM Inference]]
+- [[LLM Training Pipeline]]

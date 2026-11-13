@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-16
-updated: 2026-10-27
+updated: 2026-11-13
 source_id: src-2026-09-30-apollo-embedded-evaluations
 source_title: Principles for Embedded Evaluations
 source_author: Apollo Research
@@ -95,6 +95,7 @@ framework: assess coverage and sensitivity before interpreting a quiet monitor.
 - [[Benchmark Optimization]]
 - [[Apollo Research]]
 - [[Redwood Research]]
+- [[METR]]
 
 ## Raw capture
 

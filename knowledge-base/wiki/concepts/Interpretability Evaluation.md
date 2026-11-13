@@ -142,8 +142,9 @@ untested in this vault. See [[Mechanistic Interpretability]].
 
 ## Neuron descriptions at population scale, with chance and ceilings stated
 
-The companion paper, [[Curt Tigges et al - Neurons as an Interpretable Basis]], scales neuron-description testing to thousands of poles in
-Qwen3.6-35B-A3B. Each test on held-out text comes with a reference point:
+The companion paper, [[Curt Tigges et al - Neurons as an Interpretable Basis]], scales
+neuron-description testing to thousands of poles in Qwen3.6-35B-A3B. Each test on held-out text
+comes with a reference point:
 
 | Test | Result | Reference point |
 | --- | --- | --- |
@@ -153,11 +154,11 @@ Qwen3.6-35B-A3B. Each test on held-out text comes with a reference point:
 | Input synthesis from the description | **120 of 128** poles beat their 10B-token corpus maximum | the corpus maximum |
 
 The paper is also explicit about which numbers are not independent tests. Classifying modes from
-upstream inputs scores **0.968**, but the modes were clustered from those inputs, so the authors call
-it "a near-ceiling reference rather than an independent test". Input synthesis lets the controller see
-activations, so it is not description-only. Text-based classification weakens as a neuron's expert is
-ranked lower by the router: F1 falls from **0.856** at router rank 1 to **0.652** outside the
-recorded top 8. Neurons are also compared with random directions as a matched baseline.
+upstream inputs scores **0.968**, but the modes were clustered from those inputs, so the authors
+call it "a near-ceiling reference rather than an independent test". Input synthesis lets the
+controller see activations, so it is not description-only. Text-based classification weakens as a
+neuron's expert is ranked lower by the router: F1 falls from **0.856** at router rank 1 to **0.652**
+outside the recorded top 8. Neurons are also compared with random directions as a matched baseline.
 
 This meets the "tests that could lose" standard above at larger scale. It does not change the gap
 recorded on this page. The tests ask whether a description predicts the *neuron*, not whether it
@@ -167,9 +168,9 @@ first-party and mostly on one model.
 
 ## A training metric as the test, with a trivial baseline
 
-[[DoubleAI - Can LLMs Redesign Themselves as They Train]] proposes a different standard. When interpretability tools are used to change a network while
-it trains, "An intervention either improves the metric or it doesn't". Two of its controls fit this
-page's discipline:
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] proposes a different standard. When
+interpretability tools are used to change a network while it trains, "An intervention either
+improves the metric or it doesn't". Two of its controls fit this page's discipline:
 
 - **A predeclared prediction against a trivial baseline.** DeepSeek-V4.1-Flash built a linear probe
   on its own residual stream that predicts whether a finished solution is right. From older held-out

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -54,6 +54,8 @@ source_ids:
   - src-2026-09-27-willison-llms-2026-so-far
   - src-2026-11-04-axjns-post-kubernetes-genai
   - src-2026-11-04-bytebytego-netflix-performance-agents
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
+  - src-2026-11-10-nizzyabi-instinct-teardown
 status: active
 ---
 
@@ -448,8 +450,43 @@ The model is kept out of its own acceptance test, the separation of capability f
 above. The relayed account gives no canary window, traffic share, rejection rate, or merged-change
 count, so it shows the gate's shape rather than its yield.
 
+## Per-agent operations can be generated from the agent's definition
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] shows the
+control-plane stack above as one repository. Every agent runs the same container image, but Terraform
+creates one AgentCore Runtime per agent, each with its own IAM role, group rule, log group, alarms,
+evaluation config, and version history: "you test one artifact, but each agent keeps its own
+permissions". Each agent gets two alarms, failed turns "3 or more in 5 minutes" and p90 latency over
+**60** seconds for **15** minutes; online evaluation samples **10%** of sessions with built-in LLM
+judges; and thumbs up/down feedback is logged keyed by session id, "the join key to traces and eval
+results", so it later becomes "labelled data for checking whether your LLM judges agree with your
+users". Authorization ships in `LOG_ONLY` first because a typo in a group name flipped to `ENFORCE`
+"hides every tool and every agent goes dumb at once".
+
+The delivery path is thinner than the gate described in the Netflix section above. `deploy.sh`
+validates agent definitions, builds and pushes images while "skipping tags that already exist", and
+runs a full apply; it shows no offline evaluation gate, approval step, or rollback, all of which Part 1
+of the same series described. The repository reports no alarm, evaluation, or latency results.
+
+## A consumer agent shows the same bracket from the user's side
+
+[[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]] measures one user's thread
+with [[Instinct]], a text-message assistant, and finds that its reliability is "mostly what happens
+before and after the action". Before acting, "Every email, form and purchase" reached the user "first
+as a draft or a price". Afterwards, it checked: **25** minutes after sending eight emails it reported a
+bounce under "Quick correction", and when a hat listed at **$44** was **$64** in the cart it stopped and
+asked, treating "checkout as one more thing to verify". The post also names a production cost that the
+operator sees and the user does not: the identical research prompt took seven and a half minutes on
+October 13 and **50** seconds on October 25, and "a text thread doesn't have a version number", so
+users "experience every change you ship as the assistant acting a little differently". The evidence is
+one account, measured by a third party whose team builds a competing platform; the product has not
+confirmed the internals the post relays.
+
 ## Related pages
 
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
+- [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]]
+- [[Instinct]]
 - [[Jason Li - How Many AI Agents Could We Run]]
 - [[E2B - Embed Runtime README]]
 - [[Adam Faik - How to Build an AI-Native Software Factory]]

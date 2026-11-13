@@ -72,7 +72,7 @@ The post is a conceptual, teaching-style essay with no new experiments.
   objective.
 - **Reward hacking has two causes.** An imperfect verifier accepts some wrong answers and rejects
   some right ones. An imperfect sampler fails to stay away from the shortcut regions that open up.
-  Scaling RL with more and longer samples "fuzzes" the verifier more extensively, so it becomes more
+  Scaling RL with more and longer samples "fuzz[es]" the verifier more extensively, so it becomes more
   likely to find a misspecified region. Once a shortcut is found, training pushes the model toward
   it.
 - **Longer thinking helps because training taught it.** "Thinking longer helps because training

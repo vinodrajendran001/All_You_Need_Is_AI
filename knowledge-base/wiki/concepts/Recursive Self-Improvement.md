@@ -30,6 +30,7 @@ source_ids:
   - src-2026-11-02-takehi-weight-space-programming
   - src-2026-11-09-zvi-ai-rd-acceleration-rsi
   - src-2026-11-09-tillman-two-kinds-test-time-scaling
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -452,13 +453,22 @@ could not add an ability the model lacked". The vault's reading is that a small,
 weight delta could be versioned and rolled back like a scaffold change. The post does not test
 that, and it is a single-model, preliminary blog result.
 
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] reports a model acting on its own
+activations. **DeepSeek-V4.1-Flash** built a linear probe on its residual stream from its own graded
+solutions and used it to discard and resample likely-wrong answers. AIME/HMMT accuracy rose from
+**64%** to **71%**. This is probe-gated resampling: neither the weights nor the architecture change,
+and humans fixed the benchmarks and the hidden test sets. The post calls a model that improves how
+it trains "on a direct path to recursive self-improvement" and cites self-referential meta-learning
+(Kirsch and Schmidhuber, 2022). The experiments do not test that claim (first-party blog, no seeds
+or error bars).
+
 ## A lab-internal measurement: about 2x, mostly through assistance
 
 Until this ingest, the frontier-lab numbers on this page were inputs, such as agent-hour ratios, and
 forecasts. None measured how much AI speeds up a lab's own R&D.
 [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] relays such a measurement:
-[[METR]]'s assessment of [[Anthropic]], for which METR says it was given "unprecedented access to
-internal data". The report itself is not captured, so every figure below is as quoted by Zvi.
+[[METR]]'s assessment of [[Anthropic]], for which METR says Anthropic offered "unprecedented access
+to internal data". The report itself is not captured, so every figure below is as quoted by Zvi.
 
 **What METR reports.**
 
@@ -469,8 +479,8 @@ internal data". The report itself is not captured, so every figure below is as q
   2025 is **1.9x** the earlier rate, with a **95% CI of 1.5-2.8x**.
 - **Cause.** METR says it is confident the acceleration did not come from faster scaling of training
   compute. It attributes a majority, "perhaps ≈80%", to AI.
-- **Mechanism.** The speed-up comes mainly through **AI assistance rather than autonomous
-  contributions**, though researchers describe "signs of life" for autonomy.
+- **Mechanism.** METR was told that R&D is accelerated "primarily via AI assistance rather than
+  fully autonomous contributions", though researchers describe "signs of life" for autonomy.
 - **Outlook.** METR sees no clear bottleneck over the next 12 months. It adds that its understanding
   "changed several times" as details arrived.
 - **Redaction.** Anthropic redacted "a majority of the evidence we found most informative".
@@ -504,12 +514,13 @@ refutation:
 - The two tests now point at the same window. Public ECI through mid-2027 settles Naam's forecast.
   Whether Anthropic's rate holds as RL's share plateaus settles Wildeford's.
 
-METR's ~2x also falls inside the **1.1x-25x** spread that Naam derived from agent-hour ratios, near
-plain logarithmic scaling. The quantities differ, so this is a loose comparison, not a confirmation.
+METR's ~2x also falls inside the **1.1x-25x** spread Naam got by applying published scaling
+assumptions to Anthropic's agent-hour ratios, near plain logarithmic scaling. The quantities differ, so this is a loose comparison, not a confirmation.
 
-**Under this page's editable-set test, the finding is acceleration, not yet recursion.** Humans still
-choose the work, and AI assistance speeds them up. The policy fight Zvi records is partly about this
-line:
+**Under this page's editable-set test, the finding is acceleration, not yet recursion.** METR finds
+that fully autonomous contributions are "not currently a large contributor to overall progress", and
+the gain comes through assistance to human researchers. The policy fight Zvi records is partly about
+this line:
 
 - **Narrow definition.** Neil Chilson defines RSI as something like "fully relinquishing AI R&D and
   deployment to AI, with no ability to monitor and stop the process".
@@ -620,3 +631,4 @@ inference. This is Tillman's argument, not an observation. See [[Automated AI Re
 - [[RL Environment Design]]
 - [[@zafstojano]]
 - [[Nathan Lambert]]
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]

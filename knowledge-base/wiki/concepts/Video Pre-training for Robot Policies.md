@@ -1,12 +1,13 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, robotics, video-models, pre-training]
 source_ids:
   - src-2026-09-14-rhoda-web-video-pretraining-robots
   - src-2026-10-15-potter-how-to-train-your-robot
   - src-2026-11-03-nvidia-cosmos-interactive-world-models
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -73,6 +74,26 @@ policies, not as the policy itself. The action-prediction mode is listed as a ca
 accuracy and no comparison with a separate decoder. Whether a video model's action head can
 replace Rhoda-style decoders remains untested in the vault.
 
+### Joint video-action prediction, with human video as the scaled ingredient
+
+[[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+puts the two halves that Rhoda keeps apart into one model. A single diffusion transformer denoises
+future video and an action chunk together, and small per-robot heads turn the plan into motor
+commands. NVIDIA's stated reason is that predicting how the scene should change "lets GR00T 2 learn
+physics from human video". Action prediction from a video model is therefore no longer only a listed
+capability in the vault: it is GR00T 2's normal operating mode, with physical results reported on
+[[Robot Training Data]] and [[World Models]]. The page still reports no matched comparison with a
+separately trained action decoder, so the question of which design is better stays open.
+
+The non-robot video is also a different kind. GR00T 2 scales egocentric video of people at work,
+about **402,730 hours** from NVIDIA's Human-1M dataset, rather than generic web video. Four models
+pretrained on none, **1%**, **10%**, and **100%** of it and evaluated on **72** tasks improved at
+every step: from **64% to 77%** task progress in video rollouts and from **50% to 70%** on the real
+robot. As in Rhoda's study, video-rollout results and physical results rose together, though here
+across a four-point sweep in one model family rather than a seven-checkpoint ranking. Potter's
+human-to-robot mapping problem is not avoided. GR00T 2 bridges it with task-agnostic data from the
+target robot.
+
 ## Open questions
 
 - Does the proxy-task relationship transfer across embodiments, action decoders, and task families?
@@ -82,13 +103,16 @@ replace Rhoda-style decoders remains untested in the vault.
 - What is an hour of web video worth against an hour of teleoperation, UMI, or simulated data at
   matched cost?
 - Does predicting actions directly from a pre-trained video world model match a separately trained
-  action decoder on physical task completion?
+  action decoder on physical task completion? GR00T 2 shows joint prediction working on physical
+  tasks but reports no matched comparison.
+- At matched hours, is human egocentric video worth more to a policy than generic web video?
 
 ## Related pages
 
 - [[Rhoda AI - Scaling Web-Video Pre-training for Real Robots]]
 - [[Brian Potter - How to Train Your Robot]]
 - [[Elizabeth Goodman - Build World Models for Interactive Simulation with NVIDIA Cosmos]]
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
 - [[Robot Training Data]]
 - [[NVIDIA]]
 - [[Video Transformers]]

@@ -136,7 +136,8 @@ large models learned from data.
 
 ## Activation gradients and architecture edits during training
 
-[[DoubleAI - Can LLMs Redesign Themselves as They Train]] uses two textbook pieces of the training loop in an unusual way.
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] uses two textbook pieces of the training
+loop in an unusual way.
 
 **Backpropagation already computes gradients for activations, not only weights.** The post's
 "phantom gradient" is ∂L/∂h at a layer: the loss gradient with respect to that layer's
@@ -153,11 +154,11 @@ token's representation, whose gradient this would be. Two practical details matt
 The quantity itself is the standard activation gradient. What the post adds is how it is used, and
 the authors say it "does not predict reliably" how an edit will perform once trained.
 
-**A zero-initialized gate turns an architecture edit into a smooth one.** A new layer is added to the
-residual update as `g · code(h)`, with `g` a learnable scalar that starts at zero. At insertion "the
-network is exactly identical to what it was". The gradient on `g` then decides whether the layer
-is used, and in the post's runs the gate opens "within about 100 steps". This "turns a discrete
-edit to the architecture into a continuous one for the gradient-based optimiser".
+**A zero-initialized gate turns an architecture edit into a smooth one.** A new layer is added to
+the residual update as `g · code(h)`, with `g` a learnable scalar that starts at zero. At insertion
+"the network is exactly identical to what it was". The gradient on `g` then decides whether the
+layer is used, and in the post's runs the gate opens "within about 100 steps". This "turns a
+discrete edit to the architecture into a continuous one for the gradient-based optimiser".
 
 **When a component arrives can change what the network learns.** A 124M-parameter model with a
 500-token attention window got the same parameter-free lookup layer either from step 0 or at step

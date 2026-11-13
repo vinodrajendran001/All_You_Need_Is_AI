@@ -109,8 +109,8 @@ memory gains. Every figure is GitHub's own, relayed from one GitHub Engineering 
 
 This is the vault's first large agent-run port in which the old implementation is deleted as each
 piece lands. It extends [[Legacy Code Modernization with AI Agents]] with a way to keep only one
-live implementation, and its regression list shows what "compiles but behaves differently" looks
-like. [[Agentic Testing]] gets a case where end-to-end tests are the only oracle and must be guarded
+live implementation, and its regression list shows what code that compiles but behaves differently
+looks like. [[Agentic Testing]] gets a case where end-to-end tests are the only oracle and must be guarded
 from the agents judged against them. The multi-model, line-by-line comparison is a reference-based
 form of [[AI Code Review]]. The subagent/child-session split and the build bottleneck belong with
 [[Agent Delegation]]. [[AI-Native Software Development Lifecycle]] gains a one-developer agent-fleet

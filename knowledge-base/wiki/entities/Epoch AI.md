@@ -2,12 +2,13 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-10-19
+updated: 2026-11-13
 tags: [entity, organization, ai-research]
 source_ids:
   - src-2026-09-14-li-long-context-latency
   - src-2026-10-02-epoch-agent-population
   - src-2026-10-15-potter-how-to-train-your-robot
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
 status: active
 ---
 
@@ -49,6 +50,18 @@ early 2010s, and Epoch's 2024 estimate puts the total stock of quality, accessib
 have not been ingested. Both figures describe text. The robot side has no comparable stock estimate,
 which is the contrast the essay builds on; see [[Robot Training Data]].
 
+## Anthropic's version of the Capabilities Index
+
+[[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] reports that [[METR]]'s
+assessment of AI R&D acceleration at [[Anthropic]] rests mainly on AECI, Anthropic's version of the
+Epoch Capabilities Index computed on internal benchmarks. Charles Foster (METR) notes that each ECI
+point multiplies a model's odds of success on every benchmark, and that historically each 5-point
+increase corresponded to roughly a doubling in time horizon. Anthropic's AECI has grown 1.9x its
+pre-October 2025 rate (95% CI 1.5-2.8x), or 1.4x with non-Anthropic models included. This is a
+downstream use of Epoch's method, not Epoch's public index, and the capture has no Epoch statement.
+It bears on [[Ramez Naam]]'s forecast, which names the public index (see
+[[Recursive Self-Improvement]]).
+
 ## Related pages
 
 - [[Brian Potter - How to Train Your Robot]]
@@ -64,3 +77,6 @@ which is the contrast the essay builds on; see [[Robot Training Data]].
 - [[Serving Benchmarks and Goodput]]
 - [[OpenAI]]
 - [[Anthropic]]
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
+- [[METR]]
+- [[Ramez Naam]]

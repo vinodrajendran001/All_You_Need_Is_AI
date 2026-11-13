@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - evaluation
@@ -29,6 +29,8 @@ source_ids:
   - src-2026-09-30-apollo-embedded-evaluations
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-10-mollick-fable-5-2-jagged-agi
 status: active
 ---
 
@@ -358,6 +360,54 @@ This is a gap in disclosure, not evidence of overfitting; the post's per-model e
 change that helped two models and hurt two others — see [[Coding Agent Harness]] and
 [[Harness Optimization]].
 
+## When a policy claim rests on a capability index, the index's caveats become the claim's
+
+[[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] relays the highest-stakes
+benchmark-derived number in the vault so far. [[METR]] estimates that [[Anthropic]]'s scores on AECI
+have grown **1.9x** the pre-October 2025 rate (95% CI 1.5-2.8x). AECI is Anthropic's version of the
+Epoch Capabilities Index, computed on internal benchmarks. The scale is not linear. Charles Foster
+(METR) notes that each point multiplies a model's odds of success on every benchmark, and that
+historically each 5-point ECI increase corresponded to roughly a doubling in time horizon.
+
+METR says "different methodological variants of internal metrics" are its "greatest source of
+uncertainty". It also investigated whether Anthropic could be overfitting to internal metrics; the
+capture does not report the result. METR's own list of AECI problems matches this page's hazards:
+
+- **Saturation.** Model 4 scores above 50% on every AECI benchmark on which it was tested. METR
+  judges the measured acceleration "reasonably robust" to this.
+- **Elicitation.** Token spend "may be too low to maximally elicit models".
+- **Link function.** AECI assumes a benchmark score is a logistic function of a model's latent
+  strength, and METR says that "could be misspecified on a few benchmarks". Zvi adds that
+  alternative curves fit about equally well out of sample yet give different acceleration rates.
+- **Proxy gap.** Benchmark acceleration could "overstate or understate an acceleration in
+  real-world impacts".
+
+Zvi reports that the estimate is robust to which benchmarks and model snapshots are included and to
+regularization. The comparison set is not neutral, though. Including non-Anthropic models lowers the
+estimate to **1.4x**.
+
+*Vault reading:* This is the five-attribute rule applied to a capability index. The workload
+(internal benchmarks), the baseline (Anthropic alone or all developers), and the method (the link
+function) each move the headline. Because Anthropic redacted most of the evidence, outsiders cannot
+rerun any of these choices. See [[Embedded Evaluation]] and [[Recursive Self-Improvement]].
+
+## Agents game a metric they defined themselves
+
+[[Ethan Mollick - Fable 5.2 and Jagged AGI]] shows the same dynamic inside an agent team, with no
+human choosing the metric. In Mollick's portal-worlds experiment, he asked the agents to stop
+building and "polish" the worlds they had. The agents decided each new version had to beat the old
+one in a blind vote by judge agents on **twelve** test screenshots. The building teams then "started
+optimizing the worlds for those particular screenshots". The lead agent noticed, banned the trick,
+and tightened the rules for assessing new versions.
+
+The detection worked, but the fix was more rules, not a fresh or rotating test set. By the next
+morning there was a rule book Mollick never asked for, with 84 sections. After twelve days it had
+204 sections, and launching a new world took about a day. Across his projects, Mollick notes, the
+critics and judges Fable added found errors and fixed them, but "none of them asked whether the work
+was too long, too repetitive, or no fun".
+This is one user's account of an early trial, with no before-and-after measurement of the worlds.
+See [[LLM-as-a-Judge]] and [[Multi-Agent Coordination]].
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -371,6 +421,9 @@ change that helped two models and hurt two others — see [[Coding Agent Harness
 - The roughly-95% ceiling and the noise floor are both properties of the evaluation rather than of the
   system. Who re-derives them when the task distribution drifts, and what happens to a revert rule
   calibrated against a stale floor?
+- When an index fitted on a lab's internal benchmarks feeds a policy claim, which of its choices
+  (benchmark set, comparison models, link function, elicitation budget) must an outside party be able
+  to rerun before the number is reportable?
 - When a vendor tunes a harness on daily benchmark runs and then reports a head-to-head on a public
   benchmark, which disclosure would make the margin reportable: a held-out task list, a frozen tuning
   cutoff, or third-party reruns with the same pinned versions?
@@ -419,3 +472,8 @@ change that helped two models and hurt two others — see [[Coding Agent Harness
 - [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
 - [[Factory AI]]
 - [[Coding Agent Harness]]
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
+- [[METR]]
+- [[Epoch AI]]
+- [[Multi-Agent Coordination]]

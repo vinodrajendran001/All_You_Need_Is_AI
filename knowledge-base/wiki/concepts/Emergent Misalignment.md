@@ -1,13 +1,14 @@
 ---
 type: concept
 created: 2026-10-07
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, alignment, post-training, evaluation]
 source_ids:
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
   - src-2026-08-28-anthropic-chive-counterfactual-explanations
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-11-03-astwei-teaching-qwen-why
+  - src-2026-11-06-nous-arete-27b
 status: active
 ---
 
@@ -103,6 +104,23 @@ agent uses tools. Within those limits, the study shows that alignment-side gener
 from non-agentic data reaches a tool-using setting. It does not show that narrow fine-tuning is safe:
 the same base family can generalize in either direction depending on the data.
 
+## A narrow values fine-tune measured only near its target
+
+[[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+is a narrow intervention of the kind this page is about, although it is not a study of the effect.
+Nous fine-tuned Qwen3.8-27B on teacher answers to about twenty thousand prompts in seven
+political-values categories. It measured the result on an 803-prompt evaluation in the same
+categories, after removing training prompts that overlapped the evaluation, and on two capability
+benchmarks. The targeted behavior moved: answers adopting the Chinese state's account fell from
+**22%** to **0.9%**, and the capability scores were roughly unchanged.
+
+The release does not measure what this page asks about. It reports no behavior outside the target
+topics, such as refusals, safety responses, or political topics beyond the seven categories. Its
+finding of "no capability regression anywhere we looked" is bounded by where it looked. The contrast
+with astwei above is in what was measured. That study trained on non-agentic data and tested
+out-of-distribution agentic behavior. Arete tested within its training domain plus general
+capability. The release neither shows nor rules out broader behavioral change.
+
 ## Open questions
 
 - Which effects survive more seeds, domains, longer trajectories, and genuinely tool-using tests?
@@ -112,6 +130,8 @@ the same base family can generalize in either direction depending on the data.
   behavior through the self-reports themselves?
 - If narrow data can push generalization in both directions, can the same evaluation measure both? No
   source here runs the EM score and an agentic harmful-action suite on one checkpoint.
+- Does a narrow values fine-tune such as Arete's shift behavior outside its topic set, for example
+  refusals or safety responses? Its release measures only the target domain and general capability.
 
 ## Related pages
 
@@ -126,3 +146,4 @@ the same base family can generalize in either direction depending on the data.
 - [[Agent Security and Governance]]
 - [[Defensive Deception for Open Models]]
 - [[Sycophancy]]
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]

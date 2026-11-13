@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - kv-cache
@@ -37,6 +37,7 @@ source_ids:
   - src-2026-10-27-bytebytego-apple-on-device
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-10-alphasignal-latent-sparse-attention
 status: active
 ---
 
@@ -89,6 +90,7 @@ KV-cache optimization is not one technique. The current design space has several
 4. **Predictive skipping** — SnapKV and PyramidKV use early-layer signals to predict which tokens matter later, trading memory for task-dependent prediction risk.
 5. **KV quantization** — store K/V values in fewer bits. Simple INT8 gives a safe 2x reduction; more aggressive 3-4 bit schemes require additional tricks to avoid corrupting attention scores.
 6. **Sliding-window and cache-sharing designs** — restrict some layers to recent context or reuse cache state across layers. These are especially relevant for small/on-device models where every additional token competes with memory and battery budgets.
+7. **Sparse selection** — an indexer or a cluster search picks a subset of cached tokens for each query, and attention runs over that subset. Unlike eviction, nothing is deleted, so it cuts the attention work over a long cache rather than the stored cache; see [[Sparse Attention]] and "Sparse selection reads less of the cache without storing less" below.
 
 ## TurboQuant
 
@@ -435,6 +437,29 @@ context window until a model fits on a single GPU or CPU, and the author warns u
 context they actually got: the usable context of a local setup can be a runtime decision rather than
 a model property.
 
+## Sparse selection reads less of the cache without storing less
+
+[[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+describes the seventh family above. Latent sparse attention (LSA) groups the cached keys into
+clusters, stores one centroid per cluster, and has each query compare itself with the centroids.
+Attention then runs exactly over the original keys of the most promising clusters, plus a
+recent-token window and a few initial tokens. The motivation is selection cost, not memory. In a
+10-million-token experiment with GLM-5.3-Flash, which uses a variant of DeepSeek Sparse Attention,
+choosing the relevant tokens took **98%** of an attention layer's prefill time because the indexer
+still scored every earlier key. Distilled LSA made one GLM layer's prefill **22.7x** faster and its
+decode **4.6x** faster on one H200. End to end on eight H200s, time to first token improved **2.2x**
+and time per output token **2.1x**.
+
+Because the attention step retrieves the original keys, the method keeps the full cache and adds
+centroids on top of it; the capture gives no memory figure. It therefore addresses compute over a
+long cache, not the cache's size. The DeepSeek V4.1-Flash hierarchy in "Cache compression became a
+hierarchy" above pairs sparse retrieval with compressed and FP4 storage; whether LSA combines with
+cache compression is not reported.
+
+The same capture describes Qwen-3.8-27B as a model "which uses full attention". That conflicts with
+the quarter-full-attention layout in the paragraph above and in
+[[Linear Attention and Recurrent Memory]], which records the contradiction; both claims are kept.
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -450,6 +475,9 @@ a model property.
 - How much does a hybrid's recurrent state cost per request relative to its remaining attention
   cache? The Nemotron account gives grouped-query head counts but neither a layer ratio nor a state
   size.
+- How much memory do latent sparse attention's centroids add per cached token at 10 million tokens,
+  and does the cluster search still find the right keys when the cache is quantized? The capture
+  reports speed and accuracy but no memory or precision figures.
 
 ## Related pages
 
@@ -502,3 +530,5 @@ a model property.
 - [[Cerebras]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+- [[Sparse Attention]]

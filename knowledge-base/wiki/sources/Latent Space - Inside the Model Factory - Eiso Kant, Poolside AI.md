@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-10-19
+updated: 2026-11-13
 source_id: src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
 source_title: "Inside the Model Factory - Eiso Kant, Poolside AI"
 source_author: Latent Space
@@ -101,6 +101,7 @@ on [[RL Environment Design]], and its code-over-tools stance parallels [[Program
 ## Affected pages
 
 - [[Model Factory]]
+- [[AI for Mathematical Discovery]]
 
 ## Raw capture
 

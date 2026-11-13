@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - context-engineering
@@ -38,6 +38,7 @@ source_ids:
   - src-2026-10-26-bytebytego-salesforce-agent-stack
   - src-2026-10-26-alphasignal-memory-tax
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-09-tillman-two-kinds-test-time-scaling
 status: active
 ---
 
@@ -493,6 +494,18 @@ compression-first instinct: when the summary is the only path by which the task 
 truncated summary costs more than the tokens it saves. Factory reports no measurement of tasks
 dropped before and after the change.
 
+## Compaction may let a model use more compute than it was trained with
+
+[[James Tillman - Two Kinds of Test-Time Scaling]] treats compaction as more than fitting a long
+task into a window. In the Markovian Thinker paper he cites, "Delethink" generates 8k tokens,
+deletes all but the last 4k, and continues. The cycle is allowed up to 5 times in training and 30 or
+more at inference, and it kept improving on AIME25 past the training maximum where standard long
+chain-of-thought RL levelled off. Tillman links significant frontier extrapolation to progress in
+"LLM compaction" around the end of 2025, but calls that evidence weak, and METR reports that
+compaction does not increase GPT-5.1-Codex-Max's time horizon. On the vault's reading, a trained
+compaction policy, not only a scheduled one, may set how far past its training budget a model can
+usefully run. See [[Test-Time Scaling]].
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -581,3 +594,4 @@ dropped before and after the change.
 - [[ByteByteGo - A Deep Dive into Salesforce's Agent Tech Stack]]
 - [[Salesforce]]
 - [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
+- [[James Tillman - Two Kinds of Test-Time Scaling]]

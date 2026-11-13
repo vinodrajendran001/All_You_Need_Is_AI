@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-10-30
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-10-21-databricks-memcurrent
   - src-2026-10-28-sick-on-policy-self-training
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
+  - src-2026-06-11-0xcodez-fable-5-self-improving-agents
 status: active
 ---
 
@@ -148,6 +149,26 @@ without preserving every skill. More iterations are not a safety argument either
 E2B MMLU peaks at **47.7 after seven rounds** and falls to **46.2 at twelve or twenty**.
 A stopping rule without labeled validation remains open.
 
+## "Self-improving" in practitioner usage often means frozen weights and gated write-backs
+
+[[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]] draws the line this page's
+frozen-weights section relies on, in its own terms. "Self-learning" is an agent updating its own
+weights, which "No publicly available model does" in production; "Self-improving" means "the system
+around the agent compounds" through memory, Skills, state files, and eval loops, while "The model stays
+the same". Its recipe is a text-surface learning loop: an independent grader checks the work, a
+confirmed failure is written into a project state file or a Skill, and scheduled Routines re-run an
+eval suite and distill new failure modes overnight (see [[Agent Skill]] and [[Loop Engineering]]).
+
+Against the production-safety list above, the recipe has a verifier gate but no
+consent or poisoning check on what is written, no held-out regression set apart from the eval cases the
+loop itself grows, and no demotion or rollback path. Its evidence is also weaker than its framing. It
+relays a "Continual Learning Bench" result in which Fable 5 reaches **73%** verification coverage "In
+its strongest runs" against a **median ~17%** for Opus 4.7, then concludes that "The model is the same
+in both halves of every comparison", although the comparison is between two models. The defensible
+reading is narrower: a course aimed at practitioners treats memory and Skill files as the update
+surface, which makes this page's open question about what replaces a held-out gate for text updates a
+practical one.
+
 ## Open questions
 
 - How should rewards be normalized across tasks with different difficulty and value?
@@ -166,6 +187,10 @@ A stopping rule without labeled validation remains open.
 
 ## Related pages
 
+- [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]]
+- [[@0xCodez]]
+- [[Agent Skill]]
+- [[Loop Engineering]]
 - [[Ali Behrouz and Vahab Mirrokni - The Sleep Framework]]
 - [[Leon Sick et al - On-Policy Self-Training]]
 - [[Nested Learning]]

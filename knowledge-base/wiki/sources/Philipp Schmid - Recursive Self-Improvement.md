@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-19
+updated: 2026-11-13
 source_id: src-2026-08-28-philipp-schmid-recursive-self-improvement
 source_title: "Recursive Self-Improvement"
 source_author: "Philipp Schmid"
@@ -115,6 +115,7 @@ later agent at 84. Greedy selection would have pruned it. This is the same diver
 - [[Agent Plugin Architecture]]
 - [[Philipp Schmid]]
 - [[Model Factory]]
+- [[AI for Mathematical Discovery]]
 
 ## Citations
 

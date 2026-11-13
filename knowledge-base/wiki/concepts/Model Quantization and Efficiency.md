@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - llm
@@ -48,6 +48,8 @@ source_ids:
   - src-2026-10-27-bytebytego-apple-on-device
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-11-pytorch-executorch-webgpu
 status: active
 ---
 
@@ -346,6 +348,58 @@ The reported effect is a checkpoint shrinking from approx. **66 GB** in BF16 to 
 NVFP4. The article names no model and gives no accuracy comparison, so the figure establishes stored
 size only, the distinction that "Weight fit is not runtime fit" draws above.
 
+## Mixture-of-experts models quantize the experts first
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] adds a rule specific to
+[[Mixture of Experts]] models. The routed experts hold most of the parameters, so storing only them
+in 4 bits, with the rest in a wider format, captures most of the size saving. The handbook lists
+frontier models that do this after pretraining. OpenAI post-trained gpt-oss with its MoE weights in
+MXFP4 at **4.25** bits per parameter; those weights hold more than **90%** of the parameters, so the
+120b model fits on one **80 GB** GPU. Moonshot (Kimi K3), DeepSeek (V4) and the GLM team (GLM-5) are
+described as applying 4-bit quantization or quantization-aware training during post-training.
+Released checkpoints differ in scope: some quantize only the routed experts, while Qwen's GPTQ-Int4
+build of Qwen3's 30B MoE and Tencent's build of Hunyuan-A13B also put attention in int4, leaving only
+the router, embeddings and output head unquantized.
+
+The size saving overstates the decode saving. On gpt-oss-20b, 4-bit experts shrink the model from
+**39.0 GiB** to **12.8 GiB**, but the weight bytes one decoded token reads fall only from **6.72 GiB**
+to **3.45 GiB**. At batch size 1 a token reads only 4 of the 32 experts in each layer, but all of
+attention and the unembedding. Putting attention in 4 bits as well cuts those reads by another
+quarter while freeing only **0.9 GiB** of memory. [[LLM Inference]] records the comparison. It is
+the "Weight fit is not runtime fit" distinction above applied inside one model: count what each
+decoded token reads, not only what memory stores.
+
+Training precision follows the same pattern of keeping sensitive parts wider. The handbook
+recommends FP8 when the linear layers take most of the step, with the router, the norms and the
+attention core kept in higher precision, and expects about **10 to 25%** more throughput on a large
+MoE with loss within a fraction of a percent of BF16. DeepSeek's 16B and 230B FP8 runs and Ling-1T
+stayed within **0.25%** relative loss of their BF16 baselines. For NVFP4, the format described in
+"Block scales and a fixed teacher" above, NVIDIA's Nemotron 3 Super pretraining kept the last
+**15%** of the network, the attention projections, the embeddings and the multi-token prediction
+layers in BF16, and ran the Mamba output projection in MXFP8 because it underflowed in NVFP4. The
+handbook's warning signal is the count of exactly-zero weight-gradient elements in the expert layers,
+which grew to **7%** of all parameters by the end of that run. [[LLM Training Pipeline]] covers the
+training recipe.
+
+Reinforcement-learning rollouts are a third place where 4 bits can fail. Zhuge et al. at Qwen ran
+NVFP4 rollouts, with weights and activations both in 4 bits, against a BF16 trainer, and training
+collapsed after about **150** steps. They traced the collapse to the quantized activations rather
+than the weights. That is the stored-versus-executed precision split from the Humming section above:
+4-bit weights and 4-bit activations are different risks.
+
+The handbook relays these figures from model releases and papers; it did not rerun them.
+
+## A browser benchmark compares two quantization recipes
+
+[[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]] ships 4-bit
+quantized Llama 3.2 1B, Qwen2.5-0.5B and Qwen3-0.6B for GPU inference inside a web browser. Its
+benchmark against ExecuTorch's own WebAssembly CPU backend (XNNPACK) uses different precision on
+each side: the WebGPU path runs 4-bit groupwise weights (group size **64**) with fp32 activations,
+while the CPU path runs XNNPACK's 4-bit weights with 8-bit dynamic activations. The reported **4-7x**
+prefill and **2-10x** decode speedups are therefore a joint comparison of device, kernels and
+activation precision, like the Humming sweep above, and the post reports no output-quality
+comparison between the two paths. [[On-Device Reasoning]] covers the browser deployment tier.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -357,6 +411,8 @@ size only, the distinction that "Weight fit is not runtime fit" draws above.
 - Does tool-call syntax degrade before benchmark accuracy under low-bit quantization? The flash-moe
   2-bit JSON failure is one anecdote, and no source here measures structured-output validity across
   bit widths.
+- In MoE serving, when is quantizing attention worth it? On gpt-oss-20b it cuts a decoded token's
+  reads by another quarter while freeing only 0.9 GiB, and no source here measures its quality cost.
 
 ## Related pages
 
@@ -411,3 +467,5 @@ size only, the distinction that "Weight fit is not runtime fit" draws above.
 - [[Antonio Tiene et al - Pruning LLMs Like a Physicist]]
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]]

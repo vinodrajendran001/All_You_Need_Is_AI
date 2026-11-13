@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [concept, gpu, reliability, distributed-training, infrastructure, systems]
 source_ids:
   - src-2026-10-15-netflix-reliable-gpu-compute
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-10-02-epoch-agent-population
   - src-2026-07-17-netflix-in-house-llm-serving
   - src-2026-11-02-anil-compute-islands
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -136,6 +137,43 @@ remote site sends. The post proposes training goodput plus final model quality a
 reports neither goodput nor failure statistics for its own runs, so the robustness is argued rather
 than shown.
 
+## Pre-flight checks for one team's allocation
+
+Netflix describes health checking for a whole fleet.
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] describes the same discipline for a research
+team renting nodes, run before any MoE training starts. Its checks follow the "degraded is the
+expensive state" pattern above.
+
+**Run diagnostics on every node.** NVIDIA's DCGM diagnostics have several levels. Level 1 is meant
+for readiness checks, while levels 3 and 4 are administrator post-mortem tests. In the authors'
+cluster, a level 2 run found thermal violations alongside failed PCIe and memory tests on three GPUs
+in one node.
+
+**Test the collective the job will use, against a baseline for the same node count.** An MoE
+exchanges tokens with all-to-all, not all-reduce, and the two behaved very differently on the same
+machines. One two-node allocation reached **398.52 GB/s** for all-reduce but only **39.84 GB/s** for
+all-to-all, against a two-node all-to-all baseline of **77.14 GB/s**. The baseline also depends on node
+count: the sweep reached **77.14**, **39.25** and **30.91 GB/s** on two, four and eight nodes. The
+suggested starting policy is to accept an allocation at **90%** of its own baseline, about 69 GB/s for
+two nodes, plus a passing correctness check. A fixed threshold fails both ways: 33 GB/s would accept
+the slow two-node result and reject the normal eight-node one. The slow allocation also had NCCL
+tuning variables set and ran on different nodes, so the authors could not separate the two effects.
+This sharpens Netflix's "short collective run" before admission: the test should use the job's
+collective and a baseline per node count.
+
+**Check the transport, not only the request.** Two runs that requested EFA still logged "Using
+network Socket" and ran about **25x** slower than an EFA run. This is Netflix's missing-dependency
+case again: the configuration asked for the fast fabric, and nothing failed when it was not used.
+
+**Attribute numerical failures before retrying.** By default Megatron reruns a step whose loss or
+gradients contain a NaN on the same GPU. If the NaN repeats, it exits with code 16 so the job
+restarts from a checkpoint on another GPU, where a second rerun separates a faulty GPU from a NaN the
+data or model really produced. This is the platform-versus-application attribution described above,
+built into the training loop. Megatron can also repeat hardware checks during training at a set
+interval.
+
+These are one team's procedures on one cloud, not fleet statistics.
+
 ## Open questions
 
 - How much immediately schedulable capacity does a fleet give up by holding new machines until checks
@@ -150,6 +188,8 @@ than shown.
 - When training spans providers, what plays the role of a health check for a remote site's updates?
   The compute-islands post names silent degradation or tampering by one site as a risk but proposes
   no verification mechanism.
+- How much variation is normal within one node count? The handbook's 90%-of-baseline rule needs
+  repeated runs on known-good nodes to set, and it reports one baseline per count.
 
 ## Related pages
 
@@ -168,3 +208,5 @@ than shown.
 - [[Google Cloud]]
 - [[NVIDIA]]
 - [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Mixture of Experts]]

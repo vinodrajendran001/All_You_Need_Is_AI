@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-13
 source_id: src-2026-10-15-osmani-claude-code-review
 source_title: How the Claude Code team does code review
 source_author: Addy Osmani
@@ -114,6 +114,7 @@ only by hallucinated findings.
 - [[Coding Agent Harness]]
 - [[Agentic Testing]]
 - [[Addy Osmani]]
+- [[AI Code Review]]
 
 ## Raw capture
 

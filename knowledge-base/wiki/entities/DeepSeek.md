@@ -2,12 +2,13 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-10-23
+updated: 2026-11-13
 tags: [entity, organization, models, inference, ai-agents]
 source_ids:
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-10-20-gupta-deepseek-deepinfer
+  - src-2026-11-06-doubleai-llms-redesign-themselves
 status: active
 ---
 
@@ -84,6 +85,15 @@ reports a throughput, latency, cost, or memory figure, and the engine is describ
 complete KV-cache management system, which is the subsystem the model's headline claim lives in. Two
 adjacent artifacts, no bridge between them.
 
+## A model that built a verifier on its own activations
+
+In [[DoubleAI - Can LLMs Redesign Themselves as They Train]], **DeepSeek-V4.1-Flash** (described as
+a 763B mixture-of-experts model, run without thinking mode) acts as the agent on itself. From its
+own graded solutions to **243** problems from the 2024 and 2025 contests, it chose a linear probe at
+seven deep blocks of its residual stream. The probe predicted about eight points of gain; the hidden
+AIME 2026 and HMMT February 2026 sets gave seven (**64%→71%**). First-party blog, single run
+reported.
+
 ## Open questions
 
 - Nothing in the vault verifies that DeepInfer powers DeepSeek's production systems, or that every
@@ -115,4 +125,4 @@ adjacent artifacts, no bridge between them.
 - [[Multi-Tenant Agent Architecture]]
 - [[AI Agents in Production]]
 - [[Meta]]
-
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]]

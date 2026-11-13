@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-13
 source_id: src-2026-10-25-rastogi-agentcore-enterprise
 source_title: How to Build an Enterprise AI Agent System with AgentCore (Part 1)
 source_author: Sarthak Rastogi
@@ -99,7 +99,10 @@ namespaces, and an argument for delegated identity over shared service accounts.
   original reports.
 - **Point-in-time limits.** Timeouts, the memory cap, and the resource count are product facts "as I
   write" and will drift.
-- **No implementation yet.** The code is promised for Part 2 in an open-source repository.
+- **No implementation yet.** The code is promised for Part 2 in an open-source repository. Part 2 has
+  since been published:
+  [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] records the
+  repository and where it departs from this design, notably gateway-vouched identity for owned tools.
 
 ## Affected pages
 
@@ -122,6 +125,7 @@ namespaces, and an argument for delegated identity over shared service accounts.
 
 ## Related pages
 
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
 - [[Agent Security and Governance]]
 - [[Multi-Tenant Agent Architecture]]
 - [[Tool Roster Economics]]

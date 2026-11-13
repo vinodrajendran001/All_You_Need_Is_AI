@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - llm
@@ -44,6 +44,7 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-08-12-bytebytego-knowledge-distillation
   - src-2026-11-03-bytebytego-nemotron
+  - src-2026-11-05-huggingface-moe-training-handbook
 status: active
 ---
 
@@ -312,12 +313,56 @@ enters training instead of following it: quantization-aware distillation trains 
 against the frozen BF16 model. The account gives no data volumes, token counts, or stage-by-stage
 results.
 
+## The same stages, seen from an MoE training run
+
+[[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] walks the pipeline from the practitioner's
+side for sparse models. Each stage it covers carries an MoE-specific decision.
+
+**Starting point.** A dense checkpoint can be *upcycled*: its feed-forward weights are split and
+copied into experts, so the MoE starts from what the dense model learned. A run from scratch
+eventually catches up, but how soon varies. In OLMoE it took **500B** tokens, **25%** of the dense
+model's 2T. In Komatsuzaki et al.'s runs it took **120%** of the dense checkpoint's compute. The
+handbook recommends upcycling when a dense checkpoint exists and the MoE run is short. It also
+recommends Megatron's deterministic mode before comparing two runs: without it, the authors' loss
+differed from the first iteration on, by up to **0.00063**.
+
+**Optimizer.** Moonlight, an MoE with 3B active and 16B total parameters, "performed significantly
+better with Muon" than an AdamW twin at about **1.2T** tokens. Labs disagree on whether the router
+should also use Muon. The handbook's starting point is a Muon scale factor of **0.2**, because
+Megatron's default of 1.0 diverged on a dense 7B in another team's tests.
+
+**Auxiliary objectives cost time.** On the authors' 256-node runs, early steps took about **37%**
+longer with one multi-token prediction layer, and 8 pipeline stages did not close the gap. Another
+team reports **7%** extra training time for a 14B MoE. Ling 2.0's team measured the layer at about
+**1.7x** the compute of a standard MoE layer, and repartitioning the pipeline around it gained
+**40%** end to end. See [[Speculative Decoding]] for the inference side of these heads.
+
+**Reinforcement learning has a routing problem.** The rollout engine and the trainer can route the
+same tokens to different experts. Routing replay records the rollout's choices and reuses them in
+training; in one study it cut the train-inference divergence from **1.5e-3** to **7.5e-4**. Whether
+that improves reward "is still contested": one study reports crashes without replay, while a later
+Qwen study saw no gain in on-policy training. NVIDIA's NeMo-RL recipes for Nemotron 3 Super and
+Ultra instead freeze the router matrix. Low-precision rollouts add a second mismatch: Zhuge et al.
+at Qwen saw training collapse after about **150** steps with NVFP4 rollouts and traced it to the
+quantized activations rather than the weights.
+
+**Precision enters pretraining, not only compression.** The ByteByteGo account above places NVFP4
+in quantization-aware distillation. The handbook reports that NVIDIA *pretrained* Nemotron 3 Super,
+**120B** parameters with **12B** active, on **25T** tokens in NVFP4. The last **15%** of the network,
+the attention projections, the embeddings and the multi-token prediction layers stay in BF16. See
+[[Model Quantization and Efficiency]].
+
+These are the authors' own small-scale runs plus relayed results from other labs. The handbook says
+many of its recommendations rest on one ablation in one setup.
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
 - Which future post-training recipes will replace the current SFT -> preference-optimization default for frontier LLMs?
 - How reproducible is MOPD without access to the teacher checkpoints, data mixtures, and organization-level parallelism that produced them?
 - When does overtraining a small model become cheaper than serving a larger one?
+- For MoE reinforcement learning, is routing replay worth its cost? Published comparisons disagree,
+  and router freezing is a cheaper alternative that leaves the selection bias moving.
 
 ## Related pages
 
@@ -375,3 +420,6 @@ results.
 - [[Synthetic Data Flywheel]]
 - [[@zafstojano]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Mixture of Experts]]
+- [[Speculative Decoding]]

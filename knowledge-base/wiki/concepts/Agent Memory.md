@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -30,6 +30,8 @@ source_ids:
   - src-2026-10-22-agrawal-qwenputer
   - src-2026-11-04-axjns-agents-share-work
   - src-2026-11-04-axjns-synthetic-membrane-paper
+  - src-2026-06-11-0xcodez-fable-5-self-improving-agents
+  - src-2026-11-10-nizzyabi-instinct-teardown
 status: active
 ---
 
@@ -462,6 +464,57 @@ Neither piece measures a memory system. The paper is a position paper with an ev
 blog's five-agent simulation demonstrates mechanics only. The faults the paper proposes to inject, such
 as stale evidence and a poisoned claim, have not been tested.
 
+## Memory use as a progression the writer has to complete
+
+[[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]] relays a framing it
+attributes to an Anthropic experiment called "Continual Learning Bench 1.0": using memory well takes
+five stages, **Fail** (document the failure), **Investigate** (find why), **Verify** (turn the diagnosis
+into a checked fact), **Distill** (generalize it into a rule), and **Consult** (read the rule next time
+instead of re-deriving it). On a SQL exploration task with memory provided, the post says Sonnet 4.6
+"exits at step 1", keeping failure notes and open guesses it rarely consults; Opus 4.7 exits at step 3,
+with verification coverage of **7–33% (median ~17%)**; and Fable 5 "tends to complete the progression",
+reaching **73% (22 of 30)** "In its strongest runs". The comparison sets one model's median against
+another's best run, and the post links no benchmark page, so the ordering is relayed rather than
+checkable.
+
+The framing still sharpens the writer problem above. Storing a note is stage 1; the later stages decide
+whether the store compounds. The post's state file gives each stage a section (verified facts, general
+rules, open failures, lessons learned, and a last-session resume pointer) and adds two rules: "Write
+before walking away", since a session that ends without a write means the next one "restarts from
+zero", and "Read at session start". Its claim that skipping the read brings "Sonnet-class memory
+behavior" back even in Fable 5 is not supported with data. Procedural lessons go into Skills rather
+than this project file (see [[Agent Skill]]).
+
+## A consumer assistant's file memory, observed from outside
+
+[[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]] relays other people's teardowns
+of [[Instinct]]'s memory, and they describe a design close to this vault's own
+[[Persistent Wiki]]. According to Dhravya Shah's teardown, there is no vector database. Memory is a set
+of Markdown files in a git repository, with folders for people, facts, preferences, timelines, and
+workstreams, linked to each other with wiki-style double-bracket links, searched by keyword, and
+tidied by a background job about once a day. Each turn starts with a profile, a one-page summary, open
+to-dos, and a recap, about **13k** tokens together in his snapshot. Rohan Adwankar found the
+repository at `/memory` in the sandbox, with the lasting copy kept as a git bundle, so the computer is
+disposable and the repository persists.
+
+The author could not inspect any of this and tested behaviour instead:
+
+- A fictional budget changed from **$480** to **$620** was recalled four weeks later, in sixteen
+  seconds, with the edit history and a "Fictional only" label.
+- A project described only as "named after a plant and a small bird" came back as "Moss Finch" in nine
+  seconds. The author says keyword search alone "shouldn't be able to do that" and offers two untested
+  explanations.
+- Moss Finch was also the project the author had asked it not to keep in long-term memory; sixteen days
+  later it still knew all of it.
+- A separate write-up reports early Gmail records a user could not delete, and says a deletion tool was
+  added later.
+
+The results raise two questions. One is whether a request not to save something is honoured as
+deletion or only as a label. The other is how a store described as keyword-only retrieved a name from
+a description, which bears on the open question below about when simple retrieval stops being enough.
+The evidence is one user's thread, measured by a third party who builds
+a competing product, and Instinct has not confirmed the relayed internals.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -470,6 +523,9 @@ as stale evidence and a poisoned claim, have not been tested.
   merges duplicates, and resolves conflicts — but no evaluation of whether its resolutions are correct,
   so the question is answered architecturally and not empirically.
 - How should memory be scoped when multiple users share an agent system?
+- When a user asks an agent not to keep something, what should change in the store: the record, its
+  label, or only how it is used? Instinct kept a "don't save" project, labelled fictional, sixteen
+  days later.
 - When is **storage memory** (auditable, external) the right tool versus **structural/inference-time memory** (integrated, adaptive but opaque)? See [[Nested Learning]].
 - If memory is derived only from artifacts that carry a commitment, what happens to knowledge that
   never becomes a PR, doc, or dashboard - and does the rule bias the store toward whatever a
@@ -493,6 +549,12 @@ as stale evidence and a poisoned claim, have not been tested.
 
 ## Related pages
 
+- [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]]
+- [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]]
+- [[Instinct]]
+- [[@0xCodez]]
+- [[Persistent Wiki]]
+- [[Agent Skill]]
 - [[axjns.dev - Agents Need Somewhere to Share Their Work]]
 - [[axjns.dev - The Synthetic Membrane - A Coordination Layer for Multi-Agent AI Systems]]
 - [[Multi-Agent Coordination]]

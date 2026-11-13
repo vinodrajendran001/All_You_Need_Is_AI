@@ -128,8 +128,9 @@ self-reports as behavioral measurements rather than access to an internal belief
 
 ### The companion paper puts numbers on neurons as units
 
-[[Curt Tigges et al - Neurons as an Interpretable Basis]] is the technical companion that the essay announced. It tests three properties on the routed
-MLP neurons of Qwen3.6-35B-A3B, a mixture-of-experts model:
+[[Curt Tigges et al - Neurons as an Interpretable Basis]] is the technical companion that the essay
+announced. It tests three properties on the routed MLP neurons of Qwen3.6-35B-A3B, a
+mixture-of-experts model:
 
 - **Sparsity.** Keeping only the top 320 of **4,096** routed neurons per token, ranked by
   |activation| × router weight, ablates **92.2%** of them and raises loss from **1.886** to
@@ -227,19 +228,20 @@ conclusion on the sycophancy heads was "not a demonstrated dedicated user-agreem
 Reading weights without tools is shown only on small networks. Whether such readings beat a
 behavior-only baseline, the test [[Interpretability Evaluation]] asks for, was not run.
 
-A third party has since rerun the no-tools game prompts. In [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]], Qwen 3.8 27B, running locally on
-a laptop, named three of the four games (Pac-Man, Pong and Breakout) and mistook Freeway for a
-Pac-Man-like game. Each answer with a reported time took 46 minutes to over an hour. Kimi K3.1 Pro named
-Breakout. This suggests the small-network task does not need a frontier model. But it is one run
-per game, the stated confidences are the model's own, and the post does not say whether the
-prompts reveal the candidate games. Willison's reading is deflationary: a sufficiently experienced
-human "armed with a notepad and a pencil" could get there.
+A third party has since rerun the no-tools game prompts. In
+[[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]], Qwen 3.8 27B,
+running locally on a laptop, named three of the four games (Pac-Man, Pong and Breakout) and mistook
+Freeway for a Pac-Man-like game. Each answer with a reported time took 46 minutes to over an hour.
+Kimi K3.1 Pro named Breakout. This suggests the small-network task does not need a frontier model.
+But it is one run per game, the stated confidences are the model's own, and the post does not say
+whether the prompts reveal the candidate games. Willison's reading is deflationary: a sufficiently
+experienced human "armed with a notepad and a pencil" could get there.
 
 ### Interpretability tools used during training
 
-[[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves interpretability tools into training and calls this "mechanistic intervention". A
-coding agent reads a network's internals while it is still learning. It then changes the data,
-the objective, the update rule or the architecture.
+[[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves interpretability tools into training
+and calls this "mechanistic intervention". A coding agent reads a network's internals while it is
+still learning. It then changes the data, the objective, the update rule or the architecture.
 
 - **The phantom gradient.** This is the loss gradient with respect to a layer's representations
   rather than its weights. Persistent demand in it marks where to insert code layers.

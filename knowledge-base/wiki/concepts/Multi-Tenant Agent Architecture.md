@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-10-27
+updated: 2026-11-13
 tags: [concept, ai-agents, multi-tenancy, security, cost]
 source_ids:
   - src-2026-09-12-cheruku-patel-multitenant-agentic-ai
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-10-23-image-aware-agent-memory
   - src-2026-10-19-vercel-durable-harness
   - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
 status: active
 ---
 
@@ -188,6 +189,33 @@ The author uses AgentCore at work and reports no isolation test or other measure
 own sections on where AgentCore falls short are image-only in the capture, and its timeouts and caps
 are point-in-time product facts.
 
+## The implementation trusts the gateway for owned tools and keeps the user as the unit
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] publishes the
+code for the design above and changes its identity hop. For the platform's own tools, Gateway calls the
+tool "using **its own IAM role**, so the tickets Lambda never sees the user's token"; a request
+interceptor Lambda sees every MCP request and stamps the caller onto it. "The gateway vouches for the
+user to a tool it trusts", which Rastogi calls reasonable for tools "sitting behind a locked-down
+gateway". On-behalf-of exchange, the Part 1 mechanism, is kept for third-party or OAuth-protected APIs
+through a target with `oauth { grant_type = "TOKEN_EXCHANGE" }`. In this page's terms the user identity
+still survives the hop, but for owned tools it is asserted by a trusted intermediary rather than carried
+as a user-scoped credential, so the gateway and interceptor become part of every tool's trust boundary.
+
+The other hops become concrete without changing the unit. The UI creates a fresh session id per agent
+per chat, a `uuid4` plus 8 hex characters "to clear the 33-character minimum", so "New chat = new
+microVM". Agents can be locked to groups with `allowed_groups`, enforced by the runtime's JWT
+authorizer; each agent has its own IAM role, and every role trusts the AgentCore service "only for
+*this* account, which stops a confused-deputy attack". Memory is still "one memory resource for the
+whole platform, storing records in a namespace keyed by user". Group claims and per-user namespaces are
+the only scopes shown, so the open question below about an organisation-level unit remains open.
+
+Delegation adds a less obvious cross-scope effect. A sub-agent called in-process runs "with **the same
+caller**", the same token and Cedar decisions, which keeps user identity intact; but because it runs
+"inside the parent's runtime", the parent's IAM role must also hold the sub-agent's permissions, so the
+helpdesk agent carries `code_interpreter` access it never uses. Rastogi's rule is that a sub-agent
+needing "its own scaling, owner or IAM boundary" should be its own runtime reached over A2A. As in Part
+1, the repository reports no isolation test.
+
 ## Open questions
 
 - Which tenant claims can be verified independently at every agent and tool boundary?
@@ -210,6 +238,7 @@ are point-in-time product facts.
 - [[Pranay Prakash and Eric Dodds - Making Every Harness Durable]]
 - [[Vercel]]
 - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
 - [[Sarthak Rastogi]]
 - [[Image-Aware AI Agent Memory - Oracle 26.8]]
 - [[ByteByteGo - How DoorDash Built a Toolbox for AI Agents]]

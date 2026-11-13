@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-09-25
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-06-22-djfarrelly-agent-loop-architecture
   - src-2026-08-28-google-cloud-agent-delegation
   - src-2026-09-09-mistral-legacy-code-modernization
+  - src-2026-07-20-0xcodez-graph-engineering-roadmap
 status: active
 ---
 
@@ -122,6 +123,26 @@ would forbid delegating exactly the work agents are most often used for. See [[A
 agents bounded subtrees rather than asking for a whole-system migration. Planning follows dependency
 cuts and parity checkpoints, with human approval between stages.
 
+## A plan can be an executable dependency graph
+
+[[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]] takes the
+"plans are data structures" view on this page one step further: in Claude Code's dynamic workflows, as
+the course describes them, the plan is a JavaScript orchestration script that Claude writes for the
+task, "decomposing the task, choosing the fan-out, spawning a coordinated fleet of subagents, and
+synthesizing the result", and the script is then what runs. A good run's script can be saved to
+`.claude/workflows/` and re-run by name, so a plan becomes a versioned artifact rather than a
+one-off.
+
+The course's planning test is about dependencies rather than steps. For every "and then", ask "does the
+next step read the last step's output?" A plan written as "do A, then B, then C, then D" is a single
+chain, and the course says most chains have "two or three arrows that don't carry data", which are
+"just the order you happened to type things in"; cutting those arrows leaves independent steps that can run at once, feeding one step that needs them
+all. This complements the Mistral rule above: there, the code's dependency tree bounds the plan; here,
+data dependencies between the plan's own steps decide what must wait. The course gives no measure of how
+often model-written workflows draw the right edges, and it does not say how such a script is revised
+mid-run when a step returns something unexpected, which leaves the first open question below as it was.
+See [[Graph Engineering]].
+
 ## Open questions
 
 - How should an agent revise its plan mid-execution when early steps fail or return unexpected results?
@@ -130,6 +151,8 @@ cuts and parity checkpoints, with human approval between stages.
 
 ## Related pages
 
+- [[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]]
+- [[Graph Engineering]]
 - [[Agentic Loop]]
 - [[Agent Memory]]
 - [[Tool Use and Function Calling]]

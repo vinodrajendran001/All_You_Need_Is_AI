@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-18
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - entity
   - newsletter
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-11-02-alphasignal-timestral
   - src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
+  - src-2026-11-10-alphasignal-latent-sparse-attention
 status: active
 ---
 
@@ -33,8 +34,9 @@ Alpha Signal is an AI-focused newsletter that tracks research developments, mode
 
 Alpha Signal connects recursive reasoning architectures, retrieval-interface design, agent-skill
 optimization, runtime controls, cache handoffs, non-autoregressive text generation, agent-memory
-costs, tabular and specialist prediction models, and sparse-model serving costs in this vault. Its secondary reporting is useful for orientation, but study details and editorial framing
-must remain distinct from independently verified results.
+costs, tabular and specialist prediction models, sparse-model serving costs, and sparse attention in
+this vault. Its secondary reporting is useful for orientation, but study details and editorial
+framing must remain distinct from independently verified results.
 
 ## Notes
 
@@ -122,6 +124,24 @@ names or margins, and it attributes a Kumo Relational result to NVIDIA. The sour
 captured: it may be a newsletter error, or it may follow from the NVIDIA acquisition of Kumo that the
 earlier tabular survey reports.
 
+## A sparse-attention explainer, again without metadata
+
+[[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]] brings the newsletter back to
+long-context serving costs after the DeepSeek V4.1-Flash explainer. It reports Latent Sparse
+Attention, which it attributes to researchers at Prefrontal AI and ETH Zurich. The method clusters
+cached keys so that each query searches cluster centroids instead of scoring every earlier key.
+Reported results include **22.7x** faster prefill for one GLM-5.3-Flash attention layer at 10
+million tokens and **2.2x** faster time to first token end to end. [[Sparse Attention]] carries the
+technical content.
+
+The capture repeats the metadata pattern of the two items above: no frontmatter, byline, date or
+canonical URL. Attribution rests on per-subscriber `app.alphasignal.ai` tracking redirects and four
+images hosted on alphasignal.ai, and the source ID uses the file's modification date. No paper title
+or preprint link appears, so the figures are the newsletter's relay of research the vault has not
+read in its original form.
+The capture's description of Qwen-3.8-27B as a full-attention model contradicts the vault's other
+record of that model; [[Linear Attention and Recurrent Memory]] keeps both claims.
+
 ## Related pages
 
 - [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
@@ -157,3 +177,6 @@ earlier tabular survey reports.
 - [[Alpha Signal - Why Tabular Foundation Models Are a Huge Unlock]]
 - [[Alpha Signal - How DeepSeek Made a Bigger Model Cheaper to Run]]
 - [[Mixture of Experts]]
+- [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+- [[Sparse Attention]]
+- [[Linear Attention and Recurrent Memory]]

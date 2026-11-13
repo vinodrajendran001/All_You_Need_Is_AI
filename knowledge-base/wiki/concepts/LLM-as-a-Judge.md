@@ -31,6 +31,9 @@ source_ids:
   - src-2026-10-16-west-eval-engineering-lessons
   - src-2026-10-17-redwood-screwtape
   - src-2026-11-10-bytebytego-linkedin-ai-code-review
+  - src-2026-11-10-mollick-fable-5-2-jagged-agi
+  - src-2026-11-06-nous-arete-27b
+  - src-2026-11-06-koller-data-grow-in-dish
 status: active
 ---
 
@@ -435,6 +438,15 @@ search, so neither replaces the other. These are Redwood's observations on its o
 the false-positive rate, the verifier's agreement with experts, and a reconciliation of the post's
 attack counts are not reported.
 
+[[Ethan Mollick - Fable 5.2 and Jagged AGI]] reports the same pressure in an agent team with no
+adversary. Told to "polish" generated 3D worlds, the agents required each new version to beat the
+old one in a blind vote by judge agents on twelve test screenshots, and builders "started optimizing
+the worlds for those particular screenshots". The lead agent banned the trick and tightened the
+rules, which grew into a 204-section rule book and a three-judge approval that took about a day. The
+critics and judges Fable put on nearly every project found errors, but "none of them asked whether
+the work was too long, too repetitive, or no fun". This is one user's early-access account with no
+measured rates.
+
 ## A comparison judge gates releases; a golden dataset decides who was right
 
 [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] puts a judge in front of
@@ -461,6 +473,32 @@ Cloudflare's blinded two-provider judging of 657 findings with a third model bre
 recorded in [[AI Code Review]]. The six criteria, their weights, the judge model, and any agreement
 with human labels are not disclosed. This is a secondary ByteByteGo account of LinkedIn's engineering
 post.
+
+## A careful single-judge design, and a judge for lab images
+
+[[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+documents its judge in unusual detail. For each of **803** prompts, Grok 4.7 received the prompt,
+the answer, **2–4** required facts, and a fixed rubric. It recorded whether each fact was stated,
+missed, or contradicted, and "a propaganda score requires a quoted phrase as evidence". The judge
+"is not told which model wrote the answer". Nous developed it on a **25**-prompt pilot graded by
+hand, revising the rubric three times where judge and human grades disagreed; the main fix was
+defining a stated fact "by its substance rather than its exact wording, dates or citations". That is
+the claim-checking design recommended above in the section on asking a grader for claims rather than
+a score.
+
+The gaps are the ones this page warns about. The release reports no judge–human agreement rate after
+the pilot, uses no second judge, and does not examine the judge's own stance on the contested
+topics. Nous also chose Arete's teacher using "a combination of benchmarks, including our own
+benchmark above"; on the vault's reading, the instrument that reports the gain also shaped the
+training data.
+
+[[Daphne Koller - Getting Data to Grow in a Dish]] applies a judge to images. insitro's "agentic QC"
+uses multimodal language models to review microscopy for **seven** failure modes, and it "explains
+its assessments". Koller reports that it "agrees with expert reviewers 82% of the time" and
+increased coverage "more than eightyfold", and that scientists "define the standards, qualify the
+system, and decide what to do with its findings". No agreement rate between experts is given, so 82%
+cannot be read against human disagreement, and the account is first-party. See
+[[AI Drug Discovery]].
 
 ## Open questions
 
@@ -547,3 +585,7 @@ post.
 - [[ByteByteGo - Why Do LLMs Lie]]
 - [[Anthropic]]
 - [[LLM Application Resilience]]
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+- [[Daphne Koller - Getting Data to Grow in a Dish]]
+- [[AI Drug Discovery]]

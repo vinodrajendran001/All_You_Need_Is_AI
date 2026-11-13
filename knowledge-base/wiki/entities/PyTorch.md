@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-13
 entity_kind: open-source project
 tags:
   - entity
@@ -9,6 +9,7 @@ tags:
   - accelerators
 source_ids:
   - src-2026-10-21-simpson-torchtpu
+  - src-2026-11-11-pytorch-executorch-webgpu
 status: active
 ---
 
@@ -63,6 +64,27 @@ Portability and performance are therefore separate achievements, and the vault's
 it: moving a workload is not the same as making it fast. Several of its comparisons show the PyTorch
 path slightly **behind** a JAX baseline on the same hardware.
 
+### The same strategy in the browser
+
+[[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]] shows the compatibility
+argument at the other end of the hardware range. PyTorch's ExecuTorch gains a WebGPU backend: a
+model is exported once with `torch.export` and a `WebGPUPartitioner` to a `.pte` file that runs in
+WebGPU-enabled browsers. The post makes the same case as TorchTPU. Running a PyTorch model in a
+browser usually meant converting it to another framework's format, such as GGUF, ONNX or TFLite,
+and the new backend lets models "reach the browser without leaving the PyTorch toolchain".
+Compatibility is again stated as model coverage: LLMs, a vision-language model, segmentation,
+depth, object detection, super-resolution, speech-to-text and text-to-speech, published as `.pte`
+files on [[Hugging Face]].
+
+The dynamic-shape solution resembles TorchTPU's. TorchTPU's bounded dynamism compiles maximum
+buffers with runtime logical dimensions; ExecuTorch WebGPU allocates buffers at their maximum size
+and recalculates workgroups per dispatch. Two backends on very different hardware handle variable
+shapes by reserving the worst case, which is a pattern across two sources rather than a framework
+rule. The performance evidence is narrower than TorchTPU's: one Apple M1 Pro in Chrome, measured
+only against ExecuTorch's own WebAssembly CPU path (**4-7x** faster prefill, **2-10x** faster
+decode), and the post calls the backend "still in early development". See
+[[On-Device Reasoning]].
+
 ## Related pages
 
 - [[Accelerator Software Externalization]]
@@ -74,3 +96,7 @@ path slightly **behind** a JAX baseline on the same hardware.
 - [[Ebba Simpson - Introducing TorchTPU]]
 - [[Google Cloud]]
 - [[Meta]]
+- [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]]
+- [[On-Device Reasoning]]
+- [[Hugging Face]]
+- [[Model Quantization and Efficiency]]

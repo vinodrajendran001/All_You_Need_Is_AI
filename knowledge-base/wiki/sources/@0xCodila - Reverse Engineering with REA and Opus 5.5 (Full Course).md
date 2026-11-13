@@ -103,7 +103,7 @@ without paying. The legal claims are the author's, not legal advice.
 ## Why it matters
 
 REA turns behavior recovered from binaries into a spec and a test oracle. That places it in
-[[Legacy Code Modernization with AI Agents]] beside the "old system as spec" cases, especially for
+[[Legacy Code Modernization with AI Agents]] beside the cases that use the old system as the specification, especially for
 software whose source is lost. It also makes reverse engineering a cheap, agent-driven, dual-use
 capability for [[Agent Security and Governance]]: the stated controls (approval-gated setup,
 read-only `doctor`, local execution, bounded-capture planning) are real, but the use boundary is a

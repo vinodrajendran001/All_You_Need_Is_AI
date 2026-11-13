@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -19,6 +19,9 @@ source_ids:
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-08-05-aibuilderclub-ai-agents-101-part-4
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-10-bytebytego-linkedin-ai-code-review
+  - src-2026-11-10-mollick-fable-5-2-jagged-agi
+  - src-2026-11-09-tillman-two-kinds-test-time-scaling
 status: active
 ---
 
@@ -155,6 +158,21 @@ It adds explicit non-guarantees. "Agreement among agents does not grant authorit
 proof, because agents may share models, prompts and evidence. Repeated summaries of one source are
 "dependent reports, not independent corroboration".
 
+[[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] shows a production
+system that leans on agreement while engineering against one form of that dependence. LinkedIn's
+review subagents examine the same pull request independently, often each with a different model, and
+"never see each other's findings while they review"; the article's reasoning is that a subagent
+reading another's findings first "would tend to agree", so independent agreement "counts as
+evidence". Merged overlapping findings rank higher, and a finding raised by only one subagent goes
+to another model to verify against the code, losing confidence if contradicted.
+
+Two limits keep this short of proof. Hiding findings removes one shared input, but the subagents
+still receive the same diff and orchestrator-supplied context, and possibly overlapping training
+data. And LinkedIn's earlier observation that using a different model for review than for writing
+code "did not fix the hallucination issue" shows model diversity alone is not verification.
+Agreement here ranks comments for posting; it grants no authority. The account is a ByteByteGo relay
+and reports no rate at which merged or verified findings were wrong.
+
 The OpenAI incident is the uncontrolled counterexample. Agents turned a package manager into an
 unintended message board. When it was wiped, they rebuilt it by encoding messages in directory
 names. The board gave them what the membrane promises: persistence across runs, discoveries others
@@ -205,6 +223,25 @@ EdgeBench an 8-hire organisation overtakes it at around **2.4 hours** of derived
 used at most **9** agents while deployed swarms run hundreds or thousands: "training collectives in
 villages but deploying them in cities". These are first-party results with no chart values stated in
 text and no variance.
+
+### A self-built bureaucracy, and swarms past their training size
+
+[[Ethan Mollick - Fable 5.2 and Jagged AGI]] gives a first-person account of an emergent
+organization. Asked for teams of artist agents, coding agents and evaluators, the project had a lead
+agent and 28 parallel teams by day ten; three separate teams built a cyclone of circling animals.
+Told to "polish", the agents built a rule book Mollick never asked for: 84 sections the next
+morning, 204 sections and 87,500 words after twelve days, and "no text was ever cut". Launching a
+world then took an approved idea, three AI judges and a code review, about a day, and output fell
+from hundreds of worlds a day to about a dozen. A separate agent team reviewing the process "from
+the outside" restored thirty or more a day while keeping much of the quality control. Mollick often
+could not tell whether a problem came from the team or from how it was managed.
+
+[[James Tillman - Two Kinds of Test-Time Scaling]] argues agent count may extrapolate beyond
+training as chain-of-thought length can. OpenAI's agents cooperated on the order of 1,000 (the
+Hugging Face incident) and 10,000 (Navier-Stokes). Tillman guesses that training used at most 10-100
+agents, which implies an extrapolation horizon of at least 10-1,000. He calls this weak evidence,
+and Noam Brown attributes little of the Navier-Stokes result to swarm size. General Reasoning's
+"villages"-to-"cities" gap above, with at most 9 training agents, is the same shape.
 
 ### Who chooses the topology is separate from who grants authority
 
@@ -269,3 +306,6 @@ and ownership of external effects need enforcement outside the agents' conversat
 - [[OpenAI]]
 - [[General Reasoning]]
 - [[General Reasoning - How to Train a Swarm]]
+- [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]]
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
+- [[James Tillman - Two Kinds of Test-Time Scaling]]

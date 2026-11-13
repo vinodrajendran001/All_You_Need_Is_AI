@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-10-09
+updated: 2026-11-13
 tags:
   - concept
   - ai-agents
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-09-30-replit-free-models-harness-design
   - src-2026-10-01-mollick-dot-swarm
   - src-2026-10-09-dickson-agent-stack-optimization
+  - src-2026-07-20-0xcodez-graph-engineering-roadmap
 status: active
 ---
 
@@ -80,6 +81,45 @@ Its bottleneck rule is conditional: optimize coordination when specialists work 
 but their assembly fails, rather than adding agents to repair a procedural or environment defect.
 Persistent graph changes still need explicit contracts, authority limits, and external evaluation.
 
+## When the model writes the graph as code, routing becomes deterministic
+
+[[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]] is an
+influencer-style course on Claude Code's dynamic workflows, in which "Claude writes a plain JavaScript
+orchestration script, then spawns a coordinated fleet of subagents to execute it". The earlier Claude
+Code source in this vault,
+[[AI Builder Club - Graph Engineering with Claude Code - Anthropic's Agent Graph]], treated the main
+agent's delegation choices as the edges and warned that this routing "is not equivalent to a declared
+graph runtime with durable checkpointing". The course describes the other half of that boundary: the
+model drafts the graph, but the graph then runs as code.
+
+Its design rules make this page's "smallest topology" advice operational:
+
+- **An edge is a data dependency.** For every "and then", ask "does the next step read the last
+  step's output?" A linear agent is "a degenerate graph" whose order often reflects "the order you
+  happened to type things in"; arrows that carry no data can be cut.
+- **Nodes have contracts, and plumbing is code.** A node is an `agent()` call with a JSON schema, and
+  "validation happens at the tool-call layer, so Claude retries on mismatch". Edges that only reshape
+  results are plain JavaScript: "Save agents for judgment, not for plumbing."
+- **Barriers only where the whole set is needed.** `parallel()` waits for every subagent, turns a
+  thrown error into `null` so one failure "can't sink the run", and caps concurrency "around your core
+  count". A barrier is justified when a stage "genuinely needs every prior result together", such as
+  a cross-source dedupe; otherwise "**Default to pipeline()**", which streams each item through all
+  stages.
+- **The agent classifies; the code routes.** A router node may be "Claude-powered (a subagent
+  classifies), but the routing is code Claude wrote", so the same classification takes the same path:
+  "the skip would have to be written into the graph, and it isn't."
+- **Verifiers and isolation sit where they are needed.** Adversarial skeptics, perspective-diverse
+  lenses, and judge panels check findings on edges; git worktrees are "the seatbelt for the one
+  topology that needs it", for nodes that write files in parallel.
+
+This partly answers the open question below about which routing decisions should be deterministic: a
+model can make the classification while code fixes what each class does. It does not answer the
+checkpointing gap, since the course never says how a long workflow resumes after a crash. Its claim
+that coordination "costs zero model tokens" holds only for executing the edges, because writing the
+script and running every node are model calls. The course reports no speedup, accuracy, or cost for
+any example graph, and its feature names come from the post rather than from Anthropic documentation.
+Its convergence rule for cycles is recorded under [[Loop Engineering]].
+
 ## Open questions
 
 - What benchmarks reveal the point where specialization exceeds coordination overhead?
@@ -88,6 +128,9 @@ Persistent graph changes still need explicit contracts, authority limits, and ex
 
 ## Related pages
 
+- [[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]]
+- [[@0xCodez]]
+- [[AI Builder Club - Graph Engineering with Claude Code - Anthropic's Agent Graph]]
 - [[Ben Dickson - How AI Agents Are Learning to Optimize Their Own Stack]]
 - [[Harness Optimization]]
 - [[Recursive Self-Improvement]]

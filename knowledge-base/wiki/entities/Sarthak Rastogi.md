@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-11
-updated: 2026-10-27
+updated: 2026-11-13
 entity_kind: person
 tags:
   - entity
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-09-25-rastogi-6-ways-jev-agents-reliable
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-10-25-rastogi-agentcore-enterprise
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
 status: active
 ---
 
@@ -92,9 +93,29 @@ that passes through the gateway, so the runtimes behind it should accept calls o
 reports no measurements, its comparisons with other platforms are his judgment, its section on where
 AgentCore falls short is image-only in the capture, and the code is promised for a later article.
 
+## The implementation changes the identity design
+
+[[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] delivers the
+promised code as an open-source repository: an IT helpdesk agent and a data-analyst sub-agent, an MCP
+server and a Lambda tool behind AgentCore Gateway, Cedar policy, Memory, CloudWatch alarms and online
+evaluations, and Terraform for every resource. Building it changed one of Part 1's positions. For the
+platform's own tools, the gateway calls the tool with its own role and an interceptor stamps the user
+onto the call — "The gateway vouches for the user to a tool it trusts" — while on-behalf-of token
+exchange is kept for third-party APIs. The gateway-only route he warned about in Part 1 becomes
+explicit resource policy, and agents hold zero tool permissions (see
+[[Multi-Tenant Agent Architecture]] and [[Tool Roster Economics]]).
+
+Part 2 is also narrower than Part 1 promised in two places. Its text shows group-based Cedar rules but
+not the argument-level checks Part 1 proposed for gaps in Guardrails, and its deploy script contains no
+digest pinning, evaluation gate, approval step, or rollback. As before, he discloses that he uses
+AgentCore at work, and the post reports no measurements.
+
 ## Related pages
 
 - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
+- [[Multi-Tenant Agent Architecture]]
+- [[Tool Roster Economics]]
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
 - [[agent-engineer]]
 - [[Agentic Testing]]

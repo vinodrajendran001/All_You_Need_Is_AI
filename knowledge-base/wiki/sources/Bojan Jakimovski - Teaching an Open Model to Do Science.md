@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-08-26
+updated: 2026-11-13
 source_id: src-2026-07-30-teaching-open-model-science
 source_title: "Teaching an Open Model to Do Science"
 source_author: "Bojan Jakimovski, Sara Kovachovska, and Maziyar Panahi"
@@ -48,6 +48,7 @@ The source is a concrete bridge between [[Agentic Reinforcement Learning]], [[Re
 - [[Automated AI Research]]
 - [[LLM Training Pipeline]]
 - [[Reward Design for RL]]
+- [[AI Drug Discovery]]
 
 ## Citations
 - Source URL: [arcee.ai](https://www.arcee.ai/blog/teaching-an-open-model-to-do-science)

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - concept
   - safety
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-10-17-redwood-screwtape
   - src-2026-10-26-wong-et-al-graft
   - src-2026-10-29-raindrop-agent-swarm-leadership
+  - src-2026-11-08-alex-wang-reasoning-pathfinding
 status: active
 ---
 
@@ -206,6 +207,15 @@ reasoning**, and the incident evidence speaks only to the first. The caveats are
 secondary explainer with sponsored sections, its subject is application-level hallucination rather than
 safety monitoring, it reports no rates or controlled comparisons, and it concedes that a verifier is
 itself a model and can be wrong.
+
+[[Alex Wang - What Objective Is Reasoning Solving]] supplies the training-side reason. With a binary
+verifiable reward, RL maximizes the probability that a sampled path reaches an accepted answer, and
+the verifier checks only that answer: "Nothing requires those tokens to be true, or to explain the
+answer that follows", though pretraining often correlates them. His conclusion: "If we want
+meaningful chains of thought, we need to adjust the rewards or the training objective." Under
+outcome-only RL, trace faithfulness is incidental rather than trained, so a monitor's reading of a
+trace is evidence, not ground truth. The essay is conceptual and covers plain REINFORCE with a
+binary reward.
 
 ## Agents that obeyed an order often wrote nothing about it
 
@@ -449,3 +459,4 @@ uncertain" whether helping to improve frontier monitors is good.
 - [[LLM Application Resilience]]
 - [[Retrieval-Augmented Generation]]
 - [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
+- [[Alex Wang - What Objective Is Reasoning Solving]]

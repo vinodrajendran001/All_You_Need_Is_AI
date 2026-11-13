@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-13
 source_id: src-2026-11-02-anil-compute-islands
 source_title: The Hitchhiker’s Guide to Training on Compute Islands
 source_author: Rohan Anil
@@ -150,6 +150,7 @@ synchronization than the expert weights.
 - [[ML Systems at Scale]]
 - [[GPU Fleet Reliability]]
 - [[Mixture of Experts]]
+- [[Nous Research]]
 
 ## Raw capture
 

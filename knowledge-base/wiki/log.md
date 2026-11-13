@@ -2923,3 +2923,31 @@ templates, posts, queries, syntheses, and lint reports are unchanged. All **703 
 reachable, the structural audit has zero findings, the controls have exact **413-ID** parity, and
 affected-page/body-citation reciprocity is **A 0 / B 0 / C 0**. This ingest did not stage, commit,
 or push.
+
+## [2026-11-13] lint | Selection Scope, Misplaced Credit, and Proof Checks
+
+Completed the forty-seventh pass in [[2026-11-13 Lint Pass]]. Whole-wiki structural checks and
+the publisher-entity backlink check were paired with a raw-text review of all 24 November 13
+source chains and their consumer edits. Every reviewer finding was rechecked against the raw
+capture before editing.
+
+Fixed 36 semantic findings: 12 errors, 9 overclaims, 6 misattributions, and 9 missing
+qualifiers. The neuron-ablation drop from 1,550 to 176 reasoning tokens now carries its 24
+selected GSM8K problems, and the Tornado neuron's place share now carries its corpus. The
+chrome-capture stop times, not the whole-run saving, are tied to 2160p, and the 59.8 Mbps figure is
+no longer assigned to one resolution. PSI's proof had one auditing advisor, not two. Mollick's
+agent teams were a day-ten snapshot set up by his prompt, and his Navier-Stokes caveat is now
+quoted exactly, with the paraphrase also corrected on two pages that repeated it. Other fixes
+restore hedges, conditions, and the actor behind each claim. The November 13 ingest entry above
+repeats none of the corrected claims.
+
+The publisher check found no new one-way pair beyond the by-design AI Builder Club and
+ByteByteGo collections and three author affiliations. The raw survey found **131 undated
+captures** and **226 captures missing canonical fields** among **419 top-level captures**; no
+raw metadata or filenames were changed.
+
+The inventory is **704 typed pages**, including **387 source summaries**, **143 concepts**,
+**106 entities**, and **47 lint reports**, at exact **413-ID** control parity. Thirty-four
+existing wiki files changed and only the lint report was added. All **492 raw files**,
+templates, posts, queries, earlier reports, and historical log text remain preserved against
+the post-ingest byte baseline. Nothing was staged, committed, or pushed by this pass.

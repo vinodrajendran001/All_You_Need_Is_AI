@@ -425,8 +425,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of November 13, 2026: **703 typed wiki pages**, including **387 source summaries**
-representing **413 source IDs**, **143 concepts**, **106 entities**, and **46 lint reports**.
+As of November 13, 2026: **704 typed wiki pages**, including **387 source summaries**
+representing **413 source IDs**, **143 concepts**, **106 entities**, and **47 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -1226,6 +1226,7 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-10-27 Lint Pass]] - Forty-fourth pass: restored 29 Databricks links rewritten by an outside commit, cleared 31 reciprocity violations (16 under a new body-citation rule), fixed 57 of 59 semantic findings, and found 79 undated raw captures awaiting authorization to normalize.
 - [[2026-10-30 Lint Pass]] - Forty-fifth pass: corrected benchmark denominators, continuous-batching and routing overclaims, recent-ingest scope slips, and two source-section orders; closed two navigation gaps. All 638 pages reachable at 368-ID parity; 86 undated captures and 181 canonical-metadata gaps remain untouched.
 - [[2026-11-06 Lint Pass]] - Forty-sixth pass: fixed 52 claims across the 21 November 6 chains, including a reported-missing citation the capture contains, chart values described as uncaptured, and sandbox, benchmark, and deferral claims stated beyond their tests; linked three publisher entities to their own sources. All 669 pages reachable at 389-ID parity.
+- [[2026-11-13 Lint Pass]] - Forty-seventh pass: fixed 36 claims across the 24 November 13 chains, including neuron-ablation and Tornado results stated without their problem selection and corpus, chrome-capture figures tied to the wrong resolution, six misattributions, and overstated checks on the PSI proof. All 704 pages reachable at 413-ID parity.
 
 ## Control files
 

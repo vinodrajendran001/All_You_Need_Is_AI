@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-11-06
+updated: 2026-11-13
 tags:
   - log
 source_ids:
@@ -394,6 +394,30 @@ source_ids:
   - src-2026-10-27-morgan-train-decision-model
   - src-2026-11-02-alphasignal-timestral
   - src-2026-11-04-x-town-square-rebuild
+  - src-2026-11-01-philipp-schmid-code-mode
+  - src-2026-11-08-rastogi-agentcore-enterprise-part-2
+  - src-2026-06-11-0xcodez-fable-5-self-improving-agents
+  - src-2026-07-20-0xcodez-graph-engineering-roadmap
+  - src-2026-11-10-nizzyabi-instinct-teardown
+  - src-2026-11-11-bytebytego-github-copilot-rust-port
+  - src-2026-11-10-bytebytego-linkedin-ai-code-review
+  - src-2026-10-10-0xcodila-rea-reverse-engineering
+  - src-2026-11-11-paulirish-chrome-capture
+  - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-01-xuewen-yang-parallelism-by-hand
+  - src-2026-11-10-alphasignal-latent-sparse-attention
+  - src-2026-11-11-pytorch-executorch-webgpu
+  - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-03-willison-qwen-interprets-weights
+  - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-09-tillman-two-kinds-test-time-scaling
+  - src-2026-11-08-alex-wang-reasoning-pathfinding
+  - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-10-mollick-fable-5-2-jagged-agi
+  - src-2026-11-06-psi-aaronson-ambainis-proof
+  - src-2026-11-06-nous-arete-27b
+  - src-2026-11-06-koller-data-grow-in-dish
+  - src-2026-11-11-nvidia-gr00t-2
 status: active
 ---
 
@@ -2789,3 +2813,113 @@ Index and overview totals advance to **670 typed wiki pages**; **363 source summ
 The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
 and lint reports were not edited. Nothing was staged, committed, pushed, or published by
 this run.
+
+## [2026-11-13] ingest | One-Tool Agents, Checked Checkers, and Measured AI R&D Speed-Up
+
+Ingested 24 new captures under `raw/sources/`, with 24 source summaries, four new concepts
+([[AI Code Review]], [[Sparse Attention]], [[AI for Mathematical Discovery]], and
+[[AI Drug Discovery]]), and five new entities ([[@0xCodez]], [[Instinct]], [[METR]],
+[[Ethan Mollick]], and [[Nous Research]]). Integrated the evidence into 74 existing concept and
+entity pages. Seventeen earlier summaries gained affected-page or related-page links to the new
+pages and sources; [[Sparse Attention]] also carries three earlier DeepSeek, MLA, and hybrid-priming
+source IDs.
+
+- [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]] adds Code Mode as the one-tool
+  end state. It reports no measurements of its own and attributes two separate Factory results, a
+  harness comparison and a Script-mode cost saving, to one switch to Code Mode.
+- [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]] adds the
+  Terraform implementation of Part 1's design. Much of the code, including the Cedar policy, is
+  image-only, one sentence is garbled, and there are no measurements.
+- [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]] adds verifier-gated
+  self-improvement around a frozen model. Its "~5×" price claim contradicts the other Fable guide's
+  listed prices, several performance figures have no stated measurement, and its closing claim that
+  the model is the same in both halves of every comparison contradicts its own model-versus-model
+  evidence.
+- [[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]] adds
+  graph design for dynamic workflows. "Zero model tokens" overstates the mechanism, the Bun port
+  story is unsourced, and the body carries no date.
+- [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]] adds a third-party
+  teardown of one account by an author whose team builds a competing platform. Source links are
+  mangled with an `x.com/nizzyabi/status/` prefix, and some tables and timelines are images.
+- [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]] adds
+  the coordinator and child-session port. The introduction's "almost 800K lines" is not reconciled
+  with the 430K lines that moved, every figure is GitHub's own, and the benchmarks give no hardware,
+  model, or run-count conditions. Sponsor blocks are excluded.
+- [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]] adds layered review
+  behind a judge-gated release process. Category acceptance rates have no sample sizes, there is no
+  coincidence baseline, and the golden-dataset evaluation is unfinished. Sponsor blocks are
+  excluded.
+- [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]] adds agent-driven reverse
+  engineering as a dual-use capability. The capture is dated October 10 but quotes posts from
+  October 11 and 12, its star counts disagree, and its legal framing is partial. Setup commands, the
+  prompt pack, and anything aimed at obtaining paid software without paying are omitted.
+- [[Paul Irish - chrome-capture]] adds native browser test recording. The frontmatter has no author,
+  date, or description; the author is inferred from the repository owner, and the ID date is the
+  capture date.
+- [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]] is built on the full-text recapture.
+  The HTML conversion turned some numbers into section links, which are cited only where the prose
+  confirms them; values from the 62 interactive figures are used only where prose or captions state
+  them; and serving, ablation, and FP8 figures are relayed from the cited parties, not reproduced.
+- [[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]] adds
+  hand-checkable parallelism arithmetic. The author calls the numbers "good to maybe ±30%", and no
+  run validates them.
+- [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
+  adds Latent Sparse Attention. The capture has no frontmatter, byline, date, or canonical URL;
+  attribution to [[Alpha Signal]] rests on its tracking links and hosted images, and the ID date is
+  the file's modification date. Its "full attention" description of Qwen-3.8-27B contradicts the
+  vault's hybrid layout.
+- [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]] adds browser GPU
+  deployment. It benchmarks one Apple M1 Pro in one browser against only ExecuTorch's own CPU path,
+  with different activation precision and no accuracy comparison.
+- [[Curt Tigges et al - Neurons as an Interpretable Basis]] adds neurons as interpretable units. The
+  prose's SuperGPQA gain does not match the table column it describes, the neuron count is given
+  both exactly and rounded, and inline SVG data was skipped.
+- [[Simon Willison - Qwen 3.8 27B on My Laptop Can Interpret Model Weights, Too]] adds the laptop
+  rerun. The frontmatter has no published date, so the ID date comes from the URL; the post's
+  "10x10" grids appear as "8x8" in the model's answers, which the capture does not resolve.
+- [[DoubleAI - Can LLMs Redesign Themselves as They Train]] adds mechanistic intervention. There is
+  no byline, the agent model is unnamed, no seeds or error bars are given, and a Qwen chart survives
+  only as alt text, so only values stated in prose were used.
+- [[James Tillman - Two Kinds of Test-Time Scaling]] adds compute extrapolation. The seven
+  referenced footnotes are missing, and the chart descriptions are image text.
+- [[Alex Wang - What Objective Is Reasoning Solving]] adds the amortized-search view of reasoning
+  RL. The capture dropped the inline LaTeX symbols and the interactive figures.
+- [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]] adds METR's AI R&D
+  acceleration estimate secondhand. The METR report is not captured, its decisive evidence is
+  redacted, and the relayed figures measure different things and do not reconcile cleanly.
+- [[Ethan Mollick - Fable 5.2 and Jagged AGI]] adds Jagged AGI and self-gamed judges. The number 204
+  counts both the worlds live after twenty hours and the rule book's sections after twelve days, and
+  the videos were not captured.
+- [[PSI Research - A Proof of the Aaronson-Ambainis Conjecture]] adds the proof claim. It is
+  first-party with no personal byline, does not say which model ran, and records no completed peer
+  review.
+- [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
+  adds values post-training by distillation. Its prompt, example, and sample counts do not
+  reconcile, the headline 1% is 0.9% in the table, and the two starred rows, including that headline
+  row, use temperature 0 while the others use 0.6.
+- [[Daphne Koller - Getting Data to Grow in a Dish]] adds the data-factory argument. Stabilization
+  is credited with a 2.5-point standard deviation, which later text says remained at 7 points, and
+  insitro has a commercial interest.
+- [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
+  adds world-action model results. The capture's author and published fields are blank, the ID date
+  is the capture date, MMRV is not defined, and chart-only values are excluded.
+
+At the user's request, the empty MoE Handbook clipping, which held only a placeholder and the
+Space's embedded iframe, was recaptured in full as a new dated raw file beside the original. The
+original remains unchanged and is kept for provenance, not cited as evidence. Before this ingest's
+baseline, the X Engineering "Rebuilding the global town square from scratch" raw capture had been
+converted from CRLF to LF outside this session with identical text; it was left as found. Quote
+checks against the captures corrected six passages in new summaries before integration, in the
+GitHub port, REA, Wang, Schmid, and Rastogi Part 2 summaries.
+
+The inventory is **703 typed pages**, including **387 source summaries**, **143 concepts**, **106
+entities**, and **46 lint reports**, with **413 source IDs**. The raw collection has **419 top-level
+captures / 488 files**, excluding four Obsidian settings files. No post, local query, synthesis, or
+new lint report was created.
+
+All **491** baseline raw files, including the four settings files, are byte-identical to the
+working-tree baseline; the only raw addition is the MoE Handbook recapture. The historical log body,
+templates, posts, queries, syntheses, and lint reports are unchanged. All **703 pages** are
+reachable, the structural audit has zero findings, the controls have exact **413-ID** parity, and
+affected-page/body-citation reciprocity is **A 0 / B 0 / C 0**. This ingest did not stage, commit,
+or push.

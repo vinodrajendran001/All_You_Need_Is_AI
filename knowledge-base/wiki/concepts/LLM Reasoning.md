@@ -225,7 +225,8 @@ Three of the page's themes follow from that frame:
 paths and is then trained to produce them directly. In the simple case he derives, the gradient comes
 only from successes the model already sampled. That places binary-reward RL nearer the "amplify" side
 of the first open question, but it does not settle it, because the same training can generalize to
-unseen prompts. The derivation uses plain REINFORCE with a binary reward, and the capture lost its
+unseen prompts. Wang also shows accuracy dropping as a new prompt gets further from the training
+distribution. The derivation uses plain REINFORCE with a binary reward, and the capture lost its
 equations. It is a conceptual frame, not new evidence. See [[Reinforcement Learning]],
 [[Reward Design for RL]], and [[Test-Time Scaling]].
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-19
+updated: 2026-11-20
 tags:
   - concept
   - reasoning
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-12-bytebytego-energy-based-reasoning
   - src-2026-10-14-dickson-kv-cache-handoffs
   - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-11-12-schulz-tvb-filler-token-reasoning
 status: active
 ---
 
@@ -102,6 +103,24 @@ A negative result worth keeping: the **full-bandwidth transformer** (August 2026
 shorten MATH500 traces in a 1B base model, "but the effect disappears after instruction tuning" — latent
 computation displacing visible reasoning is not yet a stable phenomenon.
 
+## Filler tokens add positions, not depth
+
+The looped-depth evidence above adds computation per token. [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]] tests the other axis: extra
+token positions whose content is meaningless ("." tokens), which give "more parallel, but not more
+serial, computation". Using swarms of Opus 5.5 agents to search for shallow algorithms on a
+bounded-precision transformer model, the authors find that no task was fully parallelized and every
+algorithm deepens as tasks lengthen. But for all tasks except HornQA, depth grows "much more slowly than
+the number of steps", which is how models can do more reasoning steps than they have layers. These are
+upper bounds, not minima, and they depend on a **32**-bit MLP lookup limit "chosen by fiat".
+
+What models learned falls short of the theory. Mod sum was "learned very easily" and HornQA "fails after
+very few steps", as predicted, but modular arithmetic and function composition "hit a wall at 1–3 steps"
+despite being theoretically easy. The authors' reading, an observed pattern rather than a tested
+mechanism, is that models struggle "when large packets of information (lookup tables, premises,...)
+need to be transported across token positions". Latent computation across positions is therefore real
+but uneven, and its limit is not only depth. The protocol (LoRA fine-tunes with prefilled dots) shows
+learnability, not deployed behavior. The monitoring consequence is on [[Chain-of-Thought Monitoring]].
+
 ## Energy optimization is not simply another recurrent forward pass
 
 [[ByteByteGo - How to Build Models Without Language]] illustrates optimizing continuous
@@ -173,3 +192,4 @@ parameters.
 - [[Chain-of-Thought Monitoring]]
 - [[Sebastian Raschka]]
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
+- [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]]

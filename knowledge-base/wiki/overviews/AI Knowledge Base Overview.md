@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - overview
   - ai
@@ -420,6 +420,36 @@ source_ids:
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-06-koller-data-grow-in-dish
   - src-2026-11-11-nvidia-gr00t-2
+  - src-2026-10-31-william-morgan-kinference-benchmarks
+  - src-2026-11-03-william-morgan-kinference-launch
+  - src-2026-11-11-cam-pedersen-derive-kernels
+  - src-2026-11-11-openrouter-mcp-cli-skills
+  - src-2026-11-11-wills-levels-agentic-engineering
+  - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-11-12-liquid-ai-liquidcodec
+  - src-2026-11-12-nathan-barry-detllm-integer-inference
+  - src-2026-11-12-schulz-tvb-filler-token-reasoning
+  - src-2026-11-12-will-depue-checkpoint-forensics
+  - src-2026-11-13-kim-helion-compile-time-heuristics
+  - src-2026-11-13-orlanski-slop-moves-up
+  - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
+  - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-15-bytebytego-ep233-kubernetes
+  - src-2026-11-16-alphasignal-short-contexts
+  - src-2026-11-17-bytebytego-instacart-query-understanding
+  - src-2026-11-17-paul-kinlan-voice-harness
+  - src-2026-11-17-strauss-weight-space-experiments
+  - src-2026-11-18-bu-fewer-slides-more-dragons
+  - src-2026-11-18-bytebytego-thinking-more-dumb
+  - src-2026-11-18-ioma8-llm-reverse-engineering
+  - src-2026-11-18-meta-ads-technique-propagation
+  - src-2026-11-18-pueyo-hardware-is-software
+  - src-2026-11-18-toumbourou-wsp-1990s-researcher
+  - src-2026-11-19-ashish-subedi-antigravity-quota
+  - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
+  - src-2026-11-19-shankar-husain-evals-three-gulfs
+  - src-2026-11-19-tselovalnikov-10x-engineer
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -431,9 +461,9 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of November 13, 2026, the wiki has **705 typed pages**, including **387 source summaries**
-owning **413 source IDs**, **143 concepts**, and **106 entities**; page totals exclude git-ignored
-local query files. The raw collection contains **419 top-level captures** and **488 files in
+As of November 20, 2026, the wiki has **744 typed pages**, including **417 source summaries**
+owning **443 source IDs**, **148 concepts**, and **108 entities**; page totals exclude git-ignored
+local query files. The raw collection contains **449 top-level captures** and **519 files in
 total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;
 recaptures and equivalent clippings remain preserved without being counted as independent
 evidence. One off-domain capture, a smart-TV privacy guide clipped on October 27, is deferred
@@ -1755,6 +1785,98 @@ results. [[Nous Research]], [[Open Model Ecosystems]], [[AI Drug Discovery]],
 [[Robot Training Data]], and [[World Models]] hold these threads; Robot Training Data counts GR00T 2
 as the vault's second controlled transfer study.
 
+## November 20 additions
+
+Thirty raw files already under `raw/sources/` were ingested: twenty-nine Markdown captures and one
+PDF, `startup_guide.pdf`, which received a companion raw note under the vault's PDF convention. They
+add five concepts, [[Inference Determinism]], [[Low-Precision Training]], [[Neural Audio Codec]],
+[[Checkpoint Forensics]], and [[Weight-Space Programming]], and two entities, [[Kubernetes]] and
+[[Paul Kinlan]]. The off-domain smart-TV privacy capture clipped on October 27 remains deferred.
+
+**Kernels you derive, and outputs you can reproduce.**
+[[Cam Pedersen - Don't Write Kernels, Derive Them]] argues that "a kernel is a theorem, not a
+program": its tensor IR has only views and comprehensions, and fusion and flash attention are derived
+as rewrites rather than written per chip. Its capture lost the inline math, and two time-to-first-token
+figures remain unreconciled. [[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]]
+replaces some of Helion's per-shape autotuning with computed defaults after one team spent **10
+hours** tuning a paged-attention kernel across **72** shapes; the post's 2.13x ratio does not match the
+vault's division of its own figures. [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
+runs Qwen3-0.6B in exact integer arithmetic so greedy output is bit-identical across batch sizes and
+vendors. [[Inference Determinism]] separates run-to-run determinism, batch invariance, and
+cross-hardware exactness; [[GPU Kernel Optimization]], [[Megakernels]], and [[AI-Generated Kernels]]
+take the derivation thread.
+
+**Serving numbers read from outside, and a routing layer on Kubernetes.**
+[[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] reads the code behind
+Baseten's reported **2,060** tokens per second on eight B300 GPUs and explains which mechanisms could
+produce it, without re-running any timing.
+[[William Morgan - Kinference Inference Control Plane for Kubernetes]] and
+[[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]] are Buoyant's
+first-party launch and benchmark of a cache-aware router; its **7.4x** goodput headline compares peaks
+at different concurrencies against random spreading, not against another cache-aware router.
+[[ByteByteGo - EP233 Kubernetes Explained for Busy Engineers]] supplies the control-plane basics.
+[[Kubernetes]] now collects the vault's scattered evidence on inference routing, GPU placement, and
+the post-Kubernetes argument; [[Serving Benchmarks and Goodput]], [[KV Cache]], and
+[[Speculative Decoding]] keep the caveats.
+
+**Training numerics, audio tokens, and what weights reveal.**
+[[Thinking Machines - End-to-End 4-Bit Training]] reports NVFP4 expert forwards and MXFP8 backwards
+from pretraining through RL, with first-party speedups of **8%** in pretraining and **20%** in RL;
+[[Low-Precision Training]] sets it beside the MoE handbook's FP8 and NVFP4 evidence, including
+Qwen's NVFP4 rollout collapse.
+[[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]] describes a **74M**-parameter streaming
+codec using grouped FSQ instead of RVQ; its text and table disagree on how many test sets it wins.
+[[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] infers initialization
+hardware from released weights and reports Blackwell-matching patterns in six Chinese open-weight
+models. [[Checkpoint Forensics]] keeps the measurement, the inference about training hardware, and
+the export-control implications apart, records the report's own limits, and notes that no lab response
+is reported.
+
+**Thinking without words, and writing weights by reasoning.**
+[[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]] trains
+models to do some multi-step work on meaningless dot positions, which add parallel rather than serial
+computation; [[Chain-of-Thought Monitoring]] and [[Latent-Space Reasoning]] take the monitoring
+consequence. [[Jacob Strauss - Experiments in Weight-Space Programming]] and
+[[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]] are
+independent follow-ups to the Takehi et al. report; in the second, Claude Fable 5.2 sets all
+**5,994** weights of an MNIST CNN and reaches about **90%** test accuracy by rebuilding a 1990s
+recognition pipeline. [[Weight-Space Programming]] gathers the four sources.
+[[ByteByteGo - Why Thinking More Can Make an LLM Dumb]] adds an explainer on overthinking to
+[[Test-Time Scaling]], with an uncited central anecdote.
+
+**What context costs, and personal harnesses.**
+[[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]] measures one GitHub task on Sonnet
+5.5 at **1,421** input tokens through the `gh` CLI, **3,315** with a skill, and **59,417** through the
+MCP server with default tools. [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]] relays
+an unnamed NVIDIA study on shorter contexts, and
+[[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]] ties quota burn to prompt caches that
+expire during ordinary pauses, measured through per-turn token counts, and separately finds a
+keep-alive ping the binary gates off.
+[[Paul Kinlan - My Voice Harness Is My New Operating System]] and
+[[Paul Kinlan - My Chrome Extensions Are Just Prompts]] treat a voice-driven harness and
+prompt-defined extensions as software. [[ioma8 - LLM Assisted Reverse Engineering]] is summarized at
+the level of method only.
+[[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
+reports agents propagating proven techniques across Meta's ranking-model fleet. [[Tool Roster Economics]],
+[[Context Engineering]], [[Agent Memory]], [[LLM-Native Extensible Software]], and
+[[Automated AI Research]] carry these threads.
+
+**Engineering practice, evals, and essays.**
+[[Shreya Shankar and Hamel Husain - Evals for AI Engineers]] routes failures through the Three Gulfs
+before any judge is built. [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]] separates
+two Instacart figures an earlier ByteByteGo article had joined; both readings are kept.
+[[Gabe Orlanski - Slop Is Moving Up the Stack]] and [[Geoffrey Huntley - The Answer to AI Is Engineering]]
+disagree directly on agents re-implementing library code, and both authors have stated interests in
+what they recommend. [[Zach Wills - The Levels of Agentic Engineering]],
+[[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]],
+[[Michelle Bu - Fewer Slides, More Dragons]], and [[Tomas Pueyo - Hardware Is Software]] are opinion
+essays, the last with internally inconsistent figures.
+[[Anthropic - The Founder's Playbook - Building an AI-Native Startup]] is an unbylined, undated
+Anthropic vendor guide that maps Idea, MVP, Launch, and Scale onto Claude products and casts the
+founder as an orchestrator of agents; its 42% failure statistic is uncited and its customer figures
+are unverified. [[AI-Native Software Development Lifecycle]], [[LLM-as-a-Judge]], [[AI Code Review]],
+and [[Agent Workflow Maturity]] carry the practice thread.
+
 ## Related pages
 
 - [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
@@ -2068,3 +2190,40 @@ as the vault's second controlled transfer study.
 - [[Just-in-Time Agentic OCR]]
 - [[Legacy Code Modernization with AI Agents]]
 - [[Agent Payment Protocols]]
+- [[Inference Determinism]]
+- [[Low-Precision Training]]
+- [[Neural Audio Codec]]
+- [[Checkpoint Forensics]]
+- [[Weight-Space Programming]]
+- [[Kubernetes]]
+- [[Paul Kinlan]]
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]]
+- [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]
+- [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]]
+- [[ByteByteGo - EP233 Kubernetes Explained for Busy Engineers]]
+- [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]]
+- [[ByteByteGo - Why Thinking More Can Make an LLM Dumb]]
+- [[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]]
+- [[Cam Pedersen - Don't Write Kernels, Derive Them]]
+- [[Gabe Orlanski - Slop Is Moving Up the Stack]]
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]]
+- [[Jacob Strauss - Experiments in Weight-Space Programming]]
+- [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
+- [[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]]
+- [[Michelle Bu - Fewer Slides, More Dragons]]
+- [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
+- [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
+- [[Paul Kinlan - My Chrome Extensions Are Just Prompts]]
+- [[Paul Kinlan - My Voice Harness Is My New Operating System]]
+- [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
+- [[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]]
+- [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]]
+- [[Thinking Machines - End-to-End 4-Bit Training]]
+- [[Tomas Pueyo - Hardware Is Software]]
+- [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]]
+- [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]]
+- [[William Morgan - Kinference Inference Control Plane for Kubernetes]]
+- [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]]
+- [[Zach Wills - The Levels of Agentic Engineering]]
+- [[ioma8 - LLM Assisted Reverse Engineering]]

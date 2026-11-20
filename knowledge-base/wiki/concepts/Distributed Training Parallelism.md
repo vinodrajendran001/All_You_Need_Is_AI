@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - training
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-11-02-anil-compute-islands
   - src-2026-11-01-xuewen-yang-parallelism-by-hand
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
 status: active
 ---
 
@@ -253,6 +254,19 @@ layouts over the same GPUs, and adds a trap: tensor parallelism without sequence
 both ranks dispatch the same tokens and doubles expert work, which Megatron rejects with an error.
 See [[Mixture of Experts]].
 
+Lower precision can turn the expert-parallel axis into the bottleneck.
+[[Thinking Machines - End-to-End 4-Bit Training]] reports that once its expert GEMMs moved to NVFP4,
+the MoE forward pass "should theoretically have gotten about three times faster" than in MXFP8. The
+GPUs then waited on all-to-all traffic. On GB300 NVL72, NVLink moves **900** GB/s each way while the
+GEMMs run at up to **15** PFLOPS, about **16,000** FLOPs per byte received. The fix was to quantize
+the communication itself. Dispatch goes in NVFP4. Combine, normally BF16, goes as a 32-dimensional
+random Hadamard transform plus block-scaled S2F6, which cut it from **16** to **8.25** bits per value
+with "no measurable accuracy degradation". MXFP8 for combine "impaired performance too much". The
+quantization is fused into the w2 GEMM epilogue, with expert waves "as in DeepSeek-V4". The
+compute-islands case above also compressed what it exchanged between sites, there with stochastic
+rounding plus error feedback. The results are first-party, with no
+per-component timing breakdown. See [[Low-Precision Training]].
+
 ## Open questions
 
 - What are the crossover points at which one parallelism axis should replace or augment another for a given model shape, context length, and cluster?
@@ -268,6 +282,9 @@ See [[Mixture of Experts]].
   and tested butterfly mixing only inside one site.
 - How far do the hand-derived estimates hold at scale? Xuewen Yang's figures are labelled ±30%, and
   the handbook's cross-node EP measurement is confounded by node allocation.
+- How much of a theoretical gain survives once communication is the limit? Thinking Machines cites
+  about 3× for the MoE forward pass after NVFP4, but reports an **8%** pretraining wall-clock speedup
+  end to end, with no per-component timing breakdown.
 
 ## Related pages
 
@@ -295,3 +312,6 @@ See [[Mixture of Experts]].
 - [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]
 - [[Xuewen Yang - Parallelism for LLM Training, with Numbers You Can Check by Hand]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Low-Precision Training]]
+- [[Thinking Machines]]
+- [[Thinking Machines - End-to-End 4-Bit Training]]

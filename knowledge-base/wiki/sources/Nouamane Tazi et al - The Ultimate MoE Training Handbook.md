@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-13
-updated: 2026-11-13
+updated: 2026-11-20
 source_id: src-2026-11-05-huggingface-moe-training-handbook
 source_title: The Ultimate MoE Training Handbook
 source_author: Nouamane Tazi, Leandro von Werra, and Thomas Wolf
@@ -203,6 +203,7 @@ storage-versus-reads arithmetic to [[LLM Inference]], and the expert-only low-bi
 - [[DeepSeek]]
 - [[NVIDIA]]
 - [[Speculative Decoding]]
+- [[Low-Precision Training]]
 
 ## Raw capture
 

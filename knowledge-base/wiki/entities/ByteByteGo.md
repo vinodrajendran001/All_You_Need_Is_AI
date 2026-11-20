@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-11-13
+updated: 2026-11-20
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -45,6 +45,8 @@ source_ids:
   - src-2026-11-04-bytebytego-netflix-performance-agents
   - src-2026-11-10-bytebytego-linkedin-ai-code-review
   - src-2026-11-11-bytebytego-github-copilot-rust-port
+  - src-2026-11-15-bytebytego-ep233-kubernetes
+  - src-2026-11-18-bytebytego-thinking-more-dumb
 status: active
 ---
 
@@ -218,6 +220,16 @@ current system, and compares PostgreSQL with MySQL. No item carries a measuremen
 vocabulary for the decision space; judgments such as "high quality but expensive" remain
 assertions.
 
+[[ByteByteGo - EP233 Kubernetes Explained for Busy Engineers]] is a second issue in the same format. It traces how Kubernetes turns a `deployment.yaml`
+into running pods (API server, etcd, controller manager, scheduler, kubelet, Service, Ingress or
+Gateway), then covers single versus multi-agent design, the testing pyramid, deep-research sub-agents
+and five guardrail layers. Again no item carries a measurement. The advice "Start with a single agent.
+Move to multi-agent only when context or reliability become the bottleneck" is stated without
+evidence, and the claim that multi-agent systems are "more reliable" is unsupported. The issue has a
+source error: its Context Verification layer repeats the Input Screening text word for word. Its
+Kubernetes walkthrough mentions no GPUs, which is the gap the vault's inference-routing sources fill;
+see [[Kubernetes]].
+
 ## A named deployment is a different evidence class from an explainer
 
 [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]] is, like the DoorDash and Netflix
@@ -336,6 +348,21 @@ Both open with sponsored blocks (NYSE/Redpanda and Unblocked; Datadog and WarpBu
 part of the articles. Their durable contributions are mechanisms recorded in [[AI Code Review]],
 [[Legacy Code Modernization with AI Agents]], [[Agentic Testing]], and [[LLM-as-a-Judge]].
 
+## A reasoning explainer whose central anecdote is uncited
+
+[[ByteByteGo - Why Thinking More Can Make an LLM Dumb]] is a teaching piece. It lists two references (OpenAI's "Learning to reason with LLMs"
+and the DeepSeek-R1 paper), carries the standard disclaimer that it draws on "publicly shared details
+from various sources", and reports no measurements. Its durable contributions are mechanisms: written
+steps as a scratchpad (a 20% rise then 20% cut reaches $96 by way of $120), sequential versus parallel
+extra compute, a relay of DeepSeek's R1-Zero and GRPO account, and a two-way split of overthinking
+recorded in [[Test-Time Scaling]]. Its headline anecdote, a model that answered "2 + 3" with thirteen
+solutions, comes from an unnamed study that is not in the reference list, and the title's "dumb" is
+never measured. The capture has slips the vault should not inherit: a garbled sentence on parallel
+attempts and the R1-Zero reconsideration stated twice in a row. It opens with an Unblocked sponsor
+block that is not part of the article. Its advice to compare the same model on the same questions at
+different reasoning budgets is sound, but the article does not apply it, which fits the open question
+below about the absence of controlled comparisons.
+
 ## Open questions
 
 - **Does relaying a named deployment improve this source's evidence quality, or only relocate the
@@ -423,3 +450,7 @@ part of the articles. Their durable contributions are mechanisms recorded in [[A
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
 - [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
 - [[NVIDIA]]
+- [[ByteByteGo - EP233 Kubernetes Explained for Busy Engineers]]
+- [[Kubernetes]]
+- [[ByteByteGo - Why Thinking More Can Make an LLM Dumb]]
+- [[Test-Time Scaling]]

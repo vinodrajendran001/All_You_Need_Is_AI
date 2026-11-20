@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-10-16
+updated: 2026-11-20
 tags:
   - concept
   - arithmetic-intensity
@@ -16,6 +16,8 @@ source_ids:
   - src-2026-07-06-mayank-pratap-singh-speculative-decoding
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-11-11-cam-pedersen-derive-kernels
+  - src-2026-11-15-anshuman-mishra-baseten-2000tps
 status: active
 ---
 
@@ -80,6 +82,24 @@ drafting, launches, cache traffic, and scheduling can still cost time.
 
 Zyphra's *Compressed Convolutional Attention* (arXiv:2510.04476) reached the same conclusion independently and adds a second mechanism: **MLA also loses under tensor parallelism**, because the shared KV must be replicated per TP rank, giving back the reuse MQA had bought.
 
+## Verification blocks raise intensity in dense layers, not necessarily in expert layers
+
+[[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] qualifies the
+`AI(S) ≈ S · AI(S=1)` rule above for mixture-of-experts models. For FP4 weights with a one-byte scale per
+32 weights, one token position gives about **3.76 FLOPs per weight-byte** and seven positions about
+**26.35**. An HGX B300 at **7.7 TB/s** and **4.5 PFLOPS** dense FP8 balances near **584 FLOPs/byte**, so
+even a seven-position verification block stays far on the memory side.
+
+The reuse argument holds only when positions read the same weights. Each DeepSeek-V4.1-Flash token picks
+**6 of 384** experts. If all seven positions pick the same six, intensity stays at 26.35. If their
+choices are disjoint (42 experts), it falls back to **3.76**. A hypothetical uniform independent router
+touches about **40.08** experts, about **3.94** FLOPs/byte. Real routes can be correlated, so the true
+value lies between these bounds and is not measured.
+
+These are the author's illustrative calculations, not kernel timings. They imply that speculation's free
+headroom in an MoE model depends on how correlated the experts chosen for neighbouring draft positions
+are.
+
 ## Sparsity flips the direction
 
 The clean roofline story assumes attention reads *all* L cached tokens. DeepSeek-V3.2's DSA and GLM's equivalent break that premise with a selector that keeps only the top-k (`index_topk = 2048`). The effect is asymmetric: the MLA algorithm gathers latents by index so its cost goes from L to k, while the dense path must still expand the whole history for a GEMM because no selective GEMM operator exists. sglang's DSA backend threshold defaults to exactly 2048 — below it top-k selects everything and sparsity buys nothing.
@@ -118,11 +138,29 @@ code as `prefetch_weight_tiles` above `wait_input_bars`).
 limit that motivates the technique loosens. The reported ceiling of batch 8 means this is untested exactly
 where the roofline argument would start to change.
 
+## A floor read off the kernel's own IR
+
+[[Cam Pedersen - Don't Write Kernels, Derive Them]] computes speed-of-light from the compiler's IR
+rather than from model dimensions. For a comprehension over affine views, the least memory traffic and
+the tile that attains it are the **primal and dual of one linear program** (via Brascamp–Lieb); for
+attention the dual tile is FlashAttention's blocks. A time floor adds launch cost, DRAM latency and an
+occupancy term — "a roofline with latency, launch and occupancy terms".
+
+Validated against hardware counters, it "never exceeds the measured time" on **24** GEMV-class and
+epilogue kernels and reaches **0.76–0.93** of measured time on large RTX 3090 kernels, but only
+**0.05–0.66 (median 0.38)** on the H200, "and we have no validated term for the gap". Two cautions
+extend `## Where the model breaks down`: the **traffic-optimal tile does not win on time**, and as a
+guide to which optimizations pay the floor "has been wrong as often as right". On the H200 a decode
+step's traffic floor is only **0.16–0.29** of measured time — the opposite of the Cohere framing above,
+where bandwidth is assumed to be the binding limit. All figures are first-party.
+
 ## Open questions
 
 - Is the MLA/MTP conflict a hard architectural limit or a coincidence of current hardware balance points?
 - Can a selective-GEMM operator close the gap that currently makes sparsity useful only on the latent path?
 - As inference fragments across accelerators with wildly different bytes-per-FLOP ratios (Cerebras at ~1.3, GPUs near 0.002 — see [[Cerebras]] and [[Groq]]), does a single roofline framing remain useful, or does each architecture need its own?
+- How correlated are expert choices across adjacent draft positions in real MoE traffic? That correlation decides whether a verification block's arithmetic intensity is closer to 26.35 or 3.76 FLOPs/byte in the worked example.
+- What term explains the H200 gap? tang's traffic floor reaches only 0.16–0.29 of a decode step's measured time there, and removing launches did not close it.
 
 ## Related pages
 
@@ -145,3 +183,6 @@ where the roofline argument would start to change.
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
 - [[Megakernels]]
 - [[Cohere]]
+- [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
+- [[Cam Pedersen - Don't Write Kernels, Derive Them]]
+- [[Mixture of Experts]]

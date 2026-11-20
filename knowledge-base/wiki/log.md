@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - log
 source_ids:
@@ -418,6 +418,36 @@ source_ids:
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-06-koller-data-grow-in-dish
   - src-2026-11-11-nvidia-gr00t-2
+  - src-2026-10-31-william-morgan-kinference-benchmarks
+  - src-2026-11-03-william-morgan-kinference-launch
+  - src-2026-11-11-cam-pedersen-derive-kernels
+  - src-2026-11-11-openrouter-mcp-cli-skills
+  - src-2026-11-11-wills-levels-agentic-engineering
+  - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-11-12-liquid-ai-liquidcodec
+  - src-2026-11-12-nathan-barry-detllm-integer-inference
+  - src-2026-11-12-schulz-tvb-filler-token-reasoning
+  - src-2026-11-12-will-depue-checkpoint-forensics
+  - src-2026-11-13-kim-helion-compile-time-heuristics
+  - src-2026-11-13-orlanski-slop-moves-up
+  - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
+  - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-15-bytebytego-ep233-kubernetes
+  - src-2026-11-16-alphasignal-short-contexts
+  - src-2026-11-17-bytebytego-instacart-query-understanding
+  - src-2026-11-17-paul-kinlan-voice-harness
+  - src-2026-11-17-strauss-weight-space-experiments
+  - src-2026-11-18-bu-fewer-slides-more-dragons
+  - src-2026-11-18-bytebytego-thinking-more-dumb
+  - src-2026-11-18-ioma8-llm-reverse-engineering
+  - src-2026-11-18-meta-ads-technique-propagation
+  - src-2026-11-18-pueyo-hardware-is-software
+  - src-2026-11-18-toumbourou-wsp-1990s-researcher
+  - src-2026-11-19-ashish-subedi-antigravity-quota
+  - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
+  - src-2026-11-19-shankar-husain-evals-three-gulfs
+  - src-2026-11-19-tselovalnikov-10x-engineer
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -2982,6 +3012,172 @@ superseded drafts**.
 
 Index and overview totals advance to **705 typed wiki pages**; **387 source summaries**,
 **413 source IDs**, **143 concepts**, **106 entities**, and **47 lint reports** are unchanged.
+The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
+and lint reports were not edited. Nothing was staged, committed, pushed, or published by
+this run.
+
+## [2026-11-20] ingest | Derived Kernels, 4-Bit Training, and Weights Written by Reasoning
+
+Ingested 30 new raw files under `raw/sources/`: twenty-nine Markdown captures and
+`startup_guide.pdf`, which had been added on November 19 with no companion note. The PDF received a
+companion raw note, [[2026-11-19 Anthropic - The Founder's Playbook - Building an AI-Native Startup]],
+holding its source ID, file hash, and bibliographic snapshot, following the vault's PDF-plus-note
+convention; the PDF itself is unchanged. The ingest created 30 source summaries, five new concepts
+([[Inference Determinism]], [[Low-Precision Training]], [[Neural Audio Codec]],
+[[Checkpoint Forensics]], and [[Weight-Space Programming]]), and two new entities ([[Kubernetes]]
+and [[Paul Kinlan]]). It integrated the evidence into 60 existing concept and entity pages, and 13
+earlier summaries gained affected-page links to the new pages.
+
+- [[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]] adds
+  computed kernel defaults in place of some autotuning. The capture credits Ebba Simpson, but the
+  published byline is Kim, Che, Choi, and Ansel; the earlier TorchTPU summary
+  (`src-2026-10-21-simpson-torchtpu`) may share the misattribution and should be checked at the
+  next lint. The reported 2.13x ratio differs from the roughly 2.27x that the post's own figures
+  give.
+- [[Cam Pedersen - Don't Write Kernels, Derive Them]] adds kernel derivation by rewriting. The
+  capture lost its inline math, and two time-to-first-token figures, 13.8 s and 8.33 s, are not
+  reconciled.
+- [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]] adds
+  integer-only inference. The author was recovered from the citation block, and the Thinking
+  Machines figures it uses are secondhand.
+- [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] reads code, not
+  timings. The author and date were recovered from the site, and nothing was re-run.
+- [[William Morgan - Kinference Inference Control Plane for Kubernetes]] and
+  [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]] are first-party
+  vendor material. The launch post garbles "45% of requests"; the benchmark gives both "7.4x" and
+  "almost 7.5x", compares peaks at different concurrencies (16 and 32), and uses only a
+  random-routing baseline.
+- [[ByteByteGo - EP233 Kubernetes Explained for Busy Engineers]] adds Kubernetes basics. Its
+  Context Verification text duplicates its Input Screening text.
+- [[Thinking Machines - End-to-End 4-Bit Training]] adds NVFP4/MXFP8 training. The date and author,
+  Jack Cook, were recovered. Its first-party speedups are 8% in pretraining and 20% in RL against a
+  theoretical 3x, and it conflicts with Qwen's reported 4-bit RL collapse; both are kept.
+- [[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]] adds a streaming audio codec. The
+  text claims four of eight test sets, while the table bolds five.
+- [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] adds checkpoint
+  forensics. The author was recovered from the citation. Measurement, inference, and allegation are
+  kept separate, and the report's stated limits, including an AMD alternative and a DeepSeek
+  engineer's denial, are recorded; no lab has responded.
+- [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]] adds
+  filler-token computation. Some values are missing from the capture.
+- [[Jacob Strauss - Experiments in Weight-Space Programming]] and
+  [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]] add
+  independent follow-ups to the Takehi et al. report. Both authors were recovered, the Go training
+  games are given as both 20M and 20.5M, and the MIT CSAIL affiliation is unconfirmed.
+- [[ByteByteGo - Why Thinking More Can Make an LLM Dumb]] adds an overthinking explainer. Some text
+  is garbled, and the central anecdote is uncited.
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]] relays an unnamed NVIDIA study.
+  The capture has no frontmatter and an empty URL, and the ID date is the file's first Git-tracked
+  date.
+- [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]] adds measured context costs.
+  The 19,436-token figure is credited to Sonnet in one place but was measured on Haiku.
+- [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]] adds cache-expiry quota burn. Binary
+  patching details are omitted.
+- [[ioma8 - LLM Assisted Reverse Engineering]] is kept at the level of method; cracking material is
+  omitted.
+- [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
+  adds technique propagation. The authors were recovered, the November 18/19 date difference is a
+  time-zone difference, and its REA is unrelated to the @0xCodila REA.
+- [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]] is credited as a book excerpt; its
+  "© 2027" notice is recorded as printed.
+- [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]] separates the 2% and 6% figures
+  that [[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]] had joined; that older
+  summary gained a tension note, and both readings are kept. Latency is given as "low 100s" ms
+  against a 300 ms target, and no purchase metric is reported.
+- [[Tomas Pueyo - Hardware Is Software]] is a forecasting essay with internally inconsistent
+  figures (25%, 26%, and 20-25%; 74% and 65-75%) and disclosed investments.
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]] and
+  [[Gabe Orlanski - Slop Is Moving Up the Stack]] disagree on agents re-implementing library code.
+  Huntley works at Antithesis, and Orlanski wrote the benchmark he cites.
+- [[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]] had its author field
+  normalized.
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]] is a 36-page vendor guide
+  with no byline, URL, or publication date. Its publisher is inferred from content, the PDF's
+  May 2026 metadata dates are treated as production dates, its 42% failure statistic is uncited,
+  and its customer figures are unverified vendor claims.
+
+The remaining new sources, [[Paul Kinlan - My Voice Harness Is My New Operating System]],
+[[Paul Kinlan - My Chrome Extensions Are Just Prompts]],
+[[Zach Wills - The Levels of Agentic Engineering]], and
+[[Michelle Bu - Fewer Slides, More Dragons]], are practitioner essays and are labeled as opinion.
+The off-domain smart-TV privacy capture, `Post by @Tristan0x on X`, remains deferred.
+
+For the next lint: [[Model Routing]] and [[Context Engineering]] link a Sarthak Rastogi summary
+whose ID is not in their `source_ids`; [[Hamel Husain]] links a summary in Related pages whose ID is
+not in its `source_ids`; and [[Agent Memory]] has a `#` comment inside a code block that a heading
+scan can misread. These predate this ingest.
+
+The inventory is **742 typed pages**, including **417 source summaries**, **148 concepts**, **108
+entities**, and **47 lint reports**, with **443 source IDs**. The raw collection has **449 top-level
+captures / 519 files**, excluding four Obsidian settings files. No post, local query, synthesis, or
+lint report was created.
+
+All baseline raw files, including `startup_guide.pdf` and the four settings files, are
+byte-identical to the pre-ingest baseline; the only raw addition is the PDF's companion note. The
+historical log body, templates, posts, queries, syntheses, and lint reports are unchanged. All **742
+pages** are reachable, and the controls have exact **443-ID** parity. This ingest did not stage,
+commit, or push.
+
+## [2026-11-20] lint | Scoped Claims, Restored Hedges, and a Team Byline
+
+Completed the forty-eighth pass in [[2026-11-20 Lint Pass]]. Whole-wiki structural checks and
+the publisher-entity backlink check were paired with a raw-text review of all 30 November 20
+source chains, their consumer edits, and the earlier TorchTPU summary that the ingest flagged.
+Every reviewer finding was rechecked against the raw capture before editing.
+
+Fixed 46 semantic findings: 15 errors, 16 overclaims, 4 misattributions, and 11 missing
+qualifiers. [[Checkpoint Forensics]] no longer places the report's "one analysis pass" mark on
+the six Blackwell-matching models; it marks two Hopper readings. K3.1-Pro has its own 305-sigma
+reading, and the laptop re-run covers only the published check. [[Inference Determinism]] no
+longer presents the step-0 cushion as typical; the author calls it unusually generous, and 45 of
+512 steps had gaps under 0.5. Compaction, tool-deferral, slop-trend, weight-space, Instacart,
+and 4-bit training results are restored to their test conditions. The TorchTPU summary now
+credits the TorchTPU Team rather than the publishing account, with its title and ID kept for
+stability. The November 20 ingest entry above says no lab has responded; the pages now say no lab
+response is reported, and that entry stays as written.
+
+The publisher check found **72** one-way pairs, all by design: the AI Builder Club and ByteByteGo
+collections plus three author affiliations or hosting platforms. Seventeen Related-pages links to
+uncited summaries remain as navigation. The raw survey found **160 undated captures** and **255
+captures missing canonical fields** among **449 top-level captures**; the increase comes from the
+new clippings, and no raw metadata or filenames were changed.
+
+The inventory is **743 typed pages**, including **417 source summaries**, **148 concepts**,
+**108 entities**, and **48 lint reports**, at exact **443-ID** control parity. Forty-one existing
+wiki files changed and only the lint report was added. All **523 raw files**, templates, posts,
+queries, earlier reports, and historical log text remain preserved against the post-ingest byte
+baseline. Nothing was staged, committed, or pushed by this pass.
+
+## [2026-11-20] post | The Answer Depended on the Traffic
+
+Prepared [[2026-11-20 The Answer Depended on the Traffic]] as `ready`, not published:
+one LinkedIn version, one standalone X post, and a connected seven-post X thread.
+The inclusive **2026-11-13 through 2026-11-20** window starts at the newest active post's
+`covers_through`. One logged ingest supplied **30 source summaries**, and the November 20
+lint pass added none. The Git cross-check covered **18 commits and 41 changed
+source-summary paths**, all earlier summaries that gained links or lint corrections; no
+unlogged source summary appeared.
+
+Four ByteByteGo items, including the Evals excerpt it published, were excluded before
+scoring six alternatives from the remaining 26. Nathan Barry's integer-only inference test
+won **29/30**: with randomness off, server batching changes the order of rounded additions,
+and his whole-number run of Qwen3-0.6B gave one fingerprint across nine setups where
+16-bit decimals gave nine. Hand-written network weights scored **26/30** and OpenRouter's
+tool-route costs **24/30**; checkpoint forensics and 4-bit training failed the clarity and
+completeness gates, and the cache-expiry angle's spine is in cooldown. Every public claim
+was read in Barry's capture. The public copy labels Thinking Machines' 80-in-1,000 result
+as secondhand, keeps the one-model, one-prompt, slow-prompt, and one-prepared-copy limits,
+and presents the re-run advice as a conclusion rather than a finding. The quality and decode
+speed figures were omitted.
+
+Updated [[Post Archive]] with the new row, topics, two eligible runner-up angles, and an
+[[Inference Determinism]] cooldown ending **2027-01-01**. The expired Model Quantization
+and Efficiency and Semantic Recommendation Systems cooldowns were pruned, and the archived
+temperature-0 candidate was marked as used. The archive now has **thirteen ready posts** and
+**two superseded drafts**.
+
+Index and overview totals advance to **744 typed wiki pages**; **417 source summaries**,
+**443 source IDs**, **148 concepts**, **108 entities**, and **48 lint reports** are unchanged.
 The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
 and lint reports were not edited. Nothing was staged, committed, pushed, or published by
 this run.

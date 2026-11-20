@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-13
-updated: 2026-11-13
+updated: 2026-11-20
 source_id: src-2026-11-03-willison-qwen-interprets-weights
 source_title: "Qwen 3.8 27B on my laptop can interpret model weights, too"
 source_author: Simon Willison
@@ -124,6 +124,7 @@ result is a small, informal replication: one run per game, no repeats and no bas
 
 - [[Mechanistic Interpretability]]
 - [[Qwen]]
+- [[Weight-Space Programming]]
 
 ## Raw capture
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-27
+updated: 2026-11-20
 tags:
   - concept
   - retrieval
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-06-02-alphasignal-look-past-rag-pipeline
   - src-2026-10-26-alphasignal-memory-tax
+  - src-2026-11-16-alphasignal-short-contexts
 status: active
 ---
 
@@ -34,6 +35,14 @@ DCI matters when retrieval depends on exact strings, file paths, error codes, ve
 - The Alpha Signal article presents **GrepSeek** as a way to scale DCI: train on executable shell-command trajectories, improve task-oriented search with reinforcement learning, and parallelize shell execution across corpus shards while preserving semantics.
 - For very large corpora, the most practical pattern is likely hybrid retrieval: use semantic retrieval for initial high-recall anchoring, then use DCI for precise verification and lateral expansion from the anchor.
 - [[Alpha Signal - The Hidden Memory Tax in AI Agents]] adds a measured comparison on conversation memory: coding-agent harnesses received one LoCoMo conversation "as a JSON file" and chose which parts to inspect with their tools. With Claude Opus 5.5, the Pi harness answered 99% of questions for $6.95, reading about 10,000 input tokens per question, against 95%, $17.84, and about 28,900 tokens with full context; the Codex and Claude Code harnesses were about as accurate (98% and 97%) but cost more than full context ($25.41 and $28.41). It is one secondhand, single-run test on a history that fit in the context window, and only the coding-agent harnesses could read the conversation's photo captions; on the 88 questions whose evidence did not involve photos, Pi scored 100% and full context 99%. See [[Agent Memory]].
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]] adds a second relayed result on
+  long-input tasks. Storing documents as files that agents searched with commands such as `grep`
+  "matched or improved accuracy across almost all seven long-input benchmarks", and many tasks
+  finished without a single compaction: "Most of the benefit came from deciding what to read, rather
+  than summarizing what had already been read." The study is attributed to NVIDIA researchers but not
+  named or linked, and per-benchmark figures for the long-input tasks are not given. Its advice is to
+  store sources externally for document processing, but to use full context "when the input is
+  manageable" if a task needs exact information.
 
 ## Open questions
 
@@ -52,3 +61,5 @@ DCI matters when retrieval depends on exact strings, file paths, error codes, ve
 - [[Alpha Signal]]
 - [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
 - [[Agent Memory]]
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]]
+- [[Context Engineering]]

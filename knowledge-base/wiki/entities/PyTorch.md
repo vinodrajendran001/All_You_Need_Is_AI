@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-11-13
+updated: 2026-11-20
 entity_kind: open-source project
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-10-21-simpson-torchtpu
   - src-2026-11-11-pytorch-executorch-webgpu
+  - src-2026-11-13-kim-helion-compile-time-heuristics
 status: active
 ---
 
@@ -85,6 +86,22 @@ only against ExecuTorch's own WebAssembly CPU path (**4-7x** faster prefill, **2
 decode), and the post calls the backend "still in early development". See
 [[On-Device Reasoning]].
 
+### A kernel DSL whose default is now a computed config
+
+[[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]] covers
+**Helion**, "PyTorch's domain-specific language (DSL) for performance portable machine learning
+kernels", which lowers one definition into potentially thousands of Triton kernels. Its weakness was
+autotuning cost — one paged-attention kernel across **72** shapes took **10 hours** in quick mode. The
+team now emits a config at compile time from an IR resource model; the heuristics are merged and
+"enabled by default on H100 and B200 with the Triton backend".
+
+The result moves the framework's out-of-the-box kernel story: Helion's untuned default went from
+**0.52x** to **1.18x** of hand-written FLA Triton and from **0.58x** to **1.27x** of vLLM's CUDA, and sits
+at **1.09x** of `torch.compile` max-autotune on ten reduction kernels. This extends the page's theme that
+PyTorch's value is its compatibility surface: here the same surface is also trying to make
+hand-written kernels optional. Helion was previously mentioned in the vault only as "explicitly
+experimental" in [[Ebba Simpson - Introducing TorchTPU]]. All figures are first-party and NVIDIA-only.
+
 ## Related pages
 
 - [[Accelerator Software Externalization]]
@@ -100,3 +117,5 @@ decode), and the post calls the backend "still in early development". See
 - [[On-Device Reasoning]]
 - [[Hugging Face]]
 - [[Model Quantization and Efficiency]]
+- [[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]]
+- [[Checkpoint Forensics]]

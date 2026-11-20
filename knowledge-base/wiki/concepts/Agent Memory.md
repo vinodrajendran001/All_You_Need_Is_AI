@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -32,6 +32,8 @@ source_ids:
   - src-2026-11-04-axjns-synthetic-membrane-paper
   - src-2026-06-11-0xcodez-fable-5-self-improving-agents
   - src-2026-11-10-nizzyabi-instinct-teardown
+  - src-2026-11-16-alphasignal-short-contexts
+  - src-2026-11-18-ioma8-llm-reverse-engineering
 status: active
 ---
 
@@ -515,6 +517,41 @@ a description, which bears on the open question below about when simple retrieva
 The evidence is one user's thread, measured by a third party who builds
 a competing product, and Instinct has not confirmed the relayed internals.
 
+## State and notes built to survive compaction and handoff
+
+Two November sources design memory for the moment the context is rewritten, one by replacing the
+transcript with a state and one by writing notes outside the window.
+
+[[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]] relays a study whose most aggressive
+setting discards the conversation after every tool action and keeps only an updated task state. Both
+main models "almost matched" the full-history baseline on SWE-bench Verified, and across the two
+benchmarks evaluated the median peak context was **7,000–9,000** tokens. The compaction instructions
+name what the state must hold: the original objective, established facts, relevant files and results,
+completed changes, failed approaches, remaining work, and the immediate next action. A good compaction
+is "the gist of the agentic trace", because conventional summaries "can preserve the wrong
+information". That is the selected-state view above, made into a checklist.
+
+The researchers propose **Semantic State Space Models**, trained to carry "an explicit, human-readable
+task state between steps" rather than an internal numerical state. That is a proposal, not a result.
+The practical advice keeps a retrievable record behind the state: compact into a structured handoff,
+but keep full logs and artifacts retrievable, and avoid lossy summaries where exact information
+matters. The figures are a newsletter relay of an unnamed paper; see [[Context Engineering]] for the
+cost side.
+
+[[ioma8 - LLM Assisted Reverse Engineering]] takes the file-backed route. One instruction is central to his long
+investigations: have the agent document all findings to Markdown files. He gives three reasons. The
+files become the human's notes, "They help the agent not lose the track after compaction / handoff to
+different agent", and they keep it from getting "lost in circles". His hypothesis-debugging skill
+adds a second file-backed record, a CSV table of hypotheses, experiments, and results (see
+[[Agent Skill]]). He also reads the whole agent conversation and thinking to spot a "blind path"
+early, so the human supervises from the same record. The value is asserted from personal experience,
+not measured.
+
+The two differ on who keeps the record. In the relayed study the compactor rewrites the state at each
+step, so what survives is whatever the writer selected; in ioma8's practice the notes accumulate
+outside the context and the compaction never touches them. Neither source measures what a lost
+detail costs.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -595,3 +632,5 @@ a competing product, and Instinct has not confirmed the relayed internals.
 - [[Multi-Tenant Agent Architecture]]
 - [[Jina Yoon - We're Building Multiplayer AI]]
 - [[Agent Workflow Maturity]]
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]]
+- [[ioma8 - LLM Assisted Reverse Engineering]]

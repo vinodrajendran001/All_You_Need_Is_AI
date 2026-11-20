@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-20
 source_id: src-2026-11-04-axjns-post-kubernetes-genai
 source_title: Post-Kubernetes Infrastructure for GenAI Workloads
 source_author: Unattributed in capture
@@ -115,6 +115,7 @@ from transient execution ([[Celln]]) by an explicit seam that lets either side c
 - [[Agent Security and Governance]]
 - [[AI Agents in Production]]
 - [[Celln]]
+- [[Kubernetes]]
 
 ## Raw capture
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - routing
@@ -32,6 +32,7 @@ source_ids:
   - src-2026-10-30-figma-fluent-editing-model
   - src-2026-06-11-0xcodez-fable-5-self-improving-agents
   - src-2026-07-20-0xcodez-graph-engineering-roadmap
+  - src-2026-11-03-william-morgan-kinference-launch
 status: active
 ---
 
@@ -245,6 +246,24 @@ quality risk separately. The approximately **25x** Qwen3 14B-to-32B handoff resu
 32,768 tokens is not a whole-workflow multiplier. A compatible scoring endpoint supplies
 neither internal KV access nor a trained conversion, and a scoring probability still does
 not authorize the selected action.
+
+## Downgrade only when it is less work
+
+[[William Morgan - Kinference Inference Control Plane for Kubernetes]] names the cost of tier routing in
+multi-turn traffic from the infrastructure side. Sending simpler prompts to cheaper models can "sound good
+on paper", but in multi-turn chat or coding it means switching GPUs mid-conversation, which "forces
+recomputing the entire conversation". The vendor's answer is a policy that sends a simple request to the
+cheaper model "**but only if that's less work than sending them to the expensive model in the first
+place**".
+
+This fits the section above. A router must price the context handoff as well as the decision, and
+Kinference treats the cached prefix as part of the price. Cross-model KV conversion would lower that
+price; recomputation is the default this rule avoids.
+
+The rule is unmeasured. The post does not say how "less work" is estimated across two models whose
+caches are incompatible, or what classifier decides that a request is "easy". A "semantic
+classification of the prompts" on the request path adds the latency and attack-surface concerns recorded
+in `## The saving is a weighted average, and the router is a new attack surface`. Vendor launch post.
 
 ## The limit case: take the routing decision off a model entirely
 
@@ -484,3 +503,5 @@ downgrade holds.
 - [[@0xCodez - Build a Self-Improving Agent System with Fable 5 in 14 Steps]]
 - [[@0xCodez - Graph Engineering with Claude - 14-Step Roadmap from 0 to Graph Architect]]
 - [[@0xCodez]]
+- [[William Morgan - Kinference Inference Control Plane for Kubernetes]]
+- [[Kubernetes]]

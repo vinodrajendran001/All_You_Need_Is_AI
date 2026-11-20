@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -31,6 +31,7 @@ source_ids:
   - src-2026-11-04-axjns-synthetic-membrane-paper
   - src-2026-11-04-general-reasoning-train-swarm
   - src-2026-11-11-bytebytego-github-copilot-rust-port
+  - src-2026-11-17-paul-kinlan-voice-harness
 status: active
 ---
 
@@ -494,6 +495,22 @@ Read against the Raindrop data, these rules would not stop peers from persuading
 would stop persuasion from turning into an unauthorised external action. That is the narrower
 guarantee this page has argued delegation needs. See [[Multi-Agent Coordination]].
 
+## Cross-harness delegation with a file-system receipt
+
+[[Paul Kinlan - My Voice Harness Is My New Operating System]] gives his voice harness a single
+delegation tool, `delegate_task(agent, task)`, which hands work to Claude Code, Agy, Pi, or Codex over
+ACP (the Agent Client Protocol). It returns a handle at once so the voice conversation can continue.
+The delegator answers the delegate's permission requests itself, from its declared tool list and from
+whether every path stays inside the project. It snapshots the project folder before and after, so the
+result lists created, changed, and deleted files whatever the delegate claims. It also strips its own
+model keys from the delegate's environment.
+
+The snapshot is a cheap answer to this page's unrecorded-delegation problem: the record is a diff of
+the file system, not the delegate's report. It covers only the project folder, and the delegated
+harnesses themselves run with the user's rights. Kinlan also wants a browser "bridge to harnesses",
+because ACP runs over stdio and needs a local service. A single-developer prototype; nothing is
+measured.
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -580,3 +597,5 @@ guarantee this page has argued delegation needs. See [[Multi-Agent Coordination]
 - [[Agent Payment Protocols]]
 - [[General Reasoning - How to Train a Swarm]]
 - [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]
+- [[Paul Kinlan - My Voice Harness Is My New Operating System]]
+- [[Paul Kinlan]]

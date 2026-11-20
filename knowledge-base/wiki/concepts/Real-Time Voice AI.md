@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-23
+updated: 2026-11-20
 tags:
   - concept
   - voice-ai
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-08-30-halo-research-sopro-v2
   - src-2026-09-22-bytebytego-openai-gpt-live
   - src-2026-08-12-alyona-vert-agent-frameworks-sdks
+  - src-2026-11-12-liquid-ai-liquidcodec
+  - src-2026-11-17-paul-kinlan-voice-harness
 status: active
 ---
 
@@ -83,6 +85,17 @@ argue that in an open pipeline a watermark is trivially removable and so provide
 cloning that runs offline on a laptop has no provenance mechanism at all, which is the unresolved cost
 of moving this capability to the edge.
 
+The codec is the last step on the synthesis side's latency path.
+[[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]] reports a **74M**-parameter streaming
+codec, behind LFM3-Audio-2B and LFM3-Omni-2B, that encodes at about **361×** and decodes at about
+**87×** real time. It was measured in FP32 on a single CPU thread of an Apple M4 Max. Decode RTF is
+**0.0115**, against **0.0329** for Mimi, **0.0379** for X-Codec 2 and **0.2543** for NanoCodec. The
+design choices behind this are a fully causal encoder, a symmetric decoder, **12.5 Hz** frames
+(**80 ms**), and direct prediction of spectral coefficients. A Q4_0 decoder build is **3.5×**
+smaller "with minimal impact". These are vendor numbers from one laptop, single-stream. Like Sopro
+V2's figures above, they cover one component, not end-to-end time-to-first-audio. See
+[[Neural Audio Codec]].
+
 ## Full duplex needs two serving clocks
 
 [[ByteByteGo - How OpenAI Built GPT-Live]] describes a continuously listening and speaking model
@@ -90,12 +103,31 @@ whose live path remains isolated from slower reasoning and tools. Warm handoff p
 state across instance changes, while WARP reportedly compresses WebRTC setup from six round trips to
 one. These are secondary vendor-reported mechanisms without a public latency or reliability dataset.
 
+## A live voice model in front of a general agent harness
+
+[[Paul Kinlan - My Voice Harness Is My New Operating System]] uses a live voice model as the front
+end of a general agent harness rather than as a conversational product. Voicebox has a browser page
+as its interface, a local Node daemon that runs the agent loop, holds the API key, and executes every
+tool call, and Gemini-3.8-live in the cloud, which Kinlan calls "a game-changer" because it responds
+quickly, can be interrupted, and can write code. The model also takes screen-share video, so the
+harness can co-work on what is on screen. He reports UI issues and a bug in continuous screen capture.
+
+The problems this page tracks, transport and latency, are not the ones he dwells on. His are
+authority (what a spoken request may cause on his machine) and cost: "this project can be pretty
+expensive to run". He lists real-time **local** speech models as missing from the web platform, for
+privacy and cost, which ties to the local-synthesis section above. It is a single-developer prototype
+with no latency or reliability figures. See [[Coding Agent Harness]] and
+[[Agent Security and Governance]].
+
 ## Open questions
 
 - Do interaction models make the harness obsolete, or will the two layers co-evolve (in-model interactivity riding on relay-style transport)?
 - How are long multi-hour audio/video sessions kept tractable as context accumulates every 200 ms?
 - How does the 1:1 transport assumption interact with future multiparty or human-handoff interaction models?
 - If ASR components inside a voice stack are benchmark-optimised, how much of a measured end-to-end quality gain is real?
+- How should a voice-first agent confirm consequential tool calls without falling back to a
+  screen-and-click step? Kinlan names per-action confirmation as the usual answer and has not worked
+  out how to do it by voice.
 
 ## Related pages
 
@@ -117,3 +149,10 @@ one. These are secondary vendor-reported mechanisms without a public latency or 
 - [[On-Device Reasoning]]
 - [[Small Language Models]]
 - [[Halo Research - Sopro V2 On-Device Text-to-Speech]]
+- [[Neural Audio Codec]]
+- [[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]]
+- [[Liquid AI]]
+- [[Paul Kinlan - My Voice Harness Is My New Operating System]]
+- [[Paul Kinlan]]
+- [[Coding Agent Harness]]
+- [[Agent Security and Governance]]

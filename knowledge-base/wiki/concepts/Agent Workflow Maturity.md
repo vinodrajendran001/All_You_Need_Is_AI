@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-06
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-10-05-faik-ai-native-software-factory
   - src-2026-10-01-mollick-dot-swarm
   - src-2026-11-04-bytebytego-netflix-performance-agents
+  - src-2026-11-11-wills-levels-agentic-engineering
+  - src-2026-11-18-bu-fewer-slides-more-dragons
 status: active
 ---
 
@@ -146,6 +148,17 @@ as the destination, and its findings may depend on PostHog's low-hierarchy cultu
 with strict role-based access control may find the private-by-default preference reversed or
 irrelevant. Nothing reported measures whether any of this improved delivery.
 
+[[Michelle Bu - Fewer Slides, More Dragons]] adds a small, low-stakes counterpoint to the private-start
+finding. For an onsite icebreaker, many tech leads "and their agents" added to one shared web page, a
+"tech lead village", during the day. A Risk tech lead's dungeon and dragon inspired others to add a
+Live MaaS sign, the Pacifica Taco Bell and a DEEP lake, and someone added a way to explore inside each
+team's space. Bu credits git, "an old, non-AI innovation", with keeping the contributions manageable.
+That matches PostHog's observation that collaboration happened in GitHub, not in a shared agent
+workspace. Her general account of why people join in is imitation: "after folks see others doing it,
+they do it themselves". The artifact was deliberately low-stakes and the evidence is a first-person
+anecdote with nothing counted. It suggests the shared rung may depend on visible examples and a
+forgiving merge layer more than on a shared-by-default workspace.
+
 ## The ladder measures assurance, not a mandatory organization chart
 
 [[Ethan Mollick - The Dot and the Swarm]] challenges the assumption that mature multi-agent work
@@ -179,6 +192,25 @@ agent initiates, while this page's describes what the system can demonstrate. Ne
 ends in a human deployment decision after a canary judged without AI, the evidence-before-autonomy
 rule above applied to one domain. The secondary account gives no criteria for reaching Level 3.
 
+## A practitioner ladder keyed to what people still do by hand
+
+[[Zach Wills - The Levels of Agentic Engineering]] offers a third ladder, from someone who has led two
+transformations ("a 100-person R&D team inside a 700-person company", then at his current company).
+Each of seven levels removes one human task: hand over the ticket, make the codebase explain itself,
+let the agent prove its work, get it off your laptop, close the loop in production, make the factory
+multiplayer, and decide what to build. His organising question is "What are you still doing
+yourself?"
+
+Two things here are missing from this page's ladder. First, the blocker is organisational: the wall
+"has usually been infrastructure", with review **policies** as the other wall ("Does an
+automated review count?"). Second, he finds the wall by shipping a greenfield prototype and then a real
+backlog ticket, treating "The difference between those two" as the map. "every team can get to level
+one or two", he writes, but most stall at cloud execution, autonomous loops and multiplayer. The essay
+is **experience-based opinion with no metrics**. Like Netflix's ladder, it tracks how much work moves
+from people to agents, not demonstrated assurance. [[AI-Native Software Development Lifecycle]] argues
+adoption "is a dependency graph, not a ladder"; Wills's own framing, which rejects lists that "read
+like a ladder of tools", is closer to that view than his numbered levels suggest.
+
 ## Open questions
 
 - **The anchor ladder has not been validated.** Its source is entirely prescriptive: no evaluation, baseline, or reported deployment outcome. Later observations and software-factory case reports add context, not a controlled test of these rungs.
@@ -191,6 +223,9 @@ rule above applied to one domain. The secondary account gives no criteria for re
 - What does the governed rung look like in a low-hierarchy organisation that has never needed
   role-based access control? The one team with telemetry calls that rung one of its biggest blind
   spots, and says it is interviewing users to learn more.
+- Wills locates the wall in infrastructure and review policy, not in agent capability. Should an
+  exit test name the organisational change (for example, whether an automated review counts toward
+  approval) as well as the evidence the system produces?
 
 ## Related pages
 
@@ -214,3 +249,5 @@ rule above applied to one domain. The secondary account gives no criteria for re
 - [[Context Engineering]]
 - [[Institutional Knowledge Agents]]
 - [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
+- [[Zach Wills - The Levels of Agentic Engineering]]
+- [[Michelle Bu - Fewer Slides, More Dragons]]

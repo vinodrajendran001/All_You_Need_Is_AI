@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-19
-updated: 2026-10-19
+updated: 2026-11-20
 source_id: src-2026-10-15-netflix-reliable-gpu-compute
 source_title: "Reliable GPU compute for large training & inference jobs"
 source_author: Nick Rutigliano, Argha C, and Samartha Chandrashekar (Netflix Technology Blog)
@@ -151,6 +151,7 @@ not. Its goodput is fleet-level useful work, a different quantity from the reque
 - [[AI Accelerator Architecture]]
 - [[Netflix]]
 - [[NVIDIA]]
+- [[Kubernetes]]
 
 ## Raw capture
 

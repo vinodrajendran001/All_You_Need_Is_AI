@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-11-06
+updated: 2026-11-20
 tags:
   - concept
   - machine-learning
@@ -25,6 +25,8 @@ source_ids:
   - src-2026-10-08-bytebytego-netflix-genrec
   - src-2026-10-15-netflix-reliable-gpu-compute
   - src-2026-11-02-anil-compute-islands
+  - src-2026-10-31-william-morgan-kinference-benchmarks
+  - src-2026-11-18-meta-ads-technique-propagation
 status: active
 ---
 
@@ -172,6 +174,20 @@ Together the sources support a systems rule: **scaling patterns are nouns; workl
 the policy.** Horizontal replicas do not produce useful scale until routing understands the scarce
 state and the service-level objective.
 
+## The rule, measured once
+
+[[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]] measures the cost of
+a generic primitive on LLM traffic. A Kubernetes Service through kube-proxy picks a random pod per
+connection. A cache- and queue-aware router in front of three vLLM replicas (an identical second
+pool served the Service arm) served about **7.4×** the peak goodput on a shared-prefix workload and
+about **3.5×** on multiturn. The random arm never met either latency SLO at any tested concurrency;
+its best attainment was **70%** and **76%**, at concurrency 4.
+
+That supports the rule above: horizontal replicas do not produce useful scale until routing understands
+the scarce state. Here the scarce state is which replica holds which prefix. The evidence is a
+vendor's test of its own product against Kubernetes' default rather than against another workload-aware
+policy, so it shows that workload awareness matters, not which implementation is best.
+
 ## Capacity must survive placement, policy, and service requirements
 
 [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] shows the cluster-level distinction:
@@ -244,6 +260,19 @@ fungible across islands, measured by training goodput and final model quality. T
 are the author's summaries of third-party sources, and the supporting case study is first-party; see
 [[Distributed Training Parallelism]].
 
+## Agents as schedulers for a training fleet
+
+[[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
+treats compute allocation across agent-driven training work as "a global optimization problem", and
+says it is "where we are currently investing". Agents monitor "hundreds of concurrent jobs", rank them
+"by revenue importance, technique potential, and deadline proximity", and reclaim capacity from
+stalled or low-value runs. They also cut the cost of each job by drawing on "millions of prior training
+runs" to start from likely configurations, narrow the search each round, and stop weak experiments
+early. Meta reports "a median 4x reduction in training compute across select combinations" and "an
+estimated $45M+ in compute savings by the end of the year". Both are first-party; the first is a
+median over an undescribed selection and the second a projection. No scheduler design or utilisation
+figure is given.
+
 ## Related pages
 
 - [[Netflix - Reliable GPU Compute for Training and Inference]]
@@ -279,3 +308,7 @@ are the author's summaries of third-party sources, and the supporting case study
 - [[Rahul Ranganathan - Inference Gateway on GKE]]
 - [[Google Cloud]]
 - [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]
+- [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]]
+- [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
+- [[Kubernetes]]
+- [[Meta]]

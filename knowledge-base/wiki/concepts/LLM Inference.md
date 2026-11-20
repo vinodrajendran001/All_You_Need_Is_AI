@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - llm
@@ -39,6 +39,7 @@ source_ids:
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-10-alphasignal-latent-sparse-attention
+  - src-2026-11-12-nathan-barry-detllm-integer-inference
 status: active
 ---
 
@@ -152,6 +153,17 @@ being determined by the visible pause-versus-typing metaphor.
 prompts produced roughly 80 distinct completions**. Reproducibility is a property of the serving
 configuration, not of the sampling parameter — with direct consequences for evaluation; see
 [[Multi-Turn Evaluation]] and the pass^k discussion on [[Agentic Testing]].
+
+[[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]] attributes the
+~80-of-1,000 figure to [[Thinking Machines]] (Horace He et al., 2025; relayed, not read directly) and
+names the mechanism: floating-point addition is not associative, and libraries choose kernels by shape,
+so batch size, prefill-versus-decode and KV-cache chunking change summation order. Kernels are
+run-to-run deterministic but not **batch invariant**. Thinking Machines' batch-invariant kernels reportedly
+fixed this "at about a 20% matmul slowdown", but only on one GPU. Barry's DetLLM goes further by making
+every operation of Qwen3-0.6B integer, giving one logit hash across nine configurations on A100, H100
+and three CPUs, against nine different fp16 hashes. The drift is often latent: eight of nine fp16 runs
+still produced the same 512 tokens, and one forked at step 457 on an exact tie. See
+[[Inference Determinism]].
 
 **Safety classification has a price on both axes.** An earlier production generation of input classifier cost
 about **24% extra compute** and **+0.38 percentage points of false refusals**; the cascade design that
@@ -369,3 +381,6 @@ are in [[Prefill-Decode Disaggregation]].
 - [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
 - [[Sparse Attention]]
 - [[Mixture of Experts]]
+- [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
+- [[Thinking Machines]]
+- [[Inference Determinism]]

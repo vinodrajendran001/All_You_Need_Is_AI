@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-27
+updated: 2026-11-20
 tags:
   - concept
   - llm-evaluation
@@ -29,6 +29,7 @@ source_ids:
   - src-2026-10-20-husain-decision-model-evals
   - src-2026-10-16-west-eval-engineering-lessons
   - src-2026-10-06-iusztin-rag-evals
+  - src-2026-11-12-nathan-barry-detllm-integer-inference
 status: active
 ---
 
@@ -87,6 +88,17 @@ serving stack, and re-running an eval on a differently loaded cluster is not a r
 Together these argue that any evaluation reported as a single number, from a single run, at temperature 0,
 is under-specified. The minimum honest report is k runs and a pass^k. Note the ~80-completions figure is given
 without attribution in an explainer and should be treated as indicative.
+
+[[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]] supplies
+the missing attribution — Thinking Machines (Horace He et al., 2025), still secondhand — and a nuance
+that matters for how much the figure should worry evaluators. Logit-level nondeterminism and
+token-level divergence are different things: in Barry's demo, nine fp16 configurations produced nine
+different logit hashes, yet eight of nine generated the same 512 tokens, because drift stayed below the
+top-two gap at every step. The step-0 cushion (batch effects of at most **0.094** against a gap of
+**2.66**) is one Barry calls "unusually generous". Divergence appears at near-ties —
+**45** of 512 steps had a gap under **0.5**, and one run forked at step **457**. Longer, multi-turn
+trajectories offer more near-ties, so the argument for k runs and pass^k strengthens with length; one
+prompt on a 0.6B model does not establish a rate. See [[Inference Determinism]].
 
 ## Evaluation presupposes a reconstructable run, and the hardest failures are found by humans
 
@@ -346,3 +358,6 @@ a cosmetic change and a real error carry the same label, and nothing estimates t
 - [[Lance Martin - Automating Eval Design and Hillclimbing with Claude]]
 - [[Anthropic]]
 - [[Harness Optimization]]
+- [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
+- [[Inference Determinism]]
+- [[Thinking Machines]]

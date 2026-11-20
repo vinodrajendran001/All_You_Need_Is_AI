@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-30
+updated: 2026-11-20
 tags:
   - concept
   - gpu
@@ -11,6 +11,7 @@ tags:
 source_ids:
   - src-2026-09-08-cohere-megakernel-serving
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
+  - src-2026-11-11-cam-pedersen-derive-kernels
 status: active
 ---
 
@@ -139,6 +140,22 @@ are numerical-regression sanity checks, not evidence of parity across broad eval
 collectives are written for the 2x2x4 arrangement specifically, so any other chip *topology* —
 including a different arrangement of the same 16 chips — needs new collectives.
 
+## Removing launches alone did not pay in a derived engine
+
+[[Cam Pedersen - Don't Write Kernels, Derive Them]] supplies a counter-datapoint. On an RTX 3090
+(sm_86), inside a CUDA graph a dependent launch cost about what a grid barrier costs (**0.77 vs
+0.81 µs**), so **145** fewer kernels was time-neutral, and a persistent megakernel running a whole
+decode step (Qwen3-8B, the paper's 3090 decode model) as one launch with **437** phases was "correct but **19%** slower, because one
+register budget for every stage spills the largest GEMV". On an H200, fusing block-local chains removed
+**96 of 548** launches and the step went from **4.05 to 4.44 ms**, because "the work moved into tails on
+the same critical path".
+
+This does not contradict Cohere's **1.58×**: this page already records that launch overhead is "the
+expected and least interesting win", with wave backfill, false-dependency removal and weight prefetch
+doing the rest. tang's megakernel is a launch-collapsing lowering, not a task-interpreter with those
+mechanisms, and the authors report no ablation. The useful lesson is that a single register budget
+across heterogeneous stages is a real megakernel cost. First-party, one model, one GPU.
+
 ## Open questions
 
 - Reported maximum batch size is 8, described as a configuration rather than architectural limit.
@@ -164,6 +181,7 @@ including a different arrangement of the same 16 chips — needs new collectives
 - Inferact's collectives are written for one 2x2x4 chip arrangement, so the technique carries a
   topology-portability cost the single-GPU work never had to state. How much of a megakernel survives
   a change of device count?
+- How much of a megakernel's gain survives when every stage must share one register budget? tang's 437-phase megakernel lost 19% to GEMV spills; Cohere's task-interpreter design does not report per-stage register pressure.
 
 ## Related pages
 
@@ -181,3 +199,4 @@ including a different arrangement of the same 16 chips — needs new collectives
 - [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
 - [[AI Accelerator Architecture]]
 - [[Speculative Decoding]]
+- [[Cam Pedersen - Don't Write Kernels, Derive Them]]

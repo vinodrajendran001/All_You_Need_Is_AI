@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-01-philipp-schmid-code-mode
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
+  - src-2026-11-11-openrouter-mcp-cli-skills
 status: active
 ---
 
@@ -290,6 +291,29 @@ also shows tool descriptions as a tuning surface: making models choose Droid's S
 rewriting the descriptions of the tools called inside it, alongside prompt and result-format
 changes. See [[Programmatic Tool Calling]].
 
+## A whole-task measurement of loaded, deferred, and CLI rosters
+
+[[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]] prices one GitHub task three ways
+on four models (medians of three runs). On Sonnet 5.5 every route answered correctly: the `gh` CLI
+used **1,421** input tokens, a CLI-plus-skill route **3,315**, and the GitHub MCP server with its 46
+default tools **59,417**, which is **42 times** the tokens and **17 times** the cost (**$127 against
+$7.50 per 1,000 tasks**).
+
+It also gives this page's oldest open question its first numbers. With all 46 tools deferred behind
+OpenRouter's Tool Search, whole-task input went from **59,417 to 30,334** on Sonnet 5.5 and from
+**116,282 to 25,544** on GPT-6 Luna (whose loaded figure "includes the 100-issue request" it chose to
+make), barely moved on Gemini 3.8 Flash (**35,409 to 37,568**), and rose on Haiku 5.5 (**99,319 to
+154,623**) because Haiku retried a malformed call three or four times. So whether a search-first
+roster pays for its extra calls is model-dependent.
+
+Results matter as much as definitions: one `get_latest_release` result of **42,182** characters added
+about **20,400** tokens, more than all 46 definitions. Asking `list_issues` for three fields cut its
+result from **8,336** to **714** characters, while a 4,000-character cap worked "only because of where
+the fields happened to sit". This is the result-side control the Uber section above calls response
+projection, now with a measurement. Prompt caching does not change the count: cached input "lowers
+the price of those tokens but doesn't remove them". This is a vendor post selling Tool Search; the
+authors "tested one server on one task".
+
 ## Open questions
 
 - **How much of the 36.6s vs 42.2s gap is roster size versus other harness differences?** The comparison is
@@ -312,7 +336,9 @@ changes. See [[Programmatic Tool Calling]].
   are not yet in the same units.
 - **Does a search-first roster pay for its extra calls?** Salesforce's example needs discover, describe,
   and dispatch for one request, and neither it nor AgentCore reports tokens, latency, or wrong-tool
-  rates against a resident roster.
+  rates against a resident roster. OpenRouter's single-task test answers yes for Sonnet 5.5 and
+  GPT-6 Luna, slightly no for Gemini 3.8 Flash, and no for Haiku 5.5, where retries after deferral
+  cost more than the resident roster; no wrong-tool rate or latency is reported.
 
 ## Related pages
 
@@ -351,3 +377,5 @@ changes. See [[Programmatic Tool Calling]].
 - [[Meta]]
 - [[DeepSeek]]
 - [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]]
+- [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
+- [[Agent Skill]]

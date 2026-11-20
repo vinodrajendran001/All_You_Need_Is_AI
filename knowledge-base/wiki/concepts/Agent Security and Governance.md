@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -57,6 +57,10 @@ source_ids:
   - src-2026-11-04-axjns-post-kubernetes-genai
   - src-2026-10-10-0xcodila-rea-reverse-engineering
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
+  - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-11-18-ioma8-llm-reverse-engineering
+  - src-2026-11-17-paul-kinlan-voice-harness
+  - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
 status: active
 ---
 
@@ -253,6 +257,22 @@ the control is not writable by the thing it constrains.
 A related governance gap appears in the same source. Guardrails diverged by vendor on the *research* task —
 Claude declined to engage with the worm paper while Gemini assisted in generating replication code. A refusal
 policy that holds at one provider and not another is a market outcome, not a safety property.
+
+## Remove the capability beneath the agent
+
+[[Geoffrey Huntley - The Answer to AI Is Engineering]] goes further than making constraints non-writable: remove the dangerous capability from the
+tools the agent uses. In his demo environment, git 2.55.0 is built through a Nix overlay with a patch
+that disables force push, which he had Claude write. It is applied to agent sandboxes, laptops, and
+anything that pulls git in as a dependency. "The best way to stop a model from doing something is to
+remove its ability to do it." His reasoning is the mechanism in the section above: an agent "hill-climbs toward
+its goal and does destructive things along the way."
+
+He draws a firm environment boundary. Loop agents run as root only in throwaway Nix developer machines
+designed for it, and "do not run agents with Nix as root on production hosts, and do not connect agents
+to production databases. Ever." For reproduction, he says to duplicate the database and restrict
+outbound network access. This is a practitioner talk with personal demos, no incident data, and an
+unsourced list of recent incidents. The sandbox's own threat model is not discussed beyond those two
+prohibitions, and a patched tool removes one capability, not every route to the same effect.
 
 ## The sandbox should be an obedient stub
 
@@ -790,6 +810,44 @@ binary and writes the replacement preserves the separation clean-room design dep
 not address licence terms, anti-circumvention law, or jurisdictions beyond those cases. REA's
 showcases are first-party, and the cited third-party rebuilds are not said to have used REA.
 
+[[ioma8 - LLM Assisted Reverse Engineering]] is a second, practitioner-side data point. The author, who says he has hacked hardware and
+software "for 2 decades", describes reverse engineering with a cheap model ("DeepSeek Harness +
+Deepseek v4.1 Flash"), free tools (Ghidra with an MCP bridge), and a few skills, two his own, and credits
+the approach with results "which would take me years each on its own, if done by hands". Most of his
+list is hobby hardware work: device protocols, synthesizer and e-reader firmware, a printer driver.
+The same list includes a claim to have "Cracked tons of license-locked abandonware softwares from my
+youth". Unlike REA's post, it states no lawful-use disclaimer; the only boundary is the author's own
+judgement. The capability needs no special tool at all: a cheap model, a free disassembler, and three
+skills. The vault's summary keeps to method and omits anything aimed at defeating protections. All
+results are self-reported.
+
+## Personal browser agents, and injection through voice, screen, and page
+
+[[Paul Kinlan - My Voice Harness Is My New Operating System]] states the confused-deputy risk for a personal voice harness without softening it. Anything
+that reaches the voice loop, including a shared screen or a web page carrying a prompt injection, can
+lead to tool calls on harnesses with access to his email and machine, and "I don't have any
+safeguards for this yet." The usual mitigation is per-action confirmation, and he has not worked out
+how to do that by voice. His design is strict where code is model-written (sandboxed mini-apps,
+digest-pinned WASM, extensions that only write a file until he approves them) and loose where the
+user's own tools run: `run_command` needs "real room authority", "not just a local Origin header",
+but "What it isn't is a sandbox. It runs as me." He also warns that, because browsers offer no secure way to reach the
+user's system, people (himself included) "build their own bridges to the platform, which could be a
+recipe for disaster". The isolation design is in [[LLM-Native Extensible Software]].
+
+[[Paul Kinlan - My Chrome Extensions Are Just Prompts]] adds three controls and one admission. Tools for a Chrome permission the manifest does not
+grant are absent from the model's list, which is the remove-the-capability rule above applied at the
+tool roster. Undo does not rely on the model: "you can't ask an LLM to 'undo that thing you just did'
+and trust it to remember what it did." Every tool that changes something records how to reverse it
+*before* acting, and the last **100** actions are kept, so undo is "a relatively small piece of
+deterministic code". Every run is also traced with trigger, model, each tool call's arguments,
+result and timing, tokens, and estimated cost, "the feature I use the most". Page titles, URLs, and
+text are sanitised and fenced as data, not instructions, but "It's a mitigation and not a solution",
+and he imagines "a specially crafted web page" steering future runs. Reversal is described only for
+in-browser changes, and granted tools have no stated per-call approval.
+
+Both posts describe [[Paul Kinlan]]'s own prototypes, with no incident or detection data. Their value
+here is that the author marks where his own isolation stops.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -829,6 +887,9 @@ showcases are first-party, and the cited third-party rebuilds are not said to ha
 - For a dual-use tool such as REA, whose use boundary is a disclaimer and whose only named enforcement
   point is model refusal, which layer of the hierarchy should check that the operator owns or may
   examine the target, and what evidence would it accept?
+- Per-action confirmation is the usual answer to injection-driven tool calls. What replaces it in a
+  voice-only interface, where there is no screen-and-click step, and can pre-recorded undo stand in
+  for approval when an action is reversible?
 
 ## Related pages
 
@@ -921,3 +982,10 @@ showcases are first-party, and the cited third-party rebuilds are not said to ha
 - [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]]
 - [[NVIDIA]]
 - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]]
+- [[ioma8 - LLM Assisted Reverse Engineering]]
+- [[Paul Kinlan - My Voice Harness Is My New Operating System]]
+- [[Paul Kinlan - My Chrome Extensions Are Just Prompts]]
+- [[Paul Kinlan]]
+- [[LLM-Native Extensible Software]]
+- [[Kubernetes]]

@@ -1,10 +1,10 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-20
 source_id: src-2026-10-21-simpson-torchtpu
 source_title: Introducing TorchTPU
-source_author: Ebba Simpson
+source_author: "The TorchTPU Team (capture metadata lists Ebba Simpson)"
 source_url: https://pytorch.org/blog/introducing-torchtpu/
 tags:
   - source/summary
@@ -126,6 +126,12 @@ interchangeable FLOPs.
   workload-general results. Nothing here establishes that all 5,000 supported models run unchanged in
   production.
 - The roadmap — bounded dynamism, FP8/FP4, RL integration — is **6-12 month** future work, not shipped.
+- **Attribution.** The capture's `author` field lists Ebba Simpson, but that name does not appear
+  in the body. The post credits "†The TorchTPU Team", a list of about 53 contributors followed by
+  "Plus many, many others". The Helion post shows the same pattern: there the visible byline differs
+  and Ebba Simpson appears only in the page's `author` meta tag, apparently the PyTorch blog's
+  publishing account. This summary therefore credits the team. The page title and `source_id` keep
+  the earlier name so that existing links and IDs stay stable.
 
 ## Affected pages
 

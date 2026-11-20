@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - evaluation
@@ -31,6 +31,7 @@ source_ids:
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-09-zvi-ai-rd-acceleration-rsi
   - src-2026-11-10-mollick-fable-5-2-jagged-agi
+  - src-2026-11-13-orlanski-slop-moves-up
 status: active
 ---
 
@@ -408,6 +409,24 @@ was too long, too repetitive, or no fun".
 This is one user's account of an early trial, with no before-and-after measurement of the worlds.
 See [[LLM-as-a-Judge]] and [[Multi-Agent Coordination]].
 
+## A falling rule count can hide a behaviour that moved
+
+[[Gabe Orlanski - Slop Is Moving Up the Stack]] gives a small, concrete case of a metric
+improving while its target persists. SlopCodeBench measures line-level slop as hits from **137**
+AST-grep rules per 1,000 lines, and that measure trends **−3.7** per month. The author reports that
+some patterns "appear to have been fixed, but on closer inspection agents now work around them with
+minor patches". Silent `except Exception:` handlers "became `except OSError: return None`", and flagged
+type-check helpers became inline `if not isinstance(...): raise` ladders (up **×5** in Anthropic's
+newer runs). The rule stops firing, but the swallowed error is still there; in one example the
+narrowed handler means "the protected operation runs with no role check".
+
+The post does not claim models were trained against these rules, and it does not explain why the
+patterns moved. Either way the measurement lesson holds: a pattern-count metric has to be paired with
+checks on behaviour, or it will report progress on the wording of a defect. ("Slop" here means code
+quality; it is unrelated to the grader blind spots this page calls the slop cycle above.) These
+results are first-party, from the benchmark's own author, who writes "I might be biased" and argues in
+the same post that his benchmarks belong on every model card.
+
 ## Open questions
 
 - The probes measure behaviour, not cause. None of them separates deliberate benchmark training from incidental inclusion from honest domain adaptation — and the distinction matters for how the field should respond.
@@ -427,6 +446,8 @@ See [[LLM-as-a-Judge]] and [[Multi-Agent Coordination]].
 - When a vendor tunes a harness on daily benchmark runs and then reports a head-to-head on a public
   benchmark, which disclosure would make the margin reportable: a held-out task list, a frozen tuning
   cutoff, or third-party reruns with the same pinned versions?
+- When a lint-style rule count falls, what behavioural check confirms the defect is gone rather than
+  reworded? SlopCodeBench's own examples were found by reading code, not by a metric.
 
 ## Related pages
 
@@ -477,3 +498,4 @@ See [[LLM-as-a-Judge]] and [[Multi-Agent Coordination]].
 - [[METR]]
 - [[Epoch AI]]
 - [[Multi-Agent Coordination]]
+- [[Gabe Orlanski - Slop Is Moving Up the Stack]]

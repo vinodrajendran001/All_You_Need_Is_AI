@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - llm
@@ -46,6 +46,7 @@ source_ids:
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
 status: active
 ---
 
@@ -363,6 +364,17 @@ the attention projections, the embeddings and the multi-token prediction layers 
 These are the authors' own small-scale runs plus relayed results from other labs. The handbook says
 many of its recommendations rest on one ablation in one setup.
 
+[[Thinking Machines - End-to-End 4-Bit Training]] takes the precision point above further. It keeps
+one numerics configuration "from the start of pretraining through the final RL rollout". NVFP4
+handles expert forward passes, and MXFP8 handles backward passes after stochastic-rounded
+re-quantization. The lab says this "eliminates the need for calibration when a quantized checkpoint
+is delivered at the end of training". It reports Inkling 2 Small pretrained in **68 hours** on GB300
+NVL72 racks, against "several weeks" for a similar-size run "months ago", and says numerics are
+"just one piece" of that gain. The recipe "worked without changes during both SFT and RL". RL reward
+showed "no discernible difference", in contrast to the Qwen NVFP4-rollout collapse recorded in the
+paragraph on RL above. These are first-party claims with no model size or ablations. See
+[[Low-Precision Training]].
+
 ## Open questions
 
 - When is PPO-style RLHF still worth the extra complexity versus simpler direct preference objectives such as DPO?
@@ -371,6 +383,9 @@ many of its recommendations rest on one ablation in one setup.
 - When does overtraining a small model become cheaper than serving a larger one?
 - For MoE reinforcement learning, is routing replay worth its cost? Published comparisons disagree,
   and router freezing is a cheaper alternative that leaves the selection bias moving.
+- Why did Qwen's NVFP4 rollouts collapse while Thinking Machines reports no reward difference? A
+  numerics recipe shared by sampler and trainer is one candidate, but no source isolates it from model
+  and setup differences.
 
 ## Related pages
 
@@ -432,3 +447,7 @@ many of its recommendations rest on one ablation in one setup.
 - [[Mixture of Experts]]
 - [[Speculative Decoding]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[Low-Precision Training]]
+- [[Thinking Machines]]
+- [[Thinking Machines - End-to-End 4-Bit Training]]
+- [[Model Quantization and Efficiency]]

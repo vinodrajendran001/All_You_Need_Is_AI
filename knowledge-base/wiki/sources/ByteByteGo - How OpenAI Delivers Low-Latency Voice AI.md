@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-07-03
-updated: 2026-10-27
+updated: 2026-11-20
 source_id: src-2026-07-03-bytebytego-openai-voice
 source_title: "How OpenAI Delivers Low-Latency Voice AI for 900M Users"
 source_author: ByteByteGo
@@ -52,6 +52,7 @@ This is the vault's clearest **production real-time-systems** case study and the
 - [[OpenAI]]
 - [[Real-Time Voice AI]]
 - [[Cloudflare]]
+- [[Kubernetes]]
 
 ## Citations
 - Source URL: [https://blog.bytebytego.com/p/how-openai-delivers-low-latency-voice](https://blog.bytebytego.com/p/how-openai-delivers-low-latency-voice)

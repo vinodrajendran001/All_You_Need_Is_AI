@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-10-27-anthropic-agents-judgment-calls
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
   - src-2026-11-10-nizzyabi-instinct-teardown
+  - src-2026-11-19-shankar-husain-evals-three-gulfs
 status: active
 ---
 
@@ -282,6 +283,18 @@ this too", and Instinct's terms say action records "may not always be accurate."
 channel delivery receipts the agent can read. This is one observed failure in a third-party teardown
 by a competitor, and the watchdog is known only from founder Noah Shinn's public remarks.
 
+## Reading traces is the first evaluation step, not a debugging afterthought
+
+[[Shreya Shankar and Hamel Husain - Evals for AI Engineers]] makes trace access a precondition for evaluation. Its lifecycle begins with **Analyze**:
+read traces, "the full record of what the agent did for each request", talk to users or domain
+experts, and list failure modes before counting anything. The authors note that all three of their
+"gulfs" (comprehension, specification, generalization) tend to surface "during the same trace-reading
+sessions". Measurement then runs automated evaluators over traces "without human review". The
+observability requirement follows from this. A trace store has to support people reading samples to
+discover failure categories, as well as dashboards over known metrics. If it only supports the second,
+teams can measure only failures they already know about. The source is a textbook excerpt with
+hypothetical examples, not a tooling study.
+
 ## Open questions
 
 - Tail-based sampling at 5–20% of routine successes discards most of the population in which a *slow*
@@ -333,3 +346,5 @@ by a competitor, and the watchdog is known only from founder Noah Shinn's public
 - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
 - [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]]
 - [[Instinct]]
+- [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]]
+- [[Hamel Husain]]

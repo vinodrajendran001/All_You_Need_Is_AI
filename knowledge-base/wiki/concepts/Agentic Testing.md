@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - evaluation
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-11-11-bytebytego-github-copilot-rust-port
   - src-2026-10-10-0xcodila-rea-reverse-engineering
   - src-2026-11-11-paulirish-chrome-capture
+  - src-2026-11-12-huntley-answer-is-engineering
 status: active
 ---
 
@@ -94,7 +95,8 @@ It also pairs with a serving fact from
 [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]: **temperature 0 is not
 deterministic**, because numerics depend on batch composition, and 1,000 identical prompts produced roughly
 **80 distinct completions**. If the inference stack alone injects that much variance, a single-run pass@1 is
-partly measuring the serving configuration. See [[Multi-Turn Evaluation]].
+partly measuring the serving configuration. See [[Multi-Turn Evaluation]] and, for the levels of
+determinism and what each costs, [[Inference Determinism]].
 
 ## The failure modes are quiet ones
 
@@ -342,6 +344,24 @@ about **10 s** sooner. A video is
 evidence for a human or agent reviewing a run, not an oracle. The README is unsigned, and its author
 is inferred from the repository owner.
 
+## Properties as oracles, from a vendor of property testers
+
+[[Geoffrey Huntley - The Answer to AI Is Engineering]] proposes property-based testing as one answer
+to the oracle problem above. A property states an invariant, not an expected value: reversing a
+string twice returns the original, or "a customer who asks for a refund is only refunded once",
+across a whole lifecycle and its microservices. A generator then searches for a counterexample, such
+as the Unicode or emoji input a faulty reverser mishandles. **Bombadil** applies this to the
+browser. It loads a JavaScript or TypeScript app, rotates, resizes and stresses it until a property
+such as "the user always has the ability to log out" holds or fails, and returns a reproduction on
+failure. **Hegel** is a Rust core with per-language bindings, described as the successor to
+Hypothesis from the same team.
+
+Huntley works at **Antithesis**, which makes both libraries. He says "ditch Playwright" and adds "I'm
+not just talking my book"; treat the recommendation as **vendor advocacy** in a practitioner talk. No
+detection rates, bug counts, or comparisons with scripted or example-based tests are given. A property
+is still an oracle someone wrote, so the question of who checks the oracle becomes who chose the
+properties, and a generator that finds no counterexample is evidence only about the inputs it tried.
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -403,3 +423,5 @@ is inferred from the repository owner.
 - [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
 - [[Paul Irish - chrome-capture]]
 - [[AI Code Review]]
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]]
+- [[Inference Determinism]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - model-training
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-11-03-nvidia-cosmos-interactive-world-models
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-06-nous-arete-27b
+  - src-2026-11-17-bytebytego-instacart-query-understanding
 status: active
 ---
 
@@ -260,6 +261,25 @@ generates frames incrementally, so a policy can act between them. The framework 
 The post gives no step counts for the students and no quality comparison with their teachers, so the
 fidelity cost of this distillation is unmeasured. It is NVIDIA vendor documentation.
 
+## One validated teacher pass can fill a cache and a training set
+
+[[ByteByteGo - How Instacart Uses LLMs for Query Understanding]] describes a production split
+between teacher and student by traffic. An offline teacher pipeline, a large model with retrieved
+internal context and catalog validation, tags frequent queries ahead of time. Each validated output
+does two jobs: it "helps populate the cache for common queries" and "becomes part of a training
+dataset for the smaller model". On a cache miss, a Llama-3 8B student fine-tuned with LoRA tags the
+query live. The article calls this "a form of knowledge distillation". By Instacart's estimate,
+"only 2% of queries required real-time model inference". An earlier ByteByteGo relay of Instacart's
+"Building the Intent Engine" post (it also cites a second Instacart post), recorded on
+[[Semantic Recommendation Systems]], instead ties 2% to the queries whose scroll depth fell 6%; the
+newer capture keeps the two figures separate, and the original post was not read to settle it.
+
+The reported quality trade is directional: "the student generated fewer incorrect tags. But it also
+missed slightly more correct tags." No numbers are given and no comparison baseline is named. The
+account is a ByteByteGo relay of an Instacart blog post. The pattern places the student only on
+long-tail traffic the cache cannot cover. Its recall loss then matters only on cache misses, which is
+a different deployment from replacing the teacher wholesale.
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -302,3 +322,6 @@ fidelity cost of this distillation is unmeasured. It is NVIDIA vendor documentat
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
 - [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
 - [[Nous Research]]
+- [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]]
+- [[Semantic Recommendation Systems]]
+- [[Parameter-Efficient Fine-Tuning]]

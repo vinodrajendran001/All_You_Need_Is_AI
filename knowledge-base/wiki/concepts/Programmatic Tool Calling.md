@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-24-openai-builders-guide-gpt-5-6
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-01-philipp-schmid-code-mode
+  - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
 status: active
 ---
 
@@ -122,6 +123,23 @@ so the vault keeps Factory's own figures and grading. Schmid
 closes with "Not necessarily" to his title: tools, CLIs, and Agent Skills built for `bash` and
 human-readable text may need rework before they fit a typed code surface.
 
+## Saving a generated script turns a prompt into a program
+
+[[Paul Kinlan - My Chrome Extensions Are Just Prompts]] adds a browser-side Code Mode. Reading 50 tabs
+by calling `tab_read` 50 times means 50 model round trips, slow and "hella expensive". Following Pi,
+`code_mode` has the model write a small async script that reads tabs in parallel, and "only the
+distilled result goes back into the conversation", reportedly "from minutes per run to seconds in
+some cases". The isolation chain is explicit: scripts pass through an offscreen document into a
+sandboxed iframe with an opaque origin, no `chrome.*` APIs, and `connect-src 'none'`. Its only
+capability is calling tools by `postMessage`, and each call is rechecked against the manifest.
+
+The step this page has not recorded is reuse. The agent can save a script (`saveAs`) and bind it to a
+Chrome event, and the saved script runs first the next time the event fires. A prompt can start fully
+non-deterministic and compile its repeatable parts, to "reduce the token cost to almost zero if it
+chooses". Kinlan says he is "in two minds" about it. The post does not say how a stale or wrong saved
+script is detected or retired, and it describes no per-call approval for granted tools. Its speed-up
+and the "almost zero" cost are unmeasured.
+
 ## Open questions
 
 - Where is the boundary? Some tools genuinely want a constrained schema — irreversible actions, anything with an approval gate. Does PTC mean *all* tools become functions, or that a code tool sits alongside a small set of governed JSON tools?
@@ -130,6 +148,8 @@ human-readable text may need rework before they fit a typed code surface.
 - Language choice is unsettled — current implementations span Python, bash, and Bun, with no evidence about which suits which harness. Schmid's case for JavaScript or Python over `bash` is qualitative.
 - If most Scripts are small and the savings sit in the **12.5%** that make six or more calls, should a harness
   steer models toward Script only when a step is predicted to fan out, rather than by default?
+- When a model-written script is saved and replayed on later events, what detects that it has gone
+  stale, and could untrusted content that shaped the original run be replayed without the model?
 
 ## Related pages
 
@@ -148,3 +168,6 @@ human-readable text may need rework before they fit a typed code surface.
 - [[Loop Engineering]]
 - [[Graph Engineering]]
 - [[Agent Planning]]
+- [[Paul Kinlan - My Chrome Extensions Are Just Prompts]]
+- [[Paul Kinlan]]
+- [[LLM-Native Extensible Software]]

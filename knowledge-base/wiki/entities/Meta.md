@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-04
-updated: 2026-10-23
+updated: 2026-11-20
 entity_kind: organization
 tags:
   - entity
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-10-19-rath-thin-orchestrator
+  - src-2026-11-18-meta-ads-technique-propagation
 status: active
 ---
 
@@ -23,7 +24,8 @@ status: active
 ## What it is
 
 Technology company operating at very large scale, publisher of the Llama open-weight model family, and — in the
-vault's directly ingested Meta sources — an operator of internal domain-expert and data-onboarding agents.
+vault's directly ingested Meta sources — an operator of internal domain-expert, data-onboarding, and ads-ranking technique-propagation
+agents.
 
 ## Why it matters here
 
@@ -124,10 +126,27 @@ across two unrelated internal agent deployments, Meta's published answer to unre
 **remove material from the model and put it in versioned, human-legible artifacts**, then make the
 surrounding control flow deterministic.
 
+## A third first-party report: agents over templates and a record of prior runs
+
+[[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]] describes agents that carry proven techniques across Meta's ads ranking models. It fits the
+pattern above. The agents work on top of Standard Model Templates, which over two years shipped
+**5,000+** technique-model combinations and cut per-model engineering time by **92%**. They share "a
+common knowledge base, an accumulated record of prior training runs, model architectures, and
+technique outcomes". Humans approve what ships, and manual expert adaptation "is still the process for
+our highest-revenue models". The research-automation reading is on [[Automated AI Research]] and the
+fleet-scheduling reading on [[ML Systems at Scale]].
+
+The evidentiary weakness is also the same. "Over 60%" of propagation is an estimate. The **4x** compute
+reduction is a median "across select technique-model combinations", with no account of the selection.
+The **$45M+** saving is a year-end estimate. The comparison is with "the same work before agents", with
+no control, and stage metrics are named without values. Meta's Ranking Engineer Agent (REA) shares an
+acronym with the unrelated "Reverse Engineer Anything" (REA) tool in the vault's @0xCodila
+reverse-engineering course summary; the two should not be merged or cross-attributed.
+
 ## Open questions
 
-- Both first-party Meta reports argue for text-and-code over model capability, and neither ablates the
-  claim. Is this a tested engineering position or a house style the published write-ups reflect?
+- All three first-party Meta reports lean on text, code, or templates over model capability alone, and
+  none ablates the claim. Is this a tested engineering position or a house style the published write-ups reflect?
 - The second brain's text files are compiled from **expert feedback under human review**; the
   orchestrator's knowledge files are loaded at runtime with no stated review, versioning, or regression
   process. Does the governance travel with the pattern, or only with the knowledge-management use case?
@@ -158,3 +177,6 @@ surrounding control flow deterministic.
 - [[AI Agents in Production]]
 - [[Inference Efficiency Frontier]]
 - [[DeepSeek]]
+- [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
+- [[Automated AI Research]]
+- [[ML Systems at Scale]]

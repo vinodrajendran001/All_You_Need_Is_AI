@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - context-engineering
@@ -39,6 +39,12 @@ source_ids:
   - src-2026-10-26-alphasignal-memory-tax
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-09-tillman-two-kinds-test-time-scaling
+  - src-2026-11-11-wills-levels-agentic-engineering
+  - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-11-18-bu-fewer-slides-more-dragons
+  - src-2026-11-19-ashish-subedi-antigravity-quota
+  - src-2026-11-16-alphasignal-short-contexts
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -298,6 +304,48 @@ the source of truth is external work objects rather than the document's own prio
 is version-controlled so a drop is recoverable - but version control is the only defence stated, and
 nothing reported measures whether detail survives across nights.
 
+## Practitioners are shrinking context files and giving them other jobs
+
+Three practitioner sources from November 2026 treat `AGENTS.md` less as a description of a codebase
+and more as a set of pointers, a reminder, and an invitation. All three are anecdotal and unmeasured,
+but they are consistent with Osmani's null result above.
+
+**Pointers, not descriptions.** [[Zach Wills - The Levels of Agentic Engineering]] says not to use AGENTS.md "for things the agent can
+discover itself". Use it for "high-level pointers", placed in the relevant directories because
+harnesses "load these files progressively", and keep each one lean. On "a frontier model like Opus
+5.5, you often don't need the skill at all, or it should be short and goal-oriented", though a
+prescriptive skill still helps an older or cheaper model. He reports his own decay: "Skills I wrote
+a year ago are now too prescriptive. Indexes I built are mostly redundant because the models can find
+things themselves." That is the half-life point from [[Agent Skill]], stated by a practitioner with no
+comparison runs.
+
+**A timed instruction.** [[Geoffrey Huntley - The Answer to AI Is Engineering]] uses AGENTS.md as a reminder, not a description. After temporary
+security patches he asked the agent to update AGENTS.md "and in seven days' time, get rid of my
+patches", and the next agent or developer on the machine did the cleanup. That substitutes a context
+file for a ticket, but it only works if a later session actually reads the file. No source here
+measures whether such reminders fire reliably.
+
+**A contribution guide for other people's agents.** [[Michelle Bu - Fewer Slides, More Dragons]] replaced slides with agent-built
+interactive pages. The last step of her process is "Ask your agent to create an AGENTS.md explaining
+how the project works and how to contribute. Then your coworkers and their agents can take it from
+there." At Stripe, colleagues can "point your agent at the linked AGENTS.md" to build their own
+version of a storybook exchange page. In this use the file does not explain a codebase to its
+author's agent; it is the entry point for contributors who have never seen the project. It is also
+agent-written, which reverses the curation burden PostHog measured above, and the post does not say
+whether anyone edited it afterwards. The evidence is a first-person anecdote, with no count of
+contributors or failed contributions.
+
+**A vendor prescription in the other direction.**
+[[Anthropic - The Founder's Playbook - Building an AI-Native Startup]], an undated Anthropic
+marketing guide for founders, calls `CLAUDE.md` files "persistent 'memory' for your project". It
+tells founders to end every Claude Code session with "a brief log entry to the context document
+that details what was built, what decisions were made, and what assumptions the session
+introduced", calling this "Five minutes of documentation per session". The file therefore grows
+every session, with no pruning rule and no measurement. That runs against Osmani's null result and
+the lean files described above. The guide's logging rule resembles PostHog's selection rule, since
+both record decisions and built work rather than brainstorming. But it leaves the writing to the
+founder, and Yoon's count shows that most people who start such a file do not keep editing it.
+
 ## Available context and usable context are different measurements
 
 [[ByteByteGo - The LLM Blindspot - Lost in the Middle]] separates four failures: evidence never
@@ -494,6 +542,16 @@ compression-first instinct: when the summary is the only path by which the task 
 truncated summary costs more than the tokens it saves. Factory reports no measurement of tasks
 dropped before and after the change.
 
+Append-only layout protects the prefix only while the cache lives.
+[[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]] measured Gemini 4's implicit cache in
+Google Antigravity expiring between **4 min 45 s** and **5 min 00 s** of idle time, so a human pause
+to read a diff can re-price a perfectly ordered request at full rate. The author's other lever is the
+baseline prefix itself: a five-word prompt started from "13,800 to 16,800+ tokens" of instructions,
+MCP schemas, and skills, so "Trim your baseline prefix" by disabling unused MCP servers and plugins
+shrinks every cold turn. The same binary carries a dormant keep-alive ping for this problem (see
+[[Coding Agent Harness]]). These are one author's single runs on small conversations, and Google
+publishes no time-to-live for its implicit cache.
+
 ## Compaction may let a model use more compute than it was trained with
 
 [[James Tillman - Two Kinds of Test-Time Scaling]] treats compaction as more than fitting a long
@@ -505,6 +563,31 @@ chain-of-thought RL levelled off. Tillman links significant frontier extrapolati
 compaction does not increase GPT-5.1-Codex-Max's time horizon. On the vault's reading, a trained
 compaction policy, not only a scheduled one, may set how far past its training budget a model can
 usefully run. See [[Test-Time Scaling]].
+
+## Aggressive compaction can keep accuracy, and still raise the bill
+
+[[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]] relays an unnamed NVIDIA study across
+**13** benchmarks. With threshold compaction (for example at **16K** tokens) the agent restarts from
+the original instructions plus a compacted state. On SWE-bench Verified, Claude Opus 4.5 went from
+**70%** with full history to **74.8%** at its best compaction setting, and GPT-5.6 Sol from **84.4%**
+to **88.8%**. Compacting after every tool action "almost matched" the full-history baseline, with a
+median peak context of **7,000–9,000** tokens across the two benchmarks evaluated. On self-hosted
+H100s, cutting the configured window from **256,000** to **16,000** tokens raised output throughput
+between **3.6 times** (GLM 5.2) and **seven times** (Qwen 3 Coder Next). What the compacted state
+should hold is in [[Agent Memory]].
+
+Three cautions keep this from being a rule. Gains are at each model's *best* setting, a selected
+maximum. Qwen 3 Coder Next fell from **53%** to **3.6%** under a 16K limit, attributed to verbose
+outputs. And compaction rewrites the prefix and breaks the prompt cache: GPT-5.6 Sol's SWE-bench cost
+rose from **$167.68** to **$203.12** at the 16K limit. The throughput gain is for self-hosted models
+and the cost rise for a cached hosted API, and the article does not reconcile the two in one setting.
+
+Read with the two cache results in the Factory section above, this makes cache warmth a cost term a
+context policy can break in two ways: by rewriting the prefix, as compaction does, or by letting it go
+cold during a pause, as Subedi measured. Factory doubled its summary budget to **16,000** tokens to
+stop dropped tasks; here 16K is the whole window. They measure different things but pull in opposite
+directions on how much room compaction needs. The study is secondhand, with no paper title or direct
+link, and its main accuracy runs used Claude Opus 4.5, older than most models in recent vault sources.
 
 ## Open questions
 
@@ -526,6 +609,9 @@ usefully run. See [[Test-Time Scaling]].
 - Salesforce's context-engine demo reports large token reductions with unequal step counts and no
   answer-quality comparison. What matched test would show that a governed selection pipeline keeps
   answers as good as full context, as Databricks showed for distilled memory?
+- Compaction raised throughput on self-hosted models and raised the bill on a cached hosted API in
+  the same relayed study. What cache-hit rate, idle pattern, and price ratio decide whether a
+  tighter window pays in a given deployment?
 
 ## Related pages
 
@@ -595,3 +681,11 @@ usefully run. See [[Test-Time Scaling]].
 - [[Salesforce]]
 - [[Alpha Signal - The Hidden Memory Tax in AI Agents]]
 - [[James Tillman - Two Kinds of Test-Time Scaling]]
+- [[Zach Wills - The Levels of Agentic Engineering]]
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]]
+- [[Michelle Bu - Fewer Slides, More Dragons]]
+- [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]]
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]]
+- [[Alpha Signal]]
+- [[KV Cache]]
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]

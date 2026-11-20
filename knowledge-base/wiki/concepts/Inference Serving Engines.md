@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-11-13
+updated: 2026-11-20
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -27,6 +27,10 @@ source_ids:
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-12-nathan-barry-detllm-integer-inference
+  - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-03-william-morgan-kinference-launch
+  - src-2026-10-31-william-morgan-kinference-benchmarks
 status: active
 ---
 
@@ -199,6 +203,24 @@ No performance figure is supplied. The Gateway API Inference Extension was exper
 GKE Inference Gateway was Preview/Pre-GA, so claims of improved TTFT, throughput, utilization, and
 cost remain promotional until measured on a stated workload.
 
+## A second Kubernetes routing layer widens the decision into policy
+
+[[William Morgan - Kinference Inference Control Plane for Kubernetes]] is Buoyant's vendor launch of
+Kinference, an Apache v2 "inference control plane" that sits in front of vLLM and accepts OpenAI- or
+Anthropic-compatible traffic. Its balancer weighs GPU queue sizes, historical performance and "the
+contents of the KV cache on the GPU", the same inputs as the GKE endpoint picker above.
+
+What it adds is scope. Declarative **inference policies** route or reject requests by tenant, requested
+model or model class, GPU pool state and "semantic classification of the prompts". They are meant to
+cover batch work only when GPUs are idle, overflow to a third-party provider, and keeping "prompts with
+PII" in-house. Policies are versioned in git, linted and rolled back like other configuration.
+
+There is a tension in the framing. The post says such policies "did not seem to exist anywhere in the
+Kubernetes inference ecosystem". The GKE source above already describes Critical, Standard and Sheddable
+priority on Kubernetes resources. The broader policy surface may be new; the idea is not. The post
+documents no policy language, evaluation order or conflict rule, and its only performance evidence is
+Buoyant's own benchmark, [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]].
+
 ## Connector modes change the router's job
 
 [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]] adds `NixlPushConnector`
@@ -319,6 +341,14 @@ source. The author also flags "zero-overhead batch scheduler" as **the project's
 literal guarantee**, and attributes to DeepSeek that DeepInfer was built primarily on **vLLM**, with
 inspiration from SGLang and TensorRT-LLM.
 
+The cost of that setting now has one (secondhand) number. Per
+[[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]],
+[[Thinking Machines]]' batch-invariant kernels made all 1,000 completions of a prompt identical "at about
+a 20% matmul slowdown". Barry's point is that this buys determinism only on one GPU with those kernels:
+an A100, an H100 and a CPU still round differently. His integer-only DetLLM gives bit-identical logits
+across all of them, but its int8 path depends on hand-built kernels, with prefill "about 0.13× fp16", so
+it is not yet an engine option. See [[Inference Determinism]].
+
 ## A common quantized backend still has loading, compilation, and fallback contracts
 
 [[Ant Group and vLLM - Humming Quantized Inference Kernels]] describes Humming as included
@@ -401,6 +431,25 @@ learning, the rollout engine can take its own expert-parallel size, built as a s
 model into which the trainer's weights are refit. These are code-level behaviors at that commit;
 the handbook gives no measured cost for the eager fallback.
 
+## A single-model, single-job engine shows what generality costs
+
+[[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] is a third-party code reading
+of Baseten's Rust and CUDA engine for one model, DeepSeek-V4.1-Flash. Baseten reports **2,060 tokens/s at
+2.71 ms per step on 8 × B300 (TP8)** and **1,740 at 3.30 ms on 4 × GB300 (TP4)**. The author re-ran
+nothing.
+
+The speed comes from narrowing scope. The worker "serves one shared generation job at a time", so the
+rate says nothing about aggregate throughput, queueing or cost under concurrent load. Kernels accept a
+narrow range of token counts and reject unsupported verification shapes. Communication is fused into
+neighbouring kernels rather than called as a library. Splitting experts across more GPUs pads storage
+by about **7.6%** at TP4 and **26.4%** at TP8. TP8 over TP4 is **2060 / 1740 ≈ 1.184**, "not a clean
+strong-scaling experiment".
+
+General engines contain many of the same techniques but leave them off by default. At the pinned
+revision SGLang's specialised MXFP4 decode-MoE switch defaults to false and its speculative algorithm to
+`None`; vLLM has an opt-in `latency_specialized` backend. The author concludes the code "does not
+establish a TPS ranking". The comparison is between configurations, not engines.
+
 ## Open questions
 
 - The DeepInfer account supplies no measurement of any kind. Its benchmark configurations are reported
@@ -419,6 +468,8 @@ the handbook gives no measured cost for the eager fallback.
 - What does batch-invariant execution cost in throughput, and is reproducibility worth a speculation
   feature? This is the first engine in the vault to make determinism a configuration rather than a
   property of the day's batching, and the trade is entirely unquantified.
+  Barry relays a ~20% matmul slowdown for Thinking Machines' kernels; no source measures end-to-end
+  serving throughput.
 - If engines increasingly ship a per-node layer and omit the fleet layer, how should an engine
   comparison be scoped at all — and what is the honest name for the remaining integration work?
 - Where is the crossover between expert offload on one machine and a batched engine with the model
@@ -472,3 +523,10 @@ the handbook gives no measured cost for the eager fallback.
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
 - [[Mixture of Experts]]
+- [[William Morgan - Kinference Inference Control Plane for Kubernetes]]
+- [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]]
+- [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
+- [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
+- [[Thinking Machines]]
+- [[Inference Determinism]]
+- [[Kubernetes]]

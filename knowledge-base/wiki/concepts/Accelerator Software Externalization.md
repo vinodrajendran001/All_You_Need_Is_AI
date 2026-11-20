@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-10-23
+updated: 2026-11-20
 tags:
   - concept
   - hardware
@@ -9,6 +9,7 @@ tags:
 source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-10-21-simpson-torchtpu
+  - src-2026-11-18-pueyo-hardware-is-software
 status: active
 ---
 
@@ -136,6 +137,22 @@ framework roughly **6% behind** the vendor's native one. **DLRM v2 on 32 TPU v7x
 latency is described as **100% parity** with a JAX baseline, which is a stronger word than a single
 latency figure supports. Both results are first-party.
 
+## A forecast that externalization is now cheap, set against the itemized bill
+
+[[Tomas Pueyo - Hardware Is Software]] quotes a prediction from Casey Handmer that would collapse this
+page's subject: "GPU design and CUDA were insurmountable moats 12 months ago, now a Fable-class model
+can independently rebuild both for <$1m token spend." (Pueyo's bracketed glosses are omitted.) Pueyo
+backs it with Google's use of AI for chip design (AlphaChip) to build TPUs: "Now, everybody can do
+it."
+
+The vault's evidence points the other way, or at least shows how much the claim leaves out. TorchTPU's
+itemized framework work, the 4.1x hand-tuning gap after a straight port, and per-model kernel tuning
+"worth single-digit to low-double-digit percentages" each are costs that a token budget does not
+obviously cover. The prediction gives no pass criterion: rebuilt to what coverage, at what performance
+against the original? It is a secondhand X post, relayed by an essayist who invests in Handmer's
+company Terraform. Treat it as a claim to test, not evidence that the externalization bill has fallen.
+See [[NVIDIA]].
+
 ## Open questions
 
 - The results come from an Official Preview on one model. Google was presumably involved in tuning, and
@@ -160,6 +177,8 @@ latency figure supports. Both results are first-party.
 - If tile geometry constrains architecture, the equilibrium is unclear: do model designers converge on
   hardware-friendly dimensions, do accelerators become more flexible, or does the ecosystem fragment by
   target?
+- What would count as passing the "<$1m token spend" rebuild forecast? Operator coverage, model
+  pass rates and performance against CUDA would each need a threshold, and the forecast states none.
 
 ## Related pages
 
@@ -178,3 +197,5 @@ latency figure supports. Both results are first-party.
 - [[Distributed Training Parallelism]]
 - [[Meta]]
 - [[Google Cloud]]
+- [[Tomas Pueyo - Hardware Is Software]]
+- [[NVIDIA]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-11-20
 source_id: src-2026-09-13-ranganathan-gke-inference-gateway
 source_title: "Inference Gateway: Intelligent Load Balancing for LLMs on GKE"
 source_author: Rahul Ranganathan
@@ -56,6 +56,7 @@ The gateway makes inference state part of routing policy. It also shows why "lea
 - [[KV Cache]]
 - [[ML Systems at Scale]]
 - [[Google Cloud]]
+- [[Kubernetes]]
 
 ## Citations
 

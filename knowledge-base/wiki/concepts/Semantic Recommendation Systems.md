@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-10-19
+updated: 2026-11-20
 tags:
   - concept
   - recommendation-systems
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-05-21-bytebytego-batch
   - src-2026-07-28-bytebytego-delivery-llm-search
   - src-2026-10-08-bytebytego-netflix-genrec
+  - src-2026-11-17-bytebytego-instacart-query-understanding
 status: active
 ---
 
@@ -62,6 +63,32 @@ Moving from engagement to semantics reduces one class of gaming but does not mak
 
 The durable pattern is **LLM augmentation under product constraints**: use the model where it resolves ambiguity or representation mismatch, keep deterministic catalogs and rankers, and let the system already in place shape the design. The article says the infrastructure each company already had "is what determined the answer" and that the specific model was secondary; head-versus-tail traffic encouraged Instacart's cache-plus-online split. That there is no single right answer here is the finding, not a gap in the reporting. See [[DoorDash]] and [[Retrieval-Augmented Generation]].
 
+## Instacart typed its rewrites by relationship
+
+[[ByteByteGo - How Instacart Uses LLMs for Query Understanding]] adds mechanism to the Instacart
+line above, again as a secondary account "based on publicly shared details". Categories use a
+three-part split. Purchase history proposes candidate category paths, the LLM re-ranks them with
+catalog context ("vegan roast" → Meat → Meat Alternatives), and an embedding guardrail drops pairs
+below a similarity threshold whose value is not given. Rewrites failed under "a general prompt"
+(illustratively, "1% milk" might become "one percent milk"). They worked once split into
+**synonym**, **broader**, and **substitute** tasks with separate prompts, examples, and reasoning
+guidance, followed by post-processing checks and semantic filters, moving coverage from "about 50%"
+of traffic "to over 95%, with more than 90% precision across all three types".
+
+**The two Instacart relays disagree on what 2% and 6% describe.**
+[[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]] relays the real-time model
+improving "the bottom 2% of queries (the cold-start tail), cutting scroll depth by 6%". The newer
+capture separates the two figures: 2% is Instacart's estimate of the share of queries that "required
+real-time model inference" (the rest are served from the cache), and the "6% reduction in average
+scroll depth" comes from an A/B test on "the tail queries", whose traffic share is not given. Both
+are ByteByteGo relays of Instacart's "Building the Intent Engine" post (the earlier one also cites a
+second Instacart post, "Supercharging Discovery in Search with LLMs"), neither of which was read, so
+the vault records the newer, separated reading without settling which framing matches the original;
+one is likely a conflation. The "under 300ms" and "50% to over 95%" figures agree across the two.
+Despite its title ("Make People Buy More"), the newer article reports no purchase or revenue metric.
+The serving side of the same system is on [[Knowledge Distillation]] and
+[[Parameter-Efficient Fine-Tuning]].
+
 ## A language-model ranker need not generate a recommendation list
 
 [[ByteByteGo - How Netflix Taught an LLM to Recommend Movies]] adds a different use of an LLM
@@ -110,3 +137,6 @@ and the combined result is not a causal ablation of each component.
 - [[ByteByteGo - How to Fight Clickbait - Meta, LinkedIn and YouTube Case Studies]]
 - [[ByteByteGo - Three LLM Search Architectures for Delivery Platforms]]
 - [[DoorDash]]
+- [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]]
+- [[Knowledge Distillation]]
+- [[Parameter-Efficient Fine-Tuning]]

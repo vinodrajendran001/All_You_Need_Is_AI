@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-11-13
+updated: 2026-11-20
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-11-01-philipp-schmid-code-mode
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
   - src-2026-10-10-0xcodila-rea-reverse-engineering
+  - src-2026-11-11-openrouter-mcp-cli-skills
 status: active
 ---
 
@@ -102,6 +103,19 @@ this; what is being questioned is the default of mounting every capability as a 
 
 See [[Tool Roster Economics]] for the full argument and the counter-consideration — that a discoverable CLI
 still costs turns to discover, which nobody has measured.
+
+[[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]] puts token counts on residency
+for one server. The GitHub MCP server's **46** default tools added **19,436** tokens on Haiku 5.5,
+**8,903** on GPT-6 Luna, and **8,525** on Gemini 3.8 Flash via Vertex, but **13,010** for Gemini via
+Google AI Studio, because each provider writes tool definitions into the prompt in its own format,
+"which a local tokenizer misses". The same task through the `gh` CLI cost **1,421** tokens on Sonnet
+5.5 against **59,417** through the default MCP server, so for an open-ended surface the model already
+knows, the code-surface rule above holds on this measurement. It also partly answers the
+counter-consideration: the CLI route's total, including whatever discovery the model did, was the
+cheapest of all. The post's own conclusion is narrower than "abandon MCP": "Use a CLI when one exists
+and your agent can run commands", and when it cannot, use MCP "scoped and with small results", or
+defer definitions. One server, one task, and a vendor selling the deferral tool. The post's own TL;DR
+attributes the 19,436 figure to Sonnet 5.5, while the script that produced it ran on Haiku 5.5.
 
 ## Remote MCP makes recovery part of protocol security
 
@@ -260,3 +274,4 @@ clickbait title and reports no usage data for the prompts; its security caveats 
 - [[Virinchi T - Google Cloud MCP Security Framework]]
 - [[Google Cloud]]
 - [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
+- [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-23
+updated: 2026-11-20
 tags: [concept, software-architecture, ai-agents, extensibility]
 source_ids:
   - src-2026-08-20-jeremy-morrell-extensible-software
@@ -9,6 +9,8 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-10-09-rabi-guha-intelligent-ui
   - src-2026-10-21-mcateer-claude-mods
+  - src-2026-11-17-paul-kinlan-voice-harness
+  - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
 status: active
 ---
 
@@ -87,6 +89,34 @@ review/update policy, and interruption behavior. The author's supervisor ran on 
 111 turns**, an example of programmability creating attention cost rather than automatically
 improving interaction. This personal report supplies no controlled effectiveness measure.
 
+## Model-written apps that persist, and extensions that are data
+
+[[Paul Kinlan - My Voice Harness Is My New Operating System]] is a worked case of the trusted-host
+split. In Voicebox the model writes a mini-app as a single HTML file, and the daemon saves it so "next
+week I can say 'open the calculator' and it comes back." Because the code is model-written it runs "two
+iframes deep": a same-origin bridge checks every message, and the inner frame has an opaque origin, no
+storage, and a content security policy that blocks the network by default. Mini-apps register tools
+through WebMCP, which Kinlan calls "functionality built by the LLM being usable by the LLM in future
+interactions".
+
+Extensions are stricter still. Each is a JSON descriptor over **six** daemon primitives, with keys
+filled from the daemon's environment "so the key never reaches the page or the model", and WASM tools
+pinned by SHA-256 and re-hashed on every call. "The model can propose a tool, but the only thing a
+proposal can do is write a file." This is the opposite pole from the unsandboxed mods above. The same
+harness, though, runs shell commands with the user's full rights: "What it isn't is a sandbox. It runs
+as me."
+
+[[Paul Kinlan - My Chrome Extensions Are Just Prompts]] applies the same host-owns-capabilities idea
+to Chrome. In Prompt in a Box an extension is a generic runtime plus three files: `prompt.md` is "the
+program", `manifest.json` is "what the extension is allowed to reach. Permissions are the contract",
+and `config.json` holds models, schedule, and settings. "You swap the prompt and the same code becomes
+a different tool." The runtime exposes "about 50" Chrome APIs as tools, but "if the manifest doesn't
+grant `bookmarks`, the bookmark tools are simply not in the list that the model sees". The extension
+is durable and user-authored, with a browser-native permission model, so it sits close to Morrell's
+narrow-capability design. The catch is distribution: because the runtime relies on dynamic code
+execution, the extensions cannot be published to the Chrome Web Store and load only in developer
+mode. Both are single-developer prototypes by [[Paul Kinlan]], with no measured results.
+
 ## Open questions
 
 - How can generated extensions be upgraded without breaking user state?
@@ -107,3 +137,7 @@ improving interaction. This personal report supplies no controlled effectiveness
 - [[Tool Roster Economics]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Can Bölük]]
+- [[Paul Kinlan - My Voice Harness Is My New Operating System]]
+- [[Paul Kinlan - My Chrome Extensions Are Just Prompts]]
+- [[Paul Kinlan]]
+- [[Programmatic Tool Calling]]

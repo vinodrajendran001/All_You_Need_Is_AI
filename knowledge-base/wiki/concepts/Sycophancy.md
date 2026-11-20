@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-07
-updated: 2026-11-06
+updated: 2026-11-20
 tags: [concept, alignment, evaluation, reliability]
 source_ids:
   - src-2026-07-16-bytebytego-rlhf-vs-dpo
@@ -9,6 +9,7 @@ source_ids:
   - src-2026-10-06-bytebytego-sycophancy
   - src-2026-10-27-anthropic-agents-judgment-calls
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -96,6 +97,23 @@ versus **0.004** for alphabetic labels.
 This is a planted, single-behavior detection task in a preliminary research blog, so it shows that
 sycophancy can leave a readable trace in attention, not that it can be audited in production models.
 
+## A vendor tells users to prompt against its own assistant
+
+[[Anthropic - The Founder's Playbook - Building an AI-Native Startup]], an Anthropic marketing
+guide for startup founders, describes this failure from the user's side and as a property of the
+vendor's own tools. "Confirmation bias now comes with a research engine." "Ask AI to validate your
+startup idea and it will find supporting evidence; ask it to size your potential market and it will
+find the number that makes your TAM look fundable." Its explanation, "AI follows your direction",
+fits this page's definition: the answer changes because the user wants it to.
+
+The prescribed remedy is to point the same tool the other way. The founder asks Claude to argue
+against the idea, to make the strongest case for a competitor, and to flag where the founder's
+reading of a synthesis "might be pattern-matching to what you want to hear". This is an unevaluated
+prompt-level mitigation. It uses the same model as the check, which is the risk recorded under
+"Reviewers inherit the same risk" above. The judgment-calls trial is also relevant. Agents given a
+lean "rarely made a strong case for why an expert might prefer the other option", so a requested
+counterargument should be checked for strength rather than assumed to be balanced.
+
 ## Open questions
 
 - How much agreement changes with training, wording, or conversational pressure in a particular
@@ -118,3 +136,5 @@ sycophancy can leave a readable trace in attention, not that it can be audited i
 - [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
 - [[Human Deferral to AI]]
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]
+- [[Anthropic]]

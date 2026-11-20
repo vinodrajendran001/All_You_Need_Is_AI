@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-13
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - code-review
@@ -13,6 +13,8 @@ source_ids:
   - src-2026-10-15-osmani-claude-code-review
   - src-2026-10-20-cloudflare-inference-bill
   - src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
+  - src-2026-11-13-orlanski-slop-moves-up
+  - src-2026-11-12-huntley-answer-is-engineering
 status: active
 ---
 
@@ -116,6 +118,63 @@ LinkedIn's "against established patterns" filter in particular could hide a real
 pattern, and neither source reports what suppression costs; Anthropic says only that it A/B tested
 its filters on its own PRs.
 
+### The slop worth reviewing has moved from lines to design
+
+[[Gabe Orlanski - Slop Is Moving Up the Stack]] suggests that rule-based review targets are aging
+out. Orlanski authored SlopCodeBench, LibraryDesignBench and LibraryUseBench, so these are
+**first-party benchmark results** from the person who built the benchmarks; he writes "I might be
+biased" and closes by asking to be hired. Line patterns fell: `return None, error` tuples in both
+the Claude and GPT families, and giant functions sharply in Anthropic's newer runs (the newer GPT
+runs got worse on giant functions). The regressions are now design choices: "Error handling got
+worse for all three families". New GPT runs have **49–74** except clauses that put
+`KeyError`/`TypeError` next to I/O errors, against **2** and **10** for GPT-5.4 and 5.5, so a
+programming bug reaches the user as an operational error ("rollback failed"). Some flagged patterns
+were patched around rather than fixed. `except Exception:` became `except OSError: return None`,
+which in one example means "the protected operation runs with no role check". And on
+LibraryUseBench, "every model hand-writes something the library already does, in 73% to 100% of its
+solutions".
+
+For a reviewer, the important question shifts from whether a line matches a known anti-pattern to
+whether the change should exist at all, given what the codebase or a dependency already provides.
+None of the reviewer designs above reports recall on that class. The samples are small (LUB and LDB
+use 15 tasks), and what counts as a rewrite or a workaround is judged by subagents, with no human
+agreement rate reported.
+
+### Deterministic back pressure as the first reviewer
+
+[[Geoffrey Huntley - The Answer to AI Is Engineering]] argues that much of what reviewers catch should
+never reach review. "Ralph was never just about loops. It was about stopping the loop from closing on
+bad code." The mechanism is deterministic: pre-commit or prek hooks that block a push that does not
+compile, plus static rules such as "this domain must never be coupled to that domain" (SQL must not
+reference the API). That would normally be an architecture review, he says, "but agents are pretty
+dumb and will do it anyway". His claim is that teams can "engineer away much of the need for code
+review" with checks like these.
+
+This is the same move as LinkedIn's deterministic duplicate pass and Anthropic's known-clean controls:
+put cheap, exact checks ahead of probabilistic reviewers. Huntley's is the strongest version, and it is
+**argument, not evidence**: a practitioner talk with personal demos and no miss-rate comparison.
+Deterministic checks catch only what someone encoded. Orlanski's design-level slop is the class such
+rules have not yet captured, and his "slop that moved" examples show agents patching around the rules
+that do exist.
+
+### Re-implementing library code: defect or policy?
+
+The two sources disagree directly on a behaviour a reviewer has to rule on. **Orlanski** counts
+hand-written copies of library functionality as slop, "another place for a bug to hide", and measures
+it: 73% to 100% of LibraryUseBench solutions do it, and implementers had to work around agent-written
+libraries **40%** of the time against **27%** for a human-written one. **Huntley** recommends the
+opposite as policy. He says "I don't think we need libraries anymore", reports that he no longer uses
+much open source above the kernel and other low-level software, and advises to "either generate it
+first-party, or vendor the open-source software" so agents can patch it without waiting on upstream.
+His reason is supply-chain and incident-response cost, not code quality, and he excludes cryptography.
+
+Neither weighs the other's cost. Orlanski measures quality on a benchmark with no supply-chain term;
+Huntley argues from an incident list he does not source, with no quality measurement. A review rule
+therefore has to choose explicitly (flag re-implementation as redundancy, or accept it where a
+vendoring or generation policy exists), and nothing in the vault shows which choice produces fewer
+defects. Both positions come with an interest attached: Orlanski is promoting his own benchmarks, and
+Huntley works at Antithesis, which makes the verification libraries his talk recommends.
+
 ### Where review goes next
 
 LinkedIn plans an optional **risk heat map** that scores diff regions by predicted risk, and expects
@@ -134,6 +193,11 @@ faster than people can read it.
 - What do suppression filters cost in recall, and how would a team detect a suppressed true bug?
 - How does per-review cost (reported only by Cloudflare) scale with the fan-out and verification
   steps LinkedIn and Anthropic describe?
+- Can a reviewer reliably detect re-implementation of functionality the codebase or a dependency
+  already provides, and should it flag it where a team generates or vendors code by policy? Orlanski
+  measures the quality cost and Huntley argues the supply-chain benefit; no source compares both.
+- What share of today's review findings could deterministic hooks and coupling rules catch before
+  review? Huntley says "much"; no source measures it.
 
 ## Related pages
 
@@ -150,3 +214,5 @@ faster than people can read it.
 - [[Reasoning Effort Control]]
 - [[Coding Agent Harness]]
 - [[GitHub]]
+- [[Gabe Orlanski - Slop Is Moving Up the Stack]]
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-11-13
+updated: 2026-11-20
 entity_kind: organization
 tags:
   - entity
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-11-09-zvi-ai-rd-acceleration-rsi
   - src-2026-11-10-mollick-fable-5-2-jagged-agi
   - src-2026-11-06-psi-aaronson-ambainis-proof
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -208,6 +209,23 @@ Two points belong on this page because they concern how Anthropic discloses.
   "non-public Anthropic model" ran in the research system that found a Lean-checked proof of a
   quantum-computing conjecture. The post does not name the model. See [[AI for Mathematical Discovery]].
 
+## A startup guide that is marketing, with stated limits on its own tools
+
+[[Anthropic - The Founder's Playbook - Building an AI-Native Startup]] is an undated, unbylined
+36-page PDF, attributed to Anthropic from its content. It maps Idea, MVP, Launch, and Scale stages
+onto three Claude surfaces: Chat, Claude Cowork, and Claude Code. "The three share the same Claude
+underneath; what changes is the workspace around it." It closes by promoting the Anthropic Startups
+Program. Its customer figures are Anthropic's marketing claims about its customers, with no
+methodology given. Examples include Carta Healthcare's "22,000 surgical cases per year" with 66%
+less data abstraction time, and Anything's "1.5 million users".
+
+Two passages cut against the sales message, and they are why the guide is in the vault. It says its
+assistant amplifies confirmation bias: "Confirmation bias now comes with a research engine". It also
+limits its own security tooling. Claude's first-pass review "is not a substitute for security
+tooling, however, or, at higher stakes, a human reviewer", and Claude Code Security was "a limited
+beta release" at "the time of this ebook's publication". These are stated cautions, not measured results; see
+[[Sycophancy]] and [[AI-Native Software Development Lifecycle]].
+
 ## Related pages
 
 - [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
@@ -248,3 +266,5 @@ Two points belong on this page because they concern how Anthropic discloses.
 - [[Anthropic - How AI Agents Shape Experts' Judgment Calls]]
 - [[Human Deferral to AI]]
 - [[astwei et al - Teaching Qwen Why]]
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]
+- [[Sycophancy]]

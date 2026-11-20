@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - neural-networks
@@ -21,6 +21,8 @@ source_ids:
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-11-02-takehi-weight-space-programming
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-17-strauss-weight-space-experiments
+  - src-2026-11-18-toumbourou-wsp-1990s-researcher
 status: active
 ---
 
@@ -134,6 +136,37 @@ the PPO baselines are best-of-seeds at fixed budgets, only one LLM was tested, a
 preliminary blog. Nothing in it shows reasoning-written weights replacing gradient training for
 large models learned from data.
 
+Two independent follow-ups test the writing side with other models. [[Jacob Strauss - Experiments in Weight-Space Programming]] gave Claude Opus 5.5 a
+NumPy-only sandbox, "a dozen or so" training samples per draw and a capped number of validation calls,
+on six small TensorFlow networks. Where a compact known rule exists it scored perfect or
+near-perfect: CartPole perfect "in just a few turns", Two Spirals **99.9%** on test (no trained
+baseline given for either), bracket matching **100%** at every length against a cited trained
+network's **96.6%**. On data-heavy tasks it lost or tied: IMDB **86.2%** against **87.0%** for the
+same model
+with gradient descent, MNIST **64.1%** by stroke-drawn templates against ">85% in under 20 seconds" of
+training, and editing an undertrained Shakespeare LSTM moved it **39.9% → 40.5%**, "roughly half an
+epoch". Strauss concludes WSP "isn't an effective replacement for training loops" and that the agent
+"seems better at deciding what a network should look like than at choosing its exact numbers". Each
+experiment is a single run, and rule compliance was checked by another LLM.
+
+[[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]] reaches the same split with a richer feedback channel. Claude Fable 5.2 set all **5,994**
+weights of a fixed MNIST CNN over up to **50** steps, seeing loss, accuracy and a confusion matrix on
+**10,000** training images each step. Three runs landed "around 90%" on test, the best at **91.3%**,
+"roughly where 50 steps of training with Adam gets us". The author flags this as not like-for-like:
+Adam's 50 steps see **3,200** images, while Claude got scores over all 10,000 at every step. The
+transcripts show how. The model repurposed the output layer to measure how often each hand-built
+feature fired per digit, then built a naive Bayes-style classifier from those rates: "it's fitting a
+classifier by hand", without breaking the no-fitting rule. On 64×64 cats versus dogs the approach
+reached **61.6%** (Adam: **55%** after 500 steps, **74%** after 5,000). Re-reading Astra's Go network,
+Toumbourou finds a classical rule-based Go program driven by a config of **26** hand-set numbers, which
+supports the "closer to compiling" reading above. His tentative conclusion, "from these experiments
+at least", is that LLMs "aren't so much 'writing in weight-space' as brilliantly chaining together
+hand-designed techniques". It is three runs of one model.
+
+The cross-source pattern, that writing succeeds where a compact human-known algorithm exists and
+gradient descent ties or wins where performance rests on many statistical regularities, is collected
+on [[Weight-Space Programming]].
+
 ## Activation gradients and architecture edits during training
 
 [[DoubleAI - Can LLMs Redesign Themselves as They Train]] uses two textbook pieces of the training
@@ -205,3 +238,6 @@ does almost as well, the gain came from extra parameters, not from what the laye
 - [[Siddhant Rai - LeJEPA Provable and Scalable Self-Supervised Learning]]
 - [[Joint-Embedding Predictive Architecture]]
 - [[Siddhant Rai]]
+- [[Jacob Strauss - Experiments in Weight-Space Programming]]
+- [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
+- [[Weight-Space Programming]]

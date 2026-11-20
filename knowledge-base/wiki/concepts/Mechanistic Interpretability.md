@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - interpretability
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-11-10-goodfire-neurons-interpretable-basis
   - src-2026-11-03-willison-qwen-interprets-weights
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-17-strauss-weight-space-experiments
+  - src-2026-11-18-toumbourou-wsp-1990s-researcher
 status: active
 ---
 
@@ -239,6 +241,24 @@ But it is one run per game, the stated confidences are the model's own, and the 
 whether the prompts reveal the candidate games. Willison's reading is deflationary: a sufficiently
 experienced human "armed with a notepad and a pencil" could get there.
 
+Two writing-side follow-ups bear on legibility rather than reading. [[Jacob Strauss - Experiments in Weight-Space Programming]] argues that gradient
+descent captures patterns implicitly while the agent realises them explicitly, so each unit it writes
+can be explained. Examples are an IMDB network in which the agent changed **663** of **10,001** weights
+to form a tiered sentiment dictionary, and a Two Spirals network whose first layer drew rays from the
+centre and whose output counted spiral edges crossed. He suggests such a network may be worth more
+than "a few points of accuracy" for small models. This is interpretability by construction, networks
+built to be legible. It is not evidence that a model can read representations learned by training,
+and it was not compared against a behavior-only baseline.
+
+[[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]] explains where that legibility comes from. The MNIST and Go networks he examined are
+assembled from named, pre-deep-learning features: four-angle line detectors that are "cousins of the
+Sobel filter", loop and corner detectors, and for Go, liberties, atari, captures and eyes tuned through
+**26** hand-set numbers. The model also used the output layer as an instrument, "like a unit test",
+turning each row of the confusion matrix into a histogram of one detector. That is a probing technique,
+but applied to features the model wrote itself. The Go analysis is secondhand: the author says he
+doesn't know much about Go and that the section "was largely put together in consultation with Opus
+5.5". The reading, writing and editing results together are compared on [[Weight-Space Programming]].
+
 ### Interpretability tools used during training
 
 [[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves interpretability tools into training
@@ -309,3 +329,6 @@ is first-party, unattributed, reports no seeds or error bars, and does not name 
 - [[Anthropic]]
 - [[OpenAI]]
 - [[Qwen]]
+- [[Jacob Strauss - Experiments in Weight-Space Programming]]
+- [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
+- [[Weight-Space Programming]]

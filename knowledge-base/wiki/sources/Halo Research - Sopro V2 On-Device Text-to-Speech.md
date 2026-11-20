@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-11-20
 source_id: src-2026-08-30-halo-research-sopro-v2
 source_title: "Sopro V2: private, fast, on-device text-to-speech"
 source_author: "Halo Research (Halo NeuroAI)"
@@ -96,6 +96,7 @@ for not misleading downstream users about provenance guarantees.
 - [[Small Language Models]]
 - [[On-Device Reasoning]]
 - [[Flow Matching]]
+- [[Neural Audio Codec]]
 
 ## Citations
 

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-20
 entity_kind: person
 tags:
   - entity
@@ -9,6 +9,7 @@ tags:
   - llm-applications
 source_ids:
   - src-2026-10-20-husain-decision-model-evals
+  - src-2026-11-19-shankar-husain-evals-three-gulfs
 status: active
 ---
 
@@ -16,7 +17,8 @@ status: active
 
 ## What it is
 
-Author of **"How To Use Decision Models for Evals"**, the first source in this vault to use
+Co-author, with Shreya Shankar, of the O'Reilly book *Evals for AI Engineers* (see Notes), and author
+of **"How To Use Decision Models for Evals"**, the first source in this vault to use
 [[Typed Probabilistic Decision Models]] as **automated evaluators** and then carry out the unglamorous
 work the category usually skips: tuning the decision threshold on labeled data, checking whether the
 returned probabilities are calibrated, and pricing the result.
@@ -66,6 +68,21 @@ models — including [[LLM-as-a-Judge]] setups, which routinely report scores wi
 those scores mean what their scale implies. See [[Embedded Evaluation]] and
 [[Interpretability Evaluation]].
 
+### The book and the Three Gulfs
+
+Husain co-authored *Evals for AI Engineers* (O'Reilly) with Shreya Shankar. An excerpt republished by
+ByteByteGo is summarised in [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]]. It sets out the **Three Gulfs** (comprehension,
+specification, generalization), "adapted from Shankar et al. (2025) and inspired by Norman (1988)", and
+an **Analyze-Measure-Improve** lifecycle. Read traces first, fix specification gaps in the prompt, and
+build evaluators only for the generalization failures that remain. That is the upstream half of the
+threshold-and-calibration work above, deciding *what* to score before asking whether the score means
+anything.
+
+ByteByteGo's introduction, not the excerpt, describes Husain as "an ML engineer at OpenAI with 20 years
+of experience", previously at Airbnb and GitHub, who has helped "more than 35 companies", and says the
+pair have trained "more than 4,500 engineers and product managers". These are publisher-supplied bio
+claims, unverified here. The excerpt's copyright line reads "© 2027".
+
 ## Related pages
 
 - [[Typed Probabilistic Decision Models]]
@@ -76,3 +93,4 @@ those scores mean what their scale implies. See [[Embedded Evaluation]] and
 - [[Agent Observability]]
 - [[Hamel Husain - How To Use Decision Models for Evals]]
 - [[Why Decision Models, and Why Now - A Taxonomy of Automated Decision-Making|Why Decision Models, and Why Now]]
+- [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]]

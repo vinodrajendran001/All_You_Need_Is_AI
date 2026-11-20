@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-06
-updated: 2026-11-13
+updated: 2026-11-20
 source_id: src-2026-11-02-takehi-weight-space-programming
 source_title: "Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights"
 source_author: Rikiya Takehi, Jayden Teoh, Alex Zhang, Omar Khattab
@@ -137,6 +137,7 @@ failed without tools.
 - [[Sycophancy]]
 - [[LLM Reasoning]]
 - [[Harness Optimization]]
+- [[Weight-Space Programming]]
 
 ## Raw capture
 

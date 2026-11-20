@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - coding-agents
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-11-04-x-town-square-rebuild
   - src-2026-11-11-bytebytego-github-copilot-rust-port
   - src-2026-10-10-0xcodila-rea-reverse-engineering
+  - src-2026-11-19-tselovalnikov-10x-engineer
 status: active
 ---
 
@@ -176,6 +177,23 @@ pass. These are first-party showcases quoted in a clickbait-framed post, not ind
 legality of rebuilding from someone else's binary depends on clean-room practice and use boundaries;
 that discussion belongs in [[Agent Security and Governance]].
 
+## Replacing a licensed component from its specification and test suite
+
+[[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]] relays a **secondhand**
+anecdote from a Pragmatic Engineer podcast episode, in which Gergely Orosz described an engineer whose
+company paid "a substantial share of its revenue" to license a critical software component. Rebuilding
+it would have taken years. With AI agents, the engineer "managed to build a faster replacement using
+the existing specifications and test suite". The original vendor then paid the company for the new
+implementation and for keeping it closed-source.
+
+The enabling condition matches this page's port-style migrations: an executable reference (here a
+spec plus a test suite) makes an agent-built replacement checkable, as the old servers did for X and
+the original binary does for REA. The difference is the target. This is a third-party component, not
+the team's own legacy code, so the economic trigger is a licence cost that agents made worth avoiding,
+not accumulated debt. No company, component, timeline, benchmark for "faster", or test-coverage figure
+is given, and the story passes through two retellings (engineer, then Orosz, then the essay) before
+reaching the vault.
+
 ## Open questions
 
 - How should parity tolerances account for floating-point and algorithmic differences?
@@ -213,3 +231,4 @@ that discussion belongs in [[Agent Security and Governance]].
 - [[AI Code Review]]
 - [[Agent Delegation]]
 - [[Agent Security and Governance]]
+- [[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]]

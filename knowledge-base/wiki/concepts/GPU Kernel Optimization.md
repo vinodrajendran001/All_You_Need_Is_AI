@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-10-23
+updated: 2026-11-20
 tags:
   - concept
   - gpu
@@ -17,6 +17,8 @@ source_ids:
   - src-2026-09-28-inferact-tpu-megakernels-kimi-k3
   - src-2026-09-24-modal-quail-billion-tokens-per-minute
   - src-2026-10-21-ant-vllm-humming
+  - src-2026-11-11-cam-pedersen-derive-kernels
+  - src-2026-11-13-kim-helion-compile-time-heuristics
 status: active
 ---
 
@@ -186,6 +188,40 @@ Humming/NVCC and **1.88 s** for Humming/NVRTC. That is not whole-model warmup, r
 speed, or a universal compiler comparison. Its kernel microbenchmarks use warmed kernels
 but cold L2, so their timing intentionally excludes this compilation cost.
 
+## Derive the kernel instead of writing it
+
+[[Cam Pedersen - Don't Write Kernels, Derive Them]] is the strongest answer yet to this page's first open
+question. Its compiler, tang, has two constructs — affine **views** and **comprehensions** (reductions
+under a monoid) — and derives the FlashAttention lineage above rather than implementing it: fusion is one
+substitution rule, flash attention is a rewrite that recognizes **online softmax as a monoid**, and the
+backward pass is derived by the same passes. The thesis is that "a kernel is a theorem, not a program";
+chip-specific knowledge lives in a per-device **schedule search**, because the fastest schedule "flipped
+between two runs of the same code" on an M4 Max and M4-tuned rules picked the wrong matmul on an RTX 3090.
+
+The first-party results are mixed and reported as such. The transformer-block forward beats PyTorch in a
+CUDA graph at seq 512 (**0.331 vs 0.396 ms**) and loses at seq 128 (**0.196 vs 0.162**). Derived
+head-dim-256 attention runs at **0.43–0.54** of FlashAttention-3 forward and **0.22–0.40** backward, and
+a sliding window is **25× slower** than FlexAttention. Lowering still needs "shape-keyed emitters for the
+hottest schedules", so hand knowledge survives as intrinsics rather than per-operator kernels.
+
+## How much does search actually buy?
+
+[[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]] measures the
+gap between a computed config and full autotuning for PyTorch's Helion kernel DSL. Heuristics read the
+device IR, estimate per-CTA registers, shared memory and (on Blackwell) tensor memory, and set block
+sizes, `num_warps` and `num_stages` without benchmarking anything, in "tens of milliseconds".
+
+On H100, against hand-written FLA Triton linear attention the old default ran at **0.52x**, the computed
+config at **1.18x** forward (**1.12x** with backward) and full autotuning at **1.26x**. Against vLLM's
+CUDA reduction kernels: **0.58x**, **1.27x** and **1.31x** — autotuning "buys only about **3%**".
+Seeding the autotuner cuts median configs to reach within 25% of best from **103.5 to 2.5**, but to
+finish from only **521.5 to 420.5**, with no better final config.
+
+This sits in tension with [[Cam Pedersen - Don't Write Kernels, Derive Them]], whose fastest schedules
+flipped between runs and whose chip-tuned rules mis-transferred. Helion's constants were "tuned against
+these two chips" (H100, B200), the authors say "Plenty of it we get wrong", and full autotuning "remains
+the right call" for fixed shapes. All results are first-party.
+
 ## Open questions
 
 - How much of the kernel ladder survives as compilers absorb it? Triton and CUDA Tile exist precisely to make step 3 unnecessary, yet the fastest kernels are still hand-written.
@@ -195,6 +231,8 @@ but cold L2, so their timing intentionally excludes this compilation cost.
 - Can [[AI-Generated Kernels]] climb this ladder, or only its first rungs?
 - Pallas targets both GPU and TPU, but Inferact's advantage comes from a memory model only one of them has. What is a portable kernel language worth when the winning strategy does not port?
 - Quail's kernels and its workload assumptions are reported together with no ablation between them. How much of a 1.84x geometric-mean advantage is kernel engineering and how much is a narrower contract?
+- tang derives FlashAttention from a monoid rewrite but still trails FA2/FA3 on speed. Is the remaining gap schedule search (asynchrony, TMA, block-sparse skipping) that a compiler can eventually reach, or hand insight that has to be re-encoded as emitters for each chip?
+- Static heuristics recover most of the autotuned result on Helion's H100 suites; do they transfer to other vendors, where the post's constants were never tuned?
 
 ## Related pages
 
@@ -217,3 +255,8 @@ but cold L2, so their timing intentionally excludes this compilation cost.
 - [[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]
 - [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
 - [[Serving Benchmarks and Goodput]]
+- [[Cam Pedersen - Don't Write Kernels, Derive Them]]
+- [[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]]
+- [[PyTorch]]
+- [[Inference Determinism]]
+- [[Low-Precision Training]]

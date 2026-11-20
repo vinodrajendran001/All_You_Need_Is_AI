@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - reasoning
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-11-09-tillman-two-kinds-test-time-scaling
   - src-2026-11-08-alex-wang-reasoning-pathfinding
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-18-bytebytego-thinking-more-dumb
 status: active
 ---
 
@@ -63,6 +64,22 @@ It is one of the two levers for improving reasoning (the other being post-traini
 ### Stop when marginal value disappears
 
 [[Yoko Li - Knowing When to Stop - The Art of Making a Loop Converge]] adds the systems-level stopping problem. Returns can plateau or turn negative while token cost continues rising with the transcript. A controller therefore needs more than a fixed sample budget: it should observe progress, detect unreachable targets, meter evaluator cost, and stop when expected improvement no longer justifies another iteration.
+
+### Overthinking takes two forms with different costs
+
+[[ByteByteGo - Why Thinking More Can Make an LLM Dumb]], a secondary explainer with no measurements of its own, separates two failure modes
+behind the claim that just thinking more is not enough. In the first, the model keeps going after it
+is right. In an unnamed "study of reasoning models", one model asked "2 + 3" reached five in its first
+solution and continued until its response contained **thirteen** solutions. The article's explanation
+is the reward: an outcome-only correctness checker gives a short and a long correct response the same
+score, so "The score offers little guidance about which response made better use of the user’s time."
+In the second, an extra step changes a right answer. In an illustrative timetable question the model
+finds 9:00, then answers 9:10 because a delay detail "sounds too deliberate to ignore". The first form
+costs latency; the second costs correctness. The article's measurement advice applies to this page:
+correlating length with errors across questions is confounded by difficulty, so the better test gives
+"the same model the same questions with different amounts of reasoning". The "2 + 3" study is absent
+from the article's two-item reference list, the timetable case is constructed, and the reward
+explanation is argued rather than tested.
 
 ## A third rung between thinking and not thinking
 
@@ -363,3 +380,5 @@ for a length-only rule (first-party, no error bars).
 - [[Reasoning Effort Control]]
 - [[Sebastian Raschka - Controlling Reasoning Effort in LLMs]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[ByteByteGo - Why Thinking More Can Make an LLM Dumb]]
+- [[ByteByteGo]]

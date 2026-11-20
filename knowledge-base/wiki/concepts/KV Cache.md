@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - kv-cache
@@ -38,6 +38,8 @@ source_ids:
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-10-alphasignal-latent-sparse-attention
+  - src-2026-10-31-william-morgan-kinference-benchmarks
+  - src-2026-11-19-ashish-subedi-antigravity-quota
 status: active
 ---
 
@@ -223,6 +225,23 @@ can exceed weight memory under long context or large batch.
 the weight-tensor level. The remaining memory must still hold KV cache, activations, workspaces, and
 runtime overhead. Quantizing weights can therefore move the bottleneck *to* the cache; quantizing
 the cache can raise concurrency, but only with supported kernels and measured quality.
+
+## The first measured price of ignoring cache location
+
+[[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]] puts vendor numbers on the
+routing claim above. Three vLLM pods per arm served Qwen-3.8-27B-FP8. Kinference predicted TTFT per
+pod from KV-cache overlap and queue size; a Kubernetes Service spread requests at random.
+
+At light load, on prompts sharing one of 24 16,000-token prefixes, median TTFT fell from **6.88 s to
+0.31 s** (ratio 0.045, 95% CI [0.042, 0.596]). On 8-turn conversations it fell from **1.70 s to 0.59
+s**. With no shared prefixes the medians did not differ (**6.92 vs 6.83 s**), which suggests the gain
+comes from cache hits rather than router overhead. The p95 still dropped from **21.46 to 12.33 s**,
+which the authors "likely" attribute to queue awareness.
+
+This confirms the trade-off stated above: the router weighed cache overlap and queue together, not
+cache alone. Caveats: first-party, one model, three replicas, prefixes new in every trial, and short
+windows (240 s measured). *Reviewer inference:* longer runs or skewed prefix popularity could warm
+random replicas more and narrow the gap; the post does not test this.
 
 ## Cache compression became a hierarchy
 
@@ -460,6 +479,20 @@ The same capture describes Qwen-3.8-27B as a model "which uses full attention". 
 the quarter-full-attention layout in the paragraph above and in
 [[Linear Attention and Recurrent Memory]], which records the contradiction; both claims are kept.
 
+## A prefix can be well ordered and still go cold
+
+The prefix rules on this page are about where content sits. [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]]
+adds when. Google's implicit caching on Gemini 4 is automatic and best-effort, with a **90% discount**
+and no published time-to-live. Measuring Antigravity's per-turn token counts, the author found hits
+after idle gaps of 4 min 30 s and 4 min 45 s (**14,764** cached) and misses at 5 min 00 s and 8 min
+00 s. A hit resets the timer, so a single keep-alive ping (an ordinary user turn) at **+4 minutes**
+turned an 8-minute miss (**16,921** uncached) into a hit (**2,144** uncached, **14,880** cached).
+
+Pinging costs tokens, so it needs a cap. The author's break-even is **3 pings** at a 16.8k context and
+**7 pings** at 150k. The **"~8.9x ROI"** and the **88%** upper saving come from a modeled 150,000-token
+session, not a measurement; the measured window saved **29-36%**. Each figure is a single small run
+by one author, and Google says nothing about its TTL, which "can shift under load".
+
 ## Open questions
 
 - Which KV-compression methods preserve retrieval accuracy best under 100K+ context lengths?
@@ -478,6 +511,9 @@ the quarter-full-attention layout in the paragraph above and in
 - How much memory do latent sparse attention's centroids add per cached token at 10 million tokens,
   and does the cluster search still find the right keys when the cache is quantized? The capture
   reports speed and accuracy but no memory or precision figures.
+- An idle expiry turns human pauses into full-price prefills. What share of an interactive agent's
+  cache misses come from TTL expiry rather than prefix edits, and should a harness pay keep-alive
+  pings or accept the miss? The vault has one author's measurement on one provider.
 
 ## Related pages
 
@@ -532,3 +568,6 @@ the quarter-full-attention layout in the paragraph above and in
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
 - [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
 - [[Sparse Attention]]
+- [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]]
+- [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]]
+- [[Kubernetes]]

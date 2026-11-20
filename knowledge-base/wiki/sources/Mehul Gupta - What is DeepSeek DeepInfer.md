@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-20
 source_id: src-2026-10-20-gupta-deepseek-deepinfer
 source_title: "What is DeepSeek DeepInfer? The Inference Engine Behind Its Production AI Systems"
 source_author: Mehul Gupta
@@ -104,6 +104,7 @@ draft length as a speedup multiple.
 - [[Prefill-Decode Disaggregation]]
 - [[Speculative Decoding]]
 - [[DeepSeek]]
+- [[Inference Determinism]]
 
 ## Raw capture
 

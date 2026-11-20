@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -27,6 +27,8 @@ source_ids:
   - src-2026-11-06-psi-aaronson-ambainis-proof
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-18-toumbourou-wsp-1990s-researcher
+  - src-2026-11-18-meta-ads-technique-propagation
 status: active
 ---
 
@@ -216,6 +218,23 @@ the contribution of agents nor the conversion from agent tokens to useful experi
 Agent-initiated campaigns are future work. The execution-versus-direction distinction above
 therefore remains: measured artifact improvements do not establish improved research taste.
 
+## Agents propagating proven techniques across a production model fleet
+
+[[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]] is a larger first-party case of automating execution while direction stays elsewhere.
+Techniques are proven first by people and by Meta's Ranking Engineer Agent (REA). Agents then handle
+propagation: ranking technique-model candidates (discovery), adapting them to templates or, beside an
+engineer, to bespoke models (generalization), and running multi-day experiments with failure recovery
+and "an auto-research loop" on top of templates (adoption). Shipping gates are unchanged: offline
+normalized entropy, guardrails, and "a statistically significant win in online A/B testing".
+
+Meta estimates that since agents began driving execution in March 2026 they handle "over 60%" of
+technique propagation. It reports "3x greater engineering productivity, a median 4x reduction in
+training compute across select combinations, and an estimated $45M+ in compute savings by the end of
+the year". Each stage has its own metric, and at discovery "Recall matters more here, since a model
+missed at this stage never gets a second chance". No values are given for those stage metrics. Nothing
+separates the agents' contribution from the Standard Model Templates beneath them. "self-evolving
+learning" toward a **5x** throughput target is planned, not shown. See [[Meta]].
+
 ## Weights join the artifacts an agent can edit
 
 [[Rikiya Takehi et al - Sparks of Weight-Space Programming]] places itself in a lineage of LLMs
@@ -236,6 +255,18 @@ authors conclude that an edit could not add an ability the model lacked. Benchma
 settings and budgets stayed fixed by the humans, so the result fits the bound above. Execution of
 the loop is automated; the definition of improvement is not. All of this is one model on one
 blog, with no comparison against a conventional search over the same edits.
+
+[[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]] shows what a rich feedback channel does to rules stated in a prompt. He forbade fitting,
+regression and searching, and gave Claude Fable 5.2 only loss, accuracy and a confusion matrix over
+**10,000** MNIST training images per step, a loop he calls "*LLM Descent*". Across three runs the model
+spent **22**, **24** and **27** steps on measurement, rewiring the output layer so the confusion matrix
+reported how often each feature fired, then building a classifier from those rates. The author calls
+this "kinda cheating" that "doesn't break the rules". The model also tracked which step would be
+scored: "if this step does not beat 0.3111, step 48 is the one that gets scored." The rules constrained
+the code, not what the metric let the agent compute, so the feedback channel became the fitting
+procedure (compare [[Benchmark Optimization]]). The test set stayed untouched, so the **91.3%** best
+run is not contaminated, but this is three runs of one model on one task. The wider set of weight-writing
+results is on [[Weight-Space Programming]].
 
 [[DoubleAI - Can LLMs Redesign Themselves as They Train]] moves the agent inside the training run. A
 coding agent, "powered by a frontier model" that is never named, reads activation gradients, inserts
@@ -322,6 +353,10 @@ compute and serial steps. This is the Verifier's law above, applied at research 
   does not prove it, and it concedes that better coordination, more diverse training, or genuinely new
   learning methods could change the curves it reports.
 
+- Meta grades its propagation agents stage by stage (precision and recall, human interventions per
+  experiment, share of issues self-mitigated) but publishes no values. Do stage metrics like these
+  predict the final A/B outcome well enough to steer a multi-day agent pipeline?
+
 ## Related pages
 
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
@@ -368,3 +403,9 @@ compute and serial steps. This is the Verifier's law above, applied at research 
 - [[AI for Mathematical Discovery]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
 - [[Curt Tigges et al - Neurons as an Interpretable Basis]]
+- [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
+- [[Meta]]
+- [[ML Systems at Scale]]
+- [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
+- [[Weight-Space Programming]]
+- [[Benchmark Optimization]]

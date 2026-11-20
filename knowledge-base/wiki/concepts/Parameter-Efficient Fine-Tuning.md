@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-11-06
+updated: 2026-11-20
 tags:
   - concept
   - fine-tuning
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-10-27-bytebytego-apple-on-device
   - src-2026-11-02-takehi-weight-space-programming
   - src-2026-11-03-astwei-teaching-qwen-why
+  - src-2026-11-17-bytebytego-instacart-query-understanding
 status: active
 ---
 
@@ -76,6 +77,15 @@ precision are different choices, and reduced checkpoint duplication does not eli
 activations, KV cache, switching overhead, or task-quality evaluation. The source reports the
 design, not a controlled comparison of adapter ranks or whole-device performance.
 
+The reverse choice, merging an adapter so it is no longer reused, is a latency lever. In [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]],
+Instacart's LoRA-tuned Llama-3 8B query tagger started at "nearly 700 milliseconds on an A100 GPU"
+against a target in "the low 100s of milliseconds". Merging the LoRA adapter into the base weights cut
+latency "by about 30%". With an H100 upgrade the team reached "the 300-millisecond target". The article
+does not reconcile 300 ms with the low-100s target. FP8 quantization saved "another 10%", but "recall
+declined slightly", and the unquantized model was deployed. Separate adapters keep one base model
+serving many tasks. A merged adapter gives that up for a single hot path. The figures are Instacart's,
+relayed by ByteByteGo; the same tagger's teacher-student setup is on [[Knowledge Distillation]].
+
 ## A small update can be written instead of trained
 
 [[Rikiya Takehi et al - Sparks of Weight-Space Programming]] reaches a parameter-efficient result
@@ -130,3 +140,5 @@ plateaued. That explanation is a hypothesis, not a tested result.
 - [[Direct Preference Optimization]]
 - [[ByteByteGo - How to Customize a Model to Learn New Tricks]]
 - [[astwei et al - Teaching Qwen Why]]
+- [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]]
+- [[Weight-Space Programming]]

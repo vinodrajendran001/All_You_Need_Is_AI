@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - sdlc
@@ -22,6 +22,9 @@ source_ids:
   - src-2026-10-27-anthropic-agents-judgment-calls
   - src-2026-11-10-bytebytego-linkedin-ai-code-review
   - src-2026-11-11-bytebytego-github-copilot-rust-port
+  - src-2026-11-13-orlanski-slop-moves-up
+  - src-2026-11-19-tselovalnikov-10x-engineer
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -205,6 +208,39 @@ an observed condition; the author's estimate that repair could take "years or ev
 explicitly qualitative, and nothing in the essay shows any real system has reached it or that agents
 cannot repair a highly complex system.
 
+[[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]] makes the same point at the
+level of an individual engineer. It is an **opinion essay with no data**. Orchestrating many agents
+"would likely result in maybe 2–3x your normal throughput with a high risk of burnout in the best
+case". In the worst case it is "an imitation of productivity – multiple slop grenades that can, in
+fact, decrease the company's value". His alternative measures impact by what the work changes, not by
+code volume: pursue projects "that were previously too expensive, too difficult, or simply impossible",
+where the tech stack, the business model and an industry shift intersect. "Simply tokenmaxxing and
+churning out 10x more code is not necessarily going to produce outsized returns". The 2–3x figure is
+the author's hedged estimate, not a measurement. Like the Harvard figures above, it challenges
+stage-throughput numbers as a proxy for value, without measuring value itself.
+
+## Line-level quality improved while design-level redundancy grew
+
+[[Gabe Orlanski - Slop Is Moving Up the Stack]] gives the decoherence argument above a benchmark
+measurement. These are **first-party results** from the author of SlopCodeBench, who writes "I might
+be biased". Rule-level slop fell sharply. Comparing Anthropic's newer runs with its older ones, hits
+across all scb-check rules fell **25%**, functions over 200 lines **93%**, and `sys.exit` outside
+`main` **97%**, while the strict solve-rate trend across 34 setups is **+0.9** points a month. The
+slop "moved up the stack" into design. With a human-written library available and a minimal prompt,
+"every model hand-writes something the library already does, in 73% to 100% of its solutions".
+Implementers worked around agent-written libraries **40%** of the time, against **27%** for the human
+library.
+
+This is the "redundant models" form of decoherence, observed at the scale of one task. Each copy is
+"another place for a bug to hide". The post does not report whether these solutions pass tests; even
+where they do, a redundant re-implementation is not what the lint, typecheck and test gates on this
+page are built to flag. X's "anti-slop" oxlint plugin, below, targets the line-level patterns that
+are already declining. The samples are small (15 tasks for LUB and LDB), subagents judge what counts
+as a rewrite, and the older-versus-newer comparisons mix models, harness versions and effort
+settings. Whether re-implementation is a defect at all is contested: a practitioner who recommends
+generating code first-party instead of depending on libraries is recorded against Orlanski on
+[[AI Code Review]].
+
 ## A small-team rebuild makes the instruction, skill, and lint layers concrete
 
 [[X Engineering - Rebuilding the Global Town Square from Scratch]] is the first account here of
@@ -282,6 +318,26 @@ only reference for expected behavior", and agents were not allowed to weaken it 
 token bill is the kind of cost-per-outcome number Faik asks for, but without a non-agent baseline or
 costed developer time. The relay is first-party GitHub reporting.
 
+## A founder-scale version: the same artifacts, written before the first line of code
+
+[[Anthropic - The Founder's Playbook - Building an AI-Native Startup]] is a second Anthropic guide,
+an undated **vendor marketing** PDF aimed at founders rather than enterprises. It applies this page's
+control surface at the scale of one person. Before Claude Code writes production code, the founder
+records architectural principles, dependencies to avoid, and accepted tradeoffs, and saves them "as
+CLAUDE.md markdown file(s)". A separate scope document states what the MVP "deliberately does not
+do" and what user evidence would justify a new feature. Every session starts from both documents
+and ends with a log entry in the context document. Metrics and a definition of a false positive are
+fixed before launch, and a security review comes "before any user touches your app".
+
+The guide's reason is a debt claim this page has met before. "AI technical debt, however,
+compounds": without written constraints, "each session re-derives foundational decisions from
+scratch, and those decisions drift." That is close to the decoherence argument above, but here it
+is asserted without measurement, and the remedy is a document rather than a gate. The guide also
+limits what its own tooling can do. Claude's first-pass security review "is not a substitute for
+security tooling, however, or, at higher stakes, a human reviewer". Its outcome figures, such as
+Carta Healthcare's "22,000 surgical cases per year" and 66% less abstraction time, are customer
+stories. They are Anthropic's unverified marketing claims, not evidence about the lifecycle.
+
 ## Open questions
 
 - Which parts survive translation off Claude Code? The artifact loop and act-time enforcement look portable; the specific `CLAUDE.md`/hooks/subagent surface does not.
@@ -328,3 +384,6 @@ costed developer time. The relay is first-party GitHub reporting.
 - [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]]
 - [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]
 - [[AI Code Review]]
+- [[Gabe Orlanski - Slop Is Moving Up the Stack]]
+- [[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]]
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]

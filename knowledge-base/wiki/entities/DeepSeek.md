@@ -2,14 +2,16 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-11-13
-tags: [entity, organization, models, inference, ai-agents]
+updated: 2026-11-20
+tags: [entity, organization, models, inference, ai-agents, open-models]
 source_ids:
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-12-will-depue-checkpoint-forensics
 status: active
 ---
 
@@ -106,6 +108,25 @@ directly, the relayed passage names no GPU type, and no relayed figure measures 
 nothing yet connects to the **890 bytes per token** claim. See [[Inference Serving Engines]] and
 [[Prefill-Decode Disaggregation]].
 
+## A third-party engine for V4.1-Flash, and an approximate prefill
+
+[[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] documents a non-DeepSeek
+engine for **DeepSeek-V4.1-Flash** that uses the model's own features. DSpark drafting reads target
+features from layers 37-39, and a rank-256 "Markov" correction conditions each draft token on the
+previous one. The engine's Blackwell Ultra profile allows **six** draft tokens, where DeepInfer's
+default maximum is five, so the draft budget is an engine choice rather than a model constant. The
+relayed throughput (**2,060 tokens/s on 8 × B300**) is Baseten's, on Baseten's engine. It does not
+bridge the gap noted above between the model's cache claim and DeepInfer, because it is a different
+engine and reports no memory figure.
+
+The new point is about the model. V4.1-Flash is described as a 20-layer encoder plus 20-layer decoder
+whose global KV comes from the encoder side. A long prompt can therefore stream through the first 20
+layers and replay the decoder only over the last **128** tokens: **20,002,560** layer-token evaluations
+against **40,000,000**, a ratio of about **0.500064**. The author says this does not prove a twofold
+FLOP or time reduction. The source cites DeepSeek's paper (Section 3.2.2) as calling bounded replay
+an **approximation**, with "little quality degradation" in DeepSeek's evaluations. Million-token
+prefill figures for this model may therefore not be like-for-like with a full decoder pass.
+
 ## A model that built a verifier on its own activations
 
 In [[DoubleAI - Can LLMs Redesign Themselves as They Train]], **DeepSeek-V4.1-Flash** (described as
@@ -114,6 +135,21 @@ own graded solutions to **243** problems from the 2024 and 2025 contests, it cho
 seven deep blocks of its residual stream. From held-out older problems, DeepSeek predicted the probe
 would add about eight points; the hidden AIME 2026 and HMMT February 2026 sets gave seven
 (**64%→71%**). First-party blog, single run reported.
+
+## An outside reading of DeepSeek's initialization hardware
+
+[[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] reports that DeepSeek
+reuses one initialization seed (**953049583**) across generations. That lets an outside analyst
+compare layouts. DeepSeek V3 and V3.2 read as Hopper (**132** SMs), consistent with DeepSeek's
+disclosed H800 use, though the method cannot separate H800 from H100 or H200. V4-Flash reads as
+B200/B300 (**148**) and V4-Pro as GB200/GB300 (**152**). V4-Flash was reproduced on a physical B300,
+with **445** of **469** selected rows matching bit for bit, and an AMD alternative was excluded for
+that model only. V4-Pro rests on statistics alone, with no physical reproduction. No fingerprint was
+found in V4.1-Flash. The report says this supports, "without proving", Blackwell training. It does
+not establish chip location or ownership, or any export-control violation. It also cites a June 2025
+DeepSeek engineer comment, "we don't have SM100 GPUs", which predates V4's release and so neither
+confirms nor refutes the reading. DeepInfer's SM100 support, above, is software support and is not
+evidence of possession. No DeepSeek response is reported. See [[Checkpoint Forensics]].
 
 ## Open questions
 
@@ -124,11 +160,14 @@ would add about eight points; the hidden AIME 2026 and HMMT February 2026 sets g
   any engine, DeepInfer included.
 - Both DeepSeek sources on this page are secondary — a newsletter and a Medium walkthrough. The vault
   holds no first-party DeepSeek technical document, so every figure attributed to DeepSeek here has
-  passed through an interpreter.
+  passed through an interpreter. Mishra's write-up cites DeepSeek's paper (Section 3.2.2), but only
+  secondhand; the paper itself is not in the vault.
 - What does DeepSeek run internally that DeepInfer does not contain? The omissions are named but their
   in-house replacements are not described anywhere the vault can see.
 - Does the Ascend 950 support reflect a durable multi-vendor strategy or a procurement constraint?
   Nothing in the source distinguishes them.
+- Does the V4-generation Blackwell initialization reading hold under independent replication? Did
+  training stay on the initializing hardware? The forensic report cannot see either.
 
 ## Related pages
 
@@ -148,3 +187,9 @@ would add about eight points; the hidden AIME 2026 and HMMT February 2026 sets g
 - [[Meta]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
+- [[Baseten]]
+- [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]]
+- [[Checkpoint Forensics]]
+- [[NVIDIA]]
+- [[Open Model Ecosystems]]

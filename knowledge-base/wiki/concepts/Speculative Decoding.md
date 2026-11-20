@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - inference
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-15-anshuman-mishra-baseten-2000tps
 status: active
 ---
 
@@ -359,6 +360,25 @@ Two exits are recorded. Megatron's `--mtp-detach-heads` trains the MTP layer onl
 and leaves the main model alone. DeepSeek-V4.1-Flash used no backbone MTP during pretraining and
 trained DSpark separately afterward. None of this measures acceptance rate or decode speed.
 
+## A code-level trace of one production speculative step
+
+[[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] reads Baseten's open-sourced
+engine for DeepSeek-V4.1-Flash and shows what a single step does. DeepSeek's DSpark drafter proposes a
+block. On the SM103 profile the draft limit is **six**, so the target verifies **seven** positions. A
+confidence kernel can shorten the block below a cumulative threshold of **0.3 (TP4)** or **0.2 (TP8)**,
+"profile choices, not universal optimal constants". The GPU picks the verification branch inside a
+captured CUDA graph, so the host never reads the score.
+
+Two details sharpen this page. Acceptance uses a **block sampler** that tests every candidate length and
+"chooses the **largest passing length**", which is neither greedy matching nor per-token `min(1, p/q)`.
+And distribution-preserving speculation preserves the distribution of the *numerical implementation*: it
+"does not make a quantized target identical to a higher-precision model". The relayed **5.6 tokens per
+step ≈ 4.6 accepted drafts + 1** is Baseten's figure on one Tetris-HTML demo, not a τ measured across
+workloads.
+
+The draft limit of six sits beside DeepInfer's default of **five** for the same model family (see the
+determinism section above). The draft budget is an engine profile setting, not a model constant.
+
 ## Open questions
 
 - How well do acceptance predictors such as DSpark's calibrate under traffic or target-model
@@ -372,6 +392,7 @@ trained DSpark separately afterward. None of this measures acceptance rate or de
 - DeepInfer pairs a draft-length default of five with confidence-scheduled verification but publishes no acceptance rate, no τ, and no speedup. What is the minimum evidence an engine should publish alongside a speculation default before anyone can evaluate it?
 - When a release ships both integrated MTP and separate draft models, which should a deployment use
   at which batch size? The Nemotron account names both but publishes no acceptance or speed figures.
+- Block-level acceptance that takes the largest passing length is used in at least one production engine. How does its committed-token rate and output distribution compare with per-token rejection sampling at the same draft budget? The vault has the rule, not a comparison.
 
 ## Related pages
 
@@ -404,3 +425,6 @@ trained DSpark separately afterward. None of this measures acceptance rate or de
 - [[Philip Kiely - The Efficient Frontier of LLM Inference]]
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
+- [[Baseten]]
+- [[Inference Determinism]]

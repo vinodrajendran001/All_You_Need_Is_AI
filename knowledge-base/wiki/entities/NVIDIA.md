@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-11-13
+updated: 2026-11-20
 entity_kind: organization
 tags:
   - entity
@@ -35,6 +35,8 @@ source_ids:
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-11-nvidia-gr00t-2
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-18-pueyo-hardware-is-software
+  - src-2026-11-12-will-depue-checkpoint-forensics
 status: active
 ---
 
@@ -71,6 +73,16 @@ The survey also supplies the efficiency comparison that frames NVIDIA's trade-of
 [[Wafer - AI Performance Engineering Resources]] shows a dimension of NVIDIA's position that hardware comparisons miss: the depth of its public documentation. That learning path can cite the CUDA programming and best-practices guides, the PTX ISA, per-architecture tuning guides for Hopper and Blackwell, and a full profiling toolchain (Nsight Systems, Nsight Compute, Compute Sanitizer) — while its AMD, TPU, and Trainium sections are markedly shorter, a gap the curator attributes to documentation availability rather than deployment share.
 
 The asymmetry is self-reinforcing: engineers learn performance work on the stack that documents itself, and the resulting expertise is stack-specific. The same list keeps **Rubin** on a dated frontier watchlist rather than the core path, on the principle that an announced architecture does not qualify until a specification, a shipped implementation, and a reproducible measurement all exist. See [[Wafer]].
+
+A sharper challenge to the moat comes from a forecast, not a measurement. [[Tomas Pueyo - Hardware Is Software]]
+quotes Casey Handmer: "Nvidia is cooked either way. GPU design and CUDA were insurmountable moats 12
+months ago, now a Fable-class model can independently rebuild both for <$1m token spend." (Pueyo's
+bracketed glosses are omitted.) Pueyo adds that NVIDIA designs but does not manufacture its GPUs,
+which TSMC fabricates. The claim says nothing about the per-architecture documentation, profiling
+toolchain or accumulated expertise described above, and the vault holds no evidence of such a
+rebuild. Pueyo also introduces the quote as made "after Jensen Huang stepped down from NVIDIA". That
+leadership change is **not recorded or verified anywhere in this vault** and should not be added to
+this page on this source alone. See [[Accelerator Software Externalization]].
 
 ## NeMo-RL and NeMo-Gym as the RL training stack
 
@@ -313,6 +325,21 @@ counts, and the baselines' training budgets are not stated. Unlike the Cosmos 3 
 page reports outcomes. See [[Robot Training Data]], [[World Models]],
 [[Video Pre-training for Robot Policies]], and [[Vision-Language Grounding]].
 
+## SM counts leave a fingerprint in other labs' weights
+
+[[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] turns a detail of NVIDIA's
+software stack into a provenance signal. PyTorch initializes weights through cuRAND with **2,048**
+threads per SM, so each GPU group leaves its own layout. Hopper (H100 SXM, H200, H800) reads as
+**132** SMs, B200/B300 as **148**, and GB200/GB300 as **152**. That is the same 152-SM count Inferact
+cites above for GB200's split SRAM. NVIDIA's Nemotron-3 Ultra, disclosed as using GB200 for one phase
+of training, reads as 152, one of **24** developer-disclosed cases the method agrees with; the report
+calls that agreement "a consistency check rather than a measured accuracy rate". The report reads six
+Chinese open-weight models released since April 2026 as Blackwell initializations. It confirmed
+V4-Flash on a physical B300 and Kimi K3 on a rented GB200. It states that this shows initialization
+hardware and does "not establish where the chips were located, how access was obtained, or whether
+export controls were violated". It is a single independent analysis, and no response from the labs
+is reported. See [[Checkpoint Forensics]].
+
 ## Related pages
 
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
@@ -368,3 +395,10 @@ page reports outcomes. See [[Robot Training Data]], [[World Models]],
 - [[Nous Research]]
 - [[Multi-Teacher On-Policy Distillation]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
+- [[Checkpoint Forensics]]
+- [[Low-Precision Training]]
+- [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]]
+- [[Tomas Pueyo - Hardware Is Software]]
+- [[Accelerator Software Externalization]]
+- [[DeepSeek]]
+- [[Open Model Ecosystems]]

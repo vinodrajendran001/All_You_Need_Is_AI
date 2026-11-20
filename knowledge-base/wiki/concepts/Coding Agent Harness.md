@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - coding-agents
@@ -40,6 +40,7 @@ source_ids:
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-01-philipp-schmid-code-mode
+  - src-2026-11-19-ashish-subedi-antigravity-quota
 status: active
 ---
 
@@ -419,6 +420,25 @@ images need a separate tool. That preference is argued, not measured. Factory's 
 also need per-model tuning, since getting models to prefer the Script tool took prompt, description,
 and result-format changes.
 
+## Cache warmth can be harness state
+
+[[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]] reads Google Antigravity's binary and finds
+a dormant keep-alive module. It clones the last request, replaces the final prompt block with a single
+period, sets `max_output_tokens = 1`, sends it in the background, and discards the reply so it "never
+pollutes your conversation history". It pings at **4 min 30 s**, aborts at a **4 min 45 s** staleness
+cutoff, and tracks a per-conversation ping budget. A server-side flag and a provider check that
+restricts it to explicit-cache providers "(like Claude)" keep it off for Gemini. The author enabled it
+on a patched binary and reports a hit across a pause of just over six minutes, with the transcript
+unchanged ("zero trajectory growth"), on a single run with a different model from the baseline probes.
+
+Two smaller findings matter for harness design. One-shot `agy -p` processes never hit the cache,
+because one-shot mode re-initializes a step timestamp and breaks the prefix. And the `/btw` side
+question forked a new conversation, costing a cold **17,697**-token call, "~26% more than just
+accepting a cache miss". Even a five-word prompt started from **16,816** tokens of system prompt,
+tools, MCP servers, and skills. Pinging is not free either: the author's break-even cap is **3** pings
+at that context, and his larger savings figures are modeled, not measured (see [[KV Cache]] and
+[[Context Engineering]]). Patching a vendor client may conflict with its terms.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -500,3 +520,5 @@ and result-format changes.
 - [[Agent Delegation]]
 - [[Computer Use Agents]]
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
+- [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]]
+- [[KV Cache]]

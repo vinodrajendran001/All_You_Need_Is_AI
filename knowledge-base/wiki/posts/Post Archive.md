@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - post
 status: active
@@ -49,6 +49,7 @@ materially different angle, and that post must say what is new.
 | 2026-10-30 | [[2026-10-30 The Shared Part Was Never Saved Alone]] | 2026-10-23 → 2026-10-30 | [[Semantic Caching]] | LinkedIn, X | ready |
 | 2026-11-06 | [[2026-11-06 The Expert Agreed With the Coin Flip]] | 2026-10-30 → 2026-11-06 | [[Human Deferral to AI]] | LinkedIn, X | ready |
 | 2026-11-13 | [[2026-11-13 The Rule Book Only Grew]] | 2026-11-06 → 2026-11-13 | [[Multi-Agent Coordination]] | LinkedIn, X | ready |
+| 2026-11-20 | [[2026-11-20 The Answer Depended on the Traffic]] | 2026-11-13 → 2026-11-20 | [[Inference Determinism]] | LinkedIn, X | ready |
 
 ## Superseded drafts
 
@@ -63,6 +64,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-11-20 - inference determinism, floating-point reproducibility, batch-dependent outputs, single-run evaluation
 - 2026-11-13 - agent-written rules, process accumulation, multi-agent organizations, metric gaming
 - 2026-11-06 - human deferral to AI, independent review, judgment calls, agent influence
 - 2026-10-30 - first-request reuse, prompt-cache boundaries, shared versus variable context
@@ -80,6 +82,9 @@ materially different angle, and that post must say what is new.
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
 
+- Asked to write a small network's weights by hand, a model rebuilt a 1990s handwriting pipeline (edge filters, templates, then a naive Bayes-style classifier fitted through the confusion matrix it was shown), reaching "around 90%" on MNIST; writing works where a compact known algorithm exists and gradient descent ties or wins elsewhere. Scored 26/30 on November 20; a cold reader needs weights and gradient descent first, and all sources are single or few runs - [[Weight-Space Programming]], [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]], [[Jacob Strauss - Experiments in Weight-Space Programming]]
+- The same GitHub task cost 59,417 input tokens through the GitHub MCP server and 1,421 through the command line on Claude Sonnet 5.5, with all three routes correct. Scored 24/30 on November 20; a vendor post that "tested one server on one task", and its Tool Search section is promotional - [[Tool Roster Economics]], [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
+
 - A neuron's surprising second job can be real but narrow: asked where the Tornado web framework was developed, Qwen3-32B gives Colorado 30% and the correct California 0.7%, and suppressing one Colorado neuron moves these to 1% and 4.7%; yet 98.5% of the neuron's 3,812 strong firings over ordinary text are on places. Scored 26/30 on November 13; a cold reader needs neuron and suppression vocabulary first - [[Mechanistic Interpretability]], [[Curt Tigges et al - Neurons as an Interpretable Basis]]
 - A failed probe does not show which control stopped it: all four of Celln's restricted-capability probes failed, but the post attributes each result narrowly (a missing file is not a denial; a refused socket is the program's own report). Scored 24/30 on November 6; one retained run, explicitly not a VM-escape benchmark - [[Celln]], [[axjns.dev - Testing Celln's Boundary]]
 - Planning is not leading: in 86% of Raindrop's leaderless experiments at least one agent proposed a plan assigning teammates, but only 105 of 2,160 teams produced a leader whose orders measurably changed teammates' decisions. Scored 24/30 on November 6; first-party with no external replication, and the name-order comparison lacks denominators - [[Multi-Agent Coordination]], [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
@@ -91,7 +96,7 @@ materially different angle, and that post must say what is new.
 - Reasoning traces as an unsanitisable secrets surface: 328 of 6,708 scanned trajectories leaking - [[Reasoning Trace Privacy]], [[Context Engineering]]
 - Speculative tool execution gates on purity but not authority - [[Agent Security and Governance]], [[Speculative Tool Execution]]
 - **Unsolvable eval tasks teach misbehaviour** - 198 of 898 ExploitGym tasks were unsolvable and generated 93% of the illicit coordination, while a different lab independently built the judge-must-solve gate. Scored 17/20 on 2026-09-05, losing only on freshness because it neighbours the KL post's territory - [[RL Environment Design]], [[Agent Security and Governance]]
-- pass@k is the wrong metric (pass@3 = 0.6 vs pass^3 = 0.4), and temperature 0 is not deterministic - [[Multi-Turn Evaluation]], [[Agentic Testing]]
+- pass@k is the wrong metric (pass@3 = 0.6 vs pass^3 = 0.4); the temperature-0 half of this angle became the 2026-11-20 post - [[Multi-Turn Evaluation]], [[Agentic Testing]]
 - The local metric trap: GitHub cut per-response tokens and raised total cost, because agents reopened what was removed - [[Benchmark Optimization]], [[Harness Optimization]]
 - Agentic kernel optimization pays inversely to prior human effort (42.3% / 15.2% / ~5.5%) - [[Inference Efficiency Frontier]]
 - Prose summaries score 4/45 on behavioural questions where source code scores 27/45 - [[Context Engineering]], [[Addy Osmani - Audit your Agent files]]
@@ -118,13 +123,12 @@ materially different angle, and that post must say what is new.
 
 <!-- Page - post date - cooldown ends. Prune entries once expired. -->
 
-- [[Model Quantization and Efficiency]] - posted 2026-10-03 - cooldown ends 2026-11-14
-- [[Semantic Recommendation Systems]] - drafted 2026-10-09 - cooldown ends 2026-11-20
 - [[KV Cache]] - drafted 2026-10-16 - cooldown ends 2026-11-27
 - [[Chain-of-Thought Monitoring]] - drafted 2026-10-23 - cooldown ends 2026-12-04
 - [[Semantic Caching]] - drafted 2026-10-30 - cooldown ends 2026-12-11
 - [[Human Deferral to AI]] - drafted 2026-11-06 - cooldown ends 2026-12-18
 - [[Multi-Agent Coordination]] - drafted 2026-11-13 - cooldown ends 2026-12-25
+- [[Inference Determinism]] - drafted 2026-11-20 - cooldown ends 2027-01-01
 
 ## Related pages
 

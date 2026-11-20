@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-05-08
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - index
 source_ids:
@@ -418,6 +418,36 @@ source_ids:
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-06-koller-data-grow-in-dish
   - src-2026-11-11-nvidia-gr00t-2
+  - src-2026-10-31-william-morgan-kinference-benchmarks
+  - src-2026-11-03-william-morgan-kinference-launch
+  - src-2026-11-11-cam-pedersen-derive-kernels
+  - src-2026-11-11-openrouter-mcp-cli-skills
+  - src-2026-11-11-wills-levels-agentic-engineering
+  - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-11-12-liquid-ai-liquidcodec
+  - src-2026-11-12-nathan-barry-detllm-integer-inference
+  - src-2026-11-12-schulz-tvb-filler-token-reasoning
+  - src-2026-11-12-will-depue-checkpoint-forensics
+  - src-2026-11-13-kim-helion-compile-time-heuristics
+  - src-2026-11-13-orlanski-slop-moves-up
+  - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
+  - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-15-bytebytego-ep233-kubernetes
+  - src-2026-11-16-alphasignal-short-contexts
+  - src-2026-11-17-bytebytego-instacart-query-understanding
+  - src-2026-11-17-paul-kinlan-voice-harness
+  - src-2026-11-17-strauss-weight-space-experiments
+  - src-2026-11-18-bu-fewer-slides-more-dragons
+  - src-2026-11-18-bytebytego-thinking-more-dumb
+  - src-2026-11-18-ioma8-llm-reverse-engineering
+  - src-2026-11-18-meta-ads-technique-propagation
+  - src-2026-11-18-pueyo-hardware-is-software
+  - src-2026-11-18-toumbourou-wsp-1990s-researcher
+  - src-2026-11-19-ashish-subedi-antigravity-quota
+  - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
+  - src-2026-11-19-shankar-husain-evals-three-gulfs
+  - src-2026-11-19-tselovalnikov-10x-engineer
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -425,8 +455,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of November 13, 2026: **705 typed wiki pages**, including **387 source summaries**
-representing **413 source IDs**, **143 concepts**, **106 entities**, and **47 lint reports**.
+As of November 20, 2026: **744 typed wiki pages**, including **417 source summaries**
+representing **443 source IDs**, **148 concepts**, **108 entities**, and **48 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -440,6 +470,11 @@ exclude git-ignored local query files.
 - [[AI Code Review]] - Agents reviewing pull requests: authority, architecture, context, acceptance proxies versus correctness, noise, and convergence, drawing on LinkedIn, Anthropic, Cloudflare, GitHub, and AI Builder Club.
 - [[AI Drug Discovery]] - Machine learning for finding and justifying therapeutic hypotheses; separates insitro's wet-lab data generation from post-training open models to gather biomedical evidence.
 - [[AI for Mathematical Discovery]] - AI systems that produce new mathematical results, organized by what checked each result and who is responsible for it.
+- [[Inference Determinism]] - Same model, prompt and settings, same output bits: run-to-run determinism, batch invariance, and cross-hardware exactness kept apart, with batch-invariant kernels versus DetLLM's integer-only arithmetic.
+- [[Low-Precision Training]] - FP8 and 4-bit block-scaled formats as part of the training recipe: NVFP4 forwards, MXFP8 backwards, stochastic rounding, quantized collectives, and the reported speed-quality trade.
+- [[Neural Audio Codec]] - The tokenizer/detokenizer pair under speech LLMs and TTS: RVQ versus FSQ, frame rate, and why reconstruction quality differs from how predictable the tokens are.
+- [[Checkpoint Forensics]] - Inferring how a model was produced from its published weights; one GPU-initialization fingerprint method, with measurement, inference, and allegation kept separate.
+- [[Weight-Space Programming]] - Language models reading, writing, or editing network weights directly instead of by gradient descent; first-party claims, independent follow-ups, and where it works.
 - [[Sparse Attention]] - Attending to a selected subset of keys: DeepSeek-style full-key indexers versus Latent Sparse Attention's clustered search, separating KV-cache reads saved from memory stored.
 - [[Multi-Agent Coordination]] - Managing dependencies among agents' information and actions: shared evidence, ownership, and authority kept outside the conversation, causally measured leadership and silent compliance, and early attempts to train coordination by pricing time.
 - [[Human Deferral to AI]] - People adopting an AI system's choice on judgment calls with more than one defensible answer; distinct from automation bias and sycophancy, and a limit on human sign-off as an independent check.
@@ -585,6 +620,8 @@ exclude git-ignored local query files.
 
 ## Entities
 
+- [[Kubernetes]] - Container orchestrator under much of the vault's GPU serving and fleet evidence; inference routing built above the Service, GPU placement, and whether agents need something else.
+- [[Paul Kinlan]] - Developer and aifoc.us author behind Voicebox, a voice-driven agent harness, and Prompt in a Box, which turns Markdown prompts into Chrome extensions.
 - [[@0xCodez]] - X author of promotional Claude agent courses; the vault uses them for concrete harness mechanisms while flagging their unsourced numbers and claims.
 - [[Ethan Mollick]] - Entrepreneurship professor and One Useful Thing author whose first-person accounts of frontier models track jagged capability, agent coordination, and organizational failure modes.
 - [[Instinct]] - Text-message personal AI assistant founded by Noah Shinn, known in this vault only through a third-party teardown of its responsiveness, memory, proactive messages, and delivery failures.
@@ -1164,13 +1201,46 @@ its unchanged article body adds no source ID or independent estimate.
 - [[Daphne Koller - Getting Data to Grow in a Dish]] - Koller's first-party account of insitro's wet-lab "data factory": pooled CRISPR imaging screens, process engineering, and agentic image QC to produce data for learning causal human biology.
 - [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]] - NVIDIA's first-party page on a world-action model pretrained mostly on human egocentric video, reporting transfer, few-shot adaptation, real-robot RL, simulator evaluation, and agentic control.
 
+### November 20, 2026 batch
+
+- [[Cam Pedersen - Don't Write Kernels, Derive Them]] - Research write-up of tang, a Rust tensor IR of views and comprehensions from which fusion and flash attention are derived as rewrites rather than hand-written; capture lost inline math, and two unreconciled time-to-first-token figures.
+- [[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]] - PyTorch post on replacing per-shape autotuning in the Helion kernel DSL with computed default configs; the reported 2.13x ratio does not match the vault's division of its own figures (about 2.27x).
+- [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]] - DetLLM proof of concept running Qwen3-0.6B in exact integer arithmetic so greedy output is bit-identical across batch sizes, GPUs, CPUs and vendors; Thinking Machines figures relayed secondhand.
+- [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] - Third-party code reading of Baseten's open-sourced DeepSeek-V4.1-Flash engine and its reported ~2,060 tokens per second on eight B300s; explains mechanisms without re-running any timing.
+- [[William Morgan - Kinference Inference Control Plane for Kubernetes]] - Buoyant's launch of an open-source inference control plane in front of vLLM on Kubernetes; vendor announcement that garbles its own benchmark result.
+- [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]] - Buoyant's first-party benchmark of TTFT-predicting, cache-aware routing against a plain Kubernetes Service with random spreading; the only baseline is not another cache-aware router.
+- [[ByteByteGo - EP233 Kubernetes Explained for Busy Engineers]] - System-design refresher: how Kubernetes turns a deployment file into pods, plus single- versus multi-agent guidance, the testing pyramid, deep-research sub-agents, and five agent guardrail layers.
+- [[Thinking Machines - End-to-End 4-Bit Training]] - Numerics recipe for Inkling 2 Small: NVFP4 expert forwards, MXFP8 backwards with stochastic rounding, and quantized expert communication from pretraining to RL; first-party 8% and 20% speedups.
+- [[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]] - Liquid AI's ~74M-parameter streaming codec behind LFM3 audio models, using grouped FSQ instead of RVQ; text claims best WER/CER on four of eight sets while its table bolds five.
+- [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] - Checkpoint-forensics report inferring initialization GPU class from released weights; measured fingerprints, inferred hardware, and export-control implications kept separate, with stated limits and no lab response.
+- [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]] - LessWrong research update showing models can learn some multi-step tasks using meaningless filler positions, which add parallel rather than serial computation; capture has missing values.
+- [[Jacob Strauss - Experiments in Weight-Space Programming]] - Independent follow-up having Claude models write or edit NumPy network weights for six classic small problems without gradient descent.
+- [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]] - Claude Fable 5.2 sets every weight of a 5,994-weight MNIST CNN, reaching about 90% test accuracy, by rebuilding a 1990s handwriting-recognition pipeline.
+- [[ByteByteGo - Why Thinking More Can Make an LLM Dumb]] - Explainer on why extra reasoning helps or hurts: written intermediate results carry computation forward, but later spurious ideas can displace a correct early answer; central anecdote is uncited.
+- [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]] - Vendor measurement of one GitHub task through MCP, the gh CLI, and gh plus a skill: on Sonnet 5.5, 1,421 versus 3,315 versus 59,417 input tokens; one headline figure was measured on Haiku.
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]] - Newsletter relay of an unnamed NVIDIA study finding agents often keep accuracy with much shorter contexts; no frontmatter or URL, dated from first Git tracking.
+- [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]] - Personal measurement tying Google Antigravity's quota burn to short prompt-cache lifetimes that expire during ordinary coding pauses.
+- [[Paul Kinlan - My Voice Harness Is My New Operating System]] - Voicebox, a voice-driven agent harness with a web runtime and local daemon, treated as an operating layer; notes what the web platform lacks.
+- [[Paul Kinlan - My Chrome Extensions Are Just Prompts]] - Prompt in a Box turns a Markdown prompt into a Chrome extension, with a Studio for icons, permissions, and prompt refinement.
+- [[ioma8 - LLM Assisted Reverse Engineering]] - Practitioner's agent set-up, method, and skills for reverse engineering, summarized conceptually; operational bypass material omitted.
+- [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]] - Meta Engineering's first-party account of agents propagating proven techniques across a fleet of ads ranking models; its Ranking Engineer Agent is unrelated to the REA reverse-engineering tool.
+- [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]] - Book excerpt republished by ByteByteGo: the Three Gulfs of comprehension, specification, and generalization, and the Analyze-Measure-Improve loop; read traces before building judges.
+- [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]] - Secondary account of Instacart's LLM query-understanding rebuild; separates its 2% real-time share from the 6% tail scroll-depth figure that an earlier ByteByteGo article tied together (original not checked; both readings kept), and reports no purchase metric.
+- [[Gabe Orlanski - Slop Is Moving Up the Stack]] - SlopCodeBench's author reports agents writing cleaner lines while slop moves into design: catch-all errors and hand-written copies of library code; first-party benchmark reporting.
+- [[Zach Wills - The Levels of Agentic Engineering]] - Seven-level practitioner ladder framed by one question, what are you still doing yourself, from someone who has led two AI transformations; opinion.
+- [[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]] - Opinion essay arguing the 10x engineer changes what work the company does, not how much agents produce; one secondhand anecdote, no data.
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]] - Talk write-up arguing deterministic engineering, not more AI, answers AI-era risk: Nix, local patches, capability removal, hooks, and property tests; author works at a property-testing vendor.
+- [[Michelle Bu - Fewer Slides, More Dragons]] - Anecdotal essay on replacing slides with agent-built, git-tracked interactive pages and how that changes who contributes.
+- [[Tomas Pueyo - Hardware Is Software]] - Forecasting essay that AI will make hardware engineering behave like software and remove most human manufacturing cost; internally inconsistent figures and disclosed investments.
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]] - Vendor guide mapping Idea, MVP, Launch, and Scale onto Claude products, with the founder as orchestrator of agents; no byline or date, uncited statistics, unverified customer figures.
+
 ## Syntheses
 
 - [[AI Builder Club - Build AI Agents]] - Cross-source synthesis of the 63-lesson curriculum: prompt, context, harness, loop, graph, evaluation, security, and governance.
 
 ## Posts
 
-- [[Post Archive]] - LinkedIn and X drafts, covered windows, source exclusions, and spine cooldowns; latest active draft: [[2026-11-13 The Rule Book Only Grew]].
+- [[Post Archive]] - LinkedIn and X drafts, covered windows, source exclusions, and spine cooldowns; latest active draft: [[2026-11-20 The Answer Depended on the Traffic]].
 
 ## Queries
 
@@ -1227,6 +1297,7 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-10-30 Lint Pass]] - Forty-fifth pass: corrected benchmark denominators, continuous-batching and routing overclaims, recent-ingest scope slips, and two source-section orders; closed two navigation gaps. All 638 pages reachable at 368-ID parity; 86 undated captures and 181 canonical-metadata gaps remain untouched.
 - [[2026-11-06 Lint Pass]] - Forty-sixth pass: fixed 52 claims across the 21 November 6 chains, including a reported-missing citation the capture contains, chart values described as uncaptured, and sandbox, benchmark, and deferral claims stated beyond their tests; linked three publisher entities to their own sources. All 669 pages reachable at 389-ID parity.
 - [[2026-11-13 Lint Pass]] - Forty-seventh pass: fixed 36 claims across the 24 November 13 chains, including neuron-ablation and Tornado results stated without their problem selection and corpus, chrome-capture figures tied to the wrong resolution, six misattributions, and overstated checks on the PSI proof. All 704 pages reachable at 413-ID parity.
+- [[2026-11-20 Lint Pass]] - Forty-eighth pass: fixed 46 claims across the 30 November 20 chains, including forensic readings given wider reach than the report claims, an integer-inference cushion presented as typical, compaction and tool-deferral results stretched beyond their test conditions, and a TorchTPU byline credited to the publishing account instead of the team. All 743 pages reachable at 443-ID parity.
 
 ## Control files
 

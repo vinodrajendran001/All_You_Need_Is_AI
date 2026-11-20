@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - llm-evaluation
@@ -34,6 +34,7 @@ source_ids:
   - src-2026-11-10-mollick-fable-5-2-jagged-agi
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-06-koller-data-grow-in-dish
+  - src-2026-11-19-shankar-husain-evals-three-gulfs
 status: active
 ---
 
@@ -500,6 +501,24 @@ system, and decide what to do with its findings". No agreement rate between expe
 cannot be read against human disagreement, and the account is first-party. See
 [[AI Drug Discovery]].
 
+## Decide which gulf a failure is in before building a judge
+
+[[Shreya Shankar and Hamel Husain - Evals for AI Engineers]] places the judge late in a diagnostic sequence. Its **Three Gulfs** model (comprehension:
+developer and data; specification: developer and agent; generalization: data and agent) separates
+failures that should be fixed from failures that should be measured. If the prompt never stated a
+requirement, "the fix is usually to tighten the prompt or adjust agent logic". Only when "the prompt is
+already well specified and the LLM still fails" do "automated evaluations" earn their cost.
+Evaluators, code-based rules or an LLM judge, quantify **generalization** failures: "how often does
+each failure mode actually occur, and is the rate low enough that the system is usable?"
+
+This gives the validation material above a precondition. A judge built against a specification gap
+measures an instruction the developer never wrote, so its rate falls as soon as the prompt is fixed.
+The excerpt's single number, a boilerplate failure found "in 8% of cases", belongs to a hypothetical
+email agent. It is a textbook framework with no study behind it, and it calls generalization errors
+"unavoidable" by stance, not measurement. It gives no test for when a prompt is specified enough to
+start measuring, and it reaches judges only by forward reference to a later chapter, so it says
+nothing about judge validation itself.
+
 ## Open questions
 
 - Threshold tuning needs labeled data. For a judge deployed where no labeled failures exist yet, what
@@ -589,3 +608,4 @@ cannot be read against human disagreement, and the account is first-party. See
 - [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
 - [[Daphne Koller - Getting Data to Grow in a Dish]]
 - [[AI Drug Discovery]]
+- [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]]

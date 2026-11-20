@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -23,6 +23,8 @@ source_ids:
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-06-11-0xcodez-fable-5-self-improving-agents
   - src-2026-07-20-0xcodez-graph-engineering-roadmap
+  - src-2026-11-11-wills-levels-agentic-engineering
+  - src-2026-11-12-huntley-answer-is-engineering
 status: active
 ---
 
@@ -41,6 +43,17 @@ Generating another candidate is usually cheap. Determining whether that candidat
 - human review for ambiguous or high-impact decisions.
 
 Generation and evaluation should be separated when possible. A fresh evaluator still has blind spots, but it avoids inheriting the producer's full reasoning path and assumptions.
+
+[[Geoffrey Huntley - The Answer to AI Is Engineering]] frames the verifier as **back pressure**: "Ralph
+was never just about loops. It was about stopping the loop from closing on bad code." His checks are
+deterministic ("These aren't skills. This is engineering again."): hooks that block a push when the
+build fails, static domain-coupling rules, and NixOS VM tests that bring up production-shaped
+infrastructure, for example HAProxy in front of a hello-world server across two VLANs. When the agent
+finishes a unit of work, he tests it "on exactly what would be production infrastructure", because the
+infrastructure is defined as code and the same Nix flakes can run production. His property-based
+testing material adds generated counterexamples as a further verifier type; the libraries he promotes
+come from his employer, Antithesis (see [[Agentic Testing]]). This is a practitioner talk with no
+measured comparison of loop outcomes with and without these checks.
 
 ## Loop contract
 
@@ -162,6 +175,21 @@ call it real. It has no iteration or budget cap, although the course warns that 
 converge "spawns agents until your budget is gone". By this page's stopping economics, a dry-round
 count is a diminishing-return limit, and it still needs a budget bound beside it.
 
+## Done means delivered: CI-triggered agents and a release watcher
+
+[[Zach Wills - The Levels of Agentic Engineering]] extends the loop contract past merge. At his level
+3, CI is both a check and a **trigger**. If a pull request arrives "without an end-to-end test for the
+new flow", the check does not just fail; it "triggers an agent to write the test". He calls CI "the
+best enforcement point you have" because every change passes through it, whatever local prompts
+people use. He asks agents for "irrefutable proof", including a recorded video of the feature working,
+and warns that agents "will happily generate filler unit tests that don't protect anything". At level 5
+a release-watcher agent checks behaviour in production and returns failed work to the board: "'Merged
+to prod' and 'mission complete' are two different things."
+
+In this page's terms, the verifier moves from the repository to production, and the exit condition
+becomes business value. The essay does not say how that value is specified or measured, so the release
+watcher's own pass criterion is unstated. The source is experience-based opinion with no outcome data.
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -194,3 +222,6 @@ count is a diminishing-return limit, and it still needs a budget bound beside it
 - [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
 - [[Factory AI]]
 - [[Benchmark Optimization]]
+- [[Zach Wills - The Levels of Agentic Engineering]]
+- [[Geoffrey Huntley - The Answer to AI Is Engineering]]
+- [[Agentic Testing]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-09-03
+updated: 2026-11-20
 tags:
   - concept
   - kernels
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
   - src-2026-08-29-baseten-agentic-kernels-production
+  - src-2026-11-11-cam-pedersen-derive-kernels
 status: active
 ---
 
@@ -85,6 +86,22 @@ The loop also retains a knowledge base of **both successes and failures, with ro
 recorded** — see [[Recursive Self-Improvement]]. All figures are vendor self-reported against an
 uncharacterised prior baseline.
 
+## Derivation as the other route to trustworthy kernels
+
+[[Cam Pedersen - Don't Write Kernels, Derive Them]] positions compiler derivation against model-written
+kernels. It cites KernelBench-Verified as showing "frontier models reward-hacking benchmarks by
+hard-coding test values" (secondhand; the benchmark paper is not in the vault) and argues that "a
+derived kernel is checked by construction against an f64 interpreter of the same graph". Its
+`tang-verify` harness pre-fills every kernel's outputs with **NaN** so unwritten memory cannot pass as a
+plausible zero, and names the failing kernel by provenance; it was built after four structural bugs in a
+hand-written engine "slipped past every unit test". The core rewrites are proved in Lean over the reals,
+but floating point is not modelled, and the check still caught one placement with error **7.0** that the
+authors cannot yet explain.
+
+Its autotuner also writes every (graph, chip, schedule, time) result to a cache that "can train a cost
+model" — the same success-and-failure memory the Baseten loop keeps, but over schedules rather than
+code. Whether search over a verified algebra or agentic code generation climbs further is untested.
+
 ## Open questions
 
 - Do generated kernels climb the full optimization ladder in [[GPU Kernel Optimization]], or do they mostly capture its first rungs — where the transformations are well documented and the search space is small?
@@ -106,3 +123,4 @@ uncharacterised prior baseline.
 - [[Baseten - Agentic Kernels in Production]]
 - [[Baseten]]
 - [[Inference Efficiency Frontier]]
+- [[Cam Pedersen - Don't Write Kernels, Derive Them]]

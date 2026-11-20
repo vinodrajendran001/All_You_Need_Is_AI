@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-11-13
+updated: 2026-11-20
 tags: [concept, open-models, ecosystems, inference]
 source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-08-02-arise-llm-as-judge
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-06-nous-arete-27b
+  - src-2026-11-12-will-depue-checkpoint-forensics
 status: active
 ---
 
@@ -139,6 +140,20 @@ next fine-tune either; [[Defensive Deception for Open Models]] explores the safe
 problem. All of Arete's values measurements come from one Nous-built evaluation with one LLM judge,
 and no independent rerun exists.
 
+## Openness discloses provenance the release did not state
+
+Releasing weights also releases evidence about how they were made.
+[[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] recovers initialization
+seeds and GPU-class layouts from open checkpoints. Its examples include unused vocabulary rows that
+keep their starting values. It uses them to compare successive releases from DeepSeek, Moonshot AI,
+MiniMax and Ant Group. It reads six models released since April 2026 as Blackwell initializations,
+and earlier ones as Hopper. It is limited to open weights, PyTorch-on-GPU initialization, and the
+initialization step. Closed models, CPU-initialized Qwen3 models, and PaddlePaddle's ERNIE-5.5 yield
+no hardware reading. The report stresses that it does not show location, ownership or legality, and
+no response from the named labs is reported. For this page, the point is structural. Openness of
+weights creates an audit surface that model cards do not control. Labs that want to avoid it can
+initialize on CPU, as some Qwen3 models already were. See [[Checkpoint Forensics]].
+
 ## Open questions
 
 - Which metrics distinguish genuine deployment from automated download noise?
@@ -151,6 +166,9 @@ and no independent rerun exists.
 - If a model's stance can be changed by a small fine-tune, what should a release disclose so that
   downstream users can measure the stance they inherit, including through teachers and
   model-generated data?
+- Should model cards state initialization and training hardware, now that open weights can disclose
+  it anyway? A single forensic report reads it from weights, with stated limits; no lab response
+  is reported.
 
 ## Related pages
 
@@ -175,3 +193,7 @@ and no independent rerun exists.
 - [[Nous Research - Introducing Arete-27B - Qwen3.8-27B Post-Trained to Reinforce Western Values]]
 - [[Nous Research]]
 - [[Knowledge Distillation]]
+- [[Checkpoint Forensics]]
+- [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]]
+- [[DeepSeek]]
+- [[NVIDIA]]

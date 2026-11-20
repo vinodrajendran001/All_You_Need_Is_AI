@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-03
-updated: 2026-10-19
+updated: 2026-11-20
 source_id: src-2026-07-28-bytebytego-delivery-llm-search
 source_title: "Why DoorDash, Instacart, and Uber Eats Integrated LLMs Into Search Three Different Ways"
 source_author: ByteByteGo
@@ -73,6 +73,11 @@ LLM-sized embedding servable.
   by "nearly 50%" without stating the baseline. This arithmetic is the vault's.
 - Aggregate recall says little about hard constraints; beyond the pre-filters, the article does not
   report how dietary or allergen constraints fare in the embedding path.
+- A later ByteByteGo article, [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]],
+  reads the Instacart figures differently: 2% is the estimated share of queries that need real-time
+  inference, and the 6% scroll-depth cut applies to tail queries without a stated percentage of traffic.
+  This capture instead ties the 6% to "the bottom 2% of queries (the cold-start tail)". Neither article
+  is the original Instacart post, so the vault records both readings (added 2026-11-20).
 
 ## Affected pages
 

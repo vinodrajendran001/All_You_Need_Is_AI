@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - safety
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-10-26-wong-et-al-graft
   - src-2026-10-29-raindrop-agent-swarm-leadership
   - src-2026-11-08-alex-wang-reasoning-pathfinding
+  - src-2026-11-12-schulz-tvb-filler-token-reasoning
 status: active
 ---
 
@@ -134,6 +135,28 @@ Those relationships require measurements rather than an inference from token cou
 Two cautions attach. The mechanism is **asserted, not measured**: no experiment here shows reasoning tokens
 trading against latent computation. And the debunk is of the *reporting* — Raschka is explicit that he does not
 know Astra's architecture and is reasoning from published models described similarly.
+
+## Filler tokens are a third route to unverbalized serial work
+
+[[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]] reports that rank-32 LoRA fine-tunes of **Qwen3.6-35B-A3B** and **gpt-oss-20b** learned
+some synthetic multi-step tasks ("two models and three out of seven multi-step reasoning tasks") while
+their chain of thought was a run of "." tokens. Attention moves information across the dot positions,
+so the trace's words say nothing about the computation. This is distinct from the per-token-capacity
+argument above and from steganography: it adds positions, not computation per token, and hides nothing
+in the text itself.
+
+The authors' reading: Pfau et al.'s limit "holds in the limit of infinitely long tasks", but "since even
+small models can learn to do 60 steps on filler tokens, this may not be much comfort in practice". They
+add that "any pressure not to verbalize certain multi-step reasoning could, with enough training, lead
+to similar results".
+
+The bounds matter. The protocol is non-standard: the models "are no longer next-token predictors" and
+the dots must be prefilled. The runs are small, first-party and mostly reported in charts, the source
+does not explain where the "60 steps" figure comes from, and modular arithmetic and function
+composition "hit a wall at 1–3 steps". The trend that Astra-class models show an increased ability
+to answer without reasoning is attributed to Nanda (2026), not measured. For monitoring research
+the practical use is a confound check: before crediting a steganographic channel, test whether the
+task can be done on filler tokens.
 
 ## Reduced monitorability is reported; an architectural cause is not established
 
@@ -460,3 +483,4 @@ uncertain" whether helping to improve frontier monitors is good.
 - [[Retrieval-Augmented Generation]]
 - [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
 - [[Alex Wang - What Objective Is Reasoning Solving]]
+- [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]]

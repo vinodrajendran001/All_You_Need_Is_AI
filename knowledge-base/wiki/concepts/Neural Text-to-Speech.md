@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-10-07
+updated: 2026-11-20
 tags:
   - concept
   - speech
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-08-30-halo-research-sopro-v2
   - src-2026-08-31-docmilanfar-lagrangian-flow-matching
+  - src-2026-11-12-liquid-ai-liquidcodec
 status: active
 ---
 
@@ -99,10 +100,25 @@ source of streaming latency.
 first-party engineering result separate. Measure acoustic-head work, full-pipeline latency,
 intelligibility, and speaker similarity rather than substituting any one for all the others.
 
+## The codec underneath the acoustic model
+
+[[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]] makes the speech tokenizer the variable
+in a controlled TTS experiment. It trains TTS models on four codecs with fixed data (**101,000** hours
+across six languages), identical batches and the same compute. Each model uses an LFM3-1.7B backbone
+plus a six-layer depth decoder. Models trained on LiquidCodec tokens score the highest UTMOSv2
+naturalness on all eight test sets. The text claims the best WER/CER on four of eight, though the
+table bolds a LiquidCodec row on five, counting a Q4_0 win on FLEURS French. NanoCodec wins FLEURS
+Mandarin and Korean, and X-Codec 2 wins Japanese. Like Sopro V2 in the table above, LiquidCodec
+replaces a Mimi tokenizer with FSQ, here the grouped form, so that codebooks can be predicted in
+parallel. Unlike Sopro V2, it keeps a discrete generation target rather than moving to a continuous
+mel head. This is a vendor comparison with three seeds. It does report naturalness alongside WER,
+which partly answers this page's first open question. See [[Neural Audio Codec]].
+
 ## Open questions
 
 - What metric should replace WER for TTS quality? Naturalness and speaker fidelity are the properties
-  that matter and neither is captured.
+  that matter and neither is captured. LiquidCodec's TTS comparison reports UTMOSv2 naturalness
+  alongside WER, but still no speaker-fidelity metric for its TTS models.
 - Why did GRPO destabilize training where DPO worked? If this generalizes to continuous-output
   domains it matters well beyond speech.
 - Why was the distilled student more stable than its teacher? If distillation is acting as a
@@ -125,3 +141,6 @@ intelligibility, and speaker similarity rather than substituting any one for all
 - [[Flow Matching]]
 - [[@docmilanfar - A Lagrangian View of Flow Matching]]
 - [[@docmilanfar]]
+- [[Neural Audio Codec]]
+- [[Liquid AI - LiquidCodec High-Fidelity Audio Tokenization]]
+- [[Liquid AI]]

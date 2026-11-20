@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-18
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - entity
   - newsletter
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-08-03-alphasignal-tabular-foundation-models-enterprise-ai
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-11-10-alphasignal-latent-sparse-attention
+  - src-2026-11-16-alphasignal-short-contexts
 status: active
 ---
 
@@ -142,6 +143,20 @@ read in its original form.
 The capture's description of Qwen-3.8-27B as a full-attention model contradicts the vault's other
 record of that model; [[Linear Attention and Recurrent Memory]] keeps both claims.
 
+## A compaction study, again without metadata
+
+[[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]] relays an NVIDIA study arguing that
+agents can often work with much shorter contexts. Its figures cover throughput gains from a
+**16,000**-token window, SWE-bench Verified accuracy under compaction, and a cost increase because
+compaction breaks the prompt cache. [[Context Engineering]] carries the technical content.
+
+The capture repeats the pattern of the items above, and goes further: it has no frontmatter at all,
+so there is no byline, date, or canonical URL. Attribution rests on per-subscriber
+`app.alphasignal.ai` tracking redirects and alphasignal.ai image hosting, the title comes from the
+file name, and the source ID uses the date Git first tracked the file, which matches its modification
+date. The study is credited to "researchers at Nvidia" without a paper title. The capture writes both
+"GPT-5.6 Sol" and "GPT 5.6 Sol", and both "Nvidia" and "NVIDIA".
+
 ## Related pages
 
 - [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
@@ -180,3 +195,5 @@ record of that model; [[Linear Attention and Recurrent Memory]] keeps both claim
 - [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
 - [[Sparse Attention]]
 - [[Linear Attention and Recurrent Memory]]
+- [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]]
+- [[Context Engineering]]

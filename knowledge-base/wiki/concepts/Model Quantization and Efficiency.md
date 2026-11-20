@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - llm
@@ -50,6 +50,8 @@ source_ids:
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-11-pytorch-executorch-webgpu
+  - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
+  - src-2026-11-12-nathan-barry-detllm-integer-inference
 status: active
 ---
 
@@ -389,6 +391,19 @@ than the weights. That is the stored-versus-executed precision split from the Hu
 
 The handbook relays these figures from model releases and papers; it did not rerun them.
 
+[[Thinking Machines - End-to-End 4-Bit Training]] reports a first-party recipe that takes the
+experts-first rule into pretraining itself. Inkling 2 Small runs NVFP4 only in expert-layer forward
+passes. Backward passes use MXFP8, after re-quantization with stochastic rounding, and the last
+**16.6%** of layers stay in MXFP8 rather than the BF16 that Nemotron 3 Super kept for its last
+**15%**. The lab says full NVFP4 training gave "very large hits" to compute efficiency. Because the
+same numerics run from pretraining through the final RL rollout, the lab says no calibration is needed
+when a quantized checkpoint ships. Reported results in its "largest jobs" are an **8%** pretraining
+and **20%** RL wall-clock speedup over full MXFP8, about **2%** compute-efficiency cost in
+pretraining, and "no discernible difference in reward" in RL. That last result sits against the Qwen
+NVFP4-rollout collapse above. One possible difference is that sampler and trainer share numerics
+here, but that is an inference neither source tests, and the models and setups also differ. No model
+size or ablation tables are given. See [[Low-Precision Training]].
+
 ## A browser benchmark compares two quantization recipes
 
 [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]] ships 4-bit
@@ -399,6 +414,22 @@ while the CPU path runs XNNPACK's 4-bit weights with 8-bit dynamic activations. 
 prefill and **2-10x** decode speedups are therefore a joint comparison of device, kernels and
 activation precision, like the Humming sweep above, and the post reports no output-quality
 comparison between the two paths. [[On-Device Reasoning]] covers the browser deployment tier.
+
+## Integer storage is not integer arithmetic
+
+[[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]] extends
+"Stored precision and execution precision are separate choices" above in a direction that section
+does not cover. Standard int8 methods (SmoothQuant, LLM.int8, OmniQuant) are "**simulated
+quantization**": matmuls run in int8, but softmax, RMSNorm, SwiGLU and rotary embeddings return to
+float. That costs little accuracy but forfeits **determinism**, because every float step
+reintroduces order-dependent rounding. DetLLM, built on I-LLM's integer-only operators with dyadic
+scales (`m / 2^k`) and int16 RoPE tables, runs the whole Qwen3-0.6B forward pass in integers after a
+calibration pass with no fine-tuning. Reported quality is close: WikiText2 perplexity **20.7170**
+versus **20.9549** for fp16, and C4 "0.4% worse". Speed is the cost. Integer inference has "almost
+nothing" in optimized kernels, so reaching **106.3** tok/s at A100 batch 1 required fused ops, CUDA
+graphs and a custom Triton attention kernel, and prefill "still runs at about 0.13× fp16". The speed
+baseline is eager fp16 without compile or CUDA graphs, which the author flags as "Not an
+apples-to-apples comparison". One small model, first-party. See [[Inference Determinism]].
 
 ## Open questions
 
@@ -469,3 +500,9 @@ comparison between the two paths. [[On-Device Reasoning]] covers the browser dep
 - [[ByteByteGo - How Nvidia's New Nemotron Model Works]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
 - [[PyTorch - ExecuTorch WebGPU - PyTorch Models on the GPU, in the Browser]]
+- [[Low-Precision Training]]
+- [[Inference Determinism]]
+- [[Neural Audio Codec]]
+- [[Thinking Machines]]
+- [[Thinking Machines - End-to-End 4-Bit Training]]
+- [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]

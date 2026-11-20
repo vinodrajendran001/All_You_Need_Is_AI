@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-11-13
+updated: 2026-11-20
 tags:
   - concept
   - ai-agents
@@ -31,6 +31,9 @@ source_ids:
   - src-2026-10-17-bytebytego-chunking-strategies
   - src-2026-11-04-x-town-square-rebuild
   - src-2026-06-11-0xcodez-fable-5-self-improving-agents
+  - src-2026-11-11-openrouter-mcp-cli-skills
+  - src-2026-11-18-ioma8-llm-reverse-engineering
+  - src-2026-11-19-anthropic-founders-playbook
 status: active
 ---
 
@@ -156,6 +159,17 @@ Combined with the finding that agent configuration **has a half-life**, the prac
 skill should be retired unless it can be justified against an eval — the same discipline
 [[Harness Optimization]] applies to every other rung of the scaffolding ladder.
 
+[[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]] measures the read-once cost of a
+skill. Wrapping the `gh` CLI with a one-line index pointing at a **1,492**-character SKILL.md raised
+the task's input from **1,421** to **3,315** tokens on Sonnet 5.5 (**627** to **1,542** on GPT-6
+Luna), because the file stays in the conversation once read. Both routes answered correctly, so for
+this well-known CLI the skill added tokens without a correctness gain (the post credits it with "same
+commands every run"). The authors' rule separates the cases: "For a CLI tool the model knows well, a
+skill is optional. For your own CLI, the skill is how the model learns the commands."
+That puts a measured floor under Osmani's point above: a skill's body is cheap until invoked, but once
+invoked it is resident for the rest of the session. Even so, the skill route stayed far below the
+**59,417** tokens of the default MCP route on the same task. It is one vendor test of one task.
+
 ## A persona is a skill file applied to the agent's identity rather than to a capability
 
 [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]] describes an **Agents Catalog** with exactly the shape this vault has recorded for
@@ -189,6 +203,16 @@ the bottleneck and buying generic infrastructure before building repository-spec
 The reusable artifact earns its place through accepted outcomes, not through how much process it
 contains. The evidence is a synthesis of company reports, not a measured comparison of skill
 formats or blueprint systems.
+
+[[Anthropic - The Founder's Playbook - Building an AI-Native Startup]], an undated Anthropic
+marketing guide, makes the stronger claim this section cautions against: "Skills can then codify
+recurring workflows (e.g., "how I audit a commercial lease," "how I triage a patient intake form")
+into reusable routines Claude runs the same way every time." The guide gives no evidence that runs
+are consistent. Its examples are only named workflows, and it describes no deterministic gate around
+them. Its Airtree customer story says that when one person builds a skill-based automation,
+"everyone in the organization can use it". That story is also Anthropic's unverified marketing
+claim. Faik's account suggests a different reading: a skill makes a procedure reusable, but
+repeatability still has to be enforced or measured.
 
 ## A skill's evidence store is a different artifact from the skill
 
@@ -277,6 +301,25 @@ mixed results on whether skills earn their context budget still apply. One opera
 specific: a Skill "should know which kinds of tasks it produces that may hit the classifier and
 document the expected behavior", because a silent classifier block looks like a real error.
 
+## Skills that encode a method for getting unstuck
+
+[[ioma8 - LLM Assisted Reverse Engineering]] is a practitioner's account of agent-assisted reverse
+engineering that rests on three skills. "What I basically do nowadays is just point the agent at the
+binary to be analysed and use my set of dedicated agent skills. Rest usually takes care of itself."
+One skill describes the specific disassembly tooling and the Ghidra MCP bridge, because "Without such
+a skill, agents often give up too quickly getting lost". A second, his own hypothesis-debugging skill,
+makes the agent write each hypothesis to a CSV table on disk, design an experiment that "will
+definitively prove or disprove" it, record the result, and repeat. He calls it "crucial" because it
+"Stops it going in circles". The third is Matt Pocock's public "Grill me" skill, which he invokes
+with a prompt asking for up to five questions "whose answers are crucial for your further progress",
+one at a time.
+
+These are skills as procedure rather than as knowledge: a logged scientific-method loop for a stuck
+agent, and a tool description without which the agent often gives up, not knowing how to do the
+disassembly. That sits against the Opus-era advice recorded in [[Context Engineering]] that skills
+should shrink as models improve; this author runs a cheap model, where a prescriptive skill may
+still pay. The evidence is anecdotal; no runs with and without the skills are reported.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -331,3 +374,6 @@ document the expected behavior", because a silent classifier block looks like a 
 - [[Paul Iusztin - From 1 Bloated Context Window to 6 Scoped Subagents]]
 - [[Paul Iusztin]]
 - [[Agent Delegation]]
+- [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
+- [[ioma8 - LLM Assisted Reverse Engineering]]
+- [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]

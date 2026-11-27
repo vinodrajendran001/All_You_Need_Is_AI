@@ -210,9 +210,9 @@ Qwen3.8-27B attempted each task 4 times (8 times for a stratified sample of six 
 Of **442** scored tasks it solved **151** every time and **120** never, and the **171** it solved only
 sometimes form the qualified set. This is the cheap, empirical counterpart to the horizon analysis
 above: instead of changing the objective so that hard tasks carry signal, as Progressive Point
-Matching does, it removes tasks whose groups would be silent at the current policy. The cost is that
-the model never trains on tasks it cannot yet solve at all, and a task qualified at the start can
-become all-pass as training proceeds. The authors ran four short runs on unvalidated, validated,
+Matching does, it removes tasks whose groups would be silent at the current policy. On the vault's
+reading, the cost is that the model never trains on tasks it cannot yet solve at all, and a task
+qualified at the start can become all-pass as training proceeds. The authors ran four short runs on unvalidated, validated,
 unqualified and qualified sets to test the filters, but report the results only in charts.
 
 The training loop shows a second interaction with the group mechanics. Using TRL's
@@ -220,8 +220,8 @@ The training loop shows a second interaction with the group mechanics. Using TRL
 a per-step token budget and found that "the number of groups that fit in a step's token budget more
 than doubles as trajectories get shorter". Training correctness stayed roughly flat, which the authors
 explain by the model meeting new tasks during training; the gains appear on held-out benchmarks. The
-reward is verifier correctness plus a **0.1** tool-efficiency bonus, so the within-group spread that
-GRPO normalizes also ranks shorter correct trajectories above longer ones. The evidence is
+reward is verifier correctness plus a **0.1** tool-efficiency bonus, so two attempts in a group with
+the same correctness can still differ in reward by how efficiently they used tools. The evidence is
 first-party; the full recipe is on [[Agentic Reinforcement Learning]].
 
 ## Related pages

@@ -213,8 +213,8 @@ duplicates, evaluation sets and tasks marked as not for training. The authors ke
 sources (SWE-smith and SWE-Gym via TaskTrove) and generated a third with Tasksmith, which builds tasks
 from merged pull requests and accepts one only if the reference and a valid alternative pass while the
 unfixed code and a known-wrong solution fail. A metadata screen then drops the **253** tasks in the
-target benchmarks and any task from a repository those benchmarks use, a decontamination step most
-releases on this page do not describe.
+target benchmarks and any task from a repository those benchmarks use, a decontamination step this
+page has not previously recorded.
 
 `openenv validate` turns the two gates above into fixed checks run in fresh trials. The reference
 solution must earn the maximum reward, which is gate one's solvability proof with a reference

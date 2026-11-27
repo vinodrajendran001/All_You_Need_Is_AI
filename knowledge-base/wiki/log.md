@@ -1,7 +1,7 @@
 ---
 type: log
 created: 2026-05-08
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - log
 source_ids:
@@ -448,6 +448,32 @@ source_ids:
   - src-2026-11-19-shankar-husain-evals-three-gulfs
   - src-2026-11-19-tselovalnikov-10x-engineer
   - src-2026-11-19-anthropic-founders-playbook
+  - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
+  - src-2026-11-25-goofyfish-make-your-own-game
+  - src-2026-11-24-uber-agent-skill-evals
+  - src-2026-11-20-huggingface-harness-adapters
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
+  - src-2026-11-22-nikolas-goebel-informal-verification
+  - src-2026-11-24-antithesis-nightmare-mode
+  - src-2026-11-23-jan-miksovsky-watching-users
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
+  - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
+  - src-2026-11-24-vllm-gr-announcement
+  - src-2026-11-24-bytebytego-doordash-dispatch
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
+  - src-2026-11-22-zhang-li-recursive-self-editing
+  - src-2026-11-27-modaic-jev-latency-fingerprint
+  - src-2026-11-24-uncensored-ai-free-model-catalog
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
+  - src-2026-11-23-alphasignal-e-means-rag
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -3181,3 +3207,131 @@ Index and overview totals advance to **744 typed wiki pages**; **417 source summ
 The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
 and lint reports were not edited. Nothing was staged, committed, pushed, or published by
 this run.
+
+## [2026-11-27] ingest | Skill Evals, Measured Migrations, and a Method for Inference Serving
+
+Ingested 26 new captures under `raw/sources/`, one of them added by the user while the ingest was
+running, with 26 source summaries, one new concept ([[AI Consciousness and Moral Patienthood]]), and
+two new entities ([[Antithesis]] and [[intelligentLearn]]). Integrated the evidence into 95 existing
+concept and entity pages. Nine earlier summaries gained affected-page or related-page links to the
+new pages and sources.
+
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] restates the
+  prompt-to-graph stack as a ladder. Its closing call to follow "@Rel1vs337" does not match the
+  byline, the OpenAI harness post and the harness-editing paper it relays are unlinked and
+  uncaptured, and its loop anatomy is the Osmani essay the vault already summarizes, so it is not
+  independent evidence.
+- [[Goofy Fish - Make Your Own Game]] adds a repository that ships its own game-building command.
+  The capture has no byline or published date; the site name was verified on the live page.
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]] adds ten months of
+  subscription-funded agentic coding on Kitsu. The cost appears as both "Around $2k" and "less than
+  $2000", and the API-price comparison is his estimate. His "The Decoherence Trap" link points to
+  breck-mckye.com, not to the vault's unattributed capture of that title, so the authorship lead is
+  recorded as unverified.
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] adds a self-built
+  multi-session chat client. Its native-harness test figures come from a linked post that is not
+  captured, its demos replay real thread text but stage tool calls and numbers, and he built the
+  tool he praises.
+- [[William Hu - Building Always-On Agents]] adds an Anthropic guide to agents that sleep between
+  events. It is first-party, the benchmark behind its two headline percentages is unnamed, and the
+  architecture itself is not measured.
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] adds a skill
+  marketplace evaluated on trajectories. It gives no absolute success rates, the cost-per-invocation
+  window includes later turns and other tool calls, and the TL;DR install list names a "SpaceXSI
+  Cursor" that the body does not.
+- [[Hugging Face - Introducing Harness Adapters]] adds one LoRA adapter per coding harness. It is
+  first-party and internally inconsistent: base pi on Terminal-Bench 2.1 appears as 39%, 39.1%, and
+  40.0%, the SWE-bench Pro prose and table disagree, 278 + 522 does not sum to the 1,127 Hub
+  candidates, and the qualified column sums to 193 against a stated 171.
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] adds a same-budget comparison of agent
+  teams and single agents. Some headline figures appear only in captions, the restarted-agent
+  baseline was post hoc and run on one task, teams had more CPUs, a Codex compaction bug affected
+  some runs, and most settings ran three times.
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] adds a measured RPG-to-Java
+  migration. The larger application's rate is given as about $1.80 and about $1.83 per thousand
+  lines, its time as 48 hours of agent time and 40 hours of model time, and the author both founded
+  and co-founded Strumenta. Articles 2-5 are not captured, the dollars are list-price equivalents,
+  and Strumenta sells migration services.
+- [[Nikolas Göbel - Informal Verification]] adds step-checked natural-language proofs as a source of
+  trust. The capture's author and date fields are empty, so both were recovered from the live site
+  and URL, and its interactive demonstrations are iframes that were not captured.
+- [[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]] is a
+  first-party vendor post with no AI content, ingested at the user's request. Its date was recovered
+  from the live page, and it does not count the customer bugs it reports; only the bbolt bug is
+  shareable.
+- [[Jan Miksovsky - Watching Users Is How You Make Products Better]] is an opinion post with no
+  data, ingested at the user's request; the author was recovered from the live page.
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] adds
+  back-of-envelope ledgers for one machine. Its title format and "Part II" style numbering differ
+  from the later parts, it announced later parts for dates that slipped, and an upload placeholder
+  was left in the published text.
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] adds a
+  six-layer map of interventions. It also announced a date that slipped, an upload placeholder
+  remains, and its appendix cross-references conflict with Part 4.
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] adds an
+  evaluation checklist for a proposed change. Its schedule statements also conflict with Part 1's.
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] adds the
+  measurement plan and a 172-paper table graded by reading depth. Its appendix letters conflict, so
+  the summaries cite content rather than letters, and its case numbers are teaching assumptions,
+  including an efficiency figure the author marks as uncited.
+- [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]] is a self-reported reproduction with no
+  frontmatter or URL; the ID date is the capture's first Git-tracked date. It says the blog "fired
+  both arms simultaneously", which conflicts with the blog capture's account of alternating order,
+  its mean Pick time exceeds the measured TTFT increase, and its control-row gain is confounded by a
+  GPU clock difference between pools.
+- [[vLLM-GR Team - Announcing vLLM-GR]] is first-party, with benchmark protocols that differ by
+  figure, P99 latency only, and unquantified deployment claims.
+- [[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] is secondhand, with
+  no baselines, quality metrics, or switchback results; the DoorDash post it relays is not in the
+  vault, and the sponsor block is excluded.
+- [[Ankit Gupta - Vibecoding an Inference Chip]] has an empty author field; the byline was recovered
+  from the live page. The served model is never named or sized, the 195× row rounds 213.13 / 1.1,
+  the $10,000 covers tokens only, and the adopt/reject account is the agent's self-assessment.
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] has
+  no author or date frontmatter; the arXiv v1 date was recovered outside the capture. Its
+  contributions list and references are missing, several bracket citations are unresolved, and the
+  result is one run with no baselines or ablations.
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] has no byline or date and
+  comes from a competitor. It says both controls tracked their own tokenizers best, yet Mo Lite
+  scores Qwen and Gemma at the same 0.873, and its request and prompt counts (9,976 and 9,984) are
+  not reconciled.
+- [[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]] is unattributed, undated,
+  and promotional, and relays leaderboard scores without their method. It is recorded at catalog
+  level only; every run command, download link, and setup instruction is omitted.
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]] has no author or date frontmatter; the
+  arXiv v1 date was recovered outside the capture. The footnote texts and reference list were lost,
+  so its bracketed citations cannot be resolved, and it is a position paper from an interested party
+  with no results of its own.
+- [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]] has no frontmatter,
+  byline, date, or canonical URL; the ID date is the first Git-tracked date. It names no paper,
+  every number is the newsletter's relay, and the capture's "themselves today" qualifier was
+  restored on every page that relays the limitation.
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]
+  adds a FlashAttention-2 forward port measured one compiler decision at a time. The link to the
+  author's earlier Triton article is a placeholder URL, the article says it was written with AI
+  assistance, and the raw frontmatter's author link matches no page. Some "tie" labels do not match
+  the numbers, Triton was profiled at different tile sizes across rounds, and gains from the
+  fixed-clock profiler and the wall-clock harness cannot be summed. All results are self-reported on
+  one consumer GPU.
+
+The user added the Lewis Won capture while this ingest was running; an outside auto-backup commit
+(aad466a, 11:51) began tracking it. The first agent assigned to it failed on a network error and was
+relaunched. Before this ingest's baseline, the Instinct raw capture had been converted from CRLF to
+LF outside this session with identical text; the November 20 log does not record that change, and
+the file was left as found. At the user's direction, the Nightmare Mode and Watching Users captures,
+which have little or no AI content, were ingested; the October 27 smart-TV privacy capture remains
+deferred. Quote checks against the captures corrected passages in five new summaries before
+integration: Nijholt, intelligentLearn Parts 1 and 2, Vinod, and vLLM-GR. A quotation in one
+cross-batch proposal from the Lewis Won source was also corrected before it was applied. Outside
+auto-backup commits captured intermediate states of this ingest.
+
+The inventory is **773 typed pages**, including **443 source summaries**, **149 concepts**, **110
+entities**, and **48 lint reports**, with **469 source IDs**. The raw collection has **475 top-level
+captures / 545 files**, excluding four Obsidian settings files. No post, local query, synthesis, or
+new lint report was created.
+
+All **549** baseline raw files, including the four settings files and the late capture, are
+byte-identical to the working-tree baseline. The historical log body, templates, posts, queries,
+syntheses, and lint reports are unchanged. All **773 pages** are reachable, the structural audit has
+zero findings, the controls have exact **469-ID** parity, and affected-page/body-citation
+reciprocity is **A 0 / B 0 / C 0**. This ingest did not stage, commit, or push.

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-11-13
+updated: 2026-11-27
 tags: [concept, gpu, reliability, distributed-training, infrastructure, systems]
 source_ids:
   - src-2026-10-15-netflix-reliable-gpu-compute
@@ -10,6 +10,8 @@ source_ids:
   - src-2026-07-17-netflix-in-house-llm-serving
   - src-2026-11-02-anil-compute-islands
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
 status: active
 ---
 
@@ -174,6 +176,44 @@ interval.
 
 These are one team's procedures on one cloud, not fleet statistics.
 
+## Serving fleets lose in-flight state, not checkpoints
+
+The open question below notes that always-on inference does not checkpoint. [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] gives the
+vault's first layer-by-layer account of what a serving fleet loses instead, drawn from papers it read
+end to end:
+
+- **Capacity (L0).** SpotServe shows that preemption endangers **in-flight request state**, and
+  recovery needs migration or recomputation. This is the serving counterpart to AI21's point above
+  that a queue guarantee does not stop a provider reclaiming spot capacity. The claim that a
+  long-context request has more state to rebuild is the author's own derivation from linear KV
+  growth. SpotServe never writes recovery cost as a function of request length, so whether spot
+  capacity pays less under long-document traffic stays "pending measurement".
+- **Replica composition (L3).** Disaggregation creates a failure dependency that colocated serving
+  does not have. DistServe implements neither preemption nor fault tolerance, and in the paper's
+  words one failed decode instance "could potentially cripple the entire service and cluster". The
+  prefill-to-decode handover behaves like the gang dependency in synchronous training: one member
+  can stop the group.
+- **Substrate (L1).** Replacing capacity is bounded by materialization time. HydraServe measured a
+  production cold start of **>40 s**, of which host-to-GPU transfer was only about **2 s**. Pulling
+  weights from remote storage was the main bottleneck. If burst duration ÷ cold-start time is below 1,
+  scaling out "cannot arrive in time", and the lever is admission or degradation, not the replica
+  count. Prewarming trades that delay for idle GPUs.
+- **Contract (L5).** A study of production inference incidents finds HTTP 500s in **74%** of
+  incidents, which the paper attributes to a monitoring gap. Requests kept being routed to engines
+  that could not serve them. The most common response was "No action/monitor only", at **48%**. The
+  load balancer already had health probes and capacity-aware routing. The recommendation was to
+  expand their coverage, while admission and degradation policies had to be retrofitted. This
+  repeats this page's "health is a different control from admission" at serving scale. Health
+  signals only help if they reach the router, and someone must still decide who is sacrificed when
+  capacity is short.
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] turns this into measurements. L0's cost is "availability and state rebuilding". L1's signal
+is that scaling cannot keep up with bursts or that GPU utilization stays low. Operators should
+measure the full distribution from scale-out decision to a ready replica rather than one mean.
+HydraServe's >40 s is scoped to that paper's environment. The evidence base is thin by the author's
+own account. The corpus holds only **5** L0 papers (a cap of 150 admitted 5) and **3** L5 papers, and
+the author attributes both to search vocabulary and budget, not to the field.
+
 ## Open questions
 
 - How much immediately schedulable capacity does a fleet give up by holding new machines until checks
@@ -190,6 +230,7 @@ These are one team's procedures on one cloud, not fleet statistics.
   no verification mechanism.
 - How much variation is normal within one node count? The handbook's 90%-of-baseline rule needs
   repeated runs on known-good nodes to set, and it reports one baseline per count.
+- How does the cost of recovering a preempted or failed serving instance grow with in-flight context length? intelligentLearn derives that long-context requests have more state to rebuild, but SpotServe runs no sequence-length sweep, so the crossover against spot savings is unmeasured.
 
 ## Related pages
 
@@ -210,3 +251,6 @@ These are one team's procedures on one cloud, not fleet statistics.
 - [[Rohan Anil - The Hitchhiker's Guide to Training on Compute Islands]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
 - [[Mixture of Experts]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[intelligentLearn]]

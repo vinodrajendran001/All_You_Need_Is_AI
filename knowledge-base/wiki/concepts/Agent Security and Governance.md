@@ -659,8 +659,8 @@ measurements.
 
 [[Nikolas Göbel - Informal Verification]] gives the same condition at the application layer, in an
 example he labels "purely for illustration" rather than an incident. A Rails application enforces
-tenant isolation through a default scope on its
-`Invoice` model, and the framework documentation says model queries include it. The controller loads invoices through a helper that calls `find_by_sql`,
+tenant isolation through a default scope on its `Invoice` model, and the framework documentation says
+model queries include it. The controller loads invoices through a helper that calls `find_by_sql`,
 which "runs the query as written, default scope or not", so "Any tenant can read any invoice by
 guessing its id." The scope is a policy point that one raw query bypasses. In the essay the bypass is
 caught because a model checker refused the step from "the controller loads the invoice" to "the

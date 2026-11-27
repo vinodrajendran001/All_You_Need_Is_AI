@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -34,6 +34,7 @@ source_ids:
   - src-2026-11-11-openrouter-mcp-cli-skills
   - src-2026-11-18-ioma8-llm-reverse-engineering
   - src-2026-11-19-anthropic-founders-playbook
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -320,6 +321,42 @@ disassembly. That sits against the Opus-era advice recorded in [[Context Enginee
 should shrink as models improve; this author runs a cheap model, where a prescriptive skill may
 still pay. The evidence is anecdotal; no runs with and without the skills are reported.
 
+## A skill marketplace run like code: tiers, clean-room evals and ablation
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] is the largest production account of skills in the vault. Uber's marketplace grew from **1**
+skill in October 2025 to more than **5,000** a year later, with more than **1 million** invocations in
+one month. Skills follow the staged loading described above: about **100** tokens of name and
+description always loaded, a body kept under **500** lines, and scripts and references only for the
+step that needs them. They graduate from Domain (one peer approval and a CI check) to Core (the
+platform team reviews every change) to about **100** Always-on skills, and graduation requires evals.
+A CLI called aifx installs the same skills into Claude Code, Codex, OpenCode and Uber's hosted agents,
+one company's answer at the install level to the portability question below. The text itself is not
+treated as portable: Uber plans to compile SKILL.md per model because "different phrasing and lengths
+of SKILL.md files work better in different model families".
+
+The evaluation design treats a skill like code with a test suite. The suggested mix is about **5%**
+golden cases, **80%** real prompts graded on trajectory (the right skills and tools in the right
+order), and **15%** judged by the author. Suites run in clean rooms, which exposed skills that depended
+on the author's file paths, cached documents or OS tooling. Ablation replays real prompts with the
+skill, without it and with parts removed, and a blind judge picks the better answer. "In a majority of
+the cases, skills made the session more successful and cost less." The biggest wins came on internal
+documents and warehouse queries: without the warehouse skill, sessions made **13%** more tool calls,
+had **six times** as many tool errors and took **31%** longer, and the answer with the skill won
+**87%** of comparisons. Uber also ablates words, because "As models get better, more words can reduce
+performance".
+
+This sits between the two earlier measurements on this page. It agrees with OpenRouter's rule that
+"For your own CLI, the skill is how the model learns the commands": Uber's largest wins are on internal
+systems a model cannot already know. It does not settle Osmani's finding that personalized skills
+performed roughly on par with borrowed ones, because Uber compares a skill against no skill rather
+than two skills against each other. Uber's evidence comes from real sessions judged blind, where
+Osmani's came from an LLM developer simulator, but Uber gives no absolute success rates, no count of
+skills ablated and no number behind "a majority". Its lifecycle, in which a skill lives "until a
+better model makes it unnecessary and it retires", turns the half-life rule above into a stage, and
+its always-on log-papercut skill makes the agent using a skill the reporter of its defects. The cost
+levers (a cheaper worker subagent, scripts at load time, Code Mode) are recorded in [[Model Routing]]
+and [[Tool Roster Economics]], and the judging in [[LLM-as-a-Judge]]. The account is first-party.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -328,6 +365,9 @@ still pay. The evidence is anecdotal; no runs with and without the skills are re
 - Can skill libraries become portable across models and harnesses, or will they remain tightly coupled to a specific runtime?
 - When is skill optimization merely workflow tuning, and when does it become part of a broader recursive self-improvement loop?
 - How many skills can coexist before narrow activation conditions start colliding and retrieval of the right skill becomes its own problem?
+- Uber installs one skill into four agents but plans to compile its SKILL.md per model family. Is
+  portable installation with model-specific text the stable end state, and who maintains the
+  compiled variants when a model changes?
 
 ## Related pages
 
@@ -377,3 +417,10 @@ still pay. The evidence is anecdotal; no runs with and without the skills are re
 - [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
 - [[ioma8 - LLM Assisted Reverse Engineering]]
 - [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Uber]]
+- [[LLM-as-a-Judge]]
+- [[Multi-Turn Evaluation]]
+- [[Agent Observability]]
+- [[Model Routing]]
+- [[Tool Roster Economics]]

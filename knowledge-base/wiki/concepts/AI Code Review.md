@@ -186,11 +186,11 @@ documentation, then small reasoning steps, each checked by a fast "System One" m
 or overly large ones. His example, "purely for illustration", is the claim that `GET /invoices/:id`
 never returns another tenant's invoice. Four premises cite their witnesses: middleware that sets the
 current tenant, the model's tenant default scope, the Rails documentation on scopes, and a controller
-that loads the invoice with
-`find_for_display`. The checker accepts the first two steps and rejects the third, that the loaded invoice belongs to the current tenant, because nothing says how `find_for_display`
-builds its query. It uses `find_by_sql`, which "runs the query as written, default scope or not". The
-checker did not need to know that; it "simply refused a step whose conclusion doesn't *obviously*
-follow from the premises."
+that loads the invoice with `find_for_display`. The checker accepts the first two steps and rejects
+the third, that the loaded invoice belongs to the current tenant, because nothing says how
+`find_for_display` builds its query. It uses `find_by_sql`, which "runs the query as written, default
+scope or not". The checker did not need to know that; it "simply refused a step whose conclusion
+doesn't *obviously* follow from the premises."
 
 The value claimed is for the human gate rather than for detection: instead of "a single agentic
 thumbs-up at the end", the reviewer gets "seven concrete claims (four premises and three reasoning

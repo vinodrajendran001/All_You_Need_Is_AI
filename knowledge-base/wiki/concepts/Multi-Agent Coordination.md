@@ -238,16 +238,17 @@ median and the 6.1 figure come from chart captions; the TL;DR rounds them to "6x
 OpenAI's multi-agent results: "Measured against tokens, adding agents does not yet look like a new
 axis along which performance scales."
 
-The one apparent premium came from self-organized GPT teams on git-to-zig, a porting task graded on
-743 of git's test scripts. At 32M weighted tokens, Sol's teams of 8 scored **93.2%** against
-**83.7%** for one agent, and Terra's teams of 2 and 8 scored 29.1% and 32.0% against 26.6%. Terra's
-teams of 4 did not beat it (25.4%), teams of 16 scored 33.3%, and teams of 32 fell to 23.2%. The
-gain was not a best-of-N effect, because the best of 8 single agents at 4M each reached 43.7% for Sol
-and 13.1% for Terra. A single agent working across eight fresh sequential sessions then removed the
-premium. It scored **97.0%** and **41.9%** at 32M, and 62.1% and 28.0% at 8M against the teams'
-55.0% and 17.8%. The author's explanation concerns context rather than coordination: "a long
-session never wholly resets, even with compaction", so stale information builds up. The restarted
-baseline ran only on git-to-zig, "so our other comparisons may flatter the teams".
+The one apparent premium came from self-organized GPT teams on git-to-zig, a task to reimplement git
+in Zig that is graded on 743 of git's test scripts. At 32M weighted tokens, Sol's teams of 8 scored
+**93.2%** against **83.7%** for one agent, and Terra's teams of 2 and 8 scored 29.1% and 32.0%
+against 26.6%. Terra's teams of 4 did not beat it (25.4%), teams of 16 scored 33.3%, and teams of 32
+fell to 23.2%. The gain was not a best-of-N effect, because the best of 8 single agents at 4M each
+reached 43.7% for Sol and 13.1% for Terra. A single agent working across eight fresh sequential
+sessions then removed the premium. It scored **97.0%** and **41.9%** at 32M, and 62.1% and 28.0% at
+8M against the teams' 55.0% and 17.8%. The author's explanation concerns context rather than
+coordination: "a long session never wholly resets, even with compaction", so stale information
+builds up. The restarted baseline ran only on git-to-zig, "so our other comparisons may flatter the
+teams".
 
 Whether talking helps depends on the task. The control is a no-talk team that splits the same 8M
 budget and is scored on its best agent, and each "point" is 1% of the model's single-agent score.

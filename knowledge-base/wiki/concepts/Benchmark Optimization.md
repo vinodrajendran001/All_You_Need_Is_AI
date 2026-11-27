@@ -431,17 +431,18 @@ the same post that his benchmarks belong on every model card.
 
 ## Disclosed selection bias, and a benchmark verifier that accepted wrong answers
 
-[[Hugging Face - Introducing Harness Adapters]] is a first-party result that applies several of this page's rules to itself. Training tasks
-were screened against the evaluation: a metadata step dropped the **253** tasks in the target
-benchmarks and any task from a repository those benchmarks use. Evaluation is within a harness only,
-because pi compacts context and the other two harnesses do not ("you cannot compare the results across
-different harnesses"), and each run is one attempt per task at temperature 0.8 with default harness
-settings. Selection effects are disclosed and, in one case, measured. OpenCode's checkpoint was chosen
-on Terminal-Bench 2.1, so its gain is reported twice: **+6.0** overall and **+13.6** on the **66**
-tasks that played no part in the choice. The merged adapter's ½ weight was also chosen on
-Terminal-Bench 2.1, so the authors call those numbers "slightly optimistic", while SWE-bench Pro played
-no part. That is the held-out discipline Factory's tuning loop above did not describe, though here the
-held-out slice is a part of the same benchmark rather than a separate set.
+[[Hugging Face - Introducing Harness Adapters]] is a first-party result that applies several of this
+page's rules to itself. Training tasks were screened against the evaluation: a metadata step dropped
+the **253** tasks in the target benchmarks and any task from a repository those benchmarks use.
+Evaluation is within a harness only, because pi compacts context and the other two harnesses do not
+("you cannot compare the results across different harnesses"), and each run is one attempt per task at
+temperature 0.8 with default harness settings. Selection effects are disclosed and, in one case,
+measured. OpenCode's checkpoint was chosen on Terminal-Bench 2.1, so its gain is reported twice:
+**+6.0** overall and **+13.6** on the **66** tasks that played no part in the choice. The merged
+adapter's ½ weight was also chosen on Terminal-Bench 2.1, so the authors call those numbers "slightly
+optimistic", while SWE-bench Pro played no part. That is the held-out discipline Factory's tuning loop
+above did not describe, though here the held-out slice is a part of the same benchmark rather than a
+separate set.
 
 The recipe also found a defect in an evaluation benchmark. Running `openenv validate`, whose
 wrong-answer controls require that doing nothing and canary answers score below the reference, caught
@@ -449,25 +450,25 @@ a Terminal-Bench 2.1 verifier (regex-log) that "accepted known-wrong answers". T
 problem above found in an evaluation rather than a training environment, by a cheap reference
 condition of the kind "The baseline nobody ran" asks for. The evaluation uses all **89**
 Terminal-Bench 2.1 tasks, and the post does not say whether that verifier was excluded or fixed for
-scoring. The post's own numbers need care: base
-pi on Terminal-Bench 2.1 appears as **39%**, **39.1%** and **40.0%** in different sections, and the
-results table covers only the tasks every run graded. The **89** tasks match the curated count at v2.0
-recorded from [[@zafstojano - Recursive Synthetic Improvement]], while
-[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] says the benchmark "contains several hundred tasks"; the vault has not resolved the
-difference.
+scoring. The post's own numbers need care: base pi on Terminal-Bench 2.1 appears as **39%**, **39.1%**
+and **40.0%** in different sections, and the results table covers only the tasks every run graded. The
+**89** tasks match the Terminal Bench task count in [[Philipp Schmid - Recursive Self-Improvement]],
+while [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] says Terminal-Bench 2.1 "contains
+several hundred tasks"; the vault has not resolved the difference.
 
 ## The restarted single agent as the missing control for swarm gains
 
-[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] applies the matched-budget rule to multi-agent results and adds a control that changed its
-conclusion. The study compared more than **80** team configurations with a single agent given the same
-budget of weighted tokens, and scored a team by its best agent so that "no-talk" teams of independent
-agents could measure how much of a gain is just extra tries. The one apparent swarm premium, on a
-git-in-Zig porting task at 32M tokens, survived the extra-tries control but disappeared against a
-single agent whose budget was split into eight consecutive fresh sessions: at 32M that agent scored
-**97.0%** (GPT-6.1 Sol) and **41.9%** (GPT-6.1 Terra) against **93.2%** and **32.0%** for teams of 8.
-A long single session is therefore a weak baseline, because its context goes stale, and a swarm gain
-measured against it can be a context-management effect. The restart was run post-hoc and only on
-git-to-zig, "so our other comparisons may flatter the teams".
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] applies the matched-budget rule to
+multi-agent results and adds a control that changed its conclusion. The study compared more than
+**80** team configurations with a single agent given the same budget of weighted tokens, and scored a
+team by its best agent so that "no-talk" teams of independent agents could measure how much of a gain
+is just extra tries. The one apparent swarm premium, on git-to-zig (reimplementing git in Zig) at 32M
+tokens, survived the extra-tries control but disappeared against a single agent whose budget was split
+into eight consecutive fresh sessions: at 32M that agent scored **97.0%** (GPT-6.1 Sol) and **41.9%**
+(GPT-6.1 Terra) against **93.2%** and **32.0%** for teams of 8. A long single session is therefore a
+weak baseline, because its context goes stale, and a swarm gain measured against it can be a
+context-management effect. The restart was run post-hoc and only on git-to-zig, "so our other
+comparisons may flatter the teams".
 
 The study then rates vendor swarm claims by whether they matched compute. [[OpenAI]]'s GPT-5.6 swarm
 bonus (**+3pp to +23pp**) had no matched-compute control and is "Probably just disguised inference
@@ -475,11 +476,11 @@ scaling". An independent replication of its BrowseComp result on a **253**-quest
 points) found the multi-agent gain at high effort small on both sides, **2.6** points reported by
 OpenAI and **0.4** to **2.8** in the replication, but every replication score was lower: by **1.4**
 points for the single agent at low effort and by **7.5 to 8.0** points in the other three comparisons.
-The author could not determine why and lists an internal harness, a harder sample, stricter
-leak filtering and the reasoning-compute "juice" setting as candidates. Two of the five attributes
-above, the baseline and the workload, decide these numbers. The study's own limits are recorded on
-its summary page, including a CPU difference between teams and single agents and Claude single
-agents that underspent their budgets.
+The author could not determine why and lists an internal harness, a harder sample, stricter leak
+filtering and the reasoning-compute "juice" setting as candidates. Two of the five attributes above,
+the baseline and the workload, decide these numbers. The study's own limits are recorded on its
+summary page, including a CPU difference between teams and single agents and Claude single agents that
+underspent their budgets.
 
 ## Open questions
 

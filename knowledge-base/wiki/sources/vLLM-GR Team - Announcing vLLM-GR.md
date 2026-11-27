@@ -125,8 +125,8 @@ comparability across panels.
 - **Deployment claims are unquantified.** The acknowledgements thank teams including TikTok-Global
   E-commerce and ByteDance-Commerce & Advertising for "experience and feedback from large-scale
   production deployments". No deployment is described or measured.
-- The RTX PRO 6000 run generated three tokens per SID; how latency scales with deeper SID hierarchies is
-  listed as roadmap.
+- The fully specified RTX PRO 6000 run generated only three tokens. Support for deeper SID hierarchies
+  across device types is listed as roadmap.
 
 ## Affected pages
 

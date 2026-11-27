@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-29
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - llm
@@ -40,6 +40,10 @@ source_ids:
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-10-alphasignal-latent-sparse-attention
   - src-2026-11-12-nathan-barry-detllm-integer-inference
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
 status: active
 ---
 
@@ -320,12 +324,47 @@ top-6 raised perplexity by **0.7%**, against **356%** on the Qwen model. A "smal
 therefore a model-specific experiment, not a free knob. The handbook's deployment results for decode
 are in [[Prefill-Decode Disaggregation]].
 
+## A serving fix has to name its binding constraint
+
+[[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] turns the two-phase model above into a diagnostic procedure. Every slow request is read
+three times: in an **operator ledger** (compute done and bytes moved), a **memory budget** (weights,
+state, and how many requests fit), and a **request timeline** (waiting, executing, transferring, or
+blocked). Each ledger alone misleads. Counting operators misses queueing and admission, and counting
+memory misses latency. The KV cache gives decode two separate limits, **time to read history** and
+**capacity to store it**. Batching relieves neither for attention over history, because each
+request reads its own KV.
+
+The part's running case shows how quickly the limits change with workload. A 70B-class GQA model
+in BF16 runs on two TP=4 replicas of an 8×H100 node, with a 2 s P95 first-token target and a 50 ms
+P95 token gap. KV costs **320 KiB per token**, and about **159 GB** of KV room per replica gives a
+memory-only ceiling of about **690** short chats but about **14** long documents. A cold
+32,768-token prefill needs about **6.0 PFLOP**. That is about **3.8 s** at an uncited 40% of peak,
+and meeting 2 s would take about **76%** of dense peak. The weight figures agree with the vault's
+other estimates. The **141 GB** of BF16 weights matches the roughly **140 GB** in
+[[ByteByteGo - How to Make LLMs 3X Faster]]. The TP=4 weight-streaming bound of about **10.5 ms**
+per step uses the same speed-of-light method as
+[[Cohere - North Mini Code Megakernel Serving Engine]]. Every intelligentLearn number is a teaching
+assumption or a vendor constant, not a measurement.
+
+The rest of the series answers the first open question below with rules, not measurements.
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] places fixes on six layers (engine internals, replica composition, routing and admission,
+substrate, capacity, contract) and investigates them in the order a symptom points. Turn on chunked
+prefill first when long prefills block decode and the replica still has headroom. Cost out
+[[Prefill-Decode Disaggregation]] only when chunking no longer holds the interference down and
+traffic is prefill-heavy. [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] adds the limit that "neither reduces this cold request's own
+prefill work", so a first-token miss caused by execution time alone survives both fixes. It also
+treats continuous batching, described under "Serving multiple users" above, as changing waiting
+and slot use rather than per-token work. [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] supplies the acceptance test: a faster kernel,
+a higher cache hit rate, or higher mean throughput is a local metric. A change counts only if P95
+TTFT, the P95 token gap, SLO attainment, and goodput improve at the request boundary.
+
 ## Open questions
 
 - Where exactly is the prefill↔decode crossover for a given model/hardware? [[Prefill-Decode Disaggregation]] now covers the architectural answer, but the *scheduling* answer — when chunked prefill inside one pool beats splitting across two — still depends on interconnect bandwidth and traffic mix.
 - Which weight + KV compression combinations give the best end-to-end tokens/sec without unacceptable quality loss?
 - As context windows grow, does decode become so memory-bound that KV-cache compression matters more than weight quantization?
 - Should serving stacks measure a workload's arithmetic intensity at runtime and gate batching, speculation, and attention-kernel dispatch on it, rather than configuring each independently?
+- Every number in the intelligentLearn running case is a teaching assumption, so its rule for the chunked-prefill-versus-split choice is untested. At what measured prefill efficiency, arrival burstiness, and KV-transfer cost does the long-document case actually cross over? [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] lists these as the measurements to take.
 
 ## Related pages
 
@@ -384,3 +423,8 @@ are in [[Prefill-Decode Disaggregation]].
 - [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
 - [[Thinking Machines]]
 - [[Inference Determinism]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[intelligentLearn]]

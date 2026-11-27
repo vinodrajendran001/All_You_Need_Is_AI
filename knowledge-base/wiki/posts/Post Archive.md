@@ -1,7 +1,7 @@
 ---
 type: post-archive
 created: 2026-08-29
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - post
 status: active
@@ -50,6 +50,7 @@ materially different angle, and that post must say what is new.
 | 2026-11-06 | [[2026-11-06 The Expert Agreed With the Coin Flip]] | 2026-10-30 → 2026-11-06 | [[Human Deferral to AI]] | LinkedIn, X | ready |
 | 2026-11-13 | [[2026-11-13 The Rule Book Only Grew]] | 2026-11-06 → 2026-11-13 | [[Multi-Agent Coordination]] | LinkedIn, X | ready |
 | 2026-11-20 | [[2026-11-20 The Answer Depended on the Traffic]] | 2026-11-13 → 2026-11-20 | [[Inference Determinism]] | LinkedIn, X | ready |
+| 2026-11-27 | [[2026-11-27 Compiling Was the Easy Part]] | 2026-11-20 → 2026-11-27 | [[Legacy Code Modernization with AI Agents]] | LinkedIn, X | ready |
 
 ## Superseded drafts
 
@@ -64,6 +65,7 @@ materially different angle, and that post must say what is new.
 
 <!-- Running list, newest first. Checked during candidate selection to avoid repeating an angle. -->
 
+- 2026-11-27 - legacy code translation, behavioural equivalence, run-to-run variance, verification cost
 - 2026-11-20 - inference determinism, floating-point reproducibility, batch-dependent outputs, single-run evaluation
 - 2026-11-13 - agent-written rules, process accumulation, multi-agent organizations, metric gaming
 - 2026-11-06 - human deferral to AI, independent review, judgment calls, agent influence
@@ -81,6 +83,8 @@ materially different angle, and that post must say what is new.
 ## Unposted candidates worth revisiting
 
 <!-- Strong angles that lost a scoring round. Not a commitment; just don't rediscover them from scratch. -->
+
+- Agent teams bought speed, not a higher ceiling: across more than 1,100 runs, teams finished about 6x sooner but scored about 7% lower than one agent given the same token budget, and the one swarm premium disappeared once the single agent could restart with a fresh context. Scored 26/30 on November 27; its spine was in cooldown, and the decisive restart baseline was post-hoc and run on one task - [[Multi-Agent Coordination]], [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
 
 - Asked to write a small network's weights by hand, a model rebuilt a 1990s handwriting pipeline (edge filters, templates, then a naive Bayes-style classifier fitted through the confusion matrix it was shown), reaching "around 90%" on MNIST; writing works where a compact known algorithm exists and gradient descent ties or wins elsewhere. Scored 26/30 on November 20; a cold reader needs weights and gradient descent first, and all sources are single or few runs - [[Weight-Space Programming]], [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]], [[Jacob Strauss - Experiments in Weight-Space Programming]]
 - The same GitHub task cost 59,417 input tokens through the GitHub MCP server and 1,421 through the command line on Claude Sonnet 5.5, with all three routes correct. Scored 24/30 on November 20; a vendor post that "tested one server on one task", and its Tool Search section is promotional - [[Tool Roster Economics]], [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
@@ -109,7 +113,7 @@ materially different angle, and that post must say what is new.
 - Tenant scope must survive every hop across identity, memory, tools, data, model context, and traces - [[Multi-Tenant Agent Architecture]]
 - Typed probabilistic output removes invalid shapes, not semantic hallucinations - [[Typed Probabilistic Decision Models]]
 - Quantization can make encoder disaggregation more valuable by moving the bottleneck - [[Model Quantization and Efficiency]], [[Prefill-Decode Disaggregation]]
-- Build the parity harness before asking agents to translate legacy code - [[Legacy Code Modernization with AI Agents]]
+- Build the parity harness before asking agents to translate legacy code; this angle became the 2026-11-27 post, argued through a measured translation that had no runnable original - [[Legacy Code Modernization with AI Agents]]
 - AI changed optimization search cost, not the optimization techniques - [[Software Performance Engineering]]
 - Precompute fixed choices: four cached candidate actions reduce each decision from five model passes to one, with the method reported 13x faster around 1,000 candidates - [[Typed Probabilistic Decision Models]], [[Inference Efficiency Frontier]]
 - Improve an AI application one tested change at a time: held-out cases, a revert rule, a noise floor, and a warning to change objectives when the evaluation is ~95% saturated - [[Agentic Testing]], [[Harness Optimization]]
@@ -123,12 +127,12 @@ materially different angle, and that post must say what is new.
 
 <!-- Page - post date - cooldown ends. Prune entries once expired. -->
 
-- [[KV Cache]] - drafted 2026-10-16 - cooldown ends 2026-11-27
 - [[Chain-of-Thought Monitoring]] - drafted 2026-10-23 - cooldown ends 2026-12-04
 - [[Semantic Caching]] - drafted 2026-10-30 - cooldown ends 2026-12-11
 - [[Human Deferral to AI]] - drafted 2026-11-06 - cooldown ends 2026-12-18
 - [[Multi-Agent Coordination]] - drafted 2026-11-13 - cooldown ends 2026-12-25
 - [[Inference Determinism]] - drafted 2026-11-20 - cooldown ends 2027-01-01
+- [[Legacy Code Modernization with AI Agents]] - drafted 2026-11-27 - cooldown ends 2027-01-08
 
 ## Related pages
 

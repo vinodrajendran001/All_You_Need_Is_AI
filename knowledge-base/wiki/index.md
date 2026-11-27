@@ -481,7 +481,7 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of November 27, 2026: **774 typed wiki pages**, including **443 source summaries**
+As of November 27, 2026: **775 typed wiki pages**, including **443 source summaries**
 representing **469 source IDs**, **149 concepts**, **110 entities**, and **49 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
@@ -1298,7 +1298,7 @@ its unchanged article body adds no source ID or independent estimate.
 
 ## Posts
 
-- [[Post Archive]] - LinkedIn and X drafts, covered windows, source exclusions, and spine cooldowns; latest active draft: [[2026-11-20 The Answer Depended on the Traffic]].
+- [[Post Archive]] - LinkedIn and X drafts, covered windows, source exclusions, and spine cooldowns; latest active draft: [[2026-11-27 Compiling Was the Easy Part]].
 
 ## Queries
 

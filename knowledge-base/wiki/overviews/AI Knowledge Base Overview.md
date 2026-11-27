@@ -487,7 +487,7 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of November 27, 2026, the wiki has **774 typed pages**, including **443 source summaries**
+As of November 27, 2026, the wiki has **775 typed pages**, including **443 source summaries**
 owning **469 source IDs**, **149 concepts**, and **110 entities**; page totals exclude git-ignored
 local query files. The raw collection contains **475 top-level captures** and **545 files in
 total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;

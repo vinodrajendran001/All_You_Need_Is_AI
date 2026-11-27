@@ -3368,3 +3368,42 @@ reachable and reciprocity at A 0 / B 0 / C 0. Sixty-one existing wiki files chan
 lint report was added. All **549 raw files**, templates, posts, queries, earlier reports, and
 historical log text remain preserved against the post-ingest byte baseline. Nothing was staged,
 committed, or pushed by this pass.
+
+## [2026-11-27] post | Compiling Was the Easy Part
+
+Prepared [[2026-11-27 Compiling Was the Easy Part]] as `ready`, not published:
+one LinkedIn version, one standalone X post, and a connected seven-post X thread.
+The inclusive **2026-11-20 through 2026-11-27** window starts at the newest active post's
+`covers_through`. One logged ingest supplied **26 source summaries**, and the November 27
+lint pass added none. The Git cross-check covered **49 commits and 76 changed
+source-summary paths**: the 30 November 20 summaries already scored by the previous run,
+the 26 new ones, and 20 earlier summaries that gained links or lint corrections. No
+unlogged source summary appeared.
+
+One ByteByteGo source, the DoorDash Dispatch article, was excluded before scoring five
+alternatives from the remaining 25. Federico Tomassetti's measured RPG-to-Java translation
+won **28/30**: about $1,100 at list prices bought a first translation that compiled and
+started, yet every translation examined had real errors, and comparing repeated runs cannot
+expose the errors they share. Zanichelli's swarm study scored **26/30**, but its spine is in
+cooldown; the inference-chip angle failed the clarity gate, the Jev-fingerprint angle both
+gates, and Uber's skill evals the completeness gate. The
+[[Legacy Code Modernization with AI Agents]] spine is used only for its Tomassetti
+sentences, not its ByteByteGo-sourced comparisons with GitHub's Copilot port, and every
+public claim was read in Tomassetti's capture. The public copy pairs the $1,100 with the
+roughly 603,000-line total rather than the 552,000-line plan, says the team's own tooling
+planned the large run, keeps the vendor-interest, examples-not-a-rate, one-model, and
+simplest-prompt limits, and labels the unusual-path testing advice as the vault author's
+addition. The extrapolated $12,000 and $120,000 budgets, the agent's unasked Python code
+generators, and the run-to-run code-size spread were omitted.
+
+Updated [[Post Archive]] with the new row, topics, one eligible runner-up angle, and a
+Legacy Code Modernization with AI Agents cooldown ending **2027-01-08**. The expired KV
+Cache cooldown was pruned, and the archived parity-harness candidate was marked as used.
+No earlier post used this spine. The archive now has **fourteen ready posts** and **two
+superseded drafts**.
+
+Index and overview totals advance to **775 typed wiki pages**; **443 source summaries**,
+**469 source IDs**, **149 concepts**, **110 entities**, and **49 lint reports** are unchanged.
+The new post declares no source IDs. Raw captures, evidence pages, templates, earlier posts,
+and lint reports were not edited. Nothing was staged, committed, pushed, or published by
+this run.

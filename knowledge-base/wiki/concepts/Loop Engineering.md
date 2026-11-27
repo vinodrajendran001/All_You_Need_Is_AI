@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -25,6 +25,9 @@ source_ids:
   - src-2026-07-20-0xcodez-graph-engineering-roadmap
   - src-2026-11-11-wills-levels-agentic-engineering
   - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
+  - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
 status: active
 ---
 
@@ -190,6 +193,39 @@ In this page's terms, the verifier moves from the repository to production, and 
 becomes business value. The essay does not say how that value is specified or measured, so the release
 watcher's own pass criterion is unstated. The source is experience-based opinion with no outcome data.
 
+## Brakes, timers, and a per-model audit loop
+
+[[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] lists four brakes
+for a loop on a timer, because such a loop "can spend money all night":
+
+- a done check that runs outside the model, such as a Stop hook that blocks completion until tests pass;
+- a budget of maximum runs, tokens, or dollars;
+- a dry-round rule: "stop after two rounds that find nothing new";
+- state written after every step, so a crash resumes instead of starting over.
+
+The dry-round rule is the same stopping rule as the **2**-empty-round example above, and the budget is
+the bound that example lacked, so together they meet this page's stopping economics. The post's loop
+anatomy relays the same Osmani essay as
+[[AI Builder Club - Addy Osmani's Loop Engineering - The 5 Components]], so the two are not independent
+confirmations. It also says Claude Code's `/loop` runs a task on an interval, or at the model's own pace
+when no interval is given. Its summary line is "The loop removes the typing, not the thinking."
+
+[[William Hu - Building Always-On Agents]] supplies the trigger mechanism behind scheduled and
+self-scheduled loops. A **follow-up** is a deadline the agent sets for itself; a **schedule** is a
+recurring task. Both live in a timer store separate from the event inbox. A scheduler polls, marks
+follow-ups done or advances schedules, then adds an event to the inbox and wakes the worker, so a timer
+never starts a run directly. Because each inbox has only one active worker, and the guide starts with
+one inbox per user, two wakes for the same user cannot run at once. For loops that message people, its
+advice is to "start quiet and then earn more of the user's attention over time", tuned by evals for
+message volume that it does not describe.
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] runs one maintenance loop by hand. A full
+audit on **8 aspects** (architecture, bugs, security, cleanliness, test coverage, performance,
+documentation, dependencies) produces a to-do list; he prunes it, then runs it as a loop that commits
+each improvement, and repeats the cycle "whenever a new model comes out". His pruning is the gate
+between finder and executor. The evidence is his own account, and it records a limit: outside security
+researchers later reported three holes that the audits missed.
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -225,3 +261,6 @@ watcher's own pass criterion is unstated. The source is experience-based opinion
 - [[Zach Wills - The Levels of Agentic Engineering]]
 - [[Geoffrey Huntley - The Answer to AI Is Engineering]]
 - [[Agentic Testing]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
+- [[William Hu - Building Always-On Agents]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

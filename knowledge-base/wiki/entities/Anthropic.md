@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-11-20
+updated: 2026-11-27
 entity_kind: organization
 tags:
   - entity
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-11-10-mollick-fable-5-2-jagged-agi
   - src-2026-11-06-psi-aaronson-ambainis-proof
   - src-2026-11-19-anthropic-founders-playbook
+  - src-2026-11-13-william-hu-always-on-agents
 status: active
 ---
 
@@ -226,6 +227,19 @@ tooling, however, or, at higher stakes, a human reviewer", and Claude Code Secur
 beta release" at "the time of this ebook's publication". These are stated cautions, not measured results; see
 [[Sycophancy]] and [[AI-Native Software Development Lifecycle]].
 
+## An architecture guide for always-on agents
+
+[[William Hu - Building Always-On Agents]], on Anthropic's claude.com resources site, is a first-party
+guide to agents that sleep, wake on events, and act without supervision. It builds them from five
+primitives (event inbox, timers, memory, permissions, outbox) and leans on Anthropic's own features:
+Claude Code's auto memory and the Messages API's memory tool, auto-mode classifiers, a Claude Code
+hook that can defer a tool call, MCP Apps for approval cards, and prompt caching for the fixed context
+each run loads. Its one number is a model claim: "on one long-horizon coding benchmark, Opus 5.5 cost
+**78%** less per solved task than Opus 5, compared with **40%** less on typical workloads". The post
+names neither the benchmark nor the workloads, and none of the architecture is measured. Like the
+startup guide above, it is written partly to help customers build on Anthropic's products. See
+[[Agentic Loop]] and [[AI Agents in Production]].
+
 ## Related pages
 
 - [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
@@ -268,3 +282,6 @@ beta release" at "the time of this ebook's publication". These are stated cautio
 - [[astwei et al - Teaching Qwen Why]]
 - [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]
 - [[Sycophancy]]
+- [[William Hu - Building Always-On Agents]]
+- [[Agentic Loop]]
+- [[AI Agents in Production]]

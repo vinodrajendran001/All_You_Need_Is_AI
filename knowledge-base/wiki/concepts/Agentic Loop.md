@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-11-13
+updated: 2026-11-27
 tags: [concept, ai-agents, llm, tool-use, loop]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-10-nizzyabi-instinct-teardown
+  - src-2026-11-13-william-hu-always-on-agents
 status: active
 ---
 
@@ -222,6 +223,37 @@ texted first **17** times in twelve weeks. All of this is inferred from outside,
 author's team builds a competing platform whose SDK exposes a two-second steering debounce window,
 so the post's emphasis on this plumbing is not neutral; Instinct has confirmed none of the internals.
 
+## An always-on agent is a sleeping loop woken by events
+
+[[William Hu - Building Always-On Agents]] describes the same intake problem from the vendor side, for
+agents that act without being asked. The [[Anthropic]] guide calls such agents "stateful and proactive"
+but says they run on the same core loop as other agents; what differs is the architecture around it.
+The agent spends most of its time asleep. An event wakes it for a **run**, the run works inside a
+**session** (the transcript of messages and tool calls), saves what it learned, and the agent goes
+back to sleep.
+
+Three of its rules map onto the layers inferred above:
+
+- **One way in.** Every trigger is written to a durable event inbox before any model call, and only
+  **one active worker** reads each inbox. The worker batches pending events, so "if the user sends
+  several messages in a row", it replies once. That is a published design rule for the coalescing the
+  Instinct post inferred from timestamps; it does not show that [[Instinct]] works this way.
+- **A choice for events that arrive mid-run.** A new event can wait for the next run, be folded into
+  the current one, or interrupt and restart it.
+- **Proactivity is an event too.** Follow-ups the agent sets for itself and recurring schedules live in
+  a separate timer store. A timer never starts a run; a scheduler adds an event to the inbox and wakes
+  the worker.
+
+The guide also changes what waiting means. A tool call that needs the user's approval is deferred: the
+run ends, the session is saved mid-call, and the answer comes back as a new inbox event that resumes
+the session, while the worker handles other events. Factory's Droid, in the bounded-autonomy section
+above, keeps the run alive instead: the model moves long work to the background and sleeps, and Droid
+wakes it with a reminder. Ending the run means the agent sits "asleep with no tokens spent", in the
+words of the guide's diagram, but every wake reloads the fixed context and, for a resumed session, its
+transcript. Keeping the run alive avoids the reload but holds the session open. Neither source measures
+the trade, and where the authoritative state lives is the question in [[Harness State Authority]]. The
+guide is first-party design advice with no measured results for the architecture.
+
 ## Related pages
 
 - [[@nizzyabi - I Reverse-Engineered Instinct - Here's the Whole Machine]]
@@ -267,3 +299,5 @@ so the post's emphasis on this plumbing is not neutral; Instinct has confirmed n
 - [[Can Bölük]]
 - [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
 - [[Factory AI]]
+- [[William Hu - Building Always-On Agents]]
+- [[Anthropic]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -56,6 +56,7 @@ source_ids:
   - src-2026-11-04-bytebytego-netflix-performance-agents
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
   - src-2026-11-10-nizzyabi-instinct-teardown
+  - src-2026-11-13-william-hu-always-on-agents
 status: active
 ---
 
@@ -482,6 +483,30 @@ users "experience every change you ship as the assistant acting a little differe
 one account, measured by a third party whose team builds a competing platform; the product has not
 confirmed the internals the post relays.
 
+## An always-on agent needs intake, credentials, and send discipline outside the model
+
+[[William Hu - Building Always-On Agents]] is [[Anthropic]]'s guide to agents that run unattended on a
+user's behalf, built from five primitives with their own stores: an event inbox, timers, memory,
+permissions, and an outbox. Its production rules:
+
+- **Idempotent intake.** A handler writes each event to a durable inbox, usually a database table,
+  that tracks status and drops duplicates using the source's unique identifiers. The handler
+  acknowledges quickly; deeper checks, "such as checking for prompt injection, should be done during
+  the run". If a worker dies mid-run, a new one picks up the same events.
+- **Credentials the agent never holds.** A proxy outside the agent's environment injects real
+  credentials into outgoing requests. Auto-mode classifiers block actions they identify as dangerous,
+  but "User review, however, is still necessary for the most important decisions".
+- **Approvals that do not block the worker.** A deferred tool call ends the run and saves the session;
+  the user answers through an interactive card, and the answer resumes the session as a new event.
+- **An outbox tuned by evals.** Too many messages are noise and too few miss things, so the guide
+  recommends evals for message volume and advises agents to "start quiet".
+
+It is a vendor-side design for the before-and-after bracket that the consumer-agent section above
+observed from outside: approval before a consequential action, and pacing of what the agent sends. It
+names the pieces but measures none of them. The prompt-injection check is deferred without being
+specified, the message-volume evals are not described, and the guide's only number is a model-cost
+comparison on an unnamed benchmark (see [[Agent Security and Governance]]).
+
 ## Related pages
 
 - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 2)]]
@@ -568,3 +593,5 @@ confirmed the internals the post relays.
 - [[axjns.dev - Post-Kubernetes Infrastructure for GenAI Workloads]]
 - [[Celln]]
 - [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
+- [[William Hu - Building Always-On Agents]]
+- [[Anthropic]]

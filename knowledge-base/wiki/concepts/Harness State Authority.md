@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-11-06
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-11-04-axjns-synthetic-membrane-paper
   - src-2026-11-04-axjns-celln-execution-lease
   - src-2026-11-04-axjns-post-kubernetes-genai
+  - src-2026-11-13-william-hu-always-on-agents
 status: active
 ---
 
@@ -172,6 +173,22 @@ None of it is measured. There are no partition, revocation or failure-injection 
 names revocation of authority a running cell already holds as an open problem. The paper also warns
 against putting every observation in one expanding Kubernetes custom resource.
 
+## An always-on agent names the inbox as its source of truth but keeps state in several stores
+
+[[William Hu - Building Always-On Agents]] states the authority rule for agents that sleep between
+runs: "The inbox should be the source of truth". A woken worker pulls the latest events from the inbox
+first, so if it dies mid-run a new one can pick up the same events, and only one worker is active per
+inbox. A deferred tool call ends the run and saves the session mid-call; the answer returns as an
+inbox event that resumes it.
+
+The guide then gives timers, memory, and the outbox their own durable stores, and saved sessions are a
+further piece of state. That is the multi-store arrangement this page weighs against a single journal.
+The guide does not say how the stores stay consistent when a run crashes between writes. On this
+page's reading, two gaps follow from the order it describes: a message sent but not yet recorded in
+the past-messages memory could be sent again, and a follow-up marked done before its event is enqueued
+could be lost. One worker per inbox removes contention within one user's inbox; it does not make the
+writes atomic.
+
 ## Open questions
 
 - **Does a single authoritative tree survive contention?** The design targets many agents in one workspace, but
@@ -225,3 +242,4 @@ against putting every observation in one expanding Kubernetes custom resource.
 - [[Agent Memory]]
 - [[AI Agents in Production]]
 - [[Can Bölük]]
+- [[William Hu - Building Always-On Agents]]

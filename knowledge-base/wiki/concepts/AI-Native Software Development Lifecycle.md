@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - sdlc
@@ -25,6 +25,9 @@ source_ids:
   - src-2026-11-13-orlanski-slop-moves-up
   - src-2026-11-19-tselovalnikov-10x-engineer
   - src-2026-11-19-anthropic-founders-playbook
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-goofyfish-make-your-own-game
 status: active
 ---
 
@@ -338,6 +341,48 @@ security tooling, however, or, at higher stakes, a human reviewer". Its outcome 
 Carta Healthcare's "22,000 surgical cases per year" and 66% less abstraction time, are customer
 stories. They are Anthropic's unverified marketing claims, not evidence about the lifecycle.
 
+## Small projects write review policy by risk, and some drop human code reading
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] gives a written review policy from the
+five-person team behind Kitsu, CGWire's open-source production-tracking software:
+
+- merge very light pull requests that pass CI;
+- do not review cleanup passes, relying on CI and the product manager's testing before release;
+- run an agent review for everything else;
+- review critical code himself;
+- for external contributions, run the model review privately and post only a trimmed result he has
+  validated.
+
+This is the risk-tier idea above at small scale, with one difference: the tier is the maintainer's
+judgment, not a classifier. He finds agent review "pretty noisy, with a lot of nitpicking" and still
+catches cohesion problems by hand, yet asks whether it is "still worth reviewing anything manually".
+Two process choices bear on this page's artifact chain. He stopped having the model write specs and
+plans because they "created more noise than it helped". For data migrations, by contrast, he always
+asks for a script rather than letting the model touch data sources: "I consider scripts as contracts",
+and the models "spontaneously add a dry-run mode". In his setting the deterministic artifact survived
+and the planning artifacts did not.
+
+Contribution changed as well. Average quality is "much higher", beginner developers can now propose
+code changes, and outside security researchers reported three holes that his audits missed. A new
+plugin system invites changes to core components, which pulls against Kitsu's common interface across
+studios: "We haven't arbitrated on the topic yet." He lists "Project overload" among his concerns and
+cites an essay titled "The Decoherence Trap". His link goes to a different site from the capture
+summarized in [[The Decoherence Trap]], so whether the two are the same essay is unverified.
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] goes further. He no
+longer reads code line by line. Before a pull request reaches him, three other models have reviewed it,
+"always at least two models different from the one that wrote the code"; he uses the size of the
+source diff to judge whether the complexity is worth it, and his own review is mostly asking the agent
+targeted questions. His client hides test files "because I no longer read them". That sits uneasily
+with the Osmani rule above that "An agent's approval never counts as a person's": here the person
+approves after questioning agents, not after reading the diff, and the judgment-calls study above
+suggests such a sign-off is less independent than it looks. He reports no defect rate.
+
+[[Goofy Fish - Make Your Own Game]] moves intake rather than review. A visitor describes a game to
+Claude Code through a repository-supplied `/game` command, plays the result, and is walked through a
+pull request; the maintainers "play it" before publishing. The specification is a visitor's
+description, and the acceptance test is the maintainers playing the game. The page gives no numbers.
+
 ## Open questions
 
 - Which parts survive translation off Claude Code? The artifact loop and act-time enforcement look portable; the specific `CLAUDE.md`/hooks/subagent surface does not.
@@ -387,3 +432,6 @@ stories. They are Anthropic's unverified marketing claims, not evidence about th
 - [[Gabe Orlanski - Slop Is Moving Up the Stack]]
 - [[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]]
 - [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[Goofy Fish - Make Your Own Game]]

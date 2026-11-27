@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - coding-agents
@@ -41,6 +41,10 @@ source_ids:
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-01-philipp-schmid-code-mode
   - src-2026-11-19-ashish-subedi-antigravity-quota
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-11-25-goofyfish-make-your-own-game
 status: active
 ---
 
@@ -439,6 +443,57 @@ tools, MCP servers, and skills. Pinging is not free either: the author's break-e
 at that context, and his larger savings figures are modeled, not measured (see [[KV Cache]] and
 [[Context Engineering]]). Patching a vendor client may conflict with its terms.
 
+## The native harness bought one model a little, and request size bought more
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] reports a self-run test
+of the belief that a model works best in the harness it was trained with. "Over more than 4,000 runs of
+short terminal tasks", native harness tools made only one model clearly more efficient: Claude Opus 4.8
+did **17%** less work and used **19%** fewer tokens with Claude Code's tools, while GPT-6 Astra and Sol
+used **43 to 59%** more tokens with their own harness tools. What mattered was how much the agent sends
+with each request: a minimal agent with one shell tool and a 12-line prompt used **58 to 76%** fewer
+tokens than his standard agent. The test sits in a separate post the vault has not captured, and this
+account gives no task mix or success rates.
+
+The result fits the local-agent finding above that model-harness pairing "matters less than assumed".
+It does not contradict Factory's finding that harness changes are model-specific: that a change does
+not transfer between models is a different claim from a model needing its vendor's harness. Leaving the
+vendor harnesses let Nijholt mix Anthropic, OpenAI, and Google models in one thread, which he runs in
+MindRoom, a chat client he built. Before that he used T3 Code, "the open-source control plane for
+coding agents", which he calls "a harness for harnesses" because it wraps Claude Code, Codex, and
+OpenCode. Above twenty concurrent sessions it struggled: long threads were slow to open, and threads
+running background tasks showed as idle.
+
+[[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] puts the opposite
+emphasis compactly: "the model is the engine, the harness is the car", and "Put the same model inside
+two of them and you get two different agents." It relays an April paper from Fudan and Peking
+University in which one agent edits another coding agent's harness for ten rounds, lifting
+Terminal-Bench 2 pass@1 from **69.7%** to **77.0%**, against **71.9%** for the human-designed Codex-CLI
+harness, with **12%** fewer tokens on SWE-bench Verified; the gains "came from tools, middleware and
+long-term memory, not from the system prompt". That agrees with the system-prompt removal recorded
+above, but it is relayed without a link or paper details. The post's suggested first move is a Claude
+Code Stop hook that runs the tests and exits with code 2 on failure, which blocks the stop and returns
+the error to the model, so "'done' means the tests pass, not that the model feels finished". Nijholt,
+by contrast, says the hooks he wrote two months earlier now "feel like they barely matter"; his example
+is behavioural, an agent told not to merge that waits until asked. A test gate is a verifier rather than
+a behavioural guard, and neither source measures how often either kind fires.
+
+## Subscription limits and repository-shipped commands shape the harness too
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] treats cost as a harness constraint. He
+works within **$600 a month** for three Claude Ultra subscriptions, about **70B tokens** over ten
+months, and estimates the same use at about **$30k** at API prices against roughly **$2k** spent (he
+also writes "less than $2000"). His harness additions target the window and the bill: the
+claude-carbon skill shows context size, API-cost equivalent, and emitted carbon, and RTK strips unused
+characters from tool output. He lists building his own harness as a next step, because current ones
+"tend to do too many things". The figures are his own estimates.
+
+[[Goofy Fish - Make Your Own Game]] shows harness configuration distributed with a repository. A
+visitor clones the games site's public repository, opens Claude Code in it, and types a `/game` command
+with an idea; the agent "builds the game, tests it and draws the thumbnail", then walks the visitor
+through a pull request. The style rules and the build and test steps travel with the repository rather
+than with the contributor's setup, so every contributor's agent follows the same path. The page does
+not show the command's contents, give acceptance numbers, or say whether it works outside Claude Code.
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -522,3 +577,7 @@ at that context, and his larger savings figures are modeled, not measured (see [
 - [[Ali Zahid Raja - Your Model Doesn't Have to Fit in Your GPU Anymore]]
 - [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]]
 - [[KV Cache]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[Goofy Fish - Make Your Own Game]]

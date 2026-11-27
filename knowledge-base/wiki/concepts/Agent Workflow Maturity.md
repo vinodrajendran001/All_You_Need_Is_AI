@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -19,6 +19,9 @@ source_ids:
   - src-2026-11-04-bytebytego-netflix-performance-agents
   - src-2026-11-11-wills-levels-agentic-engineering
   - src-2026-11-18-bu-fewer-slides-more-dragons
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
 status: active
 ---
 
@@ -211,6 +214,36 @@ from people to agents, not demonstrated assurance. [[AI-Native Software Developm
 adoption "is a dependency graph, not a ladder"; Wills's own framing, which rejects lists that "read
 like a ladder of tools", is closer to that view than his numbered levels suggest.
 
+## A ladder ordered by what the model is given, and practitioners who skip rungs
+
+[[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] adds a fourth
+ladder. Its five levels (prompt, context, harness, loop, graph) are ordered by one question, "what does
+the model get to work with?", and each answer is bigger: a sentence, a window, an environment, a
+schedule, and the shape of the job. It comes with a "30-second test" for self-placement: rewriting the
+same instruction until it works is level 1, and loading a project file, docs, and examples before every
+task is level 2. Like Wills's ladder, it tracks how much a person stops doing by hand, not what the
+system can demonstrate. Its claim that "The levels don't move" is asserted, not shown, and an older
+source with the same five-part sequence is read in the vault as a diagnostic rather than a ladder (see
+[[Graph Engineering]]).
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] reports the opposite of
+a fixed ladder: "with every new model, my workflow changes". He went from six features in terminal tabs
+checked every 10 to 15 minutes, to thirty terminal windows in which "I was the orchestrator myself", to
+other people's control apps, and then to a chat room where each thread is its own orchestrator and
+every thread is sorted under **Needs you**, **Working**, **Later**, or **Done**. Two of his positions
+cut against this page. He calls rigid "software factories" with strict harnesses "very anti-Bitter
+Lesson", because "The models already orchestrate work well enough on their own that you don't need
+rigid pipeline structure", and he says his earlier hooks now barely matter. That is a claim about
+capability, not assurance: he "couldn't think of a recent run that went badly wrong", which is recall
+rather than the evidence, limits, and recovery the governed rung asks for. In this page's terms, his
+sections are a routing layer for the scarcest resource at level 4 and above, the owner's attention.
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] shows a capable user choosing not to
+climb. He saves methods as skills (level 2 here) and runs audit loops he starts himself, but he finds
+long unattended runs unnatural because he iterates, and his one five-agent experiment used up his
+weekly allocation. His choice is consistent with the architecture decision rule above: on a fixed
+subscription, the bottleneck is quota and the owner's iteration, not routing.
+
 ## Open questions
 
 - **The anchor ladder has not been validated.** Its source is entirely prescriptive: no evaluation, baseline, or reported deployment outcome. Later observations and software-factory case reports add context, not a controlled test of these rungs.
@@ -251,3 +284,6 @@ like a ladder of tools", is closer to that view than his numbered levels suggest
 - [[ByteByteGo - How Netflix Uses AI Agents for Performance Engineering]]
 - [[Zach Wills - The Levels of Agentic Engineering]]
 - [[Michelle Bu - Fewer Slides, More Dragons]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

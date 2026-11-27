@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-10-01-mollick-dot-swarm
   - src-2026-10-09-dickson-agent-stack-optimization
   - src-2026-07-20-0xcodez-graph-engineering-roadmap
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
 status: active
 ---
 
@@ -120,6 +121,28 @@ script and running every node are model calls. The course reports no speedup, ac
 any example graph, and its feature names come from the post rather than from Anthropic documentation.
 Its convergence rule for cycles is recorded under [[Loop Engineering]].
 
+## The diamond: cut fake edges, fan out, verify, merge
+
+[[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] puts graph
+engineering at the top of a five-level ladder ordered by "what does the model get to work with?" The
+sequence is the one in [[AI Builder Club - The 5 Layers of AI Engineering]], but the two read it
+differently. The vault's summary of the older source reads it as "a diagnostic rather than a strict
+history or maturity ladder", while this post presents floors to climb and asks "Which level are you
+on?"
+
+Its design rules repeat the course recorded above. A node is one bounded job with a clear input and
+output, and an edge exists only where one node's output feeds another's input. Most step-by-step agents
+are "graphs full of fake edges". Deleting them turns the line into a **diamond**: split the job into
+independent pieces, fan out agents that each work in a clean context, verify with a gate that "tries to
+kill every finding", and merge only the survivors. Two further rules: wait for all results only where a
+node needs them together, such as a dedupe or a ranking, and tier the models, with a cheap model on the
+repetitive fan-out nodes and the strongest only on the verdicts and the merge (see [[Model Routing]]).
+
+The post describes Claude Code's dynamic workflows as "a research preview since June" in which Claude
+writes the plan as a JavaScript script and runs "tens to hundreds" of subagents in one session. That is
+a second secondary account of the feature, not Anthropic documentation. Like the course, it reports no
+results and does not say how a long workflow resumes after a crash, so the checkpointing gap remains.
+
 ## Open questions
 
 - What benchmarks reveal the point where specialization exceeds coordination overhead?
@@ -149,3 +172,5 @@ Its convergence rule for cycles is recorded under [[Loop Engineering]].
 - [[AI Builder Club - Build AI Agents]]
 - [[Agent Frameworks]]
 - [[Alyona Vert - 13 Frameworks and SDKs for Building AI Agents]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
+- [[Model Routing]]

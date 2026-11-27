@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - context-engineering
@@ -45,6 +45,10 @@ source_ids:
   - src-2026-11-19-ashish-subedi-antigravity-quota
   - src-2026-11-16-alphasignal-short-contexts
   - src-2026-11-19-anthropic-founders-playbook
+  - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
 status: active
 ---
 
@@ -589,6 +593,39 @@ stop dropped tasks; here 16K is the whole window. They measure different things 
 directions on how much room compaction needs. The study is secondhand, with no paper title or direct
 link, and its main accuracy runs used Claude Opus 4.5, older than most models in recent vault sources.
 
+## Practitioners budget the window per run and per session
+
+Four sources describe context budgets set by design or habit rather than by measurement.
+
+- [[William Hu - Building Always-On Agents]] names the fixed cost of waking an agent: every run loads
+  the system prompt, tool definitions, and memory files, so the guide recommends keeping that overhead
+  lean and using prompt caching. A resumed session also brings back its transcript. When a session
+  grows too long it can be compacted or replaced, and "Both approaches lose detail, so anything that
+  needs to persist should be saved to memory along the way" (see [[Agent Memory]]).
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]] keeps one theme per terminal session
+  and compacts or resets to avoid "going beyond 50% of context usage", because a large context "brings
+  a lot of noise to every request". He splits quality-assurance work into separate sessions for the
+  same reason: "If too much data is involved, the model gets confused". The 50% line is his rule of
+  thumb, not a measured threshold.
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] makes the chat
+  thread the unit: "the thread is the context window that the agent sees", compacted when it fills,
+  with tools to look into other threads. His harness test found that request size mattered more than
+  native tools: a minimal agent with one shell tool and a 12-line prompt used **58 to 76%** fewer
+  tokens than his standard agent. The test is in a separate post the vault has not captured.
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] relays Tobi
+  Lütke's and [[Andrej Karpathy]]'s definitions of context engineering and turns them into a five-item
+  budget: unchanging rules, tools described so the model can tell them apart, memory, retrieved
+  material ("the 3 files that matter, not the 300 that exist"), and the task last.
+
+The L1vsun post repeats the prompt, context, and harness sequence in
+[[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]] and adds a graph
+level on top, so it restates rather than adds evidence. It also relays an April paper whose harness
+gains "came from tools, middleware and long-term memory, not from the system prompt". That points the
+same way as the system-prompt removal in Osmani's null result above, but both are relayed: neither the
+paper nor Anthropic's evals are in the vault. The four sources agree on the practice, keeping the
+per-request load small and saving what must last outside the window, and none of them measures the
+effect of its own rule.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -689,3 +726,7 @@ link, and its main accuracy runs used Claude Opus 4.5, older than most models in
 - [[Alpha Signal]]
 - [[KV Cache]]
 - [[Anthropic - The Founder's Playbook - Building an AI-Native Startup]]
+- [[William Hu - Building Always-On Agents]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-05
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -34,6 +34,8 @@ source_ids:
   - src-2026-11-10-nizzyabi-instinct-teardown
   - src-2026-11-16-alphasignal-short-contexts
   - src-2026-11-18-ioma8-llm-reverse-engineering
+  - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
 status: active
 ---
 
@@ -552,6 +554,39 @@ step, so what survives is whatever the writer selected; in ioma8's practice the 
 outside the context and the compaction never touches them. Neither source measures what a lost
 detail costs.
 
+## Four kinds of memory for an agent that sleeps between runs
+
+[[William Hu - Building Always-On Agents]] specifies memory for an agent that works across many
+disconnected runs. Memory gets its own durable store. Claude Code's auto memory and the Messages API's
+memory tool keep it as a directory of files, and for an always-on agent that directory should map to a
+database or object store: "This way memories outlive the worker". The rule of thumb is to keep only
+"what the agent can't look up again"; anything that already lives in another system, such as an issue
+tracker, is saved as a pointer. Hu lists four types:
+
+- **User instructions**, in their own file, loaded at the start of every run.
+- **User notes**, one file at first, then many small files behind an index that every run loads.
+- **Past messages**, so the agent does not repeat itself.
+- **Task progress**, one file per ongoing task, behind a loaded index.
+
+The past-messages type has no counterpart in this page's earlier inventories. It exists because an
+agent that messages a user unprompted has to remember what it already said, and the example layout
+loads `reported.md` on every run for that purpose. Memory is written during the run. An optional
+**dreaming** step "reviews past sessions to curate memories", replacing outdated entries and finding
+"patterns that only show up across many runs". That is a third use of the word after the two naming
+hazards recorded above, and it is closer to Databricks' consolidation of one agent's own sessions than
+to PostHog's company wiki. Hu treats in-run writes as the default and offline curation as optional,
+the reverse of the ordering MemCurrent measured (**63.5%** for a background review against **53.9%**
+for in-session decisions). Hu offers no measurement of either. He does give the reason memory has to
+be written along the way: when a long session is compacted or replaced, "Both approaches lose detail".
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] adds a portability requirement from
+practice. His memory and skills did not sync between his desktop and laptop, and he did not want the
+vendor's own service, so he added an agent-memory app to Servant, his self-hosted personal cloud, with
+a skill on each machine that syncs with it. Memory then stays consistent across devices while
+"remaining agnostic about the harness I use". He also saves each surprise "in memory or in the
+Claude.md file", so precision builds up across many short prompts. Both accounts are single-author
+reports with no measured effect.
+
 ## Open questions
 
 - At what memory store size does simple "get all" retrieval break down and semantic retrieval become necessary?
@@ -634,3 +669,5 @@ detail costs.
 - [[Agent Workflow Maturity]]
 - [[Alpha Signal - Why AI Agents Don't Always Need Long Contexts]]
 - [[ioma8 - LLM Assisted Reverse Engineering]]
+- [[William Hu - Building Always-On Agents]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

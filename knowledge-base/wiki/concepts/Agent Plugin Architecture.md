@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-16
+updated: 2026-11-27
 tags: [concept, ai-agents, plugins, interoperability]
 source_ids:
   - src-2026-08-17-google-cloud-agent-plugins
@@ -9,6 +9,8 @@ source_ids:
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-09-02-can-boluk-harness-playbook
   - src-2026-10-12-rastogi-agent-engineer
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
 status: active
 ---
 
@@ -101,6 +103,26 @@ Plugin design therefore needs separate contracts for activation, capability enfo
 persistent state, and evaluation. Loading bodies on demand is useful context management,
 not measured zero overhead or a non-bypassable security boundary.
 
+## Building features as plugins tests the interface, and plugins move pressure onto the core
+
+Two practitioner accounts describe plugin systems from the host's side. Both concern application
+plugins for agent-era tools rather than the portable skill-and-MCP bundles defined above.
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] builds real features of
+his chat client, including the pull-request panel and git worktree support, as plugins: "building real
+features as plugins is how I know the plugin interface is strong enough". One plugin closes a
+maintenance loop. An error notifier posts errors into a room, an agent triages each error on its own,
+and a pull request is waiting when he checks in. Dogfooding tests whether the interface is expressive
+enough, not whether it isolates a faulty plugin.
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] reports the ecosystem effect. Kitsu's new
+plugin system let studios build and share plugins, some of them built with LLMs. The drawback is that
+contributors now propose changes to core components, and studios want more plugin customization, while
+Kitsu's philosophy is a common interface so that users "find the same setup when moving from studio to
+studio". "We haven't arbitrated on the topic yet." Cheaper extensions bring more requests to widen the
+boundary, which is the question of how far the plugin boundary can move, above. Neither account
+measures plugin failures or security.
+
 ## Related pages
 
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
@@ -119,3 +141,5 @@ not measured zero overhead or a non-bypassable security boundary.
 - [[Tool Roster Economics]]
 - [[Can Bölük - The Harness Playbook]]
 - [[Can Bölük]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

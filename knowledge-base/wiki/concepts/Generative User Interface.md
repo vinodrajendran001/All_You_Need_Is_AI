@@ -1,12 +1,14 @@
 ---
 type: concept
 created: 2026-10-16
-updated: 2026-11-06
+updated: 2026-11-27
 tags: [concept, software-architecture, extensibility, state]
 source_ids:
   - src-2026-08-20-jeremy-morrell-extensible-software
   - src-2026-10-09-rabi-guha-intelligent-ui
   - src-2026-10-30-figma-fluent-editing-model
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-13-william-hu-always-on-agents
 status: active
 ---
 
@@ -88,6 +90,24 @@ third-party models, and the first-party model handles precise edits. The account
 and it reports no accessibility, versioning or state-persistence guarantees of the kind raised
 above.
 
+### Generated interfaces that return a decision to the agent
+
+The accounts above generate or edit an interface for a user to keep. Two newer sources use a generated
+interface as a one-off question from an agent.
+
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] lets an agent that
+  proposes a UI change send an interactive HTML canvas into the chat thread, where he can "click
+  through the variants, toggle states and send my choice back to the agent directly from the page".
+  The three embedded examples were built by his development agent with placeholder data, and their
+  submit buttons only show a preview.
+- [[William Hu - Building Always-On Agents]] shows an approval request to the user, for example
+  "through an interactive card built with MCP Apps". The run that asked has already ended, and the
+  user's answer arrives as a new inbox event that resumes the saved session.
+
+Here the generated interface is part of the agent's control flow, so the state contract runs the other
+way: the user's choice must reach the agent, and the session it resumes must still be valid when the
+answer arrives. Neither source says how a stale or repeated answer is handled.
+
 ## Open questions
 
 - Which state must survive a revision, a failed worker, and a new session?
@@ -106,3 +126,6 @@ above.
 - [[Harness State Authority]]
 - [[Agent Security and Governance]]
 - [[OpenAI]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[William Hu - Building Always-On Agents]]
+- [[Model Context Protocol]]

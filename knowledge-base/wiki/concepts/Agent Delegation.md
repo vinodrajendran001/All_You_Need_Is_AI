@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -32,6 +32,8 @@ source_ids:
   - src-2026-11-04-general-reasoning-train-swarm
   - src-2026-11-11-bytebytego-github-copilot-rust-port
   - src-2026-11-17-paul-kinlan-voice-harness
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
 status: active
 ---
 
@@ -511,6 +513,36 @@ harnesses themselves run with the user's rights. Kinlan also wants a browser "br
 because ACP runs over stdio and needs a local service. A single-developer prototype; nothing is
 measured.
 
+## One parent per thread routes sub-agents by model, and no model reviews its own code
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] runs fifteen parallel
+coding sessions comfortably and up to forty on a good day, and "forty sessions can easily mean a
+hundred agents in flight". In each thread he talks to one parent agent on Opus 5.5 that carries his
+skills, memories, and review standards and delegates to minimal sub-agents. Model choice is a written
+rule in the parent's system prompt (see [[Model Routing]]):
+
+- Gemini 4 Neon writes code by default.
+- GPT-6.2 Sol, GPT-6.2 Astra, and Opus 5.5 review the full diff in parallel; "no model reviews its own
+  code", and after a fix round a fresh reviewer checks the whole diff.
+- Fable 5.2 writes code only for very complicated tasks, or when two review rounds still find major
+  issues.
+- Claude Haiku 5.5 handles simple lookups.
+
+Ambiguities go to another frontier model before they reach him. In one replayed thread two models
+disagreed about a design choice, so the agent stopped and asked him, listing both options and the one
+it recommended. The pattern writes the delegator's judgment into rules and brings the human in at the
+disagreement, not at each step. The evidence is one practitioner's repositories: no review accuracy or
+defect rate is given, the demos stage some tool calls, he reports "$50,000 to $100,000 a month in model
+usage" that he does not pay himself, and he built the client he uses.
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] is the counterweight from a fixed budget.
+He mostly lets Claude spawn agents as needed. His one structured experiment ran five agents through a
+single Claude session, with tasks, specs, plans, code, tests, time, and tokens recorded in Kitsu, his
+team's production-tracking software. It was interesting, but for "a small team like ours, it was a
+nice-to-have", and it "quickly consumed my weekly allocation". Long unattended runs also do not suit
+how he works: "letting agents run for an extended period without providing feedback doesn't feel
+natural". On a subscription, the cost of delegation shows up as quota rather than as a bill.
+
 ## Open questions
 
 - One key per deployment makes revocation granular, but a chain of subagents needs each cap to divide
@@ -599,3 +631,5 @@ measured.
 - [[ByteByteGo - How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time]]
 - [[Paul Kinlan - My Voice Harness Is My New Operating System]]
 - [[Paul Kinlan]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

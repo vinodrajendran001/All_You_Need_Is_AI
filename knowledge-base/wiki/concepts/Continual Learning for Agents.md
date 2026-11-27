@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-10-28-sick-on-policy-self-training
   - src-2026-10-27-behrouz-mirrokni-sleep-framework
   - src-2026-06-11-0xcodez-fable-5-self-improving-agents
+  - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
 status: active
 ---
 
@@ -169,6 +171,25 @@ reading is narrower: a course aimed at practitioners treats memory and Skill fil
 surface, which makes this page's open question about what replaces a held-out gate for text updates a
 practical one.
 
+## Vendor and practitioner accounts put the update in files, with consolidation optional
+
+Two sources extend the frozen-weights reading above.
+
+[[William Hu - Building Always-On Agents]] has the agent write memory during each run and treats
+**dreaming**, which "reviews past sessions to curate memories" and finds "patterns that only show up
+across many runs", as optional. MemCurrent's ablation above points the other way, with a background
+review beating in-session decisions **63.5%** to **53.9%** on one benchmark. Hu gives no measurement,
+so the ordering is a default, not a finding.
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] describes the skill surface learning from
+use. After a few weeks, "the Claude model proposed several new skills based on my prompt history", and
+Claude also proposed a command to improve existing skills, which he found useful after a month. His
+quality loop reruns a full audit "whenever a new model comes out", so a model release is the trigger
+for re-deriving the to-do list; the gates are his own pruning and the test suite. He links Anthropic's
+"Dreaming agents" documentation, "permanent agents iterating and learning on a specific task", as
+something to explore, not something he has tried. Neither source has a held-out regression check or a
+rollback path for what the model writes into its own files, the gap this page's open questions name.
+
 ## Open questions
 
 - How should rewards be normalized across tasks with different difficulty and value?
@@ -210,3 +231,5 @@ practical one.
 - [[Meta]]
 - [[Agent Memory]]
 - [[LLM-as-a-Judge]]
+- [[William Hu - Building Always-On Agents]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

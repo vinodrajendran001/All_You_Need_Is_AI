@@ -95,8 +95,9 @@ establishing that the result does what the original does.
   measured all 5,737 files separately and agree on these points.
 - **RQ3.** Tactical design (field representation, file access, inter-program calls, transaction
   ownership, missing source) varied by run. Strategic choices were the same every time and "not the ones
-  we would have made": no application framework such as Spring Boot, CSV files or H2 rather than
-  PostgreSQL, and console text screens rather than a web interface or terminal emulator.
+  we would have made": no application framework such as Spring Boot, and CSV files or H2 rather than
+  PostgreSQL. Separately, the agent kept text screens on the console rather than building a web
+  interface or terminal emulator, "the agent's choice under our instructions".
 
 ### Everything compiles, and the behaviour is wrong
 

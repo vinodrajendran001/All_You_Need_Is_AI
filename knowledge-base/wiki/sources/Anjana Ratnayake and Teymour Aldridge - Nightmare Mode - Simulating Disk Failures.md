@@ -26,8 +26,8 @@ fault injector the company built for customers whose distributed systems must st
 it. After running a patched version of the open-source LazyFS, Antithesis wrote its own FUSE filesystem,
 Amnesia, in Rust. It emulates power loss by holding unsynced writes in its own cache and discarding them
 when the container is killed, and it adds disk I/O errors (including the fsyncgate behaviour) and latency
-faults that reorder or split operations to expose races. Faults are tied to individual disk operations so
-the fuzzer spends less effort finding vulnerable moments. The one shareable result is a bbolt bug that
+faults that reorder or split operations to expose races. Power failures are tied to individual disk
+operations so the fuzzer spends less effort finding vulnerable moments. The one shareable result is a bbolt bug that
 needed an I/O error followed by a power failure. **The post contains no AI content**; it is in the vault as
 a testing and reliability reference, and it is a first-party vendor post that ends in a sales invitation.
 
@@ -87,9 +87,9 @@ produced".
 The filesystem works with the Antithesis fault injector and fuzzer, so disk faults are controlled like other
 faults and gain the benefits of swarm testing. Within the "before" or "after" window of a disk operation,
 the exact timing of a power failure does not change the outcome, while the interesting "during" states are
-short and rare. The injector therefore decides on each syscall and can fire at three points: before any of
-the operation has been applied to the internal cache, after part of it, or after all of it but before the
-syscall returns. The authors call these **correlated faults** and say this "decreas[es] the uninteresting
+short and rare. The injector therefore decides on each syscall and can fire a power failure at three
+points: before any of the operation has been applied to the internal cache, after part of it, or after all
+of it but before the syscall returns. The authors call these **correlated faults** and say this "decreas[es] the uninteresting
 state space" the fuzzer explores.
 
 ### A bug that needed two faults in sequence

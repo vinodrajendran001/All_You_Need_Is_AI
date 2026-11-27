@@ -110,9 +110,7 @@ Two cautions from that source qualify how the vector-add lesson generalises:
 - **Below the ridge, bandwidth is not the only limit.** The vector add above is starved by data
   movement, with schedulers issuing only about 5% of cycles. A kernel can instead be limited by too
   little parallelism, launch overhead, or synchronization, which NVIDIA's guide calls
-  latency-limited. The roofline "says what to investigate, not which resource is saturated". Small
-  decode batches are where the two diverge in practice. This is also the gap that persistent
-  kernels such as the megakernel above try to close by removing launches.
+  latency-limited. The roofline "says what to investigate, not which resource is saturated".
 
 The part also places tensor parallelism in this model. It splits each operator across GPUs, which
 cuts each GPU's weight bytes and compute. Every layer then pays collective communication, so latency

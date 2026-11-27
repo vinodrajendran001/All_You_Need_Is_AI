@@ -468,7 +468,7 @@ The claim has clear boundaries. It applies to cluster-based indexes such as IVF.
 HNSW index that beat IVF-SQ8 for Airtable's latency and recall targets, in
 [[ByteByteGo - How Airtable Built the Search Layer]], does not build k-means centroids. Teams on
 managed or third-party vector databases, for which the newsletter names Pinecone, Milvus, and
-Qdrant, cannot swap the clustering step. The method rebuilds static snapshots rather than handling
+Qdrant, cannot swap the clustering step themselves today. The method rebuilds static snapshots rather than handling
 streaming updates. The evidence is a newsletter relay with no paper named, an undefined "accuracy"
 metric, and no downstream recall or latency measured on rebuilt indexes, so the link between
 rebuild frequency and answer quality is argued, not shown. Index-level controls are on

@@ -200,8 +200,8 @@ Drift accumulates from that date, and two indexes over identical vectors can par
 differently. Second, a model migration always requires reclustering, because new vectors need new
 centroids. Cheaper clustering therefore lowers one part of the migration cost but leaves the
 re-embedding cost unchanged. The evidence is a newsletter relay that reports no downstream recall,
-and the method does not apply to graph indexes such as HNSW or to managed vector databases that
-hide clustering; see [[Approximate Nearest-Neighbor Search]].
+and the method does not apply to graph indexes such as HNSW. Teams on managed vector databases
+that hide clustering cannot plug it in themselves today; see [[Approximate Nearest-Neighbor Search]].
 
 ## Open questions
 

@@ -67,8 +67,8 @@ Three limits matter here. The clustering "accuracy" metric is unnamed, and no re
 reported for indexes built this way, so faster rebuilds are not yet shown to improve ANN recall.
 The method applies to cluster-based indexes. HNSW builds a proximity graph rather than k-means
 centroids, so in the vault's reading the HNSW controls above are unaffected. Finally, it rebuilds
-static snapshots rather than handling streaming updates, and managed vector databases that hide
-clustering inside the storage engine cannot adopt it.
+static snapshots rather than handling streaming updates, and teams on managed vector databases,
+which hide clustering inside the storage engine, cannot plug it in themselves today.
 
 ## Open questions
 

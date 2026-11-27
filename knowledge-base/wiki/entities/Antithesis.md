@@ -25,8 +25,8 @@ first-party sources:
 
 - [[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]], an engineering
   post on Amnesia, the company's Rust FUSE filesystem. Amnesia emulates power loss, disk I/O errors
-  including the fsyncgate behaviour, and latency faults that reorder or split operations, all tied to
-  individual disk operations.
+  including the fsyncgate behaviour, and latency faults that reorder or split operations, with power
+  failures tied to individual disk operations.
 - [[Geoffrey Huntley - The Answer to AI Is Engineering]], a talk in which Huntley, speaking as an
   employee ("validation and verification of software is what we do"), promotes the company's
   property-based testing libraries: **Bombadil** for browser properties and **Hegel**, a Rust core with

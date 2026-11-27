@@ -98,7 +98,8 @@ unbalanced clusters that hurt both recall and deduplication runtime.
   File (IVF) index needs "only light glue code".
 - **Boundaries.** Self-hosted Faiss IVF pipelines and custom PyTorch or NumPy curation scripts can
   test it now. Teams on managed or third-party vector databases ("e.g., Pinecone, Milvus, Qdrant")
-  cannot, "because clustering is hidden inside the storage engine". e-means affects offline
+  cannot plug it in "themselves today because clustering is hidden inside the storage engine".
+  e-means affects offline
   indexing and curation, not live search, and applies to "static dataset snapshots rather than
   continuous streaming updates".
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - llm
@@ -52,6 +52,8 @@ source_ids:
   - src-2026-11-11-pytorch-executorch-webgpu
   - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
   - src-2026-11-12-nathan-barry-detllm-integer-inference
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
 status: active
 ---
 
@@ -431,6 +433,32 @@ graphs and a custom Triton attention kernel, and prefill "still runs at about 0.
 baseline is eager fp16 without compile or CUDA graphs, which the author flags as "Not an
 apples-to-apples comparison". One small model, first-party. See [[Inference Determinism]].
 
+## Lower precision moves the ridge and the crossing batch by different amounts
+
+[[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] gives the roofline version of "Quantization moves bottlenecks rather than deleting them"
+above. It uses the same weight-only accounting on an H100 SXM5, and the result depends on which
+part of the computation changes precision:
+
+- **FP8 weights, activations, and matmuls.** FLOP/byte roughly doubles, and so does dense peak, to
+  **1979 TFLOPS**. The ridge rises from about **295** to about **591 FLOP/byte**, and the batch at
+  which weight-reading layers become compute-bound is "essentially unchanged".
+- **FP8 weights only, BF16 compute.** The ridge stays at 295, and that crossing batch roughly halves,
+  to **148**. This is the stored-versus-executed distinction from the Humming section above,
+  expressed as a shift in where batching stops paying.
+- **INT4 weights.** They occupy about a quarter of FP16 bytes, "but attention, communication,
+  sampling and framework overhead do not become four times faster". This matches the MoE handbook
+  result in the MoE section above, where expert storage shrank three times while bytes read per
+  token only halved. In both, a byte reduction in one component does not carry through
+  proportionally to the whole step.
+
+The source's figures are vendor peaks and teaching estimates, not measured kernels, and its case does
+not evaluate quality. [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] makes that boundary explicit. Quantization of weights, activations,
+and KV is listed among the "mechanism families this article does not develop", because the case
+"does not force a precision trade-off" and precision "pulls on model quality". The series' memory
+ceilings (for example about **14** long documents per TP=4 replica) therefore assume BF16 weights and
+BF16 KV throughout. The author states that any of the excluded families could change the body's
+conclusions.
+
 ## Open questions
 
 - Which efficiency methods remain stable as context windows and model sizes continue to grow?
@@ -444,6 +472,7 @@ apples-to-apples comparison". One small model, first-party. See [[Inference Dete
   bit widths.
 - In MoE serving, when is quantizing attention worth it? On gpt-oss-20b it cuts a decoded token's
   reads by another quarter while freeing only 0.9 GiB, and no source here measures its quality cost.
+- How much of a long-context concurrency ceiling does KV-cache quantization actually recover once quality is measured? The intelligentLearn series deliberately holds weights and KV at BF16, so its ceiling of about 14 long documents per replica is a precision-fixed baseline, not an upper bound.
 
 ## Related pages
 
@@ -506,3 +535,6 @@ apples-to-apples comparison". One small model, first-party. See [[Inference Dete
 - [[Thinking Machines]]
 - [[Thinking Machines - End-to-End 4-Bit Training]]
 - [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[intelligentLearn]]

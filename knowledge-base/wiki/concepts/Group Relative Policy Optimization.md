@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-11-13
+updated: 2026-11-27
 tags: [concept, reinforcement-learning, optimization, grpo, llm, training]
 source_ids:
   - src-2026-04-22-perplexity-search-augmented-lm
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-10-15-li-gradient-is-covariance
   - src-2026-08-20-radixark-miles-v0-1
   - src-2026-11-11-nvidia-gr00t-2
+  - src-2026-11-20-huggingface-harness-adapters
 status: active
 ---
 
@@ -200,6 +201,29 @@ formed on hardware, how many rollouts each update uses, how many real trials RL 
 self-imitation adds beyond a two-point margin on the one task whose per-method numbers are given in
 prose. All results are first-party. See [[Robot Training Data]].
 
+## Filtering out silent groups before training starts
+
+[[Hugging Face - Introducing Harness Adapters]] applies the silent-group rule above as a data filter. "GRPO (group relative policy
+optimization) scores each attempt against the other attempts at the same task, so a task where every
+attempt passes, or every attempt fails, gives no learning signal." Before training, the base
+Qwen3.8-27B attempted each task 4 times (8 times for a stratified sample of six tasks per repository).
+Of **442** scored tasks it solved **151** every time and **120** never, and the **171** it solved only
+sometimes form the qualified set. This is the cheap, empirical counterpart to the horizon analysis
+above: instead of changing the objective so that hard tasks carry signal, as Progressive Point
+Matching does, it removes tasks whose groups would be silent at the current policy. The cost is that
+the model never trains on tasks it cannot yet solve at all, and a task qualified at the start can
+become all-pass as training proceeds. The authors ran four short runs on unvalidated, validated,
+unqualified and qualified sets to test the filters, but report the results only in charts.
+
+The training loop shows a second interaction with the group mechanics. Using TRL's
+`AsyncGRPOTrainer`, which does not wait for every rollout before an optimization step, the authors set
+a per-step token budget and found that "the number of groups that fit in a step's token budget more
+than doubles as trajectories get shorter". Training correctness stayed roughly flat, which the authors
+explain by the model meeting new tasks during training; the gains appear on held-out benchmarks. The
+reward is verifier correctness plus a **0.1** tool-efficiency bonus, so the within-group spread that
+GRPO normalizes also ranks shorter correct trajectories above longer ones. The evidence is
+first-party; the full recipe is on [[Agentic Reinforcement Learning]].
+
 ## Related pages
 
 - [[Yingru Li - The Gradient Is a Covariance]]
@@ -228,3 +252,6 @@ prose. All results are first-party. See [[Robot Training Data]].
 - [[Inference Serving Engines]]
 - [[NVIDIA - GR00T 2 - Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation]]
 - [[Robot Training Data]]
+- [[Hugging Face - Introducing Harness Adapters]]
+- [[Hugging Face]]
+- [[RL Environment Design]]

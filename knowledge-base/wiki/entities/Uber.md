@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-10-30
+updated: 2026-11-27
 entity_kind: organization
 tags:
   - entity
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-10-19-bytebytego-uber-genie
   - src-2026-10-25-rastogi-agentcore-enterprise
   - src-2026-10-28-bytebytego-uber-mcp-gateway
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -21,6 +22,8 @@ status: active
 A ride-hailing and delivery company represented here through its engineering-support assistant,
 **Genie**, and its shared MCP Gateway. The assistant is covered in
 [[ByteByteGo - How Uber Built a Genie to Answer Questions Correctly]].
+Its agent-skill marketplace is covered first-party in
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]].
 
 > **Naming note.** Uber Genie is a Slack retrieval assistant over internal documentation. It is
 > unrelated to **Databricks Genie**, the text-to-SQL interface described in [[Text-to-SQL Agents]].
@@ -72,6 +75,30 @@ separate. These are design claims relayed by ByteByteGo without measured latency
 security effectiveness, or a revocation-propagation bound. They should not inherit Genie's
 usage or helpfulness numbers.
 
+## A first-party account: the agent-skill marketplace
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] is the vault's first
+source written by Uber's own engineers; the Genie and gateway accounts above are relayed by
+ByteByteGo or cited secondhand. It describes a company-wide marketplace of agent skills that grew
+from **1** skill in October 2025 to more than **5,000** a year later. Thousands of people have
+written a skill, and agents invoked skills more than **1 million** times in one month. Skills live
+in one Git repository and graduate through Domain, Core and Always-on tiers, and a CLI called aifx
+installs the same skills into Claude Code, Codex, OpenCode and Uber's hosted agents.
+
+Its evaluation habits echo Genie's, whose judge also scored the documents behind its answers. The
+marketplace replays real prompts with and without a skill and lets a blind judge choose. An
+always-on papercut skill lets agents report the friction they hit, and agents filed thousands of
+reports in three months, of which hundreds have been fixed. Uber reports that in "a majority of the
+cases" skills made sessions more successful and cheaper. One concrete result is a **46%** cut in a
+tracing skill's cost per invocation from a worker subagent on a cheaper model. Code Mode moves
+repeated flows into scripts that call tools through "our gateway"; the post does not say whether
+this is the MCP Gateway above, and it gives no figures for the gains.
+
+These numbers are first-party and selective. The majority is not quantified, no absolute success
+rates are given, chart values are not in the prose, and the cost window includes other tool calls.
+They should not be merged with Genie's usage numbers. See [[Agent Skill]], [[LLM-as-a-Judge]] and
+[[Agent Observability]].
+
 ## Notes
 
 ### The numbers are self-reported, and one is unrecoverable
@@ -102,3 +129,7 @@ usage or helpfulness numbers.
 - [[Sarthak Rastogi - How to Build an Enterprise AI Agent System with AgentCore (Part 1)]]
 - [[Tool Roster Economics]]
 - [[Agent Security and Governance]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Agent Skill]]
+- [[Programmatic Tool Calling]]
+- [[Model Routing]]

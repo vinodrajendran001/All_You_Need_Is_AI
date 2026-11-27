@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-11-13
+updated: 2026-11-27
 entity_kind: person
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
 source_ids:
   - src-2026-10-19-naam-million-agents-superintelligence
   - src-2026-11-09-zvi-ai-rd-acceleration-rsi
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
 status: active
 ---
 
@@ -88,6 +89,23 @@ Naam's 1.1x-25x spread predicts research pace, while METR's 1.9x is a growth rat
 index, so the two numbers should not be matched directly. Public ECI through mid-2027 remains the
 test.
 
+### A matched-budget test of the speed-not-intelligence reading
+
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] runs the kind of controlled measurement
+Naam called for, at much smaller scale. Its evidence table lists his essay as finding a **penalty**
+for swarms, records his λ as **0.75** below 30 agents and **0.33** below 100, and marks it as
+lacking a matched-compute control: "No lone agent is given a longer clock", and his λ analysis takes
+ten agents as its starting point.
+
+Zanichelli's own teams, mostly of 2 to 8 agents, got the same weighted-token budget as one agent.
+They scored about 7% worse in 54 of 70 comparisons while finishing several times sooner, which
+supports Naam's split between speed and intelligence. The study also adds an explanation his three
+mechanisms do not cover. On one task, teams beat a single long session, but a single agent restarted
+into eight fresh sessions beat the teams, which the author attributes to stale context building up
+in long sessions. A team premium measured against one long session can therefore reflect the single
+agent's context management rather than collective intelligence. The study's recommended λ of 0.6 to
+0.9 comes from that one task, and most settings ran three times.
+
 ## Related pages
 
 - [[Recursive Self-Improvement]]
@@ -100,3 +118,5 @@ test.
 - [[Ramez Naam - Can a Million AI Agents Create Superintelligence]]
 - [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
 - [[METR]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+- [[Multi-Agent Coordination]]

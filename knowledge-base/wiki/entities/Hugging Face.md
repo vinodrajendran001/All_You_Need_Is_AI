@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-08-25
-updated: 2026-11-13
+updated: 2026-11-27
 entity_kind: organization
 tags:
   - entity
@@ -16,6 +16,7 @@ source_ids:
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-11-pytorch-executorch-webgpu
+  - src-2026-11-20-huggingface-harness-adapters
 status: active
 ---
 
@@ -79,6 +80,25 @@ as `.pte` files in `executorch-community` repositories, each with a model card a
 recipe. The infrastructure role described above therefore extends from checkpoints to compiled
 runtime files for [[PyTorch]]'s ExecuTorch runtime. See [[On-Device Reasoning]].
 
+## A post-training recipe run on its own stack
+
+[[Hugging Face - Introducing Harness Adapters]] adds a third role beside infrastructure and
+measurement: Hugging Face as a lab publishing a full agentic-RL recipe built from its own products.
+In the post's words, "Datasets, training and agent rollouts all happen on the Hub in Jobs using
+TRL's `AsyncGRPOTrainer`, OpenEnv and harbor." The task set combines Hub environments with
+Tasksmith, a pipeline in Hugging Face's Repo2RLEnv, is screened with `openenv validate`, and is
+released as `harness-hub/agentic-coding-envs`, with **871** tasks from **35** repositories. The
+adapters, GGUFs, RL tasks and safeagents plugin are published as a Hub collection. The safeagents
+tool checked **1.3M** tool calls during training and blocked **647**; that the model became "safer
+and safer" is the authors' reading of a chart.
+
+The measurement role recurs inside the same post. Its wrong-answer controls caught a Terminal-Bench
+2.1 verifier (regex-log) that accepted known-wrong answers, the same habit of auditing benchmarks as
+the ASR work above. The headline result, Qwen3.8-27B under the pi harness rising from **39%** to
+**55%** pass@1 on Terminal-Bench 2.1, is first-party and single-attempt, and several counts in the
+post do not reconcile. See [[Harness Optimization]], [[Parameter-Efficient Fine-Tuning]] and
+[[RL Environment Design]].
+
 ## Related pages
 
 - [[IBM Granite Team - Granite 4.2 LLMs How They're Built]]
@@ -95,3 +115,9 @@ runtime files for [[PyTorch]]'s ExecuTorch runtime. See [[On-Device Reasoning]].
 - [[Mixture of Experts]]
 - [[PyTorch]]
 - [[On-Device Reasoning]]
+- [[Hugging Face - Introducing Harness Adapters]]
+- [[Harness Optimization]]
+- [[Parameter-Efficient Fine-Tuning]]
+- [[RL Environment Design]]
+- [[Agentic Reinforcement Learning]]
+- [[Qwen]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-06
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-11-10-bytebytego-linkedin-ai-code-review
   - src-2026-11-10-mollick-fable-5-2-jagged-agi
   - src-2026-11-09-tillman-two-kinds-test-time-scaling
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
 status: active
 ---
 
@@ -224,6 +225,47 @@ used at most **9** agents while deployed swarms run hundreds or thousands: "trai
 villages but deploying them in cities". These are first-party results with no chart values stated in
 text and no variance.
 
+### A matched-budget test, and a restarted single agent as the baseline
+
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] tests the speed-over-intelligence reading at matched budgets. Teams in
+three setups (protocol, self-organized and orchestrated), built from Claude Opus 5.5, Claude Sonnet
+5.5, GPT-6.1 Sol or GPT-6.1 Terra agents, shared the same weighted-token budget as one single agent.
+The main runs used 8M, with three runs per configuration and 10 for a few git-to-zig comparisons. Teams scored below the single agent in 54 of 70 comparisons, a median
+of 7.0% lower, while teams of 8 typically finished 6.1 times sooner. Both figures come from chart
+captions; the TL;DR rounds them to "6x" faster and "about 7%" worse. The author reads this as
+consistent with Toby Ord's "stepping on toes" analysis of OpenAI's multi-agent results: "Measured
+against tokens, adding agents does not yet look like a new axis along which performance scales."
+
+The one apparent premium came from self-organized GPT teams on git-to-zig, a porting task graded on
+743 of git's test scripts. At 32M weighted tokens, Sol's teams of 8 scored **93.2%** against
+**83.7%** for one agent, and Terra's teams of 2 and 8 scored 29.1% and 32.0% against 26.6%. Terra's
+teams of 4 did not beat it (25.4%), teams of 16 scored 33.3%, and teams of 32 fell to 23.2%. The
+gain was not a best-of-N effect, because the best of 8 single agents at 4M each reached 43.7% for Sol
+and 13.1% for Terra. A single agent working across eight fresh sequential sessions then removed the
+premium. It scored **97.0%** and **41.9%** at 32M, and 62.1% and 28.0% at 8M against the teams'
+55.0% and 17.8%. The author's explanation concerns context rather than coordination: "a long
+session never wholly resets, even with compaction", so stale information builds up. The restarted
+baseline ran only on git-to-zig, "so our other comparisons may flatter the teams".
+
+Whether talking helps depends on the task. The control is a no-talk team that splits the same 8M
+budget and is scored on its best agent, and each "point" is 1% of the model's single-agent score.
+On git-to-zig, teams of 4 and 8 gained 16 to 53 points over their no-talk versions, and 77–94% of
+the teams' improvements were separable from the ones just before, against 27–49% on the performance
+take-home. On AHC014 and AHC038, talking cost GPT's teams 2 to 12 points in every comparison, while
+Claude Opus 5.5's teams did as well or slightly better. Self-organized teams beat protocol teams for
+every model run in both setups, but part of that gap is the protocol prompt itself, which lowers a
+single Sol agent from 53.3% to 42.2% before any teammates are added. Teams mixing GPT and Claude
+usually scored between the two single-model teams, which the author calls a weak test of diversity.
+
+This sharpens Naam's reading rather than overturning it, and adds stale context as a reason long
+single sessions underperform. It also cuts against the trained-swarm results above. Zanichelli reads
+General Reasoning's Avalon-M1 release page, a different document from the training post, as parity:
+at matched tokens the n=8 swarm "scores higher than a solo agent on 35% of benchmarks, but lower on
+43%", with no statistical test, and its lone baseline "is the same swarm-trained model". The study
+is one lab's work with three runs for most settings. Claude's single agents often stopped early, so
+Claude's teams and single agents were not compared at matched spend. See [[Benchmark Optimization]]
+and [[Test-Time Scaling]].
+
 ### A self-built bureaucracy, and swarms past their training size
 
 [[Ethan Mollick - Fable 5.2 and Jagged AGI]] gives a first-person account of an emergent
@@ -259,8 +301,11 @@ and ownership of external effects need enforcement outside the agents' conversat
 
 ## Open questions
 
-- Raindrop's channel cut duplicates, but no study here measures task success with and without a
-  channel at matched budgets. Does peer communication improve outcomes, or only efficiency?
+- Raindrop's channel cut duplicates, and until the 2026-11-27 ingest no study here measured task
+  success with and without a channel at matched budgets. [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]'s no-talk control
+  now does: talk added 16 to 53 points for teams of 4 and 8 on git-to-zig, and little or nothing, or a loss, on three other
+  tasks. Which task properties predict whether peer communication improves outcomes rather than only
+  efficiency?
 - Can a team detect unverbalized peer influence at run time, or only after the fact through costly
   counterfactual replay?
 - Model mix shifted measured influence, and name order shifted who issued plans, among peers with
@@ -273,6 +318,8 @@ and ownership of external effects need enforcement outside the agents' conversat
   not scale, or a cheaper substitute for designed hierarchy?
 - When peers share models and prompts, how should a coordination layer discount agreement that comes
   from common provenance?
+- Would the team gains reported by Cohere and General Reasoning survive a single agent restarted
+  into fresh sessions at the same budget, the control that removed the git-to-zig premium?
 
 ## Related pages
 
@@ -309,3 +356,6 @@ and ownership of external effects need enforcement outside the agents' conversat
 - [[ByteByteGo - How LinkedIn Uses AI to Review 40,000 Pull Requests a Week]]
 - [[Ethan Mollick - Fable 5.2 and Jagged AGI]]
 - [[James Tillman - Two Kinds of Test-Time Scaling]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+- [[Benchmark Optimization]]
+- [[Context Engineering]]

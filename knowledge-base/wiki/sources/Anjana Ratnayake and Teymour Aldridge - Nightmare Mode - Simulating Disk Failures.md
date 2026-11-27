@@ -106,8 +106,8 @@ only be found by an I/O error followed by a power failure".
 
 [[Agentic Testing]] gains a testing method with no model in it: the environment, not an agent, is the
 adversary, and the oracle is the system's own durability invariants. Correlating faults with operations is
-a concrete way to shrink a search space, and the bbolt case shows a defect that only a compound fault
-exposes. [[Antithesis]] gains its own first-party account, beside the property-testing libraries Geoffrey
+a concrete way to shrink a search space, and the bbolt case is, by the authors' account, a defect that
+only a compound fault exposes. [[Antithesis]] gains its own first-party account, beside the property-testing libraries Geoffrey
 Huntley promotes.
 
 ## Tensions / open questions

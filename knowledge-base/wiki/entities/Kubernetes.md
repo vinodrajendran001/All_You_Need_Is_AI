@@ -56,15 +56,16 @@ almost every request. Against that baseline a cache- and queue-aware router cut 
 **6.88 s to 0.31 s** on a shared-prefix workload and served about **7.4×** the peak goodput. This is a
 vendor benchmark of its own product on three L40S replicas, compared only with random routing.
 
-An independent rerun, [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]], shows what that baseline takes to
-reproduce. Unable to install CRDs on the real cluster, the author ran a nested k3s cluster inside one
-unprivileged pod on a shared 8-GPU node. Each request used a new TCP connection so kube-proxy
-re-rolled its random choice, because keep-alive would pin a client to one pod. The pod's Istio
-sidecar had to be bypassed, since its Envoy proxy would otherwise have load-balanced the "random" arm
-itself. With those controls the router cut shared-prefix median TTFT by **93.6%** (blog 95%) and
-raised peak goodput **2.9×** on shared-prefix and **4.1×** on multiturn, against the blog's 7.4× and
-3.5×. The Service arm again met neither SLO at any tested concurrency, but at concurrency 32 it kept
-6-21% SLO attainment while the cache-aware router's fell to zero.
+An independent rerun, [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]], shows what that baseline
+takes to reproduce. Unable to install CRDs on the real cluster, the author ran a nested k3s cluster
+inside one pod in an unprivileged namespace (the pod itself was root and privileged) on a shared
+8-GPU node. Each request used a new TCP connection so kube-proxy re-rolled its random choice,
+because keep-alive would pin a client to one pod. The pod's Istio sidecar had to be bypassed, since
+its Envoy proxy would otherwise have load-balanced the "random" arm itself. With those controls the
+router cut shared-prefix median TTFT by **93.6%** (blog 95%) and raised peak goodput **2.9×** on
+shared-prefix and **4.1×** on multiturn, against the blog's 7.4× and 3.5×. The Service arm again met
+neither SLO at any tested concurrency, but at concurrency 32 it kept 6-21% SLO attainment while the
+cache-aware router's fell to zero.
 
 Two routing layers are recorded. The GKE Inference Gateway in
 [[Rahul Ranganathan - Inference Gateway on GKE]] extends the Gateway API with `InferencePool` and

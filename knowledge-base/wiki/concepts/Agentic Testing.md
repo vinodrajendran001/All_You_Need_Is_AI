@@ -394,16 +394,18 @@ runs (see [[AI Code Review]]); he reports no detection rates.
 
 ## Fault injection makes the environment the adversary
 
-[[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]] contains no AI.
-It is here because it inverts this page's setup: instead of an agent driving software through its
-interface, the harness changes what the environment does underneath, and the oracle is the system's
-own durability guarantee. [[Antithesis]] first ran a patched LazyFS, the open-source FUSE filesystem
-from INESC TEC and Jepsen, then wrote its own, Amnesia, in Rust. It holds unsynced writes in its own
-cache, and discarding that cache when the container is killed emulates power loss, which a process
-kill does not: after a SIGKILL, completed writes still reach disk, "fsync or no fsync". Amnesia also
-returns disk I/O errors, including an EIO on fsync that leaves the failed pages marked clean so that a
-later fsync succeeds while the data is gone (the fsyncgate behaviour), and latency faults that
-complete operations out of order or split a write so a concurrent read sees a mix of old and new data.
+[[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]] contains no
+AI. It is here because it inverts this page's setup: instead of an agent driving software through
+its interface, the harness changes what the environment does underneath, and the oracle is the
+system's own durability guarantee. [[Antithesis]] first ran a patched LazyFS, the open-source FUSE
+filesystem from INESC TEC and Jepsen, then wrote its own, Amnesia, in Rust. It holds unsynced writes
+in its own cache, and discarding that cache when the container is killed emulates power loss, which
+a process kill does not: after a SIGKILL, completed writes still reach disk, "fsync or no fsync".
+Amnesia also returns disk I/O errors, including an EIO on fsync that leaves the failed pages marked
+clean so that a later fsync succeeds although the data never reached the disk and is lost at the
+next power failure unless the program writes it again (the fsyncgate behaviour), and latency faults
+that complete operations out of order or split a write so a concurrent read sees a mix of old and
+new data.
 
 Two design choices carry over to any search-based test. Power failures are **correlated with
 operations**: the injector decides on each disk syscall whether to fire before, partway through, or
@@ -418,7 +420,7 @@ power failure". This is a first-party vendor post. Beyond "a number of bugs in c
 the one bbolt case, it gives no counts, detection rates, overhead, or validation against real hardware
 failures.
 
-## Watching a real user is a test nobody scripted
+## Watching a real user tests what no oracle writes down
 
 [[Jan Miksovsky - Watching Users Is How You Make Products Better]] is an opinion post with no AI
 method, and it marks a boundary of this page. Every oracle above checks software against something

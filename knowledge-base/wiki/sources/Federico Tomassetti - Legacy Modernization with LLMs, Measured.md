@@ -51,10 +51,12 @@ establishing that the result does what the original does.
   the plan's **2,777** files; a script split it into **43** phases about the size of Small, plus two
   query phases and four for CL programs, commands, and menus. The agent also found an SQL table
   dependency the plan had missed.
-- **There was no IBM i to run the originals.** Expected behaviour came from reading the source and the
-  RPG manual. Experiment 1 was executed against **35** predefined test cases, adapted to each run's
-  different interfaces; for Small the team mostly reviewed the **14** largest programs against the RPG;
-  checks of Large used Claude Opus 5.5, Fable 5.2, and GPT-6 Astra alongside manual exploration.
+- **There was no IBM i to run the originals.** Expected behaviour came from reading the source and
+  the RPG manual. Experiment 1 was executed against **35** predefined test cases, adapted to each
+  run's different interfaces; for Small the team mostly reviewed the **14** largest programs against
+  the RPG; across the runs, checks combined manual exploration with Claude Opus 5.5 (initial
+  consistency analyses), Fable 5.2 (Large's startup and source coverage), and GPT-6 Astra (an
+  independent review of code and behavior).
 
 ### A cheap first generation, with large stated exclusions
 
@@ -154,8 +156,9 @@ get, respectively, agent-written generators, cache-read-dominated cost, and a qu
   examples from a fraction of the programs, not an error rate. Large was translated once; experiments 1
   and 2 used three runs each, one model, one harness, and a naive prompt chosen as a baseline, not best
   practice.
-- **AI checked AI.** Consistency and coverage checks used Claude Opus 5.5, Fable 5.2, and GPT-6 Astra.
-  "Two models ... agree" is agreement between models, not ground truth.
+- **AI checked AI.** Consistency analyses, coverage checks, and an independent code review used
+  Claude Opus 5.5, Fable 5.2, and GPT-6 Astra respectively. "Two models ... agree" is agreement
+  between models, not ground truth.
 - **Small inconsistencies.** Large's rate is given as about $1.80 and then about $1.83 per thousand lines
   without stating the first denominator; Large's time is "48 hours of agent time" in one place (the 48.1 h
   wall clock) and "40 hours of model time" in another (the 39.7 h API time); the author writes "I founded

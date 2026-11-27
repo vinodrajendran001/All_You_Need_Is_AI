@@ -363,11 +363,12 @@ and the models "spontaneously add a dry-run mode". In his setting the determinis
 and the planning artifacts did not.
 
 Contribution changed as well. Average quality is "much higher", beginner developers can now propose
-code changes, and outside security researchers reported three holes that his audits missed. A new
-plugin system invites changes to core components, which pulls against Kitsu's common interface across
-studios: "We haven't arbitrated on the topic yet." He lists "Project overload" among his concerns and
-cites an essay titled "The Decoherence Trap". His link goes to a different site from the capture
-summarized in [[The Decoherence Trap]], so whether the two are the same essay is unverified.
+code changes, and outside security researchers sent three reports of holes that his audits missed. A
+new plugin system invites changes to core components, which pulls against Kitsu's common interface
+across studios: "We haven't arbitrated on the topic yet." He lists "Project overload" among his
+concerns and cites an essay titled "The Decoherence Trap". His link goes to a different site from
+the capture summarized in [[The Decoherence Trap]], so whether the two are the same essay is
+unverified.
 
 [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] goes further. He no
 longer reads code line by line. Before a pull request reaches him, three other models have reviewed it,

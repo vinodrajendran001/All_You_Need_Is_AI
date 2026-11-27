@@ -1968,9 +1968,9 @@ against the blog's **7.4×**, which the author traces to a prefix working set of
 the pool's KV capacity. [[vLLM-GR Team - Announcing vLLM-GR]] moves beam search over semantic item
 IDs inside a vLLM-based engine for generative recommendation, with first-party P99-only charts.
 [[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] adds a non-LLM case
-of coordination separated from computation, with reported figures and no baselines. [[KV Cache]],
-[[Serving Benchmarks and Goodput]], [[Inference Serving Engines]], and [[Kubernetes]] carry the
-series and the reproduction.
+of coordination separated from computation, with reported figures and no quantified baselines.
+[[KV Cache]], [[Serving Benchmarks and Goodput]], [[Inference Serving Engines]], and [[Kubernetes]]
+carry the series and the reproduction.
 
 **Inference hardware and kernels, optimized one measured step at a time.**
 [[Ankit Gupta - Vibecoding an Inference Chip]] had a coding agent build bit-exact inference for a

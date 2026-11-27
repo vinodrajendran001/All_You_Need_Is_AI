@@ -90,7 +90,8 @@ only behaviorist theories.
   such as conditional co-ablation are needed ([[Mechanistic Interpretability]],
   [[Transformer Architecture]]).
 
-None of these methods has been built or evaluated. The program is an announced research agenda.
+The paper builds or evaluates none of these methods as a qualiaphobic intervention; it repurposes
+existing techniques and relays one ablation result. The program is an announced research agenda.
 
 ### Training a self-belief has side effects
 
@@ -98,14 +99,16 @@ Hoel argues against simply training models to deny that they are conscious. He c
 concern that unjustified denial training promotes misalignment or deception, and evidence that
 self-attribution interventions can shift unrelated beliefs, such as beliefs about animal
 consciousness or religion. The vault holds direct evidence of a neighboring effect. In the Arush
-study, fine-tuning on self-recognition or identity self-reports changed later emergent-misalignment
+study, fine-tuning on self-recognition or on self-reports changed later emergent-misalignment
 outcomes in ways that varied by model, dataset, and evaluation. Self-reports sampled from a
 fragmented model could themselves transfer misalignment, and more self-description was not
-automatically protective ([[Emergent Misalignment]]). That study concerns identity, not
-consciousness, so it does not test Hoel's specific concern. It does show that self-description
-training is not a narrow, side-effect-free edit. Hoel's alternative is a *justified* belief:
-models learn they are non-conscious from the techniques used to build them, and success is judged
-partly by how convincing they find the case.
+automatically protective ([[Emergent Misalignment]]). That study measures identity, not
+consciousness, although its self-report training data are a model's completions for prompts about
+consciousness and other traits. It never trains a model to deny consciousness, so it does not test
+Hoel's specific concern. It does show that self-description training is not a narrow,
+side-effect-free edit. Hoel's alternative is a *justified* belief: models learn they are
+non-conscious from the techniques used to build them, and success is judged partly by how convincing
+they find the case.
 
 ### Precaution has costs, according to the one source that discusses it
 

@@ -372,7 +372,7 @@ p50–p99 gap between **47** and **58 ms**. That sits inside the vendor's **70-5
 below the **4.33 s** mean in Husain's whole-trace comparison above. Inputs, concurrency and clients
 differ, so none of the three figures refutes another. Modaic also relays an Artificial Analysis
 Decision Index on which six configurations score **60** to **76** and Jev 1.14 scores **66**,
-without naming the other five in its text. The author sells competing models, and its claim that
+without naming the other five in its text. The author builds competing models, and its claim that
 rivals "quickly surpassed" Jev on accuracy and calibration comes with no evidence.
 
 ## Open questions

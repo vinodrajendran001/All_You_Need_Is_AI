@@ -280,7 +280,7 @@ among its bases, from 4B to 235B. They include Qwen3.5 9B and the Qwen3.5 35B A3
 A3B MoE checkpoints that Modaic weighs as Jev's backbone. In a derived count, **17** of the **88**
 cards that name a base name a Qwen checkpoint directly. The vault already records Qwen as an open
 substrate for re-alignment by Nous and astwei; the catalog shows the same openness used to strip
-refusals and sold to traders without hazard evaluation. Its scores are relayed from the UGI
+refusals and pitched to traders without hazard evaluation. Its scores are relayed from the UGI
 Leaderboard and fold knowledge and willingness to answer into one number, so they say nothing
 reliable about the derivatives' capability relative to their bases. See
 [[Defensive Deception for Open Models]], whose reported decoy recipe failed its gate on Qwen3.5-9B.
@@ -294,7 +294,7 @@ training through the unchanged harness. Under pi on Terminal-Bench 2.1, the base
 **39%** at an average of **2.9K** tokens per task, and the adapted model scores **55%** pass@1 at
 **1.5K**. The three adapters' updates are nearly orthogonal. Concatenated at half weight, they form
 one "super-adapter" that beats the base on all six harness-benchmark pairs with thinking off, though
-each specialist leads on four of the six. The results are first-party and single-attempt. They are
+the specialists lead on four of the six. The results are first-party and single-attempt. They are
 comparable only within a harness, because pi compacts context and the other two harnesses do not.
 See [[Harness Optimization]] and [[Parameter-Efficient Fine-Tuning]].
 

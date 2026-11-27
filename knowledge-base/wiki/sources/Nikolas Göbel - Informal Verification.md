@@ -65,12 +65,13 @@ the Mizar checker, which accepts only "obvious inferences".
 ### Jev as the checker, with its failure modes
 
 In the (uncaptured) demonstrations Jev accepts a correct step, rejects an incorrect one, and is not
-convinced by an ambiguous claim. On a Zebra-puzzle claim that makes Fable 5.2 reason "for about a minute",
-Jev splits almost evenly between true and false; an agent tasked with getting it accepted has to
-decompose the conclusion into a tree of sub-claims, which Jev then accepts. Used this way, Jev "effectively
-accepts any deductive step that a capable LLM can follow intuitively, meaning without the use of internal
-reasoning tokens." Because Jev is multimodal, premises can cite diagrams. Göbel asserts that its cost and
-latency are "negligible" relative to the agent and other tool calls.
+convinced by an ambiguous claim. On a Zebra-puzzle claim that makes Fable 5.2 reason "for about a
+minute", Jev splits almost evenly between true and false; an agent tasked with getting it accepted
+has to decompose the conclusion into a large tree of sub-claims, and the essay shows Jev accepting
+one smaller sub-claim. Used this way, Jev "effectively accepts any deductive step that a capable LLM
+can follow intuitively, meaning without the use of internal reasoning tokens." Because Jev is
+multimodal, premises can cite diagrams. Göbel asserts that its cost and latency are "negligible"
+relative to the agent and other tool calls.
 
 He lists the costs himself. Jev is not perfectly deterministic, so steps near the threshold can
 flip-flop. It resolves ambiguity like a fluent reader: given "the controller passes the invoice to the

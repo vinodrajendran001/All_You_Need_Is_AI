@@ -114,9 +114,10 @@ The verifier is the kind this page argues such a loop needs. Every step had to m
 reference bit for bit, which is much harder to game than a tolerance check, and it led the agent to
 reject every precision shortcut in the human advice. The contract was not enough on its own. A soak
 test found random faults at one clock, so the final image runs a step slower. The agent's
-retrospective also ties 38 lost hours to two hangs that only RTL simulation would have caught, after
-it had dropped long simulations for a faster loop. Correctness here needed both the output check and a
-stability check under sustained load.
+retrospective also names a possible cost that it "can't prove": after it dropped long simulations
+for a faster loop, two hangs that only RTL simulation could show reached the board, and an
+integration lost 38 hours to them. Correctness here needed both the output check and a stability
+check under sustained load.
 
 The size of the gain fits the inverse-headroom rule above, with the same caution. Baseten's ~5.5% on
 mature LLM kernels and this 33× sit at opposite ends, but the FPGA figure is measured from the loop's

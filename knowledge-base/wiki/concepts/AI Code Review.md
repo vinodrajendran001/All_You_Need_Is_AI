@@ -207,15 +207,15 @@ chose to claim, not what it left out; see [[Human Deferral to AI]].
 
 ### Comparison finds disagreements, not shared errors
 
-[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] states why comparison has a floor.
-Isolated agent translations of the same code each contained errors, some present in one run and not
-the next, and others "that all the runs have in common, and that therefore you cannot discover by
-comparing them". This is the correlated-error question in the open questions below, met in another
-setting: comparing runs works like independent reviewers only for the errors the runs do not share.
-Tomassetti's checks of the large translation used Claude Opus 5.5, Fable 5.2, and GPT-6 Astra
-alongside manual exploration, and its finding that "two models measured all 5,737 files separately and
-agree" is agreement between models, not ground truth. GitHub's port review above compared against a
-runnable reference; Tomassetti had none, because no IBM i was available to run the originals.
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] states why comparison has a
+floor. Isolated agent translations of the same code each contained errors, some present in one run
+and not the next, and others "that all the runs have in common, and that therefore you cannot
+discover by comparing them". This is the correlated-error question in the open questions below, met
+in another setting: comparing runs works like independent reviewers only for the errors the runs do
+not share. Tomassetti's checks combined manual exploration with Claude Opus 5.5, Fable 5.2, and
+GPT-6 Astra, and its finding that "two models measured all 5,737 files separately and agree" is
+agreement between models, not ground truth. GitHub's port review above compared against a runnable
+reference; Tomassetti had none, because no IBM i was available to run the originals.
 
 ### Where review goes next
 
@@ -227,16 +227,16 @@ faster than people can read it.
 
 ### Practitioners: model-only review before a human, and risk tiers set by hand
 
-[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] has three other models
-review each pull request before he sees it, "always at least two models different from the one that
-wrote the code", and after a fix round a fresh reviewer checks the whole diff. He no longer reads code
-line by line; his own review is asking the agent targeted questions and judging the size of the source
-diff. [[Frank Rousseau - Agentic Coding on an Open-Source Project]] finds agent review "pretty noisy,
-with a lot of nitpicking" and still catches cohesion problems by hand. His policy merges very light
-pull requests that pass CI, skips review of cleanup passes, runs agent review for the rest, reviews
-critical code himself, and posts only a trimmed, validated model review on external contributions.
-Neither reports review accuracy or a defect rate, and Rousseau notes that outside researchers found
-three security holes his audits missed.
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] has three other
+models review each pull request before he sees it, "always at least two models different from the
+one that wrote the code", and after a fix round a fresh reviewer checks the whole diff. He no longer
+reads code line by line; his own review is asking the agent targeted questions and judging the size
+of the source diff. [[Frank Rousseau - Agentic Coding on an Open-Source Project]] finds agent review
+"pretty noisy, with a lot of nitpicking" and still catches cohesion problems by hand. His policy
+merges very light pull requests that pass CI, skips review of cleanup passes, runs agent review for
+the rest, reviews critical code himself, and posts only a trimmed, validated model review on
+external contributions. Neither reports review accuracy or a defect rate, and Rousseau notes that
+outside researchers sent three reports of security holes his audits missed.
 
 ## Open questions
 

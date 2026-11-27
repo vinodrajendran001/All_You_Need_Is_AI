@@ -271,13 +271,15 @@ tokens at the high end (Sol at 32M). Its λ pooled over all four tasks is **0.23
 recommends the git-to-zig range [0.6, 0.9] instead "for statistical reasons", while noting that this
 estimate comes from one task.
 
-The restart is the depth-side control this page had been missing. On git-to-zig, a single agent working
-across eight fresh sequential sessions beat self-organized teams of 8 at both budgets: **97.0%** and
-**41.9%** for Sol and Terra at 32M against **93.2%** and **32.0%**. The author traces the gap to stale
-context rather than to token accounting: "a long session never wholly resets, even with compaction".
-Measured against the restarted agent, λ for teams of 8 fell to 0.94 for Sol and 0.75 for Terra at 32M,
-and to 0.89 and 0.60 at 8M. On this one task, more fresh sessions were a better use of a fixed budget
-for score than one longer session or a wider team; width was the better use for time. See
+The restart is the depth-side control this page had been missing. On git-to-zig, a single agent
+working across eight fresh sequential sessions beat self-organized teams of 8 at both budgets:
+**97.0%** and **41.9%** for Sol and Terra at 32M against **93.2%** and **32.0%**. The author credits
+part of the gap to token accounting, since cached input counts against the budget, but at 32M Sol's
+restarted agent made about as many calls as the single agent and still scored 13 points higher, so
+token counting is not the whole story: "a long session never wholly resets, even with compaction".
+Measured against the restarted agent, λ for teams of 8 fell to 0.94 for Sol and 0.75 for Terra at
+32M, and to 0.89 and 0.60 at 8M. On this one task, more fresh sessions were a better use of a fixed
+budget for score than one longer session or a wider team; width was the better use for time. See
 [[Multi-Agent Coordination]] and [[Context Engineering]].
 
 The study keeps the speed side of Naam's split. Teams of 8 typically spent the same budget about 6 times

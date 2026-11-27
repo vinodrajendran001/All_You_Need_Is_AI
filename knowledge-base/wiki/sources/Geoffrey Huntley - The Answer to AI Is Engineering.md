@@ -26,10 +26,10 @@ status: active
 A written version of Geoffrey Huntley's AI DevCon New York talk. Most of the conference was about
 building software faster with factories; he argues for optimising **security incident response**
 instead, and says build times then speed up too. His thesis is in the title: the answer to AI-era
-risk "isn't more AI. It's engineering." His tools are deterministic: a single Nix-defined source of
-truth for every environment, patching dependencies locally instead of waiting on upstream, removing
-dangerous capabilities from the tools agents use, hook-based back pressure, and property-based
-testing.
+risk "isn't more AI. It's engineering." His tools are conventional engineering: a single Nix-defined
+source of truth for every environment, patching dependencies locally instead of waiting on upstream,
+removing dangerous capabilities from the tools agents use, hook-based back pressure from
+deterministic checks, and property-based testing.
 
 This is a **practitioner talk and opinion piece**, built on personal demos and no measurements. Two
 parts need particular care. The incident list that opens the talk is unsourced in the capture. The

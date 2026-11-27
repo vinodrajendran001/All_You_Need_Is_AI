@@ -306,13 +306,13 @@ at an equal budget."
 
 That bears directly on Avalon-M1. Zanichelli rates it as the only matched comparison claiming about
 parity, and notes that its n=8 swarm beat a solo agent on **35%** of benchmarks and lost on **43%**,
-against a solo baseline that is the same swarm-trained model. The two sources agree on one point: the
-collective's advantage is wall-clock time, not accuracy at equal compute. General Reasoning
+against a solo baseline that is the same swarm-trained model. The two sources agree on one point:
+the collective's advantage is wall-clock time, not accuracy at equal compute. General Reasoning
 concedes that a single agent with as many output tokens "will recover much of the performance gain",
-and Zanichelli's teams of 8 finished **3 to 16** times sooner in almost all configurations while
-scoring below the single agent in **54 of 70** comparisons (per a caption and the appendix table).
-The restarted single agent is the control that neither General Reasoning nor OpenAI reported, though
-Zanichelli ran it post-hoc and on one task only. See [[Multi-Agent Coordination]].
+and Zanichelli's teams of 8 finished **3 to 16** times sooner in almost all configurations, while
+teams of 2 to 8 scored below the single agent in **54 of 70** comparisons (per a caption and the
+appendix table). The restarted single agent is the control that neither General Reasoning nor OpenAI
+reported, though Zanichelli ran it post-hoc and on one task only. See [[Multi-Agent Coordination]].
 
 ## Open questions
 

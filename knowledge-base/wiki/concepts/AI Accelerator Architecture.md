@@ -309,27 +309,31 @@ to **213.13** tokens per second in 14 measured steps. It is one self-reported pr
 the FPGA bullet in the current synthesis on four points.
 
 - **"Fast to redeploy" is relative.** Reprogramming needs no tape-out, but iteration was still slow.
-  The agent stopped a simulation that had run for about 24 hours, and its retrospective ties 38 lost
-  hours in one integration to two hangs that only RTL simulation would have caught. The clock is also
-  an outcome of each design, not a property of the part. It went from 250 MHz to 237.5/450, fell to
-  181/375 when memory ports doubled, and was finally set one step below 231.25/450 after a soak test
-  found random faults. A deterministic fabric is not deterministic at any clock.
-- **The memory wall dominates here too.** Most large gains came from data movement: reading KV in
-  bursts, fixing a router-weight relay between dies (stall per layer 43,862 → 12,292 cycles), doubling
-  memory ports, hiding KV fetches behind compute, and a lossless 5-trit packing that cut weight bytes
-  by 20%. The memory subsystem was built from AWS's reference design, which reaches **426 GB/s** across
-  32 channels. Crossings between the chip's dies recur as a cost, which is the compute-versus-
-  communication principle inside one package.
+  The agent stopped a simulation that had run for about 24 hours, and its retrospective names a
+  possible cost that it "can't prove": two hangs that only RTL simulation could show reached the
+  board, and one integration lost 38 hours to them. The clock is also an outcome of each design, not
+  a property of the part. It went from 250 MHz to 237.5/450, fell to 181/375 when memory ports
+  doubled, and was finally set one step below 231.25/450 after a soak test found random faults. A
+  deterministic fabric is not deterministic at any clock.
+- **The memory wall dominates here too.** Several gains came from data movement: reading KV in
+  bursts (the largest single step, **1.74×**), fixing a router-weight relay between dies (stall per
+  layer 43,862 → 12,292 cycles), doubling memory ports, hiding KV fetches behind compute, and a
+  lossless 5-trit packing that cut weight bytes by 20%. Most other large steps changed compute: a
+  new pipeline and sequencer, a parallel router, a glue engine, and a head shadow that starts the
+  next token on a provisional guess. The memory subsystem was built from AWS's reference design,
+  which reaches **426 GB/s** across 32 channels. Crossings between the chip's dies recur as a cost,
+  which is the compute-versus-communication principle inside one package.
 - **Exactness is a design contract with an efficiency price.** The bit-exact rule ruled out five
   numerics shortcuts offered by the DeepGrove founders, including an 8-bit KV cache and online
   softmax; in the agent's retrospective, that is "where their design got its efficiency". Against a
   pinned CPU reference the FPGA matched 24 of 24 benchmark turns. Two T4 GPU implementations matched 1
   and 0, though the author calls them "pretty close in practice".
-- **Price per hour, not efficiency.** On one 8-chat benchmark the FPGA (213.13 tok/s at $1.98 an hour)
-  beat an exact 32-thread CPU implementation (129.5 tok/s at $1.95) by 1.65× and a community CUDA port
-  on a T4 (166.3 tok/s at $0.53) by 1.28×. Per dollar, the cheaper rows deliver more tokens (a derived
-  reading). There is no energy measurement, and the author calls a 1:1 comparison difficult because he
-  did not run the same optimization loop on the alternatives. Decode slowed to 76 tok/s at 6-8k
+- **Price per hour, not efficiency.** On one 8-chat benchmark the FPGA (213.13 tok/s at $1.98 an
+  hour) beat an exact 32-thread CPU implementation (129.5 tok/s at $1.95) by 1.65× and a community
+  CUDA port on a T4 (166.3 tok/s at $0.53) by 1.28×. Per dollar, the 4-thread CPU twin and the T4
+  CUDA port deliver more tokens than the FPGA, while the 32-thread twin delivers fewer (a derived
+  reading). There is no energy measurement, and the author calls a 1:1 comparison difficult because
+  he did not run the same optimization loop on the alternatives. Decode slowed to 76 tok/s at 6-8k
   context, and a full 8,192-token run took about as long as the previous image's.
 
 ## Open questions

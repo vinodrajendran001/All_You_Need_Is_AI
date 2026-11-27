@@ -307,9 +307,9 @@ stored as an auditable program plus a low-rank tensor.
 proposed design step. He cites Anthropic research that identified a "global workspace" in Claude:
 much of the workspace's function could be ablated "without much loss in linguistic capacity", while
 multistep reasoning declined and introspective or first-person language fell. Hoel reads this as
-initial evidence that a workspace can be removed on purpose, so that a model fails the necessary
-conditions a theory of consciousness used to call it potentially conscious. See
-[[AI Consciousness and Moral Patienthood]].
+initial evidence that a workspace can be removed on purpose, so that, with more advanced methods, a
+model could fail the necessary conditions a theory of consciousness used to call it potentially
+conscious. See [[AI Consciousness and Moral Patienthood]].
 
 His own caveat is the evidence standard this page already applies. Transformers can "self-repair"
 after such operations, so strong verifiers would be needed to make sure the workspace "was not
@@ -339,8 +339,9 @@ reaches it only through Hoel's citation, and he does not name a Claude version.
   and attempts, and at what network size do they stop working without probing tools? The first
   third-party rerun used a 27B local model, with one run per game.
 - When an interpretability-guided edit improves a training metric, does that validate the reading
-  that motivated it, or only the edit? The self-editing preprint adds a case in which edits built
-  from activation contrasts are accepted on a gate and the readings behind them go unreported.
+  that motivated it, or only the edit? The self-editing preprint adds a case in which edits are
+  accepted on a gate without the constructions or readings behind them being reported; the editor's
+  prompt suggests building them from activation contrasts.
 - When a hypothesized workspace or circuit is ablated and capability largely survives, how should a
   verifier tell real removal apart from self-repair that moves the function elsewhere?
 

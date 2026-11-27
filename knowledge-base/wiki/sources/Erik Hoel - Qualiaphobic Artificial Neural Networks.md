@@ -37,7 +37,8 @@ redesign architectures to fail the necessary conditions of popular ToCs such as 
 theory. Hoel adds that models should hold *justified* beliefs about their non-consciousness rather
 than be trained to deny it. He compares the program with engineering conscious AI and with "just in
 case" welfare appeasement, and names its failure modes. Bicameral Labs says it will develop
-early-stage, open-source qualiaphobia methods. No method in the paper has been built or tested.
+early-stage, open-source qualiaphobia methods. The paper itself builds or tests none of its proposed
+methods.
 
 ## Key claims
 

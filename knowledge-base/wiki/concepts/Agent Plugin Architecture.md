@@ -116,13 +116,14 @@ maintenance loop. An error notifier posts errors into a room, an agent triages e
 and a pull request is waiting when he checks in. Dogfooding tests whether the interface is expressive
 enough, not whether it isolates a faulty plugin.
 
-[[Frank Rousseau - Agentic Coding on an Open-Source Project]] reports the ecosystem effect. Kitsu's new
-plugin system let studios build and share plugins, some of them built with LLMs. The drawback is that
-contributors now propose changes to core components, and studios want more plugin customization, while
-Kitsu's philosophy is a common interface so that users "find the same setup when moving from studio to
-studio". "We haven't arbitrated on the topic yet." Cheaper extensions bring more requests to widen the
-boundary, which is the question of how far the plugin boundary can move, above. Neither account
-measures plugin failures or security.
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] reports the ecosystem effect. Kitsu's
+new plugin system let studios build and share plugins, and other studios shared software
+integrations they built with LLMs. The drawback is that contributors now propose changes to core
+components, and studios want more plugin customization, while Kitsu's philosophy is a common
+interface so that users "find the same setup when moving from studio to studio". "We haven't
+arbitrated on the topic yet." Cheaper extensions bring more requests to widen the boundary, which is
+the question of how far the plugin boundary can move, above. Neither account measures plugin
+failures or security.
 
 ## Layered plugin configuration that only adds
 

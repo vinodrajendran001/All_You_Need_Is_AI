@@ -251,14 +251,15 @@ builds up. The restarted baseline ran only on git-to-zig, "so our other comparis
 teams".
 
 Whether talking helps depends on the task. The control is a no-talk team that splits the same 8M
-budget and is scored on its best agent, and each "point" is 1% of the model's single-agent score.
-On git-to-zig, teams of 4 and 8 gained 16 to 53 points over their no-talk versions, and 77–94% of
-the teams' improvements were separable from the ones just before, against 27–49% on the performance
+budget and is scored on its best agent, and each "point" is 1% of the model's single-agent score. On
+git-to-zig, teams of 4 and 8 gained 16 to 53 points over their no-talk versions, and 77–94% of the
+teams' improvements were separable from the ones just before, against 27–49% on the performance
 take-home. On AHC014 and AHC038, talking cost GPT's teams 2 to 12 points in every comparison, while
-Claude Opus 5.5's teams did as well or slightly better. Self-organized teams beat protocol teams for
-every model run in both setups, but part of that gap is the protocol prompt itself, which lowers a
-single Sol agent from 53.3% to 42.2% before any teammates are added. Teams mixing GPT and Claude
-usually scored between the two single-model teams, which the author calls a weak test of diversity.
+Claude Opus 5.5's teams did as well or slightly better. On git-to-zig, self-organized teams beat
+protocol teams for every model run in both setups, but part of that gap is the protocol prompt
+itself, which lowers a single Sol agent from 53.3% to 42.2% before any teammates are added. Teams
+mixing GPT and Claude usually scored between the two single-model teams, which the author calls a
+weak test of diversity.
 
 This sharpens Naam's reading rather than overturning it, and adds stale context as a reason long
 single sessions underperform. It also cuts against the trained-swarm results above. Zanichelli reads

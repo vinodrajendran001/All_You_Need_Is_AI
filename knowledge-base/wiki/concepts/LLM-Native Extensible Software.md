@@ -122,13 +122,14 @@ mode. Both are single-developer prototypes by [[Paul Kinlan]], with no measured 
 ## When contributors' agents write the extensions
 
 [[Frank Rousseau - Agentic Coding on an Open-Source Project]] reports that Kitsu's new plugin system
-let studios build and share plugins, some of them with LLMs, and that contributors now also propose
-changes to core components. Studios want more customization, while Kitsu's philosophy is a common
-interface across studios: "We haven't arbitrated on the topic yet." [[Goofy Fish - Make Your Own Game]]
-goes further. A visitor describes a game to Claude Code through a `/game` command shipped in the site's
-repository, the agent builds and tests it in the site's style, and the result arrives as a pull request
-that the maintainers play before publishing. Both keep a human gate at intake; neither reports how many
-extensions were accepted, rejected, or later broke.
+let studios build and share plugins, that other studios shared integrations they built with LLMs,
+and that contributors now also propose changes to core components. Studios want more customization,
+while Kitsu's philosophy is a common interface across studios: "We haven't arbitrated on the topic
+yet." [[Goofy Fish - Make Your Own Game]] goes further. A visitor describes a game to Claude Code
+through a `/game` command shipped in the site's repository, the agent builds and tests it in the
+site's style, and the result arrives as a pull request that the maintainers play before publishing.
+Both keep a human gate at intake; neither reports how many extensions were accepted, rejected, or
+later broke.
 
 ## Open questions
 

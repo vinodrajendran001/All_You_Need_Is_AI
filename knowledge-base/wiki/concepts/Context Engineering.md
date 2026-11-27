@@ -597,7 +597,8 @@ link, and its main accuracy runs used Claude Opus 4.5, older than most models in
 
 ## Practitioners budget the window per run and per session
 
-Four sources describe context budgets set by design or habit rather than by measurement.
+Four sources describe context budgets: three set them by design or habit, and one reports a token
+measurement.
 
 - [[William Hu - Building Always-On Agents]] names the fixed cost of waking an agent: every run loads
   the system prompt, tool definitions, and memory files, so the guide recommends keeping that overhead
@@ -619,14 +620,15 @@ Four sources describe context budgets set by design or habit rather than by meas
   budget: unchanging rules, tools described so the model can tell them apart, memory, retrieved
   material ("the 3 files that matter, not the 300 that exist"), and the task last.
 
-The L1vsun post repeats the prompt, context, and harness sequence in
-[[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]] and adds a graph
-level on top, so it restates rather than adds evidence. It also relays an April paper whose harness
-gains "came from tools, middleware and long-term memory, not from the system prompt". That points the
-same way as the system-prompt removal in Osmani's null result above, but both are relayed: neither the
-paper nor Anthropic's evals are in the vault. The four sources agree on the practice, keeping the
-per-request load small and saving what must last outside the window, and none of them measures the
-effect of its own rule.
+The L1vsun post repeats the prompt, context, harness, and loop sequence in
+[[AI Builder Club - Prompt vs Context vs Harness vs Loop Engineering - The 4 Shifts]] and adds a
+graph level on top, so it restates rather than adds evidence. It also relays an April paper whose
+harness gains "came from tools, middleware and long-term memory, not from the system prompt". That
+points the same way as the system-prompt removal in Osmani's null result above, but both are
+relayed: neither the paper nor Anthropic's evals are in the vault. The four sources agree on the
+practice, keeping the per-request load small and saving what must last outside the window. Only
+Nijholt reports a measurement, a token comparison from a separate post the vault has not captured;
+the other three state their rules without measuring them.
 
 ## A restart can beat compaction
 

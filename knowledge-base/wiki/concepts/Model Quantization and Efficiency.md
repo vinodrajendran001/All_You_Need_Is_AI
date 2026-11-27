@@ -447,9 +447,9 @@ part of the computation changes precision:
   expressed as a shift in where batching stops paying.
 - **INT4 weights.** They occupy about a quarter of FP16 bytes, "but attention, communication,
   sampling and framework overhead do not become four times faster". This matches the MoE handbook
-  result in the MoE section above, where expert storage shrank three times while bytes read per
-  token only halved. In both, a byte reduction in one component does not carry through
-  proportionally to the whole step.
+  result in the MoE section above, where 4-bit experts made the whole model three times smaller
+  while bytes read per token only halved. In both, a byte reduction in one component does not carry
+  through proportionally to the whole step.
 
 The source's figures are vendor peaks and teaching estimates, not measured kernels, and its case does
 not evaluate quality. [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] makes that boundary explicit. Quantization of weights, activations,

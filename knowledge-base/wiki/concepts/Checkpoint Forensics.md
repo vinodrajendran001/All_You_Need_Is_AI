@@ -33,9 +33,9 @@ therefore significant. So are its limits, because the step from "initialized on"
 
 ## Current synthesis
 
-[[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] is the only source. It is a
-single independent investigation, and no response from the named labs is reported. The layers
-below are kept apart on purpose.
+[[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]] is the only source for the
+weight-based method. It is a single independent investigation, and no response from the named labs
+is reported. The layers below are kept apart on purpose.
 
 ### What is measured
 
@@ -117,9 +117,9 @@ deterministic process and can reproduce values bit for bit; black-box inference 
 resemblances against controls the investigator chooses. Here the tokenizer signal cannot separate
 Qwen from Gemma, throughput cannot separate two Qwen generations of the same architecture, network
 and serving overhead sit inside every timing, and the reference curves come from self-hosted
-single-B200 workers while Jev's hardware is unknown. The source calls its result "an approximate
-performance fingerprint". It comes from a competitor of the model examined, and its proposed next
-step, knowledge-cutoff probes, is untested.
+single-B200 workers while Jev's hardware is unknown. The source calls its throughput comparison "an
+approximate performance fingerprint". It comes from a competitor of the model examined, and its
+proposed next step, knowledge-cutoff probes, is untested.
 
 ## Open questions
 

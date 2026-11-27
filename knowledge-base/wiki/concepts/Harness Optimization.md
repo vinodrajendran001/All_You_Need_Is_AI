@@ -175,9 +175,9 @@ It also confirms the model-plus-harness reading above from the other side. Pi co
 the other two harnesses do not, so the authors warn that results can be compared within a harness
 but not across harnesses. The adapters still transfer in part: the pi adapter run under OpenCode
 matches OpenCode's specialist on Terminal-Bench 2.1, and under Hermes keeps about two-thirds of the
-specialist's gain. Because the three weight updates are nearly orthogonal, they can be concatenated
-into one "super-adapter" that improves on the base model under every harness, although each
-specialist is ahead on four of six harness-benchmark pairs (see
+specialist's gain. The three weight updates are nearly orthogonal, which the authors call "the best
+case for merging", and concatenated they form one "super-adapter" that improves on the base model
+under every harness, although the specialists are ahead on four of six harness-benchmark pairs (see
 [[Parameter-Efficient Fine-Tuning]]). This is the weights-as-editable-surface idea below applied at
 deployment rather than for repair. It also bears on this page's transfer question from the other
 direction: here the weights are tuned to a harness, and they move to a second harness only in part.

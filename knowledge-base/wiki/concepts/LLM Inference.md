@@ -347,17 +347,20 @@ per step uses the same speed-of-light method as
 assumption or a vendor constant, not a measurement.
 
 The rest of the series answers the first open question below with rules, not measurements.
-[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] places fixes on six layers (engine internals, replica composition, routing and admission,
-substrate, capacity, contract) and investigates them in the order a symptom points. Turn on chunked
-prefill first when long prefills block decode and the replica still has headroom. Cost out
-[[Prefill-Decode Disaggregation]] only when chunking no longer holds the interference down and
-traffic is prefill-heavy. Part 2 also treats continuous batching, described under "Serving
-multiple users" above, as changing waiting and slot use rather than per-token work.
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] places
+fixes on six layers (engine internals, replica composition, routing and admission, substrate,
+capacity, contract) and investigates them in the order a symptom points. Turn on chunked prefill
+first when long prefills block decode and the replica still has headroom. Cost out
+[[Prefill-Decode Disaggregation]] when phase interference or a shared parallel configuration is
+still binding and traffic is prefill-heavy. Part 2 also treats continuous batching, described under
+"Serving multiple users" above, as changing waiting and slot use rather than per-token work.
 [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] adds the limit
 that "neither reduces this cold request's own prefill work", so a first-token miss caused by
-execution time alone survives both fixes. [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] supplies the acceptance test: a faster kernel,
-a higher cache hit rate, or higher mean throughput is a local metric. A change counts only if P95
-TTFT, the P95 token gap, SLO attainment, and goodput improve at the request boundary.
+execution time alone survives both fixes.
+[[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] supplies
+the acceptance test: a faster kernel, a higher cache hit rate, or higher mean throughput is a local
+metric. A change counts only if P95 TTFT, the P95 token gap, SLO attainment, and goodput improve at
+the request boundary.
 
 ## Open questions
 

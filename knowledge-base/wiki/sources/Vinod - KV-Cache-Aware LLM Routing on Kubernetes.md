@@ -111,10 +111,12 @@ real load awareness.
   **0.54 s** (−87.6%, CI 0.12-0.28), and goodput at c8/c16/c32 rose **1.6× / 2.2× / 3.3×**. The gain
   grows with load. The author's reading is that the hot head of the distribution fits in cache, so the
   shared-prefix ceiling is a capacity limit, not a routing limit.
-- **Pool-size sweep** (goodput ratio at c8, multiturn / shared-prefix): **1.10× / 0.97×** at 1+1 (both
-  n.s.), **3.25× / 1.97×** at 2+2 and **3.61× / 2.93×** at 3+3. Only Kinference's hit rates rise with N.
-  One pod per pool leaves no routing choice, so it serves as a negative control, and the rise with N is
-  a dose-response. The author calls this the cleanest evidence in the project.
+- **Pool-size sweep** (goodput ratio at c8, multiturn / shared-prefix): **1.10× / 0.97×** at 1+1
+  (both n.s.), **3.25× / 1.97×** at 2+2 and **3.61× / 2.93×** at 3+3. Kinference's hit rates rise
+  sharply with N (multiturn 0.46→0.82, shared-prefix 0.12→0.56); random routing's barely move
+  (0.43→0.47, 0.10→0.15). One pod per pool leaves no routing choice, so it serves as a negative
+  control, and the rise with N is a dose-response. The author calls this the cleanest evidence in
+  the project.
 
 ### Routing overhead
 

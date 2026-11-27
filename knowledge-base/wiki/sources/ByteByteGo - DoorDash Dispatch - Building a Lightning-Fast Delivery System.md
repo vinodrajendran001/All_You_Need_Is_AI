@@ -21,19 +21,20 @@ status: active
 
 ## Summary
 
-A ByteByteGo relay of one DoorDash engineering post about rebuilding the dispatch engine that assigns
-orders to Dashers, DoorDash's delivery drivers. The article likens dispatch to the vehicle-routing
-problem over space and time, with inputs that keep changing, so a good assignment is useless if it
-arrives late. The old
-monolith combined state, business rules and routing calculations, and its key algorithms had roughly
-quadratic complexity. Under peak demand it had to cut its search or fall back to simpler rules. Adding
-servers alone would not fix this, because nearby orders are coupled and a central coordinator becomes
-the new bottleneck. The redesign separates a coordinator tier from a stateless compute tier, sends
-workers only local, self-contained payloads, and decomposes the problem geographically, with a global
+A ByteByteGo relay of one DoorDash engineering post about rebuilding the dispatch engine that
+assigns orders to Dashers, DoorDash's delivery drivers. The article likens dispatch to the
+vehicle-routing problem over space and time, with inputs that keep changing, so a good assignment is
+useless if it arrives late. The old monolith combined state, business rules and routing
+calculations, and its key algorithms had roughly quadratic complexity. Under peak demand it had to
+cut its search or fall back to simpler rules. Adding servers alone would not fix this, because
+nearby orders are coupled and a central coordinator can become the new bottleneck if it is
+overloaded. The redesign separates a coordinator tier from a stateless compute tier, sends workers
+only local, self-contained payloads, and decomposes the problem geographically, with a global
 reconciliation layer for boundary effects. Rollout went through shadow testing, then production
-switchback experiments. DoorDash reports **10×** processing scale, **>99.96%** of runs under
-**20 seconds** and **>99.99%** availability during Super Bowl spikes. None of these comes with a
-baseline or a decision-quality metric.
+switchback experiments. DoorDash reports **10×** processing scale, **>99.96%** of runs under **20
+seconds** and **>99.99%** availability during Super Bowl spikes. None of these comes with a
+quantified baseline (the latency figure is compared only with "minutes under heavy load" in the old
+system) or a decision-quality metric.
 
 ## Key claims
 

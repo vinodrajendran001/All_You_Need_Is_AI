@@ -206,25 +206,25 @@ self-reported.
 
 ## When orders are coupled, adding servers moves the bottleneck
 
-[[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] shows the same rule outside
-LLM serving. DoorDash's dispatch engine keeps matching orders to drivers while orders, driver
-positions and prep times change. Its monolith's key algorithms grew roughly quadratically, and peak
-demand reached "nearly four times" its processing capacity. Horizontal replicas alone would not help,
-because nearby orders are coupled: two orders that could share a trip may land on different workers,
-two workers may pick the same driver, and the coordinator that splits and merges the work becomes the
-new bottleneck.
+[[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] shows the same rule
+outside LLM serving. DoorDash's dispatch engine keeps matching orders to drivers while orders,
+driver positions and prep times change. Its monolith's key algorithms grew roughly quadratically,
+and peak demand reached "nearly four times" its processing capacity. Horizontal replicas alone would
+not help, because nearby orders are coupled: two orders that could share a trip may land on
+different workers, two workers may pick the same driver, and the coordinator that splits and merges
+the work can become the new bottleneck if it is overloaded.
 
 The redesign separates a stateful coordinator tier from a stateless compute tier, sends each worker
 only a self-contained local payload, partitions the problem geographically, and reconciles results
-across partition boundaries. Model serving follows the locality rule: frequent evaluations run inside
-the workers with ONNX Runtime, and heavier, less frequent policy evaluations go to isolated remote
-clusters. Rollout went through shadow testing, then production switchback experiments. DoorDash
-reports **10×** processing scale, more than **99.96%** of runs under **20 seconds** and more than
-**99.99%** availability during Super Bowl spikes. These are relayed secondhand by ByteByteGo with no
-baselines, no decision-quality metric and no switchback results. The scarce state here is the
-coupling between nearby orders and drivers rather than cached prefixes, but the lesson matches the
-routing results above: the partition must follow the workload's dependencies, and something must
-still pay for what crosses partition boundaries.
+across partition boundaries. Model serving follows the locality rule: frequent evaluations run
+inside the workers with ONNX Runtime, and heavier, less frequent policy evaluations go to isolated
+remote clusters. Rollout went through shadow testing, then production switchback experiments.
+DoorDash reports **10×** processing scale, more than **99.96%** of runs under **20 seconds** and
+more than **99.99%** availability during Super Bowl spikes. These are relayed secondhand by
+ByteByteGo with no quantified baselines, no decision-quality metric and no switchback results. The
+scarce state here is the coupling between nearby orders and drivers rather than cached prefixes, but
+the lesson matches the routing results above: the partition must follow the workload's dependencies,
+and something must still pay for what crosses partition boundaries.
 
 ## Capacity must survive placement, policy, and service requirements
 

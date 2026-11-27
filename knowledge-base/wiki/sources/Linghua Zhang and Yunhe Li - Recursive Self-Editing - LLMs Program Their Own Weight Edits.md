@@ -163,17 +163,19 @@ audit or revert.
 - **Run length.** The paper says "We run five generations", and four edits were accepted. The
   three-miss stop rule never triggered, and the capture does not say why the run ended at five.
 - **Capture gaps.** "Our contributions are:" is followed directly by the next section, so the list
-  is missing. The References heading is empty: footnotes run [^1] to [^15], while the text also cites
-  [^16]. Bracket keys such as [seal], [metarsi], [mass] and [wsp] are unresolved. [^10], the source
-  for "Weight-space programming lets an LLM write code that edits network weights", is Junru Hu et
-  al., "Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations"
-  (arXiv:2611.09382), which is not in the vault. The unresolved [wsp] key is described as
-  gradient-free weight programs "written by an external model for a different network". That
-  resembles [[Rikiya Takehi et al - Sparks of Weight-Space Programming]], but the capture does not
-  identify it, so the vault should not equate them.
-- **Missing metadata.** The capture has no frontmatter author or date. The authors appear only in the
-  body text, and the date comes from arXiv. Figures 1, 2 and 4 are inline SVG and were not read;
-  only prose and table values are used here. The paper is not peer reviewed.
+  is missing. The References heading is empty: footnotes run [^1] to [^15], and [^16], which the
+  text also cites, is truncated to an empty entry. Bracket keys such as [seal], [metarsi], [mass]
+  and [wsp] are unresolved. [^10], the source for "Weight-space programming lets an LLM write code
+  that edits network weights", is Junru Hu et al., "Exploring Weight-Space Programming:
+  Capabilities, Generalization, and Limitations" (arXiv:2611.09382), which is not in the vault. The
+  unresolved [wsp] key is described as gradient-free weight programs "written by an external model
+  for a different network". That resembles
+  [[Rikiya Takehi et al - Sparks of Weight-Space Programming]], but the capture does not identify
+  it, so the vault should not equate them.
+- **Missing metadata.** The capture has no frontmatter author or date. The authors appear only in
+  the body text, and the date comes from arXiv. Figures 1 and 2 are inline SVG and were not read,
+  and Figure 4 survives only as a caption; only prose and table values are used here. The paper is
+  not peer reviewed.
 
 ## Affected pages
 

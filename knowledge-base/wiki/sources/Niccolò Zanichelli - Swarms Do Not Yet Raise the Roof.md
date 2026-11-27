@@ -151,8 +151,9 @@ staleness, a [[Context Engineering]] problem, into the main confound in swarm re
   that one task; pooled over all four, λ is **0.235** [−0.39, 0.86].
 - Hardware differed: on three tasks a team of N had N times the CPUs, and on git-to-zig every team had
   8 CPUs and 32 GB against the single agent's 4 CPUs and 16 GB.
-- A Codex compaction bug triggered compaction at about 230k to 350k tokens instead of 450k. Patched
-  reruns did not score higher (Sol **89.7%** vs **93.2%**, Terra **31.5%** vs **32.0%**).
+- A Codex compaction bug made agents compact too early; in self-organized teams nearly every
+  compaction happened at about 230k to 350k tokens instead of 450k. Patched reruns did not score
+  higher (Sol **89.7%** vs **93.2%**, Terra **31.5%** vs **32.0%**).
 - Most configurations ran three times, which the author says is underpowered for a penalty of a couple
   of points. Even at 10 runs, the bootstrapped 95% intervals for Terra's teams of 2 and 4 include zero.
   λ assumes score grows linearly with log budget between the budgets run, using added 2M runs.

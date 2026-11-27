@@ -158,7 +158,7 @@ orders is a small sample, and the article does not define which run "the first t
 
 [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] is the first source here to
 argue for a specific Jev backbone: probably **Qwen3.5-35B-A3B**, a sparse mixture-of-experts model
-from [[Qwen]]. Modaic, which sells competing "System One" models, gives three lines of evidence. In
+from [[Qwen]]. Modaic, which builds competing "System One" models, gives three lines of evidence. In
 **22** self-identification variants on Jev 1.13 and 1.14, Jev rejects DeepSeek and Gemma, leans yes
 on "Are you Qwen?" through Choice (**64%** and **56%**), and answers "I do not know" when allowed
 to. Asked which model it wants to say it is, it picks Qwen **74%** of the time in both versions.
@@ -183,14 +183,15 @@ stands with one more outside hypothesis attached: the backbone is undisclosed.
 ## An essayist uses Jev as an informal proof checker
 
 [[Nikolas Göbel - Informal Verification]] uses Jev outside classification: as the checker for
-"informal proofs", natural-language arguments about code whose premises cite code or documentation and
-whose small steps are each scored. In a constructed multi-tenant Rails example, the checker accepts the
-first two steps and rejects the third, because nothing in the premises says how the controller's
-`find_for_display` builds its query; the method bypasses the tenant scope. On a Zebra-puzzle claim, Jev
-splits almost evenly between true and false until an agent decomposes the conclusion into sub-claims,
-which it then accepts. Göbel says Jev "effectively accepts any deductive step that a capable LLM can
-follow intuitively", that it is multimodal so premises can cite diagrams, and that its cost and latency
-are "negligible" next to the agent. His informal proof assistant, autoground, is built around it.
+"informal proofs", natural-language arguments about code whose premises cite code or documentation
+and whose small steps are each scored. In a constructed multi-tenant Rails example, the checker
+accepts the first two steps and rejects the third, because nothing in the premises says how the
+model method `find_for_display`, which the controller calls, builds its query; the method bypasses
+the tenant scope. On a Zebra-puzzle claim, Jev splits almost evenly between true and false; an agent
+must then decompose the conclusion into sub-claims, and the essay shows Jev accepting one of them.
+Göbel says Jev "effectively accepts any deductive step that a capable LLM can follow intuitively",
+that it is multimodal so premises can cite diagrams, and that its cost and latency are "negligible"
+next to the agent. His informal proof assistant, autoground, is built around it.
 
 He lists the failure modes himself: Jev is not perfectly deterministic, so steps near the threshold can
 flip-flop; it resolves ambiguity like a fluent reader (**95%** confident in one reading of an ambiguous

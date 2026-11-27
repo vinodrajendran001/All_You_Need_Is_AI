@@ -496,16 +496,18 @@ permissions, and an outbox. Its production rules:
 - **Credentials the agent never holds.** A proxy outside the agent's environment injects real
   credentials into outgoing requests. Auto-mode classifiers block actions they identify as dangerous,
   but "User review, however, is still necessary for the most important decisions".
-- **Approvals that do not block the worker.** A deferred tool call ends the run and saves the session;
-  the user answers through an interactive card, and the answer resumes the session as a new event.
+- **Approvals that do not block the worker.** A deferred tool call ends the run and saves the
+  session; the request reaches the user, for example through an interactive card, and the answer
+  resumes the session as a new event.
 - **An outbox tuned by evals.** Too many messages are noise and too few miss things, so the guide
   recommends evals for message volume and advises agents to "start quiet".
 
 It is a vendor-side design for the before-and-after bracket that the consumer-agent section above
-observed from outside: approval before a consequential action, and pacing of what the agent sends. It
-names the pieces but measures none of them. The prompt-injection check is deferred without being
+observed from outside: approval before a consequential action, and pacing of what the agent sends.
+It names the pieces but measures none of them. The prompt-injection check is deferred without being
 specified, the message-volume evals are not described, and the guide's only number is a model-cost
-comparison on an unnamed benchmark (see [[Agent Security and Governance]]).
+comparison on an unnamed benchmark (see [[Anthropic]]; for the permission design, see
+[[Agent Security and Governance]]).
 
 ## Related pages
 

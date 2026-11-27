@@ -90,11 +90,11 @@ made": no application framework such as Spring Boot, and CSV files or H2 rather 
 choice such as PostgreSQL. The agent also kept text screens on the console, "the agent's choice under
 our instructions".
 
-That consistency parallels the study's unassigned baseline above, where Claude Opus 4.8 made the same
-five choices in **112 of 123** runs. In the vault's reading, a team that accepts such a translation
-inherits a stable set of model preferences, and because every run agrees on them, comparing runs will
-not expose them. Tomassetti's team noticed because it had its own architecture in mind; no measurement
-of deferral was made.
+That consistency parallels the study's unassigned baseline (see the open questions below), where
+Claude Opus 4.8 made the same five choices in **112 of 123** runs. In the vault's reading, a team
+that accepts such a translation inherits a stable set of model preferences, and because every run
+agrees on them, comparing runs will not expose them. Tomassetti's team noticed because it had its
+own architecture in mind; no measurement of deferral was made.
 
 ## Checkable arguments make the agent's framing visible, not neutral
 

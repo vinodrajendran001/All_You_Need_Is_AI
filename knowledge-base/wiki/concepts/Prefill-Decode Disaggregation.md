@@ -282,14 +282,16 @@ The same papers concede more than the lineage table suggests:
 
 Part 2 also gives the open question on when chunking suffices a rule rather than a threshold. Turn
 on chunked prefill first when long prefills block decode and the replica has headroom. Cost out
-disaggregation only when chunking no longer holds the interference down and traffic is
-prefill-heavy. Then check that the arrival rate is stable enough to hold the ratio, and give KV
-transfer and ratio imbalance their own observables. [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] adds the limit that "neither reduces
-this cold request's own prefill work". In its long-document case a cold 32K prefill takes about
-**3.8 s** at an assumed 40% of peak, so it misses a 2 s target in either layout. The deciding
-measurement is KV transfer time and its overlap with useful work. [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] warns against reading a
-mean-throughput win under a static traffic model as evidence for a bursty service. It also requires
-added model copies to be counted in the comparison's denominator.
+disaggregation when phase interference or a shared parallel configuration is still binding and
+traffic is prefill-heavy. Then check that the arrival rate is stable enough to hold the ratio, and
+give KV transfer and ratio imbalance their own observables.
+[[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] adds the limit
+that "neither reduces this cold request's own prefill work". In its long-document case a cold 32K
+prefill takes about **3.8 s** at an assumed 40% of peak, so it misses a 2 s target in either layout.
+The deciding measurement is KV transfer time and its overlap with useful work.
+[[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] warns
+against reading a mean-throughput win under a static traffic model as evidence for a bursty service.
+It also requires added model copies to be counted in the comparison's denominator.
 
 Architecture limits the KV argument too. In the DUET hybrid Mamba-Transformer that Part 2 cites,
 which is itself a disaggregated design, the SSM layers' state is fixed-size and attention KV is the

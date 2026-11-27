@@ -220,12 +220,12 @@ one inbox per user, two wakes for the same user cannot run at once. For loops th
 advice is to "start quiet and then earn more of the user's attention over time", tuned by evals for
 message volume that it does not describe.
 
-[[Frank Rousseau - Agentic Coding on an Open-Source Project]] runs one maintenance loop by hand. A full
-audit on **8 aspects** (architecture, bugs, security, cleanliness, test coverage, performance,
-documentation, dependencies) produces a to-do list; he prunes it, then runs it as a loop that commits
-each improvement, and repeats the cycle "whenever a new model comes out". His pruning is the gate
-between finder and executor. The evidence is his own account, and it records a limit: outside security
-researchers later reported three holes that the audits missed.
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] runs one maintenance loop by hand. A
+full audit on **8 aspects** (architecture, bugs, security, cleanliness, test coverage, performance,
+documentation, dependencies) produces a to-do list; he prunes it, then runs it as a loop that
+commits each improvement, and repeats the cycle "whenever a new model comes out". His pruning is the
+gate between finder and executor. The evidence is his own account, and it records a limit: outside
+security researchers later sent three reports of holes that the audits missed.
 
 ## Shortening the inner loop can move cost into the outer one
 
@@ -236,10 +236,11 @@ cycle-accurate simulation running for about 24 hours when outside advice told it
 check, with one place-and-route per integration. The agent's retrospective says this process advice
 changed things "right away", while the advisers' design ideas were mostly already planned.
 
-The same retrospective names a possible price that it "can't prove": two hangs that only RTL simulation
-could have shown reached the board, and the big integration lost **38 hours** to them. Late in the run,
-a soak test found random faults at the fastest clock, and the final image shipped at a lower one.
-*Reviewer inference:* a faster inner loop still needs a slower check somewhere before hardware.
+The same retrospective names a possible price that it "can't prove": two hangs that only RTL
+simulation could have shown reached the board, and the big integration lost **38 hours** to them.
+Late in the run, a soak test found random faults at 231.25 MHz, and the final image shipped one
+clock step lower. *Reviewer inference:* a faster inner loop still needs a slower check somewhere
+before hardware.
 
 ## Open questions
 

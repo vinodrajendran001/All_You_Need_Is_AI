@@ -350,32 +350,35 @@ had **six times** as many tool errors and took **31%** longer, and the answer wi
 performance".
 
 This sits between the two earlier measurements on this page. It agrees with OpenRouter's rule that
-"For your own CLI, the skill is how the model learns the commands": Uber's largest wins are on internal
-systems a model cannot already know. It does not settle Osmani's finding that personalized skills
-performed roughly on par with borrowed ones, because Uber compares a skill against no skill rather
-than two skills against each other. Uber's evidence comes from real sessions judged blind, where
-Osmani's came from an LLM developer simulator, but Uber gives no absolute success rates, no count of
-skills ablated and no number behind "a majority". Its lifecycle, in which a skill lives "until a
-better model makes it unnecessary and it retires", turns the half-life rule above into a stage, and
-its always-on log-papercut skill makes the agent using a skill the reporter of its defects. The cost
-levers (a cheaper worker subagent, scripts at load time, Code Mode) are recorded in [[Model Routing]]
-and [[Tool Roster Economics]], and the judging in [[LLM-as-a-Judge]]. The account is first-party.
+"For your own CLI, the skill is how the model learns the commands": Uber's largest wins are on
+internal systems a model cannot already know. It does not settle Osmani's finding that personalized
+skills performed roughly on par with borrowed ones, because Uber compares a skill against no skill
+rather than two skills against each other. Uber's evidence comes from real prompts replayed in an
+isolated environment and judged blind, where Osmani's came from an LLM developer simulator, but Uber
+gives no absolute success rates, no count of skills ablated and no number behind "a majority". Its
+lifecycle, in which a skill lives "until a better model makes it unnecessary and it retires", turns
+the half-life rule above into a stage, and its always-on log-papercut skill makes the agent using a
+skill the reporter of its defects. The cost levers (a cheaper worker subagent, scripts at load time,
+Code Mode) are recorded in [[Model Routing]] and [[Tool Roster Economics]], and the judging in
+[[LLM-as-a-Judge]]. The account is first-party.
 
 ## Practitioners let the model write, prune, and ship skills
 
-Three new accounts treat skills as something the model drafts and the repository distributes.
-[[Frank Rousseau - Agentic Coding on an Open-Source Project]] calls skills "shortcuts to bigger
-prompts". Claude wrote his first set, and after a few weeks "the Claude model proposed several new
-skills based on my prompt history", plus a command to improve existing ones. He had Claude cut subsets
-from third-party packs, noting "Some third-party skills can consume a lot of tokens", and syncs memory
-and skills across machines through his own server.
+Three new accounts treat skills as reusable files that a repository can carry; in one of them, the
+model also drafts the skills. [[Frank Rousseau - Agentic Coding on an Open-Source Project]] calls
+skills "shortcuts to bigger prompts". Claude wrote his first set, and after a few weeks "the Claude
+model proposed several new skills based on my prompt history", plus a command to improve existing
+ones. He had Claude cut subsets from third-party packs, noting "Some third-party skills can consume
+a lot of tokens", and syncs memory across machines through his own server, using a skill on each
+machine.
 
 [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] reports the only
-with-and-without number: agents wrote a failing test before fixing a bug in **0 of 32** runs without
-his test-driven development skill and **32 of 32** with it. That measures whether the procedure was
-followed, not code quality. [[Goofy Fish - Make Your Own Game]] ships a `/game` command in a public
-repository so that any visitor's Claude Code builds and tests a game in the site's style; the
-command's contents are not shown. All three are single-author or single-site reports.
+with-and-without number among the three: agents wrote a failing test before fixing a bug in **0 of
+32** runs without his test-driven development skill and **32 of 32** with it. That measures whether
+the procedure was followed, not code quality. [[Goofy Fish - Make Your Own Game]] ships a `/game`
+command in a public repository so that any visitor's Claude Code builds and tests a game in the
+site's style; the command's contents are not shown. All three are single-author or single-site
+reports.
 
 ## Open questions
 

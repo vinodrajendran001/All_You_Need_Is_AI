@@ -15,7 +15,7 @@ status: active
 
 ## Summary
 
-The authors test whether fine-tuning on behavioral self-recognition or identity self-reports changes
+The authors test whether fine-tuning on behavioral self-recognition or on self-reports changes
 emergent misalignment after narrow fine-tuning. Results vary by intervention, model, dataset, and
 evaluation. The work supports an effect of particular training interventions on measured behavior;
 it does not establish a unique internal "self" mechanism, consciousness, or a general safety repair.

@@ -102,12 +102,13 @@ out.
 
 Two cautions from that source qualify how the vector-add lesson generalises:
 
-- **Summed operator bytes are not HBM traffic.** Fusion reduces both launch overhead and
+- **Summed operator bytes are not HBM traffic.** Fusion can reduce both launch overhead and
   intermediate round trips through HBM. Tiling reuses each block before eviction. "Do not add
-  operator inputs and outputs and call the sum actual HBM traffic", the part warns, and FlashAttention
-  is the canonical case of the same semantics with very different HBM access. An operator-level
-  estimate gives magnitude and structure, not measured traffic, which is why profiler evidence of the
-  kind [[Wafer - AI Performance Engineering Resources]] asks for still decides.
+  operator inputs and outputs and call the sum actual HBM traffic", the part warns, and
+  FlashAttention is the canonical case of nearly unchanged semantics with very different HBM access.
+  An operator-level estimate gives magnitude and structure, not measured traffic, which is why
+  profiler evidence of the kind [[Wafer - AI Performance Engineering Resources]] asks for still
+  decides.
 - **Below the ridge, bandwidth is not the only limit.** The vector add above is starved by data
   movement, with schedulers issuing only about 5% of cycles. A kernel can instead be limited by too
   little parallelism, launch overhead, or synchronization, which NVIDIA's guide calls
@@ -139,9 +140,10 @@ pass on an RTX 4070 SUPER (sm_89, 56 SMs). The contrast with the vector add is i
   row puts column 0 of every row in bank 0, so an unswizzled tile read 8 rows at a time collides 8 ways.
 - **Stalls move as the kernel improves.** The straight port stalls on MIO throttle and short
   scoreboard, waiting to issue shared-memory instructions and then for their results. Once shared
-  memory is fixed, long scoreboard and barrier lead, from copies that pass through registers. After
-  `cp.async`, the longest stall is math pipe throttle, which "for a matrix-multiply kernel this is the
-  stall you want".
+  memory is fixed, math pipe throttle leads, and long scoreboard and barrier come next, from copies
+  that pass through registers. After `cp.async`, long scoreboard leaves the top four stalls. Math
+  pipe throttle means the tensor cores are busy, and "for a matrix-multiply kernel this is the stall
+  you want".
 
 The compilation path above has a Triton analogue: Python → TTIR → TTGIR → LLVM IR → PTX → SASS, where
 TTGIR is the stage at which Triton decides which thread holds which values and how shared memory is

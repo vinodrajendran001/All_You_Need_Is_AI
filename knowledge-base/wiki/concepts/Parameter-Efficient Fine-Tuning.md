@@ -146,14 +146,14 @@ and **½** gave the best mean, **52.5%** against **43.3%** for the base.
 
 The result separates two questions this page had run together. Low interference made a single merged
 adapter possible: with thinking off it improved on the base model on all six harness-benchmark pairs
-(mean **39.5%** to **49.0%**). It did not make the merge free. Each harness's own adapter stayed ahead
-on four of six pairs, by the most under pi (**64.0%** against **46.0%** on SWE-bench Pro), so the
-authors advise using the specialist when only one harness is in use and thinking is off. The
-orthogonality is measured; that it explains why the merge works is the authors' reading. The ½ weight
-was chosen on Terminal-Bench 2.1, so the authors call those numbers "slightly optimistic". This
-complements the separate-versus-merged choice above: Apple and Instacart weigh keeping one adapter
-apart from the base against merging it in, while here three adapters are merged with one another into
-a single adapter.
+(mean **39.5%** to **49.0%**). It did not make the merge free. The harnesses' own adapters stayed
+ahead on four of six pairs, by the most under pi (**64.0%** against **46.0%** on SWE-bench Pro), so
+the authors advise using the specialist when only one harness is in use and thinking is off. The
+orthogonality is measured; that it explains why the merge works is the authors' reading. The ½
+weight was chosen on Terminal-Bench 2.1, so the authors call those numbers "slightly optimistic".
+This complements the separate-versus-merged choice above: Apple and Instacart weigh keeping one
+adapter apart from the base against merging it in, while here three adapters are merged with one
+another into a single adapter.
 
 ## Open questions
 
@@ -167,7 +167,7 @@ a single adapter.
   The first self-editing loop reports small held-out math gains but no comparison with a trained
   LoRA at the same rank.
 - Hugging Face's three harness adapters were nearly orthogonal (cosine about 0.01-0.02), yet after
-  merging each specialist still led on four of six pairs. Does weight-space cosine predict how much
+  merging the specialists still led on four of six pairs. Does weight-space cosine predict how much
   a merge loses, or does the loss come mainly from the shared scaling weight?
 
 ## Related pages

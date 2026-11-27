@@ -445,30 +445,31 @@ above did not describe, though here the held-out slice is a part of the same ben
 separate set.
 
 The recipe also found a defect in an evaluation benchmark. Running `openenv validate`, whose
-wrong-answer controls require that doing nothing and canary answers score below the reference, caught
-a Terminal-Bench 2.1 verifier (regex-log) that "accepted known-wrong answers". That is the shortcut
-problem above found in an evaluation rather than a training environment, by a cheap reference
-condition of the kind "The baseline nobody ran" asks for. The evaluation uses all **89**
-Terminal-Bench 2.1 tasks, and the post does not say whether that verifier was excluded or fixed for
-scoring. The post's own numbers need care: base pi on Terminal-Bench 2.1 appears as **39%**, **39.1%**
-and **40.0%** in different sections, and the results table covers only the tasks every run graded. The
-**89** tasks match the Terminal Bench task count in [[Philipp Schmid - Recursive Self-Improvement]],
-while [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] says Terminal-Bench 2.1 "contains
-several hundred tasks"; the vault has not resolved the difference.
+wrong-answer controls require that doing nothing scores clearly below the reference and that no
+canary scores more than doing nothing, caught a Terminal-Bench 2.1 verifier (regex-log) that
+"accepted known-wrong answers". That is the shortcut problem above found in an evaluation rather
+than a training environment, by a cheap reference condition of the kind "The baseline nobody ran"
+asks for. The evaluation uses all **89** Terminal-Bench 2.1 tasks, and the post does not say whether
+that verifier was excluded or fixed for scoring. The post's own numbers need care: base pi on
+Terminal-Bench 2.1 appears as **39%**, **39.1%** and **40.0%** in different sections, and the
+results table covers only the tasks every run graded. The **89** tasks match the Terminal Bench task
+count in [[Philipp Schmid - Recursive Self-Improvement]], while
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] says Terminal-Bench 2.1 "contains several
+hundred tasks"; the vault has not resolved the difference.
 
 ## The restarted single agent as the missing control for swarm gains
 
 [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] applies the matched-budget rule to
 multi-agent results and adds a control that changed its conclusion. The study compared more than
-**80** team configurations with a single agent given the same budget of weighted tokens, and scored a
-team by its best agent so that "no-talk" teams of independent agents could measure how much of a gain
-is just extra tries. The one apparent swarm premium, on git-to-zig (reimplementing git in Zig) at 32M
-tokens, survived the extra-tries control but disappeared against a single agent whose budget was split
-into eight consecutive fresh sessions: at 32M that agent scored **97.0%** (GPT-6.1 Sol) and **41.9%**
-(GPT-6.1 Terra) against **93.2%** and **32.0%** for teams of 8. A long single session is therefore a
-weak baseline, because its context goes stale, and a swarm gain measured against it can be a
-context-management effect. The restart was run post-hoc and only on git-to-zig, "so our other
-comparisons may flatter the teams".
+**80** team configurations with a single agent given the same budget of weighted tokens, and scored
+a team by its best agent so that "no-talk" teams of independent agents could measure how much of a
+gain is just extra tries. The one apparent swarm premium, on git-to-zig (reimplementing git in Zig)
+at 32M tokens, survived the extra-tries control but disappeared against a single agent whose budget
+was split into eight consecutive fresh sessions: at 32M that agent scored **97.0%** (GPT-6.1 Sol)
+and **41.9%** (GPT-6.1 Terra) against **93.2%** and **32.0%** for teams of 8. A long single session
+is therefore a weak baseline, because, the author thinks, its context goes stale, and a swarm gain
+measured against it can be a context-management effect. The restart was run post-hoc and only on
+git-to-zig, "so our other comparisons may flatter the teams".
 
 The study then rates vendor swarm claims by whether they matched compute. [[OpenAI]]'s GPT-5.6 swarm
 bonus (**+3pp to +23pp**) had no matched-compute control and is "Probably just disguised inference

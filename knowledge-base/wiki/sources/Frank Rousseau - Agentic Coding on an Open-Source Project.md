@@ -45,25 +45,27 @@ cloud. Kitsu is split into a frontend repository (Kitsu) and an API repository (
 
 ### Prompting and context: short, iterative, one subject per session
 
-He never writes long specifications. He starts with a short prompt, lets the model be "a bit
-evasive" and creative, and iterates. Each surprise is saved "in memory or in the Claude.md file", so
+He never writes long specifications. He starts with a short prompt, is "a bit evasive" so that the
+model can be creative, and iterates. Each surprise is saved "in memory or in the Claude.md file", so
 precision accumulates over time. He keeps a polite, interrogative tone, asks for concise output, and
 uses the ASD-STE100 convention and the I-have-adhd skill for readability. For context, he keeps one
 theme per terminal session and compacts or resets so as to avoid "going beyond 50% of context usage"
 because large contexts bring "a lot of noise to every request". The claude-carbon skill shows
-context size, API-cost equivalent, and emitted carbon; RTK strips unused characters from tool output.
+context size, API-cost equivalent, and emitted carbon; RTK strips unused characters from tool
+output.
 
 ### Quality assurance is where agents shine
 
 "QA is where LLMs shine the most." He segments the project into separate sessions, because "If too
 much data is involved, the model gets confused". QA changes are too many to review: "I just let the
-tests pass and accepted them", with product testing before release and occasional spot reads.
-Loops run module-by-module debugging, legacy issue batches with one pull request each, and
-performance work. A security audit found many issues but "still missed some security flaws"; outside
-researchers later reported three security holes that the audits missed. His recurring routine is a full audit on **8 aspects**
-(architecture, bugs, security, cleanliness, test coverage, performance, documentation, dependencies)
-that yields a to-do list, which he prunes and then runs as a loop that commits each improvement. He
-repeats it "whenever a new model comes out", using two skills: one for audits, one for to-do lists.
+tests pass and accepted them", with product testing before release and occasional spot reads. Loops
+run module-by-module debugging, legacy issue batches with one pull request each, and performance
+work. A security audit found many issues but "still missed some security flaws"; outside researchers
+later sent three pieces of "silent feedback" pointing out security holes that the audits missed. His
+recurring routine is a full audit on **8 aspects** (architecture, bugs, security, cleanliness, test
+coverage, performance, documentation, dependencies) that yields a to-do list, which he prunes and
+then runs as a loop that commits each improvement. He repeats it "whenever a new model comes out",
+using two skills: one for audits, one for to-do lists.
 
 ### Scripts as contracts, and knowing when to stop
 
@@ -110,10 +112,10 @@ architecture is the most solid". Long unattended runs do not "feel natural" to s
 ### Contributions changed
 
 Average contribution quality is "much higher", beginners now contribute, and security researchers
-are more active. A new plugin system let studios build and share plugins, some built with LLMs.
-The drawback is that contributors now propose changes to core components. Studios want more plugin
-customization, while Kitsu's philosophy is a common UI across studios: "We haven't arbitrated on
-the topic yet."
+are more active. A new plugin system let studios build and share plugins, and other studios shared
+software integrations they built with LLMs. The drawback is that contributors now propose changes to
+core components. Studios want more plugin customization, while Kitsu's philosophy is a common UI
+across studios: "We haven't arbitrated on the topic yet."
 
 ### Next steps and concerns
 

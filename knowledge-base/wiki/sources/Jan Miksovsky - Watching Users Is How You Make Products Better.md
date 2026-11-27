@@ -69,17 +69,19 @@ The list says to:
 
 ### Why people avoid it
 
-Observation is "humbling and often excruciating". He recalls Microsoft engineers in the 1990s, at their
-first usability lab test, asking "Where did you find such stupid users?" They took a long time to see the
-design problems and longer to see that "they themselves hadn't spotted the problem" until the user hit it.
-He calls avoiding that discomfort "childish" and "a recipe for bad products".
+Observation is "humbling and often excruciating". He recalls that at Microsoft in the 1990s an
+engineer at a first usability lab test would occasionally say something along the lines of "Where
+did you find such stupid users?" Such engineers could take a long time to see the design problems
+and longer to see that "they themselves hadn't spotted the problem" until the user hit it. He calls
+avoiding that discomfort "childish" and "a recipe for bad products".
 
 ## Why it matters
 
-[[Agentic Testing]] records ever more automated oracles, such as test suites, recorded browser videos,
-model judges, and fault injection. Miksovsky's claim is that the most useful test of a product is one
-nobody scripts: a real person trying to do a real task, with the builder in the room. It also cautions
-against treating per-test recordings as a substitute for watching people.
+[[Agentic Testing]] records ever more automated oracles, such as test suites, recorded browser
+videos, model judges, and fault injection. Miksovsky's claim, from his own career, is that the most
+useful exercise is watching a real person work through a short script of basic tasks, with the
+builder in the room. It also cautions against treating per-test recordings as a substitute for
+watching people.
 
 ## Tensions / open questions
 

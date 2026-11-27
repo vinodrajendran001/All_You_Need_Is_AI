@@ -20,9 +20,9 @@ status: active
 
 ## What it is
 
-A Medium author (handle @wszjzhang, no personal name given in the captures) who writes a long
-series on LLM inference serving called "Designing LLM inference systems". The vault has the
-series' four-part "trade-offs article", published between 2026-11-05 and 2026-11-24. According
+A Medium author (handle @wszjzhang, no personal name given in the captures) who writes a series on
+LLM inference serving whose second half is called "Designing LLM inference systems". The vault has
+the series' four-part "trade-offs article", published between 2026-11-05 and 2026-11-24. According
 to the captures, it follows three earlier essays: one on service promises and measurements, a
 serving primer, and a six-layer map of an inference system. None of the three is in the vault.
 
@@ -42,14 +42,17 @@ decisions:
   ledgers into a three-question evaluation method. It informs [[Software Performance Engineering]].
 - [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] works the case
   to a measurement plan and audits its own 172-paper corpus. It informs
-  [[Inference Efficiency Frontier]] together with the other parts.
+  [[Serving Benchmarks and Goodput]], [[Prefill-Decode Disaggregation]], [[GPU Fleet Reliability]],
+  and [[Model Quantization and Efficiency]]; [[Inference Efficiency Frontier]] draws on Parts 1 to
+  3.
 
 The evidence style is the reason for an entity page. The author reports no measurements and says so.
 Every number is a teaching assumption, a vendor constant, or a figure from a cited paper. The author
 also labels, sentence by sentence, which steps are their own inference or extrapolation and which
 results come from simulators. Only 15 of the 172 papers were read end to end, and the body's
-mechanism claims rest on those alone. That makes the series a strong secondary map of the
-literature and a model of evidence labelling. It is not primary evidence for any performance number.
+mechanism claims rest on those alone, except continuous batching, whose only source, Orca, sits
+outside the corpus. That makes the series a strong secondary map of the literature and a model of
+evidence labelling. It is not primary evidence for any performance number.
 
 ## Notes
 

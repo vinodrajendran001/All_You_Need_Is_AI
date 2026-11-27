@@ -32,9 +32,10 @@ in depth, now used as warnings about what their headline numbers do and do not e
 ### 1. Hold the comparison basis still
 
 - Compare on the **same GPU count and hardware**, or account explicitly for added CPUs,
-  interconnects, and model copies. Keep **model precision**, the **request distribution** (not only
-  the mean input length), and the **target SLO** fixed. Offline throughput gains are not evidence
-  that P95 TTFT or token gaps improved.
+  interconnects, and model copies. Keep **model precision** fixed unless quality and hardware
+  throughput at the new precision are part of the result, and keep the **request distribution** (not
+  only the mean input length) and the **target SLO** fixed. Offline throughput gains are not
+  evidence that P95 TTFT or token gaps improved.
 - FastDecode is the warning case. Its offload result uses extra whole CPU machines and a baseline on
   different hardware, and its 13B strong-scaling efficiency from one to eight sockets at 128-token
   sequences is **37.6%**. The mechanism survives, but the claim tested is not "same service, same

@@ -148,7 +148,8 @@ The loop also bears on [[Automated AI Research]], [[Loop Engineering]], [[Specul
 - **Incomplete cost accounting.** The $10,000 covers tokens only, not F2 hours or the author's time,
   and there is no energy measurement.
 - **Not like-for-like.** The GPU rows run on a T4, are not bit-exact and were not optimized by the
-  loop. The "195×" row is a rounding of 213.13 / 1.1 (about 194, derived). The 213 tok/s headline is a
+  loop. The "195×" row does not follow exactly from the printed figures: 213.13 / 1.1 is about 194
+  (derived), so the printed 1.1 tok/s is presumably rounded (inferred). The 213 tok/s headline is a
   short-context chat benchmark; at 6-8k context, decode ran at 76 tok/s.
 
 ## Affected pages

@@ -94,8 +94,8 @@ Third, what remains unmeasured? The part lists:
 [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] ties each
 unknown to the decision it resolves. It adopts a policy only if those service-boundary results
 improve per workload class. As in the rule above, a branch with a missing basis becomes a
-measurement task rather than a conclusion. The series also tags each of its 172 cited papers by how
-deeply it was read.
+measurement task rather than a conclusion. The series also tags each of the 172 papers in its corpus
+by how deeply it was read.
 
 ## Integration boundaries can erase operational metrics
 
@@ -450,22 +450,23 @@ The two accounts disagree about the blog's own method. The reproduction says "Th
 arms simultaneously". The blog's text in the vault says the arms "ran one after the other, and order
 alternated between conditions", but also that latency requests "were sent at identical times". The
 vault cannot resolve which is right. The reproduction's own summary pitch quotes the favourable
-multiturn goodput (4.1× against 3.5×) and not the shared-prefix shortfall, so a reproduction can pick
-its slice just as a vendor can.
+multiturn goodput (4.1× against 3.5×) and says in words where routing stops helping, but gives no
+number for the shared-prefix shortfall (2.9× against 7.4×), so a reproduction's headline can favour
+one slice just as a vendor's can.
 
 ## One chart family, several measurement protocols
 
-[[vLLM-GR Team - Announcing vLLM-GR]] shows how a cross-hardware latency chart can mix protocols in one
-figure. Its P99 comparisons span four NVIDIA GPUs and two Ascend NPUs, but the post says the runs used
-"different timing definitions, sample counts, and backend settings". Only the RTX PRO 6000 protocol is
-complete: 48 timed batches after three warmups, HTTP excluded, catalog constraints off. L20 points
-used 100 to 1,000 timed batches. On Ascend, two backends used a catalog constraint table and the
-third's setting "was not recorded". SGLang Beam also searched a candidate pool twice the beam width,
-where the others used one equal to it. The headline, the lowest P99 at batch sizes 4 and 8 on all six
-accelerators, holds at beam width 256; at width 128 and at batch 1 the winner varies. This page's
-standard applies directly: compare within a panel, read the headline as the best slice, and note that
-the post reports neither throughput nor recommendation quality, so none of these latencies is a
-goodput.
+[[vLLM-GR Team - Announcing vLLM-GR]] shows how a cross-hardware latency chart can mix protocols in
+one figure. Its P99 comparisons span four NVIDIA GPUs and two Ascend NPUs, but the post says the
+runs used "different timing definitions, sample counts, and backend settings". Only the RTX PRO 6000
+protocol is complete: 48 timed batches after three warmups, HTTP excluded, catalog constraints off.
+L20 points used 100 to 1,000 timed batches. On Ascend, two backends used a catalog constraint table
+and the third's setting "was not recorded". On RTX PRO 6000, SGLang Beam also searched a candidate
+pool twice the beam width, where vLLM-GR and NVIDIA SID-GR used one equal to it. The headline, the
+lowest P99 at batch sizes 4 and 8 on all six accelerators, holds at beam width 256; at width 128 and
+at batch 1 the winner varies. This page's standard applies directly: compare within a panel, read
+the headline as the best slice, and note that the post reports neither throughput nor recommendation
+quality, so none of these latencies is a goodput.
 
 ## Open questions
 

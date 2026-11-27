@@ -36,8 +36,8 @@ interconnect, disaggregation adds KV transfer, and cache affinity adds queueing.
 ### An investigation order, not a relay
 
 - Start from the symptom and the three ledgers. Inspect the layer that can explain the binding
-  constraint, and skip layers the measurements rule out. A queueing problem may point straight to L4.
-  A burst that ends before a replica can start points to L1.
+  constraint, and skip layers the measurements rule out. A queueing problem may point straight to
+  L4. A burst that ends before a replica can start may point straight to L1.
 
 ### L2 — engine internals
 

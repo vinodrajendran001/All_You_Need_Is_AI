@@ -56,11 +56,11 @@ through shadow testing and production switchback experiments. ML runs at two lev
 Runtime models in the workers and heavier policy evaluations on remote clusters, and a multi-agent
 reinforcement-learning system tunes the optimizer's objective weights.
 
-The reported outcomes, **10×** processing scale, more than **99.96%** of runs under **20 seconds** and
-more than **99.99%** availability during Super Bowl spikes, are DoorDash's own figures relayed by
-ByteByteGo, with no baselines, decision-quality metrics or switchback results. The pattern matches the
-one [[ML Systems at Scale]] records for LLM routing: replicas help only when the partition follows the
-workload's dependencies.
+The reported outcomes, **10×** processing scale, more than **99.96%** of runs under **20 seconds**
+and more than **99.99%** availability during Super Bowl spikes, are DoorDash's own figures relayed
+by ByteByteGo, with no quantified baselines, decision-quality metrics or switchback results. The
+pattern matches the one [[ML Systems at Scale]] records for LLM routing: replicas help only when the
+partition follows the workload's dependencies.
 
 ## Related pages
 

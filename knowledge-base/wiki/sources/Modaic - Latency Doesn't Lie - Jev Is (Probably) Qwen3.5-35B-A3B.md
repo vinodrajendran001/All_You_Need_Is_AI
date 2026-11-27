@@ -26,9 +26,9 @@ sparse mixture-of-experts (MoE) model. TypeSafe has not disclosed Jev's backbone
 evidence point the same way. First, self-identification prompts lean toward Qwen. Second, Qwen's
 tokenizer counts track Jev's latency better than Jev's own reported token counts do (Spearman's ρ
 **0.805** against **0.719** over **9,984** prompts). Third, Jev's prefill throughput tracks Modaic's
-own Qwen3.5-35B-A3B derivative and far exceeds a dense 27B model. Modaic calls the result "an
-approximate performance fingerprint". Its own data show the tokenizer test cannot separate Qwen
-from Gemma, and it says throughput cannot separate Qwen3.5-35B-A3B from its successor
+own Qwen3.5-35B-A3B derivative and far exceeds a dense 27B model. Modaic calls its throughput
+comparison "an approximate performance fingerprint". Its own data show the tokenizer test cannot
+separate Qwen from Gemma, and it says throughput cannot separate Qwen3.5-35B-A3B from its successor
 Qwen3.6-35B-A3B.
 
 ## Key claims
@@ -78,7 +78,8 @@ Qwen3.6-35B-A3B.
   - Version 1.14 is more guarded, "which suggests TypeSafe may have trained this behavior out
     further".
   - Indirect questions point to Qwen.
-- Modaic links a CMU blog post saying self-identification is "weak evidence on its own". It also
+- Modaic links a CMU blog post showing that the answer can change with the wording, system prompt,
+  or fine-tuning, and concludes that self-identification is "weak evidence on its own". It also
   notes the 74% choice "could reflect Qwen's prominence in training data rather than lineage".
 
 ### The tokenizer through latency
@@ -136,9 +137,9 @@ two apart". Modaic proposes knowledge-cutoff probes as a next step.
 
 ## Tensions / open questions
 
-- **Competitor authorship.** Modaic sells Mo Lite and Mo 2.0 against Jev. The "surpassed" claim, the
-  concealment reading, and the choice of controls all come from an interested party. TypeSafe's
-  response, if any, is not captured.
+- **Competitor authorship.** Modaic builds Mo Lite ("still in training") and Mo 2.0 as competitors
+  to Jev. The "surpassed" claim, the concealment reading, and the choice of controls all come from
+  an interested party. TypeSafe's response, if any, is not captured.
 - **Inconsistency: did both controls track their own tokenizer best?** The capture says "Both
   controls tracked their own tokenizers best", but Mo Lite gives Qwen and Gemma the same **0.873**.
   Only groundhog-1 favours its own tokenizer, by **0.823** to **0.818**. On Jev, Qwen leads Gemma by

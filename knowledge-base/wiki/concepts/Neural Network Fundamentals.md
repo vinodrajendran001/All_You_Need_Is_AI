@@ -223,11 +223,12 @@ matrix multiplications inside each layer.
 Hoel's proposed "lookup-ification" keeps the input-to-output behavior approximately while removing
 intermediate computation. His candidates, all built for other purposes, are distillation into
 shallower networks ([[Knowledge Distillation]]), nearest-neighbor retrieval of cached internal
-representations, n-gram language models, and replacing significant portions of matrix
-multiplication with lookup tables. He says many of these "could already be used" on frontier
-models, but the paper applies none of them, and it does not define how close a distilled or partly
-lookup-based network must be to count as near the anchor. The worry that the approximations may
-cost behavior or compute is, in Hoel's words, "speculation at this point". The wider argument is on
+representations, n-gram language models, and replacing significant portions of matrix multiplication
+with lookup tables. He says many of these "could already be used" on frontier models, but the paper
+applies none of them, and it does not define how close a distilled or partly lookup-based network
+must be to count as near the anchor. Hoel concedes that some approximations may cost behavior or
+compute, but calls the concern that resource limits would leave only the weakest forms usable on
+frontier models "speculation at this point". The wider argument is on
 [[AI Consciousness and Moral Patienthood]].
 
 ## Open questions

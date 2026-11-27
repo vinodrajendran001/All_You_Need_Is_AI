@@ -96,9 +96,11 @@ vault's most detailed public recipe for post-training a model into the harness i
   w = 1 over-applied the updates (13.4 tool calls per task; pi fell back to base level), ⅓ diluted
   them, and **½** gave the best mean (**52.5%** against **43.3%** for the base).
 - With thinking off, the super-adapter beats the base on all six harness-benchmark pairs (mean
-  **39.5%** to **49.0%**; 71 tasks newly solved vs 34 lost, p < 0.001), but each specialist is ahead
-  on four of six pairs. With thinking on (default xhigh effort), though never trained that way, it
-  wins five pairs and ties pi on SWE-bench Pro at **74%** (mean **55.5%** to **63.5%**, p = 0.004).
+  **39.5%** to **49.0%**; 71 tasks newly solved vs 34 lost, p < 0.001), but the specialists are
+  ahead on four of six pairs, tied on OpenCode Terminal-Bench 2.1 and behind on Hermes SWE-bench Pro
+  (**43.1%** against **47.1%**). With thinking on (default xhigh effort), though never trained that
+  way, it wins five pairs and ties pi on SWE-bench Pro at **74%** (mean **55.5%** to **63.5%**, p =
+  0.004).
 - Because ½ was chosen on Terminal-Bench 2.1, the authors call those numbers "slightly optimistic";
   SWE-bench Pro played no part in the choice.
 
@@ -142,8 +144,10 @@ decontamination. Its difficulty filter is the practical form of the silent-group
   were included directly and "the remaining 522" were repaired, and 278 plus 522 is not 1,127
   (derived). The dataset's qualified column (144, 27, 22) sums to 193 against a stated total of
   **171** (derived).
-- The transfer section's base scores (44.8%, 46.4%, 46.3%, 44.7%) differ from the main tables, so they
-  come from separate runs.
+- The transfer section gives two base scores for each harness on Terminal-Bench 2.1, 44.8% and 46.4%
+  under OpenCode and 46.3% and 44.7% under Hermes, without explaining the difference. Only 44.7%
+  matches the results table, and 44.8% equals the weight table's OpenCode base; separate runs are
+  one possible reason (inferred).
 - The filter-ablation and safeagents-trend results are chart-only and are not reported here. "Safer
   and safer" is the authors' reading of a falling block rate, not a separate safety evaluation.
 - The closing line, that in-harness RL "leads to more efficient and therefore more accurate final

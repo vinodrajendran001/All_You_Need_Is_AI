@@ -366,17 +366,17 @@ below about the absence of controlled comparisons.
 
 ## A dispatch relay with a staged rollout and no reported comparison
 
-[[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] is another named-deployment
-relay, of one DoorDash engineering post the vault has not captured, and it carries the publisher's
-disclaimer that it "is based on publicly shared details". Its mechanism is clear and checkable: a
-coordinator tier separated from stateless compute workers, localized payloads, geographic
-decomposition with global reconciliation, and a two-level split for ML serving. Its numbers are
-DoorDash's: **10×** dispatch processing scale, more than **99.96%** of runs under 20 seconds and more
-than **99.99%** availability during Super Bowl spikes, plus unquantified gains in acceptance,
-efficiency, earnings and "millions of dollars" of savings. None has a stated baseline. The article
-describes shadow testing and production switchback experiments, which are controlled comparisons by
-design, but reports no result from either. The issue opens with a sponsored CI-tooling block, which
-the vault's summary excludes.
+[[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] is another
+named-deployment relay, of one DoorDash engineering post the vault has not captured, and it carries
+the publisher's disclaimer that it "is based on publicly shared details". Its mechanism is clear and
+checkable: a coordinator tier separated from stateless compute workers, localized payloads,
+geographic decomposition with global reconciliation, and a two-level split for ML serving. Its
+numbers are DoorDash's: **10×** dispatch processing scale, more than **99.96%** of runs under 20
+seconds and more than **99.99%** availability during Super Bowl spikes, plus unquantified gains in
+acceptance, efficiency, earnings and "millions of dollars" of savings. None has a quantified
+baseline. The article describes shadow testing and production switchback experiments, which are
+controlled comparisons by design, but reports no result from either. The issue opens with a
+sponsored CI-tooling block, which the vault's summary excludes.
 
 ## Open questions
 

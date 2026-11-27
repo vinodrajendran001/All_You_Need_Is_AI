@@ -84,10 +84,11 @@ families left out, and a 172-paper table with a per-paper reading-depth label.
   boundary", not future work. Sparse attention, for example, would change the memory budget.
 - **The table (E).** It labels each of the 172 papers by primary and secondary layer and evidence
   depth: **15** deeply read (quotes checked verbatim), **146** full text (used for placement only),
-  and **11** abstract only. The body's mechanism claims rest on the deeply read tier alone. **8**
-  excluded papers are deliberately not listed. Read row by row, most primary labels fall in engine
-  internals (L2) and replica composition (L3). The three L5 rows are SLO-Guard, the incident study,
-  and a full-text-only paper on the "human tax" on serving throughput.
+  and **11** abstract only. The body's mechanism claims rest on the deeply read tier alone, except
+  continuous batching, whose only source, Orca, sits outside the corpus. **8** excluded papers are
+  deliberately not listed. Read row by row, most primary labels fall in engine internals (L2) and
+  replica composition (L3). The three L5 rows are SLO-Guard, the incident study, and a
+  full-text-only paper on the "human tax" on serving throughput.
 
 ## Why it matters
 

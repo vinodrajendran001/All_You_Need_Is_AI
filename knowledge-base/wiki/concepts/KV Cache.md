@@ -283,13 +283,13 @@ reported no KV cache size, so the vault cannot tell whether its 48 GB GPUs held 
 
 An extension tests half of the reviewer inference recorded above. With **64 Zipf-distributed 8k
 prefixes**, skewed popularity did not narrow the gap. Median TTFT fell 87.6%, and the goodput gain
-grew with load, **1.6× / 2.2× / 3.3×** at concurrency 8, 16 and 32, which the author reads as the hot
-head of the distribution fitting in cache. Longer runs were not tested, and this is one self-reported
-run on a different workload. It still turns the earlier trade-off into a planning check: compare the
-distinct prefix working set with the pool's KV tokens before expecting routing to help. The author's
-remedies all act on that ratio: an FP8 KV cache ("roughly doubles capacity"), more replicas, or a less
-eager spill policy. In a pool-size sweep, only the cache-aware arm's hit rates rose as pods were
-added.
+grew with load, **1.6× / 2.2× / 3.3×** at concurrency 8, 16 and 32, which the author reads as the
+hot head of the distribution fitting in cache. Longer runs were not tested, and this is one
+self-reported experiment (18 runs) on a different workload. It still turns the earlier trade-off
+into a planning check: compare the distinct prefix working set with the pool's KV tokens before
+expecting routing to help. The author's remedies all act on that ratio: an FP8 KV cache ("roughly
+doubles capacity"), more replicas, or a less eager spill policy. In a pool-size sweep, the
+cache-aware arm's hit rates rose sharply as pods were added, while random routing's barely moved.
 
 ## Within one request, beams share the prompt's cache
 

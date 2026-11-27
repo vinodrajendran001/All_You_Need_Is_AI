@@ -239,7 +239,7 @@ algorithms written in as code. Whether such edits help large pretrained models i
 
 [[Erik Hoel - Qualiaphobic Artificial Neural Networks]] proposes judging transformer components by a
 criterion the sections above do not use: how many theories of consciousness an architecture could
-"host". It is a position paper, and none of its proposals has been tried. Three of them touch this
+"host". It is a position paper, and it tries none of its proposals itself. Three of them touch this
 page.
 
 - **A workspace-like function can be ablated.** Hoel cites Anthropic research that identified a
@@ -250,7 +250,7 @@ page.
 - **Self-repair complicates the test.** Transformers can "self-repair" after similar operations, so
   the function could move somewhere unnoticed. Hoel suggests adapting conditional co-ablation from
   [[Mechanistic Interpretability]].
-- **Routing and lookups as erasure.** A variant of switch-transformer routing
+- **Routing as erasure, and lookup tables.** A variant of switch-transformer routing
   ([[Mixture of Experts]]) could discard or store computation outside what each input strictly
   needs, and lookup tables could replace significant portions of matrix multiplication. Neither
   comes with a measured capability cost.

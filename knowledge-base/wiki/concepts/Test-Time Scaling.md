@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - reasoning
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-11-08-alex-wang-reasoning-pathfinding
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-18-bytebytego-thinking-more-dumb
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
 status: active
 ---
 
@@ -256,6 +257,43 @@ the curves above do not report. Collectives start behind single agents because o
 overhead and only pull ahead later in an episode. See [[Multi-Agent Coordination]] and
 [[Reward Design for RL]].
 
+## Matched budgets: width buys time, and a restarted agent buys score
+
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] supplies an equal-compute comparison the
+sections above lacked. Teams and a single agent got the same weighted-token budget, 8M in most
+comparisons and 32M in some, on four tasks lasting hours to days. The study adopts Toby Ord's model: a
+team of N agents finishes N^λ times sooner than a single agent and spends N^(1−λ) times as many tokens
+for the same result. With λ < 1 a team buys speed at a token premium; λ > 1 would mean collaboration
+adds something serial work does not. Ord estimated λ between **0.48** and **0.68** from OpenAI's results
+on three benchmarks. For teams of 8 on git-to-zig, the study's values mean finishing about 3.5 times
+sooner for 2.3 times the tokens at the low end (Terra at 8M), and about 7 times sooner for 13% more
+tokens at the high end (Sol at 32M). Its λ pooled over all four tasks is **0.235** [−0.39, 0.86], and it
+recommends the git-to-zig range [0.6, 0.9] instead "for statistical reasons", while noting that this
+estimate comes from one task.
+
+The restart is the depth-side control this page had been missing. On git-to-zig, a single agent working
+across eight fresh sequential sessions beat self-organized teams of 8 at both budgets: **97.0%** and
+**41.9%** for Sol and Terra at 32M against **93.2%** and **32.0%**. The author traces the gap to stale
+context rather than to token accounting: "a long session never wholly resets, even with compaction".
+Measured against the restarted agent, λ for teams of 8 fell to 0.94 for Sol and 0.75 for Terra at 32M,
+and to 0.89 and 0.60 at 8M. On this one task, more fresh sessions were a better use of a fixed budget
+for score than one longer session or a wider team; width was the better use for time. See
+[[Multi-Agent Coordination]] and [[Context Engineering]].
+
+The study keeps the speed side of Naam's split. Teams of 8 typically spent the same budget about 6 times
+sooner and scored about 7% lower, although they also had more CPUs, "so part of that may be hardware".
+At 750 output tokens per second, a single agent would need about 5.5 years to produce the roughly 130
+billion output tokens of OpenAI's Navier–Stokes run, which produced its proof about 88 hours after
+launch. The author concludes that "whether a team is worth its extra tokens is determined by the value
+of time relative to compute", and calls adding agents "effectively a new scaling axis, even if the
+effect is fully reducible to inference scaling".
+
+This agrees with General Reasoning's reading above that the matched-token payoff of a collective is
+latency. It differs on score: Zanichelli reads Avalon-M1's own matched-token results as parity, higher
+than a solo agent on 35% of benchmarks and lower on 43%, and finds no score premium for prompted teams
+once the single agent can restart. The restart was run post-hoc on one task, and most settings ran three
+times.
+
 ## Does the payoff stop where training stopped?
 
 Every curve above shows returns from more compute. None asks whether the gains continue past the
@@ -309,15 +347,21 @@ for a length-only rule (first-party, no error bars).
 - **Sufficiency detection:** when has a model gathered/thought enough to answer, without a verifier? (CALM, DeepConf, DEER, early-exit methods.)
 - **Reward-model reliability:** verifier-based scaling is only as good as the verifier; a flawed reward model can rank wrong answers higher.
 - **Budget allocation:** how to size samples/search per problem difficulty, especially for smaller models (s1, Fleet of Agents), and how to make it self-tuning.
-- **Depth versus width at a fixed budget is unmeasured.** No source on this page compares spending a token
-  budget on a longer trace, more samples from one model, or more parallel agents on the same task. The
-  collected agent curves report speed and score against agent count, never against an equal-compute
-  single-agent alternative. [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]]
-  does not fill the gap: it reports each team's cost beside its score but never gives one agent the
-  same budget. [[General Reasoning - How to Train a Swarm]] (2026-11-06 ingest) reports the first
-  matched-token comparison recorded here: a single agent with extended thinking, given the
-  organisation's tokens, takes **4x** as long. It is first-party, and its benchmark set, budget and
-  variance were not captured, so the gap is narrowed rather than closed.
+- **Depth versus width at a fixed budget is only partly measured.** Before the 2026-11-06 ingest, no
+  source on this page compared spending a token budget on a longer trace, more samples from one model, or
+  more parallel agents on the same task. The collected agent curves report speed and score against agent
+  count, never against an equal-compute single-agent alternative.
+  [[Cohere - Scaling Agent Teams - Reach the Frontier at 30% of the Cost]] does not fill the gap: it
+  reports each team's cost beside its score but never gives one agent the same budget.
+  [[General Reasoning - How to Train a Swarm]] (2026-11-06 ingest) reports the first matched-token
+  comparison recorded here: a single agent with extended thinking, given the organisation's tokens, takes
+  **4x** as long. It is first-party, and its benchmark set, budget and variance were not captured, so the
+  gap is narrowed rather than closed. [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+  (2026-11-27 ingest) compares several options at one budget on the same task: one long session,
+  independent best-of-k agents, communicating teams and, on git-to-zig only, a single agent restarted into
+  eight fresh sessions. The restarted agent scored highest there, and teams finished soonest. The restart
+  was added post-hoc, most settings ran three times, and these are agent sessions rather than single
+  reasoning traces, so the question stays open for other tasks.
 - **What determines N?** The saturation points above range from 8 agents in the diversity study to beyond 100
   in formal math, and nothing in the evidence explains the spread — the formal-math results in particular do
   not distinguish a sequential bottleneck from a missing insight. Within one testbed,
@@ -325,6 +369,8 @@ for a length-only rule (first-party, no error bars).
   teams kept gaining up to sixteen workers because each planner ran the reference program about seven
   times whatever the team size, while implementation and verification teams peaked at four as each extra
   implementer got a thinner slice of the plan; each fixed-size team was run once.
+  In [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]], Terra's teams of 16 scored 33.3% on
+  git-to-zig at 32M, about the same as teams of 8, and teams of 32 scored 23.2%, below the single agent.
 - **Does parallel scaling on benchmarks transfer to anything else?** Every curve is a benchmark result, and
   the source does not establish that the shapes hold on open-ended work.
 - **Does trained coordination survive scale-up?** Avalon-M1 trained collectives of at most **9** agents,
@@ -382,3 +428,5 @@ for a length-only rule (first-party, no error bars).
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
 - [[ByteByteGo - Why Thinking More Can Make an LLM Dumb]]
 - [[ByteByteGo]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+- [[Multi-Agent Coordination]]

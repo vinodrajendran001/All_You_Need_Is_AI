@@ -74,23 +74,21 @@ than one or two giant ones". The per-step factors the capture prints range from 
 
 ### Human advice: process mattered more than design
 
-- Near 10 tokens per second, the DeepGrove founders said they had tried this months earlier, when
-  models "were not quite good enough". They sent a 4,741-character prompt describing someone else's
-  dense, batch-1 ternary FPGA decoder. It covered a multiplier-free ternary matmul, 2-bit weights
-  streamed from HBM, an 8-bit KV cache, online softmax, MoE notes such as keeping the router in FP32,
-  a program-order controller, a verification ladder and physical-design advice. It also asked the
-  agent not to run things "that take a lot of times", such as long cycle-accurate simulations.
+- Near 10 tokens per second, the DeepGrove founders, who had tried this months earlier when models
+  "were not quite good enough", sent a 4,741-character prompt describing someone else's dense, batch-1
+  ternary FPGA decoder. It covered a multiplier-free ternary matmul, an 8-bit KV cache, online softmax,
+  MoE notes, a verification ladder and physical design, and asked the agent to avoid things "that take
+  a lot of times", such as long cycle-accurate simulations.
 - In the agent's own retrospective, written from its logs, it sorted the prompt into ten ideas to adopt
-  and five to reject within 70 seconds. The adopted design ideas were mostly already planned or matched
-  later work, and "I can't show these wouldn't have happened without the notes."
-- **All five numerics shortcuts were rejected**: lower-precision activations, a deferred norm, an 8-bit
-  KV cache, online softmax and 16-bit probabilities. Each changes the output bits, which is "where
-  their design got its efficiency", and the bit-exact rule ruled them out.
+  and five to reject within 70 seconds. The adopted design ideas were mostly already planned, and "I
+  can't show these wouldn't have happened without the notes."
+- **All five numerics shortcuts were rejected**, from lower-precision activations to an 8-bit KV cache
+  and online softmax. Each changes the output bits, which is "where their design got its efficiency",
+  and the bit-exact rule ruled them out.
 - **The process advice changed things "right away".** The agent stopped a simulation that had run for
-  about 24 hours and two 250 MHz builds. It switched to a short loop of C tests, synthesis and a
-  logic-depth check, with one place-and-route per integration. The possible cost, which it "can't
-  prove": two hangs that only RTL simulation could show reached the board, and the big integration
-  lost **38 hours** to them.
+  about 24 hours and switched to a short loop of C tests, synthesis and a logic-depth check. The
+  possible cost, which it "can't prove": two hangs that only RTL simulation could show reached the
+  board, and the big integration lost **38 hours** to them.
 - One real find: AWS's reference memory design reaches **426 GB/s** across all 32 memory channels, and
   the memory subsystem was built from it.
 - The author's conclusion: "the humans are still useful at defining how to iterate fast and what
@@ -127,15 +125,14 @@ speed, while the complete long-context run is roughly tied with r8."
 ## Why it matters
 
 For [[AI Accelerator Architecture]], this is the vault's first hands-on account of LLM decode on an
-FPGA. It qualifies the "fast to redeploy" half of the FPGA trade-off, since builds and simulations ran
-for hours. It also shows clock speed falling out of each design rather than being a fixed property, and
-memory channels and die crossings dominating the work. In [[AI-Generated Kernels]], the bit-exact
-contract plays the role of the cheap, objective verifier, and the 33× from the loop's own first image
-fits that page's rule that agentic optimization pays most where little human tuning exists. For
-[[Accelerator Software Externalization]], $10,000 of tokens for one model on one target is a small,
-concrete data point beside the "<$1m token spend" rebuild forecast. [[Y Combinator]] funded the token
-budget. The loop also bears on [[Automated AI Research]], [[Loop Engineering]],
-[[Speculative Decoding]] and [[Inference Determinism]].
+FPGA. It qualifies "fast to redeploy", since builds and simulations ran for hours, and shows the clock
+as an outcome of each design, with memory channels and die crossings dominating the work. In
+[[AI-Generated Kernels]], bit-exactness is the cheap, objective verifier, and 33× from the loop's own
+first image fits that page's rule that agentic optimization pays most where little human tuning
+exists. For [[Accelerator Software Externalization]], $10,000 of tokens for one model on one target is
+a small data point beside the "<$1m token spend" rebuild forecast. [[Y Combinator]] funded the tokens.
+The loop also bears on [[Automated AI Research]], [[Loop Engineering]], [[Speculative Decoding]] and
+[[Inference Determinism]].
 
 ## Tensions / open questions
 
@@ -143,16 +140,15 @@ budget. The loop also bears on [[Automated AI Research]], [[Loop Engineering]],
   "what it adopted and rejected" account is the agent's self-assessment of its own logs.
 - **The baseline is the loop's own first image.** 33× measures progress over a naive, correct starting
   point, not over an optimized FPGA design. No ablation separates the agent's work from the human hints
-  (speculative decoding, porting CPU work).
-- **The model is unnamed.** The DeepGrove notes call their own target "a dense qwen style model" yet
-  include MoE advice, and the implementation has an MoE router. The capture never names the served
-  model or its size, so the result cannot be placed against other ternary-model work.
-- **Incomplete cost accounting.** The $10,000 covers tokens only, not F2 hours or the author's time.
-  There is no energy measurement.
+  ("consider speculative decoding"; "why is that running on CPU, you should port it").
+- **The model is unnamed.** The DeepGrove notes describe someone else's decoder for "a dense qwen style
+  model" yet include MoE advice, and the implementation has an MoE router. The capture never names the
+  served model or its size.
+- **Incomplete cost accounting.** The $10,000 covers tokens only, not F2 hours or the author's time,
+  and there is no energy measurement.
 - **Not like-for-like.** The GPU rows run on a T4, are not bit-exact and were not optimized by the
-  loop. The "195×" row is a rounding of 213.13 / 1.1 (about 194, derived).
-- **A short-context headline.** 213 tok/s comes from a short chat benchmark. At 6-8k context, decode
-  ran at 76 tok/s.
+  loop. The "195×" row is a rounding of 213.13 / 1.1 (about 194, derived). The 213 tok/s headline is a
+  short-context chat benchmark; at 6-8k context, decode ran at 76 tok/s.
 - The capture's author field is empty (see Citations). Model names are copied as written.
 
 ## Affected pages

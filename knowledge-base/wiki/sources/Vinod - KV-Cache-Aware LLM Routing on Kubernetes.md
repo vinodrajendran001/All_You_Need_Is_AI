@@ -45,33 +45,27 @@ a one-pod negative control. The baseline is still random routing.
 - Pinned versions: vLLM 0.31.0, kinference 0.1.0-alpha.8, gateway 0.1.0-alpha.7, and the blog's
   `Qwen/Qwen3.8-27B-FP8`. GuideLLM 0.8.1 is pinned, but a custom client replaced it to get paired
   schedules and multiturn requests that carry their history.
-- The nested cluster was confined against the host: cgroups, the shared kernel, the pod's Istio
-  sidecar, a corporate TLS-intercepting proxy and a shared disk. Changes were recorded in a 14-entry
-  teardown ledger and checked by 12 clean-up assertions. The sidecar mattered for validity, because its
-  Envoy proxy would otherwise have load-balanced the "random" arm itself. The capture does not say
-  whether the cluster's operators approved the setup.
-- Method differences: arms ran **back-to-back on disjoint GPUs, alternating order**, because sharing one
-  19-core CPU cgroup and one client event loop would let one arm distort the other. Every request used
-  a new TCP connection, so kube-proxy re-rolled its random choice. A request counted if it was
-  *scheduled* inside the window, and prefix caches were reset before every run.
-- SLOs were recalibrated at 1.2× the idle uncached median TTFT: **10.0 s** for 16k prompts (idle
-  8.21 s; blog 6.7 → 8 s) and **5.0 s** for 8k (idle 3.98 s; blog 3.3 → 4 s). Prefill is about 22%
-  slower, which the author attributes to 300 W versus 350 W.
-- Statistics follow the blog: a paired hierarchical bootstrap with 2,000 resamples. Verdicts are given
-  only where the 95% CI excludes "no effect".
+- The nested cluster had to be confined against the host's cgroups and kernel, a TLS-intercepting
+  proxy and the pod's Istio sidecar, whose Envoy proxy would otherwise have load-balanced the "random"
+  arm itself. A 14-entry teardown ledger recorded every change.
+- Method differences: arms ran **back-to-back on disjoint GPUs, alternating order**, so they would not
+  share one 19-core CPU cgroup and client. Every request used a new TCP connection, so kube-proxy
+  re-rolled its random choice, and prefix caches were reset before every run.
+- SLOs were recalibrated at 1.2× the idle uncached median TTFT: **10.0 s** for 16k prompts (blog 8 s)
+  and **5.0 s** for 8k (blog 4 s). Prefill is about 22% slower, which the author attributes to 300 W
+  versus 350 W. Statistics follow the blog's paired hierarchical bootstrap (2,000 resamples).
 
 ### How the router decides
 
-For each request the gateway calls Kinference's `Pick` over gRPC with `failureMode: Closed`, so an
-outage fails requests instead of silently falling back to random routing. Pick tokenizes the prompt
-through vLLM's render endpoint, hashes it into blocks and walks a radix tree built from vLLM's KV
-events (sent over ZMQ, with sequence numbers and replay for gaps). It reads load from a `/metrics`
-scrape every 1 s and takes the argmin of a predicted wait: a 400 ms base, queued prefill, a linear plus
-quadratic prefill term on uncached tokens, and decode contention. A new prefix is credited as
-"dispatched" before its KV events arrive, so a burst does not scatter. A replication override
-(threshold 10%, `warm_target` 2) can deliberately warm a second worker. The chart's default
-coefficients predict about **33 s** for a 16k prefill against **8.2 s** measured, about 4× off, but
-routing still worked because only the ranking matters.
+The gateway calls Kinference's `Pick` over gRPC with `failureMode: Closed`, so an outage fails
+requests instead of silently falling back to random. Pick tokenizes the prompt through vLLM's render
+endpoint, matches its blocks against a radix tree built from vLLM's KV events, and takes the argmin of
+a predicted wait (base cost, queued prefill, uncached prefill, decode contention). A new prefix is
+credited as "dispatched" before its KV events arrive, so a burst does not scatter, and a replication
+override can warm a second worker. The default coefficients predict about **33 s** for a 16k prefill
+against **8.2 s** measured, about 4× off, but only the ranking matters. Two vLLM flags had to be found
+by debugging: without `--enable-scale-out` the render endpoint returned 404 and picks fell back to
+load-only, and without `--enable-prompt-tokens-details` the per-request `cached_tokens` count was null.
 
 ### Latency at light load
 
@@ -88,12 +82,10 @@ and 78-81% versus 47-57% (multiturn).
 ### The control row has a hardware confound
 
 On control, which has no shared prefixes, the Kinference arm was about 9% faster where the blog found
-no difference. p95 fell from 19.7 to 10.0 s (blog 21.5 → 12.3 s). Telemetry showed pool A at
-**~2,080 MHz** and pool B at **~1,225 MHz** at the same 299 W, with B hotter (56-70 °C against
-~30 °C). A direct per-pod probe after all GPUs were heat-soaked gave **8.25 versus 8.35 s**, a ratio of
-**1.012**. The author concludes that the gap mixes a transient thermal advantage with real load
-awareness and cannot separate the two. Kinference spread control requests 35/36/39 across pods, while
-kube-proxy produced 48/30/32, which also explains the Service arm's 71 versus 41 ms ITL.
+no difference; p95 fell from 19.7 to 10.0 s (blog 21.5 → 12.3 s). Telemetry showed pool A at
+**~2,080 MHz** and pool B at **~1,225 MHz** at the same 299 W, and a per-pod probe after all GPUs were
+heat-soaked gave a ratio of **1.012**. The author cannot separate a transient thermal advantage from
+real load awareness. Kinference spread control requests 35/36/39 across pods, kube-proxy 48/30/32.
 
 ### Capacity under closed-loop load
 
@@ -102,19 +94,17 @@ kube-proxy produced 48/30/32, which also explains the Service arm's 71 versus 41
 | multiturn | 1.6× | 3.6× | 8.6× | 3.4× | 0.1× | 15.5 → 64.4 (4.1×) | none / 16 | 3.5×; none / 8 |
 | shared-prefix | 2.0× | 2.9× | 2.7× | 1.2× (n.s.) | 0× | 7.1 → 20.9 (2.9×) | none / 8 | 7.4×; none / 32 |
 
-- **Crossover at c32.** With both arms saturated, Kinference's SLO attainment fell to 0 while random
-  routing kept 6-21%, at the same throughput (30 versus 29 req/min on multiturn). The author's
-  explanation is that even balancing makes every request queue about equally and miss together, while
-  random unevenness leaves some requests fast. Goodput "rewards variance near the SLO cliff". The
-  lesson: **operate below the knee**, with admission control or autoscaling.
+- **Crossover at c32.** With both arms saturated at the same throughput, Kinference's SLO attainment
+  fell to 0 while random routing kept 6-21%. Even balancing makes every request queue alike and miss
+  together; goodput "rewards variance near the SLO cliff". The lesson: **operate below the knee**, with
+  admission control or autoscaling.
 - **The shared-prefix shortfall.** vLLM reports **126,976 tokens** of KV cache per pod at
   `gpu-memory-utilization=0.90`, about **381k** per pool. The 24 prefixes × 16k tokens make **384k**,
   about 101% of the pool before any running request. Kinference's hit counts fall toward random by c24,
-  and preemptions appear from c16. The proposed mechanism is inferred, not traced per request: under
-  load, spilling hot-prefix requests to less busy pods duplicates prefixes and causes LRU thrashing. The
-  blog reports neither its memory fraction, nor its KV dtype, nor its KV cache size, so the gap with
-  its 48 GB GPUs is unexplained. Suggested remedies: an FP8 KV cache ("roughly doubles capacity"), more
-  replicas, or a less eager spill policy.
+  and preemptions appear from c16. The mechanism is inferred, not traced per request: spilling
+  hot-prefix requests to less busy pods duplicates prefixes and causes LRU thrashing. The blog reports
+  no KV cache size, so the gap with its 48 GB GPUs is unexplained. Suggested remedies: an FP8 KV cache
+  ("roughly doubles capacity"), more replicas, or a less eager spill policy.
 
 ### Extensions
 
@@ -137,23 +127,19 @@ duration averaged **103 ms** over 9,360 picks (87% ≤ 100 ms). Most of that is 
 ## Why it matters
 
 This is the vault's first independent replication of a vendor serving benchmark. It confirms the
-mechanism recorded in [[KV Cache]] and [[ML Systems at Scale]]: cache location is routing state, and
-generic replicas need workload-aware policy. It also adds the limit those pages lacked. Routing can
-exploit only the locality the cache can hold, so capacity planning compares the distinct prefix working
-set with the pool's KV tokens. For [[Serving Benchmarks and Goodput]], it shows a reproduction that
-agrees on direction but misses one magnitude by a wide margin, that "identical hardware" has to be
-measured, and that a goodput SLO can make the better router look worse past saturation.
-[[Inference Serving Engines]] gains the internals of one endpoint picker. [[Kubernetes]] gains a second
-measurement of the kube-proxy baseline, and a service-mesh sidecar that could have silently replaced
-it.
+mechanism in [[KV Cache]] and [[ML Systems at Scale]], that cache location is routing state, and adds
+the missing limit: routing can exploit only the locality the cache can hold. For
+[[Serving Benchmarks and Goodput]], it shows a reproduction agreeing on direction but not magnitude,
+"identical hardware" that had to be measured, and a goodput SLO that favours the worse router past
+saturation. [[Inference Serving Engines]] gains one endpoint picker's internals; [[Kubernetes]] gains a
+second measurement of the kube-proxy baseline.
 
 ## Tensions / open questions
 
 - **Self-reported and unpublished.** There is no frontmatter, URL or byline beyond "Vinod", and the
-  results files it cites are not in the vault. It is framed as interview preparation, and the pitch
-  picks favourable numbers: "4.1× peak goodput (the blog reported 3.5×)" is multiturn only, while
-  shared-prefix fell short (2.9× against 7.4×). The pitch's "1.1× to 3.3× to 3.6×" is also the
-  multiturn column of the sweep.
+  results files it cites are not in the vault. It is framed as interview preparation, and its pitch
+  quotes favourable numbers: "4.1× peak goodput (the blog reported 3.5×)" is multiturn only, while
+  shared-prefix fell short (2.9× against 7.4×).
 - **The baseline is still random.** A Q&A argues against ClientIP session affinity ("pins *clients*,
   not *prefixes*") and against consistent hashing, but tests neither. The vault's open question about a
   session-affine baseline is unchanged.
@@ -164,10 +150,7 @@ it.
 - **Overhead tension.** Pick time (mean 103 ms; histogram median 50-100 ms) exceeds the +29 ms measured
   TTFT increase. The overlap explanation is asserted, not measured.
 - **One node, nested cluster, different GPUs.** The lower power cap, the nested network hop, the custom
-  client and sequential arms all differ from the blog. The shared-prefix mechanism is inferred, because
-  the harness did not log which pod served each request.
-- No cost or energy measurement. The evidence for the mechanism is vLLM's `cached_tokens` counters,
-  not output checks.
+  client and sequential arms all differ from the blog. There is no cost or energy measurement.
 
 ## Affected pages
 

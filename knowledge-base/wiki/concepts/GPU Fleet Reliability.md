@@ -178,9 +178,10 @@ These are one team's procedures on one cloud, not fleet statistics.
 
 ## Serving fleets lose in-flight state, not checkpoints
 
-The open question below notes that always-on inference does not checkpoint. [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] gives the
-vault's first layer-by-layer account of what a serving fleet loses instead, drawn from papers it read
-end to end:
+The open question below notes that always-on inference does not checkpoint.
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] gives a
+layer-by-layer account of what a serving fleet loses instead, drawn from papers the author read end
+to end:
 
 - **Capacity (L0).** SpotServe shows that preemption endangers **in-flight request state**, and
   recovery needs migration or recomputation. This is the serving counterpart to AI21's point above
@@ -188,16 +189,17 @@ end to end:
   long-context request has more state to rebuild is the author's own derivation from linear KV
   growth. SpotServe never writes recovery cost as a function of request length, so whether spot
   capacity pays less under long-document traffic stays "pending measurement".
-- **Replica composition (L3).** Disaggregation creates a failure dependency that colocated serving
-  does not have. DistServe implements neither preemption nor fault tolerance, and in the paper's
-  words one failed decode instance "could potentially cripple the entire service and cluster". The
-  prefill-to-decode handover behaves like the gang dependency in synchronous training: one member
-  can stop the group.
-- **Substrate (L1).** Replacing capacity is bounded by materialization time. HydraServe measured a
-  production cold start of **>40 s**, of which host-to-GPU weight transfer was only about **2 s**. By
-  the paper's own account, pulling the model from remote storage was the main bottleneck. If burst duration ÷ cold-start time is below 1,
-  scaling out "cannot arrive in time", and the lever is admission or degradation, not the replica
-  count. Prewarming trades that delay for idle GPUs.
+- **Replica composition (L3).** Disaggregation adds a failure dependency: the prefill-to-decode
+  handover "manufactures fault propagation". DistServe implements neither preemption nor fault
+  tolerance, and in the paper's words one failed decode instance "could potentially cripple the
+  entire service and cluster". In the vault's reading, this resembles the gang dependency in
+  synchronous training, where one member can stop the group.
+- **Substrate (L1).** A burst that requires scaling out exposes the time needed to materialize
+  another replica. HydraServe measured a production cold start of **>40 s**, of which host-to-GPU
+  weight transfer was only about **2 s**. By the paper's own account, pulling the model from remote
+  storage was the main bottleneck. If burst duration ÷ cold-start time is below 1, scaling out
+  "cannot arrive in time", and the lever is admission or degradation, not the replica count.
+  Prewarming trades that delay for idle GPUs.
 - **Contract (L5).** A study of production inference incidents finds HTTP 500s in **74%** of
   incidents, which the paper attributes to a monitoring gap. Requests kept being routed to engines
   that could not serve them. The most common response was "No action/monitor only", at **48%**. The
@@ -207,13 +209,14 @@ end to end:
   signals only help if they reach the router, and someone must still decide who is sacrificed when
   capacity is short.
 
-[[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] turns this into measurements. L0's cost is "availability and state rebuilding". L1's signal
-is that scaling cannot keep up with bursts or that GPU utilization stays low. Operators should
-measure the full distribution from scale-out decision to a ready replica rather than one mean.
-HydraServe's >40 s is scoped to that paper's environment. The evidence base is thin by the author's
-own account. The corpus holds only **3** L5 papers, which the author calls "first of all an artefact
-of how I searched", because L5 had the smallest query budget. L0 holds only **5** papers despite a cap
-of 150, which the author reads as query terms that miss the layer's vocabulary. Neither count is a
+[[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] turns this into
+measurements. L0's cost is "availability and state rebuilding". L1's signal is that scaling cannot
+keep up with bursts or that GPU utilization stays low. Operators should measure the full
+distribution from scale-out decision to a ready replica rather than one mean. HydraServe's >40 s is
+scoped to that paper's environment. The evidence base is thin by the author's own account. The
+corpus holds only **3** L5 papers, which the author calls "first of all an artefact of how I
+searched", because L5 had the smallest query budget. L0 holds only **5** papers despite a cap of
+150, which the author reads as query terms that miss the layer's vocabulary. Neither count is a
 finding about the field.
 
 ## Open questions

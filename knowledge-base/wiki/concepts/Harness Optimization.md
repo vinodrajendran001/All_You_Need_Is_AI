@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-06
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -20,6 +20,8 @@ source_ids:
   - src-2026-08-30-addy-osmani-audit-agent-files
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-02-takehi-weight-space-programming
+  - src-2026-11-20-huggingface-harness-adapters
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -155,6 +157,32 @@ cross-family comparison requires the harness to be held fixed, and it usually is
 harness has moved upstream of evaluation into training itself, which means harness choice is now a
 post-training decision with the same standing as environment choice; see [[RL Environment Design]] and
 [[Coding Agent Harness]].
+
+## A separate adapter for each harness, trained through the harness itself
+
+[[Hugging Face - Introducing Harness Adapters]] turns the Qwen3.8 practice above into a published recipe. [[Hugging Face]] trains one LoRA
+adapter per coding-agent harness (Pi 1.5.2, OpenCode 2.2.7 and Hermes Agent v0.22.6) on a frozen
+Qwen3.8-27B. RL runs through the unchanged harness: a proxy between it and vLLM records the exact
+tokens for training, instead of a re-implementation of the agent loop. With pi on Terminal-Bench 2.1,
+the base model scores **39%** at about **2.9K** tokens per task and the adapted model **55%** pass@1
+at **1.5K**. On tasks both solve, the specialists make **56-72%** fewer tool calls on SWE-bench Pro and
+**53-70%** fewer on Terminal-Bench 2.1. The authors attribute most of the gain to "the model reasoning
+less, calling less tools, and performing better first time", a harness-efficiency result achieved in
+the weights rather than in the scaffold.
+
+It also confirms the model-plus-harness reading above from the other side. Pi compacts context and
+the other two harnesses do not, so the authors warn that results can be compared within a harness but
+not across harnesses. The adapters still transfer in part: the pi adapter run under OpenCode matches
+OpenCode's specialist on Terminal-Bench 2.1, and under Hermes keeps about two-thirds of the
+specialist's gain. Because the three weight updates are nearly orthogonal, they can be concatenated
+into one "super-adapter" that improves on the base model under every harness, although each
+specialist is ahead on four of six harness-benchmark pairs (see [[Parameter-Efficient Fine-Tuning]]).
+This is the weights-as-editable-surface idea below applied at deployment rather than for repair, and
+it answers part of this page's transfer question: an adapter trained for one harness is partly
+portable, a merged adapter is cheaper than a model per harness, and per-harness training still wins
+most pairs. The evidence is first-party, one attempt per task at temperature 0.8, and the post's own
+base scores for pi on Terminal-Bench 2.1 vary between **39%**, **39.1%** and **40.0%** across its
+sections. The training loop is recorded in [[Agentic Reinforcement Learning]].
 
 ## Four measured reductions, and the trap underneath them
 
@@ -354,6 +382,19 @@ a benchmark, and the post describes no held-out split or one-patch-per-round dis
 Martin uses. No figure isolates the Agent Factory's contribution from the engineers' own changes, and
 every result is first-party. See [[Benchmark Optimization]].
 
+## Compiling the same skill per model family
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] reaches the per-model conclusion of Factory's line-numbering case one level down, in skill
+text. [[Uber]]'s Skill Workshop compiles each SKILL.md and its test prompts from a spec, "and
+recompiles them when a model or an agent changes". Its next steps include compiling skills per model,
+because "different phrasing and lengths of SKILL.md files work better in different model families",
+and its ablations remove words from skills, since "As models get better, more words can reduce
+performance". Factory shipped a change with opposite signs across models as an option the model
+requests; Uber keeps one spec and generates model-specific text from it. That is one answer to the
+open question below about option sets growing into a separate harness per model, with the spec as the
+shared part. Uber reports no per-model comparison yet, so the claim is a stated observation, not a
+measurement. See [[Agent Skill]].
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -413,3 +454,9 @@ every result is first-party. See [[Benchmark Optimization]].
 - [[Agentic Testing]]
 - [[Multi-Turn Evaluation]]
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Hugging Face - Introducing Harness Adapters]]
+- [[Hugging Face]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Uber]]
+- [[Parameter-Efficient Fine-Tuning]]
+- [[Agentic Reinforcement Learning]]

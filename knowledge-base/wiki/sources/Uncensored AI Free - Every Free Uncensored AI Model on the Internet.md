@@ -39,7 +39,8 @@ setup step.
   Qwen3.5, Qwen3.6, Qwen3 VL and Qwen2.5, Llama 3.1 and 3.3, Mistral Large, Mistral Small and
   Magistral Small, GLM 4, GLM 4.5 Air and GLM 4.7 Flash, gpt oss 20B and 120B, Command A, Seed OSS 36B,
   Phi 4 and Apriel. Some cards stack on earlier community fine-tunes. Derived count: 15 cards give
-  no base.
+  no base. Of the 88 that do, 17 name a Qwen checkpoint directly, from Qwen3.5 4B to Qwen3 VL 235B
+  A22B, including Qwen3.5 9B.
 - The bases include Qwen3.5 35B A3B, Qwen3.6 35B A3B and Gemma 4 26B A4B, the same small-active MoE
   checkpoints that [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] weighs as
   candidate backbones for a commercial model. Further examples are GLM-4.5-Air-Derestricted and

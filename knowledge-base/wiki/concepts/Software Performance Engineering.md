@@ -148,34 +148,37 @@ The intelligentLearn series applies the estimate-measure hierarchy above to an L
 That partly answers the first open question below, on extending a CPU-oriented framework to GPU and
 distributed ML systems.
 
-**Estimate with three ledgers.** [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] reads every slow request in an operator ledger, a memory
-budget, and a request timeline. It notes that "Counting only operators misses queueing and admission
-effects; counting only memory misses latency". The estimates are deliberately back-of-envelope.
-They include a ridge of about **295 FLOP/byte** from vendor constants, KV at **320 KiB per token**,
-and a long-document concurrency ceiling of about **14** per replica. The part also keeps their
-limits visible. Summed operator bytes are not measured traffic, and an uncited 40% efficiency
-assumption is labelled as such. Its sensitivity result is that meeting a 2 s first-token target
-would need about **76%** of peak. That leads to an ordering rule in the spirit of this page:
-"first test isolated-request execution feasibility on an empty system, then investigate queueing
-and colocation interference".
+**Estimate with three ledgers.**
+[[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] reads every slow
+request in an operator ledger, a memory budget, and a request timeline. It notes that "Counting only
+operators misses queueing and admission effects; counting only memory misses latency". The estimates
+are deliberately back-of-envelope. They include a ridge of about **295 FLOP/byte** from vendor
+constants, KV at **320 KiB per token**, and a long-document concurrency ceiling of about **14** per
+replica. The part also keeps their limits visible. Summed operator bytes are not measured traffic,
+and an uncited 40% efficiency assumption is labelled as such. Its sensitivity result is that
+finishing the long-document prefill within 2 s would need about **76%** of dense peak. That leads to
+an ordering rule in the spirit of this page: "first test isolated-request execution feasibility on
+an empty system, then investigate queueing and colocation interference".
 
-**Judge a reported improvement with three ordered questions.** [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] asks whether the comparison
-basis held, whether a local metric or the service improved, and what remains unmeasured. A usable
-comparison has an explicit denominator: hardware including any added CPUs or interconnect, precision
-and quality, the joint request-length and prefix-reuse distribution, and the SLO. A faster kernel,
-a higher cache hit rate, or higher mean throughput is a local metric, and the part warns that all three "can all coexist with
-a worse service". It matches the Decagon rule
-above that local wins must translate into requests per GPU under endpoint latency limits, reached
-from the reviewer's side rather than the optimizer's. A pass on an earlier question does not answer
-a later one.
+**Judge a reported improvement with three ordered questions.**
+[[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] asks
+whether the comparison basis held, whether a local metric or the service improved, and what remains
+unmeasured. A usable comparison has an explicit denominator: GPUs and auxiliary hardware, precision
+and model quality, the joint input/output-length and prefix-reuse distribution, and the SLO. A
+faster kernel, a higher cache hit rate, or higher mean throughput is a local metric, and the part
+warns that these "can all coexist with a worse service". It matches the Decagon rule above that
+local wins must translate into requests per GPU under endpoint latency limits, reached from the
+reviewer's side rather than the optimizer's. A pass on an earlier question does not answer a later
+one.
 
-**Leave unknown branches labelled as measurements.** [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] works the case to one
-computed ceiling and one conditional choice that "stays labeled as arithmetic". Every remaining
-branch becomes a measurement in a plan that ties each unknown to the decision it resolves. Adoption requires per-workload-class gains in P95 TTFT, the P95 token
-gap, SLO attainment, goodput, and timeout, rejection, and quality outcomes. Its appendices then
-audit the evidence itself, separating 15 deeply read papers from 146 used only for placement and 11
-read only at abstract level. The same evidence standard is applied to the literature as to a
-proposed change.
+**Leave unknown branches labelled as measurements.**
+[[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] works the case
+to one computed ceiling and one conditional choice that "stays labeled as arithmetic". Every
+remaining branch becomes a measurement in a plan that ties each unknown to the decision it resolves.
+Adoption requires per-workload-class gains in P95 TTFT, the P95 token gap, SLO attainment, goodput,
+and timeout, rejection, and quality outcomes. Its appendices then audit the evidence itself,
+separating 15 deeply read papers from 146 used only for placement and 11 read only at abstract
+level. The same evidence standard is applied to the literature as to a proposed change.
 
 ## Open questions
 

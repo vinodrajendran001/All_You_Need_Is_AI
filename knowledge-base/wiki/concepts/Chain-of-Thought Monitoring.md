@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - safety
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-10-29-raindrop-agent-swarm-leadership
   - src-2026-11-08-alex-wang-reasoning-pathfinding
   - src-2026-11-12-schulz-tvb-filler-token-reasoning
+  - src-2026-11-22-nikolas-goebel-informal-verification
 status: active
 ---
 
@@ -239,6 +240,21 @@ meaningful chains of thought, we need to adjust the rewards or the training obje
 outcome-only RL, trace faithfulness is incidental rather than trained, so a monitor's reading of a
 trace is evidence, not ground truth. The essay is conceptual and covers plain REINFORCE with a
 binary reward.
+
+[[Nikolas Göbel - Informal Verification]] approaches the claim-verification remedy from software
+verification and makes it a step-level check. When an agent is tasked with getting a "System One"
+checker (TypeSafe's Jev) to accept a conclusion the checker cannot judge in one step, it "is forced to
+decompose the conclusions it arrived at through its internal reasoning chain" into a tree of
+sub-claims, each accepted or rejected. Used this way, Jev "effectively accepts any deductive step that
+a capable LLM can follow intuitively, meaning without the use of internal reasoning tokens." A
+footnote compares this to Codemode, where agents "lift control flow out of their own reasoning and
+into deterministic code", the pattern [[Programmatic Tool Calling]] records as Code Mode. Read from
+this page, the decomposed proof is a reconstruction written to pass the checker: evidence that the
+conclusion can be justified in small steps, not a description of how the agent reached it, so the
+faithfulness gap above applies to it as much as to a trace. It does bear on the open question below
+about decomposing claims as a monitor. Göbel asserts that the checker's cost and latency are
+"negligible" relative to the agent, but reports no figures and no accuracy, and his examples are
+illustrative.
 
 ## Agents that obeyed an order often wrote nothing about it
 
@@ -484,3 +500,5 @@ uncertain" whether helping to improve frontier monitors is good.
 - [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
 - [[Alex Wang - What Objective Is Reasoning Solving]]
 - [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]]
+- [[Nikolas Göbel - Informal Verification]]
+- [[Programmatic Tool Calling]]

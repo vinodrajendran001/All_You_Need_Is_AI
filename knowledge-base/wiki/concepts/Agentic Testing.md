@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - evaluation
@@ -28,6 +28,10 @@ source_ids:
   - src-2026-10-10-0xcodila-rea-reverse-engineering
   - src-2026-11-11-paulirish-chrome-capture
   - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
+  - src-2026-11-22-nikolas-goebel-informal-verification
+  - src-2026-11-24-antithesis-nightmare-mode
+  - src-2026-11-23-jan-miksovsky-watching-users
 status: active
 ---
 
@@ -356,11 +360,82 @@ such as "the user always has the ability to log out" holds or fails, and returns
 failure. **Hegel** is a Rust core with per-language bindings, described as the successor to
 Hypothesis from the same team.
 
-Huntley works at **Antithesis**, which makes both libraries. He says "ditch Playwright" and adds "I'm
+Huntley works at [[Antithesis]], which makes both libraries. He says "ditch Playwright" and adds "I'm
 not just talking my book"; treat the recommendation as **vendor advocacy** in a practitioner talk. No
 detection rates, bug counts, or comparisons with scripted or example-based tests are given. A property
 is still an oracle someone wrote, so the question of who checks the oracle becomes who chose the
 properties, and a generator that finds no counterexample is evidence only about the inputs it tried.
+
+## Normal-path agreement is not equivalence
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] measures the gap between passing
+tests and doing what the original does. Three isolated agent translations of the same RPG application
+differed in structure but behaved the same on normal inputs: all passed **35** predefined test cases,
+and one program agreed on all **102 million** valid inputs. Off the normal path (overflow, negative
+values, errors halfway through an update, missing source) each run did something different. The
+agent's own tests missed a defect of another kind. Each sequential read had become a query that scans
+the whole table, so reading **10,000** records in key order took about **20 seconds** where a single
+query needs a hundredth of a second, and the tests ran on a handful of records against an empty
+database. Test generation was not cheap either: scenarios for five programs cost **$7.56**, about four
+times their translation, and the author calls a five-times test multiplier for a whole application "a
+hypothesis, not a rate we measured". With no running original, expected behaviour came from reading
+the source, so the oracle problem above arrives with the reference implementation removed.
+
+[[Nikolas Göbel - Informal Verification]] names the distinction. Testing and a track record build
+**empirical** trust; understanding why a system behaves correctly builds **epistemic** trust. His
+illustration is a marble sorter that seems to sort by colour but sorts by size, which "just happens to
+be equivalent under normal operation" until a large blue marble arrives (the interactive version was
+not captured). Read against this page, pass^k answers one kind of doubt and not the other. A test that
+passes on every run is reliable evidence about the inputs it covers, and no evidence that the
+mechanism is the intended one. Göbel's remedy is a checked argument for the property rather than more
+runs (see [[AI Code Review]]); he reports no detection rates.
+
+## Fault injection makes the environment the adversary
+
+[[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]] contains no AI.
+It is here because it inverts this page's setup: instead of an agent driving software through its
+interface, the harness changes what the environment does underneath, and the oracle is the system's
+own durability guarantee. [[Antithesis]] first ran a patched LazyFS, the open-source FUSE filesystem
+from INESC TEC and Jepsen, then wrote its own, Amnesia, in Rust. It holds unsynced writes in its own
+cache, and discarding that cache when the container is killed emulates power loss, which a process
+kill does not: after a SIGKILL, completed writes still reach disk, "fsync or no fsync". Amnesia also
+returns disk I/O errors, including an EIO on fsync that leaves the failed pages marked clean so that a
+later fsync succeeds while the data is gone (the fsyncgate behaviour), and latency faults that
+complete operations out of order or split a write so a concurrent read sees a mix of old and new data.
+
+Two design choices carry over to any search-based test. Power failures are **correlated with
+operations**: the injector decides on each disk syscall whether to fire before, partway through, or
+after the operation is applied but before it returns. The authors' reason is that the exact moment of
+a power cut before or after an operation does not change the outcome, while the states during one are
+short and rare, so tying the fault to the operation shrinks the space the fuzzer explores. And some
+defects need compound faults. In bbolt, the storage engine behind etcd, an EIO on the meta page's
+fsync made etcd exit, which was correct. On restart bbolt read the unpersisted page back from the
+kernel cache, reused pages the on-disk state still referenced, and, once the cached page was evicted,
+panicked at every open; the authors say the bug "could only be found by an I/O error followed by a
+power failure". This is a first-party vendor post. Beyond "a number of bugs in customer software" and
+the one bbolt case, it gives no counts, detection rates, overhead, or validation against real hardware
+failures.
+
+## Watching a real user is a test nobody scripted
+
+[[Jan Miksovsky - Watching Users Is How You Make Products Better]] is an opinion post with no AI
+method, and it marks a boundary of this page. Every oracle above checks software against something
+someone wrote down: a test, a property, a parity reference, a judge's rubric, a durability guarantee.
+Miksovsky's claim is that the most useful test of a product is a real person attempting a real task
+while its builder watches. His evidence is his own career: one user's comment on a Web Origami
+tutorial ("There are no words you could have written here that would have gotten me to understand
+this.") led to "a complete redesign of the language". His method is deliberately cheap: observe people
+where they normally use the product and on their own device, say that the product is under test and
+not them, ask them to think aloud through a short script of basic tasks, say little, help only when
+they are clearly stuck, end on time, pay them, and repeat, because "If multiple people get stuck in
+the same place, you've found a real problem."
+
+It sits uneasily with the recording-based evidence above. [[Paul Irish - chrome-capture]] makes
+per-test video cheap, and a video is useful evidence for whoever reviews a run, but Miksovsky's point
+is about what the builder learns: "reading a report or watching a video clip is nothing like being
+there live." He offers no study or sample size and does not discuss whether agent-run usability
+sessions or synthetic users could stand in; his only reference to AI is a jab at executives'
+"vibecoded apps".
 
 ## Open questions
 
@@ -389,6 +464,17 @@ properties, and a generator that finds no counterexample is evidence only about 
   these sources says how the comparison was itself tested.
 - When LinkedIn's golden-dataset eval reports, will acceptance and precision agree, and what share of
   accepted comments turn out to be wrong?
+- Tomassetti's translations agreed on **102 million** normal inputs and diverged on overflow and
+  mid-update errors. Should a generated suite be scored separately on off-path inputs, and who writes
+  those inputs when there is no running original?
+- pass^k and correlated fault injection both reduce uncertainty about the inputs tried. What would
+  show that the mechanism, not just the outcome, is the intended one? Göbel proposes checked
+  arguments; no source measures whether they catch what tests miss.
+- Fault injection in the vault so far targets storage engines, not agent harnesses. Would injecting
+  disk, network, or tool failures beneath an agent find failures that goal-driven tests do not? No
+  source tests it.
+- Can any automated test stand in for watching a real user? Miksovsky says not, from experience;
+  nothing in the vault compares the two.
 
 ## Related pages
 
@@ -425,3 +511,8 @@ properties, and a generator that finds no counterexample is evidence only about 
 - [[AI Code Review]]
 - [[Geoffrey Huntley - The Answer to AI Is Engineering]]
 - [[Inference Determinism]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]
+- [[Nikolas Göbel - Informal Verification]]
+- [[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]]
+- [[Jan Miksovsky - Watching Users Is How You Make Products Better]]
+- [[Antithesis]]

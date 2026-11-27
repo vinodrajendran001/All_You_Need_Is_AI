@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-25
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - coding-agents
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-11-11-bytebytego-github-copilot-rust-port
   - src-2026-10-10-0xcodila-rea-reverse-engineering
   - src-2026-11-19-tselovalnikov-10x-engineer
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
 status: active
 ---
 
@@ -194,6 +195,58 @@ not accumulated debt. No company, component, timeline, benchmark for "faster", o
 is given, and the story passes through two retellings (engineer, then Orosz, then the essay) before
 reaching the vault.
 
+## A measured naive baseline: cheap to compile, wrong at the edges
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] is this page's first multi-run
+measurement, and it removes the condition every case above relies on. Claude Opus 5.5 in Claude Code
+translated two real IBM i ERP applications from RPG to Java from a deliberately naive prompt
+("Organize the project as you see fit, ensuring the result can be run."), but there was **no IBM i to
+run the originals**. Expected behaviour came from reading the RPG source and manual, so the old system
+could not serve as the oracle that Mistral's harness, X's parity script, and GitHub's end-to-end suite
+provide. The result works as a negative control for this page's parity-first thesis: every check that
+was easy to pass passed. Each of the large application's **49** sessions "completed" on its first
+attempt, meaning the session finished and the project compiles; the application starts, initializes
+its database, and opens menus; and every planned file is mentioned in the agent's log, which the
+author says is "not proof" of implementation. Errors were still found in every translation examined,
+among them a lost sign that moves a date into another century, inverted commit and rollback, and
+**17** programs counted as translated that only throw an exception.
+
+Run-to-run variance is the second finding. Three isolated runs on the same application of about
+**15,100** RPG lines produced **14,500**, **26,300**, and **22,900** lines of Java, with different
+packages, field types, data access, and public interfaces. On normal inputs they agreed: all three
+passed **35** predefined tests, and one program agreed on all **102 million** valid inputs. Off the
+normal path (overflow, negative values, errors halfway through an update, missing source) each run
+behaved differently, so whether a given error reaches the application "is decided by which run you
+happened to get". Errors shared by every run are ones "you cannot discover by comparing them". The
+single large translation shows the decoherence this page warns about inside one project: about a third
+of the hand-translated program code also exists, identical or nearly so, in another program; one date
+conversion is declared in **27** classes with **20** different bodies; and there are three different
+ways of calling a program.
+
+Deterministic tooling appears twice, once by design and once unasked. Strumenta's tooling parsed the
+code and dependency-ordered the plan's **2,777** files, and a script split it into **43** phases plus
+query and CL phases, the dependency-order discipline of the GitHub port above. Separately, the agent,
+without being asked, wrote **seven** Python code generators and used them to produce a large part of
+the Java, and about **30** generated files disagree with their own generator. In the vault's reading,
+that is the deterministic route of Faik's Shepherd case, chosen by the agent rather than designed, and
+not kept consistent with its own output.
+
+The cost figures answer only the cheap half of this page's question about effort. The large
+application's first generation cost about **$1,100** at API-equivalent list prices, about **$1.83**
+per thousand lines on roughly **603,000** source lines including queries and CL; the team actually
+spent Claude subscription quota. GitHub's port above cost about **$120K** in tokens for **430K**
+lines, but that figure covers a reviewed, tested, shipped port and this one an unvalidated first
+generation, so the two are not comparable. The exclusions are explicit. Writing test scenarios for
+just five programs cost **$7.56**, about four times their translation, and planning, reviews,
+correction cycles, and human time are not counted. The author's extrapolation of **$12,000** for 1
+million lines and **$120,000** for 10 million assumes test generation costs five times the
+translation, a multiplier he calls "a hypothesis, not a rate we measured". Phases cost **$1.22** to
+**$37.73** and did not grow steadily more expensive as the Java project grew. His summary: "Getting a
+first translation and finishing a migration are different amounts of work; we have measured the
+former." Tomassetti founded Strumenta, which sells migration services, and says so; correctness
+judgments come from reading code and model-assisted checks, so the error list is a set of examples,
+not an error rate.
+
 ## Open questions
 
 - How should parity tolerances account for floating-point and algorithmic differences?
@@ -214,6 +267,14 @@ reaching the vault.
   per component, but no source measures the wrapper layer's cost or how long it persisted.
 - **Who checks the oracle?** GitHub guarded end-to-end tests from being weakened, and REA's Touhou
   rebuild found a broken comparison. No source reports how often the parity check itself was wrong.
+- **What does the expensive half cost?**
+  [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] measured a first generation and
+  excluded test generation beyond five programs, correction cycles, and human review; its five-times
+  test multiplier is a hypothesis. No source in the vault measures a complete agent migration against
+  a non-agent baseline.
+- **What replaces the oracle when the original cannot run?** Comparing independent translations
+  exposes luck-dependent errors but not the ones every run shares, and Tomassetti's checks relied on
+  reading code and on other models.
 
 ## Related pages
 
@@ -232,3 +293,4 @@ reaching the vault.
 - [[Agent Delegation]]
 - [[Agent Security and Governance]]
 - [[Sergey Tselovalnikov - How to Be a 10x Engineer in 2027 and Beyond]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]

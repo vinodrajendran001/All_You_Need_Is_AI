@@ -349,18 +349,18 @@ this page's categories conditional rather than fixed:
   The study is simulator-based with static traffic, and Kiely's claim is an unmeasured vendor report,
   so the disagreement in scope stays open. Like quantization, disaggregation may be frontier-moving
   for one workload and a tradeoff for another.
-- **Continuous batching** changes waiting and slot use, "not the per-token operator work". That
-  agrees with this page's note that it avoids waiting for a fixed batch without removing resource
-  queueing.
+- **Continuous batching** changes waiting and slot use, but "does not reduce the per-token operator
+  work". That agrees with this page's note that it avoids waiting for a fixed batch without removing
+  resource queueing.
 
 [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] shows why batch sizing, this page's canonical tradeoff, also has a workload-dependent limit.
 Larger batches raise arithmetic intensity only for weight-reading layers. Attention over each
 request's own history stays near **8 FLOP/byte**. Memory also caps the batch. In its running case,
 moving from short chats to long documents cuts the memory-only ceiling from about **690** to about
 **14** requests per replica. The whole latency-throughput curve for long documents therefore sits
-lower, and no batch setting on it reaches the compute ridge. This is the mechanism behind Kiely's
-warning that two isolated gains may fail to multiply: both can be spending the same displaced
-resource.
+lower, and no batch setting on it reaches the compute ridge. Displacement is also one mechanism
+behind this page's caution that two isolated gains may fail to multiply: both can be spending the
+same resource.
 
 [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] adds the measurement rule for placing any technique on the frontier. The axes must be read at
 the service boundary: P95 TTFT, P95 token gap, SLO attainment, and goodput counting rejected and

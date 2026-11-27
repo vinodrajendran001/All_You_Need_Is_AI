@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-13
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - code-review
@@ -15,6 +15,8 @@ source_ids:
   - src-2026-08-05-aibuilderclub-reviewing-ai-generated-pull-requests
   - src-2026-11-13-orlanski-slop-moves-up
   - src-2026-11-12-huntley-answer-is-engineering
+  - src-2026-11-22-nikolas-goebel-informal-verification
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
 status: active
 ---
 
@@ -173,7 +175,45 @@ Huntley argues from an incident list he does not source, with no quality measure
 therefore has to choose explicitly (flag re-implementation as redundancy, or accept it where a
 vendoring or generation policy exists), and nothing in the vault shows which choice produces fewer
 defects. Both positions come with an interest attached: Orlanski is promoting his own benchmarks, and
-Huntley works at Antithesis, which makes the verification libraries his talk recommends.
+Huntley works at [[Antithesis]], which makes the verification libraries his talk recommends.
+
+### A reviewable argument instead of a verdict
+
+[[Nikolas Göbel - Informal Verification]] proposes a different review artifact. Instead of asking a
+reviewer for findings, an agent writes an informal proof of a property: premises grounded in code or
+documentation, then small reasoning steps, each checked by a fast "System One" model
+([[TypeSafe AI]]'s Jev in his demonstrations) that accepts obvious steps and rejects false, ambiguous,
+or overly large ones. His example, "purely for illustration", is the claim that `GET /invoices/:id`
+never returns another tenant's invoice. Four premises cite their witnesses: middleware that sets the
+current tenant, the model's tenant default scope, the Rails documentation on scopes, and a controller
+that loads the invoice with
+`find_for_display`. The checker accepts the first two steps and rejects the third, that the loaded invoice belongs to the current tenant, because nothing says how `find_for_display`
+builds its query. It uses `find_by_sql`, which "runs the query as written, default scope or not". The
+checker did not need to know that; it "simply refused a step whose conclusion doesn't *obviously*
+follow from the premises."
+
+The value claimed is for the human gate rather than for detection: instead of "a single agentic
+thumbs-up at the end", the reviewer gets "seven concrete claims (four premises and three reasoning
+steps)" to match against their own understanding, and the proof can be "cheaply re-checked against
+future revisions without an agent in the loop". Göbel lists the failure modes himself. The checker is
+not perfectly deterministic near its threshold, it resolves an ambiguous sentence the way a fluent
+reader would (**95%** confident in one reading of a sentence that admits another), and it silently
+fills in facts it treats as common knowledge. He calls its cost and latency "negligible" without
+figures and reports no rate of accepted false arguments, which is the measurement this page lacks for
+every reviewer design above. The proof is also the agent's own argument, so it shows what the agent
+chose to claim, not what it left out; see [[Human Deferral to AI]].
+
+### Comparison finds disagreements, not shared errors
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] states why comparison has a floor.
+Isolated agent translations of the same code each contained errors, some present in one run and not
+the next, and others "that all the runs have in common, and that therefore you cannot discover by
+comparing them". This is the correlated-error question in the open questions below, met in another
+setting: comparing runs works like independent reviewers only for the errors the runs do not share.
+Tomassetti's checks of the large translation used Claude Opus 5.5, Fable 5.2, and GPT-6 Astra
+alongside manual exploration, and its finding that "two models measured all 5,737 files separately and
+agree" is agreement between models, not ground truth. GitHub's port review above compared against a
+runnable reference; Tomassetti had none, because no IBM i was available to run the originals.
 
 ### Where review goes next
 
@@ -198,6 +238,9 @@ faster than people can read it.
   measures the quality cost and Huntley argues the supply-chain benefit; no source compares both.
 - What share of today's review findings could deterministic hooks and coupling rules catch before
   review? Huntley says "much"; no source measures it.
+- Would a checked argument for a property, such as Göbel's tenant-isolation proof, catch defects that
+  diff review misses, and how often does the checker accept a decomposition of a false claim? His
+  example is constructed and reports no rates.
 
 ## Related pages
 
@@ -216,3 +259,8 @@ faster than people can read it.
 - [[GitHub]]
 - [[Gabe Orlanski - Slop Is Moving Up the Stack]]
 - [[Geoffrey Huntley - The Answer to AI Is Engineering]]
+- [[Nikolas Göbel - Informal Verification]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]
+- [[Antithesis]]
+- [[TypeSafe AI]]
+- [[Human Deferral to AI]]

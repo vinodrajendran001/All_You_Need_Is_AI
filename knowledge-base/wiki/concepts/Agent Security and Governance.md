@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-05
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -61,6 +61,8 @@ source_ids:
   - src-2026-11-18-ioma8-llm-reverse-engineering
   - src-2026-11-17-paul-kinlan-voice-harness
   - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
+  - src-2026-11-22-nikolas-goebel-informal-verification
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
 status: active
 ---
 
@@ -655,6 +657,33 @@ and Bedrock Guardrails is only listed, so whether Part 1's argument-level limits
 screening survive the implementation is not visible. It is a practitioner build with no
 measurements.
 
+[[Nikolas Göbel - Informal Verification]] gives the same condition at the application layer, in an
+example he labels "purely for illustration" rather than an incident. A Rails application enforces
+tenant isolation through a default scope on its
+`Invoice` model, and the framework documentation says model queries include it. The controller loads invoices through a helper that calls `find_by_sql`,
+which "runs the query as written, default scope or not", so "Any tenant can read any invoice by
+guessing its id." The scope is a policy point that one raw query bypasses. In the essay the bypass is
+caught because a model checker refused the step from "the controller loads the invoice" to "the
+invoice belongs to the current tenant" without a premise about how the query is built. The lesson is
+the one above: a scoping rule is a claim about every route to the data, and someone has to show there
+is no other route.
+
+## Sending source code to a hosted model is a governance decision
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] treats confidentiality as a
+deployment choice. The agent ran headless in an isolated Docker container with outgoing requests
+restricted through a proxy and logged, but with a hosted frontier model "the source included in the
+model's context is processed on the provider's infrastructure, even if the agent itself runs in a
+local container." Local isolation governs what the agent can reach, not where the code goes. The
+author cites Anthropic's commercial terms and data policy as preserving customers' rights to their
+inputs and excluding training on inputs and outputs by default, then adds that "The applicable
+protections and retention policies depend on the agreement, account type and settings; consumer
+subscriptions and commercial accounts have different terms." The experiment itself ran on a Claude Max
+plan's quota, and the capture does not say which terms applied to it. The alternative it names is an
+open-weight model such as GLM-5.3 on infrastructure the organization controls, which the team has "not
+measured". The confidentiality question is answered by the contract and the deployment, not by the
+sandbox.
+
 ## A record kept outside the agent's reach is part of the control
 
 [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] also moves the evidence. Its premise
@@ -989,3 +1018,5 @@ here is that the author marks where his own isolation stops.
 - [[Paul Kinlan]]
 - [[LLM-Native Extensible Software]]
 - [[Kubernetes]]
+- [[Nikolas Göbel - Informal Verification]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]

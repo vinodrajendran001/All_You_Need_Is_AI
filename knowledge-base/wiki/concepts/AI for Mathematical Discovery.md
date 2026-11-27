@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-13
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - mathematics
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-10-01-mollick-dot-swarm
   - src-2026-08-28-philipp-schmid-recursive-self-improvement
   - src-2026-07-23-latent-space-eiso-kant-poolside-model-factory
+  - src-2026-11-22-nikolas-goebel-informal-verification
 status: active
 ---
 
@@ -71,6 +72,25 @@ It moves trust to two other places:
 [[Reward Design for RL]] already notes that math rewards are checked either by matching a boxed
 answer or by a Lean proof. The difference matters more for discovery than for training.
 
+### The statement gap is reported, not hypothetical
+
+[[Nikolas Göbel - Informal Verification]] supplies outside evidence for the first of those two places.
+The essay is about software verification; it opens by calling formal verification "both cool and
+practical now" and then argues that a formal proof moves the risk to the formalization. It quotes Alan
+Perlis ("one can't proceed from the informal to the formal by formal means"), notes that questions
+arose in 2025 about which statement an AI-generated Lean proof of Erdős problem #124 had established,
+and quotes a Xena Project post: "of the 290 OpenAI theorems which come with Lean code, around 38 of
+them have the property that the Lean code does not even state, let alone prove, the main theorem of
+the paper." These are secondhand; the vault has not read the Xena post or the Erdős #124 discussion,
+and #124 is unrelated to the Erdős 397 claim in the table.
+
+Göbel's own alternative is informal: decompose an argument into steps small enough for a model checker
+to accept, a rule he traces to the Mizar checker, which accepts only "obvious inferences". He accepts
+"a higher error rate when checking the proof" in exchange for avoiding the translation step, and
+frames formal and informal proof as complementary. For this page the essay sets a requirement rather
+than a result: an accepted Lean proof still needs someone to check that its statement says what the
+paper claims.
+
 ### Why mathematics may lead
 
 [[James Tillman - Two Kinds of Test-Time Scaling]] argues that compute spent beyond a model's training
@@ -108,6 +128,10 @@ number of agents was what mattered (see [[Multi-Agent Coordination]]).
 - Tillman asks what the first sign would be that test-time scaling beyond training budgets reaches
   "algorithmic taste and machine learning research". Mathematics, where problem choice is still
   human, is one place to look.
+- How often does the Lean statement of an AI-produced result fail to state the claimed theorem? The
+  only figure in the vault, about 38 of 290 OpenAI theorems, is a quotation in
+  [[Nikolas Göbel - Informal Verification]] from a post the vault has not read, and PSI's capture does
+  not show its statement.
 
 ## Related pages
 
@@ -127,3 +151,4 @@ number of agents was what mattered (see [[Multi-Agent Coordination]]).
 - [[Anthropic]]
 - [[Ethan Mollick]]
 - [[Google DeepMind]]
+- [[Nikolas Göbel - Informal Verification]]

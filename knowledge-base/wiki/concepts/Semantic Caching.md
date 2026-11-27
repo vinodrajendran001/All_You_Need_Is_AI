@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-23
-updated: 2026-10-27
+updated: 2026-11-27
 tags:
   - concept
   - inference
@@ -11,6 +11,9 @@ source_ids:
   - src-2026-10-21-bytebytego-prompt-vs-semantic-caching
   - src-2026-07-06-sarthak-rastogi-production-agent
   - src-2026-10-20-cloudflare-inference-bill
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
 status: active
 ---
 
@@ -148,6 +151,40 @@ the source does not measure.
 The evidence is one company's self-reported telemetry. The fix shipped alongside a second change, and
 "Together these took the cost per review from $2.47 down to $2.02", so its own share is not isolated.
 
+## Inside the serving cluster, a prefix hit is worth the execution it saves minus the wait it adds
+
+The intelligentLearn series looks at the prompt-caching column of the table above from the serving
+side rather than the API side. [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] argues that once replicas hold different reusable prefixes,
+they stop being interchangeable. That holds even without disaggregation. Routing then has to weigh
+the benefit of reuse against queueing, migration, or recomputation. The papers it reads show how far
+hit-rate evidence goes:
+
+- **SGLang** keeps finished requests' KV in a radix tree and orders its queue longest-shared-prefix
+  first. That ordering reaches **96%** of the optimal hit rate, and the paper reports **74.1%** over a
+  month of production traffic. Both results come from ordering inside one engine's queue, with one
+  worker per model. Extending them to routing across replicas is the author's own extrapolation, and
+  the paper concedes the ordering can starve requests.
+- **DualMap** says affinity "often conflicts with load-balancing scheduling" and measured the
+  trade-off. Even so, its Conversation workload reaches only **62.5%** of the upper-bound hit rate.
+
+The rule that follows is "a comparison, not a threshold". If reuse is high and load is even,
+affinity is "almost free money". If reuse is high and load is spiky, joint affinity and balance
+scheduling is mandatory. [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] works an illustrative, unmeasured example. A hit saves **1.8 s**,
+the hot replica adds **0.6 s** of queueing, and transfer adds **0.2 s**, for a net **1.0 s**. Once
+queueing plus transfer exceeds the saved execution, the better choice is the less-loaded replica. Its
+measurement plan starts with the cold- and hot-prefix and reusable-length distributions, since they
+decide whether affinity is worth anything.
+
+This is the same shape as the Cloudflare section above, in the vault's only production prompt-cache
+measurement. There, two reviewers wait up to **20 seconds** for a shared cache write in order to save
+about nine cents each. A cache benefit is net of the waiting it induces, whether the wait is a
+scheduler queue or a write that must start streaming. [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] also generalises the Cloudflare warning
+about aggregate hit rates. Hit rate "is evidence about reuse, not the end-to-end result", and a
+caching change counts only if P95 TTFT, the P95 token gap, SLO attainment, and goodput improve for
+the target traffic. None of this changes the correctness asymmetry on this page. The series discusses
+exact-prefix KV reuse only, and its trade-offs are latency trade-offs. Part 4 also lists
+cross-request reuse *policies* for prefix caching among the families it does not develop.
+
 ## Open questions
 
 - **The vault has no semantic-cache measurements.** Every figure in the source is illustrative or
@@ -165,6 +202,7 @@ The evidence is one company's self-reported telemetry. The fix shipped alongside
   large enough to isolate in its own process but reports no hit rate or break-even figure.
 - Who owns the threshold? It is application-specific, affects correctness, and has no principled
   derivation in the vault.
+- How much execution does a prefix hit save at a given reusable length, and how does that compare with measured hot-replica queueing? The intelligentLearn 1.8 s / 0.6 s / 0.2 s example is illustrative arithmetic, and the vault has no measured break-even for cache-affinity routing.
 
 ## Related pages
 
@@ -185,3 +223,7 @@ The evidence is one company's self-reported telemetry. The fix shipped alongside
 - [[Cloudflare]]
 - [[Context Engineering]]
 - [[Anthropic]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[intelligentLearn]]

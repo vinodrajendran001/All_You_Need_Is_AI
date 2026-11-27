@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-27
 tags:
   - concept
   - human-oversight
@@ -10,6 +10,8 @@ tags:
 source_ids:
   - src-2026-10-27-anthropic-agents-judgment-calls
   - src-2026-11-04-x-town-square-rebuild
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
+  - src-2026-11-22-nikolas-goebel-informal-verification
 status: active
 ---
 
@@ -76,6 +78,38 @@ human role is the part with no reference answer: the decisions are exactly where
 hardest to see. X reports no measure of whose choices its design decisions reflected, and nothing in
 either source says the X workflow suffered from deferral; the pairing identifies where to look.
 
+## An agent asked only to translate also made the design decisions
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] shows decisions moving to the agent
+without a human being offered a choice. The prompt asked for a translation of an RPG application into
+Java and to "Organize the project as you see fit". The author's account: "We asked for a translation,
+and we also got an architecture that we had not chosen." Tactical choices, such as how to represent
+fields, access files, call between programs, own transactions, and handle missing source, differed
+between runs. Strategic choices were "the same every time, and they are not the ones we would have
+made": no application framework such as Spring Boot, and CSV files or H2 rather than a more obvious
+choice such as PostgreSQL. The agent also kept text screens on the console, "the agent's choice under
+our instructions".
+
+That consistency parallels the study's unassigned baseline above, where Claude Opus 4.8 made the same
+five choices in **112 of 123** runs. In the vault's reading, a team that accepts such a translation
+inherits a stable set of model preferences, and because every run agrees on them, comparing runs will
+not expose them. Tomassetti's team noticed because it had its own architecture in mind; no measurement
+of deferral was made.
+
+## Checkable arguments make the agent's framing visible, not neutral
+
+[[Nikolas Göbel - Informal Verification]] targets the trust a human gate is meant to supply. He
+separates **empirical** trust, built by a record of correct results, from **epistemic** trust, the
+belief that a system works the way you think it does, and proposes informal proofs whose premises and
+steps are each checked by a model. A reviewer then gets "seven concrete claims (four premises and
+three reasoning steps)" to compare with their own understanding, instead of "a single agentic
+thumbs-up at the end". Read against the study above, this changes what is presented, not who frames
+it. **77%** of the analysts reused the agent's arguments, and a decomposed proof is still an argument
+the agent chose. The checker tests whether each step follows from the stated premises, not whether
+those premises or that property were the right ones to examine, and like a human it silently fills in
+facts it considers too obvious to state, which is where the agent's framing and the reviewer's
+assumptions can coincide. Göbel reports no study of reviewers using such proofs.
+
 ## Current synthesis
 
 - **Verification and judgment need different controls.** Tests, parity checks, and judges catch
@@ -88,6 +122,9 @@ either source says the X workflow suffered from deferral; the pairing identifies
   choosing which decisions to raise is itself a judgment call.
 - **Institutions decide where it is acceptable.** The authors propose deciding deliberately which
   decisions need a person's own informed judgment and protecting the skills those decisions require.
+- **Unasked decisions count.** An open instruction such as "organize the project as you see fit"
+  delegates design choices without naming them. In Tomassetti's runs the agent made the same strategic
+  choices every time, so a gate that asks only whether the output works will not surface them.
 
 ## Open questions
 
@@ -100,6 +137,8 @@ either source says the X workflow suffered from deferral; the pairing identifies
   re-derive every open choice?
 - If deferral correlates conclusions across teams using the same model, what evidence should count
   as independent replication?
+- Would reviewers shown a checked, decomposed argument defer less or more than analysts shown prose
+  recommendations? No source tests it.
 
 ## Related pages
 
@@ -112,3 +151,5 @@ either source says the X workflow suffered from deferral; the pairing identifies
 - [[Agent Security and Governance]]
 - [[Anthropic]]
 - [[Sri Polkampally et al - LLM-as-Judge When It Works and When It Misleads]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]
+- [[Nikolas Göbel - Informal Verification]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-05-18
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - entity
   - newsletter
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-09-14-alphasignal-deepseek-v4-1-flash
   - src-2026-11-10-alphasignal-latent-sparse-attention
   - src-2026-11-16-alphasignal-short-contexts
+  - src-2026-11-23-alphasignal-e-means-rag
 status: active
 ---
 
@@ -35,7 +36,7 @@ Alpha Signal is an AI-focused newsletter that tracks research developments, mode
 
 Alpha Signal connects recursive reasoning architectures, retrieval-interface design, agent-skill
 optimization, runtime controls, cache handoffs, non-autoregressive text generation, agent-memory
-costs, tabular and specialist prediction models, sparse-model serving costs, and sparse attention in
+costs, tabular and specialist prediction models, sparse-model serving costs, sparse attention, and vector-index clustering in
 this vault. Its secondary reporting is useful for orientation, but study details and editorial
 framing must remain distinct from independently verified results.
 
@@ -157,7 +158,33 @@ file name, and the source ID uses the date Git first tracked the file, which mat
 date. The study is credited to "researchers at Nvidia" without a paper title. The capture writes both
 "GPT-5.6 Sol" and "GPT 5.6 Sol", and both "Nvidia" and "NVIDIA".
 
+## A clustering-algorithm relay, again without metadata
+
+[[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]] moves the newsletter
+from attention and context costs to vector-index maintenance. It relays **e-means**, credited to
+researchers at Meta FAIR and École nationale des ponts et chaussées: a replacement for Lloyd's
+k-means in building cluster-based vector indexes and partitioning data for deduplication, shipped
+in Faiss 1.16.0. Reported results include a Lloyd baseline beaten in roughly **one-tenth the
+passes** across **24** benchmarks, **10-45X** GPU speedups over Flash-KMeans, and **8-15X** CPU
+speedups over Faiss. [[Approximate Nearest-Neighbor Search]] carries the technical content and
+[[Retrieval-Augmented Generation]] the index-freshness reading.
+
+The capture repeats the no-frontmatter pattern of the compaction item above: no byline, date, or
+canonical URL. Attribution rests on per-subscriber `app.alphasignal.ai` tracking redirects and four
+images hosted on alphasignal.ai, the title comes from the file name, and the source ID uses the date
+Git first tracked the file. No paper title, author names, or preprint link appear. Editorially, the
+item leaves its "accuracy" metric undefined, compares each claim with a different baseline, and says
+Lloyd's algorithm "powers the vector search techniques" in general, although graph indexes such as
+HNSW do not use it. In the vault's reading, it is also the second recent relay built on searching
+centroids before items: the Latent Sparse Attention explainer above clusters cached keys inside
+attention, and this one clusters stored embeddings inside the index.
+
 ## Related pages
+
+- [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]
+- [[Approximate Nearest-Neighbor Search]]
+- [[Retrieval-Augmented Generation]]
+- [[Meta]]
 
 - [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
 - [[Tabular Foundation Models]]

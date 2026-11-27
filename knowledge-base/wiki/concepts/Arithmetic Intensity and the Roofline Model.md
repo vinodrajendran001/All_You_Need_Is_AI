@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-25
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - arithmetic-intensity
@@ -18,6 +18,8 @@ source_ids:
   - src-2026-09-08-cohere-megakernel-serving
   - src-2026-11-11-cam-pedersen-derive-kernels
   - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
 status: active
 ---
 
@@ -154,6 +156,45 @@ guide to which optimizations pay the floor "has been wrong as often as right". O
 step's traffic floor is only **0.16–0.29** of measured time — the opposite of the Cohere framing above,
 where bandwidth is assumed to be the binding limit. All figures are first-party.
 
+## Batching moves the weight operators, not the history operators
+
+[[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] derives the same H100 BF16 ridge this page uses: about **989 TFLOPS** ÷ **3.35 TB/s** ≈
+**295 FLOP/byte**, from vendor datasheet constants. It states the October 9 correction above as a
+rule: "There is one ridge, not one per phase". Prefill and decode operators sit at different points
+on the same roofline and move with batch, context, and implementation. Only an operator can be
+classified, not a phase.
+
+Its batching table separates the two decode operators that this page treats together:
+
+- **Weight-reading linear layers** reach about **B FLOP/byte** in BF16, so they touch the ridge only
+  near **B ≈ 295**.
+- **Attention over historical KV** stays near **8 FLOP/byte** under GQA 8:1 (about **1** for MHA),
+  "about 37x below the ridge". It does not move with B, because each request reads its own history.
+
+The 8 is this page's `H_q / H_kv` decode-reuse entry for GQA, evaluated at 64 query heads and 8 KV
+heads. The conclusion matches [[Jacob Peake - AI Chip Architectures]]: batching restores weight
+reuse, but long-context decode becomes KV-bandwidth-bound.
+
+The part is also explicit about the accounting boundary. The 295 counts weight bytes only. Counting
+activation and output bytes as NVIDIA's GEMM guide does, one 8192 × 2048 TP=4 weight shard reaches
+only about **250 FLOP/byte at B = 295** and crosses nearer **B = 360**, and real kernels move the
+crossover again. Summed operator inputs and outputs are not HBM traffic, because fusion, tiling, and
+register reuse change it, with FlashAttention as the canonical case. Below the ridge, a kernel can be
+latency-limited rather than bandwidth-limited, "so the roofline says what to investigate, not which
+resource is saturated". That is consistent with the H200 traffic-floor result above, where bandwidth
+explained only part of measured decode time. Precision moves the two coordinates differently. Full
+FP8 raises the ridge to about **591** and leaves the crossing batch essentially unchanged. FP8
+weights with BF16 compute keep the ridge at 295 and roughly halve the crossing batch, to **148**.
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] applies the split to the batch-size decision. A larger batch helps only weight-reading
+layers, and only while each added request's KV still fits. In its long-document case the memory
+ceiling falls to about **14** requests per replica, far short of the batch that reaches the ridge,
+while history attention stays at about 8 FLOP/byte. The FastDecode paper it reads splits the
+transformer block along the same line. Its S-Part is the shared-weight layers that batch well, and
+its R-Part is per-sequence attention over KV. Moving R-Part off the GPU relocates the pressure to
+the interconnect, and at short sequences S-Part becomes the bottleneck again. All of
+intelligentLearn's figures are modelled estimates, not measurements.
+
 ## Open questions
 
 - Is the MLA/MTP conflict a hard architectural limit or a coincidence of current hardware balance points?
@@ -161,6 +202,7 @@ where bandwidth is assumed to be the binding limit. All figures are first-party.
 - As inference fragments across accelerators with wildly different bytes-per-FLOP ratios (Cerebras at ~1.3, GPUs near 0.002 — see [[Cerebras]] and [[Groq]]), does a single roofline framing remain useful, or does each architecture need its own?
 - How correlated are expert choices across adjacent draft positions in real MoE traffic? That correlation decides whether a verification block's arithmetic intensity is closer to 26.35 or 3.76 FLOPs/byte in the worked example.
 - What term explains the H200 gap? tang's traffic floor reaches only 0.16–0.29 of a decode step's measured time there, and removing launches did not close it.
+- At what batch does a production linear-layer kernel actually cross the ridge? intelligentLearn's own estimates move from about 295 (weight bytes only) to about 360 (counting activations and outputs) for one H100 shard, and real kernels move it again.
 
 ## Related pages
 
@@ -186,3 +228,6 @@ where bandwidth is assumed to be the binding limit. All figures are first-party.
 - [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
 - [[Cam Pedersen - Don't Write Kernels, Derive Them]]
 - [[Mixture of Experts]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn]]

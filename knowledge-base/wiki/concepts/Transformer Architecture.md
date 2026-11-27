@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - llm
@@ -27,6 +27,7 @@ source_ids:
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-11-10-goodfire-neurons-interpretable-basis
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
 status: active
 ---
 
@@ -223,6 +224,29 @@ results, on DeepSeek and Qwen, change how answers are sampled rather than the ar
 CLRS-Text the agent "already knows how to solve the tasks", so part of the gain is known
 algorithms written in as code. Whether such edits help large pretrained models is untested here.
 
+## Block design as a proposed consciousness lever
+
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] proposes judging transformer components by a
+criterion the sections above do not use: how many theories of consciousness an architecture could
+"host". It is a position paper, and none of its proposals has been tried. Three of them touch this
+page.
+
+- **A workspace-like function can be ablated.** Hoel cites Anthropic research that identified a
+  "global workspace" in Claude. Much of its function could be ablated without much loss of
+  linguistic capacity, but multistep reasoning declined and introspective or first-person language
+  fell. He reads this as initial evidence that architectures can be redesigned to fail global
+  workspace theory. The vault has not read that study.
+- **Self-repair complicates the test.** Transformers can "self-repair" after similar operations, so
+  the function could move somewhere unnoticed. Hoel suggests adapting conditional co-ablation from
+  [[Mechanistic Interpretability]].
+- **Routing and lookups as erasure.** A variant of switch-transformer routing
+  ([[Mixture of Experts]]) could discard or store computation outside what each input strictly
+  needs, and lookup tables could replace significant portions of matrix multiplication. Neither
+  comes with a measured capability cost.
+
+Like the legibility criterion above, this gives a reason to choose a block design that is separate
+from what the model can compute. The wider argument is on [[AI Consciousness and Moral Patienthood]].
+
 ## Open questions
 
 - How far can the current attention-centric blueprint scale before alternative architectures become more attractive for long-context reasoning?
@@ -230,8 +254,12 @@ algorithms written in as code. Whether such edits help large pretrained models i
 - If attention-variant design is really data-reuse design, is the reuse ladder exhausted at "one latent serves as both K and V," or is there a further rung?
 - Would removing SwiGLU's double-negative regime change capability, legibility, or both, and why does network-wide ablation of it lower some reasoning benchmarks? The companion paper ties it to reasoning length (on 24 GSM8K problems selected because removal curtailed reasoning, it fell from 1,550 to 176 tokens) but leaves the mechanism open.
 - Do architecture edits made during training, such as gated code layers or an exact-match lookup beyond the attention window, help beyond small models, and what do they cost at inference time?
+- If a workspace-like function can be ablated with little loss of linguistic capacity, what does the accompanying loss of multistep reasoning cost, and does the function stay removed once self-repair is controlled for?
 
 ## Related pages
+
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[AI Consciousness and Moral Patienthood]]
 
 - [[Nick Cammarata - Neural Networks Are Already Clean]]
 - [[Curt Tigges et al - Neurons as an Interpretable Basis]]

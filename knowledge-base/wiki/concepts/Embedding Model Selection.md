@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-19
+updated: 2026-11-27
 tags:
   - concept
   - rag
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-09-08-raji-cosine-similarity-safety
   - src-2026-09-23-kwok-contrastive-language-models
   - src-2026-10-17-bytebytego-chunking-strategies
+  - src-2026-11-23-alphasignal-e-means-rag
 status: active
 ---
 
@@ -181,6 +182,27 @@ model. And the scaling section gives functional forms without fitted exponents:
 roughly **310 tokens per parameter**. A better contrastive test loss is not by itself evidence that
 the resulting decisions are reliable.
 
+## Reclustering is the cheap rebuild beside the one-way door
+
+The migration section above concerns the vector space itself. A cluster-based index adds a second,
+cheaper rebuild over the same vectors. [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]
+relays e-means, a k-means replacement that redraws the centroid map an IVF index searches "without
+touching embeddings or query-time retrieval". Re-embedding replaces the space and needs a
+blue-green cutover. Reclustering keeps the space and redraws only the partition, which the
+newsletter says can become a weekly or nightly job on a **50-million**-document index. It reports
+results across **24** benchmarks covering text, code, image, and multimodal embeddings. It also says
+e-means "is compatible with the embedding model and document chunking strategy", a sentence that
+appears to be missing a word such as "any".
+
+In this page's reading, two consequences follow. First, the provenance list above should include the
+clustering run behind a cluster-based index: the algorithm, the cluster count, and the build date.
+Drift accumulates from that date, and two indexes over identical vectors can partition them
+differently. Second, a model migration always requires reclustering, because new vectors need new
+centroids. Cheaper clustering therefore lowers one part of the migration cost but leaves the
+re-embedding cost unchanged. The evidence is a newsletter relay that reports no downstream recall,
+and the method does not apply to graph indexes such as HNSW or to managed vector databases that
+hide clustering; see [[Approximate Nearest-Neighbor Search]].
+
 ## Open questions
 
 - If hard negatives have to be manufactured, whose blind spots bound the space? A negative generator
@@ -198,6 +220,8 @@ the resulting decisions are reliable.
 - Are the seven modes independent failures or one failure — topic dominance — seen seven ways?
 - Do the identifier and negation failures survive in current large embedding models, or are they artifacts of
   smaller ones?
+- When should a cluster-based index be reclustered rather than left to drift? The e-means relay
+  lowers the cost of a rebuild but gives no drift threshold.
 
 ## Related pages
 
@@ -224,3 +248,5 @@ the resulting decisions are reliable.
 - [[Synthetic Data Flywheel]]
 - [[Inference Efficiency Frontier]]
 - [[NVIDIA]]
+- [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]
+- [[Approximate Nearest-Neighbor Search]]

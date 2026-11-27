@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-09-04
-updated: 2026-11-20
+updated: 2026-11-27
 entity_kind: organization
 tags:
   - entity
@@ -11,11 +11,13 @@ tags:
   - knowledge-management
   - cost
   - inference
+  - retrieval
 source_ids:
   - src-2026-09-02-meta-organizational-second-brain
   - src-2026-09-27-fd-agent-muse-compute-demand
   - src-2026-10-19-rath-thin-orchestrator
   - src-2026-11-18-meta-ads-technique-propagation
+  - src-2026-11-23-alphasignal-e-means-rag
 status: active
 ---
 
@@ -25,7 +27,8 @@ status: active
 
 Technology company operating at very large scale, publisher of the Llama open-weight model family, and — in the
 vault's directly ingested Meta sources — an operator of internal domain-expert, data-onboarding, and ads-ranking technique-propagation
-agents.
+agents. A relayed research item also credits Meta FAIR with the e-means clustering algorithm
+shipped in Faiss.
 
 ## Why it matters here
 
@@ -143,6 +146,23 @@ no control, and stage metrics are named without values. Meta's Ranking Engineer 
 acronym with the unrelated "Reverse Engineer Anything" (REA) tool in the vault's @0xCodila
 reverse-engineering course summary; the two should not be merged or cross-attributed.
 
+## A research relay: FAIR's e-means clustering, shipped in Faiss
+
+[[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]] shows a different face
+of Meta from the three deployment reports above: research and open-source infrastructure. The
+newsletter credits researchers at Meta FAIR and École nationale des ponts et chaussées with
+**e-means**, a replacement for Lloyd's k-means used to build cluster-based vector indexes and to
+partition data for deduplication. It says Meta shipped the code in **Faiss 1.16.0**, with PyTorch
+GPU and NumPy CPU versions under the MIT license. The reported results, including a Lloyd baseline
+beaten in roughly one-tenth the passes across **24** benchmarks, are on
+[[Approximate Nearest-Neighbor Search]] with their caveats.
+
+The evidence differs from the reports above in two ways. It is not first-party: no Meta write-up,
+paper title, or author names appear in the capture, so the credit and the figures are the
+newsletter's relay. And it concerns a released tool whose benchmark claims anyone running
+self-hosted Faiss can check, whereas the deployment reports describe internal systems whose figures
+are estimates or lack baselines.
+
 ## Open questions
 
 - All three first-party Meta reports lean on text, code, or templates over model capability alone, and
@@ -153,6 +173,8 @@ reverse-engineering course summary; the two should not be merged or cross-attrib
 - Nothing connects Meta's internal agent architectures to the consumer-scale Muse deployment the
   third-party estimate prices. Whether the thin-orchestrator shape is used anywhere near that scale is
   unknown.
+- The e-means relay names no paper, authors, or downstream recall result. Does a primary FAIR
+  write-up support its speed and accuracy claims, and do indexes rebuilt with it recover recall?
 
 ## Related pages
 
@@ -180,3 +202,6 @@ reverse-engineering course summary; the two should not be merged or cross-attrib
 - [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
 - [[Automated AI Research]]
 - [[ML Systems at Scale]]
+- [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]
+- [[Approximate Nearest-Neighbor Search]]
+- [[Alpha Signal]]

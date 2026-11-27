@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-30
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - interpretability
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-10-20-guan-beyond-gmean-squared
   - src-2026-11-10-goodfire-neurons-interpretable-basis
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
 status: active
 ---
 
@@ -227,6 +228,35 @@ decisions and AUROC over a continuous score is not the same object as a binary-d
 Figure 9 reports pairwise ordering agreement among the metrics, but the prose supplies no agreement
 values — only the note that a random tie-free ordering would score **0.5**.
 
+## Consciousness claims face the same evidence discipline
+
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] applies this page's evidence discipline to
+whether a model is conscious, a question the identity section above sets aside. Hoel's paper is a
+position paper announcing a nonprofit research program. It argues that empirical AI-welfare research
+has "a serious bias problem". His examples are introspection claims later found to be confounded,
+and a "pain axis" that models were said to seek relief from, where confounds left unclear whether
+it drove the relief-seeking. He adds that surprising claims about how LLMs function have low
+replication rates after model turnover, and he warns of neuroimaging-style "voodoo correlations"
+and a garden of forking paths. The vault has read none of the cited studies, and the capture omits
+the reference list.
+
+Two of his arguments restate points made above. First, behavior alone cannot decide the question.
+A theory of consciousness that uses only behavior predicts whatever the experimenter already infers
+from that behavior, so it cannot be falsified, and a system trained to act non-conscious would pass
+it. This turns the identity section's warning, that a changed self-report is not evidence of
+consciousness, into a formal limit. Second, interventions need verifiers. Hoel cites Anthropic work
+that identified a "global workspace" in Claude and ablated much of its function without much loss
+of linguistic capacity, while multistep reasoning declined and introspective or first-person
+language fell. Because transformers can self-repair after ablation, the workspace could shift
+somewhere unnoticed, and he proposes adapting conditional co-ablation to check
+([[Mechanistic Interpretability]]). This is the correlation-versus-intervention gap again: an
+ablation shows that a function is gone only once compensation elsewhere has been ruled out.
+
+The source adds an asymmetry in what is at stake. Hoel wants evidence strong enough to support a
+*justified* belief that a model is not conscious, partly because training a model to deny
+consciousness may itself promote misalignment or deception. No evaluation in the vault meets that
+bar yet. See [[AI Consciousness and Moral Patienthood]].
+
 ## Open questions
 
 - Is the null result a limit of activation-reading tools *in principle*, or of current tools on simple
@@ -252,8 +282,14 @@ values — only the note that a random tie-free ordering would score **0.5**.
   says what a large residual should be attributed to, or what to report instead of an ordering.
 - The causal-recall bounds are derived and illustrated, not validated. No experiment there has a known
   causal recall against which to check whether the bounds are tight in practice.
+- What evidence could support the claim that a model is *not* conscious? On Hoel's argument,
+  behavior-only tests cannot, and his proposed workspace ablations need self-repair controls that
+  are not yet specified.
 
 ## Related pages
+
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[AI Consciousness and Moral Patienthood]]
 
 - [[Melody Guan et al - Complementary Metrics for Monitorability]]
 - [[Chain-of-Thought Monitoring]]

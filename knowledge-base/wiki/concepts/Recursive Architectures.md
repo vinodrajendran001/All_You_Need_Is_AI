@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-09-13
+updated: 2026-11-27
 tags:
   - concept
   - architecture
@@ -15,6 +15,7 @@ source_ids:
   - src-2026-09-02-raschka-astra-looped-transformers
   - src-2026-09-09-raschka-astra-looped-hidden-reasoning
   - src-2026-09-12-zhang-recurrent-looped-transformer
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
 status: active
 ---
 
@@ -142,6 +143,26 @@ fixed 96 logical blocks.
 This is a design specification, not a demonstrated gain. Sequential state updates, full BPTT, and
 state invalidation after parameter changes may dominate the claimed hardware and RL co-design.
 
+## Recurrence as structure a theory of consciousness could use
+
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] gives recurrence a role this page has not
+considered. Hoel lists a brain's "recurrency" among the internal data a theory of consciousness
+might draw on, along with its dynamics, learning, and higher-order representations. In his proposed
+ordering of systems by potential for consciousness, a single-hidden-layer feedforward network sits
+close to a lookup table, while a recurrent network "would first need to be transformed into a
+feedforward network via unfolding it". That unfolding is the same unrolling the Lineage section
+above names as the old source of training instability.
+
+In the vault's reading, this puts the page's main trend in tension with Hoel's program, which asks
+for less internal structure. Looped transformers, recurrent decoders that carry state across
+tokens, and modules that update their own parameters at inference all add internal dynamics. A
+fixed-iteration loop can be unrolled into a deeper stack with tied weights, so it may sit no farther
+from the anchor than a feedforward stack of the same depth. State carried across every token, as in
+the recurrent looped transformer above, is closer to the recurrency Hoel lists. The paper does not
+discuss looped models, autoregressive token feedback, or chain-of-thought, so it cannot say whether
+these designs count, and no source in the vault measures what avoiding them would cost in
+capability. See [[AI Consciousness and Moral Patienthood]] and [[Neural Network Fundamentals]].
+
 ## Related pages
 
 - [[Latent-Space Reasoning]]
@@ -158,3 +179,6 @@ state invalidation after parameter changes may dominate the claimed hardware and
 - [[Chain-of-Thought Monitoring]]
 - [[Sebastian Raschka]]
 - [[Sebastian Raschka - GPT-6 Astra, Looped Transformers, and Hidden Reasoning]]
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[AI Consciousness and Moral Patienthood]]
+- [[Neural Network Fundamentals]]

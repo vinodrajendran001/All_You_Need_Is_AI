@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-10-27
+updated: 2026-11-27
 tags: [concept, rag, retrieval, ai-agents, knowledge-graphs, llm]
 source_ids:
   - src-2026-05-18-rag-architecture-comparison
@@ -25,6 +25,7 @@ source_ids:
   - src-2026-10-19-bytebytego-uber-genie
   - src-2026-10-16-opensearch-beyond-top-k
   - src-2026-10-06-iusztin-rag-evals
+  - src-2026-11-23-alphasignal-e-means-rag
 status: active
 ---
 
@@ -444,6 +445,35 @@ evaluation platform it uses throughout. The figures are the practitioner's: the 
 intervals, and Grigorev calls his runner "not very scientific" yet. As with Uber, no before-and-after
 is reported for the corpus edits.
 
+## Index freshness is a staleness layer beneath evidence currency
+
+This page separates ANN recall from evidence relevance, and evidence relevance from evidence
+**currency**. [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]] names a
+staleness that sits underneath both: the index's partition of the corpus. A cluster-based index
+compares a query with centroids first and searches only the chosen clusters. When documents are
+appended without reclustering, the newsletter says centroids "lose their accuracy" and lopsided
+clusters bring "higher latency and lower recall accuracy". In this page's reading, a retired policy
+is a stale *document*, which an active-version rule can catch. Drifted centroids are a stale *map*
+of documents that may all be current, which no metadata rule catches. Only a rebuild fixes it.
+
+Rebuilds have been rationed because Lloyd's k-means makes **20-25** full passes over every vector.
+The newsletter relays **e-means**, credited to Meta FAIR and École nationale des ponts et chaussées
+and shipped in Faiss 1.16.0, as beating a Lloyd baseline in roughly **one-tenth the passes**. Its
+example is a **50-million**-document index of support tickets or internal docs. Teams delay
+reclustering such an index "for months", but with e-means it could become a weekly or nightly job
+"without touching embeddings or query-time retrieval". That makes reclustering a cheaper maintenance
+step than re-embedding, which [[Embedding Model Selection]] treats as a one-way door.
+
+The claim has clear boundaries. It applies to cluster-based indexes such as IVF. The graph-based
+HNSW index that beat IVF-SQ8 for Airtable's latency and recall targets, in
+[[ByteByteGo - How Airtable Built the Search Layer]], does not build k-means centroids. Teams on
+managed or third-party vector databases, for which the newsletter names Pinecone, Milvus, and
+Qdrant, cannot swap the clustering step. The method rebuilds static snapshots rather than handling
+streaming updates. The evidence is a newsletter relay with no paper named, an undefined "accuracy"
+metric, and no downstream recall or latency measured on rebuilt indexes, so the link between
+rebuild frequency and answer quality is argued, not shown. Index-level controls are on
+[[Approximate Nearest-Neighbor Search]].
+
 ## Open questions
 
 - **Does a document-scoring loop actually improve retrieval, or only generate suggestions?** The Uber
@@ -466,8 +496,13 @@ is reported for the corpus edits.
   weights and thresholds to a judged query set per corpus. How large must that set be for each query
   type and intent, and can any retrieval-time signal tell a complete rule from one missing its
   exception?
+- **How often must a cluster-based index be rebuilt to hold recall on a changing corpus?** The
+  e-means relay lowers the cost of a rebuild but reports no drift rate, recall, or latency for
+  rebuilt indexes.
 
 ## Related pages
+
+- [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]
 
 - [[Chanpreet Singh and Shatakshi Pandey - Beyond Top-K - Search-Confidence Guardrails for Agentic AI]]
 - [[Paul Iusztin - Stop Guessing - Evaluate Your RAG App]]

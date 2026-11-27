@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - neural-networks
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-17-strauss-weight-space-experiments
   - src-2026-11-18-toumbourou-wsp-1990s-researcher
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
 status: active
 ---
 
@@ -205,12 +206,37 @@ The post also controls for added capacity. Each candidate layer races a twin run
 switched off, and shams with the same shape and parameters but scrambled information. If a sham
 does almost as well, the gain came from extra parameters, not from what the layer computes.
 
+## Distance from a lookup table as a proposed safety measure
+
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] uses this page's basic distinctions for a
+purpose the vault has not seen: judging how far a network is from a system that no theory of
+consciousness could plausibly call conscious. The anchor is a **lookup table**, which "reads an
+input then immediately transforms it into an output as a single IF-THEN step" and offers almost no
+internal states, dynamics, or structure for a theory to use. Distance is judged by how easily a
+specifiable transformation reaches that anchor. On that measure "a single-hidden-layer feedforward
+artificial neural network is quite close to a lookup table", while a recurrent network "would first
+need to be transformed into a feedforward network via unfolding it". The ladder is built from this
+page's primitives: depth, which the non-linearity point above shows is real rather than collapsible
+into one linear map; feedforward versus recurrent computation ([[Recursive Architectures]]); and the
+matrix multiplications inside each layer.
+
+Hoel's proposed "lookup-ification" keeps the input-to-output behavior approximately while removing
+intermediate computation. His candidates, all built for other purposes, are distillation into
+shallower networks ([[Knowledge Distillation]]), nearest-neighbor retrieval of cached internal
+representations, n-gram language models, and replacing significant portions of matrix
+multiplication with lookup tables. He says many of these "could already be used" on frontier
+models, but the paper applies none of them, and it does not define how close a distilled or partly
+lookup-based network must be to count as near the anchor. The worry that the approximations may
+cost behavior or compute is, in Hoel's words, "speculation at this point". The wider argument is on
+[[AI Consciousness and Moral Patienthood]].
+
 ## Open questions
 
 - Which additional fundamentals deserve their own pages next: initialization, normalization, regularization, or batching/data pipelines?
 - How much of modern model behavior is still well explained by these fundamentals versus by scale-specific phenomena?
 - For which network sizes and tasks can reasoning-written weights compete with gradient training, and is that competition mostly against weak baselines?
 - Does the insertion-timing effect (late-inserted layer beating the same layer from step 0) hold across seeds, tasks and model sizes, and is there a rule for when to add a component?
+- Can a network's distance from a lookup table be measured, so that depth, recurrence, distillation, or partial lookup replacement could be compared, as Hoel's qualiaphobia program requires?
 
 ## Related pages
 
@@ -241,3 +267,7 @@ does almost as well, the gain came from extra parameters, not from what the laye
 - [[Jacob Strauss - Experiments in Weight-Space Programming]]
 - [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
 - [[Weight-Space Programming]]
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[AI Consciousness and Moral Patienthood]]
+- [[Knowledge Distillation]]
+- [[Recursive Architectures]]

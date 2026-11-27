@@ -80,8 +80,9 @@ than one or two giant ones". The per-step factors the capture prints range from 
 - Near 10 tokens per second, the DeepGrove founders said they had tried this months earlier, when
   models "were not quite good enough". They sent a 4,741-character prompt describing someone else's
   dense, batch-1 ternary FPGA decoder. It covered a multiplier-free ternary matmul, 2-bit weights
-  streamed from HBM, an 8-bit KV cache, online softmax, a program-order controller, a verification
-  ladder and physical-design advice.
+  streamed from HBM, an 8-bit KV cache, online softmax, MoE notes such as keeping the router in FP32,
+  a program-order controller, a verification ladder and physical-design advice. It also asked the
+  agent not to run things "that take a lot of times", such as long cycle-accurate simulations.
 - In the agent's own retrospective, written from its logs, it sorted the prompt into ten ideas to adopt
   and five to reject within 70 seconds. The adopted design ideas were mostly already planned or matched
   later work, and "I can't show these wouldn't have happened without the notes."
@@ -146,9 +147,9 @@ budget. The loop also bears on [[Automated AI Research]], [[Loop Engineering]],
 - **The baseline is the loop's own first image.** 33× measures progress over a naive, correct starting
   point, not over an optimized FPGA design. No ablation separates the agent's work from the human hints
   (speculative decoding, porting CPU work).
-- **The model is unnamed.** The DeepGrove notes describe "a dense qwen style model" with a 24-layer
-  verification step, while the implementation has an MoE router. The advice targeted a different model
-  shape from the one built, which the capture does not reconcile.
+- **The model is unnamed.** The DeepGrove notes call their own target "a dense qwen style model" yet
+  include MoE advice, and the implementation has an MoE router. The capture never names the served
+  model or its size, so the result cannot be placed against other ternary-model work.
 - **Incomplete cost accounting.** The $10,000 covers tokens only, not F2 hours or the author's time.
   There is no energy measurement.
 - **Not like-for-like.** The GPU rows run on a T4, are not bit-exact and were not optimized by the

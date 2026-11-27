@@ -45,9 +45,8 @@ a one-pod negative control. The baseline is still random routing.
 - Pinned versions: vLLM 0.31.0, kinference 0.1.0-alpha.8, gateway 0.1.0-alpha.7, and the blog's
   `Qwen/Qwen3.8-27B-FP8`. GuideLLM 0.8.1 is pinned, but a custom client replaced it to get paired
   schedules and multiturn requests that carry their history.
-- The nested cluster had to be confined against the host's cgroups and kernel, a TLS-intercepting
-  proxy and the pod's Istio sidecar, whose Envoy proxy would otherwise have load-balanced the "random"
-  arm itself. A 14-entry teardown ledger recorded every change.
+- The nested cluster had to be confined against the host's cgroups, a TLS-intercepting proxy and the
+  pod's Istio sidecar, whose Envoy proxy would otherwise have load-balanced the "random" arm itself.
 - Method differences: arms ran **back-to-back on disjoint GPUs, alternating order**, so they would not
   share one 19-core CPU cgroup and client. Every request used a new TCP connection, so kube-proxy
   re-rolled its random choice, and prefix caches were reset before every run.
@@ -76,8 +75,8 @@ load-only, and without `--enable-prompt-tokens-details` the per-request `cached_
 | control | 9.35 → 8.53 s | −8.7% (0.88-0.95) | ≈ 0 (6.92 vs 6.83 s) |
 
 Median end-to-end latency fell **31.4 → 17.9 s** (−43.2%; blog −45%) and **12.5 → 8.7 s** (−30.4%;
-blog ≈ −32%). vLLM's own counters put per-pod prefix-hit rates at 52-60% versus 11-22% (shared-prefix)
-and 78-81% versus 47-57% (multiturn).
+blog ≈ −32%), and vLLM's own counters show Kinference's per-pod prefix-hit rates well above random's
+on both workloads.
 
 ### The control row has a hardware confound
 
@@ -85,7 +84,7 @@ On control, which has no shared prefixes, the Kinference arm was about 9% faster
 no difference; p95 fell from 19.7 to 10.0 s (blog 21.5 → 12.3 s). Telemetry showed pool A at
 **~2,080 MHz** and pool B at **~1,225 MHz** at the same 299 W, and a per-pod probe after all GPUs were
 heat-soaked gave a ratio of **1.012**. The author cannot separate a transient thermal advantage from
-real load awareness. Kinference spread control requests 35/36/39 across pods, kube-proxy 48/30/32.
+real load awareness.
 
 ### Capacity under closed-loop load
 
@@ -119,10 +118,10 @@ real load awareness. Kinference spread control requests 35/36/39 across pods, ku
 
 ### Routing overhead
 
-The router added about **9 ms** at idle and **35 ms** at concurrency 4 in a 0.5B smoke test, and
-**+29 ms** (0.644 versus 0.615 s, +5% of a warm TTFT) with the real model at 1+1. Kinference's own pick
-duration averaged **103 ms** over 9,360 picks (87% ≤ 100 ms). Most of that is render tokenization,
-"part of it overlaps with work vLLM would do anyway". Kinference is alpha and ran as one replica.
+The router added **+29 ms** with the real model at 1+1 (0.644 versus 0.615 s, +5% of a warm TTFT),
+yet Kinference's own pick duration averaged **103 ms** over 9,360 picks (87% ≤ 100 ms). Most of that
+is render tokenization, "part of it overlaps with work vLLM would do anyway". Kinference is alpha and
+ran as one replica.
 
 ## Why it matters
 

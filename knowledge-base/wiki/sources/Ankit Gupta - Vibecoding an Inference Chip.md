@@ -117,10 +117,10 @@ deliver more tokens than the FPGA in this table.
 
 ### Long contexts
 
-In one generation from a 16-token prompt to the full **8,192-token** context, r9 decoded at 233 tok/s
-at 16-64 tokens and 151 at 1-2k (both from separate 2,032-token runs), then 120, 93 and 76 tok/s at
-2-4k, 4-6k and 6-8k. The whole run took **77.8 s**, against 77.6 s for r8: "r9 improves short-context
-speed, while the complete long-context run is roughly tied with r8."
+Over one generation from a 16-token prompt to the full **8,192-token** context, r9 decoded at 120, 93
+and 76 tok/s across 2-4k, 4-6k and 6-8k tokens, against 233 tok/s at 16-64 tokens in separate shorter
+runs. The whole run took **77.8 s**, against 77.6 s for r8: "r9 improves short-context speed, while the
+complete long-context run is roughly tied with r8."
 
 ## Why it matters
 
@@ -136,8 +136,9 @@ The loop also bears on [[Automated AI Research]], [[Loop Engineering]], [[Specul
 
 ## Tensions / open questions
 
-- **One self-reported project.** No repository, bitstream or logs are in the capture. The
-  "what it adopted and rejected" account is the agent's self-assessment of its own logs.
+- **One self-reported project.** No repository, bitstream or logs are in the capture, and the
+  "what it adopted and rejected" account is the agent's self-assessment of its own logs. Model names
+  are copied as written.
 - **The baseline is the loop's own first image.** 33× measures progress over a naive, correct starting
   point, not over an optimized FPGA design. No ablation separates the agent's work from the human hints
   ("consider speculative decoding"; "why is that running on CPU, you should port it").
@@ -149,7 +150,6 @@ The loop also bears on [[Automated AI Research]], [[Loop Engineering]], [[Specul
 - **Not like-for-like.** The GPU rows run on a T4, are not bit-exact and were not optimized by the
   loop. The "195×" row is a rounding of 213.13 / 1.1 (about 194, derived). The 213 tok/s headline is a
   short-context chat benchmark; at 6-8k context, decode ran at 76 tok/s.
-- The capture's author field is empty (see Citations). Model names are copied as written.
 
 ## Affected pages
 

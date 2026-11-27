@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-23
-updated: 2026-11-06
+updated: 2026-11-27
 tags:
   - concept
   - reinforcement-learning
@@ -21,6 +21,8 @@ source_ids:
   - src-2026-08-30-openai-hugging-face-incident
   - src-2026-08-30-adlrocha-base-models-bottleneck
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-20-huggingface-harness-adapters
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
 status: active
 ---
 
@@ -252,6 +254,65 @@ equal compute. The captured charts state no values in text (they survive only as
 capture reports no ablation that separates communication from extra parallel compute. See
 [[Multi-Agent Coordination]], [[Reward Design for RL]] and [[Long-Horizon Credit Assignment]].
 
+## Training through the deployed harness, with the efficiency reward kept small
+
+[[Hugging Face - Introducing Harness Adapters]] trains inside the harness rather than inside a re-implementation of it. "Most RL frameworks
+train a re-implementation of the agent loop" (verl's AgentLoop, SkyRL-Gym, rLLM, slime, ART); here "the
+harness runs exactly as it ships, and the trainer learns from the exact tokens it produced, recorded by
+a proxy between the harness and vLLM". That handles the Token-In-Token-Out concern above at the
+harness boundary rather than inside the framework, and the authors cite Agent Lightning v1.0 and
+SkyRL's Harbor integration as moving the same way. The stack is TRL's `AsyncGRPOTrainer`, which does
+not wait for every rollout before an optimization step, with OpenEnv and Harbor-format tasks on
+[[Hugging Face]] Jobs and sandboxes.
+
+Each harness gets its own LoRA adapter on a frozen Qwen3.8-27B, trained with thinking off during
+rollouts. The reward is verifier correctness plus a small tool-efficiency bonus of **0.1**, a value
+carried over from the previous iteration's experiments. A 50-step learning-rate sweep found 1e-4
+collapsing rollouts (turns fell from 18 to 6 as entropy rose), 1e-5 barely moving, and 5e-5 improving
+but unstable over longer runs, so the final runs used **2e-5**. Across three runs, **598** steps
+trained **78,114** samples (**167M** tokens). Training correctness stayed roughly flat while
+trajectories shortened, and the authors attribute most of the evaluated gain (pi on Terminal-Bench 2.1
+from **39%** to **55%** at about half the tokens) to "the model reasoning less, calling less tools,
+and performing better first time".
+
+This is the opposite choice to Granite's above. Granite generated SFT trajectories across many
+harnesses, treating harness diversity as data augmentation; Hugging Face specializes each adapter to
+one harness and then merges them. The two predict different things about transfer, and Hugging Face
+measures it: the pi adapter under OpenCode matched OpenCode's specialist on Terminal-Bench 2.1, and
+under Hermes kept about two-thirds of the specialist's gain. It also adds a failure mode to the list
+above. With thinking off, the trained models emit short reasoning-like text before tool calls
+("..wait?..let me see"), which the authors call "reasoning leakage": the model learns to "escape" from
+its non-thinking version to its thinking version. They do not think it invalidates the results. The
+evidence is first-party and single-attempt; the task pipeline and difficulty filter are on
+[[RL Environment Design]] and [[Group Relative Policy Optimization]], and the deployment side on
+[[Harness Optimization]].
+
+## A matched-budget test of trained coordination
+
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] asks whether coordination training of the kind in the collective section above already beats a
+single agent at the same budget. The study's GPT teams coordinated on an undocumented Codex message
+board, disabled by default, whose source comments describe "Tree-owned message boards for training"
+and "A board held in memory for one training rollout". The author treats it as the only channel in the
+study that any lab appears to use in training, an inference from code rather than a disclosure by
+[[OpenAI]]. On a git-in-Zig porting task at 8M weighted tokens, GPT-6.1 Sol's self-organized teams
+roughly matched one long single-agent session, closer than any other teams. A single agent whose
+budget was split into eight consecutive fresh sessions beat those teams at 8M and at 32M. The newer
+GPT-6.2 Sol's teams of 2 and 4 scored slightly below one long session on the same board, and its teams
+of 8 scored **24%** below; no restarts were run for it. The author tentatively concludes that
+GPT-6.1's teams matched mainly because its single agent "degraded as stale or irrelevant context built
+up", and that "Whatever teamwork training OpenAI may be doing does not yet seem enough for its teams
+to match a single agent at an equal budget."
+
+That bears directly on Avalon-M1. Zanichelli rates it as the only matched comparison claiming about
+parity, and notes that its n=8 swarm beat a solo agent on **35%** of benchmarks and lost on **43%**,
+against a solo baseline that is the same swarm-trained model. The two sources agree on one point: the
+collective's advantage is wall-clock time, not accuracy at equal compute. General Reasoning
+concedes that a single agent with as many output tokens "will recover much of the performance gain",
+and Zanichelli's teams of 8 finished **3 to 16** times sooner in almost all configurations while
+scoring below the single agent in **54 of 70** comparisons (figures from the post's chart captions).
+The restarted single agent is the control that neither General Reasoning nor OpenAI reported, though
+Zanichelli ran it post-hoc and on one task only. See [[Multi-Agent Coordination]].
+
 ## Open questions
 
 - Which agentic tasks have rewards that are verifiable enough for scalable RL without overfitting to artificial environments?
@@ -261,6 +322,11 @@ capture reports no ablation that separates communication from extra parallel com
 - How much environment-generated text should be masked, learned from with SFT, or treated as part of a world-model objective?
 - Does a collective trained with at most nine agents keep its learned coordination when deployed with
   hundreds, and can a flat collective advantage keep working as episodes and teams grow?
+- Does coordination training raise λ, the exponent in Ord's model under which N agents finish N^λ
+  times sooner? The one newer-model test in [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+  found GPT-6.2 Sol teams further behind a single agent than GPT-6.1 Sol's, with no restart baseline.
+  What matched-budget evaluation, including a restarted single agent, should a trained collective
+  report?
 
 ## Related pages
 
@@ -299,3 +365,9 @@ capture reports no ablation that separates communication from extra parallel com
 - [[adlrocha - Base Models Stopped Being the Bottleneck]]
 - [[Z.ai]]
 - [[Qwen]]
+- [[Hugging Face - Introducing Harness Adapters]]
+- [[Hugging Face]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+- [[OpenAI]]
+- [[Harness Optimization]]
+- [[Parameter-Efficient Fine-Tuning]]

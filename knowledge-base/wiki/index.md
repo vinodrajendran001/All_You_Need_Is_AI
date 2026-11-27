@@ -481,8 +481,8 @@ status: active
 
 Start here. This file is the content-oriented routing layer for the wiki.
 
-As of November 27, 2026: **773 typed wiki pages**, including **443 source summaries**
-representing **469 source IDs**, **149 concepts**, **110 entities**, and **48 lint reports**.
+As of November 27, 2026: **774 typed wiki pages**, including **443 source summaries**
+representing **469 source IDs**, **149 concepts**, **110 entities**, and **49 lint reports**.
 Duplicate captures
 do not create additional evidence sources. Page totals are counted from the working tree and
 exclude git-ignored local query files.
@@ -1356,6 +1356,7 @@ its unchanged article body adds no source ID or independent estimate.
 - [[2026-11-06 Lint Pass]] - Forty-sixth pass: fixed 52 claims across the 21 November 6 chains, including a reported-missing citation the capture contains, chart values described as uncaptured, and sandbox, benchmark, and deferral claims stated beyond their tests; linked three publisher entities to their own sources. All 669 pages reachable at 389-ID parity.
 - [[2026-11-13 Lint Pass]] - Forty-seventh pass: fixed 36 claims across the 24 November 13 chains, including neuron-ablation and Tornado results stated without their problem selection and corpus, chrome-capture figures tied to the wrong resolution, six misattributions, and overstated checks on the PSI proof. All 704 pages reachable at 413-ID parity.
 - [[2026-11-20 Lint Pass]] - Forty-eighth pass: fixed 46 claims across the 30 November 20 chains, including forensic readings given wider reach than the report claims, an integer-inference cushion presented as typical, compaction and tool-deferral results stretched beyond their test conditions, and a TorchTPU byline credited to the publishing account instead of the team. All 743 pages reachable at 443-ID parity.
+- [[2026-11-27 Lint Pass]] - Forty-ninth pass: fixed 66 claims across the 26 November 27 chains, including a prompting technique and a GPU stall order read backwards, harness-adapter and inference-chip comparisons stated beyond their tables, dropped "can't prove" and "may" hedges, a competitor described as selling models it builds, and a self-editing capture description that missed a footnote and a caption-only figure. All 774 pages reachable at 469-ID parity.
 
 ## Control files
 

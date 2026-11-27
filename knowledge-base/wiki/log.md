@@ -3335,3 +3335,36 @@ byte-identical to the working-tree baseline. The historical log body, templates,
 syntheses, and lint reports are unchanged. All **773 pages** are reachable, the structural audit has
 zero findings, the controls have exact **469-ID** parity, and affected-page/body-citation
 reciprocity is **A 0 / B 0 / C 0**. This ingest did not stage, commit, or push.
+
+## [2026-11-27] lint | Reversed Readings, Restored Hedges, and Scoped Comparisons
+
+Completed the forty-ninth pass in [[2026-11-27 Lint Pass]]. Whole-wiki structural checks and
+the publisher-entity backlink check were paired with a raw-text review of all 26 November 27
+source chains and their consumer edits. Every reviewer finding was rechecked against the raw
+capture before editing, and a propagation scan looked for each corrected claim across the whole
+wiki.
+
+Fixed 66 semantic findings with 101 edits on 60 pages: 28 errors, 18 missing qualifiers, 8
+overclaims, 7 misattributions, 4 internal contradictions, and 1 arithmetic slip.
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] no longer calls the model "a bit
+evasive"; the vagueness is his own prompting. [[GPU Execution Model]], [[Test-Time Scaling]],
+[[Kubernetes]], and [[Loop Engineering]] had reversed a stall order, a cause, a privilege
+setting, and a clock. The harness-adapter specialists lead on four of six pairs together, not
+each, and the swarm, inference-chip, and routing-reproduction comparisons are restored to their
+tables. Dropped hedges such as "can't prove" and "may" are back, Modaic is described as building
+competing models rather than selling them, and the Zhang and Li capture description now accounts
+for Figure 4 and footnote 16. The November 27 ingest entry above says the DoorDash figures have
+no baselines; the pages now say no quantified baselines, and that entry stays as written.
+
+The publisher check found **76** one-way pairs, all by design; the November 20 report's **72**
+appears to be a miscount and stays as written. Eighteen Related-pages links to uncited summaries
+remain as navigation. The raw survey found **186 undated captures** and **281 captures missing
+canonical fields** among **475 top-level captures**; the increase comes from the new clippings,
+and no raw metadata or filenames were changed.
+
+The inventory is **774 typed pages**, including **443 source summaries**, **149 concepts**,
+**110 entities**, and **49 lint reports**, at exact **469-ID** control parity, with every page
+reachable and reciprocity at A 0 / B 0 / C 0. Sixty-one existing wiki files changed and only the
+lint report was added. All **549 raw files**, templates, posts, queries, earlier reports, and
+historical log text remain preserved against the post-ingest byte baseline. Nothing was staged,
+committed, or pushed by this pass.

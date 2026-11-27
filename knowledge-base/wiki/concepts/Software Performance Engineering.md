@@ -21,6 +21,7 @@ source_ids:
   - src-2026-11-19-intelligentlearn-inference-systems-part-3
   - src-2026-11-24-intelligentlearn-inference-systems-part-4
   - src-2026-11-23-tomassetti-legacy-modernization-measured
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -94,6 +95,16 @@ descriptions. Budgets, pinned artifacts, and cheap preflight checks make explora
 controlled, but no all-in cost comparison establishes how much the automation itself saves.
 The useful generalization is experimental discipline for automated candidate generation,
 not a promise that more optimization attempts always pay.
+
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]] adds
+a hardware confound to the noise floor: "A kernel at a lower clock looks slower for reasons unrelated to
+its code". Its protocol runs each GPU kernel back to back for 4 s, interleaved over 3 rounds with 30 s
+cool-downs, sampling every 10 ms. At N = 4096 both custom kernels sat at the 220 W power cap in 93–98%
+of samples. Non-causal times "jump between two speeds for every kernel", so a 1% gap there is noise.
+The profiler fixes the clock, so its "durations are not wall-clock speeds" and its gains cannot be
+added to the harness's. The author's rule generalizes beyond kernels: "Interleave, cool down, and
+record clock, power and throttle reasons next to every time." The results are self-reported on one
+consumer GPU.
 
 ## An agent can find the waste while measurement decides what ships
 
@@ -227,3 +238,4 @@ acceptable, and examine what they did not, such as several users and jobs workin
 - [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
 - [[intelligentLearn]]
 - [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]

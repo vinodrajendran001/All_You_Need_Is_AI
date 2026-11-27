@@ -28,6 +28,7 @@ source_ids:
   - src-2026-11-10-goodfire-neurons-interpretable-basis
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-09-erik-hoel-qualiaphobic-networks
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -78,6 +79,16 @@ This is the core blueprint behind most of the vault's LLM-related material. If t
 [[Wafer - AI Performance Engineering Resources]] supplies the IO-aware attention lineage this page has referenced only in passing. **FlashAttention** made exact attention memory-efficient by tiling and never materializing the full attention matrix; **FlashAttention-2** improved work partitioning and parallelism; **FlashAttention-3** exploits Hopper's asynchrony and low precision. The list also carries **FlashInfer** for serving-side attention kernels and **FlashMLA** for DeepSeek-style latent attention on Hopper.
 
 This lineage matters to architecture, not only to implementation. FlashAttention did not change what attention computes — it changed what attention *costs in memory traffic*, which is what made long contexts economically viable and therefore what made the architectural choices around context length possible at all. See [[Arithmetic Intensity and the Roofline Model]] for why the win is measured in bytes moved rather than FLOPs, and [[GPU Kernel Optimization]] for the class of transformation involved.
+
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]] makes
+FlashAttention-2's improved work partitioning concrete for one forward kernel. Its 4 warps are stacked
+along the query rows, so each row of the score tile stays inside one warp (and inside one 4-lane quad).
+The online softmax's row maximum and sum then need only register shuffles, not a trip through shared
+memory on every key block. The same algorithm without the surrounding data-movement choices (swizzled
+shared memory, `ldmatrix` operand loads, `cp.async` copies) ran **2.5–2.8×** slower than a tuned Triton
+kernel and PyTorch's SDPA. This again shows that the lineage's gains come from scheduling and data
+movement rather than from a change to what attention computes. The figures are self-reported on one
+RTX 4070 SUPER, forward pass only, head size 64.
 
 ## Layer reuse is a well-explored variation with a known and unflattering cost profile
 
@@ -300,3 +311,4 @@ from what the model can compute. The wider argument is on [[AI Consciousness and
 - [[Recursive Architectures]]
 - [[Latent-Space Reasoning]]
 - [[Sebastian Raschka]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]

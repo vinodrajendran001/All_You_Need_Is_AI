@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - hardware
@@ -10,6 +10,7 @@ source_ids:
   - src-2026-09-07-semianalysis-tpu-inferencex
   - src-2026-10-21-simpson-torchtpu
   - src-2026-11-18-pueyo-hardware-is-software
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
 status: active
 ---
 
@@ -153,6 +154,17 @@ against the original? It is a secondhand X post, relayed by an essayist who inve
 company Terraform. Treat it as a claim to test, not evidence that the externalization bill has fallen.
 See [[NVIDIA]].
 
+[[Ankit Gupta - Vibecoding an Inference Chip]] supplies a small, concrete point on the same axis. About **$10,000**
+in Claude and OpenAI tokens bought a coding agent's implementation and 33× optimization of bit-exact
+inference for one unnamed ternary model on one AWS FPGA, in C++ and Verilog, for an author who had
+never written Verilog. That is consistent in direction with the forecast: a narrow hardware-software
+stack was built with a token budget instead of a team. It tests none of the forecast's terms. It
+covers one model rather than a framework's operator surface, the alternatives were not optimized to a
+matched standard, the author does not recommend the setup for production, and the token bill excludes
+instance hours and the author's time. The author also credits humans with the part that mattered,
+defining "how to iterate fast and what correctness looks like", so the money bought exploration
+inside a contract a person set.
+
 ## Open questions
 
 - The results come from an Official Preview on one model. Google was presumably involved in tuning, and
@@ -199,3 +211,4 @@ See [[NVIDIA]].
 - [[Google Cloud]]
 - [[Tomas Pueyo - Hardware Is Software]]
 - [[NVIDIA]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]

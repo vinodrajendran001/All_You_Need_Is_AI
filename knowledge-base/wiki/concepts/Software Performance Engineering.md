@@ -163,18 +163,19 @@ and colocation interference".
 basis held, whether a local metric or the service improved, and what remains unmeasured. A usable
 comparison has an explicit denominator: hardware including any added CPUs or interconnect, precision
 and quality, the joint request-length and prefix-reuse distribution, and the SLO. A faster kernel,
-a higher cache hit rate, or higher mean throughput is a local metric. It matches the Decagon rule
+a higher cache hit rate, or higher mean throughput is a local metric, and the part warns that all three "can all coexist with
+a worse service". It matches the Decagon rule
 above that local wins must translate into requests per GPU under endpoint latency limits, reached
 from the reviewer's side rather than the optimizer's. A pass on an earlier question does not answer
 a later one.
 
-**End at "needs measurement" when that is the honest answer.** [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] works the case to one
-computed ceiling, one illustrative conditional choice, and a measurement plan that ties each unknown
-to the decision it resolves. Adoption requires per-workload-class gains in P95 TTFT, the P95 token
+**Leave unknown branches labelled as measurements.** [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] works the case to one
+computed ceiling and one conditional choice that "stays labeled as arithmetic". Every remaining
+branch becomes a measurement in a plan that ties each unknown to the decision it resolves. Adoption requires per-workload-class gains in P95 TTFT, the P95 token
 gap, SLO attainment, goodput, and timeout, rejection, and quality outcomes. Its appendices then
 audit the evidence itself, separating 15 deeply read papers from 146 used only for placement and 11
-read only at abstract level. That is an evidence-depth label this page's sources do not otherwise
-apply to literature.
+read only at abstract level. The same evidence standard is applied to the literature as to a
+proposed change.
 
 ## Open questions
 

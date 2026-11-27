@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-10-27
+updated: 2026-11-27
 tags:
   - concept
   - hardware
@@ -28,6 +28,7 @@ source_ids:
   - src-2026-10-26-cerebras-trillion-parameter
   - src-2026-04-19-karray-neuromorphic-guide
   - src-2026-07-27-waterloo-intern-gpt2-to-kimi-k3
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
 status: active
 ---
 
@@ -299,6 +300,38 @@ tests come without workload, configuration, or citation. By the guide's own figu
 neurons, proportional savings top out near a hundredfold, short of the upper end it says sparsity
 "largely explains". No comparison holds accuracy or latency fixed.
 
+## An agent-built FPGA decoder tests the FPGA trade-off
+
+[[Ankit Gupta - Vibecoding an Inference Chip]] is the vault's first hands-on account of LLM decode on an FPGA. A
+coding agent, steered mostly by encouragement, implemented bit-exact inference for a DeepGrove
+ternary-weight model on an AWS F2 instance with 16 GB of FPGA HBM. It took throughput from **6.43**
+to **213.13** tokens per second in 14 measured steps. It is one self-reported project, but it tests
+the FPGA bullet in the current synthesis on four points.
+
+- **"Fast to redeploy" is relative.** Reprogramming needs no tape-out, but iteration was still slow.
+  The agent stopped a simulation that had run for about 24 hours, and its retrospective ties 38 lost
+  hours in one integration to two hangs that only RTL simulation would have caught. The clock is also
+  an outcome of each design, not a property of the part. It went from 250 MHz to 237.5/450, fell to
+  181/375 when memory ports doubled, and was finally set one step below 231.25/450 after a soak test
+  found random faults. A deterministic fabric is not deterministic at any clock.
+- **The memory wall dominates here too.** Most large gains came from data movement: reading KV in
+  bursts, fixing a router-weight relay between dies (stall per layer 43,862 → 12,292 cycles), doubling
+  memory ports, hiding KV fetches behind compute, and a lossless 5-trit packing that cut weight bytes
+  by 20%. The memory subsystem was built from AWS's reference design, which reaches **426 GB/s** across
+  32 channels. Crossings between the chip's dies recur as a cost, which is the compute-versus-
+  communication principle inside one package.
+- **Exactness is a design contract with an efficiency price.** The bit-exact rule ruled out five
+  numerics shortcuts offered by the DeepGrove founders, including an 8-bit KV cache and online
+  softmax; in the agent's retrospective, that is "where their design got its efficiency". Against a
+  pinned CPU reference the FPGA matched 24 of 24 benchmark turns. Two T4 GPU implementations matched 1
+  and 0, though the author calls them "pretty close in practice".
+- **Price per hour, not efficiency.** On one 8-chat benchmark the FPGA (213.13 tok/s at $1.98 an hour)
+  beat an exact 32-thread CPU implementation (129.5 tok/s at $1.95) by 1.65× and a community CUDA port
+  on a T4 (166.3 tok/s at $0.53) by 1.28×. Per dollar, the cheaper rows deliver more tokens (a derived
+  reading). There is no energy measurement, and the author calls a 1:1 comparison difficult because he
+  did not run the same optimization loop on the alternatives. Decode slowed to 76 tok/s at 6-8k
+  context, and a full 8,192-token run took about as long as the previous image's.
+
 ## Open questions
 
 - Which future model architectures will favor larger TPU-like units versus more GPU-like flexible tiles?
@@ -313,6 +346,9 @@ neurons, proportional savings top out near a hundredfold, short of the upper end
 - Does the 1,024-bytes-for-512 padding ratio in the TorchTPU KV example generalize beyond that unnamed configuration, or is it an artifact of one head dimension meeting one lane width?
 - Kimi K3 now has two placements here, 16 TPU v7 chips ([[Inferact - 700 TPS on Kimi K3 - A Case for TPU Megakernels]]) and 59 WSE-3T wafers ([[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]), and three layer counts: 92 MoE layers, 69 linear-attention plus 24 dense, and 23 four-layer macrocycles ([[@waterloo_intern - From GPT-2 to Kimi K3]]). Neither source gives power or cost; would tokens per second per megawatt at a matched per-user speed, the Cerebras post's proposal, be enough to rank them?
 - Would any of the efficiency factors in [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]] survive a matched comparison at equal task accuracy and latency, with idle leakage, memory retention, and sensor power inside the energy boundary? The vault has no primary measurement of neuromorphic hardware.
+- What would a matched FPGA, CPU and GPU comparison of LLM decode hold fixed? The one FPGA account
+  here optimized only the FPGA path, priced instances per hour rather than measuring energy, and
+  required a bit-exactness that its GPU rows did not meet.
 
 ## Related pages
 
@@ -355,3 +391,4 @@ neurons, proportional savings top out near a hundredfold, short of the upper end
 - [[Sarah Chieng - How Cerebras Deploys Trillion-Parameter AI Models]]
 - [[Yasmine Karray - Neuromorphic Computing - A Complete Guide]]
 - [[@waterloo_intern - From GPT-2 to Kimi K3]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - benchmarks
@@ -29,6 +29,8 @@ source_ids:
   - src-2026-10-29-decagon-autoresearch-inference
   - src-2026-11-15-anshuman-mishra-baseten-2000tps
   - src-2026-10-31-william-morgan-kinference-benchmarks
+  - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
+  - src-2026-11-24-vllm-gr-announcement
 status: active
 ---
 
@@ -378,6 +380,61 @@ different concurrencies, **14.0** (at 16) against **103.0** (at 32). At concurre
 **2.1×** and **1.5×**. The SLOs were chosen so both arms could attain them, yet the Service arm attained
 neither at any concurrency.
 
+## A reproduction agrees on direction and diverges on magnitude
+
+[[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]] is an independent, self-reported rerun of the Buoyant
+benchmark above, on one shared node of RTX 6000 Ada GPUs (the L40S die, capped at 300 W against
+350 W) inside a nested k3s cluster. It kept the vLLM version, the model and the bootstrap method, and
+changed four things this page cares about. The SLOs were recalibrated to 1.2× its own idle uncached
+TTFT, **10.0 s** and **5.0 s** against the blog's 8 s and 4 s, because prefill ran about 22% slower. A
+custom client replaced GuideLLM to get paired schedules. Arms ran back-to-back on disjoint GPUs in
+alternating order. Prefix caches were reset before every run.
+
+Every headline holds in direction, and the magnitudes split both ways:
+
+| Metric | Reproduction | Blog |
+| --- | --- | --- |
+| Median TTFT, shared-prefix | −93.6% | −95% |
+| Median TTFT, multiturn | −54.0% | about −65% |
+| Peak goodput, shared-prefix | **2.9×** (7.1 → 20.9 req/min) | **7.4×** (14.0 → 103.0) |
+| Peak goodput, multiturn | **4.1×** (15.5 → 64.4 req/min) | **3.5×** |
+
+Three results bear on how serving benchmarks are read.
+
+- **"Identical hardware" has to be measured.** On the control workload, which has no shared prefixes,
+  the router's arm was about 9% faster where the blog found no difference. Telemetry showed one pool
+  near 2,080 MHz and the other near 1,225 MHz at the same power, and a per-pod probe after all GPUs
+  were heat-soaked gave a ratio of 1.012. The author cannot separate a thermal advantage from load
+  awareness in that row.
+- **A goodput SLO can reverse the ranking past saturation.** At concurrency 32 both arms served about
+  the same throughput, but the cache-aware arm's SLO attainment fell to 0 while random routing kept
+  6-21%. Even balancing makes every request queue alike and miss together. In the author's words,
+  goodput "rewards variance near the SLO cliff", so a goodput curve should be compared below its knee.
+- **A negative control makes a routing claim causal.** In a pool-size sweep, one pod per pool leaves
+  the router no choice, and the gain was not significant (1.10× multiturn, 0.97× shared-prefix). It
+  rose to 3.25× / 1.97× with two pods and 3.61× / 2.93× with three. The blog tested one pool size.
+
+The two accounts disagree about the blog's own method. The reproduction says "The blog fired both
+arms simultaneously". The blog's text in the vault says the arms "ran one after the other, and order
+alternated between conditions", but also that latency requests "were sent at identical times". The
+vault cannot resolve which is right. The reproduction's own summary pitch quotes the favourable
+multiturn goodput (4.1× against 3.5×) and not the shared-prefix shortfall, so a reproduction can pick
+its slice just as a vendor can.
+
+## One chart family, several measurement protocols
+
+[[vLLM-GR Team - Announcing vLLM-GR]] shows how a cross-hardware latency chart can mix protocols in one
+figure. Its P99 comparisons span four NVIDIA GPUs and two Ascend NPUs, but the post says the runs used
+"different timing definitions, sample counts, and backend settings". Only the RTX PRO 6000 protocol is
+complete: 48 timed batches after three warmups, HTTP excluded, catalog constraints off. L20 points
+used 100 to 1,000 timed batches. On Ascend, two backends used a catalog constraint table and the
+third's setting "was not recorded". SGLang Beam also searched a candidate pool twice the beam width,
+where the others used one equal to it. The headline, the lowest P99 at batch sizes 4 and 8 on all six
+accelerators, holds at beam width 256; at width 128 and at batch 1 the winner varies. This page's
+standard applies directly: compare within a panel, read the headline as the best slice, and note that
+the post reports neither throughput nor recommendation quality, so none of these latencies is a
+goodput.
+
 ## Open questions
 
 - Goodput requires a chosen SLO, and the SLO is a product decision. How should benchmarks compare systems whose users have genuinely different latency requirements?
@@ -389,7 +446,7 @@ neither at any concurrency.
 - TTFT, TPOT and goodput all presuppose per-request latency targets. What metric applies to a prefill-only workload with one output token per request, where the requests are generated by a planner rather than waited on by a user?
 - For a fleet that both trains and serves on shared GPUs, how should fleet-level goodput (useful work completed) be connected to request-level goodput (completions under latency SLOs)?
 - Power-normalised throughput needs a boundary and an operating point: chip, system, or facility power, and which per-user speed? The Cerebras proposal specifies neither, so two vendors could both report tokens per second per megawatt and still not be comparable.
-- How much of a cache-aware router's measured gain survives against a session-affine or another prefix-aware baseline, rather than random routing? The vault's one measurement compares against random.
+- How much of a cache-aware router's measured gain survives against a session-affine or another prefix-aware baseline, rather than random routing? The vault's one measurement compares against random. **Updated 2026-11-27:** the independent reproduction, [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]], also compares only against random routing. It argues against ClientIP session affinity and consistent hashing but tests neither.
 
 ## Related pages
 
@@ -428,3 +485,5 @@ neither at any concurrency.
 - [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]]
 - [[Baseten]]
 - [[Kubernetes]]
+- [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
+- [[vLLM-GR Team - Announcing vLLM-GR]]

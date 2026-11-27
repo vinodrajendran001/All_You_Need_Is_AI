@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-10
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - routing
@@ -33,6 +33,7 @@ source_ids:
   - src-2026-06-11-0xcodez-fable-5-self-improving-agents
   - src-2026-07-20-0xcodez-graph-engineering-roadmap
   - src-2026-11-03-william-morgan-kinference-launch
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -421,6 +422,25 @@ and "keep the merge node up" — is role routing applied to a split-work-merge g
 reports cost or quality measurements, so both are configuration advice, not evidence that the
 downgrade holds.
 
+## A skill can carry its own route, and each downgrade is measured after the change
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] moves the role-routing pattern above inside a single [[Agent Skill]]. The skill dispatches one
+worker subagent, and the caller picks its model: "a small model for lookups, the most capable one for
+correlating results." The large tool result stays in the worker's context and only a bounded summary
+returns, so later turns do not pay for it again. That joins the route to the context handoff discussed
+above: part of the saving comes from the cheaper tier, part from keeping the result out of the main
+session. In a before-and-after comparison, the cost per invocation of a tracing skill fell **46%**.
+A deployment skill showed no drop in its first week, "so we measure each skill after its change". The
+same reasoning moved pull-request polling to a background agent on a cheaper model after notification
+turns were found to be about a third of spend in the **20** highest-spend sessions.
+
+This agrees with Cohere's finding that cheap workers can gather information while the strong model
+decides, and with its warning that the decision-maker should not be downgraded. The evidence is
+thinner: single-skill before-and-after cost figures, a cost window that includes other tool calls,
+and no quality measure for either change, so they show that the route was cheaper, not that it was
+safe. Uber's next steps include a task router that would send each request "to the right agent,
+skills, and context", with no design given. The account is first-party.
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -446,6 +466,9 @@ downgrade holds.
   often must a router's cost table be re-measured on its own traffic, and does every model update reset it?
 - When an agent routes by data shape to several specialist models, who owns evaluation and drift
   monitoring for each, and at what call volume does that overhead exceed asking one frontier model?
+- Uber's worker-model downgrade cut one skill's cost by 46% and another's not at all in a week. Can
+  a skill's suitability for a cheaper worker be predicted from what it does, or must every skill be
+  measured after the change, as Uber does?
 
 ## Related pages
 
@@ -505,3 +528,7 @@ downgrade holds.
 - [[@0xCodez]]
 - [[William Morgan - Kinference Inference Control Plane for Kubernetes]]
 - [[Kubernetes]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Uber]]
+- [[Agent Skill]]
+- [[Tool Roster Economics]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-11-20
+updated: 2026-11-27
 tags: [concept, inference, serving, llm-systems]
 source_ids:
   - src-2026-08-24-bytebytego-ollama-vllm-sglang
@@ -31,6 +31,8 @@ source_ids:
   - src-2026-11-15-anshuman-mishra-baseten-2000tps
   - src-2026-11-03-william-morgan-kinference-launch
   - src-2026-10-31-william-morgan-kinference-benchmarks
+  - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
+  - src-2026-11-24-vllm-gr-announcement
 status: active
 ---
 
@@ -132,6 +134,22 @@ Engine comparisons should report the output interface and candidate-set size alo
 length, concurrency, hardware, quality, and latency; a text-generation throughput benchmark
 cannot stand in for a ranking-service benchmark.
 
+## An engine can own the whole search instead of one decode step
+
+[[vLLM-GR Team - Announcing vLLM-GR]] takes the opposite path from GenRec above. Generative recommendation
+keeps a decode loop but makes it short and wide: in the post's example, OneRec-1.7B produces **128
+candidate semantic IDs** of a few tokens each. vLLM-GR moves the whole beam search into the engine.
+EngineCore owns each beam session from admission to completion, beam selection runs on the
+accelerator, the host prepares the next stage while the device runs the current one, and a catalog
+constraint can reject prefixes that match no item. The client submits one request through a Python
+interface, OpenAI-compatible HTTP or gRPC, and receives candidates and scores.
+
+That is a third output interface, beside text generation and prefill-only scoring, which reinforces the
+reporting rule above. Its benchmarks state beam width, candidate-pool size, batch size, input length
+and hardware, but report only P99 latency, with no throughput or recommendation quality. The
+comparisons are first-party, and their protocols differ by platform; see
+[[Serving Benchmarks and Goodput]].
+
 ## What the engine is actually doing
 
 [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]] gives the serving layer's
@@ -220,6 +238,32 @@ Kubernetes inference ecosystem". The GKE source above already describes Critical
 priority on Kubernetes resources. The broader policy surface may be new; the idea is not. The post
 documents no policy language, evaluation order or conflict rule, and its only performance evidence is
 Buoyant's own benchmark, [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]].
+
+## Inside one endpoint picker: tokenization, a wait model, and a fail-closed hook
+
+[[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]] documents what Kinference's `Pick` call does, from an independent
+deployment of the alpha release. For each request the gateway calls Pick over gRPC. Pick tokenizes
+the prompt through vLLM's render endpoint, hashes it into blocks, and matches them against a radix tree
+built from each worker's KV events, which carry sequence numbers and can be replayed after a gap. It
+scrapes load once a second and picks the worker with the lowest predicted wait: a base cost, queued
+prefill, a prefill term on uncached tokens, and decode contention. Two details explain why it holds up
+under bursts. A prefix is credited to a worker as soon as a request is dispatched, before its KV events
+arrive, so a burst for a new prefix does not scatter. A replication override can deliberately warm a
+second worker for a hot prefix.
+
+The reproduction also shows how far this layer depends on engine flags. With vLLM 0.31 the render
+endpoints are mounted only with `--enable-scale-out`; without it, render returned 404 and picks fell
+back to load-only routing until the author traced the cause. Per-request `cached_tokens` stayed null
+until `--enable-prompt-tokens-details` was set, and that counter was the author's check on cache hits
+independent of the router's own claims. The hook was configured with `failureMode: Closed`, so a
+router outage fails requests instead of silently falling back to random routing.
+
+The wait model's default coefficients predicted about 33 s for a 16k prefill against 8.2 s measured,
+about 4× off, yet routing still worked because only the ranking between workers matters. The measured
+cost was about **+29 ms** of TTFT with the real model in a one-pod-per-pool setup where routing could
+not help, against a mean Pick time of **103 ms**. The author says tokenization partly overlaps work vLLM
+would do anyway, which is asserted rather than measured. Kinference ran as a single alpha replica, so
+with fail-closed it is also a component whose outage stops traffic.
 
 ## Connector modes change the router's job
 
@@ -530,3 +574,5 @@ establish a TPS ranking". The comparison is between configurations, not engines.
 - [[Thinking Machines]]
 - [[Inference Determinism]]
 - [[Kubernetes]]
+- [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
+- [[vLLM-GR Team - Announcing vLLM-GR]]

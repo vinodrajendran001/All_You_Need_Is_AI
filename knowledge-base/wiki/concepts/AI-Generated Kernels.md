@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - kernels
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-perf-contributing-source-policy
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-11-11-cam-pedersen-derive-kernels
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
 status: active
 ---
 
@@ -102,6 +103,29 @@ Its autotuner also writes every (graph, chip, schedule, time) result to a cache 
 model" — the same success-and-failure memory the Baseten loop keeps, but over schedules rather than
 code. Whether search over a verified algebra or agentic code generation climbs further is untested.
 
+## A hardware loop where bit-exactness is the verifier
+
+[[Ankit Gupta - Vibecoding an Inference Chip]] extends agent-written low-level code from GPU kernels to FPGA
+hardware. A coding agent wrote C++ and some Verilog for an author who says he has "never written
+Verilog". It ran hundreds of experiments for about $10,000 in tokens and took a bit-exact LLM decoder
+from **6.43** to **213.13** tokens per second, **33.13×**, in 14 measured steps of 1.03× to 1.74× each.
+
+The verifier is the kind this page argues such a loop needs. Every step had to match a pinned
+reference bit for bit, which is much harder to game than a tolerance check, and it led the agent to
+reject every precision shortcut in the human advice. The contract was not enough on its own. A soak
+test found random faults at one clock, so the final image runs a step slower. The agent's
+retrospective also ties 38 lost hours to two hangs that only RTL simulation would have caught, after
+it had dropped long simulations for a faster loop. Correctness here needed both the output check and a
+stability check under sustained load.
+
+The size of the gain fits the inverse-headroom rule above, with the same caution. Baseten's ~5.5% on
+mature LLM kernels and this 33× sit at opposite ends, but the FPGA figure is measured from the loop's
+own first correct image, in a domain with little prior tuning for this model, not against an optimized
+human design. No ablation separates the agent's work from the author's hints, and the alternatives it
+was compared with were not optimized by the same loop. The author's conclusion is that "the humans are
+still useful at defining how to iterate fast and what correctness looks like, and the agents are great
+to manage the exploration."
+
 ## Open questions
 
 - Do generated kernels climb the full optimization ladder in [[GPU Kernel Optimization]], or do they mostly capture its first rungs — where the transformations are well documented and the search space is small?
@@ -109,6 +133,8 @@ code. Whether search over a verified algebra or agentic code generation climbs f
 - Speed-of-light comparison needs a credible model of achievable performance for each operator. Who maintains that model, and what happens when it is wrong?
 - If kernel generation does work, does the advantage accrue to whoever owns the hardware documentation and profiling telemetry rather than to whoever owns the model?
 - How should a vault or a team cite a generated kernel's performance claim under an evidence standard that requires a reproducible baseline?
+- Does agentic optimization carry over to hardware design generally, or only where a bit-exact
+  reference makes verification cheap? The one FPGA account in the vault had such a reference.
 
 ## Related pages
 
@@ -124,3 +150,5 @@ code. Whether search over a verified algebra or agentic code generation climbs f
 - [[Baseten]]
 - [[Inference Efficiency Frontier]]
 - [[Cam Pedersen - Don't Write Kernels, Derive Them]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]
+- [[AI Accelerator Architecture]]

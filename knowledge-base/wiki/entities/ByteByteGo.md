@@ -2,7 +2,7 @@
 type: entity
 entity_kind: publication
 created: 2026-05-13
-updated: 2026-11-20
+updated: 2026-11-27
 tags: [entity, newsletter, system-design, engineering]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -47,6 +47,7 @@ source_ids:
   - src-2026-11-11-bytebytego-github-copilot-rust-port
   - src-2026-11-15-bytebytego-ep233-kubernetes
   - src-2026-11-18-bytebytego-thinking-more-dumb
+  - src-2026-11-24-bytebytego-doordash-dispatch
 status: active
 ---
 
@@ -363,6 +364,20 @@ block that is not part of the article. Its advice to compare the same model on t
 different reasoning budgets is sound, but the article does not apply it, which fits the open question
 below about the absence of controlled comparisons.
 
+## A dispatch relay with a staged rollout and no reported comparison
+
+[[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] is another named-deployment
+relay, of one DoorDash engineering post the vault has not captured, and it carries the publisher's
+disclaimer that it "is based on publicly shared details". Its mechanism is clear and checkable: a
+coordinator tier separated from stateless compute workers, localized payloads, geographic
+decomposition with global reconciliation, and a two-level split for ML serving. Its numbers are
+DoorDash's: **10×** dispatch processing scale, more than **99.96%** of runs under 20 seconds and more
+than **99.99%** availability during Super Bowl spikes, plus unquantified gains in acceptance,
+efficiency, earnings and "millions of dollars" of savings. None has a stated baseline. The article
+describes shadow testing and production switchback experiments, which are controlled comparisons by
+design, but reports no result from either. The issue opens with a sponsored CI-tooling block, which
+the vault's summary excludes.
+
 ## Open questions
 
 - **Does relaying a named deployment improve this source's evidence quality, or only relocate the
@@ -374,6 +389,8 @@ below about the absence of controlled comparisons.
 - No post from this publisher has yet reported a controlled comparison, an ablation, or a baseline of
   its own. The vault treats its figures as orientation, and no later source has yet tested one. The
   Salesforce piece is no exception: its token comparison is one vendor demo with unequal step counts.
+  The DoorDash dispatch relay describes switchback experiments, a controlled design, but reports none
+  of their results.
 
 ## Related pages
 
@@ -454,3 +471,5 @@ below about the absence of controlled comparisons.
 - [[Kubernetes]]
 - [[ByteByteGo - Why Thinking More Can Make an LLM Dumb]]
 - [[Test-Time Scaling]]
+- [[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]]
+- [[DoorDash]]

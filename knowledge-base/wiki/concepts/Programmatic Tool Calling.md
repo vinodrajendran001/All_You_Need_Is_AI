@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-10-29-factory-droid-frontier-harness
   - src-2026-11-01-philipp-schmid-code-mode
   - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -140,6 +141,26 @@ chooses". Kinlan says he is "in two minds" about it. The post does not say how a
 script is detected or retired, and it describes no per-call approval for granted tools. Its speed-up
 and the "almost zero" cost are unmeasured.
 
+## Code Mode as shared packages behind a tool gateway
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] reports an enterprise adoption of the pattern, "Inspired by [[Cloudflare]]'s Code Mode". Uber
+saw many tokens going to the same tool calls (run a query and read the response, read and send a Slack
+message, search remote code, read and send email), where "The agent wanted only the result". It moved
+these flows into utility scripts that call tools through its gateway and aifx. In its configuration
+that avoided preloading the tool definitions, and Figure 14 describes the result going to a file
+rather than into the context window, the same split between a declared return and the full result
+that Factory and Schmid draw above. Uber says the scripts improved the success rate, the latency and
+the cost of its most-used flows, without figures.
+
+What is new here is reuse at company scale. "The code mode skills became packages that the rest of
+the company's skills reference by name, which lets them depend on high-quality implementations for
+their flows." That is Kinlan's saved script promoted from one user's browser to a shared dependency,
+with the same open question attached: the post does not say how a package that has drifted from the
+tool behind it is detected. Uber's framing is narrower than Schmid's single-tool convergence. "Steps
+that never vary run in scripts", so code takes the deterministic part of a workflow while the model
+keeps the judgement, which is closer to the boundary question below than to "all tools become
+functions". It also blocks `.mcp.json` files, which install tool servers, in skills and plugins.
+
 ## Open questions
 
 - Where is the boundary? Some tools genuinely want a constrained schema — irreversible actions, anything with an approval gate. Does PTC mean *all* tools become functions, or that a code tool sits alongside a small set of governed JSON tools?
@@ -171,3 +192,6 @@ and the "almost zero" cost are unmeasured.
 - [[Paul Kinlan - My Chrome Extensions Are Just Prompts]]
 - [[Paul Kinlan]]
 - [[LLM-Native Extensible Software]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Uber]]
+- [[Cloudflare]]

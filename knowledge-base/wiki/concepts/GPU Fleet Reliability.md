@@ -194,8 +194,8 @@ end to end:
   prefill-to-decode handover behaves like the gang dependency in synchronous training: one member
   can stop the group.
 - **Substrate (L1).** Replacing capacity is bounded by materialization time. HydraServe measured a
-  production cold start of **>40 s**, of which host-to-GPU transfer was only about **2 s**. Pulling
-  weights from remote storage was the main bottleneck. If burst duration ÷ cold-start time is below 1,
+  production cold start of **>40 s**, of which host-to-GPU weight transfer was only about **2 s**. By
+  the paper's own account, pulling the model from remote storage was the main bottleneck. If burst duration ÷ cold-start time is below 1,
   scaling out "cannot arrive in time", and the lever is admission or degradation, not the replica
   count. Prewarming trades that delay for idle GPUs.
 - **Contract (L5).** A study of production inference incidents finds HTTP 500s in **74%** of
@@ -211,8 +211,10 @@ end to end:
 is that scaling cannot keep up with bursts or that GPU utilization stays low. Operators should
 measure the full distribution from scale-out decision to a ready replica rather than one mean.
 HydraServe's >40 s is scoped to that paper's environment. The evidence base is thin by the author's
-own account. The corpus holds only **5** L0 papers (a cap of 150 admitted 5) and **3** L5 papers, and
-the author attributes both to search vocabulary and budget, not to the field.
+own account. The corpus holds only **3** L5 papers, which the author calls "first of all an artefact
+of how I searched", because L5 had the smallest query budget. L0 holds only **5** papers despite a cap
+of 150, which the author reads as query terms that miss the layer's vocabulary. Neither count is a
+finding about the field.
 
 ## Open questions
 

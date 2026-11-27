@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-17
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - kv-cache
@@ -40,6 +40,8 @@ source_ids:
   - src-2026-11-10-alphasignal-latent-sparse-attention
   - src-2026-10-31-william-morgan-kinference-benchmarks
   - src-2026-11-19-ashish-subedi-antigravity-quota
+  - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
+  - src-2026-11-24-vllm-gr-announcement
 status: active
 ---
 
@@ -242,6 +244,39 @@ This confirms the trade-off stated above: the router weighed cache overlap and q
 cache alone. Caveats: first-party, one model, three replicas, prefixes new in every trial, and short
 windows (240 s measured). *Reviewer inference:* longer runs or skewed prefix popularity could warm
 random replicas more and narrow the gap; the post does not test this.
+
+## Routing can only exploit locality the cache can hold
+
+[[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]] reran the benchmark above independently and found the limit the
+vendor post did not state. Each vLLM pod reported **126,976 tokens** of KV cache at a 0.90 memory
+fraction, about **381k** per three-pod pool. The shared-prefix workload's 24 prefixes of 16k tokens
+make **384k**, about 101% of the pool before any running request is counted. Under load, the
+cache-aware router's prefix-hit counts fell toward random by concurrency 24, preemptions appeared from
+concurrency 16, and its peak goodput gain was **2.9×** against the blog's **7.4×**. The author's
+mechanism is inferred, because the harness did not log which pod served each request: spilling
+hot-prefix requests to less busy pods duplicates prefixes and makes the LRU cache thrash. The blog
+reported no KV cache size, so the vault cannot tell whether its 48 GB GPUs held the working set.
+
+An extension tests half of the reviewer inference recorded above. With **64 Zipf-distributed 8k
+prefixes**, skewed popularity did not narrow the gap. Median TTFT fell 87.6%, and the goodput gain
+grew with load, **1.6× / 2.2× / 3.3×** at concurrency 8, 16 and 32, which the author reads as the hot
+head of the distribution fitting in cache. Longer runs were not tested, and this is one self-reported
+run on a different workload. It still turns the earlier trade-off into a planning check: compare the
+distinct prefix working set with the pool's KV tokens before expecting routing to help. The author's
+remedies all act on that ratio: an FP8 KV cache ("roughly doubles capacity"), more replicas, or a less
+eager spill policy. In a pool-size sweep, only the cache-aware arm's hit rates rose as pods were
+added.
+
+## Within one request, beams share the prompt's cache
+
+[[vLLM-GR Team - Announcing vLLM-GR]] applies prefix reuse inside a single request. A generative
+recommender runs a beam search hundreds of paths wide from one user history, and vLLM-GR keeps one
+copy of the prompt's KV state for all beams, which "avoids copying the viewer's history for each
+candidate". After each stage, beam selection records each survivor's parent, and the next decode reads
+KV by those parent indices; the second decode inherits the selected parents' suffix KV. This is prefix
+caching's sharing pattern applied to one request's own fan-out rather than to repeated requests.
+Reuse of an unchanged history prefix **across** requests, and a distributed KV cache, are on the
+post's roadmap, not shipped. The post gives no memory figures for the shared layout.
 
 ## Cache compression became a hierarchy
 
@@ -514,6 +549,9 @@ by one author, and Google says nothing about its TTL, which "can shift under loa
 - An idle expiry turns human pauses into full-price prefills. What share of an interactive agent's
   cache misses come from TTL expiry rather than prefix edits, and should a harness pay keep-alive
   pings or accept the miss? The vault has one author's measurement on one provider.
+- How large is the distinct prefix working set of real chat or agent traffic, relative to a serving
+  pool's KV capacity? The vault's one measurement of that ratio (about 101%) is a synthetic benchmark
+  workload in an independent reproduction.
 
 ## Related pages
 
@@ -571,3 +609,5 @@ by one author, and Google says nothing about its TTL, which "can shift under loa
 - [[William Morgan - Distributed Inference Benchmarks Kinference vs Kubernetes]]
 - [[Ashish Subedi - Why Antigravity Eats Weekly Quota Fast]]
 - [[Kubernetes]]
+- [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
+- [[vLLM-GR Team - Announcing vLLM-GR]]

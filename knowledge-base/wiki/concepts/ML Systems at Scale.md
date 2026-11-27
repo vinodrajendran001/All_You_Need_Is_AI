@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-21
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - machine-learning
@@ -27,6 +27,8 @@ source_ids:
   - src-2026-11-02-anil-compute-islands
   - src-2026-10-31-william-morgan-kinference-benchmarks
   - src-2026-11-18-meta-ads-technique-propagation
+  - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
+  - src-2026-11-24-bytebytego-doordash-dispatch
 status: active
 ---
 
@@ -188,6 +190,42 @@ the scarce state. Here the scarce state is which replica holds which prefix. The
 vendor's test of its own product against Kubernetes' default rather than against another workload-aware
 policy, so it shows that workload awareness matters, not which implementation is best.
 
+## The rule, measured again, with its ceiling
+
+[[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]] reran that benchmark independently on one shared node and reproduced
+the direction: peak goodput rose **4.1×** on multiturn (blog 3.5×) and **2.9×** on shared-prefix (blog
+7.4×). Two findings refine the rule. First, workload-aware routing is capped by the capacity of the
+scarce state. The shared-prefix working set was about 101% of the pool's KV cache, so the router had
+little locality left to exploit. Second, the policy stops helping past saturation. At concurrency 32
+both arms served the same throughput, and the cache-aware arm met the SLO less often than random
+routing. The author's lesson is to operate below the knee, with admission control or autoscaling, so
+the routing policy needs a capacity plan beside it. A pool-size sweep gives the cleanest support for
+the rule itself: with one replica per pool there is no routing choice and no significant gain, and
+the gain rises as replicas are added. The baseline is still random routing, and the results are
+self-reported.
+
+## When orders are coupled, adding servers moves the bottleneck
+
+[[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] shows the same rule outside
+LLM serving. DoorDash's dispatch engine keeps matching orders to drivers while orders, driver
+positions and prep times change. Its monolith's key algorithms grew roughly quadratically, and peak
+demand reached "nearly four times" its processing capacity. Horizontal replicas alone would not help,
+because nearby orders are coupled: two orders that could share a trip may land on different workers,
+two workers may pick the same driver, and the coordinator that splits and merges the work becomes the
+new bottleneck.
+
+The redesign separates a stateful coordinator tier from a stateless compute tier, sends each worker
+only a self-contained local payload, partitions the problem geographically, and reconciles results
+across partition boundaries. Model serving follows the locality rule: frequent evaluations run inside
+the workers with ONNX Runtime, and heavier, less frequent policy evaluations go to isolated remote
+clusters. Rollout went through shadow testing, then production switchback experiments. DoorDash
+reports **10×** processing scale, more than **99.96%** of runs under **20 seconds** and more than
+**99.99%** availability during Super Bowl spikes. These are relayed secondhand by ByteByteGo with no
+baselines, no decision-quality metric and no switchback results. The scarce state here is the
+coupling between nearby orders and drivers rather than cached prefixes, but the lesson matches the
+routing results above: the partition must follow the workload's dependencies, and something must
+still pay for what crosses partition boundaries.
+
 ## Capacity must survive placement, policy, and service requirements
 
 [[Asaf Ben-Tovim - How AI21 Manages Its GPU Fleet with Kueue]] shows the cluster-level distinction:
@@ -312,3 +350,6 @@ figure is given.
 - [[Rahul Suresh et al - How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models]]
 - [[Kubernetes]]
 - [[Meta]]
+- [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
+- [[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]]
+- [[DoorDash]]

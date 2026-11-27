@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-13
-updated: 2026-11-20
+updated: 2026-11-27
 tags: [concept, mcp, protocol, tool-use, ai-agents, anthropic]
 source_ids:
   - src-2026-05-04-bytebytego-llm-tool-use-mcp
@@ -21,6 +21,7 @@ source_ids:
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
   - src-2026-10-10-0xcodila-rea-reverse-engineering
   - src-2026-11-11-openrouter-mcp-cli-skills
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -242,6 +243,19 @@ limited runtime experiment before running anything. The source is a promotional 
 clickbait title and reports no usage data for the prompts; its security caveats are recorded in
 [[Agent Security and Governance]].
 
+## A company that standardized on MCP moves its common flows off the resident roster
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] gives the residency cost from inside an MCP-heavy organization. Uber's default MCP install
+"loads every tool's full description into every call", and "With more than 100 tools, those
+definitions took 50,000 to 70,000 tokens before the user typed anything." The response kept the
+protocol and changed what stays resident, as the code-surface rule above recommends: Code Mode scripts
+call tools through Uber's gateway, and aifx handles MCP connections for every agent surface. Uber also
+blocks `.mcp.json` files, which install tool servers, in skills and plugins, so a skill cannot quietly
+add servers to the roster or route around the gateway, the bypass concern in the gateway section
+above. The post gives no measured savings for Code Mode and labels its Figure 14 token counts as
+estimates. The earlier [[Uber]] material on this page is a secondhand account of the gateway; this
+one is first-party.
+
 ## Related pages
 
 - [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
@@ -275,3 +289,4 @@ clickbait title and reports no usage data for the prompts; its security caveats 
 - [[Google Cloud]]
 - [[@0xCodila - Reverse Engineering with REA and Opus 5.5 (Full Course)]]
 - [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]

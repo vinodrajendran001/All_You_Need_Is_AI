@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-04
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-11-01-philipp-schmid-code-mode
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
   - src-2026-11-11-openrouter-mcp-cli-skills
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -314,6 +315,32 @@ projection, now with a measurement. Prompt caching does not change the count: ca
 the price of those tokens but doesn't remove them". This is a vendor post selling Tool Search; the
 authors "tested one server on one task".
 
+## A first-party resident-roster count, and cost measured per skill invocation
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] is Uber's own account, and it adds a second resident-roster figure to OpenRouter's. "The
+default MCP install in an LLM client" loaded every tool's full description into every call: "With more
+than 100 tools, those definitions took 50,000 to 70,000 tokens before the user typed anything." That
+is the same order as OpenRouter's **59,417**-token whole task through one server with **46** default
+tools, though Uber's figure counts definitions alone across many servers and comes without a model,
+a task or a method. Uber's response was Code Mode: repeated flows such as running a query, reading a
+Slack message or searching remote code moved into scripts that call tools through its gateway, so the
+agent "read only the parts of each result that it needed". Uber says the scripts improved success
+rate, latency and cost for its most-used flows but gives no figures, and the token counts in its
+Figure 14 are labelled estimates. The earlier secondhand gateway account above also gave no measured
+gain, so Code Mode at Uber is now first-party but still unpriced.
+
+The post's more useful contribution is a unit. Uber measures cost per skill invocation, the session
+total just after a call minus the total just before it, summed per skill per day and divided by the
+number of calls. The window includes the turns that follow and any other tool calls in it, so the
+figure is an attribution rather than an isolated cost. With it Uber reports three levers on the
+deliberation side of the ledger. Moving a tracing skill's work into a worker subagent on a cheaper
+model cut its cost per invocation by **46%**, while a deployment skill showed no drop in its first
+week. Running a script at load time took a search skill from four turns to three and cut its mean cost
+by **32%**, the turn-removal effect this page asks about. And in the **20** highest-spend sessions,
+notification turns were about a third of spend, so pull-request polling moved to a background agent
+on a cheaper model. These are before-and-after comparisons on single skills, without quality
+measures for the two cost cuts; the routing side is in [[Model Routing]].
+
 ## Open questions
 
 - **How much of the 36.6s vs 42.2s gap is roster size versus other harness differences?** The comparison is
@@ -379,3 +406,5 @@ authors "tested one server on one task".
 - [[ByteByteGo - How ChatGPT Optimizes its Agent Loop]]
 - [[OpenRouter - MCP vs CLI vs Skills - What Each Costs in Context]]
 - [[Agent Skill]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Model Routing]]

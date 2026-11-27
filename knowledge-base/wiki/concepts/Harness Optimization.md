@@ -22,6 +22,7 @@ source_ids:
   - src-2026-11-02-takehi-weight-space-programming
   - src-2026-11-20-huggingface-harness-adapters
   - src-2026-11-24-uber-agent-skill-evals
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
 status: active
 ---
 
@@ -397,6 +398,17 @@ option sets growing into a separate harness per model, with the spec as the shar
 reports no per-model comparison yet, so the claim is a stated observation, not a measurement. See
 [[Agent Skill]].
 
+## A relayed paper: an agent edits another agent's harness
+
+[[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] relays an April
+paper from Fudan and Peking University, "Agentic Harness Engineering", in which one agent keeps editing
+another coding agent's harness and checks each edit against its prediction. After ten rounds,
+Terminal-Bench 2 pass@1 reportedly rose from **69.7%** to **77.0%**, above the human-designed Codex-CLI
+harness at **71.9%**; the frozen harness used **12%** fewer tokens on SWE-bench Verified, and "the gains
+came from tools, middleware and long-term memory, not from the system prompt". The post gives no link,
+authors, or baseline details, and the paper is not in the vault, so the figures stay unverified until it
+is captured. If they hold, they fit this page's one-patch-per-round and editable-surface sections.
+
 ## Open questions
 
 - Does climbing the ladder add capability, or only variance that a strong model can exploit and a weak
@@ -462,3 +474,4 @@ reports no per-model comparison yet, so the claim is a stated observation, not a
 - [[Uber]]
 - [[Parameter-Efficient Fine-Tuning]]
 - [[Agentic Reinforcement Learning]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]

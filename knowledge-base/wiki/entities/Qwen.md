@@ -26,6 +26,7 @@ source_ids:
   - src-2026-11-22-zhang-li-recursive-self-editing
   - src-2026-11-27-modaic-jev-latency-fingerprint
   - src-2026-11-24-uncensored-ai-free-model-catalog
+  - src-2026-11-20-huggingface-harness-adapters
 status: active
 ---
 
@@ -284,6 +285,19 @@ Leaderboard and fold knowledge and willingness to answer into one number, so the
 reliable about the derivatives' capability relative to their bases. See
 [[Defensive Deception for Open Models]], whose reported decoy recipe failed its gate on Qwen3.5-9B.
 
+## Per-harness adapters on a frozen Qwen3.8-27B
+
+[[Hugging Face - Introducing Harness Adapters]] carries the release-time reading above ("post-train
+it inside a real agent loop") over to adapters trained after release. Hugging Face froze Qwen3.8-27B
+and trained one RL LoRA adapter for each coding harness (pi, OpenCode and Hermes Agent), running
+training through the unchanged harness. Under pi on Terminal-Bench 2.1, the base model scores
+**39%** at an average of **2.9K** tokens per task, and the adapted model scores **55%** pass@1 at
+**1.5K**. The three adapters' updates are nearly orthogonal. Concatenated at half weight, they form
+one "super-adapter" that beats the base on all six harness-benchmark pairs with thinking off, though
+each specialist leads on four of the six. The results are first-party and single-attempt. They are
+comparable only within a harness, because pi compacts context and the other two harnesses do not.
+See [[Harness Optimization]] and [[Parameter-Efficient Fine-Tuning]].
+
 ## Related pages
 
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
@@ -329,3 +343,4 @@ reliable about the derivatives' capability relative to their bases. See
 - [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]
 - [[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]]
 - [[TypeSafe AI]]
+- [[Hugging Face - Introducing Harness Adapters]]

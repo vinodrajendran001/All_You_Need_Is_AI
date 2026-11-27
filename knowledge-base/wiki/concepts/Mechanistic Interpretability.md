@@ -20,6 +20,7 @@ source_ids:
   - src-2026-11-17-strauss-weight-space-experiments
   - src-2026-11-18-toumbourou-wsp-1990s-researcher
   - src-2026-11-22-zhang-li-recursive-self-editing
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
 status: active
 ---
 
@@ -300,6 +301,24 @@ of the kind Takehi et al. used to tie their loop direction to its effect, and it
 The interpretive content of the edits is therefore unknown, even though every accepted edit is
 stored as an auditable program plus a low-rank tensor.
 
+### A workspace ablation must be checked for self-repair
+
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] turns an interpretability result into a
+proposed design step. He cites Anthropic research that identified a "global workspace" in Claude:
+much of the workspace's function could be ablated "without much loss in linguistic capacity", while
+multistep reasoning declined and introspective or first-person language fell. Hoel reads this as
+initial evidence that a workspace can be removed on purpose, so that a model fails the necessary
+conditions a theory of consciousness used to call it potentially conscious. See
+[[AI Consciousness and Moral Patienthood]].
+
+His own caveat is the evidence standard this page already applies. Transformers can "self-repair"
+after such operations, so strong verifiers would be needed to make sure the workspace "was not
+secretly shifting in some unnoticed way". He suggests adapting techniques such as conditional
+co-ablation. An ablation like this is a test that can lose only if the verifier looks for function
+that has moved elsewhere, not just for the missing original circuit; see
+[[#Explanations need tests that can lose]]. The vault has not read the Anthropic study. The result
+reaches it only through Hoel's citation, and he does not name a Claude version.
+
 ## Open questions
 
 - Would native-neuron explanations beat a transcript-only predictor at CHIVE-style counterfactual
@@ -322,6 +341,8 @@ stored as an auditable program plus a low-rank tensor.
 - When an interpretability-guided edit improves a training metric, does that validate the reading
   that motivated it, or only the edit? The self-editing preprint adds a case in which edits built
   from activation contrasts are accepted on a gate and the readings behind them go unreported.
+- When a hypothesized workspace or circuit is ablated and capability largely survives, how should a
+  verifier tell real removal apart from self-repair that moves the function elsewhere?
 
 ## Related pages
 
@@ -353,3 +374,5 @@ stored as an auditable program plus a low-rank tensor.
 - [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
 - [[Weight-Space Programming]]
 - [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[AI Consciousness and Moral Patienthood]]

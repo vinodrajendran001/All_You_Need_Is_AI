@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-20
-updated: 2026-11-20
+updated: 2026-11-27
 source_id: src-2026-11-12-huntley-answer-is-engineering
 source_title: "the answer to ai is engineering"
 source_author: "Geoffrey Huntley"
@@ -33,7 +33,7 @@ testing.
 
 This is a **practitioner talk and opinion piece**, built on personal demos and no measurements. Two
 parts need particular care. The incident list that opens the talk is unsourced in the capture. The
-closing recommendations promote Bombadil and Hegel, libraries from **Antithesis**, where Huntley says
+closing recommendations promote Bombadil and Hegel, libraries from [[Antithesis]], where Huntley says
 "validation and verification of software is what we do". He adds "I'm not just talking my book", but
 it is a conflict of interest.
 
@@ -139,6 +139,7 @@ as a verifier for [[Loop Engineering]] and [[AI Code Review]], and property-base
 - [[AI Code Review]]
 - [[Loop Engineering]]
 - [[Context Engineering]]
+- [[Antithesis]]
 
 ## Raw capture
 
@@ -161,3 +162,4 @@ as a verifier for [[Loop Engineering]] and [[AI Code Review]], and property-base
 - [[Gabe Orlanski - Slop Is Moving Up the Stack]]
 - [[Context Engineering]]
 - [[Coding Agent Harness]]
+- [[Antithesis]]

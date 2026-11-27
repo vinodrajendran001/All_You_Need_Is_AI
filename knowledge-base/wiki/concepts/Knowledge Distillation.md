@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-12
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - model-training
@@ -24,6 +24,7 @@ source_ids:
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-17-bytebytego-instacart-query-understanding
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
 status: active
 ---
 
@@ -280,6 +281,24 @@ account is a ByteByteGo relay of an Instacart blog post. The pattern places the 
 long-tail traffic the cache cannot cover. Its recall loss then matters only on cache misses, which is
 a different deployment from replacing the teacher wholesale.
 
+## Distillation proposed as a consciousness-reducing transformation
+
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] puts "knowledge distillation into shallower
+networks" first on his list of existing techniques that could make a frontier model "qualiaphobic".
+He means a worse host for theories of consciousness that still preserves or approximates the
+model's prompt-to-token-probability behavior. His anchor is the lookup table, which almost no theory
+counts as conscious. A transformation that moves a network toward lookup, which he calls
+"lookup-ification", is meant to lower its potential for consciousness. The rest of the list is
+nearest-neighbor retrieval of cached internal representations, n-gram language models, and
+replacing much of the matrix multiplication with lookup tables. See
+[[AI Consciousness and Moral Patienthood]].
+
+This adds a new objective for distillation alongside cost and capability transfer, but nobody has
+tested it. The paper distills no model and measures no student. That lookup tables host almost no
+theories does not show that a shallower distilled student is close enough to the anchor to count.
+The fidelity question stays where it is: a qualiaphobic student would be judged on how much of the
+teacher's behavior it keeps, plus a distance from the anchor that the paper leaves unmeasured.
+
 ## Open questions
 
 - How can generated training data be audited for hidden behavioral transfer?
@@ -288,6 +307,8 @@ a different deployment from replacing the teacher wholesale.
 - What legal and licensing constraints apply to distillation from hosted proprietary models?
 - How much fidelity does a causal, few-step video student lose against its bidirectional teacher,
   and does the loss compound over closed-loop rollouts?
+- Does distilling a model into a shallower student measurably move it toward a lookup table, and
+  would theories of consciousness score the student differently from its teacher?
 
 ## Related pages
 
@@ -325,3 +346,5 @@ a different deployment from replacing the teacher wholesale.
 - [[ByteByteGo - How Instacart Uses LLMs for Query Understanding]]
 - [[Semantic Recommendation Systems]]
 - [[Parameter-Efficient Fine-Tuning]]
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[AI Consciousness and Moral Patienthood]]

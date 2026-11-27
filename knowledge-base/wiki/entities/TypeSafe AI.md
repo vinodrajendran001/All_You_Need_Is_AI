@@ -18,6 +18,7 @@ source_ids:
   - src-2026-11-02-alphasignal-timestral
   - src-2026-10-29-raindrop-agent-swarm-leadership
   - src-2026-11-27-modaic-jev-latency-fingerprint
+  - src-2026-11-22-nikolas-goebel-informal-verification
 status: active
 ---
 
@@ -179,6 +180,24 @@ trains Jev to conceal its identity and hides its true token counts are Modaic's 
 statement that competitors "quickly surpassed" Jev comes without evidence. The October position
 stands with one more outside hypothesis attached: the backbone is undisclosed.
 
+## An essayist uses Jev as an informal proof checker
+
+[[Nikolas Göbel - Informal Verification]] uses Jev outside classification: as the checker for
+"informal proofs", natural-language arguments about code whose premises cite code or documentation and
+whose small steps are each scored. In a constructed multi-tenant Rails example, the checker accepts the
+first two steps and rejects the third, because nothing in the premises says how the controller's
+`find_for_display` builds its query; the method bypasses the tenant scope. On a Zebra-puzzle claim, Jev
+splits almost evenly between true and false until an agent decomposes the conclusion into sub-claims,
+which it then accepts. Göbel says Jev "effectively accepts any deductive step that a capable LLM can
+follow intuitively", that it is multimodal so premises can cite diagrams, and that its cost and latency
+are "negligible" next to the agent. His informal proof assistant, autoground, is built around it.
+
+He lists the failure modes himself: Jev is not perfectly deterministic, so steps near the threshold can
+flip-flop; it resolves ambiguity like a fluent reader (**95%** confident in one reading of an ambiguous
+sentence); and it silently fills in facts it treats as common knowledge. This is a third-party use, not a
+measurement. No accuracy or false-acceptance rate is reported, the scoring demonstrations were interactive
+and were not captured, and the essay does not say whether Göbel is affiliated with TypeSafe.
+
 ## Related pages
 
 - [[Abby Morgan - Train Your Own Decision Model]]
@@ -205,3 +224,4 @@ stands with one more outside hypothesis attached: the backbone is undisclosed.
 - [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
 - [[Raindrop]]
 - [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]
+- [[Nikolas Göbel - Informal Verification]]

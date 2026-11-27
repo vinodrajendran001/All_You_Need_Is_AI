@@ -45,6 +45,8 @@ source_ids:
   - src-2026-10-31-l1vsun-five-levels-ai-engineering
   - src-2026-11-25-frank-rousseau-agentic-coding-open-source
   - src-2026-11-25-goofyfish-make-your-own-game
+  - src-2026-11-20-huggingface-harness-adapters
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -494,6 +496,25 @@ through a pull request. The style rules and the build and test steps travel with
 than with the contributor's setup, so every contributor's agent follows the same path. The page does
 not show the command's contents, give acceptance numbers, or say whether it works outside Claude Code.
 
+## The harness as the unit of post-training, and one install across harnesses
+
+[[Hugging Face - Introducing Harness Adapters]] treats the harness as something a model is trained
+for, not only run in. Hugging Face trains one LoRA adapter per harness on a frozen Qwen3.8-27B. RL
+runs through the deployed harness, with a proxy recording its exact tokens, rather than through a
+framework's re-implementation of the agent loop. The authors warn that "you cannot compare the
+results across different harnesses", because pi compacts context and the other two do not, so every
+gain is reported within one harness. Transfer is partial. Run under OpenCode, the pi adapter matches
+OpenCode's specialist on Terminal-Bench 2.1; under Hermes it keeps about two-thirds of the
+specialist's gain. This is the training-side counterpart of Factory's finding above that harness
+changes are model-specific.
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] shows the
+distribution side. Uber's aifx CLI installs the same skills into Claude Code, Codex, OpenCode and
+Uber's hosted agents. Skill Workshop recompiles a skill from its spec when a model or agent changes,
+and compiling per model family is listed as a next step. Neither source measures how much of an
+agent's result belongs to the harness rather than the model. See [[Harness Optimization]] and
+[[Agent Skill]].
+
 ## Open questions
 
 - How should local harness evaluation move beyond task-success rate to capture code quality and readability, which are hard to score automatically?
@@ -581,3 +602,5 @@ not show the command's contents, give acceptance numbers, or say whether it work
 - [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
 - [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
 - [[Goofy Fish - Make Your Own Game]]
+- [[Hugging Face - Introducing Harness Adapters]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-27
 source_id: src-2026-10-27-morgan-train-decision-model
 source_title: "Train your own decision model"
 source_author: "Abby Morgan"
@@ -137,3 +137,4 @@ RLCD remain unpublished, plus an evaluation harness compatible with Jev's reques
 - [[Diogo Almeida - Introducing System One Models and Jev]]
 - [[Alpha Signal - Why the Future AI Stack Needs More Than One Foundation Model]]
 - [[Small Language Models]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]

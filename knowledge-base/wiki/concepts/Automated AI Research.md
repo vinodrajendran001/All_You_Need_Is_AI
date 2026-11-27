@@ -30,6 +30,7 @@ source_ids:
   - src-2026-11-18-toumbourou-wsp-1990s-researcher
   - src-2026-11-18-meta-ads-technique-propagation
   - src-2026-11-22-zhang-li-recursive-self-editing
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
 status: active
 ---
 
@@ -342,6 +343,22 @@ proof still had an advisor's audit and outside experts are still reading it. Whe
 for the empirical paper, output outruns its readers. Inside a lab, faster engineers are held back by
 compute and serial steps. This is the Verifier's law above, applied at research scale.
 
+## A multi-day agent loop on hardware, with humans setting process and correctness
+
+[[Ankit Gupta - Vibecoding an Inference Chip]] reports a coding agent running for several days to
+implement and optimize bit-exact decoding of a DeepGrove ternary-weight model on an AWS F2 FPGA, mostly
+in C++ with some Verilog, a language the author has "never written". Over hundreds of experiments and
+**$10,000** of Claude and OpenAI tokens, throughput rose from **6.43** tok/s, the loop's own first
+correct image, to **213.13** tok/s (33.13×) through 14 mostly modest, compounding steps. The human role
+was mainly encouragement plus a few hints. The outside input that changed the work was process
+advice: told to stop long simulations, the agent switched at once to a short synthesis loop, while the
+advisers' design ideas were mostly already planned or were rejected for breaking exactness.
+
+The author's conclusion is that "the humans are still useful at defining how to iterate fast and what
+correctness looks like, and the agents are great to manage the exploration." This is one self-reported
+project. The account of what was adopted is the agent's own retrospective, the 33× is measured against
+its own naive starting point, and the token figure excludes instance hours.
+
 ## Open questions
 
 - What evaluation signal best measures progress for research agents: paper quality, benchmark gains, reproducibility, or something else?
@@ -423,3 +440,4 @@ compute and serial steps. This is the Verifier's law above, applied at research 
 - [[Weight-Space Programming]]
 - [[Benchmark Optimization]]
 - [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]

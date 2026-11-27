@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-11-06
-updated: 2026-11-06
+updated: 2026-11-27
 entity_kind: organization
 tags:
   - entity
@@ -10,6 +10,7 @@ tags:
   - multi-agent
 source_ids:
   - src-2026-11-04-general-reasoning-train-swarm
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
 status: active
 ---
 
@@ -48,6 +49,20 @@ organisation itself names the gap to deployed swarms of hundreds or thousands, t
 flat-advantage credit assignment and the absence of credit for shared public goods, as open
 problems. A full paper is promised "in the coming weeks once training finishes".
 
+## An outside reading of the Avalon-M1 release
+
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] rates General Reasoning's Avalon-M1
+release page, a different document from [[General Reasoning - How to Train a Swarm]], as "Parity.
+Or a tiny bonus." At matched tokens the n=8 swarm "scores higher than a solo agent on 35% of
+benchmarks, but lower on 43%", and the claimed small average gain has no statistical test. The lone
+baseline "is the same swarm-trained model", training had not finished at release, and ProgramBench
+goes the other way, **25.7%** against **29.4%**. On Zanichelli's reading, the release's claim that
+"extended thinking recovers about three fifths of the [swarm] gain" holds only if SWE-Bench Pro is
+excluded; with it, the figure is four fifths.
+
+This is a critic's reading of a first-party release that the vault has not captured, so it sits
+beside the evidence boundary above rather than replacing it. See [[Multi-Agent Coordination]].
+
 ## Related pages
 
 - [[General Reasoning - How to Train a Swarm]]
@@ -59,3 +74,4 @@ problems. A full paper is promised "in the coming weeks once training finishes".
 - [[Long-Horizon Credit Assignment]]
 - [[Agent Delegation]]
 - [[OpenAI]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]

@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-23
-updated: 2026-10-23
+updated: 2026-11-27
 source_id: src-2026-10-14-maevyn-decoherence-trap
 source_title: "The Decoherence Trap: When AI slop drowns out the signal in an endless sea of noise"
 source_author: Unattributed in capture (published at maevyn.codes)
@@ -105,6 +105,11 @@ argues that both extremes reduce delivery and that some **jitter** is needed for
 
 - **Authorship is unresolved.** Neither frontmatter nor body states an author; the site is maevyn.codes.
   The capture also contains garbled embedded simulation SVG and UI text.
+- **A possible author lead, unverified.** [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+  (2026-11-25) cites an essay titled "The Decoherence Trap" under "Project overload", but his link goes
+  to a breck-mckye.com blog post under `/blog/2026/11/` with the URL slug
+  `software-is-breaking-down-at-a-systemic-level`, not to maevyn.codes. Whether it is the same essay,
+  a republication, or a different piece with the same title has not been checked.
 - The simulation **proves nothing about real systems** — the author says so. No fitted growth rate exists
   for decoherence in production codebases, and the linear-versus-exponential contrast is asserted, not
   measured.
@@ -148,3 +153,4 @@ argues that both extremes reduce delivery and that some **jitter** is needed for
 - [[Software Performance Engineering]]
 - [[Benchmark Optimization]]
 - [[Reward Design for RL]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

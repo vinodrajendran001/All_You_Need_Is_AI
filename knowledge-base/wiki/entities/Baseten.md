@@ -2,13 +2,14 @@
 type: entity
 entity_kind: organization
 created: 2026-09-03
-updated: 2026-11-20
+updated: 2026-11-27
 tags: [entity, inference, serving, kernels, vendor]
 source_ids:
   - src-2026-09-02-baseten-efficient-frontier-inference
   - src-2026-08-29-baseten-agentic-kernels-production
   - src-2026-10-21-baselabs-mammoth-elephant
   - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-27-modaic-jev-latency-fingerprint
 status: active
 ---
 
@@ -60,6 +61,15 @@ official Elephant score of **65** is not its replica score of **65.2**. The mode
 a frozen vision encoder but train on text alone. These are first-party training and
 benchmark claims, not a demonstration of local probability calibration or serving economics.
 
+[[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] uses two Baseten decision
+models as controls with disclosed backbones while trying to infer Jev's base. groundhog-1, described
+as a Gemma 4 26B-A4B mixture-of-experts model and queried through Vercel AI gateway, favoured its own
+tokenizer only narrowly (Spearman's ρ **0.823** for Gemma against **0.818** for Qwen). elephant-1,
+described as a dense Qwen3.5-9B and self-hosted by Modaic on a single B200, had a prefill throughput
+curve that "flattens sooner on long inputs" than the MoE models'. These are a competitor's
+measurements of Baseten models under its own setups, not Baseten benchmarks. groundhog-1 appears
+nowhere else in the vault.
+
 ## An open-sourced single-model engine, read by an outsider
 
 [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]] is the vault's first
@@ -94,3 +104,4 @@ the extreme low-latency end, trading concurrency for per-request speed.
 - [[LLM Inference]]
 - [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
 - [[DeepSeek]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]

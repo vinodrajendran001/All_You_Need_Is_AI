@@ -31,6 +31,8 @@ source_ids:
   - src-2026-10-31-william-morgan-kinference-benchmarks
   - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
   - src-2026-11-24-vllm-gr-announcement
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
 status: active
 ---
 
@@ -64,6 +66,36 @@ Two consequences follow that the vault should apply generally:
 
 - **Vendor peak numbers are not measurements.** Peak FLOPs describe a ceiling under conditions no real workload meets; the source pairs every architecture brief with an ISA or tuning guide for this reason.
 - **A speed result without a correctness method is not a result.** This is the same boundary [[Benchmark Optimization]] draws from the opposite direction: there, systems scored well by reproducing flawed reference transcripts; here, a kernel or engine can score well by computing something subtly wrong. Both failures are invisible to the headline number.
+
+## Three ordered questions before accepting an improvement
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] turns the
+evidence standard above into a reviewer's sequence. The questions are asked in order, because "a
+pass on an earlier question does not answer a later one". First, did the comparison basis change? A
+usable comparison makes its denominator explicit: GPUs and auxiliary hardware, precision and model
+quality, the joint input/output-length and prefix-reuse distribution, and the SLO. FastDecode is the
+worked warning. Its result uses extra whole CPU machines against a baseline on different hardware.
+At 128-token sequences, its 13B model's strong-scaling efficiency from one to eight sockets is only
+**37.6%**. That does not invalidate the mechanism, but the claim tested is not "same service, same
+resources, faster".
+
+Second, did a local metric improve, or did the service? A faster kernel, a higher cache hit rate or
+higher mean throughput "can all coexist with a worse service". The service improved only if P95
+TTFT, the P95 token gap, SLO attainment and **goodput** move at the boundary. Goodput here counts
+only requests that met their objective, with rejected and timed-out requests counted as misses.
+Third, what remains unmeasured? The part lists:
+- cold versus hot prefixes;
+- arrival rate and burstiness;
+- the long/short request mix;
+- transfer overlap;
+- queue-prediction error;
+- the distribution from scale-out decision to a ready replica.
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] ties each
+unknown to the decision it resolves. It adopts a policy only if those service-boundary results
+improve per workload class. As in the rule above, a branch with a missing basis becomes a
+measurement task rather than a conclusion. The series also tags each of its 172 cited papers by how
+deeply it was read.
 
 ## Integration boundaries can erase operational metrics
 
@@ -487,3 +519,6 @@ goodput.
 - [[Kubernetes]]
 - [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
 - [[vLLM-GR Team - Announcing vLLM-GR]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[intelligentLearn]]

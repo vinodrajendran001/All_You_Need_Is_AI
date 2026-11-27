@@ -35,6 +35,9 @@ source_ids:
   - src-2026-11-18-ioma8-llm-reverse-engineering
   - src-2026-11-19-anthropic-founders-playbook
   - src-2026-11-24-uber-agent-skill-evals
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-goofyfish-make-your-own-game
 status: active
 ---
 
@@ -358,6 +361,22 @@ its always-on log-papercut skill makes the agent using a skill the reporter of i
 levers (a cheaper worker subagent, scripts at load time, Code Mode) are recorded in [[Model Routing]]
 and [[Tool Roster Economics]], and the judging in [[LLM-as-a-Judge]]. The account is first-party.
 
+## Practitioners let the model write, prune, and ship skills
+
+Three new accounts treat skills as something the model drafts and the repository distributes.
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] calls skills "shortcuts to bigger
+prompts". Claude wrote his first set, and after a few weeks "the Claude model proposed several new
+skills based on my prompt history", plus a command to improve existing ones. He had Claude cut subsets
+from third-party packs, noting "Some third-party skills can consume a lot of tokens", and syncs memory
+and skills across machines through his own server.
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] reports the only
+with-and-without number: agents wrote a failing test before fixing a bug in **0 of 32** runs without
+his test-driven development skill and **32 of 32** with it. That measures whether the procedure was
+followed, not code quality. [[Goofy Fish - Make Your Own Game]] ships a `/game` command in a public
+repository so that any visitor's Claude Code builds and tests a game in the site's style; the
+command's contents are not shown. All three are single-author or single-site reports.
+
 ## Open questions
 
 - Should "skill" mean the text procedure, the executable workflow, or the bundle of both?
@@ -425,3 +444,6 @@ and [[Tool Roster Economics]], and the judging in [[LLM-as-a-Judge]]. The accoun
 - [[Agent Observability]]
 - [[Model Routing]]
 - [[Tool Roster Economics]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[Goofy Fish - Make Your Own Game]]

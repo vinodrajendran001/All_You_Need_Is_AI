@@ -34,6 +34,7 @@ source_ids:
   - src-2026-07-20-0xcodez-graph-engineering-roadmap
   - src-2026-11-03-william-morgan-kinference-launch
   - src-2026-11-24-uber-agent-skill-evals
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
 status: active
 ---
 
@@ -443,6 +444,17 @@ and no quality measure for either change, so they show that the route was cheape
 safe. Uber's next steps include a task router that would send each request "to the right agent,
 skills, and context", with no design given. The account is first-party.
 
+## A practitioner's routing table, with review kept off the authoring model
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] routes inside each
+thread from a parent on Opus 5.5, by rules in its system prompt: Gemini 4 Neon writes code by default;
+GPT-6.2 Sol, GPT-6.2 Astra, and Opus 5.5 review the full diff in parallel, with "no model reviews its
+own code"; Fable 5.2 writes code only for very complicated tasks or when two review rounds still find
+major issues; and Claude Haiku 5.5 takes simple lookups. In the courses above the strongest model
+orchestrates; here it is an escalation route for authoring, and the rule adds a diversity constraint
+on reviewers. He reports "$50,000 to $100,000 a month in model usage" that he does not pay, gives no
+per-route cost or accuracy, and says "The exact mix changes almost by the day".
+
 ## Open questions
 
 - A typed router's latency advantage assumes one shot at a bounded option set. What happens to the
@@ -534,3 +546,4 @@ skills, and context", with no design given. The account is first-party.
 - [[Uber]]
 - [[Agent Skill]]
 - [[Tool Roster Economics]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-18
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - llm
@@ -47,6 +47,7 @@ source_ids:
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-13-thinking-machines-end-to-end-4-bit-training
+  - src-2026-11-23-alphasignal-e-means-rag
 status: active
 ---
 
@@ -240,6 +241,17 @@ A note on provenance that affects data governance: Aidan Gomez is quoted on the 
 promise is only not to train on exactly the data a customer supplies — "rewritten data is fair game."
 
 Fuller treatment in [[Synthetic Data Flywheel]].
+
+**Curation sweeps still rest on a non-learned primitive: clustering.** Semantic deduplication
+splits a corpus into clusters and checks pairwise similarity only inside each bucket, so lopsided
+clusters are a direct cost. [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]
+says "oversized clusters inflate the pairwise similarity checks performed inside each bucket". It
+relays e-means, a k-means replacement from researchers at Meta FAIR and École nationale des ponts et
+chaussées, as letting teams doing deduplication or diversity sampling for supervised fine-tuning
+(SFT) "partition large datasets quickly and evenly, iterating on curation sweeps far more often".
+The item is a secondhand newsletter relay. It names no paper and reports no deduplication-quality
+or downstream training result, so any benefit to a training run is unmeasured. See
+[[Approximate Nearest-Neighbor Search]].
 
 ## Persistent behavior is a different intervention
 
@@ -451,3 +463,4 @@ paragraph on RL above. These are first-party claims with no model size or ablati
 - [[Thinking Machines]]
 - [[Thinking Machines - End-to-End 4-Bit Training]]
 - [[Model Quantization and Efficiency]]
+- [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]

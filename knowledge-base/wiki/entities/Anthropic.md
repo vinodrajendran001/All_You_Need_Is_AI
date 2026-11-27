@@ -24,6 +24,7 @@ source_ids:
   - src-2026-11-06-psi-aaronson-ambainis-proof
   - src-2026-11-19-anthropic-founders-playbook
   - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
 status: active
 ---
 
@@ -240,6 +241,17 @@ names neither the benchmark nor the workloads, and none of the architecture is m
 startup guide above, it is written partly to help customers build on Anthropic's products. See
 [[Agentic Loop]] and [[AI Agents in Production]].
 
+## Its global-workspace research, cited from outside
+
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] cites Anthropic research that identified a
+"global workspace" in Claude. In Hoel's account, much of the workspace's function could be ablated
+"without much loss in linguistic capacity", although multistep reasoning declined and introspective
+or first-person language fell. He uses the result as initial evidence that a model could be
+redesigned to fail a theory of consciousness's conditions, and warns that transformers can
+"self-repair" after ablations. The vault has not read the Anthropic study, so both the result and
+its framing are Hoel's secondhand reading. See [[AI Consciousness and Moral Patienthood]] and
+[[Mechanistic Interpretability]].
+
 ## Related pages
 
 - [[Zvi Mowshowitz - AI R&D Is Accelerating Towards Potential RSI in 2027]]
@@ -285,3 +297,5 @@ startup guide above, it is written partly to help customers build on Anthropic's
 - [[William Hu - Building Always-On Agents]]
 - [[Agentic Loop]]
 - [[AI Agents in Production]]
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[AI Consciousness and Moral Patienthood]]

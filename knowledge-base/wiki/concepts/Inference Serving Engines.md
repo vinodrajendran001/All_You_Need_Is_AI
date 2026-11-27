@@ -33,6 +33,7 @@ source_ids:
   - src-2026-10-31-william-morgan-kinference-benchmarks
   - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
   - src-2026-11-24-vllm-gr-announcement
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
 status: active
 ---
 
@@ -78,6 +79,27 @@ Two implications for engine selection. First, an engine's real differentiator is
 - **Splitting the phases entirely** — [[Prefill-Decode Disaggregation]], the architectural alternative to interleaving them on one pool.
 
 Knowing which mechanism an engine implements is more durable knowledge than knowing which engine is currently fastest: benchmark leadership rotates, the mechanisms do not. Whether a given engine's advantage is real is a question for [[Serving Benchmarks and Goodput]], which supplies the evidence standard a serving comparison has to meet.
+
+## What each mechanism costs, and where its evidence stops
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] reads the
+same primary papers for their costs and limits:
+- **Continuous batching** changes waiting and slot use, but "does not reduce the per-token operator
+  work". Orca is its only source, and the series places Orca outside the corpus it read in depth.
+- **Paged KV** saves memory and pays in kernel time. The PagedAttention paper measures its own
+  attention kernel as **20 to 26%** slower than FasterTransformer's. It says that for static-shape
+  or compute-bound workloads the indirection "may rather degrade the performance". The series says
+  paging *bounds* allocation waste rather than eliminating fragmentation, a narrower claim than the
+  "removes the fragmentation" wording above.
+- **Chunked prefill** (Sarathi-Serve) adds its own overhead and a chunk-size knob. It stops helping
+  once total prefill volume exceeds what one replica can absorb.
+
+The prefix-reuse evidence is narrower in scope than engine comparisons usually imply. SGLang's
+**96%** of the optimal hit rate comes from longest-shared-prefix-first ordering inside one engine's
+waiting queue. Its **74.1%** production hit rate on Chatbot Arena was obtained with one worker per
+model. Routing requests that share a prefix to the same replica is the author's labelled
+extrapolation. That is the cross-replica question the routing sections below take up, where cache
+affinity and load can disagree.
 
 ## Speculation is a runtime control surface, not a deploy-time flag
 
@@ -576,3 +598,5 @@ establish a TPS ranking". The comparison is between configurations, not engines.
 - [[Kubernetes]]
 - [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
 - [[vLLM-GR Team - Announcing vLLM-GR]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn]]

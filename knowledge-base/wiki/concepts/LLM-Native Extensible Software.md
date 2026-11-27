@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-11-20
+updated: 2026-11-27
 tags: [concept, software-architecture, ai-agents, extensibility]
 source_ids:
   - src-2026-08-20-jeremy-morrell-extensible-software
@@ -11,6 +11,8 @@ source_ids:
   - src-2026-10-21-mcateer-claude-mods
   - src-2026-11-17-paul-kinlan-voice-harness
   - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-11-25-goofyfish-make-your-own-game
 status: active
 ---
 
@@ -117,6 +119,17 @@ narrow-capability design. The catch is distribution: because the runtime relies 
 execution, the extensions cannot be published to the Chrome Web Store and load only in developer
 mode. Both are single-developer prototypes by [[Paul Kinlan]], with no measured results.
 
+## When contributors' agents write the extensions
+
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] reports that Kitsu's new plugin system
+let studios build and share plugins, some of them with LLMs, and that contributors now also propose
+changes to core components. Studios want more customization, while Kitsu's philosophy is a common
+interface across studios: "We haven't arbitrated on the topic yet." [[Goofy Fish - Make Your Own Game]]
+goes further. A visitor describes a game to Claude Code through a `/game` command shipped in the site's
+repository, the agent builds and tests it in the site's style, and the result arrives as a pull request
+that the maintainers play before publishing. Both keep a human gate at intake; neither reports how many
+extensions were accepted, rejected, or later broke.
+
 ## Open questions
 
 - How can generated extensions be upgraded without breaking user state?
@@ -141,3 +154,5 @@ mode. Both are single-developer prototypes by [[Paul Kinlan]], with no measured 
 - [[Paul Kinlan - My Chrome Extensions Are Just Prompts]]
 - [[Paul Kinlan]]
 - [[Programmatic Tool Calling]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[Goofy Fish - Make Your Own Game]]

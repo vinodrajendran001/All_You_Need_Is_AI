@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-11-27
 source_id: src-2026-09-29-raschka-text-classification-jev
 source_title: "Language Models for Text Classification: From Bag-of-Words to Jev"
 source_author: Sebastian Raschka
@@ -106,3 +106,4 @@ reconstructions and the availability of open alternatives.
 - [[Jacky Kwok et al - Contrastive Language Models]]
 - [[Nandakishor M - Non-Autoregressive Decision Models and Laya]]
 - [[LLM-as-a-Judge]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]

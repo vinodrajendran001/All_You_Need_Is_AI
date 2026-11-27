@@ -49,6 +49,8 @@ source_ids:
   - src-2026-11-25-frank-rousseau-agentic-coding-open-source
   - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
   - src-2026-10-31-l1vsun-five-levels-ai-engineering
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
 status: active
 ---
 
@@ -626,6 +628,40 @@ paper nor Anthropic's evals are in the vault. The four sources agree on the prac
 per-request load small and saving what must last outside the window, and none of them measures the
 effect of its own rule.
 
+## A restart can beat compaction
+
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] gives a controlled case where clearing
+context beat compacting it. On git-to-zig at 32M weighted tokens, a GPT-6.1 Sol agent was restarted
+into eight fresh sequential sessions, keeping only the files on disk. It made roughly the same
+number of calls as one long compacting session and "still scored 13 points higher". The author's
+explanation is that "a long session never wholly resets, even with compaction". Each compaction has
+to guess what will matter later, so stale or irrelevant information builds up and is carried
+forward. The study uses the same effect to explain why teams, whose members run shorter sessions,
+beat the long session there.
+
+Two cautions go with it. The restart was run post-hoc on one task. And a Codex bug double-counted
+earlier reasoning when a message arrived mid-session, so in self-organized teams nearly every
+compaction happened at about 230k to 350k tokens instead of 450k. Rerunning the best team settings on
+a patched build did not raise their scores. See [[Multi-Agent Coordination]] and
+[[Test-Time Scaling]].
+
+## Front-loaded reading is paid for at every later step
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] adds a cost observation from three
+isolated runs of one translation prompt on a 15,100-line RPG application. They cost **$25.58**,
+**$23.57**, and **$23.20** and produced 14,500, 26,300, and 22,900 lines of Java. The run that wrote the
+least code cost the most, because "it read more source early on and carried a larger context
+afterwards". The largest context reached about **720k** tokens and most tokens were cache reads, "so an
+agent that reads a lot at the beginning pays for that context at every following step". The single run
+on the larger application, split by deterministic tooling into **49** sessions, used **3.14B**
+cache-read tokens against **11.8M** output tokens. Its phases cost **$1.22** to **$37.73** and did not
+grow steadily more expensive as the Java project grew.
+
+This is the replay tax recorded above, seen in a real migration rather than a benchmark, with caveats.
+There were three runs, with one model and one harness. The dollar figures are API list-price equivalents
+reported by Claude Code, not money paid. Some cheap phases, the author notes, included work already
+translated as a dependency.
+
 ## Open questions
 
 - What is the right abstraction layer for context engineering in multi-agent systems where multiple agents share or read each other's contexts?
@@ -730,3 +766,6 @@ effect of its own rule.
 - [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
 - [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
 - [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+- [[Multi-Agent Coordination]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]

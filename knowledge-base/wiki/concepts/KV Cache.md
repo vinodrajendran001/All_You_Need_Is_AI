@@ -42,6 +42,8 @@ source_ids:
   - src-2026-11-19-ashish-subedi-antigravity-quota
   - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
   - src-2026-11-24-vllm-gr-announcement
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
 status: active
 ---
 
@@ -164,6 +166,28 @@ binding constraint on concurrency.
 Naive **contiguous reservation wasted 60–80%** of that memory, because a request's allocation must cover the
 length it might reach rather than the length it does reach. **Paged block allocation cut waste below 4%** and
 delivered **2–4× throughput** — a throughput gain obtained purely by not wasting memory.
+
+## The capacity ceiling paging cannot move
+
+[[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] works the formula in
+"Memory scaling" for a 70B-class model (8 KV heads, head dimension 128, BF16, 80 layers): **320 KiB
+per token**. A 33,280-token document then needs about **10.9 GB**, consistent with this page's
+LLaMA 3 70B figure of 10.7 GB at 32K. After weights and overhead, a TP=4 replica keeps about
+**159 GB** for KV, so the memory-only ceiling falls from about **690** short chats (700 tokens) to
+about **14** long documents. The author stresses that this is "only a capacity ceiling": scheduling,
+latency targets and bursts push achievable concurrency lower.
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] separates
+what paging can and cannot do. Its primary source, the PagedAttention paper, profiled existing
+systems in which **only 20.4% to 38.2% of KV memory was actually holding token state**. That figure
+is consistent with the 60–80% contiguous-reservation waste above. Paging bounds allocation waste and
+pushes concurrency toward the independent-sequence ceiling, but it "cannot move that ceiling by
+itself". Prefix sharing is different, because it changes how much state the sequences need. Two
+corpus papers move KV out of HBM: FastDecode, onto off-node CPU machines, and a CXL-PNM design whose
+results all come from a cycle-level simulator. The author labels the replacement rule, that state
+must meet the latency budget for state access, as a generalisation neither paper states. The same
+part notes that in the DUET Mamba-Transformer hybrid the SSM state is fixed-size and attention KV is
+the bottleneck. This matches the hybrid-model section below.
 
 ## Prefix caching prices the layout
 
@@ -611,3 +635,6 @@ by one author, and Google says nothing about its TTL, which "can shift under loa
 - [[Kubernetes]]
 - [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
 - [[vLLM-GR Team - Announcing vLLM-GR]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn]]

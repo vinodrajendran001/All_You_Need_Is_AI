@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-20
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - inference
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-08-31-bytebytego-chatbot-request-lifecycle
   - src-2026-11-11-cam-pedersen-derive-kernels
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
 status: active
 ---
 
@@ -66,6 +67,15 @@ one pass; prefill versus decode and KV-cache chunking change the order too. Barr
   "bitwise-identical batched decode" as one of its engine's accuracy gates. It reports that a block-split
   RMSNorm sum of squares split **256** ways pushed KL divergence at 3k tokens over the engine's bar, while
   a **1,024**-way split came in lower than the serial sum's — "Precision is a schedule here too."
+- *Make it the contract for a whole optimization campaign.* [[Ankit Gupta - Vibecoding an Inference Chip]]
+  had a coding agent optimize an FPGA decoder for a ternary-weight model under a bit-exact rule against
+  a pinned CPU reference. The rule cost speed: the agent rejected all five numerics shortcuts in an
+  outside design, among them lower-precision activations, an 8-bit KV cache and online softmax, because
+  each changes the output bits, which is "where their design got its efficiency". On one 8-chat ×
+  3-turn benchmark the final FPGA image matched the reference on 24/24 turns. Two cheaper T4 GPU ports
+  matched 1/24 and 0/24, though the author says they "are pretty close in practice". Exactness here
+  means agreement with one reference implementation for one model, not determinism across hardware in
+  general.
 
 **Integer storage is not integer arithmetic.** Standard int8 quantization (SmoothQuant, LLM.int8,
 OmniQuant) is "simulated": the float steps between matmuls reintroduce order dependence. See
@@ -103,3 +113,4 @@ tie. Longer generations give more chances to fork.
 - [[Cam Pedersen - Don't Write Kernels, Derive Them]]
 - [[ByteByteGo - What Happens Inside an AI Chatbot Between Enter and the First Word]]
 - [[Reinforcement Learning]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]

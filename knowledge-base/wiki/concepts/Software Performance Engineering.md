@@ -20,6 +20,7 @@ source_ids:
   - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
   - src-2026-11-19-intelligentlearn-inference-systems-part-3
   - src-2026-11-24-intelligentlearn-inference-systems-part-4
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
 status: active
 ---
 
@@ -180,6 +181,20 @@ and timeout, rejection, and quality outcomes. Its appendices then audit the evid
 separating 15 deeply read papers from 146 used only for placement and 11 read only at abstract
 level. The same evidence standard is applied to the literature as to a proposed change.
 
+## A quadratic access pattern the agent's own tests could not see
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] reports a performance defect in an
+agent-written RPG-to-Java translation. Reading a record by its key was fast, but every sequential READ in
+the original became "a separate query that scans the whole table, so the time grows with the square of
+the number of records": reading **10,000** records in key order took about **20 seconds** where a single
+query needs a hundredth of a second. The agent's tests did not reveal it "because they run on a handful
+of records, and our database was empty". The defect sits in one runtime class, so one fix should cover
+every program.
+
+The authors say they "did not study it properly"; this is a first look, not a benchmark. Their stated
+remedy matches this page's argument: define benchmarks on representative data, decide what is
+acceptable, and examine what they did not, such as several users and jobs working in parallel.
+
 ## Open questions
 
 - How should this CPU-oriented framework be extended to GPU kernels and distributed ML systems?
@@ -211,3 +226,4 @@ level. The same evidence standard is applied to the literature as to a proposed 
 - [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
 - [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
 - [[intelligentLearn]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]

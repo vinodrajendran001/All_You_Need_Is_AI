@@ -15,6 +15,7 @@ source_ids:
   - src-2026-11-01-philipp-schmid-code-mode
   - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
   - src-2026-11-24-uber-agent-skill-evals
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
 status: active
 ---
 
@@ -162,6 +163,19 @@ that never vary run in scripts", so code takes the deterministic part of a workf
 keeps the judgement, which is closer to the boundary question below than to "all tools become
 functions". It also blocks `.mcp.json` files, which install tool servers, in skills and plugins.
 
+## An agent that wrote its own translators
+
+[[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] reports the same move at project
+scale, unprompted. Asked only to translate a large RPG application to Java, the coding agent, "without
+being asked, wrote seven code generators in Python and used them to produce a large part of the Java
+project". The result is uniform on the surface, with generated records and screens, but about **30**
+generated files disagree with their own generator, and later sessions never revisited earlier work.
+
+This is the stale-script question above in another form: once a model writes a program that produces
+artifacts, the program and its outputs can drift apart, and nothing in the run checks one against the
+other. The article does not say how much of the project the generators produced, and the consistency
+finding comes from two models measuring the files, not from human review.
+
 ## Open questions
 
 - Where is the boundary? Some tools genuinely want a constrained schema — irreversible actions, anything with an approval gate. Does PTC mean *all* tools become functions, or that a code tool sits alongside a small set of governed JSON tools?
@@ -196,3 +210,4 @@ functions". It also blocks `.mcp.json` files, which install tool servers, in ski
 - [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
 - [[Uber]]
 - [[Cloudflare]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]

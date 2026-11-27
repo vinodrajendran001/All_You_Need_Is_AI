@@ -28,6 +28,7 @@ source_ids:
   - src-2026-10-31-l1vsun-five-levels-ai-engineering
   - src-2026-11-13-william-hu-always-on-agents
   - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
 status: active
 ---
 
@@ -55,7 +56,7 @@ infrastructure, for example HAProxy in front of a hello-world server across two 
 finishes a unit of work, he tests it "on exactly what would be production infrastructure", because the
 infrastructure is defined as code and the same Nix flakes can run production. His property-based
 testing material adds generated counterexamples as a further verifier type; the libraries he promotes
-come from his employer, Antithesis (see [[Agentic Testing]]). This is a practitioner talk with no
+come from his employer, [[Antithesis]] (see [[Agentic Testing]]). This is a practitioner talk with no
 measured comparison of loop outcomes with and without these checks.
 
 ## Loop contract
@@ -226,6 +227,20 @@ each improvement, and repeats the cycle "whenever a new model comes out". His pr
 between finder and executor. The evidence is his own account, and it records a limit: outside security
 researchers later reported three holes that the audits missed.
 
+## Shortening the inner loop can move cost into the outer one
+
+[[Ankit Gupta - Vibecoding an Inference Chip]] gives a hardware case of the trade between a fast loop
+and a thorough verifier. A coding agent optimizing an FPGA decoder under a bit-exact contract had a
+cycle-accurate simulation running for about 24 hours when outside advice told it to stop doing things
+"that take a lot of times". It switched at once to a short loop of C tests, synthesis and a logic-depth
+check, with one place-and-route per integration. The agent's retrospective says this process advice
+changed things "right away", while the advisers' design ideas were mostly already planned.
+
+The same retrospective names a possible price that it "can't prove": two hangs that only RTL simulation
+could have shown reached the board, and the big integration lost **38 hours** to them. Late in the run,
+a soak test found random faults at the fastest clock, and the final image shipped at a lower one.
+*Reviewer inference:* a faster inner loop still needs a slower check somewhere before hardware.
+
 ## Open questions
 
 - How should loops verify strategic or long-horizon work when feedback arrives late?
@@ -264,3 +279,5 @@ researchers later reported three holes that the audits missed.
 - [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
 - [[William Hu - Building Always-On Agents]]
 - [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[Antithesis]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]

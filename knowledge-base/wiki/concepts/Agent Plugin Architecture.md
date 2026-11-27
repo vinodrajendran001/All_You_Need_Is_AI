@@ -11,6 +11,7 @@ source_ids:
   - src-2026-10-12-rastogi-agent-engineer
   - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
   - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -123,6 +124,19 @@ studio". "We haven't arbitrated on the topic yet." Cheaper extensions bring more
 boundary, which is the question of how far the plugin boundary can move, above. Neither account
 measures plugin failures or security.
 
+## Layered plugin configuration that only adds
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] describes a plugin
+distributor at company scale. Uber's aifx CLI installs groups of skills as plugins into Claude Code,
+Codex, OpenCode and Uber's hosted agents. It manages personas that set default skills and
+configuration for engineers, data scientists and other roles. It merges configuration in six layers:
+company defaults, team or program, repository, working directory, user, and a local override. "Later
+layers add plugins and never remove them, so a repository can declare the plugins that everyone
+working in it needs." Add-only merging makes required plugins hard to drop. It also means that a
+later, more specific layer cannot remove a plugin that an earlier layer added, and the post does not
+say how conflicting or unwanted plugins are handled. Uber also blocks `.mcp.json` files in skills
+and plugins. See [[Agent Skill]] and [[Agent Security and Governance]].
+
 ## Related pages
 
 - [[Sarthak Rastogi - Make Your Coding Assistant a 10x AI Engineer]]
@@ -143,3 +157,4 @@ measures plugin failures or security.
 - [[Can Bölük]]
 - [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
 - [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]

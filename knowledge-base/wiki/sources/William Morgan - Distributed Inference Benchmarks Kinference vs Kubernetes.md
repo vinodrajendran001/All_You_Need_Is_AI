@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-11-20
-updated: 2026-11-20
+updated: 2026-11-27
 source_id: src-2026-10-31-william-morgan-kinference-benchmarks
 source_title: "Distributed Inference Benchmarks: [K]inference vs. Kubernetes"
 source_author: "William Morgan"
@@ -126,6 +126,16 @@ it scores well on disclosure and pre-registration and poorly on baseline choice.
   values imply.
 - **No cost, energy or correctness measures**, though routing should not change outputs. The vendor ran
   both arms.
+- **An independent reproduction agrees on direction, not magnitude (added 2026-11-27).**
+  [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]] reran all three workloads on 8× RTX 6000 Ada
+  GPUs (the L40S's die, capped at 300 W) inside a single Kubernetes pod. Median TTFT fell 93.6% on
+  shared-prefix (here 95%) and 54.0% on multiturn (here about 65%). Peak goodput rose 4.1× on multiturn
+  (here 3.5×) but only 2.9× on shared-prefix (here 7.4×). The reproduction traces that shortfall to 24
+  × 16k prefixes filling about 101% of its pool's KV cache; this post reports no KV cache size. Its
+  baseline is still random routing. It also states that "The blog fired both arms simultaneously",
+  which conflicts with this post's "The arms ran one after the other, and order alternated between
+  conditions" (alongside requests "sent at identical times"); the reproduction itself ran its arms
+  back-to-back on disjoint GPUs.
 
 ## Affected pages
 
@@ -161,3 +171,4 @@ it scores well on disclosure and pre-registration and poorly on baseline choice.
 - [[Prefill-Decode Disaggregation]]
 - [[Pavi Dhiman and Cyrus Asgari - Building an Inference Stack That Improves Itself]]
 - [[Sunita Nadampalli and Nicolò Lucchesi - Push-Based KV Transfer in vLLM]]
+- [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-11-06
+updated: 2026-11-27
 tags:
   - concept
   - production
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-10-16-opensearch-beyond-top-k
   - src-2026-11-04-axjns-synthetic-membrane-paper
   - src-2026-11-04-axjns-celln-execution-lease
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
 status: active
 ---
 
@@ -274,6 +275,28 @@ to the model, which "decides whether to check". The membrane makes that check ma
 outside the model. Both sources are proposals without failure-injection results. Neither says what to do
 when the downstream system honours no key and its state cannot be read.
 
+## Overload behaviour is either specified or decided by the implementation
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] moves this
+page's client-side questions to the serving side. When capacity cannot satisfy every request at
+once, the system sacrifices something: queueing, rejection, degradation or timeout. "That choice is
+either defined explicitly or decided implicitly by implementation details", and choosing who is
+sacrificed is "a product decision, not an engineering one". The evidence is one empirical study of
+production inference incidents. HTTP 500s account for **74%** of incidents, which the paper
+attributes to a monitoring gap, and the most common response was "No action/monitor only", at
+**48%**. The load balancer already had health probes and capacity-aware routing. What had to be
+retrofitted were admission and degradation policies: per-customer rate limiting, caps on pending
+tokens, and per-endpoint isolation.
+
+The same study inverts this page's "technically successful call". Long-running requests tripped a
+front-end HTTP **408** idle timeout while the backend eventually returned 200. The client saw a
+failure for work that had succeeded. In this page's terms, a retry on that 408 is the case where the
+first attempt did take effect. The fix was connection liveness: streaming responses plus request
+batching and a cap on pending tokens. The paper labels one customer's 408 rate falling from 2.72% to
+0.47% as illustrative and outside the study window. The evidence is thin: the series has only 3
+papers at this layer, and one of them is an offline autotuner with no runtime behaviour for a missed
+SLO.
+
 ## Open questions
 
 - No established detection mechanism exists for semantic failure beyond schema validation, trusted-source
@@ -336,3 +359,5 @@ when the downstream system honours no key and its state cannot be read.
 - [[Multi-Turn Evaluation]]
 - [[LLM-as-a-Judge]]
 - [[Chain-of-Thought Monitoring]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn]]

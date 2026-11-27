@@ -17,6 +17,8 @@ source_ids:
   - src-2026-11-12-huntley-answer-is-engineering
   - src-2026-11-22-nikolas-goebel-informal-verification
   - src-2026-11-23-tomassetti-legacy-modernization-measured
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
 status: active
 ---
 
@@ -223,6 +225,19 @@ review to [[Agentic Testing]] and to the release and monitoring stages of the
 [[AI-Native Software Development Lifecycle]]: review alone cannot carry quality once code arrives
 faster than people can read it.
 
+### Practitioners: model-only review before a human, and risk tiers set by hand
+
+[[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] has three other models
+review each pull request before he sees it, "always at least two models different from the one that
+wrote the code", and after a fix round a fresh reviewer checks the whole diff. He no longer reads code
+line by line; his own review is asking the agent targeted questions and judging the size of the source
+diff. [[Frank Rousseau - Agentic Coding on an Open-Source Project]] finds agent review "pretty noisy,
+with a lot of nitpicking" and still catches cohesion problems by hand. His policy merges very light
+pull requests that pass CI, skips review of cleanup passes, runs agent review for the rest, reviews
+critical code himself, and posts only a trimmed, validated model review on external contributions.
+Neither reports review accuracy or a defect rate, and Rousseau notes that outside researchers found
+three security holes his audits missed.
+
 ## Open questions
 
 - How correlated are "independent" reviewers' errors when they share base models, rules, or
@@ -264,3 +279,5 @@ faster than people can read it.
 - [[Antithesis]]
 - [[TypeSafe AI]]
 - [[Human Deferral to AI]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]

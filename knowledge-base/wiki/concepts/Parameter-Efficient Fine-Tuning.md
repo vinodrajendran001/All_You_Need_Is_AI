@@ -15,6 +15,7 @@ source_ids:
   - src-2026-11-03-astwei-teaching-qwen-why
   - src-2026-11-17-bytebytego-instacart-query-understanding
   - src-2026-11-20-huggingface-harness-adapters
+  - src-2026-11-22-zhang-li-recursive-self-editing
 status: active
 ---
 
@@ -105,6 +106,19 @@ and the edit removed a failure rather than adding a skill. On a Gemma model that
 edit moved MATH-500 by more than about a point. This is a preliminary single-model blog result,
 not a replacement for adapters when new behavior must be learned from data.
 
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] uses
+LoRA as an edit format rather than a training method. Qwen3.8-27B writes programs that build
+low-rank edits to itself from closed-form tools, such as truncated SVD, rank-one projections and
+LoRA operators, with "no training or gradient tool". Each module edit is capped at rank **64** and
+at a Frobenius norm of **0.1** of the current weight's. Accepted edits are merged in bf16 with FP32
+accumulation, and each is stored as a program plus a low-rank tensor that a human can audit or
+revert. Over five generations, four merged edits raised held-out math accuracy from **76.30%** to
+**77.75%** (avg@4).
+
+Operationally, a written edit then behaves like an adapter: small, versioned and revertible. The
+paper does not show that written LoRA matches trained LoRA. It reports no gradient-trained LoRA at
+the same rank and norm, no retained-capability tests outside math, and a single run.
+
 ## Stage-wise LoRA has a chat-template pitfall
 
 [[astwei et al - Teaching Qwen Why]] trains each stage as a new LoRA adapter (rank **64**, alpha
@@ -150,6 +164,8 @@ a single adapter.
   parameter subsets as well as rank and module heuristics do?
 - Can reasoned, data-free weight edits add behavior, or only remove failures that a short
   fine-tune would also fix, and how do they compare on retained capability?
+  The first self-editing loop reports small held-out math gains but no comparison with a trained
+  LoRA at the same rank.
 - Hugging Face's three harness adapters were nearly orthogonal (cosine about 0.01-0.02), yet after
   merging each specialist still led on four of six pairs. Does weight-space cosine predict how much
   a merge loses, or does the loss come mainly from the shared scaling weight?
@@ -176,3 +192,4 @@ a single adapter.
 - [[Hugging Face]]
 - [[Harness Optimization]]
 - [[Qwen]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]

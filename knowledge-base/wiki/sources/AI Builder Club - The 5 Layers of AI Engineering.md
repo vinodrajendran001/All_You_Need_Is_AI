@@ -1,7 +1,7 @@
 ---
 type: source-summary
 created: 2026-08-05
-updated: 2026-08-26
+updated: 2026-11-27
 source_id: src-2026-08-05-aibuilderclub-five-layers-ai-engineering
 source_title: "The 5 Layers of AI Engineering"
 source_author: AI Builder Club
@@ -37,6 +37,10 @@ The taxonomy connects several vault concepts into one troubleshooting model. It 
 - Real systems blur the boundaries: planning, tools, evaluation, and state can live inside a worker, harness, loop, or graph.
 - The claim that scarce skill has migrated outward is plausible but not supported here by comparative labor or performance data.
 - Graph orchestration predates the 2026 terminology wave, so the article separates a useful label from a new capability.
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] (2026-10-31)
+  presents the same five-part sequence as floors to climb ("Which level are you on?") and claims "The
+  levels don't move". It is a restatement, not independent confirmation, and it reads the layers as
+  maturity levels where this summary reads them as a diagnostic.
 
 ## Affected pages
 
@@ -64,4 +68,5 @@ The taxonomy connects several vault concepts into one troubleshooting model. It 
 - [[Agentic Loop]]
 - [[Coding Agent Harness]]
 - [[Context Engineering]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
 

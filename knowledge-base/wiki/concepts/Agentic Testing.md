@@ -32,6 +32,8 @@ source_ids:
   - src-2026-11-22-nikolas-goebel-informal-verification
   - src-2026-11-24-antithesis-nightmare-mode
   - src-2026-11-23-jan-miksovsky-watching-users
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -437,6 +439,31 @@ there live." He offers no study or sample size and does not discuss whether agen
 sessions or synthetic users could stand in; his only reference to AI is a jab at executives'
 "vibecoded apps".
 
+## A Stop hook makes the test suite the definition of done
+
+[[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] proposes a Claude
+Code Stop hook as the first harness move: `npm test --silent >&2 || exit 2`. Exit code 2 blocks the
+stop and sends the error back to the model, so "'done' means the tests pass, not that the model feels
+finished". The same check is the first of its four brakes for scheduled loops. The gate is only as
+strong as the suite it runs, which is this page's oracle problem, and the post reports no measurements.
+
+## The agent as a defect reporter, and clean rooms for skill tests
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] adds two testing
+habits from a skill marketplace. First, Uber runs skill evals in three clean rooms: Minion, its
+background agent platform; AES, its managed agent sandbox; and devpods, its remote development
+machines. "The clean room catches dependencies on the author's laptop": some skills expected
+particular file paths, cached documents or OS tooling. Second, an always-on log-papercut skill lets
+any agent report friction without being asked: what it tried, what it expected, what happened, and
+what would fix it. Agents filed thousands of papercuts in three months, and hundreds have been fixed.
+Each report is grouped, triaged, root-caused, fixed, evaluated and approved, and a person acts at
+two of those steps. Examples include a shared temp file that let concurrent sessions change each
+other's pull requests, and epoch seconds passed where an API expected milliseconds.
+
+Both habits are first-party, and nothing is quantified beyond those counts. The post gives no
+defect rates, no false-report rate and no comparison with human-filed bugs. See [[Agent Skill]] and
+[[Agent Observability]].
+
 ## Open questions
 
 - If the model is kept out of CI, what maintains the suite as the application drifts? The repair loop is
@@ -517,3 +544,6 @@ sessions or synthetic users could stand in; his only reference to AI is a jab at
 - [[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]]
 - [[Jan Miksovsky - Watching Users Is How You Make Products Better]]
 - [[Antithesis]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Agent Skill]]

@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-03
-updated: 2026-10-27
+updated: 2026-11-27
 entity_kind: organization
 tags:
   - entity
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-10-09-rabi-guha-intelligent-ui
   - src-2026-10-19-cammarata-networks-already-clean
   - src-2026-10-20-guan-beyond-gmean-squared
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
 status: active
 ---
 
@@ -176,6 +177,25 @@ formula is a **proposal** and the recovery demonstrations are **synthetic simula
 how OpenAI proposes to measure monitorability, not that OpenAI's models are monitorable. See
 [[Chain-of-Thought Monitoring]] and [[Embedded Evaluation]].
 
+## Swarm claims under a matched-budget replication
+
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] tests OpenAI's multi-agent claims from the
+outside. It rates the GPT-5.6 announcement's swarm bonus (**+3pp to +23pp**, rising with swarm size
+on BrowseComp, SEC-Bench Pro and Terminal-Bench 2.1) as lacking a matched-compute control and as
+"Probably just disguised inference scaling". Its replication used a **253**-question BrowseComp
+sample, with a confidence interval of about ±5 points. The high-effort multi-agent gain was small on
+both sides: **2.6** points reported by OpenAI against **0.4** to **2.8** in the replication. Every
+replication score was lower than OpenAI's, by **1.4** points for the single agent at low effort and
+by **7.5 to 8.0** points in the other three comparisons, and the author could not determine why.
+
+The study's self-organized teams used an undocumented message board found in Codex's source code.
+Comments there describe "Tree-owned message boards for training", which the author reads as a sign
+that OpenAI uses the board in training. That is an inference from code comments, not a statement by
+OpenAI. GPT-6.2 Sol's teams of 8 on that board scored **24%** below one long session on git-to-zig at
+8M; no restarts were run with that model. The author tentatively concludes that whatever teamwork
+training OpenAI does "does not yet seem enough for its teams to match a single agent at an equal
+budget". See [[Multi-Agent Coordination]] and [[Benchmark Optimization]].
+
 ## Open questions
 
 - The monitorability re-analysis covers o1 through GPT-5.6 Sol under a single monitor and excludes GPT-6
@@ -223,3 +243,4 @@ how OpenAI proposes to measure monitorability, not that OpenAI's models are moni
 - [[Recursive Architectures]]
 - [[Latent-Space Reasoning]]
 - [[Redwood Research]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]

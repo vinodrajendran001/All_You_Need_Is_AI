@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-06
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - inference
@@ -23,6 +23,7 @@ source_ids:
   - src-2026-11-03-bytebytego-nemotron
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-15-anshuman-mishra-baseten-2000tps
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
 status: active
 ---
 
@@ -379,6 +380,20 @@ workloads.
 The draft limit of six sits beside DeepInfer's default of **five** for the same model family (see the
 determinism section above). The draft budget is an engine profile setting, not a model constant.
 
+## Exact speculation on an FPGA, with the drafter on the host CPUs
+
+[[Ankit Gupta - Vibecoding an Inference Chip]] adds a hardware case where exactness is enforced bit for
+bit. In an agent-built FPGA decoder for a ternary-weight model, prompt-lookup drafting on the host, with
+the FPGA verifying several tokens in one pass, gained only **1.04×** (49.21 → 51.25 tok/s). Later, a
+real draft model, "a cut-down Maple" on the F2 instance's host CPUs with the FPGA verifying every
+token, gained **1.12×** (94.44 → 105.63 tok/s). A further step added re-speculation after misses of a
+provisional next-token guess, bundled with other changes.
+
+*Reviewer inference:* putting the drafter on host CPUs keeps it off the accelerator's scarce memory,
+which is the competition that [[#Cheap hardware changes the break-even point]] warns about. The capture
+reports no acceptance rates, and the re-speculation step is not separated from the changes it was
+bundled with.
+
 ## Open questions
 
 - How well do acceptance predictors such as DSpark's calibrate under traffic or target-model
@@ -428,3 +443,4 @@ determinism section above). The draft budget is an engine profile setting, not a
 - [[Anshuman Mishra - I Reverse Engineered Baseten's 2000TPS Inference Engine]]
 - [[Baseten]]
 - [[Inference Determinism]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]

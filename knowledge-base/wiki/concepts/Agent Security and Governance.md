@@ -63,6 +63,9 @@ source_ids:
   - src-2026-11-19-paul-kinlan-chrome-extensions-prompts
   - src-2026-11-22-nikolas-goebel-informal-verification
   - src-2026-11-23-tomassetti-legacy-modernization-measured
+  - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-24-uber-agent-skill-evals
+  - src-2026-11-20-huggingface-harness-adapters
 status: active
 ---
 
@@ -729,6 +732,21 @@ that attempt may actually do. Neither hiding a schema nor authenticating the cal
 the other checks. Proxies periodically refresh registry state, so this secondary account
 does not establish immediate revocation or a tested security-effectiveness rate.
 
+## Two narrow controls: no tool-server installs in skills, and a training-time tool-call filter
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] records a packaging
+rule. Uber blocks `.mcp.json` files, which install tool servers, in skills and plugins. Repeated
+flows instead run as shared Code Mode packages that call tools through Uber's tool gateway. The post
+gives no incident data behind the rule.
+
+[[Hugging Face - Introducing Harness Adapters]] applies a guard during RL rather than in deployment.
+Its safeagents tool, with regex and pattern rules specific to the training tasks and test paths,
+checked **1.3M** tool calls across three training runs and blocked **647**. The authors read the
+falling block rate as the model getting "safer and safer" after each optimization step. The trend
+appears only in a chart. A lower block rate under fixed rules could also mean the policy found
+actions the rules do not match (vault inference). See [[Agent Skill]] and
+[[Agentic Reinforcement Learning]].
+
 ## Protecting a workload from its host is different from protecting the host from an agent
 
 [[Joe Lothan et al - Less Is More - From 1M Lines of Firmware to 300 of Assembly]] reverses
@@ -877,6 +895,18 @@ in-browser changes, and granted tools have no stated per-call approval.
 Both posts describe [[Paul Kinlan]]'s own prototypes, with no incident or detection data. Their value
 here is that the author marks where his own isolation stops.
 
+## An always-on agent's permissions: a credential proxy, classifiers, and deferred approvals
+
+[[William Hu - Building Always-On Agents]] says "Permissions are where always-on agents carry the most
+risk", because a run holds the user's access and operates unattended. It names three components. A
+credential proxy outside the agent's environment injects real credentials into outgoing requests, so
+the agent never holds them. Claude Code's auto mode uses classifiers to block actions they identify as
+dangerous, though "User review, however, is still necessary for the most important decisions". A
+deferred tool call ends the run, saves the session mid-call, and shows the request to the user, whose
+answer returns as an inbox event. Prompt-injection checks move from the intake handler into the run
+but are not specified. It is first-party guidance with no measured block rates, false positives, or
+injection results.
+
 ## Open questions
 
 - If payment proves key control rather than identity, which layer of the hierarchy above is supposed to
@@ -1020,3 +1050,6 @@ here is that the author marks where his own isolation stops.
 - [[Kubernetes]]
 - [[Nikolas Göbel - Informal Verification]]
 - [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]
+- [[William Hu - Building Always-On Agents]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Hugging Face - Introducing Harness Adapters]]

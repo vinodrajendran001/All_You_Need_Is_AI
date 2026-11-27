@@ -24,9 +24,9 @@ status: active
 The second part of [[intelligentLearn]]'s series walks six layers where a serving fix can land, in
 investigation order rather than stack order. The order is engine internals (L2), replica composition
 (L3), routing and admission (L4), substrate (L1), capacity (L0), and contract and failure semantics
-(L5). Each layer is argued from a coded paper corpus (Part 4 puts it at 172 papers). Each layer gets a cost
-table, decision rules, and explicit "when this is enough" and "when to investigate another layer"
-tests. The part is unusually careful about provenance. It separates what each paper measured from
+(L5). Each layer is argued from a coded paper corpus (Part 4 puts it at 172 papers). Each layer
+gets a cost table, decision rules, and explicit "when this is enough" and "when to investigate
+another layer" tests. The part is unusually careful about provenance. It separates what each paper measured from
 what it only cited, what came from a simulator, and what the author inferred. Its recurring lesson is
 cost displacement: paging trades memory for kernel time, offload moves pressure onto the
 interconnect, disaggregation adds KV transfer, and cache affinity adds queueing.

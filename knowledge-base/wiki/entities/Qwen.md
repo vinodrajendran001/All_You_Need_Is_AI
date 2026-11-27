@@ -266,10 +266,10 @@ choice "could reflect Qwen's prominence in training data rather than lineage". T
 model above names OpenAI as its creator in **81.5%** of samples, so self-identification is weak
 lineage evidence in either direction.
 
-If the inference holds, Qwen would be the base of four decision models in the vault: the disclosed
-Microsoft-Decision-1 and Base Labs scorers above, and Jev. Modaic's own Mo Lite and Mo 2.0 are built
-on Qwen3.5-35B-A3B and Qwen3.8-27B, and its throughput comparison also used Baseten's elephant-1,
-described as a dense Qwen3.5-9B.
+If the inference holds, Jev joins a run of Qwen-based decision models in the vault:
+Microsoft-Decision-1 and the two Base Labs scorers above, whose backbones are disclosed, and
+Modaic's own Mo Lite and Mo 2.0, built on Qwen3.5-35B-A3B and Qwen3.8-27B. Modaic's throughput
+comparison used one of the Base Labs scorers, elephant-1, as its dense Qwen3.5-9B control.
 
 ## A common base for safety-removed derivatives
 

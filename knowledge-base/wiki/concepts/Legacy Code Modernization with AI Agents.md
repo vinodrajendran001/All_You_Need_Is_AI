@@ -211,17 +211,18 @@ author says is "not proof" of implementation. Errors were still found in every t
 among them a lost sign that moves a date into another century, inverted commit and rollback, and
 **17** programs counted as translated that only throw an exception.
 
-Run-to-run variance is the second finding. Three isolated runs on the same application of about
-**15,100** RPG lines produced **14,500**, **26,300**, and **22,900** lines of Java, with different
-packages, field types, data access, and public interfaces. On normal inputs they agreed: all three
-passed **35** predefined tests, and one program agreed on all **102 million** valid inputs. Off the
-normal path (overflow, negative values, errors halfway through an update, missing source) each run
-behaved differently, so whether a given error reaches the application "is decided by which run you
-happened to get". Errors shared by every run are ones "you cannot discover by comparing them". The
-single large translation shows the decoherence this page warns about inside one project: about a third
-of the hand-translated program code also exists, identical or nearly so, in another program; one date
-conversion is declared in **27** classes with **20** different bodies; and there are three different
-ways of calling a program.
+Run-to-run variance is the second finding. Three isolated runs on the small application (about
+**15,100** RPG lines) produced **14,500**, **26,300**, and **22,900** lines of Java, and repeated runs
+differed in packages, field types, data access, and public interfaces. On normal inputs they agreed:
+the three runs that translated five programs of the large application all passed **35** predefined
+tests, and one program agreed on all **102 million** valid inputs. Off the normal path (overflow,
+negative values, errors halfway through an update, missing source) each run behaved differently, so
+whether a given error reaches the application "is decided by which run you happened to get". Errors
+shared by every run are ones "you cannot discover by comparing them". The single large translation
+shows the decoherence this page warns about inside one project: about a third of the hand-translated
+program code also exists, identical or nearly so, in another program; one date conversion is declared
+in **27** classes with **20** different bodies; and there are three different ways of calling a
+program.
 
 Deterministic tooling appears twice, once by design and once unasked. Strumenta's tooling parsed the
 code and dependency-ordered the plan's **2,777** files, and a script split it into **43** phases plus

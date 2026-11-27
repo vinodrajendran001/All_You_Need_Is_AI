@@ -369,13 +369,13 @@ properties, and a generator that finds no counterexample is evidence only about 
 ## Normal-path agreement is not equivalence
 
 [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]] measures the gap between passing
-tests and doing what the original does. Three isolated agent translations of the same RPG application
-differed in structure but behaved the same on normal inputs: all passed **35** predefined test cases,
-and one program agreed on all **102 million** valid inputs. Off the normal path (overflow, negative
-values, errors halfway through an update, missing source) each run did something different. The
-agent's own tests missed a defect of another kind. Each sequential read had become a query that scans
-the whole table, so reading **10,000** records in key order took about **20 seconds** where a single
-query needs a hundredth of a second, and the tests ran on a handful of records against an empty
+tests and doing what the original does. Three isolated agent translations of the same five RPG
+programs differed in structure but behaved the same on normal inputs: all passed **35** predefined
+test cases, and one program agreed on all **102 million** valid inputs. Off the normal path (overflow,
+negative values, errors halfway through an update, missing source) each run did something different.
+The agent's own tests missed a defect of another kind. Each sequential read had become a query that
+scans the whole table, so reading **10,000** records in key order took about **20 seconds** where a
+single query needs a hundredth of a second, and the tests ran on a handful of records against an empty
 database. Test generation was not cheap either: scenarios for five programs cost **$7.56**, about four
 times their translation, and the author calls a five-times test multiplier for a whole application "a
 hypothesis, not a rate we measured". With no running original, expected behaviour came from reading

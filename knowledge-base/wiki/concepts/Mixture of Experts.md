@@ -174,12 +174,13 @@ request, and reviews, not measured under one protocol.
 The speed rule above concerns decoding.
 [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] supplies a prefill counterpart
 and uses it as evidence about an undisclosed model. Modaic replayed **250** prompts of 512 to 9,500
-input tokens, one request in flight, through a dense Qwen3.8-27B derivative, a dense Qwen3.5-9B
-model and a Qwen3.5-35B-A3B MoE derivative, each self-hosted on a single B200, and through
-TypeSafe's hosted Jev. "Mo 2.0 plateaus around 35K tokens per second, while Jev keeps climbing past
-90K." Jev tracks the MoE derivative but stays below it, and the gap narrows from **22%** at about
-3.2K tokens to **7%** at about 8.8K. Modaic reads the resemblance as a sign that Jev is a sparse
-MoE, since routing each token through a few experts uses far fewer FLOPs per token on long inputs.
+input tokens, one request in flight, through Modaic's Mo 2.0, a dense Qwen3.8-27B derivative;
+Baseten's elephant-1, a dense Qwen3.5-9B; and Modaic's Mo Lite, a Qwen3.5-35B-A3B MoE derivative,
+each self-hosted on a single B200; and through TypeSafe's hosted Jev. "Mo 2.0 plateaus around 35K
+tokens per second, while Jev keeps climbing past 90K." Jev tracks Mo Lite but stays below it, and
+the gap narrows from **22%** at about 3.2K tokens to **7%** at about 8.8K. Modaic reads the
+resemblance as a sign that Jev is a sparse MoE, since routing each token through a few experts uses
+far fewer FLOPs per token on long inputs.
 
 The fingerprint is coarse. It separates sparse from dense but not MoEs of the same shape: Modaic
 says Qwen3.6-35B-A3B "shares the same architecture, so throughput alone can't tell the two apart",

@@ -364,7 +364,7 @@ self-identification, the correlation of tokenizer counts with latency, and prefi
 backbone remains undisclosed (see [[TypeSafe AI]]). If the inference is right, Jev would join
 [[Microsoft-Decision-1]] and the Base Labs scorers above as a Qwen-derived decision model, the
 others with disclosed backbones. Modaic's own Mo Lite and Mo 2.0 are built on Qwen3.5-35B-A3B and
-Qwen3.8-27B. Modaic probed Jev through both of its interfaces, Choice and Noul.
+Qwen3.8-27B. Modaic's probes used both Jev interfaces, Choice and Noul.
 
 Its timing adds one more measurement boundary to keep separate. Over **9,976** requests to Jev 1.14,
 median end-to-end latency rose from **77** to **155 ms** across 2,000-token input buckets, with the

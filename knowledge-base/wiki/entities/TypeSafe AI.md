@@ -174,10 +174,10 @@ from Gemma (**0.804** on Jev), and Modaic's own Mo Lite control scores the two t
 identically (**0.873**), which contradicts its statement that "Both controls tracked their own
 tokenizers best". Gemma is excluded only through self-identification, which Modaic itself calls weak
 evidence. Throughput was compared only with Qwen-based models, Jev's hosted latency was set against
-self-hosted single-B200 workers, and Qwen3.6-35B-A3B cannot be told apart. That TypeSafe trains Jev
-to conceal its identity and hides its true token counts are Modaic's inferences, and its statement
-that competitors "quickly surpassed" Jev comes without evidence. The October position stands with
-one more outside hypothesis attached: the backbone is undisclosed.
+self-hosted single-B200 workers, and Qwen3.6-35B-A3B cannot be told apart. The claims that TypeSafe
+trains Jev to conceal its identity and hides its true token counts are Modaic's inferences, and its
+statement that competitors "quickly surpassed" Jev comes without evidence. The October position
+stands with one more outside hypothesis attached: the backbone is undisclosed.
 
 ## Related pages
 

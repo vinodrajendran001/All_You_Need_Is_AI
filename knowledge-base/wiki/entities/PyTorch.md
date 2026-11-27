@@ -117,8 +117,8 @@ SDPA is the kernel a PyTorch user gets without writing one, which makes it the n
 the same harness a tuned Triton kernel (**1.968 ms**) and NVIDIA's CuTe example (**1.950 ms**) also
 beat it at N = 4096 non-causal. The margins are setup-specific: the capture does not say which SDPA
 backend ran, and in the author's sustained, power-logged run at that shape Triton (2.119 ms) trailed
-SDPA (2.021 ms), reversing the harness order. This is the second vault source to benchmark attention
-against PyTorch's bundled kernel; the first, on an RTX 3090, is summarized on
+SDPA (2.021 ms), reversing the harness order. An earlier vault source also benchmarked attention
+against PyTorch's bundled kernel, on an RTX 3090; it is summarized on
 [[GPU Kernel Optimization]]. All figures are self-reported.
 
 ## Related pages

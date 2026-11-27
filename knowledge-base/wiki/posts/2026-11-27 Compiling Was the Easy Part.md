@@ -34,7 +34,7 @@ status: ready
 
 An AI coding agent translated more than half a million lines of decades-old business software into Java for about $1,100 at list prices. All of it compiled. It still did not behave like the original.
 
-Federico Tomassetti tested this on two real business systems from furniture and clothing manufacturing, written in RPG, a language for IBM's IBM i platform. The agent, Anthropic's Claude Opus 5.5 in Claude Code, got a deliberately naive prompt: translate the whole application into Java and make sure it runs.
+Federico Tomassetti tested this on two real business systems from furniture and clothing manufacturing, written for IBM's IBM i platform. The agent, Anthropic's Claude Opus 5.5 in Claude Code, got a deliberately naive prompt: translate the whole application into Java and make sure it runs.
 
 For the larger system, about 600,000 lines, his team's tooling first split the work into 49 agent sessions, which produced more than a million lines of Java. The easy checks passed: every session finished and compiled, and the application started, opened its menus, and kept a new record after a restart. All 2,777 planned files were mentioned in the output, which, he notes, does not prove their behaviour was implemented.
 
@@ -72,10 +72,10 @@ Federico Tomassetti had an AI agent translate ~600,000 lines of decades-old busi
 An AI coding agent translated about 600,000 lines of decades-old business software into Java for about $1,100 at list prices. It compiled. It started. And every translation the team examined still had real errors.
 ```
 
-2. (253 chars)
+2. (246 chars)
 
 ```text
-Federico Tomassetti tested Claude Opus 5.5 in Claude Code on two real business systems from furniture and clothing manufacturing, written in RPG for IBM's IBM i platform. The prompt was deliberately naive: translate it all to Java and make sure it runs.
+Federico Tomassetti tested Claude Opus 5.5 in Claude Code on two real business systems from furniture and clothing manufacturing, written for IBM's IBM i platform. The prompt was deliberately naive: translate it all to Java and make sure it runs.
 ```
 
 3. (279 chars)
@@ -123,8 +123,8 @@ limits.
 3. **Myth correction:** Code that compiles and starts has passed the easy checks, not the comparison with the old system.
 
 **Recommended:** The plain situation for LinkedIn and X post 1: it gives the size, the price,
-and the passing result before the reversal, so a reader who has never seen RPG knows what was
-attempted. The 17 crashing programs are kept inside the error list, where the "counted as
+and the passing result before the reversal, so a reader who has never seen the old system knows what
+was attempted. The 17 crashing programs are kept inside the error list, where the "counted as
 translated" qualifier sits beside them; the myth correction is carried by the "Why did the easy
 checks miss this?" paragraph and X post 5.
 
@@ -186,8 +186,9 @@ on these notes. Each preserves the situation, claim, example, mechanism, limit, 
 | What is the limit? | The author's company sells migrations; the errors are examples, not a rate; one model and the simplest prompt; the $1,100 excludes tests, reviews, fixes, and human time. | "at list prices" and "every translation checked". |
 | What should change? | Budget the first translation and the proof separately; the proof needs the original running, representative data and scenarios, and a way to compare; test the unusual paths where runs disagreed. | Budget separately for proving it matches the original. |
 
-"RPG" is introduced as a language for IBM's IBM i platform, and "IBM i" is left as a named
-platform after that. Claude Opus 5.5 is named as Anthropic's model running in Claude Code.
+"RPG" is not used: it is an unexpanded acronym and the vault records no expansion, so the
+systems are described as written for IBM's IBM i platform, and "IBM i" is left as a named
+platform. Claude Opus 5.5 is named as Anthropic's model running in Claude Code.
 Overflow is translated as numbers too large for their field, commit and rollback as saves and
 undos, and "throw an exception" as crash. "ERP", "DDS", "CL", "H2", "phases", "oracle", and
 "transpiler" are not used. The LinkedIn conclusion completes the argument before the closing
@@ -197,16 +198,16 @@ question, and the vault author's own advice is labelled "My addition".
 
 **Passed:** checked every public factual sentence against Tomassetti's raw capture,
 [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]], and the Tomassetti sections of [[Legacy Code Modernization with AI Agents]],
-[[Agentic Testing]], and [[AI Code Review]]. LinkedIn has 484 words including
+[[Agentic Testing]], and [[AI Code Review]]. LinkedIn has 480 words including
 attribution and hashtags, above the usual 450 because the mechanism and limits paragraphs were
 kept rather than cut. The X standalone is 278 characters; the seven thread posts are
-213, 253, 279, 278, 278, 260, and 272 characters under the declared link weighting. The public copy is ASCII.
+213, 246, 279, 278, 278, 260, and 272 characters under the declared link weighting. The public copy is ASCII.
 
 | Public claim group | Direct support and boundary |
 |---|---|
 | More than half a million lines translated into Java for about $1,100 at list prices; all of it compiled | Raw "What we found": "about $1,100 at API prices for the first generation of a translation of more than half a million lines of source" and "all the translations we produced compile". Cost section: "API list prices reported by Claude Code. We actually used a Claude subscription", so the dollars are list-price equivalents of quota, not money paid. |
 | About 600,000 lines for the larger system | Raw RQ4: "roughly 603,000 lines across the migration plan, queries, and CL"; the plan alone is about 552,000 lines. The $1,101.95 total covers all 49 phases, so the post pairs $1,100 with the 603,000 figure rather than with 552,000. |
-| Two real business systems from furniture and clothing manufacturing, built over decades, written in RPG for IBM i | Raw "The code": Small is "used in furniture manufacturing", Large "in clothing manufacturing and retail", "Both are written in RPG for the IBM i", and applications that "have evolved over decades". |
+| Two real business systems from furniture and clothing manufacturing, built over decades, written for IBM's IBM i platform | Raw "The code": Small is "used in furniture manufacturing", Large "in clothing manufacturing and retail", "Both are written in RPG for the IBM i", and applications that "have evolved over decades". |
 | Anthropic's Claude Opus 5.5 in Claude Code; a deliberately naive prompt to translate the whole application and make sure it runs | Raw agent table (Claude Opus 5.5; Claude Code, headless); the Small prompt ("Translate the whole application into Java ... ensuring the result can be run"); "We deliberately kept the prompt strategy simple because we wanted the simplest baseline"; "Not by giving a naive prompt, as we did". |
 | The team's tooling split the larger system into 49 agent sessions; more than a million lines of Java | Raw: "Strumenta's (deterministic, *gasp*) tooling ... ordered the 2,777 files of the plan", "A script split that plan into 43 phases", plus two query and four CL phases; "Large used a fresh session per phase"; "5,737 Java files and about 1,053,000 lines". The post says the tooling split the work so that "naive prompt" is not read as unplanned for the larger system. |
 | The easy checks passed: every session finished and compiled; the application started, opened its menus, and kept a new record after a restart | Raw: "Every phase completed on its first attempt ... 'completed' means the session finished, and the resulting project compiles"; "We launched Large ... the main menu and its submenus opened ... still there after restarting the application". Boundary: the same brief exploration found skipped database definitions, an unsupported exit key, and a report with no data rows, so the post says "the easy checks", and the title avoids "every check". |

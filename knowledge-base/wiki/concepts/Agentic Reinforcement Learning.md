@@ -309,7 +309,7 @@ against a solo baseline that is the same swarm-trained model. The two sources ag
 collective's advantage is wall-clock time, not accuracy at equal compute. General Reasoning
 concedes that a single agent with as many output tokens "will recover much of the performance gain",
 and Zanichelli's teams of 8 finished **3 to 16** times sooner in almost all configurations while
-scoring below the single agent in **54 of 70** comparisons (figures from the post's chart captions).
+scoring below the single agent in **54 of 70** comparisons (per a caption and the appendix table).
 The restarted single agent is the control that neither General Reasoning nor OpenAI reported, though
 Zanichelli ran it post-hoc and on one task only. See [[Multi-Agent Coordination]].
 

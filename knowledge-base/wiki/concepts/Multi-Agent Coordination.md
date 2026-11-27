@@ -232,11 +232,11 @@ at matched budgets. Teams in three setups (protocol, self-organized and orchestr
 Claude Opus 5.5, Claude Sonnet 5.5, GPT-6.1 Sol or GPT-6.1 Terra agents, shared the same
 weighted-token budget as one single agent. The main runs used 8M, with three runs per configuration
 and 10 for a few git-to-zig comparisons. Teams scored below the single agent in 54 of 70
-comparisons, a median of 7.0% lower, while teams of 8 typically finished 6.1 times sooner. Both
-figures come from chart captions; the TL;DR rounds them to "6x" faster and "about 7%" worse. The
-author reads this as consistent with Toby Ord's "stepping on toes" analysis of OpenAI's multi-agent
-results: "Measured against tokens, adding agents does not yet look like a new axis along which
-performance scales."
+comparisons, a median of 7.0% lower, while teams of 8 typically finished 6.1 times sooner. The
+median and the 6.1 figure come from chart captions; the TL;DR rounds them to "6x" faster and "about
+7%" worse. The author reads this as consistent with Toby Ord's "stepping on toes" analysis of
+OpenAI's multi-agent results: "Measured against tokens, adding agents does not yet look like a new
+axis along which performance scales."
 
 The one apparent premium came from self-organized GPT teams on git-to-zig, a porting task graded on
 743 of git's test scripts. At 32M weighted tokens, Sol's teams of 8 scored **93.2%** against

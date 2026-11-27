@@ -55,9 +55,9 @@ decisive restart baseline was post-hoc and run on one task.
 
 ### Teams trade quality for speed
 
-- Teams scored below the single agent in **54 of 70** comparisons, by a median of **7.0%** (figures
-  from the post's chart captions). Teams of 8 finished **3 to 16** times sooner in almost all
-  configurations.
+- Teams scored below the single agent in **54 of 70** comparisons, by a median of **7.0%**. The
+  median comes from a chart caption; the appendix table restates the result as "~7% worse" in "54 of
+  our 70 comparisons". Teams of 8 finished **3 to 16** times sooner in almost all configurations.
 - Where a single agent nearly saturated the task (the take-home, and Claude on AHC014, where Opus 5.5
   ranked first against the human contestants in most runs), teams matched it.
 - Claude single agents often stopped early: Sonnet spent **30-43%** of its budget on average and Opus

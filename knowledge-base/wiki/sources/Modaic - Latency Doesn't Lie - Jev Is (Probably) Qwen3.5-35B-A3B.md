@@ -78,7 +78,7 @@ Qwen3.6-35B-A3B.
   - Version 1.14 is more guarded, "which suggests TypeSafe may have trained this behavior out
     further".
   - Indirect questions point to Qwen.
-- Modaic links a CMU blog post saying self-identification "is weak evidence on its own". It also
+- Modaic links a CMU blog post saying self-identification is "weak evidence on its own". It also
   notes the 74% choice "could reflect Qwen's prominence in training data rather than lineage".
 
 ### The tokenizer through latency
@@ -124,8 +124,8 @@ two apart". Modaic proposes knowledge-cutoff probes as a next step.
 ## Why it matters
 
 - [[TypeSafe AI]]: this is the first recorded outside attempt to infer Jev's backbone. Its MoE and
-  Qwen reading sits against the earlier ModernBERT hypothesis and the "BERT-like" description in the
-  vault; none of these is a disclosure.
+  Qwen reading sits against the earlier ModernBERT hypothesis and the BERT-like description recorded
+  there; none of these is a disclosure.
 - [[Typed Probabilistic Decision Models]]: it frames base-model choice, not kernels, as the main cost
   lever for input-heavy decision workloads.
 - [[Checkpoint Forensics]]: provenance is inferred here from API behavior and timing, without

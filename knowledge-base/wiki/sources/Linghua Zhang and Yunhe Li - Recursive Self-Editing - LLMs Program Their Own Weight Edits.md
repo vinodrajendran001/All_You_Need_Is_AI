@@ -150,7 +150,7 @@ audit or revert.
   the gate gain. The never-shown test split is the check on this: the test avg@4 gain (**+1.45**) is
   smaller than the gate gain (**+2.50**). Test scores were logged after every generation but are
   reported only for M0 and the final model.
-- **"Editor improves with the model" is asserted, not tested.** The paper argues that "the editor
+- **The editor's own improvement is asserted, not tested.** The paper argues that "the editor
   improves together with the model it edits", but no experiment compares, for example, M0 and M3
   writing edits for the same model. Later editors also see earlier programs and gate statistics, so
   accumulated history and a changed editor are confounded.

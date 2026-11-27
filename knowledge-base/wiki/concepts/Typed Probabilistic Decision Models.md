@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-18
-updated: 2026-11-06
+updated: 2026-11-27
 tags: [concept, decision-models, structured-output, inference]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -20,6 +20,7 @@ source_ids:
   - src-2026-10-21-baselabs-mammoth-elephant
   - src-2026-10-27-morgan-train-decision-model
   - src-2026-11-02-alphasignal-timestral
+  - src-2026-11-27-modaic-jev-latency-fingerprint
 status: active
 ---
 
@@ -353,6 +354,27 @@ purchasing rules. That is the boundary this page already draws — a typed answe
 not authorization — expressed as system architecture. The article offers no new evidence about
 decision-model accuracy or calibration. See [[Tabular Foundation Models]] and [[Model Routing]].
 
+## The base model as the cost lever, and another latency boundary
+
+[[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] reframes the cost question for
+this category. Decision workloads are input-heavy, "which makes prefill the dominant cost", so the
+author asks "how much of that performance comes from picking the right base model?" Its answer for
+Jev is a sparse mixture-of-experts base, probably Qwen3.5-35B-A3B, inferred from
+self-identification, the correlation of tokenizer counts with latency, and prefill throughput; the
+backbone remains undisclosed (see [[TypeSafe AI]]). If the inference is right, Jev would join
+[[Microsoft-Decision-1]] and the Base Labs scorers above as a Qwen-derived decision model, the
+others with disclosed backbones. Modaic's own Mo Lite and Mo 2.0 are built on Qwen3.5-35B-A3B and
+Qwen3.8-27B. Modaic probed Jev through both of its interfaces, Choice and Noul.
+
+Its timing adds one more measurement boundary to keep separate. Over **9,976** requests to Jev 1.14,
+median end-to-end latency rose from **77** to **155 ms** across 2,000-token input buckets, with the
+p50–p99 gap between **47** and **58 ms**. That sits inside the vendor's **70-500 ms** range and far
+below the **4.33 s** mean in Husain's whole-trace comparison above. Inputs, concurrency and clients
+differ, so none of the three figures refutes another. Modaic also relays an Artificial Analysis
+Decision Index on which six configurations score **60** to **76** and Jev 1.14 scores **66**,
+without naming the other five in its text. The author sells competing models, and its claim that
+rivals "quickly surpassed" Jev on accuracy and calibration comes with no evidence.
+
 ## Open questions
 
 - Does the cached-action formulation generalize to candidate sets that change per state, or does it
@@ -377,6 +399,8 @@ decision-model accuracy or calibration. See [[Tabular Foundation Models]] and [[
 - When does parallel decision sampling outperform a small autoregressive model plus constrained decoding?
 - How should large or changing action spaces be represented without a two-stage error cascade?
 - What independent ground truth should replace teacher-model averages in evaluation?
+- Does base-model choice explain more of the category's cost and latency spread than serving does?
+  The only argument for it so far is a competitor's inference about one undisclosed model.
 
 ## Related pages
 
@@ -415,3 +439,4 @@ decision-model accuracy or calibration. See [[Tabular Foundation Models]] and [[
 - [[Model Routing]]
 - [[Agent Security and Governance]]
 - [[NVIDIA]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-22
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - recursive-self-improvement
@@ -31,6 +31,7 @@ source_ids:
   - src-2026-11-09-zvi-ai-rd-acceleration-rsi
   - src-2026-11-09-tillman-two-kinds-test-time-scaling
   - src-2026-11-06-doubleai-llms-redesign-themselves
+  - src-2026-11-22-zhang-li-recursive-self-editing
 status: active
 ---
 
@@ -462,6 +463,28 @@ it trains "on a direct path to recursive self-improvement" and cites self-refere
 (Kirsch and Schmidhuber, 2022). The experiments do not test that claim (first-party blog, no seeds
 or error bars).
 
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] closes
+the gap the Takehi paragraph left open: a model edits its own weights, and the edited model writes
+the next edit. Qwen3.8-27B wrote gradient-free, rank-capped LoRA edits to itself from closed-form
+tools, with "no training or gradient tool". Over five generations four edits were accepted on a
+hidden **500**-problem gate set. Gate accuracy rose from **73.95%** to **76.45%**, and a held-out
+test split rose from **76.30%** to **77.75%** (avg@4). Under this page's editable-set test, the
+weights, and through them the editor itself, are now in the changed set. The verifier is not. The
+gate is fixed, graded deterministically and unreadable to the editor, which sees only gate
+statistics and the ids of fixed and broken problems. In
+[[Philipp Schmid - Recursive Self-Improvement]]'s terms this is self-improvement against a fixed
+verifier, not RSI with a rising one, though with the unusual property that the improved artifact is
+also the next improver.
+
+The paper's stronger claim, that "the editor improves together with the model it edits", is asserted
+rather than tested. No experiment has an earlier and a later model write edits for the same target,
+and later editors also see earlier programs and gate statistics, so a better editor and accumulated
+history are confounded. The per-generation gate gains (**+1.20**, **+0.50**, **+0.10**, **+0.70**,
+then **0.00**) show no acceleration. The preprint reports one run, no baselines or ablations, and no
+confidence intervals, so whether the **+0.10** step is distinguishable from noise is unknown. Its
+point that the loop "scales with inference rather than with training" is a cost observation about
+that run, not a scaling result.
+
 ## A lab-internal measurement: about 2x, mostly through assistance
 
 Until this ingest, the frontier-lab numbers on this page were inputs, such as agent-hour ratios, and
@@ -568,9 +591,12 @@ inference. This is Tillman's argument, not an observation. See [[Automated AI Re
   the decoherence argument requires contact with reality to correct it. Decagon now supplies a
   mechanical, human-grounded example through production-shaped replay, but not autonomous
   refresh of the objective or evidence about how often re-grounding must occur.
-- **Can a model's reasoned edits to its own weights add capability, or only remove obstacles?**
-  The only direct test so far edits a different, smaller model, and its negative Gemma case found
-  no gain where there was no failure to remove.
+- **Can a model's reasoned edits to its own weights add capability, or only remove obstacles?** The
+  only direct test so far edits a different, smaller model, and its negative Gemma case found no
+  gain where there was no failure to remove. **Updated 2026-11-27:** a 27B model editing its own
+  weights now reports small gains without a reported failure to remove, including problems its
+  original version missed in all four samples (pass@4 **82.60 → 84.80**). With no random-direction
+  or gradient baseline and a single run, that does not yet settle the question.
 - **Is METR's ~2x a new slope or a catch-up?** A one-time jump from the Mythos pre-train and a late
   RL ramp both fit the public chart. According to Shlegeris, a METR appendix finds a permanent slope
   change more plausible, but its reasons are redacted and outsiders cannot check them. Whether Anthropic's rate holds through mid-2027, as RL's share
@@ -632,3 +658,4 @@ inference. This is Tillman's argument, not an observation. See [[Automated AI Re
 - [[@zafstojano]]
 - [[Nathan Lambert]]
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]

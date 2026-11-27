@@ -1,11 +1,12 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-10-07
+updated: 2026-11-27
 tags: [concept, model-safety, adversarial-robustness, open-models]
 source_ids:
   - src-2026-08-20-mark-russinovich-fools-gold
   - src-2026-10-06-arush-self-modeling-emergent-misalignment
+  - src-2026-11-24-uncensored-ai-free-model-catalog
 status: active
 ---
 
@@ -90,6 +91,28 @@ other metrics. Neither its results nor Fool's Gold's attacked-state efficacy est
 fine-tuning robustness. Both require an explicit target behavior, a specified intervention, and
 separate checks for unintended transfer; runtime containment remains another boundary entirely.
 
+## Safety removal as a labelled public market
+
+This page's threat model treats safety removal after release as routine.
+[[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]] shows what routine looks
+like. The unattributed catalog lists **103** open-weight models with refusals removed, built on most
+major open families, including Gemma, Qwen, Llama, Mistral, GLM and gpt-oss. In a derived count,
+**62** of the 103 names carry the removal method as a label, such as abliterated, heretic,
+derestricted or lorablated. The site defines its product as "An open AI model with its refusals
+removed", sometimes by retraining and sometimes with the refusing part "surgically cut out". It
+pitches the models to traders and ranks them on scores relayed from the UGI Leaderboard, one of
+which measures how often a model agrees to answer. It offers no hazard evaluation, and its only
+safety advice concerns trading losses.
+
+Two consequences follow for decoy defenses. First, the catalog distributes the attacked state such a
+defense is built around: abliteration is among its labelled methods, and its bases include Qwen3.5
+9B, the size and family on which the reported recipe failed its gate (**0.202**). Second, it shows
+why the method is limited to first releases. Unlocked derivatives of earlier undefended checkpoints
+already circulate, so a defended release raises an attacker's cost only where it offers capability
+those copies lack (vault inference). The catalog is not a measurement. Its compliance scores say
+nothing about how accurate or dangerous unlocked answers are, and the vault records it at catalog
+level only.
+
 ## Open questions
 
 - Does the behavior survive adaptive attacks designed specifically to avoid the simulated ablation state?
@@ -100,6 +123,8 @@ separate checks for unintended transfer; runtime containment remains another bou
   derivative releases?
 - Can independent teams reproduce both the efficacy gate and the reported clean-state invariance across all
   seven model families?
+- Would a decoy-hardened first release matter in a market where unlocked derivatives of most earlier
+  open families already circulate, or only when it is more capable than everything already unlocked?
 
 ## Related pages
 
@@ -110,3 +135,4 @@ separate checks for unintended transfer; runtime containment remains another bou
 - [[Open Model Ecosystems]]
 - [[Reward Design for RL]]
 - [[Mark Russinovich - Fool's Gold]]
+- [[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]]

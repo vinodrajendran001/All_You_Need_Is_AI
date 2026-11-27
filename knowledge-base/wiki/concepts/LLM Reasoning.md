@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - reasoning
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-11-04-general-reasoning-train-swarm
   - src-2026-11-02-takehi-weight-space-programming
   - src-2026-11-08-alex-wang-reasoning-pathfinding
+  - src-2026-11-22-zhang-li-recursive-self-editing
 status: active
 ---
 
@@ -197,6 +198,16 @@ The authors' reading is that editing "could remove an obstacle that hid an abili
 add an ability the model lacked". That places this evidence on the elicitation side of the
 create-versus-amplify question above, from a preliminary single-optimizer research blog.
 
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] is the
+first weight-edit gain recorded on this page for a model with no reported failure such as looping.
+Qwen3.8-27B, in thinking mode on decontaminated competition math, edited its own weights over five
+generations without gradients. On a held-out test split, avg@4 rose from **76.30** to **77.75** and
+pass@4 from **82.60** to **84.80**. The authors read the pass@4 rise as the edited model solving
+problems that the original missed in all four samples. Taken at face value, that is a small move
+from reliability toward reach on the create-versus-amplify question. Four samples is a thin
+definition of "missed", though, and the preprint offers no truncation analysis of the kind Takehi et
+al. ran, no baselines and one run, so the elicitation reading is not ruled out.
+
 ## One objective explains length, unfaithfulness, and hacking
 
 [[Alex Wang - What Objective Is Reasoning Solving]] offers a single frame for several sections above.
@@ -271,3 +282,4 @@ equations. It is a conceptual frame, not new evidence. See [[Reinforcement Learn
 - [[Long-Horizon Credit Assignment]]
 - [[Preston Fu]]
 - [[Rikiya Takehi et al - Sparks of Weight-Space Programming]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]

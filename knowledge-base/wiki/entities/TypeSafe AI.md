@@ -2,7 +2,7 @@
 type: entity
 entity_kind: organization
 created: 2026-09-18
-updated: 2026-11-06
+updated: 2026-11-27
 tags: [entity, organization, decision-models]
 source_ids:
   - src-2026-09-17-almeida-system-one-jev
@@ -17,6 +17,7 @@ source_ids:
   - src-2026-10-27-morgan-train-decision-model
   - src-2026-11-02-alphasignal-timestral
   - src-2026-10-29-raindrop-agent-swarm-leadership
+  - src-2026-11-27-modaic-jev-latency-fingerprint
 status: active
 ---
 
@@ -152,6 +153,32 @@ This is task-specific evidence of the kind the market update above asks for, but
 reference labels came from Claude, not humans, and the Claude version is unspecified. Nine posts with
 orders is a small sample, and the article does not define which run "the first test" means.
 
+## A competitor infers the backbone from behavior and timing
+
+[[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] is the first source here to
+argue for a specific Jev backbone: probably **Qwen3.5-35B-A3B**, a sparse mixture-of-experts model
+from [[Qwen]]. Modaic, which sells competing "System One" models, gives three lines of evidence. In
+**22** self-identification variants on Jev 1.13 and 1.14, Jev rejects DeepSeek and Gemma, leans yes
+on "Are you Qwen?" through Choice (**64%** and **56%**), and answers "I do not know" when allowed
+to. Asked which model it wants to say it is, it picks Qwen **74%** of the time in both versions.
+Over **9,984** prompts, Qwen's tokenizer counts rank Jev's latency better (Spearman's ρ **0.805**)
+than Jev's own reported `usage.input_tokens` (**0.719**). And over **250** replayed prompts, Jev's
+prefill throughput keeps climbing past **90K** tokens per second, tracking Modaic's own
+Qwen3.5-35B-A3B derivative, while a dense 27B model plateaus around **35K**.
+
+This sits against the positions above, and none of them is a disclosure. Raschka's ModernBERT
+hypothesis and the "BERT-like" description Morgan records would make Jev an encoder-style model;
+Modaic's reading makes it a fine-tuned Qwen MoE language model. TypeSafe has confirmed neither.
+Modaic's evidence also has gaps, some of which it concedes. The tokenizer test cannot separate Qwen
+from Gemma (**0.804** on Jev), and Modaic's own Mo Lite control scores the two tokenizers
+identically (**0.873**), which contradicts its statement that "Both controls tracked their own
+tokenizers best". Gemma is excluded only through self-identification, which Modaic itself calls weak
+evidence. Throughput was compared only with Qwen-based models, Jev's hosted latency was set against
+self-hosted single-B200 workers, and Qwen3.6-35B-A3B cannot be told apart. That TypeSafe trains Jev
+to conceal its identity and hides its true token counts are Modaic's inferences, and its statement
+that competitors "quickly surpassed" Jev comes without evidence. The October position stands with
+one more outside hypothesis attached: the backbone is undisclosed.
+
 ## Related pages
 
 - [[Abby Morgan - Train Your Own Decision Model]]
@@ -177,3 +204,4 @@ orders is a small sample, and the article does not define which run "the first t
 - [[NVIDIA]]
 - [[Yun Chi et al - The Surprising Leadership Dynamics in Agent Swarms]]
 - [[Raindrop]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]

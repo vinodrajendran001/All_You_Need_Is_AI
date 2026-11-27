@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - llm-evaluation
@@ -30,6 +30,7 @@ source_ids:
   - src-2026-10-16-west-eval-engineering-lessons
   - src-2026-10-06-iusztin-rag-evals
   - src-2026-11-12-nathan-barry-detllm-integer-inference
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -284,6 +285,26 @@ sponsored by Opik, with no confidence intervals and a runner its owner calls "no
 yet. The proxy labels also inherit reviewer behavior: any edit to a pull request counts as a fail, so
 a cosmetic change and a real error carry the same label, and nothing estimates the resulting noise.
 
+## Grade most of the suite on trajectory, and keep the pass rate off the ceiling
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] gives a production proportion for the case ordering above. Uber's suggested suite for each
+[[Agent Skill]] is about **5%** golden cases (fixed input, expected output, tool mocks), **80%** real
+prompts graded on trajectory, and **15%** judged by the author. Trajectory grading asks whether the
+agent used the right skills and tools in the right order, not whether the outcome was right, which
+puts West's remedy above (grade the tool-call trajectory, not the closing message) at the centre of
+the suite rather than beside it. It agrees with Martin's ordering that real traffic comes first,
+with hand-written cases a small remainder.
+
+Two further details bear on this page. Suites run in clean rooms (background agents, a managed agent
+sandbox and devpods), and remote runs exposed skills that depended on the author's file paths, cached
+documents or OS tooling: a reconstructable run also has to be reproducible somewhere other than the
+author's machine. And "evals that pass 70%-90% of runs can be more useful than those that pass 100%",
+which matches Martin's headroom requirement and its warning at about 95% or higher. Uber's stated
+open problem is the hardest case for this page, workflows that "run rarely, matter a lot, and are hard
+to judge". The post reports no pass rates, run counts per prompt or pass^k figures, and a path-based
+grader faces the same question as West's golden sets: how a different but valid trajectory gets
+credit.
+
 ## Open questions
 
 - Which conversation-level outcomes can be safely reduced to binary or rubric-based checks?
@@ -361,3 +382,5 @@ a cosmetic change and a real error carry the same label, and nothing estimates t
 - [[Nathan Barry - Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic]]
 - [[Inference Determinism]]
 - [[Thinking Machines]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Uber]]

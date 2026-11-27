@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-05-29
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - llm-evaluation
@@ -35,6 +35,7 @@ source_ids:
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-06-koller-data-grow-in-dish
   - src-2026-11-19-shankar-husain-evals-three-gulfs
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -519,6 +520,26 @@ email agent. It is a textbook framework with no study behind it, and it calls ge
 start measuring, and it reaches judges only by forward reference to a later chapter, so it says
 nothing about judge validation itself.
 
+## A blind ablation judge, a noise band, and a pass rate kept below 100%
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] uses a judge to decide whether a skill earns its place. For heavily used skills, real prompts
+are replayed with the skill, without it and with parts removed, in an isolated environment, and "a
+blind judge picks the better answer". Uber plots each skill's share of wins with 95% intervals against
+a noise band, "how much two identical runs differ". That is this page's judge-variability argument
+drawn on every comparison: a win share inside the band says nothing. The values appear only in a
+figure, and the post does not say how the band is used to accept or reject a change.
+
+Two rules come with it. "LLM-as-judge works best if it has a human-annotated set", which skill authors
+must create, collect from users and grade repeatedly; it is the same split as LinkedIn's golden dataset
+above, where the judge compares and human labels decide who was right. And "evals that pass 70%-90% of
+runs can be more useful than those that pass 100%", because answers vary, judges can too, and a
+perfect pass rate "may mean an eval is missing meaningful changes in the answer". That agrees with
+Martin's warning, recorded above, that a baseline at about 95% or higher leaves the judge nothing to
+resolve. Uber states both as experience, not as measured rules. The judge is blind to which answer
+had the skill; the post does not say whether the replayed agent knows it is being tested, the other
+half of Meta's protocol above. Trajectory grading, which carries **80%** of Uber's suggested suite,
+is recorded in [[Multi-Turn Evaluation]].
+
 ## Open questions
 
 - Threshold tuning needs labeled data. For a judge deployed where no labeled failures exist yet, what
@@ -542,6 +563,9 @@ nothing about judge validation itself.
 - A pairwise judge that gates every release can prefer a candidate that is more persuasive rather than
   more correct. How often will LinkedIn's six-criterion judge and its golden-dataset eval disagree on a
   release decision once both exist?
+- Uber plots each skill's blind win share against a noise band from identical runs, but does not
+  say how far outside the band a result must fall before a skill is changed or retired. What
+  decision rule should a noise band feed?
 
 ## Related pages
 
@@ -609,3 +633,6 @@ nothing about judge validation itself.
 - [[Daphne Koller - Getting Data to Grow in a Dish]]
 - [[AI Drug Discovery]]
 - [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Uber]]
+- [[Agent Skill]]

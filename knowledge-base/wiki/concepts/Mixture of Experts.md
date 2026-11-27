@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-03
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - llm
@@ -26,6 +26,7 @@ source_ids:
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-01-xuewen-yang-parallelism-by-hand
   - src-2026-11-10-goodfire-neurons-interpretable-basis
+  - src-2026-11-27-modaic-jev-latency-fingerprint
 status: active
 ---
 
@@ -168,6 +169,25 @@ because per-token traffic follows the active set. On one machine, routing skew t
 cache-hit rate rather than as idle devices. The figures are relayed from project READMEs, a pull
 request, and reviews, not measured under one protocol.
 
+## A prefill curve as an architecture fingerprint
+
+The speed rule above concerns decoding.
+[[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] supplies a prefill counterpart
+and uses it as evidence about an undisclosed model. Modaic replayed **250** prompts of 512 to 9,500
+input tokens, one request in flight, through a dense Qwen3.8-27B derivative, a dense Qwen3.5-9B
+model and a Qwen3.5-35B-A3B MoE derivative, each self-hosted on a single B200, and through
+TypeSafe's hosted Jev. "Mo 2.0 plateaus around 35K tokens per second, while Jev keeps climbing past
+90K." Jev tracks the MoE derivative but stays below it, and the gap narrows from **22%** at about
+3.2K tokens to **7%** at about 8.8K. Modaic reads the resemblance as a sign that Jev is a sparse
+MoE, since routing each token through a few experts uses far fewer FLOPs per token on long inputs.
+
+The fingerprint is coarse. It separates sparse from dense but not MoEs of the same shape: Modaic
+says Qwen3.6-35B-A3B "shares the same architecture, so throughput alone can't tell the two apart",
+and Gemma 4 26B-A4B, the other small-active MoE candidate, was not throughput-tested. Jev's hosted
+latency includes network and serving overhead on undisclosed hardware, so the comparison with
+self-hosted workers assumes rather than measures the hardware difference. The author competes with
+the model it fingerprints. See [[Prefill-Decode Disaggregation]].
+
 ## Hybrid families and narrower expert computation
 
 [[ByteByteGo - How Nvidia's New Nemotron Model Works]] reports, from NVIDIA's own documents, a
@@ -265,6 +285,9 @@ parallelism inside a node where possible. The post's numbers are estimates it ca
   depending on card and baseline tuning.
 - Does a throughput lead from a load balancer in the first iterations survive to equal quality?
   The handbook's fastest balancer also had the highest loss over its 120-iteration window.
+- Can a throughput curve identify an MoE's active-parameter count, or only whether a model is
+  sparse? The one recorded attempt could not separate two Qwen generations of the same shape and did
+  not test a Gemma MoE.
 
 ## Related pages
 
@@ -295,3 +318,4 @@ parallelism inside a node where possible. The post's numbers are estimates it ca
 - [[LLM Inference]]
 - [[LLM Training Pipeline]]
 - [[Curt Tigges et al - Neurons as an Interpretable Basis]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]

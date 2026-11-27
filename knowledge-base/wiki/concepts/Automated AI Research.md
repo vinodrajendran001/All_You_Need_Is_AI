@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-06-02
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -29,6 +29,7 @@ source_ids:
   - src-2026-11-10-goodfire-neurons-interpretable-basis
   - src-2026-11-18-toumbourou-wsp-1990s-researcher
   - src-2026-11-18-meta-ads-technique-propagation
+  - src-2026-11-22-zhang-li-recursive-self-editing
 status: active
 ---
 
@@ -277,6 +278,18 @@ Neuron Scientist harness wrote atlas pages for 2,734 stratified neurons, and the
 low-effort labels for all 10 million neuron-poles. Both are first-party, and neither reports agent
 compute.
 
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]
+removes the separation between agent and artifact. The editor is the model being improved,
+Qwen3.8-27B, working in a persistent Python session with up to **30** tool rounds per candidate,
+closed-form weight tools and a forward-only loss check, but no gradient tool. The harness keeps
+outside the editor's reach the parts this page treats as not yet automated: humans fixed the math
+domain, the gate and test sets, the rank and norm caps, the budgets and the acceptance rule, and
+editors never read gate or test problems. The yield is modest. Four edits were accepted in five
+generations, worth **+2.50** points on the gate and **+1.45** on the held-out test (avg@4). Unlike
+the Astra run above, which checked its fix against dose-response, layer-isolation and norm-matched
+random controls, the paper reports no control edit, so it does not answer this page's open question
+about weight edits against conventional search. It is a single-run preprint.
+
 ## Assistance at a lab, unread research, and a scoped proof
 
 Three November 2026 captures test the execution-versus-taste split from different sides.
@@ -335,7 +348,7 @@ compute and serial steps. This is the Verifier's law above, applied at research 
 - At what point does the main bottleneck shift from execution to selecting fruitful research directions?
 - When does workflow-level self-improvement become model-building-level recursive self-improvement?
 - How should agent-generated scientific labels, such as neuron explanations and graph groupings, be audited so that agent priors do not become the result?
-- When an agent edits weights directly, does it find improvements a gradient-based or conventional search over the same budget would miss, or mainly remove obstacles that hide existing ability?
+- When an agent edits weights directly, does it find improvements a gradient-based or conventional search over the same budget would miss, or mainly remove obstacles that hide existing ability? A 27B self-editing preprint adds small gains on a model with no reported obstacle, but no comparison with search or gradient training at the same budget.
 - **Nobody has reported G, λ, or N on real AI research.** Every curve Naam assembles comes from benchmarks,
   and the essay does not show that benchmark scaling transfers to research. Until it is measured on a research
   workload, the protocol is a specification rather than a result.
@@ -409,3 +422,4 @@ compute and serial steps. This is the Verifier's law above, applied at research 
 - [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
 - [[Weight-Space Programming]]
 - [[Benchmark Optimization]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]

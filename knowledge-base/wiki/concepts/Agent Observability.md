@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-11
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - ai-agents
@@ -22,6 +22,7 @@ source_ids:
   - src-2026-11-08-rastogi-agentcore-enterprise-part-2
   - src-2026-11-10-nizzyabi-instinct-teardown
   - src-2026-11-19-shankar-husain-evals-three-gulfs
+  - src-2026-11-24-uber-agent-skill-evals
 status: active
 ---
 
@@ -295,6 +296,28 @@ discover failure categories, as well as dashboards over known metrics. If it onl
 teams can measure only failures they already know about. The source is a textbook excerpt with
 hypothetical examples, not a tooling study.
 
+## A skill-level telemetry schema without prompt text, and the agent as a bug reporter
+
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] shows telemetry designed around the [[Agent Skill]] rather than the request. OpenTelemetry
+hooks record each skill call, its version, and whether the agent chose the skill or the user typed its
+command. Events carry no prompt text and no file contents. From them Uber computes **12** measures per
+skill, among them users, retention, cost, latency and errors. Cost per invocation is attributed by
+subtracting the last running session total before a call from the first total after it, so the window
+also includes the turns that follow and any other tool calls in it. That makes it an attribution, not
+an isolated cost, in the sense of the end-to-end accounting section above.
+
+The second mechanism partly answers the open question below about noticing semantic failures. An
+always-on log-papercut skill lets any agent report friction: what it tried, expected and saw, and what
+would fix it. Agents filed thousands of papercuts in three months, and hundreds have been fixed through
+a loop that groups, triages, root-causes, fixes, evaluates and approves each one, with a person acting
+at two steps. Some of the examples are semantic: epoch seconds passed where an API expected
+milliseconds, a lookup that silently returned a different property, and a skill that waited on CI in a
+repository with none, repeating a 404. The detector is the agent that hit the problem, so it finds only
+what that agent noticed; a plausible wrong answer the agent accepted would not be filed. There is also
+an unresolved tension in the design: trajectory evals and planned trace indexing need session content
+that the telemetry deliberately excludes, and the post does not say how the two are reconciled. The
+account is first-party.
+
 ## Open questions
 
 - Tail-based sampling at 5–20% of routine successes discards most of the population in which a *slow*
@@ -315,6 +338,9 @@ hypothetical examples, not a tooling study.
   authoritative, and how are the two joined for a single run?
   [[Ofir Arkin - Inside NVIDIA Sentry - Secure AI Agents at Runtime]] describes export to XDR and SIEM
   platforms and security data lakes, not reconciliation with application traces.
+- Uber's skill telemetry excludes prompt text and file contents, yet its trajectory evals and planned
+  trace indexing need session content. Which store holds that content, under what access rules, and
+  how much of a skill's behavior can be judged from the content-free events alone?
 
 ## Related pages
 
@@ -348,3 +374,5 @@ hypothetical examples, not a tooling study.
 - [[Instinct]]
 - [[Shreya Shankar and Hamel Husain - Evals for AI Engineers]]
 - [[Hamel Husain]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Uber]]

@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-20
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - open-models
@@ -9,6 +9,7 @@ tags:
   - gpu
 source_ids:
   - src-2026-11-12-will-depue-checkpoint-forensics
+  - src-2026-11-27-modaic-jev-latency-fingerprint
 status: active
 ---
 
@@ -101,6 +102,25 @@ The report's tone runs ahead of these limits. It calls the V4-Flash evidence "co
 the finding "deserves urgent attention". Pages citing it should quote the limits along with the
 headline.
 
+## Black-box provenance from API behavior
+
+[[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] attempts provenance without
+weights. Strictly, that falls outside the definition above, which requires published weights; the
+vault records it here as the closed-model counterpart. Modaic infers that [[TypeSafe AI]]'s hosted
+Jev is probably a fine-tune of [[Qwen]]'s Qwen3.5-35B-A3B from three behavioral signals:
+self-identification prompts, how well candidate tokenizers' counts rank latency (Spearman's ρ
+**0.805** for Qwen against **0.719** for Jev's own reported counts), and a prefill throughput curve
+matched to a known Qwen-based [[Mixture of Experts]] model.
+
+Its limits are sharper than those of the weight method above. Weight forensics replays a
+deterministic process and can reproduce values bit for bit; black-box inference compares statistical
+resemblances against controls the investigator chooses. Here the tokenizer signal cannot separate
+Qwen from Gemma, throughput cannot separate two Qwen generations of the same architecture, network
+and serving overhead sit inside every timing, and the reference curves come from self-hosted
+single-B200 workers while Jev's hardware is unknown. The source calls its result "an approximate
+performance fingerprint". It comes from a competitor of the model examined, and its proposed next
+step, knowledge-cutoff probes, is untested.
+
 ## Open questions
 
 - Will labs defeat the method by initializing on CPU or reshuffling weights? Some Qwen3 models
@@ -109,6 +129,10 @@ headline.
 - What other production facts leak from weights, such as data mixture, lineage or merges? The report
   reads Kimi K2.7-Code's **80/20** blend of Hopper and 148-SM values as a merged checkpoint.
 - Will any named lab respond? None has, as far as the vault records.
+- Can black-box signals such as self-identification, tokenizer-latency correlation, throughput
+  curves or knowledge-cutoff probes separate candidate bases that share a tokenizer family or an
+  architecture? The one attempt recorded here separated neither Qwen from Gemma by tokenizer nor two
+  Qwen generations by throughput.
 
 ## Related pages
 
@@ -119,3 +143,7 @@ headline.
 - [[PyTorch]]
 - [[GPU Execution Model]]
 - [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]
+- [[TypeSafe AI]]
+- [[Qwen]]
+- [[Mixture of Experts]]

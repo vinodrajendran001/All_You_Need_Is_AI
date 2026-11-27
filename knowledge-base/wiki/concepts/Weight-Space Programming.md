@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-11-20
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - weight-editing
@@ -12,6 +12,7 @@ source_ids:
   - src-2026-11-03-willison-qwen-interprets-weights
   - src-2026-11-17-strauss-weight-space-experiments
   - src-2026-11-18-toumbourou-wsp-1990s-researcher
+  - src-2026-11-22-zhang-li-recursive-self-editing
 status: active
 ---
 
@@ -94,10 +95,38 @@ training-set metrics every step) and budget, so the cause of the gap is not isol
 are blog posts with single or few runs and no seeds, and baselines range from same-architecture
 training to none.
 
+### The editor can be the edited model
+
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] moves
+editing from an external writer to the model itself. Qwen3.8-27B reads its own answers to fresh math
+problems, inspects its own weights and activations in a persistent Python session, and writes a
+program that builds a low-rank (LoRA) edit to itself from closed-form tools: truncated SVD, rank-one
+projections, singular-direction rescaling and LoRA operators, with "no training or gradient tool".
+Each module edit is capped at rank **64** and at a Frobenius norm of **0.1** of the current
+weight's. Eight candidates per generation are graded once on a hidden **500**-problem gate set, the
+largest strictly positive paired gain is merged, and the edited model writes the next edit. Over
+five generations four edits were accepted. Gate accuracy rose from **73.95%** to **76.45%**, and on
+a test split the loop never saw, avg@4 rose from **76.30%** to **77.75%** and pass@4 from **82.60%**
+to **84.80%**.
+
+The result extends the editing side of this page, not the writing side, so it leaves the
+compact-algorithm reading above untouched. Two things set it apart from the earlier edit. It is a
+27B model with no reported failure such as looping, and the gains are small: **+1.45** test points,
+against **7.9 → 48.1** for the 0.8B loop repair. Its evidence is also weaker on the test this page
+has relied on. Takehi et al. compared their edit with a norm-matched random-direction control
+(**+1.6**); the self-editing preprint reports no random edit, no gradient-trained LoRA at the same
+rank and norm, no repeated seeds and no confidence intervals in its results. Picking the best of
+eight candidates on a fixed gate tends to inflate the gate gain, and the smaller test gain
+(**+1.45** against **+2.50** on the gate) is consistent with that. The construction the editor's
+prompt suggests, projecting out a layer's wrong-minus-right activation direction, is itself a known
+technique, and the paper does not report which constructions the accepted edits used. It is one run
+of one model in one domain.
+
 ## Open questions
 
 - Does writing from scratch scale past small networks? The largest written-from-zero network recorded
-  here is the **1,480,274**-weight Go network; the 0.8B result is an edit of a trained model.
+  here is the **1,480,274**-weight Go network; the 0.8B result is an edit of a trained model,
+  and so is the 27B self-editing result.
 - How much of the MNIST gap comes from feedback richness rather than model or architecture?
 - Where should a harness draw the line between writing and fitting, when a confusion matrix over the
   full training set lets the model estimate class-conditional rates feature by feature?
@@ -106,6 +135,9 @@ training to none.
   asks for? Not yet run in any source.
 - The Go opponent is described as trained on "20 million games" (Takehi et al., as summarized) and
   "20.5 million games" (Toumbourou). Which is right is unresolved.
+- Do self-written edits beat a norm-matched random edit or a gradient-trained LoRA at the same rank
+  and budget? The self-editing preprint reports neither, so its **+1.45**-point test gain is not yet
+  separated from what any small rank-capped change selected on a gate would give.
 
 ## Related pages
 
@@ -120,3 +152,4 @@ training to none.
 - [[Parameter-Efficient Fine-Tuning]]
 - [[Benchmark Optimization]]
 - [[Qwen]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]

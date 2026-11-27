@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-07
-updated: 2026-11-06
+updated: 2026-11-27
 tags:
   - concept
   - performance
@@ -17,6 +17,9 @@ source_ids:
   - src-2026-11-04-bytebytego-netflix-performance-agents
   - src-2026-11-04-x-town-square-rebuild
   - src-2026-10-29-factory-droid-frontier-harness
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
 status: active
 ---
 
@@ -139,6 +142,40 @@ about 20 MB each instead of about 350 MB per process, and median quit time fell 
 one production turn the model request is 97% of the wait for the first token. These are first-party
 figures measured under mixed conditions.
 
+## Estimate, name the binding constraint, then measure at the service boundary
+
+The intelligentLearn series applies the estimate-measure hierarchy above to an LLM serving cluster.
+That partly answers the first open question below, on extending a CPU-oriented framework to GPU and
+distributed ML systems.
+
+**Estimate with three ledgers.** [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] reads every slow request in an operator ledger, a memory
+budget, and a request timeline. It notes that "Counting only operators misses queueing and admission
+effects; counting only memory misses latency". The estimates are deliberately back-of-envelope.
+They include a ridge of about **295 FLOP/byte** from vendor constants, KV at **320 KiB per token**,
+and a long-document concurrency ceiling of about **14** per replica. The part also keeps their
+limits visible. Summed operator bytes are not measured traffic, and an uncited 40% efficiency
+assumption is labelled as such. Its sensitivity result is that meeting a 2 s first-token target
+would need about **76%** of peak. That leads to an ordering rule in the spirit of this page:
+"first test isolated-request execution feasibility on an empty system, then investigate queueing
+and colocation interference".
+
+**Judge a reported improvement with three ordered questions.** [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] asks whether the comparison
+basis held, whether a local metric or the service improved, and what remains unmeasured. A usable
+comparison has an explicit denominator: hardware including any added CPUs or interconnect, precision
+and quality, the joint request-length and prefix-reuse distribution, and the SLO. A faster kernel,
+a higher cache hit rate, or higher mean throughput is a local metric. It matches the Decagon rule
+above that local wins must translate into requests per GPU under endpoint latency limits, reached
+from the reviewer's side rather than the optimizer's. A pass on an earlier question does not answer
+a later one.
+
+**End at "needs measurement" when that is the honest answer.** [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] works the case to one
+computed ceiling, one illustrative conditional choice, and a measurement plan that ties each unknown
+to the decision it resolves. Adoption requires per-workload-class gains in P95 TTFT, the P95 token
+gap, SLO attainment, goodput, and timeout, rejection, and quality outcomes. Its appendices then
+audit the evidence itself, separating 15 deeply read papers from 146 used only for placement and 11
+read only at abstract level. That is an evidence-depth label this page's sources do not otherwise
+apply to literature.
+
 ## Open questions
 
 - How should this CPU-oriented framework be extended to GPU kernels and distributed ML systems?
@@ -166,3 +203,7 @@ figures measured under mixed conditions.
 - [[Netflix]]
 - [[X Engineering - Rebuilding the Global Town Square from Scratch]]
 - [[Factory Research - Droid 1.0 - Building a Frontier Harness]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[intelligentLearn]]

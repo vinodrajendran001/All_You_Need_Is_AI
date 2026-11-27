@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-24
-updated: 2026-11-20
+updated: 2026-11-27
 tags: [concept, open-models, ecosystems, inference]
 source_ids:
   - src-2026-08-18-hugging-face-state-open-models-summer-2026
@@ -13,6 +13,7 @@ source_ids:
   - src-2026-11-04-raja-model-gpu-fit
   - src-2026-11-06-nous-arete-27b
   - src-2026-11-12-will-depue-checkpoint-forensics
+  - src-2026-11-24-uncensored-ai-free-model-catalog
 status: active
 ---
 
@@ -154,6 +155,24 @@ no response from the named labs is reported. For this page, the point is structu
 weights creates an audit surface that model cards do not control. Labs that want to avoid it can
 initialize on CPU, as some Qwen3 models already were. See [[Checkpoint Forensics]].
 
+## The derivative layer includes safety removal
+
+[[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]] shows a part of the
+derivative layer this page has so far described only through re-alignment. The unattributed catalog
+packages **103** safety-removed derivatives as a consumer product. It has its own naming conventions
+(removal labels such as abliterated, heretic or derestricted appear in **62** of the names, by a
+derived count), a relayed leaderboard (UGI), memory needs from about **5 GB** to about **144 GB**,
+and an audience of traders. Its bases span Gemma, Qwen, Llama, Mistral, GLM, gpt-oss, Command A,
+Seed OSS, Phi and Apriel, and some cards stack on earlier community fine-tunes. **15** cards name no
+base, so lineage is not always traceable even inside the catalog.
+
+This is the safety-removal counterpart of Nous's "one fine-tune away" point above, and it supports
+the Hugging Face reading that derivatives, more than headline benchmarks, show how deep an ecosystem
+runs. It is also a reminder that derivative counts measure activity, not quality or safety. The
+catalog's main score folds knowledge and willingness to answer into one number, it reports no hazard
+evaluation, and whether each derivative's licence permits redistribution is left to the user. The
+site is anonymous and promotional. See [[Defensive Deception for Open Models]].
+
 ## Open questions
 
 - Which metrics distinguish genuine deployment from automated download noise?
@@ -169,6 +188,9 @@ initialize on CPU, as some Qwen3 models already were. See [[Checkpoint Forensics
 - Should model cards state initialization and training hardware, now that open weights can disclose
   it anyway? A single forensic report reads it from weights, with stated limits; no lab response
   is reported.
+- Should hubs record a safety-removed derivative's removal method and base in metadata, rather than
+  leaving both to naming conventions? In the one catalog recorded here, **15** of **103** cards name
+  no base.
 
 ## Related pages
 
@@ -197,3 +219,4 @@ initialize on CPU, as some Qwen3 models already were. See [[Checkpoint Forensics
 - [[Will DePue - Chinese Frontier Models Carry Blackwell GPU Fingerprints]]
 - [[DeepSeek]]
 - [[NVIDIA]]
+- [[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]]

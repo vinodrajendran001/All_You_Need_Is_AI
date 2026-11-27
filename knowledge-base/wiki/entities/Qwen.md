@@ -2,7 +2,7 @@
 type: entity
 entity_kind: model-family
 created: 2026-09-03
-updated: 2026-11-13
+updated: 2026-11-27
 tags: [entity, open-models, china, reasoning, architecture]
 source_ids:
   - src-2026-08-30-adlrocha-base-models-bottleneck
@@ -23,6 +23,9 @@ source_ids:
   - src-2026-11-03-willison-qwen-interprets-weights
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-10-alphasignal-latent-sparse-attention
+  - src-2026-11-22-zhang-li-recursive-self-editing
+  - src-2026-11-27-modaic-jev-latency-fingerprint
+  - src-2026-11-24-uncensored-ai-free-model-catalog
 status: active
 ---
 
@@ -239,6 +242,48 @@ DeltaNet layout above. It may mean the attention layers are dense rather than sp
 not say which layers LSA replaced. The source is an unbylined newsletter relaying the researchers'
 claims. See [[Sparse Attention]].
 
+## Qwen3.8-27B as its own weight editor
+
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] uses
+**Qwen3.8-27B** both as the model being improved and as the first editor. The paper describes it as
+"a dense model with full-attention and Gated DeltaNet layers", consistent with the layout above.
+Over five generations of gradient-free, rank-capped self-edits on math, held-out avg@4 rose from
+**76.30** to **77.75** and pass@4 from **82.60** to **84.80**. This is the second result here in
+which a Qwen model writes its own improvement, after DoubleAI's Qwen3-8B stop/restart/accept policy
+above, and the first that changes its weights. Compared with Takehi's 0.8B loop repair it uses a
+much larger model and reports much smaller gains. It is a single-run preprint with no baselines.
+
+## Qwen as the probable base of a commercial decision model
+
+[[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] argues from black-box behavior
+that [[TypeSafe AI]]'s Jev, whose backbone is undisclosed, is probably a fine-tune of
+**Qwen3.5-35B-A3B**. Asked which model it wants to say it is, Jev picks Qwen **74%** of the time.
+Qwen's tokenizer counts track Jev's latency better than Jev's reported counts (Spearman's ρ
+**0.805** against **0.719**), and Jev's prefill throughput tracks Modaic's own Qwen3.5-35B-A3B
+derivative. The tokenizer test cannot separate Qwen from Gemma (**0.804**), and throughput cannot
+separate Qwen3.5-35B-A3B from Qwen3.6-35B-A3B. Modaic is a competitor, and it notes that the 74%
+choice "could reflect Qwen's prominence in training data rather than lineage". The Qwen 2.5 base
+model above names OpenAI as its creator in **81.5%** of samples, so self-identification is weak
+lineage evidence in either direction.
+
+If the inference holds, Qwen would be the base of four decision models in the vault: the disclosed
+Microsoft-Decision-1 and Base Labs scorers above, and Jev. Modaic's own Mo Lite and Mo 2.0 are built
+on Qwen3.5-35B-A3B and Qwen3.8-27B, and its throughput comparison also used Baseten's elephant-1,
+described as a dense Qwen3.5-9B.
+
+## A common base for safety-removed derivatives
+
+[[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]], an unattributed catalog of
+**103** open models with refusals removed, lists Qwen2.5, Qwen3 VL, Qwen3.5 and Qwen3.6 checkpoints
+among its bases, from 4B to 235B. They include Qwen3.5 9B and the Qwen3.5 35B A3B and Qwen3.6 35B
+A3B MoE checkpoints that Modaic weighs as Jev's backbone. In a derived count, **17** of the **88**
+cards that name a base name a Qwen checkpoint directly. The vault already records Qwen as an open
+substrate for re-alignment by Nous and astwei; the catalog shows the same openness used to strip
+refusals and sold to traders without hazard evaluation. Its scores are relayed from the UGI
+Leaderboard and fold knowledge and willingness to answer into one number, so they say nothing
+reliable about the derivatives' capability relative to their bases. See
+[[Defensive Deception for Open Models]], whose reported decoy recipe failed its gate on Qwen3.5-9B.
+
 ## Related pages
 
 - [[Divyansh Agrawal - Qwenputer - A Deterministic RISC-V CPU Inside Qwen3.5]]
@@ -280,3 +325,7 @@ claims. See [[Sparse Attention]].
 - [[DoubleAI - Can LLMs Redesign Themselves as They Train]]
 - [[Alpha Signal - How Latent Sparse Attention Tackles the Search Bottleneck in Long-Context AI]]
 - [[Sparse Attention]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]
+- [[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]]
+- [[TypeSafe AI]]

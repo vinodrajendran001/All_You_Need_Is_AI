@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-10-19
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - interpretability
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-11-06-doubleai-llms-redesign-themselves
   - src-2026-11-17-strauss-weight-space-experiments
   - src-2026-11-18-toumbourou-wsp-1990s-researcher
+  - src-2026-11-22-zhang-li-recursive-self-editing
 status: active
 ---
 
@@ -281,6 +282,24 @@ showing *where* a network needs help than *what* it needs". Their "alignment thr
 is that computation moved into code is readable and testable. It is an aim, not a result. The post
 is first-party, unattributed, reports no seeds or error bars, and does not name the agent model.
 
+### A model's activation contrasts used as its own edits
+
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] turns
+a standard reading tool into an intervention, with the model as its own reader. Its activation tool
+runs Qwen3.8-27B on a problem plus the model's own answer, so a layer's behavior can be contrasted
+on right and wrong reasoning. The construction the editor's prompt suggests takes one layer's mean
+activation on wrong answers minus its mean on right answers, normalizes the difference, and projects
+that direction out of the layer's output matrices as a rank-one term. Other programs rescale
+singular directions or add activation directions. An edit is kept only if it raises paired accuracy
+on a hidden gate set; whether the direction means what the contrast suggests is never tested.
+
+That is the gap recorded above for the DoubleAI work: a rising metric shows an intervention is
+useful, not that the explanation behind it is true. Here the gap is wider. The paper does not report
+which constructions, modules or layers the accepted edits used, it has no random-direction control
+of the kind Takehi et al. used to tie their loop direction to its effect, and it reports one run.
+The interpretive content of the edits is therefore unknown, even though every accepted edit is
+stored as an auditable program plus a low-rank tensor.
+
 ## Open questions
 
 - Would native-neuron explanations beat a transcript-only predictor at CHIVE-style counterfactual
@@ -301,7 +320,8 @@ is first-party, unattributed, reports no seeds or error bars, and does not name 
   and attempts, and at what network size do they stop working without probing tools? The first
   third-party rerun used a 27B local model, with one run per game.
 - When an interpretability-guided edit improves a training metric, does that validate the reading
-  that motivated it, or only the edit?
+  that motivated it, or only the edit? The self-editing preprint adds a case in which edits built
+  from activation contrasts are accepted on a gate and the readings behind them go unreported.
 
 ## Related pages
 
@@ -332,3 +352,4 @@ is first-party, unattributed, reports no seeds or error bars, and does not name 
 - [[Jacob Strauss - Experiments in Weight-Space Programming]]
 - [[Lex Toumbourou - Weight-Space Programming Builds Neural Networks Like a 1990s Researcher]]
 - [[Weight-Space Programming]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]

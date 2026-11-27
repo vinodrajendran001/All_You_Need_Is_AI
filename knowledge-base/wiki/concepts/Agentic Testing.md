@@ -464,17 +464,18 @@ sessions or synthetic users could stand in; his only reference to AI is a jab at
   these sources says how the comparison was itself tested.
 - When LinkedIn's golden-dataset eval reports, will acceptance and precision agree, and what share of
   accepted comments turn out to be wrong?
-- Tomassetti's translations agreed on **102 million** normal inputs and diverged on overflow and
-  mid-update errors. Should a generated suite be scored separately on off-path inputs, and who writes
-  those inputs when there is no running original?
+- Tomassetti's translations all passed the normal-path tests, one program agreeing on all
+  **102 million** valid inputs, and diverged on overflow and mid-update errors. Should a generated
+  suite be scored separately on off-path inputs, and who writes those inputs when there is no running
+  original?
 - pass^k and correlated fault injection both reduce uncertainty about the inputs tried. What would
   show that the mechanism, not just the outcome, is the intended one? Göbel proposes checked
   arguments; no source measures whether they catch what tests miss.
-- Fault injection in the vault so far targets storage engines, not agent harnesses. Would injecting
-  disk, network, or tool failures beneath an agent find failures that goal-driven tests do not? No
-  source tests it.
-- Can any automated test stand in for watching a real user? Miksovsky says not, from experience;
-  nothing in the vault compares the two.
+- Nightmare Mode injects faults beneath storage engines. Would the same kind of storage, network, or
+  tool faults injected beneath an agent find failures that goal-driven tests do not? Nothing in the
+  vault tests it.
+- Miksovsky argues from experience that watching people is the most useful exercise; nothing in the
+  vault compares what observation finds with what automated tests find.
 
 ## Related pages
 

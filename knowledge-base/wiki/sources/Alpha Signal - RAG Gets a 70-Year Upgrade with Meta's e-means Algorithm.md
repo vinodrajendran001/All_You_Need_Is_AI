@@ -138,12 +138,12 @@ data-curation claim bears on deduplication in the [[LLM Training Pipeline]].
 - **Dynamic versus static.** The "dynamic RAG indexing" use case is frequent batch rebuilding of a
   snapshot. The capture says e-means does not handle continuous streaming updates, and its
   "centroids track recent data" wording describes batches within one clustering run.
-- **Small inconsistencies.** The title says "70-year" and the body "nearly seven decades", with no
-  date for Lloyd's algorithm. Dead clusters are "almost no" in one place and reduced
+- **Small inconsistencies.** The title's "70-year" and the body's "70-year-old primitive" and
+  "nearly seven decades" come with no date for Lloyd's algorithm. Dead clusters are "almost no" in one place and reduced
   "considerably" in another, with no counts. The sentence saying e-means "is compatible with the
   embedding model and document chunking strategy" appears to have lost a word such as "any".
-- **Framing.** The item is promotional ("the best of both worlds", "a 70-year upgrade"). It is a
-  useful pointer to a released tool, not an independent benchmark.
+- **Framing.** The item is promotional ("the best of both worlds", a "70-year upgrade" in the
+  title). It is a useful pointer to a released tool, not an independent benchmark.
 
 ## Affected pages
 

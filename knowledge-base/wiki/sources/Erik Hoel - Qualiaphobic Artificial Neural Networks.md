@@ -230,8 +230,9 @@ its main empirical hook, that relayed result is recorded there too.
 - **Capture gaps.** The web capture has no author or date frontmatter, although its byline names
   Erik Hoel. Footnote markers 1-13 appear without their text, the reference list is missing, one
   internal section link points to a section absent from the capture, and four figures survive only
-  as inline SVG whose titles were read but whose drawings were not. Section headings appear to have
-  been lost in clipping.
+  as inline SVG whose titles were read but whose drawings were not. The capture has no section
+  headings even though an internal link targets a subsection anchor, so headings were probably lost
+  in clipping.
 
 ## Affected pages
 
@@ -258,6 +259,9 @@ its main empirical hook, that relayed result is recorded there too.
   the source ID, was recovered outside the capture from the arXiv abstract page.
 - Captured **November 27, 2026** from the bicamerallabs.org web version. The paper thanks Anthony
   Aguirre for conversations and ideas.
+- Disclosure in the capture: the conception, writing, and research are the author's. ChatGPT was
+  used to copy-edit, for literature search and fact checking, to render figures, and to review a
+  finished draft, which led to minor changes.
 
 ## Related pages
 

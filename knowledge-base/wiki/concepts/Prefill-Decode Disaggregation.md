@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-11-13
+updated: 2026-11-27
 tags:
   - concept
   - inference
@@ -20,6 +20,9 @@ source_ids:
   - src-2026-10-14-vllm-nixl-push-connector
   - src-2026-10-20-gupta-deepseek-deepinfer
   - src-2026-11-05-huggingface-moe-training-handbook
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
 status: active
 ---
 
@@ -248,6 +251,51 @@ split.
 The serving figures in this section are relayed from DeepSeek and the cited papers; the handbook did
 not run these deployments itself.
 
+## When to split: what the primary papers concede
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] re-reads DistServe and a 2026 design-space study (`pdisagg2026`) end to end. It separates
+what they support from how they are usually summarized. DistServe says colocation "couples their
+resource allocation" and causes "severe interference". The author concludes that the case for
+splitting rests on **interference and configuration coupling**, not on labelling a whole phase
+compute-bound or memory-bound. Only operators can carry that label. This agrees with the October 9
+lint above, which removed the claim that co-location always mis-provisions one phase.
+
+The same papers concede more than the lineage table suggests:
+
+- **DistServe implements neither preemption nor fault tolerance.** One failed decode instance "could
+  potentially cripple the entire service and cluster". In offline, throughput-oriented settings, the
+  paper itself considers chunked prefill possibly more suitable. This is the same failure-domain
+  question the EP64 open question below raises for wide expert parallelism.
+- **The traffic shape decides, and the evidence for that is simulated.** `pdisagg2026` finds
+  disaggregation pays most on prefill-heavy traffic and larger models, while colocation is "actually
+  competitive" on decode-heavy traffic with loose latency targets. Its results come almost entirely
+  from a simulator with no reported error, real-hardware runs only go up to 8B, and its traffic is
+  static, with no arrival process. This qualifies the frontier-moving classification in
+  [[Philip Kiely - The Efficient Frontier of LLM Inference]] rather than contradicting it. Kiely
+  reports the practical effect as more throughput at the same latency. `pdisagg2026` says that holds
+  on prefill-heavy traffic and may not on decode-heavy traffic. Neither is a controlled measurement
+  in the vault.
+- **The costs move to three places:** KV transfer at the handover, a P:D ratio that must match the
+  arrival rate, and model copies for every selected instance. A deployment that already runs
+  colocated replicas pays more weight memory only if the chosen P:D composition needs more copies
+  than it already has.
+
+Part 2 also gives the open question on when chunking suffices a rule rather than a threshold. Turn
+on chunked prefill first when long prefills block decode and the replica has headroom. Cost out
+disaggregation only when chunking no longer holds the interference down and traffic is
+prefill-heavy. Then check that the arrival rate is stable enough to hold the ratio, and give KV
+transfer and ratio imbalance their own observables. [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]] adds the limit that "neither reduces
+this cold request's own prefill work". In its long-document case a cold 32K prefill takes about
+**3.8 s** at an assumed 40% of peak, so it misses a 2 s target in either layout. The deciding
+measurement is KV transfer time and its overlap with useful work. [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] warns against reading a
+mean-throughput win under a static traffic model as evidence for a bursty service. It also requires
+added model copies to be counted in the comparison's denominator.
+
+Architecture limits the KV argument too. In the DUET hybrid Mamba-Transformer that Part 2 cites,
+which is itself a disaggregated design, the SSM layers' state is fixed-size and attention KV is the
+capacity bottleneck. A diffusion-LLM server (BlockServe) still has to batch requests that converge in
+different numbers of steps.
+
 ## Open questions
 
 - What is the crossover point at which KV transfer cost exceeds the interference cost it avoids, and how does it move with model size, context length, and attention variant?
@@ -263,6 +311,7 @@ not run these deployments itself.
 - What counts as "complete" prefill-decode disaggregation? DeepInfer is reported to lack it while benchmarking the phases on separate device pools, and the vault has no definition that distinguishes the two.
 - With decode at EP64 or wider, one failed GPU stops an instance. How does that failure domain trade
   against the 25% decode gain at 64 requests per GPU, which nearly vanishes at 256?
+- `pdisagg2026`'s prefill-heavy/decode-heavy rule comes from a simulator with static traffic and hardware runs only up to 8B. Does the rule survive dynamic arrivals and bursts, and at what input/output ratio does colocation stop being competitive?
 
 ## Related pages
 
@@ -287,3 +336,7 @@ not run these deployments itself.
 - [[Modal - Hitting a Billion Tokens per Minute on One GPU]]
 - [[Nouamane Tazi et al - The Ultimate MoE Training Handbook]]
 - [[GPU Fleet Reliability]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[intelligentLearn]]

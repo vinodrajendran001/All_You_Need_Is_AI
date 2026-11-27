@@ -109,11 +109,13 @@ vault's most detailed public recipe for post-training a model into the harness i
   specialist's gain (**46.3%** to **56.1%**, against **44.7%** to **58.8%**), with a ~45% cut in tool
   calls in both.
 - On **300** AutomationBench business-automation tasks with that benchmark's own loop, the base scores
-  **23.0** pass@1; pi 160 scores **27.0**, and hermes 160 drops to **17.7**. The authors call this
-  "within noise, except perhaps Hermes", and say RL "neither transfers clearly" to this domain "nor
-  breaks the model".
+  **23.0%** pass@1; pi 160 scores **27.0%**, and hermes 160 drops to **17.7%**. The authors call the
+  differences "within noise, except perhaps Hermes": RL inside the harnesses "neither transfers clearly
+  to this very different setting nor breaks the model on it."
 - With thinking off, the trained models emit short reasoning-like text before tool calls ("..wait?..let
-  me see"), which the authors call "reasoning leakage" and do not think invalidates the results.
+  me see"), which the authors call "reasoning leakage". They do not think it invalidates the results,
+  since under a fixed token budget the adapters still beat the non-thinking base, and they plan
+  follow-up work on thinking and hybrid thinking models.
 
 ## Why it matters
 

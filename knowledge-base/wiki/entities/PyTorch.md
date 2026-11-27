@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-10-23
-updated: 2026-11-20
+updated: 2026-11-27
 entity_kind: open-source project
 tags:
   - entity
@@ -11,6 +11,7 @@ source_ids:
   - src-2026-10-21-simpson-torchtpu
   - src-2026-11-11-pytorch-executorch-webgpu
   - src-2026-11-13-kim-helion-compile-time-heuristics
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -102,6 +103,24 @@ PyTorch's value is its compatibility surface: here the same surface is also tryi
 hand-written kernels optional. Helion was previously mentioned in the vault only as "explicitly
 experimental" in [[Ebba Simpson - Introducing TorchTPU]]. All figures are first-party and NVIDIA-only.
 
+### SDPA as the attention reference
+
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]] uses
+PyTorch's `scaled_dot_product_attention` (SDPA) as the bar a custom FlashAttention-2 forward kernel has
+to clear, on PyTorch 2.11.0 (CUDA 13.0) and one RTX 4070 SUPER. The author's earlier Triton kernel was
+tuned "until it matched" SDPA, and the CuTe DSL port beats it on all 8 tested shapes (**1.991 ms**
+against **2.158 ms** non-causal and **1.029** against **1.118 ms** causal at N = 4096). Under Nsight
+Compute at a fixed clock, SDPA reaches **88.9%** of tensor peak with 255 registers per thread, 49.2 KB
+of shared memory and 220 M instructions, against the CuTe kernel's 93.2%, 165, 24.6 KB and 180 M.
+
+SDPA is the kernel a PyTorch user gets without writing one, which makes it the natural baseline. In
+the same harness a tuned Triton kernel (**1.968 ms**) and NVIDIA's CuTe example (**1.950 ms**) also
+beat it at N = 4096 non-causal. The margins are setup-specific: the capture does not say which SDPA
+backend ran, and in the author's sustained, power-logged run at that shape Triton (2.119 ms) trailed
+SDPA (2.021 ms), reversing the harness order. This is the second vault source to benchmark attention
+against PyTorch's bundled kernel; the first, on an RTX 3090, is summarized on
+[[GPU Kernel Optimization]]. All figures are self-reported.
+
 ## Related pages
 
 - [[Accelerator Software Externalization]]
@@ -119,3 +138,4 @@ experimental" in [[Ebba Simpson - Introducing TorchTPU]]. All figures are first-
 - [[Model Quantization and Efficiency]]
 - [[Caleb Min Sup Kim et al - Fast by Default - Compile-Time Heuristics for Helion Kernels]]
 - [[Checkpoint Forensics]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]

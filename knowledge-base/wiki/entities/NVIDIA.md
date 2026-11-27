@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-06-03
-updated: 2026-11-20
+updated: 2026-11-27
 entity_kind: organization
 tags:
   - entity
@@ -37,6 +37,7 @@ source_ids:
   - src-2026-11-05-huggingface-moe-training-handbook
   - src-2026-11-18-pueyo-hardware-is-software
   - src-2026-11-12-will-depue-checkpoint-forensics
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -83,6 +84,25 @@ toolchain or accumulated expertise described above, and the vault holds no evide
 rebuild. Pueyo also introduces the quote as made "after Jensen Huang stepped down from NVIDIA". That
 leadership change is **not recorded or verified anywhere in this vault** and should not be added to
 this page on this source alone. See [[Accelerator Software Externalization]].
+
+## CuTe DSL exposes CUTLASS from Python, with gaps on a consumer card
+
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]] is an
+outside developer's use of NVIDIA's **CuTe DSL** (`nvidia-cutlass-dsl` 4.8.1), "a Python library for
+writing kernels at the level of CUTLASS", on an RTX 4070 SUPER (12 GB DRAM, 48 MB L2, 56 SMs, 220 W
+power cap). It adds texture to the documentation argument above. NVIDIA's own FlashAttention-2 example
+served as both reference and source of settings: the author took `permutation_mnk` from it "and did
+not time the default". In his harness the example lands within 4% of his tuned kernel everywhere
+(**1.950 ms** against **1.991 ms** at N = 4096, non-causal). His profiling evidence comes from the
+same toolchain, Nsight Systems and Nsight Compute.
+
+The source also shows where the stack's coverage thins on this card. CuTe DSL 4.8.1's own mbarrier
+helpers refuse sm_89, so the author called the operations beneath them, and `setmaxnreg`, which warp
+specialisation relies on, exists only on Hopper and Blackwell. He reports an apparent CuTe DSL bug in
+which one way of indexing a swizzled tensor returns block 0's values for blocks 1–3, published with a
+repro but without a recorded NVIDIA response. Documentation depth and consumer-card feature coverage
+are separate questions; this is one developer's self-reported experience on one GPU. See
+[[GPU Kernel Optimization]].
 
 ## NeMo-RL and NeMo-Gym as the RL training stack
 
@@ -402,3 +422,4 @@ is reported. See [[Checkpoint Forensics]].
 - [[Accelerator Software Externalization]]
 - [[DeepSeek]]
 - [[Open Model Ecosystems]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]

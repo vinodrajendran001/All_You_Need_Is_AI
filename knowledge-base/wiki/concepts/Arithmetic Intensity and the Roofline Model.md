@@ -20,6 +20,7 @@ source_ids:
   - src-2026-11-15-anshuman-mishra-baseten-2000tps
   - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
   - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -195,6 +196,31 @@ its R-Part is per-sequence attention over KV. Moving R-Part off the GPU relocate
 the interconnect, and at short sequences S-Part becomes the bottleneck again. All of
 intelligentLearn's figures are modelled estimates, not measurements.
 
+## A compute-side floor that moves with the clock
+
+The sections above mostly place kernels below the ridge.
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]
+measures one on the flat roof. Nsight Compute's tensor-core roofline puts a FlashAttention-2 forward
+kernel (CuTe v5) and PyTorch's SDPA both on the roof at N = 4096, each doing **137.4 G** operations,
+"exactly what the algorithm needs". v5 reaches **93.2%** of peak against SDPA's **88.9%**, "4.3 points
+higher (the chart's +4.81% is relative)". On the roof the question is no longer bytes per FLOP but how
+much of the tensor peak a schedule keeps.
+
+The author turns the roof into a time floor, t_min = tensor operations / (512 · 56 · f_SM), from 512
+bf16 operations per clock per SM on 56 SMs. Unlike the fixed bandwidth ceiling in the Cohere framing
+above, this floor moves with the SM clock, and on this RTX 4070 SUPER the clock falls under a 220 W
+power cap. At Round 6's sustained median clocks (2,640 MHz non-causal, 2,670 MHz causal) it is
+**1.815** and **0.912 ms**, against v5's **1.954** and **1.037 ms**. Part of the non-causal gap is the
+wave quantisation the Cohere megakernel also counts among its gains: 2,048 blocks make 12.19 waves, so
+"the last wave keeps a fifth of the GPU busy", and at exactly 8 waves v5's throughput is 1.9% higher.
+
+Two counting caveats apply. Nsight Compute fixes the clock at 2.52 GHz, so its "durations are not
+wall-clock speeds". The harness's TFLOP/s counts 4·B·H·N²·D operations (half that for causal), an
+algorithmic count rather than the work a tile schedule executes: Triton's 64 × 128 causal tiles do
+1.6% more work on the diagonal (70.9 G against 69.8 G). As with tang's floor in
+[[Cam Pedersen - Don't Write Kernels, Derive Them]], the floor leaves a residue the source does not
+fully attribute. All figures are self-reported on one consumer GPU.
+
 ## Open questions
 
 - Is the MLA/MTP conflict a hard architectural limit or a coincidence of current hardware balance points?
@@ -231,3 +257,4 @@ intelligentLearn's figures are modelled estimates, not measurements.
 - [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
 - [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
 - [[intelligentLearn]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]

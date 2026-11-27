@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-08-26
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - concept
   - gpu
@@ -19,6 +19,7 @@ source_ids:
   - src-2026-10-21-ant-vllm-humming
   - src-2026-11-11-cam-pedersen-derive-kernels
   - src-2026-11-13-kim-helion-compile-time-heuristics
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -63,6 +64,7 @@ Writing kernels directly in CUDA C++ is only one option, and the choice of abstr
 
 - **Triton** — a blocked-program language and compiler; the programmer describes tiles, the compiler handles intra-tile scheduling.
 - **CUTLASS and CuTe** — a layout algebra plus collective/kernel structure, giving explicit control over tiling, copies, and matrix-multiply atoms without writing raw PTX.
+- **CuTe DSL and Gluon** — Python front ends one level below Triton's `tl`. NVIDIA's CuTe DSL is "a Python library for writing kernels at the level of CUTLASS"; Gluon (`triton.experimental.gluon`, shipped with Triton 3.6) lets the programmer pick layouts, shared-memory buffers, barriers and MMA instructions while Triton compiles the rest. [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]] measures both against `tl`; see the section below.
 - **CUDA Tile IR** — NVIDIA's newer compiler-owned tile abstraction.
 - **Pallas** — the JAX kernel model, targeting both GPU and TPU backends.
 - **ROCm Composable Kernel, AITER, and HipKittens** — the AMD equivalents; HipKittens is a tile abstraction in the same spirit as CUTLASS.
@@ -222,6 +224,58 @@ flipped between runs and whose chip-tuned rules mis-transferred. Helion's consta
 these two chips" (H100, B200), the authors say "Plenty of it we get wrong", and full autotuning "remains
 the right call" for fixed shapes. All results are first-party.
 
+## What a tile compiler decides, measured one decision at a time
+
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]] attacks
+this page's first open question from the other side. Instead of asking whether a compiler can match
+hand-written code, it takes a FlashAttention-2 forward kernel the author had already tuned in Triton,
+ports it to NVIDIA's CuTe DSL without Triton's automatic choices, and adds them back one round at a
+time. The straight port keeps the algorithm and runs at **5.436 ms** against Triton's **1.968 ms**
+(N = 4096, non-causal, one RTX 4070 SUPER), with the tensor cores at **33.7%** of peak. The rounds then
+retrace the ladder above:
+
+- **Bank conflicts (rung 1).** A 64-wide bf16 row is 128 bytes, exactly the 32 banks, so operand reads
+  over 8 rows collide 8 ways. An XOR swizzle takes bank conflicts from **554 M to 0** and the time to
+  **2.686 ms**.
+- **Operand movement (rung 3).** `ldmatrix` turns 224 shared loads and 64 `PRMT` per pass into 40
+  `LDSM` (tensor cores 71.3% → 86.9%). Keeping `P` in registers cuts shared memory from 32 KB to 24 KB
+  but gains only about **1%**, because that round trip "was already conflict-free".
+- **Asynchrony (rung 5).** `cp.async` copies in FA2's order reach **93.2%** of tensor peak, on par with
+  Triton's 92.2% at the same fixed clock.
+- **Configuration.** A tile/stage sweep under the 99 KB shared-memory limit adds **4%** at N = 512
+  non-causal and **0–2%** at N ≥ 1024. That small residue echoes Helion's finding above that full
+  autotuning "buys only about 3%" over a computed config. With different kernels, GPUs and baselines,
+  it is an echo, not a replication.
+
+The ownership choice underneath makes FA2's better work partitioning from the lineage table
+concrete. Stacking the 4 warps along the rows keeps each row of the score tile inside one warp, and the
+tensor-core instruction gives each row to one 4-lane quad, so the online softmax's row maximum and sum
+need only register shuffles. A 2 × 2 warp grid would send them through shared memory on every key
+block.
+
+The outcome qualifies the open question's "the fastest kernels are still hand-written" rather than
+confirming it. The hand-written kernel matched the compiler only after reproducing every decision the
+compiler had made, and the author's ten-item checklist lists what "Triton decided for me". Where CuTe
+v5 does beat Triton, by 4–5% causal at N ≥ 1024 at matched clocks, the author's likely cause is leaner
+compiled code (350 instructions per key block against 388), and "None of Rounds 1–5 is CuTe-only". The
+two schedules Triton's `tl` cannot express, per-buffer mbarriers and software pipelining, were both
+slower on this sm_89 card. There an mbarrier wait is a polling loop, and Gluon's warp specialisation
+emits `setmaxnreg`, an instruction only Hopper and Blackwell have. "On this card, scheduling beyond
+`tl` does not pay" is therefore a hardware-scoped conclusion, much as
+[[Ant Group and vLLM - Humming Quantized Inference Kernels]] finds `cp.async`/MMA versus TMA/UMMA
+decided by batch size rather than by which path is newer.
+
+The article also extends `## Measurement is part of the work`. Non-causal N = 4096 times "jump between
+two speeds for every kernel", so a 1% gap there is noise, much as the fastest tang schedule flipped
+between runs in [[Cam Pedersen - Don't Write Kernels, Derive Them]]. That source used PyTorch's bundled
+SDPA kernel as its FA2 baseline, and its derived forward won **0 of 8** against it in the full sweep;
+Won's CuTe v5 beats SDPA on all 8 of his shapes, on a different GPU (RTX 3090 there, RTX 4070 SUPER
+here) and a different sweep. Because "A kernel at a lower clock looks slower for reasons unrelated to
+its code", the author interleaves 4 s runs with 30 s cool-downs and logs clock and power. At N = 4096
+both custom kernels sat at the 220 W power cap in 93–98% of samples. Nsight Compute fixes the clock,
+so its "durations are not wall-clock speeds". All results are self-reported, on one consumer GPU, for
+one head size (D = 64) and the forward pass only.
+
 ## Open questions
 
 - How much of the kernel ladder survives as compilers absorb it? Triton and CUDA Tile exist precisely to make step 3 unnecessary, yet the fastest kernels are still hand-written.
@@ -233,6 +287,7 @@ the right call" for fixed shapes. All results are first-party.
 - Quail's kernels and its workload assumptions are reported together with no ablation between them. How much of a 1.84x geometric-mean advantage is kernel engineering and how much is a narrower contract?
 - tang derives FlashAttention from a monoid rewrite but still trails FA2/FA3 on speed. Is the remaining gap schedule search (asynchrony, TMA, block-sparse skipping) that a compiler can eventually reach, or hand insight that has to be re-encoded as emitters for each chip?
 - Static heuristics recover most of the autotuned result on Helion's H100 suites; do they transfer to other vendors, where the post's constants were never tuned?
+- Lewis Won's two beyond-`tl` schedules (per-buffer mbarriers, software pipelining) lost on sm_89, which has no hardware mbarrier wait and no `setmaxnreg`. Do they pay on Hopper or Blackwell, and does Gluon, which compiles both, close the gap to hand-written CuTe there?
 
 ## Related pages
 
@@ -260,3 +315,4 @@ the right call" for fixed shapes. All results are first-party.
 - [[PyTorch]]
 - [[Inference Determinism]]
 - [[Low-Precision Training]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]

@@ -15,6 +15,7 @@ source_ids:
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-08-cohere-megakernel-serving
   - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -118,6 +119,38 @@ does not fall linearly with TP degree. Its idealized weight-streaming bound for 
 about **10.5 ms** per step, excludes KV reads, communication, and kernel overhead. All its hardware
 figures are vendor datasheet values, not measurements.
 
+## A compute-bound counterpart: one FlashAttention block on a consumer GPU
+
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]] gives
+the first open question below a worked answer for one tensor-core kernel, a FlashAttention-2 forward
+pass on an RTX 4070 SUPER (sm_89, 56 SMs). The contrast with the vector add is in which resource binds.
+
+- **The instruction fixes data ownership.** One warp-wide `mma.sync.m16n8k16` (`HMMA.16816` in SASS)
+  computes a 16 × 8 tile, and each of the 32 lanes supplies and receives a fixed handful of values.
+  Each row of the result sits in one quad of 4 lanes, paired with row q + 8, so a row's maximum or sum
+  needs only shuffles among those 4 lanes.
+- **Registers, not threads, set occupancy.** Registers are handed out in steps of 8 per thread. At 168
+  per thread a 128-thread block needs 21,504 of the SM's 65,536, so 3 blocks fit, against 4 for shared
+  memory, 12 for warps and 24 for block slots. That is "12 of 48 warps, the 25% theoretical occupancy
+  Nsight Compute reports", yet the final kernel reaches 93.2% of tensor peak, because "a kernel limited
+  by the tensor cores does not need many" resident warps. In the vector-add example above the thread
+  cap bound first, at 48 warps per SM; here a quarter of that is enough.
+- **Shared memory has its own geometry.** It is split into 32 banks, each 4 bytes wide. A 128-byte bf16
+  row puts column 0 of every row in bank 0, so an unswizzled tile read 8 rows at a time collides 8 ways.
+- **Stalls move as the kernel improves.** The straight port stalls on MIO throttle and short
+  scoreboard, waiting to issue shared-memory instructions and then for their results. Once shared
+  memory is fixed, long scoreboard and barrier lead, from copies that pass through registers. After
+  `cp.async`, the longest stall is math pipe throttle, which "for a matrix-multiply kernel this is the
+  stall you want".
+
+The compilation path above has a Triton analogue: Python → TTIR → TTGIR → LLVM IR → PTX → SASS, where
+TTGIR is the stage at which Triton decides which thread holds which values and how shared memory is
+laid out. `ptxas` still "picks the count from the code each compiler hands it", so two kernels of the
+same design land at 165 and 168 registers. The source also partly answers the generations question:
+sm_89 has no hardware mbarrier wait and no `setmaxnreg`, which Hopper and Blackwell have. Gluon's warp
+specialisation therefore does not compile there, and per-buffer mbarriers, waited on by polling, cost
+25–33% more instructions. All figures are self-reported on one GPU.
+
 ## Open questions
 
 - How do compute-bound GEMMs and tensor-core kernels — the workloads that dominate real training/inference — change the scheduling, register, and shared-memory picture drawn by a memory-bound vector add?
@@ -147,3 +180,4 @@ figures are vendor datasheet values, not measurements.
 - [[Cohere]]
 - [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
 - [[intelligentLearn]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]

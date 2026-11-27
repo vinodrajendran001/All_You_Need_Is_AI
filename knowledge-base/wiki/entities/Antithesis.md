@@ -35,12 +35,12 @@ first-party sources:
 ## Why it matters here
 
 It supplies the vault's most detailed account of **fault injection** below an application, at the
-storage layer, as opposed to tests that drive an application through its inputs. In [[Agentic Testing]] it supplies the case where the
-environment, not an agent, is the adversary, and where the oracle is the system's own durability
-invariants. Its one shareable result is a bbolt bug that, the authors say, "could only be found by an I/O
-error followed by a power failure". Through Huntley it is also the source of the property-based testing
-tools that [[Agentic Testing]], [[AI Code Review]], and [[Loop Engineering]] cite as deterministic
-verifiers for agent-written code.
+storage layer, as opposed to tests that drive an application through its inputs. In [[Agentic Testing]]
+it supplies the case where the environment, not an agent, is the adversary, and where the oracle is the
+system's own durability invariants. Its one shareable result is a bbolt bug that, the authors say,
+"could only be found by an I/O error followed by a power failure". Through Huntley it is also the source
+of the property-based testing tools that [[Agentic Testing]], [[AI Code Review]], and
+[[Loop Engineering]] cite as deterministic verifiers for agent-written code.
 
 ## Notes
 

@@ -78,9 +78,8 @@ He calls avoiding that discomfort "childish" and "a recipe for bad products".
 
 [[Agentic Testing]] records ever more automated oracles, such as test suites, recorded browser videos,
 model judges, and fault injection. Miksovsky's claim is that the most useful test of a product is one
-nobody scripts: a real person trying to do a real task, with the builder in the room. It also adds a
-caution about treating per-test recordings as a substitute for watching people: in his words, "watching a
-video clip is nothing like being there live".
+nobody scripts: a real person trying to do a real task, with the builder in the room. It also cautions
+against treating per-test recordings as a substitute for watching people.
 
 ## Tensions / open questions
 

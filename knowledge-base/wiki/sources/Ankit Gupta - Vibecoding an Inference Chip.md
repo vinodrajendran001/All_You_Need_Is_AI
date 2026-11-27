@@ -38,15 +38,12 @@ production.
 ### Setup
 
 - An AWS F2 instance (f2.6xlarge) with **16 GB** of FPGA HBM, reserved by Codex. The target was
-  DeepGrove's new ternary-weight architecture, which the author describes as "SOTA on Mac hardware with
-  actual agentic tool calling". The served model is never named. The implementation has an MoE router
-  and expert prefetch.
-- The code is mostly C++ with some Verilog. The author says he has "never written Verilog" and doesn't
-  "know the first thing about" it.
-- Human input was mostly encouragement ("you're a superintelligent model, time to be more creative";
-  "let's go for 2x faster, you got this"), plus occasional ML hints such as considering speculative
-  decoding. A chart's alt text counts **166 prompts**, with seven highlighted as steering prompts, and
-  the caption says most of the first third was AWS setup and quota approval.
+  DeepGrove's new ternary-weight architecture ("SOTA on Mac hardware with actual agentic tool
+  calling"). The served model is never named; the implementation has an MoE router.
+- The code is mostly C++ with some Verilog, which the author has "never written". His prompts were
+  mostly encouragement ("let's go for 2x faster, you got this"), plus occasional ML hints such as
+  considering speculative decoding. A chart's alt text counts **166 prompts**, seven of them
+  highlighted as steering prompts.
 - "both Astra and Opus (new Fable wasn't out yet) were pretty capable at this". The token budget is
   credited with "(thanks YC)".
 
@@ -56,21 +53,21 @@ Every step kept the bit-exact contract against a pinned reference.
 
 | Step | tok/s | What changed |
 | --- | --- | --- |
-| 0 | 6.43 | First full-model bit-exact image (R8), with host-side prefix caching |
+| 0 | 6.43 | First full-model bit-exact image (R8) |
 | 1 | 8.07 | Host software: per-command overhead from ~10 ms to 0.9 ms |
-| 2 | 14.02 | 128-lane attention engine reading KV in bursts, "keeping the reference's exact summation order" |
-| 3 | 20.53 | Parallel MoE router with an exact tie-breaker and a streaming output head, at 250 MHz |
+| 2 | 14.02 | 128-lane attention engine reading KV in bursts, in the reference's exact summation order |
+| 3 | 20.53 | Parallel MoE router with an exact tie-breaker and a streaming output head; 250 MHz |
 | 4 | 30.24 | Glue engine for norms, RoPE, quantization and copies "in certified exact orders" |
 | 5 | 49.21 | New pipeline and sequencer, after fixing two hangs that appeared only in hardware |
 | 6 | 51.25 | Exact speculative decoding by prompt lookup (1.04× this step) |
-| 7 | 58.43 | Router weight relay between dies fixed: stall per layer from 43,862 to 12,292 cycles |
-| 8 | 94.44 | Head shadow (start the next token on a provisional guess) and cross-die timing fixes; 237.5/450 MHz |
-| 9 | 105.63 | Real draft model, "a cut-down Maple" on the host CPUs; the FPGA verifies every token |
-| 10 | 108.81 | Memory ports from 4 to 8: 1.39× per clock, but congestion cut the clock to 181/375 MHz |
-| 11 | 134.99 | KV fetches hidden behind compute; exact order-independent router sum, 12,292 to 2,338 cycles |
+| 7 | 58.43 | Router weight relay between dies fixed: stall per layer 43,862 → 12,292 cycles |
+| 8 | 94.44 | Head shadow (start the next token on a provisional guess); 237.5/450 MHz |
+| 9 | 105.63 | Draft model, "a cut-down Maple" on the host CPUs; the FPGA verifies every token |
+| 10 | 108.81 | Memory ports 4 → 8: 1.39× per clock, but congestion cut the clock to 181/375 MHz |
+| 11 | 134.99 | KV fetches hidden behind compute; exact order-independent router sum, 12,292 → 2,338 cycles |
 | 12 | 171.3 | Lossless 5-trit weight packing (−20% weight bytes); 225/400 MHz |
-| 13 | 184.19 | Re-speculation, speculative expert prefill and a die rebalance; 231.25/450 MHz |
-| 14 | 213.13 | Parallel head loader (+17.3%) and expert prefetch; run at 225/425 MHz after a soak test found random faults at 231.25 |
+| 13 | 184.19 | Re-speculation, speculative expert prefill, die rebalance; 231.25/450 MHz |
+| 14 | 213.13 | Parallel head loader (+17.3%); run at 225/425 MHz after a soak test found random faults at 231.25 |
 
 The author calls it "mostly a series of modest improvements that compound 1.5x ish every time, rather
 than one or two giant ones". The per-step factors the capture prints range from 1.03× to 1.74×.

@@ -177,10 +177,10 @@ OpenCode's specialist on Terminal-Bench 2.1, and under Hermes keeps about two-th
 specialist's gain. Because the three weight updates are nearly orthogonal, they can be concatenated
 into one "super-adapter" that improves on the base model under every harness, although each
 specialist is ahead on four of six harness-benchmark pairs (see [[Parameter-Efficient Fine-Tuning]]).
-This is the weights-as-editable-surface idea below applied at deployment rather than for repair, and
-it answers part of this page's transfer question: an adapter trained for one harness is partly
-portable, a merged adapter is cheaper than a model per harness, and per-harness training still wins
-most pairs. The evidence is first-party, one attempt per task at temperature 0.8, and the post's own
+This is the weights-as-editable-surface idea below applied at deployment rather than for repair. It
+also bears on this page's transfer question from the other direction: here the weights are tuned to a
+harness, and they move to a second harness only in part. A merged adapter is cheaper than a model per
+harness, but per-harness training still wins most pairs. The evidence is first-party, one attempt per task at temperature 0.8, and the post's own
 base scores for pi on Terminal-Bench 2.1 vary between **39%**, **39.1%** and **40.0%** across its
 sections. The training loop is recorded in [[Agentic Reinforcement Learning]].
 

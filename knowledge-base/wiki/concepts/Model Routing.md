@@ -424,15 +424,17 @@ downgrade holds.
 
 ## A skill can carry its own route, and each downgrade is measured after the change
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] moves the role-routing pattern above inside a single [[Agent Skill]]. The skill dispatches one
-worker subagent, and the caller picks its model: "a small model for lookups, the most capable one for
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] moves the
+role-routing pattern above inside a single [[Agent Skill]]. The skill dispatches one worker
+subagent, and the caller picks its model: "a small model for lookups, the most capable one for
 correlating results." The large tool result stays in the worker's context and only a bounded summary
-returns, so later turns do not pay for it again. That joins the route to the context handoff discussed
-above: part of the saving comes from the cheaper tier, part from keeping the result out of the main
-session. In a before-and-after comparison, the cost per invocation of a tracing skill fell **46%**.
-A deployment skill showed no drop in its first week, "so we measure each skill after its change". The
-same reasoning moved pull-request polling to a background agent on a cheaper model after notification
-turns were found to be about a third of spend in the **20** highest-spend sessions.
+returns, so later turns do not pay for it again. That joins the route to the context handoff
+discussed above: part of the saving comes from the cheaper tier, part from keeping the result out of
+the main session. In a before-and-after comparison, the cost per invocation of a tracing skill fell
+**46%**. A deployment skill showed no drop in its first week, "so we measure each skill after its
+change". The same reasoning moved pull-request polling to a background agent on a cheaper model
+after notification turns were found to be about a third of spend in the **20** highest-spend
+sessions.
 
 This agrees with Cohere's finding that cheap workers can gather information while the strong model
 decides, and with its warning that the decision-maker should not be downgraded. The evidence is

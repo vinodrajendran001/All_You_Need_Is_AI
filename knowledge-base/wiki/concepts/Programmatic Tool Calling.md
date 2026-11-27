@@ -143,14 +143,15 @@ and the "almost zero" cost are unmeasured.
 
 ## Code Mode as shared packages behind a tool gateway
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] reports an enterprise adoption of the pattern, "Inspired by [[Cloudflare]]'s Code Mode". Uber
-saw many tokens going to the same tool calls (run a query and read the response, read and send a Slack
-message, search remote code, read and send email), where "The agent wanted only the result". It moved
-these flows into utility scripts that call tools through its gateway and aifx. In its configuration
-that avoided preloading the tool definitions, and Figure 14 describes the result going to a file
-rather than into the context window, the same split between a declared return and the full result
-that Factory and Schmid draw above. Uber says the scripts improved the success rate, the latency and
-the cost of its most-used flows, without figures.
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] reports an
+enterprise adoption of the pattern, "Inspired by [[Cloudflare]]'s Code Mode". Uber saw many tokens
+going to the same tool calls (run a query and read the response, read and send a Slack message,
+search remote code, read and send email), where "The agent wanted only the result". It moved these
+flows into utility scripts that call tools through its gateway and aifx. In its configuration that
+avoided preloading the tool definitions, and Figure 14 describes the result going to a file rather
+than into the context window, the same split between a declared return and the full result that
+Factory and Schmid draw above. Uber says the scripts improved the success rate, the latency and the
+cost of its most-used flows, without figures.
 
 What is new here is reuse at company scale. "The code mode skills became packages that the rest of
 the company's skills reference by name, which lets them depend on high-quality implementations for

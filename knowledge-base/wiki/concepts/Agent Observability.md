@@ -298,13 +298,14 @@ hypothetical examples, not a tooling study.
 
 ## A skill-level telemetry schema without prompt text, and the agent as a bug reporter
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] shows telemetry designed around the [[Agent Skill]] rather than the request. OpenTelemetry
-hooks record each skill call, its version, and whether the agent chose the skill or the user typed its
-command. Events carry no prompt text and no file contents. From them Uber computes **12** measures per
-skill, among them users, retention, cost, latency and errors. Cost per invocation is attributed by
-subtracting the last running session total before a call from the first total after it, so the window
-also includes the turns that follow and any other tool calls in it. That makes it an attribution, not
-an isolated cost, in the sense of the end-to-end accounting section above.
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] shows telemetry
+designed around the [[Agent Skill]] rather than the request. OpenTelemetry hooks record each skill
+call, its version, and whether the agent chose the skill or the user typed its command. Events carry
+no prompt text and no file contents. From them Uber computes **12** measures per skill, among them
+users, retention, cost, latency and errors. Cost per invocation is attributed by subtracting the
+last running session total before a call from the first total after it, so the window also includes
+the turns that follow and any other tool calls in it. That makes it an attribution, not an isolated
+cost, in the sense of the end-to-end accounting section above.
 
 The second mechanism partly answers the open question below about noticing semantic failures. An
 always-on log-papercut skill lets any agent report friction: what it tried, expected and saw, and what

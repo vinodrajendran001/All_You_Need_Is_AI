@@ -117,18 +117,18 @@ plateaued. That explanation is a hypothesis, not a tested result.
 
 ## One adapter per harness, and a concatenated merge when the updates are orthogonal
 
-[[Hugging Face - Introducing Harness Adapters]] gives this page's interference question a measured case. [[Hugging Face]] trained one LoRA
-adapter per coding-agent harness (pi, Hermes and OpenCode) on a frozen Qwen3.8-27B; the training side
-is on [[Harness Optimization]]. Compared layer by layer, the cosine similarity between any two of the
-weight updates was about **0.01-0.02**: "each adapter pushed the model in a nearly orthogonal
-direction during training", which the authors call the best case for merging. They concatenated the
-adapters along the rank dimension (PEFT's `combination_type="cat"`), giving a rank-**96** adapter
-(3 × 32) that applies one weight w to the sum of the three updates. Prior merging work finds that
-scaling each update below 1 works best, so they compared three weights on Terminal-Bench 2.1. The
-plain sum (w = 1) over-applied the updates: agents became very short (**13.4** tool calls per task
-against **49.2** for the base), Hermes peaked at **62.8%**, and pi fell to **40.2%**, the base
-model's level. The average (⅓) diluted each update, and **½** gave the best mean, **52.5%** against
-**43.3%** for the base.
+[[Hugging Face - Introducing Harness Adapters]] gives this page's interference question a measured
+case. [[Hugging Face]] trained one LoRA adapter per coding-agent harness (pi, Hermes and OpenCode)
+on a frozen Qwen3.8-27B; the training side is on [[Harness Optimization]]. Compared layer by layer,
+the cosine similarity between any two of the weight updates was about **0.01-0.02**: "each adapter
+pushed the model in a nearly orthogonal direction during training", which the authors call the best
+case for merging. They concatenated the adapters along the rank dimension (PEFT's
+`combination_type="cat"`), giving a rank-**96** adapter (3 × 32) that applies one weight w to the
+sum of the three updates. Prior merging work finds that scaling each update below 1 works best, so
+they compared three weights on Terminal-Bench 2.1. The plain sum (w = 1) over-applied the updates:
+agents became very short (**13.4** tool calls per task against **49.2** for the base), Hermes peaked
+at **62.8%**, and pi fell to **40.2%**, the base model's level. The average (⅓) diluted each update,
+and **½** gave the best mean, **52.5%** against **43.3%** for the base.
 
 The result separates two questions this page had run together. Low interference made a single merged
 adapter possible: with thinking off it improved on the base model on all six harness-benchmark pairs

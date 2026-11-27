@@ -323,16 +323,17 @@ still pay. The evidence is anecdotal; no runs with and without the skills are re
 
 ## A skill marketplace run like code: tiers, clean-room evals and ablation
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] is the largest production account of skills in the vault. Uber's marketplace grew from **1**
-skill in October 2025 to more than **5,000** a year later, with more than **1 million** invocations in
-one month. Skills follow the staged loading described above: about **100** tokens of name and
-description always loaded, a body kept under **500** lines, and scripts and references only for the
-step that needs them. They graduate from Domain (one peer approval and a CI check) to Core (the
-platform team reviews every change) to about **100** Always-on skills, and graduation requires evals.
-A CLI called aifx installs the same skills into Claude Code, Codex, OpenCode and Uber's hosted agents,
-one company's answer at the install level to the portability question below. The text itself is not
-treated as portable: Uber plans to compile SKILL.md per model because "different phrasing and lengths
-of SKILL.md files work better in different model families".
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] is the largest
+production account of skills in the vault. Uber's marketplace grew from **1** skill in October 2025
+to more than **5,000** a year later, with more than **1 million** invocations in one month. Skills
+follow the staged loading described above: about **100** tokens of name and description always
+loaded, a body kept under **500** lines, and scripts and references only for the step that needs
+them. They graduate from Domain (one peer approval and a CI check) to Core (the platform team
+reviews every change) to about **100** Always-on skills, and graduation requires evals. A CLI called
+aifx installs the same skills into Claude Code, Codex, OpenCode and Uber's hosted agents, one
+company's answer at the install level to the portability question below. The text itself is not
+treated as portable: Uber plans to compile SKILL.md per model because "different phrasing and
+lengths of SKILL.md files work better in different model families".
 
 The evaluation design treats a skill like code with a test suite. The suggested mix is about **5%**
 golden cases, **80%** real prompts graded on trajectory (the right skills and tools in the right

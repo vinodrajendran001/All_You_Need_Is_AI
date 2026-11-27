@@ -522,12 +522,13 @@ nothing about judge validation itself.
 
 ## A blind ablation judge, a noise band, and a pass rate kept below 100%
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] uses a judge to decide whether a skill earns its place. For heavily used skills, real prompts
-are replayed with the skill, without it and with parts removed, in an isolated environment, and "a
-blind judge picks the better answer". Uber plots each skill's share of wins with 95% intervals against
-a noise band, "how much two identical runs differ". That is this page's judge-variability argument
-drawn on every comparison: a win share inside the band says nothing. The values appear only in a
-figure, and the post does not say how the band is used to accept or reject a change.
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] uses a judge to
+decide whether a skill earns its place. For heavily used skills, real prompts are replayed with the
+skill, without it and with parts removed, in an isolated environment, and "a blind judge picks the
+better answer". Uber plots each skill's share of wins with 95% intervals against a noise band, "how
+much two identical runs differ". That is this page's judge-variability argument drawn on every
+comparison: a win share inside the band says nothing. The values appear only in a figure, and the
+post does not say how the band is used to accept or reject a change.
 
 Two rules come with it. "LLM-as-judge works best if it has a human-annotated set", which skill authors
 must create, collect from users and grade repeatedly; it is the same split as LinkedIn's golden dataset

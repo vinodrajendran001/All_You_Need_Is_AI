@@ -203,17 +203,18 @@ prose. All results are first-party. See [[Robot Training Data]].
 
 ## Filtering out silent groups before training starts
 
-[[Hugging Face - Introducing Harness Adapters]] applies the silent-group rule above as a data filter. "GRPO (group relative policy
-optimization) scores each attempt against the other attempts at the same task, so a task where every
-attempt passes, or every attempt fails, gives no learning signal." Before training, the base
-Qwen3.8-27B attempted each task 4 times (8 times for a stratified sample of six tasks per repository).
-Of **442** scored tasks it solved **151** every time and **120** never, and the **171** it solved only
-sometimes form the qualified set. This is the cheap, empirical counterpart to the horizon analysis
-above: instead of changing the objective so that hard tasks carry signal, as Progressive Point
-Matching does, it removes tasks whose groups would be silent at the current policy. On the vault's
-reading, the cost is that the model never trains on tasks it cannot yet solve at all, and a task
-qualified at the start can become all-pass as training proceeds. The authors ran four short runs on unvalidated, validated,
-unqualified and qualified sets to test the filters, but report the results only in charts.
+[[Hugging Face - Introducing Harness Adapters]] applies the silent-group rule above as a data
+filter. "GRPO (group relative policy optimization) scores each attempt against the other attempts at
+the same task, so a task where every attempt passes, or every attempt fails, gives no learning
+signal." Before training, the base Qwen3.8-27B attempted each task 4 times (8 times for a stratified
+sample of six tasks per repository). Of **442** scored tasks it solved **151** every time and
+**120** never, and the **171** it solved only sometimes form the qualified set. This is the cheap,
+empirical counterpart to the horizon analysis above: instead of changing the objective so that hard
+tasks carry signal, as Progressive Point Matching does, it removes tasks whose groups would be
+silent at the current policy. On the vault's reading, the cost is that the model never trains on
+tasks it cannot yet solve at all, and a task qualified at the start can become all-pass as training
+proceeds. The authors ran four short runs on unvalidated, validated, unqualified and qualified sets
+to test the filters, but report the results only in charts.
 
 The training loop shows a second interaction with the group mechanics. Using TRL's
 `AsyncGRPOTrainer`, which does not wait for every rollout before an optimization step, the authors set

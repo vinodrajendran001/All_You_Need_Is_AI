@@ -256,14 +256,14 @@ capture reports no ablation that separates communication from extra parallel com
 
 ## Training through the deployed harness, with the efficiency reward kept small
 
-[[Hugging Face - Introducing Harness Adapters]] trains inside the harness rather than inside a re-implementation of it. "Most RL frameworks
-train a re-implementation of the agent loop" (verl's AgentLoop, SkyRL-Gym, rLLM, slime, ART); here "the
-harness runs exactly as it ships, and the trainer learns from the exact tokens it produced, recorded by
-a proxy between the harness and vLLM". That handles the Token-In-Token-Out concern above at the
-harness boundary rather than inside the framework, and the authors cite Agent Lightning v1.0 and
-SkyRL's Harbor integration as moving the same way. The stack is TRL's `AsyncGRPOTrainer`, which does
-not wait for every rollout before an optimization step, with OpenEnv and Harbor-format tasks on
-[[Hugging Face]] Jobs and sandboxes.
+[[Hugging Face - Introducing Harness Adapters]] trains inside the harness rather than inside a
+re-implementation of it. "Most RL frameworks train a re-implementation of the agent loop" (verl's
+AgentLoop, SkyRL-Gym, rLLM, slime, ART); here "the harness runs exactly as it ships, and the trainer
+learns from the exact tokens it produced, recorded by a proxy between the harness and vLLM". That
+handles the Token-In-Token-Out concern above at the harness boundary rather than inside the
+framework, and the authors cite Agent Lightning v1.0 and SkyRL's Harbor integration as moving the
+same way. The stack is TRL's `AsyncGRPOTrainer`, which does not wait for every rollout before an
+optimization step, with OpenEnv and Harbor-format tasks on [[Hugging Face]] Jobs and sandboxes.
 
 Each harness gets its own LoRA adapter on a frozen Qwen3.8-27B, trained with thinking off during
 rollouts. The reward is verifier correctness plus a small tool-efficiency bonus of **0.1**, a value
@@ -289,19 +289,20 @@ evidence is first-party and single-attempt; the task pipeline and difficulty fil
 
 ## A matched-budget test of trained coordination
 
-[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] asks whether coordination training of the kind in the collective section above already beats a
-single agent at the same budget. The study's GPT teams coordinated on an undocumented Codex message
-board, disabled by default, whose source comments describe "Tree-owned message boards for training"
-and "A board held in memory for one training rollout". The author treats it as the only channel in the
-study that any lab appears to use in training, an inference from code rather than a disclosure by
-[[OpenAI]]. On a git-in-Zig porting task at 8M weighted tokens, GPT-6.1 Sol's self-organized teams
-roughly matched one long single-agent session, closer than any other teams. A single agent whose
-budget was split into eight consecutive fresh sessions beat those teams at 8M and at 32M. The newer
-GPT-6.2 Sol's teams of 2 and 4 scored slightly below one long session on the same board, and its teams
-of 8 scored **24%** below; no restarts were run for it. The author tentatively concludes that
-GPT-6.1's teams matched mainly because its single agent "degraded as stale or irrelevant context built
-up", and that "Whatever teamwork training OpenAI may be doing does not yet seem enough for its teams
-to match a single agent at an equal budget."
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] asks whether coordination training of the
+kind in the collective section above already beats a single agent at the same budget. The study's
+GPT teams coordinated on an undocumented Codex message board, disabled by default, whose source
+comments describe "Tree-owned message boards for training" and "A board held in memory for one
+training rollout". The author treats it as the only channel in the study that any lab appears to use
+in training, an inference from code rather than a disclosure by [[OpenAI]]. On a git-in-Zig porting
+task at 8M weighted tokens, GPT-6.1 Sol's self-organized teams roughly matched one long single-agent
+session, closer than any other teams. A single agent whose budget was split into eight consecutive
+fresh sessions beat those teams at 8M and at 32M. The newer GPT-6.2 Sol's teams of 2 and 4 scored
+slightly below one long session on the same board, and its teams of 8 scored **24%** below; no
+restarts were run for it. The author tentatively concludes that GPT-6.1's teams matched mainly
+because its single agent "degraded as stale or irrelevant context built up", and that "Whatever
+teamwork training OpenAI may be doing does not yet seem enough for its teams to match a single agent
+at an equal budget."
 
 That bears directly on Avalon-M1. Zanichelli rates it as the only matched comparison claiming about
 parity, and notes that its n=8 swarm beat a solo agent on **35%** of benchmarks and lost on **43%**,

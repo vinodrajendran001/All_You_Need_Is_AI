@@ -207,14 +207,14 @@ question in "Relation to the harness" above to coordination. See
 
 ## A published task pipeline: decontaminate, validate against wrong answers, then filter for difficulty
 
-[[Hugging Face - Introducing Harness Adapters]] documents an environment pipeline end to end, with each gate stated as a check. A search of
-the [[Hugging Face]] Hub for Harbor-format environments returned about **59,000** tasks, including
-duplicates, evaluation sets and tasks marked as not for training. The authors kept two training
-sources (SWE-smith and SWE-Gym via TaskTrove) and generated a third with Tasksmith, which builds tasks
-from merged pull requests and accepts one only if the reference and a valid alternative pass while the
-unfixed code and a known-wrong solution fail. A metadata screen then drops the **253** tasks in the
-target benchmarks and any task from a repository those benchmarks use, a decontamination step this
-page has not previously recorded.
+[[Hugging Face - Introducing Harness Adapters]] documents an environment pipeline end to end, with
+each gate stated as a check. A search of the [[Hugging Face]] Hub for Harbor-format environments
+returned about **59,000** tasks, including duplicates, evaluation sets and tasks marked as not for
+training. The authors kept two training sources (SWE-smith and SWE-Gym via TaskTrove) and generated
+a third with Tasksmith, which builds tasks from merged pull requests and accepts one only if the
+reference and a valid alternative pass while the unfixed code and a known-wrong solution fail. A
+metadata screen then drops the **253** tasks in the target benchmarks and any task from a repository
+those benchmarks use, a decontamination step this page has not previously recorded.
 
 `openenv validate` turns the two gates above into fixed checks run in fresh trials. The reference
 solution must earn the maximum reward, which is gate one's solvability proof with a reference

@@ -245,16 +245,17 @@ clickbait title and reports no usage data for the prompts; its security caveats 
 
 ## A company that standardized on MCP moves its common flows off the resident roster
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] gives the residency cost from inside an MCP-heavy organization. Uber's default MCP install
-"loads every tool's full description into every call", and "With more than 100 tools, those
-definitions took 50,000 to 70,000 tokens before the user typed anything." The response kept the
-protocol and changed what stays resident, as the code-surface rule above recommends: Code Mode scripts
-call tools through Uber's gateway, and aifx handles MCP connections for every agent surface. Uber also
-blocks `.mcp.json` files, which install tool servers, in skills and plugins, so a skill cannot quietly
-add servers to the roster or route around the gateway, the bypass concern in the gateway section
-above. The post gives no measured savings for Code Mode and labels its Figure 14 token counts as
-estimates. The earlier [[Uber]] material on this page is a secondhand account of the gateway; this
-one is first-party.
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] gives the residency
+cost from inside an MCP-heavy organization. Uber's default MCP install "loads every tool's full
+description into every call", and "With more than 100 tools, those definitions took 50,000 to 70,000
+tokens before the user typed anything." The response kept the protocol and changed what stays
+resident, as the code-surface rule above recommends: Code Mode scripts call tools through Uber's
+gateway, and aifx handles MCP connections for every agent surface. Uber also blocks `.mcp.json`
+files, which install tool servers, in skills and plugins, so a skill cannot quietly add servers to
+the roster or route around the gateway, the bypass concern in the gateway section above. The post
+gives no measured savings for Code Mode and labels its Figure 14 token counts as estimates. The
+earlier [[Uber]] material on this page is a secondhand account of the gateway; this one is
+first-party.
 
 ## Related pages
 

@@ -317,17 +317,18 @@ authors "tested one server on one task".
 
 ## A first-party resident-roster count, and cost measured per skill invocation
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] is Uber's own account, and it adds a second resident-roster figure to OpenRouter's. "The
-default MCP install in an LLM client" loaded every tool's full description into every call: "With more
-than 100 tools, those definitions took 50,000 to 70,000 tokens before the user typed anything." That
-is the same order as OpenRouter's **59,417**-token whole task through one server with **46** default
-tools, though Uber's figure counts definitions alone across many servers and comes without a model,
-a task or a method. Uber's response was Code Mode: repeated flows such as running a query, reading a
-Slack message or searching remote code moved into scripts that call tools through its gateway, so the
-agent "read only the parts of each result that it needed". Uber says the scripts improved success
-rate, latency and cost for its most-used flows but gives no figures, and the token counts in its
-Figure 14 are labelled estimates. The earlier secondhand gateway account above also gave no measured
-gain, so Code Mode at Uber is now first-party but still unpriced.
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] is Uber's own
+account, and it adds a second resident-roster figure to OpenRouter's. "The default MCP install in an
+LLM client" loaded every tool's full description into every call: "With more than 100 tools, those
+definitions took 50,000 to 70,000 tokens before the user typed anything." That is the same order as
+OpenRouter's **59,417**-token whole task through one server with **46** default tools, though Uber's
+figure counts definitions alone across many servers and comes without a model, a task or a method.
+Uber's response was Code Mode: repeated flows such as running a query, reading a Slack message or
+searching remote code moved into scripts that call tools through its gateway, so the agent "read
+only the parts of each result that it needed". Uber says the scripts improved success rate, latency
+and cost for its most-used flows but gives no figures, and the token counts in its Figure 14 are
+labelled estimates. The earlier secondhand gateway account above also gave no measured gain, so Code
+Mode at Uber is now first-party but still unpriced.
 
 The post's more useful contribution is a unit. Uber measures cost per skill invocation, the session
 total just after a call minus the total just before it, summed per skill per day and divided by the

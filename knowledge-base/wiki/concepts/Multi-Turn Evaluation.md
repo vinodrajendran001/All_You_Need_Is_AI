@@ -287,13 +287,14 @@ a cosmetic change and a real error carry the same label, and nothing estimates t
 
 ## Grade most of the suite on trajectory, and keep the pass rate off the ceiling
 
-[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] gives a production proportion for the case ordering above. Uber's suggested suite for each
-[[Agent Skill]] is about **5%** golden cases (fixed input, expected output, tool mocks), **80%** real
-prompts graded on trajectory, and **15%** judged by the author. Trajectory grading asks whether the
-agent used the right skills and tools in the right order, not whether the outcome was right, which
-puts West's remedy above (grade the tool-call trajectory, not the closing message) at the centre of
-the suite rather than beside it. It agrees with Martin's ordering that real traffic comes first,
-with hand-written cases a small remainder.
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] gives a production
+proportion for the case ordering above. Uber's suggested suite for each [[Agent Skill]] is about
+**5%** golden cases (fixed input, expected output, tool mocks), **80%** real prompts graded on
+trajectory, and **15%** judged by the author. Trajectory grading asks whether the agent used the
+right skills and tools in the right order, not whether the outcome was right, which puts West's
+remedy above (grade the tool-call trajectory, not the closing message) at the centre of the suite
+rather than beside it. It agrees with Martin's ordering that real traffic comes first, with
+hand-written cases a small remainder.
 
 Two further details bear on this page. Suites run in clean rooms (background agents, a managed agent
 sandbox and devpods), and remote runs exposed skills that depended on the author's file paths, cached

@@ -116,7 +116,7 @@ comparability across panels.
 - **First-party, with unequal comparators.** The framework's developers ran the benchmarks. SGLang
   Beam used a 2W candidate pool, constraints were on for some backends on Ascend and unrecorded for
   SGLang, and only one platform's protocol is fully specified.
-- **Best slice as headline.** "Lowest P99 at batch sizes 4 and 8 on all six accelerators" holds at
+- **Best slice as headline.** The lowest P99 "at batch sizes 4 and 8 on all six accelerators" holds at
   beam width 256. At batch 1 and at beam width 128 the winner varies.
 - **What is not shown:** throughput, candidate recall or recommendation quality, cost, a
   constraints-on comparison on NVIDIA, and HTTP or gRPC overhead.

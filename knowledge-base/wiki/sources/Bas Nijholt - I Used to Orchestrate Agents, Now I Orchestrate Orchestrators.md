@@ -138,7 +138,7 @@ flight". The September 2026 jump coincides with GPT-6 Astra and Claude Opus 5.5.
 - Line counts include churn, generated files, and rewritten agent code; he disclaims them as a
   quality measure, and the September jump coincides with new models, so the chart cannot credit
   MindRoom.
-- "No recent run went badly wrong" is recall, not an incident log, at **$50,000 to $100,000** a
+- That he "couldn't think of a recent run that went badly wrong" is recall, not an incident log, at **$50,000 to $100,000** a
   month in model usage paid by someone else.
 - The parent's rules apply to his own repositories; no review accuracy or defect rate is reported.
 - The TDD figure (0 of 32 vs 32 of 32) measures whether a test was written first, not code quality.

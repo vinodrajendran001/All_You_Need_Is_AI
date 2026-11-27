@@ -137,7 +137,7 @@ second measurement of the kube-proxy baseline.
 
 - **Self-reported and unpublished.** There is no frontmatter, URL or byline beyond "Vinod", and the
   results files it cites are not in the vault. It is framed as interview preparation, and its pitch
-  quotes favourable numbers: "4.1× peak goodput (the blog reported 3.5×)" is multiturn only, while
+  quotes favourable numbers: "4.1× peak goodput ... (the blog reported 3.5×)" is multiturn only, while
   shared-prefix fell short (2.9× against 7.4×).
 - **The baseline is still random.** A Q&A argues against ClientIP session affinity ("pins *clients*,
   not *prefixes*") and against consistent hashing, but tests neither. The vault's open question about a

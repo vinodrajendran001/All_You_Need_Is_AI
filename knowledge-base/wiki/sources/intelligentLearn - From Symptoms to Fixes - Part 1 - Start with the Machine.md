@@ -127,7 +127,7 @@ history supports [[Inference Efficiency Frontier]].
   assumes, is deferred to later parts.
 - The series' scheduling is inconsistent. This part says Parts 2 to 4 follow on November 10, 17, and
   24, but the captured Parts 2 and 3 were published on November 14 and 19.
-- This part's title differs from the later "Designing LLM Inference Systems, Part N" naming. Its
+- This part's title differs from the later parts' "Designing LLM Inference Systems" naming. Its
   internal references use "Part II" style numbering.
 - A figure placeholder ("Upload figure 7 … k3-kv-budget.png") was left in the published text. The
   capture's description field is only "More".

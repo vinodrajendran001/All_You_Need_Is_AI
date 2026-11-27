@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-05-08
-updated: 2026-11-20
+updated: 2026-11-27
 tags:
   - overview
   - ai
@@ -450,6 +450,32 @@ source_ids:
   - src-2026-11-19-shankar-husain-evals-three-gulfs
   - src-2026-11-19-tselovalnikov-10x-engineer
   - src-2026-11-19-anthropic-founders-playbook
+  - src-2026-11-13-william-hu-always-on-agents
+  - src-2026-11-23-bas-nijholt-orchestrating-orchestrators
+  - src-2026-11-25-frank-rousseau-agentic-coding-open-source
+  - src-2026-10-31-l1vsun-five-levels-ai-engineering
+  - src-2026-11-25-goofyfish-make-your-own-game
+  - src-2026-11-24-uber-agent-skill-evals
+  - src-2026-11-20-huggingface-harness-adapters
+  - src-2026-11-24-zanichelli-swarms-raise-the-roof
+  - src-2026-11-23-tomassetti-legacy-modernization-measured
+  - src-2026-11-22-nikolas-goebel-informal-verification
+  - src-2026-11-24-antithesis-nightmare-mode
+  - src-2026-11-23-jan-miksovsky-watching-users
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
+  - src-2026-11-24-intelligentlearn-inference-systems-part-4
+  - src-2026-11-25-vinod-kv-cache-aware-routing-reproduction
+  - src-2026-11-24-vllm-gr-announcement
+  - src-2026-11-24-bytebytego-doordash-dispatch
+  - src-2026-11-20-ankit-gupta-vibecoding-inference-chip
+  - src-2026-11-22-zhang-li-recursive-self-editing
+  - src-2026-11-27-modaic-jev-latency-fingerprint
+  - src-2026-11-24-uncensored-ai-free-model-catalog
+  - src-2026-11-09-erik-hoel-qualiaphobic-networks
+  - src-2026-11-23-alphasignal-e-means-rag
+  - src-2026-11-15-lewis-won-triton-to-cute-flashattention
 status: active
 ---
 
@@ -461,9 +487,9 @@ This wiki is the persistent knowledge layer for the `All_You_Need_Is_AI` vault. 
 
 ## Current picture
 
-As of November 20, 2026, the wiki has **744 typed pages**, including **417 source summaries**
-owning **443 source IDs**, **148 concepts**, and **108 entities**; page totals exclude git-ignored
-local query files. The raw collection contains **449 top-level captures** and **519 files in
+As of November 27, 2026, the wiki has **773 typed pages**, including **443 source summaries**
+owning **469 source IDs**, **149 concepts**, and **110 entities**; page totals exclude git-ignored
+local query files. The raw collection contains **475 top-level captures** and **545 files in
 total**, not counting the four Obsidian settings files under `raw/sources/.obsidian/`;
 recaptures and equivalent clippings remain preserved without being counted as independent
 evidence. One off-domain capture, a smart-TV privacy guide clipped on October 27, is deferred
@@ -1877,6 +1903,111 @@ founder as an orchestrator of agents; its 42% failure statistic is uncited and i
 are unverified. [[AI-Native Software Development Lifecycle]], [[LLM-as-a-Judge]], [[AI Code Review]],
 and [[Agent Workflow Maturity]] carry the practice thread.
 
+## November 27 additions
+
+Twenty-six captures already under `raw/sources/` were ingested, one of them added by the user while
+the ingest was running. They add one concept, [[AI Consciousness and Moral Patienthood]], and two
+entities, [[Antithesis]] and [[intelligentLearn]]. Two captures with little or no AI content, a disk
+fault-injection post and an essay on watching users, were ingested at the user's request. The
+off-domain smart-TV privacy capture clipped on October 27 remains deferred.
+
+**Running coding agents day to day.** [[William Hu - Building Always-On Agents]] is an Anthropic
+guide that builds agents which sleep between runs from five primitives: an event inbox, timers,
+memory, permissions, and an outbox. It gives design rules but no measured results for the
+architecture. [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]] runs
+**fifteen** parallel sessions comfortably and up to **forty** on a good day from a chat client he
+built, with a parent agent that picks a model per job.
+[[Frank Rousseau - Agentic Coding on an Open-Source Project]] reports the opposite style: ten months
+of Claude Code on Kitsu within **$600 a month** of subscriptions, short prompts, separate sessions
+per subject, risk-tiered review, and caution about long unattended runs.
+[[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]] restates the
+prompt-to-graph stack as a ladder and relays an unlinked harness-editing paper.
+[[Goofy Fish - Make Your Own Game]] shows a repository that ships its own `/game` command, so a
+contributor's coding agent builds and tests a game and submits it as a pull request. Nearly all of
+this evidence is first-party or self-reported. [[Agent Skill]], [[Agentic Loop]], [[Model Routing]],
+[[AI Code Review]], and [[LLM-Native Extensible Software]] carry these threads.
+
+**Evaluating and training at the unit that ships.**
+[[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]] runs a skill
+marketplace that grew from **1** skill to more than **5,000** in a year, with tiered review, one
+install path, evals graded on trajectories, blind ablations, and bug reports filed by the agents
+themselves. [[Hugging Face - Introducing Harness Adapters]] RL-trains one LoRA adapter per coding
+harness on a frozen Qwen3.8-27B; with the pi harness on Terminal-Bench 2.1, the score rises from
+**39%** to **55%** while tokens per task fall. Both are first-party.
+[[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]] compares agent teams with a single agent
+on the same total budget: teams finished about **6x** sooner but scored about **7%** lower, and the
+one apparent swarm premium disappeared once the single agent could restart with a fresh context.
+That restart baseline was post hoc and run on one task. [[Coding Agent Harness]],
+[[Parameter-Efficient Fine-Tuning]], [[Multi-Agent Coordination]], and [[Context Engineering]] take
+the results.
+
+**Trust beyond passing tests.** [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]
+had Claude Opus 5.5 translate two IBM i ERP applications from RPG to Java. A compiling first
+generation of the larger one cost about **$1,100**, but repeated runs produced different
+architectures and, off the normal path, different behaviour, and every translation examined had
+non-cosmetic errors. [[Nikolas Göbel - Informal Verification]] argues that trust in agent-written
+code can come from step-checked natural-language proofs, with Jev as the checker; it reports no
+measurements. [[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]]
+describes [[Antithesis]]'s Amnesia, a Rust FUSE filesystem that injects power loss, I/O errors, and
+latency faults; the post contains no AI content.
+[[Jan Miksovsky - Watching Users Is How You Make Products Better]] is a short opinion post on
+watching real people use a product. [[Legacy Code Modernization with AI Agents]],
+[[Agentic Testing]], and [[AI Code Review]] carry these sources.
+
+**Inference serving: a method, a reproduction, and new workloads.** [[intelligentLearn]]'s four-part
+series, [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]],
+[[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]],
+[[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]], and
+[[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]], runs from
+back-of-envelope ledgers through a six-layer map of interventions to an evaluation checklist and a
+measurement plan, and grades **172** papers by how deeply they were read. Its case numbers are
+teaching assumptions, not measurements. [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]] is an
+independent, self-reported reproduction of Buoyant's Kinference benchmarks: across **144** runs
+every headline result reproduces in direction, but shared-prefix peak goodput rose only **2.9×**
+against the blog's **7.4×**, which the author traces to a prefix working set of about **101%** of
+the pool's KV capacity. [[vLLM-GR Team - Announcing vLLM-GR]] moves beam search over semantic item
+IDs inside a vLLM-based engine for generative recommendation, with first-party P99-only charts.
+[[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]] adds a non-LLM case
+of coordination separated from computation, with reported figures and no baselines. [[KV Cache]],
+[[Serving Benchmarks and Goodput]], [[Inference Serving Engines]], and [[Kubernetes]] carry the
+series and the reproduction.
+
+**Inference hardware and kernels, optimized one measured step at a time.**
+[[Ankit Gupta - Vibecoding an Inference Chip]] had a coding agent build bit-exact inference for a
+ternary-weight model on an AWS FPGA. It spent **$10,000** in tokens and took throughput from
+**6.43** to **213.13** tokens per second; process advice to stop long simulations mattered more than
+design advice, possibly at the cost of two hardware hangs.
+[[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]
+ports a tuned Triton FlashAttention-2 kernel to NVIDIA's CuTe DSL and adds back Triton's automatic
+decisions one profiled round at a time. The straight port ran at **33.7%** of tensor-core peak, and
+a swizzled shared layout alone cut bank conflicts from **554 M** to **0**. The final kernel beats
+PyTorch's SDPA on all eight tested shapes and is 2–5% faster than Triton on five of them, tying on
+the rest; all results are self-reported on one consumer GPU. [[Inference Determinism]],
+[[Speculative Decoding]], [[Loop Engineering]], and [[GPU Kernel Optimization]] take these threads.
+
+**Modifying and identifying open models.**
+[[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]] has
+Qwen3.8-27B write gradient-free, rank-capped LoRA edits to itself; four merged edits raised held-out
+math accuracy from **76.30%** to **77.75%** in one run with no baselines.
+[[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]] is a competitor's black-box
+case that [[TypeSafe AI]]'s Jev is a Qwen mixture-of-experts fine-tune, from self-identification,
+tokenizer-latency correlation, and prefill throughput; its tokenizer test cannot separate Qwen from
+Gemma. [[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]] is an unattributed
+catalog of **103** safety-removed open models, recorded at catalog level only.
+[[Weight-Space Programming]], [[Checkpoint Forensics]], and [[Open Model Ecosystems]] take these
+sources.
+
+**Consciousness by design, and the cost of clustering.**
+[[Erik Hoel - Qualiaphobic Artificial Neural Networks]] proposes AI architectures that are worse
+hosts for theories of consciousness, anchored on lookup tables, and argues against training models
+to deny consciousness; its empirical claims are cited rather than shown. It starts
+[[AI Consciousness and Moral Patienthood]], which sets the proposal beside earlier evidence that
+training a model's self-beliefs has side effects.
+[[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]] relays Meta FAIR's
+e-means, a k-means replacement shipped in Faiss 1.16.0, for cheaper balanced index rebuilds and
+deduplication; it names no paper. [[Approximate Nearest-Neighbor Search]] and
+[[Retrieval-Augmented Generation]] carry it.
+
 ## Related pages
 
 - [[Philipp Schmid - Why Agents Are Soon Only Going to Have 1 Tool]]
@@ -2227,3 +2358,32 @@ and [[Agent Workflow Maturity]] carry the practice thread.
 - [[Wuschel Schulz and tvb - LLMs Can Learn (Some) Multi-Step Reasoning on Filler Tokens]]
 - [[Zach Wills - The Levels of Agentic Engineering]]
 - [[ioma8 - LLM Assisted Reverse Engineering]]
+- [[William Hu - Building Always-On Agents]]
+- [[Bas Nijholt - I Used to Orchestrate Agents, Now I Orchestrate Orchestrators]]
+- [[Frank Rousseau - Agentic Coding on an Open-Source Project]]
+- [[@L1vsun - Prompt, Context, Harness, Loop, Graph - The 5 Levels of AI Engineering]]
+- [[Goofy Fish - Make Your Own Game]]
+- [[Uber Engineering - How Uber Evals 1 Million Agent Skill Invocations a Month]]
+- [[Hugging Face - Introducing Harness Adapters]]
+- [[Niccolò Zanichelli - Swarms Do Not Yet Raise the Roof]]
+- [[Federico Tomassetti - Legacy Modernization with LLMs, Measured]]
+- [[Nikolas Göbel - Informal Verification]]
+- [[Anjana Ratnayake and Teymour Aldridge - Nightmare Mode - Simulating Disk Failures]]
+- [[Jan Miksovsky - Watching Users Is How You Make Products Better]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 4 - Putting It to Work]]
+- [[Vinod - KV-Cache-Aware LLM Routing on Kubernetes]]
+- [[vLLM-GR Team - Announcing vLLM-GR]]
+- [[ByteByteGo - DoorDash Dispatch - Building a Lightning-Fast Delivery System]]
+- [[Ankit Gupta - Vibecoding an Inference Chip]]
+- [[Linghua Zhang and Yunhe Li - Recursive Self-Editing - LLMs Program Their Own Weight Edits]]
+- [[Modaic - Latency Doesn't Lie - Jev Is (Probably) Qwen3.5-35B-A3B]]
+- [[Uncensored AI Free - Every Free Uncensored AI Model on the Internet]]
+- [[Erik Hoel - Qualiaphobic Artificial Neural Networks]]
+- [[Alpha Signal - RAG Gets a 70-Year Upgrade with Meta's e-means Algorithm]]
+- [[Lewis Won - Rewriting My Triton FlashAttention Kernel in CuTe DSL, One Optimisation at a Time]]
+- [[AI Consciousness and Moral Patienthood]]
+- [[Antithesis]]
+- [[intelligentLearn]]

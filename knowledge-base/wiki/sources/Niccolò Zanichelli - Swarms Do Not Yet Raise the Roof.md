@@ -122,16 +122,16 @@ internal harness, a harder sample, stricter leak filtering, and the reasoning-co
 
 ### How other evidence was rated
 
-In the author's table, OpenAI's GPT-5.6 swarm bonus (**+3pp to +23pp**) had no matched-compute
-control and is "Probably just disguised inference scaling". General Reasoning's Avalon-M1 is the only
-matched comparison claiming about parity: its n=8 swarm beat a solo agent on **35%** of benchmarks and
-lost on **43%**, and its solo baseline is the same swarm-trained model. On ProgramBench it went the
-other way, **25.7%** against **29.4%**, and its claim that extended thinking "recovers about three
-fifths" of the swarm gain holds only if SWE-Bench Pro is excluded; with it, four fifths. Ramez Naam's λ values (**0.75** under 30 agents, **0.33** under
-100) have no matched-compute control, because "No lone agent is given a longer clock". Aggarwal et
-al. (SwarmChat), Mieczkowski et al. and Bespoke Labs' MAC Bench also show penalties on efficiency
-or cost. Park et al. find
-a bonus against independent agents but a penalty against a matched solo agent.
+In the author's table, OpenAI's GPT-5.6 swarm bonus (**+3pp to +23pp**) had no matched-compute control
+and is "Probably just disguised inference scaling". General Reasoning's Avalon-M1 is the only matched
+comparison claiming about parity: its n=8 swarm beat a solo agent on **35%** of benchmarks and lost on
+**43%**, and its solo baseline is the same swarm-trained model. On ProgramBench it went the other way,
+**25.7%** against **29.4%**, and its claim that extended thinking "recovers about three fifths" of the
+swarm gain holds only if SWE-Bench Pro is excluded; with it, four fifths. Ramez Naam's λ values
+(**0.75** under 30 agents, **0.33** under 100) have no matched-compute control, because "No lone agent
+is given a longer clock". Aggarwal et al. (SwarmChat), Mieczkowski et al. and Bespoke Labs' MAC Bench
+also show penalties on efficiency or cost. Park et al. find a bonus against independent agents but a
+penalty against a matched solo agent.
 
 ## Why it matters
 

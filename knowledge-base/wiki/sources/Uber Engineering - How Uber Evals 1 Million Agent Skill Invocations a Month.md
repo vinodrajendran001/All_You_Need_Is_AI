@@ -56,9 +56,8 @@ for its defects. The report is first-party and gives few absolute numbers.
   measures per skill, among them users, retention, cost, latency and errors.
 - Skill Workshop gives each skill a lifecycle: it is written, tested, shipped and improved from real
   runs "until a better model makes it unnecessary and it retires". Authors write a spec first (goal,
-  outputs, required or forbidden tool
-  actions, target agents and models), and the tool compiles SKILL.md and test prompts from it,
-  recompiling when a model or agent changes.
+  outputs, required or forbidden tool actions, target agents and models), and the tool compiles
+  SKILL.md and test prompts from it, recompiling when a model or agent changes.
 - A linter enforces numbered steps with one objective each and some soft verification, a concrete
   command whose result is checked before the next step, and an error-recovery table in which "Try
   again" doesn't count.

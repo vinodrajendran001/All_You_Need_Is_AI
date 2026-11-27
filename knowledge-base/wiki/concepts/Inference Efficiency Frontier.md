@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-09-03
-updated: 2026-10-19
+updated: 2026-11-27
 tags:
   - concept
   - inference
@@ -28,6 +28,9 @@ source_ids:
   - src-2026-10-13-zancato-model-priming
   - src-2026-10-11-samarin-speculative-decoding
   - src-2026-10-19-alphasignal-next-concept-modeling
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
+  - src-2026-11-14-intelligentlearn-inference-systems-part-2
+  - src-2026-11-19-intelligentlearn-inference-systems-part-3
 status: active
 ---
 
@@ -326,6 +329,47 @@ and no figures for the **725M** scaling run. Its MBR summarization gain spends t
 candidates, which turns a latency gain into a quality gain at fixed time. That is the same
 allocation question as any other frontier-moving technique.
 
+## Frontier-moving is conditional on the binding constraint
+
+The intelligentLearn series reaches the same kind of classification as this page by a different
+route. Instead of asking whether a technique moves along the frontier or pushes it out, it asks
+which ledger (operator work, memory, or request timeline) a technique relieves, and where the cost
+reappears. [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]] names that pattern **cost displacement**. Its paired examples make several of
+this page's categories conditional rather than fixed:
+
+- **Paged KV** saves memory and pays in kernel time. The vLLM paper measured its own attention kernel
+  as **20 to 26%** slower than FasterTransformer's and says static or compute-bound workloads "may
+  rather degrade". Paging also cannot move the memory ceiling set by linear KV growth. Only where
+  fragmentation was the binding constraint does it act like a frontier-moving investment.
+- **Moving KV out of HBM** relocates the pressure to the interconnect and CPU. The CPU-offload paper
+  reports only **37.6%** strong-scaling efficiency from one to eight sockets at short sequences.
+- **Disaggregation** is frontier-moving in [[Philip Kiely - The Efficient Frontier of LLM Inference]].
+  The design-space study Part 2 reads finds it pays most on prefill-heavy traffic and larger models,
+  and that colocation is "actually competitive" on decode-heavy traffic with loose latency targets.
+  The study is simulator-based with static traffic, and Kiely's claim is an unmeasured vendor report,
+  so the disagreement in scope stays open. Like quantization, disaggregation may be frontier-moving
+  for one workload and a tradeoff for another.
+- **Continuous batching** changes waiting and slot use, "not the per-token operator work". That
+  agrees with this page's note that it avoids waiting for a fixed batch without removing resource
+  queueing.
+
+[[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] shows why batch sizing, this page's canonical tradeoff, also has a workload-dependent limit.
+Larger batches raise arithmetic intensity only for weight-reading layers. Attention over each
+request's own history stays near **8 FLOP/byte**. Memory also caps the batch. In its running case,
+moving from short chats to long documents cuts the memory-only ceiling from about **690** to about
+**14** requests per replica. The whole latency-throughput curve for long documents therefore sits
+lower, and no batch setting on it reaches the compute ridge. This is the mechanism behind Kiely's
+warning that two isolated gains may fail to multiply: both can be spending the same displaced
+resource.
+
+[[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]] adds the measurement rule for placing any technique on the frontier. The axes must be read at
+the service boundary: P95 TTFT, P95 token gap, SLO attainment, and goodput counting rejected and
+timed-out requests as misses. The comparison's denominator (hardware, precision, request
+distribution, SLO) must be held fixed or stated. A faster kernel, a higher cache hit rate, or higher
+mean throughput is a local metric and does not locate a point on the frontier. This extends the
+hidden-axes warning from the one-L4 example above. All of intelligentLearn's numbers are teaching
+estimates or paper-reported results, not new measurements.
+
 ## Open questions
 
 - Depth-pruning gains are reported at aggressive ratios without retraining. Where does the gap between
@@ -346,6 +390,7 @@ allocation question as any other frontier-moving technique.
 - Where is the boundary between the frontier and the workload? Reasoning effort and context layout are neither
   tradeoff nor frontier-moving in the serving sense, yet they dominate real bills.
 - Does the maturity-headroom relationship hold outside kernels?
+- Is disaggregation frontier-moving on decode-heavy traffic? Kiely reports it as frontier-moving in practice, while the simulator-based design-space study read by intelligentLearn finds colocation competitive there. Neither is a controlled measurement on the same workload.
 
 ## Related pages
 
@@ -390,3 +435,7 @@ allocation question as any other frontier-moving technique.
 - [[Knowledge Distillation]]
 - [[Test-Time Scaling]]
 - [[AI Agents in Production]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 2 - Six Layers to Investigate]]
+- [[intelligentLearn - Designing LLM Inference Systems, Part 3 - How to Evaluate a Change]]
+- [[intelligentLearn]]

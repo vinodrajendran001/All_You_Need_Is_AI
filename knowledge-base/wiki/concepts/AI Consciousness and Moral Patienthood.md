@@ -71,7 +71,7 @@ not only to observed behavior, which is why the debate reaches pages about model
 
 ### Qualiaphobia: engineering for a justified "no"
 
-Hoel's response is to design architectures that as few theories as possible could ever count as
+Hoel's response is to design architectures that almost no theory of consciousness could count as
 conscious. His anchor is the lookup table, which carries almost no internal data and so supports
 only behaviorist theories.
 

@@ -171,8 +171,8 @@ Its batching table separates the two decode operators that this page treats toge
 - **Attention over historical KV** stays near **8 FLOP/byte** under GQA 8:1 (about **1** for MHA),
   "about 37x below the ridge". It does not move with B, because each request reads its own history.
 
-The 8 is this page's `H_q / H_kv` decode-reuse entry for GQA, evaluated at 64 query heads and 8 KV
-heads. The conclusion matches [[Jacob Peake - AI Chip Architectures]]: batching restores weight
+Both values match this page's attention-core table for single-token decode: `H_q / H_kv` for GQA,
+here 64 query heads over 8 KV heads, and `1` for MHA. The conclusion matches [[Jacob Peake - AI Chip Architectures]]: batching restores weight
 reuse, but long-context decode becomes KV-bandwidth-bound.
 
 The part is also explicit about the accounting boundary. The 295 counts weight bytes only. Counting

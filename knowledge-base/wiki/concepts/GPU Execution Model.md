@@ -1,7 +1,7 @@
 ---
 type: concept
 created: 2026-07-03
-updated: 2026-10-09
+updated: 2026-11-27
 tags:
   - concept
   - gpu
@@ -14,6 +14,7 @@ source_ids:
   - src-2026-08-14-changyi-yang-mla-mtp-arithmetic-intensity
   - src-2026-08-23-wafer-ai-performance-engineering-resources
   - src-2026-09-08-cohere-megakernel-serving
+  - src-2026-11-05-intelligentlearn-inference-trade-offs-part-1
 status: active
 ---
 
@@ -88,11 +89,43 @@ fan-out**. That property is what makes fine-grained dependency graphs affordable
 tasks. Earlier greedy topology-aware and brute-force schedulers gave ~10% on a dense model but "did not
 transfer to MoE."
 
+## From one kernel to an inference step: hierarchy, fusion, and latency limits
+
+[[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]] takes the vector-add picture above up to a full transformer layer on an H100 SXM5. Weights
+and KV live in HBM (**80 GB** at **3.35 TB/s**). Every operator moves data through much smaller
+on-chip tiers (L2, per-SM shared memory, registers) and reuses tiles there before writing back. The
+operand path depends on the instruction. Hopper's WGMMA reads matrix operands from shared memory and
+keeps accumulators in registers. That is a first, partial answer to the open question below about
+how tensor-core kernels change the shared-memory and register picture that a vector add leaves
+out.
+
+Two cautions from that source qualify how the vector-add lesson generalises:
+
+- **Summed operator bytes are not HBM traffic.** Fusion reduces both launch overhead and
+  intermediate round trips through HBM. Tiling reuses each block before eviction. "Do not add
+  operator inputs and outputs and call the sum actual HBM traffic", the part warns, and FlashAttention
+  is the canonical case of the same semantics with very different HBM access. An operator-level
+  estimate gives magnitude and structure, not measured traffic, which is why profiler evidence of the
+  kind [[Wafer - AI Performance Engineering Resources]] asks for still decides.
+- **Below the ridge, bandwidth is not the only limit.** The vector add above is starved by data
+  movement, with schedulers issuing only about 5% of cycles. A kernel can instead be limited by too
+  little parallelism, launch overhead, or synchronization, which NVIDIA's guide calls
+  latency-limited. The roofline "says what to investigate, not which resource is saturated". Small
+  decode batches are where the two diverge in practice. This is also the gap that persistent
+  kernels such as the megakernel above try to close by removing launches.
+
+The part also places tensor parallelism in this model. It splits each operator across GPUs, which
+cuts each GPU's weight bytes and compute. Every layer then pays collective communication, so latency
+does not fall linearly with TP degree. Its idealized weight-streaming bound for a 70B model at TP=4,
+about **10.5 ms** per step, excludes KV reads, communication, and kernel overhead. All its hardware
+figures are vendor datasheet values, not measurements.
+
 ## Open questions
 
 - How do compute-bound GEMMs and tensor-core kernels — the workloads that dominate real training/inference — change the scheduling, register, and shared-memory picture drawn by a memory-bound vector add?
 - How much of this model shifts across generations (Ada → Hopper → Blackwell) as method classes, control-word layouts, and memory hierarchies evolve?
 - Where is the crossover at which shared-memory tiling and occupancy tuning stop helping because a kernel is already bandwidth-saturated?
+- For small-batch decode, how can a profiler distinguish a latency-limited kernel (too little parallelism, launch or synchronization overhead) from a bandwidth-limited one when both sit below the ridge?
 
 ## Related pages
 
@@ -114,3 +147,5 @@ transfer to MoE."
 - [[Cohere - North Mini Code Megakernel Serving Engine]]
 - [[Megakernels]]
 - [[Cohere]]
+- [[intelligentLearn - From Symptoms to Fixes - Part 1 - Start with the Machine]]
+- [[intelligentLearn]]
